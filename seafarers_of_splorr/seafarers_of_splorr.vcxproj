@@ -189,8 +189,6 @@
     <ClCompile Include="sqlite3.c" />
     <ClCompile Include="State.ConfirmAbandon.cpp" />
     <ClCompile Include="State.ConfirmOverwrite.cpp" />
-    <ClCompile Include="State.InPlay.Teleport.cpp" />
-    <ClCompile Include="State.InPlay.Trade.cpp" />
     <ClCompile Include="State.Statistics.cpp" />
     <ClCompile Include="State.Tip.cpp" />
     <ClCompile Include="Visuals.Areas.cpp" />
@@ -212,14 +210,6 @@
     <ClCompile Include="Data.JSON.cpp" />
     <ClCompile Include="Visuals.Layouts.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="State.InPlay.AvatarInventory.cpp" />
-    <ClCompile Include="State.InPlay.AvatarStatus.cpp" />
-    <ClCompile Include="State.InPlay.Combat.cpp" />
-    <ClCompile Include="State.InPlay.CombatResult.cpp" />
-    <ClCompile Include="State.InPlay.Dead.cpp" />
-    <ClCompile Include="State.InPlay.Exit.cpp" />
-    <ClCompile Include="State.InPlay.FloorInventory.cpp" />
-    <ClCompile Include="State.InPlay.MiniMap.cpp" />
     <ClCompile Include="State.LeavePlay.cpp" />
     <ClCompile Include="State.LoadGame.cpp" />
     <ClCompile Include="State.MainMenu.cpp" />
@@ -233,11 +223,6 @@
     <ClCompile Include="State.Start.cpp" />
     <ClCompile Include="Visuals.Textures.cpp" />
     <ClCompile Include="Common.Utility.cpp" />
-    <ClCompile Include="Sublayout.EnemyStats.cpp" />
-    <ClCompile Include="Sublayout.POV.cpp" />
-    <ClCompile Include="Sublayout.QuickStats.cpp" />
-    <ClCompile Include="Sublayout.TabControls.cpp" />
-    <ClCompile Include="Sublayout.UIHamburger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.Command.h" />
@@ -298,7 +283,6 @@
     <ClInclude Include="Visuals.Sprites.h" />
     <ClInclude Include="Visuals.Textures.h" />
     <ClInclude Include="States.h" />
-    <ClInclude Include="Sublayouts.h" />
     <ClInclude Include="Common.Utility.h" />
     <ClInclude Include="Common.XY.h" />
   </ItemGroup>

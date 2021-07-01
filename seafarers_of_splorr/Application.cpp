@@ -24,7 +24,6 @@
 #include "Game.Item.h"
 #include "Game.Avatar.Items.h"
 #include "States.h"
-#include "Sublayouts.h"
 #include "Game.Avatar.Statistics.h"
 #include "Data.Stores.h"
 #include "Application.OnEnter.h"
@@ -85,25 +84,10 @@ namespace common::Application
 		state::ConfirmQuit::Start,
 		state::Options::Start,
 		state::Start::Start,
-		sublayout::UIHamburger::Start,
-		sublayout::TabControls::Start,
-		state::in_play::MiniMap::Start,
 		state::LeavePlay::Start,
-		sublayout::POV::Start,
 		game::avatar::Statistics::Start,
 		game::avatar::Items::Start,
-		state::in_play::FloorInventory::Start,
-		state::in_play::AvatarInventory::Start,
-		state::in_play::AvatarStatus::Start,
-		state::in_play::Trade::Start,
-		sublayout::QuickStats::Start,
-		sublayout::EnemyStats::Start,
 		game::Start,
-		state::in_play::Combat::Start,
-		state::in_play::CombatResult::Start,
-		state::in_play::Dead::Start,
-		state::in_play::Exit::Start,
-		state::in_play::Teleport::Start,
 		state::Statistics::Start,
 		game::CombatDeck::Deal,
 		game::CombatDeck::Deal,

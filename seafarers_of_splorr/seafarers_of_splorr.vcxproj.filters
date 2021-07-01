@@ -121,36 +121,6 @@
     <ClCompile Include="State.ConfirmQuit.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.AvatarInventory.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.AvatarStatus.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.Combat.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.CombatResult.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.Dead.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.Exit.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.FloorInventory.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.MiniMap.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.Teleport.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.Trade.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="State.LeavePlay.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -176,21 +146,6 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="State.Tip.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Sublayout.EnemyStats.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Sublayout.POV.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Sublayout.QuickStats.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Sublayout.TabControls.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Sublayout.UIHamburger.cpp">
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Visuals.Areas.cpp">
@@ -373,9 +328,6 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="States.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Sublayouts.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Visuals.Areas.h">
