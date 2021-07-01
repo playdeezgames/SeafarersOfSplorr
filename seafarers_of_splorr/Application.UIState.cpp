@@ -43,12 +43,12 @@ namespace application::UIState
 				game::Achievements::Add(deathByAchievement.value());
 			}
 			game::Achievements::Add(game::Achievement::YER_DEAD);
-			return application::Sounds::Read(application::UI::Sfx::DEAD_HUNTER);
+			return application::Sounds::Read(application::UI::Sfx::WOOHOO);
 		}
 
 		if (!game::Creatures::AnyLeft())//did you win?
 		{
-			return application::Sounds::Read(application::UI::Sfx::EXIT);
+			return application::Sounds::Read(application::UI::Sfx::WOOHOO);
 		}
 
 		if (game::Creatures::GetInstance(game::Avatar::GetPosition()))//are you fighting?

@@ -115,12 +115,12 @@ namespace game::Avatar
 			if (game::avatar::Statistics::IsMinimum(game::avatar::Statistic::NAUSEA))
 			{
 				ActuallyTurnLeft();
-				return application::Sounds::Read(application::UI::Sfx::TURN);
+				return application::Sounds::Read(application::UI::Sfx::WOOHOO);
 			}
 			else
 			{
 				ActuallyTurnRight();
-				return application::Sounds::Read(application::UI::Sfx::TURN);
+				return application::Sounds::Read(application::UI::Sfx::WOOHOO);
 			}
 		}
 		return std::nullopt;
@@ -133,12 +133,12 @@ namespace game::Avatar
 			if (game::avatar::Statistics::IsMinimum(game::avatar::Statistic::NAUSEA))
 			{
 				ActuallyTurnRight();
-				return application::Sounds::Read(application::UI::Sfx::TURN);
+				return application::Sounds::Read(application::UI::Sfx::WOOHOO);
 			}
 			else
 			{
 				ActuallyTurnLeft();
-				return application::Sounds::Read(application::UI::Sfx::TURN);
+				return application::Sounds::Read(application::UI::Sfx::WOOHOO);
 			}
 		}
 		return std::nullopt;
@@ -158,7 +158,7 @@ namespace game::Avatar
 			}
 		}
 		game::world::Items::Add(GetPosition(), itemId, 1);
-		return application::Sounds::Read(application::UI::Sfx::HUNTER_POOPS);
+		return application::Sounds::Read(application::UI::Sfx::WOOHOO);
 	}
 
 	static std::optional<std::string> HandleHunger()
@@ -168,7 +168,7 @@ namespace game::Avatar
 		{
 			avatar::Statistics::SetCauseOfDeath("starvation(the REAL enemy)", std::nullopt, std::nullopt);
 			avatar::Statistics::Decrease(avatar::Statistic::HEALTH, hungerRate);
-			return application::Sounds::Read(application::UI::Sfx::STOMACH);
+			return application::Sounds::Read(application::UI::Sfx::WOOHOO);
 		}
 		else
 		{
@@ -223,9 +223,9 @@ namespace game::Avatar
 		case game::world::Borders::WallBumpResult::WALL_FALLS:
 			DoFourthWallAchievement();
 			game::world::Borders::SetBorderAhead(GetPosition(), GetFacing(), game::world::Border::BROKEN_WALL);
-			return application::Sounds::Read(application::UI::Sfx::BREAK_WALL);//TODO: update for better wall fall sound!
+			return application::Sounds::Read(application::UI::Sfx::WOOHOO);//TODO: update for better wall fall sound!
 		default:
-			return application::Sounds::Read(application::UI::Sfx::BUMP_WALL);
+			return application::Sounds::Read(application::UI::Sfx::WOOHOO);
 		}
 	}
 
@@ -235,9 +235,9 @@ namespace game::Avatar
 		{
 			game::avatar::Statistics::Decrease(game::avatar::Statistic::KEYS, 1);
 			game::world::Borders::SetBorderAhead(game::Avatar::GetPosition(), game::Avatar::GetFacing(), game::world::Border::DOOR);
-			return application::Sounds::Read(application::UI::Sfx::UNLOCK);
+			return application::Sounds::Read(application::UI::Sfx::WOOHOO);
 		}
-		return application::Sounds::Read(application::UI::Sfx::LOCKED);
+		return application::Sounds::Read(application::UI::Sfx::WOOHOO);
 	}
 
 	static std::optional<std::string> StepAhead()

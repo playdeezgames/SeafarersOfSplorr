@@ -5,19 +5,7 @@ namespace application::UI
 {
 	enum class Sfx
 	{
-		BUMP_WALL,
-		DEAD_HUNTER,
-		EXIT,
-		HIT_HUNTER,
-		HIT_BLOCKED,
-		WOOHOO,
-		HUNTER_POOPS,
-		LOCKED,
-		UNLOCK,
-		TURN,
-		STOMACH,
-		TAKE_ALL,
-		BREAK_WALL
+		WOOHOO
 	};
 }
 
