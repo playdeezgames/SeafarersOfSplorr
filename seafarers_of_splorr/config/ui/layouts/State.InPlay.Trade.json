@@ -1,0 +1,219 @@
+[
+    {
+        "type": "Image",
+        "sprite": "Background",
+        "color": "DarkGray",
+        "x": 0,
+        "y": 0
+    },
+    {
+        "type": "Text",
+        "font": "default",
+        "color": "LightGreen",
+        "text-id":"Title",
+        "text": "<title>",
+        "x": 320,
+        "y": 0,
+        "horizontal-alignment": 0,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Layout",
+        "name": "Sublayout.UIHamburger"
+    },
+    {
+        "type": "Image",
+        "image-id": "ui-close",
+        "sprite": "UICloseNormal",
+        "color": "White",
+        "x": 0,
+        "y": 0
+    },
+    {
+        "type": "Menu",
+        "menu-id": "Trade",
+        "index": 0,
+        "font": "default",
+        "colors": {
+            "active": "Cyan",
+            "inactive": "Gray"
+        },
+        "horizontal-alignment": 0,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2,
+        "menu-items": [
+            {
+                "menu-item-id": "Trade1",
+                "text": "<trade 1>",
+                "x": 320,
+                "y": 32,
+                "enabled": false
+            },
+            {
+                "menu-item-id": "Trade2",
+                "text": "<trade 2>",
+                "x": 320,
+                "y": 48,
+                "enabled": false
+            },
+            {
+                "menu-item-id": "Trade3",
+                "text": "<trade 3>",
+                "x": 320,
+                "y": 64,
+                "enabled": false
+            }
+        ]
+    },
+    {
+        "type": "Text",
+        "font": "default",
+        "color": "Blue",
+        "text": "Cost:",
+        "x": 160,
+        "y": 96,
+        "horizontal-alignment": 0,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "font": "default",
+        "color": "Gray",
+        "text-id": "Cost1",
+        "text": "<cost 1>",
+        "x": 160,
+        "y": 112,
+        "horizontal-alignment": 0,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "font": "default",
+        "color": "Gray",
+        "text-id": "Cost2",
+        "text": "<cost 2>",
+        "x": 160,
+        "y": 128,
+        "horizontal-alignment": 0,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "font": "default",
+        "color": "Gray",
+        "text-id": "Cost3",
+        "text": "<cost 3>",
+        "x": 160,
+        "y": 144,
+        "horizontal-alignment": 0,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "font": "default",
+        "color": "Blue",
+        "text": "Benefit:",
+        "x": 480,
+        "y": 96,
+        "horizontal-alignment": 0,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "font": "default",
+        "color": "Gray",
+        "text-id": "Benefit1",
+        "text": "<benefit 1>",
+        "x": 480,
+        "y": 112,
+        "horizontal-alignment": 0,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "font": "default",
+        "color": "Gray",
+        "text-id": "Benefit2",
+        "text": "<benefit 2>",
+        "x": 480,
+        "y": 128,
+        "horizontal-alignment": 0,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "font": "default",
+        "color": "Gray",
+        "text-id": "Benefit3",
+        "text": "<benefit 3>",
+        "x": 480,
+        "y": 144,
+        "horizontal-alignment": 0,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type":"Area",
+        "area-id":"UIClose",
+        "x":0,
+        "y":0,
+        "width":16,
+        "height":16
+    },
+    {
+        "type":"Area",
+        "area-id":"Trade1",
+        "x":0,
+        "y":32,
+        "width":640,
+        "height":16
+    },
+    {
+        "type":"Area",
+        "area-id":"Trade2",
+        "x":0,
+        "y":48,
+        "width":640,
+        "height":16
+    },
+    {
+        "type":"Area",
+        "area-id":"Trade3",
+        "x":0,
+        "y":64,
+        "width":640,
+        "height":16
+    },
+    {
+        "type": "Layout",
+        "name": "Sublayout.Modded"
+    }
+]

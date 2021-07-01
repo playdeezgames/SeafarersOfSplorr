@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{30df989a-facd-4285-9de8-a55fb863f537}</ProjectGuid>
+    <RootNamespace>aspirantapplication</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\lib\SDL2_image-2.0.5\lib\x86;E:\lib\SDL2_mixer-2.0.4\lib\x86;E:\lib\SDL2-2.0.14\lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\lib\SDL2_image-2.0.5\lib\x86;E:\lib\SDL2_mixer-2.0.4\lib\x86;E:\lib\SDL2-2.0.14\lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\lib\steamworks_sdk_151\sdk\redistributable_bin\win64;E:\lib\steamworks_sdk_151\sdk\public\steam\lib\win64;E:\lib\SDL2-2.0.14\lib\x64;E:\lib\SDL2_mixer-2.0.4\lib\x64;E:\lib\SDL2_image-2.0.5\lib\x64;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\lib\steamworks_sdk_151\sdk\redistributable_bin\win64;E:\lib\SDL2-2.0.14\lib\x64;E:\lib\SDL2_mixer-2.0.4\lib\x64;E:\lib\SDL2_image-2.0.5\lib\x64;$(LibraryPath)</LibraryPath>
+    <TargetName>Freebooter</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_mixer.lib;SDL2_image.lib;steam_api64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>steam_api64.lib;SDL2.lib;SDL2main.lib;SDL2_mixer.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Application.Command.cpp" />
+    <ClCompile Include="Application.Keyboard.cpp" />
+    <ClCompile Include="Application.MouseButtonUp.cpp" />
+    <ClCompile Include="Application.MouseMotion.cpp" />
+    <ClCompile Include="Application.Renderer.cpp" />
+    <ClCompile Include="Application.Sounds.cpp" />
+    <ClCompile Include="Application.UIState.cpp" />
+    <ClCompile Include="Application.Update.cpp" />
+    <ClCompile Include="Application.OnEnter.cpp" />
+    <ClCompile Include="Common.Application.Internals.cpp" />
+    <ClCompile Include="Data.Stores.cpp" />
+    <ClCompile Include="Game.Achievements.cpp" />
+    <ClCompile Include="Game.Audio.Mux.cpp" />
+    <ClCompile Include="Game.Avatar.cpp" />
+    <ClCompile Include="Game.Avatar.Items.cpp" />
+    <ClCompile Include="Game.Avatar.Statistics.cpp" />
+    <ClCompile Include="Game.Combat.cpp" />
+    <ClCompile Include="Game.CombatDeck.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Game.Creature.cpp" />
+    <ClCompile Include="Game.Creatures.cpp" />
+    <ClCompile Include="Game.Item.cpp" />
+    <ClCompile Include="Game.Shoppes.cpp" />
+    <ClCompile Include="Game.World.Borders.cpp" />
+    <ClCompile Include="Game.World.cpp" />
+    <ClCompile Include="Game.World.Data.cpp" />
+    <ClCompile Include="Game.World.Items.cpp" />
+    <ClCompile Include="State.ConfirmAbandon.cpp" />
+    <ClCompile Include="State.ConfirmOverwrite.cpp" />
+    <ClCompile Include="State.InPlay.Teleport.cpp" />
+    <ClCompile Include="State.InPlay.Trade.cpp" />
+    <ClCompile Include="State.Statistics.cpp" />
+    <ClCompile Include="State.Tip.cpp" />
+    <ClCompile Include="Visuals.Areas.cpp" />
+    <ClCompile Include="Visuals.AvatarInventory.cpp" />
+    <ClCompile Include="Visuals.CardSprites.cpp" />
+    <ClCompile Include="Visuals.Data.Types.cpp" />
+    <ClCompile Include="Visuals.Images.cpp" />
+    <ClCompile Include="Visuals.Menus.cpp" />
+    <ClCompile Include="Visuals.Sublayout.cpp" />
+    <ClCompile Include="Visuals.Texts.cpp" />
+    <ClCompile Include="Visuals.WorldMap.cpp" />
+    <ClCompile Include="Maze.Direction.cpp" />
+    <ClCompile Include="State.About.cpp" />
+    <ClCompile Include="Common.Application.cpp" />
+    <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Visuals.Colors.cpp" />
+    <ClCompile Include="State.ConfirmQuit.cpp" />
+    <ClCompile Include="Visuals.Fonts.cpp" />
+    <ClCompile Include="Data.JSON.cpp" />
+    <ClCompile Include="Visuals.Layouts.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="State.InPlay.AvatarInventory.cpp" />
+    <ClCompile Include="State.InPlay.AvatarStatus.cpp" />
+    <ClCompile Include="State.InPlay.Combat.cpp" />
+    <ClCompile Include="State.InPlay.CombatResult.cpp" />
+    <ClCompile Include="State.InPlay.Dead.cpp" />
+    <ClCompile Include="State.InPlay.Exit.cpp" />
+    <ClCompile Include="State.InPlay.FloorInventory.cpp" />
+    <ClCompile Include="State.InPlay.MiniMap.cpp" />
+    <ClCompile Include="State.LeavePlay.cpp" />
+    <ClCompile Include="State.LoadGame.cpp" />
+    <ClCompile Include="State.MainMenu.cpp" />
+    <ClCompile Include="Options.cpp" />
+    <ClCompile Include="State.Options.cpp" />
+    <ClCompile Include="Common.RNG.cpp" />
+    <ClCompile Include="Common.Audio.cpp" />
+    <ClCompile Include="State.SaveGame.cpp" />
+    <ClCompile Include="State.Splash.cpp" />
+    <ClCompile Include="Visuals.Sprites.cpp" />
+    <ClCompile Include="State.Start.cpp" />
+    <ClCompile Include="Visuals.Textures.cpp" />
+    <ClCompile Include="Common.Utility.cpp" />
+    <ClCompile Include="Sublayout.EnemyStats.cpp" />
+    <ClCompile Include="Sublayout.POV.cpp" />
+    <ClCompile Include="Sublayout.QuickStats.cpp" />
+    <ClCompile Include="Sublayout.TabControls.cpp" />
+    <ClCompile Include="Sublayout.UIHamburger.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Application.Command.h" />
+    <ClInclude Include="Application.Handlers.h" />
+    <ClInclude Include="Application.Keyboard.h" />
+    <ClInclude Include="Application.MouseButtonUp.h" />
+    <ClInclude Include="Application.MouseMotion.h" />
+    <ClInclude Include="Application.OnEnter.h" />
+    <ClInclude Include="Application.Sounds.h" />
+    <ClInclude Include="Application.UIState.h" />
+    <ClInclude Include="Application.Update.h" />
+    <ClInclude Include="Common.Application.h" />
+    <ClInclude Include="Common.Application.Internals.h" />
+    <ClInclude Include="Common.Card.h" />
+    <ClInclude Include="Common.Deck.h" />
+    <ClInclude Include="Common.Data.Properties.h" />
+    <ClInclude Include="Data.Stores.h" />
+    <ClInclude Include="Game.Achievements.h" />
+    <ClInclude Include="Game.Audio.Mux.h" />
+    <ClInclude Include="Game.Avatar.h" />
+    <ClInclude Include="Game.Avatar.Items.h" />
+    <ClInclude Include="Game.Avatar.Statistics.h" />
+    <ClInclude Include="Game.Combat.h" />
+    <ClInclude Include="Game.CombatDeck.h" />
+    <ClInclude Include="Game.Creature.h" />
+    <ClInclude Include="Game.Creatures.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Game.Item.h" />
+    <ClInclude Include="Game.Data.Properties.h" />
+    <ClInclude Include="Game.Shoppes.h" />
+    <ClInclude Include="Game.World.Borders.h" />
+    <ClInclude Include="Game.World.Data.h" />
+    <ClInclude Include="Game.World.h" />
+    <ClInclude Include="Game.World.Items.h" />
+    <ClInclude Include="Maze.Door.h" />
+    <ClInclude Include="Visuals.Areas.h" />
+    <ClInclude Include="Visuals.AvatarInventory.h" />
+    <ClInclude Include="Visuals.CardSprites.h" />
+    <ClInclude Include="Visuals.Data.Colors.h" />
+    <ClInclude Include="Visuals.Images.h" />
+    <ClInclude Include="Visuals.Menus.h" />
+    <ClInclude Include="Visuals.Data.Properties.h" />
+    <ClInclude Include="Visuals.Texts.h" />
+    <ClInclude Include="Visuals.Data.Types.h" />
+    <ClInclude Include="Application.Renderer.h" />
+    <ClInclude Include="Visuals.Colors.h" />
+    <ClInclude Include="Visuals.Fonts.h" />
+    <ClInclude Include="json.hpp" />
+    <ClInclude Include="Data.JSON.h" />
+    <ClInclude Include="Visuals.Layouts.h" />
+    <ClInclude Include="Maze.hpp" />
+    <ClInclude Include="Maze.Direction.h" />
+    <ClInclude Include="Options.h" />
+    <ClInclude Include="Common.RNG.h" />
+    <ClInclude Include="Common.Audio.h" />
+    <ClInclude Include="Visuals.Sprites.h" />
+    <ClInclude Include="Visuals.Textures.h" />
+    <ClInclude Include="States.h" />
+    <ClInclude Include="Sublayouts.h" />
+    <ClInclude Include="Common.Utility.h" />
+    <ClInclude Include="Common.XY.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,95 @@
+[
+    {
+        "type": "Image",
+        "sprite": "Background",
+        "color": "DarkGray",
+        "x": 0,
+        "y": 0
+    },
+    {
+        "type": "Layout",
+        "name": "Sublayout.POV"
+    },
+    {
+        "type": "Text",
+        "font": "default",
+        "color": "Black",
+        "text": "<tab>",
+        "x": 500,
+        "y": 0,
+        "horizontal-alignment": 0,
+        "drop-shadow": false,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "AvatarInventory",
+        "control-id":"FloorInventory",
+        "source":1,
+        "x": 360,
+        "y": 48,
+        "width":280,
+        "font": "default",
+        "row-height": 16,
+        "colors": {
+            "active": "Cyan",
+            "inactive": "Gray"
+        },
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "font": "default",
+        "color": "Black",
+        "text": "<space> to",
+        "x": 500,
+        "y": 328,
+        "horizontal-alignment": 0,
+        "drop-shadow": false,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "font": "default",
+        "color": "Black",
+        "text": "pick up items",
+        "x": 500,
+        "y": 344,
+        "horizontal-alignment": 0,
+        "drop-shadow": false,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Layout",
+        "name": "Sublayout.UIHamburger"
+    },
+    {
+        "type": "Layout",
+        "name": "Sublayout.TabControls"
+    },
+    {
+        "type": "Text",
+        "font": "default",
+        "color": "LightCyan",
+        "text": "Flr",
+        "x": 444,
+        "y": 16,
+        "horizontal-alignment": 1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Cyan",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Layout",
+        "name": "Sublayout.Modded"
+    }
+]

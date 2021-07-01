@@ -1,0 +1,189 @@
+[
+    {
+        "type": "Image",
+        "sprite": "Background",
+        "color": "DarkGray",
+        "x": 0,
+        "y": 0
+    },
+    {
+        "type": "Layout",
+        "name": "Sublayout.POV"
+    },
+    {
+        "type": "Text",
+        "font": "default",
+        "color": "Black",
+        "text": "<tab>",
+        "x": 500,
+        "y": 0,
+        "horizontal-alignment": 0,
+        "drop-shadow": false,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "font": "default",
+        "text-id":"Attack",
+        "color": "LightBlue",
+        "text": "<attack>",
+        "x": 360,
+        "y": 48,
+        "horizontal-alignment": 1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "font": "default",
+        "color": "Blue",
+        "text-id":"AttackTimer",
+        "text": "<attack timer>",
+        "x": 360,
+        "y": 64,
+        "horizontal-alignment": 1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "font": "default",
+        "text-id":"Defend",
+        "color": "LightGreen",
+        "text": "<defend>",
+        "x": 360,
+        "y": 96,
+        "horizontal-alignment": 1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "text-id":"DefendTimer",
+        "font": "default",
+        "color": "Green",
+        "text": "<defend timer>",
+        "x": 360,
+        "y": 112,
+        "horizontal-alignment": 1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "text-id":"Bowel",
+        "font": "default",
+        "color": "Brown",
+        "text": "<bowel>",
+        "x": 360,
+        "y": 144,
+        "horizontal-alignment": 1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "text-id":"Drunkenness",
+        "font": "default",
+        "color": "Yellow",
+        "text": "<drunkenness>",
+        "x": 360,
+        "y": 160,
+        "horizontal-alignment": 1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "text-id":"Nausea",
+        "font": "default",
+        "color": "LightGreen",
+        "text": "<nausea>",
+        "x": 360,
+        "y": 176,
+        "horizontal-alignment": 1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "text-id":"Keys",
+        "font": "default",
+        "color": "Yellow",
+        "text": "<keys>",
+        "x": 360,
+        "y": 192,
+        "horizontal-alignment": 1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Layout",
+        "name": "Sublayout.QuickStats"
+    },
+    {
+        "type": "Layout",
+        "name": "Sublayout.UIHamburger"
+    },
+    {
+        "type": "Layout",
+        "name": "Sublayout.TabControls"
+    },
+    {
+        "type": "Text",
+        "font": "default",
+        "color": "LightCyan",
+        "text": "Sta",
+        "x": 572,
+        "y": 16,
+        "horizontal-alignment": 1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Cyan",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "font": "default",
+        "color": "Brown",
+        "text-id":"Poop",
+        "text": "(Poop!)",
+        "x": 640,
+        "y": 144,
+        "horizontal-alignment": -1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type":"Area",
+        "area-id":"Poop",
+        "x":528,
+        "y":144,
+        "width":112,
+        "height":16
+    },
+    {
+        "type": "Layout",
+        "name": "Sublayout.Modded"
+    }
+]
