@@ -71,7 +71,7 @@ namespace common::Application
 		SDL_CreateWindowAndRenderer(
 			windowWidth,
 			windowHeight,
-			0,
+			SDL_WINDOW_RESIZABLE,
 			&pw,
 			&pr);
 		window = std::shared_ptr<SDL_Window>(pw, SDL_DestroyWindow);
