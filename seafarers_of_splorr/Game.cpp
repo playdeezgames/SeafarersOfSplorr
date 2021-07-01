@@ -3,13 +3,6 @@
 #include "Data.JSON.h"
 #include "Common.Utility.h"
 #include <vector>
-namespace game::World { void Reset(const game::Difficulty&); }
-namespace game::Avatar { void Reset(); }
-namespace game::Shoppes { void Reset(const game::Difficulty&); }
-namespace game::avatar::Statistics { void Reset(); }
-namespace game::world::Items { void Reset(const game::Difficulty&); }
-namespace game::avatar::Items { void Reset(const game::Difficulty&); }
-namespace game::Creatures { void Reset(const game::Difficulty&); }
 namespace game
 {
 	const std::vector<std::string> FILENAME_SLOTS = 
@@ -31,13 +24,6 @@ namespace game
 
 	void Reset(const Difficulty& difficulty)
 	{
-		game::World::Reset(difficulty);
-		game::avatar::Statistics::Reset();
-		game::avatar::Items::Reset(difficulty);
-		game::Shoppes::Reset(difficulty);
-		game::world::Items::Reset(difficulty);
-		game::Creatures::Reset(difficulty);
-		game::Avatar::Reset();
 	}
 
 	void Start()

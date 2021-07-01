@@ -34,12 +34,6 @@ namespace data::Stores
 		{data::Store::KEYS, {"config/keyboard.json",std::nullopt}},
 		{data::Store::OPTIONS, {"config/options.json",std::nullopt}},
 		{data::Store::UI_SFX, {"config/ui/sfx.json",std::nullopt}},
-		{data::Store::STATISTICS, {"config/statistics.json",90}},
-		{data::Store::CREATURE_DESCRIPTORS, {"config/creatures.json",160}},
-		{data::Store::ITEM_DESCRIPTORS, {"config/items.json",81}},
-		{data::Store::AVATAR, {"config/avatar.json",252}},
-		{data::Store::MAZE, {"config/maze.json",104}},
-		{data::Store::SHOPPES, {"config/shoppes.json",34}},
 		{data::Store::TIPS, {"config/tips.json",std::nullopt}}
 	};
 

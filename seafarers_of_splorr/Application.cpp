@@ -18,16 +18,10 @@
 #include "Game.h"
 #include "Common.Utility.h"
 #include "Application.Keyboard.h"
-#include "Game.Creatures.h"
-#include "Game.Combat.h"
 #include "Game.CombatDeck.h"
-#include "Game.Item.h"
-#include "Game.Avatar.Items.h"
 #include "States.h"
-#include "Game.Avatar.Statistics.h"
 #include "Data.Stores.h"
 #include "Application.OnEnter.h"
-#include "Game.Avatar.h"
 #include "Game.Audio.Mux.h"
 #include "Game.Achievements.h"
 namespace Application
@@ -85,8 +79,6 @@ namespace common::Application
 		state::Options::Start,
 		state::Start::Start,
 		state::LeavePlay::Start,
-		game::avatar::Statistics::Start,
-		game::avatar::Items::Start,
 		game::Start,
 		state::Statistics::Start,
 		game::CombatDeck::Deal,
