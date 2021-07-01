@@ -49,7 +49,6 @@ namespace application::UIState
 			{
 				game::Achievements::Add(deathByAchievement.value());
 			}
-			game::Statistics::Increment(game::Statistic::TIMES_DIED);
 			game::Achievements::Add(game::Achievement::YER_DEAD);
 			application::UIState::Write(::UIState::IN_PLAY_DEAD);
 			return application::Sounds::Read(application::UI::Sfx::DEAD_HUNTER);
@@ -57,7 +56,6 @@ namespace application::UIState
 
 		if (!game::Creatures::AnyLeft())//did you win?
 		{
-			game::Achievements::Add(game::Achievement::YOU_WIN);
 			application::UIState::Write(::UIState::IN_PLAY_EXIT);
 			return application::Sounds::Read(application::UI::Sfx::EXIT);
 		}

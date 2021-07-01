@@ -153,13 +153,10 @@ namespace game::Avatar
 			auto& descriptor = GetDescriptor();
 			if (game::avatar::Items::Read(descriptor.trousersItemId) > 0)
 			{
-				game::Statistics::Increment(game::Statistic::SOILED_TROUSERS);
-				game::Achievements::Add(game::Achievement::POOPED_YER_TROUSERS);
 				game::avatar::Items::Remove(descriptor.trousersItemId, 1);
 				game::avatar::Items::Add(descriptor.soiledTrousersItemId, 1);
 			}
 		}
-		game::Statistics::Increment(game::Statistic::TIMES_POOPED);
 		game::world::Items::Add(GetPosition(), itemId, 1);
 		return application::Sounds::Read(application::UI::Sfx::HUNTER_POOPS);
 	}
@@ -212,10 +209,6 @@ namespace game::Avatar
 		auto wallBreaks = game::avatar::Statistics::Read(game::avatar::Statistic::WALL_BREAKS);
 		wallBreaks = wallBreaks + 1;
 		game::avatar::Statistics::Write(game::avatar::Statistic::WALL_BREAKS, wallBreaks);
-		if (wallBreaks == 4)
-		{
-			game::Achievements::Add(game::Achievement::FOURTH_WALL);
-		}
 	}
 
 	static std::optional<std::string> BumpWall()
@@ -223,17 +216,11 @@ namespace game::Avatar
 		auto bumpResult = game::world::Borders::BumpAhead(GetPosition(), GetFacing());
 		avatar::Statistics::SetCauseOfDeath("wall (aka Epic Stupidity)", std::nullopt, std::nullopt);
 		avatar::Statistics::Decrease(avatar::Statistic::HEALTH, 1);
-		if (game::avatar::Statistics::IsMinimum(game::avatar::Statistic::HEALTH))
-		{
-			game::Achievements::Add(game::Achievement::HEAD_BANGER);
-		}
-		game::Statistics::Increment(game::Statistic::WALLS_BUMPED);
 
 
 		switch (bumpResult)
 		{
 		case game::world::Borders::WallBumpResult::WALL_FALLS:
-			game::Statistics::Increment(game::Statistic::BROKEN_WALL);
 			DoFourthWallAchievement();
 			game::world::Borders::SetBorderAhead(GetPosition(), GetFacing(), game::world::Border::BROKEN_WALL);
 			return application::Sounds::Read(application::UI::Sfx::BREAK_WALL);//TODO: update for better wall fall sound!
@@ -246,7 +233,6 @@ namespace game::Avatar
 	{
 		if (game::avatar::Statistics::Read(game::avatar::Statistic::KEYS) > 0)
 		{
-			game::Statistics::Increment(game::Statistic::KEYS_USED);
 			game::avatar::Statistics::Decrease(game::avatar::Statistic::KEYS, 1);
 			game::world::Borders::SetBorderAhead(game::Avatar::GetPosition(), game::Avatar::GetFacing(), game::world::Border::DOOR);
 			return application::Sounds::Read(application::UI::Sfx::UNLOCK);

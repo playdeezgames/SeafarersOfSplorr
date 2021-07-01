@@ -28,17 +28,14 @@ namespace state::in_play::Dead
 		if (game::avatar::Items::Read(game::Avatar::GetDescriptor().trousersItemId)>0)
 		{
 			visuals::Texts::SetText(LAYOUT_NAME, TEXT_TROUSERS, "...at least you kept yer dignity!");
-			game::Statistics::Increment(game::Statistic::DIED_WITH_DIGNITY);
 		}
 		else if (game::avatar::Items::Read(game::Avatar::GetDescriptor().soiledTrousersItemId) > 0)
 		{
 			visuals::Texts::SetText(LAYOUT_NAME, TEXT_TROUSERS, "...and you pooped yer pants!");
-			game::Statistics::Increment(game::Statistic::DIED_WITHOUT_DIGNITY);
 		}
 		else
 		{
 			visuals::Texts::SetText(LAYOUT_NAME, TEXT_TROUSERS, "...you lost yer trousers(again)!");
-			game::Statistics::Increment(game::Statistic::DIED_WITHOUT_DIGNITY);
 		}
 		game::audio::Mux::Play(game::audio::Mux::Theme::DEATH);
 	}

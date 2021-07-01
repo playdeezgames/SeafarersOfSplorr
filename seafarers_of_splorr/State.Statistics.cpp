@@ -61,31 +61,7 @@ namespace state::Statistics
 	const std::vector<std::tuple<std::string, std::string, game::Statistic>> statisticsList =
 	{
 		{ TEXT_MOVES_MADE, "Moves Made", game::Statistic::MOVES_MADE},
-		{ TEXT_BEERS_DRUNK, "Beers Drunk", game::Statistic::BEERS_DRUNK},
-		{ TEXT_BOOZE_DRUNK, "Booze Drunk", game::Statistic::BOOZE_DRUNK},
-		{ TEXT_COFFEE_DRUNK, "Coffee Drunk", game::Statistic::COFFEE_DRUNK},
-		{ TEXT_DIED_WITHOUT_DIGNITY, "Died w/o Pants", game::Statistic::DIED_WITHOUT_DIGNITY},
-		{ TEXT_DIED_WITH_DIGNITY, "Died w/ Pants", game::Statistic::DIED_WITH_DIGNITY},
-		{ TEXT_FOOD_EATEN, "Food Eaten", game::Statistic::FOOD_EATEN},
-		{ TEXT_GAMES_PLAYED, "Games Played", game::Statistic::GAMES_PLAYED},
-		{ TEXT_GOT_DRUNK_STAT, "Got Drunk", game::Statistic::GOT_DRUNK_STAT},
-		{ TEXT_KEYS_USED, "Keys Used", game::Statistic::KEYS_USED},
-		{ TEXT_MAP_FRAGMENTS_FOUND, "Maps Found", game::Statistic::MAP_FRAGMENTS_FOUND},
-		{ TEXT_SOILED_TROUSERS, "Soiled Trousers", game::Statistic::SOILED_TROUSERS},
-		{ TEXT_TIMES_DIED, "Death Count", game::Statistic::TIMES_DIED},
-		{ TEXT_TIMES_DROPPED_TROU, "Dropped Trou", game::Statistic::TIMES_DROPPED_TROU},
-		{ TEXT_TIMES_POOPED, "Poops", game::Statistic::TIMES_POOPED},
-		{ TEXT_WALLS_BUMPED, "Bumped Wall", game::Statistic::WALLS_BUMPED},
-		{ TEXT_WINE_DRUNK, "Wine Drunk", game::Statistic::WINE_DRUNK},
-		{ TEXT_KILLED_BY_WEREWOLF, "Killed by werewolf", game::Statistic::KILLED_BY_WEREWOLF},
-		{ TEXT_KILLED_BY_WYVERN, "Killed by wyvern", game::Statistic::KILLED_BY_WYVERN},
-		{ TEXT_KILLED_BY_BRAIN_TENTACLE, "Killed by brain tentacle", game::Statistic::KILLED_BY_BRAIN_TENTACLE},
-		{ TEXT_KILLED_BY_IMP, "Killed by imp", game::Statistic::KILLED_BY_IMP},
-		{ TEXT_KILLED_BY_TROGLODYTE, "Killed by troglodyte", game::Statistic::KILLED_BY_TROGLODYTE},
-		{ TEXT_KILLED_BY_BULLY_MINION, "Killed by bully minion", game::Statistic::KILLED_BY_BULLY_MINION},
-		{ TEXT_KILLED_BY_EVIL_BAT, "Killed by evil bat", game::Statistic::KILLED_BY_EVIL_BAT},
-		{ TEXT_KILLED_BY_EVIL_MINION, "Killed by evil minion", game::Statistic::KILLED_BY_EVIL_MINION},
-		{ TEXT_BROKEN_WALL, "Walls broken", game::Statistic::BROKEN_WALL}
+		{ TEXT_GAMES_PLAYED, "Games Played", game::Statistic::GAMES_PLAYED}
 	};
 
 	static void OnEnter()

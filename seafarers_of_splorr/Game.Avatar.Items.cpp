@@ -106,7 +106,6 @@ namespace game::avatar::Items
 				game::World::SetKnown({ x + location.GetX(), y + location.GetY() });
 			}
 		}
-		game::Statistics::Increment(game::Statistic::MAP_FRAGMENTS_FOUND);
 	}
 
 	void Add(int item, size_t amount)
@@ -244,11 +243,6 @@ namespace game::avatar::Items
 				game::avatar::Statistics::Read(game::avatar::Statistic::DRUNKENNESS);
 			int nausea = (*descriptor.drunkenness > capacity) ? (*descriptor.drunkenness - capacity) : (0);
 			game::avatar::Statistics::Increase(game::avatar::Statistic::DRUNKENNESS, *descriptor.drunkenness);
-			if (game::avatar::Statistics::Read(game::avatar::Statistic::NAUSEA) == 0 && nausea > 0)
-			{
-				game::Achievements::Add(game::Achievement::GOT_DRUNK);
-				game::Statistics::Increment(game::Statistic::GOT_DRUNK_STAT);
-			}
 			game::avatar::Statistics::Increase(game::avatar::Statistic::NAUSEA, nausea);
 		}
 	}
