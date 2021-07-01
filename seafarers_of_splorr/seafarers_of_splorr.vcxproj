@@ -172,9 +172,7 @@
     <ClCompile Include="Data.Stores.cpp" />
     <ClCompile Include="Game.Achievements.cpp" />
     <ClCompile Include="Game.Audio.Mux.cpp" />
-    <ClCompile Include="Game.CombatDeck.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Game.World.Data.cpp" />
     <ClCompile Include="sqlite3.c" />
     <ClCompile Include="State.ConfirmAbandon.cpp" />
     <ClCompile Include="State.ConfirmOverwrite.cpp" />
@@ -230,10 +228,7 @@
     <ClInclude Include="Data.Stores.h" />
     <ClInclude Include="Game.Achievements.h" />
     <ClInclude Include="Game.Audio.Mux.h" />
-    <ClInclude Include="Game.CombatDeck.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Game.Data.Properties.h" />
-    <ClInclude Include="Game.World.Data.h" />
     <ClInclude Include="Maze.Door.h" />
     <ClInclude Include="sqlite3.h" />
     <ClInclude Include="Visuals.Areas.h" />

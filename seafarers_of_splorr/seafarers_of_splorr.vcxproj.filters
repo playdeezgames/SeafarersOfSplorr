@@ -58,13 +58,7 @@
     <ClCompile Include="Game.Audio.Mux.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Game.CombatDeck.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.World.Data.cpp">
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
@@ -226,15 +220,6 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Game.Audio.Mux.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.CombatDeck.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Data.Properties.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.World.Data.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="json.hpp">

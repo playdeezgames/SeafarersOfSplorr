@@ -18,7 +18,6 @@
 #include "Game.h"
 #include "Common.Utility.h"
 #include "Application.Keyboard.h"
-#include "Game.CombatDeck.h"
 #include "States.h"
 #include "Data.Stores.h"
 #include "Application.OnEnter.h"
@@ -81,8 +80,6 @@ namespace common::Application
 		state::LeavePlay::Start,
 		game::Start,
 		state::Statistics::Start,
-		game::CombatDeck::Deal,
-		game::CombatDeck::Deal,
 		state::LoadGame::Start,
 		state::SaveGame::Start,
 		state::ConfirmAbandon::Start,
