@@ -5,9 +5,7 @@ namespace game::audio::Mux
 {
 	const std::map<Theme, std::string> themeTable =
 	{
-		{Theme::MAIN, "main"},
-		{Theme::BATTLE, "battle"},
-		{Theme::DEATH, "death"}
+		{Theme::MAIN, "main"}
 	};
 	void Play(const Theme& theme)
 	{

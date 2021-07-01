@@ -1,5 +1,3 @@
 {
-    "main":"assets/audio/mux/Freebooter_of_SPLORR_Main_Theme.ogg",
-    "battle":"assets/audio/mux/Freebooter_of_SPLORR_Battle_Theme.ogg",
-    "death":"assets/audio/mux/Freebooter_of_SPLORR_Death_Theme.ogg"
+    "main":"assets/audio/mux/Freebooter_of_SPLORR_Main_Theme.ogg"
 }
