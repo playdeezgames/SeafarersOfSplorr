@@ -66,4 +66,10 @@ namespace data::sqlite::Stores
 		sqlite3_backup_step(handle, -1);
 		sqlite3_backup_finish(handle);
 	}
+
+	void Bounce(const data::sqlite::Store& store)
+	{
+		connections.erase(store);
+	}
+
 }
