@@ -168,10 +168,12 @@
     <ClCompile Include="Application.Update.cpp" />
     <ClCompile Include="Application.OnEnter.cpp" />
     <ClCompile Include="Common.Application.Internals.cpp" />
+    <ClCompile Include="Data.Game.Avatar.cpp" />
     <ClCompile Include="Data.SQLite.Stores.cpp" />
     <ClCompile Include="Data.Stores.cpp" />
     <ClCompile Include="Game.Achievements.cpp" />
     <ClCompile Include="Game.Audio.Mux.cpp" />
+    <ClCompile Include="Game.Avatar.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="sqlite3.c" />
     <ClCompile Include="State.ConfirmAbandon.cpp" />
@@ -224,10 +226,12 @@
     <ClInclude Include="Common.Card.h" />
     <ClInclude Include="Common.Deck.h" />
     <ClInclude Include="Common.Data.Properties.h" />
+    <ClInclude Include="Data.Game.Avatar.h" />
     <ClInclude Include="Data.SQLite.Stores.h" />
     <ClInclude Include="Data.Stores.h" />
     <ClInclude Include="Game.Achievements.h" />
     <ClInclude Include="Game.Audio.Mux.h" />
+    <ClInclude Include="Game.Avatar.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Maze.Door.h" />
     <ClInclude Include="sqlite3.h" />

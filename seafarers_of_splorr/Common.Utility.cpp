@@ -24,6 +24,16 @@ namespace common::Utility
 		return result;
 	}
 
+	double StringToDouble(const std::string& text)
+	{
+		std::stringstream ss;
+		ss.str(text);
+		double result = 0;
+		ss >> result;
+		return result;
+	}
+
+
 	int ToPercentage(int value, int maximum)
 	{
 		return value * 100 / maximum;
@@ -52,5 +62,17 @@ namespace common::Utility
 		return result;
 	}
 
+	double ClampDouble(double value, double minimum, double maximum)
+	{
+		return 
+			(value < minimum) ? (minimum) :
+			(value > maximum) ? (maximum) :
+			value;
+	}
+
+	double ModuloDouble(double value, double divisor)
+	{
+		return value - floor(value / divisor) * divisor;
+	}
 }
 

@@ -151,6 +151,12 @@
     <ClCompile Include="sqlite3.c">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Avatar.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Avatar.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.Command.h">
@@ -286,6 +292,12 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="sqlite3.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Avatar.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Avatar.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
