@@ -10,7 +10,6 @@ namespace game
 	};
 	void Start();
 	void Reset(const Difficulty&);
-	nlohmann::json& GetData();//TODO: eliminiate
 	void AutoSave();
 	bool DoesAutosaveExist();
 	void LoadFromAutosave();

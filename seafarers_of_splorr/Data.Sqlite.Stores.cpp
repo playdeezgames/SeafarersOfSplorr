@@ -6,7 +6,13 @@ namespace data::sqlite::Stores
 	static std::map<data::sqlite::Store, std::shared_ptr<sqlite3>> connections;
 	const std::map<data::sqlite::Store, std::string> connectionStrings =
 	{
-		{data::sqlite::Store::IN_MEMORY, ":memory:"}
+		{data::sqlite::Store::IN_MEMORY, ":memory:"},
+		{data::sqlite::Store::AUTOSAVE, "autosave.db"},
+		{data::sqlite::Store::SLOT_1, "slot1.db"},
+		{data::sqlite::Store::SLOT_2, "slot2.db"},
+		{data::sqlite::Store::SLOT_3, "slot3.db"},
+		{data::sqlite::Store::SLOT_4, "slot4.db"},
+		{data::sqlite::Store::SLOT_5, "slot5.db"}
 	};
 
 	static std::shared_ptr<sqlite3> GetConnection(const data::sqlite::Store& store)
@@ -50,5 +56,14 @@ namespace data::sqlite::Stores
 			return DoExecute(connection, query);
 		}
 		return std::list<std::map<std::string, std::string>>();
+	}
+
+	void Copy(const data::sqlite::Store& storeFrom, const data::sqlite::Store& storeTo)
+	{
+		auto connectionFrom = GetConnection(storeFrom);
+		auto connectionTo = GetConnection(storeTo);
+		auto handle = sqlite3_backup_init(connectionTo.get(), "main", connectionFrom.get(), "main");
+		sqlite3_backup_step(handle, -1);
+		sqlite3_backup_finish(handle);
 	}
 }

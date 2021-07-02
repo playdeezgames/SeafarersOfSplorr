@@ -1,29 +1,11 @@
 #include "Game.h"
-#include "json.hpp"
-#include "Data.JSON.h"
-#include "Common.Utility.h"
-#include <vector>
+#include <map>
+#include "Data.SQLite.Stores.h"
 namespace game
 {
-	const std::vector<std::string> FILENAME_SLOTS = 
-	{
-		"autosave.json",
-		"slot1.json",
-		"slot2.json",
-		"slot3.json",
-		"slot4.json",
-		"slot5.json"
-	};
-
-	nlohmann::json data;
-
-	nlohmann::json& GetData()
-	{
-		return data;
-	}
-
 	void Reset(const Difficulty& difficulty)
 	{
+		//TODO: figure this out!
 	}
 
 	void Start()
@@ -33,33 +15,49 @@ namespace game
 
 	void AutoSave()
 	{
-		data::JSON::Save(FILENAME_SLOTS[0], GetData());
+		data::sqlite::Stores::Copy(data::sqlite::Store::IN_MEMORY, data::sqlite::Store::AUTOSAVE);
 	}
 
 	void LoadFromAutosave()
 	{
-		data = data::JSON::Load(FILENAME_SLOTS[0]);
+		data::sqlite::Stores::Copy(data::sqlite::Store::AUTOSAVE, data::sqlite::Store::IN_MEMORY);
 	}
 
 	bool DoesAutosaveExist()
 	{
-		return common::Utility::FileExists(FILENAME_SLOTS[0]);
+		return false;//TODO: figure this out!
 	}
 
 	bool DoesSlotExist(int slot)
 	{
-		return common::Utility::FileExists(FILENAME_SLOTS[slot]);
-
+		return false;//TODO: figure this out!
 	}
+
+	const std::map<int, data::sqlite::Store> slotTable =
+		{
+			{0, data::sqlite::Store::SLOT_1},
+			{1, data::sqlite::Store::SLOT_2},
+			{2, data::sqlite::Store::SLOT_3},
+			{3, data::sqlite::Store::SLOT_4},
+			{4, data::sqlite::Store::SLOT_5}
+		};
 
 	void LoadFromSlot(int slot)
 	{
-		data = data::JSON::Load(FILENAME_SLOTS[slot]);
+		auto iter = slotTable.find(slot);
+		if (iter != slotTable.end())
+		{
+			data::sqlite::Stores::Copy(iter->second, data::sqlite::Store::IN_MEMORY);
+		}
 	}
 
 	void SaveToSlot(int slot)
 	{
-		data::JSON::Save(FILENAME_SLOTS[slot], GetData());
+		auto iter = slotTable.find(slot);
+		if (iter != slotTable.end())
+		{
+			data::sqlite::Stores::Copy(data::sqlite::Store::IN_MEMORY, iter->second);
+		}
 	}
 
 }
