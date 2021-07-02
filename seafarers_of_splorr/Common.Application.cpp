@@ -20,6 +20,16 @@ namespace common::Application
 	static std::shared_ptr<SDL_Window> window = nullptr;
 	static std::shared_ptr<Renderer> renderer = nullptr;
 
+	void SetFullscreen(bool flag)
+	{
+		SDL_SetWindowFullscreen(window.get(), (flag) ? (SDL_WINDOW_FULLSCREEN_DESKTOP) : (0));
+	}
+
+	bool IsFullscreen()
+	{
+		return (SDL_GetWindowFlags(window.get()) & SDL_WINDOW_FULLSCREEN) > 0;
+	}
+
 	extern void Start(const std::vector<std::string>&);
 	extern bool IsRunning();
 	extern void Update(unsigned int);

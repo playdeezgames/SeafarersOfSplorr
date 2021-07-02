@@ -53,9 +53,14 @@
                 "y": 64
             },
             {
-                "text": "Back",
+                "text": "Toggle Fullscreen",
                 "x": 320,
                 "y": 80
+            },
+            {
+                "text": "Back",
+                "x": 320,
+                "y": 96
             }
         ]
     },
@@ -101,9 +106,17 @@
     },
     {
         "type":"Area",
+        "area-id":"ToggleFullscreen",
+        "x":160,
+        "y":80,
+        "width":320,
+        "height":16
+    },
+    {
+        "type":"Area",
         "area-id":"Back",
         "x":240,
-        "y":80,
+        "y":96,
         "width":160,
         "height":16
     },

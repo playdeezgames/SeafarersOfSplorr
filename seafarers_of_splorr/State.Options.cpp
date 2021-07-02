@@ -12,6 +12,7 @@
 #include "Visuals.Areas.h"
 #include <SDL_mixer.h>
 #include "Game.Audio.Mux.h"
+#include "Common.Application.h"
 namespace state::Options
 {
 	const std::string LAYOUT_NAME = "State.Options";
@@ -22,6 +23,7 @@ namespace state::Options
 	const std::string MUTE = "Mute";
 	const std::string UNMUTE = "Unmute";
 	const std::string AREA_MUTE = "Mute";
+	const std::string AREA_TOGGLE_FULLSCREEN = "ToggleFullscreen";
 	const std::string AREA_BACK = "Back";
 	const std::string AREA_SFX_DECREASE = "DecreaseSfxVolume";
 	const std::string AREA_SFX_INCREASE = "IncreaseSfxVolume";
@@ -34,6 +36,7 @@ namespace state::Options
 		TOGGLE_MUTE,
 		SFX_VOLUME,
 		MUX_VOLUME,
+		TOGGLE_FULLSCREEN,
 		BACK
 	};
 
@@ -89,10 +92,17 @@ namespace state::Options
 		application::OnEnter::Handle();
 	}
 
+	static void ToggleFullscreen()
+	{
+		common::Application::SetFullscreen(!common::Application::IsFullscreen());
+	}
+
 	const std::map<OptionsItem, std::function<void()>> activators =
 	{
 		{ OptionsItem::TOGGLE_MUTE, ToggleMute },
-		{ OptionsItem::BACK, ::application::UIState::GoTo(::UIState::MAIN_MENU) }
+		{ OptionsItem::BACK, ::application::UIState::GoTo(::UIState::MAIN_MENU) },
+		{ OptionsItem::TOGGLE_FULLSCREEN, ToggleFullscreen }
+
 	};
 
 	static void ActivateItem()
@@ -146,6 +156,7 @@ namespace state::Options
 		{ AREA_MUX_INCREASE, OptionsItem::MUX_VOLUME },
 		{ AREA_SFX_DECREASE, OptionsItem::SFX_VOLUME },
 		{ AREA_SFX_INCREASE, OptionsItem::SFX_VOLUME },
+		{ AREA_TOGGLE_FULLSCREEN, OptionsItem::TOGGLE_FULLSCREEN },
 		{ AREA_BACK, OptionsItem::BACK }
 	};
 
