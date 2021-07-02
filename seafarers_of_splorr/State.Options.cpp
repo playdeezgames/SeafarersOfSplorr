@@ -95,6 +95,7 @@ namespace state::Options
 	static void ToggleFullscreen()
 	{
 		common::Application::SetFullscreen(!common::Application::IsFullscreen());
+		::Options::Save();
 	}
 
 	const std::map<OptionsItem, std::function<void()>> activators =
