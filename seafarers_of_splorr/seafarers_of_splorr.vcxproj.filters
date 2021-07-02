@@ -157,6 +157,9 @@
     <ClCompile Include="Data.Game.Avatar.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Data.Game.Common.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.Command.h">
@@ -298,6 +301,12 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.Avatar.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Common.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Difficulty.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

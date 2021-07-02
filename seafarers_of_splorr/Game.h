@@ -1,13 +1,7 @@
 #pragma once
-#include "json.hpp"
+#include "Game.Difficulty.h"
 namespace game
 {
-	enum class Difficulty
-	{
-		EASY,
-		NORMAL,
-		HARD
-	};
 	void Start();
 	void Reset(const Difficulty&);
 	void AutoSave();

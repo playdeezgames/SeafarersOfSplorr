@@ -36,4 +36,15 @@ namespace game::Avatar
 		data.speed = common::Utility::ClampDouble(speed, SPEED_MINIMUM, SPEED_MAXIMUM);
 		data::game::Avatar::Write(data);
 	}
+
+	void Reset(const game::Difficulty&)
+	{
+		data::game::Avatar::AvatarData data =
+			{
+				{0.0, 0.0},
+				0.0,
+				1.0
+			};
+		data::game::Avatar::Write(data);
+	}
 }

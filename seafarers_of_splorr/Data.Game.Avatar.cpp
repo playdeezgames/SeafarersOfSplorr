@@ -1,13 +1,13 @@
 #include "Data.Game.Avatar.h"
-#include "Data.SQLite.Stores.h"
 #include <optional>
 #include <format>
 #include "Common.Utility.h"
+#include "Data.Game.Common.h"
 namespace data::game::Avatar
 {
 	static void AutoCreateAvatarTable()
 	{
-		data::sqlite::Stores::Execute(data::sqlite::Store::IN_MEMORY, "CREATE TABLE IF NOT EXISTS [Avatars]([AvatarId] INT NOT NULL UNIQUE,[X] REAL NOT NULL,[Y] REAL NOT NULL,[Direction] REAL NOT NULL,[Speed] REAL NOT NULL);");
+		data::game::Common::Execute("CREATE TABLE IF NOT EXISTS [Avatars]([AvatarId] INT NOT NULL UNIQUE,[X] REAL NOT NULL,[Y] REAL NOT NULL,[Direction] REAL NOT NULL,[Speed] REAL NOT NULL);");
 	}
 
 	const int AVATAR_ID = 1;
@@ -23,7 +23,7 @@ namespace data::game::Avatar
 			std::format(
 				"SELECT [X], [Y], [Direction], [Speed] FROM [Avatars] WHERE [AvatarId] = {};", 
 				AVATAR_ID);
-		auto result = data::sqlite::Stores::Execute(data::sqlite::Store::IN_MEMORY, query);
+		auto result = data::game::Common::Execute(query);
 		if (!result.empty())
 		{
 			const auto& record = result.front();
@@ -52,6 +52,6 @@ namespace data::game::Avatar
 				avatarData.location.GetY(), 
 				avatarData.direction, 
 				avatarData.speed);
-		data::sqlite::Stores::Execute(data::sqlite::Store::IN_MEMORY, query);
+		data::game::Common::Execute(query);
 	}
 }
