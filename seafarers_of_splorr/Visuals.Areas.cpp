@@ -29,11 +29,21 @@ namespace visuals::Areas
 		size_t width = model[common::data::Properties::WIDTH];
 		size_t height = model[common::data::Properties::HEIGHT];
 		std::string areaId = model[visuals::data::Properties::AREA_ID];
+		std::optional<AreaMenu> areaMenu = std::nullopt;
+		if (model.count(visuals::data::Properties::MENU))
+		{
+			areaMenu = 
+				{
+					model[visuals::data::Properties::MENU][visuals::data::Properties::MENU_ID],
+					model[visuals::data::Properties::MENU][visuals::data::Properties::MENU_ITEM_ID]
+				};
+		}
 		visuals::Area area =
 		{
 			areaId,
 			common::XY<int>(x,y),
-			common::XY<size_t>(width, height)
+			common::XY<size_t>(width, height),
+			areaMenu
 		};
 		areaLists[layoutName].push_back(area);
 		areaTable[layoutName][areaId] = area;

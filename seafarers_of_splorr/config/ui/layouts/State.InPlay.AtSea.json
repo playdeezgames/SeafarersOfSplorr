@@ -92,16 +92,19 @@
         "menu-items": [
             {
                 "text": "Change Heading...",
+                "menu-item-id":"ChangeHeading",
                 "x": 480,
                 "y": 32
             },
             {
                 "text": "Change Speed...",
+                "menu-item-id":"ChangeSpeed",
                 "x": 480,
                 "y": 48
             },
             {
                 "text": "Move",
+                "menu-item-id":"Move",
                 "x": 480,
                 "y": 64
             }
@@ -121,7 +124,11 @@
         "x":320,
         "y":32,
         "width":320,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"Order",
+            "menu-item-id":"ChangeHeading"
+        }
     },
     {
         "type":"Area",
@@ -129,7 +136,11 @@
         "x":320,
         "y":48,
         "width":320,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"Order",
+            "menu-item-id":"ChangeSpeed"
+        }
     },
     {
         "type":"Area",
@@ -137,6 +148,10 @@
         "x":320,
         "y":80,
         "width":320,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"Order",
+            "menu-item-id":"Move"
+        }
     }
 ]

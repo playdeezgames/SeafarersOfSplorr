@@ -22,6 +22,7 @@ namespace visuals::data::Properties
 	const std::string IMAGE_ID = "image-id";
 	const std::string INACTIVE = "inactive";
 	const std::string INDEX = "index";
+	const std::string MENU = "menu";
 	const std::string MENU_ID = "menu-id";
 	const std::string MENU_ITEM_ID = "menu-item-id";
 	const std::string MENU_ITEMS = "menu-items";
