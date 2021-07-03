@@ -28,6 +28,7 @@ namespace application::UIState
 	std::optional<std::string> EnterGame()
 	{
 		game::AutoSave();
+		application::UIState::Write(::UIState::IN_PLAY_AT_SEA);
 		return std::nullopt;
 	}
 }

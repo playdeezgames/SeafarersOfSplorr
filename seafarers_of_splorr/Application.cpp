@@ -84,6 +84,7 @@ namespace common::Application
 		state::SaveGame::Start,
 		state::ConfirmAbandon::Start,
 		state::ConfirmOverwrite::Start,
+		state::in_play::AtSea::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};

@@ -30,8 +30,7 @@ namespace state::Tip
 		if (ticksLeft == 0)
 		{
 			game::Statistics::Increment(game::Statistic::GAMES_PLAYED);
-			//common::audio::Sfx::Play(application::UIState::EnterGame());
-			application::UIState::Write(::UIState::MAIN_MENU);//TODO: once there's a game, go there instead.
+			common::audio::Sfx::Play(application::UIState::EnterGame());
 			ticksLeft = TICKS_TOTAL;
 		}
 	}

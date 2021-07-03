@@ -160,6 +160,9 @@
     <ClCompile Include="Data.Game.Common.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.AtSea.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.Command.h">

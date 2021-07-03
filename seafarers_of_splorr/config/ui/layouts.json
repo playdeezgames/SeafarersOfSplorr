@@ -12,5 +12,6 @@
     "State.SaveGame": "config/ui/layouts/State.SaveGame.json",
     "Sublayout.Modded":"config/ui/layouts/Sublayout.Modded.json",
     "State.Tip":"config/ui/layouts/State.Tip.json",
-    "State.Statistics":"config/ui/layouts/State.Statistics.json"
+    "State.Statistics":"config/ui/layouts/State.Statistics.json",
+    "State.InPlay.AtSea":"config/ui/layouts/State.InPlay.AtSea.json"
 }

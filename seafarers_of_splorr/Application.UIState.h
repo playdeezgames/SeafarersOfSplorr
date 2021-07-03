@@ -22,7 +22,8 @@ enum class UIState
 	CONFIRM_OVERWRITE_SLOT4,
 	CONFIRM_OVERWRITE_SLOT5,
 	TIP,
-	STATISTICS
+	STATISTICS,
+	IN_PLAY_AT_SEA
 };
 namespace application::UIState
 {
