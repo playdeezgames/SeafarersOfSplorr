@@ -38,7 +38,6 @@ namespace state::in_play::AtSea
 		common::Utility::Dispatch(activators, (OrderMenuItem)visuals::Menus::ReadIndex(LAYOUT_NAME, MENU_ID).value());
 	}
 
-
 	const std::map<::Command, std::function<void()>> commandHandlers =
 	{
 		{::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
@@ -60,28 +59,11 @@ namespace state::in_play::AtSea
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_SPEED, std::format("Speed: {}", speed));
 	}
 
-	const std::map<std::string, OrderMenuItem> areaMenuItems =
-	{
-		{ AREA_CHANGE_HEADING,  OrderMenuItem::CHANGE_HEADING},
-		{ AREA_CHANGE_SPEED,  OrderMenuItem::CHANGE_SPEED},
-		{ AREA_MOVE,  OrderMenuItem::MOVE}
-	};
-
-	static void SetCurrentMenuItem(OrderMenuItem item)
-	{
-		visuals::Menus::WriteIndex(LAYOUT_NAME, MENU_ID, (int)item);
-	}
-
-	static void OnMouseMotionInArea(const std::string& area, const common::XY<int>&)
-	{
-		SetCurrentMenuItem(areaMenuItems.find(area)->second);
-	}
-
 	void Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::IN_PLAY_AT_SEA, OnEnter);
 		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_AT_SEA, LAYOUT_NAME);
 		::application::Command::SetHandlers(::UIState::IN_PLAY_AT_SEA, commandHandlers);
-		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_AT_SEA, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea));
+		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_AT_SEA, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
 	}
 }

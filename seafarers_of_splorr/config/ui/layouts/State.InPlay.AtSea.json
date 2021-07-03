@@ -146,7 +146,7 @@
         "type":"Area",
         "area-id":"Move",
         "x":320,
-        "y":80,
+        "y":64,
         "width":320,
         "height":16,
         "menu":{

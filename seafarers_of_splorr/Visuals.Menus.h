@@ -6,6 +6,7 @@ namespace visuals::Menus
 {
 	std::optional<int> ReadIndex(const std::string&, const std::string&);
 	void WriteIndex(const std::string&, const std::string&, int);
+	void WriteMenuItemId(const std::string&, const std::string&, const std::string&);
 	size_t GetCount(const std::string&, const std::string&);
 	std::function<void()> NavigateNext(const std::string&, const std::string&);
 	std::function<void()> NavigatePrevious(const std::string&, const std::string&);

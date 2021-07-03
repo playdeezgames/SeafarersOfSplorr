@@ -26,6 +26,7 @@ namespace visuals::Menu
 		bool dropShadow;
 		common::XY<int> dropShadowXY;
 		std::string dropShadowColor;
+		std::map<std::string, size_t> menuItemIds;
 		std::vector<size_t> menuItems;
 	};
 
@@ -93,11 +94,17 @@ namespace visuals::Menu
 				model[data::Properties::DROP_SHADOW_X],
 				model[data::Properties::DROP_SHADOW_Y]),
 			model[data::Properties::DROP_SHADOW_COLOR],
+			std::map<std::string, size_t>(),
 			std::vector<size_t>()
 		};
 		auto& menuItems = model[data::Properties::MENU_ITEMS];
 		for (auto& menuItem : menuItems)
 		{
+			//TODO: grab out menu item id
+			if (menuItem.count(visuals::data::Properties::MENU_ITEM_ID) > 0)
+			{
+				internalMenu.menuItemIds[menuItem[visuals::data::Properties::MENU_ITEM_ID]] = internalMenu.menuItems.size();
+			}
 			internalMenu.menuItems.push_back(InternalizeMenuItem(layoutName, menuItem));
 		}
 		internalMenus.push_back(internalMenu);
@@ -152,6 +159,16 @@ namespace visuals::Menus
 	void WriteIndex(const std::string& layoutName, const std::string& menuId, int index)
 	{
 		WriteIndex(layoutName, menuId, index, WriteConditional::CHECK);
+	}
+
+	void WriteMenuItemId(const std::string& layoutName, const std::string& menuId, const std::string& menuItemId)
+	{
+		auto menuIndex = Menu::GetMenuIndex(layoutName, menuId);
+		auto iter = visuals::Menu::internalMenus[menuIndex].menuItemIds.find(menuItemId);
+		if (iter != visuals::Menu::internalMenus[menuIndex].menuItemIds.end())
+		{
+			WriteIndex(layoutName, menuId, (int)iter->second);
+		}
 	}
 
 	size_t GetCount(const std::string& layoutName, const std::string& menuId)

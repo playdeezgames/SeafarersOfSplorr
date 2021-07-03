@@ -5,6 +5,7 @@
 #include "Visuals.Data.Properties.h"
 #include <SDL.h>
 #include "Common.Application.h"
+#include "Visuals.Menus.h"
 namespace visuals::Layouts
 {
 	nlohmann::json& GetLayout(const std::string&);
@@ -121,6 +122,28 @@ namespace visuals::Areas
 				}
 			}
 			return false;
+		};
+	}
+
+	std::function<void(const common::XY<int>&)> HandleMenuMouseMotion(const std::string& layoutName)
+	{
+		return [layoutName](const common::XY<int>& xy) {
+			auto areas = visuals::Areas::Get(layoutName, xy);
+			if (areas.empty())
+			{
+				//noAreaHandler(xy);
+			}
+			else
+			{
+				for (auto& area : areas)
+				{
+					auto a = Get(layoutName, area);
+					if (a.menu)
+					{
+						visuals::Menus::WriteMenuItemId(layoutName, a.menu.value().menuId, a.menu.value().menuItemId);
+					}
+				}
+			}
 		};
 	}
 }
