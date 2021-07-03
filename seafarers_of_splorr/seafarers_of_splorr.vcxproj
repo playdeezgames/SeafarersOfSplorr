@@ -182,6 +182,7 @@
     <ClCompile Include="State.InPlay.AtSea.cpp" />
     <ClCompile Include="State.Statistics.cpp" />
     <ClCompile Include="State.Tip.cpp" />
+    <ClCompile Include="Sublayout.UIHamburger.cpp" />
     <ClCompile Include="Visuals.Areas.cpp" />
     <ClCompile Include="Visuals.CardSprites.cpp" />
     <ClCompile Include="Visuals.Data.Types.cpp" />
@@ -239,6 +240,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Maze.Door.h" />
     <ClInclude Include="sqlite3.h" />
+    <ClInclude Include="Sublayouts.h" />
     <ClInclude Include="Visuals.Areas.h" />
     <ClInclude Include="Visuals.CardSprites.h" />
     <ClInclude Include="Visuals.Data.Colors.h" />

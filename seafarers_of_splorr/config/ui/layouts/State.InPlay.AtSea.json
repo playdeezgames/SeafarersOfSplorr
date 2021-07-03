@@ -20,6 +20,66 @@
         "drop-shadow-y": 2
     },
     {
+        "type": "Text",
+        "text-id": "avatar-x",
+        "font": "default",
+        "color": "Gray",
+        "text": "<x location>",
+        "x": 0,
+        "y": 32,
+        "horizontal-alignment": 1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "text-id": "avatar-y",
+        "font": "default",
+        "color": "Gray",
+        "text": "<y location>",
+        "x": 0,
+        "y": 48,
+        "horizontal-alignment": 1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "text-id": "avatar-heading",
+        "font": "default",
+        "color": "Gray",
+        "text": "<heading>",
+        "x": 0,
+        "y": 64,
+        "horizontal-alignment": 1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "text-id": "avatar-speed",
+        "font": "default",
+        "color": "Gray",
+        "text": "<speed>",
+        "x": 0,
+        "y": 80,
+        "horizontal-alignment": 1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Layout",
+        "name": "Sublayout.UIHamburger"
+    },
+    {
         "type": "Layout",
         "name": "Sublayout.Modded"
     }

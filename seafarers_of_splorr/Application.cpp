@@ -19,6 +19,7 @@
 #include "Common.Utility.h"
 #include "Application.Keyboard.h"
 #include "States.h"
+#include "Sublayouts.h"
 #include "Data.Stores.h"
 #include "Application.OnEnter.h"
 #include "Game.Audio.Mux.h"
@@ -85,6 +86,7 @@ namespace common::Application
 		state::ConfirmAbandon::Start,
 		state::ConfirmOverwrite::Start,
 		state::in_play::AtSea::Start,
+		sublayout::UIHamburger::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};

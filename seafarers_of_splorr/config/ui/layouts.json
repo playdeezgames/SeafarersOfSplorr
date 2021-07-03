@@ -13,5 +13,6 @@
     "Sublayout.Modded":"config/ui/layouts/Sublayout.Modded.json",
     "State.Tip":"config/ui/layouts/State.Tip.json",
     "State.Statistics":"config/ui/layouts/State.Statistics.json",
+    "Sublayout.UIHamburger":"config/ui/layouts/Sublayout.UIHamburger.json",
     "State.InPlay.AtSea":"config/ui/layouts/State.InPlay.AtSea.json"
 }

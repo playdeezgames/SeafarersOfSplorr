@@ -163,6 +163,9 @@
     <ClCompile Include="State.InPlay.AtSea.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Sublayout.UIHamburger.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.Command.h">
@@ -310,6 +313,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Game.Difficulty.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sublayouts.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
