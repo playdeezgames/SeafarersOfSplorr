@@ -10,6 +10,7 @@
 #include "Common.Utility.h"
 #include "Visuals.Areas.h"
 #include "Application.MouseMotion.h"
+#include "Application.MouseButtonUp.h"
 namespace state::in_play::AtSea 
 { 
 	const std::string LAYOUT_NAME = "State.InPlay.AtSea";
@@ -29,8 +30,26 @@ namespace state::in_play::AtSea
 		MOVE
 	};
 
+	static void OnChangeHeading()
+	{
+
+	}
+
+	static void OnChangeSpeed()
+	{
+
+	}
+
+	static void OnMove()
+	{
+
+	}
+
 	const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
+		{OrderMenuItem::CHANGE_HEADING, OnChangeHeading},
+		{OrderMenuItem::CHANGE_SPEED, OnChangeSpeed},
+		{OrderMenuItem::MOVE, OnMove}
 	};
 
 	static void ActivateItem()
@@ -65,5 +84,6 @@ namespace state::in_play::AtSea
 		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_AT_SEA, LAYOUT_NAME);
 		::application::Command::SetHandlers(::UIState::IN_PLAY_AT_SEA, commandHandlers);
 		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_AT_SEA, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
+		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_AT_SEA, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
 	}
 }

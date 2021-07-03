@@ -129,11 +129,7 @@ namespace visuals::Areas
 	{
 		return [layoutName](const common::XY<int>& xy) {
 			auto areas = visuals::Areas::Get(layoutName, xy);
-			if (areas.empty())
-			{
-				//noAreaHandler(xy);
-			}
-			else
+			if (!areas.empty())
 			{
 				for (auto& area : areas)
 				{
@@ -144,6 +140,28 @@ namespace visuals::Areas
 					}
 				}
 			}
+		};
+	}
+
+	std::function<bool(const common::XY<int>&, unsigned char)> HandleMenuMouseButtonUp(const std::string& layoutName, std::function<void()> handler)
+	{
+		return [layoutName, handler](const common::XY<int>& xy, unsigned char)
+		{
+			auto areas = visuals::Areas::Get(layoutName, xy);
+			if (!areas.empty())
+			{
+				for (auto& area : areas)
+				{
+					auto a = Get(layoutName, area);
+					if (a.menu)
+					{
+						visuals::Menus::WriteMenuItemId(layoutName, a.menu.value().menuId, a.menu.value().menuItemId);
+						handler();
+						return true;
+					}
+				}
+			}
+			return false;
 		};
 	}
 }
