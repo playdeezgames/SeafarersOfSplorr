@@ -12,9 +12,6 @@ namespace state::LeavePlay
 {
 	const std::string LAYOUT_NAME = "State.LeavePlay";
 	const std::string MENU_ID = "LeavePlay";
-	const std::string AREA_CONTINUE = "Continue";
-	const std::string AREA_ABANDON = "Abandon";
-	const std::string AREA_SAVE = "Save";
 
 	enum class LeavePlayItem
 	{
@@ -64,29 +61,11 @@ namespace state::LeavePlay
 		visuals::Menus::WriteIndex(LAYOUT_NAME, MENU_ID, (int)item);
 	}
 
-	const std::map<std::string, LeavePlayItem> areaMenuItems =
-	{
-		{ AREA_CONTINUE,  LeavePlayItem::CONTINUE},
-		{ AREA_SAVE,  LeavePlayItem::SAVE},
-		{ AREA_ABANDON,  LeavePlayItem::ABANDON}
-	};
-
-	static void OnMouseMotionInArea(const std::string& area, const common::XY<int>&)
-	{
-		SetCurrentMenuItem(areaMenuItems.find(area)->second);
-	}
-
-	static bool OnMouseButtonUpInArea(const std::string&)
-	{
-		ActivateItem();
-		return true;
-	}
-
 	void Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::LEAVE_PLAY, game::audio::Mux::GoToTheme(game::audio::Mux::Theme::MAIN));
-		::application::MouseButtonUp::AddHandler(::UIState::LEAVE_PLAY, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
-		::application::MouseMotion::AddHandler(::UIState::LEAVE_PLAY, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea));
+		::application::MouseButtonUp::AddHandler(::UIState::LEAVE_PLAY, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
+		::application::MouseMotion::AddHandler(::UIState::LEAVE_PLAY, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
 		::application::Command::SetHandlers(::UIState::LEAVE_PLAY, commandHandlers);
 		::application::Renderer::SetRenderLayout(::UIState::LEAVE_PLAY, LAYOUT_NAME);
 	}

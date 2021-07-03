@@ -36,16 +36,19 @@
         "menu-items": [
             {
                 "text": "Continue Session",
+                "menu-item-id": "Continue",
                 "x": 320,
                 "y": 32
             },
             {
                 "text": "Save",
+                "menu-item-id": "Save",
                 "x": 320,
                 "y": 48
             },
             {
                 "text": "Abandon Session",
+                "menu-item-id": "Abandon",
                 "x": 320,
                 "y": 64
             }
@@ -57,7 +60,11 @@
         "x":0,
         "y":32,
         "width":640,
-        "height":16
+        "height":16,
+        "menu": {
+            "menu-id": "LeavePlay",
+            "menu-item-id": "Continue"
+        }
     },
     {
         "type":"Area",
@@ -65,7 +72,11 @@
         "x":0,
         "y":48,
         "width":640,
-        "height":16
+        "height":16,
+        "menu": {
+            "menu-id": "LeavePlay",
+            "menu-item-id": "Save"
+        }
     },
     {
         "type":"Area",
@@ -73,7 +84,11 @@
         "x":0,
         "y":64,
         "width":640,
-        "height":16
+        "height":16,
+        "menu": {
+            "menu-id": "LeavePlay",
+            "menu-item-id": "Abandon"
+        }
     },
     {
         "type": "Layout",
