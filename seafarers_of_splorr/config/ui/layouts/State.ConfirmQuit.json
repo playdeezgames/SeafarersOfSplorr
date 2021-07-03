@@ -36,11 +36,13 @@
         "menu-items": [
             {
                 "text": "No",
+                "menu-item-id":"No",
                 "x": 320,
                 "y": 32
             },
             {
                 "text": "Yes",
+                "menu-item-id":"Yes",
                 "x": 320,
                 "y": 48
             }
@@ -52,7 +54,11 @@
         "x":240,
         "y":32,
         "width":160,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"ConfirmQuit",
+            "menu-item-id":"No"
+        }
     },
     {
         "type":"Area",
@@ -60,7 +66,11 @@
         "x":240,
         "y":48,
         "width":160,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"ConfirmQuit",
+            "menu-item-id":"Yes"
+        }
     },
     {
         "type": "Layout",

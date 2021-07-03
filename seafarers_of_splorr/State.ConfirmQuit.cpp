@@ -40,33 +40,11 @@ namespace state::ConfirmQuit
 		{ ::Command::RED, ::application::UIState::GoTo(::UIState::MAIN_MENU) }
 	};
 
-	static void SetCurrentMenuItem(ConfirmQuitItem item)
-	{
-		visuals::Menus::WriteIndex(LAYOUT_NAME, MENU_ID, (int)item);
-	}
-
-	const std::map<std::string, ConfirmQuitItem> areaMenuItems =
-	{
-		{ AREA_NO,  ConfirmQuitItem::NO},
-		{ AREA_YES,  ConfirmQuitItem::YES}
-	};
-
-	static bool OnMouseButtonUpInArea(const std::string&)
-	{
-		ActivateItem();
-		return true;
-	}
-
-	static void OnMouseMotionInArea(const std::string& area, const common::XY<int>&)
-	{
-		SetCurrentMenuItem(areaMenuItems.find(area)->second);
-	}
-
 	void Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::CONFIRM_QUIT, game::audio::Mux::GoToTheme(game::audio::Mux::Theme::MAIN));
-		::application::MouseButtonUp::AddHandler(::UIState::CONFIRM_QUIT, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
-		::application::MouseMotion::AddHandler(::UIState::CONFIRM_QUIT, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea));
+		::application::MouseButtonUp::AddHandler(::UIState::CONFIRM_QUIT, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
+		::application::MouseMotion::AddHandler(::UIState::CONFIRM_QUIT, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
 		::application::Command::SetHandlers(::UIState::CONFIRM_QUIT, commandHandlers);
 		::application::Renderer::SetRenderLayout(::UIState::CONFIRM_QUIT, LAYOUT_NAME);
 	}
