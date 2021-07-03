@@ -12,8 +12,6 @@ namespace state::ConfirmAbandon
 {
 	const std::string LAYOUT_NAME = "State.ConfirmAbandon";
 	const std::string MENU_ID = "ConfirmAbandon";
-	const std::string AREA_NO = "No";
-	const std::string AREA_YES = "Yes";
 
 	enum class ConfirmAbandonItem
 	{

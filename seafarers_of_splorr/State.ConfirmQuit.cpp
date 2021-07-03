@@ -11,8 +11,6 @@ namespace state::ConfirmQuit
 {
 	const std::string LAYOUT_NAME = "State.ConfirmQuit";
 	const std::string MENU_ID = "ConfirmQuit";
-	const std::string AREA_NO = "No";
-	const std::string AREA_YES = "Yes";
 
 	enum class ConfirmQuitItem
 	{
