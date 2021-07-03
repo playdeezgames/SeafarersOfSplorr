@@ -76,6 +76,38 @@
         "drop-shadow-y": 2
     },
     {
+        "type": "Menu",
+        "menu-id": "Order",
+        "index": 0,
+        "font": "default",
+        "colors": {
+            "active": "Cyan",
+            "inactive": "Gray"
+        },
+        "horizontal-alignment": 0,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2,
+        "menu-items": [
+            {
+                "text": "Change Heading...",
+                "x": 480,
+                "y": 32
+            },
+            {
+                "text": "Change Speed...",
+                "x": 480,
+                "y": 48
+            },
+            {
+                "text": "Move",
+                "x": 480,
+                "y": 64
+            }
+        ]
+    },
+    {
         "type": "Layout",
         "name": "Sublayout.UIHamburger"
     },
