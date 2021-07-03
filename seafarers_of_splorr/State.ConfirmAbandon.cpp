@@ -46,33 +46,11 @@ namespace state::ConfirmAbandon
 		{ ::Command::RED, ::application::UIState::GoTo(::UIState::MAIN_MENU) }
 	};
 
-	static void SetCurrentMenuItem(ConfirmAbandonItem item)
-	{
-		visuals::Menus::WriteIndex(LAYOUT_NAME, MENU_ID, (int)item);
-	}
-
-	const std::map<std::string, ConfirmAbandonItem> areaMenuItems =
-	{
-		{ AREA_NO,  ConfirmAbandonItem::NO},
-		{ AREA_YES,  ConfirmAbandonItem::YES}
-	};
-
-	static bool OnMouseButtonUpInArea(const std::string&)
-	{
-		ActivateItem();
-		return true;
-	}
-
-	static void OnMouseMotionInArea(const std::string& area, const common::XY<int>&)
-	{
-		SetCurrentMenuItem(areaMenuItems.find(area)->second);
-	}
-
 	void Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::CONFIRM_ABANDON, game::audio::Mux::GoToTheme(game::audio::Mux::Theme::MAIN));
-		::application::MouseButtonUp::AddHandler(::UIState::CONFIRM_ABANDON, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
-		::application::MouseMotion::AddHandler(::UIState::CONFIRM_ABANDON, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea));
+		::application::MouseButtonUp::AddHandler(::UIState::CONFIRM_ABANDON, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
+		::application::MouseMotion::AddHandler(::UIState::CONFIRM_ABANDON, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
 		::application::Command::SetHandlers(::UIState::CONFIRM_ABANDON, commandHandlers);
 		::application::Renderer::SetRenderLayout(::UIState::CONFIRM_ABANDON, LAYOUT_NAME);
 	}

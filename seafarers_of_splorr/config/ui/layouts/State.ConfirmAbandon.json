@@ -36,31 +36,41 @@
         "menu-items": [
             {
                 "text": "No",
+                "menu-item-id": "No",
                 "x": 320,
                 "y": 32
             },
             {
                 "text": "Yes",
+                "menu-item-id": "Yes",
                 "x": 320,
                 "y": 48
             }
         ]
     },
     {
-        "type":"Area",
-        "area-id":"No",
-        "x":240,
-        "y":32,
-        "width":160,
-        "height":16
+        "type": "Area",
+        "area-id": "No",
+        "x": 240,
+        "y": 32,
+        "width": 160,
+        "height": 16,
+        "menu": {
+            "menu-id": "ConfirmAbandon",
+            "menu-item-id": "No"
+        }
     },
     {
-        "type":"Area",
-        "area-id":"Yes",
-        "x":240,
-        "y":48,
-        "width":160,
-        "height":16
+        "type": "Area",
+        "area-id": "Yes",
+        "x": 240,
+        "y": 48,
+        "width": 160,
+        "height": 16,
+        "menu": {
+            "menu-id": "ConfirmAbandon",
+            "menu-item-id": "Yes"
+        }
     },
     {
         "type": "Layout",
