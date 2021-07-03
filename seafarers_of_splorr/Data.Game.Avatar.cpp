@@ -7,13 +7,13 @@ namespace data::game::Avatar
 {
 	static void AutoCreateAvatarTable()
 	{
-		data::game::Common::Execute("CREATE TABLE IF NOT EXISTS [Avatars]([AvatarId] INT NOT NULL UNIQUE,[X] REAL NOT NULL,[Y] REAL NOT NULL,[Direction] REAL NOT NULL,[Speed] REAL NOT NULL);");
+		data::game::Common::Execute("CREATE TABLE IF NOT EXISTS [Avatars]([AvatarId] INT NOT NULL UNIQUE,[X] REAL NOT NULL,[Y] REAL NOT NULL,[Heading] REAL NOT NULL,[Speed] REAL NOT NULL);");
 	}
 
 	const int AVATAR_ID = 1;
 	const std::string FIELD_X = "X";
 	const std::string FIELD_Y = "Y";
-	const std::string FIELD_DIRECTION = "Direction";
+	const std::string FIELD_HEADING = "Heading";
 	const std::string FIELD_SPEED = "Speed";
 
 	std::optional<AvatarData> Read()
@@ -21,7 +21,7 @@ namespace data::game::Avatar
 		AutoCreateAvatarTable();
 		auto query = 
 			std::format(
-				"SELECT [X], [Y], [Direction], [Speed] FROM [Avatars] WHERE [AvatarId] = {};", 
+				"SELECT [X], [Y], [Heading], [Speed] FROM [Avatars] WHERE [AvatarId] = {};", 
 				AVATAR_ID);
 		auto result = data::game::Common::Execute(query);
 		if (!result.empty())
@@ -33,7 +33,7 @@ namespace data::game::Avatar
 					common::Utility::StringToDouble(record.find(FIELD_X)->second),
 					common::Utility::StringToDouble(record.find(FIELD_Y)->second)
 				},
-				common::Utility::StringToDouble(record.find(FIELD_DIRECTION)->second),
+				common::Utility::StringToDouble(record.find(FIELD_HEADING)->second),
 				common::Utility::StringToDouble(record.find(FIELD_SPEED)->second)
 			};
 			return data;
@@ -46,11 +46,11 @@ namespace data::game::Avatar
 		AutoCreateAvatarTable();
 		auto query = 
 			std::format(
-				"REPLACE INTO [Avatars]([AvatarId],[X],[Y],[Direction],[Speed]) VALUES ({},{},{},{},{});", 
+				"REPLACE INTO [Avatars]([AvatarId],[X],[Y],[Heading],[Speed]) VALUES ({},{},{},{},{});", 
 				AVATAR_ID, 
 				avatarData.location.GetX(), 
 				avatarData.location.GetY(), 
-				avatarData.direction, 
+				avatarData.heading, 
 				avatarData.speed);
 		data::game::Common::Execute(query);
 	}

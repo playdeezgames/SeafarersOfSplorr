@@ -8,17 +8,17 @@ namespace game::Avatar
 		return data::game::Avatar::Read().value().location;
 	}
 
-	double GetDirection()
+	double GetHeading()
 	{
-		return data::game::Avatar::Read().value().direction;
+		return data::game::Avatar::Read().value().heading;
 	}
 
-	const double DIRECTION_MAXIMUM = 360.0;
+	const double HEADING_MAXIMUM = 360.0;
 
-	void SetDirection(double direction)
+	void SetHeading(double heading)
 	{
 		auto data = data::game::Avatar::Read().value();
-		data.direction = common::Utility::ModuloDouble(direction, DIRECTION_MAXIMUM);
+		data.heading = common::Utility::ModuloDouble(heading, HEADING_MAXIMUM);
 		data::game::Avatar::Write(data);
 	}
 

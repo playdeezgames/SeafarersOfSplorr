@@ -6,7 +6,7 @@ namespace data::game::Avatar
 	struct AvatarData
 	{
 		common::XY<double> location;
-		double direction;
+		double heading;
 		double speed;
 	};
 

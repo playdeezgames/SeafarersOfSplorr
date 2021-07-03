@@ -12,10 +12,15 @@ namespace state::in_play::AtSea
 		{::Command::RED, ::application::UIState::GoTo(::UIState::LEAVE_PLAY) }
 	};
 
+	void OnEnter()
+	{
+		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
+	}
+
 
 	void Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_AT_SEA, game::audio::Mux::GoToTheme(game::audio::Mux::Theme::MAIN));
+		::application::OnEnter::AddHandler(::UIState::IN_PLAY_AT_SEA, OnEnter);
 		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_AT_SEA, LAYOUT_NAME);
 		::application::Command::SetHandlers(::UIState::IN_PLAY_AT_SEA, commandHandlers);
 	}
