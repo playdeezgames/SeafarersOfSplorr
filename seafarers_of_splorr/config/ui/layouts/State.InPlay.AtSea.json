@@ -114,5 +114,29 @@
     {
         "type": "Layout",
         "name": "Sublayout.Modded"
+    },
+    {
+        "type":"Area",
+        "area-id":"ChangeHeading",
+        "x":320,
+        "y":32,
+        "width":320,
+        "height":16
+    },
+    {
+        "type":"Area",
+        "area-id":"ChangeSpeed",
+        "x":320,
+        "y":48,
+        "width":320,
+        "height":16
+    },
+    {
+        "type":"Area",
+        "area-id":"Move",
+        "x":320,
+        "y":80,
+        "width":320,
+        "height":16
     }
 ]
