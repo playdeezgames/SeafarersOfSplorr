@@ -54,11 +54,13 @@
             },
             {
                 "text": "Toggle Fullscreen",
+                "menu-item-id": "ToggleFullscreen",
                 "x": 320,
                 "y": 80
             },
             {
                 "text": "Back",
+                "menu-item-id": "Back",
                 "x": 320,
                 "y": 96
             }
@@ -70,7 +72,11 @@
         "x":240,
         "y":32,
         "width":160,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"Options",
+            "menu-item-id":"Mute"
+        }
     },
     {
         "type":"Area",
@@ -78,7 +84,11 @@
         "x":0,
         "y":48,
         "width":320,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"Options",
+            "menu-item-id":"SfxVolume"
+        }
     },
     {
         "type":"Area",
@@ -86,7 +96,11 @@
         "x":320,
         "y":48,
         "width":320,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"Options",
+            "menu-item-id":"SfxVolume"
+        }
     },
     {
         "type":"Area",
@@ -94,7 +108,11 @@
         "x":0,
         "y":64,
         "width":320,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"Options",
+            "menu-item-id":"MuxVolume"
+        }
     },
     {
         "type":"Area",
@@ -102,7 +120,11 @@
         "x":320,
         "y":64,
         "width":320,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"Options",
+            "menu-item-id":"MuxVolume"
+        }
     },
     {
         "type":"Area",
@@ -110,7 +132,11 @@
         "x":160,
         "y":80,
         "width":320,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"Options",
+            "menu-item-id":"ToggleFullscreen"
+        }
     },
     {
         "type":"Area",
@@ -118,7 +144,11 @@
         "x":240,
         "y":96,
         "width":160,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"Options",
+            "menu-item-id":"Back"
+        }
     },
     {
         "type": "Layout",

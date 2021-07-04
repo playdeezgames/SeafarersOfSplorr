@@ -36,26 +36,31 @@
         "menu-items": [
             {
                 "text": "Continue Game",
+                "menu-item-id": "Continue",
                 "x": 320,
                 "y": 32
             },
             {
                 "text": "New Game - Easy",
+                "menu-item-id": "Easy",
                 "x": 320,
                 "y": 48
             },
             {
                 "text": "New Game - Normal",
+                "menu-item-id": "Normal",
                 "x": 320,
                 "y": 64
             },
             {
                 "text": "New Game - Hard",
+                "menu-item-id": "Hard",
                 "x": 320,
                 "y": 80
             },
             {
                 "text": "Back",
+                "menu-item-id": "Back",
                 "x": 320,
                 "y": 96
             }
@@ -67,7 +72,11 @@
         "x":0,
         "y":48,
         "width":640,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"Start",
+            "menu-item-id":"Easy"
+        }
     },
     {
         "type":"Area",
@@ -75,7 +84,11 @@
         "x":0,
         "y":64,
         "width":640,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"Start",
+            "menu-item-id":"Normal"
+        }
     },
     {
         "type":"Area",
@@ -83,7 +96,11 @@
         "x":0,
         "y":80,
         "width":640,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"Start",
+            "menu-item-id":"Hard"
+        }
     },
     {
         "type":"Area",
@@ -91,7 +108,11 @@
         "x":0,
         "y":32,
         "width":640,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"Start",
+            "menu-item-id":"Continue"
+        }
     },
     {
         "type":"Area",
@@ -99,7 +120,11 @@
         "x":0,
         "y":96,
         "width":640,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"Start",
+            "menu-item-id":"Back"
+        }
     },
     {
         "type": "Layout",

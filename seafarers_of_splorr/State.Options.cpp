@@ -22,9 +22,6 @@ namespace state::Options
 	const std::string MENU_ITEM_MUX_VOLUME = "MuxVolume";
 	const std::string MUTE = "Mute";
 	const std::string UNMUTE = "Unmute";
-	const std::string AREA_MUTE = "Mute";
-	const std::string AREA_TOGGLE_FULLSCREEN = "ToggleFullscreen";
-	const std::string AREA_BACK = "Back";
 	const std::string AREA_SFX_DECREASE = "DecreaseSfxVolume";
 	const std::string AREA_SFX_INCREASE = "IncreaseSfxVolume";
 	const std::string AREA_MUX_DECREASE = "DecreaseMuxVolume";
@@ -145,27 +142,6 @@ namespace state::Options
 		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_MUX_VOLUME, ss);
 	}
 
-	static void SetCurrentMenuItem(OptionsItem item)
-	{
-		visuals::Menus::WriteIndex(LAYOUT_NAME, MENU_ID, (int)item);
-	}
-
-	const std::map<std::string, OptionsItem> areaMenuItems =
-	{
-		{ AREA_MUTE, OptionsItem::TOGGLE_MUTE },
-		{ AREA_MUX_DECREASE, OptionsItem::MUX_VOLUME },
-		{ AREA_MUX_INCREASE, OptionsItem::MUX_VOLUME },
-		{ AREA_SFX_DECREASE, OptionsItem::SFX_VOLUME },
-		{ AREA_SFX_INCREASE, OptionsItem::SFX_VOLUME },
-		{ AREA_TOGGLE_FULLSCREEN, OptionsItem::TOGGLE_FULLSCREEN },
-		{ AREA_BACK, OptionsItem::BACK }
-	};
-
-	static void OnMouseMotionInArea(const std::string& area, const common::XY<int>&)
-	{
-		SetCurrentMenuItem(areaMenuItems.find(area)->second);
-	}
-
 	const std::map<std::string, std::function<void()>> areaClickActions =
 	{
 		{AREA_MUX_DECREASE, DecreaseItem},
@@ -190,7 +166,7 @@ namespace state::Options
 	{
 		::application::OnEnter::AddHandler(::UIState::OPTIONS, game::audio::Mux::GoToTheme(game::audio::Mux::Theme::MAIN));
 		::application::MouseButtonUp::AddHandler(::UIState::OPTIONS, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
-		::application::MouseMotion::AddHandler(::UIState::OPTIONS, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea));
+		::application::MouseMotion::AddHandler(::UIState::OPTIONS, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
 		::application::Command::SetHandlers(::UIState::OPTIONS, commandHandlers);
 		::application::Renderer::SetRenderLayout(::UIState::OPTIONS, LAYOUT_NAME);
 		::application::OnEnter::AddHandler(::UIState::OPTIONS, UpdateMuteMenuItem);
