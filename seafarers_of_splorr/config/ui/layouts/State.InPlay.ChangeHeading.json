@@ -7,6 +7,20 @@
         "y": 0
     },
     {
+        "type": "Image",
+        "sprite": "CurrentHeading",
+        "color": "White",
+        "x": 0,
+        "y": 0
+    },
+    {
+        "type": "Image",
+        "sprite": "NewHeading",
+        "color": "White",
+        "x": 0,
+        "y": 0
+    },
+    {
         "type": "Text",
         "font": "default",
         "color": "LightGreen",
@@ -14,6 +28,38 @@
         "x": 320,
         "y": 0,
         "horizontal-alignment": 0,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Layout",
+        "name": "Sublayout.UIHamburger"
+    },
+    {
+        "type": "Text",
+        "text-id": "CurrentHeading",
+        "font": "default",
+        "color": "Gray",
+        "text": "<current heading>",
+        "x": 360,
+        "y": 32,
+        "horizontal-alignment": 1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "text-id": "NewHeading",
+        "font": "default",
+        "color": "Gray",
+        "text": "<new heading>",
+        "x": 360,
+        "y": 48,
+        "horizontal-alignment": 1,
         "drop-shadow": true,
         "drop-shadow-color": "Black",
         "drop-shadow-x": 2,

@@ -32,7 +32,7 @@ namespace state::in_play::AtSea
 
 	static void OnChangeHeading()
 	{
-
+		::application::UIState::Write(::UIState::IN_PLAY_CHANGE_HEADING);
 	}
 
 	static void OnChangeSpeed()

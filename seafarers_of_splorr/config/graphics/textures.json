@@ -8,5 +8,7 @@
     "cards": "assets/images/cards.png",
     "card-back": "assets/images/card-back.png",
     "ui-hamburger": "assets/images/ui-hamburger.png",
-    "ui-close": "assets/images/ui-close.png"
+    "ui-close": "assets/images/ui-close.png",
+    "current-heading":"assets/images/current-heading.png",
+    "new-heading":"assets/images/new-heading.png"
 }
