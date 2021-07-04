@@ -21,13 +21,6 @@ namespace state::LoadGame
 	const std::string MENU_ITEM_SLOT5 = "Slot5";
 	const std::string AUTOSAVE_PRESENT = "(autosave)";
 	const std::string NOT_PRESENT = "-";
-	const std::string AREA_AUTOSAVE = "Autosave";
-	const std::string AREA_SLOT1 = "Slot1";
-	const std::string AREA_SLOT2 = "Slot2";
-	const std::string AREA_SLOT3 = "Slot3";
-	const std::string AREA_SLOT4 = "Slot4";
-	const std::string AREA_SLOT5 = "Slot5";
-	const std::string AREA_BACK = "Back";
 	const std::string SLOT_PRESENT_1 = "Slot 1";
 	const std::string SLOT_PRESENT_2 = "Slot 2";
 	const std::string SLOT_PRESENT_3 = "Slot 3";
@@ -118,38 +111,11 @@ namespace state::LoadGame
 		UpdateMenuItem(game::DoesSlotExist(5), MENU_ITEM_SLOT5, SLOT_PRESENT_5);
 	}
 
-	const std::map<std::string, LoadGameItem> areaMenuItems =
-	{
-		{ AREA_AUTOSAVE,  LoadGameItem::AUTOSAVE},
-		{ AREA_SLOT1,  LoadGameItem::SLOT_1},
-		{ AREA_SLOT2,  LoadGameItem::SLOT_2},
-		{ AREA_SLOT3,  LoadGameItem::SLOT_3},
-		{ AREA_SLOT4,  LoadGameItem::SLOT_4},
-		{ AREA_SLOT5,  LoadGameItem::SLOT_5},
-		{ AREA_BACK,  LoadGameItem::BACK}
-	};
-
-	static void SetCurrentMenuItem(LoadGameItem item)
-	{
-		visuals::Menus::WriteIndex(LAYOUT_NAME, MENU_ID, (int)item);
-	}
-
-	static void OnMouseMotionInArea(const std::string& area, const common::XY<int>&)
-	{
-		SetCurrentMenuItem(areaMenuItems.find(area)->second);
-	}
-
-	static bool OnMouseButtonUpInArea(const std::string& area)
-	{
-		ActivateItem();
-		return true;
-	}
-
 	void Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::LOAD_GAME, game::audio::Mux::GoToTheme(game::audio::Mux::Theme::MAIN));
-		::application::MouseButtonUp::AddHandler(::UIState::LOAD_GAME, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
-		::application::MouseMotion::AddHandler(::UIState::LOAD_GAME, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea));
+		::application::MouseButtonUp::AddHandler(::UIState::LOAD_GAME, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
+		::application::MouseMotion::AddHandler(::UIState::LOAD_GAME, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
 		::application::Command::SetHandlers(::UIState::LOAD_GAME, commandHandlers);
 		::application::Renderer::SetRenderLayout(::UIState::LOAD_GAME, LAYOUT_NAME);
 		::application::OnEnter::AddHandler(::UIState::LOAD_GAME, OnEnter);

@@ -43,26 +43,31 @@
         "menu-items": [
             {
                 "text": "Start",
+                "menu-item-id": "Start",
                 "x": 320,
                 "y": 32
             },
             {
                 "text": "About",
+                "menu-item-id": "About",
                 "x": 320,
                 "y": 48
             },
             {
                 "text": "Stats",
+                "menu-item-id": "Stats",
                 "x": 320,
                 "y": 64
             },
             {
                 "text": "Options",
+                "menu-item-id": "Options",
                 "x": 320,
                 "y": 80
             },
             {
                 "text": "Quit",
+                "menu-item-id": "Quit",
                 "x": 320,
                 "y": 96
             }
@@ -74,7 +79,11 @@
         "x":240,
         "y":32,
         "width":160,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"Main",
+            "menu-item-id":"Start"
+        }
     },
     {
         "type":"Area",
@@ -82,7 +91,11 @@
         "x":240,
         "y":48,
         "width":160,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"Main",
+            "menu-item-id":"About"
+        }
     },
     {
         "type":"Area",
@@ -90,7 +103,11 @@
         "x":240,
         "y":80,
         "width":160,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"Main",
+            "menu-item-id":"Options"
+        }
     },
     {
         "type":"Area",
@@ -98,7 +115,11 @@
         "x":240,
         "y":64,
         "width":160,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"Main",
+            "menu-item-id":"Stats"
+        }
     },
     {
         "type":"Area",
@@ -106,7 +127,11 @@
         "x":240,
         "y":96,
         "width":160,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"Main",
+            "menu-item-id":"Quit"
+        }
     },
     {
         "type": "Layout",

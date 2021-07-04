@@ -72,6 +72,7 @@
             },
             {
                 "text": "Back",
+                "menu-item-id":"Back",
                 "x": 320,
                 "y": 128
             }
@@ -83,7 +84,11 @@
         "x":0,
         "y":32,
         "width":640,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"LoadGame",
+            "menu-item-id":"Autosave"
+        }
     },
     {
         "type":"Area",
@@ -91,7 +96,11 @@
         "x":0,
         "y":48,
         "width":640,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"LoadGame",
+            "menu-item-id":"Slot1"
+        }
     },
     {
         "type":"Area",
@@ -99,7 +108,11 @@
         "x":0,
         "y":64,
         "width":640,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"LoadGame",
+            "menu-item-id":"Slot2"
+        }
     },
     {
         "type":"Area",
@@ -107,7 +120,11 @@
         "x":0,
         "y":80,
         "width":640,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"LoadGame",
+            "menu-item-id":"Slot3"
+        }
     },
     {
         "type":"Area",
@@ -115,7 +132,11 @@
         "x":0,
         "y":96,
         "width":640,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"LoadGame",
+            "menu-item-id":"Slot4"
+        }
     },
     {
         "type":"Area",
@@ -123,7 +144,11 @@
         "x":0,
         "y":112,
         "width":640,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"LoadGame",
+            "menu-item-id":"Slot5"
+        }
     },
     {
         "type":"Area",
@@ -131,7 +156,11 @@
         "x":0,
         "y":128,
         "width":640,
-        "height":16
+        "height":16,
+        "menu":{
+            "menu-id":"LoadGame",
+            "menu-item-id":"Back"
+        }
     },
     {
         "type": "Layout",

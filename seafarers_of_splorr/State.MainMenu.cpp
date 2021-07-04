@@ -14,11 +14,6 @@ namespace state::MainMenu
 {
 	const std::string LAYOUT_NAME = "State.MainMenu";
 	const std::string MENU_ID = "Main";
-	const std::string AREA_START = "Start";
-	const std::string AREA_ABOUT = "About";
-	const std::string AREA_OPTIONS = "Options";
-	const std::string AREA_QUIT = "Quit";
-	const std::string AREA_STATISTICS = "Statistics";
 
 	enum class MainMenuItem
 	{
@@ -57,31 +52,6 @@ namespace state::MainMenu
 		{::Command::RED, ::application::UIState::GoTo(::UIState::CONFIRM_QUIT) }
 	};
 
-	static bool OnMouseButtonUpInArea(const std::string&)
-	{
-		ActivateItem();
-		return true;
-	}
-
-	const std::map<std::string, MainMenuItem> areaMenuItems =
-	{
-		{ AREA_START,  MainMenuItem::START},
-		{ AREA_ABOUT,  MainMenuItem::ABOUT},
-		{ AREA_OPTIONS,  MainMenuItem::OPTIONS},
-		{ AREA_STATISTICS,  MainMenuItem::STATISTICS},
-		{ AREA_QUIT,  MainMenuItem::QUIT}
-	};
-
-	static void SetCurrentMenuItem(MainMenuItem item) 
-	{ 
-		visuals::Menus::WriteIndex(LAYOUT_NAME, MENU_ID, (int)item);
-	}
-
-	static void OnMouseMotionInArea(const std::string& area, const common::XY<int>&)
-	{
-		SetCurrentMenuItem(areaMenuItems.find(area)->second);
-	}
-
 	static void OnEnter()
 	{
 		if (data::Stores::IsModded())
@@ -94,8 +64,8 @@ namespace state::MainMenu
 	void Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::MAIN_MENU, OnEnter);
-		::application::MouseMotion::AddHandler(::UIState::MAIN_MENU, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea));
-		::application::MouseButtonUp::AddHandler(::UIState::MAIN_MENU, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
+		::application::MouseMotion::AddHandler(::UIState::MAIN_MENU, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
+		::application::MouseButtonUp::AddHandler(::UIState::MAIN_MENU, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
 		::application::Command::SetHandlers(::UIState::MAIN_MENU, commandHandlers);
 		::application::Renderer::SetRenderLayout(::UIState::MAIN_MENU, LAYOUT_NAME);
 	}
