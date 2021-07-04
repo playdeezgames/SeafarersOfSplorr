@@ -8,6 +8,7 @@
     },
     {
         "type": "Image",
+        "image-id": "CurrentHeading",
         "sprite": "CurrentHeading",
         "color": "White",
         "x": 0,
@@ -15,6 +16,7 @@
     },
     {
         "type": "Image",
+        "image-id": "NewHeading",
         "sprite": "NewHeading",
         "color": "White",
         "x": 0,
@@ -64,5 +66,13 @@
         "drop-shadow-color": "Black",
         "drop-shadow-x": 2,
         "drop-shadow-y": 2
+    },
+    {
+        "type":"Area",
+        "area-id": "Helm",
+        "x":0,
+        "y":0,
+        "width":360,
+        "height":360
     }
 ]

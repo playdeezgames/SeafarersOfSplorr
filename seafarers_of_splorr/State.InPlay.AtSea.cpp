@@ -72,10 +72,10 @@ namespace state::in_play::AtSea
 		auto location = game::Avatar::GetLocation();
 		auto heading = game::Avatar::GetHeading();
 		auto speed = game::Avatar::GetSpeed();
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_X, std::format("X: {}", location.GetX()));
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_Y, std::format("Y: {}", location.GetY()));
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HEADING, std::format("Heading: {}", heading));
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_SPEED, std::format("Speed: {}", speed));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_X, std::format("X: {:.2f}", location.GetX()));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_Y, std::format("Y: {:.2f}", location.GetY()));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HEADING, std::format("Heading: {:.2f}", heading));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_SPEED, std::format("Speed: {:.2f}", speed));
 	}
 
 	void Start()

@@ -13,7 +13,7 @@ namespace game::Avatar
 		return data::game::Avatar::Read().value().heading;
 	}
 
-	const double HEADING_MAXIMUM = 360.0;
+	const double HEADING_MAXIMUM = common::Utility::DEGREES;
 
 	void SetHeading(double heading)
 	{

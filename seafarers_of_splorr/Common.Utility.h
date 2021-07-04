@@ -32,5 +32,8 @@ namespace common::Utility
 	}
 	bool FileExists(const std::string&);
 	unsigned char GetFileCheckSum(const std::string&);
+	double ToDegrees(double);
+	double ToRadians(double);
+	const double DEGREES = 360.0;
 }
 
