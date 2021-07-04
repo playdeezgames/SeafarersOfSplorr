@@ -9,9 +9,9 @@ namespace common::Application
 	{
 		this->renderer = std::shared_ptr<SDL_Renderer>(r, DoTheThing);
 	}
-	void Renderer::Copy(std::shared_ptr<SDL_Texture> texture, const SDL_Rect* source, const SDL_Rect* destination) const
+	void Renderer::Copy(std::shared_ptr<SDL_Texture> texture, const SDL_Rect* source, const SDL_Rect* destination, double angle) const
 	{
-		SDL_RenderCopy(renderer.get(), texture.get(), source, destination);
+		SDL_RenderCopyEx(renderer.get(), texture.get(), source, destination, angle, nullptr, SDL_FLIP_NONE);
 	}
 
 
