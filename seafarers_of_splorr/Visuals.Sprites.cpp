@@ -55,7 +55,8 @@ namespace visuals::Sprites
 		const std::shared_ptr<common::Application::Renderer>& renderer, 
 		const InternalSprite& internalSprite,
 		std::tuple<unsigned char, unsigned char, unsigned char, unsigned char> color,
-		const common::XY<int>& xy)
+		const common::XY<int>& xy,
+		double angle)
 	{
 		static SDL_Rect rcSource = {};
 		static SDL_Rect rcDestination = {};
@@ -80,17 +81,17 @@ namespace visuals::Sprites
 		rcSource.y = std::get<1>(internalSprite.source);
 		rcSource.w = std::get<2>(internalSprite.source);
 		rcSource.h = std::get<3>(internalSprite.source);
-		renderer.get()->Copy(texture, &rcSource, &rcDestination);
+		renderer.get()->Copy(texture, &rcSource, &rcDestination, angle);
 	}
 
-	void Draw(const std::string& spriteName, const std::shared_ptr<common::Application::Renderer>& renderer, const ::common::XY<int>& xy, const std::tuple<unsigned char, unsigned char, unsigned char, unsigned char>& color)
+	void Draw(const std::string& spriteName, const std::shared_ptr<common::Application::Renderer>& renderer, const ::common::XY<int>& xy, const std::tuple<unsigned char, unsigned char, unsigned char, unsigned char>& color, double angle)
 	{
 		Initialize();
 		auto iter = internalSprites.find(spriteName);
 		if (iter != internalSprites.end())
 		{
 			auto& internalSprite = iter->second;
-			Render(renderer, internalSprite, color, xy);
+			Render(renderer, internalSprite, color, xy, angle);
 		}
 	}
 

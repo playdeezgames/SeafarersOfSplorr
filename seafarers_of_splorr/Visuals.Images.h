@@ -4,4 +4,5 @@ namespace visuals::Images
 {
 	void SetSprite(const std::string&, const std::string&, const std::string&);
 	void SetVisible(const std::string&, const std::string&, bool);
+	void SetAngle(const std::string&, const std::string&, double);
 }

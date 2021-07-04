@@ -17,6 +17,7 @@ namespace visuals::Image
 		std::tuple<unsigned char, unsigned char, unsigned char, unsigned char> color;
 		common::XY<int> xy;
 		bool visible;
+		double angle;
 	};
 
 	static std::vector<InternalImage> images;
@@ -33,7 +34,8 @@ namespace visuals::Image
 				image.sprite,
 				renderer,
 				image.xy,
-				image.color);
+				image.color,
+				image.angle);
 		}
 	}
 
@@ -45,7 +47,8 @@ namespace visuals::Image
 				model[visuals::data::Properties::SPRITE],
 				(model.count(data::Properties::COLOR) > 0) ? (::visuals::Colors::Read(model[data::Properties::COLOR])) : (defaultColor),
 				common::XY<int>(model[common::data::Properties::X], model[common::data::Properties::Y]),
-				model.count(data::Properties::VISIBLE) == 0 || model[data::Properties::VISIBLE] == true
+				model.count(data::Properties::VISIBLE) == 0 || model[data::Properties::VISIBLE] == true,
+				(model.count(data::Properties::ANGLE) > 0) ? ((double)model[data::Properties::ANGLE]) : (0.0)
 			});
 		if (model.count(visuals::data::Properties::IMAGE_ID) > 0)
 		{
@@ -70,5 +73,11 @@ namespace visuals::Images
 	{
 		auto imageIndex = visuals::Image::imageTable[layoutName][imageId];
 		visuals::Image::images[imageIndex].visible = visible;
+	}
+
+	void SetAngle(const std::string& layoutName, const std::string& imageId, double angle)
+	{
+		auto imageIndex = visuals::Image::imageTable[layoutName][imageId];
+		visuals::Image::images[imageIndex].angle = angle;
 	}
 }

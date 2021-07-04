@@ -4,6 +4,7 @@ namespace visuals::data::Properties
 {
 	const std::string ACTIVE = "active";
 	const std::string ALPHA = "alpha";
+	const std::string ANGLE = "angle";
 	const std::string AREA_ID = "area-id";
 	const std::string BLUE = "blue";
 	const std::string CELL_HEIGHT = "cell-height";
