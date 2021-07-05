@@ -17,7 +17,9 @@ namespace state::in_play::ChangeHeading
 	const std::string LAYOUT_NAME = "State.InPlay.ChangeHeading";
 	const std::string TEXT_CURRENT_HEADING = "CurrentHeading";
 	const std::string TEXT_NEW_HEADING = "NewHeading";
+	const std::string TEXT_GO_BACK = "GoBack";
 	const std::string AREA_HELM = "Helm";
+	const std::string AREA_GO_BACK = "GoBack";
 	const std::string IMAGE_NEW_HEADING = "NewHeading";
 	const std::string IMAGE_CURRENT_HEADING = "CurrentHeading";
 	static double newHeading = 0.0;
@@ -54,10 +56,17 @@ namespace state::in_play::ChangeHeading
 
 	static void OnMouseMotionInArea(const std::string& area, const common::XY<int>& location)
 	{
+		if (area == AREA_GO_BACK)
+		{
+			visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, "Yellow");
+		}
+		else
+		{
+			visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, "Gray");
+		}
 		if (area == AREA_HELM)
 		{
 			HandleHelmMouseMotion(location);
-			return;
 		}
 	}
 
@@ -68,12 +77,28 @@ namespace state::in_play::ChangeHeading
 		return true;
 	}
 
+	static bool HandleGoBackButtonUp()
+	{
+		application::UIState::Write(::UIState::IN_PLAY_AT_SEA);
+		return true;
+	}
+
 	static bool OnMouseButtonUpInArea(const std::string& area)
 	{
 		if (area == AREA_HELM)
 		{
 			return HandleHelmButtonUp();
 		}
+		if (area == AREA_GO_BACK)
+		{
+			return HandleGoBackButtonUp();
+		}
+		return false;
+	}
+
+	static void OnMouseMotionOutsideAreas(const common::XY<int>& xy)
+	{
+		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, "Gray");
 	}
 
 	void Start()
@@ -81,7 +106,7 @@ namespace state::in_play::ChangeHeading
 		::application::OnEnter::AddHandler(::UIState::IN_PLAY_CHANGE_HEADING, OnEnter);
 		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_CHANGE_HEADING, LAYOUT_NAME);
 		::application::Command::SetHandlers(::UIState::IN_PLAY_CHANGE_HEADING, commandHandlers);
-		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_CHANGE_HEADING, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea));
+		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_CHANGE_HEADING, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea, OnMouseMotionOutsideAreas));
 		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_CHANGE_HEADING, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
 	}
 }
