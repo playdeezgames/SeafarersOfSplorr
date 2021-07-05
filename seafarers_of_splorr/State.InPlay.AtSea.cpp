@@ -22,6 +22,10 @@ namespace state::in_play::AtSea
 	const std::string AREA_CHANGE_HEADING = "ChangeHeading";
 	const std::string AREA_CHANGE_SPEED = "ChangeSpeed";
 	const std::string AREA_MOVE = "Move";
+	const std::string FORMAT_X = "X: {:.2f}";
+	const std::string FORMAT_Y = "Y: {:.2f}";
+	const std::string FORMAT_HEADING = "Heading: {:.2f}";
+	const std::string FORMAT_SPEED = "Speed: {:.2f}";
 
 	enum class OrderMenuItem
 	{
@@ -74,10 +78,10 @@ namespace state::in_play::AtSea
 		auto location = game::Avatar::GetLocation();
 		auto heading = game::Avatar::GetHeading();
 		auto speed = game::Avatar::GetSpeed();
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_X, std::format("X: {:.2f}", location.GetX()));
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_Y, std::format("Y: {:.2f}", location.GetY()));
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HEADING, std::format("Heading: {:.2f}", heading));
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_SPEED, std::format("Speed: {:.2f}", speed));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_X, std::format(FORMAT_X, location.GetX()));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_Y, std::format(FORMAT_Y, location.GetY()));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HEADING, std::format(FORMAT_HEADING, heading));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_SPEED, std::format(FORMAT_SPEED, speed));
 	}
 
 	void Start()

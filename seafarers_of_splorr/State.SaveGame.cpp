@@ -51,12 +51,10 @@ namespace state::SaveGame
 			if (game::DoesSlotExist(slot))
 			{
 				application::UIState::Write(confirmState);
+				return;
 			}
-			else
-			{
-				game::SaveToSlot(slot);
-				application::UIState::EnterGame();
-			}
+			game::SaveToSlot(slot);
+			application::UIState::EnterGame();
 		};
 	}
 

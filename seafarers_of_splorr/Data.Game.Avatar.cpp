@@ -5,23 +5,26 @@
 #include "Data.Game.Common.h"
 namespace data::game::Avatar
 {
-	static void AutoCreateAvatarTable()
-	{
-		data::game::Common::Execute("CREATE TABLE IF NOT EXISTS [Avatars]([AvatarId] INT NOT NULL UNIQUE,[X] REAL NOT NULL,[Y] REAL NOT NULL,[Heading] REAL NOT NULL,[Speed] REAL NOT NULL);");
-	}
-
 	const int AVATAR_ID = 1;
 	const std::string FIELD_X = "X";
 	const std::string FIELD_Y = "Y";
 	const std::string FIELD_HEADING = "Heading";
 	const std::string FIELD_SPEED = "Speed";
+	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Avatars]([AvatarId] INT NOT NULL UNIQUE,[X] REAL NOT NULL,[Y] REAL NOT NULL,[Heading] REAL NOT NULL,[Speed] REAL NOT NULL);";
+	const std::string QUERY_ITEM= "SELECT [X], [Y], [Heading], [Speed] FROM [Avatars] WHERE [AvatarId] = {};";
+	const std::string REPLACE_ITEM = "REPLACE INTO [Avatars]([AvatarId],[X],[Y],[Heading],[Speed]) VALUES ({},{},{},{},{});";
+
+	static void AutoCreateAvatarTable()
+	{
+		data::game::Common::Execute(CREATE_TABLE);
+	}
 
 	std::optional<AvatarData> Read()
 	{
 		AutoCreateAvatarTable();
 		auto query = 
 			std::format(
-				"SELECT [X], [Y], [Heading], [Speed] FROM [Avatars] WHERE [AvatarId] = {};", 
+				QUERY_ITEM,
 				AVATAR_ID);
 		auto result = data::game::Common::Execute(query);
 		if (!result.empty())
@@ -46,7 +49,7 @@ namespace data::game::Avatar
 		AutoCreateAvatarTable();
 		auto query = 
 			std::format(
-				"REPLACE INTO [Avatars]([AvatarId],[X],[Y],[Heading],[Speed]) VALUES ({},{},{},{},{});", 
+				REPLACE_ITEM, 
 				AVATAR_ID, 
 				avatarData.location.GetX(), 
 				avatarData.location.GetY(), 

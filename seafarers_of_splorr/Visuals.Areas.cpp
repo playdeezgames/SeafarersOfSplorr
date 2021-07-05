@@ -87,14 +87,12 @@ namespace visuals::Areas
 			if (areas.empty())
 			{
 				noAreaHandler(xy);
+				return;
 			}
-			else
-			{ 			
-				for (auto& area : areas)
-				{
-					auto a = Get(layoutName, area);
-					areaHandler(area, xy - a.xy);
-				}
+			for (auto& area : areas)
+			{
+				auto a = Get(layoutName, area);
+				areaHandler(area, xy - a.xy);
 			}
 		};
 	}

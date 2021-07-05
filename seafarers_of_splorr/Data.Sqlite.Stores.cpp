@@ -71,5 +71,4 @@ namespace data::sqlite::Stores
 	{
 		connections.erase(store);
 	}
-
 }

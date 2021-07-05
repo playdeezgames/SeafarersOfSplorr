@@ -13,6 +13,4 @@ namespace common::Application
 	{
 		SDL_RenderCopyEx(renderer.get(), texture.get(), source, destination, angle, nullptr, SDL_FLIP_NONE);
 	}
-
-
 }

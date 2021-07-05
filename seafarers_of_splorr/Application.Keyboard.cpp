@@ -34,9 +34,6 @@ namespace application::Keyboard
 		{
 			return iter->second;
 		}
-		else
-		{
-			return std::nullopt;
-		}
+		return std::nullopt;
 	}
 }

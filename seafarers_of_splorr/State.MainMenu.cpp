@@ -14,6 +14,9 @@ namespace state::MainMenu
 {
 	const std::string LAYOUT_NAME = "State.MainMenu";
 	const std::string MENU_ID = "Main";
+	const std::string SUBLAYOUT_MODDED = "Sublayout.Modded";
+	const std::string TEXT_MODDED = "modded";
+	const std::string MODDED = "Modded";
 
 	enum class MainMenuItem
 	{
@@ -56,7 +59,7 @@ namespace state::MainMenu
 	{
 		if (data::Stores::IsModded())
 		{
-			visuals::Texts::SetText("Sublayout.Modded", "modded", "Modded");
+			visuals::Texts::SetText(SUBLAYOUT_MODDED, TEXT_MODDED, MODDED);
 		}
 		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
 	}

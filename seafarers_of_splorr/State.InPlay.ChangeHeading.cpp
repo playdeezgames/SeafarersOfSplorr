@@ -22,6 +22,10 @@ namespace state::in_play::ChangeHeading
 	const std::string AREA_GO_BACK = "GoBack";
 	const std::string IMAGE_NEW_HEADING = "NewHeading";
 	const std::string IMAGE_CURRENT_HEADING = "CurrentHeading";
+	const std::string FORMAT_CURRENT = "Current: {:.2f}";
+	const std::string FORMAT_NEW = "New: {:.2f}";
+	const std::string COLOR_HOVER = "Yellow";
+	const std::string COLOR_NO_HOVER = "Gray";
 	static double newHeading = 0.0;
 
 	const std::map<::Command, std::function<void()>> commandHandlers =
@@ -32,8 +36,8 @@ namespace state::in_play::ChangeHeading
 
 	static void UpdateHeadings()
 	{
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_CURRENT_HEADING, std::format("Current: {:.2f}", game::Avatar::GetHeading()));
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_NEW_HEADING, std::format("New: {:.2f}", newHeading));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_CURRENT_HEADING, std::format(FORMAT_CURRENT, game::Avatar::GetHeading()));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_NEW_HEADING, std::format(FORMAT_NEW, newHeading));
 		visuals::Images::SetAngle(LAYOUT_NAME, IMAGE_NEW_HEADING, newHeading);
 		visuals::Images::SetAngle(LAYOUT_NAME, IMAGE_CURRENT_HEADING, game::Avatar::GetHeading());
 	}
@@ -47,7 +51,7 @@ namespace state::in_play::ChangeHeading
 
 	static void HandleGoBackNoHover()
 	{
-		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, "Gray");
+		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, COLOR_NO_HOVER);
 	}
 
 	static void HandleHelmMouseMotion(const common::XY<int>& location)
@@ -62,7 +66,7 @@ namespace state::in_play::ChangeHeading
 
 	static void HandleGoBackHover(const common::XY<int>&)
 	{
-		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, "Yellow");
+		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, COLOR_HOVER);
 	}
 
 	const std::map<std::string, std::function<void(const common::XY<int>&)>> mouseMotionHandlers =
@@ -90,10 +94,10 @@ namespace state::in_play::ChangeHeading
 	}
 
 	const std::map<std::string, std::function<bool()>> buttonUpHandlers =
-		{
-			{AREA_HELM, HandleHelmButtonUp},
-			{AREA_GO_BACK, HandleGoBackButtonUp}
-		};
+	{
+		{AREA_HELM, HandleHelmButtonUp},
+		{AREA_GO_BACK, HandleGoBackButtonUp}
+	};
 
 	static bool OnMouseButtonUpInArea(const std::string& area)
 	{

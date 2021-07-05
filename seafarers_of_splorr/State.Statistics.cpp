@@ -12,32 +12,7 @@ namespace state::Statistics
 {
 	const std::string LAYOUT_NAME = "State.Statistics";
 	const std::string TEXT_MOVES_MADE = "MovesMade";
-	const std::string TEXT_BEERS_DRUNK = "BeersDrunk";
-	const std::string TEXT_BOOZE_DRUNK = "BoozeDrunk";
-	const std::string TEXT_COFFEE_DRUNK = "CoffeeDrunk";
-	const std::string TEXT_DIED_WITHOUT_DIGNITY = "DiedWithoutDignity";
-	const std::string TEXT_DIED_WITH_DIGNITY = "DiedWithDignity";
-	const std::string TEXT_FOOD_EATEN = "FoodEaten";
 	const std::string TEXT_GAMES_PLAYED = "GamesPlayed";
-	const std::string TEXT_GOT_DRUNK_STAT = "GotDrunkStat";
-	const std::string TEXT_KEYS_USED = "KeysUsed";
-	const std::string TEXT_MAP_FRAGMENTS_FOUND = "MapFragmentsFound";
-	const std::string TEXT_SOILED_TROUSERS = "SoiledTrousers";
-	const std::string TEXT_TIMES_DIED = "TimesDied";
-	const std::string TEXT_TIMES_DROPPED_TROU = "TimesDroppedTrou";
-	const std::string TEXT_TIMES_POOPED = "TimesPooped";
-	const std::string TEXT_WALLS_BUMPED = "WallsBumped";
-	const std::string TEXT_WINE_DRUNK = "WineDrunk";
-	const std::string TEXT_KILLED_BY_WEREWOLF = "KilledByWerewolf";
-	const std::string TEXT_KILLED_BY_WYVERN = "KilledByWyvern";
-	const std::string TEXT_KILLED_BY_BRAIN_TENTACLE = "KilledByBrainTentacle";
-	const std::string TEXT_KILLED_BY_IMP = "KilledByImp";
-	const std::string TEXT_KILLED_BY_TROGLODYTE = "KilledByTroglodyte";
-	const std::string TEXT_KILLED_BY_BULLY_MINION = "KilledByBullyMinion";
-	const std::string TEXT_KILLED_BY_EVIL_BAT = "KilledByEvilBat";
-	const std::string TEXT_KILLED_BY_EVIL_MINION = "KilledByEvilMinion";
-	const std::string TEXT_BROKEN_WALL = "BrokenWall";
-
 
 	static bool OnMouseButtonUp(const common::XY<int>& xy, unsigned char buttons)
 	{
