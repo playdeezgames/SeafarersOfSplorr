@@ -9,7 +9,6 @@ namespace data::game::World
 	const std::string QUERY_ITEM = "SELECT [Version],[Width],[Height],[MinimumIslandDistance],[ViewDistance],[DockDistance] FROM [Worlds] WHERE [WorldId] = {};";
 	const std::string REPLACE_ITEM = "REPLACE INTO [Worlds]([WorldId],[Version],[Width],[Height],[MinimumIslandDistance],[ViewDistance],[DockDistance]) VALUES ({},{},{},{},{},{},{});";
 	const int WORLD_ID = 1;
-	const int VERSION = 1;
 	const std::string FIELD_VERSION = "Version";
 	const std::string FIELD_WIDTH = "Width";
 	const std::string FIELD_HEIGHT = "Height";
