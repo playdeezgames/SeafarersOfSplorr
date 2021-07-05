@@ -169,6 +169,9 @@
     <ClCompile Include="State.InPlay.ChangeHeading.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.ChangeSpeed.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.Command.h">

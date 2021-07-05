@@ -37,7 +37,7 @@ namespace state::in_play::AtSea
 
 	static void OnChangeSpeed()
 	{
-
+		::application::UIState::Write(::UIState::IN_PLAY_CHANGE_SPEED);
 	}
 
 	static void OnMove()
