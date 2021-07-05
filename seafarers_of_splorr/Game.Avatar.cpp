@@ -1,6 +1,7 @@
 #include "Game.Avatar.h"
 #include "Data.Game.Avatar.h"
 #include "Common.Utility.h"
+#include "Application.UIState.h"
 namespace game::Avatar
 {
 	common::XY<double> GetLocation()
@@ -46,5 +47,14 @@ namespace game::Avatar
 				1.0
 			};
 		data::game::Avatar::Write(data);
+	}
+
+	void Move()
+	{
+		auto avatar = data::game::Avatar::Read().value();
+		auto heading = common::Utility::ToRadians(avatar.heading);
+		common::XY<double> delta = { sin(heading) * avatar.speed, cos(-heading) * avatar.speed };
+		avatar.location = avatar.location + delta;
+		data::game::Avatar::Write(avatar);
 	}
 }

@@ -40,9 +40,11 @@ namespace state::in_play::AtSea
 		::application::UIState::Write(::UIState::IN_PLAY_CHANGE_SPEED);
 	}
 
+	static void OnEnter();
 	static void OnMove()
 	{
-
+		game::Avatar::Move();
+		OnEnter();
 	}
 
 	const std::map<OrderMenuItem, std::function<void()>> activators =
@@ -66,7 +68,7 @@ namespace state::in_play::AtSea
 		{::Command::RED, ::application::UIState::GoTo(::UIState::LEAVE_PLAY) }
 	};
 
-	void OnEnter()
+	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
 		auto location = game::Avatar::GetLocation();

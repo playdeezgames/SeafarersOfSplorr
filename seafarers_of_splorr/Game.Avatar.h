@@ -9,4 +9,5 @@ namespace game::Avatar
 	double GetSpeed();
 	void SetSpeed(double);
 	void Reset(const game::Difficulty&);
+	void Move();
 }
