@@ -178,6 +178,9 @@
     <ClCompile Include="Data.Game.Island.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Data.Game.World.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.Command.h">
@@ -334,6 +337,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.Island.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.World.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
