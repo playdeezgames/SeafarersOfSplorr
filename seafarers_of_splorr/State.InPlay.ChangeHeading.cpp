@@ -45,6 +45,11 @@ namespace state::in_play::ChangeHeading
 		UpdateHeadings();
 	}
 
+	static void HandleGoBackNoHover()
+	{
+		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, "Gray");
+	}
+
 	static void HandleHelmMouseMotion(const common::XY<int>& location)
 	{
 		auto area = visuals::Areas::Get(LAYOUT_NAME, AREA_HELM);
@@ -52,22 +57,23 @@ namespace state::in_play::ChangeHeading
 		double y = (double)location.GetY() - (double)area.size.GetY()/2.0;
 		newHeading = (x==0.0 && y==0.0) ? (0.0) : (common::Utility::ToDegrees(atan2(x, -y)));
 		UpdateHeadings();
+		HandleGoBackNoHover();
 	}
 
-	static void OnMouseMotionInArea(const std::string& area, const common::XY<int>& location)//TODO: refactor me
+	static void HandleGoBackHover(const common::XY<int>&)
 	{
-		if (area == AREA_GO_BACK)
+		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, "Yellow");
+	}
+
+	const std::map<std::string, std::function<void(const common::XY<int>&)>> mouseMotionHandlers =
 		{
-			visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, "Yellow");
-		}
-		else
-		{
-			visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, "Gray");
-		}
-		if (area == AREA_HELM)
-		{
-			HandleHelmMouseMotion(location);
-		}
+			{AREA_GO_BACK, HandleGoBackHover},
+			{AREA_HELM, HandleHelmMouseMotion}
+		};
+
+	static void OnMouseMotionInArea(const std::string& area, const common::XY<int>& location)
+	{
+		common::Utility::DispatchParameter(mouseMotionHandlers, area, location);
 	}
 
 	static bool HandleHelmButtonUp()
@@ -83,22 +89,20 @@ namespace state::in_play::ChangeHeading
 		return true;
 	}
 
-	static bool OnMouseButtonUpInArea(const std::string& area)//TODO: refactor me
+	const std::map<std::string, std::function<bool()>> buttonUpHandlers =
+		{
+			{AREA_HELM, HandleHelmButtonUp},
+			{AREA_GO_BACK, HandleGoBackButtonUp}
+		};
+
+	static bool OnMouseButtonUpInArea(const std::string& area)
 	{
-		if (area == AREA_HELM)
-		{
-			return HandleHelmButtonUp();
-		}
-		if (area == AREA_GO_BACK)
-		{
-			return HandleGoBackButtonUp();
-		}
-		return false;
+		return common::Utility::Dispatch(buttonUpHandlers, area, false);
 	}
 
 	static void OnMouseMotionOutsideAreas(const common::XY<int>& xy)
 	{
-		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, "Gray");
+		HandleGoBackNoHover();
 	}
 
 	void Start()
