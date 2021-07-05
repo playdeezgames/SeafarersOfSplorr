@@ -170,12 +170,14 @@
     <ClCompile Include="Common.Application.Internals.cpp" />
     <ClCompile Include="Data.Game.Avatar.cpp" />
     <ClCompile Include="Data.Game.Common.cpp" />
+    <ClCompile Include="Data.Game.Island.cpp" />
     <ClCompile Include="Data.SQLite.Stores.cpp" />
     <ClCompile Include="Data.Stores.cpp" />
     <ClCompile Include="Game.Achievements.cpp" />
     <ClCompile Include="Game.Audio.Mux.cpp" />
     <ClCompile Include="Game.Avatar.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Game.Islands.cpp" />
     <ClCompile Include="sqlite3.c" />
     <ClCompile Include="State.ConfirmAbandon.cpp" />
     <ClCompile Include="State.ConfirmOverwrite.cpp" />
@@ -233,6 +235,7 @@
     <ClInclude Include="Common.Data.Properties.h" />
     <ClInclude Include="Data.Game.Avatar.h" />
     <ClInclude Include="Data.Game.Common.h" />
+    <ClInclude Include="Data.Game.Island.h" />
     <ClInclude Include="Data.SQLite.Stores.h" />
     <ClInclude Include="Data.Stores.h" />
     <ClInclude Include="Game.Achievements.h" />
@@ -240,6 +243,7 @@
     <ClInclude Include="Game.Avatar.h" />
     <ClInclude Include="Game.Difficulty.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Game.Islands.h" />
     <ClInclude Include="Maze.Door.h" />
     <ClInclude Include="sqlite3.h" />
     <ClInclude Include="Sublayouts.h" />

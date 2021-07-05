@@ -172,6 +172,12 @@
     <ClCompile Include="State.InPlay.ChangeSpeed.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Islands.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Island.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.Command.h">
@@ -322,6 +328,12 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Sublayouts.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Islands.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

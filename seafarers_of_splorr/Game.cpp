@@ -2,11 +2,13 @@
 #include <map>
 #include "Data.SQLite.Stores.h"
 #include "Game.Avatar.h"
+#include "Game.Islands.h"
 namespace game
 {
 	void Reset(const Difficulty& difficulty)
 	{
 		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);
+		game::Islands::Reset(difficulty);
 		game::Avatar::Reset(difficulty);
 	}
 
