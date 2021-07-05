@@ -54,7 +54,7 @@ namespace state::in_play::ChangeHeading
 		UpdateHeadings();
 	}
 
-	static void OnMouseMotionInArea(const std::string& area, const common::XY<int>& location)
+	static void OnMouseMotionInArea(const std::string& area, const common::XY<int>& location)//TODO: refactor me
 	{
 		if (area == AREA_GO_BACK)
 		{
@@ -83,7 +83,7 @@ namespace state::in_play::ChangeHeading
 		return true;
 	}
 
-	static bool OnMouseButtonUpInArea(const std::string& area)
+	static bool OnMouseButtonUpInArea(const std::string& area)//TODO: refactor me
 	{
 		if (area == AREA_HELM)
 		{
