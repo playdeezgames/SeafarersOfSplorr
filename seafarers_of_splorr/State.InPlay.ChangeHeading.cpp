@@ -12,6 +12,7 @@
 #include "Visuals.Areas.h"
 #include "Visuals.Images.h"
 #include "Common.Utility.h"
+#include "Game.Heading.h"
 namespace state::in_play::ChangeHeading
 {
 	const std::string LAYOUT_NAME = "State.InPlay.ChangeHeading";
@@ -59,7 +60,7 @@ namespace state::in_play::ChangeHeading
 		auto area = visuals::Areas::Get(LAYOUT_NAME, AREA_HELM);
 		double x = (double)location.GetX() - (double)area.size.GetX()/2.0;
 		double y = (double)location.GetY() - (double)area.size.GetY()/2.0;
-		newHeading = (x==0.0 && y==0.0) ? (0.0) : (common::Utility::ToDegrees(atan2(x, -y)));
+		newHeading = game::Heading::XYToDegrees({x,y});
 		UpdateHeadings();
 		HandleGoBackNoHover();
 	}

@@ -42,4 +42,19 @@ namespace common
 	{
 		return first.GetX() == second.GetX() && first.GetY() == second.GetY();
 	}
+	template<typename TDimension>
+	XY<TDimension> operator*(const XY<TDimension>& lhs, const TDimension& scalar)
+	{
+		return XY<TDimension>(lhs.GetX()*scalar, lhs.GetY()*scalar);
+	}
+	template<typename TDimension>
+	XY<TDimension> operator/(const XY<TDimension>& lhs, const TDimension& scalar)
+	{
+		return XY<TDimension>(lhs.GetX() / scalar, lhs.GetY() / scalar);
+	}
+	template<typename TDimension>
+	XY<TDimension> operator*(const TDimension& scalar, const XY<TDimension>& rhs)
+	{
+		return rhs * scalar;
+	}
 }

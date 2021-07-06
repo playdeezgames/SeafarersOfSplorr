@@ -85,16 +85,5 @@ namespace common::Utility
 		return value - floor(value / divisor) * divisor;
 	}
 
-	const double TAU = 2.0 * 3.141592653589793;
-
-	double ToDegrees(double radians)
-	{
-		return ModuloDouble(radians * DEGREES / TAU, DEGREES);
-	}
-
-	double ToRadians(double degrees)
-	{
-		return degrees * TAU / DEGREES;
-	}
 }
 

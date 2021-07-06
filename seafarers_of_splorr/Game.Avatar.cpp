@@ -4,6 +4,7 @@
 #include "Application.UIState.h"
 #include "Game.World.h"
 #include "Common.RNG.h"
+#include "Game.Heading.h"
 namespace game::Avatar
 {
 	common::XY<double> GetLocation()
@@ -16,7 +17,7 @@ namespace game::Avatar
 		return data::game::Avatar::Read().value().heading;
 	}
 
-	const double HEADING_MAXIMUM = common::Utility::DEGREES;
+	const double HEADING_MAXIMUM = game::Heading::DEGREES;
 
 	void SetHeading(double heading)
 	{
@@ -55,8 +56,7 @@ namespace game::Avatar
 	void Move()
 	{
 		auto avatar = data::game::Avatar::Read().value();
-		auto heading = common::Utility::ToRadians(avatar.heading);
-		common::XY<double> delta = { sin(heading) * avatar.speed, cos(-heading) * avatar.speed };
+		common::XY<double> delta = game::Heading::DegreesToXY(avatar.heading)  * avatar.speed;
 		avatar.location = avatar.location + delta;
 		data::game::Avatar::Write(avatar);
 	}

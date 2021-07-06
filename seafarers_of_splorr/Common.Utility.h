@@ -7,12 +7,14 @@
 namespace common::Utility
 {
 	std::vector<std::string> ParseCommandLine(int, char**);
+
 	int StringToInt(const std::string&);
 	std::optional<int> StringToOptionalInt(const std::string&);
 	double StringToDouble(const std::string&);
 	int ToPercentage(int, int);
 	double ClampDouble(double, double, double);
 	double ModuloDouble(double, double);
+
 	template<typename TEnum>
 	void Dispatch(const std::map<TEnum, std::function<void()>> handlers, const TEnum& key)
 	{
@@ -51,10 +53,8 @@ namespace common::Utility
 		}
 		return defaultResult;
 	}
+
 	bool FileExists(const std::string&);
 	unsigned char GetFileCheckSum(const std::string&);
-	double ToDegrees(double);
-	double ToRadians(double);
-	const double DEGREES = 360.0;
 }
 
