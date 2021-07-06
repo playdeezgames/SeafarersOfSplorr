@@ -2,6 +2,8 @@
 #include "Data.Game.Avatar.h"
 #include "Common.Utility.h"
 #include "Application.UIState.h"
+#include "Game.World.h"
+#include "Common.RNG.h"
 namespace game::Avatar
 {
 	common::XY<double> GetLocation()
@@ -40,10 +42,11 @@ namespace game::Avatar
 
 	void Reset(const game::Difficulty&)
 	{
+		auto worldSize = game::World::GetSize();
 		data::game::Avatar::AvatarData data =
 			{
-				{0.0, 0.0},
-				0.0,
+				{worldSize.GetX()/2.0, worldSize.GetY()/2.0},
+				common::Utility::ModuloDouble(common::RNG::FromRange(0.0, HEADING_MAXIMUM), HEADING_MAXIMUM),
 				1.0
 			};
 		data::game::Avatar::Write(data);
