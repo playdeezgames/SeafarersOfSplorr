@@ -354,8 +354,10 @@
     <ClInclude Include="Game.World.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Heading.h" />
     <ClInclude Include="Common.Data.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Heading.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

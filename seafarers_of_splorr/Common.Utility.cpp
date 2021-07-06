@@ -1,5 +1,5 @@
 #include "Common.Utility.h"
-#include <sstream> //we need this one here
+#include <sstream>
 #include <filesystem>
 #include <io.h>
 namespace common::Utility
@@ -37,7 +37,5 @@ namespace common::Utility
 		}
 		return result;
 	}
-
-
 }
 
