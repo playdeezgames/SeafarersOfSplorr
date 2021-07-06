@@ -187,6 +187,9 @@
     <ClCompile Include="Game.Heading.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Common.Data.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.Command.h">
@@ -352,6 +355,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Game.Heading.h" />
+    <ClInclude Include="Common.Data.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">

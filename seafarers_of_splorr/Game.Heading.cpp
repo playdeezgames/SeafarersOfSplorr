@@ -1,13 +1,14 @@
 #include "Game.Heading.h"
 #include <cmath>
 #include "Common.Utility.h"
+#include "Common.Data.h"
 namespace game::Heading
 {
 	const double TAU = 2.0 * 3.141592653589793;
 
 	double ToDegrees(double radians)
 	{
-		return common::Utility::ModuloDouble(radians * DEGREES / TAU, DEGREES);
+		return common::Data::ModuloDouble(radians * DEGREES / TAU, DEGREES);
 	}
 
 	double ToRadians(double degrees)

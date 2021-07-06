@@ -168,6 +168,7 @@
     <ClCompile Include="Application.Update.cpp" />
     <ClCompile Include="Application.OnEnter.cpp" />
     <ClCompile Include="Common.Application.Internals.cpp" />
+    <ClCompile Include="Common.Data.cpp" />
     <ClCompile Include="Data.Game.Avatar.cpp" />
     <ClCompile Include="Data.Game.Common.cpp" />
     <ClCompile Include="Data.Game.Island.cpp" />
@@ -234,6 +235,7 @@
     <ClInclude Include="Common.Application.h" />
     <ClInclude Include="Common.Application.Internals.h" />
     <ClInclude Include="Common.Card.h" />
+    <ClInclude Include="Common.Data.h" />
     <ClInclude Include="Common.Deck.h" />
     <ClInclude Include="Common.Data.Properties.h" />
     <ClInclude Include="Data.Game.Avatar.h" />

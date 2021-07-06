@@ -5,6 +5,7 @@
 #include "Game.World.h"
 #include "Common.RNG.h"
 #include "Game.Heading.h"
+#include "Common.Data.h"
 namespace game::Avatar
 {
 	common::XY<double> GetLocation()
@@ -22,7 +23,7 @@ namespace game::Avatar
 	void SetHeading(double heading)
 	{
 		auto data = data::game::Avatar::Read().value();
-		data.heading = common::Utility::ModuloDouble(heading, HEADING_MAXIMUM);
+		data.heading = common::Data::ModuloDouble(heading, HEADING_MAXIMUM);
 		data::game::Avatar::Write(data);
 	}
 
@@ -37,7 +38,7 @@ namespace game::Avatar
 	void SetSpeed(double speed)
 	{
 		auto data = data::game::Avatar::Read().value();
-		data.speed = common::Utility::ClampDouble(speed, SPEED_MINIMUM, SPEED_MAXIMUM);
+		data.speed = common::Data::ClampDouble(speed, SPEED_MINIMUM, SPEED_MAXIMUM);
 		data::game::Avatar::Write(data);
 	}
 
@@ -47,7 +48,7 @@ namespace game::Avatar
 		data::game::Avatar::AvatarData data =
 			{
 				{worldSize.GetX()/2.0, worldSize.GetY()/2.0},
-				common::Utility::ModuloDouble(common::RNG::FromRange(0.0, HEADING_MAXIMUM), HEADING_MAXIMUM),
+				common::Data::ModuloDouble(common::RNG::FromRange(0.0, HEADING_MAXIMUM), HEADING_MAXIMUM),
 				1.0
 			};
 		data::game::Avatar::Write(data);

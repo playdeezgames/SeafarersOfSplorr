@@ -13,6 +13,7 @@
 #include <SDL_mixer.h>
 #include "Game.Audio.Mux.h"
 #include "Common.Application.h"
+#include "Common.Data.h"
 namespace state::Options
 {
 	const std::string LAYOUT_NAME = "State.Options";
@@ -134,13 +135,13 @@ namespace state::Options
 
 	static void UpdateSfxMenuItem()
 	{
-		std::string ss = std::format(FORMAT_SFX_VOLUMNE, common::Utility::ToPercentage(common::audio::Sfx::GetVolume(), MIX_MAX_VOLUME));
+		std::string ss = std::format(FORMAT_SFX_VOLUMNE, common::Data::ToPercentage(common::audio::Sfx::GetVolume(), MIX_MAX_VOLUME));
 		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_SFX_VOLUME, ss);
 	}
 
 	static void UpdateMuxMenuItem()
 	{
-		std::string ss = std::format(FORMAT_MUX_VOLUMNE, common::Utility::ToPercentage(common::audio::Mux::GetVolume(), MIX_MAX_VOLUME));
+		std::string ss = std::format(FORMAT_MUX_VOLUMNE, common::Data::ToPercentage(common::audio::Mux::GetVolume(), MIX_MAX_VOLUME));
 		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_MUX_VOLUME, ss);
 	}
 

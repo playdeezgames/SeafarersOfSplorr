@@ -3,6 +3,7 @@
 #include "Data.Game.Common.h"
 #include <format>
 #include "Common.Utility.h"
+#include "Common.Data.h"
 namespace data::game::World
 {
 	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Worlds]([WorldId] INT NOT NULL UNIQUE,[Version] INT NOT NULL,[Width] REAL NOT NULL,[Height] REAL NOT NULL,[MinimumIslandDistance] REAL NOT NULL,[ViewDistance] REAL NOT NULL,[DockDistance] REAL NOT NULL);";
@@ -44,14 +45,14 @@ namespace data::game::World
 			const auto& record = result.front();
 			WorldData data =
 			{
-				common::Utility::StringToInt(record.find(FIELD_VERSION)->second),
+				common::Data::StringToInt(record.find(FIELD_VERSION)->second),
 				{
-					common::Utility::StringToDouble(record.find(FIELD_WIDTH)->second),
-					common::Utility::StringToDouble(record.find(FIELD_HEIGHT)->second)
+					common::Data::StringToDouble(record.find(FIELD_WIDTH)->second),
+					common::Data::StringToDouble(record.find(FIELD_HEIGHT)->second)
 				},
-				common::Utility::StringToDouble(record.find(FIELD_MINIMUM_ISLAND_DISTANCE)->second),
-				common::Utility::StringToDouble(record.find(FIELD_VIEW_DISTANCE)->second),
-				common::Utility::StringToDouble(record.find(FIELD_DOCK_DISTANCE)->second)
+				common::Data::StringToDouble(record.find(FIELD_MINIMUM_ISLAND_DISTANCE)->second),
+				common::Data::StringToDouble(record.find(FIELD_VIEW_DISTANCE)->second),
+				common::Data::StringToDouble(record.find(FIELD_DOCK_DISTANCE)->second)
 			};
 			return data;
 		}

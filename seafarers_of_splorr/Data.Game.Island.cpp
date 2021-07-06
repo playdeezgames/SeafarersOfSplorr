@@ -2,6 +2,7 @@
 #include "Data.Game.Common.h"
 #include <format>
 #include "Common.Utility.h"
+#include "Common.Data.h"
 namespace data::game::Island
 {
 	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Islands]([X] REAL NOT NULL,[Y] REAL NOT NULL,[Name] TEXT NOT NULL,[Visits] INT NULL, UNIQUE([X],[Y]));";
@@ -37,11 +38,11 @@ namespace data::game::Island
 		IslandData data =
 		{
 			{
-				common::Utility::StringToDouble(record.find(FIELD_X)->second),
-				common::Utility::StringToDouble(record.find(FIELD_Y)->second)
+				common::Data::StringToDouble(record.find(FIELD_X)->second),
+				common::Data::StringToDouble(record.find(FIELD_Y)->second)
 			},
 			record.find(FIELD_NAME)->second,
-			common::Utility::StringToOptionalInt(record.find(FIELD_VISITS)->second)
+			common::Data::StringToOptionalInt(record.find(FIELD_VISITS)->second)
 		};
 		return data;
 	}

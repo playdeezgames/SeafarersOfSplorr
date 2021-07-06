@@ -1,6 +1,7 @@
 #include <map>
 #include "json.hpp"
 #include "Common.Utility.h"
+#include "Common.Data.h"
 #include "Data.JSON.h"
 #include "Application.Keyboard.h"
 #include "Data.Stores.h"
@@ -18,7 +19,7 @@ namespace application::Keyboard
 			auto& config = data::Stores::GetStore(data::Store::KEYS);
 			for (auto& item : config.items())
 			{
-				int code = common::Utility::StringToInt(item.key());
+				int code = common::Data::StringToInt(item.key());
 				::Command command = (::Command)(int)item.value();
 				keyboardCommands[code] = command;
 			}

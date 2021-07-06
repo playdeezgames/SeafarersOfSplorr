@@ -3,6 +3,7 @@
 #include <format>
 #include "Common.Utility.h"
 #include "Data.Game.Common.h"
+#include "Common.Data.h"
 namespace data::game::Avatar
 {
 	const int AVATAR_ID = 1;
@@ -33,11 +34,11 @@ namespace data::game::Avatar
 			AvatarData data =
 			{
 				{
-					common::Utility::StringToDouble(record.find(FIELD_X)->second),
-					common::Utility::StringToDouble(record.find(FIELD_Y)->second)
+					common::Data::StringToDouble(record.find(FIELD_X)->second),
+					common::Data::StringToDouble(record.find(FIELD_Y)->second)
 				},
-				common::Utility::StringToDouble(record.find(FIELD_HEADING)->second),
-				common::Utility::StringToDouble(record.find(FIELD_SPEED)->second)
+				common::Data::StringToDouble(record.find(FIELD_HEADING)->second),
+				common::Data::StringToDouble(record.find(FIELD_SPEED)->second)
 			};
 			return data;
 		}
