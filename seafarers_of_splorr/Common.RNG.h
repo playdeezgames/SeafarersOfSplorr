@@ -5,6 +5,7 @@ namespace common::RNG
 	void Seed();
 	int FromRange(int, int);
 	size_t FromRange(size_t, size_t);
+	double FromRange(double, double);
 	template <typename TResult>
 	TResult FromGenerator(const std::map<TResult, size_t>& table, TResult defaultValue)
 	{

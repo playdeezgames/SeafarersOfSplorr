@@ -8,11 +8,11 @@ namespace data::game::Island
 	const std::string QUERY_ITEM = "SELECT [Name],[Visits] FROM [Islands] WHERE [X] = {} AND [Y]={};";
 	const std::string REPLACE_ITEM = "REPLACE INTO [Islands]([X],[Y],[Name],[Visits]) VALUES ({},{},{},{});";
 	const std::string QUERY_ALL = "SELECT [X],[Y],[Name],[Visits] FROM [Islands];";
+	const std::string CLEAR_ALL = "DELETE FROM [Islands];";
 	const std::string FIELD_X = "X";
 	const std::string FIELD_Y = "Y";
 	const std::string FIELD_NAME = "Name";
 	const std::string FIELD_VISITS = "Visits";
-
 
 	static void AutoCreateIslandTable()
 	{
@@ -71,5 +71,11 @@ namespace data::game::Island
 			result.push_back(ToIslandData(record));
 		}
 		return result;
+	}
+
+	void Clear()
+	{
+		AutoCreateIslandTable();
+		data::game::Common::Execute(CLEAR_ALL);
 	}
 }

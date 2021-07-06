@@ -15,4 +15,5 @@ namespace data::game::Island
 	void Write(const IslandData&);
 	std::optional<IslandData> Read(const common::XY<double>&);
 	std::list<IslandData> All();
+	void Clear();
 }

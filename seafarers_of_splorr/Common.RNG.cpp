@@ -17,4 +17,9 @@ namespace common::RNG
 	{
 		return (size_t)FromRange((int)minimum, (int)maximum);
 	}
+
+	double FromRange(double minimum, double maximum)
+	{
+		return ((double)rand() / (double)RAND_MAX) * (maximum - minimum) + minimum;
+	}
 }
