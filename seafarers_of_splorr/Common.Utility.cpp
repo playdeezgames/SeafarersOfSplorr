@@ -24,6 +24,16 @@ namespace common::Utility
 		return result;
 	}
 
+	std::optional<int> StringToOptionalInt(const std::string& text)
+	{
+		if (!text.empty())
+		{
+			return StringToInt(text);
+		}
+		return std::nullopt;
+	}
+
+
 	double StringToDouble(const std::string& text)
 	{
 		std::stringstream ss;

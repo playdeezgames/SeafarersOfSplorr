@@ -3,10 +3,12 @@
 #include <string>
 #include <functional>
 #include <map>
+#include <optional>
 namespace common::Utility
 {
 	std::vector<std::string> ParseCommandLine(int, char**);
 	int StringToInt(const std::string&);
+	std::optional<int> StringToOptionalInt(const std::string&);
 	double StringToDouble(const std::string&);
 	int ToPercentage(int, int);
 	double ClampDouble(double, double, double);
