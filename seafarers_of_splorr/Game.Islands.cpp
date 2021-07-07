@@ -5,6 +5,8 @@
 #include <set>
 #include <map>
 #include <sstream>
+#include "Game.Avatar.h"
+#include "Game.Heading.h"
 namespace game::Islands
 {
 	const size_t RETRY_COUNT = 500;
@@ -22,7 +24,7 @@ namespace game::Islands
 			bool found = true;
 			for (auto& location : locations)
 			{
-				double distance = sqrt((location.GetX() - x) * (location.GetX() - x) + (location.GetY() - y) * (location.GetY() - y));//TODO: get this someplace useful for elsewhere
+				double distance = game::Heading::Distance(location, {x, y});
 				if (distance < minimumIslandDistance)
 				{
 					found = false;
@@ -123,4 +125,27 @@ namespace game::Islands
 			names.erase(names.begin());
 		}
 	}
+
+	std::map<common::XY<double>, IslandModel> GetViewableIslands()
+	{
+		std::map<common::XY<double>, IslandModel> result;
+		auto avatarLocation = game::Avatar::GetLocation();
+		auto islands = data::game::Island::All();
+		auto viewDistance = game::World::GetViewDistance();
+		for (auto& island : islands)
+		{
+			auto distance = game::Heading::Distance(avatarLocation, island.location);
+			if (distance <= viewDistance)
+			{
+				auto key = island.location - avatarLocation;
+				result[key] =
+				{
+					island.name,
+					island.visits
+				};
+			}
+		}
+		return result;
+	}
+
 }

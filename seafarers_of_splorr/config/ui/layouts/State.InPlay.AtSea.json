@@ -169,80 +169,90 @@
         "y": 182
     },
     {
+        "image-id": "AtSeaIsland9",
         "type": "Image",
-        "sprite": "AtSeaIsland0",
+        "sprite": "AtSeaIsland",
         "color": "White",
         "x": 0,
         "y": 0,
         "visible": false
     },
     {
+        "image-id": "AtSeaIsland0",
         "type": "Image",
-        "sprite": "AtSeaIsland1",
+        "sprite": "AtSeaIsland",
         "color": "White",
         "x": 0,
         "y": 0,
         "visible": false
     },
     {
+        "image-id": "AtSeaIsland1",
         "type": "Image",
-        "sprite": "AtSeaIsland2",
+        "sprite": "AtSeaIsland",
         "color": "White",
         "x": 0,
         "y": 0,
         "visible": false
     },
     {
+        "image-id": "AtSeaIsland2",
         "type": "Image",
-        "sprite": "AtSeaIsland3",
+        "sprite": "AtSeaIsland",
         "color": "White",
         "x": 0,
         "y": 0,
         "visible": false
     },
     {
+        "image-id": "AtSeaIsland3",
         "type": "Image",
-        "sprite": "AtSeaIsland4",
+        "sprite": "AtSeaIsland",
         "color": "White",
         "x": 0,
         "y": 0,
         "visible": false
     },
     {
+        "image-id": "AtSeaIsland4",
         "type": "Image",
-        "sprite": "AtSeaIsland5",
+        "sprite": "AtSeaIsland",
         "color": "White",
         "x": 0,
         "y": 0,
         "visible": false
     },
     {
+        "image-id": "AtSeaIsland5",
         "type": "Image",
-        "sprite": "AtSeaIsland6",
+        "sprite": "AtSeaIsland",
         "color": "White",
         "x": 0,
         "y": 0,
         "visible": false
     },
     {
+        "image-id": "AtSeaIsland6",
         "type": "Image",
-        "sprite": "AtSeaIsland7",
+        "sprite": "AtSeaIsland",
         "color": "White",
         "x": 0,
         "y": 0,
         "visible": false
     },
     {
+        "image-id": "AtSeaIsland7",
         "type": "Image",
-        "sprite": "AtSeaIsland8",
+        "sprite": "AtSeaIsland",
         "color": "White",
         "x": 0,
         "y": 0,
         "visible": false
     },
     {
+        "image-id": "AtSeaIsland8",
         "type": "Image",
-        "sprite": "AtSeaIsland9",
+        "sprite": "AtSeaIsland",
         "color": "White",
         "x": 0,
         "y": 0,

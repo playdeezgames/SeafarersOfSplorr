@@ -7,5 +7,5 @@ namespace game::Heading
 	double ToDegrees(double);
 	double ToRadians(double);
 	const double DEGREES = 360.0;
-
+	double Distance(const common::XY<double>&, const common::XY<double>&);
 }

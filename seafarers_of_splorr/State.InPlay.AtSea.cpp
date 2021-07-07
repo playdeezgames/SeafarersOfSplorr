@@ -11,6 +11,9 @@
 #include "Visuals.Areas.h"
 #include "Application.MouseMotion.h"
 #include "Application.MouseButtonUp.h"
+#include "Game.Islands.h"
+#include "Visuals.Images.h"
+#include "Game.World.h"
 namespace state::in_play::AtSea 
 { 
 	const std::string LAYOUT_NAME = "State.InPlay.AtSea";
@@ -72,9 +75,8 @@ namespace state::in_play::AtSea
 		{::Command::RED, ::application::UIState::GoTo(::UIState::LEAVE_PLAY) }
 	};
 
-	static void OnEnter()
+	static void UpdateAvatarStatus()
 	{
-		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
 		auto location = game::Avatar::GetLocation();
 		auto heading = game::Avatar::GetHeading();
 		auto speed = game::Avatar::GetSpeed();
@@ -82,6 +84,42 @@ namespace state::in_play::AtSea
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_Y, std::format(FORMAT_Y, location.GetY()));
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HEADING, std::format(FORMAT_HEADING, heading));
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_SPEED, std::format(FORMAT_SPEED, speed));
+	}
+
+	//TODO: get this not hardcoded
+	const common::XY<double> VIEW_CENTER = { 170.0,190.0 };
+	const double VIEW_RADIUS = 150.0;
+	const int ISLAND_ICON_COUNT = 10;
+
+	static void HideVisibleIslands()
+	{
+		for (int icon = 0; icon < ISLAND_ICON_COUNT; ++icon)
+		{
+			visuals::Images::SetVisible(LAYOUT_NAME, std::format("AtSeaIsland{}", icon), false);
+		}
+	}
+
+	static void UpdateIslands()
+	{
+		HideVisibleIslands();
+		auto islands = game::Islands::GetViewableIslands();
+		int icon = 0;
+		double viewScale = VIEW_RADIUS / game::World::GetViewDistance();
+		for (auto& entry : islands)
+		{
+			auto plot = entry.first * viewScale + VIEW_CENTER;
+			auto imageId = std::format("AtSeaIsland{}", icon);
+			visuals::Images::SetLocation(LAYOUT_NAME, imageId, {(int)plot.GetX(),(int)plot.GetY()});
+			visuals::Images::SetVisible(LAYOUT_NAME, imageId, true);
+			++icon;
+		}
+	}
+
+	static void OnEnter()
+	{
+		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
+		UpdateAvatarStatus();
+		UpdateIslands();
 	}
 
 	void Start()

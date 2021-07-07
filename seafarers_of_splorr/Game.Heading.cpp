@@ -30,4 +30,9 @@ namespace game::Heading
 		return (x == 0.0 && y == 0.0) ? (0.0) : (game::Heading::ToDegrees(atan2(x, -y)));
 	}
 
+	double Distance(const common::XY<double>& first, const common::XY<double>& second)
+	{
+		return sqrt((first.GetX() - second.GetX()) * (first.GetX() - second.GetX()) + (first.GetY() - second.GetY()) * (first.GetY() - second.GetY()));
+	}
+
 }

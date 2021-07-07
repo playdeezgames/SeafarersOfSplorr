@@ -57,4 +57,10 @@ namespace common
 	{
 		return rhs * scalar;
 	}
+	template<typename TDimension>
+	bool operator<(const XY<TDimension>& lhs, const XY<TDimension>& rhs)
+	{
+		return (lhs.GetY() < rhs.GetY()) || (lhs.GetX() < rhs.GetX());
+	}
+
 }

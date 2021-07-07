@@ -35,7 +35,7 @@ namespace data::sqlite::Stores
 		std::map<std::string, std::string> record;
 		for (int column = 0; column < column_count; ++column)
 		{
-			record[column_names[column]] = column_values[column];
+			record[column_names[column]] = column_values[column] ? column_values[column] : "";
 		}
 		results->push_back(record);
 		return 0;
