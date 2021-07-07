@@ -33,32 +33,6 @@
         "drop-shadow-y": 2
     },
     {
-        "type": "Text",
-        "font": "default",
-        "color": "Gray",
-        "text": "Music made by:",
-        "x": 320,
-        "y": 112,
-        "horizontal-alignment": 0,
-        "drop-shadow": true,
-        "drop-shadow-color": "Black",
-        "drop-shadow-x": 2,
-        "drop-shadow-y": 2
-    },
-    {
-        "type": "Text",
-        "font": "default",
-        "color": "Gray",
-        "text": "Sander De Keukelaere (AtlantiaKing)",
-        "x": 320,
-        "y": 128,
-        "horizontal-alignment": 0,
-        "drop-shadow": true,
-        "drop-shadow-color": "Black",
-        "drop-shadow-x": 2,
-        "drop-shadow-y": 2
-    },
-    {
         "type": "Layout",
         "name": "Sublayout.Modded"
     }

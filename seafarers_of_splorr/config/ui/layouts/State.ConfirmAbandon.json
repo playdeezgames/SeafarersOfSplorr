@@ -12,7 +12,7 @@
         "color": "LightRed",
         "text": "Are You Sure You Want To Abandon?",
         "x": 320,
-        "y": 0,
+        "y": 8,
         "horizontal-alignment": 0,
         "drop-shadow": true,
         "drop-shadow-color": "Black",

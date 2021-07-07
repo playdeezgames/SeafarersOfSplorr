@@ -86,4 +86,10 @@ namespace visuals::Texts
 		auto textIndex = visuals::Text::textTable[layoutName][textId];
 		visuals::Text::internalTexts[textIndex].color = color;
 	}
+
+	void SetLocation(const std::string& layoutName, const std::string& textId, const common::XY<int>& location)
+	{
+		auto textIndex = visuals::Text::textTable[layoutName][textId];
+		visuals::Text::internalTexts[textIndex].xy = location;
+	}
 }

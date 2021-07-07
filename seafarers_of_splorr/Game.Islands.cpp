@@ -126,9 +126,9 @@ namespace game::Islands
 		}
 	}
 
-	std::map<common::XY<double>, IslandModel> GetViewableIslands()
+	std::list<IslandModel> GetViewableIslands()
 	{
-		std::map<common::XY<double>, IslandModel> result;
+		std::list<IslandModel> result;
 		auto avatarLocation = game::Avatar::GetLocation();
 		auto islands = data::game::Island::All();
 		auto viewDistance = game::World::GetViewDistance();
@@ -137,12 +137,12 @@ namespace game::Islands
 			auto distance = game::Heading::Distance(avatarLocation, island.location);
 			if (distance <= viewDistance)
 			{
-				auto key = island.location - avatarLocation;
-				result[key] =
+				result.push_back(
 				{
+					(island.location-avatarLocation),
 					island.name,
 					island.visits
-				};
+				});
 			}
 		}
 		return result;
