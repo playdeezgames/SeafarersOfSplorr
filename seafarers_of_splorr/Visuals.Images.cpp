@@ -80,4 +80,11 @@ namespace visuals::Images
 		auto imageIndex = visuals::Image::imageTable[layoutName][imageId];
 		visuals::Image::images[imageIndex].angle = angle;
 	}
+
+	void SetLocation(const std::string& layoutName, const std::string& imageId, const common::XY<int>& location)
+	{
+		auto imageIndex = visuals::Image::imageTable[layoutName][imageId];
+		visuals::Image::images[imageIndex].xy = location;
+	}
+
 }

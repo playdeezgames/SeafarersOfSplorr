@@ -153,5 +153,99 @@
             "menu-id":"Order",
             "menu-item-id":"Move"
         }
+    },
+    {
+        "type": "Image",
+        "sprite": "AtSeaViewCircle",
+        "color": "White",
+        "x": 20,
+        "y": 40
+    },
+    {
+        "type": "Image",
+        "sprite": "AtSeaShip",
+        "color": "White",
+        "x": 162,
+        "y": 182
+    },
+    {
+        "type": "Image",
+        "sprite": "AtSeaIsland0",
+        "color": "White",
+        "x": 0,
+        "y": 0,
+        "visible": false
+    },
+    {
+        "type": "Image",
+        "sprite": "AtSeaIsland1",
+        "color": "White",
+        "x": 0,
+        "y": 0,
+        "visible": false
+    },
+    {
+        "type": "Image",
+        "sprite": "AtSeaIsland2",
+        "color": "White",
+        "x": 0,
+        "y": 0,
+        "visible": false
+    },
+    {
+        "type": "Image",
+        "sprite": "AtSeaIsland3",
+        "color": "White",
+        "x": 0,
+        "y": 0,
+        "visible": false
+    },
+    {
+        "type": "Image",
+        "sprite": "AtSeaIsland4",
+        "color": "White",
+        "x": 0,
+        "y": 0,
+        "visible": false
+    },
+    {
+        "type": "Image",
+        "sprite": "AtSeaIsland5",
+        "color": "White",
+        "x": 0,
+        "y": 0,
+        "visible": false
+    },
+    {
+        "type": "Image",
+        "sprite": "AtSeaIsland6",
+        "color": "White",
+        "x": 0,
+        "y": 0,
+        "visible": false
+    },
+    {
+        "type": "Image",
+        "sprite": "AtSeaIsland7",
+        "color": "White",
+        "x": 0,
+        "y": 0,
+        "visible": false
+    },
+    {
+        "type": "Image",
+        "sprite": "AtSeaIsland8",
+        "color": "White",
+        "x": 0,
+        "y": 0,
+        "visible": false
+    },
+    {
+        "type": "Image",
+        "sprite": "AtSeaIsland9",
+        "color": "White",
+        "x": 0,
+        "y": 0,
+        "visible": false
     }
 ]
