@@ -19,7 +19,7 @@ namespace game::Heading
 	common::XY<double> DegreesToXY(double degrees)
 	{
 		double radians = ToRadians(degrees);
-		return { sin(radians), cos(-radians) };
+		return { cos(radians), sin(radians) };
 
 	}
 
@@ -27,7 +27,7 @@ namespace game::Heading
 	{
 		double x = xy.GetX();
 		double y = xy.GetY();
-		return (x == 0.0 && y == 0.0) ? (0.0) : (game::Heading::ToDegrees(atan2(x, -y)));
+		return (x == 0.0 && y == 0.0) ? (0.0) : (game::Heading::ToDegrees(atan2(y, x)));
 	}
 
 	double Distance(const common::XY<double>& first, const common::XY<double>& second)
