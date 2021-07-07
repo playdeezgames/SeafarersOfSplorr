@@ -88,7 +88,7 @@ namespace state::in_play::AtSea
 
 	//TODO: get this not hardcoded
 	const common::XY<double> VIEW_CENTER = { 170.0,190.0 };
-	const double VIEW_RADIUS = 150.0;
+	const double VIEW_RADIUS = 144.0;
 	const int ISLAND_ICON_COUNT = 10;
 
 	static void HideVisibleIslands()
