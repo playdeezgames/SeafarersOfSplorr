@@ -14,6 +14,7 @@
 #include "Game.Islands.h"
 #include "Visuals.Images.h"
 #include "Game.World.h"
+#include "Game.Heading.h"
 namespace state::in_play::AtSea
 {
 	const std::string LAYOUT_NAME = "State.InPlay.AtSea";
@@ -30,18 +31,16 @@ namespace state::in_play::AtSea
 	const std::string FORMAT_HEADING = "Heading: {:.2f}";
 	const std::string FORMAT_SPEED = "Speed: {:.2f}";
 	const std::string IMAGE_CURRENT_HEADING = "CurrentHeading";
+	const std::string IMAGE_NEW_HEADING = "NewHeading";
+	const common::XY<int> CENTER = { 32, 32 };
+
+	static double newHeading = 0.0;
 
 	enum class OrderMenuItem
 	{
-		CHANGE_HEADING,
 		CHANGE_SPEED,
 		MOVE
 	};
-
-	static void OnChangeHeading()
-	{
-		::application::UIState::Write(::UIState::IN_PLAY_CHANGE_HEADING);
-	}
 
 	static void OnChangeSpeed()
 	{
@@ -57,7 +56,6 @@ namespace state::in_play::AtSea
 
 	const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
-		{OrderMenuItem::CHANGE_HEADING, OnChangeHeading},
 		{OrderMenuItem::CHANGE_SPEED, OnChangeSpeed},
 		{OrderMenuItem::MOVE, OnMove}
 	};
@@ -132,12 +130,49 @@ namespace state::in_play::AtSea
 		UpdateIslands();
 	}
 
+
+	static void OnMouseMotionInHelm(const common::XY<int>& location)
+	{
+		visuals::Images::SetVisible(LAYOUT_NAME, IMAGE_NEW_HEADING, true);
+		auto delta = location - CENTER;
+		newHeading = game::Heading::XYToDegrees({(double)delta.GetX(), (double)delta.GetY()});
+		visuals::Images::SetAngle(LAYOUT_NAME, IMAGE_NEW_HEADING, newHeading);
+	}
+
+	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
+	{
+		if (areaName == AREA_CHANGE_HEADING)
+		{
+			OnMouseMotionInHelm(location);
+			return;
+		}
+		visuals::Images::SetVisible(LAYOUT_NAME, IMAGE_NEW_HEADING, false);
+	}
+
+	static void OnMouseMotiionOutsideArea(const common::XY<int>& location)
+	{
+		visuals::Images::SetVisible(LAYOUT_NAME, IMAGE_NEW_HEADING, false);
+	}
+
+	static bool OnMouseButtonUp(const std::string& areaName)
+	{
+		if (areaName == AREA_CHANGE_HEADING)
+		{
+			game::Avatar::SetHeading(newHeading);
+			UpdateAvatarStatus();
+			return true;
+		}
+		return false;
+	}
+
 	void Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::IN_PLAY_AT_SEA, OnEnter);
 		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_AT_SEA, LAYOUT_NAME);
 		::application::Command::SetHandlers(::UIState::IN_PLAY_AT_SEA, commandHandlers);
+		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_AT_SEA, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea, OnMouseMotiionOutsideArea));
 		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_AT_SEA, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
+		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_AT_SEA, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUp));
 		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_AT_SEA, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
 	}
 }

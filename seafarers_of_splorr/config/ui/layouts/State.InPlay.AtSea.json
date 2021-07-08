@@ -91,22 +91,16 @@
         "drop-shadow-y": 2,
         "menu-items": [
             {
-                "text": "Change Heading...",
-                "menu-item-id":"ChangeHeading",
-                "x": 480,
-                "y": 32
-            },
-            {
                 "text": "Change Speed...",
                 "menu-item-id":"ChangeSpeed",
                 "x": 480,
-                "y": 48
+                "y": 32
             },
             {
                 "text": "Move",
                 "menu-item-id":"Move",
                 "x": 480,
-                "y": 64
+                "y": 48
             }
         ]
     },
@@ -120,21 +114,9 @@
     },
     {
         "type":"Area",
-        "area-id":"ChangeHeading",
-        "x":320,
-        "y":32,
-        "width":320,
-        "height":16,
-        "menu":{
-            "menu-id":"Order",
-            "menu-item-id":"ChangeHeading"
-        }
-    },
-    {
-        "type":"Area",
         "area-id":"ChangeSpeed",
         "x":320,
-        "y":48,
+        "y":32,
         "width":320,
         "height":16,
         "menu":{
@@ -146,9 +128,21 @@
         "type":"Area",
         "area-id":"Move",
         "x":320,
-        "y":64,
+        "y":48,
         "width":320,
         "height":16,
+        "menu":{
+            "menu-id":"Order",
+            "menu-item-id":"Move"
+        }
+    },
+    {
+        "type":"Area",
+        "area-id":"ChangeHeading",
+        "x":138,
+        "y":160,
+        "width":64,
+        "height":64,
         "menu":{
             "menu-id":"Order",
             "menu-item-id":"Move"
@@ -168,6 +162,15 @@
         "color": "White",
         "x": 138,
         "y": 158
+    },
+    {
+        "image-id":"NewHeading",
+        "type": "Image",
+        "sprite": "AtSeaNewHeading",
+        "color": "White",
+        "x": 138,
+        "y": 158,
+        "visible": false
     },
     {
         "type": "Image",

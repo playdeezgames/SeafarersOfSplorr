@@ -86,7 +86,6 @@ namespace common::Application
 		state::ConfirmAbandon::Start,
 		state::ConfirmOverwrite::Start,
 		state::in_play::AtSea::Start,
-		state::in_play::ChangeHeading::Start,
 		state::in_play::ChangeSpeed::Start,
 		sublayout::UIHamburger::Start,
 		Options::Initialize,
