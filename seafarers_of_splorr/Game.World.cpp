@@ -43,7 +43,8 @@ namespace game::World
 	{
 		{game::Difficulty::EASY, {100.0, 10.0, 10.0, 1.0}},
 		{game::Difficulty::NORMAL, {150.0, 15.0, 10.0, 1.0}},
-		{game::Difficulty::HARD, {200.0, 20.0, 10.0, 1.0}}
+		{game::Difficulty::HARD, {200.0, 20.0, 10.0, 1.0}},
+		{game::Difficulty::HARDCORE, {250.0, 25.0, 10.0, 1.0}}
 	};
 
 	void Reset(const game::Difficulty& difficulty)

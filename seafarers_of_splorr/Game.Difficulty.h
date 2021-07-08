@@ -5,6 +5,7 @@ namespace game
 	{
 		EASY,
 		NORMAL,
-		HARD
+		HARD,
+		HARDCORE
 	};
 }

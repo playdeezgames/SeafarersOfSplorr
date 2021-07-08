@@ -20,6 +20,7 @@ namespace state::Start
 		NEW_GAME_EASY,
 		NEW_GAME_NORMAL,
 		NEW_GAME_HARD,
+		NEW_GAME_HARDCORE,
 		BACK
 	};
 
@@ -37,6 +38,7 @@ namespace state::Start
 		{ StartGameItem::NEW_GAME_EASY, NewGame(game::Difficulty::EASY) },
 		{ StartGameItem::NEW_GAME_NORMAL, NewGame(game::Difficulty::NORMAL) },
 		{ StartGameItem::NEW_GAME_HARD, NewGame(game::Difficulty::HARD) },
+		{ StartGameItem::NEW_GAME_HARDCORE, NewGame(game::Difficulty::HARDCORE) },
 		{ StartGameItem::CONTINUE_GAME, ::application::UIState::GoTo(::UIState::LOAD_GAME) },
 		{ StartGameItem::BACK, ::application::UIState::GoTo(::UIState::MAIN_MENU) }
 	};
