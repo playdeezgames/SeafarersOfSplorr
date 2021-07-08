@@ -20,6 +20,8 @@ namespace state::in_play::AtSea
 {
 	const std::string LAYOUT_NAME = "State.InPlay.AtSea";
 	const std::string TEXT_AVATAR_TURNS = "avatar-turns";
+	const std::string TEXT_AVATAR_HEALTH = "avatar-health";
+	const std::string TEXT_AVATAR_HUNGER = "avatar-hunger";
 	const std::string TEXT_AVATAR_HEADING = "avatar-heading";
 	const std::string TEXT_AVATAR_SPEED = "avatar-speed";
 	const std::string MENU_ID = "Order";
