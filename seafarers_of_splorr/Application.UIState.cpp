@@ -27,6 +27,9 @@ namespace application::UIState
 
 	std::optional<std::string> EnterGame()
 	{
+		//check for out of turns
+		//check for out of health
+
 		game::AutoSave();
 		application::UIState::Write(::UIState::IN_PLAY_AT_SEA);
 		return std::nullopt;

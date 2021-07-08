@@ -55,12 +55,28 @@ namespace game::Avatar
 		data::game::Avatar::Write(data);
 	}
 
+	static void ApplyTurnEffects()
+	{
+		const double TURN_DELTA = -1.0;
+		const double HUNGER_DELTA = -1.0;
+		const double HEALTH_DELTA = -1.0;
+		game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::TURNS_REMAINING, TURN_DELTA);
+		if (game::avatar::Statistics::GetCurrent(game::avatar::Statistic::HUNGER) > game::avatar::Statistics::GetMinimum(game::avatar::Statistic::HUNGER))
+		{
+			game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::HUNGER, HUNGER_DELTA);
+		}
+		else
+		{
+			game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::HEALTH, HEALTH_DELTA);
+		}
+	}
+
 	void Move()
 	{
 		auto avatar = data::game::Avatar::Read().value();
 		common::XY<double> delta = game::Heading::DegreesToXY(avatar.heading)  * avatar.speed;
 		avatar.location = avatar.location + delta;
-		game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::TURNS_REMAINING, -1.0);
+		ApplyTurnEffects();
 		data::game::Avatar::Write(avatar);
 	}
 }
