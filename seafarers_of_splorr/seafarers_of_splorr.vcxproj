@@ -170,6 +170,7 @@
     <ClCompile Include="Common.Application.Internals.cpp" />
     <ClCompile Include="Common.Data.cpp" />
     <ClCompile Include="Data.Game.Avatar.cpp" />
+    <ClCompile Include="Data.Game.Avatar.Statistics.cpp" />
     <ClCompile Include="Data.Game.Common.cpp" />
     <ClCompile Include="Data.Game.Island.cpp" />
     <ClCompile Include="Data.Game.World.cpp" />
@@ -178,6 +179,7 @@
     <ClCompile Include="Game.Achievements.cpp" />
     <ClCompile Include="Game.Audio.Mux.cpp" />
     <ClCompile Include="Game.Avatar.cpp" />
+    <ClCompile Include="Game.Avatar.Statistics.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game.Heading.cpp" />
     <ClCompile Include="Game.Islands.cpp" />
@@ -238,6 +240,7 @@
     <ClInclude Include="Common.Deck.h" />
     <ClInclude Include="Common.Data.Properties.h" />
     <ClInclude Include="Data.Game.Avatar.h" />
+    <ClInclude Include="Data.Game.Avatar.Statistics.h" />
     <ClInclude Include="Data.Game.Common.h" />
     <ClInclude Include="Data.Game.Island.h" />
     <ClInclude Include="Data.Game.World.h" />
@@ -246,6 +249,7 @@
     <ClInclude Include="Game.Achievements.h" />
     <ClInclude Include="Game.Audio.Mux.h" />
     <ClInclude Include="Game.Avatar.h" />
+    <ClInclude Include="Game.Avatar.Statistics.h" />
     <ClInclude Include="Game.Difficulty.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Game.Heading.h" />

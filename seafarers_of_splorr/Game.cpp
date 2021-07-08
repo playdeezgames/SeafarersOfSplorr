@@ -5,6 +5,7 @@
 #include "Game.Islands.h"
 #include "Game.World.h"
 #include "Data.Game.World.h"
+#include "Game.Avatar.Statistics.h"
 namespace game
 {
 	void Reset(const Difficulty& difficulty)
@@ -13,6 +14,7 @@ namespace game
 		game::World::Reset(difficulty);
 		game::Islands::Reset(difficulty);
 		game::Avatar::Reset(difficulty);
+		game::avatar::Statistics::Reset(difficulty);
 	}
 
 	void Start()
