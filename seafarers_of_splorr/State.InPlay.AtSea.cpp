@@ -15,24 +15,23 @@
 #include "Visuals.Images.h"
 #include "Game.World.h"
 #include "Game.Heading.h"
+#include "Game.Avatar.Statistics.h"
 namespace state::in_play::AtSea
 {
 	const std::string LAYOUT_NAME = "State.InPlay.AtSea";
-	const std::string TEXT_AVATAR_X = "avatar-x";
-	const std::string TEXT_AVATAR_Y = "avatar-y";
+	const std::string TEXT_AVATAR_TURNS = "avatar-turns";
 	const std::string TEXT_AVATAR_HEADING = "avatar-heading";
 	const std::string TEXT_AVATAR_SPEED = "avatar-speed";
 	const std::string MENU_ID = "Order";
 	const std::string AREA_CHANGE_HEADING = "ChangeHeading";
 	const std::string AREA_CHANGE_SPEED = "ChangeSpeed";
 	const std::string AREA_MOVE = "Move";
-	const std::string FORMAT_X = "X: {:.2f}";
-	const std::string FORMAT_Y = "Y: {:.2f}";
+	const std::string FORMAT_TURNS = "Turns Left: {:.0f}";
 	const std::string FORMAT_HEADING = "Heading: {:.2f}";
 	const std::string FORMAT_SPEED = "Speed: {:.2f}";
 	const std::string IMAGE_CURRENT_HEADING = "CurrentHeading";
 	const std::string IMAGE_NEW_HEADING = "NewHeading";
-	const common::XY<int> CENTER = { 32, 32 };
+	const common::XY<int> CENTER = { 82, 82 };
 
 	static double newHeading = 0.0;
 
@@ -79,8 +78,7 @@ namespace state::in_play::AtSea
 		auto location = game::Avatar::GetLocation();
 		auto heading = game::Avatar::GetHeading();
 		auto speed = game::Avatar::GetSpeed();
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_X, std::format(FORMAT_X, location.GetX()));
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_Y, std::format(FORMAT_Y, location.GetY()));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_TURNS, std::format(FORMAT_TURNS, game::avatar::Statistics::GetCurrent(game::avatar::Statistic::TURNS_REMAINING)));
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HEADING, std::format(FORMAT_HEADING, heading));
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_SPEED, std::format(FORMAT_SPEED, speed));
 		visuals::Images::SetAngle(LAYOUT_NAME, IMAGE_CURRENT_HEADING, heading);

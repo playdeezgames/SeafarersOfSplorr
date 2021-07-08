@@ -6,6 +6,7 @@
 #include "Common.RNG.h"
 #include "Game.Heading.h"
 #include "Common.Data.h"
+#include "Game.Avatar.Statistics.h"
 namespace game::Avatar
 {
 	common::XY<double> GetLocation()
@@ -59,6 +60,7 @@ namespace game::Avatar
 		auto avatar = data::game::Avatar::Read().value();
 		common::XY<double> delta = game::Heading::DegreesToXY(avatar.heading)  * avatar.speed;
 		avatar.location = avatar.location + delta;
+		game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::TURNS_REMAINING, -1.0);
 		data::game::Avatar::Write(avatar);
 	}
 }
