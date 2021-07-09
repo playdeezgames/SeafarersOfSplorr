@@ -115,6 +115,13 @@
                 "menu-item-id":"Move",
                 "x": 480,
                 "y": 48
+            },
+            {
+                "text": "Dock",
+                "menu-item-id":"Dock",
+                "x": 480,
+                "y": 64,
+                "enabled": false
             }
         ]
     },
@@ -148,6 +155,18 @@
         "menu":{
             "menu-id":"Order",
             "menu-item-id":"Move"
+        }
+    },
+    {
+        "type":"Area",
+        "area-id":"Dock",
+        "x":320,
+        "y":64,
+        "width":320,
+        "height":16,
+        "menu":{
+            "menu-id":"Order",
+            "menu-item-id":"Dock"
         }
     },
     {

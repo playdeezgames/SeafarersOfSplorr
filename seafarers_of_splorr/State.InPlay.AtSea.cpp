@@ -25,6 +25,7 @@ namespace state::in_play::AtSea
 	const std::string TEXT_AVATAR_HEADING = "avatar-heading";
 	const std::string TEXT_AVATAR_SPEED = "avatar-speed";
 	const std::string MENU_ID = "Order";
+	const std::string MENU_ITEM_DOCK = "Dock";
 	const std::string AREA_CHANGE_HEADING = "ChangeHeading";
 	const std::string AREA_CHANGE_SPEED = "ChangeSpeed";
 	const std::string AREA_MOVE = "Move";
@@ -42,7 +43,8 @@ namespace state::in_play::AtSea
 	enum class OrderMenuItem
 	{
 		CHANGE_SPEED,
-		MOVE
+		MOVE,
+		DOCK
 	};
 
 	static void OnChangeSpeed()
@@ -57,10 +59,16 @@ namespace state::in_play::AtSea
 		OnEnter();
 	}
 
+	static void OnDock()
+	{
+		return;
+	}
+
 	const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
 		{OrderMenuItem::CHANGE_SPEED, OnChangeSpeed},
-		{OrderMenuItem::MOVE, OnMove}
+		{OrderMenuItem::MOVE, OnMove},
+		{OrderMenuItem::DOCK, OnDock}
 	};
 
 	static void ActivateItem()
@@ -115,8 +123,11 @@ namespace state::in_play::AtSea
 		auto islands = game::Islands::GetViewableIslands();
 		int icon = 0;
 		double viewScale = VIEW_RADIUS / game::World::GetViewDistance();
+		double dockDistance = game::World::GetDockDistance();
+		bool canDock = false;
 		for (auto& entry : islands)
 		{
+			canDock |= (game::Heading::Distance(entry.location, { 0.0, 0.0 }) <= dockDistance);
 			auto plot = entry.location * viewScale + VIEW_CENTER;
 			auto visualId = std::format("AtSeaIsland{}", icon);
 			visuals::Images::SetLocation(LAYOUT_NAME, visualId, { (int)plot.GetX() + IMAGE_OFFSET_X,(int)plot.GetY() + IMAGE_OFFSET_Y });
@@ -125,6 +136,7 @@ namespace state::in_play::AtSea
 			visuals::Texts::SetText(LAYOUT_NAME, visualId, (entry.visits.has_value()) ? (entry.name) : ("????"));
 			++icon;
 		}
+		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_DOCK, canDock);
 	}
 
 	static void OnEnter()
