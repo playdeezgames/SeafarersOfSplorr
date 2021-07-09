@@ -126,26 +126,35 @@ namespace game::Islands
 		}
 	}
 
-	std::list<IslandModel> GetViewableIslands()
+	static std::list<IslandModel> GetIslandsInRange(double maximumDistance)
 	{
 		std::list<IslandModel> result;
 		auto avatarLocation = game::Avatar::GetLocation();
 		auto islands = data::game::Island::All();
-		auto viewDistance = game::World::GetViewDistance();
 		for (auto& island : islands)
 		{
 			auto distance = game::Heading::Distance(avatarLocation, island.location);
-			if (distance <= viewDistance)
+			if (distance <= maximumDistance)
 			{
 				result.push_back(
-				{
-					(island.location-avatarLocation),
-					island.name,
-					island.visits
-				});
+					{
+						(island.location - avatarLocation),
+						island.name,
+						island.visits
+					});
 			}
 		}
 		return result;
+	}
+
+	std::list<IslandModel> GetViewableIslands()
+	{
+		return GetIslandsInRange(game::World::GetViewDistance());
+	}
+
+	std::list<IslandModel> GetDockableIslands()
+	{
+		return GetIslandsInRange(game::World::GetDockDistance());
 	}
 
 }

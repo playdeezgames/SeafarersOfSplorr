@@ -7,6 +7,8 @@
 #include "Game.Heading.h"
 #include "Common.Data.h"
 #include "Game.Avatar.Statistics.h"
+#include "Data.Game.Avatar.Dock.h"
+#include "Game.Islands.h"
 namespace game::Avatar
 {
 	common::XY<double> GetLocation()
@@ -78,5 +80,37 @@ namespace game::Avatar
 		avatar.location = avatar.location + delta;
 		ApplyTurnEffects();
 		data::game::Avatar::Write(avatar);
+	}
+
+	bool Dock()
+	{
+		if (GetDockedLocation().has_value())
+		{
+			return false;//TODO: should this be true because we are docked, or false because we cannot dock?
+		}
+		auto dockables = game::Islands::GetDockableIslands();
+		if (!dockables.empty())
+		{
+			auto& dockable = dockables.front();
+			data::game::avatar::Dock::SetLocation(dockable.location);
+			return true;
+		}
+		return false;
+	}
+
+	std::optional<common::XY<double>> GetDockedLocation()
+	{
+		return data::game::avatar::Dock::GetLocation();
+	}
+
+	bool Undock()
+	{
+		if (GetDockedLocation().has_value())
+		{
+			//TODO: statistic for undocking
+			data::game::avatar::Dock::SetLocation(std::nullopt);
+			return true;
+		}
+		return false;
 	}
 }
