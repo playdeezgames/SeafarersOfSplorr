@@ -33,5 +33,9 @@ namespace application::UIState
 	void Write(const ::UIState&);
 	const ::UIState& Read();
 	std::optional<std::string> EnterGame();
-	std::function<void()> GoTo(::UIState);
+	std::function<void()> GoTo(const ::UIState&);
+
+	void Push(const ::UIState&);
+	void Pop();
+	std::function<void()> PushTo(const ::UIState&);
 }

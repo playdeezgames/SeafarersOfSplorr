@@ -3,20 +3,22 @@
 #include "Game.h"
 #include "Game.Achievements.h"
 #include "Game.Avatar.h"
+#include <stack>
 namespace application::UIState
 {
 	static ::UIState uiState = ::UIState::SPLASH;
+	static std::stack<::UIState> stateStack;
 
 	void Write(const ::UIState& state)
 	{
 		uiState = state;
 	}
 
-	std::function<void()> GoTo(::UIState uiState)
+	std::function<void()> GoTo(const ::UIState& state)
 	{
-		return [uiState]() 
+		return [state]()
 		{
-			Write(uiState);
+			Write(state);
 		};
 	}
 
@@ -25,6 +27,26 @@ namespace application::UIState
 	{
 		return uiState;
 	}
+
+	void Push(const ::UIState& state)
+	{
+		stateStack.push(uiState);
+		Write(state);
+	}
+
+	void Pop()
+	{
+		uiState = stateStack.top();
+		stateStack.pop();
+	}
+
+	std::function<void()> PushTo(const ::UIState& state)
+	{
+		return [state]() {
+			Push(state);
+		};
+	}
+
 
 	std::optional<std::string> EnterGame()
 	{

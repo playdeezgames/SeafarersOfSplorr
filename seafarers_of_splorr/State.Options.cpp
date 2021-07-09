@@ -101,7 +101,7 @@ namespace state::Options
 	const std::map<OptionsItem, std::function<void()>> activators =
 	{
 		{ OptionsItem::TOGGLE_MUTE, ToggleMute },
-		{ OptionsItem::BACK, ::application::UIState::GoTo(::UIState::MAIN_MENU) },
+		{ OptionsItem::BACK, ::application::UIState::Pop },
 		{ OptionsItem::TOGGLE_FULLSCREEN, ToggleFullscreen }
 
 	};

@@ -17,6 +17,7 @@ namespace state::LeavePlay
 	{
 		CONTINUE,
 		SAVE,
+		OPTIONS,
 		ABANDON
 	};
 
@@ -39,7 +40,8 @@ namespace state::LeavePlay
 	{
 		{ LeavePlayItem::ABANDON, GoToConfirmAbandon },
 		{ LeavePlayItem::SAVE, GoToSaveGame },
-		{ LeavePlayItem::CONTINUE, ContinueGame }
+		{ LeavePlayItem::CONTINUE, ContinueGame },
+		{ LeavePlayItem::OPTIONS, application::UIState::PushTo(::UIState::OPTIONS) }
 	};
 
 	static void ActivateItem()
