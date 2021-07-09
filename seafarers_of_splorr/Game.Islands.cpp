@@ -157,4 +157,15 @@ namespace game::Islands
 		return GetIslandsInRange(game::World::GetDockDistance());
 	}
 
+	bool AddVisit(const common::XY<double>& location)
+	{
+		auto data = data::game::Island::Read(location);
+		if (data)
+		{
+			auto island = data.value();
+			island.visits = (island.visits.has_value()) ? (island.visits.value() + 1) : (1);
+			return true;
+		}
+		return false;
+	}
 }

@@ -15,4 +15,5 @@ namespace game::Islands
 	void Reset(const game::Difficulty&);
 	std::list<IslandModel> GetViewableIslands();
 	std::list<IslandModel> GetDockableIslands();
+	bool AddVisit(const common::XY<double>&);
 }
