@@ -21,7 +21,7 @@ namespace state::in_play::Docked
 		UNDOCK
 	};
 
-	static void DoUndock()
+	static void OnUndock()
 	{
 		game::Avatar::Undock();
 		application::UIState::EnterGame();
@@ -29,7 +29,7 @@ namespace state::in_play::Docked
 
 	const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
-		{ OrderMenuItem::UNDOCK, DoUndock }
+		{ OrderMenuItem::UNDOCK, OnUndock }
 	};
 
 	static void ActivateItem()
