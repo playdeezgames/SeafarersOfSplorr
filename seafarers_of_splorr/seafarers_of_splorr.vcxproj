@@ -170,6 +170,7 @@
     <ClCompile Include="Common.Application.Internals.cpp" />
     <ClCompile Include="Common.Data.cpp" />
     <ClCompile Include="Data.Game.Avatar.cpp" />
+    <ClCompile Include="Data.Game.Avatar.Dock.cpp" />
     <ClCompile Include="Data.Game.Avatar.Statistics.cpp" />
     <ClCompile Include="Data.Game.Common.cpp" />
     <ClCompile Include="Data.Game.Island.cpp" />
@@ -239,6 +240,7 @@
     <ClInclude Include="Common.Data.h" />
     <ClInclude Include="Common.Deck.h" />
     <ClInclude Include="Common.Data.Properties.h" />
+    <ClInclude Include="Data.Game.Avatar.Dock.h" />
     <ClInclude Include="Data.Game.Avatar.h" />
     <ClInclude Include="Data.Game.Avatar.Statistics.h" />
     <ClInclude Include="Data.Game.Common.h" />

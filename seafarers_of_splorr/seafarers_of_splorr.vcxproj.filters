@@ -193,6 +193,9 @@
     <ClCompile Include="Data.Game.Avatar.Statistics.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Data.Game.Avatar.Dock.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.Command.h">
@@ -367,6 +370,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.Avatar.Statistics.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Avatar.Dock.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
