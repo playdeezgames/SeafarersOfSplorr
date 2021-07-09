@@ -92,8 +92,8 @@ namespace game::Avatar
 		if (!dockables.empty())
 		{
 			auto& dockable = dockables.front();
-			game::Islands::AddVisit(dockable.location);
-			data::game::avatar::Dock::SetLocation(dockable.location);
+			game::Islands::AddVisit(dockable.absoluteLocation);
+			data::game::avatar::Dock::SetLocation(dockable.absoluteLocation);
 			return true;
 		}
 		return false;

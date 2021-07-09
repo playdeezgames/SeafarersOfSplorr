@@ -128,8 +128,8 @@ namespace state::in_play::AtSea
 		bool canDock = false;
 		for (auto& entry : islands)
 		{
-			canDock |= (game::Heading::Distance(entry.location, { 0.0, 0.0 }) <= dockDistance);
-			auto plot = entry.location * viewScale + VIEW_CENTER;
+			canDock |= (game::Heading::Distance(entry.relativeLocation, { 0.0, 0.0 }) <= dockDistance);
+			auto plot = entry.relativeLocation * viewScale + VIEW_CENTER;
 			auto visualId = std::format("AtSeaIsland{}", icon);
 			visuals::Images::SetLocation(LAYOUT_NAME, visualId, { (int)plot.GetX() + IMAGE_OFFSET_X,(int)plot.GetY() + IMAGE_OFFSET_Y });
 			visuals::Images::SetVisible(LAYOUT_NAME, visualId, true);

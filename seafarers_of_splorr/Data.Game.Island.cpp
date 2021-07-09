@@ -6,8 +6,8 @@
 namespace data::game::Island
 {
 	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Islands]([X] REAL NOT NULL,[Y] REAL NOT NULL,[Name] TEXT NOT NULL,[Visits] INT NULL, UNIQUE([X],[Y]));";
-	const std::string QUERY_ITEM = "SELECT [Name],[Visits] FROM [Islands] WHERE [X] = {} AND [Y]={};";
-	const std::string REPLACE_ITEM = "REPLACE INTO [Islands]([X],[Y],[Name],[Visits]) VALUES ({},{},{},{});";
+	const std::string QUERY_ITEM = "SELECT [X],[Y],[Name],[Visits] FROM [Islands] WHERE [X] = {:.4f} AND [Y]={:.4f};";
+	const std::string REPLACE_ITEM = "REPLACE INTO [Islands]([X],[Y],[Name],[Visits]) VALUES ({:.4f},{:.4f},{},{});";
 	const std::string QUERY_ALL = "SELECT [X],[Y],[Name],[Visits] FROM [Islands];";
 	const std::string CLEAR_ALL = "DELETE FROM [Islands];";
 	const std::string FIELD_X = "X";

@@ -8,7 +8,8 @@ namespace game::Islands
 {
 	struct IslandModel
 	{
-		common::XY<double> location;
+		common::XY<double> relativeLocation;
+		common::XY<double> absoluteLocation;
 		std::string name;
 		std::optional<int> visits;
 	};

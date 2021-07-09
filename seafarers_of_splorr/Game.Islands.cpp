@@ -139,6 +139,7 @@ namespace game::Islands
 				result.push_back(
 					{
 						(island.location - avatarLocation),
+						island.location,
 						island.name,
 						island.visits
 					});
@@ -164,6 +165,7 @@ namespace game::Islands
 		{
 			auto island = data.value();
 			island.visits = (island.visits.has_value()) ? (island.visits.value() + 1) : (1);
+			data::game::Island::Write(island);
 			return true;
 		}
 		return false;
