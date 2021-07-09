@@ -29,6 +29,8 @@ namespace state::in_play::AtSea
 	const std::string AREA_CHANGE_SPEED = "ChangeSpeed";
 	const std::string AREA_MOVE = "Move";
 	const std::string FORMAT_TURNS = "Turns Left: {:.0f}";
+	const std::string FORMAT_HUNGER = "Hunger: {:.0f}";
+	const std::string FORMAT_HEALTH = "Health: {:.0f}";
 	const std::string FORMAT_HEADING = "Heading: {:.2f}";
 	const std::string FORMAT_SPEED = "Speed: {:.2f}";
 	const std::string IMAGE_CURRENT_HEADING = "CurrentHeading";
@@ -80,6 +82,8 @@ namespace state::in_play::AtSea
 		auto location = game::Avatar::GetLocation();
 		auto heading = game::Avatar::GetHeading();
 		auto speed = game::Avatar::GetSpeed();
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HUNGER, std::format(FORMAT_HUNGER, game::avatar::Statistics::GetCurrent(game::avatar::Statistic::HUNGER)));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HEALTH, std::format(FORMAT_HEALTH, game::avatar::Statistics::GetCurrent(game::avatar::Statistic::HEALTH)));
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_TURNS, std::format(FORMAT_TURNS, game::avatar::Statistics::GetCurrent(game::avatar::Statistic::TURNS_REMAINING)));
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HEADING, std::format(FORMAT_HEADING, heading));
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_SPEED, std::format(FORMAT_SPEED, speed));
