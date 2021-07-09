@@ -190,6 +190,7 @@
     <ClCompile Include="State.ConfirmOverwrite.cpp" />
     <ClCompile Include="State.InPlay.AtSea.cpp" />
     <ClCompile Include="State.InPlay.ChangeSpeed.cpp" />
+    <ClCompile Include="State.InPlay.Docked.cpp" />
     <ClCompile Include="State.Statistics.cpp" />
     <ClCompile Include="State.Tip.cpp" />
     <ClCompile Include="Sublayout.UIHamburger.cpp" />

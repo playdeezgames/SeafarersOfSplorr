@@ -2,6 +2,7 @@
 #include "Application.Sounds.h"
 #include "Game.h"
 #include "Game.Achievements.h"
+#include "Game.Avatar.h"
 namespace application::UIState
 {
 	static ::UIState uiState = ::UIState::SPLASH;
@@ -31,6 +32,11 @@ namespace application::UIState
 		//check for out of health
 
 		game::AutoSave();
+		if (game::Avatar::GetDockedLocation())
+		{
+			application::UIState::Write(::UIState::IN_PLAY_DOCKED);
+			return std::nullopt;
+		}
 		application::UIState::Write(::UIState::IN_PLAY_AT_SEA);
 		return std::nullopt;
 	}

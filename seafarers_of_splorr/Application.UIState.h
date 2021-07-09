@@ -25,7 +25,8 @@ enum class UIState
 	STATISTICS,
 	IN_PLAY_AT_SEA,
 	IN_PLAY_CHANGE_HEADING,
-	IN_PLAY_CHANGE_SPEED
+	IN_PLAY_CHANGE_SPEED,
+	IN_PLAY_DOCKED
 };
 namespace application::UIState
 {

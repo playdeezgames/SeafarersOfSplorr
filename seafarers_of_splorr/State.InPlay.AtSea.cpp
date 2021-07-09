@@ -61,7 +61,8 @@ namespace state::in_play::AtSea
 
 	static void OnDock()
 	{
-		return;
+		game::Avatar::Dock();
+		application::UIState::EnterGame();
 	}
 
 	const std::map<OrderMenuItem, std::function<void()>> activators =

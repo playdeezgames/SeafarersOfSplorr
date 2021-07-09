@@ -87,6 +87,7 @@ namespace common::Application
 		state::ConfirmOverwrite::Start,
 		state::in_play::AtSea::Start,
 		state::in_play::ChangeSpeed::Start,
+		state::in_play::Docked::Start,
 		sublayout::UIHamburger::Start,
 		Options::Initialize,
 		visuals::Layouts::Start

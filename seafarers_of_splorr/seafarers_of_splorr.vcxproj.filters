@@ -196,6 +196,9 @@
     <ClCompile Include="Data.Game.Avatar.Dock.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.Docked.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.Command.h">
