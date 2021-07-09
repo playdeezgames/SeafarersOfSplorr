@@ -199,6 +199,9 @@
     <ClCompile Include="State.InPlay.Docked.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Data.Game.Island.Visits.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.Command.h">
@@ -376,6 +379,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.Avatar.Dock.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.Visits.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

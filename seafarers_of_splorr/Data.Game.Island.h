@@ -9,7 +9,6 @@ namespace data::game::Island
 	{
 		common::XY<double> location;
 		std::string name;
-		std::optional<int> visits;
 	};
 
 	void Write(const IslandData&);

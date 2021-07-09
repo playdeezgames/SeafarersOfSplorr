@@ -7,6 +7,7 @@
 #include <sstream>
 #include "Game.Avatar.h"
 #include "Game.Heading.h"
+#include "Data.Game.Island.Visits.h"
 namespace game::Islands
 {
 	const size_t RETRY_COUNT = 500;
@@ -117,8 +118,7 @@ namespace game::Islands
 			data::game::Island::IslandData data =
 			{
 				locations.front(),
-				*names.begin(),
-				std::nullopt
+				*names.begin()
 			};
 			data::game::Island::Write(data);
 			locations.pop_front();
@@ -140,8 +140,7 @@ namespace game::Islands
 					{
 						(island.location - avatarLocation),
 						island.location,
-						island.name,
-						island.visits
+						island.name
 					});
 			}
 		}
@@ -158,16 +157,21 @@ namespace game::Islands
 		return GetIslandsInRange(game::World::GetDockDistance());
 	}
 
-	bool AddVisit(const common::XY<double>& location)
+	bool AddVisit(const common::XY<double>& location, const int& turn)
 	{
-		auto data = data::game::Island::Read(location);
+		auto data = data::game::island::Visits::Read(location);
 		if (data)
 		{
-			auto island = data.value();
-			island.visits = (island.visits.has_value()) ? (island.visits.value() + 1) : (1);
-			data::game::Island::Write(island);
-			return true;
+			auto islandVisits = data.value();
+			if (islandVisits.lastVisit != turn)
+			{
+				islandVisits.visits = islandVisits.visits + 1;
+				islandVisits.lastVisit = turn;
+				data::game::island::Visits::Write(islandVisits);
+				return true;
+			}
 		}
 		return false;
+
 	}
 }
