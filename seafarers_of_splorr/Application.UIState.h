@@ -26,7 +26,9 @@ enum class UIState
 	IN_PLAY_AT_SEA,
 	IN_PLAY_CHANGE_HEADING,
 	IN_PLAY_CHANGE_SPEED,
-	IN_PLAY_DOCKED
+	IN_PLAY_DOCKED,
+	IN_PLAY_WIN,
+	IN_PLAY_LOSE
 };
 namespace application::UIState
 {

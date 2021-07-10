@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "Game.Achievements.h"
 #include "Game.Avatar.h"
+#include "Game.Avatar.Statistics.h"
 #include <stack>
 namespace application::UIState
 {
@@ -50,8 +51,16 @@ namespace application::UIState
 
 	std::optional<std::string> EnterGame()
 	{
-		//check for out of turns
-		//check for out of health
+		if (game::avatar::Statistics::GetCurrent(game::avatar::Statistic::TURNS_REMAINING) == game::avatar::Statistics::GetMinimum(game::avatar::Statistic::TURNS_REMAINING))
+		{
+			application::UIState::Write(::UIState::IN_PLAY_WIN);
+			return std::nullopt;
+		}
+		if (game::avatar::Statistics::GetCurrent(game::avatar::Statistic::HEALTH) == game::avatar::Statistics::GetMinimum(game::avatar::Statistic::HEALTH))
+		{
+			application::UIState::Write(::UIState::IN_PLAY_LOSE);
+			return std::nullopt;
+		}
 
 		game::AutoSave();
 		if (game::Avatar::GetDockedLocation())

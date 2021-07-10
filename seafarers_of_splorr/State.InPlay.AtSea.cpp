@@ -56,6 +56,7 @@ namespace state::in_play::AtSea
 	static void OnMove()
 	{
 		game::Avatar::Move();
+		application::UIState::EnterGame();
 		OnEnter();
 	}
 

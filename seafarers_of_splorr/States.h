@@ -15,3 +15,5 @@ namespace state::Statistics { void Start(); }
 namespace state::in_play::AtSea { void Start(); }
 namespace state::in_play::ChangeSpeed { void Start(); }
 namespace state::in_play::Docked { void Start(); }
+namespace state::in_play::Win { void Start(); }
+namespace state::in_play::Lose { void Start(); }

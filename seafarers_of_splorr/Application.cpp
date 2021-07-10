@@ -88,6 +88,8 @@ namespace common::Application
 		state::in_play::AtSea::Start,
 		state::in_play::ChangeSpeed::Start,
 		state::in_play::Docked::Start,
+		state::in_play::Win::Start,
+		state::in_play::Lose::Start,
 		sublayout::UIHamburger::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
