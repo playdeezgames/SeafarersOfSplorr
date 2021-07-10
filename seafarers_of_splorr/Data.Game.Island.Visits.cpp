@@ -9,7 +9,7 @@ namespace data::game::island::Visits
 	const std::string FIELD_Y = "Y";
 	const std::string FIELD_VISITS = "Visits";
 	const std::string FIELD_TURN = "Turn";
-	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandVisits]([X] REAL NOT NULL, [Y] REAL NOT NULL, [Visits] INT NOT NULL, [TURN] INT NULL, UNIQUE([X],[Y]));";
+	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandVisits]([X] REAL NOT NULL, [Y] REAL NOT NULL, [Visits] INT NOT NULL, [Turn] INT NULL, UNIQUE([X],[Y]));";
 	const std::string QUERY_ITEM = "SELECT [X],[Y],[Visits],[Turn] FROM [IslandVisits] WHERE [X]={:.4f} AND  [Y]={:.4f};";
 	const std::string REPLACE_ITEM = "REPLACE INTO [IslandVisits]([X],[Y],[Visits],[Turn]) VALUES({:.4f},{:.4f},{},{});";
 	const std::string DELETE_ALL = "DELETE FROM [IslandVisits];";

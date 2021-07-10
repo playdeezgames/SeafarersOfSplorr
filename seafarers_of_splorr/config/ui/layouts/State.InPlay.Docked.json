@@ -62,6 +62,34 @@
         }
     },
     {
+        "type": "Text",
+        "text-id": "island-name",
+        "font": "default",
+        "color": "Gray",
+        "text": "<name>",
+        "x": 632,
+        "y": 320,
+        "horizontal-alignment": -1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "text-id": "island-visits",
+        "font": "default",
+        "color": "Gray",
+        "text": "<visits>",
+        "x": 632,
+        "y": 336,
+        "horizontal-alignment": -1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
         "type": "Layout",
         "name": "Sublayout.Modded"
     }

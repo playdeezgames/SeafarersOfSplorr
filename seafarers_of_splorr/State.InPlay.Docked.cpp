@@ -11,10 +11,16 @@
 #include "Visuals.Texts.h"
 #include "Data.Stores.h"
 #include "Game.Avatar.h"
+#include "Game.Islands.h"
+#include <format>
 namespace state::in_play::Docked
 {
 	const std::string LAYOUT_NAME = "State.InPlay.Docked";
 	const std::string MENU_ID = "Order";
+	const std::string TEXT_ISLAND_NAME = "island-name";
+	const std::string TEXT_ISLAND_VISITS = "island-visits";
+	const std::string FORMAT_NAME = "Name: {}";
+	const std::string FORMAT_VISITS = "Visits: {}";
 
 	enum class OrderMenuItem
 	{
@@ -49,6 +55,10 @@ namespace state::in_play::Docked
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
+		auto location = game::Avatar::GetDockedLocation().value();
+		auto island = game::Islands::Read(location).value();
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_ISLAND_NAME, std::format(FORMAT_NAME,island.name));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_ISLAND_VISITS, std::format(FORMAT_VISITS, island.visits.value_or(0)));
 	}
 
 	void Start()

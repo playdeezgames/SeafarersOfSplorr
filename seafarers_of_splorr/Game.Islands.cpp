@@ -179,4 +179,21 @@ namespace game::Islands
 			1,
 			turn});
 	}
+
+	std::optional<IslandModel> Read(const common::XY<double>& location)//TODO: different model for docked?
+	{
+		auto data = data::game::Island::Read(location);
+		if (data)
+		{
+			auto visitData = data::game::island::Visits::Read(data.value().location);
+			return std::optional<IslandModel>({
+				{0.0, 0.0},
+				data.value().location,
+				data.value().name,
+				(visitData.has_value()) ? (std::optional<int>(visitData.value().visits)) : (std::nullopt)
+				});
+		}
+		return std::nullopt;
+	}
+
 }
