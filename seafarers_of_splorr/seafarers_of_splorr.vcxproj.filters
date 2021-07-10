@@ -208,6 +208,9 @@
     <ClCompile Include="Maze.Direction.cpp">
       <Filter>Source\Maze</Filter>
     </ClCompile>
+    <ClCompile Include="Data.Game.Island.Known.cpp">
+      <Filter>Source\Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
@@ -389,6 +392,9 @@
     </ClInclude>
     <ClInclude Include="Visuals.Textures.h">
       <Filter>Headers\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.Known.h">
+      <Filter>Headers\Data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

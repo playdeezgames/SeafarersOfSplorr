@@ -8,6 +8,7 @@
 #include "Game.Avatar.h"
 #include "Game.Heading.h"
 #include "Data.Game.Island.Visits.h"
+#include "Data.Game.Island.Known.h"
 namespace game::Islands
 {
 	const size_t RETRY_COUNT = 500;
@@ -108,10 +109,17 @@ namespace game::Islands
 		return names;
 	}
 
-	void Reset(const game::Difficulty&)
+	static void ClearData()
 	{
 		data::game::Island::Clear();
 		data::game::island::Visits::Clear();
+		data::game::island::Known::Clear();
+	}
+
+	void Reset(const game::Difficulty&)
+	{
+		ClearData();
+
 		auto locations = GenerateLocations();
 		auto names = GenerateNames(locations.size());
 		while (!locations.empty())
@@ -138,6 +146,7 @@ namespace game::Islands
 			if (distance <= maximumDistance)
 			{
 				auto visitData = data::game::island::Visits::Read(island.location);
+				data::game::island::Known::Write(island.location);
 				result.push_back(
 					{
 						(island.location - avatarLocation),

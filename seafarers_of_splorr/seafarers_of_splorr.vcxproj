@@ -174,6 +174,7 @@
     <ClCompile Include="Data.Game.Avatar.Statistics.cpp" />
     <ClCompile Include="Data.Game.Common.cpp" />
     <ClCompile Include="Data.Game.Island.cpp" />
+    <ClCompile Include="Data.Game.Island.Known.cpp" />
     <ClCompile Include="Data.Game.Island.Visits.cpp" />
     <ClCompile Include="Data.Game.World.cpp" />
     <ClCompile Include="Data.SQLite.Stores.cpp" />
@@ -249,6 +250,7 @@
     <ClInclude Include="Data.Game.Avatar.Statistics.h" />
     <ClInclude Include="Data.Game.Common.h" />
     <ClInclude Include="Data.Game.Island.h" />
+    <ClInclude Include="Data.Game.Island.Known.h" />
     <ClInclude Include="Data.Game.Island.Visits.h" />
     <ClInclude Include="Data.Game.World.h" />
     <ClInclude Include="Data.SQLite.Stores.h" />
