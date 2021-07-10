@@ -7,7 +7,7 @@ namespace data::game::island::Visits
 	{
 		common::XY<double> location;
 		int visits;
-		int lastVisit;
+		std::optional<int> lastVisit;
 	};
 
 	void Write(const VisitData&);

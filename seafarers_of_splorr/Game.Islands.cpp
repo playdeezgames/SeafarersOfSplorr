@@ -111,6 +111,7 @@ namespace game::Islands
 	void Reset(const game::Difficulty&)
 	{
 		data::game::Island::Clear();
+		data::game::island::Visits::Clear();
 		auto locations = GenerateLocations();
 		auto names = GenerateNames(locations.size());
 		while (!locations.empty())
@@ -136,11 +137,13 @@ namespace game::Islands
 			auto distance = game::Heading::Distance(avatarLocation, island.location);
 			if (distance <= maximumDistance)
 			{
+				auto visitData = data::game::island::Visits::Read(island.location);
 				result.push_back(
 					{
 						(island.location - avatarLocation),
 						island.location,
-						island.name
+						island.name,
+						(visitData.has_value()) ? (std::optional<int>(visitData.value().visits)) : (std::nullopt)
 					});
 			}
 		}
@@ -157,7 +160,7 @@ namespace game::Islands
 		return GetIslandsInRange(game::World::GetDockDistance());
 	}
 
-	bool AddVisit(const common::XY<double>& location, const int& turn)
+	void AddVisit(const common::XY<double>& location, const int& turn)
 	{
 		auto data = data::game::island::Visits::Read(location);
 		if (data)
@@ -168,10 +171,12 @@ namespace game::Islands
 				islandVisits.visits = islandVisits.visits + 1;
 				islandVisits.lastVisit = turn;
 				data::game::island::Visits::Write(islandVisits);
-				return true;
+				return;
 			}
 		}
-		return false;
-
+		data::game::island::Visits::Write({
+			location,
+			1,
+			turn});
 	}
 }
