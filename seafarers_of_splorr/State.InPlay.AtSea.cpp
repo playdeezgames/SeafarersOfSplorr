@@ -43,6 +43,7 @@ namespace state::in_play::AtSea
 	enum class OrderMenuItem
 	{
 		CHANGE_SPEED,
+		HEAD_FOR,
 		MOVE,
 		DOCK
 	};
@@ -66,11 +67,17 @@ namespace state::in_play::AtSea
 		application::UIState::EnterGame();
 	}
 
+	static void OnHeadFor()
+	{
+		return;
+	}
+
 	const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
 		{OrderMenuItem::CHANGE_SPEED, OnChangeSpeed},
 		{OrderMenuItem::MOVE, OnMove},
-		{OrderMenuItem::DOCK, OnDock}
+		{OrderMenuItem::DOCK, OnDock},
+		{OrderMenuItem::HEAD_FOR, OnHeadFor}
 	};
 
 	static void ActivateItem()
