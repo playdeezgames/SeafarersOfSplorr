@@ -173,6 +173,7 @@
     <ClCompile Include="Data.Game.Avatar.Dock.cpp" />
     <ClCompile Include="Data.Game.Avatar.Statistics.cpp" />
     <ClCompile Include="Data.Game.Common.cpp" />
+    <ClCompile Include="Data.Game.Island.BoundFor.cpp" />
     <ClCompile Include="Data.Game.Island.cpp" />
     <ClCompile Include="Data.Game.Island.Known.cpp" />
     <ClCompile Include="Data.Game.Island.Visits.cpp" />
@@ -249,6 +250,7 @@
     <ClInclude Include="Data.Game.Avatar.h" />
     <ClInclude Include="Data.Game.Avatar.Statistics.h" />
     <ClInclude Include="Data.Game.Common.h" />
+    <ClInclude Include="Data.Game.Island.BoundFor.h" />
     <ClInclude Include="Data.Game.Island.h" />
     <ClInclude Include="Data.Game.Island.Known.h" />
     <ClInclude Include="Data.Game.Island.Visits.h" />

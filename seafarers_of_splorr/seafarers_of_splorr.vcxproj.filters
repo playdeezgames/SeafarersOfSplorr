@@ -211,6 +211,9 @@
     <ClCompile Include="Data.Game.Island.Known.cpp">
       <Filter>Source\Data</Filter>
     </ClCompile>
+    <ClCompile Include="Data.Game.Island.BoundFor.cpp">
+      <Filter>Source\Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
@@ -394,6 +397,9 @@
       <Filter>Headers\Visuals</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.Island.Known.h">
+      <Filter>Headers\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.BoundFor.h">
       <Filter>Headers\Data</Filter>
     </ClInclude>
   </ItemGroup>

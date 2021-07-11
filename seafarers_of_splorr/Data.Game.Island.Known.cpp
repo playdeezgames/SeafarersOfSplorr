@@ -26,7 +26,7 @@ namespace data::game::island::Known
 	bool Read(const common::XY<double>& location)
 	{
 		AutoCreateKnownIslandsTable();
-		auto query = std::format(REPLACE_ITEM, location.GetX(), location.GetY());
+		auto query = std::format(QUERY_ITEM, location.GetX(), location.GetY());
 		auto result = data::game::Common::Execute(query);
 		return !result.empty();
 	}
