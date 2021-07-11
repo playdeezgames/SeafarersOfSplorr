@@ -3148,5 +3148,33 @@
         "y": 0,
         "width": 300,
         "height": 300
+    },
+    "WorldMap": {
+        "texture": "world-map",
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 360
+    },
+    "WorldMapShip": {
+        "texture": "world-map-icons",
+        "x": 0,
+        "y": 0,
+        "width": 4,
+        "height": 4
+    },
+    "WorldMapIsland": {
+        "texture": "world-map-icons",
+        "x": 4,
+        "y": 0,
+        "width": 4,
+        "height": 4
+    },
+    "WorldMapHoverIsland": {
+        "texture": "world-map-icons",
+        "x": 8,
+        "y": 0,
+        "width": 4,
+        "height": 4
     }  
 }

@@ -69,7 +69,7 @@ namespace state::in_play::AtSea
 
 	static void OnHeadFor()
 	{
-		return;
+		application::UIState::Write(::UIState::IN_PLAY_HEAD_FOR);
 	}
 
 	const std::map<OrderMenuItem, std::function<void()>> activators =

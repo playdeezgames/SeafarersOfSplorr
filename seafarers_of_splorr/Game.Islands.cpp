@@ -9,6 +9,7 @@
 #include "Game.Heading.h"
 #include "Data.Game.Island.Visits.h"
 #include "Data.Game.Island.Known.h"
+#include "Data.Game.Island.BoundFor.h"
 namespace game::Islands
 {
 	const size_t RETRY_COUNT = 500;
@@ -114,6 +115,7 @@ namespace game::Islands
 		data::game::Island::Clear();
 		data::game::island::Visits::Clear();
 		data::game::island::Known::Clear();
+		data::game::island::BoundFor::Clear();
 	}
 
 	void Reset(const game::Difficulty&)
@@ -203,6 +205,30 @@ namespace game::Islands
 				});
 		}
 		return std::nullopt;
+	}
+
+	std::list<IslandModel> GetKnownIslands()
+	{
+		auto knownLocations = data::game::island::Known::All();
+		std::list<IslandModel> result;
+		for (auto& knownLocation : knownLocations)
+		{
+			auto model = Read(knownLocation);
+			if (model)
+			{
+				auto visits = data::game::island::Visits::Read(knownLocation);
+				if (visits)
+				{
+					result.push_back(model.value());
+				}
+				else
+				{
+					//TODO: obfuscate the name, because we havent visited
+					result.push_back(model.value());
+				}
+			}
+		}
+		return result;
 	}
 
 }
