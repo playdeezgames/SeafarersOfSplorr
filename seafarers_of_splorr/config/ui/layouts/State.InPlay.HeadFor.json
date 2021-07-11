@@ -27,6 +27,13 @@
         "drop-shadow-y": 2
     },
     {
+        "type":"WorldMap",
+        "x": 25,
+        "y": 60,
+        "width": 250,
+        "height": 250
+    },
+    {
         "type": "Layout",
         "name": "Sublayout.Modded"
     }

@@ -207,4 +207,28 @@ namespace game::Islands
 		return std::nullopt;
 	}
 
+	std::list<IslandModel> GetKnownIslands()
+	{
+		auto knownLocations = data::game::island::Known::All();
+		std::list<IslandModel> result;
+		for (auto& knownLocation : knownLocations)
+		{
+			auto model = Read(knownLocation);
+			if (model)
+			{
+				auto visits = data::game::island::Visits::Read(knownLocation);
+				if (visits)
+				{
+					result.push_back(model.value());
+				}
+				else
+				{
+					//TODO: obfuscate the name, because we havent visited
+					result.push_back(model.value());
+				}
+			}
+		}
+		return result;
+	}
+
 }

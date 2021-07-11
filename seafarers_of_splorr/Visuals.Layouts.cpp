@@ -30,6 +30,10 @@ namespace visuals::Areas
 {
 	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
 }
+namespace visuals::WorldMap
+{
+	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
+}
 namespace visuals::Layouts
 {
 	struct InternalLayout
@@ -48,7 +52,8 @@ namespace visuals::Layouts
 		{visuals::data::Type::TEXT, visuals::Text::Internalize},
 		{visuals::data::Type::MENU, visuals::Menu::Internalize},
 		{visuals::data::Type::LAYOUT, visuals::Sublayout::Internalize},
-		{visuals::data::Type::AREA, visuals::Areas::Internalize}
+		{visuals::data::Type::AREA, visuals::Areas::Internalize},
+		{visuals::data::Type::WORLD_MAP, visuals::WorldMap::Internalize}
 	};
 
 	static void InternalizeTypedDrawn(const std::string layoutName, visuals::data::Type drawnType, const nlohmann::json& drawn)

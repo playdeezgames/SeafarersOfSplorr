@@ -230,6 +230,7 @@
     <ClCompile Include="State.Start.cpp" />
     <ClCompile Include="Visuals.Textures.cpp" />
     <ClCompile Include="Common.Utility.cpp" />
+    <ClCompile Include="Visuals.WorldMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.Command.h" />
@@ -294,6 +295,7 @@
     <ClInclude Include="States.h" />
     <ClInclude Include="Common.Utility.h" />
     <ClInclude Include="Common.XY.h" />
+    <ClInclude Include="Visuals.WorldMap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
