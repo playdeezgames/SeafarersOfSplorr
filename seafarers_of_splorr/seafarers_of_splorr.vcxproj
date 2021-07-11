@@ -194,6 +194,7 @@
     <ClCompile Include="State.InPlay.AtSea.cpp" />
     <ClCompile Include="State.InPlay.ChangeSpeed.cpp" />
     <ClCompile Include="State.InPlay.Docked.cpp" />
+    <ClCompile Include="State.InPlay.HeadFor.cpp" />
     <ClCompile Include="State.InPlay.Lose.cpp" />
     <ClCompile Include="State.InPlay.Win.cpp" />
     <ClCompile Include="State.Statistics.cpp" />

@@ -214,6 +214,9 @@
     <ClCompile Include="Data.Game.Island.BoundFor.cpp">
       <Filter>Source\Data</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.HeadFor.cpp">
+      <Filter>Source\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">

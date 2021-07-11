@@ -90,6 +90,7 @@ namespace common::Application
 		state::in_play::Docked::Start,
 		state::in_play::Win::Start,
 		state::in_play::Lose::Start,
+		state::in_play::HeadFor::Start,
 		sublayout::UIHamburger::Start,
 		Options::Initialize,
 		visuals::Layouts::Start

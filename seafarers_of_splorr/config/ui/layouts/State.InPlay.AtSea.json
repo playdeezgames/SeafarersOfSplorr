@@ -111,16 +111,22 @@
                 "y": 32
             },
             {
+                "text": "Head For...",
+                "menu-item-id":"HeadFor",
+                "x": 480,
+                "y": 48
+            },
+            {
                 "text": "Move",
                 "menu-item-id":"Move",
                 "x": 480,
-                "y": 48
+                "y": 64
             },
             {
                 "text": "Dock",
                 "menu-item-id":"Dock",
                 "x": 480,
-                "y": 64,
+                "y": 80,
                 "enabled": false
             }
         ]
@@ -147,9 +153,21 @@
     },
     {
         "type":"Area",
-        "area-id":"Move",
+        "area-id":"HeadFor",
         "x":320,
         "y":48,
+        "width":320,
+        "height":16,
+        "menu":{
+            "menu-id":"Order",
+            "menu-item-id":"HeadFor"
+        }
+    },
+    {
+        "type":"Area",
+        "area-id":"Move",
+        "x":320,
+        "y":64,
         "width":320,
         "height":16,
         "menu":{
@@ -161,7 +179,7 @@
         "type":"Area",
         "area-id":"Dock",
         "x":320,
-        "y":64,
+        "y":80,
         "width":320,
         "height":16,
         "menu":{

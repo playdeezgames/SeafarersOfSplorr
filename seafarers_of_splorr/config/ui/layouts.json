@@ -18,5 +18,6 @@
     "State.InPlay.ChangeSpeed":"config/ui/layouts/State.InPlay.ChangeSpeed.json",
     "State.InPlay.Docked":"config/ui/layouts/State.InPlay.Docked.json",
     "State.InPlay.Win":"config/ui/layouts/State.InPlay.Win.json",
-    "State.InPlay.Lose":"config/ui/layouts/State.InPlay.Lose.json"
+    "State.InPlay.Lose":"config/ui/layouts/State.InPlay.Lose.json",
+    "State.InPlay.HeadFor":"config/ui/layouts/State.InPlay.HeadFor.json"
 }
