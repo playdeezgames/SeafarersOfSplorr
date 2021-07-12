@@ -36,6 +36,7 @@ namespace state::in_play::AtSea
 	const std::string FORMAT_SPEED = "Speed: {:.2f}";
 	const std::string IMAGE_CURRENT_HEADING = "CurrentHeading";
 	const std::string IMAGE_NEW_HEADING = "NewHeading";
+	const std::string IMAGE_DESTINATION = "Destination";
 	const common::XY<int> CENTER = { 82, 82 };
 
 	static double newHeading = 0.0;
@@ -94,25 +95,65 @@ namespace state::in_play::AtSea
 		{::Command::RED, ::application::UIState::GoTo(::UIState::LEAVE_PLAY) }
 	};
 
-	static void UpdateAvatarStatus()
+	static void UpdateAvatarHunger()
 	{
-		auto location = game::Avatar::GetLocation();
-		auto heading = game::Avatar::GetHeading();
-		auto speed = game::Avatar::GetSpeed();
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HUNGER, std::format(FORMAT_HUNGER, game::avatar::Statistics::GetCurrent(game::avatar::Statistic::HUNGER)));
+	}
+
+	static void UpdateAvatarHealth()
+	{
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HEALTH, std::format(FORMAT_HEALTH, game::avatar::Statistics::GetCurrent(game::avatar::Statistic::HEALTH)));
+	}
+
+	static void UpdateAvatarTurns()
+	{
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_TURNS, std::format(FORMAT_TURNS, game::avatar::Statistics::GetCurrent(game::avatar::Statistic::TURNS_REMAINING)));
+	}
+
+	static void UpdateAvatarHeading()
+	{
+		auto heading = game::Avatar::GetHeading();
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HEADING, std::format(FORMAT_HEADING, heading));
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_SPEED, std::format(FORMAT_SPEED, speed));
 		visuals::Images::SetAngle(LAYOUT_NAME, IMAGE_CURRENT_HEADING, heading);
 	}
 
+	static void UpdateAvatarSpeed()
+	{
+		auto speed = game::Avatar::GetSpeed();
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_SPEED, std::format(FORMAT_SPEED, speed));
+	}
+
+	static common::XY<double> Plot(const common::XY<double>&);
+	static void UpdateAvatarDestination()
+	{
+		auto destination = game::Avatar::GetDestination();
+		if (destination)
+		{
+			auto clampedDistance = game::Heading::ClampDistance(destination.value() - game::Avatar::GetLocation(), game::World::GetViewDistance()+0.5);//TODO: magic number
+			auto plot = Plot(clampedDistance);
+			visuals::Images::SetLocation(LAYOUT_NAME, IMAGE_DESTINATION, { (int)plot.GetX(), (int)plot.GetY() });
+			visuals::Images::SetVisible(LAYOUT_NAME, IMAGE_DESTINATION, true);
+			return;
+		}
+		visuals::Images::SetVisible(LAYOUT_NAME, IMAGE_DESTINATION, false);
+	}
+
+	static void UpdateAvatarStatus()
+	{
+		UpdateAvatarHeading();
+		UpdateAvatarHealth();
+		UpdateAvatarHunger();
+		UpdateAvatarSpeed();
+		UpdateAvatarTurns();
+		UpdateAvatarDestination();
+	}
+
 	//TODO: get this not hardcoded
-	const common::XY<double> VIEW_CENTER = { 170.0,190.0 };
+	const common::XY<double> VIEW_CENTER = { 162.0,182.0 };
 	const double VIEW_RADIUS = 144.0;
 	const int ISLAND_ICON_COUNT = 10;
-	const int IMAGE_OFFSET_X = -8;
-	const int IMAGE_OFFSET_Y = -8;
+	const int IMAGE_OFFSET_X = 0;
+	const int IMAGE_OFFSET_Y = 0;
 	const int TEXT_OFFSET_X = 0;
 	const int TEXT_OFFSET_Y = 8;
 
@@ -126,18 +167,23 @@ namespace state::in_play::AtSea
 		}
 	}
 
+	static common::XY<double> Plot(const common::XY<double>& location)
+	{
+		double viewScale = VIEW_RADIUS / game::World::GetViewDistance();
+		return location* viewScale + VIEW_CENTER;
+	}
+
 	static void UpdateIslands()
 	{
 		HideVisibleIslands();
 		auto islands = game::Islands::GetViewableIslands();
 		int icon = 0;
-		double viewScale = VIEW_RADIUS / game::World::GetViewDistance();
 		double dockDistance = game::World::GetDockDistance();
 		bool canDock = false;
 		for (auto& entry : islands)
 		{
 			canDock |= (game::Heading::Distance(entry.relativeLocation, { 0.0, 0.0 }) <= dockDistance);
-			auto plot = entry.relativeLocation * viewScale + VIEW_CENTER;
+			auto plot = Plot(entry.relativeLocation);
 			auto visualId = std::format("AtSeaIsland{}", icon);
 			visuals::Images::SetLocation(LAYOUT_NAME, visualId, { (int)plot.GetX() + IMAGE_OFFSET_X,(int)plot.GetY() + IMAGE_OFFSET_Y });
 			visuals::Images::SetVisible(LAYOUT_NAME, visualId, true);

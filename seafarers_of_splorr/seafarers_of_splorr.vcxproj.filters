@@ -211,7 +211,7 @@
     <ClCompile Include="Data.Game.Island.Known.cpp">
       <Filter>Source\Data</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Island.BoundFor.cpp">
+    <ClCompile Include="Data.Game.Avatar.Destination.cpp">
       <Filter>Source\Data</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.HeadFor.cpp">
@@ -405,7 +405,7 @@
     <ClInclude Include="Data.Game.Island.Known.h">
       <Filter>Headers\Data</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Island.BoundFor.h">
+    <ClInclude Include="Data.Game.Avatar.Destination.h">
       <Filter>Headers\Data</Filter>
     </ClInclude>
     <ClInclude Include="Visuals.WorldMap.h">

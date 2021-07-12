@@ -203,24 +203,24 @@
         "type": "Image",
         "sprite": "AtSeaViewCircle",
         "color": "White",
-        "x": 20,
-        "y": 40
+        "x": 162,
+        "y": 182
     },
     {
         "image-id":"CurrentHeading",
         "type": "Image",
         "sprite": "AtSeaCurrentHeading",
         "color": "White",
-        "x": 138,
-        "y": 158
+        "x": 162,
+        "y": 182
     },
     {
         "image-id":"NewHeading",
         "type": "Image",
         "sprite": "AtSeaNewHeading",
         "color": "White",
-        "x": 138,
-        "y": 158,
+        "x": 162,
+        "y": 182,
         "visible": false
     },
     {
@@ -463,6 +463,14 @@
     {
         "type": "Image",
         "sprite": "AtSeaShip",
+        "color": "White",
+        "x": 162,
+        "y": 182
+    },
+    {
+        "type": "Image",
+        "image-id": "Destination",
+        "sprite": "WorldMapCurrentDestination",
         "color": "White",
         "x": 162,
         "y": 182

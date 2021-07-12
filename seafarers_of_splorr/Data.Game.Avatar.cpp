@@ -6,7 +6,6 @@
 #include "Common.Data.h"
 namespace data::game::Avatar
 {
-	const int AVATAR_ID = 1;
 	const std::string FIELD_X = "X";
 	const std::string FIELD_Y = "Y";
 	const std::string FIELD_HEADING = "Heading";
@@ -26,7 +25,7 @@ namespace data::game::Avatar
 		auto query = 
 			std::format(
 				QUERY_ITEM,
-				AVATAR_ID);
+				data::game::Common::AVATAR_ID);
 		auto result = data::game::Common::Execute(query);
 		if (!result.empty())
 		{
@@ -51,7 +50,7 @@ namespace data::game::Avatar
 		auto query = 
 			std::format(
 				REPLACE_ITEM, 
-				AVATAR_ID, 
+				data::game::Common::AVATAR_ID,
 				avatarData.location.GetX(), 
 				avatarData.location.GetY(), 
 				avatarData.heading, 

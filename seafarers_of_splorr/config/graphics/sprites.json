@@ -3118,6 +3118,8 @@
         "texture": "at-sea-icons",
         "x": 0,
         "y": 0,
+        "offset-x": -8,
+        "offset-y": -8,
         "width": 16,
         "height": 16
     },
@@ -3125,6 +3127,8 @@
         "texture": "at-sea-icons",
         "x": 16,
         "y": 0,
+        "offset-x": -8,
+        "offset-y": -8,
         "width": 16,
         "height": 16
     },
@@ -3132,6 +3136,8 @@
         "texture": "at-sea-icons",
         "x": 0,
         "y": 192,
+        "offset-x": -32,
+        "offset-y": -32,
         "width": 64,
         "height": 64
     },
@@ -3139,6 +3145,8 @@
         "texture": "at-sea-icons",
         "x": 64,
         "y": 192,
+        "offset-x": -32,
+        "offset-y": -32,
         "width": 64,
         "height": 64
     },
@@ -3146,6 +3154,8 @@
         "texture": "at-sea-view-circle",
         "x": 0,
         "y": 0,
+        "offset-x": -150,
+        "offset-y": -150,
         "width": 300,
         "height": 300
     },
@@ -3158,6 +3168,8 @@
     },
     "WorldMapShip": {
         "texture": "world-map-icons",
+        "offset-x": -2,
+        "offset-y": -2,
         "x": 0,
         "y": 0,
         "width": 4,
@@ -3165,6 +3177,8 @@
     },
     "WorldMapIsland": {
         "texture": "world-map-icons",
+        "offset-x": -2,
+        "offset-y": -2,
         "x": 4,
         "y": 0,
         "width": 4,
@@ -3172,7 +3186,27 @@
     },
     "WorldMapHoverIsland": {
         "texture": "world-map-icons",
+        "offset-x": -2,
+        "offset-y": -2,
         "x": 8,
+        "y": 0,
+        "width": 4,
+        "height": 4
+    },
+    "WorldMapCurrentDestination": {
+        "texture": "world-map-icons",
+        "offset-x": -2,
+        "offset-y": -2,
+        "x": 12,
+        "y": 0,
+        "width": 4,
+        "height": 4
+    },
+    "WorldMapNewDestination": {
+        "texture": "world-map-icons",
+        "offset-x": -2,
+        "offset-y": -2,
+        "x": 16,
         "y": 0,
         "width": 4,
         "height": 4

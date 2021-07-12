@@ -14,4 +14,6 @@ namespace game::Avatar
 	bool Dock();
 	std::optional<common::XY<double>> GetDockedLocation();
 	bool Undock();
+	std::optional<common::XY<double>> GetDestination();
+	void SetDestination(const std::optional<common::XY<double>>&);
 }

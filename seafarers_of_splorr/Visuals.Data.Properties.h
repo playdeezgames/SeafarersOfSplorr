@@ -37,4 +37,5 @@ namespace visuals::data::Properties
 	const std::string TEXT_ID = "text-id";
 	const std::string TEXTURE = "texture";
 	const std::string VISIBLE = "visible";
+	const std::string WORLD_MAP_ID = "world-map-id";
 }

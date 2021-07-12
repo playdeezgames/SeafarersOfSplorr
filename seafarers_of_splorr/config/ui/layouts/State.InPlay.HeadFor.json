@@ -28,6 +28,15 @@
     },
     {
         "type":"WorldMap",
+        "world-map-id":"WorldMap",
+        "x": 25,
+        "y": 60,
+        "width": 250,
+        "height": 250
+    },
+    {
+        "type":"Area",
+        "area-id": "WorldMap",
         "x": 25,
         "y": 60,
         "width": 250,
