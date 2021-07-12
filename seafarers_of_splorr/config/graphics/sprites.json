@@ -3158,6 +3158,8 @@
     },
     "WorldMapShip": {
         "texture": "world-map-icons",
+        "offset-x": -2,
+        "offset-y": -2,
         "x": 0,
         "y": 0,
         "width": 4,
@@ -3165,6 +3167,8 @@
     },
     "WorldMapIsland": {
         "texture": "world-map-icons",
+        "offset-x": -2,
+        "offset-y": -2,
         "x": 4,
         "y": 0,
         "width": 4,
@@ -3172,6 +3176,8 @@
     },
     "WorldMapHoverIsland": {
         "texture": "world-map-icons",
+        "offset-x": -2,
+        "offset-y": -2,
         "x": 8,
         "y": 0,
         "width": 4,
