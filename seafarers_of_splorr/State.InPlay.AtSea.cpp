@@ -37,7 +37,7 @@ namespace state::in_play::AtSea
 	const std::string IMAGE_CURRENT_HEADING = "CurrentHeading";
 	const std::string IMAGE_NEW_HEADING = "NewHeading";
 	const std::string IMAGE_DESTINATION = "Destination";
-	const common::XY<int> CENTER = { 82, 82 };
+	const common::XY<int> CENTER = { 64, 64 };//TODO: hardcoded
 
 	static double newHeading = 0.0;
 

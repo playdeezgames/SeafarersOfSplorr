@@ -190,10 +190,10 @@
     {
         "type":"Area",
         "area-id":"ChangeHeading",
-        "x":88,
-        "y":110,
-        "width":164,
-        "height":164,
+        "x":98,
+        "y":118,
+        "width":128,
+        "height":128,
         "menu":{
             "menu-id":"Order",
             "menu-item-id":"Move"
@@ -470,7 +470,7 @@
     {
         "type": "Image",
         "image-id": "Destination",
-        "sprite": "WorldMapCurrentDestination",
+        "sprite": "AtSeaDestination",
         "color": "White",
         "x": 162,
         "y": 182
