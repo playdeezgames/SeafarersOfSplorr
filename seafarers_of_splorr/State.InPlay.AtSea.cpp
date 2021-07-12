@@ -108,11 +108,11 @@ namespace state::in_play::AtSea
 	}
 
 	//TODO: get this not hardcoded
-	const common::XY<double> VIEW_CENTER = { 170.0,190.0 };
+	const common::XY<double> VIEW_CENTER = { 162.0,182.0 };
 	const double VIEW_RADIUS = 144.0;
 	const int ISLAND_ICON_COUNT = 10;
-	const int IMAGE_OFFSET_X = -8;
-	const int IMAGE_OFFSET_Y = -8;
+	const int IMAGE_OFFSET_X = 0;
+	const int IMAGE_OFFSET_Y = 0;
 	const int TEXT_OFFSET_X = 0;
 	const int TEXT_OFFSET_Y = 8;
 
