@@ -3182,5 +3182,23 @@
         "y": 0,
         "width": 4,
         "height": 4
+    },
+    "WorldMapCurrentDestination": {
+        "texture": "world-map-icons",
+        "offset-x": -2,
+        "offset-y": -2,
+        "x": 12,
+        "y": 0,
+        "width": 4,
+        "height": 4
+    },
+    "WorldMapNewDestination": {
+        "texture": "world-map-icons",
+        "offset-x": -2,
+        "offset-y": -2,
+        "x": 16,
+        "y": 0,
+        "width": 4,
+        "height": 4
     }  
 }

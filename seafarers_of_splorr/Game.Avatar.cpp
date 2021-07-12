@@ -9,6 +9,7 @@
 #include "Game.Avatar.Statistics.h"
 #include "Data.Game.Avatar.Dock.h"
 #include "Game.Islands.h"
+#include "Data.Game.Island.BoundFor.h"
 namespace game::Avatar
 {
 	common::XY<double> GetLocation()
@@ -114,4 +115,20 @@ namespace game::Avatar
 		}
 		return false;
 	}
+
+	std::optional<common::XY<double>> GetDestination()
+	{
+		return data::game::island::BoundFor::Read();
+	}
+
+	void SetDestination(const std::optional<common::XY<double>>& destination)
+	{
+		if (destination)
+		{
+			data::game::island::BoundFor::Write(destination.value());
+			return;
+		}
+		data::game::island::BoundFor::Clear();
+	}
+
 }
