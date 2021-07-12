@@ -129,7 +129,8 @@ namespace state::in_play::AtSea
 		auto destination = game::Avatar::GetDestination();
 		if (destination)
 		{
-			auto plot = Plot(destination.value() - game::Avatar::GetLocation());
+			auto clampedDistance = game::Heading::ClampDistance(destination.value() - game::Avatar::GetLocation(), game::World::GetViewDistance()+0.5);//TODO: magic number
+			auto plot = Plot(clampedDistance);
 			visuals::Images::SetLocation(LAYOUT_NAME, IMAGE_DESTINATION, { (int)plot.GetX(), (int)plot.GetY() });
 			visuals::Images::SetVisible(LAYOUT_NAME, IMAGE_DESTINATION, true);
 			return;

@@ -35,4 +35,13 @@ namespace game::Heading
 		return sqrt((first.GetX() - second.GetX()) * (first.GetX() - second.GetX()) + (first.GetY() - second.GetY()) * (first.GetY() - second.GetY()));
 	}
 
+	common::XY<double> ClampDistance(const common::XY<double>& position, double maximum)
+	{
+		auto distance = Distance(position, { 0.0,0.0 });
+		if (distance > maximum)
+		{
+			return { position.GetX() * maximum / distance, position.GetY() * maximum / distance };
+		}
+		return position;
+	}
 }

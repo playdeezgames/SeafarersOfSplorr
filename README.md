@@ -6,3 +6,4 @@
 * https://game-icons.net/1x1/delapouite/enrage.html
 * https://game-icons.net/1x1/delapouite/sailboat.html
 * https://game-icons.net/1x1/lorc/treasure-map.html
+* https://game-icons.net/1x1/delapouite/crosshair.html

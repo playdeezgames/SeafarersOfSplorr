@@ -8,4 +8,5 @@ namespace game::Heading
 	double ToRadians(double);
 	const double DEGREES = 360.0;
 	double Distance(const common::XY<double>&, const common::XY<double>&);
+	common::XY<double> ClampDistance(const common::XY<double>&, double);
 }
