@@ -9,7 +9,7 @@
 #include "Game.Heading.h"
 #include "Data.Game.Island.Visits.h"
 #include "Data.Game.Island.Known.h"
-#include "Data.Game.Island.BoundFor.h"
+#include "Data.Game.Avatar.Destination.h"
 namespace game::Islands
 {
 	const size_t RETRY_COUNT = 500;
@@ -115,7 +115,7 @@ namespace game::Islands
 		data::game::Island::Clear();
 		data::game::island::Visits::Clear();
 		data::game::island::Known::Clear();
-		data::game::island::BoundFor::Clear();
+		data::game::avatar::Destination::Clear();
 	}
 
 	void Reset(const game::Difficulty&)

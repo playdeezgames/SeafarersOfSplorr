@@ -5,7 +5,6 @@
 #include "Common.Data.h"
 namespace data::game::avatar::Dock
 {
-	const int AVATAR_ID = 1;
 	const std::string FIELD_X = "X";
 	const std::string FIELD_Y = "Y";
 	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarDocks]([AvatarId] INT NOT NULL UNIQUE,[X] REAL NOT NULL,[Y] REAL NOT NULL);";
@@ -23,15 +22,15 @@ namespace data::game::avatar::Dock
 		AutoCreateAvatarDockTable();
 		std::string query = 
 			(location.has_value()) ? 
-			(std::format(REPLACE_ITEM, AVATAR_ID, location.value().GetX(), location.value().GetY())) : 
-			(std::format(DELETE_ITEM, AVATAR_ID));
+			(std::format(REPLACE_ITEM, data::game::Common::AVATAR_ID, location.value().GetX(), location.value().GetY())) :
+			(std::format(DELETE_ITEM, data::game::Common::AVATAR_ID));
 		data::game::Common::Execute(query);
 	}
 
 	std::optional<common::XY<double>> GetLocation()
 	{
 		AutoCreateAvatarDockTable();
-		std::string query = std::format(QUERY_ITEM, AVATAR_ID);
+		std::string query = std::format(QUERY_ITEM, data::game::Common::AVATAR_ID);
 		auto result = data::game::Common::Execute(query);
 		if (!result.empty())
 		{

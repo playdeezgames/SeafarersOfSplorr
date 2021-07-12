@@ -25,8 +25,8 @@ namespace visuals::WorldMap
 	static common::XY<int> Plot(const InternalWorldMap& worldMap, const common::XY<double> worldSize, const common::XY<double>& location)
 	{
 		return common::XY<int>(
-			location.GetX() / worldSize.GetX() * worldMap.size.GetX() + worldMap.xy.GetX(),
-			location.GetY() / worldSize.GetY() * worldMap.size.GetY() + worldMap.xy.GetY());
+			(int)(location.GetX() / worldSize.GetX() * worldMap.size.GetX() + worldMap.xy.GetX()),
+			(int)(location.GetY() / worldSize.GetY() * worldMap.size.GetY() + worldMap.xy.GetY()));
 	}
 
 	static common::XY<double> Pick(const InternalWorldMap& worldMap, const common::XY<double> worldSize, const common::XY<int>& location)
