@@ -138,6 +138,28 @@ namespace game::Islands
 		}
 	}
 
+	static void AddIsland(std::list<IslandModel>& result, const data::game::Island::IslandData& island, const common::XY<double>& avatarLocation)
+	{
+		auto visitData = data::game::island::Visits::Read(island.location);
+		data::game::island::Known::Write(island.location);
+		result.push_back(
+			{
+				(island.location - avatarLocation),
+				island.location,
+				island.name,
+				(visitData.has_value()) ? (std::optional<int>(visitData.value().visits)) : (std::nullopt)
+			});
+	}
+
+	static void AddIslandWhenCloseEnough(std::list<IslandModel>& result, const data::game::Island::IslandData& island, const common::XY<double>& avatarLocation, double maximumDistance)
+	{
+		auto distance = game::Heading::Distance(avatarLocation, island.location);
+		if (distance <= maximumDistance)
+		{
+			AddIsland(result, island, avatarLocation);
+		}
+	}
+
 	static std::list<IslandModel> GetIslandsInRange(double maximumDistance)
 	{
 		std::list<IslandModel> result;
@@ -145,19 +167,7 @@ namespace game::Islands
 		auto islands = data::game::Island::All();
 		for (auto& island : islands)
 		{
-			auto distance = game::Heading::Distance(avatarLocation, island.location);
-			if (distance <= maximumDistance)
-			{
-				auto visitData = data::game::island::Visits::Read(island.location);
-				data::game::island::Known::Write(island.location);
-				result.push_back(
-					{
-						(island.location - avatarLocation),
-						island.location,
-						island.name,
-						(visitData.has_value()) ? (std::optional<int>(visitData.value().visits)) : (std::nullopt)
-					});
-			}
+			AddIslandWhenCloseEnough(result, island, avatarLocation, maximumDistance);
 		}
 		return result;
 	}
@@ -224,8 +234,9 @@ namespace game::Islands
 				}
 				else
 				{
-					//TODO: obfuscate the name, because we havent visited
-					result.push_back(model.value());
+					auto obfuscated = model.value();
+					obfuscated.name = "????";//TODO: hardcoded
+					result.push_back(obfuscated);
 				}
 			}
 		}
