@@ -24,12 +24,16 @@ namespace state::in_play::AtSea
 	const std::string TEXT_AVATAR_HUNGER = "avatar-hunger";
 	const std::string TEXT_AVATAR_HEADING = "avatar-heading";
 	const std::string TEXT_AVATAR_SPEED = "avatar-speed";
+	const std::string TEXT_AVATAR_MONEY = "avatar-money";
+	const std::string TEXT_AVATAR_REPUTATION = "avatar-reputation";
 	const std::string MENU_ID = "Order";
 	const std::string MENU_ITEM_DOCK = "Dock";
 	const std::string AREA_CHANGE_HEADING = "ChangeHeading";
 	const std::string AREA_CHANGE_SPEED = "ChangeSpeed";
 	const std::string AREA_MOVE = "Move";
 	const std::string FORMAT_TURNS = "Turns Left: {:.0f}";
+	const std::string FORMAT_MONEY= "Money: {:.0f}";
+	const std::string FORMAT_REPUTATION = "Reputation: {:.0f}";
 	const std::string FORMAT_HUNGER = "Hunger: {:.0f}";
 	const std::string FORMAT_HEALTH = "Health: {:.0f}";
 	const std::string FORMAT_HEADING = "Heading: {:.2f}";
@@ -100,6 +104,16 @@ namespace state::in_play::AtSea
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HUNGER, std::format(FORMAT_HUNGER, game::avatar::Statistics::GetCurrent(game::avatar::Statistic::HUNGER)));
 	}
 
+	static void UpdateAvatarMoney()
+	{
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_MONEY, std::format(FORMAT_MONEY, game::avatar::Statistics::GetCurrent(game::avatar::Statistic::MONEY)));
+	}
+
+	static void UpdateAvatarReputation()
+	{
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_REPUTATION, std::format(FORMAT_REPUTATION, game::avatar::Statistics::GetCurrent(game::avatar::Statistic::REPUTATION)));
+	}
+
 	static void UpdateAvatarHealth()
 	{
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HEALTH, std::format(FORMAT_HEALTH, game::avatar::Statistics::GetCurrent(game::avatar::Statistic::HEALTH)));
@@ -144,6 +158,8 @@ namespace state::in_play::AtSea
 		UpdateAvatarHealth();
 		UpdateAvatarHunger();
 		UpdateAvatarSpeed();
+		UpdateAvatarMoney();
+		UpdateAvatarReputation();
 		UpdateAvatarTurns();
 		UpdateAvatarDestination();
 	}

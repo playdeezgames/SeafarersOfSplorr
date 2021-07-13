@@ -6,7 +6,9 @@ namespace game::avatar
 	{
 		TURNS_REMAINING,
 		HEALTH,
-		HUNGER
+		HUNGER,
+		MONEY,
+		REPUTATION
 	};
 }
 namespace game::avatar::Statistics

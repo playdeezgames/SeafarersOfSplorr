@@ -18,25 +18,33 @@ namespace game::avatar::Statistics
 			{
 				{game::avatar::Statistic::TURNS_REMAINING, 0.0, 10000.0, 10000.0},
 				{game::avatar::Statistic::HEALTH, 0.0, 100.0, 100.0},
-				{game::avatar::Statistic::HUNGER, 0.0, 100.0, 100.0}
+				{game::avatar::Statistic::HUNGER, 0.0, 100.0, 100.0},
+				{game::avatar::Statistic::REPUTATION, -1000.0, 1000.0, 0.0},
+				{game::avatar::Statistic::MONEY, 0.0, 1000000000.0, 0.0}
 			}},
 		{game::Difficulty::NORMAL,
 			{
 				{game::avatar::Statistic::TURNS_REMAINING, 0.0, 5000.0, 5000.0},
 				{game::avatar::Statistic::HEALTH, 0.0, 100.0, 100.0},
-				{game::avatar::Statistic::HUNGER, 0.0, 100.0, 100.0}
+				{game::avatar::Statistic::HUNGER, 0.0, 100.0, 100.0},
+				{game::avatar::Statistic::REPUTATION, -1000.0, 1000.0, 0.0},
+				{game::avatar::Statistic::MONEY, 0.0, 1000000000.0, 0.0}
 			}},
 		{game::Difficulty::HARD,
 			{
 				{game::avatar::Statistic::TURNS_REMAINING, 0.0, 2500.0, 2500.0},
 				{game::avatar::Statistic::HEALTH, 0.0, 100.0, 100.0},
-				{game::avatar::Statistic::HUNGER, 0.0, 100.0, 100.0}
+				{game::avatar::Statistic::HUNGER, 0.0, 100.0, 100.0},
+				{game::avatar::Statistic::REPUTATION, -1000.0, 1000.0, 0.0},
+				{game::avatar::Statistic::MONEY, 0.0, 1000000000.0, 0.0}
 			}},
 		{game::Difficulty::HARDCORE,
 			{
 				{game::avatar::Statistic::TURNS_REMAINING, 0.0, 1000.0, 1000.0},
 				{game::avatar::Statistic::HEALTH, 0.0, 100.0, 100.0},
-				{game::avatar::Statistic::HUNGER, 0.0, 100.0, 100.0}
+				{game::avatar::Statistic::HUNGER, 0.0, 100.0, 100.0},
+				{game::avatar::Statistic::REPUTATION, -1000.0, 1000.0, 0.0},
+				{game::avatar::Statistic::MONEY, 0.0, 1000000000.0, 0.0}
 			}}
 	};
 
@@ -84,5 +92,4 @@ namespace game::avatar::Statistics
 		SetCurrent(statistic, GetCurrent(statistic) + delta);
 		return GetCurrent(statistic);
 	}
-
 }
