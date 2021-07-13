@@ -43,6 +43,20 @@
         "height": 250
     },
     {
+        "text-id": "HoverIsland",
+        "type": "Text",
+        "font": "default",
+        "color": "Gray",
+        "text": "<hover island>",
+        "x": 632,
+        "y": 32,
+        "horizontal-alignment": -1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
         "type": "Layout",
         "name": "Sublayout.Modded"
     }

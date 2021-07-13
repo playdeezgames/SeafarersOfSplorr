@@ -7,11 +7,15 @@
 #include "Visuals.Areas.h"
 #include "Visuals.WorldMap.h"
 #include "Game.Avatar.h"
+#include "Application.Update.h"
+#include "Visuals.Texts.h"
+#include "Game.Islands.h"
 namespace state::in_play::HeadFor
 {
 	const std::string LAYOUT_NAME = "State.InPlay.HeadFor";
 	const std::string AREA_WORLD_MAP = "WorldMap";
 	const std::string WORLD_MAP_ID = "WorldMap";
+	const std::string TEXT_HOVER_ISLAND = "HoverIsland";
 
 	static void ReturnToGame()
 	{
@@ -66,6 +70,27 @@ namespace state::in_play::HeadFor
 		return false;
 	}
 
+	static void OnUpdate(const unsigned int&)//TODO: refactor me
+	{
+		auto hoverIsland = visuals::WorldMap::GetHoverIsland(LAYOUT_NAME, WORLD_MAP_ID);
+		if (hoverIsland)
+		{
+			auto islandModel = game::Islands::Read(hoverIsland.value()).value();
+			if(islandModel.visits)
+			{ 
+				visuals::Texts::SetText(LAYOUT_NAME, TEXT_HOVER_ISLAND, islandModel.name);
+			}
+			else
+			{
+				visuals::Texts::SetText(LAYOUT_NAME, TEXT_HOVER_ISLAND, "????");
+			}
+		}
+		else
+		{
+			visuals::Texts::SetText(LAYOUT_NAME, TEXT_HOVER_ISLAND, "-");
+		}
+	}
+
 	void Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::IN_PLAY_HEAD_FOR, game::audio::Mux::GoToTheme(game::audio::Mux::Theme::MAIN));
@@ -73,5 +98,6 @@ namespace state::in_play::HeadFor
 		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_HEAD_FOR, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
 		::application::Command::SetHandlers(::UIState::IN_PLAY_HEAD_FOR, commandHandlers);
 		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_HEAD_FOR, LAYOUT_NAME);
+		::application::Update::AddHandler(::UIState::IN_PLAY_HEAD_FOR, OnUpdate);
 	}
 }

@@ -10,6 +10,7 @@
 #include "Game.Islands.h"
 #include <map>
 #include "Visuals.Data.Properties.h"
+#include "Game.Heading.h"
 namespace visuals::WorldMap
 {
 	struct InternalWorldMap
@@ -17,6 +18,7 @@ namespace visuals::WorldMap
 		common::XY<int> xy;
 		common::XY<size_t> size;
 		std::optional<common::XY<int>> destination;
+		std::optional<common::XY<double>> hoverIsland;
 	};
 
 	static std::vector<InternalWorldMap> worldMaps;
@@ -62,13 +64,30 @@ namespace visuals::WorldMap
 		}
 	}
 
-	static void DrawKnownIslands(const std::shared_ptr<common::Application::Renderer>& renderer, const InternalWorldMap& worldMap, const common::XY<double> worldSize)
+	static void DrawKnownIslands(const std::shared_ptr<common::Application::Renderer>& renderer, InternalWorldMap& worldMap, const common::XY<double> worldSize)
 	{
+		auto closest = game::Heading::Distance({(double)worldMap.size.GetX(), (double)worldMap.size.GetY()}, {0.0,0.0});
+		std::optional<common::XY<int>> hoverIsland = std::nullopt;
 		auto knownIslands = game::Islands::GetKnownIslands();
+		worldMap.hoverIsland = std::nullopt;
 		for (auto& knownIsland : knownIslands)
 		{
 			common::XY<int> plot = Plot(worldMap, worldSize, knownIsland.absoluteLocation);
+			if (worldMap.destination)
+			{
+				auto distance = game::Heading::Distance({ (double)plot.GetX(),(double)plot.GetY() }, { (double)worldMap.destination.value().GetX() + worldMap.xy.GetX(), (double)worldMap.destination.value().GetY() + worldMap.xy.GetY()});
+				if (distance < closest)
+				{
+					closest = distance;
+					hoverIsland = plot;
+					worldMap.hoverIsland = knownIsland.absoluteLocation;
+				}
+			}
 			visuals::Sprites::Draw("WorldMapIsland", renderer, plot, { 0xff,0xff,0xff,0xff });
+		}
+		if (hoverIsland)
+		{
+			visuals::Sprites::Draw("WorldMapHoverIsland", renderer, hoverIsland.value(), { 0xff,0xff,0xff,0xff });
 		}
 	}
 
@@ -122,6 +141,22 @@ namespace visuals::WorldMap
 				{
 					return Pick(worldMaps[index], game::World::GetSize(), worldMap.destination.value());
 				}
+			}
+		}
+		return std::nullopt;
+	}
+
+	std::optional<common::XY<double>> GetHoverIsland(const std::string& layoutName, const std::string& worldMapId)
+	{
+		auto layoutIter = worldMapTable.find(layoutName);
+		if (layoutIter != worldMapTable.end())
+		{
+			auto worldMapIter = layoutIter->second.find(worldMapId);
+			if (worldMapIter != layoutIter->second.end())
+			{
+				size_t index = worldMapIter->second;
+				const auto& worldMap = worldMaps[index];
+				return worldMap.hoverIsland;
 			}
 		}
 		return std::nullopt;
