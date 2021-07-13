@@ -220,6 +220,9 @@
     <ClCompile Include="Visuals.WorldMap.cpp">
       <Filter>Source\Visuals</Filter>
     </ClCompile>
+    <ClCompile Include="Data.Game.Island.Quests.cpp">
+      <Filter>Source\Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
@@ -410,6 +413,9 @@
     </ClInclude>
     <ClInclude Include="Visuals.WorldMap.h">
       <Filter>Headers\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.Quests.h">
+      <Filter>Headers\Data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

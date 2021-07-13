@@ -48,8 +48,8 @@ namespace state::in_play::Docked
 		{::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
 		{::Command::GREEN, ActivateItem },
-		{::Command::BACK, ::application::UIState::GoTo(::UIState::CONFIRM_QUIT) },
-		{::Command::RED, ::application::UIState::GoTo(::UIState::CONFIRM_QUIT) }
+		{::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) },
+		{::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) }
 	};
 
 	static void OnEnter()
