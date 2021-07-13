@@ -83,6 +83,17 @@ namespace game::Avatar
 		data::game::Avatar::Write(avatar);
 	}
 
+	static bool DoDock(const game::Islands::IslandModel& dockable)
+	{
+		int currentTurn = (int)game::avatar::Statistics::GetCurrent(game::avatar::Statistic::TURNS_REMAINING);
+		game::Islands::AddVisit(
+			dockable.absoluteLocation, 
+			currentTurn);
+		game::Islands::UpdateQuest(dockable.absoluteLocation);
+		data::game::avatar::Dock::SetLocation(dockable.absoluteLocation);
+		return true;
+	}
+
 	bool Dock()
 	{
 		if (GetDockedLocation().has_value())
@@ -92,10 +103,7 @@ namespace game::Avatar
 		auto dockables = game::Islands::GetDockableIslands();
 		if (!dockables.empty())
 		{
-			auto& dockable = dockables.front();
-			game::Islands::AddVisit(dockable.absoluteLocation, (int)game::avatar::Statistics::GetCurrent(game::avatar::Statistic::TURNS_REMAINING));
-			data::game::avatar::Dock::SetLocation(dockable.absoluteLocation);
-			return true;
+			return DoDock(dockables.front());
 		}
 		return false;
 	}

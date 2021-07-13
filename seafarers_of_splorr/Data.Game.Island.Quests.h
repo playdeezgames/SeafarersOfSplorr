@@ -7,6 +7,7 @@ namespace data::game::island::Quests
 	struct QuestData
 	{
 		common::XY<double> location;
+		common::XY<double> destination;
 		double reward;
 		std::string itemName;
 		std::string personName;
