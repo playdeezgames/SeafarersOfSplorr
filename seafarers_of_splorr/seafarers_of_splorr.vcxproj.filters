@@ -226,6 +226,9 @@
     <ClCompile Include="Data.Game.Avatar.Quest.cpp">
       <Filter>Source\Data</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.IslandJobs.cpp">
+      <Filter>Source\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">

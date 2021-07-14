@@ -29,7 +29,8 @@ enum class UIState
 	IN_PLAY_DOCKED,
 	IN_PLAY_WIN,
 	IN_PLAY_LOSE,
-	IN_PLAY_HEAD_FOR
+	IN_PLAY_HEAD_FOR,
+	IN_PLAY_ISLAND_JOBS
 };
 namespace application::UIState
 {

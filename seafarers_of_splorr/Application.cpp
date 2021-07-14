@@ -91,6 +91,7 @@ namespace common::Application
 		state::in_play::Win::Start,
 		state::in_play::Lose::Start,
 		state::in_play::HeadFor::Start,
+		state::in_play::IslandJobs::Start,
 		sublayout::UIHamburger::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
