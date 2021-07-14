@@ -42,7 +42,7 @@ namespace data::game::island::Quests
 	std::optional<QuestData> Read(const common::XY<double>& location)
 	{
 		AutoCreateIslandQuestsTable();
-		std::string query = std::format(DELETE_ITEM, location.GetX(), location.GetY());
+		std::string query = std::format(QUERY_ITEM, location.GetX(), location.GetY());
 		auto records = data::game::Common::Execute(query);
 		if (!records.empty())
 		{

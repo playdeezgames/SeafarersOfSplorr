@@ -11,12 +11,20 @@
 #include "Visuals.Texts.h"
 #include "Data.Stores.h"
 #include "Game.Avatar.h"
-#include "Game.Islands.h"
 #include <format>
+#include "Game.Islands.Quests.h"
+#include "Game.Islands.h"
+#include "Game.Heading.h"
 namespace state::in_play::IslandJobs
 {
 	const std::string LAYOUT_NAME = "State.InPlay.IslandJobs";
 	const std::string MENU_ID = "AcceptJob";
+	const std::string TEXT_LINE1 = "Line1";
+	const std::string TEXT_LINE2 = "Line2";
+	const std::string TEXT_LINE3 = "Line3";
+	const std::string TEXT_LINE4 = "Line4";
+	const std::string TEXT_LINE5 = "Line5";
+	const std::string TEXT_LINE6 = "Line6";
 
 	enum class AcceptJobMenuItem
 	{
@@ -49,11 +57,40 @@ namespace state::in_play::IslandJobs
 		{::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) }
 	};
 
+	static void UpdateQuestText(const game::islands::Quests::QuestModel& questModel)
+	{
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE1, "Please deliver this");//TODO: hardcoded
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE2, questModel.itemName);
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE3, std::format("to {}", questModel.personName));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE4, std::format("the {}", questModel.professionName));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE6, std::format("Reward: {:.2f}", questModel.reward));
+
+		auto islandModel = game::Islands::Read(questModel.destination).value();
+		double distance = game::Heading::Distance(questModel.destination, game::Avatar::GetLocation());
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE5, std::format("at {} ({:.2f}).", islandModel.name, distance));
+	}
+
+	static void UpdateNoQuestText()
+	{
+		return;
+	}
+
+	static void UpdateText()
+	{
+		auto location = game::Avatar::GetDockedLocation().value();
+		auto quest = game::islands::Quests::Read(location);
+		if (quest)
+		{
+			UpdateQuestText(quest.value());
+			return;
+		}
+		UpdateNoQuestText();
+	}
+
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
-		auto location = game::Avatar::GetDockedLocation().value();
-		auto island = game::Islands::Read(location).value();
+		UpdateText();
 	}
 
 	void Start()
