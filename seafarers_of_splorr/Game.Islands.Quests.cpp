@@ -15,15 +15,27 @@ namespace game::islands::Quests
 
 	const std::map<std::string, size_t> itemAdverbs = 
 	{
-		{"woefully",1}
+		{"woefully",1},
+		{"awfully",1},
+		{"generally",1},
+		{"executively",1},
+		{"painfully",1}
 	};
 	const std::map<std::string, size_t> itemAdjectives =
 	{
-		{"turgid",1}
+		{"turgid",1},
+		{"odorous",1},
+		{"crusty",1},
+		{"rusty",1},
+		{"musty",1}
 	};
 	const std::map<std::string, size_t> itemNames =
 	{
-		{"macguffin",1}
+		{"marital aid",1},
+		{"bed pan",1},
+		{"skeet shooter",1},
+		{"poo bucket",1},
+		{"chastity belt",1}
 	};
 
 	static std::string GenerateItemName()
@@ -36,7 +48,11 @@ namespace game::islands::Quests
 
 	const std::map<std::string, size_t> peopleNames =
 	{
-		{"Samuel",1}
+		{"Samuel",1},
+		{"Roberta",1},
+		{"Davin",1},
+		{"Shaniqua",1},
+		{"Yermom",1}
 	};
 
 	static std::string GeneratePersonName()
@@ -46,11 +62,20 @@ namespace game::islands::Quests
 
 	const std::map<std::string, size_t> professionAdjectives =
 	{
-		{"lousy",1}
+		{"lousy",1},
+		{"smelly",1},
+		{"randy",1},
+		{"flatulant",1},
+		{"grumpy",1},
+		{"ugly",1}
 	};
 	const std::map<std::string, size_t> professionNames =
 	{
-		{"poopsmith",1}
+		{"harlot",1},
+		{"inkeeper",1},
+		{"peasant",1},
+		{"leper",1},
+		{"merkinsmith",1}
 	};
 	static std::string GenerateProfessionName()
 	{
