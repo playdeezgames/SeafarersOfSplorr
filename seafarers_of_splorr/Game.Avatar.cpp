@@ -10,6 +10,7 @@
 #include "Data.Game.Avatar.Dock.h"
 #include "Game.Islands.h"
 #include "Data.Game.Avatar.Destination.h"
+#include "Game.Islands.Quests.h"
 namespace game::Avatar
 {
 	common::XY<double> GetLocation()
@@ -89,7 +90,7 @@ namespace game::Avatar
 		game::Islands::AddVisit(
 			dockable.absoluteLocation, 
 			currentTurn);
-		game::Islands::UpdateQuest(dockable.absoluteLocation);
+		game::islands::Quests::Update(dockable.absoluteLocation);
 		data::game::avatar::Dock::SetLocation(dockable.absoluteLocation);
 		return true;
 	}

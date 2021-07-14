@@ -19,5 +19,4 @@ namespace game::Islands
 	std::list<IslandModel> GetKnownIslands();
 	void AddVisit(const common::XY<double>&, const int&);
 	std::optional<IslandModel> Read(const common::XY<double>&);
-	void UpdateQuest(const common::XY<double>&);
 }
