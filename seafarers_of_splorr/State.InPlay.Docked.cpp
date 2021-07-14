@@ -24,7 +24,8 @@ namespace state::in_play::Docked
 
 	enum class OrderMenuItem
 	{
-		UNDOCK
+		UNDOCK,
+		JOBS
 	};
 
 	static void OnUndock()
@@ -33,9 +34,15 @@ namespace state::in_play::Docked
 		application::UIState::EnterGame();
 	}
 
+	static void OnJobs()
+	{
+		return;
+	}
+
 	const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
-		{ OrderMenuItem::UNDOCK, OnUndock }
+		{ OrderMenuItem::UNDOCK, OnUndock },
+		{ OrderMenuItem::JOBS, OnJobs }
 	};
 
 	static void ActivateItem()
