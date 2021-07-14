@@ -4,6 +4,8 @@
 #include "Data.Game.Island.Quests.h"
 #include "Common.RNG.h"
 #include "Game.Islands.h"
+#include <format>
+#include <map>
 namespace game::islands::Quests
 {
 	static double GenerateReward()
@@ -11,19 +13,51 @@ namespace game::islands::Quests
 		return 1.0;//TODO: magic number
 	}
 
+	const std::map<std::string, size_t> itemAdverbs = 
+	{
+		{"woefully",1}
+	};
+	const std::map<std::string, size_t> itemAdjectives =
+	{
+		{"turgid",1}
+	};
+	const std::map<std::string, size_t> itemNames =
+	{
+		{"macguffin",1}
+	};
+
 	static std::string GenerateItemName()
 	{
-		return "macguffin";//TODO: magic string
+		return std::format("{} {} {}",
+			common::RNG::FromGenerator(itemAdverbs, std::string()),
+			common::RNG::FromGenerator(itemAdjectives, std::string()),
+			common::RNG::FromGenerator(itemNames, std::string()));
 	}
+
+	const std::map<std::string, size_t> peopleNames =
+	{
+		{"Samuel",1}
+	};
 
 	static std::string GeneratePersonName()
 	{
-		return "Samuel";//TODO: magic string
+		return common::RNG::FromGenerator(peopleNames, std::string());
 	}
 
+	const std::map<std::string, size_t> professionAdjectives =
+	{
+		{"lousy",1}
+	};
+	const std::map<std::string, size_t> professionNames =
+	{
+		{"poopsmith",1}
+	};
 	static std::string GenerateProfessionName()
 	{
-		return "Poopsmith";//TODO: magic string
+		return std::format("{} {}",
+			common::RNG::FromGenerator(professionAdjectives, std::string()),
+			common::RNG::FromGenerator(professionNames, std::string()));
+
 	}
 
 	static common::XY<double> GenerateDestination(const common::XY<double>& location)
