@@ -82,7 +82,7 @@ namespace state::in_play::HeadFor
 			}
 			else
 			{
-				visuals::Texts::SetText(LAYOUT_NAME, TEXT_HOVER_ISLAND, "????");
+				visuals::Texts::SetText(LAYOUT_NAME, TEXT_HOVER_ISLAND, "????");//TODO: hard coded
 			}
 		}
 		else

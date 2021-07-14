@@ -171,6 +171,7 @@
     <ClCompile Include="Common.Data.cpp" />
     <ClCompile Include="Data.Game.Avatar.cpp" />
     <ClCompile Include="Data.Game.Avatar.Dock.cpp" />
+    <ClCompile Include="Data.Game.Avatar.Quest.cpp" />
     <ClCompile Include="Data.Game.Avatar.Statistics.cpp" />
     <ClCompile Include="Data.Game.Common.cpp" />
     <ClCompile Include="Data.Game.Avatar.Destination.cpp" />
@@ -251,6 +252,7 @@
     <ClInclude Include="Common.Data.Properties.h" />
     <ClInclude Include="Data.Game.Avatar.Dock.h" />
     <ClInclude Include="Data.Game.Avatar.h" />
+    <ClInclude Include="Data.Game.Avatar.Quest.h" />
     <ClInclude Include="Data.Game.Avatar.Statistics.h" />
     <ClInclude Include="Data.Game.Common.h" />
     <ClInclude Include="Data.Game.Avatar.Destination.h" />
