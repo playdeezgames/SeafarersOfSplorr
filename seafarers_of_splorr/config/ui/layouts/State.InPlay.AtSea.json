@@ -502,5 +502,13 @@
         "color": "White",
         "x": 162,
         "y": 182
+    },
+    {
+        "type": "Image",
+        "image-id": "QuestDestination",
+        "sprite": "AtSeaQuestDestination",
+        "color": "White",
+        "x": 162,
+        "y": 182
     }
 ]

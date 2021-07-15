@@ -3141,6 +3141,15 @@
         "width": 16,
         "height": 16
     },
+    "AtSeaQuestDestination": {
+        "texture": "at-sea-icons",
+        "x": 48,
+        "y": 0,
+        "offset-x": -8,
+        "offset-y": -8,
+        "width": 16,
+        "height": 16
+    },
     "AtSeaCurrentHeading": {
         "texture": "at-sea-icons",
         "x": 0,
@@ -3216,6 +3225,15 @@
         "offset-x": -2,
         "offset-y": -2,
         "x": 16,
+        "y": 0,
+        "width": 4,
+        "height": 4
+    },
+    "WorldMapQuestIsland": {
+        "texture": "world-map-icons",
+        "offset-x": -2,
+        "offset-y": -2,
+        "x": 20,
         "y": 0,
         "width": 4,
         "height": 4

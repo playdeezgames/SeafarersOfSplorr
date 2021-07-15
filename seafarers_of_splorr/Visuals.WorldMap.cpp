@@ -11,6 +11,7 @@
 #include <map>
 #include "Visuals.Data.Properties.h"
 #include "Game.Heading.h"
+#include "Game.Avatar.Quest.h"
 namespace visuals::WorldMap
 {
 	struct InternalWorldMap
@@ -70,6 +71,7 @@ namespace visuals::WorldMap
 		std::optional<common::XY<int>> hoverIsland = std::nullopt;
 		auto knownIslands = game::Islands::GetKnownIslands();
 		worldMap.hoverIsland = std::nullopt;
+		auto quest = game::avatar::Quest::Read();
 		for (auto& knownIsland : knownIslands)
 		{
 			common::XY<int> plot = Plot(worldMap, worldSize, knownIsland.absoluteLocation);
@@ -83,7 +85,14 @@ namespace visuals::WorldMap
 					worldMap.hoverIsland = knownIsland.absoluteLocation;
 				}
 			}
-			visuals::Sprites::Draw("WorldMapIsland", renderer, plot, { 0xff,0xff,0xff,0xff });
+			if (quest.has_value() && quest.value().destination == knownIsland.absoluteLocation)
+			{
+				visuals::Sprites::Draw("WorldMapQuestIsland", renderer, plot, { 0xff,0xff,0xff,0xff });
+			}
+			else
+			{
+				visuals::Sprites::Draw("WorldMapIsland", renderer, plot, { 0xff,0xff,0xff,0xff });
+			}
 		}
 		if (hoverIsland)
 		{
