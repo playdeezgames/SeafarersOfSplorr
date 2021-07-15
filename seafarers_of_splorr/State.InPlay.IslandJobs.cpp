@@ -57,7 +57,7 @@ namespace state::in_play::IslandJobs
 		{::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) }
 	};
 
-	static void UpdateQuestText(const game::islands::Quests::QuestModel& questModel)
+	static void UpdateQuestText(const game::Quest::QuestModel& questModel)
 	{
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE1, "Please deliver this");//TODO: hardcoded
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE2, questModel.itemName);

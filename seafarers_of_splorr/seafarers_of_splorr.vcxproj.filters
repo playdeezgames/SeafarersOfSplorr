@@ -232,6 +232,9 @@
     <ClCompile Include="Game.Islands.Quests.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Avatar.Quest.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
@@ -430,6 +433,12 @@
       <Filter>Headers\Data</Filter>
     </ClInclude>
     <ClInclude Include="Game.Islands.Quests.h">
+      <Filter>Headers\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Avatar.Quest.h">
+      <Filter>Headers\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Quest.h">
       <Filter>Headers\Game</Filter>
     </ClInclude>
   </ItemGroup>
