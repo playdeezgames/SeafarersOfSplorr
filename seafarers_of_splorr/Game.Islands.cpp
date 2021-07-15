@@ -5,6 +5,7 @@
 #include <set>
 #include <map>
 #include <sstream>
+#include <vector>
 #include "Game.Avatar.h"
 #include "Game.Heading.h"
 #include "Data.Game.Island.Visits.h"
@@ -101,9 +102,18 @@ namespace game::Islands
 		return ss.str();;
 	}
 
+	const std::vector<std::string> permanentNames =
+	{
+		"antwerp"
+	};
+
 	static std::set<std::string> GenerateNames(size_t size)
 	{
 		std::set<std::string> names;
+		for (auto& name : permanentNames)
+		{
+			names.insert(name);
+		}
 		while (names.size() < size)
 		{
 			names.insert(GenerateName());

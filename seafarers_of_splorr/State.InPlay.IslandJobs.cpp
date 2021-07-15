@@ -15,6 +15,7 @@
 #include "Game.Islands.Quests.h"
 #include "Game.Islands.h"
 #include "Game.Heading.h"
+#include "Game.Avatar.Quest.h"
 namespace state::in_play::IslandJobs
 {
 	const std::string LAYOUT_NAME = "State.InPlay.IslandJobs";
@@ -34,13 +35,17 @@ namespace state::in_play::IslandJobs
 
 	static void OnAccept()
 	{
-		return;
+		if (game::avatar::Quest::AcceptQuest(game::Avatar::GetDockedLocation().value()))
+		{
+			::application::UIState::Write(::UIState::IN_PLAY_DOCKED);
+		}
+		//TODO: go to a "replace quest" confirmation page
 	}
 
 	const std::map<AcceptJobMenuItem, std::function<void()>> activators =
 	{
 		{ AcceptJobMenuItem::ACCEPT, OnAccept },
-		{ AcceptJobMenuItem::CANCEL, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) }
+		{ AcceptJobMenuItem::CANCEL, ::application::UIState::GoTo(::UIState::IN_PLAY_DOCKED) }
 	};
 
 	static void ActivateItem()
@@ -72,7 +77,12 @@ namespace state::in_play::IslandJobs
 
 	static void UpdateNoQuestText()
 	{
-		return;
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE1, "No Jobs");
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE2, "");
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE3, "");
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE4, "");
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE5, "");
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE6, "");
 	}
 
 	static void UpdateText()
