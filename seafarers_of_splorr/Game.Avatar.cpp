@@ -13,6 +13,9 @@
 #include "Game.Islands.Quests.h"
 namespace game::Avatar
 {
+	const double SPEED_MINIMUM = 0.0;
+	const double SPEED_MAXIMUM = 1.0;
+
 	common::XY<double> GetLocation()
 	{
 		return data::game::Avatar::Read().value().location;
@@ -23,12 +26,10 @@ namespace game::Avatar
 		return data::game::Avatar::Read().value().heading;
 	}
 
-	const double HEADING_MAXIMUM = game::Heading::DEGREES;
-
 	void SetHeading(double heading)
 	{
 		auto data = data::game::Avatar::Read().value();
-		data.heading = common::Data::ModuloDouble(heading, HEADING_MAXIMUM);
+		data.heading = common::Data::ModuloDouble(heading, game::Heading::DEGREES);
 		data::game::Avatar::Write(data);
 	}
 
@@ -37,8 +38,6 @@ namespace game::Avatar
 		return data::game::Avatar::Read().value().speed;
 	}
 
-	const double SPEED_MINIMUM = 0.0;
-	const double SPEED_MAXIMUM = 1.0;
 
 	void SetSpeed(double speed)
 	{
@@ -53,7 +52,7 @@ namespace game::Avatar
 		data::game::Avatar::AvatarData data =
 			{
 				{worldSize.GetX()/2.0, worldSize.GetY()/2.0},
-				common::Data::ModuloDouble(common::RNG::FromRange(0.0, HEADING_MAXIMUM), HEADING_MAXIMUM),
+				common::Data::ModuloDouble(common::RNG::FromRange(0.0, game::Heading::DEGREES), game::Heading::DEGREES),
 				1.0
 			};
 		data::game::Avatar::Write(data);
@@ -84,14 +83,14 @@ namespace game::Avatar
 		data::game::Avatar::Write(avatar);
 	}
 
-	static bool DoDock(const game::Islands::IslandModel& dockable)
+	static bool DoDock(const common::XY<double>& location)
 	{
 		int currentTurn = (int)game::avatar::Statistics::GetCurrent(game::avatar::Statistic::TURNS_REMAINING);
 		game::Islands::AddVisit(
-			dockable.absoluteLocation, 
+			location,
 			currentTurn);
-		game::islands::Quests::Update(dockable.absoluteLocation);
-		data::game::avatar::Dock::SetLocation(dockable.absoluteLocation);
+		game::islands::Quests::Update(location);
+		data::game::avatar::Dock::SetLocation(location);
 		return true;
 	}
 
@@ -104,7 +103,7 @@ namespace game::Avatar
 		auto dockables = game::Islands::GetDockableIslands();
 		if (!dockables.empty())
 		{
-			return DoDock(dockables.front());
+			return DoDock(dockables.front().absoluteLocation);
 		}
 		return false;
 	}
