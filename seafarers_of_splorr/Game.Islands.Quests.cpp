@@ -23,7 +23,8 @@ namespace game::islands::Quests
 		{"wickedly",1},
 		{"nastily",1},
 		{"evilly",1},
-		{"gracefully",1}
+		{"gracefully",1},
+		{"mercifully",1}
 	};
 	const std::map<std::string, size_t> itemAdjectives =
 	{
@@ -40,7 +41,8 @@ namespace game::islands::Quests
 		{"throbbing",1},
 		{"pulsating",1},
 		{"writhing",1},
-		{"bulging",1}
+		{"bulging",1},
+		{"chewy",1}
 	};
 	const std::map<std::string, size_t> itemNames =
 	{
@@ -54,7 +56,8 @@ namespace game::islands::Quests
 		{"wine glass",1},
 		{"speculum",1},
 		{"waffle maker",1},
-		{"fleshlight",1}
+		{"fleshlight",1},
+		{"biscuit",1}
 	};
 
 	static std::string GenerateItemName()
@@ -103,7 +106,8 @@ namespace game::islands::Quests
 		{"well-endowed",1},
 		{"poop eating",1},
 		{"stupid",1},
-		{"charming",1}
+		{"charming",1},
+		{"rabid",1}
 	};
 	const std::map<std::string, size_t> professionNames =
 	{
@@ -120,7 +124,8 @@ namespace game::islands::Quests
 		{"scoundrel",1},
 		{"gambler",1},
 		{"gravedigger",1},
-		{"bogan",1}
+		{"bogan",1},
+		{"dog",1}
 	};
 	static std::string GenerateProfessionName()
 	{
