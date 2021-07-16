@@ -11,6 +11,7 @@
 #include "Game.Islands.h"
 #include "Data.Game.Avatar.Destination.h"
 #include "Game.Islands.Quests.h"
+#include "Game.Avatar.Quest.h"
 namespace game::Avatar
 {
 	const double SPEED_MINIMUM = 0.0;
@@ -90,6 +91,7 @@ namespace game::Avatar
 			location,
 			currentTurn);
 		game::islands::Quests::Update(location);
+		game::avatar::Quest::CompleteQuest(location);
 		data::game::avatar::Dock::SetLocation(location);
 		return true;
 	}

@@ -80,7 +80,8 @@ namespace game::islands::Quests
 		{"Jase",1},
 		{"Lyra",1},
 		{"Michael",1},
-		{"Guy",1}
+		{"Guy",1},
+		{"Rufus",1}
 	};
 
 	static std::string GeneratePersonName()

@@ -36,6 +36,7 @@ namespace game::avatar::Quest
 		if (quest.has_value() && quest.value().destination == location)
 		{
 			game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::MONEY, quest.value().reward);
+			game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::REPUTATION, 1.0);
 			data::game::avatar::Quest::Write(std::nullopt);
 			return true;
 		}

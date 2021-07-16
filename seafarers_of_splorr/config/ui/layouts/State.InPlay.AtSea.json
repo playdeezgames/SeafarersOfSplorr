@@ -156,6 +156,13 @@
                 "x": 480,
                 "y": 80,
                 "enabled": false
+            },
+            {
+                "text": "Job",
+                "menu-item-id":"Job",
+                "x": 480,
+                "y": 96,
+                "enabled": false
             }
         ]
     },
@@ -213,6 +220,18 @@
         "menu":{
             "menu-id":"Order",
             "menu-item-id":"Dock"
+        }
+    },
+    {
+        "type":"Area",
+        "area-id":"Job",
+        "x":320,
+        "y":96,
+        "width":320,
+        "height":16,
+        "menu":{
+            "menu-id":"Order",
+            "menu-item-id":"Job"
         }
     },
     {

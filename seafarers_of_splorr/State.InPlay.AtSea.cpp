@@ -29,6 +29,7 @@ namespace state::in_play::AtSea
 	const std::string TEXT_AVATAR_REPUTATION = "avatar-reputation";
 	const std::string MENU_ID = "Order";
 	const std::string MENU_ITEM_DOCK = "Dock";
+	const std::string MENU_ITEM_JOB = "Job";
 	const std::string AREA_CHANGE_HEADING = "ChangeHeading";
 	const std::string AREA_CHANGE_SPEED = "ChangeSpeed";
 	const std::string AREA_MOVE = "Move";
@@ -52,7 +53,8 @@ namespace state::in_play::AtSea
 		CHANGE_SPEED,
 		HEAD_FOR,
 		MOVE,
-		DOCK
+		DOCK,
+		JOB
 	};
 
 	static void OnChangeSpeed()
@@ -79,12 +81,18 @@ namespace state::in_play::AtSea
 		application::UIState::Write(::UIState::IN_PLAY_HEAD_FOR);
 	}
 
+	static void OnJob()
+	{
+		return;
+	}
+
 	const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
 		{OrderMenuItem::CHANGE_SPEED, OnChangeSpeed},
 		{OrderMenuItem::MOVE, OnMove},
 		{OrderMenuItem::DOCK, OnDock},
-		{OrderMenuItem::HEAD_FOR, OnHeadFor}
+		{OrderMenuItem::HEAD_FOR, OnHeadFor},
+		{OrderMenuItem::JOB, OnJob}
 	};
 
 	static void ActivateItem()
@@ -179,6 +187,7 @@ namespace state::in_play::AtSea
 		UpdateAvatarTurns();
 		UpdateAvatarDestination();
 		UpdateAvatarQuestDestination();
+		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_JOB, game::avatar::Quest::Read().has_value());
 	}
 
 	//TODO: get this not hardcoded
