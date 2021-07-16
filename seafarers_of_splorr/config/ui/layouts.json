@@ -22,5 +22,6 @@
     "State.InPlay.HeadFor":"config/ui/layouts/State.InPlay.HeadFor.json",
     "State.InPlay.IslandJobs":"config/ui/layouts/State.InPlay.IslandJobs.json",
     "State.InPlay.ConfirmReplaceJob": "config/ui/layouts/State.InPlay.ConfirmReplaceJob.json",
+    "State.InPlay.ConfirmAbandonJob": "config/ui/layouts/State.InPlay.ConfirmAbandonJob.json",
     "State.InPlay.AvatarJob": "config/ui/layouts/State.InPlay.AvatarJob.json"
 }

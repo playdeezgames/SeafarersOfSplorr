@@ -34,15 +34,9 @@ namespace state::in_play::CurrentJob
 		CANCEL
 	};
 
-	static void OnAbandon()
-	{
-		game::avatar::Quest::AbandonQuest();
-		application::UIState::EnterGame();
-	}
-
 	const std::map<CurrentJobMenuItem, std::function<void()>> activators =
 	{
-		{ CurrentJobMenuItem::ABANDON, OnAbandon },
+		{ CurrentJobMenuItem::ABANDON, ::application::UIState::GoTo(::UIState::IN_PLAY_CONFIRM_ABANDON_JOB) },
 		{ CurrentJobMenuItem::CANCEL, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) }
 	};
 
