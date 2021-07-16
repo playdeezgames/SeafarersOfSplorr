@@ -30,7 +30,8 @@ enum class UIState
 	IN_PLAY_WIN,
 	IN_PLAY_LOSE,
 	IN_PLAY_HEAD_FOR,
-	IN_PLAY_ISLAND_JOBS
+	IN_PLAY_ISLAND_JOBS,
+	IN_PLAY_CONFIRM_REPLACE_JOB
 };
 namespace application::UIState
 {

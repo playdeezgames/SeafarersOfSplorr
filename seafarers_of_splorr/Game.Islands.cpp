@@ -212,6 +212,18 @@ namespace game::Islands
 			turn});
 	}
 
+	void SetKnown(const common::XY<double>& location, const int& turn)
+	{
+		if (!data::game::island::Visits::Read(location))
+		{
+			data::game::island::Visits::Write({
+				location,
+				0,
+				turn });
+		}
+	}
+
+
 	std::optional<IslandModel> Read(const common::XY<double>& location)//TODO: different model for docked?
 	{
 		auto data = data::game::Island::Read(location);

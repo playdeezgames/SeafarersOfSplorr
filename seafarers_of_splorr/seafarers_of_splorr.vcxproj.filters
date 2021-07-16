@@ -235,6 +235,9 @@
     <ClCompile Include="Game.Avatar.Quest.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.ConfirmReplaceJob.cpp">
+      <Filter>Source\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">

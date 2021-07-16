@@ -20,6 +20,7 @@ namespace state::in_play::IslandJobs
 {
 	const std::string LAYOUT_NAME = "State.InPlay.IslandJobs";
 	const std::string MENU_ID = "AcceptJob";
+	const std::string MENU_ITEM_ACCEPT_JOB = "Accept";
 	const std::string TEXT_LINE1 = "Line1";
 	const std::string TEXT_LINE2 = "Line2";
 	const std::string TEXT_LINE3 = "Line3";
@@ -33,13 +34,17 @@ namespace state::in_play::IslandJobs
 		CANCEL
 	};
 
-	static void OnAccept()
+	static void OnAccept()//TODO: make this more declarative
 	{
-		if (game::avatar::Quest::AcceptQuest(game::Avatar::GetDockedLocation().value()))
+		switch (game::avatar::Quest::AcceptQuest(game::Avatar::GetDockedLocation().value()))
 		{
+		case game::avatar::Quest::AcceptQuestResult::ACCEPTED_QUEST:
 			::application::UIState::Write(::UIState::IN_PLAY_DOCKED);
+			break;
+		case game::avatar::Quest::AcceptQuestResult::ALREADY_HAS_QUEST:
+			::application::UIState::Write(::UIState::IN_PLAY_CONFIRM_REPLACE_JOB);
+			break;
 		}
-		//TODO: go to a "replace quest" confirmation page
 	}
 
 	const std::map<AcceptJobMenuItem, std::function<void()>> activators =
@@ -73,6 +78,7 @@ namespace state::in_play::IslandJobs
 		auto islandModel = game::Islands::Read(questModel.destination).value();
 		double distance = game::Heading::Distance(questModel.destination, game::Avatar::GetLocation());
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE5, std::format("at {} ({:.2f}).", islandModel.name, distance));
+		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_ACCEPT_JOB, true);
 	}
 
 	static void UpdateNoQuestText()
@@ -83,6 +89,7 @@ namespace state::in_play::IslandJobs
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE4, "");
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE5, "");
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE6, "");
+		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_ACCEPT_JOB, false);
 	}
 
 	static void UpdateText()

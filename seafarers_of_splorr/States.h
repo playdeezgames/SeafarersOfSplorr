@@ -19,3 +19,4 @@ namespace state::in_play::Win { void Start(); }
 namespace state::in_play::Lose { void Start(); }
 namespace state::in_play::HeadFor { void Start(); }
 namespace state::in_play::IslandJobs { void Start(); }
+namespace state::in_play::ConfirmReplaceJob { void Start(); }

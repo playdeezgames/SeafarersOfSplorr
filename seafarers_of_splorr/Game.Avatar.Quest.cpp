@@ -2,13 +2,15 @@
 #include "Data.Game.Avatar.Quest.h"
 #include "Data.Game.Island.Quests.h"
 #include "Game.Avatar.Statistics.h"
+#include "Data.Game.Island.Known.h"
+#include "Game.Islands.h"
 namespace game::avatar::Quest
 {
-	bool AcceptQuest(const common::XY<double>& location)
+	AcceptQuestResult AcceptQuest(const common::XY<double>& location)
 	{
 		if (data::game::avatar::Quest::Read())
 		{
-			return false;//already have a quest
+			return AcceptQuestResult::ALREADY_HAS_QUEST;
 		}
 		auto quest = data::game::island::Quests::Read(location);
 		if (quest)
@@ -21,9 +23,11 @@ namespace game::avatar::Quest
 					quest.value().personName,
 					quest.value().professionName}));
 			data::game::island::Quests::Clear(location);
-			return true;
+			game::Islands::SetKnown(quest.value().destination,(int)game::avatar::Statistics::GetCurrent(game::avatar::Statistic::TURNS_REMAINING));
+			data::game::island::Known::Write(quest.value().destination);
+			return AcceptQuestResult::ACCEPTED_QUEST;
 		}
-		return false;
+		return AcceptQuestResult::NO_QUEST_TO_ACCEPT;
 	}
 
 	bool CompleteQuest(const common::XY<double>& location)
@@ -43,6 +47,7 @@ namespace game::avatar::Quest
 		if (data::game::avatar::Quest::Read())
 		{
 			game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::REPUTATION, -1.0);//TODO: hardcoded value
+			data::game::avatar::Quest::Write(std::nullopt);
 			return true;
 		}
 		return false;
