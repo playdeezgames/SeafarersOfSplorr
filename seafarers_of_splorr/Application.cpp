@@ -93,6 +93,7 @@ namespace common::Application
 		state::in_play::HeadFor::Start,
 		state::in_play::IslandJobs::Start,
 		state::in_play::ConfirmReplaceJob::Start,
+		state::in_play::CurrentJob::Start,
 		sublayout::UIHamburger::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
