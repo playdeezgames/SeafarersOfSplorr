@@ -53,7 +53,8 @@ namespace game::islands::Quests
 		{"beer bottle",1},
 		{"wine glass",1},
 		{"speculum",1},
-		{"waffle maker",1}
+		{"waffle maker",1},
+		{"fleshlight",1}
 	};
 
 	static std::string GenerateItemName()
