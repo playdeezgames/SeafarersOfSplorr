@@ -26,8 +26,20 @@ namespace game::Items
 		}
 	};
 
+	const std::list<game::Item> itemList =
+	{
+		game::Item::RATIONS,
+		game::Item::SACK_OF_WHEAT
+	};
+
 	const game::ItemDescriptor& Read(const game::Item& item)
 	{
 		return itemTable.find(item)->second;
 	}
+
+	const std::list<game::Item>& All()
+	{
+		return itemList;
+	}
+
 }
