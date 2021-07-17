@@ -12,6 +12,8 @@
 #include "Data.Game.Island.Known.h"
 #include "Data.Game.Avatar.Destination.h"
 #include "Data.Game.Island.Quests.h"
+#include "Data.Game.Island.Market.h"
+#include "Game.Commodities.h"
 namespace game::Islands
 {
 	const size_t RETRY_COUNT = 500;
@@ -127,6 +129,22 @@ namespace game::Islands
 		data::game::island::Visits::Clear();
 		data::game::island::Known::Clear();
 		data::game::avatar::Destination::Clear();
+		data::game::island::Market::Clear();
+	}
+
+	static void GenerateMarkets(const common::XY<double>& location)
+	{
+		for (auto& commodity : game::Commodities::All())
+		{
+			data::game::island::Market::MarketData data =
+			{
+				common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0),
+				common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0),
+				0,
+				0
+			};
+			data::game::island::Market::Write(location, (int)commodity, data);
+		}
 	}
 
 	void Reset(const game::Difficulty&)
@@ -145,6 +163,7 @@ namespace game::Islands
 			data::game::Island::Write(data);
 			locations.pop_front();
 			names.erase(names.begin());
+			GenerateMarkets(data.location);
 		}
 	}
 

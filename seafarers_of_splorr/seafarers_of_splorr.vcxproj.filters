@@ -250,6 +250,9 @@
     <ClCompile Include="Game.Items.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
+    <ClCompile Include="Data.Game.Island.Market.cpp">
+      <Filter>Source\Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
@@ -473,6 +476,9 @@
     </ClInclude>
     <ClInclude Include="Game.Items.h">
       <Filter>Headers\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.Market.h">
+      <Filter>Headers\Data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
