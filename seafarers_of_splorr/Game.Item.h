@@ -3,6 +3,7 @@ namespace game
 {
 	enum class Item
 	{
-		RATIONS
+		RATIONS,
+		SACK_OF_WHEAT
 	};
 }
