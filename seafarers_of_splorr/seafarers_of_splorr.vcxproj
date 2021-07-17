@@ -176,6 +176,7 @@
     <ClCompile Include="Data.Game.Common.cpp" />
     <ClCompile Include="Data.Game.Avatar.Destination.cpp" />
     <ClCompile Include="Data.Game.Island.cpp" />
+    <ClCompile Include="Data.Game.Island.Item.cpp" />
     <ClCompile Include="Data.Game.Island.Known.cpp" />
     <ClCompile Include="Data.Game.Island.Market.cpp" />
     <ClCompile Include="Data.Game.Island.Quests.cpp" />
@@ -266,6 +267,7 @@
     <ClInclude Include="Data.Game.Common.h" />
     <ClInclude Include="Data.Game.Avatar.Destination.h" />
     <ClInclude Include="Data.Game.Island.h" />
+    <ClInclude Include="Data.Game.Island.Item.h" />
     <ClInclude Include="Data.Game.Island.Known.h" />
     <ClInclude Include="Data.Game.Island.Market.h" />
     <ClInclude Include="Data.Game.Island.Quests.h" />
