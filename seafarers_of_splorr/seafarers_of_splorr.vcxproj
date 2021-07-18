@@ -220,6 +220,7 @@
     <ClCompile Include="Visuals.Data.Types.cpp" />
     <ClCompile Include="Visuals.Images.cpp" />
     <ClCompile Include="Visuals.Menus.cpp" />
+    <ClCompile Include="Visuals.SpriteGrid.cpp" />
     <ClCompile Include="Visuals.Sublayout.cpp" />
     <ClCompile Include="Visuals.Texts.cpp" />
     <ClCompile Include="Maze.Direction.cpp" />
@@ -307,6 +308,7 @@
     <ClInclude Include="Visuals.Images.h" />
     <ClInclude Include="Visuals.Menus.h" />
     <ClInclude Include="Visuals.Data.Properties.h" />
+    <ClInclude Include="Visuals.SpriteGrid.h" />
     <ClInclude Include="Visuals.Texts.h" />
     <ClInclude Include="Visuals.Data.Types.h" />
     <ClInclude Include="Application.Renderer.h" />

@@ -11,7 +11,8 @@ namespace visuals::data
 		MENU,
 		TEXT,
 		WORLD_MAP,
-		AREA
+		AREA,
+		SPRITE_GRID
 	};
 }
 namespace visuals::data::Types

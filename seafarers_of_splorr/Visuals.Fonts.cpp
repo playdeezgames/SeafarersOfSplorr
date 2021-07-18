@@ -36,7 +36,7 @@ namespace visuals::Fonts
 
 	static std::map<std::string, std::map<char, std::optional<std::string>>> glyphSpriteNames;
 
-	static std::optional<std::string> GetGlyphSpriteName(const std::string& fontname, char ch)
+	std::optional<std::string> GetGlyphSpriteName(const std::string& fontname, char ch)
 	{
 		auto fontIter = glyphSpriteNames.find(fontname);
 		if (fontIter != glyphSpriteNames.end())
