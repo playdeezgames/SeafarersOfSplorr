@@ -6,6 +6,7 @@
 #include "Game.World.h"
 #include "Data.Game.World.h"
 #include "Game.Avatar.Statistics.h"
+#include "Game.Avatar.Items.h"
 namespace game
 {
 	void Reset(const Difficulty& difficulty)
@@ -13,8 +14,10 @@ namespace game
 		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);
 		game::World::Reset(difficulty);
 		game::Islands::Reset(difficulty);
+
 		game::Avatar::Reset(difficulty);
 		game::avatar::Statistics::Reset(difficulty);
+		game::avatar::Items::Reset();
 	}
 
 	void Start()

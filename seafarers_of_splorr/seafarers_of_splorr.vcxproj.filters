@@ -256,6 +256,12 @@
     <ClCompile Include="Data.Game.Island.Item.cpp">
       <Filter>Source\Data</Filter>
     </ClCompile>
+    <ClCompile Include="Data.Game.Avatar.Items.cpp">
+      <Filter>Source\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Avatar.Items.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
@@ -485,6 +491,12 @@
     </ClInclude>
     <ClInclude Include="Data.Game.Island.Item.h">
       <Filter>Headers\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Avatar.Items.h">
+      <Filter>Headers\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Avatar.Items.h">
+      <Filter>Headers\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
