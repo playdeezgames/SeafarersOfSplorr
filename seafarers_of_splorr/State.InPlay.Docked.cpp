@@ -35,16 +35,11 @@ namespace state::in_play::Docked
 		application::UIState::EnterGame();
 	}
 
-	static void OnTrade()
-	{
-		return;
-	}
-
 	const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
 		{ OrderMenuItem::UNDOCK, OnUndock },
 		{ OrderMenuItem::JOBS, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_JOBS) },
-		{ OrderMenuItem::TRADE, OnTrade }
+		{ OrderMenuItem::TRADE, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_TRADE) }
 	};
 
 	static void ActivateItem()

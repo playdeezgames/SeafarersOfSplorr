@@ -262,6 +262,9 @@
     <ClCompile Include="Game.Avatar.Items.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.IslandTrade.cpp">
+      <Filter>Source\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
