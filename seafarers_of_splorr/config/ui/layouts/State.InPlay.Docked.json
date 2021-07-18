@@ -52,6 +52,12 @@
                 "menu-item-id": "Jobs",
                 "x": 320,
                 "y": 48
+            },
+            {
+                "text": "Trade",
+                "menu-item-id": "Trade",
+                "x": 320,
+                "y": 64
             }
         ]
     },
@@ -77,6 +83,18 @@
         "menu":{
             "menu-id":"Order",
             "menu-item-id":"Jobs"
+        }
+    },
+    {
+        "type":"Area",
+        "area-id":"Trade",
+        "x":240,
+        "y":64,
+        "width":160,
+        "height":16,
+        "menu":{
+            "menu-id":"Order",
+            "menu-item-id":"Trade"
         }
     },
     {

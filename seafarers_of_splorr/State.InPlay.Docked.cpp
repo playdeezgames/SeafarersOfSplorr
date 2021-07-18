@@ -25,7 +25,8 @@ namespace state::in_play::Docked
 	enum class OrderMenuItem
 	{
 		UNDOCK,
-		JOBS
+		JOBS,
+		TRADE
 	};
 
 	static void OnUndock()
@@ -34,10 +35,16 @@ namespace state::in_play::Docked
 		application::UIState::EnterGame();
 	}
 
+	static void OnTrade()
+	{
+		return;
+	}
+
 	const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
 		{ OrderMenuItem::UNDOCK, OnUndock },
-		{ OrderMenuItem::JOBS, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_JOBS) }
+		{ OrderMenuItem::JOBS, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_JOBS) },
+		{ OrderMenuItem::TRADE, OnTrade }
 	};
 
 	static void ActivateItem()
