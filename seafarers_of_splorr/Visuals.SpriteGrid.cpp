@@ -116,6 +116,7 @@ namespace visuals::SpriteGrid
 				visuals::Fonts::GetGlyphSpriteName(fontName, ch).value(),
 				color
 			};
+			currentLocation = currentLocation + common::XY<int>(1, 0);
 		}
 	}
 

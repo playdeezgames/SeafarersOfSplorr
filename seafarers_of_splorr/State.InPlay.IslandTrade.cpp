@@ -25,11 +25,6 @@ namespace state::in_play::IslandTrade
 		LEAVE
 	};
 
-	static void OnBuy()
-	{
-		return;
-	}
-
 	static void OnSell()
 	{
 		return;
@@ -37,7 +32,7 @@ namespace state::in_play::IslandTrade
 
 	const std::map<TradeMenuItem, std::function<void()>> activators =
 	{
-		{ TradeMenuItem::BUY, OnBuy },
+		{ TradeMenuItem::BUY, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_BUY) },
 		{ TradeMenuItem::SELL, OnSell },
 		{ TradeMenuItem::LEAVE, ::application::UIState::GoTo(::UIState::IN_PLAY_DOCKED) }
 	};

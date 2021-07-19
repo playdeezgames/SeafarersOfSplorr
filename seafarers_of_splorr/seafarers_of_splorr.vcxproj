@@ -195,6 +195,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game.Heading.cpp" />
     <ClCompile Include="Game.Islands.cpp" />
+    <ClCompile Include="Game.Islands.Items.cpp" />
     <ClCompile Include="Game.Islands.Quests.cpp" />
     <ClCompile Include="Game.Items.cpp" />
     <ClCompile Include="Game.World.cpp" />
@@ -208,6 +209,7 @@
     <ClCompile Include="State.InPlay.CurrentJob.cpp" />
     <ClCompile Include="State.InPlay.Docked.cpp" />
     <ClCompile Include="State.InPlay.HeadFor.cpp" />
+    <ClCompile Include="State.InPlay.IslandBuy.cpp" />
     <ClCompile Include="State.InPlay.IslandJobs.cpp" />
     <ClCompile Include="State.InPlay.IslandTrade.cpp" />
     <ClCompile Include="State.InPlay.Lose.cpp" />
@@ -293,6 +295,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Game.Heading.h" />
     <ClInclude Include="Game.Islands.h" />
+    <ClInclude Include="Game.Islands.Items.h" />
     <ClInclude Include="Game.Islands.Quests.h" />
     <ClInclude Include="Game.Item.h" />
     <ClInclude Include="Game.ItemDescriptor.h" />
