@@ -44,7 +44,10 @@ namespace state::in_play::IslandBuy
 	static void UpdateUnitPrices()
 	{
 		unitPrices = game::islands::Items::GetPrices(game::Avatar::GetDockedLocation().value());
+	}
 
+	static void RefreshUnitPrices()
+	{
 		int row = 0;
 		int gridRow = 2;
 		for (auto& unitPrice : unitPrices)
@@ -67,18 +70,19 @@ namespace state::in_play::IslandBuy
 		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
 		UpdateUnitPrices();
 		RefreshHeader();
+		RefreshUnitPrices();
 	}
 
 	static void PreviousItem()
 	{
 		hiliteRow = (hiliteRow + unitPrices.size() - 1) % unitPrices.size();
-		UpdateUnitPrices();
+		RefreshUnitPrices();
 	}
 
 	static void NextItem()
 	{
 		hiliteRow = (hiliteRow + 1) % unitPrices.size();
-		UpdateUnitPrices();
+		RefreshUnitPrices();
 	}
 
 	const std::map<::Command, std::function<void()>> commandHandlers =
