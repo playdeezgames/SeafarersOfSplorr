@@ -8,7 +8,7 @@ namespace game::Items
 			{
 				"rations",
 				{
-					{game::Commodity::WHEAT, 0.01}
+					{game::Commodity::WHEAT, 0.1}
 				},
 				1,
 				0
@@ -21,7 +21,7 @@ namespace game::Items
 					{game::Commodity::WHEAT, 1.0}
 				},
 				1,
-				1
+				0
 			}
 		}
 	};

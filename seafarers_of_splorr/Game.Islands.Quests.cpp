@@ -57,7 +57,9 @@ namespace game::islands::Quests
 		{"speculum",1},
 		{"waffle maker",1},
 		{"fleshlight",1},
-		{"biscuit",1}
+		{"biscuit",1},
+		{"marmite",1},
+		{"vegemite",1}
 	};
 
 	static std::string GenerateItemName()
