@@ -3,7 +3,12 @@ namespace game
 {
 	enum class Commodity
 	{
-		WHEAT
+		WHEAT,
+		WOOD,
+		MEAT,
+		WOOL,
+		JOOLS,
+		LABOR
 	};
 
 }
