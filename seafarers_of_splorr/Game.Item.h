@@ -4,6 +4,10 @@ namespace game
 	enum class Item
 	{
 		RATIONS,
-		SACK_OF_WHEAT
+		SACK_OF_WHEAT,
+		JOOLS,
+		CLOTH,
+		TROUSERS,
+		FISH
 	};
 }

@@ -12,10 +12,7 @@ namespace game::Commodities
 		{game::Commodity::JOOLS, { "jools", 100.0, 0.01, 0.01, 0.15}}
 	};
 
-	const std::list<game::Commodity> commodityList =
-	{
-		game::Commodity::WHEAT
-	};
+	static std::list<game::Commodity> commodityList;
 
 	const game::CommodityDescriptor& Read(const game::Commodity& commodity)
 	{
@@ -24,6 +21,13 @@ namespace game::Commodities
 
 	const std::list<game::Commodity>& All()
 	{
+		if (commodityList.empty())
+		{
+			for (auto entry : commodityTable)
+			{
+				commodityList.push_back(entry.first);
+			}
+		}
 		return commodityList;
 	}
 }

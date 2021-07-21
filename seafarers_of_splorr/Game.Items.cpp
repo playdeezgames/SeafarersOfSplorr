@@ -23,14 +23,52 @@ namespace game::Items
 				1,
 				0
 			}
+		},
+		{game::Item::CLOTH,
+			{
+				"cloth",
+				{
+					{game::Commodity::WOOL, 0.25},
+					{game::Commodity::LABOR, 0.1}
+				},
+				3,
+				1
+			}
+		},
+		{game::Item::FISH,
+			{
+				"fish",
+				{
+					{game::Commodity::MEAT, 0.2}
+				},
+				5,
+				1
+			}
+		},
+		{game::Item::JOOLS,
+			{
+				"jools",
+				{
+					{game::Commodity::JOOLS, 1.0}
+				},
+				1,
+				0
+			}
+		},
+		{game::Item::TROUSERS,
+			{
+				"trousers",
+				{
+					{game::Commodity::WOOL, 1.0},
+					{game::Commodity::LABOR, 0.75}
+				},
+				1,
+				1
+			}
 		}
 	};
 
-	const std::list<game::Item> itemList =
-	{
-		game::Item::RATIONS,
-		game::Item::SACK_OF_WHEAT
-	};
+	static std::list<game::Item> itemList;
 
 	const game::ItemDescriptor& Read(const game::Item& item)
 	{
@@ -39,6 +77,13 @@ namespace game::Items
 
 	const std::list<game::Item>& All()
 	{
+		if (itemList.empty())
+		{
+			for (auto entry : itemTable)
+			{
+				itemList.push_back(entry.first);
+			}
+		}
 		return itemList;
 	}
 
