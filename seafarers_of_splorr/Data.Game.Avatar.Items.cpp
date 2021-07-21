@@ -6,7 +6,7 @@ namespace data::game::avatar::Items
 {
 	const std::string FIELD_ITEM_ID = "ItemId";
 	const std::string FIELD_ITEM_COUNT = "ItemCount";
-	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarItems]([AvatarId] INT NOT,[ItemId] INT NOT NULL, [ItemCount] INT NOT NULL, UNIQUE([AvatarId],[ItemId]))";
+	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarItems]([AvatarId] INT NOT NULL,[ItemId] INT NOT NULL, [ItemCount] INT NOT NULL, UNIQUE([AvatarId],[ItemId]))";
 	const std::string REPLACE_ITEM = "REPLACE INTO [AvatarItems]([AvatarId],[ItemId],[ItemCount]) VALUES({},{},{});";
 	const std::string QUERY_ITEM = "SELECT [ItemCount] FROM [AvatarItems] WHERE [AvatarId]={} AND [ItemId]={};";
 	const std::string QUERY_ALL = "SELECT [ItemId],[ItemCount] FROM [AvatarItems] WHERE [AvatarId]={};";

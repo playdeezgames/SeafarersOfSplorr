@@ -120,4 +120,10 @@ namespace visuals::SpriteGrid
 		}
 	}
 
+	void Clear(const std::string& layoutName, const std::string& spriteGridId)
+	{
+		size_t gridIndex = spriteGridTable[layoutName][spriteGridId];
+		auto& spriteGrid = spriteGrids[gridIndex];
+		spriteGrid.cells.clear();
+	}
 }

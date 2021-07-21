@@ -9,6 +9,8 @@
 #include "Game.Avatar.h"
 #include <format>
 #include "Game.Avatar.Items.h"
+#include "Game.Avatar.Statistics.h"
+#include "Game.Islands.Markets.h"
 namespace state::in_play::IslandBuy
 {
 	const std::string LAYOUT_NAME = "State.InPlay.IslandBuy";
@@ -65,30 +67,71 @@ namespace state::in_play::IslandBuy
 		}
 	}
 
+	static double GetMoney()
+	{
+		return game::avatar::Statistics::GetCurrent(game::avatar::Statistic::MONEY);
+	}
+
+	static void RefreshStatistics()
+	{
+		WriteTextToGrid(
+			{ 0, 19 }, 
+			std::format(
+				"Money: {:.3f}",
+				GetMoney()), 
+			COLOR_DEFAULT);
+	}
+
+	static void RefreshGrid()
+	{
+		visuals::SpriteGrid::Clear(LAYOUT_NAME, SPRITE_GRID_ID);
+		RefreshHeader();
+		RefreshUnitPrices();
+		RefreshStatistics();
+	}
+
 	void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
 		UpdateUnitPrices();
-		RefreshHeader();
-		RefreshUnitPrices();
+		RefreshGrid();
 	}
 
 	static void PreviousItem()
 	{
-		hiliteRow = (hiliteRow + unitPrices.size() - 1) % unitPrices.size();
+		hiliteRow = (hiliteRow + (int)unitPrices.size() - 1) % (int)unitPrices.size();
 		RefreshUnitPrices();
 	}
 
 	static void NextItem()
 	{
-		hiliteRow = (hiliteRow + 1) % unitPrices.size();
+		hiliteRow = (hiliteRow + 1) % (int)unitPrices.size();
 		RefreshUnitPrices();
+	}
+
+	static void BuyItem()
+	{
+		auto unitPrice = unitPrices.begin();
+		int index = hiliteRow;
+		while (index > 0)
+		{
+			unitPrice++;
+			index--;
+		}
+		if (GetMoney() >= unitPrice->second)
+		{
+			game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::MONEY, -unitPrice->second);
+			game::islands::Markets::BuyItems(game::Avatar::GetDockedLocation().value(), unitPrice->first, 1);
+			game::avatar::Items::Add(unitPrice->first, 1);
+			RefreshGrid();
+		}
 	}
 
 	const std::map<::Command, std::function<void()>> commandHandlers =
 	{
 		{ ::Command::UP, PreviousItem },
 		{ ::Command::DOWN, NextItem },
+		{ ::Command::GREEN, BuyItem },
 		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_TRADE) },
 		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_TRADE) }
 	};

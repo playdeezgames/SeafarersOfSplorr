@@ -274,6 +274,9 @@
     <ClCompile Include="Game.Islands.Items.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Islands.Markets.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
@@ -514,6 +517,9 @@
       <Filter>Headers\Visuals</Filter>
     </ClInclude>
     <ClInclude Include="Game.Islands.Items.h">
+      <Filter>Headers\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Islands.Markets.h">
       <Filter>Headers\Game</Filter>
     </ClInclude>
   </ItemGroup>
