@@ -12,6 +12,7 @@
 #include "Data.Game.Avatar.Destination.h"
 #include "Game.Islands.Quests.h"
 #include "Game.Avatar.Quest.h"
+#include "Game.Avatar.Items.h"
 namespace game::Avatar
 {
 	const double SPEED_MINIMUM = 0.0;
@@ -64,6 +65,7 @@ namespace game::Avatar
 		const double TURN_DELTA = -1.0;
 		const double HUNGER_DELTA = -1.0;
 		const double HEALTH_DELTA = -1.0;
+		const double EAT_BENEFIT = 10.0;
 		game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::TURNS_REMAINING, TURN_DELTA);
 		if (game::avatar::Statistics::GetCurrent(game::avatar::Statistic::HUNGER) > game::avatar::Statistics::GetMinimum(game::avatar::Statistic::HUNGER))
 		{
@@ -72,6 +74,15 @@ namespace game::Avatar
 		else
 		{
 			game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::HEALTH, HEALTH_DELTA);
+		}
+		if (game::avatar::Statistics::NeedToEat(EAT_BENEFIT))
+		{
+			auto rations = game::avatar::Items::Read(game::Item::RATIONS);
+			if (rations > 0)
+			{
+				game::avatar::Statistics::Eat(EAT_BENEFIT);
+				game::avatar::Items::Remove(game::Item::RATIONS, 1);
+			}
 		}
 	}
 
