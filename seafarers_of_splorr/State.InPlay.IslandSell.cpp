@@ -11,9 +11,9 @@
 #include "Game.Avatar.Items.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Islands.Markets.h"
-namespace state::in_play::IslandBuy
+namespace state::in_play::IslandSell
 {
-	const std::string LAYOUT_NAME = "State.InPlay.IslandBuy";
+	const std::string LAYOUT_NAME = "State.InPlay.IslandSell";
 	const std::string SPRITE_GRID_ID = "Grid";
 	const std::string FONT_DEFAULT = "default";
 	const std::string COLOR_DEFAULT = "Gray";
@@ -45,7 +45,7 @@ namespace state::in_play::IslandBuy
 
 	static void UpdateUnitPrices()
 	{
-		unitPrices = game::islands::Items::GetPurchasePrices(game::Avatar::GetDockedLocation().value());
+		unitPrices = game::islands::Items::GetSalePrices(game::Avatar::GetDockedLocation().value());
 	}
 
 	static void RefreshUnitPrices()
@@ -56,12 +56,12 @@ namespace state::in_play::IslandBuy
 		{
 			auto& itemDescriptor = game::Items::Read(unitPrice.first);
 			WriteTextToGrid(
-				{ 0, gridRow }, 
-				std::format("{:15s} | {:7.3f} | {:4d}", 
-					itemDescriptor.name, 
+				{ 0, gridRow },
+				std::format("{:15s} | {:7.3f} | {:4d}",
+					itemDescriptor.name,
 					unitPrice.second,
-					game::avatar::Items::Read(unitPrice.first)), 
-				(row==hiliteRow) ? (COLOR_HILITE) : (COLOR_DEFAULT));
+					game::avatar::Items::Read(unitPrice.first)),
+				(row == hiliteRow) ? (COLOR_HILITE) : (COLOR_DEFAULT));
 			++gridRow;
 			++row;
 		}
@@ -75,10 +75,10 @@ namespace state::in_play::IslandBuy
 	static void RefreshStatistics()
 	{
 		WriteTextToGrid(
-			{ 0, 19 }, 
+			{ 0, 19 },
 			std::format(
 				"Money: {:.3f}",
-				GetMoney()), 
+				GetMoney()),
 			COLOR_DEFAULT);
 	}
 
@@ -109,7 +109,7 @@ namespace state::in_play::IslandBuy
 		RefreshUnitPrices();
 	}
 
-	static void BuyItem()
+	static void SellItem()
 	{
 		auto unitPrice = unitPrices.begin();
 		int index = hiliteRow;
@@ -118,11 +118,12 @@ namespace state::in_play::IslandBuy
 			unitPrice++;
 			index--;
 		}
-		if (GetMoney() >= unitPrice->second)
+		auto owned = game::avatar::Items::Read(unitPrice->first);
+		if (owned>0)
 		{
-			game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::MONEY, -unitPrice->second);
-			game::islands::Markets::BuyItems(game::Avatar::GetDockedLocation().value(), unitPrice->first, 1);
-			game::avatar::Items::Add(unitPrice->first, 1);
+			game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::MONEY, +unitPrice->second);
+			game::islands::Markets::SellItems(game::Avatar::GetDockedLocation().value(), unitPrice->first, 1);
+			game::avatar::Items::Remove(unitPrice->first, 1);
 			RefreshGrid();
 		}
 	}
@@ -131,16 +132,16 @@ namespace state::in_play::IslandBuy
 	{
 		{ ::Command::UP, PreviousItem },
 		{ ::Command::DOWN, NextItem },
-		{ ::Command::GREEN, BuyItem },
+		{ ::Command::GREEN, SellItem },
 		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_TRADE) },
 		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_TRADE) }
 	};
 
 	void Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_ISLAND_BUY, OnEnter);
-		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_ISLAND_BUY, OnMouseButtonUp);
-		::application::Command::SetHandlers(::UIState::IN_PLAY_ISLAND_BUY, commandHandlers);
-		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_ISLAND_BUY, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(::UIState::IN_PLAY_ISLAND_SELL, OnEnter);
+		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_ISLAND_SELL, OnMouseButtonUp);
+		::application::Command::SetHandlers(::UIState::IN_PLAY_ISLAND_SELL, commandHandlers);
+		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_ISLAND_SELL, LAYOUT_NAME);
 	}
 }

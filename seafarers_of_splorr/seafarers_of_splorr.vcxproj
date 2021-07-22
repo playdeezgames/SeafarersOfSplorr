@@ -212,6 +212,7 @@
     <ClCompile Include="State.InPlay.HeadFor.cpp" />
     <ClCompile Include="State.InPlay.IslandBuy.cpp" />
     <ClCompile Include="State.InPlay.IslandJobs.cpp" />
+    <ClCompile Include="State.InPlay.IslandSell.cpp" />
     <ClCompile Include="State.InPlay.IslandTrade.cpp" />
     <ClCompile Include="State.InPlay.Lose.cpp" />
     <ClCompile Include="State.InPlay.Win.cpp" />
