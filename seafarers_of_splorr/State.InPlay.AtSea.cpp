@@ -17,6 +17,7 @@
 #include "Game.Heading.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Avatar.Quest.h"
+#include "Application.Update.h"
 namespace state::in_play::AtSea
 {
 	const std::string LAYOUT_NAME = "State.InPlay.AtSea";
@@ -45,6 +46,27 @@ namespace state::in_play::AtSea
 	const std::string IMAGE_DESTINATION = "Destination";
 	const std::string IMAGE_QUEST_DESTINATION = "QuestDestination";
 	const common::XY<int> CENTER = { 64, 64 };//TODO: hardcoded
+	const size_t TICKS_TOTAL = 1000;
+	static size_t ticksLeft = TICKS_TOTAL;
+	enum class AutoMoveState
+	{
+		OFF,
+		ON,
+		STARTING
+	};
+	static AutoMoveState autoMoveState = AutoMoveState::OFF;
+	static void ToggleAutoMove()
+	{
+		if (autoMoveState == AutoMoveState::OFF)
+		{
+			ticksLeft = TICKS_TOTAL;
+			autoMoveState = AutoMoveState::STARTING;
+		}
+		else
+		{
+			autoMoveState = AutoMoveState::OFF;
+		}
+	}
 
 	static double newHeading = 0.0;
 
@@ -58,17 +80,33 @@ namespace state::in_play::AtSea
 		CARGO
 	};
 
+	static void OnEnter();
+	static void OnUpdate(const unsigned int& ticks)
+	{
+		if (autoMoveState != AutoMoveState::OFF)
+		{
+			if (ticks >= ticksLeft)
+			{
+				ticksLeft = TICKS_TOTAL;
+				game::Avatar::Move();
+				application::UIState::EnterGame();
+				OnEnter();
+			}
+			else
+			{
+				ticksLeft -= ticks;
+			}
+		}
+	}
+
 	static void OnChangeSpeed()
 	{
 		::application::UIState::Write(::UIState::IN_PLAY_CHANGE_SPEED);
 	}
 
-	static void OnEnter();
 	static void OnMove()
 	{
-		game::Avatar::Move();
-		application::UIState::EnterGame();
-		OnEnter();
+		ToggleAutoMove();
 	}
 
 	static void OnDock()
@@ -241,6 +279,20 @@ namespace state::in_play::AtSea
 			++icon;
 		}
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_DOCK, canDock);
+		if (canDock)
+		{
+			if(autoMoveState == AutoMoveState::ON)
+			{
+				autoMoveState = AutoMoveState::OFF;
+			}
+		}
+		else
+		{
+			if (autoMoveState == AutoMoveState::STARTING)
+			{
+				autoMoveState = AutoMoveState::ON;
+			}
+		}
 	}
 
 	static void OnEnter()
@@ -287,6 +339,7 @@ namespace state::in_play::AtSea
 
 	void Start()
 	{
+		::application::Update::AddHandler(::UIState::IN_PLAY_AT_SEA, OnUpdate);
 		::application::OnEnter::AddHandler(::UIState::IN_PLAY_AT_SEA, OnEnter);
 		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_AT_SEA, LAYOUT_NAME);
 		::application::Command::SetHandlers(::UIState::IN_PLAY_AT_SEA, commandHandlers);
