@@ -36,7 +36,8 @@ enum class UIState
 	IN_PLAY_CURRENT_JOB,
 	IN_PLAY_ISLAND_TRADE,
 	IN_PLAY_ISLAND_BUY,
-	IN_PLAY_ISLAND_SELL
+	IN_PLAY_ISLAND_SELL,
+	IN_PLAY_CARGO
 };
 namespace application::UIState
 {

@@ -54,7 +54,8 @@ namespace state::in_play::AtSea
 		HEAD_FOR,
 		MOVE,
 		DOCK,
-		JOB
+		JOB,
+		CARGO
 	};
 
 	static void OnChangeSpeed()
@@ -86,13 +87,19 @@ namespace state::in_play::AtSea
 		application::UIState::Write(::UIState::IN_PLAY_CURRENT_JOB);
 	}
 
+	static void OnCargo()
+	{
+		application::UIState::Write(::UIState::IN_PLAY_CARGO);
+	}
+
 	const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
 		{OrderMenuItem::CHANGE_SPEED, OnChangeSpeed},
 		{OrderMenuItem::MOVE, OnMove},
 		{OrderMenuItem::DOCK, OnDock},
 		{OrderMenuItem::HEAD_FOR, OnHeadFor},
-		{OrderMenuItem::JOB, OnJob}
+		{OrderMenuItem::JOB, OnJob},
+		{OrderMenuItem::CARGO, OnCargo}
 	};
 
 	static void ActivateItem()

@@ -163,6 +163,13 @@
                 "x": 480,
                 "y": 96,
                 "enabled": false
+            },
+            {
+                "text": "Cargo",
+                "menu-item-id":"Cargo",
+                "x": 480,
+                "y": 112,
+                "enabled": true
             }
         ]
     },
@@ -232,6 +239,18 @@
         "menu":{
             "menu-id":"Order",
             "menu-item-id":"Job"
+        }
+    },
+    {
+        "type":"Area",
+        "area-id":"Cargo",
+        "x":320,
+        "y":112,
+        "width":320,
+        "height":16,
+        "menu":{
+            "menu-id":"Order",
+            "menu-item-id":"Cargo"
         }
     },
     {

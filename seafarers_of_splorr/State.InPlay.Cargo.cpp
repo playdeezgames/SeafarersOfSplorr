@@ -11,9 +11,9 @@
 #include "Game.Avatar.Items.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Islands.Markets.h"
-namespace state::in_play::IslandSell
+namespace state::in_play::Cargo
 {
-	const std::string LAYOUT_NAME = "State.InPlay.IslandSell";
+	const std::string LAYOUT_NAME = "State.InPlay.Cargo";
 	const std::string SPRITE_GRID_ID = "Grid";
 	const std::string FONT_DEFAULT = "default";
 	const std::string COLOR_DEFAULT = "Gray";
@@ -28,7 +28,7 @@ namespace state::in_play::IslandSell
 
 	static bool OnMouseButtonUp(const common::XY<int>& xy, unsigned char buttons)
 	{
-		::application::UIState::Write(::UIState::IN_PLAY_ISLAND_TRADE);
+		::application::UIState::Write(::UIState::IN_PLAY_AT_SEA);
 		return true;
 	}
 
@@ -37,30 +37,29 @@ namespace state::in_play::IslandSell
 		WriteTextToGrid({ 0, 0 }, "<-", COLOR_PAGE_HEADER);
 		WriteTextToGrid({ 37, 0 }, "->", COLOR_PAGE_HEADER);
 		WriteTextToGrid({ 15, 0 }, "Page 1 of 1", COLOR_PAGE_HEADER);
-		WriteTextToGrid({ 0,1 }, std::format("{:15s}   {:7s}   {:4s}", "Item", "  Price", " Own"), COLOR_TABLE_HEADER);
+		WriteTextToGrid({ 0,1 }, std::format("{:15s}   {:4s}", "Item", "  Price", " Own"), COLOR_TABLE_HEADER);
 	}
 
-	static std::map<game::Item, double> unitPrices;
+	static std::map<game::Item, size_t> manifest;
 	static int hiliteRow = 0;
 
-	static void UpdateUnitPrices()
+	static void UpdateManifest()
 	{
-		unitPrices = game::islands::Items::GetSalePrices(game::Avatar::GetDockedLocation().value());
+		manifest = game::avatar::Items::All();
 	}
 
-	static void RefreshUnitPrices()
+	static void RefreshManifest()
 	{
 		int row = 0;
 		int gridRow = 2;
-		for (auto& unitPrice : unitPrices)
+		for (auto& entry : manifest)
 		{
-			auto& itemDescriptor = game::Items::Read(unitPrice.first);
+			auto& itemDescriptor = game::Items::Read(entry.first);
 			WriteTextToGrid(
 				{ 0, gridRow },
-				std::format("{:15s} | {:7.3f} | {:4d}",
+				std::format("{:15s} | {:4d}",
 					itemDescriptor.name,
-					unitPrice.second,
-					game::avatar::Items::Read(unitPrice.first)),
+					entry.second),
 				(row == hiliteRow) ? (COLOR_HILITE) : (COLOR_DEFAULT));
 			++gridRow;
 			++row;
@@ -86,63 +85,42 @@ namespace state::in_play::IslandSell
 	{
 		visuals::SpriteGrid::Clear(LAYOUT_NAME, SPRITE_GRID_ID);
 		RefreshHeader();
-		RefreshUnitPrices();
+		RefreshManifest();
 		RefreshStatistics();
 	}
 
 	void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
-		UpdateUnitPrices();
+		UpdateManifest();
 		RefreshGrid();
 	}
 
 	static void PreviousItem()
 	{
-		hiliteRow = (hiliteRow + (int)unitPrices.size() - 1) % (int)unitPrices.size();
-		RefreshUnitPrices();
+		hiliteRow = (hiliteRow + (int)manifest.size() - 1) % (int)manifest.size();
+		RefreshManifest();
 	}
 
 	static void NextItem()
 	{
-		hiliteRow = (hiliteRow + 1) % (int)unitPrices.size();
-		RefreshUnitPrices();
-	}
-
-	static void SellItem()
-	{
-		auto unitPrice = unitPrices.begin();
-		int index = hiliteRow;
-		while (index > 0)
-		{
-			unitPrice++;
-			index--;
-		}
-		auto owned = game::avatar::Items::Read(unitPrice->first);
-		if (owned>0)
-		{
-			game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::MONEY, +unitPrice->second);
-			game::islands::Markets::SellItems(game::Avatar::GetDockedLocation().value(), unitPrice->first, 1);
-			game::avatar::Items::Remove(unitPrice->first, 1);
-			UpdateUnitPrices();
-			RefreshGrid();
-		}
+		hiliteRow = (hiliteRow + 1) % (int)manifest.size();
+		RefreshManifest();
 	}
 
 	const std::map<::Command, std::function<void()>> commandHandlers =
 	{
 		{ ::Command::UP, PreviousItem },
 		{ ::Command::DOWN, NextItem },
-		{ ::Command::GREEN, SellItem },
-		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_TRADE) },
-		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_TRADE) }
+		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) },
+		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) }
 	};
 
 	void Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_ISLAND_SELL, OnEnter);
-		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_ISLAND_SELL, OnMouseButtonUp);
-		::application::Command::SetHandlers(::UIState::IN_PLAY_ISLAND_SELL, commandHandlers);
-		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_ISLAND_SELL, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(::UIState::IN_PLAY_CARGO, OnEnter);
+		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_CARGO, OnMouseButtonUp);
+		::application::Command::SetHandlers(::UIState::IN_PLAY_CARGO, commandHandlers);
+		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_CARGO, LAYOUT_NAME);
 	}
 }

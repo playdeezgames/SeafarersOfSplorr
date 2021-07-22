@@ -123,6 +123,7 @@ namespace state::in_play::IslandBuy
 			game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::MONEY, -unitPrice->second);
 			game::islands::Markets::BuyItems(game::Avatar::GetDockedLocation().value(), unitPrice->first, 1);
 			game::avatar::Items::Add(unitPrice->first, 1);
+			UpdateUnitPrices();
 			RefreshGrid();
 		}
 	}

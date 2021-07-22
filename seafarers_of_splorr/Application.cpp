@@ -98,6 +98,7 @@ namespace common::Application
 		state::in_play::IslandTrade::Start,
 		state::in_play::IslandBuy::Start,
 		state::in_play::IslandSell::Start,
+		state::in_play::Cargo::Start,
 		sublayout::UIHamburger::Start,
 		Options::Initialize,
 		visuals::Layouts::Start

@@ -204,6 +204,7 @@
     <ClCompile Include="State.ConfirmAbandon.cpp" />
     <ClCompile Include="State.ConfirmOverwrite.cpp" />
     <ClCompile Include="State.InPlay.AtSea.cpp" />
+    <ClCompile Include="State.InPlay.Cargo.cpp" />
     <ClCompile Include="State.InPlay.ChangeSpeed.cpp" />
     <ClCompile Include="State.InPlay.ConfirmAbandonJob.cpp" />
     <ClCompile Include="State.InPlay.ConfirmReplaceJob.cpp" />

@@ -26,5 +26,6 @@
     "State.InPlay.AvatarJob": "config/ui/layouts/State.InPlay.AvatarJob.json",
     "State.InPlay.IslandTrade": "config/ui/layouts/State.InPlay.IslandTrade.json",
     "State.InPlay.IslandBuy": "config/ui/layouts/State.InPlay.IslandBuy.json",
-    "State.InPlay.IslandSell": "config/ui/layouts/State.InPlay.IslandSell.json"
+    "State.InPlay.IslandSell": "config/ui/layouts/State.InPlay.IslandSell.json",
+    "State.InPlay.Cargo": "config/ui/layouts/State.InPlay.Cargo.json"
 }
