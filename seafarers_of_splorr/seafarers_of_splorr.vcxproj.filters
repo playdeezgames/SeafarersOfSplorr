@@ -283,6 +283,9 @@
     <ClCompile Include="State.InPlay.Cargo.cpp">
       <Filter>Source\States</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Ships.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
@@ -526,6 +529,15 @@
       <Filter>Headers\Game</Filter>
     </ClInclude>
     <ClInclude Include="Game.Islands.Markets.h">
+      <Filter>Headers\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Ship.h">
+      <Filter>Headers\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Ships.h">
+      <Filter>Headers\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.ShipDescriptor.h">
       <Filter>Headers\Game</Filter>
     </ClInclude>
   </ItemGroup>

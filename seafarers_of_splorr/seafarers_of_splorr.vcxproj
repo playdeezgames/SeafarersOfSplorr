@@ -199,6 +199,7 @@
     <ClCompile Include="Game.Islands.Markets.cpp" />
     <ClCompile Include="Game.Islands.Quests.cpp" />
     <ClCompile Include="Game.Items.cpp" />
+    <ClCompile Include="Game.Ships.cpp" />
     <ClCompile Include="Game.World.cpp" />
     <ClCompile Include="sqlite3.c" />
     <ClCompile Include="State.ConfirmAbandon.cpp" />
@@ -305,6 +306,9 @@
     <ClInclude Include="Game.ItemDescriptor.h" />
     <ClInclude Include="Game.Items.h" />
     <ClInclude Include="Game.Quest.h" />
+    <ClInclude Include="Game.Ship.h" />
+    <ClInclude Include="Game.ShipDescriptor.h" />
+    <ClInclude Include="Game.Ships.h" />
     <ClInclude Include="Game.World.h" />
     <ClInclude Include="Maze.Door.h" />
     <ClInclude Include="sqlite3.h" />
