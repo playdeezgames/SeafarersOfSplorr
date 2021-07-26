@@ -307,6 +307,7 @@
     <ClInclude Include="Game.Items.h" />
     <ClInclude Include="Game.Quest.h" />
     <ClInclude Include="Game.Ship.h" />
+    <ClInclude Include="Game.Ship.Statistic.h" />
     <ClInclude Include="Game.ShipDescriptor.h" />
     <ClInclude Include="Game.Ships.h" />
     <ClInclude Include="Game.World.h" />

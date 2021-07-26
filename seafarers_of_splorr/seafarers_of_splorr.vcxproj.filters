@@ -393,12 +393,6 @@
     <ClInclude Include="Game.Audio.Mux.h">
       <Filter>Headers\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Avatar.h">
-      <Filter>Headers\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Statistics.h">
-      <Filter>Headers\Game</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Difficulty.h">
       <Filter>Headers\Game</Filter>
     </ClInclude>
@@ -406,9 +400,6 @@
       <Filter>Headers\Game</Filter>
     </ClInclude>
     <ClInclude Include="Game.Heading.h">
-      <Filter>Headers\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.h">
       <Filter>Headers\Game</Filter>
     </ClInclude>
     <ClInclude Include="Game.World.h">
@@ -483,31 +474,7 @@
     <ClInclude Include="Data.Game.Avatar.Quest.h">
       <Filter>Headers\Data</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Islands.Quests.h">
-      <Filter>Headers\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Quest.h">
-      <Filter>Headers\Game</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Quest.h">
-      <Filter>Headers\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Commodity.h">
-      <Filter>Headers\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Commodities.h">
-      <Filter>Headers\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.CommodityDescriptor.h">
-      <Filter>Headers\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Item.h">
-      <Filter>Headers\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.ItemDescriptor.h">
-      <Filter>Headers\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Items.h">
       <Filter>Headers\Game</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.Island.Market.h">
@@ -519,26 +486,62 @@
     <ClInclude Include="Data.Game.Avatar.Items.h">
       <Filter>Headers\Data</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Avatar.Items.h">
-      <Filter>Headers\Game</Filter>
-    </ClInclude>
     <ClInclude Include="Visuals.SpriteGrid.h">
       <Filter>Headers\Visuals</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Avatar.h">
+      <Filter>Headers\Game\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Avatar.Items.h">
+      <Filter>Headers\Game\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Avatar.Quest.h">
+      <Filter>Headers\Game\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Avatar.Statistics.h">
+      <Filter>Headers\Game\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Commodities.h">
+      <Filter>Headers\Game\Commodity</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Commodity.h">
+      <Filter>Headers\Game\Commodity</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.CommodityDescriptor.h">
+      <Filter>Headers\Game\Commodity</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Islands.h">
+      <Filter>Headers\Game\Island</Filter>
+    </ClInclude>
     <ClInclude Include="Game.Islands.Items.h">
-      <Filter>Headers\Game</Filter>
+      <Filter>Headers\Game\Island</Filter>
     </ClInclude>
     <ClInclude Include="Game.Islands.Markets.h">
-      <Filter>Headers\Game</Filter>
+      <Filter>Headers\Game\Island</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Islands.Quests.h">
+      <Filter>Headers\Game\Island</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Item.h">
+      <Filter>Headers\Game\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.ItemDescriptor.h">
+      <Filter>Headers\Game\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Items.h">
+      <Filter>Headers\Game\Item</Filter>
     </ClInclude>
     <ClInclude Include="Game.Ship.h">
-      <Filter>Headers\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Ships.h">
-      <Filter>Headers\Game</Filter>
+      <Filter>Headers\Game\Ship</Filter>
     </ClInclude>
     <ClInclude Include="Game.ShipDescriptor.h">
-      <Filter>Headers\Game</Filter>
+      <Filter>Headers\Game\Ship</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Ships.h">
+      <Filter>Headers\Game\Ship</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Ship.Statistic.h">
+      <Filter>Headers\Game\Ship</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -589,6 +592,21 @@
     </Filter>
     <Filter Include="Source\Maze">
       <UniqueIdentifier>{440983b7-340b-4b82-aff9-3ddf815c5e70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Game\Avatar">
+      <UniqueIdentifier>{d11b3b22-d402-4a2d-aae3-6f2c9cd63a48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Game\Commodity">
+      <UniqueIdentifier>{d6d111c9-0838-44dc-9cfa-05c955cb5e28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Game\Island">
+      <UniqueIdentifier>{3451ff1b-b113-4b33-80a6-d8c6dc4640bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Game\Item">
+      <UniqueIdentifier>{0827ae33-a60b-47fc-9e87-dbe8865bf07a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Game\Ship">
+      <UniqueIdentifier>{0e7f8b28-3d21-4962-802a-8669b5cc5e82}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
