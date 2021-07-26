@@ -1,6 +1,4 @@
 #include "Application.Command.h"
-#include "Application.UIState.h"
-#include <map>
 #include "Application.Handlers.h"
 #include "Common.Utility.h"
 namespace application::Command

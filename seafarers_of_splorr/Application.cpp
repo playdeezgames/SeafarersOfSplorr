@@ -1,29 +1,19 @@
-#include <SDL.h> //legit
-#include <string>
-#include <optional>
-#include "Application.Renderer.h"
-#include "Visuals.Colors.h"
-#include "Visuals.Textures.h"
-#include "Visuals.Sprites.h"
-#include "Visuals.Fonts.h"
-#include "Visuals.Layouts.h"
-#include "Common.Audio.h"
-#include "Options.h"
-#include <map>
-#include "Application.MouseMotion.h"
 #include "Application.Command.h"
-#include "Application.Update.h"
-#include "Application.MouseButtonUp.h"
-#include "Application.UIState.h"
-#include "Game.h"
-#include "Common.Utility.h"
 #include "Application.Keyboard.h"
+#include "Application.MouseButtonUp.h"
+#include "Application.MouseMotion.h"
+#include "Application.OnEnter.h"
+#include "Application.Update.h"
+#include "Data.Stores.h"
+#include "Game.h"
+#include "Game.Achievements.h"
+#include "Game.Audio.Mux.h"
+#include <optional>
+#include "Options.h"
+#include <SDL.h> //legit
 #include "States.h"
 #include "Sublayouts.h"
-#include "Data.Stores.h"
-#include "Application.OnEnter.h"
-#include "Game.Audio.Mux.h"
-#include "Game.Achievements.h"
+#include "Visuals.Layouts.h"
 namespace Application
 {
 	static std::optional<::Command> KeyCodeToCommand(int code)
