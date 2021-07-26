@@ -1,5 +1,6 @@
 #include "Game.Ships.h"
 #include <map>
+#include "Common.RNG.h"
 namespace game::Ships
 {
 	const std::map<game::Ship, game::ShipDescriptor> ships =
@@ -15,7 +16,8 @@ namespace game::Ships
 				{
 					{game::Commodity::WOOD, 100.0},
 					{game::Commodity::LABOR, 50.0}
-				}
+				},
+				1
 			}
 		},
 		{
@@ -29,7 +31,8 @@ namespace game::Ships
 				{
 					{game::Commodity::WOOD, 200.0},
 					{game::Commodity::LABOR, 75.0}
-				}
+				},
+				0
 			}
 		}
 	};
@@ -52,4 +55,23 @@ namespace game::Ships
 		}
 		return shipList;
 	}
+
+	std::map<game::Ship, size_t> initialShipGenerator;
+
+	game::Ship GenerateForAvatar()
+	{
+		if (initialShipGenerator.empty())
+		{
+			for (auto ship : All())
+			{
+				auto descriptor = Read(ship);
+				if (descriptor.initialShipGenerationWeight > 0)
+				{
+					initialShipGenerator[ship] = descriptor.initialShipGenerationWeight;
+				}
+			}
+		}
+		return common::RNG::FromGenerator(initialShipGenerator, game::Ship::RAFT);
+	}
+
 }

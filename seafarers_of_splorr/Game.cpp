@@ -7,6 +7,7 @@
 #include "Data.Game.World.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Avatar.Items.h"
+#include "Game.Avatar.Ship.h"
 namespace game
 {
 	void Reset(const Difficulty& difficulty)
@@ -18,6 +19,7 @@ namespace game
 		game::Avatar::Reset(difficulty);
 		game::avatar::Statistics::Reset(difficulty);
 		game::avatar::Items::Reset();
+		game::avatar::Ship::Reset(difficulty);
 	}
 
 	void Start()

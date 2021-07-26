@@ -58,22 +58,7 @@
     <ClCompile Include="Common.Utility.cpp">
       <Filter>Source\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Avatar.cpp">
-      <Filter>Source\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Avatar.Dock.cpp">
-      <Filter>Source\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Avatar.Statistics.cpp">
-      <Filter>Source\Data</Filter>
-    </ClCompile>
     <ClCompile Include="Data.Game.Common.cpp">
-      <Filter>Source\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Island.cpp">
-      <Filter>Source\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Island.Visits.cpp">
       <Filter>Source\Data</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.World.cpp">
@@ -94,19 +79,10 @@
     <ClCompile Include="Game.Audio.Mux.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Avatar.cpp">
-      <Filter>Source\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Avatar.Statistics.cpp">
-      <Filter>Source\Game</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
     <ClCompile Include="Game.Heading.cpp">
-      <Filter>Source\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
     <ClCompile Include="Game.World.cpp">
@@ -208,32 +184,14 @@
     <ClCompile Include="Maze.Direction.cpp">
       <Filter>Source\Maze</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Island.Known.cpp">
-      <Filter>Source\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Avatar.Destination.cpp">
-      <Filter>Source\Data</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.HeadFor.cpp">
       <Filter>Source\States</Filter>
     </ClCompile>
     <ClCompile Include="Visuals.WorldMap.cpp">
       <Filter>Source\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Island.Quests.cpp">
-      <Filter>Source\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Avatar.Quest.cpp">
-      <Filter>Source\Data</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.IslandJobs.cpp">
       <Filter>Source\States</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.Quests.cpp">
-      <Filter>Source\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Avatar.Quest.cpp">
-      <Filter>Source\Game</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.ConfirmReplaceJob.cpp">
       <Filter>Source\States</Filter>
@@ -250,18 +208,6 @@
     <ClCompile Include="Game.Items.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Island.Market.cpp">
-      <Filter>Source\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Island.Item.cpp">
-      <Filter>Source\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Avatar.Items.cpp">
-      <Filter>Source\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Avatar.Items.cpp">
-      <Filter>Source\Game</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.IslandTrade.cpp">
       <Filter>Source\States</Filter>
     </ClCompile>
@@ -271,12 +217,6 @@
     <ClCompile Include="State.InPlay.IslandBuy.cpp">
       <Filter>Source\States</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Islands.Items.cpp">
-      <Filter>Source\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.Markets.cpp">
-      <Filter>Source\Game</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.IslandSell.cpp">
       <Filter>Source\States</Filter>
     </ClCompile>
@@ -285,6 +225,72 @@
     </ClCompile>
     <ClCompile Include="Game.Ships.cpp">
       <Filter>Source\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Avatar.cpp">
+      <Filter>Source\Game\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Avatar.Items.cpp">
+      <Filter>Source\Game\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Avatar.Quest.cpp">
+      <Filter>Source\Game\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Avatar.Statistics.cpp">
+      <Filter>Source\Game\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Islands.cpp">
+      <Filter>Source\Game\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Islands.Items.cpp">
+      <Filter>Source\Game\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Islands.Markets.cpp">
+      <Filter>Source\Game\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Islands.Quests.cpp">
+      <Filter>Source\Game\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Avatar.cpp">
+      <Filter>Source\Data\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Avatar.Destination.cpp">
+      <Filter>Source\Data\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Avatar.Dock.cpp">
+      <Filter>Source\Data\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Avatar.Items.cpp">
+      <Filter>Source\Data\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Avatar.Quest.cpp">
+      <Filter>Source\Data\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Avatar.Statistics.cpp">
+      <Filter>Source\Data\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Island.cpp">
+      <Filter>Source\Data\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Island.Item.cpp">
+      <Filter>Source\Data\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Island.Known.cpp">
+      <Filter>Source\Data\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Island.Market.cpp">
+      <Filter>Source\Data\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Island.Quests.cpp">
+      <Filter>Source\Data\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Island.Visits.cpp">
+      <Filter>Source\Data\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Avatar.Ship.cpp">
+      <Filter>Source\Data\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Avatar.Ship.cpp">
+      <Filter>Source\Game\Avatar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -357,22 +363,7 @@
     <ClInclude Include="Common.XY.h">
       <Filter>Headers\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Avatar.Dock.h">
-      <Filter>Headers\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Avatar.h">
-      <Filter>Headers\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Avatar.Statistics.h">
-      <Filter>Headers\Data</Filter>
-    </ClInclude>
     <ClInclude Include="Data.Game.Common.h">
-      <Filter>Headers\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Island.h">
-      <Filter>Headers\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Island.Visits.h">
       <Filter>Headers\Data</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.World.h">
@@ -459,32 +450,11 @@
     <ClInclude Include="Visuals.Textures.h">
       <Filter>Headers\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Island.Known.h">
-      <Filter>Headers\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Avatar.Destination.h">
-      <Filter>Headers\Data</Filter>
-    </ClInclude>
     <ClInclude Include="Visuals.WorldMap.h">
       <Filter>Headers\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Island.Quests.h">
-      <Filter>Headers\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Avatar.Quest.h">
-      <Filter>Headers\Data</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Quest.h">
       <Filter>Headers\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Island.Market.h">
-      <Filter>Headers\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Island.Item.h">
-      <Filter>Headers\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Avatar.Items.h">
-      <Filter>Headers\Data</Filter>
     </ClInclude>
     <ClInclude Include="Visuals.SpriteGrid.h">
       <Filter>Headers\Visuals</Filter>
@@ -542,6 +512,48 @@
     </ClInclude>
     <ClInclude Include="Game.Ship.Statistic.h">
       <Filter>Headers\Game\Ship</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Avatar.Destination.h">
+      <Filter>Headers\Data\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Avatar.Dock.h">
+      <Filter>Headers\Data\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Avatar.h">
+      <Filter>Headers\Data\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Avatar.Items.h">
+      <Filter>Headers\Data\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Avatar.Quest.h">
+      <Filter>Headers\Data\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Avatar.Statistics.h">
+      <Filter>Headers\Data\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.h">
+      <Filter>Headers\Data\Island</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.Item.h">
+      <Filter>Headers\Data\Island</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.Known.h">
+      <Filter>Headers\Data\Island</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.Market.h">
+      <Filter>Headers\Data\Island</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.Quests.h">
+      <Filter>Headers\Data\Island</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.Visits.h">
+      <Filter>Headers\Data\Island</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Avatar.Ship.h">
+      <Filter>Headers\Data\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Avatar.Ship.h">
+      <Filter>Headers\Game\Avatar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -607,6 +619,24 @@
     </Filter>
     <Filter Include="Headers\Game\Ship">
       <UniqueIdentifier>{0e7f8b28-3d21-4962-802a-8669b5cc5e82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Data\Avatar">
+      <UniqueIdentifier>{e63330a9-95d9-47d3-82af-ad6fac96ea8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Data\Island">
+      <UniqueIdentifier>{5d19bf50-9348-433a-8b80-f50829029bc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Game\Avatar">
+      <UniqueIdentifier>{3735dc44-ab3b-4d05-a28c-d0c07c142146}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Game\Island">
+      <UniqueIdentifier>{d4d3ef2e-f000-4b86-b965-c4f552e7c721}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Data\Avatar">
+      <UniqueIdentifier>{ddfa8a0a-446c-45bd-b68b-04b2b957d509}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Data\Island">
+      <UniqueIdentifier>{ea2f19a1-4a09-44a5-b58c-50fa06ad0926}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

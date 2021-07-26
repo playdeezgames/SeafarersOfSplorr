@@ -6,5 +6,5 @@ namespace game::Ships
 {
 	const game::ShipDescriptor& Read(const game::Ship&);
 	const std::list<game::Ship>& All();
-
+	game::Ship GenerateForAvatar();
 }
