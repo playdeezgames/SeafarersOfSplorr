@@ -1,26 +1,26 @@
-#include <string>
-#include "Application.OnEnter.h"
-#include "Game.Audio.Mux.h"
-#include "Application.Renderer.h"
 #include "Application.Command.h"
-#include "Game.Avatar.h"
-#include "Visuals.Texts.h"
-#include <format>
-#include "Visuals.Menus.h"
-#include "Common.Utility.h"
-#include "Visuals.Areas.h"
-#include "Application.MouseMotion.h"
+#include "Application.OnEnter.h"
 #include "Application.MouseButtonUp.h"
-#include "Game.Islands.h"
-#include "Visuals.Images.h"
-#include "Game.World.h"
-#include "Game.Heading.h"
-#include "Game.Avatar.Statistics.h"
-#include "Game.Avatar.Quest.h"
+#include "Application.MouseMotion.h"
+#include "Application.Renderer.h"
 #include "Application.Update.h"
+#include "Common.Utility.h"
+#include <format>
+#include "Game.Audio.Mux.h"
+#include "Game.Avatar.h"
+#include "Game.Avatar.Quest.h"
+#include "Game.Avatar.Statistics.h"
+#include "Game.Heading.h"
+#include "Game.Islands.h"
+#include "Game.World.h"
+#include "Visuals.Menus.h"
+#include "Visuals.Texts.h"
+#include "Visuals.Areas.h"
+#include "Visuals.Images.h"
 namespace state::in_play::AtSea
 {
 	const std::string LAYOUT_NAME = "State.InPlay.AtSea";
+
 	const std::string TEXT_AVATAR_TURNS = "avatar-turns";
 	const std::string TEXT_AVATAR_HEALTH = "avatar-health";
 	const std::string TEXT_AVATAR_HUNGER = "avatar-hunger";
@@ -28,12 +28,15 @@ namespace state::in_play::AtSea
 	const std::string TEXT_AVATAR_SPEED = "avatar-speed";
 	const std::string TEXT_AVATAR_MONEY = "avatar-money";
 	const std::string TEXT_AVATAR_REPUTATION = "avatar-reputation";
+
 	const std::string MENU_ID = "Order";
 	const std::string MENU_ITEM_DOCK = "Dock";
 	const std::string MENU_ITEM_JOB = "Job";
+
 	const std::string AREA_CHANGE_HEADING = "ChangeHeading";
 	const std::string AREA_CHANGE_SPEED = "ChangeSpeed";
 	const std::string AREA_MOVE = "Move";
+
 	const std::string FORMAT_TURNS = "Turns Left: {:.0f}";
 	const std::string FORMAT_MONEY= "Money: {:.0f}";
 	const std::string FORMAT_REPUTATION = "Reputation: {:.0f}";
@@ -41,11 +44,14 @@ namespace state::in_play::AtSea
 	const std::string FORMAT_HEALTH = "Health: {:.0f}";
 	const std::string FORMAT_HEADING = "Heading: {:.2f}";
 	const std::string FORMAT_SPEED = "Speed: {:.2f}";
+
 	const std::string IMAGE_CURRENT_HEADING = "CurrentHeading";
 	const std::string IMAGE_NEW_HEADING = "NewHeading";
 	const std::string IMAGE_DESTINATION = "Destination";
 	const std::string IMAGE_QUEST_DESTINATION = "QuestDestination";
+
 	const common::XY<int> CENTER = { 64, 64 };//TODO: hardcoded
+
 	const size_t TICKS_TOTAL = 1000;
 	static size_t ticksLeft = TICKS_TOTAL;
 	enum class AutoMoveState
@@ -77,7 +83,8 @@ namespace state::in_play::AtSea
 		MOVE,
 		DOCK,
 		JOB,
-		CARGO
+		CARGO,
+		SHIP
 	};
 
 	static void OnEnter();
@@ -99,11 +106,6 @@ namespace state::in_play::AtSea
 		}
 	}
 
-	static void OnChangeSpeed()
-	{
-		::application::UIState::Write(::UIState::IN_PLAY_CHANGE_SPEED);
-	}
-
 	static void OnMove()
 	{
 		ToggleAutoMove();
@@ -115,29 +117,20 @@ namespace state::in_play::AtSea
 		application::UIState::EnterGame();
 	}
 
-	static void OnHeadFor()
+	static void OnShip()
 	{
-		application::UIState::Write(::UIState::IN_PLAY_HEAD_FOR);
-	}
 
-	static void OnJob()
-	{
-		application::UIState::Write(::UIState::IN_PLAY_CURRENT_JOB);
-	}
-
-	static void OnCargo()
-	{
-		application::UIState::Write(::UIState::IN_PLAY_CARGO);
 	}
 
 	const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
-		{OrderMenuItem::CHANGE_SPEED, OnChangeSpeed},
+		{OrderMenuItem::CHANGE_SPEED, ::application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_SPEED)},
 		{OrderMenuItem::MOVE, OnMove},
 		{OrderMenuItem::DOCK, OnDock},
-		{OrderMenuItem::HEAD_FOR, OnHeadFor},
-		{OrderMenuItem::JOB, OnJob},
-		{OrderMenuItem::CARGO, OnCargo}
+		{OrderMenuItem::HEAD_FOR, application::UIState::GoTo(::UIState::IN_PLAY_HEAD_FOR)},
+		{OrderMenuItem::JOB, application::UIState::GoTo(::UIState::IN_PLAY_CURRENT_JOB)},
+		{OrderMenuItem::CARGO, application::UIState::GoTo(::UIState::IN_PLAY_CARGO)},
+		{OrderMenuItem::SHIP, OnShip}
 	};
 
 	static void ActivateItem()
@@ -260,6 +253,24 @@ namespace state::in_play::AtSea
 		return location* viewScale + VIEW_CENTER;
 	}
 
+	static void UpdateAutoMoveState(bool canDock)
+	{
+		if (canDock)
+		{
+			if (autoMoveState == AutoMoveState::ON)
+			{
+				autoMoveState = AutoMoveState::OFF;
+			}
+		}
+		else
+		{
+			if (autoMoveState == AutoMoveState::STARTING)
+			{
+				autoMoveState = AutoMoveState::ON;
+			}
+		}
+	}
+
 	static void UpdateIslands()
 	{
 		HideVisibleIslands();
@@ -279,20 +290,7 @@ namespace state::in_play::AtSea
 			++icon;
 		}
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_DOCK, canDock);
-		if (canDock)
-		{
-			if(autoMoveState == AutoMoveState::ON)
-			{
-				autoMoveState = AutoMoveState::OFF;
-			}
-		}
-		else
-		{
-			if (autoMoveState == AutoMoveState::STARTING)
-			{
-				autoMoveState = AutoMoveState::ON;
-			}
-		}
+		UpdateAutoMoveState(canDock);
 	}
 
 	static void OnEnter()
