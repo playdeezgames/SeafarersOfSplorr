@@ -1,7 +1,7 @@
+#include "Application.Handlers.h"
 #include "Application.OnEnter.h"
 #include <map>
 #include <vector>
-#include "Application.Handlers.h"
 namespace application::OnEnter
 {
 	static std::map<::UIState, std::vector<Handler>> handlers;

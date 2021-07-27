@@ -1,8 +1,8 @@
 #include "Application.Renderer.h"
-#include <map>
 #include "Application.UIState.h"
-#include "Visuals.Layouts.h"
 #include "Common.Application.h"
+#include <map>
+#include "Visuals.Layouts.h"
 namespace application::Renderer
 {
 	static std::map<::UIState, std::string> renderLayouts;

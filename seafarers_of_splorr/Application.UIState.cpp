@@ -1,5 +1,5 @@
-#include "Application.UIState.h"
 #include "Application.Sounds.h"
+#include "Application.UIState.h"
 #include "Game.h"
 #include "Game.Achievements.h"
 #include "Game.Avatar.h"
@@ -54,8 +54,6 @@ namespace application::UIState
 			Pop();
 		};
 	}
-
-
 
 	std::optional<std::string> EnterGame()
 	{
