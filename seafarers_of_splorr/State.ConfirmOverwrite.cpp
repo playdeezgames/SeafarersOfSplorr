@@ -1,14 +1,14 @@
-#include "Application.Renderer.h"
 #include "Application.Command.h"
-#include "Visuals.Menus.h"
-#include "Common.Utility.h"
 #include "Application.MouseButtonUp.h"
 #include "Application.MouseMotion.h"
-#include "Visuals.Areas.h"
-#include "Common.Audio.h"
-#include "Game.h"
 #include "Application.OnEnter.h"
+#include "Application.Renderer.h"
+#include "Common.Audio.h"
+#include "Common.Utility.h"
+#include "Game.h"
 #include "Game.Audio.Mux.h"
+#include "Visuals.Areas.h"
+#include "Visuals.Menus.h"
 namespace state::ConfirmOverwrite
 {
 	const std::string LAYOUT_NAME = "State.ConfirmOverwrite";
@@ -70,16 +70,21 @@ namespace state::ConfirmOverwrite
 		::UIState::CONFIRM_OVERWRITE_SLOT5,
 	};
 
+	static void ConfigureState(const ::UIState& state)
+	{
+		::application::OnEnter::AddHandler(state, game::audio::Mux::GoToTheme(game::audio::Mux::Theme::MAIN));
+
+		::application::MouseButtonUp::AddHandler(state, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
+		::application::MouseMotion::AddHandler(state, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
+		::application::Command::SetHandlers(state, commandHandlers);
+		::application::Renderer::SetRenderLayout(state, LAYOUT_NAME);
+	}
+
 	void Start()
 	{
 		for (auto state : states)
 		{
-			::application::OnEnter::AddHandler(state, game::audio::Mux::GoToTheme(game::audio::Mux::Theme::MAIN));
-
-			::application::MouseButtonUp::AddHandler(state, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
-			::application::MouseMotion::AddHandler(state, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-			::application::Command::SetHandlers(state, commandHandlers);
-			::application::Renderer::SetRenderLayout(state, LAYOUT_NAME);
+			ConfigureState(state);
 		}
 	}
 }

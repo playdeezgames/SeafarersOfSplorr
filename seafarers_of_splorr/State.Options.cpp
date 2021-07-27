@@ -1,19 +1,19 @@
-#include "Application.Renderer.h"
-#include "Common.Audio.h"
-#include "Options.h"
-#include <format>
 #include "Application.Command.h"
-#include "Application.OnEnter.h"
-#include "Visuals.Menus.h"
-#include "Application.Sounds.h"
-#include "Common.Utility.h"
 #include "Application.MouseButtonUp.h"
 #include "Application.MouseMotion.h"
-#include "Visuals.Areas.h"
-#include <SDL_mixer.h>
-#include "Game.Audio.Mux.h"
+#include "Application.OnEnter.h"
+#include "Application.Renderer.h"
+#include "Application.Sounds.h"
 #include "Common.Application.h"
+#include "Common.Audio.h"
 #include "Common.Data.h"
+#include "Common.Utility.h"
+#include "Game.Audio.Mux.h"
+#include "Options.h"
+#include <format>
+#include <SDL_mixer.h>
+#include "Visuals.Menus.h"
+#include "Visuals.Areas.h"
 namespace state::Options
 {
 	const std::string LAYOUT_NAME = "State.Options";

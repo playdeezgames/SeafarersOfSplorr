@@ -1,8 +1,8 @@
-#include "Visuals.Images.h"
 #include "Application.MouseButtonUp.h"
 #include "Application.MouseMotion.h"
-#include "Visuals.Areas.h"
 #include "Common.Utility.h"
+#include "Visuals.Areas.h"
+#include "Visuals.Images.h"
 namespace sublayout::UIHamburger
 {
 	const std::string LAYOUT_NAME = "Sublayout.UIHamburger";
