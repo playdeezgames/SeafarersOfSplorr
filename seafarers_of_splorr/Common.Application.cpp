@@ -1,11 +1,11 @@
+#include "Common.Application.h"
+#include "Common.Application.Internals.h"
+#include "Common.Data.Properties.h"
+#include "Data.JSON.h"
+#include <memory>
 #include <SDL.h> //legit
 #include <SDL_mixer.h>
 #include <SDL_image.h>
-#include "Data.JSON.h"
-#include "Common.Data.Properties.h"
-#include <memory>
-#include "Common.Application.h"
-#include "Common.Application.Internals.h"
 namespace common::Application
 {
 

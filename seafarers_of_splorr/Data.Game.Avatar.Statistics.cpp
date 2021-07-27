@@ -1,8 +1,8 @@
-#include "Data.Game.Avatar.Statistics.h"
-#include <string>
-#include "Data.Game.Common.h"
 #include "Common.Data.h"
+#include "Data.Game.Avatar.Statistics.h"
+#include "Data.Game.Common.h"
 #include <format>
+#include <string>
 namespace data::game::avatar::Statistics
 {
 	const std::string FIELD_MINIMUM = "Minimum";

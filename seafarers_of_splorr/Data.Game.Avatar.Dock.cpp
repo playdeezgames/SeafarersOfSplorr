@@ -1,8 +1,8 @@
+#include "Common.Data.h"
 #include "Data.Game.Avatar.Dock.h"
-#include <string>
 #include "Data.Game.Common.h"
 #include <format>
-#include "Common.Data.h"
+#include <string>
 namespace data::game::avatar::Dock
 {
 	const std::string FIELD_X = "X";

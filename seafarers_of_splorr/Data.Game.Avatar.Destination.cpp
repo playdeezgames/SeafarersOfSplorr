@@ -1,8 +1,8 @@
-#include "Data.Game.Island.Known.h"
-#include <string>
-#include "Data.Game.Common.h"
-#include <format>
 #include "Common.Data.h"
+#include "Data.Game.Common.h"
+#include "Data.Game.Island.Known.h"
+#include <format>
+#include <string>
 namespace data::game::avatar::Destination
 {
 	const std::string FIELD_X = "X";

@@ -1,6 +1,6 @@
 #include "Data.SQLite.Stores.h"
-#include "sqlite3.h"
 #include <memory>
+#include "sqlite3.h"
 namespace data::sqlite::Stores
 {
 	static std::map<data::sqlite::Store, std::shared_ptr<sqlite3>> connections;

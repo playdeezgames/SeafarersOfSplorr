@@ -1,9 +1,9 @@
-#include "Data.Game.World.h"
-#include <string>
-#include "Data.Game.Common.h"
-#include <format>
-#include "Common.Utility.h"
 #include "Common.Data.h"
+#include "Common.Utility.h"
+#include "Data.Game.Common.h"
+#include "Data.Game.World.h"
+#include <format>
+#include <string>
 namespace data::game::World
 {
 	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Worlds]([WorldId] INT NOT NULL UNIQUE,[Version] INT NOT NULL,[Width] REAL NOT NULL,[Height] REAL NOT NULL,[MinimumIslandDistance] REAL NOT NULL,[ViewDistance] REAL NOT NULL,[DockDistance] REAL NOT NULL);";

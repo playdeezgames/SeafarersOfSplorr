@@ -1,8 +1,8 @@
-#include "Data.Game.Island.h"
-#include "Data.Game.Common.h"
-#include <format>
-#include "Common.Utility.h"
 #include "Common.Data.h"
+#include "Common.Utility.h"
+#include "Data.Game.Common.h"
+#include "Data.Game.Island.h"
+#include <format>
 namespace data::game::Island
 {
 	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Islands]([X] REAL NOT NULL,[Y] REAL NOT NULL,[Name] TEXT NOT NULL,UNIQUE([X],[Y]));";

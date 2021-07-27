@@ -55,5 +55,4 @@ namespace data::game::island::Item
 		}
 		return result;
 	}
-
 }

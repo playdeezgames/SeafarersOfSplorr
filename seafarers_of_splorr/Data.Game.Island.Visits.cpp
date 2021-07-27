@@ -1,8 +1,8 @@
+#include "Common.Data.h"
+#include "Data.Game.Common.h"
 #include "Data.Game.Island.Visits.h"
 #include <string>
-#include "Data.Game.Common.h"
 #include <format>
-#include "Common.Data.h"
 namespace data::game::island::Visits
 {
 	const std::string FIELD_X = "X";

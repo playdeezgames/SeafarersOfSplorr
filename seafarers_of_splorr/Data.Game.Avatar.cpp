@@ -1,9 +1,9 @@
-#include "Data.Game.Avatar.h"
-#include <optional>
-#include <format>
-#include "Common.Utility.h"
-#include "Data.Game.Common.h"
 #include "Common.Data.h"
+#include "Common.Utility.h"
+#include "Data.Game.Avatar.h"
+#include "Data.Game.Common.h"
+#include <format>
+#include <optional>
 namespace data::game::Avatar
 {
 	const std::string FIELD_X = "X";

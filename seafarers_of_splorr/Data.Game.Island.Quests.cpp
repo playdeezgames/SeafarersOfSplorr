@@ -1,7 +1,7 @@
-#include "Data.Game.Island.Quests.h"
-#include "Data.Game.Common.h"
-#include <format>
 #include "Common.Data.h"
+#include "Data.Game.Common.h"
+#include "Data.Game.Island.Quests.h"
+#include <format>
 namespace data::game::island::Quests
 {
 	const std::string FIELD_X = "X";

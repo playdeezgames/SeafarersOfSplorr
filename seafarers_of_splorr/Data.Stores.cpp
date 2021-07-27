@@ -1,11 +1,10 @@
+#include "Common.Utility.h"
+#include "Data.JSON.h"
 #include "Data.Stores.h"
 #include <map>
-#include <string>
-#include "Data.JSON.h"
-#include "Common.Utility.h"
 #include <optional>
+#include <string>
 #include "Visuals.Texts.h"
-
 namespace data::Stores
 {
 	static std::map<data::Store, nlohmann::json> stores;

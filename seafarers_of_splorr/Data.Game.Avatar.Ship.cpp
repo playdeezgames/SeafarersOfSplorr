@@ -1,7 +1,7 @@
+#include "Common.Data.h"
 #include "Data.Game.Avatar.Ship.h"
 #include "Data.Game.Common.h"
 #include <format>
-#include "Common.Data.h"
 namespace data::game::avatar::Ship
 {
 	const std::string FIELD_SHIP_ID = "ShipId";

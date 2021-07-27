@@ -1,7 +1,7 @@
-#include "Data.Game.Island.Market.h"
-#include "Data.Game.Common.h"
-#include <format>
 #include "Common.Data.h"
+#include "Data.Game.Common.h"
+#include "Data.Game.Island.Market.h"
+#include <format>
 namespace data::game::island::Market
 {
 	const std::string FIELD_X = "X";
