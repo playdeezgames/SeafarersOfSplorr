@@ -170,6 +170,13 @@
                 "x": 480,
                 "y": 112,
                 "enabled": true
+            },
+            {
+                "text": "Ship",
+                "menu-item-id":"Ship",
+                "x": 480,
+                "y": 128,
+                "enabled": true
             }
         ]
     },
@@ -251,6 +258,18 @@
         "menu":{
             "menu-id":"Order",
             "menu-item-id":"Cargo"
+        }
+    },
+    {
+        "type":"Area",
+        "area-id":"Ship",
+        "x":320,
+        "y":128,
+        "width":320,
+        "height":16,
+        "menu":{
+            "menu-id":"Order",
+            "menu-item-id":"Ship"
         }
     },
     {
