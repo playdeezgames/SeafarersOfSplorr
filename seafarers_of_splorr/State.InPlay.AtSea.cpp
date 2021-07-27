@@ -117,11 +117,6 @@ namespace state::in_play::AtSea
 		application::UIState::EnterGame();
 	}
 
-	static void OnShip()
-	{
-
-	}
-
 	const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
 		{OrderMenuItem::CHANGE_SPEED, ::application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_SPEED)},
@@ -130,7 +125,7 @@ namespace state::in_play::AtSea
 		{OrderMenuItem::HEAD_FOR, application::UIState::GoTo(::UIState::IN_PLAY_HEAD_FOR)},
 		{OrderMenuItem::JOB, application::UIState::GoTo(::UIState::IN_PLAY_CURRENT_JOB)},
 		{OrderMenuItem::CARGO, application::UIState::GoTo(::UIState::IN_PLAY_CARGO)},
-		{OrderMenuItem::SHIP, OnShip}
+		{OrderMenuItem::SHIP, application::UIState::PushTo(::UIState::IN_PLAY_SHIP_STATUS)}
 	};
 
 	static void ActivateItem()

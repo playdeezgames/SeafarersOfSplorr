@@ -35,18 +35,26 @@ namespace application::UIState
 		Write(state);
 	}
 
-	void Pop()
-	{
-		uiState = stateStack.top();
-		stateStack.pop();
-	}
-
 	std::function<void()> PushTo(const ::UIState& state)
 	{
 		return [state]() {
 			Push(state);
 		};
 	}
+
+	void Pop()
+	{
+		uiState = stateStack.top();
+		stateStack.pop();
+	}
+
+	std::function<void()> PopFrom()
+	{
+		return []() {
+			Pop();
+		};
+	}
+
 
 
 	std::optional<std::string> EnterGame()

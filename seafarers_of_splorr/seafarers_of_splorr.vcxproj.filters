@@ -292,6 +292,9 @@
     <ClCompile Include="State.InPlay.Docked.cpp">
       <Filter>Source\States\InPlay\Island</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.ShipStatus.cpp">
+      <Filter>Source\States\InPlay\AtSea</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">

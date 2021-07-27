@@ -37,7 +37,8 @@ enum class UIState
 	IN_PLAY_ISLAND_TRADE,
 	IN_PLAY_ISLAND_BUY,
 	IN_PLAY_ISLAND_SELL,
-	IN_PLAY_CARGO
+	IN_PLAY_CARGO,
+	IN_PLAY_SHIP_STATUS
 };
 namespace application::UIState
 {
@@ -49,4 +50,5 @@ namespace application::UIState
 	void Push(const ::UIState&);
 	void Pop();
 	std::function<void()> PushTo(const ::UIState&);
+	std::function<void()> PopFrom();
 }
