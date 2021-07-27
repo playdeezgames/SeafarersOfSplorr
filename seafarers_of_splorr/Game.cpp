@@ -18,7 +18,7 @@ namespace game
 
 		game::Avatar::Reset(difficulty);
 		game::avatar::Statistics::Reset(difficulty);
-		game::avatar::Items::Reset();
+		game::avatar::Items::Reset(difficulty);
 		game::avatar::Ship::Reset(difficulty);
 	}
 

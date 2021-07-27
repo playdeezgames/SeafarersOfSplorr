@@ -42,8 +42,7 @@ namespace game::avatar::Items
 		return tonnage;
 	}
 
-
-	void Reset()
+	void Reset(const game::Difficulty&)
 	{
 		data::game::avatar::Items::Clear();
 	}

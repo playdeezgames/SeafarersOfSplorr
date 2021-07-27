@@ -1,7 +1,7 @@
+#include "Common.Data.h"
+#include "Common.Utility.h"
 #include "Game.Heading.h"
 #include <cmath>
-#include "Common.Utility.h"
-#include "Common.Data.h"
 namespace game::Heading
 {
 	const double TAU = 2.0 * 3.141592653589793;

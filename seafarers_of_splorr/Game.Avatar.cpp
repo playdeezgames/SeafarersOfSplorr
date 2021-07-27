@@ -157,5 +157,4 @@ namespace game::Avatar
 		}
 		data::game::avatar::Destination::Clear();
 	}
-
 }

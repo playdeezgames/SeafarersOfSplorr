@@ -1,5 +1,5 @@
-#include "Game.Islands.Markets.h"
 #include "Data.Game.Island.Market.h"
+#include "Game.Islands.Markets.h"
 namespace game::islands::Markets
 {
 	void BuyItems(const common::XY<double>& location, const game::Item& item, size_t quantity)

@@ -1,6 +1,6 @@
+#include "Common.RNG.h"
 #include "Game.Ships.h"
 #include <map>
-#include "Common.RNG.h"
 namespace game::Ships
 {
 	const std::map<game::Ship, game::ShipDescriptor> ships =

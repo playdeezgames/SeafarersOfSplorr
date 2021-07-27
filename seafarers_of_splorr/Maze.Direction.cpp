@@ -1,6 +1,6 @@
+#include <map>
 #include "Maze.Direction.h"
 #include <string>
-#include <map>
 namespace maze
 {
 	std::vector<Direction> allDirections = 

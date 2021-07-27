@@ -1,11 +1,11 @@
-#include "Game.Islands.Quests.h"
-#include <string>
+#include "Common.RNG.h"
 #include "Data.Game.Island.h"
 #include "Data.Game.Island.Quests.h"
-#include "Common.RNG.h"
-#include "Game.Islands.h"
 #include <format>
+#include "Game.Islands.h"
+#include "Game.Islands.Quests.h"
 #include <map>
+#include <string>
 namespace game::islands::Quests
 {
 	static double GenerateReward()
@@ -87,7 +87,8 @@ namespace game::islands::Quests
 		{"Lyra",1},
 		{"Michael",1},
 		{"Guy",1},
-		{"Rufus",1}
+		{"Rufus",1},
+		{"Tim",1}
 	};
 
 	static std::string GeneratePersonName()
@@ -191,5 +192,4 @@ namespace game::islands::Quests
 		}
 		return std::nullopt;
 	}
-
 }
