@@ -1,14 +1,14 @@
-#include <functional>
 #include "Common.Application.h"
-#include "json.hpp"
+#include "Common.Data.Properties.h"
 #include "Common.XY.h"
+#include <functional>
+#include "json.hpp"
 #include <map>
 #include <vector>
-#include "Common.Data.Properties.h"
-#include "Visuals.Data.Properties.h"
-#include "Visuals.Sprites.h"
 #include "Visuals.Colors.h"
+#include "Visuals.Data.Properties.h"
 #include "Visuals.Fonts.h"
+#include "Visuals.Sprites.h"
 namespace visuals::SpriteGrid
 {
 	struct InternalSpriteCell

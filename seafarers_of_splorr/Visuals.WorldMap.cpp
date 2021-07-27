@@ -1,17 +1,17 @@
-#include "Visuals.WorldMap.h"
-#include <functional>
-#include "json.hpp"
 #include "Common.Application.h"
-#include "Common.XY.h"
 #include "Common.Data.Properties.h"
-#include "Game.World.h"
+#include "Common.XY.h"
+#include <functional>
 #include "Game.Avatar.h"
-#include "Visuals.Sprites.h"
+#include "Game.Avatar.Quest.h"
+#include "Game.Heading.h"
 #include "Game.Islands.h"
+#include "Game.World.h"
+#include "json.hpp"
 #include <map>
 #include "Visuals.Data.Properties.h"
-#include "Game.Heading.h"
-#include "Game.Avatar.Quest.h"
+#include "Visuals.Sprites.h"
+#include "Visuals.WorldMap.h"
 namespace visuals::WorldMap
 {
 	struct InternalWorldMap

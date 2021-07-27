@@ -1,14 +1,14 @@
-#include "Visuals.Images.h"
-#include <map>
-#include "json.hpp"
 #include "Common.Data.Properties.h"
+#include <functional>
+#include "json.hpp"
+#include <map>
+#include <tuple>
+#include "Visuals.Colors.h"
 #include "Visuals.Data.Properties.h"
 #include "Visuals.Data.Types.h"
+#include "Visuals.Images.h"
 #include "Visuals.Layouts.h"
 #include "Visuals.Sprites.h"
-#include "Visuals.Colors.h"
-#include <functional>
-#include <tuple>
 namespace visuals::Image
 {
 	struct InternalImage

@@ -1,21 +1,21 @@
 #include "Application.Command.h"
 #include "Application.MouseButtonUp.h"
 #include "Application.MouseMotion.h"
-#include "Application.Renderer.h"
-#include "Common.Utility.h"
-#include "Visuals.Areas.h"
-#include "Visuals.Menus.h"
 #include "Application.OnEnter.h"
+#include "Application.Renderer.h"
 #include "Common.Audio.h"
-#include "Game.Audio.Mux.h"
-#include "Visuals.Texts.h"
+#include "Common.Utility.h"
 #include "Data.Stores.h"
+#include "Game.Audio.Mux.h"
 #include "Game.Avatar.h"
-#include <format>
-#include "Game.Islands.Quests.h"
-#include "Game.Islands.h"
 #include "Game.Heading.h"
 #include "Game.Avatar.Quest.h"
+#include "Game.Islands.h"
+#include "Game.Islands.Quests.h"
+#include "Visuals.Areas.h"
+#include "Visuals.Menus.h"
+#include "Visuals.Texts.h"
+#include <format>
 namespace state::in_play::IslandJobs
 {
 	const std::string LAYOUT_NAME = "State.InPlay.IslandJobs";

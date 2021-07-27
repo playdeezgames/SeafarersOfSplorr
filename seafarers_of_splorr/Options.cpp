@@ -1,7 +1,7 @@
-#include "Options.h"
+#include "Common.Application.h"
 #include "Common.Audio.h"
 #include "Data.Stores.h"
-#include "Common.Application.h"
+#include "Options.h"
 namespace Options
 {
 	const std::string MUTED = "muted";

@@ -1,5 +1,5 @@
-#include "Visuals.Data.Types.h"
 #include <map>
+#include "Visuals.Data.Types.h"
 namespace visuals::data::Types
 {
 	const std::string AVATAR_INVENTORY = "AvatarInventory";

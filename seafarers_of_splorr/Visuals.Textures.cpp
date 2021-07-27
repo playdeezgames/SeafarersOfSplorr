@@ -1,11 +1,11 @@
-#include "Visuals.Textures.h"
+#include "Common.Application.Internals.h"
 #include "Common.Utility.h"
-#include <SDL_image.h>
 #include "Data.JSON.h"
+#include "Data.Stores.h"
 #include <map>
 #include <memory>
-#include "Data.Stores.h"
-#include "Common.Application.Internals.h"
+#include <SDL_image.h>
+#include "Visuals.Textures.h"
 namespace visuals::Textures
 {
 	static std::map<std::string, std::shared_ptr<SDL_Texture>> table;

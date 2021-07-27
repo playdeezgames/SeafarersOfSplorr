@@ -1,8 +1,8 @@
+#include "Common.Application.h"
+#include "Common.Data.Properties.h"
 #include "json.hpp"
 #include <SDL.h>
 #include "Visuals.Layouts.h"
-#include "Common.Data.Properties.h"
-#include "Common.Application.h"
 namespace visuals::Sublayout
 {
 	struct InternalSublayout

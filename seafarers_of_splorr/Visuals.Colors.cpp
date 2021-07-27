@@ -1,9 +1,9 @@
-#include "Visuals.Colors.h"
 #include "Data.JSON.h"
+#include "Data.Stores.h"
 #include <map>
 #include <vector>
+#include "Visuals.Colors.h"
 #include "Visuals.Data.Properties.h"
-#include "Data.Stores.h"
 namespace visuals::Colors
 {
 	static std::tuple<unsigned char, unsigned char, unsigned char, unsigned char> ParseDescriptor(const nlohmann::json& properties)

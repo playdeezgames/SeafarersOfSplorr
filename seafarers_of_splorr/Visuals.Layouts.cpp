@@ -1,11 +1,11 @@
-#include "Visuals.Layouts.h"
-#include "Data.JSON.h"
 #include <algorithm>
-#include "Visuals.Data.Types.h"
 #include "Common.Data.Properties.h"
-#include "Visuals.Data.Properties.h"
+#include "Data.JSON.h"
 #include "Data.Stores.h"
 #include <functional>
+#include "Visuals.Data.Properties.h"
+#include "Visuals.Data.Types.h"
+#include "Visuals.Layouts.h"
 namespace visuals
 {
 	typedef std::function<void(const std::shared_ptr<common::Application::Renderer>&)> DrawerFunction;

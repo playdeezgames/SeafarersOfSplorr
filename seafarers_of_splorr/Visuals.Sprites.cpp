@@ -1,10 +1,10 @@
-#include "Visuals.Sprites.h"
-#include "Visuals.Textures.h"
+#include "Common.Application.Internals.h"
 #include "Common.Data.Properties.h"
-#include "Visuals.Data.Properties.h"
 #include "Data.Stores.h"
 #include <tuple>
-#include "Common.Application.Internals.h"
+#include "Visuals.Data.Properties.h"
+#include "Visuals.Sprites.h"
+#include "Visuals.Textures.h"
 namespace visuals::Sprites
 {
 	struct InternalSprite

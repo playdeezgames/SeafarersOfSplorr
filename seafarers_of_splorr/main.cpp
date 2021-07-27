@@ -1,7 +1,7 @@
 #include "Common.RNG.h"
 #include "Common.Utility.h"
-#include <SDL.h>
 #include "Game.Achievements.h"
+#include <SDL.h>
 namespace common::Application
 {
 	int Run(const std::string&, const std::vector<std::string>&);

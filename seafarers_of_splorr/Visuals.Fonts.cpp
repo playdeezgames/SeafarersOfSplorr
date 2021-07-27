@@ -1,9 +1,9 @@
-#include "Visuals.Fonts.h"
 #include "Data.JSON.h"
-#include "Visuals.Sprites.h"
-#include "Visuals.Colors.h"
 #include "Data.Stores.h"
 #include <format>
+#include "Visuals.Colors.h"
+#include "Visuals.Fonts.h"
+#include "Visuals.Sprites.h"
 namespace visuals::Fonts
 {
 	static std::map<std::string, nlohmann::json> fontDataStore;

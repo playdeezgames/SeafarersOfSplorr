@@ -1,10 +1,10 @@
-#include "Visuals.Layouts.h"
-#include "Data.JSON.h"
 #include <algorithm>
-#include "Visuals.Data.Types.h"
 #include "Common.Data.Properties.h"
+#include "Data.JSON.h"
 #include "Visuals.Data.Properties.h"
+#include "Visuals.Data.Types.h"
 #include "Visuals.Fonts.h"
+#include "Visuals.Layouts.h"
 namespace visuals::Text
 {
 	struct InternalText

@@ -1,12 +1,12 @@
-#include "Visuals.Menus.h"
-#include "Data.JSON.h"
 #include <algorithm>
-#include "Visuals.Data.Types.h"
 #include "Common.Data.Properties.h"
-#include "Visuals.Data.Properties.h"
-#include "Visuals.Layouts.h"
 #include "Common.XY.h"
+#include "Data.JSON.h"
+#include "Visuals.Data.Types.h"
+#include "Visuals.Data.Properties.h"
 #include "Visuals.Fonts.h"
+#include "Visuals.Layouts.h"
+#include "Visuals.Menus.h"
 namespace visuals::Menu
 {
 	struct InternalMenuItem

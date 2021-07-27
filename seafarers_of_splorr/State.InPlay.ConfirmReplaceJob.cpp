@@ -1,14 +1,14 @@
-#include "Application.Renderer.h"
 #include "Application.Command.h"
-#include "Visuals.Menus.h"
-#include "Common.Utility.h"
 #include "Application.MouseButtonUp.h"
 #include "Application.MouseMotion.h"
-#include "Visuals.Areas.h"
 #include "Application.OnEnter.h"
+#include "Application.Renderer.h"
+#include "Common.Utility.h"
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.Quest.h"
 #include "Game.Avatar.h"
+#include "Visuals.Areas.h"
+#include "Visuals.Menus.h"
 namespace state::in_play::ConfirmReplaceJob
 {
 	const std::string LAYOUT_NAME = "State.InPlay.ConfirmReplaceJob";
