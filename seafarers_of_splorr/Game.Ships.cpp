@@ -10,8 +10,8 @@ namespace game::Ships
 			{
 				"raft",
 				{
-					{game::ship::Statistic::SPEED_FACTOR, 0.75},
-					{game::ship::Statistic::TONNAGE, 50.0}
+					{game::ship::Property::SPEED_FACTOR, 0.75},
+					{game::ship::Property::TONNAGE, 50.0}
 				},
 				{
 					{game::Commodity::WOOD, 100.0},
@@ -25,8 +25,8 @@ namespace game::Ships
 			{
 				"junk",
 				{
-					{game::ship::Statistic::SPEED_FACTOR, 1.0},
-					{game::ship::Statistic::TONNAGE, 100.0}
+					{game::ship::Property::SPEED_FACTOR, 1.0},
+					{game::ship::Property::TONNAGE, 100.0}
 				},
 				{
 					{game::Commodity::WOOD, 200.0},
