@@ -8,4 +8,6 @@ namespace game::avatar::Items
 	void Add(const game::Item&, const size_t&);
 	void Remove(const game::Item&, const size_t&);
 	void Reset();
+
+	double TotalTonnage();
 }

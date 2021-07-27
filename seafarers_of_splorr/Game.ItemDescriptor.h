@@ -10,5 +10,6 @@ namespace game
 		std::map<game::Commodity, double> commodities;
 		size_t present;
 		size_t notPresent;
+		double tonnage;
 	};
 }

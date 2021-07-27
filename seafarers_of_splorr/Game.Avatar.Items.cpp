@@ -1,5 +1,6 @@
-#include "Game.Avatar.Items.h"
 #include "Data.Game.Avatar.Items.h"
+#include "Game.Avatar.Items.h"
+#include "Game.Items.h"
 namespace game::avatar::Items
 {
 	std::map<game::Item, size_t> All()
@@ -29,6 +30,18 @@ namespace game::avatar::Items
 		auto previous = Read(item);
 		data::game::avatar::Items::Write((int)item, (previous>=count) ? (previous - count) : (0));
 	}
+
+	double TotalTonnage()
+	{
+		double tonnage = 0.0;
+		for (auto& entry : All())
+		{
+			auto& descriptor = game::Items::Read(entry.first);
+			tonnage += descriptor.tonnage * (double)entry.second;
+		}
+		return tonnage;
+	}
+
 
 	void Reset()
 	{

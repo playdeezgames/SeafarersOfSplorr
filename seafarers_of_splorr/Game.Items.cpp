@@ -11,7 +11,8 @@ namespace game::Items
 					{game::Commodity::WHEAT, 0.1}
 				},
 				1,
-				0
+				0,
+				0.001
 			}
 		},
 		{game::Item::SACK_OF_WHEAT,
@@ -21,7 +22,8 @@ namespace game::Items
 					{game::Commodity::WHEAT, 1.0}
 				},
 				1,
-				0
+				0,
+				0.1
 			}
 		},
 		{game::Item::CLOTH,
@@ -32,7 +34,8 @@ namespace game::Items
 					{game::Commodity::LABOR, 0.1}
 				},
 				3,
-				1
+				1,
+				0.25
 			}
 		},
 		{game::Item::FISH,
@@ -42,7 +45,8 @@ namespace game::Items
 					{game::Commodity::MEAT, 0.2}
 				},
 				5,
-				1
+				1,
+				0.02
 			}
 		},
 		{game::Item::JOOLS,
@@ -52,7 +56,8 @@ namespace game::Items
 					{game::Commodity::JOOLS, 1.0}
 				},
 				1,
-				0
+				0,
+				0.0
 			}
 		},
 		{game::Item::TROUSERS,
@@ -63,7 +68,8 @@ namespace game::Items
 					{game::Commodity::LABOR, 0.75}
 				},
 				1,
-				1
+				1,
+				0.05
 			}
 		}
 	};

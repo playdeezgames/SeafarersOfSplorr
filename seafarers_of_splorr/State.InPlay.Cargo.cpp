@@ -71,8 +71,19 @@ namespace state::in_play::Cargo
 		return game::avatar::Statistics::GetCurrent(game::avatar::Statistic::MONEY);
 	}
 
+	static double GetTonnage()
+	{
+		return game::avatar::Items::TotalTonnage();
+	}
+
 	static void RefreshStatistics()
 	{
+		WriteTextToGrid(
+			{ 0, 18 },
+			std::format(
+				"Tonnage: {:.3f}",
+				GetTonnage()),
+			COLOR_DEFAULT);
 		WriteTextToGrid(
 			{ 0, 19 },
 			std::format(
