@@ -1,18 +1,20 @@
-#include "Game.Avatar.h"
-#include "Data.Game.Avatar.h"
-#include "Common.Utility.h"
 #include "Application.UIState.h"
-#include "Game.World.h"
-#include "Common.RNG.h"
-#include "Game.Heading.h"
 #include "Common.Data.h"
-#include "Game.Avatar.Statistics.h"
-#include "Data.Game.Avatar.Dock.h"
-#include "Game.Islands.h"
+#include "Common.RNG.h"
+#include "Common.Utility.h"
+#include "Data.Game.Avatar.h"
 #include "Data.Game.Avatar.Destination.h"
-#include "Game.Islands.Quests.h"
-#include "Game.Avatar.Quest.h"
+#include "Data.Game.Avatar.Dock.h"
+#include "Game.Avatar.h"
 #include "Game.Avatar.Items.h"
+#include "Game.Avatar.Quest.h"
+#include "Game.Avatar.Ship.h"
+#include "Game.Avatar.Statistics.h"
+#include "Game.Heading.h"
+#include "Game.Islands.h"
+#include "Game.Islands.Quests.h"
+#include "Game.Ships.h"
+#include "Game.World.h"
 namespace game::Avatar
 {
 	const double SPEED_MINIMUM = 0.0;
@@ -89,7 +91,11 @@ namespace game::Avatar
 	void Move()
 	{
 		auto avatar = data::game::Avatar::Read().value();
-		common::XY<double> delta = game::Heading::DegreesToXY(avatar.heading)  * avatar.speed;
+		auto shipDescriptor = game::Ships::Read(game::avatar::Ship::Read());
+		common::XY<double> delta = 
+			game::Heading::DegreesToXY(avatar.heading) * 
+			avatar.speed * 
+			shipDescriptor.properties.find(game::ship::Property::SPEED_FACTOR)->second;
 		avatar.location = avatar.location + delta;
 		ApplyTurnEffects();
 		data::game::Avatar::Write(avatar);
