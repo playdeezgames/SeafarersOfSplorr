@@ -248,7 +248,7 @@ namespace state::in_play::AtSea
 		return location* viewScale + VIEW_CENTER;
 	}
 
-	static void UpdateAutoMoveState(bool canDock)
+	static void RefreshAutoMoveState(bool canDock)
 	{
 		if (canDock)
 		{
@@ -285,7 +285,7 @@ namespace state::in_play::AtSea
 			++icon;
 		}
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_DOCK, canDock);
-		UpdateAutoMoveState(canDock);
+		RefreshAutoMoveState(canDock);
 	}
 
 	static void OnEnter()
@@ -314,7 +314,7 @@ namespace state::in_play::AtSea
 		visuals::Images::SetVisible(LAYOUT_NAME, IMAGE_NEW_HEADING, false);
 	}
 
-	static void OnMouseMotiionOutsideArea(const common::XY<int>& location)
+	static void OnMouseMotionOutsideArea(const common::XY<int>& location)
 	{
 		visuals::Images::SetVisible(LAYOUT_NAME, IMAGE_NEW_HEADING, false);
 	}
@@ -336,7 +336,7 @@ namespace state::in_play::AtSea
 		::application::OnEnter::AddHandler(::UIState::IN_PLAY_AT_SEA, OnEnter);
 		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_AT_SEA, LAYOUT_NAME);
 		::application::Command::SetHandlers(::UIState::IN_PLAY_AT_SEA, commandHandlers);
-		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_AT_SEA, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea, OnMouseMotiionOutsideArea));
+		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_AT_SEA, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea, OnMouseMotionOutsideArea));
 		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_AT_SEA, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
 		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_AT_SEA, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUp));
 		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_AT_SEA, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
