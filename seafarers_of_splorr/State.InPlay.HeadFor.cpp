@@ -135,8 +135,7 @@ namespace state::in_play::HeadFor
 
 	static bool HandleWorldMapMouseButtonUp()
 	{
-		//TODO: select destination number
-		game::avatar::destination::SetDestination(game::avatar::Destination::ONE,visuals::WorldMap::GetDestination(LAYOUT_NAME, WORLD_MAP_ID));
+		game::avatar::destination::SetDestination(currentDestinationId,visuals::WorldMap::GetDestination(LAYOUT_NAME, WORLD_MAP_ID));
 		return true;
 	}
 
@@ -198,7 +197,6 @@ namespace state::in_play::HeadFor
 	{
 		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
 		Refresh();
-
 	}
 
 	void Start()

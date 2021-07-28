@@ -66,16 +66,32 @@ namespace visuals::WorldMap
 		}
 	}
 
-	static void DrawCurrentDestination(const std::shared_ptr<common::Application::Renderer>& renderer, const InternalWorldMap& worldMap, const common::XY<double> worldSize)
+	const std::map<game::avatar::Destination, std::string> destinationIdSprites =
 	{
-		//TODO: select destination number
-		auto currentDestination = game::avatar::destination::GetDestination(game::avatar::Destination::ONE);
+		{game::avatar::Destination::ONE, SPRITE_WORLD_MAP_CURRENT_DESTINATION_1},
+		{game::avatar::Destination::TWO, SPRITE_WORLD_MAP_CURRENT_DESTINATION_2},
+		{game::avatar::Destination::THREE, SPRITE_WORLD_MAP_CURRENT_DESTINATION_3},
+		{game::avatar::Destination::FOUR, SPRITE_WORLD_MAP_CURRENT_DESTINATION_4}
+	};
+
+	static void DrawCurrentDestination(const std::shared_ptr<common::Application::Renderer>& renderer, const game::avatar::Destination& destinationId, const InternalWorldMap& worldMap, const common::XY<double> worldSize)
+	{
+		auto currentDestination = game::avatar::destination::GetDestination(destinationId);
 		if (currentDestination)
 		{
 			common::XY<int> plot = Plot(worldMap, worldSize, currentDestination.value());
-			visuals::Sprites::Draw(SPRITE_WORLD_MAP_CURRENT_DESTINATION_1, renderer, plot, { 0xff,0xff,0xff,0xff });
+			visuals::Sprites::Draw(destinationIdSprites.find(destinationId)->second, renderer, plot, { 0xff,0xff,0xff,0xff });
 		}
 	}
+
+	static void DrawCurrentDestinations(const std::shared_ptr<common::Application::Renderer>& renderer, const InternalWorldMap& worldMap, const common::XY<double> worldSize)
+	{
+		for (auto destinationId : game::avatar::destination::All())
+		{
+			DrawCurrentDestination(renderer, destinationId, worldMap, worldSize);
+		}
+	}
+
 
 	static void DrawKnownIslands(const std::shared_ptr<common::Application::Renderer>& renderer, InternalWorldMap& worldMap, const common::XY<double> worldSize)
 	{
@@ -118,7 +134,7 @@ namespace visuals::WorldMap
 		auto worldSize = game::World::GetSize();
 		DrawKnownIslands(renderer, worldMap, worldSize);
 		DrawAvatar(renderer, worldMap, worldSize);
-		DrawCurrentDestination(renderer, worldMap, worldSize);
+		DrawCurrentDestinations(renderer, worldMap, worldSize);
 		DrawNewDestination(renderer, worldMap, worldSize);
 	}
 
