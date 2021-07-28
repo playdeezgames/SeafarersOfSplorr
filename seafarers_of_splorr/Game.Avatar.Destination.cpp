@@ -2,18 +2,18 @@
 #include "Data.Game.Avatar.Destination.h"
 namespace game::avatar::destination
 {
-	std::optional<common::XY<double>> GetDestination(int index)
+	std::optional<common::XY<double>> GetDestination(const game::avatar::Destination& index)
 	{
-		return data::game::avatar::Destination::Read(index);
+		return data::game::avatar::Destination::Read((int)index);
 	}
 
-	void SetDestination(int index, const std::optional<common::XY<double>>& destination)
+	void SetDestination(const game::avatar::Destination& index, const std::optional<common::XY<double>>& destination)
 	{
 		if (destination)
 		{
-			data::game::avatar::Destination::Write(index, destination.value());
+			data::game::avatar::Destination::Write((int)index, destination.value());
 			return;
 		}
-		data::game::avatar::Destination::Clear(index);
+		data::game::avatar::Destination::Clear((int)index);
 	}
 }

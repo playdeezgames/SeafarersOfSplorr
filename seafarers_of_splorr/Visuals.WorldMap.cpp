@@ -69,7 +69,7 @@ namespace visuals::WorldMap
 	static void DrawCurrentDestination(const std::shared_ptr<common::Application::Renderer>& renderer, const InternalWorldMap& worldMap, const common::XY<double> worldSize)
 	{
 		//TODO: select destination number
-		auto currentDestination = game::avatar::destination::GetDestination(1);
+		auto currentDestination = game::avatar::destination::GetDestination(game::avatar::Destination::ONE);
 		if (currentDestination)
 		{
 			common::XY<int> plot = Plot(worldMap, worldSize, currentDestination.value());
