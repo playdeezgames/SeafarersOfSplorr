@@ -184,19 +184,36 @@ namespace state::in_play::AtSea
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_SPEED, std::format(FORMAT_SPEED, speed));
 	}
 
-	static common::XY<double> Plot(const common::XY<double>&);
-	static void UpdateAvatarDestination()
+	const std::map<game::avatar::Destination, std::string> destinationIdImages =
 	{
-		auto destination = game::avatar::destination::GetDestination(game::avatar::Destination::ONE);//TODO: loop through destinations
+		{game::avatar::Destination::ONE, IMAGE_DESTINATION_1},
+		{game::avatar::Destination::TWO, IMAGE_DESTINATION_2},
+		{game::avatar::Destination::THREE, IMAGE_DESTINATION_3},
+		{game::avatar::Destination::FOUR, IMAGE_DESTINATION_4}
+	};
+
+	static common::XY<double> Plot(const common::XY<double>&);
+	static void UpdateAvatarDestination(const game::avatar::Destination& destinationId)
+	{
+		auto destination = game::avatar::destination::GetDestination(destinationId);
+		auto imageId = destinationIdImages.find(destinationId)->second;
 		if (destination)
 		{
 			auto clampedDistance = game::Heading::ClampDistance(destination.value() - game::Avatar::GetLocation(), game::World::GetViewDistance()+0.5);//TODO: magic number
 			auto plot = Plot(clampedDistance);
-			visuals::Images::SetLocation(LAYOUT_NAME, IMAGE_DESTINATION_1, { (int)plot.GetX(), (int)plot.GetY() });
-			visuals::Images::SetVisible(LAYOUT_NAME, IMAGE_DESTINATION_1, true);
+			visuals::Images::SetLocation(LAYOUT_NAME, imageId, { (int)plot.GetX(), (int)plot.GetY() });
+			visuals::Images::SetVisible(LAYOUT_NAME, imageId, true);
 			return;
 		}
-		visuals::Images::SetVisible(LAYOUT_NAME, IMAGE_DESTINATION_1, false);
+		visuals::Images::SetVisible(LAYOUT_NAME, imageId, false);
+	}
+
+	static void UpdateAvatarDestinations()
+	{
+		for (auto destinationId : game::avatar::destination::All())
+		{
+			UpdateAvatarDestination(destinationId);
+		}
 	}
 
 	static void UpdateAvatarQuestDestination()
@@ -222,7 +239,7 @@ namespace state::in_play::AtSea
 		UpdateAvatarMoney();
 		UpdateAvatarReputation();
 		UpdateAvatarTurns();
-		UpdateAvatarDestination();
+		UpdateAvatarDestinations();
 		UpdateAvatarQuestDestination();
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_JOB, game::avatar::Quest::Read().has_value());
 	}

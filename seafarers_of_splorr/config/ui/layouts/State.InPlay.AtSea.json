@@ -558,7 +558,35 @@
         "sprite": "AtSeaDestination1",
         "color": "White",
         "x": 162,
-        "y": 182
+        "y": 182,
+        "visible":false
+    },
+    {
+        "type": "Image",
+        "image-id": "Destination2",
+        "sprite": "AtSeaDestination2",
+        "color": "White",
+        "x": 162,
+        "y": 182,
+        "visible":false
+    },
+    {
+        "type": "Image",
+        "image-id": "Destination3",
+        "sprite": "AtSeaDestination3",
+        "color": "White",
+        "x": 162,
+        "y": 182,
+        "visible":false
+    },
+    {
+        "type": "Image",
+        "image-id": "Destination4",
+        "sprite": "AtSeaDestination4",
+        "color": "White",
+        "x": 162,
+        "y": 182,
+        "visible":false
     },
     {
         "type": "Image",
