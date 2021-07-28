@@ -15,6 +15,16 @@
 #include "Visuals.WorldMap.h"
 namespace visuals::WorldMap
 {
+	const std::string SPRITE_WORLD_MAP_SHIP = "WorldMapShip";
+	const std::string SPRITE_WORLD_MAP_NEW_DESTINATION = "WorldMapNewDestination";
+	const std::string SPRITE_WORLD_MAP_CURRENT_DESTINATION_1 = "WorldMapCurrentDestination1";
+	const std::string SPRITE_WORLD_MAP_CURRENT_DESTINATION_2 = "WorldMapCurrentDestination2";
+	const std::string SPRITE_WORLD_MAP_CURRENT_DESTINATION_3 = "WorldMapCurrentDestination3";
+	const std::string SPRITE_WORLD_MAP_CURRENT_DESTINATION_4 = "WorldMapCurrentDestination4";
+	const std::string SPRITE_WORLD_MAP_QUEST_ISLAND = "WorldMapQuestIsland";
+	const std::string SPRITE_WORLD_MAP_ISLAND = "WorldMapIsland";
+	const std::string SPRITE_WORLD_MAP_HOVER_ISLAND = "WorldMapHoverIsland";
+
 	struct InternalWorldMap
 	{
 		common::XY<int> xy;
@@ -44,7 +54,7 @@ namespace visuals::WorldMap
 	{
 		auto avatarLocation = game::Avatar::GetLocation();
 		common::XY<int> plot = Plot(worldMap, worldSize, avatarLocation);
-		visuals::Sprites::Draw("WorldMapShip", renderer, plot, { 0xff,0xff,0xff,0xff });
+		visuals::Sprites::Draw(SPRITE_WORLD_MAP_SHIP, renderer, plot, { 0xff,0xff,0xff,0xff });
 	}
 
 	static void DrawNewDestination(const std::shared_ptr<common::Application::Renderer>& renderer, const InternalWorldMap& worldMap, const common::XY<double> worldSize)
@@ -52,7 +62,7 @@ namespace visuals::WorldMap
 		auto newDestination = worldMap.destination;
 		if (newDestination)
 		{
-			visuals::Sprites::Draw("WorldMapNewDestination", renderer, newDestination.value() + worldMap.xy, { 0xff,0xff,0xff,0xff });
+			visuals::Sprites::Draw(SPRITE_WORLD_MAP_NEW_DESTINATION, renderer, newDestination.value() + worldMap.xy, { 0xff,0xff,0xff,0xff });
 		}
 	}
 
@@ -62,7 +72,7 @@ namespace visuals::WorldMap
 		if (currentDestination)
 		{
 			common::XY<int> plot = Plot(worldMap, worldSize, currentDestination.value());
-			visuals::Sprites::Draw("WorldMapCurrentDestination", renderer, plot, { 0xff,0xff,0xff,0xff });
+			visuals::Sprites::Draw(SPRITE_WORLD_MAP_CURRENT_DESTINATION_1, renderer, plot, { 0xff,0xff,0xff,0xff });
 		}
 	}
 
@@ -88,16 +98,16 @@ namespace visuals::WorldMap
 			}
 			if (quest.has_value() && quest.value().destination == knownIsland.absoluteLocation)
 			{
-				visuals::Sprites::Draw("WorldMapQuestIsland", renderer, plot, { 0xff,0xff,0xff,0xff });
+				visuals::Sprites::Draw(SPRITE_WORLD_MAP_QUEST_ISLAND, renderer, plot, { 0xff,0xff,0xff,0xff });
 			}
 			else
 			{
-				visuals::Sprites::Draw("WorldMapIsland", renderer, plot, { 0xff,0xff,0xff,0xff });
+				visuals::Sprites::Draw(SPRITE_WORLD_MAP_ISLAND, renderer, plot, { 0xff,0xff,0xff,0xff });
 			}
 		}
 		if (hoverIsland)
 		{
-			visuals::Sprites::Draw("WorldMapHoverIsland", renderer, hoverIsland.value(), { 0xff,0xff,0xff,0xff });
+			visuals::Sprites::Draw(SPRITE_WORLD_MAP_HOVER_ISLAND, renderer, hoverIsland.value(), { 0xff,0xff,0xff,0xff });
 		}
 	}
 

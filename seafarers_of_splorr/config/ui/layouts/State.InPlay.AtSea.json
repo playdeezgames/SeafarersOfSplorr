@@ -554,8 +554,8 @@
     },
     {
         "type": "Image",
-        "image-id": "Destination",
-        "sprite": "AtSeaDestination",
+        "image-id": "Destination1",
+        "sprite": "AtSeaDestination1",
         "color": "White",
         "x": 162,
         "y": 182

@@ -48,7 +48,10 @@ namespace state::in_play::AtSea
 
 	const std::string IMAGE_CURRENT_HEADING = "CurrentHeading";
 	const std::string IMAGE_NEW_HEADING = "NewHeading";
-	const std::string IMAGE_DESTINATION = "Destination";
+	const std::string IMAGE_DESTINATION_1 = "Destination1";
+	const std::string IMAGE_DESTINATION_2 = "Destination2";
+	const std::string IMAGE_DESTINATION_3 = "Destination3";
+	const std::string IMAGE_DESTINATION_4 = "Destination4";
 	const std::string IMAGE_QUEST_DESTINATION = "QuestDestination";
 
 	const common::XY<int> CENTER = { 64, 64 };//TODO: hardcoded
@@ -189,11 +192,11 @@ namespace state::in_play::AtSea
 		{
 			auto clampedDistance = game::Heading::ClampDistance(destination.value() - game::Avatar::GetLocation(), game::World::GetViewDistance()+0.5);//TODO: magic number
 			auto plot = Plot(clampedDistance);
-			visuals::Images::SetLocation(LAYOUT_NAME, IMAGE_DESTINATION, { (int)plot.GetX(), (int)plot.GetY() });
-			visuals::Images::SetVisible(LAYOUT_NAME, IMAGE_DESTINATION, true);
+			visuals::Images::SetLocation(LAYOUT_NAME, IMAGE_DESTINATION_1, { (int)plot.GetX(), (int)plot.GetY() });
+			visuals::Images::SetVisible(LAYOUT_NAME, IMAGE_DESTINATION_1, true);
 			return;
 		}
-		visuals::Images::SetVisible(LAYOUT_NAME, IMAGE_DESTINATION, false);
+		visuals::Images::SetVisible(LAYOUT_NAME, IMAGE_DESTINATION_1, false);
 	}
 
 	static void UpdateAvatarQuestDestination()
