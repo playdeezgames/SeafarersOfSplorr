@@ -17,14 +17,14 @@ namespace data::game::avatar::Destination
 		data::game::Common::Execute(CREATE_TABLE);
 	}
 
-	void Write(const common::XY<double>& location)
+	void Write(int, const common::XY<double>& location)
 	{
 		AutoCreateAvatarDestinationsTable();
 		auto query = std::format(REPLACE_ITEM, data::game::Common::AVATAR_ID, location.GetX(), location.GetY());
 		data::game::Common::Execute(query);
 	}
 
-	std::optional<common::XY<double>> Read()
+	std::optional<common::XY<double>> Read(int)
 	{
 		AutoCreateAvatarDestinationsTable();
 		auto query = std::format(QUERY_ITEM, data::game::Common::AVATAR_ID);
@@ -41,9 +41,16 @@ namespace data::game::avatar::Destination
 		return std::nullopt;
 	}
 
-	void Clear()
+	void Clear(int)
+	{
+		AutoCreateAvatarDestinationsTable();
+		data::game::Common::Execute(DELETE_ALL);//TODO: delete item
+	}
+
+	void ClearAll()
 	{
 		AutoCreateAvatarDestinationsTable();
 		data::game::Common::Execute(DELETE_ALL);
 	}
+
 }

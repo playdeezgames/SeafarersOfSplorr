@@ -130,7 +130,7 @@ namespace game::Islands
 		data::game::Island::Clear();
 		data::game::island::Visits::Clear();
 		data::game::island::Known::Clear();
-		data::game::avatar::Destination::Clear();
+		data::game::avatar::Destination::ClearAll();
 		data::game::island::Market::Clear();
 		data::game::island::Item::ClearAll();
 	}

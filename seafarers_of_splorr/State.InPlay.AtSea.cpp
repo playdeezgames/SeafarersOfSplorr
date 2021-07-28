@@ -187,7 +187,7 @@ namespace state::in_play::AtSea
 	static common::XY<double> Plot(const common::XY<double>&);
 	static void UpdateAvatarDestination()
 	{
-		auto destination = game::avatar::destination::GetDestination();
+		auto destination = game::avatar::destination::GetDestination(1);//TODO: loop through destinations
 		if (destination)
 		{
 			auto clampedDistance = game::Heading::ClampDistance(destination.value() - game::Avatar::GetLocation(), game::World::GetViewDistance()+0.5);//TODO: magic number

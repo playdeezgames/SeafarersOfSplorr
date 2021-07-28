@@ -58,7 +58,8 @@ namespace state::in_play::HeadFor
 
 	static bool HandleWorldMapMouseButtonUp()
 	{
-		game::avatar::destination::SetDestination(visuals::WorldMap::GetDestination(LAYOUT_NAME, WORLD_MAP_ID));
+		//TODO: select destination number
+		game::avatar::destination::SetDestination(1,visuals::WorldMap::GetDestination(LAYOUT_NAME, WORLD_MAP_ID));
 		return true;
 	}
 
