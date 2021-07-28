@@ -38,13 +38,13 @@ enum class UIState
 	IN_PLAY_ISLAND_BUY,
 	IN_PLAY_ISLAND_SELL,
 	IN_PLAY_CARGO,
-	IN_PLAY_SHIP_STATUS
+	IN_PLAY_SHIP_STATUS,
+	IN_PLAY_NEXT
 };
 namespace application::UIState
 {
 	void Write(const ::UIState&);
 	const ::UIState& Read();
-	std::optional<std::string> EnterGame();
 	std::function<void()> GoTo(const ::UIState&);
 
 	void Push(const ::UIState&);

@@ -33,7 +33,7 @@ namespace state::ConfirmOverwrite
 	{
 		int slot = slotTable.find(application::UIState::Read())->second;
 		game::SaveToSlot(slot);
-		application::UIState::EnterGame();
+		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	const std::map<ConfirmOverwriteItem, std::function<void()>> activators =

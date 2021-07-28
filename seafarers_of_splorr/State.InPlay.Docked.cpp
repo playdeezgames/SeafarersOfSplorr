@@ -32,7 +32,7 @@ namespace state::in_play::Docked
 	static void OnUndock()
 	{
 		game::Avatar::Undock();
-		application::UIState::EnterGame();
+		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	const std::map<OrderMenuItem, std::function<void()>> activators =

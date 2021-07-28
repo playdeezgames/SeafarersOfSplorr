@@ -21,7 +21,7 @@ namespace state::ConfirmAbandon
 
 	static void CancelAbandon()
 	{
-		common::audio::Sfx::Play(application::UIState::EnterGame());
+		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	const std::map<ConfirmAbandonItem, std::function<void()>> activators =

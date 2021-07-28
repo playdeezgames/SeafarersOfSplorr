@@ -23,7 +23,7 @@ namespace state::in_play::ConfirmAbandonJob
 	static void AbandonJob()
 	{
 		game::avatar::Quest::AbandonQuest();
-		::application::UIState::EnterGame();
+		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	const std::map<ConfirmAbandonJobItem, std::function<void()>> activators =

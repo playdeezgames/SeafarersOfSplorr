@@ -29,7 +29,7 @@ namespace state::Tip
 		if (ticksLeft == 0)
 		{
 			game::Statistics::Increment(game::Statistic::GAMES_PLAYED);
-			common::audio::Sfx::Play(application::UIState::EnterGame());
+			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			ticksLeft = TICKS_TOTAL;
 		}
 	}

@@ -54,27 +54,4 @@ namespace application::UIState
 			Pop();
 		};
 	}
-
-	std::optional<std::string> EnterGame()
-	{
-		if (game::avatar::Statistics::GetCurrent(game::avatar::Statistic::TURNS_REMAINING) == game::avatar::Statistics::GetMinimum(game::avatar::Statistic::TURNS_REMAINING))
-		{
-			application::UIState::Write(::UIState::IN_PLAY_WIN);
-			return std::nullopt;
-		}
-		if (game::avatar::Statistics::GetCurrent(game::avatar::Statistic::HEALTH) == game::avatar::Statistics::GetMinimum(game::avatar::Statistic::HEALTH))
-		{
-			application::UIState::Write(::UIState::IN_PLAY_LOSE);
-			return std::nullopt;
-		}
-
-		game::AutoSave();
-		if (game::Avatar::GetDockedLocation())
-		{
-			application::UIState::Write(::UIState::IN_PLAY_DOCKED);
-			return std::nullopt;
-		}
-		application::UIState::Write(::UIState::IN_PLAY_AT_SEA);
-		return std::nullopt;
-	}
 }

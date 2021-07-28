@@ -90,6 +90,7 @@ namespace common::Application
 		state::in_play::IslandSell::Start,
 		state::in_play::Cargo::Start,
 		state::in_play::ShipStatus::Start,
+		state::in_play::Next::Start,
 		sublayout::UIHamburger::Start,
 		Options::Initialize,
 		visuals::Layouts::Start

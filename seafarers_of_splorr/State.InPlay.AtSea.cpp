@@ -100,8 +100,7 @@ namespace state::in_play::AtSea
 			{
 				ticksLeft = TICKS_TOTAL;
 				game::Avatar::Move();
-				application::UIState::EnterGame();
-				OnEnter();
+				application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			}
 			else
 			{
@@ -118,7 +117,7 @@ namespace state::in_play::AtSea
 	static void OnDock()
 	{
 		game::Avatar::Dock();
-		application::UIState::EnterGame();
+		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	const std::map<OrderMenuItem, std::function<void()>> activators =

@@ -39,7 +39,7 @@ namespace state::in_play::HeadFor
 
 	static void ReturnToGame()
 	{
-		::application::UIState::EnterGame();
+		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	const std::map<std::string, game::avatar::Destination> selectionTable =

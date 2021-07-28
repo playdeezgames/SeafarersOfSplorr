@@ -298,6 +298,9 @@
     <ClCompile Include="Game.Avatar.Destination.cpp">
       <Filter>Source\Game\Avatar</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.Next.cpp">
+      <Filter>Source\States\InPlay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
