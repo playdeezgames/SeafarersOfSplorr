@@ -3,6 +3,7 @@
 #include "Common.XY.h"
 #include <functional>
 #include "Game.Avatar.h"
+#include "Game.Avatar.Destination.h"
 #include "Game.Avatar.Quest.h"
 #include "Game.Heading.h"
 #include "Game.Islands.h"
@@ -57,7 +58,7 @@ namespace visuals::WorldMap
 
 	static void DrawCurrentDestination(const std::shared_ptr<common::Application::Renderer>& renderer, const InternalWorldMap& worldMap, const common::XY<double> worldSize)
 	{
-		auto currentDestination = game::Avatar::GetDestination();
+		auto currentDestination = game::avatar::destination::GetDestination();
 		if (currentDestination)
 		{
 			common::XY<int> plot = Plot(worldMap, worldSize, currentDestination.value());

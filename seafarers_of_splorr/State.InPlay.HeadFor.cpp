@@ -6,6 +6,7 @@
 #include "Application.Update.h"
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.h"
+#include "Game.Avatar.Destination.h"
 #include "Game.Islands.h"
 #include "Visuals.Areas.h"
 #include "Visuals.Texts.h"
@@ -57,7 +58,7 @@ namespace state::in_play::HeadFor
 
 	static bool HandleWorldMapMouseButtonUp()
 	{
-		game::Avatar::SetDestination(visuals::WorldMap::GetDestination(LAYOUT_NAME, WORLD_MAP_ID));
+		game::avatar::destination::SetDestination(visuals::WorldMap::GetDestination(LAYOUT_NAME, WORLD_MAP_ID));
 		return true;
 	}
 

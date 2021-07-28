@@ -8,6 +8,7 @@
 #include <format>
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.h"
+#include "Game.Avatar.Destination.h"
 #include "Game.Avatar.Quest.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Heading.h"
@@ -183,7 +184,7 @@ namespace state::in_play::AtSea
 	static common::XY<double> Plot(const common::XY<double>&);
 	static void UpdateAvatarDestination()
 	{
-		auto destination = game::Avatar::GetDestination();
+		auto destination = game::avatar::destination::GetDestination();
 		if (destination)
 		{
 			auto clampedDistance = game::Heading::ClampDistance(destination.value() - game::Avatar::GetLocation(), game::World::GetViewDistance()+0.5);//TODO: magic number

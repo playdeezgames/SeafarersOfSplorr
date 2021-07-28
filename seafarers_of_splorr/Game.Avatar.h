@@ -4,16 +4,18 @@
 #include <optional>
 namespace game::Avatar
 {
-	common::XY<double> GetLocation();
+	void Reset(const game::Difficulty&);
+
 	double GetHeading();
 	void SetHeading(double);
+
 	double GetSpeed();
 	void SetSpeed(double);
-	void Reset(const game::Difficulty&);
+
+	common::XY<double> GetLocation();
 	void Move();
+
 	bool Dock();
 	std::optional<common::XY<double>> GetDockedLocation();
 	bool Undock();
-	std::optional<common::XY<double>> GetDestination();
-	void SetDestination(const std::optional<common::XY<double>>&);
 }

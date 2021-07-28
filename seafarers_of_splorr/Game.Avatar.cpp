@@ -3,7 +3,6 @@
 #include "Common.RNG.h"
 #include "Common.Utility.h"
 #include "Data.Game.Avatar.h"
-#include "Data.Game.Avatar.Destination.h"
 #include "Data.Game.Avatar.Dock.h"
 #include "Game.Avatar.h"
 #include "Game.Avatar.Items.h"
@@ -41,7 +40,6 @@ namespace game::Avatar
 	{
 		return data::game::Avatar::Read().value().speed;
 	}
-
 
 	void SetSpeed(double speed)
 	{
@@ -143,18 +141,4 @@ namespace game::Avatar
 		return false;
 	}
 
-	std::optional<common::XY<double>> GetDestination()
-	{
-		return data::game::avatar::Destination::Read();
-	}
-
-	void SetDestination(const std::optional<common::XY<double>>& destination)
-	{
-		if (destination)
-		{
-			data::game::avatar::Destination::Write(destination.value());
-			return;
-		}
-		data::game::avatar::Destination::Clear();
-	}
 }
