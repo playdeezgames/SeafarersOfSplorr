@@ -188,5 +188,4 @@ namespace state::in_play::AtSea
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_DOCK, canDock);
 		UpdateAutoMoveState(canDock);
 	}
-
 }
