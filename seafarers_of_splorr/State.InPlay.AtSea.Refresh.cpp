@@ -13,7 +13,7 @@
 #include "Visuals.Texts.h"
 namespace state::in_play::AtSea
 {
-	const std::string LAYOUT_NAME;
+	const std::string LAYOUT_NAME = "State.InPlay.AtSea";
 
 	const std::string TEXT_AVATAR_TURNS = "avatar-turns";
 	const std::string TEXT_AVATAR_HEALTH = "avatar-health";
