@@ -10,8 +10,8 @@ namespace game::islands::Items
 		const data::game::island::Market::MarketData& market)
 	{
 		return commodityDescriptor.basePrice *
-			(market.demand + market.purchases * commodityDescriptor.demandFactor) /
-			(market.supply + market.sales * commodityDescriptor.supplyFactor);
+			(market.demand + (double)market.purchases * commodityDescriptor.demandFactor) /
+			(market.supply + (double)market.sales * commodityDescriptor.supplyFactor);
 	}
 
 	static double GetCommodityUnitSellPrice(
@@ -19,8 +19,8 @@ namespace game::islands::Items
 		const data::game::island::Market::MarketData& market)
 	{
 		return commodityDescriptor.basePrice *
-			(market.demand + market.purchases * commodityDescriptor.demandFactor) /
-			(market.supply + market.sales * commodityDescriptor.supplyFactor) *
+			(market.demand + (double)market.purchases * commodityDescriptor.demandFactor) /
+			(market.supply + (double)market.sales * commodityDescriptor.supplyFactor) *
 			(1.0 - commodityDescriptor.discount);
 	}
 

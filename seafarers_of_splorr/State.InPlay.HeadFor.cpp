@@ -91,37 +91,61 @@ namespace state::in_play::HeadFor
 		visuals::WorldMap::SetDestination(LAYOUT_NAME, WORLD_MAP_ID, location);
 	}
 
+	static void HandleMouseMotionInWorldMap(const common::XY<int>& location)
+	{
+		hoverDestinationId = std::nullopt;
+		RefreshHovers();
+		HandleWorldMapMouseMotion(location);
+	}
+
+	static void HandleHoverOnDestinationId(const game::avatar::Destination& destinationId)
+	{
+		hoverDestinationId = destinationId;
+		RefreshHovers();
+	}
+
+	static std::function<void(const common::XY<int>&)> HoverOnDestinationId(const game::avatar::Destination& destinationId)
+	{
+		return [destinationId](const common::XY<int>&)
+		{
+			hoverDestinationId = destinationId;
+			RefreshHovers();
+		};
+	}
+
+	const std::map<std::string, std::function<void(const common::XY<int>&)>> areaMotionHandlerTable =
+	{
+		{AREA_WORLD_MAP, HandleMouseMotionInWorldMap},
+		{AREA_SELECT_1, HoverOnDestinationId(game::avatar::Destination::ONE)},
+		{AREA_SELECT_1, HoverOnDestinationId(game::avatar::Destination::TWO)},
+		{AREA_SELECT_1, HoverOnDestinationId(game::avatar::Destination::THREE)},
+		{AREA_SELECT_1, HoverOnDestinationId(game::avatar::Destination::FOUR)}
+	};
+
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
 	{
 		if (areaName == AREA_WORLD_MAP)
 		{
-			hoverDestinationId = std::nullopt;
-			RefreshHovers();
-			HandleWorldMapMouseMotion(location);
+			HandleMouseMotionInWorldMap(location);
 			return;
 		}
 		if (areaName == AREA_SELECT_1)
 		{
-			hoverDestinationId = game::avatar::Destination::ONE;
-			RefreshHovers();
-			return;
+			HandleHoverOnDestinationId(game::avatar::Destination::ONE);
 		}
 		if (areaName == AREA_SELECT_2)
 		{
-			hoverDestinationId = game::avatar::Destination::TWO;
-			RefreshHovers();
+			HandleHoverOnDestinationId(game::avatar::Destination::TWO);
 			return;
 		}
 		if (areaName == AREA_SELECT_3)
 		{
-			hoverDestinationId = game::avatar::Destination::THREE;
-			RefreshHovers();
+			HandleHoverOnDestinationId(game::avatar::Destination::THREE);
 			return;
 		}
 		if (areaName == AREA_SELECT_4)
 		{
-			hoverDestinationId = game::avatar::Destination::FOUR;
-			RefreshHovers();
+			HandleHoverOnDestinationId(game::avatar::Destination::FOUR);
 			return;
 		}
 	}
