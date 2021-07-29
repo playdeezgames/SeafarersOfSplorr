@@ -55,7 +55,7 @@ namespace state::in_play::AtSea
 
 	static void RefreshAvatarReputation()
 	{
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_REPUTATION, std::format(FORMAT_REPUTATION, game::avatar::Statistics::GetCurrent(game::avatar::Statistic::REPUTATION)));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_REPUTATION, std::format(FORMAT_REPUTATION, game::avatar::Statistics::GetReputation()));
 	}
 
 	static void RefreshAvatarHealth()
@@ -65,7 +65,7 @@ namespace state::in_play::AtSea
 
 	static void RefreshAvatarTurns()
 	{
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_TURNS, std::format(FORMAT_TURNS, game::avatar::Statistics::GetCurrent(game::avatar::Statistic::TURNS_REMAINING)));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_TURNS, std::format(FORMAT_TURNS, game::avatar::Statistics::GetTurnsRemaining()));
 	}
 
 	static void RefreshAvatarHeading()

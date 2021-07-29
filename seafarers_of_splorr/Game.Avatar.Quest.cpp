@@ -6,6 +6,9 @@
 #include "Game.Islands.h"
 namespace game::avatar::Quest
 {
+	const double REPUTATION_REWARD = 1.0;
+	const double REPUTATION_PENALTY = -1.0;
+
 	AcceptQuestResult AcceptQuest(const common::XY<double>& location)
 	{
 		if (data::game::avatar::Quest::Read())
@@ -23,7 +26,7 @@ namespace game::avatar::Quest
 					quest.value().personName,
 					quest.value().professionName}));
 			data::game::island::Quests::Clear(location);
-			game::Islands::SetKnown(quest.value().destination,(int)game::avatar::Statistics::GetCurrent(game::avatar::Statistic::TURNS_REMAINING));
+			game::Islands::SetKnown(quest.value().destination, game::avatar::Statistics::GetTurnsRemaining());
 			data::game::island::Known::Write(quest.value().destination);
 			return AcceptQuestResult::ACCEPTED_QUEST;
 		}
@@ -36,7 +39,7 @@ namespace game::avatar::Quest
 		if (quest.has_value() && quest.value().destination == location)
 		{
 			game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::MONEY, quest.value().reward);
-			game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::REPUTATION, 1.0);
+			game::avatar::Statistics::ChangeReputation(REPUTATION_REWARD);
 			data::game::avatar::Quest::Write(std::nullopt);
 			return true;
 		}
@@ -47,7 +50,7 @@ namespace game::avatar::Quest
 	{
 		if (data::game::avatar::Quest::Read())
 		{
-			game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::REPUTATION, -1.0);//TODO: hardcoded value
+			game::avatar::Statistics::ChangeReputation(REPUTATION_PENALTY);
 			data::game::avatar::Quest::Write(std::nullopt);
 			return true;
 		}

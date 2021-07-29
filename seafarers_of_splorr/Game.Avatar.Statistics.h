@@ -20,8 +20,16 @@ namespace game::avatar::Statistics
 	double ChangeCurrent(const game::avatar::Statistic&, double);
 
 	double GetMoney();
+
 	double GetHealth();
 	double GetHunger();
 	void Eat(double);
 	bool NeedToEat(double);
+
+	double GetReputation();
+	void ChangeReputation(double);
+
+	int GetTurnsRemaining();
+	void SpendTurn();
+	bool IsOutOfTurns();
 }

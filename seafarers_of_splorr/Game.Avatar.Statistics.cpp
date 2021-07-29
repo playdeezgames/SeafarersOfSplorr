@@ -129,4 +129,31 @@ namespace game::avatar::Statistics
 			GetMaximum(game::avatar::Statistic::HUNGER) - GetCurrent(game::avatar::Statistic::HUNGER);
 		return totalDown >= amount;
 	}
+
+	double GetReputation()
+	{
+		return GetCurrent(game::avatar::Statistic::REPUTATION);
+	}
+
+	void ChangeReputation(double delta)
+	{
+		ChangeCurrent(game::avatar::Statistic::REPUTATION, delta);
+	}
+
+	int GetTurnsRemaining()
+	{
+		return (int)GetCurrent(game::avatar::Statistic::TURNS_REMAINING);
+	}
+
+	void SpendTurn()
+	{
+		const double TURN_DELTA = -1.0;
+		ChangeCurrent(game::avatar::Statistic::TURNS_REMAINING, TURN_DELTA);
+	}
+
+	bool IsOutOfTurns()
+	{
+		return GetCurrent(game::avatar::Statistic::TURNS_REMAINING) <= GetMinimum(game::avatar::Statistic::TURNS_REMAINING);
+	}
+
 }

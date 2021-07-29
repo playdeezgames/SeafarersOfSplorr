@@ -2,6 +2,7 @@
 #include "Data.Game.Island.h"
 #include "Data.Game.Island.Quests.h"
 #include <format>
+#include "Game.Avatar.Statistics.h"
 #include "Game.Islands.h"
 #include "Game.Islands.Quests.h"
 #include <map>
@@ -10,6 +11,7 @@ namespace game::islands::Quests
 {
 	static double GenerateReward()
 	{
+		double reputation = game::avatar::Statistics::GetReputation();
 		return 1.0;//TODO: magic number
 	}
 
@@ -26,6 +28,7 @@ namespace game::islands::Quests
 		{"gracefully",1},
 		{"mercifully",1}
 	};
+
 	const std::map<std::string, size_t> itemAdjectives =
 	{
 		{"turgid",1},
@@ -42,8 +45,10 @@ namespace game::islands::Quests
 		{"pulsating",1},
 		{"writhing",1},
 		{"bulging",1},
-		{"chewy",1}
+		{"chewy",1},
+		{"swolen",1}
 	};
+
 	const std::map<std::string, size_t> itemNames =
 	{
 		{"marital aid",1},
@@ -113,6 +118,7 @@ namespace game::islands::Quests
 		{"charming",1},
 		{"rabid",1}
 	};
+
 	const std::map<std::string, size_t> professionNames =
 	{
 		{"harlot",1},
@@ -129,8 +135,11 @@ namespace game::islands::Quests
 		{"gambler",1},
 		{"gravedigger",1},
 		{"bogan",1},
-		{"dog",1}
+		{"dog",1},
+		{"knacker",1},
+		{"mudlark",1}
 	};
+
 	static std::string GenerateProfessionName()
 	{
 		return std::format("{} {}",

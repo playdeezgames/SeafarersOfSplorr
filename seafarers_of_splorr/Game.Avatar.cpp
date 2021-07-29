@@ -66,7 +66,7 @@ namespace game::Avatar
 		const double HUNGER_DELTA = -1.0;
 		const double HEALTH_DELTA = -1.0;
 		const double EAT_BENEFIT = 10.0;
-		game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::TURNS_REMAINING, TURN_DELTA);
+		game::avatar::Statistics::SpendTurn();
 		if (game::avatar::Statistics::GetCurrent(game::avatar::Statistic::HUNGER) > game::avatar::Statistics::GetMinimum(game::avatar::Statistic::HUNGER))
 		{
 			game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::HUNGER, HUNGER_DELTA);
@@ -132,10 +132,9 @@ namespace game::Avatar
 
 	static bool DoDock(const common::XY<double>& location)
 	{
-		int currentTurn = (int)game::avatar::Statistics::GetCurrent(game::avatar::Statistic::TURNS_REMAINING);
 		game::Islands::AddVisit(
 			location,
-			currentTurn);
+			game::avatar::Statistics::GetTurnsRemaining());
 		game::islands::Quests::Update(location);
 		game::avatar::Quest::CompleteQuest(location);
 		data::game::avatar::Dock::SetLocation(location);

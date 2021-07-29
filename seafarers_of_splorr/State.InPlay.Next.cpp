@@ -6,7 +6,7 @@ namespace state::in_play::Next
 {
 	static void OnEnter()
 	{
-		if (game::avatar::Statistics::GetCurrent(game::avatar::Statistic::TURNS_REMAINING) == game::avatar::Statistics::GetMinimum(game::avatar::Statistic::TURNS_REMAINING))
+		if (game::avatar::Statistics::IsOutOfTurns())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_WIN);
 			return;
