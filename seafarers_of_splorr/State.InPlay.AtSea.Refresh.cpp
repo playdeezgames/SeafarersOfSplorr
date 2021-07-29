@@ -179,11 +179,11 @@ namespace state::in_play::AtSea
 		{
 			canDock |= (game::Heading::Distance(entry.relativeLocation, { 0.0, 0.0 }) <= dockDistance);
 			auto plot = Plot(entry.relativeLocation);
-			auto visualId = std::format("AtSeaIsland{}", icon);
+			auto visualId = std::format("AtSeaIsland{}", icon);//TODO: magic string
 			visuals::Images::SetLocation(LAYOUT_NAME, visualId, { (int)plot.GetX() + IMAGE_OFFSET_X,(int)plot.GetY() + IMAGE_OFFSET_Y });
 			visuals::Images::SetVisible(LAYOUT_NAME, visualId, true);
 			visuals::Texts::SetLocation(LAYOUT_NAME, visualId, { (int)plot.GetX() + TEXT_OFFSET_X,(int)plot.GetY() + TEXT_OFFSET_Y });
-			visuals::Texts::SetText(LAYOUT_NAME, visualId, (entry.visits.has_value()) ? (entry.name) : ("????"));
+			visuals::Texts::SetText(LAYOUT_NAME, visualId, (entry.visits.has_value()) ? (entry.name) : (game::Islands::UNKNOWN));
 			++icon;
 		}
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_DOCK, canDock);

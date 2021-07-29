@@ -292,7 +292,7 @@ namespace game::Islands
 				else
 				{
 					auto obfuscated = model.value();
-					obfuscated.name = "????";//TODO: hardcoded
+					obfuscated.name = game::Islands::UNKNOWN;
 					result.push_back(obfuscated);
 				}
 			}

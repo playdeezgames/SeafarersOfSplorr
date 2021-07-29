@@ -34,6 +34,8 @@ namespace state::in_play::HeadFor
 	const std::string WORLD_MAP_ID = "WorldMap";
 	const std::string TEXT_HOVER_ISLAND = "HoverIsland";
 
+	const std::string NO_HOVER_TEXT = "-";
+
 	static std::optional<game::avatar::Destination> hoverDestinationId = std::nullopt;
 	static game::avatar::Destination currentDestinationId = game::avatar::Destination::ONE;
 
@@ -98,12 +100,6 @@ namespace state::in_play::HeadFor
 		HandleWorldMapMouseMotion(location);
 	}
 
-	static void HandleHoverOnDestinationId(const game::avatar::Destination& destinationId)
-	{
-		hoverDestinationId = destinationId;
-		RefreshHovers();
-	}
-
 	static std::function<void(const common::XY<int>&)> HoverOnDestinationId(const game::avatar::Destination& destinationId)
 	{
 		return [destinationId](const common::XY<int>&)
@@ -117,36 +113,17 @@ namespace state::in_play::HeadFor
 	{
 		{AREA_WORLD_MAP, HandleMouseMotionInWorldMap},
 		{AREA_SELECT_1, HoverOnDestinationId(game::avatar::Destination::ONE)},
-		{AREA_SELECT_1, HoverOnDestinationId(game::avatar::Destination::TWO)},
-		{AREA_SELECT_1, HoverOnDestinationId(game::avatar::Destination::THREE)},
-		{AREA_SELECT_1, HoverOnDestinationId(game::avatar::Destination::FOUR)}
+		{AREA_SELECT_2, HoverOnDestinationId(game::avatar::Destination::TWO)},
+		{AREA_SELECT_3, HoverOnDestinationId(game::avatar::Destination::THREE)},
+		{AREA_SELECT_4, HoverOnDestinationId(game::avatar::Destination::FOUR)}
 	};
 
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
 	{
-		if (areaName == AREA_WORLD_MAP)
+		auto entry = areaMotionHandlerTable.find(areaName);
+		if (entry != areaMotionHandlerTable.end())
 		{
-			HandleMouseMotionInWorldMap(location);
-			return;
-		}
-		if (areaName == AREA_SELECT_1)
-		{
-			HandleHoverOnDestinationId(game::avatar::Destination::ONE);
-		}
-		if (areaName == AREA_SELECT_2)
-		{
-			HandleHoverOnDestinationId(game::avatar::Destination::TWO);
-			return;
-		}
-		if (areaName == AREA_SELECT_3)
-		{
-			HandleHoverOnDestinationId(game::avatar::Destination::THREE);
-			return;
-		}
-		if (areaName == AREA_SELECT_4)
-		{
-			HandleHoverOnDestinationId(game::avatar::Destination::FOUR);
-			return;
+			entry->second(location);
 		}
 	}
 	
@@ -163,40 +140,36 @@ namespace state::in_play::HeadFor
 		return true;
 	}
 
+	static std::function<void()> SelectDestinationId(const game::avatar::Destination& destinationId)
+	{
+		return [destinationId]()
+		{
+			currentDestinationId = destinationId;
+			RefreshSelection();
+		};
+	}
+
+	const std::map<std::string, std::function<void()>> areaButtonHandlerTable =
+	{
+		{AREA_WORLD_MAP, HandleWorldMapMouseButtonUp},
+		{AREA_SELECT_1, SelectDestinationId(game::avatar::Destination::ONE)},
+		{AREA_SELECT_2, SelectDestinationId(game::avatar::Destination::TWO)},
+		{AREA_SELECT_3, SelectDestinationId(game::avatar::Destination::THREE)},
+		{AREA_SELECT_4, SelectDestinationId(game::avatar::Destination::FOUR)}
+	};
+
 	static bool OnMouseButtonUpInArea(const std::string& areaName)
 	{
-		if (areaName == AREA_WORLD_MAP)
+		auto entry = areaButtonHandlerTable.find(areaName);
+		if (entry != areaButtonHandlerTable.end())
 		{
-			return HandleWorldMapMouseButtonUp();
-		}
-		if (areaName == AREA_SELECT_1)
-		{
-			currentDestinationId = game::avatar::Destination::ONE;
-			RefreshSelection();
-			return true;
-		}
-		if (areaName == AREA_SELECT_2)
-		{
-			currentDestinationId = game::avatar::Destination::TWO;
-			RefreshSelection();
-			return true;
-		}
-		if (areaName == AREA_SELECT_3)
-		{
-			currentDestinationId = game::avatar::Destination::THREE;
-			RefreshSelection();
-			return true;
-		}
-		if (areaName == AREA_SELECT_4)
-		{
-			currentDestinationId = game::avatar::Destination::FOUR;
-			RefreshSelection();
+			entry->second();
 			return true;
 		}
 		return false;
 	}
 
-	static void OnUpdate(const unsigned int&)//TODO: refactor me
+	static void OnUpdate(const unsigned int&)
 	{
 		auto hoverIsland = visuals::WorldMap::GetHoverIsland(LAYOUT_NAME, WORLD_MAP_ID);
 		if (hoverIsland)
@@ -208,12 +181,12 @@ namespace state::in_play::HeadFor
 			}
 			else
 			{
-				visuals::Texts::SetText(LAYOUT_NAME, TEXT_HOVER_ISLAND, "????");//TODO: hard coded
+				visuals::Texts::SetText(LAYOUT_NAME, TEXT_HOVER_ISLAND, game::Islands::UNKNOWN);
 			}
 		}
 		else
 		{
-			visuals::Texts::SetText(LAYOUT_NAME, TEXT_HOVER_ISLAND, "-");
+			visuals::Texts::SetText(LAYOUT_NAME, TEXT_HOVER_ISLAND, NO_HOVER_TEXT);
 		}
 	}
 

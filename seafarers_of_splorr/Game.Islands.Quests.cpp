@@ -59,7 +59,8 @@ namespace game::islands::Quests
 		{"fleshlight",1},
 		{"biscuit",1},
 		{"marmite",1},
-		{"vegemite",1}
+		{"vegemite",1},
+		{"transfunctioner",1}
 	};
 
 	static std::string GenerateItemName()
