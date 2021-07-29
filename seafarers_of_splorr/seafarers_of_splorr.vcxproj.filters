@@ -301,6 +301,9 @@
     <ClCompile Include="State.InPlay.Next.cpp">
       <Filter>Source\States\InPlay</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.AtSea.Refresh.cpp">
+      <Filter>Source\States\InPlay\AtSea</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
