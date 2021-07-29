@@ -23,7 +23,7 @@ namespace state::in_play::AtSea
 	const std::string TEXT_AVATAR_MONEY = "avatar-money";
 	const std::string TEXT_AVATAR_REPUTATION = "avatar-reputation";
 
-	const std::string FORMAT_TURNS = "Turns Left: {:.0f}";
+	const std::string FORMAT_TURNS = "Turns Left: {:d}";
 	const std::string FORMAT_MONEY = "Money: {:.0f}";
 	const std::string FORMAT_REPUTATION = "Reputation: {:.0f}";
 	const std::string FORMAT_HUNGER = "Hunger: {:.0f}";
