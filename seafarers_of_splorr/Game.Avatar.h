@@ -13,7 +13,12 @@ namespace game::Avatar
 	void SetSpeed(double);
 
 	common::XY<double> GetLocation();
-	void Move();
+	enum class MoveResult
+	{
+		NORMAL,
+		CLAMPED
+	};
+	MoveResult Move();
 
 	bool Dock();
 	std::optional<common::XY<double>> GetDockedLocation();

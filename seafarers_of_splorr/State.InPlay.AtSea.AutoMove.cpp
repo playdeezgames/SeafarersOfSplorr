@@ -31,7 +31,10 @@ namespace state::in_play::AtSea
 			if (ticks >= ticksLeft)
 			{
 				ticksLeft = TICKS_TOTAL;
-				game::Avatar::Move();
+				if (game::Avatar::Move() == game::Avatar::MoveResult::CLAMPED)
+				{
+					autoMoveState = AutoMoveState::OFF;
+				}
 				application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			}
 			else

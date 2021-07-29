@@ -86,17 +86,48 @@ namespace game::Avatar
 		}
 	}
 
-	void Move()
+	static common::XY<double> ClampAvatarLocation(const common::XY<double>& candidate, MoveResult& result)
 	{
+		auto nextLocation = candidate;
+		auto worldSize = game::World::GetSize();
+		if (nextLocation.GetX() < 0.0)
+		{
+			result = MoveResult::CLAMPED;
+			nextLocation = { 0, nextLocation.GetY() };
+		}
+		if (nextLocation.GetX() > worldSize.GetX())
+		{
+			result = MoveResult::CLAMPED;
+			nextLocation = { worldSize.GetX(), nextLocation.GetY() };
+		}
+		if (nextLocation.GetY() < 0.0)
+		{
+			result = MoveResult::CLAMPED;
+			nextLocation = { nextLocation.GetX(), 0.0 };
+		}
+		if (nextLocation.GetY() > worldSize.GetY())
+		{
+			result = MoveResult::CLAMPED;
+			nextLocation = { nextLocation.GetX(), worldSize.GetY() };
+		}
+		return nextLocation;
+	}
+
+	MoveResult Move()
+	{
+		MoveResult result = MoveResult::NORMAL;
 		auto avatar = data::game::Avatar::Read().value();
 		auto shipDescriptor = game::Ships::Read(game::avatar::Ship::Read());
 		common::XY<double> delta = 
 			game::Heading::DegreesToXY(avatar.heading) * 
 			avatar.speed * 
 			shipDescriptor.properties.find(game::ship::Property::SPEED_FACTOR)->second;
-		avatar.location = avatar.location + delta;
+
+		avatar.location = ClampAvatarLocation(avatar.location + delta, result);
+
 		ApplyTurnEffects();
 		data::game::Avatar::Write(avatar);
+		return result;
 	}
 
 	static bool DoDock(const common::XY<double>& location)
