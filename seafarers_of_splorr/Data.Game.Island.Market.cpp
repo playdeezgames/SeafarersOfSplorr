@@ -11,7 +11,7 @@ namespace data::game::island::Market
 	const std::string FIELD_DEMAND = "Demand";
 	const std::string FIELD_PURCHASES = "Purchases";
 	const std::string FIELD_SALES = "Sales";
-	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandMarkets]([X] REAL NOT NULL, [Y] REAL NOT NULL, [CommodityId] INT NOT NULL,[Supply] REAL NOT NULL, [Demand] REAL NOT NULL, [Purchases] INT NOT NULL, [Sales] INT NOT NULL, UNIQUE([X],[Y],[CommodityId]));";
+	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandMarkets]([X] REAL NOT NULL, [Y] REAL NOT NULL, [CommodityId] INT NOT NULL,[Supply] REAL NOT NULL, [Demand] REAL NOT NULL, [Purchases] REAL NOT NULL, [Sales] REAL NOT NULL, UNIQUE([X],[Y],[CommodityId]));";
 	const std::string REPLACE_ITEM = "REPLACE INTO [IslandMarkets]([X],[Y],[CommodityId],[Supply],[Demand],[Purchases],[Sales]) VALUES ({:.4f},{:.4f},{},{},{},{},{})";
 	const std::string QUERY_ITEM = "SELECT [Supply], [Demand], [Purchases], [Sales] FROM [IslandMarkets] WHERE [X]={:.4f} AND [Y]={:.4f} AND [CommodityId]={};";
 	const std::string QUERY_ALL = "SELECT [CommodityId], [Supply], [Demand], [Purchases], [Sales] FROM [IslandMarkets] WHERE [X]={:.4f} AND [Y]={:.4f};";
@@ -44,8 +44,8 @@ namespace data::game::island::Market
 				{
 					common::Data::StringToDouble(record[FIELD_SUPPLY]),
 					common::Data::StringToDouble(record[FIELD_DEMAND]),
-					common::Data::StringToInt(record[FIELD_PURCHASES]),
-					common::Data::StringToInt(record[FIELD_SALES])
+					common::Data::StringToDouble(record[FIELD_PURCHASES]),
+					common::Data::StringToDouble(record[FIELD_SALES])
 				});
 		}
 		return std::nullopt;
@@ -65,8 +65,8 @@ namespace data::game::island::Market
 				{
 					common::Data::StringToDouble(record[FIELD_SUPPLY]),
 					common::Data::StringToDouble(record[FIELD_DEMAND]),
-					common::Data::StringToInt(record[FIELD_PURCHASES]),
-					common::Data::StringToInt(record[FIELD_SALES])
+					common::Data::StringToDouble(record[FIELD_PURCHASES]),
+					common::Data::StringToDouble(record[FIELD_SALES])
 				};
 		}
 		return result;

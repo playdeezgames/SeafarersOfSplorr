@@ -8,8 +8,8 @@ namespace data::game::island::Market
 	{
 		double supply;
 		double demand;
-		int purchases;
-		int sales;
+		double purchases;
+		double sales;
 	};
 
 	void Write(const common::XY<double>&, int, const MarketData&);
