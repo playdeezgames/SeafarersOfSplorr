@@ -41,6 +41,8 @@ namespace state::in_play::AtSea
 	const std::string MENU_ITEM_DOCK = "Dock";
 	const std::string MENU_ITEM_JOB = "Job";
 
+	void UpdateAutoMoveState(bool);//TODO: i dont like the dependency web this makes
+
 	static void RefreshAvatarHunger()
 	{
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HUNGER, std::format(FORMAT_HUNGER, game::avatar::Statistics::GetCurrent(game::avatar::Statistic::HUNGER)));
@@ -165,7 +167,6 @@ namespace state::in_play::AtSea
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_JOB, game::avatar::Quest::Read().has_value());
 	}
 
-	void UpdateAutoMoveState(bool);//TODO: this is an update, not a refresh
 
 	void RefreshIslands()
 	{

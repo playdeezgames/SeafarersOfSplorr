@@ -11,6 +11,10 @@ namespace state::in_play::AtSea
 		STARTING
 	};
 	static AutoMoveState autoMoveState = AutoMoveState::OFF;
+	bool IsAutoMoveEngaged()
+	{
+		return autoMoveState != AutoMoveState::OFF;
+	}
 	void ToggleAutoMove()
 	{
 		if (autoMoveState == AutoMoveState::OFF)

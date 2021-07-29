@@ -23,12 +23,15 @@ namespace state::in_play::AtSea
 
 	const std::string IMAGE_NEW_HEADING = "NewHeading";
 
+	const std::string MENU_ITEM_MOVE = "Move";
+
 	const common::XY<int> CENTER = { 64, 64 };//TODO: hardcoded
 
 	void RefreshAvatarStatus();
 	void RefreshIslands();
 	void DoAutomoveTimer(const unsigned int&);
 	void ToggleAutoMove();
+	bool IsAutoMoveEngaged();
 
 	static double newHeading = 0.0;
 
@@ -43,9 +46,23 @@ namespace state::in_play::AtSea
 		SHIP
 	};
 
+	const std::string STOP_MOVE = "Stop Move";
+	const std::string START_MOVE = "Start Move";
+
+	static void RefreshMoveMenuItem()
+	{
+		visuals::MenuItems::SetText(
+			LAYOUT_NAME,
+			MENU_ITEM_MOVE,
+			(IsAutoMoveEngaged()) ?
+			(STOP_MOVE) :
+			(START_MOVE));
+	}
+
 	static void OnUpdate(const unsigned int& ticks)
 	{
 		DoAutomoveTimer(ticks);
+		RefreshMoveMenuItem();
 	}
 
 	static void OnDock()
