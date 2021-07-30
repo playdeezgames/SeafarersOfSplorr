@@ -28,10 +28,11 @@ namespace state::in_play::AtSea
 	const common::XY<int> CENTER = { 64, 64 };//TODO: hardcoded
 
 	void RefreshAvatarStatus();
-	void RefreshIslands();
+	bool RefreshIslands();
 	void DoAutomoveTimer(const unsigned int&);
 	void ToggleAutoMove();
 	bool IsAutoMoveEngaged();
+	void UpdateAutoMoveState(bool);
 
 	static double newHeading = 0.0;
 
@@ -104,7 +105,7 @@ namespace state::in_play::AtSea
 	{
 		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
 		RefreshAvatarStatus();
-		RefreshIslands();
+		UpdateAutoMoveState(RefreshIslands());
 	}
 
 	static void OnMouseMotionInHelm(const common::XY<int>& location)

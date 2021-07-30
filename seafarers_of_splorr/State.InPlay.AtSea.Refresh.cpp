@@ -41,8 +41,6 @@ namespace state::in_play::AtSea
 	const std::string MENU_ITEM_DOCK = "Dock";
 	const std::string MENU_ITEM_JOB = "Job";
 
-	void UpdateAutoMoveState(bool);//TODO: i dont like the dependency web this makes
-
 	static void RefreshAvatarSatiety()
 	{
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_SATIETY, std::format(FORMAT_SATIETY, game::avatar::Statistics::GetSatiety()));
@@ -167,8 +165,7 @@ namespace state::in_play::AtSea
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_JOB, game::avatar::Quest::Read().has_value());
 	}
 
-
-	void RefreshIslands()
+	bool RefreshIslands()
 	{
 		HideVisibleIslands();
 		auto islands = game::Islands::GetViewableIslands();
@@ -187,6 +184,6 @@ namespace state::in_play::AtSea
 			++icon;
 		}
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_DOCK, canDock);
-		UpdateAutoMoveState(canDock);
+		return canDock;
 	}
 }
