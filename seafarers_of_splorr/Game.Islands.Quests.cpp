@@ -9,10 +9,21 @@
 #include <string>
 namespace game::islands::Quests
 {
+	const double MAXIMUM_REWARD = 10.0;
 	static double GenerateReward()
 	{
-		double reputation = game::avatar::Statistics::GetReputation();
-		return 1.0;//TODO: magic number
+		double reputation = floor(game::avatar::Statistics::GetReputation());
+		double minimum = 1.0;
+		double maximum = 1.0;
+		if (reputation <= 0.0)
+		{
+			minimum = std::pow(10.0, reputation);
+		}
+		else
+		{
+			maximum = std::min(MAXIMUM_REWARD, std::sqrt(reputation));
+		}
+		return common::RNG::FromRange(minimum, maximum);
 	}
 
 	const std::map<std::string, size_t> itemAdverbs = 
