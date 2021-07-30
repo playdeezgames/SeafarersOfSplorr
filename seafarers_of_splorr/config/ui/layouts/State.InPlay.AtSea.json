@@ -275,10 +275,10 @@
     {
         "type":"Area",
         "area-id":"ChangeHeading",
-        "x":98,
-        "y":118,
-        "width":128,
-        "height":128,
+        "x":12,
+        "y":32,
+        "width":300,
+        "height":300,
         "menu":{
             "menu-id":"Order",
             "menu-item-id":"Move"
