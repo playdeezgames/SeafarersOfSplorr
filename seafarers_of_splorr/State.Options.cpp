@@ -179,8 +179,6 @@ namespace state::Options
 		::application::MouseMotion::AddHandler(::UIState::OPTIONS, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
 		::application::Command::SetHandlers(::UIState::OPTIONS, commandHandlers);
 		::application::Renderer::SetRenderLayout(::UIState::OPTIONS, LAYOUT_NAME);
-		::application::OnEnter::AddHandler(::UIState::OPTIONS, RefreshMuteMenuItem);
-		::application::OnEnter::AddHandler(::UIState::OPTIONS, RefreshSfxMenuItem);
-		::application::OnEnter::AddHandler(::UIState::OPTIONS, RefreshMuxMenuItem);
+		::application::OnEnter::AddHandler(::UIState::OPTIONS, Refresh);
 	}
 }
