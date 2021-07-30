@@ -172,22 +172,16 @@ namespace state::in_play::HeadFor
 	static void OnUpdate(const unsigned int&)
 	{
 		auto hoverIsland = visuals::WorldMap::GetHoverIsland(LAYOUT_NAME, WORLD_MAP_ID);
+		std::string hoverText = NO_HOVER_TEXT;
 		if (hoverIsland)
 		{
 			auto islandModel = game::Islands::Read(hoverIsland.value()).value();
-			if(islandModel.visits)
-			{ 
-				visuals::Texts::SetText(LAYOUT_NAME, TEXT_HOVER_ISLAND, islandModel.name);
-			}
-			else
-			{
-				visuals::Texts::SetText(LAYOUT_NAME, TEXT_HOVER_ISLAND, game::Islands::UNKNOWN);
-			}
+			hoverText =
+				(islandModel.visits.has_value()) ? 
+				(islandModel.name) :
+				(game::Islands::UNKNOWN);
 		}
-		else
-		{
-			visuals::Texts::SetText(LAYOUT_NAME, TEXT_HOVER_ISLAND, NO_HOVER_TEXT);
-		}
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_HOVER_ISLAND, hoverText);
 	}
 
 	static void OnEnter()
