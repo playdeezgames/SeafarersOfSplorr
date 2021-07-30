@@ -57,7 +57,7 @@ namespace game::islands::Quests
 		{"writhing",1},
 		{"bulging",1},
 		{"chewy",1},
-		{"swolen",1}
+		{"swollen",1}
 	};
 
 	const std::map<std::string, size_t> itemNames =
@@ -97,14 +97,10 @@ namespace game::islands::Quests
 		{"David",1},
 		{"Sander",1},
 		{"Marcus",1},
-		{"Graham",1},
 		{"Barnaby",1},
 		{"Ravi",1},
-		{"Jase",1},
-		{"Lyra",1},
 		{"Michael",1},
 		{"Guy",1},
-		{"Rufus",1},
 		{"Tim",1}
 	};
 

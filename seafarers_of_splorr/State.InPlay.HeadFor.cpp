@@ -111,9 +111,14 @@ namespace state::in_play::HeadFor
 		};
 	}
 
+	static void HiliteGoBackButton(bool hilite)
+	{
+		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, (hilite) ? ("Cyan") : ("Gray"));
+	}
+
 	void HoverOnGoBack(const common::XY<int>&)
 	{
-		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, "Cyan");//TODO: magic string
+		HiliteGoBackButton(true);
 	}
 
 	const std::map<std::string, std::function<void(const common::XY<int>&)>> areaMotionHandlerTable =
@@ -128,7 +133,7 @@ namespace state::in_play::HeadFor
 
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
 	{
-		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, "Gray");//TODO: magic string
+		HiliteGoBackButton(false);
 		auto entry = areaMotionHandlerTable.find(areaName);
 		if (entry != areaMotionHandlerTable.end())
 		{
@@ -138,7 +143,7 @@ namespace state::in_play::HeadFor
 	
 	static void OnMouseMotionOutsideArea(const common::XY<int>& location)
 	{
-		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, "Gray");//TODO: magic string
+		HiliteGoBackButton(false);
 		hoverDestinationId = std::nullopt;
 		RefreshHovers();
 		visuals::WorldMap::SetDestination(LAYOUT_NAME, WORLD_MAP_ID, std::nullopt);
