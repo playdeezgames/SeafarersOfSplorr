@@ -91,13 +91,12 @@ namespace visuals::WorldMap
 		}
 	}
 
-	static void DrawKnownIsland(
+	static double DrawKnownIsland(
 		const std::shared_ptr<common::Application::Renderer>& renderer, 
 		InternalWorldMap& worldMap, 
 		const common::XY<double> worldSize, 
-		double& closest,
-		std::optional<common::XY<int>>& hoverIsland,
-		const std::optional<game::Quest::QuestModel>& quest,
+		double closest,
+		const std::optional<game::Quest::QuestModel>& quest,//TODO: does not need entire quest model, just the location would do
 		const game::Islands::IslandModel& knownIsland)
 	{
 		common::XY<int> plot = Plot(worldMap, worldSize, knownIsland.absoluteLocation);
@@ -107,7 +106,6 @@ namespace visuals::WorldMap
 			if (distance < closest)
 			{
 				closest = distance;
-				hoverIsland = plot;
 				worldMap.hoverIsland = knownIsland.absoluteLocation;
 			}
 		}
@@ -119,22 +117,23 @@ namespace visuals::WorldMap
 		{
 			visuals::Sprites::Draw(SPRITE_WORLD_MAP_ISLAND, renderer, plot, { 0xff,0xff,0xff,0xff });
 		}
+		return closest;
 	}
 
 	static void DrawKnownIslands(const std::shared_ptr<common::Application::Renderer>& renderer, InternalWorldMap& worldMap, const common::XY<double> worldSize)
 	{
 		auto closest = game::Heading::Distance({(double)worldMap.size.GetX(), (double)worldMap.size.GetY()}, {0.0,0.0});
-		std::optional<common::XY<int>> hoverIsland = std::nullopt;
 		auto knownIslands = game::Islands::GetKnownIslands();
 		worldMap.hoverIsland = std::nullopt;
 		auto quest = game::avatar::Quest::Read();
 		for (auto& knownIsland : knownIslands)
 		{
-			DrawKnownIsland(renderer, worldMap, worldSize, closest, hoverIsland, quest, knownIsland);
+			closest = DrawKnownIsland(renderer, worldMap, worldSize, closest, quest, knownIsland);
 		}
-		if (hoverIsland)
+		if (worldMap.hoverIsland)
 		{
-			visuals::Sprites::Draw(SPRITE_WORLD_MAP_HOVER_ISLAND, renderer, hoverIsland.value(), { 0xff,0xff,0xff,0xff });
+			common::XY<int> plot = Plot(worldMap, worldSize, worldMap.hoverIsland.value());
+			visuals::Sprites::Draw(SPRITE_WORLD_MAP_HOVER_ISLAND, renderer, plot, { 0xff,0xff,0xff,0xff });
 		}
 	}
 
@@ -171,7 +170,6 @@ namespace visuals::WorldMap
 	{
 		size_t index = worldMapTable.find(layoutName)->second.find(worldMapId)->second;
 		worldMaps[index].destination = destination;
-
 	}
 
 	std::optional<common::XY<double>> GetDestination(const std::string& layoutName, const std::string& worldMapId)
