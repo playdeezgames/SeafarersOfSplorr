@@ -57,6 +57,20 @@
         "drop-shadow-y": 2
     },
     {
+        "text-id": "GoBack",
+        "type": "Text",
+        "font": "default",
+        "color": "Gray",
+        "text": "Go Back",
+        "x": 632,
+        "y": 336,
+        "horizontal-alignment": -1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
         "type": "Image",
         "sprite": "AtSeaDestination1",
         "color": "White",
@@ -186,6 +200,14 @@
         "x": 408,
         "y": 164,
         "width": 16,
+        "height": 16
+    },
+    {
+        "type":"Area",
+        "area-id": "GoBack",
+        "x": 520,
+        "y": 336,
+        "width": 112,
         "height": 16
     },
     {

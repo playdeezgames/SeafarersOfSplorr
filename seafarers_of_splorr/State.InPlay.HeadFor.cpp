@@ -21,6 +21,7 @@ namespace state::in_play::HeadFor
 	const std::string AREA_SELECT_2 = "Select2";
 	const std::string AREA_SELECT_3 = "Select3";
 	const std::string AREA_SELECT_4 = "Select4";
+	const std::string AREA_GO_BACK = "GoBack";
 
 	const std::string IMAGE_SELECT_1 = "Selection1";
 	const std::string IMAGE_SELECT_2 = "Selection2";
@@ -33,6 +34,7 @@ namespace state::in_play::HeadFor
 
 	const std::string WORLD_MAP_ID = "WorldMap";
 	const std::string TEXT_HOVER_ISLAND = "HoverIsland";
+	const std::string TEXT_GO_BACK = "GoBack";
 
 	const std::string NO_HOVER_TEXT = "-";
 
@@ -109,17 +111,24 @@ namespace state::in_play::HeadFor
 		};
 	}
 
+	void HoverOnGoBack(const common::XY<int>&)
+	{
+		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, "Cyan");//TODO: magic string
+	}
+
 	const std::map<std::string, std::function<void(const common::XY<int>&)>> areaMotionHandlerTable =
 	{
 		{AREA_WORLD_MAP, HandleMouseMotionInWorldMap},
 		{AREA_SELECT_1, HoverOnDestinationId(game::avatar::Destination::ONE)},
 		{AREA_SELECT_2, HoverOnDestinationId(game::avatar::Destination::TWO)},
 		{AREA_SELECT_3, HoverOnDestinationId(game::avatar::Destination::THREE)},
-		{AREA_SELECT_4, HoverOnDestinationId(game::avatar::Destination::FOUR)}
+		{AREA_SELECT_4, HoverOnDestinationId(game::avatar::Destination::FOUR)},
+		{AREA_GO_BACK, HoverOnGoBack}
 	};
 
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
 	{
+		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, "Gray");//TODO: magic string
 		auto entry = areaMotionHandlerTable.find(areaName);
 		if (entry != areaMotionHandlerTable.end())
 		{
@@ -129,6 +138,7 @@ namespace state::in_play::HeadFor
 	
 	static void OnMouseMotionOutsideArea(const common::XY<int>& location)
 	{
+		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, "Gray");//TODO: magic string
 		hoverDestinationId = std::nullopt;
 		RefreshHovers();
 		visuals::WorldMap::SetDestination(LAYOUT_NAME, WORLD_MAP_ID, std::nullopt);
@@ -155,7 +165,8 @@ namespace state::in_play::HeadFor
 		{AREA_SELECT_1, SelectDestinationId(game::avatar::Destination::ONE)},
 		{AREA_SELECT_2, SelectDestinationId(game::avatar::Destination::TWO)},
 		{AREA_SELECT_3, SelectDestinationId(game::avatar::Destination::THREE)},
-		{AREA_SELECT_4, SelectDestinationId(game::avatar::Destination::FOUR)}
+		{AREA_SELECT_4, SelectDestinationId(game::avatar::Destination::FOUR)},
+		{AREA_GO_BACK, application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA)}
 	};
 
 	static bool OnMouseButtonUpInArea(const std::string& areaName)
