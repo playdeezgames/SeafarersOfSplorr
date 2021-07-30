@@ -43,7 +43,7 @@ namespace state::Options
 	static void AdjustSfxVolume(int delta)
 	{
 		common::audio::Sfx::SetVolume(common::audio::Sfx::GetVolume() + delta);
-		common::audio::Sfx::Play(application::Sounds::Read(application::UI::Sfx::WOOHOO));
+		common::audio::Sfx::Play(application::Sounds::Read(application::ui::Sfx::WOOHOO));
 		::Options::Save();
 	}
 
