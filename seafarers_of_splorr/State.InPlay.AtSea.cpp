@@ -67,7 +67,11 @@ namespace state::in_play::AtSea
 
 	static void OnDock()
 	{
-		game::Avatar::Dock();
+		if (game::Avatar::Dock() == game::Avatar::DockResult::COMPLETED_QUEST)
+		{
+			application::UIState::Write(::UIState::IN_PLAY_COMPLETED_JOB);
+			return;
+		}
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

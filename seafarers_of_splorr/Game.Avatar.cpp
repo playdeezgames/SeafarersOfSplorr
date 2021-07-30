@@ -115,7 +115,7 @@ namespace game::Avatar
 
 	MoveResult Move()
 	{
-		MoveResult result = MoveResult::NORMAL;
+		MoveResult result = MoveResult::MOVED;
 		auto avatar = data::game::Avatar::Read().value();
 		auto shipDescriptor = game::Ships::Read(game::avatar::Ship::Read());
 		common::XY<double> delta = 
@@ -130,29 +130,33 @@ namespace game::Avatar
 		return result;
 	}
 
-	static bool DoDock(const common::XY<double>& location)
+	static std::optional<DockResult> DoDock(const common::XY<double>& location)
 	{
+		std::optional<DockResult> result = DockResult::DOCKED;
 		game::Islands::AddVisit(
 			location,
 			game::avatar::Statistics::GetTurnsRemaining());
 		game::islands::Quests::Update(location);
-		game::avatar::Quest::CompleteQuest(location);
+		if (game::avatar::Quest::CompleteQuest(location))
+		{
+			result = DockResult::COMPLETED_QUEST;
+		}
 		data::game::avatar::Dock::SetLocation(location);
-		return true;
+		return result;
 	}
 
-	bool Dock()
+	std::optional<DockResult> Dock()
 	{
 		if (GetDockedLocation().has_value())
 		{
-			return false;//TODO: should this be true because we are docked, or false because we cannot dock?
+			return DockResult::ALREADY_DOCKED;
 		}
 		auto dockables = game::Islands::GetDockableIslands();
 		if (!dockables.empty())
 		{
 			return DoDock(dockables.front().absoluteLocation);
 		}
-		return false;
+		return std::nullopt;
 	}
 
 	std::optional<common::XY<double>> GetDockedLocation()

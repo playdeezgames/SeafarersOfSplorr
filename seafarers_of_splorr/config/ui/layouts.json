@@ -28,5 +28,6 @@
     "State.InPlay.IslandBuy": "config/ui/layouts/State.InPlay.IslandBuy.json",
     "State.InPlay.IslandSell": "config/ui/layouts/State.InPlay.IslandSell.json",
     "State.InPlay.Cargo": "config/ui/layouts/State.InPlay.Cargo.json",
-    "State.InPlay.ShipStatus": "config/ui/layouts/State.InPlay.ShipStatus.json"
+    "State.InPlay.ShipStatus": "config/ui/layouts/State.InPlay.ShipStatus.json",
+    "State.InPlay.CompletedJob": "config/ui/layouts/State.InPlay.CompletedJob.json"
 }

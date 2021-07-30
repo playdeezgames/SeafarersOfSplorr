@@ -91,6 +91,7 @@ namespace common::Application
 		state::in_play::Cargo::Start,
 		state::in_play::ShipStatus::Start,
 		state::in_play::Next::Start,
+		state::in_play::CompletedJob::Start,
 		sublayout::UIHamburger::Start,
 		Options::Initialize,
 		visuals::Layouts::Start

@@ -15,12 +15,18 @@ namespace game::Avatar
 	common::XY<double> GetLocation();
 	enum class MoveResult
 	{
-		NORMAL,
+		MOVED,
 		CLAMPED
 	};
 	MoveResult Move();
 
-	bool Dock();
+	enum class DockResult
+	{
+		DOCKED,
+		COMPLETED_QUEST,
+		ALREADY_DOCKED
+	};
+	std::optional<DockResult> Dock();
 	std::optional<common::XY<double>> GetDockedLocation();
 	bool Undock();
 }

@@ -39,7 +39,8 @@ enum class UIState
 	IN_PLAY_ISLAND_SELL,
 	IN_PLAY_CARGO,
 	IN_PLAY_SHIP_STATUS,
-	IN_PLAY_NEXT
+	IN_PLAY_NEXT,
+	IN_PLAY_COMPLETED_JOB
 };
 namespace application::UIState
 {
