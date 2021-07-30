@@ -59,10 +59,9 @@ namespace visuals::WorldMap
 
 	static void DrawNewDestination(const std::shared_ptr<common::Application::Renderer>& renderer, const InternalWorldMap& worldMap, const common::XY<double> worldSize)
 	{
-		auto newDestination = worldMap.destination;
-		if (newDestination)
+		if (worldMap.destination)
 		{
-			visuals::Sprites::Draw(SPRITE_WORLD_MAP_NEW_DESTINATION, renderer, newDestination.value() + worldMap.xy, { 0xff,0xff,0xff,0xff });
+			visuals::Sprites::Draw(SPRITE_WORLD_MAP_NEW_DESTINATION, renderer, worldMap.destination.value() + worldMap.xy, { 0xff,0xff,0xff,0xff });
 		}
 	}
 
@@ -92,6 +91,35 @@ namespace visuals::WorldMap
 		}
 	}
 
+	static void DrawKnownIsland(
+		const std::shared_ptr<common::Application::Renderer>& renderer, 
+		InternalWorldMap& worldMap, 
+		const common::XY<double> worldSize, 
+		double& closest,
+		std::optional<common::XY<int>>& hoverIsland,
+		const std::optional<game::Quest::QuestModel>& quest,
+		const game::Islands::IslandModel& knownIsland)
+	{
+		common::XY<int> plot = Plot(worldMap, worldSize, knownIsland.absoluteLocation);
+		if (worldMap.destination)
+		{
+			auto distance = game::Heading::Distance({ (double)plot.GetX(),(double)plot.GetY() }, { (double)worldMap.destination.value().GetX() + worldMap.xy.GetX(), (double)worldMap.destination.value().GetY() + worldMap.xy.GetY() });
+			if (distance < closest)
+			{
+				closest = distance;
+				hoverIsland = plot;
+				worldMap.hoverIsland = knownIsland.absoluteLocation;
+			}
+		}
+		if (quest.has_value() && quest.value().destination == knownIsland.absoluteLocation)
+		{
+			visuals::Sprites::Draw(SPRITE_WORLD_MAP_QUEST_ISLAND, renderer, plot, { 0xff,0xff,0xff,0xff });
+		}
+		else
+		{
+			visuals::Sprites::Draw(SPRITE_WORLD_MAP_ISLAND, renderer, plot, { 0xff,0xff,0xff,0xff });
+		}
+	}
 
 	static void DrawKnownIslands(const std::shared_ptr<common::Application::Renderer>& renderer, InternalWorldMap& worldMap, const common::XY<double> worldSize)
 	{
@@ -102,25 +130,7 @@ namespace visuals::WorldMap
 		auto quest = game::avatar::Quest::Read();
 		for (auto& knownIsland : knownIslands)
 		{
-			common::XY<int> plot = Plot(worldMap, worldSize, knownIsland.absoluteLocation);
-			if (worldMap.destination)
-			{
-				auto distance = game::Heading::Distance({ (double)plot.GetX(),(double)plot.GetY() }, { (double)worldMap.destination.value().GetX() + worldMap.xy.GetX(), (double)worldMap.destination.value().GetY() + worldMap.xy.GetY()});
-				if (distance < closest)
-				{
-					closest = distance;
-					hoverIsland = plot;
-					worldMap.hoverIsland = knownIsland.absoluteLocation;
-				}
-			}
-			if (quest.has_value() && quest.value().destination == knownIsland.absoluteLocation)
-			{
-				visuals::Sprites::Draw(SPRITE_WORLD_MAP_QUEST_ISLAND, renderer, plot, { 0xff,0xff,0xff,0xff });
-			}
-			else
-			{
-				visuals::Sprites::Draw(SPRITE_WORLD_MAP_ISLAND, renderer, plot, { 0xff,0xff,0xff,0xff });
-			}
+			DrawKnownIsland(renderer, worldMap, worldSize, closest, hoverIsland, quest, knownIsland);
 		}
 		if (hoverIsland)
 		{
