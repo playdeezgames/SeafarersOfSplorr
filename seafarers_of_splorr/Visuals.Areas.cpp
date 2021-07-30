@@ -1,3 +1,4 @@
+#include "Application.MouseButtonUp.h"
 #include "Common.Application.h"
 #include "Common.Data.Properties.h"
 #include "json.hpp"
@@ -107,9 +108,9 @@ namespace visuals::Areas
 	}
 
 
-	std::function<bool(const common::XY<int>&, unsigned char)> HandleMouseButtonUp(const std::string& layoutName, std::function<bool(const std::string&)> areaHandler)
+	std::function<bool(const common::XY<int>&, MouseButton)> HandleMouseButtonUp(const std::string& layoutName, std::function<bool(const std::string&)> areaHandler)
 	{
-		return [layoutName, areaHandler](const common::XY<int>& xy, unsigned char)
+		return [layoutName, areaHandler](const common::XY<int>& xy, MouseButton)
 		{
 			auto areas = visuals::Areas::Get(layoutName, xy);
 			for (auto& area : areas)
@@ -141,9 +142,9 @@ namespace visuals::Areas
 		};
 	}
 
-	std::function<bool(const common::XY<int>&, unsigned char)> HandleMenuMouseButtonUp(const std::string& layoutName, std::function<void()> handler)
+	std::function<bool(const common::XY<int>&, MouseButton)> HandleMenuMouseButtonUp(const std::string& layoutName, std::function<void()> handler)
 	{
-		return [layoutName, handler](const common::XY<int>& xy, unsigned char)
+		return [layoutName, handler](const common::XY<int>& xy, MouseButton)
 		{
 			auto areas = visuals::Areas::Get(layoutName, xy);
 			if (!areas.empty())

@@ -7,7 +7,7 @@ namespace state::About
 {
 	const std::string LAYOUT_NAME = "State.About";
 
-	static bool OnMouseButtonUp(const common::XY<int>& xy, unsigned char buttons)
+	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
 	{
 		::application::UIState::Write(::UIState::MAIN_MENU);
 		return true;

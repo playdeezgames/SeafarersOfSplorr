@@ -19,7 +19,7 @@ namespace state::in_play::ShipStatus
 	const std::string FORMAT_SPEED_FACTOR = "Speed Factor: {}";
 	const std::string FORMAT_TONNAGE = "Tonnage: {}";
 
-	static bool OnMouseButtonUp(const common::XY<int>& xy, unsigned char buttons)
+	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
 	{
 		::application::UIState::Pop();
 		return true;

@@ -7,7 +7,7 @@ namespace state::in_play::Lose
 {
 	const std::string LAYOUT_NAME = "State.InPlay.Lose";
 
-	static bool OnMouseButtonUp(const common::XY<int>& xy, unsigned char buttons)
+	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
 	{
 		::application::UIState::Write(::UIState::MAIN_MENU);
 		return true;

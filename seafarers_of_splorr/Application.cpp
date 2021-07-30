@@ -124,13 +124,22 @@ namespace common::Application
 		application::Update::Handle(ticks);
 	}
 
-	std::map<unsigned int, std::function<void(const SDL_Event&)>> eventHandlers =
+	const std::map<Uint8, MouseButton> mouseButtonTable =
+	{
+		{SDL_BUTTON_LEFT, MouseButton::LEFT},
+		{SDL_BUTTON_MIDDLE, MouseButton::MIDDLE},
+		{SDL_BUTTON_RIGHT, MouseButton::RIGHT},
+		{SDL_BUTTON_X1, MouseButton::X1},
+		{SDL_BUTTON_X2, MouseButton::X2}
+	};
+
+	const std::map<unsigned int, std::function<void(const SDL_Event&)>> eventHandlers =
 	{
 		{ SDL_QUIT,                 [](const SDL_Event&    ) { ::application::UIState::Write(::UIState::QUIT); }},
 		{ SDL_KEYDOWN,              [](const SDL_Event& evt) { ::Application::HandleKeyDown(evt.key); }},
 		{ SDL_CONTROLLERBUTTONDOWN, [](const SDL_Event& evt) { ::Application::HandleControllerButtonDown(evt.cbutton); }},
 		{ SDL_MOUSEMOTION,          [](const SDL_Event& evt) { ::application::MouseMotion::Handle(evt.motion.x, evt.motion.y); }},
-		{ SDL_MOUSEBUTTONUP,        [](const SDL_Event& evt) { ::application::MouseButtonUp::Handle(evt.button.x, evt.button.y, evt.button.button); }}
+		{ SDL_MOUSEBUTTONUP,        [](const SDL_Event& evt) { ::application::MouseButtonUp::Handle(evt.button.x, evt.button.y,mouseButtonTable.find(evt.button.button)->second); }}
 	};
 
 	void HandleEvent(const SDL_Event& evt)

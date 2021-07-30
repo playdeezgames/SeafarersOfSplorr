@@ -24,7 +24,7 @@ namespace state::in_play::IslandBuy
 		visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, location, FONT_DEFAULT, text, color);
 	}
 
-	static bool OnMouseButtonUp(const common::XY<int>& xy, unsigned char buttons)
+	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
 	{
 		::application::UIState::Write(::UIState::IN_PLAY_ISLAND_TRADE);
 		return true;

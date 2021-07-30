@@ -10,7 +10,7 @@ namespace application::MouseButtonUp
 		mouseUpHandlers[state].push_back(handler);
 	}
 
-	void Handle(const int& x, const int& y, const unsigned char& button)
+	void Handle(const int& x, const int& y, const MouseButton& button)
 	{
 		application::Handlers::WithCurrent(
 			mouseUpHandlers,

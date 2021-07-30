@@ -14,7 +14,7 @@ namespace state::Statistics
 	const std::string TEXT_MOVES_MADE = "MovesMade";
 	const std::string TEXT_GAMES_PLAYED = "GamesPlayed";
 
-	static bool OnMouseButtonUp(const common::XY<int>& xy, unsigned char buttons)
+	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
 	{
 		::application::UIState::Write(::UIState::MAIN_MENU);
 		return true;

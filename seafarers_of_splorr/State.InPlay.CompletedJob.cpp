@@ -26,7 +26,7 @@ namespace state::in_play::CompletedJob
 		}
 	}
 
-	static bool OnMouseButtonUp(const common::XY<int>& xy, unsigned char buttons)
+	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
 	{
 		RunOutTimer();
 		return true;
