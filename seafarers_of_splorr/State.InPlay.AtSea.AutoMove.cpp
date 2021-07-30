@@ -2,7 +2,7 @@
 #include "Game.Avatar.h"
 namespace state::in_play::AtSea
 {
-	const size_t TICKS_TOTAL = 1000;
+	const size_t TICKS_TOTAL = 250;
 	static size_t ticksLeft = TICKS_TOTAL;
 	enum class AutoMoveState
 	{

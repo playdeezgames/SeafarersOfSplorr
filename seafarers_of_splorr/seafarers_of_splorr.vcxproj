@@ -198,6 +198,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game.Heading.cpp" />
     <ClCompile Include="Game.Islands.cpp" />
+    <ClCompile Include="Game.Islands.Generation.cpp" />
     <ClCompile Include="Game.Islands.Items.cpp" />
     <ClCompile Include="Game.Islands.Markets.cpp" />
     <ClCompile Include="Game.Islands.Quests.cpp" />
