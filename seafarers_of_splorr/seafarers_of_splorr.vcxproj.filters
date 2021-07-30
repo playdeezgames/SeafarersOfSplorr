@@ -585,6 +585,9 @@
     <ClInclude Include="Application.UI.Sfx.h">
       <Filter>Headers\Application</Filter>
     </ClInclude>
+    <ClInclude Include="UIState.h">
+      <Filter>Headers\Application</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">

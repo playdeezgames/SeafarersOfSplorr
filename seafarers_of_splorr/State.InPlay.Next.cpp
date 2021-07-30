@@ -1,4 +1,5 @@
 #include "Application.OnEnter.h"
+#include "Application.UIState.h"
 #include "Game.h"
 #include "Game.Avatar.h"
 #include "Game.Avatar.Statistics.h"

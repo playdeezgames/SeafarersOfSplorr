@@ -328,6 +328,7 @@
     <ClInclude Include="MouseButton.h" />
     <ClInclude Include="sqlite3.h" />
     <ClInclude Include="Sublayouts.h" />
+    <ClInclude Include="UIState.h" />
     <ClInclude Include="Visuals.Areas.h" />
     <ClInclude Include="Visuals.CardSprites.h" />
     <ClInclude Include="Visuals.Data.Colors.h" />

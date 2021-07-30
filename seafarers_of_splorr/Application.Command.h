@@ -1,8 +1,8 @@
 #pragma once
-#include "Application.UIState.h"
 #include "Command.h"
 #include <functional>
 #include <map>
+#include "UIState.h"
 namespace application::Command
 {
 	void SetHandlers(const ::UIState&, const std::map<::Command, std::function<void()>>&);

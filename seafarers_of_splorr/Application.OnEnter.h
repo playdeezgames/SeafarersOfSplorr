@@ -1,6 +1,6 @@
 #pragma once
-#include "Application.UIState.h"
 #include <functional>
+#include "UIState.h"
 namespace application::OnEnter
 {
 	typedef std::function<void()> Handler;

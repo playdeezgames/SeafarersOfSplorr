@@ -3,9 +3,11 @@
 #include "Application.MouseMotion.h"
 #include "Application.OnEnter.h"
 #include "Application.Renderer.h"
+#include "Application.UIState.h"
 #include "Common.Audio.h"
 #include "Common.Utility.h"
 #include "Data.Stores.h"
+#include <format>
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.h"
 #include "Game.Heading.h"
@@ -15,7 +17,6 @@
 #include "Visuals.Areas.h"
 #include "Visuals.Menus.h"
 #include "Visuals.Texts.h"
-#include <format>
 namespace state::in_play::IslandJobs
 {
 	const std::string LAYOUT_NAME = "State.InPlay.IslandJobs";

@@ -4,6 +4,7 @@
 #include "Application.OnEnter.h"
 #include "Application.Renderer.h"
 #include "Application.Sounds.h"
+#include "Application.UIState.h"
 #include "Common.Application.h"
 #include "Common.Audio.h"
 #include "Common.Data.h"

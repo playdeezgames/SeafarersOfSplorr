@@ -3,6 +3,7 @@
 #include "Application.MouseMotion.h"
 #include "Application.OnEnter.h"
 #include "Application.Renderer.h"
+#include "Application.UIState.h"
 #include "Application.Update.h"
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.h"

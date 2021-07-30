@@ -1,7 +1,7 @@
 #pragma once
 #include "Common.XY.h"
-#include "Application.UIState.h"
 #include <functional>
+#include "UIState.h"
 namespace application::MouseMotion
 {
 	typedef std::function<void(const common::XY<int>&)> Handler;
