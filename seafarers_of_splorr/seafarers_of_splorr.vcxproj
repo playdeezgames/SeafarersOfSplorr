@@ -196,6 +196,7 @@
     <ClCompile Include="Game.Avatar.Statistics.cpp" />
     <ClCompile Include="Game.Commodities.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Game.Features.cpp" />
     <ClCompile Include="Game.Heading.cpp" />
     <ClCompile Include="Game.Islands.cpp" />
     <ClCompile Include="Game.Islands.Generation.cpp" />
@@ -309,8 +310,12 @@
     <ClInclude Include="Game.Commodity.h" />
     <ClInclude Include="Game.CommodityDescriptor.h" />
     <ClInclude Include="Game.Difficulty.h" />
+    <ClInclude Include="Game.Feature.h" />
+    <ClInclude Include="Game.FeatureDescriptor.h" />
+    <ClInclude Include="Game.Features.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Game.Heading.h" />
+    <ClInclude Include="Game.Islands.Features.h" />
     <ClInclude Include="Game.Islands.h" />
     <ClInclude Include="Game.Islands.Items.h" />
     <ClInclude Include="Game.Islands.Markets.h" />

@@ -313,6 +313,9 @@
     <ClCompile Include="Visuals.Texts.cpp">
       <Filter>Source\Visuals\Controls</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Features.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
@@ -588,6 +591,18 @@
     <ClInclude Include="UIState.h">
       <Filter>Headers\Application</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Feature.h">
+      <Filter>Headers\Game\Feature</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.FeatureDescriptor.h">
+      <Filter>Headers\Game\Feature</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Features.h">
+      <Filter>Headers\Game\Feature</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Islands.Features.h">
+      <Filter>Headers\Game\Island</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
@@ -697,6 +712,9 @@
     </Filter>
     <Filter Include="Headers\Visuals\Data">
       <UniqueIdentifier>{0958faf4-be43-43ea-b295-d6e169db1f1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Game\Feature">
+      <UniqueIdentifier>{ad4c0f08-c459-4443-a7ff-05f711afce89}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
