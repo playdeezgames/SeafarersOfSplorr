@@ -9,6 +9,7 @@
 #include "Game.Avatar.Destination.h"
 #include "Game.Islands.h"
 #include "Visuals.Areas.h"
+#include "Visuals.Data.Colors.h"
 #include "Visuals.Images.h"
 #include "Visuals.Texts.h"
 #include "Visuals.WorldMap.h"
@@ -113,7 +114,7 @@ namespace state::in_play::HeadFor
 
 	static void HiliteGoBackButton(bool hilite)
 	{
-		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, (hilite) ? ("Cyan") : ("Gray"));
+		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, (hilite) ? (visuals::data::Colors::HOVER) : (visuals::data::Colors::NORMAL));
 	}
 
 	void HoverOnGoBack(const common::XY<int>&)

@@ -11,16 +11,13 @@
 #include "Game.Islands.Items.h"
 #include "Game.Islands.Markets.h"
 #include "Game.Items.h"
+#include "Visuals.Data.Colors.h"
 #include "Visuals.SpriteGrid.h"
 namespace state::in_play::IslandBuy
 {
 	const std::string LAYOUT_NAME = "State.InPlay.IslandBuy";
 	const std::string SPRITE_GRID_ID = "Grid";
 	const std::string FONT_DEFAULT = "default";
-	const std::string COLOR_DEFAULT = "Gray";
-	const std::string COLOR_HILITE = "Cyan";
-	const std::string COLOR_PAGE_HEADER = "Yellow";
-	const std::string COLOR_TABLE_HEADER = "Yellow";
 
 	static void WriteTextToGrid(const common::XY<int> location, const std::string& text, const std::string& color)
 	{
@@ -35,10 +32,10 @@ namespace state::in_play::IslandBuy
 
 	static void RefreshHeader()
 	{
-		WriteTextToGrid({ 0, 0 }, "<-", COLOR_PAGE_HEADER);
-		WriteTextToGrid({ 37, 0 }, "->", COLOR_PAGE_HEADER);
-		WriteTextToGrid({ 15, 0 }, "Page 1 of 1", COLOR_PAGE_HEADER);
-		WriteTextToGrid({ 0,1 }, std::format("{:15s}   {:7s}   {:4s}   {:5s}", "Item", "  Price", " Own", "Tonn."), COLOR_TABLE_HEADER);
+		WriteTextToGrid({ 0, 0 }, "<-", visuals::data::Colors::HIGHLIGHT);
+		WriteTextToGrid({ 37, 0 }, "->", visuals::data::Colors::HIGHLIGHT);
+		WriteTextToGrid({ 15, 0 }, "Page 1 of 1", visuals::data::Colors::HIGHLIGHT);
+		WriteTextToGrid({ 0,1 }, std::format("{:15s}   {:7s}   {:4s}   {:5s}", "Item", "  Price", " Own", "Tonn."), visuals::data::Colors::HIGHLIGHT);
 	}
 
 	static std::map<game::Item, double> unitPrices;
@@ -63,7 +60,7 @@ namespace state::in_play::IslandBuy
 					unitPrice.second,
 					game::avatar::Items::Read(unitPrice.first),
 					itemDescriptor.tonnage), 
-				(row==hiliteRow) ? (COLOR_HILITE) : (COLOR_DEFAULT));
+				(row==hiliteRow) ? (visuals::data::Colors::HOVER) : (visuals::data::Colors::NORMAL));
 			++gridRow;
 			++row;
 		}
@@ -81,13 +78,13 @@ namespace state::in_play::IslandBuy
 			std::format(
 				"Available Tonnage: {:.3f}",
 				game::avatar::Ship::AvailableTonnage()),
-			COLOR_DEFAULT);
+			visuals::data::Colors::DEFAULT);
 		WriteTextToGrid(
 			{ 0, 19 }, 
 			std::format(
 				"Money: {:.3f}",
 				GetMoney()), 
-			COLOR_DEFAULT);
+			visuals::data::Colors::DEFAULT);
 	}
 
 	static void RefreshGrid()
