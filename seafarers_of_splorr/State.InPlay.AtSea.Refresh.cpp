@@ -17,16 +17,16 @@ namespace state::in_play::AtSea
 
 	const std::string TEXT_AVATAR_TURNS = "avatar-turns";
 	const std::string TEXT_AVATAR_HEALTH = "avatar-health";
-	const std::string TEXT_AVATAR_HUNGER = "avatar-hunger";
+	const std::string TEXT_AVATAR_SATIETY = "avatar-satiety";
 	const std::string TEXT_AVATAR_HEADING = "avatar-heading";
 	const std::string TEXT_AVATAR_SPEED = "avatar-speed";
 	const std::string TEXT_AVATAR_MONEY = "avatar-money";
 	const std::string TEXT_AVATAR_REPUTATION = "avatar-reputation";
 
 	const std::string FORMAT_TURNS = "Turns Left: {:d}";
-	const std::string FORMAT_MONEY = "Money: {:.0f}";
+	const std::string FORMAT_MONEY = "Money: {:.3f}";
 	const std::string FORMAT_REPUTATION = "Reputation: {:.0f}";
-	const std::string FORMAT_HUNGER = "Hunger: {:.0f}";
+	const std::string FORMAT_SATIETY = "Satiety: {:.0f}";
 	const std::string FORMAT_HEALTH = "Health: {:.0f}";
 	const std::string FORMAT_HEADING = "Heading: {:.2f}";
 	const std::string FORMAT_SPEED = "Speed: {:.2f}";
@@ -43,9 +43,9 @@ namespace state::in_play::AtSea
 
 	void UpdateAutoMoveState(bool);//TODO: i dont like the dependency web this makes
 
-	static void RefreshAvatarHunger()
+	static void RefreshAvatarSatiety()
 	{
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HUNGER, std::format(FORMAT_HUNGER, game::avatar::Statistics::GetCurrent(game::avatar::Statistic::SATIETY)));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_SATIETY, std::format(FORMAT_SATIETY, game::avatar::Statistics::GetSatiety()));
 	}
 
 	static void RefreshAvatarMoney()
@@ -157,7 +157,7 @@ namespace state::in_play::AtSea
 	{
 		RefreshAvatarHeading();
 		RefreshAvatarHealth();
-		RefreshAvatarHunger();
+		RefreshAvatarSatiety();
 		RefreshAvatarSpeed();
 		RefreshAvatarMoney();
 		RefreshAvatarReputation();

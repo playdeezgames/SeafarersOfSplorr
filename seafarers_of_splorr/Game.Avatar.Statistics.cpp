@@ -103,7 +103,7 @@ namespace game::avatar::Statistics
 		return GetCurrent(game::avatar::Statistic::HEALTH);
 	}
 
-	double GetHunger()
+	double GetSatiety()
 	{
 		return GetCurrent(game::avatar::Statistic::SATIETY);
 	}

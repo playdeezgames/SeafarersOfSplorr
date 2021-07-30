@@ -49,10 +49,10 @@
     },
     {
         "type": "Text",
-        "text-id": "avatar-hunger",
+        "text-id": "avatar-satiety",
         "font": "default",
         "color": "Gray",
-        "text": "<hunger>",
+        "text": "<satiety>",
         "x": 632,
         "y": 272,
         "horizontal-alignment": -1,

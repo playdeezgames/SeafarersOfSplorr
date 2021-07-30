@@ -22,7 +22,7 @@ namespace game::avatar::Statistics
 	double GetMoney();
 
 	double GetHealth();
-	double GetHunger();
+	double GetSatiety();
 	void Eat(double);
 	bool NeedToEat(double);
 
