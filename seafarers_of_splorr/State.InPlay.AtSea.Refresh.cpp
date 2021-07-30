@@ -45,7 +45,7 @@ namespace state::in_play::AtSea
 
 	static void RefreshAvatarHunger()
 	{
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HUNGER, std::format(FORMAT_HUNGER, game::avatar::Statistics::GetCurrent(game::avatar::Statistic::HUNGER)));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HUNGER, std::format(FORMAT_HUNGER, game::avatar::Statistics::GetCurrent(game::avatar::Statistic::SATIETY)));
 	}
 
 	static void RefreshAvatarMoney()

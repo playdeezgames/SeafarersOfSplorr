@@ -18,7 +18,7 @@ namespace game::avatar::Statistics
 			{
 				{game::avatar::Statistic::TURNS_REMAINING, 0.0, 10000.0, 10000.0},
 				{game::avatar::Statistic::HEALTH, 0.0, 100.0, 100.0},
-				{game::avatar::Statistic::HUNGER, 0.0, 100.0, 100.0},
+				{game::avatar::Statistic::SATIETY, 0.0, 100.0, 100.0},
 				{game::avatar::Statistic::REPUTATION, -1000.0, 1000.0, 0.0},
 				{game::avatar::Statistic::MONEY, 0.0, 1000000000.0, 0.0}
 			}},
@@ -26,7 +26,7 @@ namespace game::avatar::Statistics
 			{
 				{game::avatar::Statistic::TURNS_REMAINING, 0.0, 10000.0, 10000.0},
 				{game::avatar::Statistic::HEALTH, 0.0, 100.0, 100.0},
-				{game::avatar::Statistic::HUNGER, 0.0, 100.0, 100.0},
+				{game::avatar::Statistic::SATIETY, 0.0, 100.0, 100.0},
 				{game::avatar::Statistic::REPUTATION, -1000.0, 1000.0, 0.0},
 				{game::avatar::Statistic::MONEY, 0.0, 1000000000.0, 0.0}
 			}},
@@ -34,7 +34,7 @@ namespace game::avatar::Statistics
 			{
 				{game::avatar::Statistic::TURNS_REMAINING, 0.0, 10000.0, 10000.0},
 				{game::avatar::Statistic::HEALTH, 0.0, 100.0, 100.0},
-				{game::avatar::Statistic::HUNGER, 0.0, 100.0, 100.0},
+				{game::avatar::Statistic::SATIETY, 0.0, 100.0, 100.0},
 				{game::avatar::Statistic::REPUTATION, -1000.0, 1000.0, 0.0},
 				{game::avatar::Statistic::MONEY, 0.0, 1000000000.0, 0.0}
 			}},
@@ -42,7 +42,7 @@ namespace game::avatar::Statistics
 			{
 				{game::avatar::Statistic::TURNS_REMAINING, 0.0, 10000.0, 10000.0},
 				{game::avatar::Statistic::HEALTH, 0.0, 100.0, 100.0},
-				{game::avatar::Statistic::HUNGER, 0.0, 100.0, 100.0},
+				{game::avatar::Statistic::SATIETY, 0.0, 100.0, 100.0},
 				{game::avatar::Statistic::REPUTATION, -1000.0, 1000.0, 0.0},
 				{game::avatar::Statistic::MONEY, 0.0, 1000000000.0, 0.0}
 			}}
@@ -105,7 +105,7 @@ namespace game::avatar::Statistics
 
 	double GetHunger()
 	{
-		return GetCurrent(game::avatar::Statistic::HUNGER);
+		return GetCurrent(game::avatar::Statistic::SATIETY);
 	}
 
 	void Eat(double amount)
@@ -118,7 +118,7 @@ namespace game::avatar::Statistics
 		}
 		if (amount > 0)
 		{
-			ChangeCurrent(game::avatar::Statistic::HUNGER, amount);
+			ChangeCurrent(game::avatar::Statistic::SATIETY, amount);
 		}
 	}
 
@@ -126,7 +126,7 @@ namespace game::avatar::Statistics
 	{
 		double totalDown = 
 			GetMaximum(game::avatar::Statistic::HEALTH) - GetCurrent(game::avatar::Statistic::HEALTH) +
-			GetMaximum(game::avatar::Statistic::HUNGER) - GetCurrent(game::avatar::Statistic::HUNGER);
+			GetMaximum(game::avatar::Statistic::SATIETY) - GetCurrent(game::avatar::Statistic::SATIETY);
 		return totalDown >= amount;
 	}
 

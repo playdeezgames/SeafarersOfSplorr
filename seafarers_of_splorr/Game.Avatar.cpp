@@ -63,13 +63,13 @@ namespace game::Avatar
 	static void ApplyTurnEffects()
 	{
 		const double TURN_DELTA = -1.0;
-		const double HUNGER_DELTA = -1.0;
+		const double SATIETY_DELTA = -1.0;
 		const double HEALTH_DELTA = -1.0;
 		const double EAT_BENEFIT = 10.0;
 		game::avatar::Statistics::SpendTurn();
-		if (game::avatar::Statistics::GetCurrent(game::avatar::Statistic::HUNGER) > game::avatar::Statistics::GetMinimum(game::avatar::Statistic::HUNGER))
+		if (game::avatar::Statistics::GetCurrent(game::avatar::Statistic::SATIETY) > game::avatar::Statistics::GetMinimum(game::avatar::Statistic::SATIETY))
 		{
-			game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::HUNGER, HUNGER_DELTA);
+			game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::SATIETY, SATIETY_DELTA);
 		}
 		else
 		{

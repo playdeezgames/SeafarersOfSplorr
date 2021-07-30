@@ -6,7 +6,7 @@ namespace game::avatar
 	{
 		TURNS_REMAINING,
 		HEALTH,
-		HUNGER,
+		SATIETY,
 		MONEY,
 		REPUTATION
 	};
