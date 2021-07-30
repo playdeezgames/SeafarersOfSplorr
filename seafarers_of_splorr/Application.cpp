@@ -1,19 +1,40 @@
-#include "Application.Command.h"
-#include "Application.Keyboard.h"
-#include "Application.MouseButtonUp.h"
-#include "Application.MouseMotion.h"
-#include "Application.OnEnter.h"
-#include "Application.Update.h"
+#include "Application.UIState.h"
+#include "Command.h"
 #include "Data.Stores.h"
 #include "Game.h"
 #include "Game.Achievements.h"
 #include "Game.Audio.Mux.h"
+#include "MouseButton.h"
 #include <optional>
 #include "Options.h"
 #include <SDL.h> //legit
 #include "States.h"
 #include "Sublayouts.h"
 #include "Visuals.Layouts.h"
+namespace application::Command
+{
+	void Handle(const ::Command& command);
+}
+namespace application::Keyboard
+{
+	std::optional<::Command> ToCommand(int);
+}
+namespace application::MouseButtonUp
+{
+	void Handle(const int&, const int&, const MouseButton&);
+}
+namespace application::MouseMotion
+{
+	void Handle(const int&, const int&);
+}
+namespace application::OnEnter
+{
+	void Handle();
+}
+namespace application::Update
+{
+	void Handle(unsigned int);
+}
 namespace Application
 {
 	static std::optional<::Command> KeyCodeToCommand(int code)

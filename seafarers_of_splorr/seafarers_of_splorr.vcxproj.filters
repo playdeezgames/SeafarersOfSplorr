@@ -330,9 +330,6 @@
     <ClInclude Include="Application.Handlers.h">
       <Filter>Headers\Application</Filter>
     </ClInclude>
-    <ClInclude Include="Application.Keyboard.h">
-      <Filter>Headers\Application</Filter>
-    </ClInclude>
     <ClInclude Include="Application.MouseButtonUp.h">
       <Filter>Headers\Application</Filter>
     </ClInclude>
@@ -580,6 +577,9 @@
       <Filter>Headers\Visuals\Resources</Filter>
     </ClInclude>
     <ClInclude Include="Command.h">
+      <Filter>Headers\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseButton.h">
       <Filter>Headers\Application</Filter>
     </ClInclude>
   </ItemGroup>

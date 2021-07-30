@@ -266,7 +266,6 @@
   <ItemGroup>
     <ClInclude Include="Application.Command.h" />
     <ClInclude Include="Application.Handlers.h" />
-    <ClInclude Include="Application.Keyboard.h" />
     <ClInclude Include="Application.MouseButtonUp.h" />
     <ClInclude Include="Application.MouseMotion.h" />
     <ClInclude Include="Application.OnEnter.h" />
@@ -325,6 +324,7 @@
     <ClInclude Include="Game.Ships.h" />
     <ClInclude Include="Game.World.h" />
     <ClInclude Include="Maze.Door.h" />
+    <ClInclude Include="MouseButton.h" />
     <ClInclude Include="sqlite3.h" />
     <ClInclude Include="Sublayouts.h" />
     <ClInclude Include="Visuals.Areas.h" />

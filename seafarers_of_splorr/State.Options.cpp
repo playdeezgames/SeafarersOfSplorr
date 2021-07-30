@@ -73,23 +73,48 @@ namespace state::Options
 		}
 	}
 
+	static void RefreshMuteMenuItem()
+	{
+		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_MUTE,
+			common::Audio::IsMuted() ? UNMUTE : MUTE);
+	}
+
+	static void RefreshSfxMenuItem()
+	{
+		std::string ss = std::format(FORMAT_SFX_VOLUMNE, common::Data::ToPercentage(common::audio::Sfx::GetVolume(), MIX_MAX_VOLUME));
+		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_SFX_VOLUME, ss);
+	}
+
+	static void RefreshMuxMenuItem()
+	{
+		std::string ss = std::format(FORMAT_MUX_VOLUMNE, common::Data::ToPercentage(common::audio::Mux::GetVolume(), MIX_MAX_VOLUME));
+		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_MUX_VOLUME, ss);
+	}
+
+	static void Refresh()
+	{
+		RefreshMuteMenuItem();
+		RefreshSfxMenuItem();
+		RefreshMuxMenuItem();
+	}
+
 	static void IncreaseItem()
 	{
 		ChangeItem(VOLUME_DELTA);
-		application::OnEnter::Handle();
+		Refresh();
 	}
 
 	static void DecreaseItem()
 	{
 		ChangeItem(-VOLUME_DELTA);
-		application::OnEnter::Handle();
+		Refresh();
 	}
 
 	static void ToggleMute()
 	{
 		common::Audio::SetMuted(!common::Audio::IsMuted()); 
 		::Options::Save(); 
-		application::OnEnter::Handle();
+		Refresh();
 	}
 
 	static void ToggleFullscreen()
@@ -127,24 +152,6 @@ namespace state::Options
 		common::Utility::Dispatch(commandHandlers, command);
 	}
 
-	static void UpdateMuteMenuItem()
-	{
-		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_MUTE, 
-			common::Audio::IsMuted() ? UNMUTE : MUTE);
-	}
-
-	static void UpdateSfxMenuItem()
-	{
-		std::string ss = std::format(FORMAT_SFX_VOLUMNE, common::Data::ToPercentage(common::audio::Sfx::GetVolume(), MIX_MAX_VOLUME));
-		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_SFX_VOLUME, ss);
-	}
-
-	static void UpdateMuxMenuItem()
-	{
-		std::string ss = std::format(FORMAT_MUX_VOLUMNE, common::Data::ToPercentage(common::audio::Mux::GetVolume(), MIX_MAX_VOLUME));
-		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_MUX_VOLUME, ss);
-	}
-
 	const std::map<std::string, std::function<void()>> areaClickActions =
 	{
 		{AREA_MUX_DECREASE, DecreaseItem},
@@ -172,8 +179,8 @@ namespace state::Options
 		::application::MouseMotion::AddHandler(::UIState::OPTIONS, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
 		::application::Command::SetHandlers(::UIState::OPTIONS, commandHandlers);
 		::application::Renderer::SetRenderLayout(::UIState::OPTIONS, LAYOUT_NAME);
-		::application::OnEnter::AddHandler(::UIState::OPTIONS, UpdateMuteMenuItem);
-		::application::OnEnter::AddHandler(::UIState::OPTIONS, UpdateSfxMenuItem);
-		::application::OnEnter::AddHandler(::UIState::OPTIONS, UpdateMuxMenuItem);
+		::application::OnEnter::AddHandler(::UIState::OPTIONS, RefreshMuteMenuItem);
+		::application::OnEnter::AddHandler(::UIState::OPTIONS, RefreshSfxMenuItem);
+		::application::OnEnter::AddHandler(::UIState::OPTIONS, RefreshMuxMenuItem);
 	}
 }
