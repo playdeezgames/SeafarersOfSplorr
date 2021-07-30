@@ -44,7 +44,14 @@ namespace data::sqlite::Stores
 	static std::list<std::map<std::string, std::string>> DoExecute(const std::shared_ptr<sqlite3>& connection, const std::string& query)
 	{
 		std::list<std::map<std::string, std::string>> results;
-		sqlite3_exec(connection.get(), query.c_str(), ExecutionCallback, &results, nullptr);
+		char* errmsg = nullptr;
+		sqlite3_exec(connection.get(), query.c_str(), ExecutionCallback, &results, &errmsg);
+		if (errmsg)
+		{
+			std::string errorMessage = errmsg;
+			sqlite3_free(errmsg);
+			throw errorMessage;
+		}
 		return results;
 	}
 

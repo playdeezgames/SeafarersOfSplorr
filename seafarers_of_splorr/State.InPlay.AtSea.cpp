@@ -25,7 +25,7 @@ namespace state::in_play::AtSea
 
 	const std::string MENU_ITEM_MOVE = "Move";
 
-	const common::XY<int> CENTER = { 150, 150 };//TODO: hardcoded
+	const common::XY<int> CENTER = { 160, 160 };//TODO: hardcoded
 
 	void RefreshAvatarStatus();
 	bool RefreshIslands();
