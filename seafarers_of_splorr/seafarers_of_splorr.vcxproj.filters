@@ -316,6 +316,12 @@
     <ClCompile Include="Game.Features.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Islands.Features.cpp">
+      <Filter>Source\Game\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Island.Feature.cpp">
+      <Filter>Source\Data\Island</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
@@ -602,6 +608,9 @@
     </ClInclude>
     <ClInclude Include="Game.Islands.Features.h">
       <Filter>Headers\Game\Island</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.Feature.h">
+      <Filter>Headers\Data\Island</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
