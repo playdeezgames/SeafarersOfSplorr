@@ -322,6 +322,9 @@
     <ClCompile Include="Data.Game.Island.Feature.cpp">
       <Filter>Source\Data\Island</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.Shipyard.cpp">
+      <Filter>Source\States\InPlay\Island</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">

@@ -39,17 +39,12 @@ namespace state::in_play::Docked
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	static void OnShipyard()
-	{
-
-	}
-
 	const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
 		{ OrderMenuItem::UNDOCK, OnUndock },
 		{ OrderMenuItem::JOBS, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_JOBS) },
 		{ OrderMenuItem::TRADE, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_TRADE) },
-		{ OrderMenuItem::SHIPYARD, OnShipyard }
+		{ OrderMenuItem::SHIPYARD, ::application::UIState::GoTo(::UIState::IN_PLAY_SHIPYARD) }
 	};
 
 	static void ActivateItem()

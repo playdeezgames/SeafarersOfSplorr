@@ -229,6 +229,7 @@
     <ClCompile Include="State.InPlay.Lose.cpp" />
     <ClCompile Include="State.InPlay.Next.cpp" />
     <ClCompile Include="State.InPlay.ShipStatus.cpp" />
+    <ClCompile Include="State.InPlay.Shipyard.cpp" />
     <ClCompile Include="State.InPlay.Win.cpp" />
     <ClCompile Include="State.Statistics.cpp" />
     <ClCompile Include="State.Tip.cpp" />
