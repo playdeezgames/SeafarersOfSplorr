@@ -104,7 +104,7 @@ namespace visuals::SpriteGrid
 		}
 	}
 
-	void WriteText(const std::string& layoutName, const std::string& spriteGridId, const common::XY<int>& location, const std::string& fontName, const std::string& text, const std::string& color)
+	static void DoWriteText(const std::string& layoutName, const std::string& spriteGridId, const common::XY<int>& location, const std::string& fontName, const std::string& text, const std::string& color)
 	{
 		auto currentLocation = location;
 		size_t gridIndex = spriteGridTable[layoutName][spriteGridId];
@@ -120,10 +120,32 @@ namespace visuals::SpriteGrid
 		}
 	}
 
+	void WriteText(const std::string& layoutName, const std::string& spriteGridId, const common::XY<int>& location, const std::string& fontName, const std::string& text, const std::string& color, const visuals::HorizontalAlignment& alignment)
+	{
+		auto x = location.GetX();
+		switch (alignment)
+		{
+		case visuals::HorizontalAlignment::CENTER:
+			x -= (int)text.size() / 2;
+			break;
+		case visuals::HorizontalAlignment::RIGHT:
+			x -= (int)text.size();
+			break;
+		}
+		DoWriteText(layoutName, spriteGridId, { x,location.GetY() }, fontName, text, color);
+	}
+
 	void Clear(const std::string& layoutName, const std::string& spriteGridId)
 	{
 		size_t gridIndex = spriteGridTable[layoutName][spriteGridId];
 		auto& spriteGrid = spriteGrids[gridIndex];
 		spriteGrid.cells.clear();
+	}
+
+	int GetCellHeight(const std::string& layoutName, const std::string& spriteGridId)
+	{
+		size_t gridIndex = spriteGridTable[layoutName][spriteGridId];
+		auto& spriteGrid = spriteGrids[gridIndex];
+		return spriteGrid.cellSize.GetY();
 	}
 }

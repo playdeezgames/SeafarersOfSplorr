@@ -21,7 +21,7 @@ namespace state::in_play::IslandSell
 
 	static void WriteTextToGrid(const common::XY<int> location, const std::string& text, const std::string& color)
 	{
-		visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, location, FONT_DEFAULT, text, color);
+		visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, location, FONT_DEFAULT, text, color, visuals::HorizontalAlignment::LEFT);
 	}
 
 	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)

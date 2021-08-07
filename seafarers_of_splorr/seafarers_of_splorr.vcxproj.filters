@@ -612,6 +612,9 @@
     <ClInclude Include="Data.Game.Island.Feature.h">
       <Filter>Headers\Data\Island</Filter>
     </ClInclude>
+    <ClInclude Include="Visuals.HorizontalAlignment.h">
+      <Filter>Headers\Visuals</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">

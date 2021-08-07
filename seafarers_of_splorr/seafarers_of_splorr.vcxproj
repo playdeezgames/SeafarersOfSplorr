@@ -340,6 +340,7 @@
     <ClInclude Include="Visuals.Areas.h" />
     <ClInclude Include="Visuals.CardSprites.h" />
     <ClInclude Include="Visuals.Data.Colors.h" />
+    <ClInclude Include="Visuals.HorizontalAlignment.h" />
     <ClInclude Include="Visuals.Images.h" />
     <ClInclude Include="Visuals.Menus.h" />
     <ClInclude Include="Visuals.Data.Properties.h" />
