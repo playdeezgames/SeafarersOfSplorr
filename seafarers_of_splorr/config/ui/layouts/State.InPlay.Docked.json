@@ -51,6 +51,12 @@
                 "menu-item-id": "Trade",
                 "x": 320,
                 "y": 64
+            },
+            {
+                "text": "Shipyard",
+                "menu-item-id": "Shipyard",
+                "x": 320,
+                "y": 80
             }
         ]
     },
@@ -88,6 +94,18 @@
         "menu":{
             "menu-id":"Order",
             "menu-item-id":"Trade"
+        }
+    },
+    {
+        "type":"Area",
+        "area-id":"Shipyard",
+        "x":240,
+        "y":80,
+        "width":160,
+        "height":16,
+        "menu":{
+            "menu-id":"Order",
+            "menu-item-id":"Shipyard"
         }
     },
     {

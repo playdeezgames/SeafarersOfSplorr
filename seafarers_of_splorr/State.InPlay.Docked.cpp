@@ -11,6 +11,7 @@
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.h"
 #include "Game.Islands.h"
+#include "Game.Islands.Features.h"
 #include "Visuals.Areas.h"
 #include "Visuals.Menus.h"
 #include "Visuals.Texts.h"
@@ -18,6 +19,7 @@ namespace state::in_play::Docked
 {
 	const std::string LAYOUT_NAME = "State.InPlay.Docked";
 	const std::string MENU_ID = "Order";
+	const std::string MENU_ITEM_SHIPYARD = "Shipyard";
 	const std::string TEXT_ISLAND_NAME = "island-name";
 	const std::string TEXT_ISLAND_VISITS = "island-visits";
 	const std::string FORMAT_NAME = "Name: {}";
@@ -27,7 +29,8 @@ namespace state::in_play::Docked
 	{
 		UNDOCK,
 		JOBS,
-		TRADE
+		TRADE,
+		SHIPYARD
 	};
 
 	static void OnUndock()
@@ -36,11 +39,17 @@ namespace state::in_play::Docked
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
+	static void OnShipyard()
+	{
+
+	}
+
 	const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
 		{ OrderMenuItem::UNDOCK, OnUndock },
 		{ OrderMenuItem::JOBS, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_JOBS) },
-		{ OrderMenuItem::TRADE, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_TRADE) }
+		{ OrderMenuItem::TRADE, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_TRADE) },
+		{ OrderMenuItem::SHIPYARD, OnShipyard }
 	};
 
 	static void ActivateItem()
@@ -57,13 +66,22 @@ namespace state::in_play::Docked
 		{::Command::RED, OnUndock }
 	};
 
-	static void OnEnter()
+	static void RefreshIslandDetails()
 	{
-		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
 		auto location = game::Avatar::GetDockedLocation().value();
 		auto island = game::Islands::Read(location).value();
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_ISLAND_NAME, std::format(FORMAT_NAME,island.name));
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_ISLAND_VISITS, std::format(FORMAT_VISITS, island.visits.value_or(0)));
+		visuals::MenuItems::SetEnabled(
+			LAYOUT_NAME, 
+			MENU_ITEM_SHIPYARD, 
+			game::islands::Features::Read(location, game::Feature::SHIPYARD));
+	}
+
+	static void OnEnter()
+	{
+		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
+		RefreshIslandDetails();
 	}
 
 	void Start()

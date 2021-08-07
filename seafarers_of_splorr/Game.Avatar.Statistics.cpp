@@ -20,7 +20,7 @@ namespace game::avatar::Statistics
 				{game::avatar::Statistic::HEALTH, 0.0, 100.0, 100.0},
 				{game::avatar::Statistic::SATIETY, 0.0, 100.0, 100.0},
 				{game::avatar::Statistic::REPUTATION, -1000.0, 1000.0, 0.0},
-				{game::avatar::Statistic::MONEY, 0.0, 1000000000.0, 100.0}
+				{game::avatar::Statistic::MONEY, 0.0, 1000000000.0, 0.0}
 			}},
 		{game::Difficulty::NORMAL,
 			{
