@@ -54,7 +54,13 @@ namespace visuals::Areas
 
 	static const std::vector<visuals::Area>& GetForLayout(const std::string& layoutName)
 	{
-		return areaLists.find(layoutName)->second;
+		static std::vector<visuals::Area> noAreas;
+		auto iter = areaLists.find(layoutName);
+		if (iter != areaLists.end())
+		{
+			return iter->second;
+		}
+		return noAreas;
 	}
 
 	std::set<std::string> Get(const std::string& layoutName, const common::XY<int>& xy)
