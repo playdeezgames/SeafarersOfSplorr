@@ -199,12 +199,14 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game.Features.cpp" />
     <ClCompile Include="Game.Heading.cpp" />
+    <ClCompile Include="Game.Islands.Commodities.cpp" />
     <ClCompile Include="Game.Islands.cpp" />
     <ClCompile Include="Game.Islands.Features.cpp" />
     <ClCompile Include="Game.Islands.Generation.cpp" />
     <ClCompile Include="Game.Islands.Items.cpp" />
     <ClCompile Include="Game.Islands.Markets.cpp" />
     <ClCompile Include="Game.Islands.Quests.cpp" />
+    <ClCompile Include="Game.Islands.Ships.cpp" />
     <ClCompile Include="Game.Items.cpp" />
     <ClCompile Include="Game.Ships.cpp" />
     <ClCompile Include="Game.World.cpp" />
@@ -319,6 +321,8 @@
     <ClInclude Include="Game.Features.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Game.Heading.h" />
+    <ClInclude Include="Game.Islands.Commodities.h" />
+    <ClInclude Include="Game.Islands.Ships.h" />
     <ClInclude Include="Game.Islands.Features.h" />
     <ClInclude Include="Game.Islands.h" />
     <ClInclude Include="Game.Islands.Items.h" />
