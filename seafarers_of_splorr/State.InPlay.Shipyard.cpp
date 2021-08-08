@@ -6,12 +6,11 @@
 #include <format>
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.h"
-#include "Game.Avatar.Items.h"
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Statistics.h"
-#include "Game.Islands.Items.h"
 #include "Game.Islands.Markets.h"
-#include "Game.Items.h"
+#include "Game.Islands.Ships.h"
+#include "Game.Ships.h"
 #include "Visuals.Data.Colors.h"
 #include "Visuals.SpriteGrid.h"
 namespace state::in_play::Shipyard
@@ -19,6 +18,14 @@ namespace state::in_play::Shipyard
 	const std::string LAYOUT_NAME = "State.InPlay.Shipyard";
 	const std::string SPRITE_GRID_ID = "Grid";
 	const std::string FONT_DEFAULT = "default";
+
+	static std::map<game::Ship, double> shipPrices;
+	static int hiliteRow = 0;
+
+	static void UpdateShipPrices()
+	{
+		shipPrices = game::islands::Ships::GetPurchasePrices(game::Avatar::GetDockedLocation().value());
+	}
 
 	static void WriteTextToGrid(const common::XY<int> location, const std::string& text, const std::string& color)
 	{
@@ -46,31 +53,51 @@ namespace state::in_play::Shipyard
 			visuals::data::Colors::DEFAULT);
 	}
 
+	static void RefreshShipPrices()
+	{
+		int row = 0;
+		int gridRow = 2;
+		for (auto& unitPrice : shipPrices)
+		{
+			auto& shipDescriptor = game::Ships::Read(unitPrice.first);
+			WriteTextToGrid(
+				{ 0, gridRow },
+				std::format("{:15s} | {:7.3f}",
+					shipDescriptor.name,
+					unitPrice.second),
+				(row == hiliteRow) ? (visuals::data::Colors::HOVER) : (visuals::data::Colors::NORMAL));
+			++gridRow;
+			++row;
+		}
+	}
+
 	static void RefreshGrid()
 	{
 		visuals::SpriteGrid::Clear(LAYOUT_NAME, SPRITE_GRID_ID);
+		RefreshShipPrices();
 		RefreshStatistics();
 	}
 
 	void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
+		UpdateShipPrices();
 		RefreshGrid();
 	}
 
 	static void PreviousItem()
 	{
-		//hiliteRow = (hiliteRow + (int)unitPrices.size() - 1) % (int)unitPrices.size();
-		//RefreshUnitPrices();
+		hiliteRow = (hiliteRow + (int)shipPrices.size() - 1) % (int)shipPrices.size();
+		RefreshShipPrices();
 	}
 
 	static void NextItem()
 	{
-		//hiliteRow = (hiliteRow + 1) % (int)unitPrices.size();
-		//RefreshUnitPrices();
+		hiliteRow = (hiliteRow + 1) % (int)shipPrices.size();
+		RefreshShipPrices();
 	}
 
-	static void BuyItem()
+	static void BuyShip()
 	{
 		//auto unitPrice = unitPrices.begin();
 		//int index = hiliteRow;
@@ -96,7 +123,7 @@ namespace state::in_play::Shipyard
 	{
 		{ ::Command::UP, PreviousItem },
 		{ ::Command::DOWN, NextItem },
-		{ ::Command::GREEN, BuyItem },
+		{ ::Command::GREEN, BuyShip },
 		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_DOCKED) },
 		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_DOCKED) }
 	};
