@@ -3,6 +3,7 @@
 #include "Application.OnEnter.h"
 #include "Application.Renderer.h"
 #include "Application.UIState.h"
+#include "Common.Utility.h"
 #include <format>
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.h"
@@ -38,18 +39,13 @@ namespace state::in_play::Shipyard
 		return true;
 	}
 
-	static double GetMoney()
-	{
-		return game::avatar::Statistics::GetCurrent(game::avatar::Statistic::MONEY);
-	}
-
 	static void RefreshStatistics()
 	{
 		WriteTextToGrid(
 			{ 0, 19 },
 			std::format(
 				"Money: {:.3f}",
-				GetMoney()),
+				game::avatar::Statistics::GetMoney()),
 			visuals::data::Colors::DEFAULT);
 	}
 
@@ -85,18 +81,6 @@ namespace state::in_play::Shipyard
 		RefreshGrid();
 	}
 
-	static void PreviousItem()
-	{
-		hiliteRow = (hiliteRow + (int)shipPrices.size() - 1) % (int)shipPrices.size();
-		RefreshShipPrices();
-	}
-
-	static void NextItem()
-	{
-		hiliteRow = (hiliteRow + 1) % (int)shipPrices.size();
-		RefreshShipPrices();
-	}
-
 	static void BuyShip()
 	{
 		//auto unitPrice = unitPrices.begin();
@@ -119,10 +103,15 @@ namespace state::in_play::Shipyard
 		//}
 	}
 
+	int GetShipPriceCount()
+	{
+		return (int)shipPrices.size();
+	}
+
 	const std::map<::Command, std::function<void()>> commandHandlers =
 	{
-		{ ::Command::UP, PreviousItem },
-		{ ::Command::DOWN, NextItem },
+		{ ::Command::UP, common::Utility::DoPreviousItem(hiliteRow, GetShipPriceCount, RefreshShipPrices) },
+		{ ::Command::DOWN, common::Utility::DoNextItem(hiliteRow, GetShipPriceCount, RefreshShipPrices) },
 		{ ::Command::GREEN, BuyShip },
 		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_DOCKED) },
 		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_DOCKED) }

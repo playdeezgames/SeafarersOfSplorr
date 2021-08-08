@@ -65,11 +65,6 @@ namespace state::in_play::Cargo
 		}
 	}
 
-	static double GetMoney()
-	{
-		return game::avatar::Statistics::GetCurrent(game::avatar::Statistic::MONEY);
-	}
-
 	static double GetTonnage()
 	{
 		return game::avatar::Items::TotalTonnage();
@@ -93,7 +88,7 @@ namespace state::in_play::Cargo
 			{ 0, 19 },
 			std::format(
 				"Money: {:.3f}",
-				GetMoney()),
+				game::avatar::Statistics::GetMoney()),
 			visuals::data::Colors::NORMAL);
 	}
 

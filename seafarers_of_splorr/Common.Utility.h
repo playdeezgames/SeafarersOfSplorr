@@ -46,6 +46,10 @@ namespace common::Utility
 		return defaultResult;
 	}
 
+	std::function<void()> DoNextItem(int&, std::function<int()>, std::function<void()>);
+	std::function<void()> DoPreviousItem(int&, std::function<int()>, std::function<void()>);
+
+
 	bool FileExists(const std::string&);
 	unsigned char GetFileCheckSum(const std::string&);
 }

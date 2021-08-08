@@ -37,5 +37,23 @@ namespace common::Utility
 		}
 		return result;
 	}
+
+	std::function<void()> DoNextItem(int& index, std::function<int()> getCount, std::function<void()> refresh)
+	{
+		return [&index, getCount, refresh]()
+		{
+			index = (index + 1) % getCount();
+			refresh();
+		};
+	}
+
+	std::function<void()> DoPreviousItem(int& index, std::function<int()> getCount, std::function<void()> refresh)
+	{
+		return [&index, getCount, refresh]()
+		{
+			index = (index + getCount() - 1) % getCount();
+			refresh();
+		};
+	}
 }
 

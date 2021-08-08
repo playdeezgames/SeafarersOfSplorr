@@ -3,6 +3,7 @@
 #include "Application.OnEnter.h"
 #include "Application.Renderer.h"
 #include "Application.UIState.h"
+#include "Common.Utility.h"
 #include <format>
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.h"
@@ -65,18 +66,13 @@ namespace state::in_play::IslandSell
 		}
 	}
 
-	static double GetMoney()
-	{
-		return game::avatar::Statistics::GetCurrent(game::avatar::Statistic::MONEY);
-	}
-
 	static void RefreshStatistics()
 	{
 		WriteTextToGrid(
 			{ 0, 19 },
 			std::format(
 				"Money: {:.3f}",
-				GetMoney()),
+				game::avatar::Statistics::GetMoney()),
 			visuals::data::Colors::NORMAL);
 	}
 
@@ -95,21 +91,9 @@ namespace state::in_play::IslandSell
 		RefreshGrid();
 	}
 
-	static void PreviousItem()
-	{
-		hiliteRow = (hiliteRow + (int)unitPrices.size() - 1) % (int)unitPrices.size();
-		RefreshUnitPrices();
-	}
-
-	static void NextItem()
-	{
-		hiliteRow = (hiliteRow + 1) % (int)unitPrices.size();
-		RefreshUnitPrices();
-	}
-
 	static void SellItem()
 	{
-		auto unitPrice = unitPrices.begin();
+		auto unitPrice = unitPrices.begin();//TODO: refactor me
 		int index = hiliteRow;
 		while (index > 0)
 		{
@@ -127,10 +111,15 @@ namespace state::in_play::IslandSell
 		}
 	}
 
+	static int GetUnitPriceCount()
+	{
+		return (int)unitPrices.size();
+	}
+
 	const std::map<::Command, std::function<void()>> commandHandlers =
 	{
-		{ ::Command::UP, PreviousItem },
-		{ ::Command::DOWN, NextItem },
+		{ ::Command::UP, common::Utility::DoPreviousItem(hiliteRow, GetUnitPriceCount, RefreshUnitPrices) },
+		{ ::Command::DOWN, common::Utility::DoNextItem(hiliteRow, GetUnitPriceCount, RefreshUnitPrices) },
 		{ ::Command::GREEN, SellItem },
 		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_TRADE) },
 		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_TRADE) }
