@@ -148,4 +148,19 @@ namespace visuals::SpriteGrid
 		auto& spriteGrid = spriteGrids[gridIndex];
 		return spriteGrid.cellSize.GetY();
 	}
+
+	std::function<void(const common::XY<int>&, const std::string&, const std::string&)>
+		DoWriteToGrid(
+			const std::string& layoutName,
+			const std::string& spriteGridId,
+			const std::string& fontName,
+			const visuals::HorizontalAlignment& alignment)
+	{
+		return [layoutName, spriteGridId, fontName, alignment](const common::XY<int> location, const std::string & text, const std::string & color)
+		{
+			visuals::SpriteGrid::WriteText(layoutName, spriteGridId, location, fontName, text, color, alignment);
+		};
+	}
+
+
 }
