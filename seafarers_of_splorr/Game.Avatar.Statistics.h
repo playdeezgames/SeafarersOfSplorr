@@ -4,15 +4,16 @@
 namespace game::avatar::Statistics
 {
 	void Reset(const game::Difficulty&);
-	double GetMaximum(const game::avatar::Statistic&);
-	double GetMinimum(const game::avatar::Statistic&);
 	double GetCurrent(const game::avatar::Statistic&);
 	double ChangeCurrent(const game::avatar::Statistic&, double);
 
 	double GetMoney();
 
 	double GetHealth();
+	bool IsDead();
+
 	double GetSatiety();
+	bool IsStarving();
 	void Eat(double);
 	bool NeedToEat(double);
 

@@ -62,12 +62,12 @@ namespace game::avatar::Statistics
 		}
 	}
 
-	double GetMaximum(const game::avatar::Statistic& statistic)
+	static double GetMaximum(const game::avatar::Statistic& statistic)
 	{
 		return data::game::avatar::Statistics::Read((int)statistic).value().maximum;
 	}
 
-	double GetMinimum(const game::avatar::Statistic& statistic)
+	static double GetMinimum(const game::avatar::Statistic& statistic)
 	{
 		return data::game::avatar::Statistics::Read((int)statistic).value().minimum;
 	}
@@ -124,7 +124,7 @@ namespace game::avatar::Statistics
 
 	bool NeedToEat(double amount)
 	{
-		double totalDown = 
+		double totalDown =
 			GetMaximum(game::avatar::Statistic::HEALTH) - GetCurrent(game::avatar::Statistic::HEALTH) +
 			GetMaximum(game::avatar::Statistic::SATIETY) - GetCurrent(game::avatar::Statistic::SATIETY);
 		return totalDown >= amount;
@@ -154,6 +154,21 @@ namespace game::avatar::Statistics
 	bool IsOutOfTurns()
 	{
 		return GetCurrent(game::avatar::Statistic::TURNS_REMAINING) <= GetMinimum(game::avatar::Statistic::TURNS_REMAINING);
+	}
+
+	static bool IsMinimal(const Statistic& statistic)
+	{
+		return GetCurrent(statistic) <= GetMinimum(statistic);
+	}
+
+	bool IsDead()
+	{
+		return IsMinimal(Statistic::HEALTH);
+	}
+
+	bool IsStarving()
+	{
+		return IsMinimal(Statistic::SATIETY);
 	}
 
 }

@@ -12,7 +12,7 @@ namespace state::in_play::Next
 			application::UIState::Write(::UIState::IN_PLAY_WIN);
 			return;
 		}
-		if (game::avatar::Statistics::GetCurrent(game::avatar::Statistic::HEALTH) == game::avatar::Statistics::GetMinimum(game::avatar::Statistic::HEALTH))
+		if (game::avatar::Statistics::IsDead())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_LOSE);
 			return;

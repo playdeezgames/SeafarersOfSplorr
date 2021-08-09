@@ -67,7 +67,7 @@ namespace game::Avatar
 		const double HEALTH_DELTA = -1.0;
 		const double EAT_BENEFIT = 10.0;
 		game::avatar::Statistics::SpendTurn();
-		if (game::avatar::Statistics::GetCurrent(game::avatar::Statistic::SATIETY) > game::avatar::Statistics::GetMinimum(game::avatar::Statistic::SATIETY))
+		if (!game::avatar::Statistics::IsStarving())
 		{
 			game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::SATIETY, SATIETY_DELTA);
 		}
