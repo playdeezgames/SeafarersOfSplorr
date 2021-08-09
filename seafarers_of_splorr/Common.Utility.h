@@ -46,8 +46,28 @@ namespace common::Utility
 		return defaultResult;
 	}
 
-	std::function<void()> DoNextItem(size_t&, std::function<size_t()>, std::function<void()>);
-	std::function<void()> DoPreviousItem(size_t&, std::function<size_t()>, std::function<void()>);
+	std::function<void()> DoNextItem(size_t&, std::function<size_t()>, std::function<void()>);//TODO: deprecate me!
+	std::function<void()> DoPreviousItem(size_t&, std::function<size_t()>, std::function<void()>);//TODO: deprecate me!
+
+	template<typename TKey, typename TValue>
+	std::function<void()> DoNextItem(size_t& index, const std::map<TKey, TValue>& table, std::function<void()> refresh)
+	{
+		return [&index, &table, refresh]()
+		{
+			index = (index + 1) % table.size();
+			refresh();
+		};
+	}
+
+	template<typename TKey, typename TValue>
+	std::function<void()> DoPreviousItem(size_t& index, const std::map<TKey, TValue>& table, std::function<void()> refresh)
+	{
+		return [&index, &table, refresh]()
+		{
+			index = (index + table.size() - 1) % table.size();
+			refresh();
+		};
+	}
 
 	bool FileExists(const std::string&);
 	unsigned char GetFileCheckSum(const std::string&);

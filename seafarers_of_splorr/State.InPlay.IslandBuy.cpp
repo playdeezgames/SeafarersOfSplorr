@@ -117,15 +117,10 @@ namespace state::in_play::IslandBuy
 		}
 	}
 
-	static size_t GetUnitPriceCount()
-	{
-		return unitPrices.size();
-	}
-
 	const std::map<::Command, std::function<void()>> commandHandlers =
 	{
-		{ ::Command::UP, common::Utility::DoPreviousItem(hiliteRow, GetUnitPriceCount, RefreshUnitPrices) },
-		{ ::Command::DOWN, common::Utility::DoNextItem(hiliteRow, GetUnitPriceCount, RefreshUnitPrices) },
+		{ ::Command::UP, common::Utility::DoPreviousItem(hiliteRow, unitPrices, RefreshUnitPrices) },
+		{ ::Command::DOWN, common::Utility::DoNextItem(hiliteRow, unitPrices, RefreshUnitPrices) },
 		{ ::Command::GREEN, BuyItem },
 		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_TRADE) },
 		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_TRADE) }
