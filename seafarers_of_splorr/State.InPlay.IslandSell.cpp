@@ -103,7 +103,7 @@ namespace state::in_play::IslandSell
 		auto owned = game::avatar::Items::Read(unitPrice->first);
 		if (owned>0)
 		{
-			game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::MONEY, +unitPrice->second);
+			game::avatar::Statistics::ChangeMoney(unitPrice->second);
 			game::islands::Markets::SellItems(game::Avatar::GetDockedLocation().value(), unitPrice->first, 1);
 			game::avatar::Items::Remove(unitPrice->first, 1);
 			UpdateUnitPrices();

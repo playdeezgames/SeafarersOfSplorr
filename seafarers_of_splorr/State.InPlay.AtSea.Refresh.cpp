@@ -48,7 +48,7 @@ namespace state::in_play::AtSea
 
 	static void RefreshAvatarMoney()
 	{
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_MONEY, std::format(FORMAT_MONEY, game::avatar::Statistics::GetCurrent(game::avatar::Statistic::MONEY)));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_MONEY, std::format(FORMAT_MONEY, game::avatar::Statistics::GetMoney()));
 	}
 
 	static void RefreshAvatarReputation()
@@ -58,7 +58,7 @@ namespace state::in_play::AtSea
 
 	static void RefreshAvatarHealth()
 	{
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HEALTH, std::format(FORMAT_HEALTH, game::avatar::Statistics::GetCurrent(game::avatar::Statistic::HEALTH)));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HEALTH, std::format(FORMAT_HEALTH, game::avatar::Statistics::GetHealth()));
 	}
 
 	static void RefreshAvatarTurns()

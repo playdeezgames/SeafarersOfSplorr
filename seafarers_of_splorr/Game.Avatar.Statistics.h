@@ -1,18 +1,18 @@
 #pragma once
-#include "Game.Avatar.Statistic.h"
 #include "Game.Difficulty.h"
 namespace game::avatar::Statistics
 {
 	void Reset(const game::Difficulty&);
-	double GetCurrent(const game::avatar::Statistic&);
-	double ChangeCurrent(const game::avatar::Statistic&, double);
 
 	double GetMoney();
+	void ChangeMoney(double);
 
 	double GetHealth();
+	void ChangeHealth(double);
 	bool IsDead();
 
 	double GetSatiety();
+	void ChangeSatiety(double);
 	bool IsStarving();
 	void Eat(double);
 	bool NeedToEat(double);

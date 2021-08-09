@@ -1,3 +1,4 @@
+#include "Game.Avatar.Statistic.h"
 #include "Game.Avatar.Statistics.h"
 #include "Data.Game.Avatar.Statistics.h"
 #include <map>
@@ -171,4 +172,18 @@ namespace game::avatar::Statistics
 		return IsMinimal(Statistic::SATIETY);
 	}
 
+	void ChangeMoney(double delta)
+	{
+		ChangeCurrent(Statistic::MONEY, delta);
+	}
+
+	void ChangeHealth(double delta)
+	{
+		ChangeCurrent(Statistic::HEALTH, delta);
+	}
+
+	void ChangeSatiety(double delta)
+	{
+		ChangeCurrent(Statistic::SATIETY, delta);
+	}
 }

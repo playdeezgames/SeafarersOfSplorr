@@ -69,11 +69,11 @@ namespace game::Avatar
 		game::avatar::Statistics::SpendTurn();
 		if (!game::avatar::Statistics::IsStarving())
 		{
-			game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::SATIETY, SATIETY_DELTA);
+			game::avatar::Statistics::ChangeSatiety(SATIETY_DELTA);
 		}
 		else
 		{
-			game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::HEALTH, HEALTH_DELTA);
+			game::avatar::Statistics::ChangeHealth(HEALTH_DELTA);
 		}
 		if (game::avatar::Statistics::NeedToEat(EAT_BENEFIT))
 		{
