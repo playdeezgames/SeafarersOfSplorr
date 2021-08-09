@@ -3,6 +3,7 @@
 #include "Application.OnEnter.h"
 #include "Application.Renderer.h"
 #include "Application.UIState.h"
+#include "Common.Utility.h"
 #include <format>
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.h"
@@ -37,7 +38,12 @@ namespace state::in_play::Cargo
 	}
 
 	static std::map<game::Item, size_t> manifest;
-	static int hiliteRow = 0;
+	static size_t hiliteRow = 0;
+
+	static size_t GetManifestItemCount()
+	{
+		return manifest.size();
+	}
 
 	static void UpdateManifest()
 	{
@@ -104,22 +110,10 @@ namespace state::in_play::Cargo
 		RefreshGrid();
 	}
 
-	static void PreviousItem()
-	{
-		hiliteRow = (hiliteRow + (int)manifest.size() - 1) % (int)manifest.size();
-		RefreshManifest();
-	}
-
-	static void NextItem()
-	{
-		hiliteRow = (hiliteRow + 1) % (int)manifest.size();
-		RefreshManifest();
-	}
-
 	const std::map<::Command, std::function<void()>> commandHandlers =
 	{
-		{ ::Command::UP, PreviousItem },
-		{ ::Command::DOWN, NextItem },
+		{ ::Command::UP, common::Utility::DoPreviousItem(hiliteRow, GetManifestItemCount, RefreshManifest) },
+		{ ::Command::DOWN, common::Utility::DoNextItem(hiliteRow, GetManifestItemCount, RefreshManifest) },
 		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) },
 		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) }
 	};

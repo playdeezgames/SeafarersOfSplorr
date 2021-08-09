@@ -117,9 +117,9 @@ namespace state::in_play::IslandBuy
 		}
 	}
 
-	static int GetUnitPriceCount()
+	static size_t GetUnitPriceCount()
 	{
-		return (int)unitPrices.size();
+		return unitPrices.size();
 	}
 
 	const std::map<::Command, std::function<void()>> commandHandlers =

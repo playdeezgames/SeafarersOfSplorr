@@ -100,7 +100,7 @@ namespace state::in_play::Shipyard
 		//}
 	}
 
-	int GetShipPriceCount()
+	static size_t GetShipPriceCount()
 	{
 		return (int)shipPrices.size();
 	}
