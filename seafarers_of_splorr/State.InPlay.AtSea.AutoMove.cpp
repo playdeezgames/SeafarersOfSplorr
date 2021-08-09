@@ -1,5 +1,6 @@
 #include "Application.UIState.h"
 #include "Game.Avatar.h"
+#include "Game.Islands.h"
 namespace state::in_play::AtSea
 {
 	const size_t TICKS_TOTAL = 250;
@@ -20,7 +21,7 @@ namespace state::in_play::AtSea
 		if (autoMoveState == AutoMoveState::OFF)
 		{
 			ticksLeft = TICKS_TOTAL;
-			autoMoveState = AutoMoveState::STARTING;
+			autoMoveState = (game::Islands::CanDock()) ? (AutoMoveState::STARTING) : (AutoMoveState::ON);
 		}
 		else
 		{
@@ -48,9 +49,9 @@ namespace state::in_play::AtSea
 		}
 	}
 
-	void UpdateAutoMoveState(bool canDock)
+	void UpdateAutoMoveState()
 	{
-		if (canDock)
+		if (game::Islands::CanDock())
 		{
 			if (autoMoveState == AutoMoveState::ON)
 			{

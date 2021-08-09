@@ -69,6 +69,11 @@ namespace game::Islands
 		return GetIslandsInRange(game::World::GetDockDistance());
 	}
 
+	bool CanDock()
+	{
+		return !GetDockableIslands().empty();
+	}
+
 	void AddVisit(const common::XY<double>& location, const int& turn)
 	{
 		auto visitData = data::game::island::Visits::Read(location);

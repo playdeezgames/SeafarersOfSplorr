@@ -165,7 +165,7 @@ namespace state::in_play::AtSea
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_JOB, game::avatar::Quest::Read().has_value());
 	}
 
-	bool RefreshIslands()
+	void RefreshIslands()
 	{
 		HideVisibleIslands();
 		auto islands = game::Islands::GetViewableIslands();
@@ -184,6 +184,5 @@ namespace state::in_play::AtSea
 			++icon;
 		}
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_DOCK, canDock);
-		return canDock;
 	}
 }
