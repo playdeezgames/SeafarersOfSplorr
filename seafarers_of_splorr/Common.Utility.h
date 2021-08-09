@@ -49,9 +49,24 @@ namespace common::Utility
 	std::function<void()> DoNextItem(int&, std::function<int()>, std::function<void()>);
 	std::function<void()> DoPreviousItem(int&, std::function<int()>, std::function<void()>);
 
-
 	bool FileExists(const std::string&);
 	unsigned char GetFileCheckSum(const std::string&);
+
+	template<typename TKey, typename TValue>
+	std::optional<TKey> GetNthKey(const std::map<TKey, TValue>& table, size_t index)
+	{
+		auto iter = table.begin();
+		while (index > 0 && iter!=table.end())
+		{
+			iter++;
+			index--;
+		}
+		if (iter != table.end())
+		{
+			return iter->first;
+		}
+		return std::nullopt;
+	}
 }
 
 

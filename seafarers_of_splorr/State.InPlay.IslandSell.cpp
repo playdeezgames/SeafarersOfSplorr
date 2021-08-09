@@ -93,21 +93,20 @@ namespace state::in_play::IslandSell
 
 	static void SellItem()
 	{
-		auto unitPrice = unitPrices.begin();//TODO: refactor me
-		int index = hiliteRow;
-		while (index > 0)
+		auto item = common::Utility::GetNthKey(unitPrices, hiliteRow);
+		if (item)
 		{
-			unitPrice++;
-			index--;
-		}
-		auto owned = game::avatar::Items::Read(unitPrice->first);
-		if (owned>0)
-		{
-			game::avatar::Statistics::ChangeMoney(unitPrice->second);
-			game::islands::Markets::SellItems(game::Avatar::GetDockedLocation().value(), unitPrice->first, 1);
-			game::avatar::Items::Remove(unitPrice->first, 1);
-			UpdateUnitPrices();
-			RefreshGrid();
+			double price = unitPrices[item.value()];
+			auto owned = game::avatar::Items::Read(item.value());
+			if (owned > 0)
+			{
+				game::avatar::Statistics::ChangeMoney(price);
+				game::islands::Markets::SellItems(game::Avatar::GetDockedLocation().value(), item.value(), 1);
+				game::avatar::Items::Remove(item.value(), 1);
+
+				UpdateUnitPrices();
+				RefreshGrid();
+			}
 		}
 	}
 

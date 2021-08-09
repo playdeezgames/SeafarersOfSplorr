@@ -101,22 +101,21 @@ namespace state::in_play::IslandBuy
 
 	static void BuyItem()
 	{
-		auto unitPrice = unitPrices.begin();//TODO: refactor me
-		int index = hiliteRow;
-		while (index > 0)
+		auto item = common::Utility::GetNthKey(unitPrices, hiliteRow);
+		if (item)
 		{
-			unitPrice++;
-			index--;
-		}
-		if (game::avatar::Statistics::GetMoney() >= unitPrice->second)
-		{
-			if (game::avatar::Ship::AvailableTonnage() >= game::Items::Read(unitPrice->first).tonnage)
+			double price = unitPrices[item.value()];
+			if (game::avatar::Statistics::GetMoney() >= price)
 			{
-				game::avatar::Statistics::ChangeMoney(-unitPrice->second);
-				game::islands::Markets::BuyItems(game::Avatar::GetDockedLocation().value(), unitPrice->first, 1);
-				game::avatar::Items::Add(unitPrice->first, 1);
-				UpdateUnitPrices();
-				RefreshGrid();
+				if (game::avatar::Ship::AvailableTonnage() >= game::Items::Read(item.value()).tonnage)
+				{
+					game::avatar::Statistics::ChangeMoney(-price);
+					game::islands::Markets::BuyItems(game::Avatar::GetDockedLocation().value(), item.value(), 1);
+					game::avatar::Items::Add(item.value(), 1);
+
+					UpdateUnitPrices();
+					RefreshGrid();
+				}
 			}
 		}
 	}
