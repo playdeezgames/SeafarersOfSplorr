@@ -37,7 +37,7 @@ namespace state::in_play::IslandSell
 	}
 
 	static std::map<game::Item, double> unitPrices;
-	static int hiliteRow = 0;
+	static size_t hiliteRow = 0;
 
 	static void UpdateUnitPrices()
 	{

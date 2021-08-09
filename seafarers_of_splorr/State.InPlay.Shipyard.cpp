@@ -21,7 +21,7 @@ namespace state::in_play::Shipyard
 	const std::string FONT_DEFAULT = "default";
 
 	static std::map<game::Ship, double> shipPrices;
-	static int hiliteRow = 0;
+	static size_t hiliteRow = 0;
 
 	static void UpdateShipPrices()
 	{
