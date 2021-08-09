@@ -20,10 +20,7 @@ namespace state::in_play::Cargo
 	const std::string SPRITE_GRID_ID = "Grid";
 	const std::string FONT_DEFAULT = "default";
 
-	static void WriteTextToGrid(const common::XY<int> location, const std::string& text, const std::string& color)
-	{
-		visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, location, FONT_DEFAULT, text, color, visuals::HorizontalAlignment::LEFT);
-	}
+	const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
 
 	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
 	{
