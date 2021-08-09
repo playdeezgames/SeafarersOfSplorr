@@ -311,6 +311,7 @@
     <ClInclude Include="Game.Avatar.Items.h" />
     <ClInclude Include="Game.Avatar.Quest.h" />
     <ClInclude Include="Game.Avatar.Ship.h" />
+    <ClInclude Include="Game.Avatar.Statistic.h" />
     <ClInclude Include="Game.Avatar.Statistics.h" />
     <ClInclude Include="Game.Commodities.h" />
     <ClInclude Include="Game.Commodity.h" />

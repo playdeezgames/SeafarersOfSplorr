@@ -1,16 +1,6 @@
 #pragma once
+#include "Game.Avatar.Statistic.h"
 #include "Game.Difficulty.h"
-namespace game::avatar
-{
-	enum class Statistic
-	{
-		TURNS_REMAINING,
-		HEALTH,
-		SATIETY,
-		MONEY,
-		REPUTATION
-	};
-}
 namespace game::avatar::Statistics
 {
 	void Reset(const game::Difficulty&);

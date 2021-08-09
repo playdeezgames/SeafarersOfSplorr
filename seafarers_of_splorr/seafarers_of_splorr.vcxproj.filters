@@ -630,6 +630,9 @@
     <ClInclude Include="Game.Islands.Commodities.h">
       <Filter>Headers\Game\Island</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Avatar.Statistic.h">
+      <Filter>Headers\Game\Avatar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
