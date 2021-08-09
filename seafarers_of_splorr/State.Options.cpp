@@ -132,10 +132,7 @@ namespace state::Options
 
 	};
 
-	static void ActivateItem()
-	{
-		common::Utility::Dispatch(activators, GetCurrentItem());
-	}
+	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
 	const std::map<::Command, std::function<void()>> commandHandlers =
 	{

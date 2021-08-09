@@ -42,10 +42,7 @@ namespace state::MainMenu
 		{ MainMenuItem::QUIT, ::application::UIState::GoTo(::UIState::CONFIRM_QUIT)  },
 	};
 
-	static void ActivateItem()
-	{
-		common::Utility::Dispatch(activators, (MainMenuItem)visuals::Menus::ReadIndex(LAYOUT_NAME, MENU_ID).value());
-	}
+	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
 	const std::map<::Command, std::function<void()>> commandHandlers =
 	{

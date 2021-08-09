@@ -54,10 +54,7 @@ namespace state::in_play::IslandJobs
 		{ AcceptJobMenuItem::CANCEL, ::application::UIState::GoTo(::UIState::IN_PLAY_DOCKED) }
 	};
 
-	static void ActivateItem()
-	{
-		common::Utility::Dispatch(activators, (AcceptJobMenuItem)visuals::Menus::ReadIndex(LAYOUT_NAME, MENU_ID).value());
-	}
+	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
 	const std::map<::Command, std::function<void()>> commandHandlers =
 	{

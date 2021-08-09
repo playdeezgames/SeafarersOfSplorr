@@ -31,10 +31,7 @@ namespace state::ConfirmAbandon
 		{ ConfirmAbandonItem::YES, ::application::UIState::GoTo(::UIState::MAIN_MENU) }
 	};
 
-	static void ActivateItem()
-	{
-		common::Utility::Dispatch(activators, (ConfirmAbandonItem)visuals::Menus::ReadIndex(LAYOUT_NAME, MENU_ID).value());
-	}
+	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
 	const std::map<Command, std::function<void()>> commandHandlers =
 	{

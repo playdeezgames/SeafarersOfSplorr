@@ -45,10 +45,7 @@ namespace state::LeavePlay
 		{ LeavePlayItem::OPTIONS, application::UIState::PushTo(::UIState::OPTIONS) }
 	};
 
-	static void ActivateItem()
-	{
-		common::Utility::Dispatch(activators, (LeavePlayItem)visuals::Menus::ReadIndex(LAYOUT_NAME, MENU_ID).value());
-	}
+	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
 	const std::map<::Command, std::function<void()>> commandHandlers =
 	{

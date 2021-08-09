@@ -1,7 +1,8 @@
 #pragma once
-#include <string>
-#include <optional>
+#include "Common.Utility.h"
 #include <functional>
+#include <optional>
+#include <string>
 namespace visuals::Menus
 {
 	std::optional<int> ReadIndex(const std::string&, const std::string&);
@@ -10,6 +11,15 @@ namespace visuals::Menus
 	size_t GetCount(const std::string&, const std::string&);
 	std::function<void()> NavigateNext(const std::string&, const std::string&);
 	std::function<void()> NavigatePrevious(const std::string&, const std::string&);
+
+	template<typename TEnum>
+	std::function<void()> DoActivateItem(const std::string& layoutName, const std::string& menuId, const std::map<TEnum, std::function<void()>>& actions)
+	{
+		return [actions, layoutName, menuId]()
+		{
+			common::Utility::Dispatch(actions, (TEnum)visuals::Menus::ReadIndex(layoutName, menuId).value());
+		};
+	}
 }
 namespace visuals::MenuItems
 {

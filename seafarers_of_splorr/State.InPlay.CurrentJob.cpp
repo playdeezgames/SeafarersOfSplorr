@@ -41,10 +41,7 @@ namespace state::in_play::CurrentJob
 		{ CurrentJobMenuItem::CANCEL, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) }
 	};
 
-	static void ActivateItem()
-	{
-		common::Utility::Dispatch(activators, (CurrentJobMenuItem)visuals::Menus::ReadIndex(LAYOUT_NAME, MENU_ID).value());
-	}
+	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
 	const std::map<::Command, std::function<void()>> commandHandlers =
 	{

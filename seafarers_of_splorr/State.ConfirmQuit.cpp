@@ -25,10 +25,7 @@ namespace state::ConfirmQuit
 		{ ConfirmQuitItem::YES, ::application::UIState::GoTo(::UIState::QUIT) }
 	};
 
-	static void ActivateItem()
-	{
-		common::Utility::Dispatch(activators, (ConfirmQuitItem)visuals::Menus::ReadIndex(LAYOUT_NAME, MENU_ID).value());
-	}
+	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
 	const std::map<Command, std::function<void()>> commandHandlers =
 	{

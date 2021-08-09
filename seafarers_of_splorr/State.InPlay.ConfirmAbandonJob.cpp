@@ -33,10 +33,7 @@ namespace state::in_play::ConfirmAbandonJob
 		{ ConfirmAbandonJobItem::YES, AbandonJob }
 	};
 
-	static void ActivateItem()
-	{
-		common::Utility::Dispatch(activators, (ConfirmAbandonJobItem)visuals::Menus::ReadIndex(LAYOUT_NAME, MENU_ID).value());
-	}
+	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
 	const std::map<Command, std::function<void()>> commandHandlers =
 	{

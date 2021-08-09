@@ -34,10 +34,7 @@ namespace state::in_play::ConfirmReplaceJob
 		{ ConfirmReplaceJobItem::YES, ReplaceJob }
 	};
 
-	static void ActivateItem()
-	{
-		common::Utility::Dispatch(activators, (ConfirmReplaceJobItem)visuals::Menus::ReadIndex(LAYOUT_NAME, MENU_ID).value());
-	}
+	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
 	const std::map<Command, std::function<void()>> commandHandlers =
 	{

@@ -70,10 +70,7 @@ namespace state::SaveGame
 		{ SaveGameItem::BACK, application::UIState::GoTo(::UIState::LEAVE_PLAY) }
 	};
 
-	static void ActivateItem()
-	{
-		common::Utility::Dispatch(activators, (SaveGameItem)visuals::Menus::ReadIndex(LAYOUT_NAME, MENU_ID).value());
-	}
+	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
 	const std::map<::Command, std::function<void()>> commandHandlers =
 	{
