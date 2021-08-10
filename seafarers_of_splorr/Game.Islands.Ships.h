@@ -6,5 +6,5 @@ namespace game::islands::Ships
 {
 	std::map<game::Ship, double> GetPurchasePrices(const common::XY<double>&);
 	std::map<game::Ship, double> GetSalePrices(const common::XY<double>&);
-	double GetShipSalePrice(const common::XY<double>&, const game::Ship&);
+	double GetSalePrice(const common::XY<double>&, const game::Ship&);
 }

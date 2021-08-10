@@ -25,7 +25,14 @@ namespace state::in_play::Shipyard
 
 	static void UpdateShipPrices()
 	{
-		shipPrices = game::islands::Ships::GetPurchasePrices(game::Avatar::GetDockedLocation().value());
+		auto location = game::Avatar::GetDockedLocation().value();
+		auto prices = game::islands::Ships::GetPurchasePrices(location);
+		auto tradeIn = game::islands::Ships::GetSalePrice(location, game::avatar::Ship::Read());
+		shipPrices.clear();
+		for (auto price : prices)
+		{
+			shipPrices[price.first] = price.second - tradeIn;
+		}
 	}
 
 	const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
@@ -50,13 +57,15 @@ namespace state::in_play::Shipyard
 	{
 		int row = 0;
 		int gridRow = 2;
+		auto ship = game::avatar::Ship::Read();
 		for (auto& unitPrice : shipPrices)
 		{
 			auto& shipDescriptor = game::Ships::Read(unitPrice.first);
 			WriteTextToGrid(
 				{ 0, gridRow },
-				std::format("{:15s} | {:7.3f}",
+				std::format("{:10s}{}| {:7.3f}",
 					shipDescriptor.name,
+					(ship == unitPrice.first) ? ("*") : (" "),
 					unitPrice.second),
 				(row == hiliteRow) ? (visuals::data::Colors::HOVER) : (visuals::data::Colors::NORMAL));
 			++gridRow;

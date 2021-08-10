@@ -3,7 +3,7 @@
 #include "Game.Ships.h"
 namespace game::islands::Ships
 {
-	static double GetShipPurchasePrice(
+	static double GetPurchasePrice(
 		const common::XY<double>& location,
 		const game::Ship& ship)
 	{
@@ -11,7 +11,7 @@ namespace game::islands::Ships
 		return Commodities::GetPurchasePrice(location, shipDescriptor.commodities);
 	}
 
-	double GetShipSalePrice(
+	double GetSalePrice(
 		const common::XY<double>& location,
 		const game::Ship& ship)
 	{
@@ -25,7 +25,7 @@ namespace game::islands::Ships
 		auto shipsAvailable = game::Ships::All();
 		for (auto& ship : shipsAvailable)
 		{
-			double price = GetShipPurchasePrice(location, ship);
+			double price = GetPurchasePrice(location, ship);
 			result[ship] = price;
 		}
 		return result;
@@ -37,7 +37,7 @@ namespace game::islands::Ships
 		auto shipsAvailable = game::Ships::All();
 		for (auto& ship : shipsAvailable)
 		{
-			double price = GetShipSalePrice(location, ship);
+			double price = GetSalePrice(location, ship);
 			result[ship] = price;
 		}
 		return result;
