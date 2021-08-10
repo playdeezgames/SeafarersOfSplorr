@@ -8,6 +8,14 @@ namespace data::game::Common
 		return data::sqlite::Stores::Execute(data::sqlite::Store::IN_MEMORY, query);
 	}
 
+	std::function<void()> Run(const std::string& query)
+	{
+		return [query]()
+		{
+			Execute(query);
+		};
+	}
+
 	std::string QuoteString(const std::string& original)
 	{
 		std::stringstream ss;

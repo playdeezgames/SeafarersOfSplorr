@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "Game.Avatar.h"
 #include "Game.Avatar.Items.h"
+#include "Game.Avatar.Log.h"
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Islands.h"
@@ -22,6 +23,7 @@ namespace game
 		game::avatar::Statistics::Reset(difficulty);
 		game::avatar::Items::Reset(difficulty);
 		game::avatar::Ship::Reset(difficulty);
+		game::avatar::Log::Reset(difficulty);
 	}
 
 	void Start()
