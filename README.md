@@ -10,3 +10,10 @@
 * https://game-icons.net/1x1/delapouite/sailboat.html
 * https://game-icons.net/1x1/lorc/treasure-map.html
 * https://game-icons.net/1x1/delapouite/crosshair.html
+* https://game-icons.net/1x1/delapouite/token.html
+* https://game-icons.net/1x1/lorc/hourglass.html
+* https://game-icons.net/1x1/delapouite/stomach.html
+* https://game-icons.net/1x1/lorc/heart-organ.html
+* https://game-icons.net/1x1/lorc/compass.html
+* https://game-icons.net/1x1/delapouite/speedometer.html
+* https://game-icons.net/1x1/delapouite/round-star.html

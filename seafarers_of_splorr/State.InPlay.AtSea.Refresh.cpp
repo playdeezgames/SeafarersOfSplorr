@@ -23,13 +23,13 @@ namespace state::in_play::AtSea
 	const std::string TEXT_AVATAR_MONEY = "avatar-money";
 	const std::string TEXT_AVATAR_REPUTATION = "avatar-reputation";
 
-	const std::string FORMAT_TURNS = "Turns Left: {:d}";
-	const std::string FORMAT_MONEY = "Money: {:.3f}";
-	const std::string FORMAT_REPUTATION = "Reputation: {:.0f}";
-	const std::string FORMAT_SATIETY = "Satiety: {:.0f}";
-	const std::string FORMAT_HEALTH = "Health: {:.0f}";
-	const std::string FORMAT_HEADING = "Heading: {:.2f}";
-	const std::string FORMAT_SPEED = "Speed: {:.2f}";
+	const std::string FORMAT_TURNS = "\x81 {:d}";
+	const std::string FORMAT_MONEY = "\x80 {:.3f}";
+	const std::string FORMAT_REPUTATION = "\x86 {:.0f}";
+	const std::string FORMAT_SATIETY = "\x82 {:.0f}";
+	const std::string FORMAT_HEALTH = "\x83 {:.0f}";
+	const std::string FORMAT_HEADING = "\x84 {:.2f}";
+	const std::string FORMAT_SPEED = "\x85 {:.2f}";
 
 	const std::string IMAGE_CURRENT_HEADING = "CurrentHeading";
 	const std::string IMAGE_DESTINATION_1 = "Destination1";

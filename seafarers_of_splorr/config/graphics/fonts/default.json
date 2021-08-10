@@ -94,5 +94,12 @@
   "124": "Character7C",
   "125": "Character7D",
   "126": "Character7E",
-  "127": "Character7F"
+  "127": "Character7F",
+  "-128": "Character80",
+  "-127": "Character81",
+  "-126": "Character82",
+  "-125": "Character83",
+  "-124": "Character84",
+  "-123": "Character85",
+  "-122": "Character86"
 }

@@ -671,6 +671,55 @@
         "width": 16,
         "height": 16
     },
+    "Character80": {
+        "texture": "font",
+        "x": 0,
+        "y": 96,
+        "width": 16,
+        "height": 16
+    },
+    "Character81": {
+        "texture": "font",
+        "x": 16,
+        "y": 96,
+        "width": 16,
+        "height": 16
+    },
+    "Character82": {
+        "texture": "font",
+        "x": 32,
+        "y": 96,
+        "width": 16,
+        "height": 16
+    },
+    "Character83": {
+        "texture": "font",
+        "x": 48,
+        "y": 96,
+        "width": 16,
+        "height": 16
+    },
+    "Character84": {
+        "texture": "font",
+        "x": 64,
+        "y": 96,
+        "width": 16,
+        "height": 16
+    },
+    "Character85": {
+        "texture": "font",
+        "x": 80,
+        "y": 96,
+        "width": 16,
+        "height": 16
+    },
+    "Character86": {
+        "texture": "font",
+        "x": 96,
+        "y": 96,
+        "width": 16,
+        "height": 16
+    },
     "Font35_20": {
         "texture": "font35",
         "x": 0,
