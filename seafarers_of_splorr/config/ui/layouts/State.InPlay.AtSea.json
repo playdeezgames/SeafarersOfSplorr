@@ -595,5 +595,17 @@
         "color": "White",
         "x": 162,
         "y": 182
+    },
+    {
+        "type":"SpriteGrid",
+        "sprite-grid-id":"Log",
+        "x":320,
+        "y":144,
+        "cell-width":6,
+        "cell-height":8,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 1,
+        "drop-shadow-y": 1
     }
 ]

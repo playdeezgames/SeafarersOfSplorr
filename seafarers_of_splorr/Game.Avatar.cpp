@@ -6,6 +6,7 @@
 #include "Data.Game.Avatar.Dock.h"
 #include "Game.Avatar.h"
 #include "Game.Avatar.Items.h"
+#include "Game.Avatar.Log.h"
 #include "Game.Avatar.Quest.h"
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Statistics.h"
@@ -142,6 +143,7 @@ namespace game::Avatar
 			result = DockResult::COMPLETED_QUEST;
 		}
 		data::game::avatar::Dock::SetLocation(location);
+		game::avatar::Log::Write({"Green", "You dock!"});//TODO: magics strings, and where did we dock?
 		return result;
 	}
 
@@ -168,7 +170,7 @@ namespace game::Avatar
 	{
 		if (GetDockedLocation().has_value())
 		{
-			//TODO: statistic for undocking
+			game::avatar::Log::Write({ "Green", "You undock!" });//TODO: magics strings, and where did we undock?
 			data::game::avatar::Dock::SetLocation(std::nullopt);
 			return true;
 		}

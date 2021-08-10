@@ -1,6 +1,7 @@
 #include <format>
 #include "Game.Avatar.h"
 #include "Game.Avatar.Destination.h"
+#include "Game.Avatar.Log.h"
 #include "Game.Avatar.Quest.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Heading.h"
@@ -10,6 +11,7 @@
 #include <string>
 #include "Visuals.Images.h"
 #include "Visuals.Menus.h"
+#include "Visuals.SpriteGrid.h"
 #include "Visuals.Texts.h"
 namespace state::in_play::AtSea
 {
@@ -40,6 +42,11 @@ namespace state::in_play::AtSea
 
 	const std::string MENU_ITEM_DOCK = "Dock";
 	const std::string MENU_ITEM_JOB = "Job";
+
+	const std::string SPRITE_GRID_LOG = "Log";
+
+	const std::string FONT_LOG = "font5x7";
+	const size_t LOG_ENTRIES = 20;
 
 	static void RefreshAvatarSatiety()
 	{
@@ -150,6 +157,18 @@ namespace state::in_play::AtSea
 		return location * viewScale + VIEW_CENTER;
 	}
 
+	static void RefreshLog()
+	{
+		visuals::SpriteGrid::Clear(LAYOUT_NAME, SPRITE_GRID_LOG);
+		auto entries = game::avatar::Log::Read(LOG_ENTRIES);
+		int row = (int)entries.size()-1;
+		for (auto entry : entries)
+		{
+			visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_LOG, { 0,row }, FONT_LOG, entry.text, entry.color, visuals::HorizontalAlignment::LEFT);
+			--row;
+		}
+	}
+
 
 	void RefreshAvatarStatus()
 	{
@@ -162,6 +181,7 @@ namespace state::in_play::AtSea
 		RefreshAvatarTurns();
 		RefreshAvatarDestinations();
 		RefreshAvatarQuestDestination();
+		RefreshLog();
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_JOB, game::avatar::Quest::Read().has_value());
 	}
 
@@ -185,4 +205,5 @@ namespace state::in_play::AtSea
 		}
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_DOCK, canDock);
 	}
+
 }
