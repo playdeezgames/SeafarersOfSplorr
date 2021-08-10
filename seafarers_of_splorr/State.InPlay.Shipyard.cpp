@@ -89,24 +89,23 @@ namespace state::in_play::Shipyard
 
 	static void BuyShip()
 	{
-		//auto unitPrice = unitPrices.begin();
-		//int index = hiliteRow;
-		//while (index > 0)
-		//{
-		//	unitPrice++;
-		//	index--;
-		//}
-		//if (GetMoney() >= unitPrice->second)
-		//{
-		//	if (game::avatar::Ship::AvailableTonnage() >= game::Items::Read(unitPrice->first).tonnage)
-		//	{
-		//		game::avatar::Statistics::ChangeCurrent(game::avatar::Statistic::MONEY, -unitPrice->second);
-		//		game::islands::Markets::BuyItems(game::Avatar::GetDockedLocation().value(), unitPrice->first, 1);
-		//		game::avatar::Items::Add(unitPrice->first, 1);
-		//		UpdateUnitPrices();
-		//		RefreshGrid();
-		//	}
-		//}
+		auto location = game::Avatar::GetDockedLocation().value();
+		auto currentShip = game::avatar::Ship::Read();
+		auto ship = common::Utility::GetNthKey(shipPrices, hiliteRow);
+		if (ship)
+		{
+			//TODO: if current cargo is too much for the new ship type, deny buying the ship type
+			double price = shipPrices[ship.value()];
+			if (game::avatar::Statistics::GetMoney() >= price)
+			{
+				game::avatar::Statistics::ChangeMoney(-price);
+				game::avatar::Ship::Write(ship.value());
+				game::islands::Markets::BuyShip(location, ship.value());
+				game::islands::Markets::SellShip(location, currentShip);
+				UpdateShipPrices();
+				RefreshGrid();
+			}
+		}
 	}
 
 	const std::map<::Command, std::function<void()>> commandHandlers =
