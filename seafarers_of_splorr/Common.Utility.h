@@ -46,9 +46,6 @@ namespace common::Utility
 		return defaultResult;
 	}
 
-	std::function<void()> DoNextItem(size_t&, std::function<size_t()>, std::function<void()>);//TODO: deprecate me!
-	std::function<void()> DoPreviousItem(size_t&, std::function<size_t()>, std::function<void()>);//TODO: deprecate me!
-
 	template<typename TKey, typename TValue>
 	std::function<void()> DoNextItem(size_t& index, const std::map<TKey, TValue>& table, std::function<void()> refresh)
 	{

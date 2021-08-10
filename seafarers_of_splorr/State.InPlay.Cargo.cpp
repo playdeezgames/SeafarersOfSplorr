@@ -40,11 +40,6 @@ namespace state::in_play::Cargo
 	static std::map<game::Item, size_t> manifest;
 	static size_t hiliteRow = 0;
 
-	static size_t GetManifestItemCount()
-	{
-		return manifest.size();
-	}
-
 	static void UpdateManifest()
 	{
 		manifest = game::avatar::Items::All();
@@ -112,8 +107,8 @@ namespace state::in_play::Cargo
 
 	const std::map<::Command, std::function<void()>> commandHandlers =
 	{
-		{ ::Command::UP, common::Utility::DoPreviousItem(hiliteRow, GetManifestItemCount, RefreshManifest) },
-		{ ::Command::DOWN, common::Utility::DoNextItem(hiliteRow, GetManifestItemCount, RefreshManifest) },
+		{ ::Command::UP, common::Utility::DoPreviousItem(hiliteRow, manifest, RefreshManifest) },
+		{ ::Command::DOWN, common::Utility::DoNextItem(hiliteRow, manifest, RefreshManifest) },
 		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) },
 		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) }
 	};

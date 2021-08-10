@@ -100,15 +100,10 @@ namespace state::in_play::Shipyard
 		//}
 	}
 
-	static size_t GetShipPriceCount()
-	{
-		return (int)shipPrices.size();
-	}
-
 	const std::map<::Command, std::function<void()>> commandHandlers =
 	{
-		{ ::Command::UP, common::Utility::DoPreviousItem(hiliteRow, GetShipPriceCount, RefreshShipPrices) },
-		{ ::Command::DOWN, common::Utility::DoNextItem(hiliteRow, GetShipPriceCount, RefreshShipPrices) },
+		{ ::Command::UP, common::Utility::DoPreviousItem(hiliteRow, shipPrices, RefreshShipPrices) },
+		{ ::Command::DOWN, common::Utility::DoNextItem(hiliteRow, shipPrices, RefreshShipPrices) },
 		{ ::Command::GREEN, BuyShip },
 		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_DOCKED) },
 		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_DOCKED) }
