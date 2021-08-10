@@ -7,32 +7,16 @@ namespace game::islands::Ships
 		const common::XY<double>& location,
 		const game::Ship& ship)
 	{
-		double price = 0.0;
 		auto& shipDescriptor = game::Ships::Read(ship);
-		for (auto shipCommodity : shipDescriptor.commodities)
-		{
-			auto commodity = shipCommodity.first;
-			auto commodityAmount = shipCommodity.second;
-			price +=
-				commodityAmount * Commodities::GetPurchasePrice(location, shipCommodity.first);
-		}
-		return price;
+		return Commodities::GetPurchasePrice(location, shipDescriptor.commodities);
 	}
 
-	static double GetShipSellPrice(
+	double GetShipSalePrice(
 		const common::XY<double>& location,
 		const game::Ship& ship)
 	{
-		double price = 0.0;
 		auto& shipDescriptor = game::Ships::Read(ship);
-		for (auto shipCommodity : shipDescriptor.commodities)
-		{
-			auto commodity = shipCommodity.first;
-			auto commodityAmount = shipCommodity.second;
-			price +=
-				commodityAmount * Commodities::GetSalePrice(location, shipCommodity.first);
-		}
-		return price;
+		return Commodities::GetSalePrice(location, shipDescriptor.commodities);
 	}
 
 	std::map<game::Ship, double> GetPurchasePrices(const common::XY<double>& location)
@@ -53,7 +37,7 @@ namespace game::islands::Ships
 		auto shipsAvailable = game::Ships::All();
 		for (auto& ship : shipsAvailable)
 		{
-			double price = GetShipSellPrice(location, ship);
+			double price = GetShipSalePrice(location, ship);
 			result[ship] = price;
 		}
 		return result;

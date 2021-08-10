@@ -3,22 +3,47 @@
 #include "Game.Islands.Commodities.h"
 namespace game::islands::Commodities
 {
-	double GetPurchasePrice(const common::XY<double>& location, const game::Commodity& commodity)
+	static double GetPurchasePrice(const common::XY<double>& location, const game::Commodity& commodity)
 	{
 		auto& commodityDescriptor = game::Commodities::Read(commodity);
 		auto market = data::game::island::Market::Read(location, (int)commodity).value();
-		return commodityDescriptor.basePrice *
+		return 
+			commodityDescriptor.basePrice *
 			(market.demand + (double)market.purchases * commodityDescriptor.demandFactor) /
 			(market.supply + (double)market.sales * commodityDescriptor.supplyFactor);
 	}
 
-	double GetSalePrice(const common::XY<double>& location, const game::Commodity& commodity)
+	static double GetSalePrice(const common::XY<double>& location, const game::Commodity& commodity)
 	{
 		auto& commodityDescriptor = game::Commodities::Read(commodity);
-		auto market = data::game::island::Market::Read(location, (int)commodity).value();
-		return commodityDescriptor.basePrice *
-			(market.demand + (double)market.purchases * commodityDescriptor.demandFactor) /
-			(market.supply + (double)market.sales * commodityDescriptor.supplyFactor) *
+		return 
+			GetPurchasePrice(location, commodity) *
 			(1.0 - commodityDescriptor.discount);
+	}
+
+	double GetPurchasePrice(const common::XY<double>& location, const std::map<Commodity, double>& table)
+	{
+		double price = 0.0;
+		for (auto entry : table)
+		{
+			auto commodity = entry.first;
+			auto commodityAmount = entry.second;
+			price +=
+				commodityAmount * GetPurchasePrice(location, entry.first);
+		}
+		return price;
+	}
+
+	double GetSalePrice(const common::XY<double>& location, const std::map<Commodity, double>& table)
+	{
+		double price = 0.0;
+		for (auto entry : table)
+		{
+			auto commodity = entry.first;
+			auto commodityAmount = entry.second;
+			price +=
+				commodityAmount * GetSalePrice(location, entry.first);
+		}
+		return price;
 	}
 }

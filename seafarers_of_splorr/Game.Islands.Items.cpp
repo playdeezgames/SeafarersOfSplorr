@@ -1,6 +1,4 @@
 #include "Data.Game.Island.Item.h"
-//#include "Data.Game.Island.Market.h"
-//#include "Game.Commodities.h"
 #include "Game.Islands.Commodities.h"
 #include "Game.Islands.Items.h"
 #include "Game.Items.h"
@@ -10,32 +8,16 @@ namespace game::islands::Items
 		const common::XY<double>& location,
 		const game::Item& item)
 	{
-		double price = 0.0;
 		auto& itemDescriptor = game::Items::Read(item);
-		for (auto itemCommodity : itemDescriptor.commodities)
-		{
-			auto commodity = itemCommodity.first;
-			auto commodityAmount = itemCommodity.second;
-			price +=
-				commodityAmount * Commodities::GetPurchasePrice(location, itemCommodity.first);
-		}
-		return price;
+		return Commodities::GetPurchasePrice(location, itemDescriptor.commodities);
 	}
 
 	static double GetItemSellPrice(
 		const common::XY<double>& location,
 		const game::Item& item)
 	{
-		double price = 0.0;
 		auto& itemDescriptor = game::Items::Read(item);
-		for (auto itemCommodity : itemDescriptor.commodities)
-		{
-			auto commodity = itemCommodity.first;
-			auto commodityAmount = itemCommodity.second;
-			price +=
-				commodityAmount * Commodities::GetSalePrice(location, itemCommodity.first);
-		}
-		return price;
+		return Commodities::GetSalePrice(location, itemDescriptor.commodities);
 	}
 
 	std::map<game::Item, double> GetPurchasePrices(const common::XY<double>& location)
