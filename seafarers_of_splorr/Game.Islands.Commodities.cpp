@@ -3,7 +3,7 @@
 #include "Game.Islands.Commodities.h"
 namespace game::islands::Commodities
 {
-	double GetCommodityUnitPurchasePrice(const common::XY<double>& location, const game::Commodity& commodity)
+	double GetPurchasePrice(const common::XY<double>& location, const game::Commodity& commodity)
 	{
 		auto& commodityDescriptor = game::Commodities::Read(commodity);
 		auto market = data::game::island::Market::Read(location, (int)commodity).value();
@@ -12,7 +12,7 @@ namespace game::islands::Commodities
 			(market.supply + (double)market.sales * commodityDescriptor.supplyFactor);
 	}
 
-	double GetCommodityUnitSalePrice(const common::XY<double>& location, const game::Commodity& commodity)
+	double GetSalePrice(const common::XY<double>& location, const game::Commodity& commodity)
 	{
 		auto& commodityDescriptor = game::Commodities::Read(commodity);
 		auto market = data::game::island::Market::Read(location, (int)commodity).value();

@@ -14,7 +14,7 @@ namespace game::islands::Ships
 			auto commodity = shipCommodity.first;
 			auto commodityAmount = shipCommodity.second;
 			price +=
-				commodityAmount * Commodities::GetCommodityUnitPurchasePrice(location, shipCommodity.first);
+				commodityAmount * Commodities::GetPurchasePrice(location, shipCommodity.first);
 		}
 		return price;
 	}
@@ -30,7 +30,7 @@ namespace game::islands::Ships
 			auto commodity = shipCommodity.first;
 			auto commodityAmount = shipCommodity.second;
 			price +=
-				commodityAmount * Commodities::GetCommodityUnitSalePrice(location, shipCommodity.first);
+				commodityAmount * Commodities::GetSalePrice(location, shipCommodity.first);
 		}
 		return price;
 	}
