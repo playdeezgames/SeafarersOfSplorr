@@ -10,7 +10,7 @@ namespace game::avatar::Statistics
 		game::avatar::Statistic statistic;
 		double minimum;
 		double maximum;
-		double intial;
+		double initial;
 	};
 
 	const std::map<game::Difficulty, std::list<StatisticDescriptor>> initialValues =
@@ -66,7 +66,7 @@ namespace game::avatar::Statistics
 				{
 					value.minimum,
 					value.maximum,
-					value.intial
+					value.initial
 				});
 		}
 	}
