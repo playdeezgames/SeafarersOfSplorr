@@ -179,6 +179,7 @@
     <ClCompile Include="Data.Game.Common.cpp" />
     <ClCompile Include="Data.Game.Avatar.Destination.cpp" />
     <ClCompile Include="Data.Game.Island.cpp" />
+    <ClCompile Include="Data.Game.Island.DarkAlley.cpp" />
     <ClCompile Include="Data.Game.Island.Feature.cpp" />
     <ClCompile Include="Data.Game.Island.Item.cpp" />
     <ClCompile Include="Data.Game.Island.Known.cpp" />
@@ -297,6 +298,7 @@
     <ClInclude Include="Data.Game.Avatar.Statistics.h" />
     <ClInclude Include="Data.Game.Common.h" />
     <ClInclude Include="Data.Game.Avatar.Destination.h" />
+    <ClInclude Include="Data.Game.Island.DarkAlley.h" />
     <ClInclude Include="Data.Game.Island.Feature.h" />
     <ClInclude Include="Data.Game.Island.h" />
     <ClInclude Include="Data.Game.Island.Item.h" />
