@@ -8,7 +8,7 @@ namespace data::game::avatar::Statistics
 	const std::string FIELD_MINIMUM = "Minimum";
 	const std::string FIELD_MAXIMUM = "Maximum";
 	const std::string FIELD_CURRENT = "Current";
-	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarStatistics]([StatisticId] INT NOT NULL UNIQUE,[Minimum] REAL NOT NULL,[Maximum] REAL NOT NULL,[Current] REAL NOT NULL);";
+	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarStatistics]([StatisticId] INT NOT NULL UNIQUE,[Minimum] REAL NULL,[Maximum] REAL NULL,[Current] REAL NOT NULL);";
 	const std::string QUERY_ITEM = "SELECT [Minimum], [Maximum], [Current] FROM [AvatarStatistics] WHERE [StatisticId] = {};";
 	const std::string REPLACE_ITEM = "REPLACE INTO [AvatarStatistics]([StatisticId],[Minimum],[Maximum],[Current]) VALUES ({},{},{},{});";
 
@@ -20,7 +20,7 @@ namespace data::game::avatar::Statistics
 	void Write(int statisticId, const StatisticData& data)
 	{
 		AutoCreateAvatarStatisticsTable();
-		auto query = std::format(REPLACE_ITEM, statisticId, data.minimum, data.maximum, data.current);
+		auto query = std::format(REPLACE_ITEM, statisticId, Common::OfOptional(data.minimum), Common::OfOptional(data.maximum), data.current);
 		data::game::Common::Execute(query);
 	}
 
@@ -34,8 +34,8 @@ namespace data::game::avatar::Statistics
 			auto record = result.front();
 			return std::optional<StatisticData>(
 			{
-				common::Data::StringToDouble(record[FIELD_MINIMUM]),
-				common::Data::StringToDouble(record[FIELD_MAXIMUM]),
+				common::Data::StringToOptionalDouble(record[FIELD_MINIMUM]),
+				common::Data::StringToOptionalDouble(record[FIELD_MAXIMUM]),
 				common::Data::StringToDouble(record[FIELD_CURRENT])
 			});
 		}

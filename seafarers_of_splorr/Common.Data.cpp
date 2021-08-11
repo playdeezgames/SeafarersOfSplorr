@@ -32,6 +32,14 @@ namespace common::Data
 		return result;
 	}
 
+	std::optional<double> StringToOptionalDouble(const std::string& text)
+	{
+		if (!text.empty())
+		{
+			return StringToDouble(text);
+		}
+		return std::nullopt;
+	}
 
 	int ToPercentage(int value, int maximum)
 	{

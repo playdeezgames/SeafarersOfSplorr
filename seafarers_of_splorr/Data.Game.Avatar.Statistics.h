@@ -4,8 +4,8 @@ namespace data::game::avatar::Statistics
 {
 	struct StatisticData
 	{
-		double minimum;
-		double maximum;
+		std::optional<double> minimum;
+		std::optional<double> maximum;
 		double current;
 	};
 
