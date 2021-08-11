@@ -17,3 +17,4 @@
 * https://game-icons.net/1x1/lorc/compass.html
 * https://game-icons.net/1x1/delapouite/speedometer.html
 * https://game-icons.net/1x1/delapouite/round-star.html
+* https://game-icons.net/1x1/lorc/checked-shield.html
