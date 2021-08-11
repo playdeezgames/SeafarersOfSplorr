@@ -140,12 +140,13 @@ namespace state::in_play::AtSea
 	const int IMAGE_OFFSET_Y = 0;
 	const int TEXT_OFFSET_X = 0;
 	const int TEXT_OFFSET_Y = 8;
+	const std::string FORMAT_AT_SEA_ISLAND = "AtSeaIsland{}";
 
 	static void HideVisibleIslands()
 	{
 		for (int icon = 0; icon < ISLAND_ICON_COUNT; ++icon)
 		{
-			auto visualId = std::format("AtSeaIsland{}", icon);
+			auto visualId = std::format(FORMAT_AT_SEA_ISLAND, icon);
 			visuals::Images::SetVisible(LAYOUT_NAME, visualId, false);
 			visuals::Texts::SetText(LAYOUT_NAME, visualId, "");
 		}
@@ -168,7 +169,6 @@ namespace state::in_play::AtSea
 			--row;
 		}
 	}
-
 
 	void RefreshAvatarStatus()
 	{
@@ -196,7 +196,7 @@ namespace state::in_play::AtSea
 		{
 			canDock |= (game::Heading::Distance(entry.relativeLocation, { 0.0, 0.0 }) <= dockDistance);
 			auto plot = Plot(entry.relativeLocation);
-			auto visualId = std::format("AtSeaIsland{}", icon);//TODO: magic string
+			auto visualId = std::format(FORMAT_AT_SEA_ISLAND, icon);//TODO: magic string
 			visuals::Images::SetLocation(LAYOUT_NAME, visualId, { (int)plot.GetX() + IMAGE_OFFSET_X,(int)plot.GetY() + IMAGE_OFFSET_Y });
 			visuals::Images::SetVisible(LAYOUT_NAME, visualId, true);
 			visuals::Texts::SetLocation(LAYOUT_NAME, visualId, { (int)plot.GetX() + TEXT_OFFSET_X,(int)plot.GetY() + TEXT_OFFSET_Y });
@@ -205,5 +205,4 @@ namespace state::in_play::AtSea
 		}
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_DOCK, canDock);
 	}
-
 }
