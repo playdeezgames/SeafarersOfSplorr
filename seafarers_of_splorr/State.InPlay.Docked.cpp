@@ -20,6 +20,7 @@ namespace state::in_play::Docked
 	const std::string LAYOUT_NAME = "State.InPlay.Docked";
 	const std::string MENU_ID = "Order";
 	const std::string MENU_ITEM_SHIPYARD = "Shipyard";
+	const std::string MENU_ITEM_DARK_ALLEY = "DarkAlley";
 	const std::string TEXT_ISLAND_NAME = "island-name";
 	const std::string TEXT_ISLAND_VISITS = "island-visits";
 	const std::string FORMAT_NAME = "Name: {}";
@@ -30,7 +31,8 @@ namespace state::in_play::Docked
 		UNDOCK,
 		JOBS,
 		TRADE,
-		SHIPYARD
+		SHIPYARD,
+		DARK_ALLEY
 	};
 
 	static void OnUndock()
@@ -44,7 +46,8 @@ namespace state::in_play::Docked
 		{ OrderMenuItem::UNDOCK, OnUndock },
 		{ OrderMenuItem::JOBS, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_JOBS) },
 		{ OrderMenuItem::TRADE, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_TRADE) },
-		{ OrderMenuItem::SHIPYARD, ::application::UIState::GoTo(::UIState::IN_PLAY_SHIPYARD) }
+		{ OrderMenuItem::SHIPYARD, ::application::UIState::GoTo(::UIState::IN_PLAY_SHIPYARD) },
+		{ OrderMenuItem::DARK_ALLEY, []() {} }
 	};
 
 	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
@@ -58,16 +61,25 @@ namespace state::in_play::Docked
 		{::Command::RED, OnUndock }
 	};
 
+	const std::map<std::string, game::Feature> featureMenuItems =
+	{
+		{MENU_ITEM_SHIPYARD, game::Feature::SHIPYARD},
+		{MENU_ITEM_DARK_ALLEY, game::Feature::DARK_ALLEY}
+	};
+
 	static void RefreshIslandDetails()
 	{
 		auto location = game::Avatar::GetDockedLocation().value();
 		auto island = game::Islands::Read(location).value();
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_ISLAND_NAME, std::format(FORMAT_NAME,island.name));
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_ISLAND_VISITS, std::format(FORMAT_VISITS, island.visits.value_or(0)));
-		visuals::MenuItems::SetEnabled(
-			LAYOUT_NAME, 
-			MENU_ITEM_SHIPYARD, 
-			game::islands::Features::Read(location, game::Feature::SHIPYARD));
+		for (auto featureMenuItem : featureMenuItems)
+		{
+			visuals::MenuItems::SetEnabled(
+				LAYOUT_NAME, 
+				featureMenuItem.first, 
+				game::islands::Features::Read(location, featureMenuItem.second));
+		}
 	}
 
 	static void OnEnter()

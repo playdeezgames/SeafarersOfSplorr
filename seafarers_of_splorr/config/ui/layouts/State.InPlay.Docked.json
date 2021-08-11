@@ -57,6 +57,12 @@
                 "menu-item-id": "Shipyard",
                 "x": 320,
                 "y": 80
+            },
+            {
+                "text": "Dark Alley",
+                "menu-item-id": "DarkAlley",
+                "x": 320,
+                "y": 96
             }
         ]
     },
@@ -106,6 +112,18 @@
         "menu":{
             "menu-id":"Order",
             "menu-item-id":"Shipyard"
+        }
+    },
+    {
+        "type":"Area",
+        "area-id":"DarkAlley",
+        "x":240,
+        "y":96,
+        "width":160,
+        "height":16,
+        "menu":{
+            "menu-id":"Order",
+            "menu-item-id":"DarkAlley"
         }
     },
     {

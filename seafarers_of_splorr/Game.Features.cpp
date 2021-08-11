@@ -10,6 +10,13 @@ namespace game::Features
 				1,
 				0.5
 			}
+		},
+		{game::Feature::DARK_ALLEY,
+			{
+				"dark alley",
+				1,
+				0.6
+			}
 		}
 	};
 	std::list<game::Feature> featureList;

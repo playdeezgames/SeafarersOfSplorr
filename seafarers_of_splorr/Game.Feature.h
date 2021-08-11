@@ -3,6 +3,7 @@ namespace game
 {
 	enum class Feature
 	{
-		SHIPYARD
+		SHIPYARD,
+		DARK_ALLEY
 	};
 }
