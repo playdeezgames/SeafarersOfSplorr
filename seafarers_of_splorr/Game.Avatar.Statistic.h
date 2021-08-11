@@ -7,6 +7,8 @@ namespace game::avatar
 		HEALTH,
 		SATIETY,
 		MONEY,
-		REPUTATION
+		REPUTATION,
+		BRAWLING,
+		INFAMY
 	};
 }
