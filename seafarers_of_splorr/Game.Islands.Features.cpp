@@ -1,6 +1,7 @@
 #include "Common.RNG.h"
 #include "Data.Game.Island.h"
 #include "Data.Game.Island.Feature.h"
+#include <functional>
 #include "Game.Islands.Features.h"
 #include "Game.Features.h"
 #include <vector>
@@ -20,6 +21,26 @@ namespace game::islands::Features
 		else
 		{
 			data::game::island::Feature::Clear(xy, (int)feature);
+		}
+	}
+
+	static void InitializeDarkAlley(const common::XY<double>& location)
+	{
+		//TODO: ruffian brawling strength
+		//TODO: infamy level for admittance
+	}
+
+	const std::map<game::Feature, std::function<void(const common::XY<double>&)>> featureInitializers =
+	{
+		{game::Feature::DARK_ALLEY, InitializeDarkAlley}
+	};
+
+	static void InitializeFeature(const game::Feature& feature, const common::XY<double>& location)
+	{
+		auto initializer = featureInitializers.find(feature);
+		if (initializer != featureInitializers.end())
+		{
+			initializer->second(location);
 		}
 	}
 
@@ -47,6 +68,7 @@ namespace game::islands::Features
 			candidates[index] = candidates.back();
 			candidates.pop_back();
 			data::game::island::Feature::Write(candidate.location, (int)feature);
+			InitializeFeature(feature, candidate.location);
 			islandCount--;
 		}
 	}
