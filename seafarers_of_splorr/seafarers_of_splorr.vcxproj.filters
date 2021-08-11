@@ -651,6 +651,9 @@
     <ClInclude Include="Data.Game.Island.DarkAlley.h">
       <Filter>Headers\Data\Island</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Avatar.DockedState.h">
+      <Filter>Headers\Game\Avatar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">

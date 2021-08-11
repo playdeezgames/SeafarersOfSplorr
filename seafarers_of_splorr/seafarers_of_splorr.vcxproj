@@ -312,6 +312,7 @@
     <ClInclude Include="Game.Achievements.h" />
     <ClInclude Include="Game.Audio.Mux.h" />
     <ClInclude Include="Game.Avatar.Destination.h" />
+    <ClInclude Include="Game.Avatar.DockedState.h" />
     <ClInclude Include="Game.Avatar.h" />
     <ClInclude Include="Game.Avatar.Items.h" />
     <ClInclude Include="Game.Avatar.Log.h" />
