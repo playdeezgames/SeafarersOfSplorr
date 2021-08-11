@@ -720,6 +720,13 @@
         "width": 16,
         "height": 16
     },
+    "Character87": {
+        "texture": "font",
+        "x": 112,
+        "y": 96,
+        "width": 16,
+        "height": 16
+    },
     "Font35_20": {
         "texture": "font35",
         "x": 0,
@@ -3114,10 +3121,45 @@
         "width": 64,
         "height": 64
     },
-    "CardBack":{
+    "CardBackBlue":{
         "texture": "card-back",
         "x": 0,
         "y": 0,
+        "width": 64,
+        "height": 64
+    },
+    "CardBackRed":{
+        "texture": "card-back",
+        "x": 64,
+        "y": 0,
+        "width": 64,
+        "height": 64
+    },
+    "CardBackGreen":{
+        "texture": "card-back",
+        "x": 128,
+        "y": 0,
+        "width": 64,
+        "height": 64
+    },
+    "CardSelect":{
+        "texture": "card-back",
+        "x": 0,
+        "y": 64,
+        "width": 64,
+        "height": 64
+    },
+    "CardDarken":{
+        "texture": "card-back",
+        "x": 64,
+        "y": 64,
+        "width": 64,
+        "height": 64
+    },
+    "CardLighten":{
+        "texture": "card-back",
+        "x": 128,
+        "y": 64,
         "width": 64,
         "height": 64
     },
