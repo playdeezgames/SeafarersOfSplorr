@@ -5,13 +5,14 @@
 #include "Application.UIState.h"
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.h"
+#include "Game.Avatar.Docked.h"
 namespace state::in_play::DarkAlleyEntrance
 {
 	const std::string LAYOUT_NAME = "State.InPlay.DarkAlleyEntrance";
 
 	static void OnLeave()
 	{
-		game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
+		game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

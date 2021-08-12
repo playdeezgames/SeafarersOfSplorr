@@ -1,5 +1,6 @@
 #include "Data.Game.Avatar.h"
 #include "Common.Data.h"
+#include "Common.RNG.h"
 #include "Game.Avatar.AtSea.h"
 #include "Game.Avatar.Items.h"
 #include "Game.Avatar.Ship.h"
@@ -11,7 +12,14 @@ namespace game::avatar::AtSea
 {
 	void Reset(const game::Difficulty&)
 	{
-
+		auto worldSize = game::World::GetSize();
+		data::game::Avatar::AvatarData data =
+		{
+			{worldSize.GetX() / 2.0, worldSize.GetY() / 2.0},
+			common::Data::ModuloDouble(common::RNG::FromRange(0.0, game::Heading::DEGREES), game::Heading::DEGREES),
+			1.0
+		};
+		data::game::Avatar::Write(data);
 	}
 
 	double GetHeading()

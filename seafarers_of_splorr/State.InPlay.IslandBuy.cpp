@@ -7,6 +7,7 @@
 #include <format>
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.h"
+#include "Game.Avatar.Docked.h"
 #include "Game.Avatar.Items.h"
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Statistics.h"
@@ -25,7 +26,7 @@ namespace state::in_play::IslandBuy
 
 	static void OnLeave()
 	{
-		game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_MARKET);
+		game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::ENTER_MARKET);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -48,7 +49,7 @@ namespace state::in_play::IslandBuy
 
 	static void UpdateUnitPrices()
 	{
-		unitPrices = game::islands::Items::GetPurchasePrices(game::Avatar::GetDockedLocation().value());
+		unitPrices = game::islands::Items::GetPurchasePrices(game::avatar::Docked::GetDockedLocation().value());
 	}
 
 	static void RefreshUnitPrices()
@@ -113,7 +114,7 @@ namespace state::in_play::IslandBuy
 				if (game::avatar::Ship::AvailableTonnage() >= game::Items::Read(item.value()).tonnage)
 				{
 					game::avatar::Statistics::ChangeMoney(-price);
-					game::islands::Markets::BuyItems(game::Avatar::GetDockedLocation().value(), item.value(), 1);
+					game::islands::Markets::BuyItems(game::avatar::Docked::GetDockedLocation().value(), item.value(), 1);
 					game::avatar::Items::Add(item.value(), 1);
 
 					UpdateUnitPrices();

@@ -11,6 +11,7 @@
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.h"
 #include "Game.Avatar.AtSea.h"
+#include "Game.Avatar.Docked.h"
 #include "Game.Heading.h"
 #include "Game.Avatar.Quest.h"
 #include "Game.Islands.h"
@@ -38,10 +39,10 @@ namespace state::in_play::IslandJobs
 
 	static void OnAccept()//TODO: make this more declarative
 	{
-		switch (game::avatar::Quest::AcceptQuest(game::Avatar::GetDockedLocation().value()))
+		switch (game::avatar::Quest::AcceptQuest(game::avatar::Docked::GetDockedLocation().value()))
 		{
 		case game::avatar::Quest::AcceptQuestResult::ACCEPTED_QUEST:
-			game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
+			game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			break;
 		case game::avatar::Quest::AcceptQuestResult::ALREADY_HAS_QUEST:
@@ -52,7 +53,7 @@ namespace state::in_play::IslandJobs
 
 	static void OnCancel()
 	{
-		game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
+		game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -100,7 +101,7 @@ namespace state::in_play::IslandJobs
 
 	static void UpdateText()
 	{
-		auto location = game::Avatar::GetDockedLocation().value();
+		auto location = game::avatar::Docked::GetDockedLocation().value();
 		auto quest = game::islands::Quests::Read(location);
 		if (quest)
 		{

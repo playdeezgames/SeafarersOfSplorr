@@ -7,15 +7,4 @@
 namespace game::Avatar
 {
 	void Reset(const game::Difficulty&);
-
-	enum class DockResult
-	{
-		DOCKED,
-		COMPLETED_QUEST,
-		ALREADY_DOCKED
-	};
-	std::optional<DockResult> Dock();
-	std::optional<common::XY<double>> GetDockedLocation();
-	bool DoDockedAction(const avatar::DockedAction&);
-	std::optional<game::avatar::DockedState> GetDockedState();
 }

@@ -7,6 +7,7 @@
 #include <format>
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.h"
+#include "Game.Avatar.Docked.h"
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Islands.Markets.h"
@@ -25,7 +26,7 @@ namespace state::in_play::Shipyard
 
 	static void UpdateShipPrices()
 	{
-		auto location = game::Avatar::GetDockedLocation().value();
+		auto location = game::avatar::Docked::GetDockedLocation().value();
 		auto prices = game::islands::Ships::GetPurchasePrices(location);
 		auto tradeIn = game::islands::Ships::GetSalePrice(location, game::avatar::Ship::Read());
 		shipPrices.clear();
@@ -39,7 +40,7 @@ namespace state::in_play::Shipyard
 
 	static void OnLeave()
 	{
-		game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
+		game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -95,7 +96,7 @@ namespace state::in_play::Shipyard
 
 	static void BuyShip()
 	{
-		auto location = game::Avatar::GetDockedLocation().value();
+		auto location = game::avatar::Docked::GetDockedLocation().value();
 		auto currentShip = game::avatar::Ship::Read();
 		auto ship = common::Utility::GetNthKey(shipPrices, hiliteRow);
 		if (ship)

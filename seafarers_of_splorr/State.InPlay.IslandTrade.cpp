@@ -10,6 +10,7 @@
 #include <format>
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.h"
+#include "Game.Avatar.Docked.h"
 #include "Game.Islands.h"
 #include "Visuals.Areas.h"
 #include "Visuals.Menus.h"
@@ -28,19 +29,19 @@ namespace state::in_play::IslandTrade
 
 	static void OnBuy()
 	{
-		game::Avatar::DoDockedAction(game::avatar::DockedAction::MARKET_BUY);
+		game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::MARKET_BUY);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnSell()
 	{
-		game::Avatar::DoDockedAction(game::avatar::DockedAction::MARKET_SELL);
+		game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::MARKET_SELL);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnLeave()
 	{
-		game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
+		game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -65,7 +66,7 @@ namespace state::in_play::IslandTrade
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
-		auto location = game::Avatar::GetDockedLocation().value();
+		auto location = game::avatar::Docked::GetDockedLocation().value();
 		auto island = game::Islands::Read(location).value();
 	}
 

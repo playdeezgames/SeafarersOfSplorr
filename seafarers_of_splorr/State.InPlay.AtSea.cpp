@@ -9,6 +9,7 @@
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.h"
 #include "Game.Avatar.AtSea.h"
+#include "Game.Avatar.Docked.h"
 #include "Game.Heading.h"
 #include "Game.Messages.h"
 #include "Visuals.Areas.h"
@@ -72,7 +73,7 @@ namespace state::in_play::AtSea
 
 	static void OnDock()
 	{
-		if (game::Avatar::Dock() == game::Avatar::DockResult::COMPLETED_QUEST)
+		if (game::avatar::Docked::Dock() == game::avatar::Docked::DockResult::COMPLETED_QUEST)
 		{
 			game::Messages::Write(
 				{

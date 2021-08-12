@@ -10,6 +10,7 @@
 #include <format>
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.h"
+#include "Game.Avatar.Docked.h"
 #include "Game.Islands.h"
 #include "Game.Islands.Features.h"
 #include "Visuals.Areas.h"
@@ -37,31 +38,31 @@ namespace state::in_play::Docked
 
 	static void OnUndock()
 	{
-		game::Avatar::DoDockedAction(game::avatar::DockedAction::UNDOCK);
+		game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::UNDOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnJob()
 	{
-		game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_JOB_BOARD);
+		game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::ENTER_JOB_BOARD);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnTrade()
 	{
-		game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_MARKET);
+		game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::ENTER_MARKET);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnShipyard()
 	{
-		game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_SHIPYARD);
+		game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::ENTER_SHIPYARD);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnDarkAlley()
 	{
-		game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_DARK_ALLEY);
+		game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::ENTER_DARK_ALLEY);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -93,7 +94,7 @@ namespace state::in_play::Docked
 
 	static void RefreshIslandDetails()
 	{
-		auto location = game::Avatar::GetDockedLocation().value();
+		auto location = game::avatar::Docked::GetDockedLocation().value();
 		auto island = game::Islands::Read(location).value();
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_ISLAND_NAME, std::format(FORMAT_NAME,island.name));
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_ISLAND_VISITS, std::format(FORMAT_VISITS, island.visits.value_or(0)));

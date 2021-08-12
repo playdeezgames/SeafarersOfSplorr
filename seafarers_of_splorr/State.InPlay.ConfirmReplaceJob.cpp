@@ -6,8 +6,9 @@
 #include "Application.UIState.h"
 #include "Common.Utility.h"
 #include "Game.Audio.Mux.h"
-#include "Game.Avatar.Quest.h"
 #include "Game.Avatar.h"
+#include "Game.Avatar.Docked.h"
+#include "Game.Avatar.Quest.h"
 #include "Visuals.Areas.h"
 #include "Visuals.Menus.h"
 namespace state::in_play::ConfirmReplaceJob
@@ -24,14 +25,14 @@ namespace state::in_play::ConfirmReplaceJob
 	static void ReplaceJob()
 	{
 		game::avatar::Quest::AbandonQuest();
-		game::avatar::Quest::AcceptQuest(game::Avatar::GetDockedLocation().value());
-		game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
+		game::avatar::Quest::AcceptQuest(game::avatar::Docked::GetDockedLocation().value());
+		game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnNo()
 	{
-		game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
+		game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
