@@ -9,10 +9,7 @@ namespace data::game::avatar::Ship
 	const std::string REPLACE_ITEM = "REPLACE INTO [AvatarShips]([AvatarId], [ShipId]) VALUES({},{});";
 	const std::string QUERY_ITEM = "SELECT [ShipId] FROM [AvatarShips] WHERE [AvatarId]={};";
 
-	static void AutoCreateAvatarShipTable()
-	{
-		data::game::Common::Execute(CREATE_TABLE);
-	}
+	const auto AutoCreateAvatarShipTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Write(int ship)
 	{

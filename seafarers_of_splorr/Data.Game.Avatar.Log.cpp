@@ -10,7 +10,7 @@ namespace data::game::avatar::Log
 	const std::string QUERY_ALL = "SELECT [LogColor], [LogText] FROM [AvatarLogs] WHERE [AvatarId]={} ORDER BY [LogId] DESC LIMIT {};";
 	const std::string INSERT_ITEM = "INSERT INTO [AvatarLogs]([AvatarId],[LogColor],[LogText]) VALUES({},{},{});";
 
-	static auto AutoCreateAvatarLogTable = data::game::Common::Run(CREATE_TABLE);
+	const auto AutoCreateAvatarLogTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Clear()
 	{

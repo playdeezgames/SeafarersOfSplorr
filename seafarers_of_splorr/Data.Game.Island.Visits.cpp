@@ -14,10 +14,7 @@ namespace data::game::island::Visits
 	const std::string REPLACE_ITEM = "REPLACE INTO [IslandVisits]([X],[Y],[Visits],[Turn]) VALUES({:.4f},{:.4f},{},{});";
 	const std::string DELETE_ALL = "DELETE FROM [IslandVisits];";
 
-	static void AutoCreateIslandVisitsTable()
-	{
-		data::game::Common::Execute(CREATE_TABLE);
-	}
+	const auto AutoCreateIslandVisitsTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Write(const VisitData& data)
 	{

@@ -14,19 +14,15 @@ namespace data::game::Avatar
 	const std::string QUERY_ITEM= "SELECT [X], [Y], [Heading], [Speed] FROM [Avatars] WHERE [AvatarId] = {};";
 	const std::string REPLACE_ITEM = "REPLACE INTO [Avatars]([AvatarId],[X],[Y],[Heading],[Speed]) VALUES ({},{},{},{},{});";
 
-	static void AutoCreateAvatarTable()
-	{
-		data::game::Common::Execute(CREATE_TABLE);
-	}
+	const auto AutoCreateAvatarTable = data::game::Common::Run(CREATE_TABLE);
 
 	std::optional<AvatarData> Read()
 	{
 		AutoCreateAvatarTable();
-		auto query = 
+		auto result = data::game::Common::Execute(
 			std::format(
 				QUERY_ITEM,
-				data::game::Common::AVATAR_ID);
-		auto result = data::game::Common::Execute(query);
+				data::game::Common::AVATAR_ID));
 		if (!result.empty())
 		{
 			const auto& record = result.front();
@@ -47,14 +43,13 @@ namespace data::game::Avatar
 	void Write(const AvatarData& avatarData)
 	{
 		AutoCreateAvatarTable();
-		auto query = 
+		data::game::Common::Execute(
 			std::format(
-				REPLACE_ITEM, 
+				REPLACE_ITEM,
 				data::game::Common::AVATAR_ID,
-				avatarData.location.GetX(), 
-				avatarData.location.GetY(), 
-				avatarData.heading, 
-				avatarData.speed);
-		data::game::Common::Execute(query);
+				avatarData.location.GetX(),
+				avatarData.location.GetY(),
+				avatarData.heading,
+				avatarData.speed));
 	}
 }

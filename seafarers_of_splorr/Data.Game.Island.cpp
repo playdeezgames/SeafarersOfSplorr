@@ -14,10 +14,7 @@ namespace data::game::Island
 	const std::string FIELD_Y = "Y";
 	const std::string FIELD_NAME = "Name";
 
-	static void AutoCreateIslandTable()
-	{
-		data::game::Common::Execute(CREATE_TABLE);
-	}
+	const auto AutoCreateIslandTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Write(const IslandData& data)
 	{

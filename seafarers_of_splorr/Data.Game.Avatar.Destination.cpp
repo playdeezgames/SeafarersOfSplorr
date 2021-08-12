@@ -13,10 +13,7 @@ namespace data::game::avatar::Destination
 	const std::string DELETE_ITEM = "DELETE FROM [AvatarDestinations] WHERE [AvatarId]={} AND [DestinationId]={};";
 	const std::string DELETE_ALL = "DELETE FROM [AvatarDestinations] WHERE [AvatarId]={};";
 
-	static void AutoCreateAvatarDestinationsTable()
-	{
-		data::game::Common::Execute(CREATE_TABLE);
-	}
+	const auto AutoCreateAvatarDestinationsTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Write(int destinationId, const common::XY<double>& location)
 	{

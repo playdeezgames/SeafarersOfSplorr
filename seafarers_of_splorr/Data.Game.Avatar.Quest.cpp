@@ -15,10 +15,7 @@ namespace data::game::avatar::Quest
 	const std::string REPLACE_ITEM = "REPLACE INTO [AvatarQuests]([AvatarId],[DestinationX],[DestinationY],[Reward],[ItemName],[PersonName],[ProfessionName]) VALUES({},{:.4f},{:.4f},{:.4f},{},{},{});";
 	const std::string DELETE_ITEM = "DELETE FROM [AvatarQuests] WHERE [AvatarId]={};";
 
-	static void AutoCreateAvatarQuestTable()
-	{
-		data::game::Common::Execute(CREATE_TABLE);
-	}
+	const auto AutoCreateAvatarQuestTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Write(const std::optional<QuestData>& data)
 	{

@@ -13,10 +13,7 @@ namespace data::game::avatar::Items
 	const std::string DELETE_ALL = "DELETE FROM [AvatarItems];";
 	const std::string DELETE_ITEM = "DELETE FROM [AvatarItems] WHERE [AvatarId]={} AND [ItemId]={};";
 
-	static void AutoCreateAvatarItemsTable()
-	{
-		data::game::Common::Execute(CREATE_TABLE);
-	}
+	const auto AutoCreateAvatarItemsTable = data::game::Common::Run(CREATE_TABLE);
 
 	size_t Read(const int& itemId)
 	{

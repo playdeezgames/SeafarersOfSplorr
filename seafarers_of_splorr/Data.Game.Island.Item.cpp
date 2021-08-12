@@ -14,10 +14,7 @@ namespace data::game::island::Item
 	const std::string QUERY_ITEM = "SELECT [ItemId] FROM [IslandItems] WHERE [X]={:.4f} AND [Y]={:.4f} AND [ItemId]={};";
 	const std::string QUERY_ALL = "SELECT [ItemId] FROM [IslandItems] WHERE [X]={:.4f} AND [Y]={:.4f}";
 
-	static void AutoCreateIslandItemTable()
-	{
-		data::game::Common::Execute(CREATE_TABLE);
-	}
+	const auto AutoCreateIslandItemTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Set(const common::XY<double>& location, int item)
 	{

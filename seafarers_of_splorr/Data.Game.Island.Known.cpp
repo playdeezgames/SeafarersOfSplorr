@@ -13,10 +13,7 @@ namespace data::game::island::Known
 	const std::string REPLACE_ITEM = "REPLACE INTO [KnownIslands]([X],[Y]) VALUES({:.4f},{:.4f});";
 	const std::string DELETE_ALL = "DELETE FROM [KnownIslands];";
 
-	static void AutoCreateKnownIslandsTable()
-	{
-		data::game::Common::Execute(CREATE_TABLE);
-	}
+	const auto AutoCreateKnownIslandsTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Write(const common::XY<double>& location)
 	{

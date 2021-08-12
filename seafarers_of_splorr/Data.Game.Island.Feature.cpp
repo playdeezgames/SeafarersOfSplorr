@@ -10,10 +10,7 @@ namespace data::game::island::Feature
 	const std::string QUERY_ITEM = "SELECT [FeatureId] FROM [IslandFeatures] WHERE [X]={:.4f} AND [Y]={:.4f} AND [FeatureId]={};";
 	const std::string DELETE_ITEM = "DELETE FROM [IslandFeatures] WHERE [X]={:.4f} AND [Y]={:.4f} AND [FeatureId]={};";
 
-	static void AutoCreateIslandFeaturesTable()
-	{
-		data::game::Common::Execute(CREATE_TABLE);
-	}
+	const auto AutoCreateIslandFeaturesTable = data::game::Common::Run(CREATE_TABLE);
 
 	void ClearAll()
 	{

@@ -13,10 +13,7 @@ namespace data::game::avatar::Dock
 	const std::string REPLACE_ITEM = "REPLACE INTO [AvatarDocks]([AvatarId],[X],[Y],[State]) VALUES({},{},{},{});";
 	const std::string DELETE_ITEM = "DELETE FROM [AvatarDocks] WHERE [AvatarId] = {};";
 
-	static void AutoCreateAvatarDockTable()
-	{
-		data::game::Common::Execute(CREATE_TABLE);
-	}
+	const auto AutoCreateAvatarDockTable = data::game::Common::Run(CREATE_TABLE);
 
 	void ClearLocation()
 	{

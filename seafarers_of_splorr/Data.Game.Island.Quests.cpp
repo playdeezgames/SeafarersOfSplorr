@@ -17,10 +17,7 @@ namespace data::game::island::Quests
 	const std::string REPLACE_ITEM = "REPLACE INTO [IslandQuests]([X],[Y],[DestinationX],[DestinationY],[Reward],[ItemName],[PersonName],[ProfessionName]) VALUES({:.4f},{:.4f},{:.4f},{:.4f},{:.4f},{},{},{});";
 	const std::string DELETE_ITEM = "DELETE FROM [IslandQuests] WHERE [X]={:.4f} AND  [Y]={:.4f};";
 
-	static void AutoCreateIslandQuestsTable()
-	{
-		data::game::Common::Execute(CREATE_TABLE);
-	}
+	const auto AutoCreateIslandQuestsTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Write(const QuestData& data)
 	{

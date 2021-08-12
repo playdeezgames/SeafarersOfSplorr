@@ -663,14 +663,14 @@
     <ClInclude Include="Game.Avatar.DockedAction.h">
       <Filter>Headers\Game\Avatar</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Messages.h">
-      <Filter>Headers\Game</Filter>
+    <ClInclude Include="Game.Message.h">
+      <Filter>Headers\Game\Message</Filter>
     </ClInclude>
     <ClInclude Include="Game.MessageDetail.h">
-      <Filter>Headers\Game</Filter>
+      <Filter>Headers\Game\Message</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Message.h">
-      <Filter>Headers\Game</Filter>
+    <ClInclude Include="Game.Messages.h">
+      <Filter>Headers\Game\Message</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -784,6 +784,9 @@
     </Filter>
     <Filter Include="Headers\Game\Feature">
       <UniqueIdentifier>{ad4c0f08-c459-4443-a7ff-05f711afce89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Game\Message">
+      <UniqueIdentifier>{ce501f74-8afd-4ad4-8e75-1c2c988ecd1b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

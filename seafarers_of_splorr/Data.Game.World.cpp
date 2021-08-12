@@ -17,10 +17,7 @@ namespace data::game::World
 	const std::string FIELD_VIEW_DISTANCE = "ViewDistance";
 	const std::string FIELD_DOCK_DISTANCE = "DockDistance";
 
-	static void AutoCreateWorldsTable()
-	{
-		data::game::Common::Execute(CREATE_TABLE);
-	}
+	const auto AutoCreateWorldsTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Write(const WorldData& data)
 	{

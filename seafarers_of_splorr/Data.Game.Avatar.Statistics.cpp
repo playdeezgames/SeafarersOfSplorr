@@ -12,10 +12,7 @@ namespace data::game::avatar::Statistics
 	const std::string QUERY_ITEM = "SELECT [Minimum], [Maximum], [Current] FROM [AvatarStatistics] WHERE [StatisticId] = {};";
 	const std::string REPLACE_ITEM = "REPLACE INTO [AvatarStatistics]([StatisticId],[Minimum],[Maximum],[Current]) VALUES ({},{},{},{});";
 
-	static void AutoCreateAvatarStatisticsTable()
-	{
-		data::game::Common::Execute(CREATE_TABLE);
-	}
+	const auto AutoCreateAvatarStatisticsTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Write(int statisticId, const StatisticData& data)
 	{

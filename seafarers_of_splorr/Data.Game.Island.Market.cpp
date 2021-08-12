@@ -17,10 +17,7 @@ namespace data::game::island::Market
 	const std::string QUERY_ALL = "SELECT [CommodityId], [Supply], [Demand], [Purchases], [Sales] FROM [IslandMarkets] WHERE [X]={:.4f} AND [Y]={:.4f};";
 	const std::string DELETE_ALL = "DELETE FROM [IslandMarkets];";
 
-	static void AutoCreateIslandMarketsTable()
-	{
-		data::game::Common::Execute(CREATE_TABLE);
-	}
+	const auto AutoCreateIslandMarketsTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Write(const common::XY<double>& location, int commodityId, const MarketData& data)
 	{
