@@ -41,10 +41,16 @@ namespace state::in_play::Docked
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
+	static void OnJob()
+	{
+		game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_JOB_BOARD);
+		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
+	}
+
 	const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
 		{ OrderMenuItem::UNDOCK, OnUndock },
-		{ OrderMenuItem::JOBS, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_JOBS) },
+		{ OrderMenuItem::JOBS, OnJob},
 		{ OrderMenuItem::TRADE, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_TRADE) },
 		{ OrderMenuItem::SHIPYARD, ::application::UIState::GoTo(::UIState::IN_PLAY_SHIPYARD) },
 		{ OrderMenuItem::DARK_ALLEY, []() {} }

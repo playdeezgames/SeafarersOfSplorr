@@ -187,7 +187,7 @@ namespace game::Avatar
 		return false;
 	}
 
-	static std::optional<game::avatar::DockedState> GetDockedState()
+	std::optional<game::avatar::DockedState> GetDockedState()
 	{
 		auto state = data::game::avatar::Dock::GetState();
 		if (state)

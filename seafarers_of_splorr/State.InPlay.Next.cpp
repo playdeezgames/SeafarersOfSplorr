@@ -21,8 +21,16 @@ namespace state::in_play::Next
 		game::AutoSave();
 		if (game::Avatar::GetDockedLocation())
 		{
-			application::UIState::Write(::UIState::IN_PLAY_DOCKED);
-			return;
+			auto dockedState = game::Avatar::GetDockedState().value();
+			switch (dockedState)
+			{
+			case game::avatar::DockedState::JOB_BOARD:
+				application::UIState::Write(::UIState::IN_PLAY_ISLAND_JOBS);
+				return;
+			default:
+				application::UIState::Write(::UIState::IN_PLAY_DOCKED);
+				return;
+			}
 		}
 		application::UIState::Write(::UIState::IN_PLAY_AT_SEA);
 		return;
