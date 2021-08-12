@@ -1,5 +1,6 @@
 #include <format>
 #include "Game.Avatar.h"
+#include "Game.Avatar.AtSea.h"
 #include "Game.Avatar.Destination.h"
 #include "Game.Avatar.Log.h"
 #include "Game.Avatar.Quest.h"
@@ -75,14 +76,14 @@ namespace state::in_play::AtSea
 
 	static void RefreshAvatarHeading()
 	{
-		auto heading = game::Avatar::GetHeading();
+		auto heading = game::avatar::AtSea::GetHeading();
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HEADING, std::format(FORMAT_HEADING, heading));
 		visuals::Images::SetAngle(LAYOUT_NAME, IMAGE_CURRENT_HEADING, heading);
 	}
 
 	static void RefreshAvatarSpeed()
 	{
-		auto speed = game::Avatar::GetSpeed();
+		auto speed = game::avatar::AtSea::GetSpeed();
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_SPEED, std::format(FORMAT_SPEED, speed));
 	}
 
@@ -101,7 +102,7 @@ namespace state::in_play::AtSea
 		auto imageId = destinationIdImages.find(destinationId)->second;
 		if (destination)
 		{
-			auto clampedDistance = game::Heading::ClampDistance(destination.value() - game::Avatar::GetLocation(), game::World::GetViewDistance() + 0.5);//TODO: magic number
+			auto clampedDistance = game::Heading::ClampDistance(destination.value() - game::avatar::AtSea::GetLocation(), game::World::GetViewDistance() + 0.5);//TODO: magic number
 			auto plot = Plot(clampedDistance);
 			visuals::Images::SetLocation(LAYOUT_NAME, imageId, { (int)plot.GetX(), (int)plot.GetY() });
 			visuals::Images::SetVisible(LAYOUT_NAME, imageId, true);
@@ -120,10 +121,11 @@ namespace state::in_play::AtSea
 
 	static void RefreshAvatarQuestDestination()
 	{
+		const double FUDGE_FACTOR = 0.5;
 		auto quest = game::avatar::Quest::Read();
 		if (quest)
 		{
-			auto clampedDistance = game::Heading::ClampDistance(quest.value().destination - game::Avatar::GetLocation(), game::World::GetViewDistance() + 0.5);//TODO: magic number
+			auto clampedDistance = game::Heading::ClampDistance(quest.value().destination - game::avatar::AtSea::GetLocation(), game::World::GetViewDistance() + FUDGE_FACTOR);
 			auto plot = Plot(clampedDistance);
 			visuals::Images::SetLocation(LAYOUT_NAME, IMAGE_QUEST_DESTINATION, { (int)plot.GetX(), (int)plot.GetY() });
 			visuals::Images::SetVisible(LAYOUT_NAME, IMAGE_QUEST_DESTINATION, true);

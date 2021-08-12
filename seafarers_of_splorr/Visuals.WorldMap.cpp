@@ -3,6 +3,7 @@
 #include "Common.XY.h"
 #include <functional>
 #include "Game.Avatar.h"
+#include "Game.Avatar.AtSea.h"
 #include "Game.Avatar.Destination.h"
 #include "Game.Avatar.Quest.h"
 #include "Game.Heading.h"
@@ -52,7 +53,7 @@ namespace visuals::WorldMap
 
 	static void DrawAvatar(const std::shared_ptr<common::Application::Renderer>& renderer, const InternalWorldMap& worldMap, const common::XY<double> worldSize)
 	{
-		auto avatarLocation = game::Avatar::GetLocation();
+		auto avatarLocation = game::avatar::AtSea::GetLocation();
 		common::XY<int> plot = Plot(worldMap, worldSize, avatarLocation);
 		visuals::Sprites::Draw(SPRITE_WORLD_MAP_SHIP, renderer, plot, { 0xff,0xff,0xff,0xff });
 	}

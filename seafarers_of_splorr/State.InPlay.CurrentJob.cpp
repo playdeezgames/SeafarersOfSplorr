@@ -10,6 +10,7 @@
 #include <format>
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.h"
+#include "Game.Avatar.AtSea.h"
 #include "Game.Avatar.Quest.h"
 #include "Game.Heading.h"
 #include "Game.Islands.h"
@@ -61,7 +62,7 @@ namespace state::in_play::CurrentJob
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE6, std::format("Reward: {:.2f}", questModel.reward));
 
 		auto islandModel = game::Islands::Read(questModel.destination).value();
-		double distance = game::Heading::Distance(questModel.destination, game::Avatar::GetLocation());
+		double distance = game::Heading::Distance(questModel.destination, game::avatar::AtSea::GetLocation());
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE5, std::format("at {} ({:.2f}).", islandModel.name, distance));
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_ABANDON_JOB, true);
 	}

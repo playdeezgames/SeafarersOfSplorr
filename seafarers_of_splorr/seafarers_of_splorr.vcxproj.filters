@@ -346,6 +346,12 @@
     <ClCompile Include="Game.Messages.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Avatar.AtSea.cpp">
+      <Filter>Source\Game\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Avatar.Docked.cpp">
+      <Filter>Source\Game\Avatar</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
@@ -671,6 +677,12 @@
     </ClInclude>
     <ClInclude Include="Game.Messages.h">
       <Filter>Headers\Game\Message</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Avatar.AtSea.h">
+      <Filter>Headers\Game\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Avatar.Docked.h">
+      <Filter>Headers\Game\Avatar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

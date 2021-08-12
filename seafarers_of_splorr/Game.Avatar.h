@@ -8,13 +8,6 @@ namespace game::Avatar
 {
 	void Reset(const game::Difficulty&);
 
-	double GetHeading();
-	void SetHeading(double);
-
-	double GetSpeed();
-	void SetSpeed(double);
-
-	common::XY<double> GetLocation();
 	enum class MoveResult
 	{
 		MOVED,

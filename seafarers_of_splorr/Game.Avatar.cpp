@@ -20,38 +20,6 @@
 #include "Visuals.Data.Colors.h"
 namespace game::Avatar
 {
-	const double SPEED_MINIMUM = 0.0;
-	const double SPEED_MAXIMUM = 1.0;
-
-	common::XY<double> GetLocation()
-	{
-		return data::game::Avatar::Read().value().location;
-	}
-
-	double GetHeading()
-	{
-		return data::game::Avatar::Read().value().heading;
-	}
-
-	void SetHeading(double heading)
-	{
-		auto data = data::game::Avatar::Read().value();
-		data.heading = common::Data::ModuloDouble(heading, game::Heading::DEGREES);
-		data::game::Avatar::Write(data);
-	}
-
-	double GetSpeed()
-	{
-		return data::game::Avatar::Read().value().speed;
-	}
-
-	void SetSpeed(double speed)
-	{
-		auto data = data::game::Avatar::Read().value();
-		data.speed = common::Data::ClampDouble(speed, SPEED_MINIMUM, SPEED_MAXIMUM);
-		data::game::Avatar::Write(data);
-	}
-
 	void Reset(const game::Difficulty&)
 	{
 		auto worldSize = game::World::GetSize();

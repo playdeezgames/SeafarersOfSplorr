@@ -8,6 +8,7 @@
 #include "Common.Utility.h"
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.h"
+#include "Game.Avatar.AtSea.h"
 #include "Game.Heading.h"
 #include "Game.Messages.h"
 #include "Visuals.Areas.h"
@@ -85,7 +86,6 @@ namespace state::in_play::AtSea
 						}
 					}
 				});
-			//application::UIState::Write(::UIState::IN_PLAY_COMPLETED_JOB);
 		}
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
@@ -147,7 +147,7 @@ namespace state::in_play::AtSea
 	{
 		if (areaName == AREA_CHANGE_HEADING)
 		{
-			game::Avatar::SetHeading(newHeading);
+			game::avatar::AtSea::SetHeading(newHeading);
 			RefreshAvatarStatus();
 			return true;
 		}

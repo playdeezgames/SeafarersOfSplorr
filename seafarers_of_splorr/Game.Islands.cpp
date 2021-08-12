@@ -8,6 +8,7 @@
 #include "Data.Game.Island.Quests.h"
 #include "Data.Game.Island.Visits.h"
 #include "Game.Avatar.h"
+#include "Game.Avatar.AtSea.h"
 #include "Game.Heading.h"
 #include "Game.Islands.h"
 #include "Game.Items.h"
@@ -50,7 +51,7 @@ namespace game::Islands
 	static std::list<IslandModel> GetIslandsInRange(double maximumDistance)
 	{
 		std::list<IslandModel> result;
-		auto avatarLocation = game::Avatar::GetLocation();
+		auto avatarLocation = game::avatar::AtSea::GetLocation();
 		auto islands = data::game::Island::All();
 		for (auto& island : islands)
 		{
