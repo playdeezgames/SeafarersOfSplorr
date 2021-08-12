@@ -8,8 +8,8 @@ namespace game
 	struct MessageDetail
 	{
 		common::XY<int> position;
-		std::string color;
 		std::string text;
+		std::string color;
 		visuals::HorizontalAlignment alignment;
 	};
 }

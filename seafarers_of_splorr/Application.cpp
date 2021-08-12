@@ -112,7 +112,6 @@ namespace common::Application
 		state::in_play::Cargo::Start,
 		state::in_play::ShipStatus::Start,
 		state::in_play::Next::Start,
-		state::in_play::CompletedJob::Start,
 		state::in_play::Shipyard::Start,
 		state::in_play::DarkAlleyEntrance::Start,
 		state::in_play::Message::Start,

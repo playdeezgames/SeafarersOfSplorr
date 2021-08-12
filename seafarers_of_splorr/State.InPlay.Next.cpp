@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "Game.Avatar.h"
 #include "Game.Avatar.Statistics.h"
+#include "Game.Messages.h"
 namespace state::in_play::Next
 {
 	static void OnEnter()
@@ -19,6 +20,11 @@ namespace state::in_play::Next
 		}
 
 		game::AutoSave();
+		if (!game::Messages::IsEmpty())
+		{
+			application::UIState::Write(::UIState::IN_PLAY_MESSAGE);
+			return;
+		}
 		if (game::Avatar::GetDockedLocation())
 		{
 			auto dockedState = game::Avatar::GetDockedState().value();

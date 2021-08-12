@@ -9,7 +9,9 @@
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.h"
 #include "Game.Heading.h"
+#include "Game.Messages.h"
 #include "Visuals.Areas.h"
+#include "Visuals.Data.Colors.h"
 #include "Visuals.Images.h"
 #include "Visuals.Menus.h"
 namespace state::in_play::AtSea
@@ -71,8 +73,19 @@ namespace state::in_play::AtSea
 	{
 		if (game::Avatar::Dock() == game::Avatar::DockResult::COMPLETED_QUEST)
 		{
-			application::UIState::Write(::UIState::IN_PLAY_COMPLETED_JOB);
-			return;
+			game::Messages::Write(
+				{
+					"==DELIVERY COMPLETE==",
+					{
+						{
+							{19,10},
+							"Yer reputation increases!",
+							visuals::data::Colors::GRAY,
+							visuals::HorizontalAlignment::CENTER
+						}
+					}
+				});
+			//application::UIState::Write(::UIState::IN_PLAY_COMPLETED_JOB);
 		}
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}

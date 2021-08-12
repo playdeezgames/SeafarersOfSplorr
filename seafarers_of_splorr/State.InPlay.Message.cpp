@@ -4,9 +4,15 @@
 #include "Application.OnEnter.h"
 #include "Application.UIState.h"
 #include "Game.Audio.Mux.h"
+#include "Game.Messages.h"
+#include "Visuals.SpriteGrid.h"
+#include "Visuals.Texts.h"
 namespace state::in_play::Message
 {
 	const std::string LAYOUT_NAME = "State.InPlay.Message";
+	const std::string SPRITE_GRID = "Grid";
+	const std::string TEXT_CAPTION = "Caption";
+	const std::string FONT_DEFAULT = "default";
 
 	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
 	{
@@ -17,6 +23,18 @@ namespace state::in_play::Message
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
+		if (game::Messages::IsEmpty())
+		{
+			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
+			return;
+		}
+		visuals::SpriteGrid::Clear(LAYOUT_NAME, SPRITE_GRID);
+		auto message = game::Messages::Read();
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_CAPTION, message.caption);
+		for (auto& detail : message.details)
+		{
+			visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID, detail.position, FONT_DEFAULT, detail.text, detail.color, detail.alignment);
+		}
 	}
 
 	void Start()
