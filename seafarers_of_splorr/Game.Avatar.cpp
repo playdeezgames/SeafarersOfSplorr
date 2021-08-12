@@ -378,7 +378,8 @@ namespace game::Avatar
 		{ avatar::DockedAction::ENTER_JOB_BOARD, DoTransition},
 		{ avatar::DockedAction::MARKET_BUY, DoTransition},
 		{ avatar::DockedAction::MARKET_SELL,DoTransition},
-		{ avatar::DockedAction::ENTER_SHIPYARD,DoTransition}
+		{ avatar::DockedAction::ENTER_SHIPYARD,DoTransition},
+		{ avatar::DockedAction::ENTER_DARK_ALLEY,DoTransition}
 	};
 
 	bool DoDockedAction(const avatar::DockedAction& action)

@@ -59,13 +59,19 @@ namespace state::in_play::Docked
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
+	static void OnDarkAlley()
+	{
+		game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_DARK_ALLEY);
+		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
+	}
+
 	const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
 		{ OrderMenuItem::UNDOCK, OnUndock },
 		{ OrderMenuItem::JOBS, OnJob },
 		{ OrderMenuItem::TRADE, OnTrade },
 		{ OrderMenuItem::SHIPYARD, OnShipyard },
-		{ OrderMenuItem::DARK_ALLEY, []() {} }
+		{ OrderMenuItem::DARK_ALLEY, OnDarkAlley }
 	};
 
 	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);

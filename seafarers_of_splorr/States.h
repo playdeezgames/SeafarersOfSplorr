@@ -30,3 +30,4 @@ namespace state::in_play::ShipStatus { void Start(); }
 namespace state::in_play::Next { void Start(); }
 namespace state::in_play::CompletedJob { void Start(); }
 namespace state::in_play::Shipyard { void Start(); }
+namespace state::in_play::DarkAlleyEntrance { void Start(); }

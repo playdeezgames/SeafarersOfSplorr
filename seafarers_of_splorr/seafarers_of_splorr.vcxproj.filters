@@ -340,6 +340,9 @@
     <ClCompile Include="State.InPlay.ConfirmReplaceJob.cpp">
       <Filter>Source\States\InPlay\Island</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.DarkAlleyEntrance.cpp">
+      <Filter>Source\States\InPlay\Island</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">

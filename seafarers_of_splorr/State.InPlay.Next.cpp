@@ -24,6 +24,9 @@ namespace state::in_play::Next
 			auto dockedState = game::Avatar::GetDockedState().value();
 			switch (dockedState)
 			{
+			case game::avatar::DockedState::DARK_ALLEY_ENTRANCE:
+				application::UIState::Write(::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE);
+				return;
 			case game::avatar::DockedState::SHIPYARD:
 				application::UIState::Write(::UIState::IN_PLAY_SHIPYARD);
 				return;
