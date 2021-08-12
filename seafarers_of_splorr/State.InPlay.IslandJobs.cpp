@@ -40,7 +40,8 @@ namespace state::in_play::IslandJobs
 		switch (game::avatar::Quest::AcceptQuest(game::Avatar::GetDockedLocation().value()))
 		{
 		case game::avatar::Quest::AcceptQuestResult::ACCEPTED_QUEST:
-			::application::UIState::Write(::UIState::IN_PLAY_DOCKED);
+			game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
+			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			break;
 		case game::avatar::Quest::AcceptQuestResult::ALREADY_HAS_QUEST:
 			::application::UIState::Write(::UIState::IN_PLAY_CONFIRM_REPLACE_JOB);
@@ -48,10 +49,16 @@ namespace state::in_play::IslandJobs
 		}
 	}
 
+	static void OnCancel()
+	{
+		game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
+		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
+	}
+
 	const std::map<AcceptJobMenuItem, std::function<void()>> activators =
 	{
 		{ AcceptJobMenuItem::ACCEPT, OnAccept },
-		{ AcceptJobMenuItem::CANCEL, ::application::UIState::GoTo(::UIState::IN_PLAY_DOCKED) }
+		{ AcceptJobMenuItem::CANCEL, OnCancel }
 	};
 
 	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
@@ -61,8 +68,8 @@ namespace state::in_play::IslandJobs
 		{::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
 		{::Command::GREEN, ActivateItem },
-		{::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_DOCKED) },
-		{::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_DOCKED) }
+		{::Command::BACK, OnCancel },
+		{::Command::RED, OnCancel }
 	};
 
 	static void UpdateQuestText(const game::Quest::QuestModel& questModel)

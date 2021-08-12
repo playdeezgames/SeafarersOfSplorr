@@ -241,9 +241,6 @@
     <ClCompile Include="State.InPlay.ConfirmAbandonJob.cpp">
       <Filter>Source\States\InPlay\AtSea</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.ConfirmReplaceJob.cpp">
-      <Filter>Source\States\InPlay\AtSea</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.CurrentJob.cpp">
       <Filter>Source\States\InPlay\AtSea</Filter>
     </ClCompile>
@@ -339,6 +336,9 @@
     </ClCompile>
     <ClCompile Include="Data.Game.Island.DarkAlley.cpp">
       <Filter>Source\Data\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.ConfirmReplaceJob.cpp">
+      <Filter>Source\States\InPlay\Island</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

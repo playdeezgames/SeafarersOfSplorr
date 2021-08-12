@@ -25,12 +25,19 @@ namespace state::in_play::ConfirmReplaceJob
 	{
 		game::avatar::Quest::AbandonQuest();
 		game::avatar::Quest::AcceptQuest(game::Avatar::GetDockedLocation().value());
-		::application::UIState::Write(::UIState::IN_PLAY_DOCKED);
+		game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
+		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
+	}
+
+	static void OnNo()
+	{
+		game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
+		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	const std::map<ConfirmReplaceJobItem, std::function<void()>> activators =
 	{
-		{ ConfirmReplaceJobItem::NO, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_JOBS) },
+		{ ConfirmReplaceJobItem::NO, OnNo },
 		{ ConfirmReplaceJobItem::YES, ReplaceJob }
 	};
 
@@ -41,8 +48,8 @@ namespace state::in_play::ConfirmReplaceJob
 		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
 		{ ::Command::GREEN, ActivateItem },
-		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_JOBS) },
-		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_JOBS) }
+		{ ::Command::BACK, OnNo },
+		{ ::Command::RED, OnNo }
 	};
 
 	void Start()
