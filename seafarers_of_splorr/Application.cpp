@@ -115,6 +115,7 @@ namespace common::Application
 		state::in_play::CompletedJob::Start,
 		state::in_play::Shipyard::Start,
 		state::in_play::DarkAlleyEntrance::Start,
+		state::in_play::Message::Start,
 		sublayout::UIHamburger::Start,
 		Options::Initialize,
 		visuals::Layouts::Start

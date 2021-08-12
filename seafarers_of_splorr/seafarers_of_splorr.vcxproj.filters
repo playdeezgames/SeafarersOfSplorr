@@ -343,6 +343,12 @@
     <ClCompile Include="State.InPlay.DarkAlleyEntrance.cpp">
       <Filter>Source\States\InPlay\Island</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.Message.cpp">
+      <Filter>Source\States\InPlay</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Messages.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
@@ -659,6 +665,15 @@
     </ClInclude>
     <ClInclude Include="Game.Avatar.DockedAction.h">
       <Filter>Headers\Game\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Messages.h">
+      <Filter>Headers\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.MessageDetail.h">
+      <Filter>Headers\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Message.h">
+      <Filter>Headers\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

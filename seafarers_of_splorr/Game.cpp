@@ -8,6 +8,7 @@
 #include "Game.Avatar.Statistics.h"
 #include "Game.Islands.h"
 #include "Game.Islands.Features.h"
+#include "Game.Messages.h"
 #include "Game.World.h"
 #include <map>
 namespace game
@@ -24,6 +25,7 @@ namespace game
 		game::avatar::Items::Reset(difficulty);
 		game::avatar::Ship::Reset(difficulty);
 		game::avatar::Log::Reset(difficulty);
+		game::Messages::Reset(difficulty);
 	}
 
 	void Start()

@@ -31,5 +31,6 @@
     "State.InPlay.ShipStatus": "config/ui/layouts/State.InPlay.ShipStatus.json",
     "State.InPlay.CompletedJob": "config/ui/layouts/State.InPlay.CompletedJob.json",
     "State.InPlay.Shipyard": "config/ui/layouts/State.InPlay.Shipyard.json",
-    "State.InPlay.DarkAlleyEntrance": "config/ui/layouts/State.InPlay.DarkAlleyEntrance.json"
+    "State.InPlay.DarkAlleyEntrance": "config/ui/layouts/State.InPlay.DarkAlleyEntrance.json",
+    "State.InPlay.Message": "config/ui/layouts/State.InPlay.Message.json"
 }
