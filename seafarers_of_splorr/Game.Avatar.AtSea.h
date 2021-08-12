@@ -12,4 +12,11 @@ namespace game::avatar::AtSea
 	void SetSpeed(double);
 
 	common::XY<double> GetLocation();
+
+	enum class MoveResult
+	{
+		MOVED,
+		CLAMPED
+	};
+	MoveResult Move();
 }

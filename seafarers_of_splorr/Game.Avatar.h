@@ -8,13 +8,6 @@ namespace game::Avatar
 {
 	void Reset(const game::Difficulty&);
 
-	enum class MoveResult
-	{
-		MOVED,
-		CLAMPED
-	};
-	MoveResult Move();
-
 	enum class DockResult
 	{
 		DOCKED,

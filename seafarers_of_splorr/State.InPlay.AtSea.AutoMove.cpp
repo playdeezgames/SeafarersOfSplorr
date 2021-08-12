@@ -1,5 +1,6 @@
 #include "Application.UIState.h"
 #include "Game.Avatar.h"
+#include "Game.Avatar.AtSea.h"
 #include "Game.Islands.h"
 namespace state::in_play::AtSea
 {
@@ -36,7 +37,7 @@ namespace state::in_play::AtSea
 			if (ticks >= ticksLeft)
 			{
 				ticksLeft = TICKS_TOTAL;
-				if (game::Avatar::Move() == game::Avatar::MoveResult::CLAMPED)
+				if (game::avatar::AtSea::Move() == game::avatar::AtSea::MoveResult::CLAMPED)
 				{
 					autoMoveState = AutoMoveState::OFF;
 				}
