@@ -1,5 +1,6 @@
 #pragma once
 #include "Common.XY.h"
+#include "Game.Avatar.DockedAction.h"
 #include "Game.Difficulty.h"
 #include <optional>
 namespace game::Avatar
@@ -28,5 +29,5 @@ namespace game::Avatar
 	};
 	std::optional<DockResult> Dock();
 	std::optional<common::XY<double>> GetDockedLocation();
-	bool Undock();
+	bool DoDockedAction(const avatar::DockedAction&);
 }

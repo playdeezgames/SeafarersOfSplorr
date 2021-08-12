@@ -8,7 +8,7 @@ namespace game::avatar::Log
 	void Reset(const Difficulty&)
 	{
 		data::game::avatar::Log::Clear();
-		Write({ visuals::data::Colors::HIGHLIGHT,  WELCOME_TEXT });
+		Write({ visuals::data::Colors::YELLOW,  WELCOME_TEXT });
 	}
 
 	std::list<LogEntry> Read(size_t entryCount)

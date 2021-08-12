@@ -4,6 +4,7 @@
 #include "Common.Utility.h"
 #include "Data.Game.Avatar.h"
 #include "Data.Game.Avatar.Dock.h"
+#include <format>
 #include "Game.Avatar.h"
 #include "Game.Avatar.DockedState.h"
 #include "Game.Avatar.Items.h"
@@ -16,6 +17,7 @@
 #include "Game.Islands.Quests.h"
 #include "Game.Ships.h"
 #include "Game.World.h"
+#include "Visuals.Data.Colors.h"
 namespace game::Avatar
 {
 	const double SPEED_MINIMUM = 0.0;
@@ -132,6 +134,8 @@ namespace game::Avatar
 		return result;
 	}
 
+	const std::string FORMAT_DOCK = "You dock at {}!";
+
 	static std::optional<DockResult> DoDock(const common::XY<double>& location)
 	{
 		std::optional<DockResult> result = DockResult::DOCKED;
@@ -144,7 +148,8 @@ namespace game::Avatar
 			result = DockResult::COMPLETED_QUEST;
 		}
 		data::game::avatar::Dock::SetLocation(location, (int)game::avatar::DockedState::DOCKED);
-		game::avatar::Log::Write({"Green", "You dock!"});//TODO: magics strings, and where did we dock?
+		auto island = game::Islands::Read(location).value();
+		game::avatar::Log::Write({visuals::data::Colors::GREEN, std::format(FORMAT_DOCK, island.name)});
 		return result;
 	}
 
@@ -167,15 +172,41 @@ namespace game::Avatar
 		return data::game::avatar::Dock::GetLocation();
 	}
 
-	bool Undock()
+	const std::string FORMAT_UNDOCK = "You undock from {}.";
+
+	static bool Undock()
 	{
-		if (GetDockedLocation().has_value())
+		auto location = GetDockedLocation();
+		if (location.has_value())
 		{
-			game::avatar::Log::Write({ "Green", "You undock!" });//TODO: magics strings, and where did we undock?
+			auto island = game::Islands::Read(location.value()).value();
+			game::avatar::Log::Write({ visuals::data::Colors::GREEN, std::format(FORMAT_UNDOCK, island.name)  });
 			data::game::avatar::Dock::ClearLocation();
 			return true;
 		}
 		return false;
+	}
+
+	static bool EnterMarket()
+	{
+		return false;
+	}
+
+	static bool LeaveMarket()
+	{
+		return false;
+	}
+
+	const std::map<avatar::DockedAction, std::function<bool()>> dockedActions =
+	{
+		{ avatar::DockedAction::UNDOCK, Undock},
+		{ avatar::DockedAction::ENTER_MARKET, EnterMarket},
+		{ avatar::DockedAction::LEAVE_MARKET, LeaveMarket},
+	};
+
+	bool DoDockedAction(const avatar::DockedAction& action)
+	{
+		return dockedActions.find(action)->second();
 	}
 
 }

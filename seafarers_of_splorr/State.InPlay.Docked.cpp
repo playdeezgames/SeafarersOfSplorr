@@ -37,7 +37,7 @@ namespace state::in_play::Docked
 
 	static void OnUndock()
 	{
-		game::Avatar::Undock();
+		game::Avatar::DoDockedAction(game::avatar::DockedAction::UNDOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

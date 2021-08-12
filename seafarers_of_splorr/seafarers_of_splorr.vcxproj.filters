@@ -654,6 +654,9 @@
     <ClInclude Include="Game.Avatar.DockedState.h">
       <Filter>Headers\Game\Avatar</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Avatar.DockedAction.h">
+      <Filter>Headers\Game\Avatar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">

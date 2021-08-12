@@ -3,6 +3,9 @@ namespace game::avatar
 {
 	enum class DockedState
 	{
-		DOCKED
+		DOCKED,
+		MARKET,
+		MARKET_BUY,
+		MARKET_SELL
 	};
 }
