@@ -53,12 +53,18 @@ namespace state::in_play::Docked
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
+	static void OnShipyard()
+	{
+		game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_SHIPYARD);
+		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
+	}
+
 	const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
 		{ OrderMenuItem::UNDOCK, OnUndock },
 		{ OrderMenuItem::JOBS, OnJob },
 		{ OrderMenuItem::TRADE, OnTrade },
-		{ OrderMenuItem::SHIPYARD, ::application::UIState::GoTo(::UIState::IN_PLAY_SHIPYARD) },
+		{ OrderMenuItem::SHIPYARD, OnShipyard },
 		{ OrderMenuItem::DARK_ALLEY, []() {} }
 	};
 

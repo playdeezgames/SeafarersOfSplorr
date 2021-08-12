@@ -37,9 +37,15 @@ namespace state::in_play::Shipyard
 
 	const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
 
+	static void OnLeave()
+	{
+		game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
+		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
+	}
+
 	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
 	{
-		::application::UIState::Write(::UIState::IN_PLAY_DOCKED);
+		OnLeave();
 		return true;
 	}
 
@@ -113,8 +119,8 @@ namespace state::in_play::Shipyard
 		{ ::Command::UP, common::Utility::DoPreviousItem(hiliteRow, shipPrices, RefreshShipPrices) },
 		{ ::Command::DOWN, common::Utility::DoNextItem(hiliteRow, shipPrices, RefreshShipPrices) },
 		{ ::Command::GREEN, BuyShip },
-		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_DOCKED) },
-		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_DOCKED) }
+		{ ::Command::BACK, OnLeave },
+		{ ::Command::RED, OnLeave }
 	};
 
 	void Start()
