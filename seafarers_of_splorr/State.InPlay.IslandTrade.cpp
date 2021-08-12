@@ -26,11 +26,29 @@ namespace state::in_play::IslandTrade
 		LEAVE
 	};
 
+	static void OnBuy()
+	{
+		game::Avatar::DoDockedAction(game::avatar::DockedAction::MARKET_BUY);
+		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
+	}
+
+	static void OnSell()
+	{
+		game::Avatar::DoDockedAction(game::avatar::DockedAction::MARKET_SELL);
+		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
+	}
+
+	static void OnLeave()
+	{
+		game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
+		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
+	}
+
 	const std::map<TradeMenuItem, std::function<void()>> activators =
 	{
-		{ TradeMenuItem::BUY, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_BUY) },
-		{ TradeMenuItem::SELL, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_SELL) },
-		{ TradeMenuItem::LEAVE, ::application::UIState::GoTo(::UIState::IN_PLAY_DOCKED) }
+		{ TradeMenuItem::BUY, OnBuy },
+		{ TradeMenuItem::SELL, OnSell },
+		{ TradeMenuItem::LEAVE, OnLeave }
 	};
 
 	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
@@ -40,8 +58,8 @@ namespace state::in_play::IslandTrade
 		{::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
 		{::Command::GREEN, ActivateItem },
-		{::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_DOCKED) },
-		{::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_DOCKED) }
+		{::Command::BACK, OnLeave },
+		{::Command::RED, OnLeave }
 	};
 
 	static void OnEnter()

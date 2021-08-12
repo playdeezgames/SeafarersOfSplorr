@@ -47,11 +47,17 @@ namespace state::in_play::Docked
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
+	static void OnTrade()
+	{
+		game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_MARKET);
+		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
+	}
+
 	const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
 		{ OrderMenuItem::UNDOCK, OnUndock },
-		{ OrderMenuItem::JOBS, OnJob},
-		{ OrderMenuItem::TRADE, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_TRADE) },
+		{ OrderMenuItem::JOBS, OnJob },
+		{ OrderMenuItem::TRADE, OnTrade },
 		{ OrderMenuItem::SHIPYARD, ::application::UIState::GoTo(::UIState::IN_PLAY_SHIPYARD) },
 		{ OrderMenuItem::DARK_ALLEY, []() {} }
 	};

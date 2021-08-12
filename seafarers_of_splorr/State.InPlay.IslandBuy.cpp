@@ -23,9 +23,15 @@ namespace state::in_play::IslandBuy
 
 	const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
 
+	static void OnLeave()
+	{
+		game::Avatar::DoDockedAction(game::avatar::DockedAction::ENTER_MARKET);
+		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
+	}
+
 	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
 	{
-		::application::UIState::Write(::UIState::IN_PLAY_ISLAND_TRADE);
+		OnLeave();
 		return true;
 	}
 
@@ -122,8 +128,8 @@ namespace state::in_play::IslandBuy
 		{ ::Command::UP, common::Utility::DoPreviousItem(hiliteRow, unitPrices, RefreshUnitPrices) },
 		{ ::Command::DOWN, common::Utility::DoNextItem(hiliteRow, unitPrices, RefreshUnitPrices) },
 		{ ::Command::GREEN, BuyItem },
-		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_TRADE) },
-		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_TRADE) }
+		{ ::Command::BACK, OnLeave },
+		{ ::Command::RED, OnLeave }
 	};
 
 	void Start()

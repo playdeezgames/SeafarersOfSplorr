@@ -24,6 +24,18 @@ namespace state::in_play::Next
 			auto dockedState = game::Avatar::GetDockedState().value();
 			switch (dockedState)
 			{
+			case game::avatar::DockedState::SHIPYARD:
+				application::UIState::Write(::UIState::IN_PLAY_SHIPYARD);
+				return;
+			case game::avatar::DockedState::MARKET_BUY:
+				application::UIState::Write(::UIState::IN_PLAY_ISLAND_BUY);
+				return;
+			case game::avatar::DockedState::MARKET_SELL:
+				application::UIState::Write(::UIState::IN_PLAY_ISLAND_SELL);
+				return;
+			case game::avatar::DockedState::MARKET:
+				application::UIState::Write(::UIState::IN_PLAY_ISLAND_TRADE);
+				return;
 			case game::avatar::DockedState::JOB_BOARD:
 				application::UIState::Write(::UIState::IN_PLAY_ISLAND_JOBS);
 				return;
