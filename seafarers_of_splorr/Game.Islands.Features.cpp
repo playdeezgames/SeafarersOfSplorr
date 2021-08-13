@@ -1,5 +1,6 @@
 #include "Common.RNG.h"
 #include "Data.Game.Island.h"
+#include "Data.Game.Island.DarkAlley.h"
 #include "Data.Game.Island.Feature.h"
 #include <functional>
 #include "Game.Islands.Features.h"
@@ -26,8 +27,10 @@ namespace game::islands::Features
 
 	static void InitializeDarkAlley(const common::XY<double>& location)
 	{
-		//TODO: ruffian brawling strength
-		//TODO: infamy level for admittance
+		data::game::island::DarkAlley::Write(location, {
+			common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0),
+			common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0)
+			});
 	}
 
 	const std::map<game::Feature, std::function<void(const common::XY<double>&)>> featureInitializers =
