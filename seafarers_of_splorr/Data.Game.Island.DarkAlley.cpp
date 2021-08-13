@@ -22,7 +22,7 @@ namespace data::game::island::DarkAlley
 	void Write(const common::XY<double>& location, const DarkAlleyData& data)
 	{
 		AutoCreateDarkAlleysTable();
-		data::game::Common::Execute(std::format(REPLACE_ITEM, data.infamyRequirement, data.ruffianBrawlingStrength, location.GetX(), location.GetY()));
+		data::game::Common::Execute(std::format(REPLACE_ITEM, location.GetX(), location.GetY(), data.infamyRequirement, data.ruffianBrawlingStrength));
 	}
 
 	std::optional<DarkAlleyData> Read(const common::XY<double>& location)

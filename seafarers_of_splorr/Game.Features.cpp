@@ -15,7 +15,7 @@ namespace game::Features
 			{
 				"dark alley",
 				1,
-				0.6
+				1.0 //TODO: should be 0.6
 			}
 		}
 	};

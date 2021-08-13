@@ -20,6 +20,211 @@
         "drop-shadow-y": 2
     },
     {
+        "type": "Image",
+        "image-id": "Card0",
+        "sprite": "CardBackRed",
+        "color": "White",
+        "x": 192,
+        "y": 84
+    },
+    {
+        "type": "Image",
+        "image-id": "Card1",
+        "sprite": "CardBackRed",
+        "color": "White",
+        "x": 256,
+        "y": 84
+    },
+    {
+        "type": "Image",
+        "image-id": "Card2",
+        "sprite": "CardBackRed",
+        "color": "White",
+        "x": 320,
+        "y": 84
+    },
+    {
+        "type": "Image",
+        "image-id": "Card3",
+        "sprite": "CardBackRed",
+        "color": "White",
+        "x": 384,
+        "y": 84
+    },
+    {
+        "type": "Image",
+        "image-id": "Card4",
+        "sprite": "CardBackRed",
+        "color": "White",
+        "x": 192,
+        "y": 164
+    },
+    {
+        "type": "Image",
+        "image-id": "Card5",
+        "sprite": "CardBackRed",
+        "color": "White",
+        "x": 256,
+        "y": 164
+    },
+    {
+        "type": "Image",
+        "image-id": "Card6",
+        "sprite": "CardBackRed",
+        "color": "White",
+        "x": 320,
+        "y": 164
+    },
+    {
+        "type": "Image",
+        "image-id": "Card7",
+        "sprite": "CardBackRed",
+        "color": "White",
+        "x": 384,
+        "y": 164
+    },
+    {
+        "type": "Image",
+        "image-id": "Card8",
+        "sprite": "CardBackRed",
+        "color": "White",
+        "x": 192,
+        "y": 244
+    },
+    {
+        "type": "Image",
+        "image-id": "Card9",
+        "sprite": "CardBackRed",
+        "color": "White",
+        "x": 256,
+        "y": 244
+    },
+    {
+        "type": "Image",
+        "image-id": "Card10",
+        "sprite": "CardBackRed",
+        "color": "White",
+        "x": 320,
+        "y": 244
+    },
+    {
+        "type": "Image",
+        "image-id": "Card11",
+        "sprite": "CardBackRed",
+        "color": "White",
+        "x": 384,
+        "y": 244
+    },
+
+    {
+        "type": "Image",
+        "image-id": "Card0Select",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 192,
+        "y": 84,
+        "visible": true
+    },
+    {
+        "type": "Image",
+        "image-id": "Card1Select",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 256,
+        "y": 84,
+        "visible": false
+    },
+    {
+        "type": "Image",
+        "image-id": "Card2Select",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 320,
+        "y": 84,
+        "visible": false
+    },
+    {
+        "type": "Image",
+        "image-id": "Card3Select",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 384,
+        "y": 84,
+        "visible": false
+    },
+    {
+        "type": "Image",
+        "image-id": "Card4Select",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 192,
+        "y": 164,
+        "visible": false
+    },
+    {
+        "type": "Image",
+        "image-id": "Card5Select",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 256,
+        "y": 164,
+        "visible": false
+    },
+    {
+        "type": "Image",
+        "image-id": "Card6Select",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 320,
+        "y": 164,
+        "visible": false
+    },
+    {
+        "type": "Image",
+        "image-id": "Card7Select",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 384,
+        "y": 164,
+        "visible": false
+    },
+    {
+        "type": "Image",
+        "image-id": "Card8Select",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 192,
+        "y": 244,
+        "visible": false
+    },
+    {
+        "type": "Image",
+        "image-id": "Card9Select",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 256,
+        "y": 244,
+        "visible": false
+    },
+    {
+        "type": "Image",
+        "image-id": "Card10Select",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 320,
+        "y": 244,
+        "visible": false
+    },
+    {
+        "type": "Image",
+        "image-id": "Card11Select",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 384,
+        "y": 244,
+        "visible": false
+    },
+    {
         "type": "Layout",
         "name": "Sublayout.Modded"
     }

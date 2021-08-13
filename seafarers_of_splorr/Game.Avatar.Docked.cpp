@@ -1,4 +1,5 @@
 #include "Data.Game.Avatar.Dock.h"
+#include "Data.Game.Island.DarkAlley.h"
 #include <format>
 #include <functional>
 #include "Game.Avatar.Docked.h"
@@ -7,6 +8,7 @@
 #include "Game.Avatar.Statistics.h"
 #include "Game.Islands.Quests.h"
 #include "Game.Islands.h"
+#include "Game.Messages.h"
 #include <map>
 #include "Visuals.Data.Colors.h"
 namespace game::avatar::Docked
@@ -103,11 +105,41 @@ namespace game::avatar::Docked
 
 	static DockedStateTransition OnEnterDarkAlley()
 	{
-		return 
+		auto location = GetDockedLocation().value();
+		auto data = data::game::island::DarkAlley::Read(location).value();
+		auto infamy = game::avatar::Statistics::GetInfamy();
+		if (infamy < data.infamyRequirement)
+		{
+			game::Messages::Write(
+				{
+					"==FIGHT!==",
+					{
+						{
+							{19,9},
+							"You have been waylaid by a ruffian!",
+							visuals::data::Colors::RED,
+							visuals::HorizontalAlignment::CENTER
+						},
+						{
+							{19,11},
+							"Prepare to fight!",
+							visuals::data::Colors::RED,
+							visuals::HorizontalAlignment::CENTER
+						}
+					}
+				});
+			return 
+			{
+				visuals::data::Colors::GREEN,
+				"You enter dark alley.",
+				avatar::DockedState::DARK_ALLEY_ENTRANCE
+			};
+		}
+		return
 		{
 			visuals::data::Colors::GREEN,
 			"You enter dark alley.",
-			avatar::DockedState::DARK_ALLEY_ENTRANCE
+			avatar::DockedState::DARK_ALLEY
 		};
 	}
 

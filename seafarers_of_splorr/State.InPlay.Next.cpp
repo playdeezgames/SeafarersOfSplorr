@@ -38,6 +38,7 @@ namespace state::in_play::Next
 			if (statusChecker.checker())
 			{
 				application::UIState::Write(statusChecker.destination);
+				return;
 			}
 		}
 		game::AutoSave();
