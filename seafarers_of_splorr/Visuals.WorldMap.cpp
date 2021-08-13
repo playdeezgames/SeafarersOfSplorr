@@ -2,7 +2,6 @@
 #include "Common.Data.Properties.h"
 #include "Common.XY.h"
 #include <functional>
-#include "Game.Avatar.h"
 #include "Game.Avatar.AtSea.h"
 #include "Game.Avatar.Destination.h"
 #include "Game.Avatar.Quest.h"

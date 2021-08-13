@@ -2,7 +2,6 @@
 #include "Application.UIState.h"
 #include "Game.h"
 #include "Game.Achievements.h"
-#include "Game.Avatar.h"
 #include "Game.Avatar.Statistics.h"
 #include <stack>
 namespace application::UIState

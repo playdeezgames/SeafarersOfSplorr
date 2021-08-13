@@ -6,7 +6,6 @@
 #include "Application.UIState.h"
 #include "Common.Utility.h"
 #include "Game.Audio.Mux.h"
-#include "Game.Avatar.h"
 #include "Game.Avatar.Quest.h"
 #include "Visuals.Areas.h"
 #include "Visuals.Menus.h"

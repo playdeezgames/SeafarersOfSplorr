@@ -4,7 +4,6 @@
 #include "Application.OnEnter.h"
 #include "Application.UIState.h"
 #include "Game.Audio.Mux.h"
-#include "Game.Avatar.h"
 #include "Game.Avatar.Docked.h"
 namespace state::in_play::DarkAlleyEntrance
 {

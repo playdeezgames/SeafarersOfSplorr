@@ -103,9 +103,6 @@
     <ClCompile Include="Game.Ships.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Avatar.cpp">
-      <Filter>Source\Game\Avatar</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Avatar.Items.cpp">
       <Filter>Source\Game\Avatar</Filter>
     </ClCompile>
@@ -470,9 +467,6 @@
     </ClInclude>
     <ClInclude Include="Game.Quest.h">
       <Filter>Headers\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.h">
-      <Filter>Headers\Game\Avatar</Filter>
     </ClInclude>
     <ClInclude Include="Game.Avatar.Items.h">
       <Filter>Headers\Game\Avatar</Filter>

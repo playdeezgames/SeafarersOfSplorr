@@ -7,7 +7,6 @@
 #include "Data.Game.Island.Market.h"
 #include "Data.Game.Island.Quests.h"
 #include "Data.Game.Island.Visits.h"
-#include "Game.Avatar.h"
 #include "Game.Heading.h"
 #include "Game.Islands.h"
 #include "Game.Items.h"

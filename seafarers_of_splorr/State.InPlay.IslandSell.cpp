@@ -6,7 +6,6 @@
 #include "Common.Utility.h"
 #include <format>
 #include "Game.Audio.Mux.h"
-#include "Game.Avatar.h"
 #include "Game.Avatar.Docked.h"
 #include "Game.Avatar.Items.h"
 #include "Game.Avatar.Statistics.h"

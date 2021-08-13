@@ -1,7 +1,6 @@
 #include "Data.Game.World.h"
 #include "Data.SQLite.Stores.h"
 #include "Game.h"
-#include "Game.Avatar.h"
 #include "Game.Avatar.AtSea.h"
 #include "Game.Avatar.Docked.h"
 #include "Game.Avatar.Items.h"
@@ -22,7 +21,6 @@ namespace game
 		game::Islands::Reset(difficulty);
 		game::islands::Features::Reset(difficulty);
 
-		game::Avatar::Reset(difficulty);
 		game::avatar::AtSea::Reset(difficulty);
 		game::avatar::Docked::Reset(difficulty);
 		game::avatar::Statistics::Reset(difficulty);

@@ -1,5 +1,4 @@
 #include "Application.UIState.h"
-#include "Game.Avatar.h"
 #include "Game.Avatar.AtSea.h"
 #include "Game.Islands.h"
 namespace state::in_play::AtSea

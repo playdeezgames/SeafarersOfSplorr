@@ -7,7 +7,6 @@
 #include "Application.Update.h"
 #include "Common.Utility.h"
 #include "Game.Audio.Mux.h"
-#include "Game.Avatar.h"
 #include "Game.Avatar.AtSea.h"
 #include "Game.Avatar.Docked.h"
 #include "Game.Heading.h"

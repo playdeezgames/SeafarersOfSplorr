@@ -8,7 +8,6 @@
 #include "Common.Utility.h"
 #include "Game.h"
 #include "Game.Audio.Mux.h"
-#include "Game.Avatar.h"
 #include "Game.Avatar.AtSea.h"
 #include "Visuals.Areas.h"
 #include "Visuals.Menus.h"

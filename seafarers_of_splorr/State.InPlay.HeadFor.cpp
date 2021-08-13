@@ -6,7 +6,6 @@
 #include "Application.UIState.h"
 #include "Application.Update.h"
 #include "Game.Audio.Mux.h"
-#include "Game.Avatar.h"
 #include "Game.Avatar.Destination.h"
 #include "Game.Islands.h"
 #include "Visuals.Areas.h"
