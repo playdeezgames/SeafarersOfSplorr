@@ -4,54 +4,54 @@
 #include "Game.Avatar.Docked.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Messages.h"
+#include <map>
 namespace state::in_play::Next
 {
+	struct StatusChecker
+	{
+		std::function<bool()> checker;
+		::UIState destination;
+	};
+
+	const std::list<StatusChecker> statusCheckers =
+	{
+		{game::avatar::Statistics::IsOutOfTurns, ::UIState::IN_PLAY_WIN},
+		{game::avatar::Statistics::IsDead, ::UIState::IN_PLAY_LOSE},
+		{game::Messages::HasMessage, ::UIState::IN_PLAY_MESSAGE}
+	};
+
+	const std::map<game::avatar::DockedState, ::UIState> dockedStateTable =
+	{
+		{ game::avatar::DockedState::DARK_ALLEY, ::UIState::IN_PLAY_DARK_ALLEY },
+		{ game::avatar::DockedState::DARK_ALLEY_ENTRANCE, ::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE }, 
+		{ game::avatar::DockedState::SHIPYARD, ::UIState::IN_PLAY_SHIPYARD },
+		{ game::avatar::DockedState::MARKET_BUY,::UIState::IN_PLAY_ISLAND_BUY },
+		{ game::avatar::DockedState::MARKET_SELL, ::UIState::IN_PLAY_ISLAND_SELL },
+		{ game::avatar::DockedState::MARKET, ::UIState::IN_PLAY_ISLAND_TRADE },
+		{ game::avatar::DockedState::JOB_BOARD, ::UIState::IN_PLAY_ISLAND_JOBS }
+	};
+
 	static void OnEnter()
 	{
-		if (game::avatar::Statistics::IsOutOfTurns())
+		for (auto statusChecker : statusCheckers)
 		{
-			application::UIState::Write(::UIState::IN_PLAY_WIN);
-			return;
-		}
-		if (game::avatar::Statistics::IsDead())
-		{
-			application::UIState::Write(::UIState::IN_PLAY_LOSE);
-			return;
-		}
-
-		game::AutoSave();
-		if (!game::Messages::IsEmpty())
-		{
-			application::UIState::Write(::UIState::IN_PLAY_MESSAGE);
-			return;
-		}
-		if (game::avatar::Docked::GetDockedLocation())
-		{
-			auto dockedState = game::avatar::Docked::GetDockedState().value();
-			switch (dockedState)
+			if (statusChecker.checker())
 			{
-			case game::avatar::DockedState::DARK_ALLEY_ENTRANCE:
-				application::UIState::Write(::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE);
-				return;
-			case game::avatar::DockedState::SHIPYARD:
-				application::UIState::Write(::UIState::IN_PLAY_SHIPYARD);
-				return;
-			case game::avatar::DockedState::MARKET_BUY:
-				application::UIState::Write(::UIState::IN_PLAY_ISLAND_BUY);
-				return;
-			case game::avatar::DockedState::MARKET_SELL:
-				application::UIState::Write(::UIState::IN_PLAY_ISLAND_SELL);
-				return;
-			case game::avatar::DockedState::MARKET:
-				application::UIState::Write(::UIState::IN_PLAY_ISLAND_TRADE);
-				return;
-			case game::avatar::DockedState::JOB_BOARD:
-				application::UIState::Write(::UIState::IN_PLAY_ISLAND_JOBS);
-				return;
-			default:
-				application::UIState::Write(::UIState::IN_PLAY_DOCKED);
+				application::UIState::Write(statusChecker.destination);
+			}
+		}
+		game::AutoSave();
+		auto dockedState = game::avatar::Docked::GetDockedState();
+		if (dockedState)
+		{
+			auto iter = dockedStateTable.find(dockedState.value());
+			if(iter!=dockedStateTable.end())
+			{
+				application::UIState::Write(iter->second);
 				return;
 			}
+			application::UIState::Write(::UIState::IN_PLAY_DOCKED);
+			return;
 		}
 		application::UIState::Write(::UIState::IN_PLAY_AT_SEA);
 		return;

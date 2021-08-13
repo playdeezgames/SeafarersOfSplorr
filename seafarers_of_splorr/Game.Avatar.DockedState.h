@@ -9,6 +9,7 @@ namespace game::avatar
 		MARKET_BUY,
 		MARKET_SELL,
 		SHIPYARD,
-		DARK_ALLEY_ENTRANCE
+		DARK_ALLEY_ENTRANCE,
+		DARK_ALLEY
 	};
 }

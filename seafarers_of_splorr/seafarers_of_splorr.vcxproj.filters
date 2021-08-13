@@ -349,6 +349,9 @@
     <ClCompile Include="Game.Avatar.Docked.cpp">
       <Filter>Source\Game\Avatar</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.DarkAlley.cpp">
+      <Filter>Source\States\InPlay\Island</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">

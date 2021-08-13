@@ -23,7 +23,7 @@ namespace state::in_play::Message
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
-		if (game::Messages::IsEmpty())
+		if (!game::Messages::HasMessage())
 		{
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			return;

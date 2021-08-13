@@ -114,6 +114,7 @@ namespace common::Application
 		state::in_play::Next::Start,
 		state::in_play::Shipyard::Start,
 		state::in_play::DarkAlleyEntrance::Start,
+		state::in_play::DarkAlley::Start,
 		state::in_play::Message::Start,
 		sublayout::UIHamburger::Start,
 		Options::Initialize,

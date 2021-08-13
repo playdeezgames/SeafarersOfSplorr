@@ -96,34 +96,52 @@ namespace game::avatar::Docked
 		avatar::DockedState dockedState;
 	};
 
-	const std::map<avatar::DockedAction, std::map<avatar::DockedState, DockedStateTransition>> actionDescriptors =
+	static std::function<DockedStateTransition()> DoTransition(const DockedStateTransition& transition)
+	{
+		return [transition]() { return transition; };
+	}
+
+	static DockedStateTransition OnEnterDarkAlley()
+	{
+		return 
+		{
+			visuals::data::Colors::GREEN,
+			"You enter dark alley.",
+			avatar::DockedState::DARK_ALLEY_ENTRANCE
+		};
+	}
+
+	const std::map<avatar::DockedAction, std::map<avatar::DockedState, std::function<DockedStateTransition()>>> actionDescriptors =
 	{
 		{
 			avatar::DockedAction::ENTER_MARKET,
 			{
 				{
 					avatar::DockedState::MARKET_BUY,
-					{
-						visuals::data::Colors::GREEN,
-						"You enter the market.",
-						avatar::DockedState::MARKET
-					}
+					DoTransition(
+						{
+							visuals::data::Colors::GREEN,
+							"You enter the market.",
+							avatar::DockedState::MARKET
+						})
 				},
 				{
 					avatar::DockedState::MARKET_SELL,
+					DoTransition(
 					{
 						visuals::data::Colors::GREEN,
 						"You enter the market.",
 						avatar::DockedState::MARKET
-					}
+					})
 				},
 				{
 					avatar::DockedState::DOCK,
+					DoTransition(
 					{
 						visuals::data::Colors::GREEN,
 						"You enter the market.",
 						avatar::DockedState::MARKET
-					}
+					})
 				}
 			}
 		},
@@ -132,35 +150,39 @@ namespace game::avatar::Docked
 			{
 				{
 					avatar::DockedState::MARKET,
+					DoTransition(
 					{
 						visuals::data::Colors::GREEN,
 						"You leave the market.",
 						avatar::DockedState::DOCK
-					}
+					})
 				},
 				{
 					avatar::DockedState::SHIPYARD,
+					DoTransition(
 					{
 						visuals::data::Colors::GREEN,
 						"You leave the shipyard.",
 						avatar::DockedState::DOCK
-					}
+					})
 				},
 				{
 					avatar::DockedState::JOB_BOARD,
+					DoTransition(
 					{
 						visuals::data::Colors::GREEN,
 						"You leave the job board.",
 						avatar::DockedState::DOCK
-					}
+					})
 				},
 				{
 					avatar::DockedState::DARK_ALLEY_ENTRANCE,
+					DoTransition(
 					{
 						visuals::data::Colors::GREEN,
 						"You leave the dark alley.",
 						avatar::DockedState::DOCK
-					}
+					})
 				},
 			}
 		},
@@ -169,11 +191,12 @@ namespace game::avatar::Docked
 			{
 				{
 					avatar::DockedState::MARKET,
+					DoTransition(
 					{
 						visuals::data::Colors::GREEN,
 						"You browse for items to buy.",
 						avatar::DockedState::MARKET_BUY
-					}
+					})
 				}
 			}
 		},
@@ -182,11 +205,12 @@ namespace game::avatar::Docked
 			{
 				{
 					avatar::DockedState::MARKET,
+					DoTransition(
 					{
 						visuals::data::Colors::GREEN,
 						"You look to sell yer items.",
 						avatar::DockedState::MARKET_SELL
-					}
+					})
 				}
 			}
 		},
@@ -195,11 +219,12 @@ namespace game::avatar::Docked
 			{
 				{
 					avatar::DockedState::DOCK,
+					DoTransition(
 					{
 						visuals::data::Colors::GREEN,
 						"You check for posted jobs.",
 						avatar::DockedState::JOB_BOARD
-					}
+					})
 				}
 			}
 		},
@@ -208,11 +233,12 @@ namespace game::avatar::Docked
 			{
 				{
 					avatar::DockedState::DOCK,
+					DoTransition(
 					{
 						visuals::data::Colors::GREEN,
 						"You enter the shipyard.",
 						avatar::DockedState::SHIPYARD
-					}
+					})
 				}
 			}
 		},
@@ -221,17 +247,13 @@ namespace game::avatar::Docked
 			{
 				{
 					avatar::DockedState::DOCK,
-					{
-						visuals::data::Colors::GREEN,
-						"You enter dark alley.",
-						avatar::DockedState::DARK_ALLEY_ENTRANCE
-					}
+					OnEnterDarkAlley
 				}
 			}
 		}
 	};
 
-	bool DoTransition(const avatar::DockedAction& action)
+	bool DoActionTransition(const avatar::DockedAction& action)
 	{
 		auto dockedState = GetDockedState();
 		if (dockedState)
@@ -243,8 +265,9 @@ namespace game::avatar::Docked
 				{
 					if (transition != descriptor->second.end())
 					{
-						avatar::Log::Write({ transition->second.logColor, transition->second.logText });
-						SetDockedState(transition->second.dockedState);
+						auto result = transition->second();
+						avatar::Log::Write({ result.logColor, result.logText });
+						SetDockedState(result.dockedState);
 					}
 				}
 			}
@@ -255,13 +278,13 @@ namespace game::avatar::Docked
 	const std::map<avatar::DockedAction, std::function<bool(const avatar::DockedAction&)>> dockedActions =
 	{
 		{ avatar::DockedAction::UNDOCK, Undock},
-		{ avatar::DockedAction::ENTER_MARKET, DoTransition},
-		{ avatar::DockedAction::ENTER_DOCK, DoTransition},
-		{ avatar::DockedAction::ENTER_JOB_BOARD, DoTransition},
-		{ avatar::DockedAction::MARKET_BUY, DoTransition},
-		{ avatar::DockedAction::MARKET_SELL,DoTransition},
-		{ avatar::DockedAction::ENTER_SHIPYARD,DoTransition},
-		{ avatar::DockedAction::ENTER_DARK_ALLEY,DoTransition}
+		{ avatar::DockedAction::ENTER_MARKET, DoActionTransition},
+		{ avatar::DockedAction::ENTER_DOCK, DoActionTransition},
+		{ avatar::DockedAction::ENTER_JOB_BOARD, DoActionTransition},
+		{ avatar::DockedAction::MARKET_BUY, DoActionTransition},
+		{ avatar::DockedAction::MARKET_SELL,DoActionTransition},
+		{ avatar::DockedAction::ENTER_SHIPYARD,DoActionTransition},
+		{ avatar::DockedAction::ENTER_DARK_ALLEY,DoActionTransition}
 	};
 
 	bool DoDockedAction(const avatar::DockedAction& action)

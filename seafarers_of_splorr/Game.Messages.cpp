@@ -4,9 +4,9 @@ namespace game::Messages
 {
 	static std::queue<Message> messages;
 
-	bool IsEmpty()
+	bool HasMessage()
 	{
-		return messages.empty();
+		return !messages.empty();
 	}
 
 	Message Read()
@@ -23,7 +23,7 @@ namespace game::Messages
 
 	void Reset(const Difficulty&)
 	{
-		while (!IsEmpty())
+		while (HasMessage())
 		{
 			Read();
 		}

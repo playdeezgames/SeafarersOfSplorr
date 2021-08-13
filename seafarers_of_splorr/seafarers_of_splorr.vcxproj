@@ -226,6 +226,7 @@
     <ClCompile Include="State.InPlay.ConfirmAbandonJob.cpp" />
     <ClCompile Include="State.InPlay.ConfirmReplaceJob.cpp" />
     <ClCompile Include="State.InPlay.CurrentJob.cpp" />
+    <ClCompile Include="State.InPlay.DarkAlley.cpp" />
     <ClCompile Include="State.InPlay.DarkAlleyEntrance.cpp" />
     <ClCompile Include="State.InPlay.Docked.cpp" />
     <ClCompile Include="State.InPlay.HeadFor.cpp" />
