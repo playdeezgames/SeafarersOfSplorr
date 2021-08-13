@@ -115,7 +115,6 @@
         "x": 384,
         "y": 244
     },
-
     {
         "type": "Image",
         "image-id": "Card0Select",
@@ -123,7 +122,7 @@
         "color": "White",
         "x": 192,
         "y": 84,
-        "visible": true
+        "visible": false
     },
     {
         "type": "Image",
@@ -223,6 +222,127 @@
         "x": 384,
         "y": 244,
         "visible": false
+    },
+ 
+    {
+        "type": "Area",
+        "area-id": "Card0Hover",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 192,
+        "y": 84,
+        "width":64,
+        "height":64
+    },
+    {
+        "type": "Area",
+        "area-id": "Card1Hover",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 256,
+        "y": 84,
+        "width":64,
+        "height":64
+    },
+    {
+        "type": "Area",
+        "area-id": "Card2Hover",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 320,
+        "y": 84,
+        "width":64,
+        "height":64
+    },
+    {
+        "type": "Area",
+        "area-id": "Card3Hover",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 384,
+        "y": 84,
+        "width":64,
+        "height":64
+    },
+    {
+        "type": "Area",
+        "area-id": "Card4Hover",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 192,
+        "y": 164,
+        "width":64,
+        "height":64
+    },
+    {
+        "type": "Area",
+        "area-id": "Card5Hover",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 256,
+        "y": 164,
+        "width":64,
+        "height":64
+    },
+    {
+        "type": "Area",
+        "area-id": "Card6Hover",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 320,
+        "y": 164,
+        "width":64,
+        "height":64
+    },
+    {
+        "type": "Area",
+        "area-id": "Card7Hover",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 384,
+        "y": 164,
+        "width":64,
+        "height":64
+    },
+    {
+        "type": "Area",
+        "area-id": "Card8Hover",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 192,
+        "y": 244,
+        "width":64,
+        "height":64
+    },
+    {
+        "type": "Area",
+        "area-id": "Card9Hover",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 256,
+        "y": 244,
+        "width":64,
+        "height":64
+    },
+    {
+        "type": "Area",
+        "area-id": "Card10Hover",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 320,
+        "y": 244,
+        "width":64,
+        "height":64
+    },
+    {
+        "type": "Area",
+        "area-id": "Card11Hover",
+        "sprite": "CardLighten",
+        "color": "White",
+        "x": 384,
+        "y": 244,
+        "width":64,
+        "height":64
     },
     {
         "type": "Layout",
