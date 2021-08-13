@@ -7,6 +7,7 @@
 #include "MouseButton.h"
 #include <optional>
 #include "Options.h"
+#include <ranges>
 #include <SDL.h> //legit
 #include "States.h"
 #include "Sublayouts.h"
@@ -122,10 +123,7 @@ namespace common::Application
 
 	void Start(const std::vector<std::string>& arguments)
 	{
-		for (auto& starter : starters)
-		{
-			starter();
-		}
+		std::for_each(starters.begin(), starters.end(), [](auto p) { p(); });
 		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
 	}
 
