@@ -108,8 +108,13 @@ namespace state::in_play::DarkAlleyEntrance
 		{
 			auto& cardImage = cardImages.find(fightCard.first)->second;
 			auto& sprite = visuals::CardSprites::GetSpriteForCard(fightCard.second.card);
-			visuals::Images::SetSprite(LAYOUT_NAME, cardImage, sprite);
-			visuals::Texts::SetText(LAYOUT_NAME, textAdjacents.find(fightCard.first)->second, std::format("{}", fightCard.second.adjacent));
+			visuals::Images::SetSprite(LAYOUT_NAME, cardImage, (fightCard.second.shown) ? (sprite) :(SPRITE_CARD_BACK));
+			visuals::Texts::SetText(
+				LAYOUT_NAME, 
+				textAdjacents.find(fightCard.first)->second, 
+				(!fightCard.second.shown || fightCard.second.success) ?
+				("") :
+				(std::format("{}", fightCard.second.adjacent)));
 		}
 	}
 
@@ -137,6 +142,11 @@ namespace state::in_play::DarkAlleyEntrance
 
 	static bool OnMouseButtonUpInArea(const std::string&)
 	{
+		if (hoverCard)
+		{
+			game::islands::dark_alley::FightCards::Pick(game::avatar::Docked::GetDockedLocation().value(), hoverCard.value());
+			Refresh();
+		}
 		return false;
 	}
 

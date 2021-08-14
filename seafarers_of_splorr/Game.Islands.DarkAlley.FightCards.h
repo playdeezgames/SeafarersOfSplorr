@@ -10,6 +10,7 @@ namespace game::islands::DarkAlley
 		common::Card card;
 		int adjacent;
 		bool shown;
+		bool success;
 	};
 }
 namespace game::islands::dark_alley::FightCards

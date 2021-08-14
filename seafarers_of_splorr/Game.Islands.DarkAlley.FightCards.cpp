@@ -145,24 +145,39 @@ namespace game::islands::dark_alley::FightCards
 		}
 	}
 
+	static DarkAlley::FightCard DataToFightCard(const data::game::island::dark_alley::FightCard::CardData& data)
+	{
+		auto card = std::make_tuple((common::card::Rank)data.rank, (common::card::Suit)data.suit);
+		return 
+		{
+				card,
+				data.adjacent,
+				data.shown,
+				IsFaceCard(card)
+		};
+	}
+
 	std::map<size_t, DarkAlley::FightCard> Read(const common::XY<double>& location)
 	{
 		std::map<size_t, DarkAlley::FightCard> result;
 		for (size_t index = 0; index < CARD_COUNT; ++index)
 		{
 			auto data = data::game::island::dark_alley::FightCard::Read(location, index);
-			result[index] = 
-			{
-				std::make_tuple((common::card::Rank)data.value().rank, (common::card::Suit)data.value().suit),
-				data.value().adjacent,
-				data.value().shown
-			};
+			result[index] = DataToFightCard(data.value());
 		}
 		return result;
 	}
 
-	std::optional<DarkAlley::FightCard> Pick(const common::XY<double>&, size_t)
+	std::optional<DarkAlley::FightCard> Pick(const common::XY<double>& location, size_t index)
 	{
+		auto data = data::game::island::dark_alley::FightCard::Read(location, index);
+		if (data)
+		{
+			auto cardData = data.value();
+			cardData.shown = true;
+			data::game::island::dark_alley::FightCard::Write(location, index, cardData);
+			return DataToFightCard(cardData);
+		}
 		return std::nullopt;
 	}
 }
