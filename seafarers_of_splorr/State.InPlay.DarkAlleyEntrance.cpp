@@ -51,6 +51,38 @@ namespace state::in_play::DarkAlleyEntrance
 		{ 11,"Card11Select"}
 	};
 
+	const std::map<size_t, std::string> textAdjacents =
+	{
+		{ 0,"Card0Adjacent"},
+		{ 1,"Card1Adjacent"},
+		{ 2,"Card2Adjacent"},
+		{ 3,"Card3Adjacent"},
+		{ 4,"Card4Adjacent"},
+		{ 5,"Card5Adjacent"},
+		{ 6,"Card6Adjacent"},
+		{ 7,"Card7Adjacent"},
+		{ 8,"Card8Adjacent"},
+		{ 9,"Card9Adjacent"},
+		{ 10,"Card10Adjacent"},
+		{ 11,"Card11Adjacent"}
+	};
+
+	const std::map<size_t, std::string> cards =
+	{
+		{ 0,"Card0"},
+		{ 1,"Card1"},
+		{ 2,"Card2"},
+		{ 3,"Card3"},
+		{ 4,"Card4"},
+		{ 5,"Card5"},
+		{ 6,"Card6"},
+		{ 7,"Card7"},
+		{ 8,"Card8"},
+		{ 9,"Card9"},
+		{ 10,"Card10"},
+		{ 11,"Card11"}
+	};
+
 	static std::optional<size_t> hoverCard = std::nullopt;
 
 	static void RefreshCardSelect()
