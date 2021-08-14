@@ -150,11 +150,24 @@ namespace state::in_play::DarkAlleyEntrance
 		return false;
 	}
 
+	static void ResetDisplay()
+	{
+		for (auto& textAdjacent : textAdjacents)
+		{
+			visuals::Texts::SetText(LAYOUT_NAME, textAdjacent.second, "");
+		}
+		for (auto& cardImage : cardImages)
+		{
+			visuals::Images::SetSprite(LAYOUT_NAME, cardImage.second, SPRITE_CARD_BACK);
+		}
+	}
+
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
 		game::islands::dark_alley::FightCards::Generate(game::avatar::Docked::GetDockedLocation().value());
 		hoverCard = std::nullopt;
+		ResetDisplay();
 		Refresh();
 	}
 
