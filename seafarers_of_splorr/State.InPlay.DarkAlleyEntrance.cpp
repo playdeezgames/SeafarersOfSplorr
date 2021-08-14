@@ -40,64 +40,123 @@ namespace state::in_play::DarkAlleyEntrance
 		{"Card11Hover", 11}
 	};
 
-	const std::map<size_t,std::string> cardSelects =
+	struct CardPosition
 	{
-		{ 0,"Card0Select"},
-		{ 1,"Card1Select"},
-		{ 2,"Card2Select"},
-		{ 3,"Card3Select"},
-		{ 4,"Card4Select"},
-		{ 5,"Card5Select"},
-		{ 6,"Card6Select"},
-		{ 7,"Card7Select"},
-		{ 8,"Card8Select"},
-		{ 9,"Card9Select"},
-		{ 10,"Card10Select"},
-		{ 11,"Card11Select"}
+		std::string adjacentText;
+		std::string cardImage;
+		std::string cardSelectImage;
 	};
 
-	const std::map<size_t, std::string> textAdjacents =
+	const std::map<size_t, CardPosition> cardPositions =
 	{
-		{ 0,"Card0Adjacent"},
-		{ 1,"Card1Adjacent"},
-		{ 2,"Card2Adjacent"},
-		{ 3,"Card3Adjacent"},
-		{ 4,"Card4Adjacent"},
-		{ 5,"Card5Adjacent"},
-		{ 6,"Card6Adjacent"},
-		{ 7,"Card7Adjacent"},
-		{ 8,"Card8Adjacent"},
-		{ 9,"Card9Adjacent"},
-		{ 10,"Card10Adjacent"},
-		{ 11,"Card11Adjacent"}
-	};
-
-	const std::map<size_t, std::string> cardImages =
-	{
-		{ 0,"Card0"},
-		{ 1,"Card1"},
-		{ 2,"Card2"},
-		{ 3,"Card3"},
-		{ 4,"Card4"},
-		{ 5,"Card5"},
-		{ 6,"Card6"},
-		{ 7,"Card7"},
-		{ 8,"Card8"},
-		{ 9,"Card9"},
-		{ 10,"Card10"},
-		{ 11,"Card11"}
+		{
+			0, 
+			{
+				"Card0Adjacent",
+				"Card0",
+				"Card0Select"
+			}
+		},
+		{
+			1,
+			{
+				"Card1Adjacent",
+				"Card1",
+				"Card1Select"
+			}
+		},
+		{
+			2,
+			{
+				"Card2Adjacent",
+				"Card2",
+				"Card2Select"
+			}
+		},
+		{
+			3,
+			{
+				"Card3Adjacent",
+				"Card3",
+				"Card3Select"
+			}
+		},
+		{
+			4,
+			{
+				"Card4Adjacent",
+				"Card4",
+				"Card4Select"
+			}
+		},
+		{
+			5,
+			{
+				"Card5Adjacent",
+				"Card5",
+				"Card5Select"
+			}
+		},
+		{
+			6,
+			{
+				"Card6Adjacent",
+				"Card6",
+				"Card6Select"
+			}
+		},
+		{
+			7,
+			{
+				"Card7Adjacent",
+				"Card7",
+				"Card7Select"
+			}
+		},
+		{
+			8,
+			{
+				"Card8Adjacent",
+				"Card8",
+				"Card8Select"
+			}
+		},
+		{
+			9,
+			{
+				"Card9Adjacent",
+				"Card9",
+				"Card9Select"
+			}
+		},
+		{
+			10,
+			{
+				"Card10Adjacent",
+				"Card10",
+				"Card10Select"
+			}
+		},
+		{
+			11,
+			{
+				"Card11Adjacent",
+				"Card11",
+				"Card11Select"
+			}
+		}
 	};
 
 	static std::optional<size_t> hoverCard = std::nullopt;
 
 	static void RefreshCardSelect()
 	{
-		for (auto cardSelect : cardSelects)
+		for (auto cardPosition : cardPositions)
 		{
 			visuals::Images::SetVisible(
 				LAYOUT_NAME, 
-				cardSelect.second, 
-				(hoverCard.has_value() && hoverCard.value() == cardSelect.first));
+				cardPosition.second.cardSelectImage,
+				(hoverCard.has_value() && hoverCard.value() == cardPosition.first));
 		}
 	}
 
@@ -106,12 +165,12 @@ namespace state::in_play::DarkAlleyEntrance
 		auto fightCards = game::islands::dark_alley::FightCards::Read(game::avatar::Docked::GetDockedLocation().value());
 		for (auto& fightCard : fightCards)
 		{
-			auto& cardImage = cardImages.find(fightCard.first)->second;
+			auto& cardImage = cardPositions.find(fightCard.first)->second.cardImage;
 			auto& sprite = visuals::CardSprites::GetSpriteForCard(fightCard.second.card);
 			visuals::Images::SetSprite(LAYOUT_NAME, cardImage, (fightCard.second.shown) ? (sprite) :(SPRITE_CARD_BACK));
 			visuals::Texts::SetText(
 				LAYOUT_NAME, 
-				textAdjacents.find(fightCard.first)->second, 
+				cardPositions.find(fightCard.first)->second.adjacentText, 
 				(!fightCard.second.shown || fightCard.second.success) ?
 				("") :
 				(std::format("{}", fightCard.second.adjacent)));
@@ -152,13 +211,10 @@ namespace state::in_play::DarkAlleyEntrance
 
 	static void ResetDisplay()
 	{
-		for (auto& textAdjacent : textAdjacents)
+		for (auto& cardPosition : cardPositions)
 		{
-			visuals::Texts::SetText(LAYOUT_NAME, textAdjacent.second, "");
-		}
-		for (auto& cardImage : cardImages)
-		{
-			visuals::Images::SetSprite(LAYOUT_NAME, cardImage.second, SPRITE_CARD_BACK);
+			visuals::Texts::SetText(LAYOUT_NAME, cardPosition.second.adjacentText, "");
+			visuals::Images::SetSprite(LAYOUT_NAME, cardPosition.second.cardImage, SPRITE_CARD_BACK);
 		}
 	}
 
