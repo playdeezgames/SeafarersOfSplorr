@@ -206,6 +206,7 @@
     <ClCompile Include="Game.Heading.cpp" />
     <ClCompile Include="Game.Islands.Commodities.cpp" />
     <ClCompile Include="Game.Islands.cpp" />
+    <ClCompile Include="Game.Islands.DarkAlley.FightCards.cpp" />
     <ClCompile Include="Game.Islands.Features.cpp" />
     <ClCompile Include="Game.Islands.Generation.cpp" />
     <ClCompile Include="Game.Islands.Items.cpp" />
@@ -338,6 +339,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Game.Heading.h" />
     <ClInclude Include="Game.Islands.Commodities.h" />
+    <ClInclude Include="Game.Islands.DarkAlley.FightCards.h" />
     <ClInclude Include="Game.Islands.Ships.h" />
     <ClInclude Include="Game.Islands.Features.h" />
     <ClInclude Include="Game.Islands.h" />

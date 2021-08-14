@@ -5,13 +5,18 @@
 #include "Application.OnEnter.h"
 #include "Application.UIState.h"
 #include "Common.Card.h"
+#include <format>
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.Docked.h"
+#include "Game.Islands.DarkAlley.FightCards.h"
 #include "Visuals.Areas.h"
+#include "Visuals.CardSprites.h"
 #include "Visuals.Images.h"
+#include "Visuals.Texts.h"
 namespace state::in_play::DarkAlleyEntrance
 {
 	const std::string LAYOUT_NAME = "State.InPlay.DarkAlleyEntrance";
+	const std::string SPRITE_CARD_BACK = "CardBackRed";
 
 	static void OnLeave()
 	{
@@ -67,7 +72,7 @@ namespace state::in_play::DarkAlleyEntrance
 		{ 11,"Card11Adjacent"}
 	};
 
-	const std::map<size_t, std::string> cards =
+	const std::map<size_t, std::string> cardImages =
 	{
 		{ 0,"Card0"},
 		{ 1,"Card1"},
@@ -96,8 +101,21 @@ namespace state::in_play::DarkAlleyEntrance
 		}
 	}
 
+	static void RefreshCards()
+	{
+		auto fightCards = game::islands::dark_alley::FightCards::Read(game::avatar::Docked::GetDockedLocation().value());
+		for (auto& fightCard : fightCards)
+		{
+			auto& cardImage = cardImages.find(fightCard.first)->second;
+			auto& sprite = visuals::CardSprites::GetSpriteForCard(fightCard.second.card);
+			visuals::Images::SetSprite(LAYOUT_NAME, cardImage, sprite);
+			visuals::Texts::SetText(LAYOUT_NAME, textAdjacents.find(fightCard.first)->second, std::format("{}", fightCard.second.adjacent));
+		}
+	}
+
 	static void Refresh()
 	{
+		RefreshCards();
 		RefreshCardSelect();
 	}
 
@@ -125,6 +143,7 @@ namespace state::in_play::DarkAlleyEntrance
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
+		game::islands::dark_alley::FightCards::Generate(game::avatar::Docked::GetDockedLocation().value());
 		hoverCard = std::nullopt;
 		Refresh();
 	}

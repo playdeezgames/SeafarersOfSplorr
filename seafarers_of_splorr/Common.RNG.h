@@ -1,11 +1,29 @@
 #pragma once
+#include <list>
 #include <map>
+#include <optional>
 namespace common::RNG
 {
 	void Seed();
 	int FromRange(int, int);
 	size_t FromRange(size_t, size_t);
 	double FromRange(double, double);
+	template <typename TResult>
+	std::optional<TResult> FromList(const std::list<TResult>& items)
+	{
+		if (!items.empty())
+		{
+			size_t index = FromRange(0u, items.size());
+			auto iter = items.begin();
+			while (index > 0)
+			{
+				--index;
+				++iter;
+			}
+			return std::optional<TResult>(*iter);
+		}
+		return std::nullopt;
+	}
 	template <typename TResult>
 	TResult FromGenerator(const std::map<TResult, size_t>& table, TResult defaultValue)
 	{
