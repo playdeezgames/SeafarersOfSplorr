@@ -329,13 +329,13 @@ namespace state::in_play::DarkAlleyEntrance
 
 	static void IncreaseInfamy()
 	{
-		const double INFAMY_DELTA = 1.0;
+		const double INFAMY_DELTA = 0.1;
 		game::avatar::Statistics::ChangeInfamy((hitsTaken==0) ? (INFAMY_DELTA) : (INFAMY_DELTA/2.0));
 	}
 
 	static void IncreaseBrawling()
 	{
-		const double BRAWLING_DELTA = 1.0;
+		const double BRAWLING_DELTA = 0.1;
 		game::avatar::Statistics::ChangeBrawling((hitsTaken > 0) ? (BRAWLING_DELTA) : (BRAWLING_DELTA / 2.0));
 	}
 
@@ -357,6 +357,7 @@ namespace state::in_play::DarkAlleyEntrance
 			}
 			return true;
 		}
+		game::avatar::Statistics::ChangeMoney(-game::avatar::Statistics::GetMoney()/2.0);
 		game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		return true;
