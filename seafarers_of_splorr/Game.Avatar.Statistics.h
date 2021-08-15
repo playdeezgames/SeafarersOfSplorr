@@ -29,5 +29,8 @@ namespace game::avatar::Statistics
 	bool IsOutOfTurns();
 
 	double GetInfamy();
+	void ChangeInfamy(double);
+
 	double GetBrawling();
+	void ChangeBrawling(double);
 }

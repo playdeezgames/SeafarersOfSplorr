@@ -37,6 +37,7 @@ namespace state::in_play::DarkAlleyEntrance
 	};
 
 	static std::optional<FightResult> fightResult = std::nullopt;
+	static size_t hitsTaken = 0;
 
 	const auto GetDockedLocation = []() { return game::avatar::Docked::GetDockedLocation().value();	};
 
@@ -313,6 +314,7 @@ namespace state::in_play::DarkAlleyEntrance
 			fightResult = FightResult::LOSE;
 		}
 		game::audio::Sfx::Play(game::audio::GameSfx::HIT);
+		hitsTaken++;
 	}
 
 	static void HandleFightCard(const game::islands::DarkAlley::FightCard& fightCard)
@@ -325,6 +327,18 @@ namespace state::in_play::DarkAlleyEntrance
 		HandleTakeDamage();
 	}
 
+	static void IncreaseInfamy()
+	{
+		const double INFAMY_DELTA = 1.0;
+		game::avatar::Statistics::ChangeInfamy((hitsTaken==0) ? (INFAMY_DELTA) : (INFAMY_DELTA/2.0));
+	}
+
+	static void IncreaseBrawling()
+	{
+		const double BRAWLING_DELTA = 1.0;
+		game::avatar::Statistics::ChangeBrawling((hitsTaken > 0) ? (BRAWLING_DELTA) : (BRAWLING_DELTA / 2.0));
+	}
+
 	static bool HandleButton()
 	{
 		if (fightResult)
@@ -335,9 +349,8 @@ namespace state::in_play::DarkAlleyEntrance
 				application::UIState::Write(::UIState::IN_PLAY_NEXT);
 				break;
 			case FightResult::WIN:
-				//increase infamy
-				//increase brawling
-				//set docked state to "dark alley"
+				IncreaseInfamy();
+				IncreaseBrawling();
 				game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::DEFEAT_RUFFIAN);
 				application::UIState::Write(::UIState::IN_PLAY_NEXT);
 				break;
@@ -383,6 +396,7 @@ namespace state::in_play::DarkAlleyEntrance
 		game::islands::dark_alley::FightCards::Generate(GetDockedLocation());
 		hoverCard = std::nullopt;
 		fightResult = std::nullopt;
+		hitsTaken = 0;
 		ResetDisplay();
 		Refresh();
 	}

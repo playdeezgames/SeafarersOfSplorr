@@ -204,4 +204,14 @@ namespace game::avatar::Statistics
 	{
 		ChangeCurrent(Statistic::SATIETY, delta);
 	}
+
+	void ChangeInfamy(double delta)
+	{
+		ChangeCurrent(Statistic::INFAMY, delta);
+	}
+
+	void ChangeBrawling(double delta)
+	{
+		ChangeCurrent(Statistic::BRAWLING, delta);
+	}
 }
