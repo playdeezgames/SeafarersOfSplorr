@@ -10,6 +10,7 @@ namespace game::avatar
 		MARKET_BUY,
 		MARKET_SELL,
 		ENTER_SHIPYARD,
-		ENTER_DARK_ALLEY
+		ENTER_DARK_ALLEY,
+		DEFEAT_RUFFIAN
 	};
 }

@@ -727,6 +727,13 @@
         "width": 16,
         "height": 16
     },
+    "Character88": {
+        "texture": "font",
+        "x": 128,
+        "y": 96,
+        "width": 16,
+        "height": 16
+    },
     "Font35_20": {
         "texture": "font35",
         "x": 0,

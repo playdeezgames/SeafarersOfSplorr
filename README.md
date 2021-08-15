@@ -19,3 +19,4 @@
 * https://game-icons.net/1x1/delapouite/round-star.html
 * https://game-icons.net/1x1/lorc/checked-shield.html
 * https://game-icons.net/1x1/delapouite/crow-nest.html
+* https://game-icons.net/1x1/lorc/muscle-up.html

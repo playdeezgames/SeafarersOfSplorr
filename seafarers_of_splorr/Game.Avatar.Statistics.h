@@ -1,7 +1,11 @@
 #pragma once
 #include "Game.Difficulty.h"
+#include <string>
 namespace game::avatar::Statistics
 {
+	const std::string FORMAT_HEALTH = "\x83 {:.0f}";
+	const std::string FORMAT_BRAWLING = "\x88 {:.1f}";
+
 	void Reset(const game::Difficulty&);
 
 	double GetMoney();

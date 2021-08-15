@@ -7,9 +7,13 @@
 #include "Common.Card.h"
 #include <format>
 #include "Game.Audio.Mux.h"
+#include "Game.Audio.Sfx.h"
 #include "Game.Avatar.Docked.h"
+#include "Game.Avatar.Statistics.h"
+#include "Game.Islands.DarkAlley.h"
 #include "Game.Islands.DarkAlley.FightCards.h"
 #include "Visuals.Areas.h"
+#include "Visuals.Data.Colors.h"
 #include "Visuals.CardSprites.h"
 #include "Visuals.Images.h"
 #include "Visuals.Texts.h"
@@ -17,6 +21,24 @@ namespace state::in_play::DarkAlleyEntrance
 {
 	const std::string LAYOUT_NAME = "State.InPlay.DarkAlleyEntrance";
 	const std::string SPRITE_CARD_BACK = "CardBackRed";
+	const std::string TEXT_ENEMY_BRAWLING = "EnemyBrawling";
+	const std::string TEXT_BRAWLING = "Brawling";
+	const std::string TEXT_HEALTH = "Health";
+	const std::string TEXT_BUTTON = "Button";
+	const std::string AREA_BUTTON_HOVER = "ButtonHover";
+	const std::string TEXT_FIGHT_STATE = "FightState";
+
+	static std::optional<size_t> hoverCard = std::nullopt;
+	
+	enum class FightResult
+	{
+		WIN,
+		LOSE
+	};
+
+	static std::optional<FightResult> fightResult = std::nullopt;
+
+	const auto GetDockedLocation = []() { return game::avatar::Docked::GetDockedLocation().value();	};
 
 	static void OnLeave()
 	{
@@ -147,7 +169,6 @@ namespace state::in_play::DarkAlleyEntrance
 		}
 	};
 
-	static std::optional<size_t> hoverCard = std::nullopt;
 
 	static void RefreshCardSelect()
 	{
@@ -162,7 +183,7 @@ namespace state::in_play::DarkAlleyEntrance
 
 	static void RefreshCards()
 	{
-		auto fightCards = game::islands::dark_alley::FightCards::Read(game::avatar::Docked::GetDockedLocation().value());
+		auto fightCards = game::islands::dark_alley::FightCards::Read(GetDockedLocation());
 		for (auto& fightCard : fightCards)
 		{
 			auto& cardImage = cardPositions.find(fightCard.first)->second.cardImage;
@@ -177,34 +198,172 @@ namespace state::in_play::DarkAlleyEntrance
 		}
 	}
 
+	const auto GetRuffianBrawling = []() { return game::islands::DarkAlley::GetRuffianBrawling(GetDockedLocation()).value(); };
+
+	static void RefreshStatistics()
+	{
+		visuals::Texts::SetText(
+			LAYOUT_NAME, 
+			TEXT_ENEMY_BRAWLING, 
+			std::format(
+				game::avatar::Statistics::FORMAT_BRAWLING, 
+				GetRuffianBrawling()));
+		visuals::Texts::SetText(
+			LAYOUT_NAME, 
+			TEXT_BRAWLING, 
+			std::format(
+				game::avatar::Statistics::FORMAT_BRAWLING, 
+				game::avatar::Statistics::GetBrawling()));
+		visuals::Texts::SetText(
+			LAYOUT_NAME, 
+			TEXT_HEALTH, 
+			std::format(
+				game::avatar::Statistics::FORMAT_HEALTH, 
+				game::avatar::Statistics::GetHealth()));
+	}
+
+	static std::string GetButtonText()
+	{
+		if (fightResult)
+		{
+			return "Continue....";
+		}
+		return "Retreat!";
+	}
+
+	static void RefreshButton()
+	{
+		visuals::Texts::SetText(
+			LAYOUT_NAME,
+			TEXT_BUTTON,
+			GetButtonText());
+	}
+
+	static std::string GetFightStateText()
+	{
+		if (fightResult)
+		{
+			switch (fightResult.value())
+			{
+			case FightResult::LOSE:
+				return "Defeated!";
+			case FightResult::WIN:
+				return "You win!";
+			}
+		}
+		return "Pick a face card to defeat enemy";
+	}
+
+	static void RefreshFightState()
+	{
+		visuals::Texts::SetText(
+			LAYOUT_NAME,
+			TEXT_FIGHT_STATE,
+			GetFightStateText());
+	}
+
 	static void Refresh()
 	{
+		RefreshButton();
+		RefreshFightState();
+		RefreshStatistics();
 		RefreshCards();
 		RefreshCardSelect();
 	}
 
+	static void SetButtonHover(bool hover)
+	{
+		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_BUTTON, hover ? visuals::data::Colors::CYAN : visuals::data::Colors::GRAY);
+	}
+
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>&)
 	{
+		SetButtonHover(false);
 		auto iter = cardAreas.find(areaName);
 		if (iter != cardAreas.end())
 		{
 			hoverCard = iter->second;
 			RefreshCardSelect();
+			return;
+		}
+		if (areaName == AREA_BUTTON_HOVER)
+		{
+			SetButtonHover(true);
 		}
 	}
 
 	static void OnMouseMotionOutsideArea(const common::XY<int>&)
 	{
 		hoverCard = std::nullopt;
+		SetButtonHover(false);
 		RefreshCardSelect();
 	}
 
-	static bool OnMouseButtonUpInArea(const std::string&)
+	static void HandleRuffianDefeated()
 	{
-		if (hoverCard)
+		game::audio::Sfx::Play(game::audio::GameSfx::ENEMY_HIT);
+		fightResult = FightResult::WIN;
+	}
+
+	static void HandleTakeDamage()
+	{
+		game::avatar::Statistics::ChangeHealth(-GetRuffianBrawling());
+		if (game::avatar::Statistics::IsDead())
 		{
-			game::islands::dark_alley::FightCards::Pick(game::avatar::Docked::GetDockedLocation().value(), hoverCard.value());
+			fightResult = FightResult::LOSE;
+		}
+		game::audio::Sfx::Play(game::audio::GameSfx::HIT);
+	}
+
+	static void HandleFightCard(const game::islands::DarkAlley::FightCard& fightCard)
+	{
+		if (fightCard.success)
+		{
+			HandleRuffianDefeated();
+			return;
+		}
+		HandleTakeDamage();
+	}
+
+	static bool HandleButton()
+	{
+		if (fightResult)
+		{
+			switch (fightResult.value())
+			{
+			case FightResult::LOSE:
+				application::UIState::Write(::UIState::IN_PLAY_NEXT);
+				break;
+			case FightResult::WIN:
+				//increase infamy
+				//increase brawling
+				//set docked state to "dark alley"
+				game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::DEFEAT_RUFFIAN);
+				application::UIState::Write(::UIState::IN_PLAY_NEXT);
+				break;
+			}
+			return true;
+		}
+		game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
+		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		return true;
+	}
+
+	static bool OnMouseButtonUpInArea(const std::string& areaName)
+	{
+		if (hoverCard && !fightResult.has_value())
+		{
+			auto fightCard = game::islands::dark_alley::FightCards::Pick(GetDockedLocation(), hoverCard.value());
+			if (fightCard)
+			{
+				HandleFightCard(fightCard.value());
+			}
 			Refresh();
+			return true;
+		}
+		if (areaName == AREA_BUTTON_HOVER)
+		{
+			return HandleButton();
 		}
 		return false;
 	}
@@ -221,8 +380,9 @@ namespace state::in_play::DarkAlleyEntrance
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
-		game::islands::dark_alley::FightCards::Generate(game::avatar::Docked::GetDockedLocation().value());
+		game::islands::dark_alley::FightCards::Generate(GetDockedLocation());
 		hoverCard = std::nullopt;
+		fightResult = std::nullopt;
 		ResetDisplay();
 		Refresh();
 	}

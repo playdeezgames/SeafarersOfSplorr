@@ -4,6 +4,7 @@
 #include "Application.Renderer.h"
 #include "Application.UIState.h"
 #include "Game.Audio.Mux.h"
+#include "Game.Audio.Sfx.h"
 namespace state::in_play::Lose
 {
 	const std::string LAYOUT_NAME = "State.InPlay.Lose";
@@ -14,9 +15,15 @@ namespace state::in_play::Lose
 		return true;
 	}
 
+	static void OnEnter()
+	{
+		game::audio::Sfx::Play(game::audio::GameSfx::DEATH);
+		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
+	}
+
 	void Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_LOSE, game::audio::Mux::GoToTheme(game::audio::Mux::Theme::MAIN));
+		::application::OnEnter::AddHandler(::UIState::IN_PLAY_LOSE, OnEnter);
 		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_LOSE, OnMouseButtonUp);
 		::application::Command::SetHandler(::UIState::IN_PLAY_LOSE, ::application::UIState::GoTo(::UIState::MAIN_MENU));
 		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_LOSE, LAYOUT_NAME);

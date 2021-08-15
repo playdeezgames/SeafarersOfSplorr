@@ -200,6 +200,10 @@ namespace game::islands::dark_alley::FightCards
 		if (data)
 		{
 			auto cardData = data.value();
+			if (cardData.shown)
+			{
+				return std::nullopt;
+			}
 			cardData.shown = true;
 			data::game::island::dark_alley::FightCard::Write(location, index, cardData);
 			return DataToFightCard(cardData);

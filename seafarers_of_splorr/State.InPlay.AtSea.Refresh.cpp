@@ -29,7 +29,6 @@ namespace state::in_play::AtSea
 	const std::string FORMAT_MONEY = "\x80 {:.3f}";
 	const std::string FORMAT_REPUTATION = "\x86 {:.0f}";
 	const std::string FORMAT_SATIETY = "\x82 {:.0f}";
-	const std::string FORMAT_HEALTH = "\x83 {:.0f}";
 	const std::string FORMAT_HEADING = "\x84 {:.2f}";
 	const std::string FORMAT_SPEED = "\x85 {:.2f}";
 
@@ -65,7 +64,7 @@ namespace state::in_play::AtSea
 
 	static void RefreshAvatarHealth()
 	{
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HEALTH, std::format(FORMAT_HEALTH, game::avatar::Statistics::GetHealth()));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HEALTH, std::format(game::avatar::Statistics::FORMAT_HEALTH, game::avatar::Statistics::GetHealth()));
 	}
 
 	static void RefreshAvatarTurns()

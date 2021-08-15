@@ -143,6 +143,16 @@ namespace game::avatar::Docked
 		};
 	}
 
+	static DockedStateTransition OnDefeatRuffian()
+	{
+		return
+		{
+			visuals::data::Colors::GREEN,
+			"You enter dark alley.",
+			avatar::DockedState::DARK_ALLEY
+		};
+	}
+
 	const std::map<avatar::DockedAction, std::map<avatar::DockedState, std::function<DockedStateTransition()>>> actionDescriptors =
 	{
 		{
@@ -282,6 +292,15 @@ namespace game::avatar::Docked
 					OnEnterDarkAlley
 				}
 			}
+		},
+		{
+			avatar::DockedAction::DEFEAT_RUFFIAN,
+			{
+				{
+					avatar::DockedState::DARK_ALLEY_ENTRANCE,
+					OnDefeatRuffian
+				}
+			}
 		}
 	};
 
@@ -307,6 +326,7 @@ namespace game::avatar::Docked
 		return false;
 	}
 
+	//TODO: this seems no longer necessary...
 	const std::map<avatar::DockedAction, std::function<bool(const avatar::DockedAction&)>> dockedActions =
 	{
 		{ avatar::DockedAction::UNDOCK, Undock},
@@ -316,7 +336,8 @@ namespace game::avatar::Docked
 		{ avatar::DockedAction::MARKET_BUY, DoActionTransition},
 		{ avatar::DockedAction::MARKET_SELL,DoActionTransition},
 		{ avatar::DockedAction::ENTER_SHIPYARD,DoActionTransition},
-		{ avatar::DockedAction::ENTER_DARK_ALLEY,DoActionTransition}
+		{ avatar::DockedAction::ENTER_DARK_ALLEY,DoActionTransition},
+		{ avatar::DockedAction::DEFEAT_RUFFIAN,DoActionTransition}
 	};
 
 	bool DoDockedAction(const avatar::DockedAction& action)
