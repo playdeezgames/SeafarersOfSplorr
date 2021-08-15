@@ -226,6 +226,15 @@ namespace game::avatar::Docked
 						avatar::DockedState::DOCK
 					})
 				},
+				{
+					avatar::DockedState::DARK_ALLEY,
+					DoTransition(
+					{
+						visuals::data::Colors::GREEN,
+						"You leave the dark alley.",
+						avatar::DockedState::DOCK
+					})
+				},
 			}
 		},
 		{
