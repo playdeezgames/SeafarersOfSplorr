@@ -364,6 +364,12 @@
     <ClCompile Include="Game.Audio.Sfx.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Confirmations.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.InPlay.Confirm.cpp">
+      <Filter>Source\States\InPlay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
@@ -705,6 +711,12 @@
     <ClInclude Include="Game.Audio.Sfx.h">
       <Filter>Headers\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Confirmation.h">
+      <Filter>Headers\Game\Confirmation</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Confirmations.h">
+      <Filter>Headers\Game\Confirmation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
@@ -820,6 +832,9 @@
     </Filter>
     <Filter Include="Headers\Game\Message">
       <UniqueIdentifier>{ce501f74-8afd-4ad4-8e75-1c2c988ecd1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Game\Confirmation">
+      <UniqueIdentifier>{3c365924-b91e-49f2-8766-4d4f86b1211f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

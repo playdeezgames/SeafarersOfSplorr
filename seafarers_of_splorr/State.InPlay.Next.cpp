@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "Game.Avatar.Docked.h"
 #include "Game.Avatar.Statistics.h"
+#include "Game.Confirmations.h"
 #include "Game.Messages.h"
 #include <map>
 namespace state::in_play::Next
@@ -17,7 +18,8 @@ namespace state::in_play::Next
 	{
 		{game::avatar::Statistics::IsOutOfTurns, ::UIState::IN_PLAY_WIN},
 		{game::avatar::Statistics::IsDead, ::UIState::IN_PLAY_LOSE},
-		{game::Messages::HasMessage, ::UIState::IN_PLAY_MESSAGE}
+		{game::Messages::HasMessage, ::UIState::IN_PLAY_MESSAGE},
+		{game::Confirmations::HasConfirmation, ::UIState::IN_PLAY_CONFIRM}
 	};
 
 	const std::map<game::avatar::DockedState, ::UIState> dockedStateTable =

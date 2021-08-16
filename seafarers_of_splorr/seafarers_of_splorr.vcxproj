@@ -202,9 +202,11 @@
     <ClCompile Include="Game.Avatar.Ship.cpp" />
     <ClCompile Include="Game.Avatar.Statistics.cpp" />
     <ClCompile Include="Game.Commodities.cpp" />
+    <ClCompile Include="Game.Confirmations.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game.Features.cpp" />
     <ClCompile Include="Game.Heading.cpp" />
+    <ClCompile Include="Game.InPlay.Confirm.cpp" />
     <ClCompile Include="Game.Islands.Commodities.cpp" />
     <ClCompile Include="Game.Islands.cpp" />
     <ClCompile Include="Game.Islands.DarkAlley.cpp" />
@@ -335,6 +337,8 @@
     <ClInclude Include="Game.Commodities.h" />
     <ClInclude Include="Game.Commodity.h" />
     <ClInclude Include="Game.CommodityDescriptor.h" />
+    <ClInclude Include="Game.Confirmation.h" />
+    <ClInclude Include="Game.Confirmations.h" />
     <ClInclude Include="Game.Difficulty.h" />
     <ClInclude Include="Game.Feature.h" />
     <ClInclude Include="Game.FeatureDescriptor.h" />

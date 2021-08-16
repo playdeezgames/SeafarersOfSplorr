@@ -32,3 +32,4 @@ namespace state::in_play::Shipyard { void Start(); }
 namespace state::in_play::DarkAlleyEntrance { void Start(); }
 namespace state::in_play::DarkAlley { void Start(); }
 namespace state::in_play::Message { void Start(); }
+namespace state::in_play::Confirm { void Start(); }

@@ -7,6 +7,7 @@
 #include "Game.Avatar.Log.h"
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Statistics.h"
+#include "Game.Confirmations.h"
 #include "Game.Islands.h"
 #include "Game.Islands.Features.h"
 #include "Game.Messages.h"
@@ -20,7 +21,6 @@ namespace game
 		game::World::Reset(difficulty);
 		game::Islands::Reset(difficulty);
 		game::islands::Features::Reset(difficulty);
-
 		game::avatar::AtSea::Reset(difficulty);
 		game::avatar::Docked::Reset(difficulty);
 		game::avatar::Statistics::Reset(difficulty);
@@ -28,6 +28,7 @@ namespace game
 		game::avatar::Ship::Reset(difficulty);
 		game::avatar::Log::Reset(difficulty);
 		game::Messages::Reset(difficulty);
+		game::Confirmations::Reset(difficulty);
 	}
 
 	void Start()

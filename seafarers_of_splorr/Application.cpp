@@ -116,6 +116,7 @@ namespace common::Application
 		state::in_play::DarkAlleyEntrance::Start,
 		state::in_play::DarkAlley::Start,
 		state::in_play::Message::Start,
+		state::in_play::Confirm::Start,
 		sublayout::UIHamburger::Start,
 		Options::Initialize,
 		visuals::Layouts::Start

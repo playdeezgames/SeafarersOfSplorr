@@ -6,6 +6,7 @@
 #include "Application.UIState.h"
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.Docked.h"
+#include "Game.Confirmations.h"
 #include "Visuals.Areas.h"
 #include "Visuals.Menus.h"
 namespace state::in_play::DarkAlley
@@ -13,10 +14,14 @@ namespace state::in_play::DarkAlley
 	const std::string LAYOUT_NAME = "State.InPlay.DarkAlley";
 	const std::string MENU_ID = "DarkAlley";
 
-
 	static void OnLeave()
 	{
-		game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
+		game::Confirmations::Write(
+			{
+				"Leave Dark Alley?",
+				[]() { game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK); },
+				[]() {}
+			});
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
