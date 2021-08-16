@@ -1,14 +1,35 @@
 #include "Data.Game.Island.DarkAlley.h"
+#include <functional>
 #include "Game.Islands.DarkAlley.h"
 namespace game::islands::DarkAlley
 {
-	std::optional<double> GetRuffianBrawling(const common::XY<double>& location)
+	static std::optional<double> ExtractDarkAlleyValue(const common::XY<double>& location, std::function<double(const data::game::island::DarkAlley::DarkAlleyData&)> extractor)
 	{
 		auto result = data::game::island::DarkAlley::Read(location);
 		if (result)
 		{
-			return result.value().ruffianBrawlingStrength;
+			return extractor(result.value());
 		}
 		return std::nullopt;
+	}
+
+	std::optional<double> GetRuffianBrawling(const common::XY<double>& location)
+	{
+		return ExtractDarkAlleyValue(
+			location,
+			[](const data::game::island::DarkAlley::DarkAlleyData& data)
+			{
+				return data.ruffianBrawlingStrength;
+			});
+	}
+
+	std::optional<double> GetMinimumWager(const common::XY<double>& location)
+	{
+		return ExtractDarkAlleyValue(
+			location,
+			[](const data::game::island::DarkAlley::DarkAlleyData& data)
+			{
+				return data.minimumWager;
+			});
 	}
 }

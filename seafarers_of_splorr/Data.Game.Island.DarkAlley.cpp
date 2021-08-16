@@ -6,10 +6,11 @@ namespace data::game::island::DarkAlley
 {
 	const std::string FIELD_INFAMY_REQUIREMENT = "InfamyRequirement";
 	const std::string FIELD_RUFFIAN_BRAWLING_STRENGTH = "RuffianBrawlingStrength";
-	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [DarkAlleys]([X] REAL NOT NULL,[Y] REAL NOT NULL,[InfamyRequirement] REAL NOT NULL,[RuffianBrawlingStrength] REAL NOT NULL, UNIQUE([X],[Y]));";
+	const std::string FIELD_MINIMUM_WAGER = "MinimumWager";
+	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [DarkAlleys]([X] REAL NOT NULL,[Y] REAL NOT NULL,[InfamyRequirement] REAL NOT NULL,[RuffianBrawlingStrength] REAL NOT NULL, [MinimumWager] REAL NOT NULL, UNIQUE([X],[Y]));";
 	const std::string DELETE_ALL = "DELETE FROM [DarkAlleys];";
-	const std::string REPLACE_ITEM = "REPLACE INTO [DarkAlleys]([X],[Y],[InfamyRequirement],[RuffianBrawlingStrength]) VALUES({:.4f},{:.4f},{},{});";
-	const std::string QUERY_ITEM = "SELECT [InfamyRequirement],[RuffianBrawlingStrength] FROM [DarkAlleys] WHERE [X]={:.4f} AND [Y]={:.4f};";
+	const std::string REPLACE_ITEM = "REPLACE INTO [DarkAlleys]([X],[Y],[InfamyRequirement],[RuffianBrawlingStrength],[MinimumWager]) VALUES({:.4f},{:.4f},{},{},{});";
+	const std::string QUERY_ITEM = "SELECT [InfamyRequirement],[RuffianBrawlingStrength],[MinimumWager] FROM [DarkAlleys] WHERE [X]={:.4f} AND [Y]={:.4f};";
 
 	const auto AutoCreateDarkAlleysTable = data::game::Common::Run(CREATE_TABLE);
 
@@ -22,7 +23,14 @@ namespace data::game::island::DarkAlley
 	void Write(const common::XY<double>& location, const DarkAlleyData& data)
 	{
 		AutoCreateDarkAlleysTable();
-		data::game::Common::Execute(std::format(REPLACE_ITEM, location.GetX(), location.GetY(), data.infamyRequirement, data.ruffianBrawlingStrength));
+		data::game::Common::Execute(
+			std::format(
+				REPLACE_ITEM, 
+				location.GetX(), 
+				location.GetY(), 
+				data.infamyRequirement, 
+				data.ruffianBrawlingStrength,
+				data.minimumWager));
 	}
 
 	std::optional<DarkAlleyData> Read(const common::XY<double>& location)
@@ -34,7 +42,8 @@ namespace data::game::island::DarkAlley
 			auto record = records.front();
 			return std::optional<DarkAlleyData>({
 				common::Data::StringToDouble(record[FIELD_INFAMY_REQUIREMENT]),
-				common::Data::StringToDouble(record[FIELD_RUFFIAN_BRAWLING_STRENGTH])
+				common::Data::StringToDouble(record[FIELD_RUFFIAN_BRAWLING_STRENGTH]),
+				common::Data::StringToDouble(record[FIELD_MINIMUM_WAGER])
 				});
 		}
 		return std::nullopt;

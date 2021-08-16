@@ -7,6 +7,7 @@ namespace data::game::island::DarkAlley
 	{
 		double infamyRequirement;
 		double ruffianBrawlingStrength;
+		double minimumWager;
 	};
 
 	void Clear();

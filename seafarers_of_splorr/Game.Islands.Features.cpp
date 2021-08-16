@@ -29,7 +29,8 @@ namespace game::islands::Features
 	{
 		data::game::island::DarkAlley::Write(location, {
 			common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0),
-			common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0)
+			common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0),
+			common::RNG::FromRange(1.0,4.0) + common::RNG::FromRange(1.0,4.0)
 			});
 	}
 
