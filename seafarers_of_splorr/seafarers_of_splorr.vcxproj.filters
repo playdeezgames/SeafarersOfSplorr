@@ -49,9 +49,6 @@
     <ClCompile Include="Common.Audio.cpp">
       <Filter>Source\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Common.Data.cpp">
-      <Filter>Source\Common</Filter>
-    </ClCompile>
     <ClCompile Include="Common.Utility.cpp">
       <Filter>Source\Common</Filter>
     </ClCompile>
@@ -418,9 +415,6 @@
       <Filter>Headers\Common</Filter>
     </ClInclude>
     <ClInclude Include="Common.Card.h">
-      <Filter>Headers\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common.Data.h">
       <Filter>Headers\Common</Filter>
     </ClInclude>
     <ClInclude Include="Common.Data.Properties.h">

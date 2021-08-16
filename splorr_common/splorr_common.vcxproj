@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Common.Data.h" />
     <ClInclude Include="Common.RNG.h" />
     <ClInclude Include="Common.XY.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Common.Data.cpp" />
     <ClCompile Include="Common.RNG.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

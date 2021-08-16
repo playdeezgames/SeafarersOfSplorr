@@ -1,7 +1,4 @@
 #include "Common.Data.h"
-#include <filesystem>
-#include <io.h>
-#include <sstream> //we need this one here
 namespace common::Data
 {
 	int ToInt(const std::string& text)
