@@ -31,9 +31,9 @@ namespace data::game::avatar::Statistics
 			auto record = result.front();
 			return std::optional<StatisticData>(
 			{
-				common::Data::StringToOptionalDouble(record[FIELD_MINIMUM]),
-				common::Data::StringToOptionalDouble(record[FIELD_MAXIMUM]),
-				common::Data::StringToDouble(record[FIELD_CURRENT])
+				common::Data::ToOptionalDouble(record[FIELD_MINIMUM]),
+				common::Data::ToOptionalDouble(record[FIELD_MAXIMUM]),
+				common::Data::ToDouble(record[FIELD_CURRENT])
 			});
 		}
 		return std::nullopt;

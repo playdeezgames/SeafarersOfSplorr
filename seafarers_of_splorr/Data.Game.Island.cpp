@@ -33,8 +33,8 @@ namespace data::game::Island
 		IslandData data =
 		{
 			{
-				common::Data::StringToDouble(record.find(FIELD_X)->second),
-				common::Data::StringToDouble(record.find(FIELD_Y)->second)
+				common::Data::ToDouble(record.find(FIELD_X)->second),
+				common::Data::ToDouble(record.find(FIELD_Y)->second)
 			},
 			record.find(FIELD_NAME)->second
 		};

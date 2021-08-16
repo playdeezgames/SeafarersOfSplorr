@@ -39,10 +39,10 @@ namespace data::game::island::Market
 			auto& record = records.front();
 			return std::optional<MarketData>(
 				{
-					common::Data::StringToDouble(record[FIELD_SUPPLY]),
-					common::Data::StringToDouble(record[FIELD_DEMAND]),
-					common::Data::StringToDouble(record[FIELD_PURCHASES]),
-					common::Data::StringToDouble(record[FIELD_SALES])
+					common::Data::ToDouble(record[FIELD_SUPPLY]),
+					common::Data::ToDouble(record[FIELD_DEMAND]),
+					common::Data::ToDouble(record[FIELD_PURCHASES]),
+					common::Data::ToDouble(record[FIELD_SALES])
 				});
 		}
 		return std::nullopt;
@@ -60,10 +60,10 @@ namespace data::game::island::Market
 		{
 			result[common::Data::ToInt(record[FIELD_COMMODITY_ID])] =
 				{
-					common::Data::StringToDouble(record[FIELD_SUPPLY]),
-					common::Data::StringToDouble(record[FIELD_DEMAND]),
-					common::Data::StringToDouble(record[FIELD_PURCHASES]),
-					common::Data::StringToDouble(record[FIELD_SALES])
+					common::Data::ToDouble(record[FIELD_SUPPLY]),
+					common::Data::ToDouble(record[FIELD_DEMAND]),
+					common::Data::ToDouble(record[FIELD_PURCHASES]),
+					common::Data::ToDouble(record[FIELD_SALES])
 				};
 		}
 		return result;

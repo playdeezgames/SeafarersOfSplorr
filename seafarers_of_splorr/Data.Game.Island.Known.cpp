@@ -45,8 +45,8 @@ namespace data::game::island::Known
 		for (auto& record : records)
 		{
 			result.push_back({
-				common::Data::StringToDouble(record[FIELD_X]),
-				common::Data::StringToDouble(record[FIELD_Y])
+				common::Data::ToDouble(record[FIELD_X]),
+				common::Data::ToDouble(record[FIELD_Y])
 				});
 		}
 		return result;

@@ -29,11 +29,11 @@ namespace data::game::Avatar
 			AvatarData data =
 			{
 				{
-					common::Data::StringToDouble(record.find(FIELD_X)->second),
-					common::Data::StringToDouble(record.find(FIELD_Y)->second)
+					common::Data::ToDouble(record.find(FIELD_X)->second),
+					common::Data::ToDouble(record.find(FIELD_Y)->second)
 				},
-				common::Data::StringToDouble(record.find(FIELD_HEADING)->second),
-				common::Data::StringToDouble(record.find(FIELD_SPEED)->second)
+				common::Data::ToDouble(record.find(FIELD_HEADING)->second),
+				common::Data::ToDouble(record.find(FIELD_SPEED)->second)
 			};
 			return data;
 		}

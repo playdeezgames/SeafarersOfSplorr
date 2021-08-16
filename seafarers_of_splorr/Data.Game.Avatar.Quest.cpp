@@ -47,8 +47,8 @@ namespace data::game::avatar::Quest
 		{
 			auto& record = records.front();
 			return std::optional<QuestData>({
-					{common::Data::StringToDouble(record[FIELD_DESTINATION_X]),common::Data::StringToDouble(record[FIELD_DESTINATION_Y])},
-					common::Data::StringToDouble(record[FIELD_REWARD]),
+					{common::Data::ToDouble(record[FIELD_DESTINATION_X]),common::Data::ToDouble(record[FIELD_DESTINATION_Y])},
+					common::Data::ToDouble(record[FIELD_REWARD]),
 					record[FIELD_ITEM_NAME],
 					record[FIELD_PERSON_NAME],
 					record[FIELD_PROFESSION_NAME]});

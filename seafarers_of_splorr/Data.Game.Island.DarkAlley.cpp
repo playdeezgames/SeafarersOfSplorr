@@ -41,9 +41,9 @@ namespace data::game::island::DarkAlley
 		{
 			auto record = records.front();
 			return std::optional<DarkAlleyData>({
-				common::Data::StringToDouble(record[FIELD_INFAMY_REQUIREMENT]),
-				common::Data::StringToDouble(record[FIELD_RUFFIAN_BRAWLING_STRENGTH]),
-				common::Data::StringToDouble(record[FIELD_MINIMUM_WAGER])
+				common::Data::ToDouble(record[FIELD_INFAMY_REQUIREMENT]),
+				common::Data::ToDouble(record[FIELD_RUFFIAN_BRAWLING_STRENGTH]),
+				common::Data::ToDouble(record[FIELD_MINIMUM_WAGER])
 				});
 		}
 		return std::nullopt;

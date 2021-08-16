@@ -44,12 +44,12 @@ namespace data::game::World
 			{
 				common::Data::ToInt(record.find(FIELD_VERSION)->second),
 				{
-					common::Data::StringToDouble(record.find(FIELD_WIDTH)->second),
-					common::Data::StringToDouble(record.find(FIELD_HEIGHT)->second)
+					common::Data::ToDouble(record.find(FIELD_WIDTH)->second),
+					common::Data::ToDouble(record.find(FIELD_HEIGHT)->second)
 				},
-				common::Data::StringToDouble(record.find(FIELD_MINIMUM_ISLAND_DISTANCE)->second),
-				common::Data::StringToDouble(record.find(FIELD_VIEW_DISTANCE)->second),
-				common::Data::StringToDouble(record.find(FIELD_DOCK_DISTANCE)->second)
+				common::Data::ToDouble(record.find(FIELD_MINIMUM_ISLAND_DISTANCE)->second),
+				common::Data::ToDouble(record.find(FIELD_VIEW_DISTANCE)->second),
+				common::Data::ToDouble(record.find(FIELD_DOCK_DISTANCE)->second)
 			};
 			return data;
 		}

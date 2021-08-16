@@ -23,7 +23,7 @@ namespace common::Data
 	}
 
 
-	double StringToDouble(const std::string& text)
+	double ToDouble(const std::string& text)
 	{
 		std::stringstream ss;
 		ss.str(text);
@@ -32,11 +32,11 @@ namespace common::Data
 		return result;
 	}
 
-	std::optional<double> StringToOptionalDouble(const std::string& text)
+	std::optional<double> ToOptionalDouble(const std::string& text)
 	{
 		if (!text.empty())
 		{
-			return StringToDouble(text);
+			return ToDouble(text);
 		}
 		return std::nullopt;
 	}

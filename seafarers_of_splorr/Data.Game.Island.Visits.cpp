@@ -40,7 +40,10 @@ namespace data::game::island::Visits
 		{
 			auto& record = result.front();
 			return std::optional<VisitData>({
-				{common::Data::StringToDouble(record[FIELD_X]),common::Data::StringToDouble(record[FIELD_Y])},
+				{
+					common::Data::ToDouble(record[FIELD_X]),
+					common::Data::ToDouble(record[FIELD_Y])
+				},
 				common::Data::ToInt(record[FIELD_VISITS]),
 				common::Data::ToOptionalInt(record[FIELD_TURN])
 				});
