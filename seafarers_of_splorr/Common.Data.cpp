@@ -58,4 +58,23 @@ namespace common::Data
 	{
 		return value - floor(value / divisor) * divisor;
 	}
+
+	std::string QuoteString(const std::string& original)
+	{
+		std::stringstream ss;
+		ss << "'";
+		for (auto ch : original)
+		{
+			if (ch == '\'')
+			{
+				ss << "''";
+			}
+			else
+			{
+				ss << ch;
+			}
+		}
+		ss << "'";
+		return ss.str();
+	}
 }

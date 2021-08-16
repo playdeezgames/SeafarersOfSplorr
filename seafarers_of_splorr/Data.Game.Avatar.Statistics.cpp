@@ -17,7 +17,7 @@ namespace data::game::avatar::Statistics
 	void Write(int statisticId, const StatisticData& data)
 	{
 		AutoCreateAvatarStatisticsTable();
-		auto query = std::format(REPLACE_ITEM, statisticId, Common::OfOptional(data.minimum), Common::OfOptional(data.maximum), data.current);
+		auto query = std::format(REPLACE_ITEM, statisticId, common::Data::OfOptional(data.minimum), common::Data::OfOptional(data.maximum), data.current);
 		data::game::Common::Execute(query);
 	}
 

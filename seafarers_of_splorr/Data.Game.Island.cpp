@@ -24,7 +24,7 @@ namespace data::game::Island
 				REPLACE_ITEM,
 				data.location.GetX(), 
 				data.location.GetY(),
-				data::game::Common::QuoteString(data.name));
+				common::Data::QuoteString(data.name));
 		data::game::Common::Execute(query);
 	}
 

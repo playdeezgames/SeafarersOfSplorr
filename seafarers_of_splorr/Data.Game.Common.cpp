@@ -16,36 +16,4 @@ namespace data::game::Common
 		};
 	}
 
-	std::string QuoteString(const std::string& original)
-	{
-		std::stringstream ss;
-		ss << "'";
-		for (auto ch : original)
-		{
-			if (ch == '\'')
-			{
-				ss << "''";
-			}
-			else
-			{
-				ss << ch;
-			}
-		}
-		ss << "'";
-		return ss.str();
-	}
-
-	std::string OfOptionalInt(const std::optional<int>& value)
-	{
-		std::stringstream ss;
-		if (value.has_value())
-		{
-			ss << value.value();
-		}
-		else
-		{
-			ss << "NULL";
-		}
-		return ss.str();
-	}
 }

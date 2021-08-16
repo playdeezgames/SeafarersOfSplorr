@@ -24,7 +24,7 @@ namespace data::game::island::Visits
 			data.location.GetX(),
 			data.location.GetY(),
 			data.visits,
-			data::game::Common::OfOptionalInt(data.lastVisit));
+			common::Data::OfOptional(data.lastVisit));
 		data::game::Common::Execute(query);
 	}
 

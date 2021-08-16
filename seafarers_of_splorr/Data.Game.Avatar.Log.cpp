@@ -1,3 +1,4 @@
+#include "Common.Data.h"
 #include "Data.Game.Avatar.Log.h"
 #include "Data.Game.Common.h"
 #include <format>
@@ -21,7 +22,7 @@ namespace data::game::avatar::Log
 	void Write(const std::string& color, const std::string& text)
 	{
 		AutoCreateAvatarLogTable();
-		Common::Execute(std::format(INSERT_ITEM, Common::AVATAR_ID, Common::QuoteString(color), Common::QuoteString(text)));
+		Common::Execute(std::format(INSERT_ITEM, Common::AVATAR_ID, common::Data::QuoteString(color), common::Data::QuoteString(text)));
 	}
 
 	std::list<std::tuple<std::string, std::string>> Read(size_t entryCount)

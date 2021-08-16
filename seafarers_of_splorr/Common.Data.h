@@ -1,4 +1,5 @@
 #pragma once
+#include <sstream>
 #include <string>
 #include <optional>
 namespace common::Data
@@ -13,4 +14,20 @@ namespace common::Data
 
 	double ClampDouble(double, double, double);
 	double ModuloDouble(double, double);
+
+	std::string QuoteString(const std::string&);
+	template<typename TValue>
+	std::string OfOptional(const std::optional<TValue>& value)
+	{
+		std::stringstream ss;
+		if (value.has_value())
+		{
+			ss << value.value();
+		}
+		else
+		{
+			ss << "NULL";
+		}
+		return ss.str();
+	}
 }

@@ -30,9 +30,9 @@ namespace data::game::island::Quests
 				data.destination.GetX(),
 				data.destination.GetY(),
 				data.reward,
-				data::game::Common::QuoteString(data.itemName),
-				data::game::Common::QuoteString(data.personName),
-				data::game::Common::QuoteString(data.professionName));
+				common::Data::QuoteString(data.itemName),
+				common::Data::QuoteString(data.personName),
+				common::Data::QuoteString(data.professionName));
 		data::game::Common::Execute(query);
 	}
 

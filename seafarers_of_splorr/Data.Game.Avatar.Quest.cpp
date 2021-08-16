@@ -28,9 +28,9 @@ namespace data::game::avatar::Quest
 					data.value().destination.GetX(),
 					data.value().destination.GetY(),
 					data.value().reward,
-					data::game::Common::QuoteString(data.value().itemName),
-					data::game::Common::QuoteString(data.value().personName),
-					data::game::Common::QuoteString(data.value().professionName)));
+					common::Data::QuoteString(data.value().itemName),
+					common::Data::QuoteString(data.value().personName),
+					common::Data::QuoteString(data.value().professionName)));
 		}
 		else
 		{
