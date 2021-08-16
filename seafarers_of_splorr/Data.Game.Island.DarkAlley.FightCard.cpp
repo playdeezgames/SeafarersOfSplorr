@@ -23,10 +23,10 @@ namespace data::game::island::dark_alley::FightCard
 		{
 			auto& record = records.front();
 			return std::optional<CardData>({
-				common::Data::StringToInt(record[FIELD_RANK_ID]),
-				common::Data::StringToInt(record[FIELD_SUIT_ID]),
-				common::Data::StringToInt(record[FIELD_ADJACENT]),
-				common::Data::StringToInt(record[FIELD_SHOWN])>0,
+				common::Data::ToInt(record[FIELD_RANK_ID]),
+				common::Data::ToInt(record[FIELD_SUIT_ID]),
+				common::Data::ToInt(record[FIELD_ADJACENT]),
+				common::Data::ToInt(record[FIELD_SHOWN])>0,
 				});
 		}
 		return std::nullopt;

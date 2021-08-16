@@ -21,6 +21,6 @@ namespace data::game::avatar::Ship
 	{
 		AutoCreateAvatarShipTable();
 		auto records = data::game::Common::Execute(std::format(QUERY_ITEM, data::game::Common::AVATAR_ID));
-		return common::Data::StringToInt(records.front()[FIELD_SHIP_ID]);
+		return common::Data::ToInt(records.front()[FIELD_SHIP_ID]);
 	}
 }

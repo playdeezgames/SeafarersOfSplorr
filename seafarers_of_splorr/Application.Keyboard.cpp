@@ -15,7 +15,7 @@ namespace application::Keyboard
 			auto& config = data::Stores::GetStore(data::Store::KEYS);
 			for (auto& item : config.items())
 			{
-				int code = common::Data::StringToInt(item.key());
+				int code = common::Data::ToInt(item.key());
 				::Command command = (::Command)(int)item.value();
 				keyboardCommands[code] = command;
 			}

@@ -42,7 +42,7 @@ namespace data::game::World
 			const auto& record = result.front();
 			WorldData data =
 			{
-				common::Data::StringToInt(record.find(FIELD_VERSION)->second),
+				common::Data::ToInt(record.find(FIELD_VERSION)->second),
 				{
 					common::Data::StringToDouble(record.find(FIELD_WIDTH)->second),
 					common::Data::StringToDouble(record.find(FIELD_HEIGHT)->second)

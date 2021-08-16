@@ -58,7 +58,7 @@ namespace data::game::island::Market
 		std::map<int, MarketData> result;
 		for (auto& record : records)
 		{
-			result[common::Data::StringToInt(record[FIELD_COMMODITY_ID])] =
+			result[common::Data::ToInt(record[FIELD_COMMODITY_ID])] =
 				{
 					common::Data::StringToDouble(record[FIELD_SUPPLY]),
 					common::Data::StringToDouble(record[FIELD_DEMAND]),

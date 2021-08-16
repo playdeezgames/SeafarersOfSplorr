@@ -23,7 +23,7 @@ namespace data::game::avatar::Items
 		if (!records.empty())
 		{
 			auto& record = records.front();
-			return (size_t)common::Data::StringToInt(record[FIELD_ITEM_COUNT]);
+			return (size_t)common::Data::ToInt(record[FIELD_ITEM_COUNT]);
 		}
 		return 0;
 	}
@@ -51,7 +51,7 @@ namespace data::game::avatar::Items
 			data::game::Common::Execute(std::format(QUERY_ALL, data::game::Common::AVATAR_ID));
 		for (auto& record : records)
 		{
-			result[common::Data::StringToInt(record[FIELD_ITEM_ID])] = (size_t)common::Data::StringToInt(record[FIELD_ITEM_COUNT]);
+			result[common::Data::ToInt(record[FIELD_ITEM_ID])] = (size_t)common::Data::ToInt(record[FIELD_ITEM_COUNT]);
 		}
 		return result;
 	}

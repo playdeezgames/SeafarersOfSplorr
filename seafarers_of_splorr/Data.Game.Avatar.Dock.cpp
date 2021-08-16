@@ -40,7 +40,7 @@ namespace data::game::avatar::Dock
 		if (!result.empty())
 		{
 			auto& record = result.front();
-			return std::optional<int>(common::Data::StringToInt(record[FIELD_STATE]));
+			return std::optional<int>(common::Data::ToInt(record[FIELD_STATE]));
 		}
 		return std::nullopt;
 	}

@@ -52,9 +52,6 @@
     <ClCompile Include="Common.Data.cpp">
       <Filter>Source\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Common.RNG.cpp">
-      <Filter>Source\Common</Filter>
-    </ClCompile>
     <ClCompile Include="Common.Utility.cpp">
       <Filter>Source\Common</Filter>
     </ClCompile>
@@ -432,13 +429,7 @@
     <ClInclude Include="Common.Deck.h">
       <Filter>Headers\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Common.RNG.h">
-      <Filter>Headers\Common</Filter>
-    </ClInclude>
     <ClInclude Include="Common.Utility.h">
-      <Filter>Headers\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common.XY.h">
       <Filter>Headers\Common</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.Common.h">

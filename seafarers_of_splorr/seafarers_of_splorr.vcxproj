@@ -82,12 +82,12 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;$(IncludePath)</IncludePath>
+    <IncludePath>E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
     <LibraryPath>E:\lib\steamworks_sdk_151\sdk\redistributable_bin\win64;E:\lib\steamworks_sdk_151\sdk\public\steam\lib\win64;E:\lib\SDL2-2.0.14\lib\x64;E:\lib\SDL2_mixer-2.0.4\lib\x64;E:\lib\SDL2_image-2.0.5\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;$(IncludePath)</IncludePath>
+    <IncludePath>E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
     <LibraryPath>E:\lib\steamworks_sdk_151\sdk\redistributable_bin\win64;E:\lib\SDL2-2.0.14\lib\x64;E:\lib\SDL2_mixer-2.0.4\lib\x64;E:\lib\SDL2_image-2.0.5\lib\x64;$(LibraryPath)</LibraryPath>
     <TargetName>Freebooter</TargetName>
   </PropertyGroup>
@@ -273,7 +273,6 @@
     <ClCompile Include="State.MainMenu.cpp" />
     <ClCompile Include="Options.cpp" />
     <ClCompile Include="State.Options.cpp" />
-    <ClCompile Include="Common.RNG.cpp" />
     <ClCompile Include="Common.Audio.cpp" />
     <ClCompile Include="State.SaveGame.cpp" />
     <ClCompile Include="State.Splash.cpp" />
@@ -392,14 +391,17 @@
     <ClInclude Include="Maze.hpp" />
     <ClInclude Include="Maze.Direction.h" />
     <ClInclude Include="Options.h" />
-    <ClInclude Include="Common.RNG.h" />
     <ClInclude Include="Common.Audio.h" />
     <ClInclude Include="Visuals.Sprites.h" />
     <ClInclude Include="Visuals.Textures.h" />
     <ClInclude Include="States.h" />
     <ClInclude Include="Common.Utility.h" />
-    <ClInclude Include="Common.XY.h" />
     <ClInclude Include="Visuals.WorldMap.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\splorr_common\splorr_common.vcxproj">
+      <Project>{2b17430f-5460-4daa-94c5-4542448aa963}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

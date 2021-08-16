@@ -4,7 +4,7 @@
 #include <sstream> //we need this one here
 namespace common::Data
 {
-	int StringToInt(const std::string& text)
+	int ToInt(const std::string& text)
 	{
 		std::stringstream ss;
 		ss.str(text);
@@ -13,11 +13,11 @@ namespace common::Data
 		return result;
 	}
 
-	std::optional<int> StringToOptionalInt(const std::string& text)
+	std::optional<int> ToOptionalInt(const std::string& text)
 	{
 		if (!text.empty())
 		{
-			return StringToInt(text);
+			return ToInt(text);
 		}
 		return std::nullopt;
 	}

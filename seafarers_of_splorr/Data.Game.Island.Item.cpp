@@ -48,7 +48,7 @@ namespace data::game::island::Item
 		auto records = data::game::Common::Execute(std::format(QUERY_ALL, location.GetX(), location.GetY()));
 		for (auto& record : records)
 		{
-			result.insert(common::Data::StringToInt(record[FIELD_ITEM_ID]));
+			result.insert(common::Data::ToInt(record[FIELD_ITEM_ID]));
 		}
 		return result;
 	}
