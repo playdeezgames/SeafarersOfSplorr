@@ -4,10 +4,15 @@
 #include "Application.MouseMotion.h"
 #include "Application.OnEnter.h"
 #include "Application.UIState.h"
+#include <format>
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.Docked.h"
+#include "Game.Avatar.Statistics.h"
 #include "Game.Confirmations.h"
+#include "Game.Islands.DarkAlley.h"
+#include "Game.Messages.h"
 #include "Visuals.Areas.h"
+#include "Visuals.Data.Colors.h"
 #include "Visuals.Menus.h"
 namespace state::in_play::DarkAlley
 {
@@ -25,9 +30,37 @@ namespace state::in_play::DarkAlley
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
+	static double GetMinimumWager()
+	{
+		return game::islands::DarkAlley::GetMinimumWager(game::avatar::Docked::GetDockedLocation().value()).value();
+	}
+
+	const auto GetMoney = game::avatar::Statistics::GetMoney;
+
 	static void OnGamble()
 	{
-
+		if (GetMoney() >= GetMinimumWager())
+		{
+			return;
+		}
+		game::Messages::Send(
+			{
+				"Come Back When Yer Serious!",
+				{
+					{
+						{19,9},
+						"You don't have enough money!",
+						visuals::data::Colors::GRAY,
+						visuals::HorizontalAlignment::CENTER
+					},
+					{
+						{19,11},
+						std::format("Minimum bet: {:.4f}", GetMinimumWager()),
+						visuals::data::Colors::GRAY,
+						visuals::HorizontalAlignment::CENTER
+					}
+				}
+			});
 	}
 
 	enum class DarkAlleyMenuItem

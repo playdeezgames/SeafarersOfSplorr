@@ -1,3 +1,4 @@
+#include "Application.UIState.h"
 #include "Game.Messages.h"
 #include <queue>
 namespace game::Messages
@@ -28,4 +29,11 @@ namespace game::Messages
 			Read();
 		}
 	}
+
+	void Send(const Message& message)
+	{
+		Write(message);
+		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+	}
+
 }
