@@ -195,6 +195,7 @@
     <ClCompile Include="Game.Audio.Sfx.cpp" />
     <ClCompile Include="Game.Avatar.AtSea.cpp" />
     <ClCompile Include="Game.Avatar.Destination.cpp" />
+    <ClCompile Include="Game.Avatar.Docked.ActionDescriptors.cpp" />
     <ClCompile Include="Game.Avatar.Docked.cpp" />
     <ClCompile Include="Game.Avatar.Items.cpp" />
     <ClCompile Include="Game.Avatar.Log.cpp" />
@@ -324,6 +325,7 @@
     <ClInclude Include="Game.Audio.Mux.h" />
     <ClInclude Include="Game.Audio.Sfx.h" />
     <ClInclude Include="Game.Avatar.Destination.h" />
+    <ClInclude Include="Game.Avatar.Docked.DockedStateTransition.h" />
     <ClInclude Include="Game.Avatar.Docked.h" />
     <ClInclude Include="Game.Avatar.DockedAction.h" />
     <ClInclude Include="Game.Avatar.DockedState.h" />

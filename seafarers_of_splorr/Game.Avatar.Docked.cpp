@@ -3,6 +3,7 @@
 #include <format>
 #include <functional>
 #include "Game.Avatar.Docked.h"
+#include "Game.Avatar.Docked.DockedStateTransition.h"
 #include "Game.Avatar.Log.h"
 #include "Game.Avatar.Quest.h"
 #include "Game.Avatar.Statistics.h"
@@ -91,19 +92,7 @@ namespace game::avatar::Docked
 		return false;
 	}
 
-	struct DockedStateTransition
-	{
-		std::string logColor;
-		std::string logText;
-		avatar::DockedState dockedState;
-	};
-
-	static std::function<DockedStateTransition()> DoTransition(const DockedStateTransition& transition)
-	{
-		return [transition]() { return transition; };
-	}
-
-	static DockedStateTransition OnEnterDarkAlley()
+	DockedStateTransition OnEnterDarkAlley()
 	{
 		auto location = GetDockedLocation().value();
 		auto data = data::game::island::DarkAlley::Read(location).value();
@@ -143,7 +132,7 @@ namespace game::avatar::Docked
 		};
 	}
 
-	static DockedStateTransition OnDefeatRuffian()
+	DockedStateTransition OnDefeatRuffian()
 	{
 		return
 		{
@@ -153,173 +142,15 @@ namespace game::avatar::Docked
 		};
 	}
 
-	const std::map<avatar::DockedAction, std::map<avatar::DockedState, std::function<DockedStateTransition()>>> actionDescriptors =
-	{
-		{
-			avatar::DockedAction::ENTER_MARKET,
-			{
-				{
-					avatar::DockedState::MARKET_BUY,
-					DoTransition(
-						{
-							visuals::data::Colors::GREEN,
-							"You enter the market.",
-							avatar::DockedState::MARKET
-						})
-				},
-				{
-					avatar::DockedState::MARKET_SELL,
-					DoTransition(
-					{
-						visuals::data::Colors::GREEN,
-						"You enter the market.",
-						avatar::DockedState::MARKET
-					})
-				},
-				{
-					avatar::DockedState::DOCK,
-					DoTransition(
-					{
-						visuals::data::Colors::GREEN,
-						"You enter the market.",
-						avatar::DockedState::MARKET
-					})
-				}
-			}
-		},
-		{
-			avatar::DockedAction::ENTER_DOCK,
-			{
-				{
-					avatar::DockedState::MARKET,
-					DoTransition(
-					{
-						visuals::data::Colors::GREEN,
-						"You leave the market.",
-						avatar::DockedState::DOCK
-					})
-				},
-				{
-					avatar::DockedState::SHIPYARD,
-					DoTransition(
-					{
-						visuals::data::Colors::GREEN,
-						"You leave the shipyard.",
-						avatar::DockedState::DOCK
-					})
-				},
-				{
-					avatar::DockedState::JOB_BOARD,
-					DoTransition(
-					{
-						visuals::data::Colors::GREEN,
-						"You leave the job board.",
-						avatar::DockedState::DOCK
-					})
-				},
-				{
-					avatar::DockedState::DARK_ALLEY_ENTRANCE,
-					DoTransition(
-					{
-						visuals::data::Colors::GREEN,
-						"You leave the dark alley.",
-						avatar::DockedState::DOCK
-					})
-				},
-				{
-					avatar::DockedState::DARK_ALLEY,
-					DoTransition(
-					{
-						visuals::data::Colors::GREEN,
-						"You leave the dark alley.",
-						avatar::DockedState::DOCK
-					})
-				},
-			}
-		},
-		{
-			avatar::DockedAction::MARKET_BUY,
-			{
-				{
-					avatar::DockedState::MARKET,
-					DoTransition(
-					{
-						visuals::data::Colors::GREEN,
-						"You browse for items to buy.",
-						avatar::DockedState::MARKET_BUY
-					})
-				}
-			}
-		},
-		{
-			avatar::DockedAction::MARKET_SELL,
-			{
-				{
-					avatar::DockedState::MARKET,
-					DoTransition(
-					{
-						visuals::data::Colors::GREEN,
-						"You look to sell yer items.",
-						avatar::DockedState::MARKET_SELL
-					})
-				}
-			}
-		},
-		{
-			avatar::DockedAction::ENTER_JOB_BOARD,
-			{
-				{
-					avatar::DockedState::DOCK,
-					DoTransition(
-					{
-						visuals::data::Colors::GREEN,
-						"You check for posted jobs.",
-						avatar::DockedState::JOB_BOARD
-					})
-				}
-			}
-		},
-		{
-			avatar::DockedAction::ENTER_SHIPYARD,
-			{
-				{
-					avatar::DockedState::DOCK,
-					DoTransition(
-					{
-						visuals::data::Colors::GREEN,
-						"You enter the shipyard.",
-						avatar::DockedState::SHIPYARD
-					})
-				}
-			}
-		},
-		{
-			avatar::DockedAction::ENTER_DARK_ALLEY,
-			{
-				{
-					avatar::DockedState::DOCK,
-					OnEnterDarkAlley
-				}
-			}
-		},
-		{
-			avatar::DockedAction::DEFEAT_RUFFIAN,
-			{
-				{
-					avatar::DockedState::DARK_ALLEY_ENTRANCE,
-					OnDefeatRuffian
-				}
-			}
-		}
-	};
+	const std::map<avatar::DockedAction, std::map<avatar::DockedState, std::function<DockedStateTransition()>>>& GetActionDescriptors();
 
 	bool DoActionTransition(const avatar::DockedAction& action)
 	{
 		auto dockedState = GetDockedState();
 		if (dockedState)
 		{
-			auto descriptor = actionDescriptors.find(action);
-			if (descriptor != actionDescriptors.end())
+			auto descriptor = GetActionDescriptors().find(action);
+			if (descriptor != GetActionDescriptors().end())
 			{
 				auto transition = descriptor->second.find(dockedState.value());
 				{

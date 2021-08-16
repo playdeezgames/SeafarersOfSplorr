@@ -370,6 +370,9 @@
     <ClCompile Include="Game.InPlay.Confirm.cpp">
       <Filter>Source\States\InPlay</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Avatar.Docked.ActionDescriptors.cpp">
+      <Filter>Source\Game\Avatar</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
@@ -716,6 +719,9 @@
     </ClInclude>
     <ClInclude Include="Game.Confirmations.h">
       <Filter>Headers\Game\Confirmation</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Avatar.Docked.DockedStateTransition.h">
+      <Filter>Headers\Game\Avatar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
