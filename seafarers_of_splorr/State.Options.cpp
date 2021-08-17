@@ -5,6 +5,7 @@
 #include "Application.Renderer.h"
 #include "Application.Sounds.h"
 #include "Application.UIState.h"
+#include "Audio.h"
 #include "Common.Application.h"
 #include "Common.Audio.h"
 #include "Common.Data.h"
@@ -77,7 +78,7 @@ namespace state::Options
 	static void RefreshMuteMenuItem()
 	{
 		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_MUTE,
-			common::Audio::IsMuted() ? UNMUTE : MUTE);
+			Audio::IsMuted() ? UNMUTE : MUTE);
 	}
 
 	static void RefreshSfxMenuItem()
@@ -113,7 +114,7 @@ namespace state::Options
 
 	static void ToggleMute()
 	{
-		common::Audio::SetMuted(!common::Audio::IsMuted()); 
+		Audio::SetMuted(!Audio::IsMuted()); 
 		::Options::Save(); 
 		Refresh();
 	}

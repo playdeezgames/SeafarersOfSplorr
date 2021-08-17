@@ -60,7 +60,7 @@ namespace common::Utility
 	std::optional<TKey> GetNthKey(const std::map<TKey, TValue>& table, size_t index)
 	{
 		auto iter = table.begin();
-		while (index > 0 && iter!=table.end())
+		while (index > 0 && iter != table.end())
 		{
 			iter++;
 			index--;

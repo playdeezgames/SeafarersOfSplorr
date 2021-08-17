@@ -1,3 +1,4 @@
+#include "Audio.h"
 #include "Common.Audio.h"
 #include "Common.Utility.h"
 #include "Data.Stores.h"
@@ -46,7 +47,7 @@ namespace common::audio
 
 		static bool initialized = false;
 
-		static void Initialize()
+		void Initialize()
 		{
 			if (!initialized)
 			{
@@ -65,7 +66,7 @@ namespace common::audio
 		void Play(const std::string& song)
 		{
 			Initialize();
-			if (!common::Audio::IsMuted())
+			if (!Audio::IsMuted())
 			{
 				if (!currentSong.has_value() || currentSong.value() != song)
 				{
@@ -99,7 +100,7 @@ namespace common::audio
 
 		static bool initialized = false;
 
-		static void Initialize()
+		void Initialize()
 		{
 			if (!initialized)
 			{
@@ -112,10 +113,10 @@ namespace common::audio
 			}
 		}
 
-		void Play(const std::string& name)
+		static void Play(const std::string& name)
 		{
 			Initialize();
-			if (!common::Audio::IsMuted())
+			if (!Audio::IsMuted())
 			{
 				const auto& item = sounds.find(name);
 				if (item != sounds.end())
@@ -149,33 +150,4 @@ namespace common::audio
 		}
 	}
 
-}
-namespace common::Audio
-{
-	static bool muted = false;
-
-	void Initialize()
-	{
-		common::audio::Sfx::Initialize();
-		common::audio::Mux::Initialize();
-	}
-
-	void SetMuted(bool newValue)
-	{
-		Initialize();
-		muted = newValue;
-		if (muted)
-		{
-			Mix_PauseMusic();
-		}
-		else
-		{
-			Mix_ResumeMusic();
-		}
-	}
-
-	bool IsMuted()
-	{
-		return muted;
-	}
 }

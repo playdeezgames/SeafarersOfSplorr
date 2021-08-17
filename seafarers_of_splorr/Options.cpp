@@ -1,3 +1,4 @@
+#include "Audio.h"
 #include "Common.Application.h"
 #include "Common.Audio.h"
 #include "Data.Stores.h"
@@ -12,7 +13,7 @@ namespace Options
 	void Initialize()
 	{
 		auto properties = data::Stores::GetStore(data::Store::OPTIONS);
-		common::Audio::SetMuted((bool)properties[MUTED]);
+		Audio::SetMuted((bool)properties[MUTED]);
 		common::audio::Sfx::SetVolume((int)properties[SFX_VOLUME]);
 		common::audio::Mux::SetVolume((int)properties[MUX_VOLUME]);
 		bool fullscreen = (properties.count(FULLSCREEN) > 0) ? ((bool)properties[FULLSCREEN]) : (false);
@@ -22,7 +23,7 @@ namespace Options
 	void Save()
 	{
 		auto& properties = data::Stores::GetStore(data::Store::OPTIONS);
-		properties[MUTED] = common::Audio::IsMuted();
+		properties[MUTED] = Audio::IsMuted();
 		properties[MUX_VOLUME] = common::audio::Mux::GetVolume();
 		properties[SFX_VOLUME] = common::audio::Sfx::GetVolume();
 		properties[FULLSCREEN] = common::Application::IsFullscreen();

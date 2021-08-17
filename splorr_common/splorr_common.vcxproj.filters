@@ -20,6 +20,9 @@
     <ClInclude Include="Common.Data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Common.Utility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Common.RNG.cpp">
