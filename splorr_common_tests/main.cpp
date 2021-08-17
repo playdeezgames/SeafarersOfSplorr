@@ -50,7 +50,7 @@ std::function<bool()> AddTest(const std::string& functionName, std::function<voi
 			}
 			catch (const TestAssertion& assertion)
 			{
-				Log(std::format("Assertion Failed: {}", assertion.GetMessage()));
+				Log(std::format("!!!Assertion Failed: {}", assertion.GetMessage()));
 				Log(std::format("Test Failed: {}", functionName));
 				Log("");
 				return false;

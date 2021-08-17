@@ -1,10 +1,8 @@
-#include <cassert>
 #include "Common.RNG.h"
 #include <format>
 #include <functional>
+#include "Harness.h"
 #include <string>
-void Assert(bool, const std::string&);
-std::function<bool()> AddTest(const std::string& functionName, std::function<void()> testFunction);
 namespace common::RNG
 {
 	static auto tests =
@@ -67,13 +65,25 @@ namespace common::RNG
 				Assert(std::find(inputList.begin(), inputList.end(), actual.value()) != inputList.end(), "Actual should have a value in the list");
 			}),
 		AddTest(
-			"common::RNG::FromGenerator should return the default result",
+			"common::RNG::FromGenerator should return the default result when the table is empty",
 			[]()
 			{
 				const int expected = 10;
 				std::map<int, size_t> inputTable;//empty!
 				auto actual = FromGenerator(inputTable, expected);
 				Assert(actual == expected, "Actual should have default value");
+			}),
+		AddTest(
+			"common::RNG::FromGenerator should return a result from the table when the table is not empty",
+			[]()
+			{
+				const int defaultValue = 10;
+				std::map<int, size_t> inputTable = 
+				{
+					{20, 1}
+				};
+				auto actual = FromGenerator(inputTable, defaultValue);
+				Assert(actual != defaultValue, "Actual should not have default value");
 			}),
 	};
 }

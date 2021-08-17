@@ -16,9 +16,12 @@ Test Passed: common::RNG::FromList should return that value when given a list wi
 Started Test: common::RNG::FromList should return that value that is in the input list
 Test Passed: common::RNG::FromList should return that value that is in the input list
 
-Started Test: common::RNG::FromGenerator should return the default result
-Test Passed: common::RNG::FromGenerator should return the default result
+Started Test: common::RNG::FromGenerator should return the default result when the table is empty
+Test Passed: common::RNG::FromGenerator should return the default result when the table is empty
 
-Total Tests: 7
-Total Passed: 7
+Started Test: common::RNG::FromGenerator should return a result from the table when the table is not empty
+Test Passed: common::RNG::FromGenerator should return a result from the table when the table is not empty
+
+Total Tests: 8
+Total Passed: 8
 Total Failed: 0
