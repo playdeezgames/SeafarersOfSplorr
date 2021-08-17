@@ -7,6 +7,29 @@
 
 std::function<void(const std::string&)> Log;
 
+class TestAssertion
+{
+private:
+	std::string message;
+public:
+	TestAssertion(const std::string& message)
+	{
+		this->message = message;
+	}
+	const std::string& GetMessage() const
+	{
+		return message;
+	}
+};
+
+void Assert(bool condition, const std::string& message)
+{
+	if (!condition)
+	{
+		throw TestAssertion(message);
+	}
+}
+
 std::list<std::function<bool()>>* tests = nullptr;
 std::function<bool()> AddTest(const std::string& functionName, std::function<void()> testFunction)
 {
@@ -22,11 +45,14 @@ std::function<bool()> AddTest(const std::string& functionName, std::function<voi
 			{
 				testFunction();
 				Log(std::format("Test Passed: {}", functionName));
+				Log("");
 				return true;
 			}
-			catch (...)
+			catch (const TestAssertion& assertion)
 			{
+				Log(std::format("Assertion Failed: {}", assertion.GetMessage()));
 				Log(std::format("Test Failed: {}", functionName));
+				Log("");
 				return false;
 			}
 		});
