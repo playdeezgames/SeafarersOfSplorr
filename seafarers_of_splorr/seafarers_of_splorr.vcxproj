@@ -321,7 +321,7 @@
     <ClInclude Include="Data.JSON.Store.h" />
     <ClInclude Include="Data.SQLite.Store.h" />
     <ClInclude Include="Data.SQLite.Stores.h" />
-    <ClInclude Include="Data.Stores.h" />
+    <ClInclude Include="Data.JSON.Stores.h" />
     <ClInclude Include="Game.Achievements.h" />
     <ClInclude Include="Game.Audio.Mux.h" />
     <ClInclude Include="Game.Audio.Sfx.h" />

@@ -5,7 +5,7 @@
 #include "Application.Renderer.h"
 #include "Application.UIState.h"
 #include "Common.Utility.h"
-#include "Data.Stores.h"
+#include "Data.JSON.Stores.h"
 #include <format>
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.Docked.h"

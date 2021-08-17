@@ -429,7 +429,7 @@
     <ClInclude Include="Data.SQLite.Stores.h">
       <Filter>Headers\Data</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Stores.h">
+    <ClInclude Include="Data.JSON.Stores.h">
       <Filter>Headers\Data</Filter>
     </ClInclude>
     <ClInclude Include="Game.Achievements.h">

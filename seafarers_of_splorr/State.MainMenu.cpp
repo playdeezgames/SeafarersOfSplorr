@@ -6,7 +6,7 @@
 #include "Application.UIState.h"
 #include "Common.Utility.h"
 #include "Data.JSON.Store.h"
-#include "Data.Stores.h"
+#include "Data.JSON.Stores.h"
 #include "Game.Audio.Mux.h"
 #include "Visuals.Areas.h"
 #include "Visuals.Menus.h"

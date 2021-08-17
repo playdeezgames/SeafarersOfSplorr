@@ -1,6 +1,6 @@
 #include <algorithm>
 #include "Data.JSON.h"
-#include "Data.Stores.h"
+#include "Data.JSON.Stores.h"
 #include <functional>
 #include "Visuals.Data.Properties.h"
 #include "Visuals.Data.Types.h"
