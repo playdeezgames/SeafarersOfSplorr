@@ -1,3 +1,4 @@
+#include "Cards.Card.h"
 #include "Common.RNG.h"
 #include "Data.Game.Island.DarkAlley.h"
 #include "Data.Game.Island.DarkAlley.FightCard.h"
@@ -12,39 +13,39 @@ namespace game::islands::dark_alley::FightCards
 	const size_t CARD_COLUMNS = 4;
 	const size_t CARD_COUNT = CARD_ROWS * CARD_COLUMNS;
 
-	const std::list<common::card::Rank> FACE_CARD_RANKS =
+	const std::list<cards::Rank> FACE_CARD_RANKS =
 	{
-		common::card::Rank::JACK,
-		common::card::Rank::QUEEN,
-		common::card::Rank::KING
+		cards::Rank::JACK,
+		cards::Rank::QUEEN,
+		cards::Rank::KING
 	};
 
-	static bool IsFaceCard(const common::Card& card)
+	static bool IsFaceCard(const cards::Card& card)
 	{
 		auto rank = std::get<0>(card);
 		return std::find(FACE_CARD_RANKS.begin(), FACE_CARD_RANKS.end(), rank) != FACE_CARD_RANKS.end();
 	}
 
-	const std::list<common::card::Rank> NONFACE_CARD_RANKS =
+	const std::list<cards::Rank> NONFACE_CARD_RANKS =
 	{
-		common::card::Rank::ACE,
-		common::card::Rank::DEUCE,
-		common::card::Rank::THREE,
-		common::card::Rank::FOUR,
-		common::card::Rank::FIVE,
-		common::card::Rank::SIX,
-		common::card::Rank::SEVEN,
-		common::card::Rank::EIGHT,
-		common::card::Rank::NINE,
-		common::card::Rank::TEN
+		cards::Rank::ACE,
+		cards::Rank::DEUCE,
+		cards::Rank::THREE,
+		cards::Rank::FOUR,
+		cards::Rank::FIVE,
+		cards::Rank::SIX,
+		cards::Rank::SEVEN,
+		cards::Rank::EIGHT,
+		cards::Rank::NINE,
+		cards::Rank::TEN
 	};
 
-	const std::list<common::card::Suit> CARD_SUITS =
+	const std::list<cards::Suit> CARD_SUITS =
 	{
-		common::card::Suit::CLUB,
-		common::card::Suit::DIAMOND,
-		common::card::Suit::HEART,
-		common::card::Suit::SPADE
+		cards::Suit::CLUB,
+		cards::Suit::DIAMOND,
+		cards::Suit::HEART,
+		cards::Suit::SPADE
 	};
 
 	const std::map<size_t, std::list<size_t>> ADJACENCIES =
@@ -88,14 +89,14 @@ namespace game::islands::dark_alley::FightCards
 			(faceCardCount);
 	}
 
-	static common::Card GenerateCard(const std::list<common::card::Rank>& ranks)
+	static cards::Card GenerateCard(const std::list<cards::Rank>& ranks)
 	{
 		auto rank = common::RNG::FromList(ranks).value();
 		auto suit = common::RNG::FromList(CARD_SUITS).value();
 		return std::make_tuple(rank, suit);
 	}
 
-	void PlaceFaceCards(std::map<size_t, DarkAlley::FightCard>& fightCards, std::set<common::Card>& cards, const data::game::island::DarkAlley::DarkAlleyData& darkAlley)
+	void PlaceFaceCards(std::map<size_t, DarkAlley::FightCard>& fightCards, std::set<cards::Card>& cards, const data::game::island::DarkAlley::DarkAlleyData& darkAlley)
 	{
 		size_t faceCardCount = DetermineFaceCardCount(darkAlley);
 		while (faceCardCount > 0)
@@ -120,7 +121,7 @@ namespace game::islands::dark_alley::FightCards
 		}
 	}
 
-	void PlaceNonfaceCards(std::map<size_t, DarkAlley::FightCard>& fightCards, std::set<common::Card>& cards)
+	void PlaceNonfaceCards(std::map<size_t, DarkAlley::FightCard>& fightCards, std::set<cards::Card>& cards)
 	{
 		for (size_t index = 0; index < CARD_COUNT; ++index)
 		{
@@ -155,7 +156,7 @@ namespace game::islands::dark_alley::FightCards
 	void DoGenerate(const common::XY<double>& location, const data::game::island::DarkAlley::DarkAlleyData& darkAlley)
 	{
 		std::map<size_t, DarkAlley::FightCard> fightCards;
-		std::set<common::Card> cards;
+		std::set<cards::Card> cards;
 		PlaceFaceCards(fightCards, cards, darkAlley);
 		PlaceNonfaceCards(fightCards, cards);
 		WriteCards(location, fightCards);
@@ -173,7 +174,7 @@ namespace game::islands::dark_alley::FightCards
 
 	static DarkAlley::FightCard DataToFightCard(const data::game::island::dark_alley::FightCard::CardData& data)
 	{
-		auto card = std::make_tuple((common::card::Rank)data.rank, (common::card::Suit)data.suit);
+		auto card = std::make_tuple((cards::Rank)data.rank, (cards::Suit)data.suit);
 		return 
 		{
 				card,

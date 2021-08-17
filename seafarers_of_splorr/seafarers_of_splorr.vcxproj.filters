@@ -702,6 +702,15 @@
     <ClInclude Include="Game.Avatar.Docked.DockedStateTransition.h">
       <Filter>Headers\Game\Avatar</Filter>
     </ClInclude>
+    <ClInclude Include="Cards.Rank.h">
+      <Filter>Headers\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Cards.Suit.h">
+      <Filter>Headers\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Cards.Card.h">
+      <Filter>Headers\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">

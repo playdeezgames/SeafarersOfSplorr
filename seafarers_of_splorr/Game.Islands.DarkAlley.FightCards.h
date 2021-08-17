@@ -1,4 +1,5 @@
 #pragma once
+#include "Cards.Card.h"
 #include "Common.Card.h"
 #include "Common.XY.h"
 #include <map>
@@ -7,7 +8,7 @@ namespace game::islands::DarkAlley
 {
 	struct FightCard
 	{
-		common::Card card;
+		cards::Card card;
 		int adjacent;
 		bool shown;
 		bool success;
