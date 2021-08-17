@@ -127,6 +127,81 @@ namespace common::Data
 				Assert(actual >= minimum, "Actual should be no lower than minimum");
 				Assert(actual <= maximum, "Actual should be no higher than maximum");
 				Assert(actual == value, "Actual should be value when value is in range");
+			}),
+		AddTest(
+			"common::Data::ModuloDouble should return nullopt when divisor is 0.0",
+			[]()
+			{
+				auto actual = ModuloDouble(0.0, 0.0);
+				Assert(!actual.has_value(), "Actual should not have a value when divisor is zero");
+			}),
+		AddTest(
+			"common::Data::ModuloDouble should return value when provided value is between 0 and divisor",
+			[]()
+			{
+				const double expected = 0.5;
+				const double divisor = 1.0;
+				auto actual = ModuloDouble(expected, divisor);
+				Assert(actual.has_value(), "Actual should have a value when divisor is nonzero");
+				Assert(actual.value() >= 0.0, "Actual should have a positive value");
+				Assert(actual.value() < divisor, "Actual should have a value less than divisor");
+				Assert(actual.value() == expected, "Actual should have provided value when in range");
+			}),
+		AddTest(
+			"common::Data::ModuloDouble should return positive value less than divisor when provided value is negative",
+			[]()
+			{
+				const double expected = 0.5;
+				const double divisor = 1.0;
+				auto actual = ModuloDouble(-0.5, divisor);
+				Assert(actual.has_value(), "Actual should have a value when divisor is nonzero");
+				Assert(actual.value() >= 0.0, "Actual should have a positive value");
+				Assert(actual.value() < divisor, "Actual should have a value less than divisor");
+				Assert(actual.value() == expected, "Actual should have provided value when in range");
+			}),
+		AddTest(
+			"common::Data::ModuloDouble should return positive value less than divisor when provided value is greater than divisor",
+			[]()
+			{
+				const double expected = 0.5;
+				const double divisor = 1.0;
+				auto actual = ModuloDouble(1.5, divisor);
+				Assert(actual.has_value(), "Actual should have a value when divisor is nonzero");
+				Assert(actual.value() >= 0.0, "Actual should have a positive value");
+				Assert(actual.value() < divisor, "Actual should have a value less than divisor");
+				Assert(actual.value() == expected, "Actual should have provided value when in range");
+			}),
+		AddTest(
+			"common::Data::QuoteString should put single quotes around a string",
+			[]()
+			{
+				const std::string expected = "'TEST'";
+				auto actual = QuoteString("TEST");
+				Assert(actual==expected, "Actual should have single quotes around it");
+			}),
+		AddTest(
+			"common::Data::QuoteString should put double quotes existing within input string",
+			[]()
+			{
+				const std::string expected = "'TE''ST'";
+				auto actual = QuoteString("TE'ST");
+				Assert(actual == expected, "Actual should double existing quotes");
+			}),
+		AddTest(
+			"common::Data::OfOptional should return NULL when passed nullopt",
+			[]()
+			{
+				const std::string expected = "NULL";
+				auto actual = OfOptional<int>(std::nullopt);
+				Assert(actual == expected, "Actual should return \"NULL\"");
+			}),
+		AddTest(
+			"common::Data::OfOptional should return string equivalent value when passed an int",
+			[]()
+			{
+				const std::string expected = "1";
+				auto actual = OfOptional<int>(1);
+				Assert(actual == expected, "Actual should return \"1\"");
 			})
 	};
 }

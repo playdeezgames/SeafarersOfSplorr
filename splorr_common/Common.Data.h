@@ -13,7 +13,7 @@ namespace common::Data
 	std::optional<int> ToPercentage(int, int);
 
 	double ClampDouble(double, double, double);
-	double ModuloDouble(double, double);//TODO: i am next!
+	std::optional<double> ModuloDouble(double, double);
 
 	std::string QuoteString(const std::string&);
 	template<typename TValue>

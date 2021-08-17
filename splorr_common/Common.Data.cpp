@@ -55,9 +55,13 @@ namespace common::Data
 			value;
 	}
 
-	double ModuloDouble(double value, double divisor)
+	std::optional<double> ModuloDouble(double value, double divisor)
 	{
-		return value - floor(value / divisor) * divisor;
+		if (divisor != 0.0)
+		{
+			return value - floor(value / divisor) * divisor;
+		}
+		return std::nullopt;
 	}
 
 	std::string QuoteString(const std::string& original)
