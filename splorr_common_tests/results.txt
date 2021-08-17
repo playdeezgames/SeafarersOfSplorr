@@ -1,3 +1,12 @@
+Started Test: common::Data::ToDouble should return 0.0 when given garbage
+Test Passed: common::Data::ToDouble should return 0.0 when given garbage
+
+Started Test: common::Data::ToDouble should parse a valid int
+Test Passed: common::Data::ToDouble should parse a valid int
+
+Started Test: common::Data::ToDouble should parse a valid double
+Test Passed: common::Data::ToDouble should parse a valid double
+
 Started Test: common::RNG::FromRange(int,int) should generate numbers within the specified range
 Test Passed: common::RNG::FromRange(int,int) should generate numbers within the specified range
 
@@ -22,6 +31,30 @@ Test Passed: common::RNG::FromGenerator should return the default result when th
 Started Test: common::RNG::FromGenerator should return a result from the table when the table is not empty
 Test Passed: common::RNG::FromGenerator should return a result from the table when the table is not empty
 
-Total Tests: 8
-Total Passed: 8
+Started Test: common::XY constructor should keep x and y values
+Test Passed: common::XY constructor should keep x and y values
+
+Started Test: common::XY operator+ should add x and y values toether
+Test Passed: common::XY operator+ should add x and y values toether
+
+Started Test: common::XY operator- should subtract x and y values
+Test Passed: common::XY operator- should subtract x and y values
+
+Started Test: common::XY operator== should return false when the values are not equal
+Test Passed: common::XY operator== should return false when the values are not equal
+
+Started Test: common::XY operator== should return true when the values are equal
+Test Passed: common::XY operator== should return true when the values are equal
+
+Started Test: common::XY operator* should multiply values by a scalar
+Test Passed: common::XY operator* should multiply values by a scalar
+
+Started Test: common::XY operator/ should divide values by a scalar
+Test Passed: common::XY operator/ should divide values by a scalar
+
+Started Test: common::XY operator* (scalar first) should multiply values by a scalar
+Test Passed: common::XY operator* (scalar first) should multiply values by a scalar
+
+Total Tests: 19
+Total Passed: 19
 Total Failed: 0
