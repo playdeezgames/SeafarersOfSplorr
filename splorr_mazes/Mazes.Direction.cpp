@@ -1,9 +1,9 @@
 #include <map>
-#include "Maze.Direction.h"
+#include "Mazes.Direction.h"
 #include <string>
-namespace maze
+namespace mazes
 {
-	std::vector<Direction> allDirections = 
+	const std::vector<Direction> allDirections = 
 	{
 		Direction::NORTH,
 		Direction::EAST,

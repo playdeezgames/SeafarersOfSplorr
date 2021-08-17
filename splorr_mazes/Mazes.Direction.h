@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-namespace maze
+namespace mazes
 {
 	enum class Direction
 	{

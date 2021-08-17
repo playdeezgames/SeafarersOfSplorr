@@ -5,7 +5,7 @@
 #include <optional>
 #include <vector>
 #include <set>
-namespace maze
+namespace mazes
 {
 	template<typename TDirection, typename TDoor>
 	class Cell

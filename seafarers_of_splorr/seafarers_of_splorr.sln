@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "splorr_common_tests", "..\s
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "splorr_cards", "..\splorr_cards\splorr_cards.vcxproj", "{EA3F51F8-5B3E-4302-8A09-DAB385874487}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "splorr_mazes", "..\splorr_mazes\splorr_mazes.vcxproj", "{767261C3-D455-4EB9-8BD8-FD9C010782E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +53,14 @@ Global
 		{EA3F51F8-5B3E-4302-8A09-DAB385874487}.Release|x64.Build.0 = Release|x64
 		{EA3F51F8-5B3E-4302-8A09-DAB385874487}.Release|x86.ActiveCfg = Release|Win32
 		{EA3F51F8-5B3E-4302-8A09-DAB385874487}.Release|x86.Build.0 = Release|Win32
+		{767261C3-D455-4EB9-8BD8-FD9C010782E2}.Debug|x64.ActiveCfg = Debug|x64
+		{767261C3-D455-4EB9-8BD8-FD9C010782E2}.Debug|x64.Build.0 = Debug|x64
+		{767261C3-D455-4EB9-8BD8-FD9C010782E2}.Debug|x86.ActiveCfg = Debug|Win32
+		{767261C3-D455-4EB9-8BD8-FD9C010782E2}.Debug|x86.Build.0 = Debug|Win32
+		{767261C3-D455-4EB9-8BD8-FD9C010782E2}.Release|x64.ActiveCfg = Release|x64
+		{767261C3-D455-4EB9-8BD8-FD9C010782E2}.Release|x64.Build.0 = Release|x64
+		{767261C3-D455-4EB9-8BD8-FD9C010782E2}.Release|x86.ActiveCfg = Release|Win32
+		{767261C3-D455-4EB9-8BD8-FD9C010782E2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

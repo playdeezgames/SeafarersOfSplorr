@@ -82,9 +82,6 @@
     <ClCompile Include="Visuals.Data.Types.cpp">
       <Filter>Source\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Maze.Direction.cpp">
-      <Filter>Source\Maze</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Commodities.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
@@ -450,15 +447,6 @@
     <ClInclude Include="Game.World.h">
       <Filter>Headers\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Maze.Direction.h">
-      <Filter>Headers\Maze</Filter>
-    </ClInclude>
-    <ClInclude Include="Maze.Door.h">
-      <Filter>Headers\Maze</Filter>
-    </ClInclude>
-    <ClInclude Include="Maze.hpp">
-      <Filter>Headers\Maze</Filter>
-    </ClInclude>
     <ClInclude Include="States.h">
       <Filter>Headers\States</Filter>
     </ClInclude>
@@ -752,17 +740,11 @@
     <Filter Include="Headers\Game">
       <UniqueIdentifier>{bc31f3c0-10c1-4ac8-a441-5057b4e3eb8d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headers\Maze">
-      <UniqueIdentifier>{2fbd379b-e5fd-4d1b-9ff1-68cb5daac066}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Headers\States">
       <UniqueIdentifier>{4c99ae2a-a9b4-4027-b8d7-3739b5da9994}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headers\Visuals">
       <UniqueIdentifier>{6e1535d9-77dc-4dfc-a0fd-3612c29470e3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Maze">
-      <UniqueIdentifier>{440983b7-340b-4b82-aff9-3ddf815c5e70}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headers\Game\Avatar">
       <UniqueIdentifier>{d11b3b22-d402-4a2d-aae3-6f2c9cd63a48}</UniqueIdentifier>

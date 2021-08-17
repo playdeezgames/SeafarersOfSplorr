@@ -5,7 +5,7 @@
 #include <optional>
 #include <memory>
 #include <functional>
-namespace maze
+namespace mazes
 {
 	enum class Door
 	{
