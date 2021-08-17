@@ -7,6 +7,27 @@ Test Passed: common::Data::ToDouble should parse a valid int
 Started Test: common::Data::ToDouble should parse a valid double
 Test Passed: common::Data::ToDouble should parse a valid double
 
+Started Test: common::Data::ToInt should return 0 when given garbage
+Test Passed: common::Data::ToInt should return 0 when given garbage
+
+Started Test: common::Data::ToInt should parse a valid int
+Test Passed: common::Data::ToInt should parse a valid int
+
+Started Test: common::Data::ToOptionalInt should return nullopt when given empty string
+Test Passed: common::Data::ToOptionalInt should return nullopt when given empty string
+
+Started Test: common::Data::ToOptionalInt should parse a valid int
+Test Passed: common::Data::ToOptionalInt should parse a valid int
+
+Started Test: common::Data::ToOptionalDouble should return nullopt when given empty string
+Test Passed: common::Data::ToOptionalDouble should return nullopt when given empty string
+
+Started Test: common::Data::ToOptionalDouble should parse a valid int
+Test Passed: common::Data::ToOptionalDouble should parse a valid int
+
+Started Test: common::Data::ToOptionalDouble should parse a valid double
+Test Passed: common::Data::ToOptionalDouble should parse a valid double
+
 Started Test: common::RNG::FromRange(int,int) should generate numbers within the specified range
 Test Passed: common::RNG::FromRange(int,int) should generate numbers within the specified range
 
@@ -55,6 +76,6 @@ Test Passed: common::XY operator/ should divide values by a scalar
 Started Test: common::XY operator* (scalar first) should multiply values by a scalar
 Test Passed: common::XY operator* (scalar first) should multiply values by a scalar
 
-Total Tests: 19
-Total Passed: 19
+Total Tests: 26
+Total Passed: 26
 Total Failed: 0
