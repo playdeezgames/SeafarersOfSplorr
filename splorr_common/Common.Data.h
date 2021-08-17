@@ -10,10 +10,10 @@ namespace common::Data
 	std::optional<int> ToOptionalInt(const std::string&);
 	std::optional<double> ToOptionalDouble(const std::string&);
 
-	int ToPercentage(int, int);
+	std::optional<int> ToPercentage(int, int);
 
 	double ClampDouble(double, double, double);
-	double ModuloDouble(double, double);
+	double ModuloDouble(double, double);//TODO: i am next!
 
 	std::string QuoteString(const std::string&);
 	template<typename TValue>

@@ -28,6 +28,24 @@ Test Passed: common::Data::ToOptionalDouble should parse a valid int
 Started Test: common::Data::ToOptionalDouble should parse a valid double
 Test Passed: common::Data::ToOptionalDouble should parse a valid double
 
+Started Test: common::Data::ToPercentage should return nullopt when given a 0 for maximum
+Test Passed: common::Data::ToPercentage should return nullopt when given a 0 for maximum
+
+Started Test: common::Data::ToPercentage should return percentage when given a nonzero for maximum
+Test Passed: common::Data::ToPercentage should return percentage when given a nonzero for maximum
+
+Started Test: common::Data::ClampDouble should return minimum when value is less than minimum
+!!!Assertion Failed: Actual should be minimum when less than minimum is passed
+Test Failed: common::Data::ClampDouble should return minimum when value is less than minimum
+
+Started Test: common::Data::ClampDouble should return maximum when value is greater than minimum
+!!!Assertion Failed: Actual should be maximum when higher than maximum is passed
+Test Failed: common::Data::ClampDouble should return maximum when value is greater than minimum
+
+Started Test: common::Data::ClampDouble should return value when value is in range
+!!!Assertion Failed: Actual should be value when value is in range
+Test Failed: common::Data::ClampDouble should return value when value is in range
+
 Started Test: common::RNG::FromRange(int,int) should generate numbers within the specified range
 Test Passed: common::RNG::FromRange(int,int) should generate numbers within the specified range
 
@@ -76,6 +94,6 @@ Test Passed: common::XY operator/ should divide values by a scalar
 Started Test: common::XY operator* (scalar first) should multiply values by a scalar
 Test Passed: common::XY operator* (scalar first) should multiply values by a scalar
 
-Total Tests: 26
-Total Passed: 26
-Total Failed: 0
+Total Tests: 31
+Total Passed: 28
+Total Failed: 3

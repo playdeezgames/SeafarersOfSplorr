@@ -55,6 +55,13 @@ std::function<bool()> AddTest(const std::string& functionName, std::function<voi
 				Log("");
 				return false;
 			}
+			catch (...)
+			{
+				Log(std::format("!!!Exception thrown"));
+				Log(std::format("Test Failed: {}", functionName));
+				Log("");
+				return false;
+			}
 		});
 	return tests->back();
 }

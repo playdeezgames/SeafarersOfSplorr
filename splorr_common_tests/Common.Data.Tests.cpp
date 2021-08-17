@@ -77,5 +77,56 @@ namespace common::Data
 				Assert(actual.has_value(), "Actual should have a value");
 				Assert(actual.value() == 1.2, "Actual should have a value of 1.2");
 			}),
+		AddTest(
+			"common::Data::ToPercentage should return nullopt when given a 0 for maximum",
+			[]()
+			{
+				auto actual = ToPercentage(0,0);
+				Assert(!actual.has_value(), "Actual not have a value");
+			}),
+		AddTest(
+			"common::Data::ToPercentage should return percentage when given a nonzero for maximum",
+			[]()
+			{
+				auto actual = ToPercentage(2,10);
+				Assert(actual.has_value(), "Actual should have a value");
+				Assert(actual.value()==20, "Actual should be the correct percentage");
+			}),
+		AddTest(
+			"common::Data::ClampDouble should return minimum when value is less than minimum",
+			[]()
+			{
+				const double minimum = 10.0;
+				const double maximum = 20.0;
+				const double value = 5.0;
+				auto actual = ClampDouble(value, minimum, maximum);
+				Assert(actual >= minimum, "Actual should be no lower than minimum");
+				Assert(actual <= maximum, "Actual should be no higher than maximum");
+				Assert(actual == minimum, "Actual should be minimum when less than minimum is passed");
+			}),
+		AddTest(
+			"common::Data::ClampDouble should return maximum when value is greater than minimum",
+			[]()
+			{
+				const double minimum = 10.0;
+				const double maximum = 20.0;
+				const double value = 25.0;
+				auto actual = ClampDouble(value, minimum, maximum);
+				Assert(actual >= minimum, "Actual should be no lower than minimum");
+				Assert(actual <= maximum, "Actual should be no higher than maximum");
+				Assert(actual == maximum, "Actual should be maximum when higher than maximum is passed");
+			}),
+		AddTest(
+			"common::Data::ClampDouble should return value when value is in range",
+			[]()
+			{
+				const double minimum = 10.0;
+				const double maximum = 20.0;
+				const double value = 15.0;
+				auto actual = ClampDouble(value, minimum, maximum);
+				Assert(actual >= minimum, "Actual should be no lower than minimum");
+				Assert(actual <= maximum, "Actual should be no higher than maximum");
+				Assert(actual == value, "Actual should be value when value is in range");
+			})
 	};
 }

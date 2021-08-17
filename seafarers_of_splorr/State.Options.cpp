@@ -82,13 +82,13 @@ namespace state::Options
 
 	static void RefreshSfxMenuItem()
 	{
-		std::string ss = std::format(FORMAT_SFX_VOLUMNE, common::Data::ToPercentage(common::audio::Sfx::GetVolume(), MIX_MAX_VOLUME));
+		std::string ss = std::format(FORMAT_SFX_VOLUMNE, common::Data::ToPercentage(common::audio::Sfx::GetVolume(), MIX_MAX_VOLUME).value());
 		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_SFX_VOLUME, ss);
 	}
 
 	static void RefreshMuxMenuItem()
 	{
-		std::string ss = std::format(FORMAT_MUX_VOLUMNE, common::Data::ToPercentage(common::audio::Mux::GetVolume(), MIX_MAX_VOLUME));
+		std::string ss = std::format(FORMAT_MUX_VOLUMNE, common::Data::ToPercentage(common::audio::Mux::GetVolume(), MIX_MAX_VOLUME).value());
 		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_MUX_VOLUME, ss);
 	}
 
