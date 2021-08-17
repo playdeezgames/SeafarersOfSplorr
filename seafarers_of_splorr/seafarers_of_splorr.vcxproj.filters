@@ -708,6 +708,9 @@
     <ClInclude Include="Audio.Mux.h">
       <Filter>Headers\Common</Filter>
     </ClInclude>
+    <ClInclude Include="Data.SQLite.Store.h">
+      <Filter>Headers\Data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">

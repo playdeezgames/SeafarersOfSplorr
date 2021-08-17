@@ -318,6 +318,7 @@
     <ClInclude Include="Data.Game.Island.Quests.h" />
     <ClInclude Include="Data.Game.Island.Visits.h" />
     <ClInclude Include="Data.Game.World.h" />
+    <ClInclude Include="Data.SQLite.Store.h" />
     <ClInclude Include="Data.SQLite.Stores.h" />
     <ClInclude Include="Data.Stores.h" />
     <ClInclude Include="Game.Achievements.h" />
