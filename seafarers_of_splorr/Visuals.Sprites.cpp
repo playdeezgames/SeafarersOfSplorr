@@ -1,4 +1,4 @@
-#include "Common.Application.Internals.h"
+#include "Common.Application.Renderer.h"
 #include "Data.Stores.h"
 #include <tuple>
 #include "Visuals.Data.Properties.h"

@@ -3,7 +3,6 @@
 #include <memory>
 namespace common::Application
 {
-	void DoTheThing(SDL_Renderer*);
 	struct Renderer
 	{
 		std::shared_ptr<SDL_Renderer> renderer;

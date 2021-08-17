@@ -167,7 +167,7 @@
     <ClCompile Include="Application.UIState.cpp" />
     <ClCompile Include="Application.Update.cpp" />
     <ClCompile Include="Application.OnEnter.cpp" />
-    <ClCompile Include="Common.Application.Internals.cpp" />
+    <ClCompile Include="Common.Application.Renderer.cpp" />
     <ClCompile Include="Data.Game.Avatar.cpp" />
     <ClCompile Include="Data.Game.Avatar.Dock.cpp" />
     <ClCompile Include="Data.Game.Avatar.Items.cpp" />
@@ -292,7 +292,7 @@
     <ClInclude Include="Application.Update.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="Common.Application.h" />
-    <ClInclude Include="Common.Application.Internals.h" />
+    <ClInclude Include="Common.Application.Renderer.h" />
     <ClInclude Include="Common.Card.h" />
     <ClInclude Include="Common.Deck.h" />
     <ClInclude Include="Data.Game.Avatar.Dock.h" />

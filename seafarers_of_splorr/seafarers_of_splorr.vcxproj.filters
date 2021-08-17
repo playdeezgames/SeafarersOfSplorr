@@ -43,7 +43,7 @@
     <ClCompile Include="Common.Application.cpp">
       <Filter>Source\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Common.Application.Internals.cpp">
+    <ClCompile Include="Common.Application.Renderer.cpp">
       <Filter>Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="Common.Audio.cpp">
@@ -405,7 +405,7 @@
     <ClInclude Include="Common.Application.h">
       <Filter>Headers\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Common.Application.Internals.h">
+    <ClInclude Include="Common.Application.Renderer.h">
       <Filter>Headers\Common</Filter>
     </ClInclude>
     <ClInclude Include="Common.Audio.h">
