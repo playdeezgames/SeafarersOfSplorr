@@ -3,19 +3,15 @@
 #include "sqlite3.h"
 namespace data::sqlite::Stores
 {
-	static std::map<data::sqlite::Store, std::shared_ptr<sqlite3>> connections;
-	const std::map<data::sqlite::Store, std::string> connectionStrings =
+	static std::map<int, std::shared_ptr<sqlite3>> connections;
+	static std::map<int, std::string> connectionStrings;
+	void SetConnection(int index, const std::string& connectionString)
 	{
-		{data::sqlite::Store::IN_MEMORY, ":memory:"},
-		{data::sqlite::Store::AUTOSAVE, "autosave.db"},
-		{data::sqlite::Store::SLOT_1, "slot1.db"},
-		{data::sqlite::Store::SLOT_2, "slot2.db"},
-		{data::sqlite::Store::SLOT_3, "slot3.db"},
-		{data::sqlite::Store::SLOT_4, "slot4.db"},
-		{data::sqlite::Store::SLOT_5, "slot5.db"}
-	};
+		connectionStrings[index] = connectionString;
+	}
 
-	static std::shared_ptr<sqlite3> GetConnection(const data::sqlite::Store& store)
+
+	static std::shared_ptr<sqlite3> GetConnection(int store)
 	{
 		auto iter = connections.find(store);
 		if (iter == connections.end())
@@ -55,7 +51,7 @@ namespace data::sqlite::Stores
 		return results;
 	}
 
-	std::list<std::map<std::string, std::string>> Execute(const data::sqlite::Store& store, const std::string& query)
+	std::list<std::map<std::string, std::string>> Execute(int store, const std::string& query)
 	{
 		auto connection = GetConnection(store);
 		if (connection)
@@ -65,7 +61,7 @@ namespace data::sqlite::Stores
 		return std::list<std::map<std::string, std::string>>();
 	}
 
-	void Copy(const data::sqlite::Store& storeFrom, const data::sqlite::Store& storeTo)
+	void Copy(int storeFrom, int storeTo)
 	{
 		auto connectionFrom = GetConnection(storeFrom);
 		auto connectionTo = GetConnection(storeTo);
@@ -74,7 +70,7 @@ namespace data::sqlite::Stores
 		sqlite3_backup_finish(handle);
 	}
 
-	void Bounce(const data::sqlite::Store& store)
+	void Bounce(int store)
 	{
 		connections.erase(store);
 	}

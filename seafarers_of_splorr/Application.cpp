@@ -1,6 +1,8 @@
 #include "Application.UIState.h"
 #include "Command.h"
 #include "Data.Stores.h"
+#include "Data.SQLite.Store.h"
+#include "Data.SQLite.Stores.h"
 #include "Game.h"
 #include "Game.Achievements.h"
 #include "Game.Audio.Mux.h"
@@ -82,6 +84,13 @@ namespace common::Application
 	{
 		game::Achievements::Start,
 		data::Stores::Start,
+		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::IN_MEMORY, ":memory:"),
+		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::AUTOSAVE, "autosave.db"),
+		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::SLOT_1, "slot1.db"),
+		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::SLOT_2, "slot2.db"),
+		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::SLOT_3, "slot3.db"),
+		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::SLOT_4, "slot4.db"),
+		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::SLOT_5, "slot5.db"),
 		state::Splash::Start,
 		state::Tip::Start,
 		state::MainMenu::Start,

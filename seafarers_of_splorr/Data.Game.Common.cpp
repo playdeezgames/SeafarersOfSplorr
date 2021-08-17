@@ -1,4 +1,5 @@
 #include "Data.Game.Common.h"
+#include "Data.SQLite.Store.h"
 #include "Data.SQLite.Stores.h"
 #include <sstream>
 namespace data::game::Common

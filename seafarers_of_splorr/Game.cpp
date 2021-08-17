@@ -1,4 +1,5 @@
 #include "Data.Game.World.h"
+#include "Data.SQLite.Store.h"
 #include "Data.SQLite.Stores.h"
 #include "Game.h"
 #include "Game.Avatar.AtSea.h"
