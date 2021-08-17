@@ -1,16 +1,17 @@
 #include "Common.Utility.h"
 #include "Data.JSON.h"
+#include "Data.JSON.Store.h"
 #include "Data.Stores.h"
 #include <map>
 #include <optional>
 #include <string>
 #include "Visuals.Texts.h"
-namespace data::Stores
+namespace data::json::Stores
 {
-	static std::map<data::Store, nlohmann::json> stores;
+	static std::map<data::json::Store, nlohmann::json> stores;
 	static bool modded = false;
 
-	nlohmann::json& GetStore(const data::Store& store)
+	nlohmann::json& GetStore(const data::json::Store& store)
 	{
 		return stores[store];
 	}
@@ -21,19 +22,19 @@ namespace data::Stores
 		std::optional<unsigned char> checkSum;
 	};
 
-	const std::map<data::Store, storeFile> storeFiles =
+	const std::map<data::json::Store, storeFile> storeFiles =
 	{
-		{data::Store::COLORS, {"config/graphics/colors.json",std::nullopt}},
-		{data::Store::SOUND_EFFECTS, {"config/audio/sfx.json",std::nullopt}},
-		{data::Store::MUSIC_THEMES, {"config/audio/mux.json",std::nullopt}},
-		{data::Store::TEXTURES, {"config/graphics/textures.json",std::nullopt}},
-		{data::Store::SPRITES, {"config/graphics/sprites.json",std::nullopt}},
-		{data::Store::FONTS, {"config/graphics/fonts.json",std::nullopt}},
-		{data::Store::LAYOUTS, {"config/ui/layouts.json",std::nullopt}},
-		{data::Store::KEYS, {"config/keyboard.json",std::nullopt}},
-		{data::Store::OPTIONS, {"config/options.json",std::nullopt}},
-		{data::Store::UI_SFX, {"config/ui/sfx.json",std::nullopt}},
-		{data::Store::TIPS, {"config/tips.json",std::nullopt}}
+		{data::json::Store::COLORS, {"config/graphics/colors.json",std::nullopt}},
+		{data::json::Store::SOUND_EFFECTS, {"config/audio/sfx.json",std::nullopt}},
+		{data::json::Store::MUSIC_THEMES, {"config/audio/mux.json",std::nullopt}},
+		{data::json::Store::TEXTURES, {"config/graphics/textures.json",std::nullopt}},
+		{data::json::Store::SPRITES, {"config/graphics/sprites.json",std::nullopt}},
+		{data::json::Store::FONTS, {"config/graphics/fonts.json",std::nullopt}},
+		{data::json::Store::LAYOUTS, {"config/ui/layouts.json",std::nullopt}},
+		{data::json::Store::KEYS, {"config/keyboard.json",std::nullopt}},
+		{data::json::Store::OPTIONS, {"config/options.json",std::nullopt}},
+		{data::json::Store::UI_SFX, {"config/ui/sfx.json",std::nullopt}},
+		{data::json::Store::TIPS, {"config/tips.json",std::nullopt}}
 	};
 
 	static unsigned char GetFileCheckSum(const std::string& filename)
@@ -70,7 +71,7 @@ namespace data::Stores
 		}
 	}
 
-	void Save(const data::Store& store)
+	void Save(const data::json::Store& store)
 	{
 		auto iter = storeFiles.find(store);
 		if (iter != storeFiles.end())

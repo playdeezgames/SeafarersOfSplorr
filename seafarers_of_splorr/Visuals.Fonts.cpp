@@ -12,9 +12,9 @@ namespace visuals::Fonts
 	{
 		if (!fontDataStore.contains(fontName))
 		{
-			if (::data::Stores::GetStore(::data::Store::FONTS).count(fontName) > 0)
+			if (::data::json::Stores::GetStore(::data::json::Store::FONTS).count(fontName) > 0)
 			{
-				fontDataStore[fontName] = data::JSON::Load(::data::Stores::GetStore(::data::Store::FONTS)[fontName]);
+				fontDataStore[fontName] = data::JSON::Load(::data::json::Stores::GetStore(::data::json::Store::FONTS)[fontName]);
 			}
 		}
 	}
@@ -23,7 +23,7 @@ namespace visuals::Fonts
 
 	static const nlohmann::json& FontNameToDataStoreModel(const std::string fontName)
 	{
-		if (::data::Stores::GetStore(::data::Store::FONTS).count(fontName) > 0)
+		if (::data::json::Stores::GetStore(::data::json::Store::FONTS).count(fontName) > 0)
 		{
 			InitializeFont(fontName);
 			return fontDataStore[fontName];

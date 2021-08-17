@@ -13,7 +13,7 @@ namespace Options
 
 	void Initialize()
 	{
-		auto properties = data::Stores::GetStore(data::Store::OPTIONS);
+		auto properties = data::json::Stores::GetStore(data::json::Store::OPTIONS);
 		Audio::SetMuted((bool)properties[MUTED]);
 		::audio::Sfx::SetVolume((int)properties[SFX_VOLUME]);
 		::audio::Mux::SetVolume((int)properties[MUX_VOLUME]);
@@ -23,11 +23,11 @@ namespace Options
 
 	void Save()
 	{
-		auto& properties = data::Stores::GetStore(data::Store::OPTIONS);
+		auto& properties = data::json::Stores::GetStore(data::json::Store::OPTIONS);
 		properties[MUTED] = Audio::IsMuted();
 		properties[MUX_VOLUME] = ::audio::Mux::GetVolume();
 		properties[SFX_VOLUME] = ::audio::Sfx::GetVolume();
 		properties[FULLSCREEN] = common::Application::IsFullscreen();
-		data::Stores::Save(data::Store::OPTIONS);
+		data::json::Stores::Save(data::json::Store::OPTIONS);
 	}
 }

@@ -1,5 +1,6 @@
 #include "Command.h"
 #include "Common.Data.h"
+#include "Data.JSON.Store.h"
 #include "Data.Stores.h"
 #pragma warning (disable: 26812)
 namespace application::Keyboard
@@ -12,7 +13,7 @@ namespace application::Keyboard
 	{
 		if (!initialized)
 		{
-			auto& config = data::Stores::GetStore(data::Store::KEYS);
+			auto& config = data::json::Stores::GetStore(data::json::Store::KEYS);
 			for (auto& item : config.items())
 			{
 				int code = common::Data::ToInt(item.key());

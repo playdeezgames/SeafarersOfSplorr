@@ -61,7 +61,7 @@
     <ClCompile Include="Data.SQLite.Stores.cpp">
       <Filter>Source\Data</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Stores.cpp">
+    <ClCompile Include="Data.JSON.Stores.cpp">
       <Filter>Source\Data</Filter>
     </ClCompile>
     <ClCompile Include="Game.Achievements.cpp">

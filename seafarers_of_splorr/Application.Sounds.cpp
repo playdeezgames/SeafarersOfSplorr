@@ -10,7 +10,7 @@ namespace application::Sounds
 
 	std::optional<std::string> Read(const application::ui::Sfx& sfx)
 	{
-		auto& store = data::Stores::GetStore(data::Store::UI_SFX);
+		auto& store = data::json::Stores::GetStore(data::json::Store::UI_SFX);
 		auto id = SfxToString(sfx);
 		if (store.count(id) > 0)
 		{

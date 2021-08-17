@@ -5,6 +5,7 @@
 #include "Application.Update.h"
 #include "Application.UIState.h"
 #include "Common.RNG.h"
+#include "Data.JSON.Store.h"
 #include "Data.Stores.h"
 #include "Game.Achievements.h"
 #include "Game.Audio.Mux.h"
@@ -43,7 +44,7 @@ namespace state::Tip
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
-		auto& store = data::Stores::GetStore(data::Store::TIPS);
+		auto& store = data::json::Stores::GetStore(data::json::Store::TIPS);
 
 		auto index = common::RNG::FromRange(0u, store.size());
 		auto& tip = store[index];

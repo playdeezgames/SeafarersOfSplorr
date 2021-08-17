@@ -21,7 +21,7 @@ namespace visuals::Textures
 	{
 		if (!initialized)
 		{
-			auto& properties = data::Stores::GetStore(data::Store::TEXTURES);
+			auto& properties = data::json ::Stores::GetStore(data::json::Store::TEXTURES);
 			for (auto& entry : properties.items())
 			{
 				std::string imageFileName = entry.value();

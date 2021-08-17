@@ -26,7 +26,7 @@ namespace audio::Sfx
 	{
 		if (!initialized)
 		{
-			nlohmann::json& j = data::Stores::GetStore(data::Store::SOUND_EFFECTS);
+			nlohmann::json& j = data::json::Stores::GetStore(data::json::Store::SOUND_EFFECTS);
 			for (auto& i : j.items())
 			{
 				Sfx::AddSound(i.key(), i.value());

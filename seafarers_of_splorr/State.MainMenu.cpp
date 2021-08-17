@@ -5,6 +5,7 @@
 #include "Application.Renderer.h"
 #include "Application.UIState.h"
 #include "Common.Utility.h"
+#include "Data.JSON.Store.h"
 #include "Data.Stores.h"
 #include "Game.Audio.Mux.h"
 #include "Visuals.Areas.h"
@@ -54,7 +55,7 @@ namespace state::MainMenu
 
 	static void OnEnter()
 	{
-		if (data::Stores::IsModded())
+		if (data::json::Stores::IsModded())
 		{
 			visuals::Texts::SetText(SUBLAYOUT_MODDED, TEXT_MODDED, MODDED);
 		}

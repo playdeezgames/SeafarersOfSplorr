@@ -191,7 +191,7 @@
     <ClCompile Include="Data.Game.Island.Visits.cpp" />
     <ClCompile Include="Data.Game.World.cpp" />
     <ClCompile Include="Data.SQLite.Stores.cpp" />
-    <ClCompile Include="Data.Stores.cpp" />
+    <ClCompile Include="Data.JSON.Stores.cpp" />
     <ClCompile Include="Game.Achievements.cpp" />
     <ClCompile Include="Game.Audio.Mux.cpp" />
     <ClCompile Include="Game.Audio.Sfx.cpp" />

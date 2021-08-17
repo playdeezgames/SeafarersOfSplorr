@@ -101,14 +101,14 @@ namespace visuals::Layouts
 	{
 		if (!layouts.contains(layoutName))
 		{
-			layouts[layoutName] = ::data::JSON::Load(::data::Stores::GetStore(::data::Store::LAYOUTS)[layoutName]);
+			layouts[layoutName] = ::data::JSON::Load(::data::json::Stores::GetStore(::data::json::Store::LAYOUTS)[layoutName]);
 			Internalize(layoutName, layouts[layoutName]);
 		}
 	}
 
 	void Start()
 	{
-		auto& store = ::data::Stores::GetStore(::data::Store::LAYOUTS);
+		auto& store = ::data::json::Stores::GetStore(::data::json ::Store::LAYOUTS);
 		for (auto& entry : store.items())
 		{
 			InitializeLayout(entry.key());

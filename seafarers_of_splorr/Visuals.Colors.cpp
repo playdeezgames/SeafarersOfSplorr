@@ -1,4 +1,5 @@
 #include "Data.JSON.h"
+#include "Data.JSON.Store.h"
 #include "Data.Stores.h"
 #include <map>
 #include <vector>
@@ -17,6 +18,6 @@ namespace visuals::Colors
 
 	std::tuple<unsigned char, unsigned char, unsigned char, unsigned char> Read(const std::string& key)
 	{
-		return ParseDescriptor(::data::Stores::GetStore(::data::Store::COLORS)[key]);
+		return ParseDescriptor(::data::json::Stores::GetStore(::data::json::Store::COLORS)[key]);
 	}
 }

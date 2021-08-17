@@ -20,7 +20,7 @@ namespace visuals::Sprites
 		static bool initialized = false;
 		if (!initialized)
 		{
-			auto& spriteStore = ::data::Stores::GetStore(::data::Store::SPRITES);
+			auto& spriteStore = ::data::json::Stores::GetStore(::data::json::Store::SPRITES);
 			for (auto& sprite : spriteStore.items())
 			{
 				auto& model = sprite.value();

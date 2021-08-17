@@ -83,7 +83,7 @@ namespace common::Application
 	static std::vector<std::function<void()>> starters = 
 	{
 		game::Achievements::Start,
-		data::Stores::Start,
+		data::json::Stores::Start,
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::IN_MEMORY, ":memory:"),
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::AUTOSAVE, "autosave.db"),
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::SLOT_1, "slot1.db"),
