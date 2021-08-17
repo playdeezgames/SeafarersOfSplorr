@@ -1,10 +1,9 @@
 #include <cassert>
 #include "Common.RNG.h"
-#include "Common.RNG.Tests.h"
 #include <format>
 #include <functional>
 #include <string>
-std::function<void()> AddTest(const std::string& functionName, std::function<void()> testFunction);
+std::function<bool()> AddTest(const std::string& functionName, std::function<void()> testFunction);
 namespace common::RNG
 {
 	static auto tests =
@@ -38,6 +37,6 @@ namespace common::RNG
 				auto result = FromRange(minimum, maximum);
 				assert(result >= minimum);
 				assert(result < maximum);
-			})
+			}),
 	};
 }

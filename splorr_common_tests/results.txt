@@ -1,0 +1,9 @@
+Started Test: common::RNG::FromRange(int,int) should generate numbers within the specified range
+Test Passed: common::RNG::FromRange(int,int) should generate numbers within the specified range
+Started Test: common::RNG::FromRange(size_t,size_t) should generate numbers within the specified range
+Test Passed: common::RNG::FromRange(size_t,size_t) should generate numbers within the specified range
+Started Test: common::RNG::FromRange(double,double) should generate numbers within the specified range
+Test Passed: common::RNG::FromRange(double,double) should generate numbers within the specified range
+Total Tests: 3
+Total Passed: 3
+Total Failed: 0
