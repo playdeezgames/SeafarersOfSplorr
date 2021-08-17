@@ -8,7 +8,7 @@ namespace game::Heading
 
 	double ToDegrees(double radians)
 	{
-		return common::Data::ModuloDouble(radians * DEGREES / TAU, DEGREES);
+		return common::Data::ModuloDouble(radians * DEGREES / TAU, DEGREES).value();
 	}
 
 	double ToRadians(double degrees)

@@ -77,7 +77,7 @@ namespace visuals::Layouts
 
 	static void InternalizeDrawn(const std::string layoutName, const nlohmann::json& drawn)
 	{
-		auto& types = drawn[common::data::Properties::TYPE];
+		auto& types = drawn[visuals::data::Properties::TYPE];
 		if (types.is_array())
 		{
 			for (auto& type : types)

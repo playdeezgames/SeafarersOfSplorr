@@ -9,6 +9,8 @@
 namespace common::Application
 {
 
+	const std::string WIDTH = "width";
+	const std::string HEIGHT = "height";
 	const std::string LOGICAL_WIDTH = "logicalWidth";
 	const std::string LOGICAL_HEIGHT = "logicalHeight";
 	const std::string TITLE = "title";
@@ -70,8 +72,8 @@ namespace common::Application
 
 	static void StartWindow(const nlohmann::json& properties)
 	{
-		int windowWidth = properties[common::data::Properties::WIDTH];
-		int windowHeight = properties[common::data::Properties::HEIGHT];
+		int windowWidth = properties[WIDTH];
+		int windowHeight = properties[HEIGHT];
 		int logicalWidth = properties[LOGICAL_WIDTH];
 		int logicalHeight = properties[LOGICAL_HEIGHT];
 		std::string windowTitle = properties[TITLE];

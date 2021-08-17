@@ -56,8 +56,8 @@ namespace visuals::SpriteGrid
 		spriteGrids.push_back(
 			{
 				common::XY<int>(
-					model[common::data::Properties::X],
-					model[common::data::Properties::Y]),
+					model[visuals::data::Properties::X],
+					model[visuals::data::Properties::Y]),
 				common::XY<int>(
 					model[visuals::data::Properties::CELL_WIDTH],
 					model[visuals::data::Properties::CELL_HEIGHT]),

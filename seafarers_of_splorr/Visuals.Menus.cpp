@@ -73,8 +73,8 @@ namespace visuals::Menu
 			{
 				menuItem[data::Properties::TEXT],
 				common::XY<int>(
-					menuItem[common::data::Properties::X],
-					menuItem[common::data::Properties::Y]),
+					menuItem[visuals::data::Properties::X],
+					menuItem[visuals::data::Properties::Y]),
 				enabled
 			});
 		return menuItemIndex;

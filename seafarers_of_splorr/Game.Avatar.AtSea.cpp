@@ -16,7 +16,7 @@ namespace game::avatar::AtSea
 		data::game::Avatar::AvatarData data =
 		{
 			{worldSize.GetX() / 2.0, worldSize.GetY() / 2.0},
-			common::Data::ModuloDouble(common::RNG::FromRange(0.0, game::Heading::DEGREES), game::Heading::DEGREES),
+			common::Data::ModuloDouble(common::RNG::FromRange(0.0, game::Heading::DEGREES), game::Heading::DEGREES).value(),
 			1.0
 		};
 		data::game::Avatar::Write(data);
@@ -30,7 +30,7 @@ namespace game::avatar::AtSea
 	void SetHeading(double heading)
 	{
 		auto data = data::game::Avatar::Read().value();
-		data.heading = common::Data::ModuloDouble(heading, game::Heading::DEGREES);
+		data.heading = common::Data::ModuloDouble(heading, game::Heading::DEGREES).value();
 		data::game::Avatar::Write(data);
 	}
 

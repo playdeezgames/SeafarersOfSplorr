@@ -19,6 +19,7 @@ namespace visuals::data::Properties
 	const std::string ENABLED = "enabled";
 	const std::string FONT = "font";
 	const std::string GREEN = "green";
+	const std::string HEIGHT = "height";
 	const std::string HORIZONTAL_ALIGNMENT = "horizontal-alignment";
 	const std::string IMAGE_ID = "image-id";
 	const std::string INACTIVE = "inactive";
@@ -27,6 +28,7 @@ namespace visuals::data::Properties
 	const std::string MENU_ID = "menu-id";
 	const std::string MENU_ITEM_ID = "menu-item-id";
 	const std::string MENU_ITEMS = "menu-items";
+	const std::string NAME = "name";
 	const std::string OFFSET_X = "offset-x";
 	const std::string OFFSET_Y = "offset-y";
 	const std::string RED = "red";
@@ -37,6 +39,10 @@ namespace visuals::data::Properties
 	const std::string TEXT = "text";
 	const std::string TEXT_ID = "text-id";
 	const std::string TEXTURE = "texture";
+	const std::string TYPE = "type";
 	const std::string VISIBLE = "visible";
+	const std::string WIDTH = "width";
 	const std::string WORLD_MAP_ID = "world-map-id";
+	const std::string X = "x";
+	const std::string Y = "y";
 }

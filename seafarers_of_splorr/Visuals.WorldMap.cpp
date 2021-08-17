@@ -151,8 +151,8 @@ namespace visuals::WorldMap
 	{
 		auto worldMapIndex = worldMaps.size();
 		worldMaps.push_back({
-			common::XY<int>(model[common::data::Properties::X], model[common::data::Properties::Y]),
-			common::XY<size_t>(model[common::data::Properties::WIDTH], model[common::data::Properties::HEIGHT]),
+			common::XY<int>(model[visuals::data::Properties::X], model[visuals::data::Properties::Y]),
+			common::XY<size_t>(model[visuals::data::Properties::WIDTH], model[visuals::data::Properties::HEIGHT]),
 			std::nullopt
 			});
 		if (model.count(visuals::data::Properties::WORLD_MAP_ID)>0)

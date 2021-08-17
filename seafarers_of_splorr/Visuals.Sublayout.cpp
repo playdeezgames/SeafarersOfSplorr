@@ -1,8 +1,8 @@
 #include "Common.Application.h"
-#include "Common.Data.Properties.h"
 #include "json.hpp"
 #include <SDL.h>
 #include "Visuals.Layouts.h"
+#include "Visuals.Data.Properties.h"
 namespace visuals::Sublayout
 {
 	struct InternalSublayout
@@ -23,7 +23,7 @@ namespace visuals::Sublayout
 		size_t index = internalSublayouts.size();
 		internalSublayouts.push_back(
 			{ 
-				model[common::data::Properties::NAME]
+				model[visuals::data::Properties::NAME]
 			});
 		return [index](const std::shared_ptr<common::Application::Renderer>& renderer) 
 		{

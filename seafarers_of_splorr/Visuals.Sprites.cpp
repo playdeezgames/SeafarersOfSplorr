@@ -30,15 +30,15 @@ namespace visuals::Sprites
 				{
 					((model.count(data::Properties::OFFSET_X) > 0) ? ((int)model[data::Properties::OFFSET_X]) : (0)),
 					((model.count(data::Properties::OFFSET_Y) > 0) ? ((int)model[data::Properties::OFFSET_Y]) : (0)),
-					model[common::data::Properties::WIDTH],
-					model[common::data::Properties::HEIGHT]
+					model[visuals::data::Properties::WIDTH],
+					model[visuals::data::Properties::HEIGHT]
 				};
 				std::tuple<int,int,int,int> source = 
 				{
-					model[common::data::Properties::X],
-					model[common::data::Properties::Y],
-					model[common::data::Properties::WIDTH],
-					model[common::data::Properties::HEIGHT]
+					model[visuals::data::Properties::X],
+					model[visuals::data::Properties::Y],
+					model[visuals::data::Properties::WIDTH],
+					model[visuals::data::Properties::HEIGHT]
 				};
 				internalSprites[sprite.key()] =
 				{

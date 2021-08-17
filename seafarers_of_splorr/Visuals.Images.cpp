@@ -46,7 +46,7 @@ namespace visuals::Image
 			{
 				model[visuals::data::Properties::SPRITE],
 				(model.count(data::Properties::COLOR) > 0) ? (::visuals::Colors::Read(model[data::Properties::COLOR])) : (defaultColor),
-				common::XY<int>(model[common::data::Properties::X], model[common::data::Properties::Y]),
+				common::XY<int>(model[visuals::data::Properties::X], model[visuals::data::Properties::Y]),
 				model.count(data::Properties::VISIBLE) == 0 || model[data::Properties::VISIBLE] == true,
 				(model.count(data::Properties::ANGLE) > 0) ? ((double)model[data::Properties::ANGLE]) : (0.0)
 			});

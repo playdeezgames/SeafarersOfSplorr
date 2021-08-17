@@ -26,10 +26,10 @@ namespace visuals::Areas
 
 	std::function<void(const std::shared_ptr<common::Application::Renderer>&)> Internalize(const std::string& layoutName, const nlohmann::json& model)
 	{
-		int x = model[common::data::Properties::X];
-		int y = model[common::data::Properties::Y];
-		size_t width = model[common::data::Properties::WIDTH];
-		size_t height = model[common::data::Properties::HEIGHT];
+		int x = model[visuals::data::Properties::X];
+		int y = model[visuals::data::Properties::Y];
+		size_t width = model[visuals::data::Properties::WIDTH];
+		size_t height = model[visuals::data::Properties::HEIGHT];
 		std::string areaId = model[visuals::data::Properties::AREA_ID];
 		std::optional<AreaMenu> areaMenu = std::nullopt;
 		if (model.count(visuals::data::Properties::MENU))

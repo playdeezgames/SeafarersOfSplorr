@@ -53,8 +53,8 @@ namespace visuals::Text
 				model[visuals::data::Properties::TEXT],
 				model[visuals::data::Properties::COLOR],
 				common::XY<int>(
-					model[common::data::Properties::X],
-					model[common::data::Properties::Y]),
+					model[visuals::data::Properties::X],
+					model[visuals::data::Properties::Y]),
 				(HorizontalAlignment)(int)model[visuals::data::Properties::HORIZONTAL_ALIGNMENT],
 				(bool)model[visuals::data::Properties::DROP_SHADOW],
 				model[visuals::data::Properties::DROP_SHADOW_COLOR],
