@@ -1,5 +1,4 @@
 #pragma once
-#include <SDL.h>
 #include <memory>
 namespace common::Application
 {
