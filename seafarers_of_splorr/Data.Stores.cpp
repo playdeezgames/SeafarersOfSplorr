@@ -36,11 +36,29 @@ namespace data::Stores
 		{data::Store::TIPS, {"config/tips.json",std::nullopt}}
 	};
 
+	static unsigned char GetFileCheckSum(const std::string& filename)
+	{
+		unsigned char result = 0;
+		FILE* file = nullptr;
+		fopen_s(&file, filename.c_str(), "rb");
+		unsigned char data;
+		if (file)
+		{
+			while (!feof(file))
+			{
+				fread(&data, 1, 1, file);
+				result += data;
+			}
+			fclose(file);
+		}
+		return result;
+	}
+
 	void Start()
 	{
 		for (auto& entry : storeFiles)
 		{
-			auto checkSum = common::Utility::GetFileCheckSum(entry.second.filename);
+			auto checkSum = GetFileCheckSum(entry.second.filename);
 			if (entry.second.checkSum.has_value() && checkSum != entry.second.checkSum.value())
 			{
 				modded = true;

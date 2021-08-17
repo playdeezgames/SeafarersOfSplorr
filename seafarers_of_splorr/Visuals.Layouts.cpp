@@ -1,5 +1,4 @@
 #include <algorithm>
-#include "Common.Data.Properties.h"
 #include "Data.JSON.h"
 #include "Data.Stores.h"
 #include <functional>

@@ -1,6 +1,5 @@
 #include "Common.Application.h"
 #include "Common.Application.Internals.h"
-#include "Common.Data.Properties.h"
 #include "Data.JSON.h"
 #include <memory>
 #include <SDL.h> //legit

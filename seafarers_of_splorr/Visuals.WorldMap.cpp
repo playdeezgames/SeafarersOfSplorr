@@ -1,5 +1,4 @@
 #include "Common.Application.h"
-#include "Common.Data.Properties.h"
 #include "Common.XY.h"
 #include <functional>
 #include "Game.Avatar.AtSea.h"

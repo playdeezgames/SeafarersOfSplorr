@@ -1,4 +1,3 @@
-#include "Common.Data.Properties.h"
 #include <functional>
 #include "json.hpp"
 #include <map>

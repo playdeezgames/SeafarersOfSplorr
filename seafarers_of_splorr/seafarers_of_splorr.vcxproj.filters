@@ -49,9 +49,6 @@
     <ClCompile Include="Common.Audio.cpp">
       <Filter>Source\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Common.Utility.cpp">
-      <Filter>Source\Common</Filter>
-    </ClCompile>
     <ClCompile Include="Data.Game.Common.cpp">
       <Filter>Source\Data</Filter>
     </ClCompile>
@@ -415,9 +412,6 @@
       <Filter>Headers\Common</Filter>
     </ClInclude>
     <ClInclude Include="Common.Card.h">
-      <Filter>Headers\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common.Data.Properties.h">
       <Filter>Headers\Common</Filter>
     </ClInclude>
     <ClInclude Include="Common.Deck.h">

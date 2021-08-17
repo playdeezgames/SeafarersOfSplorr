@@ -6,6 +6,16 @@ namespace common::Application
 {
 	int Run(const std::string&, const std::vector<std::string>&);
 }
+std::vector<std::string> ParseCommandLine(int argc, char** argv)
+{
+	std::vector<std::string> arguments;
+	arguments.reserve(argc);
+	for (int index = 0; index < argc; ++index)
+	{
+		arguments.push_back(std::string(argv[index]));
+	}
+	return arguments;
+}
 int main(int argc, char** argv)
 {
 	if (game::Achievements::ShouldRestartApp())
@@ -14,7 +24,7 @@ int main(int argc, char** argv)
 	}
 	const std::string APPLICATION = "config/ui/application.json";
 	common::RNG::Seed();
-	auto arguments = common::Utility::ParseCommandLine(argc, argv);
+	auto arguments = ParseCommandLine(argc, argv);
 	return common::Application::Run(APPLICATION, arguments);
 }
 

@@ -1,6 +1,5 @@
 #include "Application.MouseButtonUp.h"
 #include "Common.Application.h"
-#include "Common.Data.Properties.h"
 #include "json.hpp"
 #include <SDL.h>
 #include "Visuals.Areas.h"

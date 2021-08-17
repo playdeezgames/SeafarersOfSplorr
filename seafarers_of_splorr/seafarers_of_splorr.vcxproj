@@ -278,7 +278,6 @@
     <ClCompile Include="Visuals.Sprites.cpp" />
     <ClCompile Include="State.Start.cpp" />
     <ClCompile Include="Visuals.Textures.cpp" />
-    <ClCompile Include="Common.Utility.cpp" />
     <ClCompile Include="Visuals.WorldMap.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -296,7 +295,6 @@
     <ClInclude Include="Common.Application.Internals.h" />
     <ClInclude Include="Common.Card.h" />
     <ClInclude Include="Common.Deck.h" />
-    <ClInclude Include="Common.Data.Properties.h" />
     <ClInclude Include="Data.Game.Avatar.Dock.h" />
     <ClInclude Include="Data.Game.Avatar.h" />
     <ClInclude Include="Data.Game.Avatar.Items.h" />

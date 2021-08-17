@@ -6,7 +6,6 @@
 #include <optional>
 namespace common::Utility
 {
-	std::vector<std::string> ParseCommandLine(int, char**);
 	template<typename TEnum>
 	void Dispatch(const std::map<TEnum, std::function<void()>> handlers, const TEnum& key)
 	{
@@ -14,15 +13,6 @@ namespace common::Utility
 		if (iter != handlers.end())
 		{
 			iter->second();
-		}
-	}
-	template<typename TEnum, typename TParameter>
-	void DispatchParameter(const std::map<TEnum, std::function<void(const TParameter&)>> handlers, const TEnum& key, const TParameter& parameter)
-	{
-		auto iter = handlers.find(key);
-		if (iter != handlers.end())
-		{
-			iter->second(parameter);
 		}
 	}
 	template<typename TEnum, typename TResult>
@@ -65,9 +55,6 @@ namespace common::Utility
 			refresh();
 		};
 	}
-
-	bool FileExists(const std::string&);
-	unsigned char GetFileCheckSum(const std::string&);
 
 	template<typename TKey, typename TValue>
 	std::optional<TKey> GetNthKey(const std::map<TKey, TValue>& table, size_t index)

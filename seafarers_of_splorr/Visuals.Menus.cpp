@@ -1,5 +1,4 @@
 #include <algorithm>
-#include "Common.Data.Properties.h"
 #include "Common.XY.h"
 #include "Data.JSON.h"
 #include "Visuals.Data.Types.h"
