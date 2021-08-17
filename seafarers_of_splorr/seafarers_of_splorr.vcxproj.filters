@@ -411,12 +411,6 @@
     <ClInclude Include="Common.Audio.h">
       <Filter>Headers\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Common.Card.h">
-      <Filter>Headers\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common.Deck.h">
-      <Filter>Headers\Common</Filter>
-    </ClInclude>
     <ClInclude Include="Common.Utility.h">
       <Filter>Headers\Common</Filter>
     </ClInclude>
@@ -701,15 +695,6 @@
     </ClInclude>
     <ClInclude Include="Game.Avatar.Docked.DockedStateTransition.h">
       <Filter>Headers\Game\Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Cards.Rank.h">
-      <Filter>Headers\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Cards.Suit.h">
-      <Filter>Headers\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Cards.Card.h">
-      <Filter>Headers\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

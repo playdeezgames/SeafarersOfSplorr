@@ -1,6 +1,5 @@
 #pragma once
 #include "Cards.Card.h"
-#include "Common.Card.h"
 #include "Common.XY.h"
 #include <map>
 #include <optional>

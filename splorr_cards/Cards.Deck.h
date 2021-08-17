@@ -3,7 +3,7 @@
 #include <optional>
 #include <algorithm>
 #include "Common.RNG.h"
-namespace common
+namespace cards
 {
 	template<typename TCard>
 	class Deck
