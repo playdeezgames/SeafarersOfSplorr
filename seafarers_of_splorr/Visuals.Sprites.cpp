@@ -1,4 +1,5 @@
 #include "Common.Application.Renderer.h"
+#include "Data.JSON.Store.h"
 #include "Data.JSON.Stores.h"
 #include <tuple>
 #include "Visuals.Data.Properties.h"

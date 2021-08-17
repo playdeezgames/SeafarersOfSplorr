@@ -8,10 +8,10 @@
 #include "Visuals.Texts.h"
 namespace data::json::Stores
 {
-	static std::map<data::json::Store, nlohmann::json> stores;
+	static std::map<int, nlohmann::json> stores;
 	static bool modded = false;
 
-	nlohmann::json& GetStore(const data::json::Store& store)
+	nlohmann::json& GetStore(int store)
 	{
 		return stores[store];
 	}
@@ -22,20 +22,12 @@ namespace data::json::Stores
 		std::optional<unsigned char> checkSum;
 	};
 
-	const std::map<data::json::Store, storeFile> storeFiles =
+	static std::map<int, storeFile> storeFiles;
+
+	void SetStoreFile(int store, const std::string& filename, std::optional<unsigned char> checksum)
 	{
-		{data::json::Store::COLORS, {"config/graphics/colors.json",std::nullopt}},
-		{data::json::Store::SOUND_EFFECTS, {"config/audio/sfx.json",std::nullopt}},
-		{data::json::Store::MUSIC_THEMES, {"config/audio/mux.json",std::nullopt}},
-		{data::json::Store::TEXTURES, {"config/graphics/textures.json",std::nullopt}},
-		{data::json::Store::SPRITES, {"config/graphics/sprites.json",std::nullopt}},
-		{data::json::Store::FONTS, {"config/graphics/fonts.json",std::nullopt}},
-		{data::json::Store::LAYOUTS, {"config/ui/layouts.json",std::nullopt}},
-		{data::json::Store::KEYS, {"config/keyboard.json",std::nullopt}},
-		{data::json::Store::OPTIONS, {"config/options.json",std::nullopt}},
-		{data::json::Store::UI_SFX, {"config/ui/sfx.json",std::nullopt}},
-		{data::json::Store::TIPS, {"config/tips.json",std::nullopt}}
-	};
+		storeFiles[store] = { filename, checksum };
+	}
 
 	static unsigned char GetFileCheckSum(const std::string& filename)
 	{
@@ -71,7 +63,7 @@ namespace data::json::Stores
 		}
 	}
 
-	void Save(const data::json::Store& store)
+	void Save(int store)
 	{
 		auto iter = storeFiles.find(store);
 		if (iter != storeFiles.end())

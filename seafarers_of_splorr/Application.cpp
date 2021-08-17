@@ -1,5 +1,6 @@
 #include "Application.UIState.h"
 #include "Command.h"
+#include "Data.JSON.Store.h"
 #include "Data.JSON.Stores.h"
 #include "Data.SQLite.Store.h"
 #include "Data.SQLite.Stores.h"
@@ -83,6 +84,17 @@ namespace common::Application
 	static std::vector<std::function<void()>> starters = 
 	{
 		game::Achievements::Start,
+		data::json::Stores::DoSetStoreFile(data::json::Store::COLORS, "config/graphics/colors.json",std::nullopt),
+		data::json::Stores::DoSetStoreFile(data::json::Store::SOUND_EFFECTS, "config/audio/sfx.json",std::nullopt),
+		data::json::Stores::DoSetStoreFile(data::json::Store::MUSIC_THEMES, "config/audio/mux.json",std::nullopt),
+		data::json::Stores::DoSetStoreFile(data::json::Store::TEXTURES, "config/graphics/textures.json",std::nullopt),
+		data::json::Stores::DoSetStoreFile(data::json::Store::SPRITES, "config/graphics/sprites.json",std::nullopt),
+		data::json::Stores::DoSetStoreFile(data::json::Store::FONTS, "config/graphics/fonts.json",std::nullopt),
+		data::json::Stores::DoSetStoreFile(data::json::Store::LAYOUTS, "config/ui/layouts.json",std::nullopt),
+		data::json::Stores::DoSetStoreFile(data::json::Store::KEYS, "config/keyboard.json",std::nullopt),
+		data::json::Stores::DoSetStoreFile(data::json::Store::OPTIONS, "config/options.json",std::nullopt),
+		data::json::Stores::DoSetStoreFile(data::json::Store::UI_SFX, "config/ui/sfx.json",std::nullopt),
+		data::json::Stores::DoSetStoreFile(data::json::Store::TIPS, "config/tips.json",std::nullopt),
 		data::json::Stores::Start,
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::IN_MEMORY, ":memory:"),
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::AUTOSAVE, "autosave.db"),

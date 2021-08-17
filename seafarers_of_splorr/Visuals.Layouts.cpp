@@ -1,5 +1,6 @@
 #include <algorithm>
 #include "Data.JSON.h"
+#include "Data.JSON.Store.h"
 #include "Data.JSON.Stores.h"
 #include <functional>
 #include "Visuals.Data.Properties.h"
