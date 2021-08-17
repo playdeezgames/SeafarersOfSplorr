@@ -6,8 +6,9 @@
 #include "Application.Sounds.h"
 #include "Application.UIState.h"
 #include "Audio.h"
+#include "Audio.Mux.h"
+#include "Audio.Sfx.h"
 #include "Common.Application.h"
-#include "Common.Audio.h"
 #include "Common.Data.h"
 #include "Common.Utility.h"
 #include "Game.Audio.Mux.h"
@@ -44,14 +45,14 @@ namespace state::Options
 
 	static void AdjustSfxVolume(int delta)
 	{
-		common::audio::Sfx::SetVolume(common::audio::Sfx::GetVolume() + delta);
-		common::audio::Sfx::Play(application::Sounds::Read(application::ui::Sfx::WOOHOO));
+		::audio::Sfx::SetVolume(::audio::Sfx::GetVolume() + delta);
+		::audio::Sfx::Play(application::Sounds::Read(application::ui::Sfx::WOOHOO));
 		::Options::Save();
 	}
 
 	static void AdjustMuxVolume(int delta)
 	{
-		common::audio::Mux::SetVolume(common::audio::Mux::GetVolume() + delta);
+		::audio::Mux::SetVolume(::audio::Mux::GetVolume() + delta);
 		::Options::Save();
 	}
 
@@ -83,13 +84,13 @@ namespace state::Options
 
 	static void RefreshSfxMenuItem()
 	{
-		std::string ss = std::format(FORMAT_SFX_VOLUMNE, common::Data::ToPercentage(common::audio::Sfx::GetVolume(), MIX_MAX_VOLUME).value());
+		std::string ss = std::format(FORMAT_SFX_VOLUMNE, common::Data::ToPercentage(::audio::Sfx::GetVolume(), MIX_MAX_VOLUME).value());
 		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_SFX_VOLUME, ss);
 	}
 
 	static void RefreshMuxMenuItem()
 	{
-		std::string ss = std::format(FORMAT_MUX_VOLUMNE, common::Data::ToPercentage(common::audio::Mux::GetVolume(), MIX_MAX_VOLUME).value());
+		std::string ss = std::format(FORMAT_MUX_VOLUMNE, common::Data::ToPercentage(::audio::Mux::GetVolume(), MIX_MAX_VOLUME).value());
 		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_MUX_VOLUME, ss);
 	}
 

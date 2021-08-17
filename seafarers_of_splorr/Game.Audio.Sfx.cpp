@@ -1,5 +1,6 @@
-#include "Common.Audio.h"
+#include "Audio.Sfx.h"
 #include "Game.Audio.Sfx.h"
+#include <map>
 namespace game::audio::Sfx
 {
 	const std::map<game::audio::GameSfx, std::string> table =
@@ -14,7 +15,7 @@ namespace game::audio::Sfx
 		auto iter = table.find(gameSfx);
 		if (iter != table.end())
 		{
-			common::audio::Sfx::Play(iter->second);
+			::audio::Sfx::Play(iter->second);
 		}
 	}
 }

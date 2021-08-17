@@ -1,4 +1,4 @@
-#include "Common.Audio.h"
+#include "Audio.Mux.h"
 #include "Game.Audio.Mux.h"
 #include <map>
 namespace game::audio::Mux
@@ -9,7 +9,7 @@ namespace game::audio::Mux
 	};
 	void Play(const Theme& theme)
 	{
-		common::audio::Mux::Play(themeTable.find(theme)->second);
+		::audio::Mux::Play(themeTable.find(theme)->second);
 	}
 	std::function<void()> GoToTheme(const Theme& theme)
 	{

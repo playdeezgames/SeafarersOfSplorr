@@ -367,6 +367,12 @@
     <ClCompile Include="Audio.cpp">
       <Filter>Source\Common</Filter>
     </ClCompile>
+    <ClCompile Include="Audio.Sfx.cpp">
+      <Filter>Source\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio.Mux.cpp">
+      <Filter>Source\Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
@@ -409,9 +415,6 @@
       <Filter>Headers\Common</Filter>
     </ClInclude>
     <ClInclude Include="Common.Application.Renderer.h">
-      <Filter>Headers\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common.Audio.h">
       <Filter>Headers\Common</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.Common.h">
@@ -697,6 +700,12 @@
       <Filter>Headers\Game\Avatar</Filter>
     </ClInclude>
     <ClInclude Include="Audio.h">
+      <Filter>Headers\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio.Sfx.h">
+      <Filter>Headers\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio.Mux.h">
       <Filter>Headers\Common</Filter>
     </ClInclude>
   </ItemGroup>
