@@ -1,26 +1,10 @@
 #pragma once
 #include "json.hpp"
-namespace data
+#include "Data.JSON.Store.h"
+namespace data::json::Stores
 {
-	enum class Store
-	{
-		COLORS,
-		SOUND_EFFECTS,
-		MUSIC_THEMES,
-		TEXTURES,
-		SPRITES,
-		FONTS,
-		LAYOUTS,
-		KEYS,
-		OPTIONS,
-		UI_SFX,
-		TIPS
-	};
-}
-namespace data::Stores
-{
-	nlohmann::json& GetStore(const data::Store&);
+	nlohmann::json& GetStore(const data::json::Store&);
 	void Start();
-	void Save(const data::Store&);
+	void Save(const data::json::Store&);
 	bool IsModded();
 }

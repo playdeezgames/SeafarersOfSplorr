@@ -711,6 +711,9 @@
     <ClInclude Include="Data.SQLite.Store.h">
       <Filter>Headers\Data</Filter>
     </ClInclude>
+    <ClInclude Include="Data.JSON.Store.h">
+      <Filter>Headers\Data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
