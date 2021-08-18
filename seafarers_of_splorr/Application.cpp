@@ -15,6 +15,7 @@
 #include <SDL.h> //legit
 #include "States.h"
 #include "Sublayouts.h"
+#include "UIState.h"
 #include "Visuals.Layouts.h"
 namespace application::Command
 {
@@ -155,16 +156,16 @@ namespace common::Application
 
 	bool IsRunning()
 	{
-		return ::application::UIState::Read() != ::UIState::QUIT;
+		return (::UIState)::application::UIState::Read() != ::UIState::QUIT;
 	}
 
 	static std::optional<::UIState> currentState = std::nullopt;
 
 	void Update(unsigned int ticks)
 	{
-		if (!currentState || currentState.value() != ::application::UIState::Read())
+		if (!currentState || currentState.value() != (::UIState)::application::UIState::Read())
 		{
-			currentState = ::application::UIState::Read();
+			currentState = (::UIState)::application::UIState::Read();
 			//load the layout!
 			application::OnEnter::Handle();
 		}

@@ -7,6 +7,7 @@
 #include "Common.Utility.h"
 #include "Game.h"
 #include "Game.Audio.Mux.h"
+#include "UIState.h"
 #include "Visuals.Menus.h"
 #include "Visuals.Areas.h"
 namespace state::Start

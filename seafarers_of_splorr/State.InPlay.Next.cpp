@@ -6,6 +6,7 @@
 #include "Game.Confirmations.h"
 #include "Game.Messages.h"
 #include <map>
+#include "UIState.h"
 namespace state::in_play::Next
 {
 	struct StatusChecker

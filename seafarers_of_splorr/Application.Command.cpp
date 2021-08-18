@@ -3,7 +3,7 @@
 #include "Common.Utility.h"
 namespace application::Command
 {
-	static std::map<::UIState, std::map<::Command, std::function<void()>>> commandHandlers;
+	static std::map<int, std::map<::Command, std::function<void()>>> commandHandlers;
 
 	void Handle(const ::Command& command)
 	{
@@ -14,7 +14,7 @@ namespace application::Command
 			});
 	}
 
-	void SetHandlers(const ::UIState& state, const std::map<::Command, std::function<void()>>& handlers)
+	void SetHandlers(int state, const std::map<::Command, std::function<void()>>& handlers)
 	{
 		commandHandlers[state] = handlers;
 	}
@@ -35,7 +35,7 @@ namespace application::Command
 		::Command::START
 	};
 
-	void SetHandler(const ::UIState& state, std::function<void()> handler)
+	void SetHandler(int state, std::function<void()> handler)
 	{
 		std::map<::Command, std::function<void()>> commandHandlers;
 		for (auto command : commands)

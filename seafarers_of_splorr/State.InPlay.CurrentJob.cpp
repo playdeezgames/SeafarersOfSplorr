@@ -13,6 +13,7 @@
 #include "Game.Heading.h"
 #include "Game.Islands.h"
 #include "Game.Islands.Quests.h"
+#include "UIState.h"
 #include "Visuals.Areas.h"
 #include "Visuals.Menus.h"
 #include "Visuals.Texts.h"

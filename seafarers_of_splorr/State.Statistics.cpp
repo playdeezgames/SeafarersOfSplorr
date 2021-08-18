@@ -8,6 +8,7 @@
 #include "Game.Audio.Mux.h"
 #include <format>
 #include <tuple>
+#include "UIState.h"
 #include "Visuals.Texts.h"
 namespace state::Statistics
 {

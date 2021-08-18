@@ -5,6 +5,7 @@
 #include "Application.UIState.h"
 #include "Game.Audio.Mux.h"
 #include "Game.Messages.h"
+#include "UIState.h"
 #include "Visuals.SpriteGrid.h"
 #include "Visuals.Texts.h"
 namespace state::in_play::Message

@@ -5,9 +5,9 @@
 #include "Visuals.Layouts.h"
 namespace application::Renderer
 {
-	static std::map<::UIState, std::string> renderLayouts;
+	static std::map<int, std::string> renderLayouts;
 
-	void SetRenderLayout(const ::UIState& state, const std::string& layoutName)
+	void SetRenderLayout(int state, const std::string& layoutName)
 	{
 		renderLayouts[state] = layoutName;
 	}

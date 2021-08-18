@@ -7,6 +7,7 @@
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.Ship.h"
 #include "Game.Ships.h"
+#include "UIState.h"
 #include "Visuals.Texts.h"
 namespace state::in_play::ShipStatus
 {

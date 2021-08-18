@@ -1,7 +1,11 @@
 #pragma once
 #include <string>
-#include "UIState.h"
 namespace application::Renderer
 {
-	void SetRenderLayout(const ::UIState&, const std::string&);
+	void SetRenderLayout(int, const std::string&);
+	template<typename TState>
+	void SetRenderLayout(const TState& state, const std::string& layoutName)
+	{
+		SetRenderLayout((int)state, layoutName);
+	}
 }

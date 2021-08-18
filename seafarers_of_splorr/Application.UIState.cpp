@@ -6,15 +6,15 @@
 #include <stack>
 namespace application::UIState
 {
-	static ::UIState uiState = ::UIState::SPLASH;
-	static std::stack<::UIState> stateStack;
+	static int uiState = 0;//TODO: we may need to set this!
+	static std::stack<int> stateStack;
 
-	void Write(const ::UIState& state)
+	void Write(int state)
 	{
 		uiState = state;
 	}
 
-	std::function<void()> GoTo(const ::UIState& state)
+	std::function<void()> GoTo(int state)
 	{
 		return [state]()
 		{
@@ -23,18 +23,18 @@ namespace application::UIState
 	}
 
 
-	const ::UIState& Read()
+	int Read()
 	{
 		return uiState;
 	}
 
-	void Push(const ::UIState& state)
+	void Push(int state)
 	{
 		stateStack.push(uiState);
 		Write(state);
 	}
 
-	std::function<void()> PushTo(const ::UIState& state)
+	std::function<void()> PushTo(int state)
 	{
 		return [state]() {
 			Push(state);

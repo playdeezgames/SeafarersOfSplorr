@@ -5,6 +5,7 @@
 #include "Application.OnEnter.h"
 #include "Application.UIState.h"
 #include "Game.Audio.Mux.h"
+#include "UIState.h"
 namespace state::Splash
 {
 	const size_t TICKS_TOTAL = 3000;

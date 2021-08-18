@@ -4,9 +4,9 @@
 #include "Application.Handlers.h"
 namespace application::Update
 {
-	static std::map<::UIState, std::vector<Handler>> handlers;
+	static std::map<int, std::vector<Handler>> handlers;
 
-	void AddHandler(const ::UIState& state, Handler handler)
+	void AddHandler(int state, Handler handler)
 	{
 		if (handlers.find(state) == handlers.end())
 		{

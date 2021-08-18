@@ -8,6 +8,7 @@
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.Destination.h"
 #include "Game.Islands.h"
+#include "UIState.h"
 #include "Visuals.Areas.h"
 #include "Visuals.Data.Colors.h"
 #include "Visuals.Images.h"

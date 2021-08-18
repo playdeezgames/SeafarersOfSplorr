@@ -5,6 +5,7 @@
 #include "Application.UIState.h"
 #include "Game.Audio.Mux.h"
 #include "Game.Audio.Sfx.h"
+#include "UIState.h"
 namespace state::in_play::Lose
 {
 	const std::string LAYOUT_NAME = "State.InPlay.Lose";

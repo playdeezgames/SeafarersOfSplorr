@@ -9,6 +9,7 @@
 #include "Data.JSON.Stores.h"
 #include "Game.Achievements.h"
 #include "Game.Audio.Mux.h"
+#include "UIState.h"
 #include "Visuals.Texts.h"
 namespace state::Tip
 {

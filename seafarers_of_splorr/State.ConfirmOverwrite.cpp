@@ -7,6 +7,7 @@
 #include "Common.Utility.h"
 #include "Game.h"
 #include "Game.Audio.Mux.h"
+#include "UIState.h"
 #include "Visuals.Areas.h"
 #include "Visuals.Menus.h"
 namespace state::ConfirmOverwrite
@@ -31,7 +32,7 @@ namespace state::ConfirmOverwrite
 
 	static void ConfirmOverwrite()
 	{
-		int slot = slotTable.find(application::UIState::Read())->second;
+		int slot = slotTable.find((::UIState)application::UIState::Read())->second;
 		game::SaveToSlot(slot);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}

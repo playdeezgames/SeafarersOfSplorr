@@ -15,6 +15,7 @@
 #include "Options.h"
 #include <format>
 #include <SDL_mixer.h>
+#include "UIState.h"
 #include "Visuals.Menus.h"
 #include "Visuals.Areas.h"
 namespace state::Options

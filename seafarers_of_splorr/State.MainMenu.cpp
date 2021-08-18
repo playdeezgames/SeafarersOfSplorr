@@ -8,6 +8,7 @@
 #include "Data.JSON.Store.h"
 #include "Data.JSON.Stores.h"
 #include "Game.Audio.Mux.h"
+#include "UIState.h"
 #include "Visuals.Areas.h"
 #include "Visuals.Menus.h"
 #include "Visuals.Texts.h"

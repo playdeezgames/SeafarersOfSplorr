@@ -456,12 +456,6 @@
     <ClInclude Include="Visuals.Textures.h">
       <Filter>Headers\Visuals\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="Command.h">
-      <Filter>Headers\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="MouseButton.h">
-      <Filter>Headers\Application</Filter>
-    </ClInclude>
     <ClInclude Include="Application.UI.Sfx.h">
       <Filter>Headers\Application</Filter>
     </ClInclude>

@@ -4,6 +4,7 @@
 #include "Application.Renderer.h"
 #include "Application.UIState.h"
 #include "Game.Audio.Mux.h"
+#include "UIState.h"
 namespace state::in_play::Win
 {
 	const std::string LAYOUT_NAME = "State.InPlay.Win";

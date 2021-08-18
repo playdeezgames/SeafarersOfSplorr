@@ -11,6 +11,7 @@
 #include "Game.Avatar.Statistics.h"
 #include "Game.Islands.DarkAlley.h"
 #include "Game.Islands.DarkAlley.FightCards.h"
+#include "UIState.h"
 #include "Visuals.Areas.h"
 #include "Visuals.Data.Colors.h"
 #include "Visuals.CardSprites.h"

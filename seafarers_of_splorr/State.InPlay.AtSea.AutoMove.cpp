@@ -1,6 +1,7 @@
 #include "Application.UIState.h"
 #include "Game.Avatar.AtSea.h"
 #include "Game.Islands.h"
+#include "UIState.h"
 namespace state::in_play::AtSea
 {
 	const size_t TICKS_TOTAL = 250;

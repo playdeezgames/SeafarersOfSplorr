@@ -10,6 +10,7 @@
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.Docked.h"
 #include "Game.Islands.h"
+#include "UIState.h"
 #include "Visuals.Areas.h"
 #include "Visuals.Menus.h"
 #include "Visuals.Texts.h"

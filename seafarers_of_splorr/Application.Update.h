@@ -1,8 +1,12 @@
 #pragma once
 #include <functional>
-#include "UIState.h"
 namespace application::Update
 {
 	typedef std::function<void(const unsigned int&)> Handler;
-	void AddHandler(const ::UIState&, Handler);
+	void AddHandler(int, Handler);
+	template<typename TState>
+	void AddHandler(const TState& state, Handler handler)
+	{
+		AddHandler((int)state, handler);
+	}
 }

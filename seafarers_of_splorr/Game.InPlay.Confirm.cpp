@@ -7,6 +7,7 @@
 #include "Common.Utility.h"
 #include "Game.Audio.Mux.h"
 #include "Game.Confirmations.h"
+#include "UIState.h"
 #include "Visuals.Areas.h"
 #include "Visuals.Menus.h"
 #include "Visuals.Texts.h"

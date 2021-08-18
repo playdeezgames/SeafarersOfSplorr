@@ -11,6 +11,7 @@
 #include "Game.Avatar.Docked.h"
 #include "Game.Islands.h"
 #include "Game.Islands.Features.h"
+#include "UIState.h"
 #include "Visuals.Areas.h"
 #include "Visuals.Menus.h"
 #include "Visuals.Texts.h"

@@ -8,6 +8,7 @@
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.Docked.h"
 #include "Game.Avatar.Quest.h"
+#include "UIState.h"
 #include "Visuals.Areas.h"
 #include "Visuals.Menus.h"
 namespace state::in_play::ConfirmReplaceJob

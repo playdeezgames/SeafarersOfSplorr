@@ -1,6 +1,7 @@
 #include "Application.UIState.h"
 #include "Game.Messages.h"
 #include <queue>
+#include "UIState.h"
 namespace game::Messages
 {
 	static std::queue<Message> messages;

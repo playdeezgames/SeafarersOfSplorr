@@ -11,6 +11,7 @@
 #include "Game.Confirmations.h"
 #include "Game.Islands.DarkAlley.h"
 #include "Game.Messages.h"
+#include "UIState.h"
 #include "Visuals.Areas.h"
 #include "Visuals.Data.Colors.h"
 #include "Visuals.Menus.h"

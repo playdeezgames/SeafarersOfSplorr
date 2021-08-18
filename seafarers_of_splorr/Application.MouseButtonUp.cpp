@@ -3,9 +3,9 @@
 #include "Application.Handlers.h"
 namespace application::MouseButtonUp
 {
-	static std::map<::UIState, std::vector<Handler>> mouseUpHandlers;
+	static std::map<int, std::vector<Handler>> mouseUpHandlers;
 
-	void AddHandler(const ::UIState& state, Handler handler)
+	void AddHandler(int state, Handler handler)
 	{
 		mouseUpHandlers[state].push_back(handler);
 	}

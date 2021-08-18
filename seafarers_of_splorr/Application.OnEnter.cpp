@@ -4,9 +4,9 @@
 #include <vector>
 namespace application::OnEnter
 {
-	static std::map<::UIState, std::vector<Handler>> handlers;
+	static std::map<int, std::vector<Handler>> handlers;
 
-	void AddHandler(const ::UIState& state, Handler handler)
+	void AddHandler(int state, Handler handler)
 	{
 		if (handlers.find(state) == handlers.end())
 		{

@@ -82,12 +82,12 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\seafarers_data;..\splorr_audio;..\splorr_data;..\splorr_mazes;..\splorr_cards;E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
+    <IncludePath>..\splorr_application;..\seafarers_data;..\splorr_audio;..\splorr_data;..\splorr_mazes;..\splorr_cards;E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
     <LibraryPath>E:\lib\steamworks_sdk_151\sdk\redistributable_bin\win64;E:\lib\steamworks_sdk_151\sdk\public\steam\lib\win64;E:\lib\SDL2-2.0.14\lib\x64;E:\lib\SDL2_mixer-2.0.4\lib\x64;E:\lib\SDL2_image-2.0.5\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\seafarers_data;..\splorr_audio;..\splorr_data;..\splorr_mazes;..\splorr_cards;E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
+    <IncludePath>..\splorr_application;..\seafarers_data;..\splorr_audio;..\splorr_data;..\splorr_mazes;..\splorr_cards;E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
     <LibraryPath>E:\lib\steamworks_sdk_151\sdk\redistributable_bin\win64;E:\lib\SDL2-2.0.14\lib\x64;E:\lib\SDL2_mixer-2.0.4\lib\x64;E:\lib\SDL2_image-2.0.5\lib\x64;$(LibraryPath)</LibraryPath>
     <TargetName>Freebooter</TargetName>
   </PropertyGroup>
@@ -265,7 +265,6 @@
     <ClInclude Include="Application.UI.Sfx.h" />
     <ClInclude Include="Application.UIState.h" />
     <ClInclude Include="Application.Update.h" />
-    <ClInclude Include="Command.h" />
     <ClInclude Include="Common.Application.h" />
     <ClInclude Include="Common.Application.Renderer.h" />
     <ClInclude Include="Game.Achievements.h" />
@@ -315,7 +314,6 @@
     <ClInclude Include="Game.ShipDescriptor.h" />
     <ClInclude Include="Game.Ships.h" />
     <ClInclude Include="Game.World.h" />
-    <ClInclude Include="MouseButton.h" />
     <ClInclude Include="Sublayouts.h" />
     <ClInclude Include="UIState.h" />
     <ClInclude Include="Visuals.Areas.h" />
@@ -341,6 +339,9 @@
   <ItemGroup>
     <ProjectReference Include="..\seafarers_data\seafarers_data.vcxproj">
       <Project>{d31b84b6-33be-486c-ae05-c9730e7c2ea3}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\splorr_application\splorr_application.vcxproj">
+      <Project>{d324e44e-369b-4237-99a8-1a508c5afcc4}</Project>
     </ProjectReference>
     <ProjectReference Include="..\splorr_audio\splorr_audio.vcxproj">
       <Project>{57134c88-eaec-440d-b3c5-f6ff4a366bca}</Project>

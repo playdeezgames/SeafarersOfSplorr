@@ -4,6 +4,7 @@
 #include "Application.OnEnter.h"
 #include "Application.UIState.h"
 #include "Game.Audio.Mux.h"
+#include "UIState.h"
 namespace state::About
 {
 	const std::string LAYOUT_NAME = "State.About";

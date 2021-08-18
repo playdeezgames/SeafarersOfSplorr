@@ -3,7 +3,7 @@
 #include "Application.Handlers.h"
 namespace application::MouseMotion
 {
-	static std::map<::UIState, std::vector<Handler>> mouseMotionHandlers;
+	static std::map<int, std::vector<Handler>> mouseMotionHandlers;
 
 	void Handle(const int& x, const int& y)
 	{
@@ -18,7 +18,7 @@ namespace application::MouseMotion
 		});
 	}
 
-	void AddHandler(const ::UIState& state, Handler handler)
+	void AddHandler(int state, Handler handler)
 	{
 		mouseMotionHandlers[state].push_back(handler);
 	}

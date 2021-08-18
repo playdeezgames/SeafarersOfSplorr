@@ -11,6 +11,7 @@
 #include "Game.Avatar.Docked.h"
 #include "Game.Heading.h"
 #include "Game.Messages.h"
+#include "UIState.h"
 #include "Visuals.Areas.h"
 #include "Visuals.Data.Colors.h"
 #include "Visuals.Images.h"

@@ -8,6 +8,7 @@
 #include "Game.h"
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.AtSea.h"
+#include "UIState.h"
 #include "Visuals.Areas.h"
 #include "Visuals.Menus.h"
 namespace state::in_play::ChangeSpeed
