@@ -1,13 +1,11 @@
-#include "Common.Application.h"
-#include "Common.Application.Renderer.h"
+#include "Application.Engine.h"
 #include "Data.JSON.h"
 #include <memory>
 #include <SDL.h> //legit
 #include <SDL_mixer.h>
 #include <SDL_image.h>
-namespace common::Application
+namespace application::Engine
 {
-
 	const std::string WIDTH = "width";
 	const std::string HEIGHT = "height";
 	const std::string LOGICAL_WIDTH = "logicalWidth";
@@ -86,7 +84,7 @@ namespace common::Application
 			&pw,
 			&pr);
 		window = std::shared_ptr<SDL_Window>(pw, SDL_DestroyWindow);
-		renderer = std::make_shared<common::Application::Renderer>(pr);
+		renderer = std::make_shared<Renderer>(pr);
 		SDL_RenderSetLogicalSize(renderer.get()->renderer.get(), logicalWidth, logicalHeight);
 		SDL_SetWindowTitle(window.get(), windowTitle.c_str());
 		auto iconSurface = IMG_Load(iconFileName.c_str());
@@ -154,5 +152,14 @@ namespace common::Application
 		DoStart(configFile, arguments);
 		DoPump();
 		return 0;
+	}
+
+	Renderer::Renderer(SDL_Renderer* r)
+	{
+		this->renderer = std::shared_ptr<SDL_Renderer>(r, SDL_DestroyRenderer);
+	}
+	void Renderer::Copy(std::shared_ptr<SDL_Texture> texture, const SDL_Rect* source, const SDL_Rect* destination, double angle) const
+	{
+		SDL_RenderCopyEx(renderer.get(), texture.get(), source, destination, angle, nullptr, SDL_FLIP_NONE);
 	}
 }

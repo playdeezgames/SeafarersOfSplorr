@@ -82,7 +82,7 @@ namespace Application
 		}
 	}
 }
-namespace common::Application
+namespace application::Engine
 {
 	static std::vector<std::function<void()>> starters = 
 	{

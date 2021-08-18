@@ -1,4 +1,4 @@
-#include "Common.Application.h"
+#include "Application.Engine.h"
 #include "Common.XY.h"
 #include <functional>
 #include "json.hpp"
@@ -29,7 +29,7 @@ namespace visuals::SpriteGrid
 	static std::vector<InternalSpriteGrid> spriteGrids;
 	static std::map<std::string, std::map<std::string, size_t>> spriteGridTable;
 
-	static void DrawInternalSpriteGrid(const std::shared_ptr<common::Application::Renderer>& renderer, size_t gridIndex)
+	static void DrawInternalSpriteGrid(const std::shared_ptr<application::Engine::Renderer>& renderer, size_t gridIndex)
 	{
 		auto& spriteGrid = spriteGrids[gridIndex];
 		for (auto& gridColumn : spriteGrid.cells)
@@ -49,7 +49,7 @@ namespace visuals::SpriteGrid
 		}
 	}
 
-	std::function<void(const std::shared_ptr<common::Application::Renderer>&)> Internalize(const std::string& layoutName, const nlohmann::json& model)
+	std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> Internalize(const std::string& layoutName, const nlohmann::json& model)
 	{
 		size_t gridIndex = spriteGrids.size();
 		spriteGrids.push_back(
@@ -71,7 +71,7 @@ namespace visuals::SpriteGrid
 			std::string imageId = model[visuals::data::Properties::SPRITE_GRID_ID];
 			spriteGridTable[layoutName][imageId] = gridIndex;
 		}
-		return [gridIndex](const std::shared_ptr<common::Application::Renderer>& renderer)
+		return [gridIndex](const std::shared_ptr<application::Engine::Renderer>& renderer)
 		{
 			DrawInternalSpriteGrid(renderer, gridIndex);
 		};

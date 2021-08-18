@@ -24,7 +24,7 @@ namespace visuals::Image
 
 	const std::tuple<unsigned char, unsigned char, unsigned char, unsigned char> defaultColor = { 255, 255, 255, 255 };
 
-	static void DrawInternalImage(const std::shared_ptr<common::Application::Renderer>& renderer, size_t imageIndex)
+	static void DrawInternalImage(const std::shared_ptr<application::Engine::Renderer>& renderer, size_t imageIndex)
 	{
 		auto& image = images[imageIndex];
 		if (image.visible)
@@ -38,7 +38,7 @@ namespace visuals::Image
 		}
 	}
 
-	std::function<void(const std::shared_ptr<common::Application::Renderer>&)> Internalize(const std::string& layoutName, const nlohmann::json& model)
+	std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> Internalize(const std::string& layoutName, const nlohmann::json& model)
 	{
 		auto imageIndex = images.size();
 		images.push_back(
@@ -54,7 +54,7 @@ namespace visuals::Image
 			std::string imageId = model[visuals::data::Properties::IMAGE_ID];
 			imageTable[layoutName][imageId] = imageIndex;
 		}
-		return [imageIndex](const std::shared_ptr<common::Application::Renderer>& renderer)
+		return [imageIndex](const std::shared_ptr<application::Engine::Renderer>& renderer)
 		{
 			DrawInternalImage(renderer, imageIndex);
 		};

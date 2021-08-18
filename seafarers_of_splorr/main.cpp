@@ -2,7 +2,7 @@
 #include "Common.Utility.h"
 #include "Game.Achievements.h"
 #include <SDL.h>
-namespace common::Application
+namespace application::Engine
 {
 	int Run(const std::string&, const std::vector<std::string>&);
 }
@@ -25,6 +25,6 @@ int main(int argc, char** argv)
 	const std::string APPLICATION = "config/ui/application.json";
 	common::RNG::Seed();
 	auto arguments = ParseCommandLine(argc, argv);
-	return common::Application::Run(APPLICATION, arguments);
+	return application::Engine::Run(APPLICATION, arguments);
 }
 

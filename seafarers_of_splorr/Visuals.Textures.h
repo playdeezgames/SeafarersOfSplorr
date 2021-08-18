@@ -3,9 +3,9 @@
 #include <map>
 #include <string>
 #include <memory>
-#include "Common.Application.h"
+#include "Application.Engine.h"
 namespace visuals::Textures
 {
-	const std::shared_ptr<SDL_Texture>& Read(const std::shared_ptr<common::Application::Renderer>&, const std::string&);
+	const std::shared_ptr<SDL_Texture>& Read(const std::shared_ptr<application::Engine::Renderer>&, const std::string&);
 }
 

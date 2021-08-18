@@ -1,4 +1,4 @@
-#include "Common.Application.Renderer.h"
+#include "Application.Engine.h"
 #include "Common.Utility.h"
 #include "Data.JSON.h"
 #include "Data.JSON.Store.h"
@@ -18,7 +18,7 @@ namespace visuals::Textures
 
 	static bool initialized = false;
 
-	static void Initialize(const std::shared_ptr<common::Application::Renderer>& renderer)
+	static void Initialize(const std::shared_ptr<application::Engine::Renderer>& renderer)
 	{
 		if (!initialized)
 		{
@@ -32,7 +32,7 @@ namespace visuals::Textures
 		}
 	}
 
-	const std::shared_ptr<SDL_Texture>& Read(const std::shared_ptr<common::Application::Renderer>& renderer, const std::string& name)
+	const std::shared_ptr<SDL_Texture>& Read(const std::shared_ptr<application::Engine::Renderer>& renderer, const std::string& name)
 	{
 		Initialize(renderer);
 		return table.find(name)->second;

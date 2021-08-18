@@ -1,6 +1,6 @@
 #include "Application.Renderer.h"
 #include "Application.UIState.h"
-#include "Common.Application.h"
+#include "Application.Engine.h"
 #include <map>
 #include "Visuals.Layouts.h"
 namespace application::Renderer
@@ -13,9 +13,9 @@ namespace application::Renderer
 	}
 
 }
-namespace common::Application
+namespace application::Engine
 {
-	void Render(const std::shared_ptr<Renderer>& renderer)
+	void Render(const std::shared_ptr<application::Engine::Renderer>& renderer)
 	{
 		auto layoutName = ::application::Renderer::renderLayouts.find(::application::UIState::Read());
 		if (layoutName != ::application::Renderer::renderLayouts.end())

@@ -1,5 +1,5 @@
 #include "Application.MouseButtonUp.h"
-#include "Common.Application.h"
+#include "Application.Engine.h"
 #include "json.hpp"
 #include <SDL.h>
 #include "Visuals.Areas.h"
@@ -23,7 +23,7 @@ namespace visuals::Areas
 	static std::map<std::string, std::vector<visuals::Area>> areaLists;
 	static std::map<std::string, std::map<std::string, visuals::Area>> areaTable;
 
-	std::function<void(const std::shared_ptr<common::Application::Renderer>&)> Internalize(const std::string& layoutName, const nlohmann::json& model)
+	std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> Internalize(const std::string& layoutName, const nlohmann::json& model)
 	{
 		int x = model[visuals::data::Properties::X];
 		int y = model[visuals::data::Properties::Y];
@@ -48,7 +48,7 @@ namespace visuals::Areas
 		};
 		areaLists[layoutName].push_back(area);
 		areaTable[layoutName][areaId] = area;
-		return [](const std::shared_ptr<common::Application::Renderer>&) {};
+		return [](const std::shared_ptr<application::Engine::Renderer>&) {};
 	}
 
 	static const std::vector<visuals::Area>& GetForLayout(const std::string& layoutName)

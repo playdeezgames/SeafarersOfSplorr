@@ -1,4 +1,4 @@
-#include "Common.Application.Renderer.h"
+#include "Application.Engine.h"
 #include "Data.JSON.Store.h"
 #include "Data.JSON.Stores.h"
 #include <tuple>
@@ -52,7 +52,7 @@ namespace visuals::Sprites
 	}
 
 	static void Render(
-		const std::shared_ptr<common::Application::Renderer>& renderer, 
+		const std::shared_ptr<application::Engine::Renderer>& renderer, 
 		const InternalSprite& internalSprite,
 		std::tuple<unsigned char, unsigned char, unsigned char, unsigned char> color,
 		const common::XY<int>& xy,
@@ -84,7 +84,7 @@ namespace visuals::Sprites
 		renderer.get()->Copy(texture, &rcSource, &rcDestination, angle);
 	}
 
-	void Draw(const std::string& spriteName, const std::shared_ptr<common::Application::Renderer>& renderer, const ::common::XY<int>& xy, const std::tuple<unsigned char, unsigned char, unsigned char, unsigned char>& color, double angle)
+	void Draw(const std::string& spriteName, const std::shared_ptr<application::Engine::Renderer>& renderer, const ::common::XY<int>& xy, const std::tuple<unsigned char, unsigned char, unsigned char, unsigned char>& color, double angle)
 	{
 		Initialize();
 		auto iter = internalSprites.find(spriteName);

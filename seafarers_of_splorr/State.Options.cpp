@@ -8,7 +8,7 @@
 #include "Audio.h"
 #include "Audio.Mux.h"
 #include "Audio.Sfx.h"
-#include "Common.Application.h"
+#include "Application.Engine.h"
 #include "Common.Data.h"
 #include "Common.Utility.h"
 #include "Game.Audio.Mux.h"
@@ -123,7 +123,7 @@ namespace state::Options
 
 	static void ToggleFullscreen()
 	{
-		common::Application::SetFullscreen(!common::Application::IsFullscreen());
+		application::Engine::SetFullscreen(!application::Engine::IsFullscreen());
 		::Options::Save();
 	}
 

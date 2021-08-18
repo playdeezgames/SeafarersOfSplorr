@@ -4,9 +4,9 @@
 #include <memory>
 #include "json.hpp"
 #include <vector>
-#include "Common.Application.h"
+#include "Application.Engine.h"
 namespace visuals::Layouts
 {
-	void Draw(const std::shared_ptr<common::Application::Renderer>&, const std::string&);
+	void Draw(const std::shared_ptr<application::Engine::Renderer>&, const std::string&);
 	void Start();
 }

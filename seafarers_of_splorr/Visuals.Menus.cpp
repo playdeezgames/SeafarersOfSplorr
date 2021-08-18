@@ -34,7 +34,7 @@ namespace visuals::Menu
 	static std::map<std::string, std::map<std::string, size_t>> menuTable;
 	static std::map<std::string, std::map<std::string, size_t>> menuItemTable;
 
-	static void DrawInternalMenu(const std::shared_ptr<common::Application::Renderer>& renderer, size_t menuIndex)
+	static void DrawInternalMenu(const std::shared_ptr<application::Engine::Renderer>& renderer, size_t menuIndex)
 	{
 		auto& menu = internalMenus[menuIndex];
 		int currentIndex = 0;
@@ -79,7 +79,7 @@ namespace visuals::Menu
 		return menuItemIndex;
 	}
 
-	std::function<void(const std::shared_ptr<common::Application::Renderer>&)> Internalize(const std::string& layoutName, const nlohmann::json& model)
+	std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> Internalize(const std::string& layoutName, const nlohmann::json& model)
 	{
 		size_t menuIndex = internalMenus.size();
 		InternalMenu internalMenu = {
@@ -111,7 +111,7 @@ namespace visuals::Menu
 		{
 			menuTable[layoutName][model[visuals::data::Properties::MENU_ID]] = menuIndex;
 		}
-		return [menuIndex](const std::shared_ptr<common::Application::Renderer>& renderer) {
+		return [menuIndex](const std::shared_ptr<application::Engine::Renderer>& renderer) {
 			DrawInternalMenu(renderer, menuIndex);
 		};
 	}

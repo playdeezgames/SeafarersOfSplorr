@@ -1,7 +1,7 @@
 #include "Audio.h"
 #include "Audio.Sfx.h"
 #include "Audio.Mux.h"
-#include "Common.Application.h"
+#include "Application.Engine.h"
 #include "Data.JSON.Store.h"
 #include "Data.JSON.Stores.h"
 #include "Options.h"
@@ -19,7 +19,7 @@ namespace Options
 		::audio::Sfx::SetVolume((int)properties[SFX_VOLUME]);
 		::audio::Mux::SetVolume((int)properties[MUX_VOLUME]);
 		bool fullscreen = (properties.count(FULLSCREEN) > 0) ? ((bool)properties[FULLSCREEN]) : (false);
-		common::Application::SetFullscreen(fullscreen);
+		application::Engine::SetFullscreen(fullscreen);
 	}
 
 	void Save()
@@ -28,7 +28,7 @@ namespace Options
 		properties[MUTED] = Audio::IsMuted();
 		properties[MUX_VOLUME] = ::audio::Mux::GetVolume();
 		properties[SFX_VOLUME] = ::audio::Sfx::GetVolume();
-		properties[FULLSCREEN] = common::Application::IsFullscreen();
+		properties[FULLSCREEN] = application::Engine::IsFullscreen();
 		data::json::Stores::Save(data::json::Store::OPTIONS);
 	}
 }

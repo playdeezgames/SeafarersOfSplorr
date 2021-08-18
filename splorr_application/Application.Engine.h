@@ -1,7 +1,7 @@
 #pragma once
-#include <SDL.h>
 #include <memory>
-namespace common::Application
+#include <SDL.h>
+namespace application::Engine
 {
 	struct Renderer
 	{
@@ -9,4 +9,7 @@ namespace common::Application
 		Renderer(SDL_Renderer* r);
 		void Copy(std::shared_ptr<SDL_Texture> texture, const SDL_Rect* source, const SDL_Rect* destination, double angle = 0.0) const;
 	};
+	void Render(const std::shared_ptr<Renderer>&);
+	void SetFullscreen(bool);
+	bool IsFullscreen();
 }

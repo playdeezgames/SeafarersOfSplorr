@@ -8,7 +8,7 @@
 #include "Visuals.Layouts.h"
 namespace visuals
 {
-	typedef std::function<void(const std::shared_ptr<common::Application::Renderer>&)> DrawerFunction;
+	typedef std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> DrawerFunction;
 }
 namespace visuals::Menu 
 { 
@@ -122,7 +122,7 @@ namespace visuals::Layouts
 		return layouts.find(layoutName)->second;
 	}
 
-	void Draw(const std::shared_ptr<common::Application::Renderer>& renderer, const std::string& layoutName)
+	void Draw(const std::shared_ptr<application::Engine::Renderer>& renderer, const std::string& layoutName)
 	{
 		InitializeLayout(layoutName);
 		auto& internalLayout = internalLayouts[layoutName];

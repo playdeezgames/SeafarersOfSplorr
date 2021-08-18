@@ -1,4 +1,4 @@
-#include "Common.Application.h"
+#include "Application.Engine.h"
 #include "Common.XY.h"
 #include <functional>
 #include "Game.Avatar.AtSea.h"
@@ -49,14 +49,14 @@ namespace visuals::WorldMap
 			location.GetY() * worldSize.GetY() / worldMap.size.GetY());
 	}
 
-	static void DrawAvatar(const std::shared_ptr<common::Application::Renderer>& renderer, const InternalWorldMap& worldMap, const common::XY<double> worldSize)
+	static void DrawAvatar(const std::shared_ptr<application::Engine::Renderer>& renderer, const InternalWorldMap& worldMap, const common::XY<double> worldSize)
 	{
 		auto avatarLocation = game::avatar::AtSea::GetLocation();
 		common::XY<int> plot = Plot(worldMap, worldSize, avatarLocation);
 		visuals::Sprites::Draw(SPRITE_WORLD_MAP_SHIP, renderer, plot, { 0xff,0xff,0xff,0xff });
 	}
 
-	static void DrawNewDestination(const std::shared_ptr<common::Application::Renderer>& renderer, const InternalWorldMap& worldMap, const common::XY<double> worldSize)
+	static void DrawNewDestination(const std::shared_ptr<application::Engine::Renderer>& renderer, const InternalWorldMap& worldMap, const common::XY<double> worldSize)
 	{
 		if (worldMap.destination)
 		{
@@ -72,7 +72,7 @@ namespace visuals::WorldMap
 		{game::avatar::Destination::FOUR, SPRITE_WORLD_MAP_CURRENT_DESTINATION_4}
 	};
 
-	static void DrawCurrentDestination(const std::shared_ptr<common::Application::Renderer>& renderer, const game::avatar::Destination& destinationId, const InternalWorldMap& worldMap, const common::XY<double> worldSize)
+	static void DrawCurrentDestination(const std::shared_ptr<application::Engine::Renderer>& renderer, const game::avatar::Destination& destinationId, const InternalWorldMap& worldMap, const common::XY<double> worldSize)
 	{
 		auto currentDestination = game::avatar::destination::GetDestination(destinationId);
 		if (currentDestination)
@@ -82,7 +82,7 @@ namespace visuals::WorldMap
 		}
 	}
 
-	static void DrawCurrentDestinations(const std::shared_ptr<common::Application::Renderer>& renderer, const InternalWorldMap& worldMap, const common::XY<double> worldSize)
+	static void DrawCurrentDestinations(const std::shared_ptr<application::Engine::Renderer>& renderer, const InternalWorldMap& worldMap, const common::XY<double> worldSize)
 	{
 		for (auto destinationId : game::avatar::destination::All())
 		{
@@ -91,7 +91,7 @@ namespace visuals::WorldMap
 	}
 
 	static double DrawKnownIsland(
-		const std::shared_ptr<common::Application::Renderer>& renderer, 
+		const std::shared_ptr<application::Engine::Renderer>& renderer,
 		InternalWorldMap& worldMap, 
 		const common::XY<double> worldSize, 
 		double closest,
@@ -119,7 +119,7 @@ namespace visuals::WorldMap
 		return closest;
 	}
 
-	static void DrawKnownIslands(const std::shared_ptr<common::Application::Renderer>& renderer, InternalWorldMap& worldMap, const common::XY<double> worldSize)
+	static void DrawKnownIslands(const std::shared_ptr<application::Engine::Renderer>& renderer, InternalWorldMap& worldMap, const common::XY<double> worldSize)
 	{
 		auto closest = game::Heading::Distance({(double)worldMap.size.GetX(), (double)worldMap.size.GetY()}, {0.0,0.0});
 		auto knownIslands = game::Islands::GetKnownIslands();
@@ -136,7 +136,7 @@ namespace visuals::WorldMap
 		}
 	}
 
-	static void DrawInternalWorldMap(const std::shared_ptr<common::Application::Renderer>& renderer, size_t worldMapIndex)
+	static void DrawInternalWorldMap(const std::shared_ptr<application::Engine::Renderer>& renderer, size_t worldMapIndex)
 	{
 		auto& worldMap = worldMaps[worldMapIndex];
 		auto worldSize = game::World::GetSize();
@@ -146,7 +146,7 @@ namespace visuals::WorldMap
 		DrawNewDestination(renderer, worldMap, worldSize);
 	}
 
-	std::function<void(const std::shared_ptr<common::Application::Renderer>&)> Internalize(const std::string& layoutName, const nlohmann::json& model)
+	std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> Internalize(const std::string& layoutName, const nlohmann::json& model)
 	{
 		auto worldMapIndex = worldMaps.size();
 		worldMaps.push_back({
@@ -159,7 +159,7 @@ namespace visuals::WorldMap
 			worldMapTable[layoutName][model[visuals::data::Properties::WORLD_MAP_ID]] = worldMapIndex;
 		}
 
-		return [worldMapIndex](const std::shared_ptr<common::Application::Renderer>& renderer)
+		return [worldMapIndex](const std::shared_ptr<application::Engine::Renderer>& renderer)
 		{
 			DrawInternalWorldMap(renderer, worldMapIndex);
 		};

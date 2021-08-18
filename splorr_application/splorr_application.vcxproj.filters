@@ -41,10 +41,7 @@
     <ClInclude Include="Application.Update.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common.Application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common.Application.Renderer.h">
+    <ClInclude Include="Application.Engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -67,10 +64,7 @@
     <ClCompile Include="Application.Update.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common.Application.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common.Application.Renderer.cpp">
+    <ClCompile Include="Application.Engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
