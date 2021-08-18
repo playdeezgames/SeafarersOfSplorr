@@ -346,15 +346,6 @@
     <ClCompile Include="Game.Avatar.Docked.ActionDescriptors.cpp">
       <Filter>Source\Game\Avatar</Filter>
     </ClCompile>
-    <ClCompile Include="Audio.cpp">
-      <Filter>Source\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Audio.Sfx.cpp">
-      <Filter>Source\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Audio.Mux.cpp">
-      <Filter>Source\Common</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Options.h">
@@ -656,15 +647,6 @@
     </ClInclude>
     <ClInclude Include="Game.Avatar.Docked.DockedStateTransition.h">
       <Filter>Headers\Game\Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Audio.h">
-      <Filter>Headers\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Audio.Sfx.h">
-      <Filter>Headers\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Audio.Mux.h">
-      <Filter>Headers\Common</Filter>
     </ClInclude>
     <ClInclude Include="Data.SQLite.Store.h">
       <Filter>Headers\Data</Filter>

@@ -82,12 +82,12 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\splorr_data;..\splorr_mazes;..\splorr_cards;E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
+    <IncludePath>..\splorr_audio;..\splorr_data;..\splorr_mazes;..\splorr_cards;E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
     <LibraryPath>E:\lib\steamworks_sdk_151\sdk\redistributable_bin\win64;E:\lib\steamworks_sdk_151\sdk\public\steam\lib\win64;E:\lib\SDL2-2.0.14\lib\x64;E:\lib\SDL2_mixer-2.0.4\lib\x64;E:\lib\SDL2_image-2.0.5\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\splorr_data;..\splorr_mazes;..\splorr_cards;E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
+    <IncludePath>..\splorr_audio;..\splorr_data;..\splorr_mazes;..\splorr_cards;E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
     <LibraryPath>E:\lib\steamworks_sdk_151\sdk\redistributable_bin\win64;E:\lib\SDL2-2.0.14\lib\x64;E:\lib\SDL2_mixer-2.0.4\lib\x64;E:\lib\SDL2_image-2.0.5\lib\x64;$(LibraryPath)</LibraryPath>
     <TargetName>Freebooter</TargetName>
   </PropertyGroup>
@@ -167,9 +167,6 @@
     <ClCompile Include="Application.UIState.cpp" />
     <ClCompile Include="Application.Update.cpp" />
     <ClCompile Include="Application.OnEnter.cpp" />
-    <ClCompile Include="Audio.cpp" />
-    <ClCompile Include="Audio.Mux.cpp" />
-    <ClCompile Include="Audio.Sfx.cpp" />
     <ClCompile Include="Common.Application.Renderer.cpp" />
     <ClCompile Include="Data.Game.Avatar.cpp" />
     <ClCompile Include="Data.Game.Avatar.Dock.cpp" />
@@ -287,9 +284,6 @@
     <ClInclude Include="Application.UI.Sfx.h" />
     <ClInclude Include="Application.UIState.h" />
     <ClInclude Include="Application.Update.h" />
-    <ClInclude Include="Audio.h" />
-    <ClInclude Include="Audio.Mux.h" />
-    <ClInclude Include="Audio.Sfx.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="Common.Application.h" />
     <ClInclude Include="Common.Application.Renderer.h" />
@@ -385,6 +379,9 @@
     <ClInclude Include="Visuals.WorldMap.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\splorr_audio\splorr_audio.vcxproj">
+      <Project>{57134c88-eaec-440d-b3c5-f6ff4a366bca}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\splorr_cards\splorr_cards.vcxproj">
       <Project>{ea3f51f8-5b3e-4302-8a09-dab385874487}</Project>
     </ProjectReference>
