@@ -1,5 +1,4 @@
 #include "Audio.h"
-#include "Data.JSON.Store.h"
 #include "Data.JSON.Stores.h"
 #include "json.hpp"
 #include <map>
@@ -36,13 +35,19 @@ namespace audio::Mux
 	}
 
 	static bool initialized = false;
+	static std::optional<int> store = std::nullopt;
+
+	void SetStore(int s)
+	{
+		store = s;
+	}
 
 	void Initialize()
 	{
 		if (!initialized)
 		{
 			atexit(Finish);
-			nlohmann::json& j = data::json::Stores::GetStore(data::json::Store::MUSIC_THEMES);//TODO: bad dependency
+			nlohmann::json& j = data::json::Stores::GetStore(store.value());
 			for (auto& i : j.items())
 			{
 				Mux::AddMusic(i.key(), i.value());

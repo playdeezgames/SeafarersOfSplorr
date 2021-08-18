@@ -1,4 +1,6 @@
 #include "Application.UIState.h"
+#include "Audio.Mux.h"
+#include "Audio.Sfx.h"
 #include "Command.h"
 #include "Data.JSON.Store.h"
 #include "Data.JSON.Stores.h"
@@ -103,6 +105,8 @@ namespace common::Application
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::SLOT_3, "slot3.db"),
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::SLOT_4, "slot4.db"),
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::SLOT_5, "slot5.db"),
+		audio::Mux::DoSetStore(data::json::Store::MUSIC_THEMES),
+		audio::Sfx::DoSetStore(data::json::Store::SOUND_EFFECTS),
 		state::Splash::Start,
 		state::Tip::Start,
 		state::MainMenu::Start,

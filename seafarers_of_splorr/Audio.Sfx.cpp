@@ -1,6 +1,5 @@
 #include "Audio.h"
 #include "Audio.Sfx.h"
-#include "Data.JSON.Store.h"
 #include "Data.JSON.Stores.h"
 #include <memory>
 #include "json.hpp"
@@ -22,12 +21,18 @@ namespace audio::Sfx
 	}
 
 	static bool initialized = false;
+	static std::optional<int> store = std::nullopt;
+
+	void SetStore(int s)
+	{
+		store = s;
+	}
 
 	void Initialize()
 	{
 		if (!initialized)
 		{
-			nlohmann::json& j = data::json::Stores::GetStore(data::json::Store::SOUND_EFFECTS);//TODO: bad dependency
+			nlohmann::json& j = data::json::Stores::GetStore(store.value());
 			for (auto& i : j.items())
 			{
 				Sfx::AddSound(i.key(), i.value());
