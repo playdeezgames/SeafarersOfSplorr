@@ -7,34 +7,16 @@
     <ClCompile Include="Options.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Application.Command.cpp">
-      <Filter>Source\Application</Filter>
-    </ClCompile>
     <ClCompile Include="Application.cpp">
       <Filter>Source\Application</Filter>
     </ClCompile>
     <ClCompile Include="Application.Keyboard.cpp">
       <Filter>Source\Application</Filter>
     </ClCompile>
-    <ClCompile Include="Application.MouseButtonUp.cpp">
-      <Filter>Source\Application</Filter>
-    </ClCompile>
-    <ClCompile Include="Application.MouseMotion.cpp">
-      <Filter>Source\Application</Filter>
-    </ClCompile>
-    <ClCompile Include="Application.OnEnter.cpp">
-      <Filter>Source\Application</Filter>
-    </ClCompile>
     <ClCompile Include="Application.Renderer.cpp">
       <Filter>Source\Application</Filter>
     </ClCompile>
     <ClCompile Include="Application.Sounds.cpp">
-      <Filter>Source\Application</Filter>
-    </ClCompile>
-    <ClCompile Include="Application.UIState.cpp">
-      <Filter>Source\Application</Filter>
-    </ClCompile>
-    <ClCompile Include="Application.Update.cpp">
       <Filter>Source\Application</Filter>
     </ClCompile>
     <ClCompile Include="Common.Application.cpp">
@@ -294,31 +276,7 @@
     <ClInclude Include="Options.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Application.Command.h">
-      <Filter>Headers\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Application.Handlers.h">
-      <Filter>Headers\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Application.MouseButtonUp.h">
-      <Filter>Headers\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Application.MouseMotion.h">
-      <Filter>Headers\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Application.OnEnter.h">
-      <Filter>Headers\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Application.Renderer.h">
-      <Filter>Headers\Application</Filter>
-    </ClInclude>
     <ClInclude Include="Application.Sounds.h">
-      <Filter>Headers\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Application.UIState.h">
-      <Filter>Headers\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Application.Update.h">
       <Filter>Headers\Application</Filter>
     </ClInclude>
     <ClInclude Include="Common.Application.h">
