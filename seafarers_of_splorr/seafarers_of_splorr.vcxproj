@@ -177,7 +177,6 @@
     <ClCompile Include="Game.Confirmations.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game.Features.cpp" />
-    <ClCompile Include="Game.Heading.cpp" />
     <ClCompile Include="Game.InPlay.Confirm.cpp" />
     <ClCompile Include="Game.Islands.Commodities.cpp" />
     <ClCompile Include="Game.Islands.cpp" />
@@ -275,7 +274,6 @@
     <ClInclude Include="Game.FeatureDescriptor.h" />
     <ClInclude Include="Game.Features.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Game.Heading.h" />
     <ClInclude Include="Game.Islands.Commodities.h" />
     <ClInclude Include="Game.Islands.DarkAlley.FightCards.h" />
     <ClInclude Include="Game.Islands.DarkAlley.h" />

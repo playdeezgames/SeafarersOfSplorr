@@ -7,7 +7,7 @@
 #include "Data.Game.Island.Market.h"
 #include "Data.Game.Island.Quests.h"
 #include "Data.Game.Island.Visits.h"
-#include "Game.Heading.h"
+#include "Common.Heading.h"
 #include "Game.Islands.h"
 #include "Game.Items.h"
 #include "Game.World.h"
@@ -32,7 +32,7 @@ namespace game::Islands
 			bool found = true;
 			for (auto& location : locations)
 			{
-				double distance = game::Heading::Distance(location, { x, y });
+				double distance = common::Heading::Distance(location, { x, y });
 				if (distance < minimumIslandDistance)
 				{
 					found = false;

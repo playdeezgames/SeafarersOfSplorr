@@ -28,9 +28,6 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Heading.cpp">
-      <Filter>Source\Game</Filter>
-    </ClCompile>
     <ClCompile Include="Game.World.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
@@ -283,9 +280,6 @@
       <Filter>Headers\Game</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>Headers\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Heading.h">
       <Filter>Headers\Game</Filter>
     </ClInclude>
     <ClInclude Include="Game.World.h">

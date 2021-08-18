@@ -1,10 +1,10 @@
+#include "Common.Heading.h"
 #include <format>
 #include "Game.Avatar.AtSea.h"
 #include "Game.Avatar.Destination.h"
 #include "Game.Avatar.Log.h"
 #include "Game.Avatar.Quest.h"
 #include "Game.Avatar.Statistics.h"
-#include "Game.Heading.h"
 #include "Game.Islands.h"
 #include "Game.World.h"
 #include <map>
@@ -100,7 +100,7 @@ namespace state::in_play::AtSea
 		auto imageId = destinationIdImages.find(destinationId)->second;
 		if (destination)
 		{
-			auto clampedDistance = game::Heading::ClampDistance(destination.value() - game::avatar::AtSea::GetLocation(), game::World::GetViewDistance() + 0.5);//TODO: magic number
+			auto clampedDistance = common::Heading::ClampDistance(destination.value() - game::avatar::AtSea::GetLocation(), game::World::GetViewDistance() + 0.5);//TODO: magic number
 			auto plot = Plot(clampedDistance);
 			visuals::Images::SetLocation(LAYOUT_NAME, imageId, { (int)plot.GetX(), (int)plot.GetY() });
 			visuals::Images::SetVisible(LAYOUT_NAME, imageId, true);
@@ -123,7 +123,7 @@ namespace state::in_play::AtSea
 		auto quest = game::avatar::Quest::Read();
 		if (quest)
 		{
-			auto clampedDistance = game::Heading::ClampDistance(quest.value().destination - game::avatar::AtSea::GetLocation(), game::World::GetViewDistance() + FUDGE_FACTOR);
+			auto clampedDistance = common::Heading::ClampDistance(quest.value().destination - game::avatar::AtSea::GetLocation(), game::World::GetViewDistance() + FUDGE_FACTOR);
 			auto plot = Plot(clampedDistance);
 			visuals::Images::SetLocation(LAYOUT_NAME, IMAGE_QUEST_DESTINATION, { (int)plot.GetX(), (int)plot.GetY() });
 			visuals::Images::SetVisible(LAYOUT_NAME, IMAGE_QUEST_DESTINATION, true);
@@ -194,7 +194,7 @@ namespace state::in_play::AtSea
 		bool canDock = false;
 		for (auto& entry : islands)
 		{
-			canDock |= (game::Heading::Distance(entry.relativeLocation, { 0.0, 0.0 }) <= dockDistance);
+			canDock |= (common::Heading::Distance(entry.relativeLocation, { 0.0, 0.0 }) <= dockDistance);
 			auto plot = Plot(entry.relativeLocation);
 			auto visualId = std::format(FORMAT_AT_SEA_ISLAND, icon);//TODO: magic string
 			visuals::Images::SetLocation(LAYOUT_NAME, visualId, { (int)plot.GetX() + IMAGE_OFFSET_X,(int)plot.GetY() + IMAGE_OFFSET_Y });

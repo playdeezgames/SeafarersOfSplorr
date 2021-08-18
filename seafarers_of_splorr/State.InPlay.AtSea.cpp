@@ -5,11 +5,11 @@
 #include "Application.Renderer.h"
 #include "Application.UIState.h"
 #include "Application.Update.h"
+#include "Common.Heading.h"
 #include "Common.Utility.h"
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.AtSea.h"
 #include "Game.Avatar.Docked.h"
-#include "Game.Heading.h"
 #include "Game.Messages.h"
 #include "UIState.h"
 #include "Visuals.Areas.h"
@@ -125,7 +125,7 @@ namespace state::in_play::AtSea
 	{
 		visuals::Images::SetVisible(LAYOUT_NAME, IMAGE_NEW_HEADING, true);
 		auto delta = location - CENTER;
-		newHeading = game::Heading::XYToDegrees({(double)delta.GetX(), (double)delta.GetY()});
+		newHeading = common::Heading::XYToDegrees({(double)delta.GetX(), (double)delta.GetY()});
 		visuals::Images::SetAngle(LAYOUT_NAME, IMAGE_NEW_HEADING, newHeading);
 	}
 

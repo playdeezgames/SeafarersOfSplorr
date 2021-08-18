@@ -23,12 +23,18 @@
     <ClInclude Include="Common.Utility.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Common.Heading.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Common.RNG.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Common.Data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common.Heading.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

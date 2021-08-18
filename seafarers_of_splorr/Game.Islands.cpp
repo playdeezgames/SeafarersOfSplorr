@@ -1,3 +1,4 @@
+#include "Common.Heading.h"
 #include "Common.RNG.h"
 #include "Data.Game.Avatar.Destination.h"
 #include "Data.Game.Island.Item.h"
@@ -8,7 +9,6 @@
 #include "Data.Game.Island.Quests.h"
 #include "Data.Game.Island.Visits.h"
 #include "Game.Avatar.AtSea.h"
-#include "Game.Heading.h"
 #include "Game.Islands.h"
 #include "Game.Items.h"
 #include "Game.World.h"
@@ -40,7 +40,7 @@ namespace game::Islands
 
 	static void AddIslandWhenCloseEnough(std::list<IslandModel>& result, const data::game::Island::IslandData& island, const common::XY<double>& avatarLocation, double maximumDistance)
 	{
-		auto distance = game::Heading::Distance(avatarLocation, island.location);
+		auto distance = common::Heading::Distance(avatarLocation, island.location);
 		if (distance <= maximumDistance)
 		{
 			AddIsland(result, island, avatarLocation);

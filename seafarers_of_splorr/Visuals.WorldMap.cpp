@@ -1,10 +1,10 @@
 #include "Application.Engine.h"
+#include "Common.Heading.h"
 #include "Common.XY.h"
 #include <functional>
 #include "Game.Avatar.AtSea.h"
 #include "Game.Avatar.Destination.h"
 #include "Game.Avatar.Quest.h"
-#include "Game.Heading.h"
 #include "Game.Islands.h"
 #include "Game.World.h"
 #include "json.hpp"
@@ -101,7 +101,7 @@ namespace visuals::WorldMap
 		common::XY<int> plot = Plot(worldMap, worldSize, knownIsland.absoluteLocation);
 		if (worldMap.destination)
 		{
-			auto distance = game::Heading::Distance({ (double)plot.GetX(),(double)plot.GetY() }, { (double)worldMap.destination.value().GetX() + worldMap.xy.GetX(), (double)worldMap.destination.value().GetY() + worldMap.xy.GetY() });
+			auto distance = common::Heading::Distance({ (double)plot.GetX(),(double)plot.GetY() }, { (double)worldMap.destination.value().GetX() + worldMap.xy.GetX(), (double)worldMap.destination.value().GetY() + worldMap.xy.GetY() });
 			if (distance < closest)
 			{
 				closest = distance;
@@ -121,7 +121,7 @@ namespace visuals::WorldMap
 
 	static void DrawKnownIslands(const std::shared_ptr<application::Engine::Renderer>& renderer, InternalWorldMap& worldMap, const common::XY<double> worldSize)
 	{
-		auto closest = game::Heading::Distance({(double)worldMap.size.GetX(), (double)worldMap.size.GetY()}, {0.0,0.0});
+		auto closest = common::Heading::Distance({(double)worldMap.size.GetX(), (double)worldMap.size.GetY()}, {0.0,0.0});
 		auto knownIslands = game::Islands::GetKnownIslands();
 		worldMap.hoverIsland = std::nullopt;
 		auto quest = game::avatar::Quest::Read();

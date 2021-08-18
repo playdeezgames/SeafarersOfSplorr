@@ -1,8 +1,8 @@
 #include "Common.Data.h"
 #include "Common.Utility.h"
-#include "Game.Heading.h"
+#include "Common.Heading.h"
 #include <cmath>
-namespace game::Heading
+namespace common::Heading
 {
 	const double TAU = 2.0 * 3.141592653589793;
 
@@ -27,7 +27,7 @@ namespace game::Heading
 	{
 		double x = xy.GetX();
 		double y = xy.GetY();
-		return (x == 0.0 && y == 0.0) ? (0.0) : (game::Heading::ToDegrees(atan2(y, x)));
+		return (x == 0.0 && y == 0.0) ? (0.0) : (ToDegrees(atan2(y, x)));
 	}
 
 	double Distance(const common::XY<double>& first, const common::XY<double>& second)

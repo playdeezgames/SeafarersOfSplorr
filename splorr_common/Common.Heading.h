@@ -1,6 +1,6 @@
 #pragma once
 #include "Common.XY.h"
-namespace game::Heading
+namespace common::Heading
 {
 	common::XY<double> DegreesToXY(double);
 	double XYToDegrees(const common::XY<double>&);

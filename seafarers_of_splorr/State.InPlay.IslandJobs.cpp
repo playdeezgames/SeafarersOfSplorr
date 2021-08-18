@@ -4,13 +4,13 @@
 #include "Application.OnEnter.h"
 #include "Application.Renderer.h"
 #include "Application.UIState.h"
+#include "Common.Heading.h"
 #include "Common.Utility.h"
 #include "Data.JSON.Stores.h"
 #include <format>
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.AtSea.h"
 #include "Game.Avatar.Docked.h"
-#include "Game.Heading.h"
 #include "Game.Avatar.Quest.h"
 #include "Game.Islands.h"
 #include "Game.Islands.Quests.h"
@@ -82,7 +82,7 @@ namespace state::in_play::IslandJobs
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE6, std::format("Reward: {:.2f}", questModel.reward));
 
 		auto islandModel = game::Islands::Read(questModel.destination).value();
-		double distance = game::Heading::Distance(questModel.destination, game::avatar::AtSea::GetLocation());
+		double distance = common::Heading::Distance(questModel.destination, game::avatar::AtSea::GetLocation());
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE5, std::format("at {} ({:.2f}).", islandModel.name, distance));
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_ACCEPT_JOB, true);
 	}

@@ -1,11 +1,11 @@
 #include "Data.Game.Avatar.h"
 #include "Common.Data.h"
+#include "Common.Heading.h"
 #include "Common.RNG.h"
 #include "Game.Avatar.AtSea.h"
 #include "Game.Avatar.Items.h"
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Statistics.h"
-#include "Game.Heading.h"
 #include "Game.Ships.h"
 #include "Game.World.h"
 namespace game::avatar::AtSea
@@ -16,7 +16,7 @@ namespace game::avatar::AtSea
 		data::game::Avatar::AvatarData data =
 		{
 			{worldSize.GetX() / 2.0, worldSize.GetY() / 2.0},
-			common::Data::ModuloDouble(common::RNG::FromRange(0.0, game::Heading::DEGREES), game::Heading::DEGREES).value(),
+			common::Data::ModuloDouble(common::RNG::FromRange(0.0, common::Heading::DEGREES), common::Heading::DEGREES).value(),
 			1.0
 		};
 		data::game::Avatar::Write(data);
@@ -30,7 +30,7 @@ namespace game::avatar::AtSea
 	void SetHeading(double heading)
 	{
 		auto data = data::game::Avatar::Read().value();
-		data.heading = common::Data::ModuloDouble(heading, game::Heading::DEGREES).value();
+		data.heading = common::Data::ModuloDouble(heading, common::Heading::DEGREES).value();
 		data::game::Avatar::Write(data);
 	}
 
@@ -113,7 +113,7 @@ namespace game::avatar::AtSea
 		auto avatar = data::game::Avatar::Read().value();
 		auto shipDescriptor = game::Ships::Read(game::avatar::Ship::Read());
 		common::XY<double> delta =
-			game::Heading::DegreesToXY(avatar.heading) *
+			common::Heading::DegreesToXY(avatar.heading) *
 			avatar.speed *
 			shipDescriptor.properties.find(game::ship::Property::SPEED_FACTOR)->second;
 
