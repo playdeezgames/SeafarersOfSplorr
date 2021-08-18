@@ -16,9 +16,6 @@
     <ClCompile Include="Application.Renderer.cpp">
       <Filter>Source\Application</Filter>
     </ClCompile>
-    <ClCompile Include="Application.Sounds.cpp">
-      <Filter>Source\Application</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Achievements.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
@@ -267,9 +264,6 @@
     <ClInclude Include="Options.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Application.Sounds.h">
-      <Filter>Headers\Application</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Achievements.h">
       <Filter>Headers\Game</Filter>
     </ClInclude>
@@ -395,9 +389,6 @@
     </ClInclude>
     <ClInclude Include="Visuals.Textures.h">
       <Filter>Headers\Visuals\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="Application.UI.Sfx.h">
-      <Filter>Headers\Application</Filter>
     </ClInclude>
     <ClInclude Include="UIState.h">
       <Filter>Headers\Application</Filter>

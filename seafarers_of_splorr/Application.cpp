@@ -96,7 +96,6 @@ namespace application::Engine
 		data::json::Stores::DoSetStoreFile(data::json::Store::LAYOUTS, "config/ui/layouts.json",std::nullopt),
 		data::json::Stores::DoSetStoreFile(data::json::Store::KEYS, "config/keyboard.json",std::nullopt),
 		data::json::Stores::DoSetStoreFile(data::json::Store::OPTIONS, "config/options.json",std::nullopt),
-		data::json::Stores::DoSetStoreFile(data::json::Store::UI_SFX, "config/ui/sfx.json",std::nullopt),
 		data::json::Stores::DoSetStoreFile(data::json::Store::TIPS, "config/tips.json",std::nullopt),
 		data::json::Stores::Start,
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::IN_MEMORY, ":memory:"),

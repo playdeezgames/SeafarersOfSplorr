@@ -3,7 +3,6 @@
 #include "Application.MouseMotion.h"
 #include "Application.OnEnter.h"
 #include "Application.Renderer.h"
-#include "Application.Sounds.h"
 #include "Application.UIState.h"
 #include "Audio.h"
 #include "Audio.Mux.h"
@@ -44,10 +43,12 @@ namespace state::Options
 		BACK
 	};
 
+	const std::string SFX_SAMPLE = "woohoo";
+
 	static void AdjustSfxVolume(int delta)
 	{
 		::audio::Sfx::SetVolume(::audio::Sfx::GetVolume() + delta);
-		::audio::Sfx::Play(application::Sounds::Read(application::ui::Sfx::WOOHOO));
+		::audio::Sfx::Play(SFX_SAMPLE);
 		::Options::Save();
 	}
 

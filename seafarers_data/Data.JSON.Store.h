@@ -12,7 +12,6 @@ namespace data::json
 		LAYOUTS,
 		KEYS,
 		OPTIONS,
-		UI_SFX,
 		TIPS
 	};
 }

@@ -160,7 +160,6 @@
   <ItemGroup>
     <ClCompile Include="Application.Keyboard.cpp" />
     <ClCompile Include="Application.Renderer.cpp" />
-    <ClCompile Include="Application.Sounds.cpp" />
     <ClCompile Include="Game.Achievements.cpp" />
     <ClCompile Include="Game.Audio.Mux.cpp" />
     <ClCompile Include="Game.Audio.Sfx.cpp" />
@@ -247,8 +246,6 @@
     <ClCompile Include="Visuals.WorldMap.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Application.Sounds.h" />
-    <ClInclude Include="Application.UI.Sfx.h" />
     <ClInclude Include="Game.Achievements.h" />
     <ClInclude Include="Game.Audio.Mux.h" />
     <ClInclude Include="Game.Audio.Sfx.h" />
