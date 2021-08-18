@@ -6,7 +6,7 @@ namespace application::Engine
 {
 	int Run(const std::string&, const std::vector<std::string>&);
 }
-std::vector<std::string> ParseCommandLine(int argc, char** argv)
+static std::vector<std::string> ParseCommandLine(int argc, char** argv)
 {
 	std::vector<std::string> arguments;
 	arguments.reserve(argc);
