@@ -42,7 +42,7 @@ namespace audio::Mux
 		if (!initialized)
 		{
 			atexit(Finish);
-			nlohmann::json& j = data::json::Stores::GetStore(data::json::Store::MUSIC_THEMES);
+			nlohmann::json& j = data::json::Stores::GetStore(data::json::Store::MUSIC_THEMES);//TODO: bad dependency
 			for (auto& i : j.items())
 			{
 				Mux::AddMusic(i.key(), i.value());
