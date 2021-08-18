@@ -8,9 +8,9 @@
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.Docked.h"
 #include "Game.Avatar.Statistics.h"
-#include "Game.Confirmations.h"
+#include "Visuals.Confirmations.h"
 #include "Game.Islands.DarkAlley.h"
-#include "Game.Messages.h"
+#include "Visuals.Messages.h"
 #include "UIState.h"
 #include "Visuals.Areas.h"
 #include "Visuals.Data.Colors.h"
@@ -44,7 +44,7 @@ namespace state::in_play::DarkAlley
 		{
 			return;
 		}
-		visuals::Messages::Send(
+		visuals::Messages::Write(
 			{
 				"Come Back When Yer Serious!",
 				{
@@ -62,6 +62,7 @@ namespace state::in_play::DarkAlley
 					}
 				}
 			});
+		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	enum class DarkAlleyMenuItem

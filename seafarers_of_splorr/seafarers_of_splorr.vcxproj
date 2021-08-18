@@ -82,7 +82,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\splorr_application;..\seafarers_data;..\splorr_audio;..\splorr_data;..\splorr_mazes;..\splorr_cards;E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
+    <IncludePath>..\splorr_visuals;..\splorr_application;..\seafarers_data;..\splorr_audio;..\splorr_data;..\splorr_mazes;..\splorr_cards;E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
     <LibraryPath>E:\lib\steamworks_sdk_151\sdk\redistributable_bin\win64;E:\lib\steamworks_sdk_151\sdk\public\steam\lib\win64;E:\lib\SDL2-2.0.14\lib\x64;E:\lib\SDL2_mixer-2.0.4\lib\x64;E:\lib\SDL2_image-2.0.5\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -173,7 +173,6 @@
     <ClCompile Include="Game.Avatar.Ship.cpp" />
     <ClCompile Include="Game.Avatar.Statistics.cpp" />
     <ClCompile Include="Game.Commodities.cpp" />
-    <ClCompile Include="Visuals.Confirmations.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game.Features.cpp" />
     <ClCompile Include="Game.InPlay.Confirm.cpp" />
@@ -188,7 +187,6 @@
     <ClCompile Include="Game.Islands.Quests.cpp" />
     <ClCompile Include="Game.Islands.Ships.cpp" />
     <ClCompile Include="Game.Items.cpp" />
-    <ClCompile Include="Visuals.Messages.cpp" />
     <ClCompile Include="Game.Ships.cpp" />
     <ClCompile Include="Game.World.cpp" />
     <ClCompile Include="State.ConfirmAbandon.cpp" />
@@ -228,7 +226,6 @@
     <ClCompile Include="Visuals.Texts.cpp" />
     <ClCompile Include="State.About.cpp" />
     <ClCompile Include="Application.cpp" />
-    <ClCompile Include="Visuals.Colors.cpp" />
     <ClCompile Include="State.ConfirmQuit.cpp" />
     <ClCompile Include="Visuals.Fonts.cpp" />
     <ClCompile Include="Visuals.Layouts.cpp" />
@@ -264,8 +261,6 @@
     <ClInclude Include="Game.Commodities.h" />
     <ClInclude Include="Game.Commodity.h" />
     <ClInclude Include="Game.CommodityDescriptor.h" />
-    <ClInclude Include="Visuals.Confirmation.h" />
-    <ClInclude Include="Visuals.Confirmations.h" />
     <ClInclude Include="Game.Difficulty.h" />
     <ClInclude Include="Game.Feature.h" />
     <ClInclude Include="Game.FeatureDescriptor.h" />
@@ -283,9 +278,6 @@
     <ClInclude Include="Game.Item.h" />
     <ClInclude Include="Game.ItemDescriptor.h" />
     <ClInclude Include="Game.Items.h" />
-    <ClInclude Include="Visuals.Message.h" />
-    <ClInclude Include="Visuals.MessageDetail.h" />
-    <ClInclude Include="Visuals.Messages.h" />
     <ClInclude Include="Game.Quest.h" />
     <ClInclude Include="Game.Ship.h" />
     <ClInclude Include="Game.Ship.Property.h" />
@@ -297,14 +289,11 @@
     <ClInclude Include="Visuals.Areas.h" />
     <ClInclude Include="Visuals.CardSprites.h" />
     <ClInclude Include="Visuals.Data.Colors.h" />
-    <ClInclude Include="Visuals.HorizontalAlignment.h" />
     <ClInclude Include="Visuals.Images.h" />
     <ClInclude Include="Visuals.Menus.h" />
-    <ClInclude Include="Visuals.Data.Properties.h" />
     <ClInclude Include="Visuals.SpriteGrid.h" />
     <ClInclude Include="Visuals.Texts.h" />
     <ClInclude Include="Visuals.Data.Types.h" />
-    <ClInclude Include="Visuals.Colors.h" />
     <ClInclude Include="Visuals.Fonts.h" />
     <ClInclude Include="Visuals.Layouts.h" />
     <ClInclude Include="Options.h" />
@@ -331,6 +320,9 @@
     </ProjectReference>
     <ProjectReference Include="..\splorr_data\splorr_data.vcxproj">
       <Project>{9606958e-c33d-4f3e-9799-0e4d1837f503}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\splorr_visuals\splorr_visuals.vcxproj">
+      <Project>{2f3275b9-fa56-4380-bbbe-73dd19468cc9}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

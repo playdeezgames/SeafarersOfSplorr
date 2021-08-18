@@ -1,5 +1,4 @@
 #include "Data.JSON.h"
-#include "Data.JSON.Store.h"
 #include "Data.JSON.Stores.h"
 #include <map>
 #include <vector>
@@ -7,6 +6,13 @@
 #include "Visuals.Data.Properties.h"
 namespace visuals::Colors
 {
+	static std::optional<int> store;
+
+	void SetStore(int s)
+	{
+		store = s;
+	}
+
 	static std::tuple<unsigned char, unsigned char, unsigned char, unsigned char> ParseDescriptor(const nlohmann::json& properties)
 	{
 		unsigned char r = (unsigned char)properties[data::Properties::RED];
@@ -18,6 +24,6 @@ namespace visuals::Colors
 
 	std::tuple<unsigned char, unsigned char, unsigned char, unsigned char> Read(const std::string& key)
 	{
-		return ParseDescriptor(::data::json::Stores::GetStore(::data::json::Store::COLORS)[key]);
+		return ParseDescriptor(::data::json::Stores::GetStore(store.value())[key]);
 	}
 }

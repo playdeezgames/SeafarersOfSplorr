@@ -1,7 +1,5 @@
-#include "Application.UIState.h"
 #include "Visuals.Messages.h"
 #include <queue>
-#include "UIState.h"
 namespace visuals::Messages
 {
 	static std::queue<Message> messages;
@@ -30,11 +28,4 @@ namespace visuals::Messages
 			Read();
 		}
 	}
-
-	void Send(const Message& message)
-	{
-		Write(message);
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
-	}
-
 }

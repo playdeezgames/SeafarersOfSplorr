@@ -169,9 +169,6 @@
     <ClCompile Include="Visuals.CardSprites.cpp">
       <Filter>Source\Visuals\Resources</Filter>
     </ClCompile>
-    <ClCompile Include="Visuals.Colors.cpp">
-      <Filter>Source\Visuals\Resources</Filter>
-    </ClCompile>
     <ClCompile Include="Visuals.Fonts.cpp">
       <Filter>Source\Visuals\Resources</Filter>
     </ClCompile>
@@ -229,9 +226,6 @@
     <ClCompile Include="State.InPlay.Message.cpp">
       <Filter>Source\States\InPlay</Filter>
     </ClCompile>
-    <ClCompile Include="Visuals.Messages.cpp">
-      <Filter>Source\Game</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Avatar.AtSea.cpp">
       <Filter>Source\Game\Avatar</Filter>
     </ClCompile>
@@ -248,9 +242,6 @@
       <Filter>Source\Game\Island</Filter>
     </ClCompile>
     <ClCompile Include="Game.Audio.Sfx.cpp">
-      <Filter>Source\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Visuals.Confirmations.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
     <ClCompile Include="Game.InPlay.Confirm.cpp">
@@ -348,16 +339,10 @@
     <ClInclude Include="Visuals.CardSprites.h">
       <Filter>Headers\Visuals\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="Visuals.Colors.h">
-      <Filter>Headers\Visuals\Resources</Filter>
-    </ClInclude>
     <ClInclude Include="Visuals.Data.Colors.h">
       <Filter>Headers\Visuals\Data</Filter>
     </ClInclude>
     <ClInclude Include="Visuals.Data.Types.h">
-      <Filter>Headers\Visuals\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Visuals.Data.Properties.h">
       <Filter>Headers\Visuals\Data</Filter>
     </ClInclude>
     <ClInclude Include="Visuals.Areas.h">
@@ -405,9 +390,6 @@
     <ClInclude Include="Game.Islands.Features.h">
       <Filter>Headers\Game\Island</Filter>
     </ClInclude>
-    <ClInclude Include="Visuals.HorizontalAlignment.h">
-      <Filter>Headers\Visuals</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Islands.Ships.h">
       <Filter>Headers\Game\Island</Filter>
     </ClInclude>
@@ -426,15 +408,6 @@
     <ClInclude Include="Game.Avatar.DockedAction.h">
       <Filter>Headers\Game\Avatar</Filter>
     </ClInclude>
-    <ClInclude Include="Visuals.Message.h">
-      <Filter>Headers\Game\Message</Filter>
-    </ClInclude>
-    <ClInclude Include="Visuals.MessageDetail.h">
-      <Filter>Headers\Game\Message</Filter>
-    </ClInclude>
-    <ClInclude Include="Visuals.Messages.h">
-      <Filter>Headers\Game\Message</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Avatar.AtSea.h">
       <Filter>Headers\Game\Avatar</Filter>
     </ClInclude>
@@ -449,12 +422,6 @@
     </ClInclude>
     <ClInclude Include="Game.Audio.Sfx.h">
       <Filter>Headers\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Visuals.Confirmation.h">
-      <Filter>Headers\Game\Confirmation</Filter>
-    </ClInclude>
-    <ClInclude Include="Visuals.Confirmations.h">
-      <Filter>Headers\Game\Confirmation</Filter>
     </ClInclude>
     <ClInclude Include="Game.Avatar.Docked.DockedStateTransition.h">
       <Filter>Headers\Game\Avatar</Filter>
@@ -541,12 +508,6 @@
     </Filter>
     <Filter Include="Headers\Game\Feature">
       <UniqueIdentifier>{ad4c0f08-c459-4443-a7ff-05f711afce89}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\Game\Message">
-      <UniqueIdentifier>{ce501f74-8afd-4ad4-8e75-1c2c988ecd1b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\Game\Confirmation">
-      <UniqueIdentifier>{3c365924-b91e-49f2-8766-4d4f86b1211f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

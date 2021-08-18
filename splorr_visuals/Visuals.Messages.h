@@ -5,6 +5,5 @@ namespace visuals::Messages
 	bool HasMessage();
 	Message Read();
 	void Write(const Message&);
-	void Send(const Message&);
 	void Reset();
 }
