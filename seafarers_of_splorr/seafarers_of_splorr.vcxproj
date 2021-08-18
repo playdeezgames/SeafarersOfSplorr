@@ -82,12 +82,12 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\splorr_mazes;..\splorr_cards;E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
+    <IncludePath>..\splorr_data;..\splorr_mazes;..\splorr_cards;E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
     <LibraryPath>E:\lib\steamworks_sdk_151\sdk\redistributable_bin\win64;E:\lib\steamworks_sdk_151\sdk\public\steam\lib\win64;E:\lib\SDL2-2.0.14\lib\x64;E:\lib\SDL2_mixer-2.0.4\lib\x64;E:\lib\SDL2_image-2.0.5\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\splorr_mazes;..\splorr_cards;E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
+    <IncludePath>..\splorr_data;..\splorr_mazes;..\splorr_cards;E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
     <LibraryPath>E:\lib\steamworks_sdk_151\sdk\redistributable_bin\win64;E:\lib\SDL2-2.0.14\lib\x64;E:\lib\SDL2_mixer-2.0.4\lib\x64;E:\lib\SDL2_image-2.0.5\lib\x64;$(LibraryPath)</LibraryPath>
     <TargetName>Freebooter</TargetName>
   </PropertyGroup>
@@ -190,8 +190,6 @@
     <ClCompile Include="Data.Game.Island.Quests.cpp" />
     <ClCompile Include="Data.Game.Island.Visits.cpp" />
     <ClCompile Include="Data.Game.World.cpp" />
-    <ClCompile Include="Data.SQLite.Stores.cpp" />
-    <ClCompile Include="Data.JSON.Stores.cpp" />
     <ClCompile Include="Game.Achievements.cpp" />
     <ClCompile Include="Game.Audio.Mux.cpp" />
     <ClCompile Include="Game.Audio.Sfx.cpp" />
@@ -224,7 +222,6 @@
     <ClCompile Include="Game.Messages.cpp" />
     <ClCompile Include="Game.Ships.cpp" />
     <ClCompile Include="Game.World.cpp" />
-    <ClCompile Include="sqlite3.c" />
     <ClCompile Include="State.ConfirmAbandon.cpp" />
     <ClCompile Include="State.ConfirmOverwrite.cpp" />
     <ClCompile Include="State.InPlay.AtSea.AutoMove.cpp" />
@@ -266,7 +263,6 @@
     <ClCompile Include="Visuals.Colors.cpp" />
     <ClCompile Include="State.ConfirmQuit.cpp" />
     <ClCompile Include="Visuals.Fonts.cpp" />
-    <ClCompile Include="Data.JSON.cpp" />
     <ClCompile Include="Visuals.Layouts.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="State.LeavePlay.cpp" />
@@ -274,7 +270,6 @@
     <ClCompile Include="State.MainMenu.cpp" />
     <ClCompile Include="Options.cpp" />
     <ClCompile Include="State.Options.cpp" />
-    <ClCompile Include="Common.Audio.cpp" />
     <ClCompile Include="State.SaveGame.cpp" />
     <ClCompile Include="State.Splash.cpp" />
     <ClCompile Include="Visuals.Sprites.cpp" />
@@ -319,8 +314,6 @@
     <ClInclude Include="Data.Game.World.h" />
     <ClInclude Include="Data.JSON.Store.h" />
     <ClInclude Include="Data.SQLite.Store.h" />
-    <ClInclude Include="Data.SQLite.Stores.h" />
-    <ClInclude Include="Data.JSON.Stores.h" />
     <ClInclude Include="Game.Achievements.h" />
     <ClInclude Include="Game.Audio.Mux.h" />
     <ClInclude Include="Game.Audio.Sfx.h" />
@@ -369,7 +362,6 @@
     <ClInclude Include="Game.Ships.h" />
     <ClInclude Include="Game.World.h" />
     <ClInclude Include="MouseButton.h" />
-    <ClInclude Include="sqlite3.h" />
     <ClInclude Include="Sublayouts.h" />
     <ClInclude Include="UIState.h" />
     <ClInclude Include="Visuals.Areas.h" />
@@ -385,8 +377,6 @@
     <ClInclude Include="Application.Renderer.h" />
     <ClInclude Include="Visuals.Colors.h" />
     <ClInclude Include="Visuals.Fonts.h" />
-    <ClInclude Include="json.hpp" />
-    <ClInclude Include="Data.JSON.h" />
     <ClInclude Include="Visuals.Layouts.h" />
     <ClInclude Include="Options.h" />
     <ClInclude Include="Visuals.Sprites.h" />
@@ -400,6 +390,9 @@
     </ProjectReference>
     <ProjectReference Include="..\splorr_common\splorr_common.vcxproj">
       <Project>{2b17430f-5460-4daa-94c5-4542448aa963}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\splorr_data\splorr_data.vcxproj">
+      <Project>{9606958e-c33d-4f3e-9799-0e4d1837f503}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

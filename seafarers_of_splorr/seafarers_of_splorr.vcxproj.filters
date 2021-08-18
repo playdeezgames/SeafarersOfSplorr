@@ -7,9 +7,6 @@
     <ClCompile Include="Options.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="sqlite3.c">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Application.Command.cpp">
       <Filter>Source\Application</Filter>
     </ClCompile>
@@ -46,22 +43,10 @@
     <ClCompile Include="Common.Application.Renderer.cpp">
       <Filter>Source\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Common.Audio.cpp">
-      <Filter>Source\Common</Filter>
-    </ClCompile>
     <ClCompile Include="Data.Game.Common.cpp">
       <Filter>Source\Data</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.World.cpp">
-      <Filter>Source\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.JSON.cpp">
-      <Filter>Source\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.SQLite.Stores.cpp">
-      <Filter>Source\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.JSON.Stores.cpp">
       <Filter>Source\Data</Filter>
     </ClCompile>
     <ClCompile Include="Game.Achievements.cpp">
@@ -372,13 +357,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="json.hpp">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="Options.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="sqlite3.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Application.Command.h">
@@ -418,15 +397,6 @@
       <Filter>Headers\Data</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.World.h">
-      <Filter>Headers\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.JSON.h">
-      <Filter>Headers\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.SQLite.Stores.h">
-      <Filter>Headers\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.JSON.Stores.h">
       <Filter>Headers\Data</Filter>
     </ClInclude>
     <ClInclude Include="Game.Achievements.h">
