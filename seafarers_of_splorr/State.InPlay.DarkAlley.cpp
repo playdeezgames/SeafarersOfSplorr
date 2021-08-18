@@ -22,7 +22,7 @@ namespace state::in_play::DarkAlley
 
 	static void OnLeave()
 	{
-		game::Confirmations::Write(
+		visuals::Confirmations::Write(
 			{
 				"Leave Dark Alley?",
 				[]() { game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK); },
@@ -44,7 +44,7 @@ namespace state::in_play::DarkAlley
 		{
 			return;
 		}
-		game::Messages::Send(
+		visuals::Messages::Send(
 			{
 				"Come Back When Yer Serious!",
 				{

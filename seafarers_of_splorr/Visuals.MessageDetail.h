@@ -3,7 +3,7 @@
 #include <optional>
 #include <string>
 #include "Visuals.HorizontalAlignment.h"
-namespace game
+namespace visuals
 {
 	struct MessageDetail
 	{

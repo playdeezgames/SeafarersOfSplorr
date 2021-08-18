@@ -1,8 +1,8 @@
 #include "Application.UIState.h"
-#include "Game.Messages.h"
+#include "Visuals.Messages.h"
 #include <queue>
 #include "UIState.h"
-namespace game::Messages
+namespace visuals::Messages
 {
 	static std::queue<Message> messages;
 
@@ -23,7 +23,7 @@ namespace game::Messages
 		messages.push(message);
 	}
 
-	void Reset(const Difficulty&)
+	void Reset()
 	{
 		while (HasMessage())
 		{

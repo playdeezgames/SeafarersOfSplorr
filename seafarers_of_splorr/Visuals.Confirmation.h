@@ -1,7 +1,7 @@
 #pragma once
 #include <functional>
 #include <string>
-namespace game
+namespace visuals
 {
 	struct Confirmation
 	{

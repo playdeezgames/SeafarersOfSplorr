@@ -19,8 +19,8 @@ namespace state::in_play::Next
 	{
 		{game::avatar::Statistics::IsOutOfTurns, ::UIState::IN_PLAY_WIN},
 		{game::avatar::Statistics::IsDead, ::UIState::IN_PLAY_LOSE},
-		{game::Messages::HasMessage, ::UIState::IN_PLAY_MESSAGE},
-		{game::Confirmations::HasConfirmation, ::UIState::IN_PLAY_CONFIRM}
+		{visuals::Messages::HasMessage, ::UIState::IN_PLAY_MESSAGE},
+		{visuals::Confirmations::HasConfirmation, ::UIState::IN_PLAY_CONFIRM}
 	};
 
 	const std::map<game::avatar::DockedState, ::UIState> dockedStateTable =

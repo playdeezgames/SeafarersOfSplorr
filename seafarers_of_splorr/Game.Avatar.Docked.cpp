@@ -99,7 +99,7 @@ namespace game::avatar::Docked
 		auto infamy = game::avatar::Statistics::GetInfamy();
 		if (infamy < data.infamyRequirement)
 		{
-			game::Messages::Write(
+			visuals::Messages::Write(
 				{
 					"==FIGHT!==",
 					{

@@ -24,13 +24,13 @@ namespace state::in_play::Message
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
-		if (!game::Messages::HasMessage())
+		if (!visuals::Messages::HasMessage())
 		{
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			return;
 		}
 		visuals::SpriteGrid::Clear(LAYOUT_NAME, SPRITE_GRID);
-		auto message = game::Messages::Read();
+		auto message = visuals::Messages::Read();
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_CAPTION, message.caption);
 		for (auto& detail : message.details)
 		{

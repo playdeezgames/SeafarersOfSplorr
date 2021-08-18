@@ -75,7 +75,7 @@ namespace state::in_play::AtSea
 	{
 		if (game::avatar::Docked::Dock() == game::avatar::Docked::DockResult::COMPLETED_QUEST)
 		{
-			game::Messages::Write(
+			visuals::Messages::Write(
 				{
 					"==DELIVERY COMPLETE==",
 					{

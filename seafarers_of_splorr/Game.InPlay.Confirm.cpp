@@ -23,7 +23,7 @@ namespace state::in_play::Confirm
 		YES
 	};
 
-	static game::Confirmation confirmation;
+	static visuals::Confirmation confirmation;
 
 	static void OnYes()
 	{
@@ -61,9 +61,9 @@ namespace state::in_play::Confirm
 
 	static void OnEnter()
 	{
-		if (game::Confirmations::HasConfirmation())
+		if (visuals::Confirmations::HasConfirmation())
 		{
-			confirmation = game::Confirmations::Read();
+			confirmation = visuals::Confirmations::Read();
 			Refresh();
 			game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);//TODO: have this come from the confirmation object?
 			return;

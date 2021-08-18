@@ -1,6 +1,6 @@
-#include "Game.Confirmations.h"
+#include "Visuals.Confirmations.h"
 #include <stack>
-namespace game::Confirmations
+namespace visuals::Confirmations
 {
 	static std::stack<Confirmation> confirmations;
 
@@ -21,7 +21,7 @@ namespace game::Confirmations
 		confirmations.push(confirmation);
 	}
 
-	void Reset(const Difficulty&)
+	void Reset()
 	{
 		while (HasConfirmation())
 		{

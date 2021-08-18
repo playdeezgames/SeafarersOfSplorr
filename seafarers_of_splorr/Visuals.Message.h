@@ -1,7 +1,7 @@
 #pragma once
-#include "Game.MessageDetail.h"
+#include "Visuals.MessageDetail.h"
 #include <list>
-namespace game
+namespace visuals
 {
 	struct Message
 	{

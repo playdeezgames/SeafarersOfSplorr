@@ -28,8 +28,8 @@ namespace game
 		game::avatar::Items::Reset(difficulty);
 		game::avatar::Ship::Reset(difficulty);
 		game::avatar::Log::Reset(difficulty);
-		game::Messages::Reset(difficulty);
-		game::Confirmations::Reset(difficulty);
+		visuals::Messages::Reset();
+		visuals::Confirmations::Reset();
 	}
 
 	void Start()
