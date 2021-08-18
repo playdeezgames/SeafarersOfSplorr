@@ -1,5 +1,5 @@
 #pragma once
-namespace application::ui
+namespace application::ui//TODO: likely winds up in seafarers_state
 {
 	enum class Sfx
 	{

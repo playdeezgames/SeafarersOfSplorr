@@ -1,5 +1,5 @@
 #pragma once
-enum class UIState
+enum class UIState//TODO: likely moves to seafarers_state
 {
 	SPLASH,
 	MAIN_MENU,

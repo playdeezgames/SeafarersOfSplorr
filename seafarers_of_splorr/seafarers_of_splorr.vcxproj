@@ -161,7 +161,6 @@
     <ClCompile Include="Application.Keyboard.cpp" />
     <ClCompile Include="Application.Renderer.cpp" />
     <ClCompile Include="Application.Sounds.cpp" />
-    <ClCompile Include="Common.Application.Renderer.cpp" />
     <ClCompile Include="Game.Achievements.cpp" />
     <ClCompile Include="Game.Audio.Mux.cpp" />
     <ClCompile Include="Game.Audio.Sfx.cpp" />
@@ -230,7 +229,6 @@
     <ClCompile Include="Visuals.Sublayout.cpp" />
     <ClCompile Include="Visuals.Texts.cpp" />
     <ClCompile Include="State.About.cpp" />
-    <ClCompile Include="Common.Application.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Visuals.Colors.cpp" />
     <ClCompile Include="State.ConfirmQuit.cpp" />
@@ -252,8 +250,6 @@
   <ItemGroup>
     <ClInclude Include="Application.Sounds.h" />
     <ClInclude Include="Application.UI.Sfx.h" />
-    <ClInclude Include="Common.Application.h" />
-    <ClInclude Include="Common.Application.Renderer.h" />
     <ClInclude Include="Game.Achievements.h" />
     <ClInclude Include="Game.Audio.Mux.h" />
     <ClInclude Include="Game.Audio.Sfx.h" />

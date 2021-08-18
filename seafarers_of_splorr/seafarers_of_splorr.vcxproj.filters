@@ -19,12 +19,6 @@
     <ClCompile Include="Application.Sounds.cpp">
       <Filter>Source\Application</Filter>
     </ClCompile>
-    <ClCompile Include="Common.Application.cpp">
-      <Filter>Source\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Common.Application.Renderer.cpp">
-      <Filter>Source\Common</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Achievements.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
@@ -279,12 +273,6 @@
     <ClInclude Include="Application.Sounds.h">
       <Filter>Headers\Application</Filter>
     </ClInclude>
-    <ClInclude Include="Common.Application.h">
-      <Filter>Headers\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common.Application.Renderer.h">
-      <Filter>Headers\Common</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Achievements.h">
       <Filter>Headers\Game</Filter>
     </ClInclude>
@@ -497,9 +485,6 @@
     <Filter Include="Source\Application">
       <UniqueIdentifier>{a6e5c2d7-b6b3-4f67-8144-4fc3733398b4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Common">
-      <UniqueIdentifier>{c5273242-5e50-461d-853e-c7ce52a5c416}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Game">
       <UniqueIdentifier>{24c562de-9f4e-46aa-9187-100eb70f5f2c}</UniqueIdentifier>
     </Filter>
@@ -511,9 +496,6 @@
     </Filter>
     <Filter Include="Headers\Application">
       <UniqueIdentifier>{a3afde04-cee0-4731-a07d-3820fd8d172c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\Common">
-      <UniqueIdentifier>{37ccb25c-a837-4374-a846-a2a59ec58e94}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headers\Game">
       <UniqueIdentifier>{bc31f3c0-10c1-4ac8-a441-5057b4e3eb8d}</UniqueIdentifier>
