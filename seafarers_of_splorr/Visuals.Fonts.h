@@ -1,10 +1,10 @@
 #pragma once
-#include <memory>
-#include <SDL.h>
-#include "Common.XY.h"
-#include <string>
 #include "Application.Engine.h"
+#include "Common.XY.h"
+#include <memory>
 #include <optional>
+#include <SDL.h>
+#include <string>
 #include "Visuals.HorizontalAlignment.h"
 namespace visuals::Fonts
 {
