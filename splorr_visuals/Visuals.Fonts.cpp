@@ -1,5 +1,4 @@
 #include "Data.JSON.h"
-#include "Data.JSON.Store.h"
 #include "Data.JSON.Stores.h"
 #include <format>
 #include "Visuals.Colors.h"
@@ -7,15 +6,22 @@
 #include "Visuals.Sprites.h"
 namespace visuals::Fonts
 {
+	static std::optional<int> store;
+
+	void SetStore(int s)
+	{
+		store = s;
+	}
+
 	static std::map<std::string, nlohmann::json> fontDataStore;
 
 	static void InitializeFont(const std::string& fontName)
 	{
 		if (!fontDataStore.contains(fontName))
 		{
-			if (::data::json::Stores::GetStore(::data::json::Store::FONTS).count(fontName) > 0)
+			if (::data::json::Stores::GetStore(store.value()).count(fontName) > 0)
 			{
-				fontDataStore[fontName] = data::JSON::Load(::data::json::Stores::GetStore(::data::json::Store::FONTS)[fontName]);
+				fontDataStore[fontName] = data::JSON::Load(::data::json::Stores::GetStore(store.value())[fontName]);
 			}
 		}
 	}
@@ -24,7 +30,7 @@ namespace visuals::Fonts
 
 	static const nlohmann::json& FontNameToDataStoreModel(const std::string fontName)
 	{
-		if (::data::json::Stores::GetStore(::data::json::Store::FONTS).count(fontName) > 0)
+		if (::data::json::Stores::GetStore(store.value()).count(fontName) > 0)
 		{
 			InitializeFont(fontName);
 			return fontDataStore[fontName];

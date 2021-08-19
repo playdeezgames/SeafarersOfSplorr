@@ -23,6 +23,7 @@
     <ClInclude Include="Visuals.Confirmation.h" />
     <ClInclude Include="Visuals.Confirmations.h" />
     <ClInclude Include="Visuals.Data.Properties.h" />
+    <ClInclude Include="Visuals.Fonts.h" />
     <ClInclude Include="Visuals.HorizontalAlignment.h" />
     <ClInclude Include="Visuals.Message.h" />
     <ClInclude Include="Visuals.MessageDetail.h" />
@@ -33,6 +34,7 @@
   <ItemGroup>
     <ClCompile Include="Visuals.Colors.cpp" />
     <ClCompile Include="Visuals.Confirmations.cpp" />
+    <ClCompile Include="Visuals.Fonts.cpp" />
     <ClCompile Include="Visuals.Messages.cpp" />
     <ClCompile Include="Visuals.Sprites.cpp" />
     <ClCompile Include="Visuals.Textures.cpp" />

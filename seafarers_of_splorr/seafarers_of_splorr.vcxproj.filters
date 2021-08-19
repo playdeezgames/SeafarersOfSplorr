@@ -169,9 +169,6 @@
     <ClCompile Include="Visuals.CardSprites.cpp">
       <Filter>Source\Visuals\Resources</Filter>
     </ClCompile>
-    <ClCompile Include="Visuals.Fonts.cpp">
-      <Filter>Source\Visuals\Resources</Filter>
-    </ClCompile>
     <ClCompile Include="Visuals.Images.cpp">
       <Filter>Source\Visuals\Controls</Filter>
     </ClCompile>
@@ -359,9 +356,6 @@
     </ClInclude>
     <ClInclude Include="Visuals.WorldMap.h">
       <Filter>Headers\Visuals\Controls</Filter>
-    </ClInclude>
-    <ClInclude Include="Visuals.Fonts.h">
-      <Filter>Headers\Visuals\Resources</Filter>
     </ClInclude>
     <ClInclude Include="UIState.h">
       <Filter>Headers\Application</Filter>

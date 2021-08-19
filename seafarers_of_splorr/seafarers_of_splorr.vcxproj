@@ -227,7 +227,6 @@
     <ClCompile Include="State.About.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="State.ConfirmQuit.cpp" />
-    <ClCompile Include="Visuals.Fonts.cpp" />
     <ClCompile Include="Visuals.Layouts.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="State.LeavePlay.cpp" />
@@ -292,7 +291,6 @@
     <ClInclude Include="Visuals.SpriteGrid.h" />
     <ClInclude Include="Visuals.Texts.h" />
     <ClInclude Include="Visuals.Data.Types.h" />
-    <ClInclude Include="Visuals.Fonts.h" />
     <ClInclude Include="Visuals.Layouts.h" />
     <ClInclude Include="Options.h" />
     <ClInclude Include="States.h" />

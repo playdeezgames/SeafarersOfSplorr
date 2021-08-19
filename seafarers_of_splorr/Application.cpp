@@ -18,6 +18,7 @@
 #include "UIState.h"
 #include "Visuals.Layouts.h"
 #include "Visuals.Colors.h"
+#include "Visuals.Fonts.h"
 #include "Visuals.Sprites.h"
 #include "Visuals.Textures.h"
 namespace application::Command
@@ -103,6 +104,7 @@ namespace application::Engine
 		visuals::Colors::DoSetStore(data::json::Store::COLORS),
 		visuals::Textures::DoSetStore(data::json::Store::TEXTURES),
 		visuals::Sprites::DoSetStore(data::json::Store::SPRITES),
+		visuals::Fonts::DoSetStore(data::json::Store::FONTS),
 		data::json::Stores::Start,
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::IN_MEMORY, ":memory:"),
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::AUTOSAVE, "autosave.db"),
