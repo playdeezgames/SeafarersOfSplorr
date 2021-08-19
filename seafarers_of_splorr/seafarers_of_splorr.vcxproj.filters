@@ -4,117 +4,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.Lose.cpp">
-      <Filter>Source\States\InPlay</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.Win.cpp">
-      <Filter>Source\States\InPlay</Filter>
-    </ClCompile>
-    <ClCompile Include="State.ConfirmAbandon.cpp">
-      <Filter>Source\States\Boilerplate</Filter>
-    </ClCompile>
-    <ClCompile Include="State.ConfirmOverwrite.cpp">
-      <Filter>Source\States\Boilerplate</Filter>
-    </ClCompile>
-    <ClCompile Include="State.LeavePlay.cpp">
-      <Filter>Source\States\Boilerplate</Filter>
-    </ClCompile>
-    <ClCompile Include="State.LoadGame.cpp">
-      <Filter>Source\States\Boilerplate</Filter>
-    </ClCompile>
-    <ClCompile Include="State.SaveGame.cpp">
-      <Filter>Source\States\Boilerplate</Filter>
-    </ClCompile>
-    <ClCompile Include="State.Start.cpp">
-      <Filter>Source\States\Boilerplate</Filter>
-    </ClCompile>
-    <ClCompile Include="State.About.cpp">
-      <Filter>Source\States\Boilerplate</Filter>
-    </ClCompile>
-    <ClCompile Include="State.ConfirmQuit.cpp">
-      <Filter>Source\States\Boilerplate</Filter>
-    </ClCompile>
-    <ClCompile Include="State.MainMenu.cpp">
-      <Filter>Source\States\Boilerplate</Filter>
-    </ClCompile>
-    <ClCompile Include="State.Options.cpp">
-      <Filter>Source\States\Boilerplate</Filter>
-    </ClCompile>
-    <ClCompile Include="State.Splash.cpp">
-      <Filter>Source\States\Boilerplate</Filter>
-    </ClCompile>
-    <ClCompile Include="State.Statistics.cpp">
-      <Filter>Source\States\Boilerplate</Filter>
-    </ClCompile>
-    <ClCompile Include="State.Tip.cpp">
-      <Filter>Source\States\Boilerplate</Filter>
-    </ClCompile>
-    <ClCompile Include="Sublayout.UIHamburger.cpp">
-      <Filter>Source\States\Boilerplate</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.IslandBuy.cpp">
-      <Filter>Source\States\InPlay\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.IslandJobs.cpp">
-      <Filter>Source\States\InPlay\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.IslandSell.cpp">
-      <Filter>Source\States\InPlay\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.IslandTrade.cpp">
-      <Filter>Source\States\InPlay\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.AtSea.cpp">
-      <Filter>Source\States\InPlay\AtSea</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.Cargo.cpp">
-      <Filter>Source\States\InPlay\AtSea</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.ChangeSpeed.cpp">
-      <Filter>Source\States\InPlay\AtSea</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.ConfirmAbandonJob.cpp">
-      <Filter>Source\States\InPlay\AtSea</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.CurrentJob.cpp">
-      <Filter>Source\States\InPlay\AtSea</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.HeadFor.cpp">
-      <Filter>Source\States\InPlay\AtSea</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.Docked.cpp">
-      <Filter>Source\States\InPlay\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.ShipStatus.cpp">
-      <Filter>Source\States\InPlay\AtSea</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.Next.cpp">
-      <Filter>Source\States\InPlay</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.AtSea.Refresh.cpp">
-      <Filter>Source\States\InPlay\AtSea</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.AtSea.AutoMove.cpp">
-      <Filter>Source\States\InPlay\AtSea</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.Shipyard.cpp">
-      <Filter>Source\States\InPlay\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.ConfirmReplaceJob.cpp">
-      <Filter>Source\States\InPlay\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.DarkAlleyEntrance.cpp">
-      <Filter>Source\States\InPlay\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.Message.cpp">
-      <Filter>Source\States\InPlay</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.DarkAlley.cpp">
-      <Filter>Source\States\InPlay\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.InPlay.Confirm.cpp">
-      <Filter>Source\States\InPlay</Filter>
-    </ClCompile>
     <ClCompile Include="Application.Starters.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -132,40 +21,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="UIState.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="States.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Sublayouts.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <Filter Include="Headers">
       <UniqueIdentifier>{3f0995ba-cbba-4e6d-8f36-2e7fcc622317}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source">
       <UniqueIdentifier>{0d16c7ab-fe54-459a-a111-88fd92e8a3bc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Game">
-      <UniqueIdentifier>{24c562de-9f4e-46aa-9187-100eb70f5f2c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\States">
-      <UniqueIdentifier>{5148758d-d9fa-4c24-af22-20ccf4468e6d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\States\InPlay">
-      <UniqueIdentifier>{474bf60b-af62-4577-beca-e35d0b053061}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\States\Boilerplate">
-      <UniqueIdentifier>{1077cb76-aaa2-43dc-b8bc-241f6fe2cbb4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\States\InPlay\Island">
-      <UniqueIdentifier>{b108dda9-a69d-48a5-ae65-361823a62a14}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\States\InPlay\AtSea">
-      <UniqueIdentifier>{d499b058-8e62-4629-9d3b-2bad0f4e0414}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
