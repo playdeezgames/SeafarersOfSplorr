@@ -9,7 +9,6 @@ namespace visuals::data
 		TEXT,
 		AREA,
 		SPRITE_GRID,
-
 		WORLD_MAP
 	};
 }

@@ -13,10 +13,7 @@
 #include "Visuals.Texts.h"
 #include "Visuals.WorldMap.h"
 #include "Visuals.SpriteGrid.h"
-namespace visuals::Sublayout 
-{ 
-	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
-}
+#include "Visuals.Sublayout.h"
 namespace visuals::Layouts
 {
 	struct InternalLayout
@@ -27,31 +24,38 @@ namespace visuals::Layouts
 	static std::map<std::string, nlohmann::json> layouts;
 	static std::map<std::string, InternalLayout> internalLayouts;
 
-	typedef std::function<DrawerFunction(const std::string&, const nlohmann::json&)> InternalizerFunction;
-
-	static std::map<visuals::data::Type, InternalizerFunction> internalizers =
+	static std::map<std::string, InternalizerFunction> internalizers =
 	{
-		{visuals::data::Type::IMAGE, visuals::Image::Internalize},
-		{visuals::data::Type::TEXT, visuals::Text::Internalize},
-		{visuals::data::Type::MENU, visuals::Menu::Internalize},
-		{visuals::data::Type::LAYOUT, visuals::Sublayout::Internalize},
-		{visuals::data::Type::AREA, visuals::Areas::Internalize},
-		{visuals::data::Type::WORLD_MAP, visuals::WorldMap::Internalize},
-		{visuals::data::Type::SPRITE_GRID, visuals::SpriteGrid::Internalize}
+		{"Image", visuals::Image::Internalize},
+		{"Text", visuals::Text::Internalize},
+		{"Menu", visuals::Menu::Internalize},
+		{"Layout", visuals::Sublayout::Internalize},
+		{"Area", visuals::Areas::Internalize},
+		{"SpriteGrid", visuals::SpriteGrid::Internalize}
 	};
 
-	static void InternalizeTypedDrawn(const std::string layoutName, visuals::data::Type drawnType, const nlohmann::json& drawn)
+	void RegisterType(const std::string& typeName, InternalizerFunction internalizer)
+	{
+		internalizers[typeName] = internalizer;
+	}
+
+	std::function<void()> DoRegisterType(const std::string& typeName, InternalizerFunction internalizer)
+	{
+		return [typeName, internalizer]() 
+		{
+			RegisterType(typeName, internalizer);
+		};
+	}
+
+
+	static void InternalizeTypedDrawn(const std::string layoutName, const std::string& drawnType, const nlohmann::json& drawn)
 	{
 		internalLayouts[layoutName].drawers.push_back(internalizers.find(drawnType)->second(layoutName, drawn));
 	}
 
 	static void InternalizeTypedDrawnFromString(const std::string layoutName, const nlohmann::json& type, const nlohmann::json& drawn)
 	{
-		auto drawnType = visuals::data::Types::FromString(type);
-		if (drawnType)
-		{
-			InternalizeTypedDrawn(layoutName, *drawnType, drawn);
-		}
+		InternalizeTypedDrawn(layoutName, type, drawn);
 	}
 
 	static void InternalizeDrawn(const std::string layoutName, const nlohmann::json& drawn)

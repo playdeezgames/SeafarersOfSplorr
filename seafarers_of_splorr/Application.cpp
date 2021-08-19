@@ -21,6 +21,7 @@
 #include "Visuals.Fonts.h"
 #include "Visuals.Sprites.h"
 #include "Visuals.Textures.h"
+#include "Visuals.WorldMap.h"
 namespace application::Command
 {
 	void Handle(const ::Command& command);
@@ -105,6 +106,7 @@ namespace application::Engine
 		visuals::Textures::DoSetStore(data::json::Store::TEXTURES),
 		visuals::Sprites::DoSetStore(data::json::Store::SPRITES),
 		visuals::Fonts::DoSetStore(data::json::Store::FONTS),
+		visuals::Layouts::DoRegisterType("WorldMap", visuals::WorldMap::Internalize),
 		data::json::Stores::Start,
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::IN_MEMORY, ":memory:"),
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::AUTOSAVE, "autosave.db"),

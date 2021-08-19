@@ -414,6 +414,9 @@
     <ClInclude Include="Visuals.DrawerFunction.h">
       <Filter>Headers\Visuals</Filter>
     </ClInclude>
+    <ClInclude Include="Visuals.Sublayout.h">
+      <Filter>Headers\Visuals\Controls</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
