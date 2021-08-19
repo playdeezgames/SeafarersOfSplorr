@@ -160,9 +160,6 @@
     <ClCompile Include="Game.Islands.Generation.cpp">
       <Filter>Source\Game\Island</Filter>
     </ClCompile>
-    <ClCompile Include="Visuals.WorldMap.cpp">
-      <Filter>Source\Visuals\Controls</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Features.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
@@ -217,22 +214,13 @@
     <ClCompile Include="Visuals.CardSprites.cpp">
       <Filter>Source\Visuals</Filter>
     </ClCompile>
+    <ClCompile Include="Visuals.WorldMap.cpp">
+      <Filter>Source\Visuals</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Options.h">
       <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Achievements.h">
-      <Filter>Headers\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Audio.Mux.h">
-      <Filter>Headers\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Difficulty.h">
-      <Filter>Headers\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Headers\Game</Filter>
     </ClInclude>
     <ClInclude Include="Game.World.h">
       <Filter>Headers\Game</Filter>
@@ -303,12 +291,6 @@
     <ClInclude Include="Game.Avatar.Destination.h">
       <Filter>Headers\Game\Avatar</Filter>
     </ClInclude>
-    <ClInclude Include="Visuals.Data.Colors.h">
-      <Filter>Headers\Visuals\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Visuals.WorldMap.h">
-      <Filter>Headers\Visuals\Controls</Filter>
-    </ClInclude>
     <ClInclude Include="UIState.h">
       <Filter>Headers\Application</Filter>
     </ClInclude>
@@ -354,16 +336,31 @@
     <ClInclude Include="Game.Islands.DarkAlley.h">
       <Filter>Headers\Game\Island</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Audio.Sfx.h">
-      <Filter>Headers\Game</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Avatar.Docked.DockedStateTransition.h">
       <Filter>Headers\Game\Avatar</Filter>
     </ClInclude>
     <ClInclude Include="Visuals.CardSprites.h">
       <Filter>Headers\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Visuals.DrawerFunction.h">
+    <ClInclude Include="Game.Achievements.h">
+      <Filter>Headers\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Audio.Mux.h">
+      <Filter>Headers\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Audio.Sfx.h">
+      <Filter>Headers\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Difficulty.h">
+      <Filter>Headers\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Headers\Game\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Visuals.WorldMap.h">
+      <Filter>Headers\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Visuals.Data.Colors.h">
       <Filter>Headers\Visuals</Filter>
     </ClInclude>
   </ItemGroup>
@@ -431,17 +428,11 @@
     <Filter Include="Source\States\InPlay\AtSea">
       <UniqueIdentifier>{d499b058-8e62-4629-9d3b-2bad0f4e0414}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Visuals\Controls">
-      <UniqueIdentifier>{ff96239c-0396-4b6a-9454-2e04a086ef3e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\Visuals\Controls">
-      <UniqueIdentifier>{aef800ca-b1d6-4632-bfb8-1d9b76c175d4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\Visuals\Data">
-      <UniqueIdentifier>{0958faf4-be43-43ea-b295-d6e169db1f1b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Headers\Game\Feature">
       <UniqueIdentifier>{ad4c0f08-c459-4443-a7ff-05f711afce89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Game\Base">
+      <UniqueIdentifier>{3182a0d0-838e-4f81-8d46-cbb0d0d6a31c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

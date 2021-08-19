@@ -277,7 +277,6 @@
     <ClInclude Include="UIState.h" />
     <ClInclude Include="Visuals.CardSprites.h" />
     <ClInclude Include="Visuals.Data.Colors.h" />
-    <ClInclude Include="Visuals.DrawerFunction.h" />
     <ClInclude Include="Options.h" />
     <ClInclude Include="States.h" />
     <ClInclude Include="Visuals.WorldMap.h" />

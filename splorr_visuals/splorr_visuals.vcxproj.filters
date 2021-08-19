@@ -62,6 +62,9 @@
     <ClInclude Include="Visuals.Texts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Visuals.DrawerFunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Visuals.Confirmations.cpp">

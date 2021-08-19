@@ -24,6 +24,7 @@
     <ClInclude Include="Visuals.Confirmation.h" />
     <ClInclude Include="Visuals.Confirmations.h" />
     <ClInclude Include="Visuals.Data.Properties.h" />
+    <ClInclude Include="Visuals.DrawerFunction.h" />
     <ClInclude Include="Visuals.Fonts.h" />
     <ClInclude Include="Visuals.HorizontalAlignment.h" />
     <ClInclude Include="Visuals.Images.h" />
