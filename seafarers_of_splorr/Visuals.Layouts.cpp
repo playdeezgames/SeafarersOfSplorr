@@ -69,7 +69,7 @@ namespace visuals::Layouts
 		internalLayouts[layoutName].drawers.push_back(internalizers.find(drawnType)->second(layoutName, drawn));
 	}
 
-	static void InternalizeDrawn(const std::string layoutName, const nlohmann::json& drawn)
+	static void InternalizeDrawn(const std::string& layoutName, const nlohmann::json& drawn)
 	{
 		auto& types = drawn[visuals::data::Properties::TYPE];
 		if (types.is_array())
