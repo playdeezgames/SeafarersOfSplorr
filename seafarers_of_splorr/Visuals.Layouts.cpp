@@ -3,39 +3,18 @@
 #include "Data.JSON.Store.h"
 #include "Data.JSON.Stores.h"
 #include <functional>
+#include "Visuals.DrawerFunction.h"
 #include "Visuals.Data.Properties.h"
 #include "Visuals.Data.Types.h"
 #include "Visuals.Layouts.h"
-namespace visuals
-{
-	typedef std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> DrawerFunction;
-}
-namespace visuals::Menu 
-{ 
-	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
-}
-namespace visuals::Image 
-{ 
-	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
-}
-namespace visuals::Text 
-{ 
-	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
-}
+#include "Visuals.Menus.h"
+#include "Visuals.Areas.h"
+#include "Visuals.Images.h"
+#include "Visuals.Texts.h"
+#include "Visuals.WorldMap.h"
+#include "Visuals.SpriteGrid.h"
 namespace visuals::Sublayout 
 { 
-	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
-}
-namespace visuals::Areas
-{
-	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
-}
-namespace visuals::WorldMap
-{
-	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
-}
-namespace visuals::SpriteGrid
-{
 	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
 }
 namespace visuals::Layouts

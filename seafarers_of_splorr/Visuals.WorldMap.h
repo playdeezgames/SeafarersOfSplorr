@@ -2,6 +2,12 @@
 #include <optional>
 #include "Common.XY.h"
 #include <string>
+#include "json.hpp"
+#include "Visuals.DrawerFunction.h"
+namespace visuals::WorldMap
+{
+	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
+}
 namespace visuals::WorldMap
 {
 	void SetDestination(const std::string&, const std::string&, const std::optional<common::XY<int>>&);

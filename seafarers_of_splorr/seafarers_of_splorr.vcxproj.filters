@@ -166,9 +166,6 @@
     <ClCompile Include="Visuals.Areas.cpp">
       <Filter>Source\Visuals\Controls</Filter>
     </ClCompile>
-    <ClCompile Include="Visuals.CardSprites.cpp">
-      <Filter>Source\Visuals\Resources</Filter>
-    </ClCompile>
     <ClCompile Include="Visuals.Images.cpp">
       <Filter>Source\Visuals\Controls</Filter>
     </ClCompile>
@@ -240,6 +237,9 @@
     </ClCompile>
     <ClCompile Include="Game.Avatar.Docked.ActionDescriptors.cpp">
       <Filter>Source\Game\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Visuals.CardSprites.cpp">
+      <Filter>Source\Visuals</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -327,9 +327,6 @@
     <ClInclude Include="Game.Avatar.Destination.h">
       <Filter>Headers\Game\Avatar</Filter>
     </ClInclude>
-    <ClInclude Include="Visuals.CardSprites.h">
-      <Filter>Headers\Visuals\Resources</Filter>
-    </ClInclude>
     <ClInclude Include="Visuals.Data.Colors.h">
       <Filter>Headers\Visuals\Data</Filter>
     </ClInclude>
@@ -408,6 +405,15 @@
     <ClInclude Include="Game.Avatar.Docked.DockedStateTransition.h">
       <Filter>Headers\Game\Avatar</Filter>
     </ClInclude>
+    <ClInclude Include="Visuals.CardSprites.h">
+      <Filter>Headers\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Visuals.Data.Type.h">
+      <Filter>Headers\Visuals\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Visuals.DrawerFunction.h">
+      <Filter>Headers\Visuals</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
@@ -473,14 +479,8 @@
     <Filter Include="Source\States\InPlay\AtSea">
       <UniqueIdentifier>{d499b058-8e62-4629-9d3b-2bad0f4e0414}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Visuals\Resources">
-      <UniqueIdentifier>{eb534bcb-5a13-4dd2-88c4-da89cadc3932}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Visuals\Controls">
       <UniqueIdentifier>{ff96239c-0396-4b6a-9454-2e04a086ef3e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\Visuals\Resources">
-      <UniqueIdentifier>{ceaabded-d27c-48e8-b88e-0b38695490d2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headers\Visuals\Controls">
       <UniqueIdentifier>{aef800ca-b1d6-4632-bfb8-1d9b76c175d4}</UniqueIdentifier>

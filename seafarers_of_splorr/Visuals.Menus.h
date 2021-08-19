@@ -3,8 +3,15 @@
 #include <functional>
 #include <optional>
 #include <string>
+#include "json.hpp"
+#include "Visuals.DrawerFunction.h"
+namespace visuals::Menu
+{
+	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
+}
 namespace visuals::Menus
 {
+
 	std::optional<int> ReadIndex(const std::string&, const std::string&);
 	void WriteIndex(const std::string&, const std::string&, int);
 	void WriteMenuItemId(const std::string&, const std::string&, const std::string&);
