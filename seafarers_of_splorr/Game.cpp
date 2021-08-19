@@ -8,14 +8,25 @@
 #include "Game.Avatar.Log.h"
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Statistics.h"
-#include "Visuals.Confirmations.h"
 #include "Game.Islands.h"
 #include "Game.Islands.Features.h"
-#include "Visuals.Messages.h"
 #include "Game.World.h"
+#include <list>
 #include <map>
 namespace game
 {
+	std::list<std::function<void()>> resetters;
+	void AddResetter(std::function<void()> resetter)
+	{
+		resetters.push_back(resetter);
+	}
+	std::function<void()> DoAddResetter(std::function<void()> resetter)
+	{
+		return [resetter]()
+		{
+			AddResetter(resetter);
+		};
+	}
 	void Reset(const Difficulty& difficulty)
 	{
 		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);
@@ -28,8 +39,10 @@ namespace game
 		game::avatar::Items::Reset(difficulty);
 		game::avatar::Ship::Reset(difficulty);
 		game::avatar::Log::Reset(difficulty);
-		visuals::Messages::Reset();
-		visuals::Confirmations::Reset();
+		for (auto& resetter : resetters)
+		{
+			resetter();
+		}
 	}
 
 	void Start()

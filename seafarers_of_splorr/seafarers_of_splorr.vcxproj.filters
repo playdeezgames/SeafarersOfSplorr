@@ -354,14 +354,14 @@
     <ClInclude Include="Game.Difficulty.h">
       <Filter>Headers\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Headers\Game\Base</Filter>
-    </ClInclude>
     <ClInclude Include="Visuals.WorldMap.h">
       <Filter>Headers\Visuals</Filter>
     </ClInclude>
     <ClInclude Include="Visuals.Data.Colors.h">
       <Filter>Headers\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Headers\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -430,9 +430,6 @@
     </Filter>
     <Filter Include="Headers\Game\Feature">
       <UniqueIdentifier>{ad4c0f08-c459-4443-a7ff-05f711afce89}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\Game\Base">
-      <UniqueIdentifier>{3182a0d0-838e-4f81-8d46-cbb0d0d6a31c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

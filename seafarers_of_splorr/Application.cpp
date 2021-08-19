@@ -22,6 +22,8 @@
 #include "Visuals.Sprites.h"
 #include "Visuals.Textures.h"
 #include "Visuals.WorldMap.h"
+#include "Visuals.Confirmations.h"
+#include "Visuals.Messages.h"
 namespace application::Command
 {
 	void Handle(const ::Command& command);
@@ -108,6 +110,8 @@ namespace application::Engine
 		visuals::Fonts::DoSetStore(data::json::Store::FONTS),
 		visuals::Layouts::DoSetStore(data::json::Store::LAYOUTS),
 		visuals::Layouts::DoRegisterType("WorldMap", visuals::WorldMap::Internalize),
+		visuals::Messages::Reset,
+		visuals::Confirmations::Reset,
 		data::json::Stores::Start,
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::IN_MEMORY, ":memory:"),
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::AUTOSAVE, "autosave.db"),
@@ -126,6 +130,8 @@ namespace application::Engine
 		state::Options::Start,
 		state::Start::Start,
 		state::LeavePlay::Start,
+		game::DoAddResetter(visuals::Confirmations::Reset),
+		game::DoAddResetter(visuals::Messages::Reset),
 		game::Start,
 		state::Statistics::Start,
 		state::LoadGame::Start,

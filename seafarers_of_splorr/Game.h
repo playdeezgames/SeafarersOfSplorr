@@ -1,7 +1,10 @@
 #pragma once
+#include <functional>
 #include "Game.Difficulty.h"
 namespace game
 {
+	void AddResetter(std::function<void()>);
+	std::function<void()> DoAddResetter(std::function<void()>);
 	void Start();
 	void Reset(const Difficulty&);
 	void AutoSave();
