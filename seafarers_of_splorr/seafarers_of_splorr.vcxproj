@@ -82,12 +82,12 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\splorr_visuals;..\splorr_application;..\seafarers_data;..\splorr_audio;..\splorr_data;..\splorr_mazes;..\splorr_cards;E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
+    <IncludePath>..\seafarers_game;..\splorr_visuals;..\splorr_application;..\seafarers_data;..\splorr_audio;..\splorr_data;..\splorr_mazes;..\splorr_cards;E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
     <LibraryPath>E:\lib\steamworks_sdk_151\sdk\redistributable_bin\win64;E:\lib\steamworks_sdk_151\sdk\public\steam\lib\win64;E:\lib\SDL2-2.0.14\lib\x64;E:\lib\SDL2_mixer-2.0.4\lib\x64;E:\lib\SDL2_image-2.0.5\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\splorr_visuals;..\splorr_application;..\seafarers_data;..\splorr_audio;..\splorr_data;..\splorr_mazes;..\splorr_cards;E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
+    <IncludePath>..\seafarers_game;..\splorr_visuals;..\splorr_application;..\seafarers_data;..\splorr_audio;..\splorr_data;..\splorr_mazes;..\splorr_cards;E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
     <LibraryPath>E:\lib\steamworks_sdk_151\sdk\redistributable_bin\win64;E:\lib\SDL2-2.0.14\lib\x64;E:\lib\SDL2_mixer-2.0.4\lib\x64;E:\lib\SDL2_image-2.0.5\lib\x64;$(LibraryPath)</LibraryPath>
     <TargetName>Freebooter</TargetName>
   </PropertyGroup>
@@ -163,32 +163,8 @@
     <ClCompile Include="Game.Achievements.cpp" />
     <ClCompile Include="Game.Audio.Mux.cpp" />
     <ClCompile Include="Game.Audio.Sfx.cpp" />
-    <ClCompile Include="Game.Avatar.AtSea.cpp" />
-    <ClCompile Include="Game.Avatar.Destination.cpp" />
-    <ClCompile Include="Game.Avatar.Docked.ActionDescriptors.cpp" />
     <ClCompile Include="Game.Avatar.Docked.cpp" />
-    <ClCompile Include="Game.Avatar.Items.cpp" />
-    <ClCompile Include="Game.Avatar.Log.cpp" />
-    <ClCompile Include="Game.Avatar.Quest.cpp" />
-    <ClCompile Include="Game.Avatar.Ship.cpp" />
-    <ClCompile Include="Game.Avatar.Statistics.cpp" />
-    <ClCompile Include="Game.Commodities.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Game.Features.cpp" />
     <ClCompile Include="Game.InPlay.Confirm.cpp" />
-    <ClCompile Include="Game.Islands.Commodities.cpp" />
-    <ClCompile Include="Game.Islands.cpp" />
-    <ClCompile Include="Game.Islands.DarkAlley.cpp" />
-    <ClCompile Include="Game.Islands.DarkAlley.FightCards.cpp" />
-    <ClCompile Include="Game.Islands.Features.cpp" />
-    <ClCompile Include="Game.Islands.Generation.cpp" />
-    <ClCompile Include="Game.Islands.Items.cpp" />
-    <ClCompile Include="Game.Islands.Markets.cpp" />
-    <ClCompile Include="Game.Islands.Quests.cpp" />
-    <ClCompile Include="Game.Islands.Ships.cpp" />
-    <ClCompile Include="Game.Items.cpp" />
-    <ClCompile Include="Game.Ships.cpp" />
-    <ClCompile Include="Game.World.cpp" />
     <ClCompile Include="State.ConfirmAbandon.cpp" />
     <ClCompile Include="State.ConfirmOverwrite.cpp" />
     <ClCompile Include="State.InPlay.AtSea.AutoMove.cpp" />
@@ -232,47 +208,6 @@
     <ClCompile Include="Visuals.WorldMap.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.Achievements.h" />
-    <ClInclude Include="Game.Audio.Mux.h" />
-    <ClInclude Include="Game.Audio.Sfx.h" />
-    <ClInclude Include="Game.Avatar.Destination.h" />
-    <ClInclude Include="Game.Avatar.Docked.DockedStateTransition.h" />
-    <ClInclude Include="Game.Avatar.Docked.h" />
-    <ClInclude Include="Game.Avatar.DockedAction.h" />
-    <ClInclude Include="Game.Avatar.DockedState.h" />
-    <ClInclude Include="Game.Avatar.Items.h" />
-    <ClInclude Include="Game.Avatar.Log.h" />
-    <ClInclude Include="Game.Avatar.AtSea.h" />
-    <ClInclude Include="Game.Avatar.Quest.h" />
-    <ClInclude Include="Game.Avatar.Ship.h" />
-    <ClInclude Include="Game.Avatar.Statistic.h" />
-    <ClInclude Include="Game.Avatar.Statistics.h" />
-    <ClInclude Include="Game.Commodities.h" />
-    <ClInclude Include="Game.Commodity.h" />
-    <ClInclude Include="Game.CommodityDescriptor.h" />
-    <ClInclude Include="Game.Difficulty.h" />
-    <ClInclude Include="Game.Feature.h" />
-    <ClInclude Include="Game.FeatureDescriptor.h" />
-    <ClInclude Include="Game.Features.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="Game.Islands.Commodities.h" />
-    <ClInclude Include="Game.Islands.DarkAlley.FightCards.h" />
-    <ClInclude Include="Game.Islands.DarkAlley.h" />
-    <ClInclude Include="Game.Islands.Ships.h" />
-    <ClInclude Include="Game.Islands.Features.h" />
-    <ClInclude Include="Game.Islands.h" />
-    <ClInclude Include="Game.Islands.Items.h" />
-    <ClInclude Include="Game.Islands.Markets.h" />
-    <ClInclude Include="Game.Islands.Quests.h" />
-    <ClInclude Include="Game.Item.h" />
-    <ClInclude Include="Game.ItemDescriptor.h" />
-    <ClInclude Include="Game.Items.h" />
-    <ClInclude Include="Game.Quest.h" />
-    <ClInclude Include="Game.Ship.h" />
-    <ClInclude Include="Game.Ship.Property.h" />
-    <ClInclude Include="Game.ShipDescriptor.h" />
-    <ClInclude Include="Game.Ships.h" />
-    <ClInclude Include="Game.World.h" />
     <ClInclude Include="Sublayouts.h" />
     <ClInclude Include="UIState.h" />
     <ClInclude Include="Visuals.CardSprites.h" />
@@ -284,6 +219,9 @@
   <ItemGroup>
     <ProjectReference Include="..\seafarers_data\seafarers_data.vcxproj">
       <Project>{d31b84b6-33be-486c-ae05-c9730e7c2ea3}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\seafarers_game\seafarers_game.vcxproj">
+      <Project>{6e53f361-de75-4341-b9ae-016854c64749}</Project>
     </ProjectReference>
     <ProjectReference Include="..\splorr_application\splorr_application.vcxproj">
       <Project>{d324e44e-369b-4237-99a8-1a508c5afcc4}</Project>

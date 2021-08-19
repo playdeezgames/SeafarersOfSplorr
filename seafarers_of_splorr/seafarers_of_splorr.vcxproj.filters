@@ -22,45 +22,6 @@
     <ClCompile Include="Game.Audio.Mux.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.World.cpp">
-      <Filter>Source\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Commodities.cpp">
-      <Filter>Source\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Items.cpp">
-      <Filter>Source\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Ships.cpp">
-      <Filter>Source\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Avatar.Items.cpp">
-      <Filter>Source\Game\Avatar</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Avatar.Quest.cpp">
-      <Filter>Source\Game\Avatar</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Avatar.Statistics.cpp">
-      <Filter>Source\Game\Avatar</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.cpp">
-      <Filter>Source\Game\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.Items.cpp">
-      <Filter>Source\Game\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.Markets.cpp">
-      <Filter>Source\Game\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.Quests.cpp">
-      <Filter>Source\Game\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Avatar.Ship.cpp">
-      <Filter>Source\Game\Avatar</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.Lose.cpp">
       <Filter>Source\States\InPlay</Filter>
     </ClCompile>
@@ -145,9 +106,6 @@
     <ClCompile Include="State.InPlay.ShipStatus.cpp">
       <Filter>Source\States\InPlay\AtSea</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Avatar.Destination.cpp">
-      <Filter>Source\Game\Avatar</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.Next.cpp">
       <Filter>Source\States\InPlay</Filter>
     </ClCompile>
@@ -157,26 +115,8 @@
     <ClCompile Include="State.InPlay.AtSea.AutoMove.cpp">
       <Filter>Source\States\InPlay\AtSea</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Islands.Generation.cpp">
-      <Filter>Source\Game\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Features.cpp">
-      <Filter>Source\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.Features.cpp">
-      <Filter>Source\Game\Island</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.Shipyard.cpp">
       <Filter>Source\States\InPlay\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.Ships.cpp">
-      <Filter>Source\Game\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.Commodities.cpp">
-      <Filter>Source\Game\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Avatar.Log.cpp">
-      <Filter>Source\Game\Avatar</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.ConfirmReplaceJob.cpp">
       <Filter>Source\States\InPlay\Island</Filter>
@@ -187,20 +127,8 @@
     <ClCompile Include="State.InPlay.Message.cpp">
       <Filter>Source\States\InPlay</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Avatar.AtSea.cpp">
-      <Filter>Source\Game\Avatar</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Avatar.Docked.cpp">
-      <Filter>Source\Game\Avatar</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.DarkAlley.cpp">
       <Filter>Source\States\InPlay\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.DarkAlley.FightCards.cpp">
-      <Filter>Source\Game\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.DarkAlley.cpp">
-      <Filter>Source\Game\Island</Filter>
     </ClCompile>
     <ClCompile Include="Game.Audio.Sfx.cpp">
       <Filter>Source\Game</Filter>
@@ -208,22 +136,19 @@
     <ClCompile Include="Game.InPlay.Confirm.cpp">
       <Filter>Source\States\InPlay</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Avatar.Docked.ActionDescriptors.cpp">
-      <Filter>Source\Game\Avatar</Filter>
-    </ClCompile>
     <ClCompile Include="Visuals.CardSprites.cpp">
       <Filter>Source\Visuals</Filter>
     </ClCompile>
     <ClCompile Include="Visuals.WorldMap.cpp">
       <Filter>Source\Visuals</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Avatar.Docked.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Options.h">
       <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.World.h">
-      <Filter>Headers\Game</Filter>
     </ClInclude>
     <ClInclude Include="States.h">
       <Filter>Headers\States</Filter>
@@ -231,137 +156,17 @@
     <ClInclude Include="Sublayouts.h">
       <Filter>Headers\States</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Quest.h">
-      <Filter>Headers\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Items.h">
-      <Filter>Headers\Game\Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Quest.h">
-      <Filter>Headers\Game\Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Statistics.h">
-      <Filter>Headers\Game\Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Commodities.h">
-      <Filter>Headers\Game\Commodity</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Commodity.h">
-      <Filter>Headers\Game\Commodity</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.CommodityDescriptor.h">
-      <Filter>Headers\Game\Commodity</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.h">
-      <Filter>Headers\Game\Island</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.Items.h">
-      <Filter>Headers\Game\Island</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.Markets.h">
-      <Filter>Headers\Game\Island</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.Quests.h">
-      <Filter>Headers\Game\Island</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Item.h">
-      <Filter>Headers\Game\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.ItemDescriptor.h">
-      <Filter>Headers\Game\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Items.h">
-      <Filter>Headers\Game\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Ship.h">
-      <Filter>Headers\Game\Ship</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.ShipDescriptor.h">
-      <Filter>Headers\Game\Ship</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Ships.h">
-      <Filter>Headers\Game\Ship</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Ship.Property.h">
-      <Filter>Headers\Game\Ship</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Ship.h">
-      <Filter>Headers\Game\Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Destination.h">
-      <Filter>Headers\Game\Avatar</Filter>
-    </ClInclude>
     <ClInclude Include="UIState.h">
       <Filter>Headers\Application</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Feature.h">
-      <Filter>Headers\Game\Feature</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.FeatureDescriptor.h">
-      <Filter>Headers\Game\Feature</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Features.h">
-      <Filter>Headers\Game\Feature</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.Features.h">
-      <Filter>Headers\Game\Island</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.Ships.h">
-      <Filter>Headers\Game\Island</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.Commodities.h">
-      <Filter>Headers\Game\Island</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Statistic.h">
-      <Filter>Headers\Game\Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Log.h">
-      <Filter>Headers\Game\Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.DockedState.h">
-      <Filter>Headers\Game\Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.DockedAction.h">
-      <Filter>Headers\Game\Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.AtSea.h">
-      <Filter>Headers\Game\Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Docked.h">
-      <Filter>Headers\Game\Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.DarkAlley.FightCards.h">
-      <Filter>Headers\Game\Island</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.DarkAlley.h">
-      <Filter>Headers\Game\Island</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Docked.DockedStateTransition.h">
-      <Filter>Headers\Game\Avatar</Filter>
-    </ClInclude>
     <ClInclude Include="Visuals.CardSprites.h">
       <Filter>Headers\Visuals</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Achievements.h">
-      <Filter>Headers\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Audio.Mux.h">
-      <Filter>Headers\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Audio.Sfx.h">
-      <Filter>Headers\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Difficulty.h">
-      <Filter>Headers\Game</Filter>
     </ClInclude>
     <ClInclude Include="Visuals.WorldMap.h">
       <Filter>Headers\Visuals</Filter>
     </ClInclude>
     <ClInclude Include="Visuals.Data.Colors.h">
       <Filter>Headers\Visuals</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Headers\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -386,35 +191,11 @@
     <Filter Include="Headers\Application">
       <UniqueIdentifier>{a3afde04-cee0-4731-a07d-3820fd8d172c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headers\Game">
-      <UniqueIdentifier>{bc31f3c0-10c1-4ac8-a441-5057b4e3eb8d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Headers\States">
       <UniqueIdentifier>{4c99ae2a-a9b4-4027-b8d7-3739b5da9994}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headers\Visuals">
       <UniqueIdentifier>{6e1535d9-77dc-4dfc-a0fd-3612c29470e3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\Game\Avatar">
-      <UniqueIdentifier>{d11b3b22-d402-4a2d-aae3-6f2c9cd63a48}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\Game\Commodity">
-      <UniqueIdentifier>{d6d111c9-0838-44dc-9cfa-05c955cb5e28}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\Game\Island">
-      <UniqueIdentifier>{3451ff1b-b113-4b33-80a6-d8c6dc4640bc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\Game\Item">
-      <UniqueIdentifier>{0827ae33-a60b-47fc-9e87-dbe8865bf07a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\Game\Ship">
-      <UniqueIdentifier>{0e7f8b28-3d21-4962-802a-8669b5cc5e82}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Game\Avatar">
-      <UniqueIdentifier>{3735dc44-ab3b-4d05-a28c-d0c07c142146}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Game\Island">
-      <UniqueIdentifier>{d4d3ef2e-f000-4b86-b965-c4f552e7c721}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\States\InPlay">
       <UniqueIdentifier>{474bf60b-af62-4577-beca-e35d0b053061}</UniqueIdentifier>
@@ -427,9 +208,6 @@
     </Filter>
     <Filter Include="Source\States\InPlay\AtSea">
       <UniqueIdentifier>{d499b058-8e62-4629-9d3b-2bad0f4e0414}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\Game\Feature">
-      <UniqueIdentifier>{ad4c0f08-c459-4443-a7ff-05f711afce89}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
