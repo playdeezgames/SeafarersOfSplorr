@@ -4,12 +4,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Achievements.cpp">
-      <Filter>Source\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Audio.Mux.cpp">
-      <Filter>Source\Game</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.Lose.cpp">
       <Filter>Source\States\InPlay</Filter>
     </ClCompile>
@@ -118,39 +112,33 @@
     <ClCompile Include="State.InPlay.DarkAlley.cpp">
       <Filter>Source\States\InPlay\Island</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Audio.Sfx.cpp">
-      <Filter>Source\Game</Filter>
-    </ClCompile>
     <ClCompile Include="Game.InPlay.Confirm.cpp">
       <Filter>Source\States\InPlay</Filter>
-    </ClCompile>
-    <ClCompile Include="Visuals.CardSprites.cpp">
-      <Filter>Source\Visuals</Filter>
-    </ClCompile>
-    <ClCompile Include="Visuals.WorldMap.cpp">
-      <Filter>Source\Visuals</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Avatar.Docked.OnEnterDarkAlleyFailsInfamyRequirement.cpp">
-      <Filter>Source\Game</Filter>
     </ClCompile>
     <ClCompile Include="Application.Starters.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Achievements.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Audio.Mux.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Audio.Sfx.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Avatar.Docked.OnEnterDarkAlleyFailsInfamyRequirement.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="UIState.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
     <ClInclude Include="States.h">
-      <Filter>Headers\States</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Sublayouts.h">
-      <Filter>Headers\States</Filter>
-    </ClInclude>
-    <ClInclude Include="Visuals.CardSprites.h">
-      <Filter>Headers\Visuals</Filter>
-    </ClInclude>
-    <ClInclude Include="Visuals.WorldMap.h">
-      <Filter>Headers\Visuals</Filter>
-    </ClInclude>
-    <ClInclude Include="UIState.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -161,23 +149,11 @@
     <Filter Include="Source">
       <UniqueIdentifier>{0d16c7ab-fe54-459a-a111-88fd92e8a3bc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Application">
-      <UniqueIdentifier>{a6e5c2d7-b6b3-4f67-8144-4fc3733398b4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Game">
       <UniqueIdentifier>{24c562de-9f4e-46aa-9187-100eb70f5f2c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\States">
       <UniqueIdentifier>{5148758d-d9fa-4c24-af22-20ccf4468e6d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Visuals">
-      <UniqueIdentifier>{3974b731-ba5f-443c-9654-b67eda95336c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\States">
-      <UniqueIdentifier>{4c99ae2a-a9b4-4027-b8d7-3739b5da9994}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\Visuals">
-      <UniqueIdentifier>{6e1535d9-77dc-4dfc-a0fd-3612c29470e3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\States\InPlay">
       <UniqueIdentifier>{474bf60b-af62-4577-beca-e35d0b053061}</UniqueIdentifier>

@@ -82,12 +82,12 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\seafarers_game;..\splorr_visuals;..\splorr_application;..\seafarers_data;..\splorr_audio;..\splorr_data;..\splorr_mazes;..\splorr_cards;E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
+    <IncludePath>..\seafarers_visuals;..\seafarers_game;..\splorr_visuals;..\splorr_application;..\seafarers_data;..\splorr_audio;..\splorr_data;..\splorr_mazes;..\splorr_cards;E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
     <LibraryPath>E:\lib\steamworks_sdk_151\sdk\redistributable_bin\win64;E:\lib\steamworks_sdk_151\sdk\public\steam\lib\win64;E:\lib\SDL2-2.0.14\lib\x64;E:\lib\SDL2_mixer-2.0.4\lib\x64;E:\lib\SDL2_image-2.0.5\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\seafarers_game;..\splorr_visuals;..\splorr_application;..\seafarers_data;..\splorr_audio;..\splorr_data;..\splorr_mazes;..\splorr_cards;E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
+    <IncludePath>..\seafarers_visuals;..\seafarers_game;..\splorr_visuals;..\splorr_application;..\seafarers_data;..\splorr_audio;..\splorr_data;..\splorr_mazes;..\splorr_cards;E:\lib\steamworks_sdk_151\sdk\public\steam;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
     <LibraryPath>E:\lib\steamworks_sdk_151\sdk\redistributable_bin\win64;E:\lib\SDL2-2.0.14\lib\x64;E:\lib\SDL2_mixer-2.0.4\lib\x64;E:\lib\SDL2_image-2.0.5\lib\x64;$(LibraryPath)</LibraryPath>
     <TargetName>Freebooter</TargetName>
   </PropertyGroup>
@@ -191,7 +191,6 @@
     <ClCompile Include="State.Statistics.cpp" />
     <ClCompile Include="State.Tip.cpp" />
     <ClCompile Include="Sublayout.UIHamburger.cpp" />
-    <ClCompile Include="Visuals.CardSprites.cpp" />
     <ClCompile Include="State.About.cpp" />
     <ClCompile Include="State.ConfirmQuit.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -202,14 +201,11 @@
     <ClCompile Include="State.SaveGame.cpp" />
     <ClCompile Include="State.Splash.cpp" />
     <ClCompile Include="State.Start.cpp" />
-    <ClCompile Include="Visuals.WorldMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sublayouts.h" />
     <ClInclude Include="UIState.h" />
-    <ClInclude Include="Visuals.CardSprites.h" />
     <ClInclude Include="States.h" />
-    <ClInclude Include="Visuals.WorldMap.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\seafarers_data\seafarers_data.vcxproj">
@@ -217,6 +213,9 @@
     </ProjectReference>
     <ProjectReference Include="..\seafarers_game\seafarers_game.vcxproj">
       <Project>{6e53f361-de75-4341-b9ae-016854c64749}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\seafarers_visuals\seafarers_visuals.vcxproj">
+      <Project>{b4b0aa1c-4879-4763-be82-d1bdc254ea8b}</Project>
     </ProjectReference>
     <ProjectReference Include="..\splorr_application\splorr_application.vcxproj">
       <Project>{d324e44e-369b-4237-99a8-1a508c5afcc4}</Project>
