@@ -1,7 +1,6 @@
 #include "Application.Engine.h"
 #include "Common.Utility.h"
 #include "Data.JSON.h"
-#include "Data.JSON.Store.h"
 #include "Data.JSON.Stores.h"
 #include <map>
 #include <memory>
@@ -9,6 +8,13 @@
 #include "Visuals.Textures.h"
 namespace visuals::Textures
 {
+	static std::optional<int> store;
+
+	void SetStore(int s)
+	{
+		store = s;
+	}
+
 	static std::map<std::string, std::shared_ptr<SDL_Texture>> table;
 
 	static void Add(const std::string& name, const std::shared_ptr<SDL_Texture>& texture)
@@ -22,7 +28,7 @@ namespace visuals::Textures
 	{
 		if (!initialized)
 		{
-			auto& properties = data::json ::Stores::GetStore(data::json::Store::TEXTURES);
+			auto& properties = data::json ::Stores::GetStore(store.value());
 			for (auto& entry : properties.items())
 			{
 				std::string imageFileName = entry.value();

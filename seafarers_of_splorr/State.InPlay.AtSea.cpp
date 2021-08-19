@@ -10,12 +10,12 @@
 #include "Game.Audio.Mux.h"
 #include "Game.Avatar.AtSea.h"
 #include "Game.Avatar.Docked.h"
-#include "Game.Messages.h"
 #include "UIState.h"
 #include "Visuals.Areas.h"
 #include "Visuals.Data.Colors.h"
 #include "Visuals.Images.h"
 #include "Visuals.Menus.h"
+#include "Visuals.Messages.h"
 namespace state::in_play::AtSea
 {
 	const std::string LAYOUT_NAME = "State.InPlay.AtSea";

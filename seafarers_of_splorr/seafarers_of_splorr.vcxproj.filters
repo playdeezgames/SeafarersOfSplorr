@@ -190,9 +190,6 @@
     <ClCompile Include="Visuals.Sublayout.cpp">
       <Filter>Source\Visuals\Controls</Filter>
     </ClCompile>
-    <ClCompile Include="Visuals.Textures.cpp">
-      <Filter>Source\Visuals\Resources</Filter>
-    </ClCompile>
     <ClCompile Include="Visuals.WorldMap.cpp">
       <Filter>Source\Visuals\Controls</Filter>
     </ClCompile>
@@ -370,9 +367,6 @@
       <Filter>Headers\Visuals\Resources</Filter>
     </ClInclude>
     <ClInclude Include="Visuals.Sprites.h">
-      <Filter>Headers\Visuals\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="Visuals.Textures.h">
       <Filter>Headers\Visuals\Resources</Filter>
     </ClInclude>
     <ClInclude Include="UIState.h">

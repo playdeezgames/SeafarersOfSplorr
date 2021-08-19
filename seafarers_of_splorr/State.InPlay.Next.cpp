@@ -3,8 +3,8 @@
 #include "Game.h"
 #include "Game.Avatar.Docked.h"
 #include "Game.Avatar.Statistics.h"
-#include "Game.Confirmations.h"
-#include "Game.Messages.h"
+#include "Visuals.Confirmations.h"
+#include "Visuals.Messages.h"
 #include <map>
 #include "UIState.h"
 namespace state::in_play::Next

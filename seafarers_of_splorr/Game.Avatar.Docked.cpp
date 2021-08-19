@@ -9,7 +9,7 @@
 #include "Game.Avatar.Statistics.h"
 #include "Game.Islands.Quests.h"
 #include "Game.Islands.h"
-#include "Game.Messages.h"
+#include "Visuals.Messages.h"
 #include <map>
 #include "Visuals.Data.Colors.h"
 namespace game::avatar::Docked

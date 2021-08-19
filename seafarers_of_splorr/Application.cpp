@@ -18,6 +18,7 @@
 #include "UIState.h"
 #include "Visuals.Layouts.h"
 #include "Visuals.Colors.h"
+#include "Visuals.Textures.h"
 namespace application::Command
 {
 	void Handle(const ::Command& command);
@@ -99,6 +100,7 @@ namespace application::Engine
 		data::json::Stores::DoSetStoreFile(data::json::Store::OPTIONS, "config/options.json",std::nullopt),
 		data::json::Stores::DoSetStoreFile(data::json::Store::TIPS, "config/tips.json",std::nullopt),
 		visuals::Colors::DoSetStore(data::json::Store::COLORS),
+		visuals::Textures::DoSetStore(data::json::Store::TEXTURES),
 		data::json::Stores::Start,
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::IN_MEMORY, ":memory:"),
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::AUTOSAVE, "autosave.db"),

@@ -8,10 +8,10 @@
 #include "Game.Avatar.Log.h"
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Statistics.h"
-#include "Game.Confirmations.h"
+#include "Visuals.Confirmations.h"
 #include "Game.Islands.h"
 #include "Game.Islands.Features.h"
-#include "Game.Messages.h"
+#include "Visuals.Messages.h"
 #include "Game.World.h"
 #include <map>
 namespace game
