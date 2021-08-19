@@ -165,6 +165,9 @@
     <ClInclude Include="Visuals.Data.Colors.h">
       <Filter>Headers\Visuals</Filter>
     </ClInclude>
+    <ClInclude Include="Application.Keyboard.h">
+      <Filter>Headers\Application</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">

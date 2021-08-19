@@ -1,3 +1,4 @@
+#include "Application.Keyboard.h"
 #include "Audio.Mux.h"
 #include "Audio.Sfx.h"
 #include "Data.JSON.Store.h"
@@ -44,6 +45,7 @@ namespace application::Engine
 		visuals::Layouts::DoSetStore(data::json::Store::LAYOUTS),
 		visuals::Layouts::DoRegisterType("WorldMap", visuals::WorldMap::Internalize),
 		visuals::Messages::Reset,
+		application::Keyboard::DoSetStore(data::json::Store::KEYS),
 		visuals::Confirmations::Reset,
 		data::json::Stores::Start,
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::IN_MEMORY, ":memory:"),

@@ -9,11 +9,18 @@ namespace application::Keyboard
 
 	static bool initialized = false;
 
+	static std::optional<int> store;
+
+	void SetStore(int s)
+	{
+		store = s;
+	}
+
 	static void Initialize()
 	{
 		if (!initialized)
 		{
-			auto& config = data::json::Stores::GetStore(data::json::Store::KEYS);
+			auto& config = data::json::Stores::GetStore(store.value());
 			for (auto& item : config.items())
 			{
 				int code = common::Data::ToInt(item.key());

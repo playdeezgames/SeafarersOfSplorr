@@ -207,6 +207,7 @@
     <ClCompile Include="Visuals.WorldMap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Application.Keyboard.h" />
     <ClInclude Include="Sublayouts.h" />
     <ClInclude Include="UIState.h" />
     <ClInclude Include="Visuals.CardSprites.h" />
