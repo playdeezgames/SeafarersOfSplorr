@@ -4,12 +4,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Options.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Application.Keyboard.cpp">
-      <Filter>Source\Application</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Achievements.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
@@ -140,21 +134,15 @@
       <Filter>Source\Game</Filter>
     </ClCompile>
     <ClCompile Include="Application.Starters.cpp">
-      <Filter>Source\Application</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Options.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="States.h">
       <Filter>Headers\States</Filter>
     </ClInclude>
     <ClInclude Include="Sublayouts.h">
       <Filter>Headers\States</Filter>
-    </ClInclude>
-    <ClInclude Include="UIState.h">
-      <Filter>Headers\Application</Filter>
     </ClInclude>
     <ClInclude Include="Visuals.CardSprites.h">
       <Filter>Headers\Visuals</Filter>
@@ -162,11 +150,8 @@
     <ClInclude Include="Visuals.WorldMap.h">
       <Filter>Headers\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Visuals.Data.Colors.h">
-      <Filter>Headers\Visuals</Filter>
-    </ClInclude>
-    <ClInclude Include="Application.Keyboard.h">
-      <Filter>Headers\Application</Filter>
+    <ClInclude Include="UIState.h">
+      <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -187,9 +172,6 @@
     </Filter>
     <Filter Include="Source\Visuals">
       <UniqueIdentifier>{3974b731-ba5f-443c-9654-b67eda95336c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\Application">
-      <UniqueIdentifier>{a3afde04-cee0-4731-a07d-3820fd8d172c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headers\States">
       <UniqueIdentifier>{4c99ae2a-a9b4-4027-b8d7-3739b5da9994}</UniqueIdentifier>

@@ -46,6 +46,7 @@ namespace application::Engine
 		visuals::Layouts::DoRegisterType("WorldMap", visuals::WorldMap::Internalize),
 		visuals::Messages::Reset,
 		application::Keyboard::DoSetStore(data::json::Store::KEYS),
+		Options::DoSetStore(data::json::Store::OPTIONS),
 		visuals::Confirmations::Reset,
 		data::json::Stores::Start,
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::IN_MEMORY, ":memory:"),

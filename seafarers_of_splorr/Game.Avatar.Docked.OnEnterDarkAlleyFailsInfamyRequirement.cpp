@@ -1,5 +1,5 @@
 #pragma once
-#include "Visuals.Data.Colors.h"
+#include "Game.Colors.h"
 #include "Visuals.Messages.h"
 namespace game::avatar::Docked
 {

@@ -13,7 +13,7 @@
 #include "Game.Islands.DarkAlley.FightCards.h"
 #include "UIState.h"
 #include "Visuals.Areas.h"
-#include "Visuals.Data.Colors.h"
+#include "Game.Colors.h"
 #include "Visuals.CardSprites.h"
 #include "Visuals.Images.h"
 #include "Visuals.Texts.h"

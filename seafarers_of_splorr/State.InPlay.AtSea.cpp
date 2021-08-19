@@ -12,7 +12,7 @@
 #include "Game.Avatar.Docked.h"
 #include "UIState.h"
 #include "Visuals.Areas.h"
-#include "Visuals.Data.Colors.h"
+#include "Game.Colors.h"
 #include "Visuals.Images.h"
 #include "Visuals.Menus.h"
 #include "Visuals.Messages.h"

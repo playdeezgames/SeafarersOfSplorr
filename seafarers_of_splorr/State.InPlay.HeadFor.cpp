@@ -10,7 +10,7 @@
 #include "Game.Islands.h"
 #include "UIState.h"
 #include "Visuals.Areas.h"
-#include "Visuals.Data.Colors.h"
+#include "Game.Colors.h"
 #include "Visuals.Images.h"
 #include "Visuals.Texts.h"
 #include "Visuals.WorldMap.h"

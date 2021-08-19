@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Application.Command.h" />
     <ClInclude Include="Application.Handlers.h" />
+    <ClInclude Include="Application.Keyboard.h" />
     <ClInclude Include="Application.MouseButtonUp.h" />
     <ClInclude Include="Application.MouseMotion.h" />
     <ClInclude Include="Application.OnEnter.h" />
@@ -30,10 +31,12 @@
     <ClInclude Include="Command.h" />
     <ClInclude Include="Application.Engine.h" />
     <ClInclude Include="MouseButton.h" />
+    <ClInclude Include="Options.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.Command.cpp" />
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Application.Keyboard.cpp" />
     <ClCompile Include="Application.MouseButtonUp.cpp" />
     <ClCompile Include="Application.MouseMotion.cpp" />
     <ClCompile Include="Application.OnEnter.cpp" />
@@ -41,6 +44,7 @@
     <ClCompile Include="Application.UIState.cpp" />
     <ClCompile Include="Application.Update.cpp" />
     <ClCompile Include="Application.Engine.cpp" />
+    <ClCompile Include="Options.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -102,11 +106,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;..\splorr_data;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
+    <IncludePath>..\splorr_audio;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;..\splorr_data;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;..\splorr_data;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
+    <IncludePath>..\splorr_audio;E:\lib\SDL2_image-2.0.5\include;E:\lib\SDL2_mixer-2.0.4\include;..\splorr_data;E:\lib\SDL2-2.0.14\include;..\splorr_common;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
