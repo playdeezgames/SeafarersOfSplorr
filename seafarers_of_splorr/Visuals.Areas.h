@@ -7,10 +7,6 @@
 #include "json.hpp"
 #include "Visuals.DrawerFunction.h"
 #include "MouseButton.h"
-namespace visuals::Areas
-{
-	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
-}
 namespace visuals
 {
 	struct AreaMenu

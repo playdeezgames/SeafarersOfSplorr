@@ -28,9 +28,6 @@
     <ClCompile Include="Game.World.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Visuals.Data.Types.cpp">
-      <Filter>Source\Visuals</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Commodities.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
@@ -330,9 +327,6 @@
     <ClInclude Include="Visuals.Data.Colors.h">
       <Filter>Headers\Visuals\Data</Filter>
     </ClInclude>
-    <ClInclude Include="Visuals.Data.Types.h">
-      <Filter>Headers\Visuals\Data</Filter>
-    </ClInclude>
     <ClInclude Include="Visuals.Areas.h">
       <Filter>Headers\Visuals\Controls</Filter>
     </ClInclude>
@@ -407,9 +401,6 @@
     </ClInclude>
     <ClInclude Include="Visuals.CardSprites.h">
       <Filter>Headers\Visuals</Filter>
-    </ClInclude>
-    <ClInclude Include="Visuals.Data.Type.h">
-      <Filter>Headers\Visuals\Data</Filter>
     </ClInclude>
     <ClInclude Include="Visuals.DrawerFunction.h">
       <Filter>Headers\Visuals</Filter>

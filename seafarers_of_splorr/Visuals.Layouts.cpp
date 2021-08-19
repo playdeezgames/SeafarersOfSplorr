@@ -5,15 +5,31 @@
 #include <functional>
 #include "Visuals.DrawerFunction.h"
 #include "Visuals.Data.Properties.h"
-#include "Visuals.Data.Types.h"
 #include "Visuals.Layouts.h"
-#include "Visuals.Menus.h"
-#include "Visuals.Areas.h"
-#include "Visuals.Images.h"
-#include "Visuals.Texts.h"
-#include "Visuals.WorldMap.h"
-#include "Visuals.SpriteGrid.h"
-#include "Visuals.Sublayout.h"
+namespace visuals::Text
+{
+	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
+}
+namespace visuals::Sublayout
+{
+	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
+}
+namespace visuals::SpriteGrid
+{
+	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
+}
+namespace visuals::Menu
+{
+	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
+}
+namespace visuals::Image
+{
+	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
+}
+namespace visuals::Areas
+{
+	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
+}
 namespace visuals::Layouts
 {
 	struct InternalLayout

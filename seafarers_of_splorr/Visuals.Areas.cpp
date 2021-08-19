@@ -3,7 +3,6 @@
 #include "json.hpp"
 #include <SDL.h>
 #include "Visuals.Areas.h"
-#include "Visuals.Data.Types.h"
 #include "Visuals.Data.Properties.h"
 #include "Visuals.Menus.h"
 namespace visuals::Layouts

@@ -218,7 +218,6 @@
     <ClCompile Include="Sublayout.UIHamburger.cpp" />
     <ClCompile Include="Visuals.Areas.cpp" />
     <ClCompile Include="Visuals.CardSprites.cpp" />
-    <ClCompile Include="Visuals.Data.Types.cpp" />
     <ClCompile Include="Visuals.Images.cpp" />
     <ClCompile Include="Visuals.Menus.cpp" />
     <ClCompile Include="Visuals.SpriteGrid.cpp" />
@@ -286,14 +285,12 @@
     <ClInclude Include="Visuals.Areas.h" />
     <ClInclude Include="Visuals.CardSprites.h" />
     <ClInclude Include="Visuals.Data.Colors.h" />
-    <ClInclude Include="Visuals.Data.Type.h" />
     <ClInclude Include="Visuals.DrawerFunction.h" />
     <ClInclude Include="Visuals.Images.h" />
     <ClInclude Include="Visuals.Menus.h" />
     <ClInclude Include="Visuals.SpriteGrid.h" />
     <ClInclude Include="Visuals.Sublayout.h" />
     <ClInclude Include="Visuals.Texts.h" />
-    <ClInclude Include="Visuals.Data.Types.h" />
     <ClInclude Include="Visuals.Layouts.h" />
     <ClInclude Include="Options.h" />
     <ClInclude Include="States.h" />

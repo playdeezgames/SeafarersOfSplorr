@@ -4,7 +4,6 @@
 #include <tuple>
 #include "Visuals.Colors.h"
 #include "Visuals.Data.Properties.h"
-#include "Visuals.Data.Types.h"
 #include "Visuals.Images.h"
 #include "Visuals.Layouts.h"
 #include "Visuals.Sprites.h"

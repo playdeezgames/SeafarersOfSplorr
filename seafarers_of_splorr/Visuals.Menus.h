@@ -5,10 +5,6 @@
 #include <string>
 #include "json.hpp"
 #include "Visuals.DrawerFunction.h"
-namespace visuals::Menu
-{
-	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
-}
 namespace visuals::Menus
 {
 
