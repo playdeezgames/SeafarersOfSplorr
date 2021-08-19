@@ -9,7 +9,6 @@
 #include "Game.Avatar.Statistics.h"
 #include "Game.Islands.Quests.h"
 #include "Game.Islands.h"
-#include "Visuals.Messages.h"
 #include <map>
 #include "Visuals.Data.Colors.h"
 namespace game::avatar::Docked
@@ -92,6 +91,8 @@ namespace game::avatar::Docked
 		return false;
 	}
 
+	void OnEnterDarkAlleyFailsInfamyRequirement();
+
 	DockedStateTransition OnEnterDarkAlley()
 	{
 		auto location = GetDockedLocation().value();
@@ -99,24 +100,7 @@ namespace game::avatar::Docked
 		auto infamy = game::avatar::Statistics::GetInfamy();
 		if (infamy < data.infamyRequirement)
 		{
-			visuals::Messages::Write(
-				{
-					"==FIGHT!==",
-					{
-						{
-							{19,9},
-							"You have been waylaid by a ruffian!",
-							visuals::data::Colors::RED,
-							visuals::HorizontalAlignment::CENTER
-						},
-						{
-							{19,11},
-							"Prepare to fight!",
-							visuals::data::Colors::RED,
-							visuals::HorizontalAlignment::CENTER
-						}
-					}
-				});
+			OnEnterDarkAlleyFailsInfamyRequirement();
 			return 
 			{
 				visuals::data::Colors::GREEN,

@@ -145,6 +145,9 @@
     <ClCompile Include="Game.Avatar.Docked.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Avatar.Docked.OnEnterDarkAlleyFailsInfamyRequirement.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Options.h">
