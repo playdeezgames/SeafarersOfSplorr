@@ -9,129 +9,144 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="Source Files\Avatar">
+      <UniqueIdentifier>{c3405dcb-b7a8-4128-8664-6ff5969ecd95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Island">
+      <UniqueIdentifier>{972b31bc-16e2-4396-9f08-6765053eacfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Avatar">
+      <UniqueIdentifier>{21946f9c-ad5c-4396-a9e0-15b9a25d5b32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Island">
+      <UniqueIdentifier>{15d0a0c4-bd55-42e2-b4ea-e652c58f7a6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Stores">
+      <UniqueIdentifier>{894a6eff-d210-4967-a19d-3145f2990a36}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Data.Game.Avatar.Destination.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Avatar.Dock.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Avatar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Avatar.Items.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Avatar.Log.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Avatar.Quest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Avatar.Ship.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Avatar.Statistics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Data.Game.Common.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Island.DarkAlley.FightCard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Island.DarkAlley.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Island.Feature.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Island.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Island.Item.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Island.Known.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Island.Market.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Island.Quests.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Island.Visits.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.World.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.Avatar.Destination.h">
+      <Filter>Header Files\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Avatar.Dock.h">
+      <Filter>Header Files\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Avatar.h">
+      <Filter>Header Files\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Avatar.Items.h">
+      <Filter>Header Files\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Avatar.Log.h">
+      <Filter>Header Files\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Avatar.Quest.h">
+      <Filter>Header Files\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Avatar.Ship.h">
+      <Filter>Header Files\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Avatar.Statistics.h">
+      <Filter>Header Files\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.DarkAlley.FightCard.h">
+      <Filter>Header Files\Island</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.DarkAlley.h">
+      <Filter>Header Files\Island</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.Feature.h">
+      <Filter>Header Files\Island</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.h">
+      <Filter>Header Files\Island</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.Item.h">
+      <Filter>Header Files\Island</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.Known.h">
+      <Filter>Header Files\Island</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.Market.h">
+      <Filter>Header Files\Island</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.Quests.h">
+      <Filter>Header Files\Island</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.Visits.h">
+      <Filter>Header Files\Island</Filter>
+    </ClInclude>
     <ClInclude Include="Data.JSON.Store.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Stores</Filter>
     </ClInclude>
     <ClInclude Include="Data.SQLite.Store.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Stores</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Data.Game.Avatar.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Avatar.Destination.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Avatar.Dock.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Avatar.Items.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Avatar.Log.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Avatar.Quest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Avatar.Ship.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Avatar.Statistics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Data.Game.Common.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Island.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Island.DarkAlley.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Island.DarkAlley.FightCard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Island.Feature.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Island.Item.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Island.Known.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Island.Market.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Island.Quests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Island.Visits.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.World.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Avatar.cpp">
+      <Filter>Source Files\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Avatar.Destination.cpp">
+      <Filter>Source Files\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Avatar.Dock.cpp">
+      <Filter>Source Files\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Avatar.Items.cpp">
+      <Filter>Source Files\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Avatar.Log.cpp">
+      <Filter>Source Files\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Avatar.Quest.cpp">
+      <Filter>Source Files\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Avatar.Ship.cpp">
+      <Filter>Source Files\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Avatar.Statistics.cpp">
+      <Filter>Source Files\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Island.cpp">
+      <Filter>Source Files\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Island.DarkAlley.cpp">
+      <Filter>Source Files\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Island.DarkAlley.FightCard.cpp">
+      <Filter>Source Files\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Island.Feature.cpp">
+      <Filter>Source Files\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Island.Item.cpp">
+      <Filter>Source Files\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Island.Known.cpp">
+      <Filter>Source Files\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Island.Market.cpp">
+      <Filter>Source Files\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Island.Quests.cpp">
+      <Filter>Source Files\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Island.Visits.cpp">
+      <Filter>Source Files\Island</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
