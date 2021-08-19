@@ -1,6 +1,5 @@
 #include <algorithm>
 #include "Data.JSON.h"
-#include "Data.JSON.Store.h"
 #include "Data.JSON.Stores.h"
 #include <functional>
 #include "Visuals.DrawerFunction.h"
@@ -32,6 +31,13 @@ namespace visuals::Areas
 }
 namespace visuals::Layouts
 {
+	static std::optional<int> store;
+
+	void SetStore(int s)
+	{
+		store = s;
+	}
+
 	struct InternalLayout
 	{
 		std::vector<DrawerFunction> drawers;
@@ -96,15 +102,15 @@ namespace visuals::Layouts
 	{
 		if (!layouts.contains(layoutName))
 		{
-			layouts[layoutName] = ::data::JSON::Load(::data::json::Stores::GetStore(::data::json::Store::LAYOUTS)[layoutName]);
+			layouts[layoutName] = ::data::JSON::Load(::data::json::Stores::GetStore(store.value())[layoutName]);
 			Internalize(layoutName, layouts[layoutName]);
 		}
 	}
 
 	void Start()
 	{
-		auto& store = ::data::json::Stores::GetStore(::data::json ::Store::LAYOUTS);
-		for (auto& entry : store.items())
+		auto& layoutStore = ::data::json::Stores::GetStore(store.value());
+		for (auto& entry : layoutStore.items())
 		{
 			InitializeLayout(entry.key());
 		}

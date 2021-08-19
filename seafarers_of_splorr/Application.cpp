@@ -106,6 +106,7 @@ namespace application::Engine
 		visuals::Textures::DoSetStore(data::json::Store::TEXTURES),
 		visuals::Sprites::DoSetStore(data::json::Store::SPRITES),
 		visuals::Fonts::DoSetStore(data::json::Store::FONTS),
+		visuals::Layouts::DoSetStore(data::json::Store::LAYOUTS),
 		visuals::Layouts::DoRegisterType("WorldMap", visuals::WorldMap::Internalize),
 		data::json::Stores::Start,
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::IN_MEMORY, ":memory:"),

@@ -289,7 +289,6 @@
     <ClInclude Include="Visuals.Images.h" />
     <ClInclude Include="Visuals.Menus.h" />
     <ClInclude Include="Visuals.SpriteGrid.h" />
-    <ClInclude Include="Visuals.Sublayout.h" />
     <ClInclude Include="Visuals.Texts.h" />
     <ClInclude Include="Visuals.Layouts.h" />
     <ClInclude Include="Options.h" />
