@@ -27,12 +27,14 @@
     <ClInclude Include="Visuals.Message.h" />
     <ClInclude Include="Visuals.MessageDetail.h" />
     <ClInclude Include="Visuals.Messages.h" />
+    <ClInclude Include="Visuals.Sprites.h" />
     <ClInclude Include="Visuals.Textures.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Visuals.Colors.cpp" />
     <ClCompile Include="Visuals.Confirmations.cpp" />
     <ClCompile Include="Visuals.Messages.cpp" />
+    <ClCompile Include="Visuals.Sprites.cpp" />
     <ClCompile Include="Visuals.Textures.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -237,7 +237,6 @@
     <ClCompile Include="State.Options.cpp" />
     <ClCompile Include="State.SaveGame.cpp" />
     <ClCompile Include="State.Splash.cpp" />
-    <ClCompile Include="Visuals.Sprites.cpp" />
     <ClCompile Include="State.Start.cpp" />
     <ClCompile Include="Visuals.WorldMap.cpp" />
   </ItemGroup>
@@ -296,7 +295,6 @@
     <ClInclude Include="Visuals.Fonts.h" />
     <ClInclude Include="Visuals.Layouts.h" />
     <ClInclude Include="Options.h" />
-    <ClInclude Include="Visuals.Sprites.h" />
     <ClInclude Include="States.h" />
     <ClInclude Include="Visuals.WorldMap.h" />
   </ItemGroup>

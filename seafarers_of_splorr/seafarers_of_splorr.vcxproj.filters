@@ -184,9 +184,6 @@
     <ClCompile Include="Visuals.SpriteGrid.cpp">
       <Filter>Source\Visuals\Controls</Filter>
     </ClCompile>
-    <ClCompile Include="Visuals.Sprites.cpp">
-      <Filter>Source\Visuals\Resources</Filter>
-    </ClCompile>
     <ClCompile Include="Visuals.Sublayout.cpp">
       <Filter>Source\Visuals\Controls</Filter>
     </ClCompile>
@@ -364,9 +361,6 @@
       <Filter>Headers\Visuals\Controls</Filter>
     </ClInclude>
     <ClInclude Include="Visuals.Fonts.h">
-      <Filter>Headers\Visuals\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="Visuals.Sprites.h">
       <Filter>Headers\Visuals\Resources</Filter>
     </ClInclude>
     <ClInclude Include="UIState.h">

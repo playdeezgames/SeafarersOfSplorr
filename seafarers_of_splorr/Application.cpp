@@ -12,12 +12,13 @@
 #include "MouseButton.h"
 #include <optional>
 #include "Options.h"
-#include <SDL.h> //legit
+#include <SDL.h>
 #include "States.h"
 #include "Sublayouts.h"
 #include "UIState.h"
 #include "Visuals.Layouts.h"
 #include "Visuals.Colors.h"
+#include "Visuals.Sprites.h"
 #include "Visuals.Textures.h"
 namespace application::Command
 {
@@ -101,6 +102,7 @@ namespace application::Engine
 		data::json::Stores::DoSetStoreFile(data::json::Store::TIPS, "config/tips.json",std::nullopt),
 		visuals::Colors::DoSetStore(data::json::Store::COLORS),
 		visuals::Textures::DoSetStore(data::json::Store::TEXTURES),
+		visuals::Sprites::DoSetStore(data::json::Store::SPRITES),
 		data::json::Stores::Start,
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::IN_MEMORY, ":memory:"),
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::AUTOSAVE, "autosave.db"),

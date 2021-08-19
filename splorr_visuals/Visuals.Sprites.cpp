@@ -1,5 +1,4 @@
 #include "Application.Engine.h"
-#include "Data.JSON.Store.h"
 #include "Data.JSON.Stores.h"
 #include <tuple>
 #include "Visuals.Data.Properties.h"
@@ -7,6 +6,13 @@
 #include "Visuals.Textures.h"
 namespace visuals::Sprites
 {
+	static std::optional<int> store;
+
+	void SetStore(int s)
+	{
+		store = s;
+	}
+
 	struct InternalSprite
 	{
 		std::string textureName;
@@ -21,7 +27,7 @@ namespace visuals::Sprites
 		static bool initialized = false;
 		if (!initialized)
 		{
-			auto& spriteStore = ::data::json::Stores::GetStore(::data::json::Store::SPRITES);
+			auto& spriteStore = ::data::json::Stores::GetStore(store.value());
 			for (auto& sprite : spriteStore.items())
 			{
 				auto& model = sprite.value();
