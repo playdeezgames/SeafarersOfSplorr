@@ -60,12 +60,13 @@
     <ClInclude Include="Game.ShipDescriptor.h" />
     <ClInclude Include="Game.Ships.h" />
     <ClInclude Include="Game.World.h" />
-    <ClInclude Include="Visuals.Data.Colors.h" />
+    <ClInclude Include="Game.Colors.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Avatar.AtSea.cpp" />
     <ClCompile Include="Game.Avatar.Destination.cpp" />
     <ClCompile Include="Game.Avatar.Docked.ActionDescriptors.cpp" />
+    <ClCompile Include="Game.Avatar.Docked.cpp" />
     <ClCompile Include="Game.Avatar.Items.cpp" />
     <ClCompile Include="Game.Avatar.Log.cpp" />
     <ClCompile Include="Game.Avatar.Quest.cpp" />

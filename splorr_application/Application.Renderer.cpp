@@ -2,7 +2,6 @@
 #include "Application.UIState.h"
 #include "Application.Engine.h"
 #include <map>
-#include "Visuals.Layouts.h"
 namespace application::Renderer
 {
 	static std::map<int, std::string> renderLayouts;
@@ -11,7 +10,6 @@ namespace application::Renderer
 	{
 		renderLayouts[state] = layoutName;
 	}
-
 }
 namespace application::Engine
 {

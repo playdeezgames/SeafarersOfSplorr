@@ -274,7 +274,7 @@ namespace state::in_play::DarkAlleyEntrance
 
 	static void SetButtonHover(bool hover)
 	{
-		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_BUTTON, hover ? visuals::data::Colors::CYAN : visuals::data::Colors::GRAY);
+		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_BUTTON, hover ? game::Colors::CYAN : game::Colors::GRAY);
 	}
 
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>&)

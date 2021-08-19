@@ -3,7 +3,7 @@
 #include "Game.Avatar.Docked.DockedStateTransition.h"
 #include <map>
 #include <functional>
-#include "Visuals.Data.Colors.h"
+#include "Game.Colors.h"
 namespace game::avatar::Docked
 {
 	DockedStateTransition OnEnterDarkAlley();
@@ -23,7 +23,7 @@ namespace game::avatar::Docked
 					avatar::DockedState::MARKET_BUY,
 					DoTransition(
 						{
-							visuals::data::Colors::GREEN,
+							game::Colors::GREEN,
 							"You enter the market.",
 							avatar::DockedState::MARKET
 						})
@@ -32,7 +32,7 @@ namespace game::avatar::Docked
 					avatar::DockedState::MARKET_SELL,
 					DoTransition(
 					{
-						visuals::data::Colors::GREEN,
+						game::Colors::GREEN,
 						"You enter the market.",
 						avatar::DockedState::MARKET
 					})
@@ -41,7 +41,7 @@ namespace game::avatar::Docked
 					avatar::DockedState::DOCK,
 					DoTransition(
 					{
-						visuals::data::Colors::GREEN,
+						game::Colors::GREEN,
 						"You enter the market.",
 						avatar::DockedState::MARKET
 					})
@@ -55,7 +55,7 @@ namespace game::avatar::Docked
 					avatar::DockedState::MARKET,
 					DoTransition(
 					{
-						visuals::data::Colors::GREEN,
+						game::Colors::GREEN,
 						"You leave the market.",
 						avatar::DockedState::DOCK
 					})
@@ -64,7 +64,7 @@ namespace game::avatar::Docked
 					avatar::DockedState::SHIPYARD,
 					DoTransition(
 					{
-						visuals::data::Colors::GREEN,
+						game::Colors::GREEN,
 						"You leave the shipyard.",
 						avatar::DockedState::DOCK
 					})
@@ -73,7 +73,7 @@ namespace game::avatar::Docked
 					avatar::DockedState::JOB_BOARD,
 					DoTransition(
 					{
-						visuals::data::Colors::GREEN,
+						game::Colors::GREEN,
 						"You leave the job board.",
 						avatar::DockedState::DOCK
 					})
@@ -82,7 +82,7 @@ namespace game::avatar::Docked
 					avatar::DockedState::DARK_ALLEY_ENTRANCE,
 					DoTransition(
 					{
-						visuals::data::Colors::GREEN,
+						game::Colors::GREEN,
 						"You leave the dark alley.",
 						avatar::DockedState::DOCK
 					})
@@ -91,7 +91,7 @@ namespace game::avatar::Docked
 					avatar::DockedState::DARK_ALLEY,
 					DoTransition(
 					{
-						visuals::data::Colors::GREEN,
+						game::Colors::GREEN,
 						"You leave the dark alley.",
 						avatar::DockedState::DOCK
 					})
@@ -105,7 +105,7 @@ namespace game::avatar::Docked
 					avatar::DockedState::MARKET,
 					DoTransition(
 					{
-						visuals::data::Colors::GREEN,
+						game::Colors::GREEN,
 						"You browse for items to buy.",
 						avatar::DockedState::MARKET_BUY
 					})
@@ -119,7 +119,7 @@ namespace game::avatar::Docked
 					avatar::DockedState::MARKET,
 					DoTransition(
 					{
-						visuals::data::Colors::GREEN,
+						game::Colors::GREEN,
 						"You look to sell yer items.",
 						avatar::DockedState::MARKET_SELL
 					})
@@ -133,7 +133,7 @@ namespace game::avatar::Docked
 					avatar::DockedState::DOCK,
 					DoTransition(
 					{
-						visuals::data::Colors::GREEN,
+						game::Colors::GREEN,
 						"You check for posted jobs.",
 						avatar::DockedState::JOB_BOARD
 					})
@@ -147,7 +147,7 @@ namespace game::avatar::Docked
 					avatar::DockedState::DOCK,
 					DoTransition(
 					{
-						visuals::data::Colors::GREEN,
+						game::Colors::GREEN,
 						"You enter the shipyard.",
 						avatar::DockedState::SHIPYARD
 					})
@@ -179,7 +179,7 @@ namespace game::avatar::Docked
 					avatar::DockedState::DARK_ALLEY,
 					DoTransition(
 					{
-						visuals::data::Colors::GREEN,
+						game::Colors::GREEN,
 						"You approach some shady characters playing a card game.",
 						avatar::DockedState::DARK_ALLEY_GAMBLING
 					})

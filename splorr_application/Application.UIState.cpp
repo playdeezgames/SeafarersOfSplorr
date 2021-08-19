@@ -2,6 +2,13 @@
 #include <stack>
 namespace application::UIState
 {
+	std::optional<int> finalState;
+
+	void SetFinalState(int s)
+	{
+		finalState = s;
+	}
+
 	static int uiState = 0;//TODO: we may need to set this!
 	static std::stack<int> stateStack;
 

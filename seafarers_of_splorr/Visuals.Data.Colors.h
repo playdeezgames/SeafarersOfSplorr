@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-namespace visuals::data::Colors
+namespace game::Colors
 {
 	const std::string BLACK = "Black";
 	const std::string BLUE = "Blue";

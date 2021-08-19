@@ -134,7 +134,7 @@
     <ClInclude Include="Game.World.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Visuals.Data.Colors.h">
+    <ClInclude Include="Game.Colors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -209,6 +209,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.World.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Avatar.Docked.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

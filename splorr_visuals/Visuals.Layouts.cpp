@@ -132,3 +132,10 @@ namespace visuals::Layouts
 		}
 	}
 }
+namespace application::Engine
+{
+	void RenderLayout(const std::shared_ptr<application::Engine::Renderer>& renderer, const std::string& layoutName)
+	{
+		visuals::Layouts::Draw(renderer, layoutName);
+	}
+}

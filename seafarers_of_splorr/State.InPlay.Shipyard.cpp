@@ -57,7 +57,7 @@ namespace state::in_play::Shipyard
 			std::format(
 				"Money: {:.3f}",
 				game::avatar::Statistics::GetMoney()),
-			visuals::data::Colors::WHITE);
+			game::Colors::WHITE);
 	}
 
 	static void RefreshShipPrices()
@@ -74,7 +74,7 @@ namespace state::in_play::Shipyard
 					shipDescriptor.name,
 					(ship == unitPrice.first) ? ("*") : (" "),
 					unitPrice.second),
-				(row == hiliteRow) ? (visuals::data::Colors::CYAN) : (visuals::data::Colors::GRAY));
+				(row == hiliteRow) ? (game::Colors::CYAN) : (game::Colors::GRAY));
 			++gridRow;
 			++row;
 		}

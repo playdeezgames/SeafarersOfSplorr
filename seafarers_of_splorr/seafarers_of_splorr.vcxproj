@@ -159,11 +159,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.Keyboard.cpp" />
-    <ClCompile Include="Application.Renderer.cpp" />
+    <ClCompile Include="Application.Starters.cpp" />
     <ClCompile Include="Game.Achievements.cpp" />
     <ClCompile Include="Game.Audio.Mux.cpp" />
     <ClCompile Include="Game.Audio.Sfx.cpp" />
-    <ClCompile Include="Game.Avatar.Docked.cpp" />
     <ClCompile Include="Game.Avatar.Docked.OnEnterDarkAlleyFailsInfamyRequirement.cpp" />
     <ClCompile Include="Game.InPlay.Confirm.cpp" />
     <ClCompile Include="State.ConfirmAbandon.cpp" />
@@ -195,7 +194,6 @@
     <ClCompile Include="Sublayout.UIHamburger.cpp" />
     <ClCompile Include="Visuals.CardSprites.cpp" />
     <ClCompile Include="State.About.cpp" />
-    <ClCompile Include="Application.cpp" />
     <ClCompile Include="State.ConfirmQuit.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="State.LeavePlay.cpp" />

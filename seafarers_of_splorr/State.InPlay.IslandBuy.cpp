@@ -38,10 +38,10 @@ namespace state::in_play::IslandBuy
 
 	static void RefreshHeader()
 	{
-		WriteTextToGrid({ 0, 0 }, "<-", visuals::data::Colors::YELLOW);
-		WriteTextToGrid({ 37, 0 }, "->", visuals::data::Colors::YELLOW);
-		WriteTextToGrid({ 15, 0 }, "Page 1 of 1", visuals::data::Colors::YELLOW);
-		WriteTextToGrid({ 0,1 }, std::format("{:15s}   {:7s}   {:4s}   {:5s}", "Item", "  Price", " Own", "Tonn."), visuals::data::Colors::YELLOW);
+		WriteTextToGrid({ 0, 0 }, "<-", game::Colors::YELLOW);
+		WriteTextToGrid({ 37, 0 }, "->", game::Colors::YELLOW);
+		WriteTextToGrid({ 15, 0 }, "Page 1 of 1", game::Colors::YELLOW);
+		WriteTextToGrid({ 0,1 }, std::format("{:15s}   {:7s}   {:4s}   {:5s}", "Item", "  Price", " Own", "Tonn."), game::Colors::YELLOW);
 	}
 
 	static std::map<game::Item, double> unitPrices;
@@ -66,7 +66,7 @@ namespace state::in_play::IslandBuy
 					unitPrice.second,
 					game::avatar::Items::Read(unitPrice.first),
 					itemDescriptor.tonnage), 
-				(row==hiliteRow) ? (visuals::data::Colors::CYAN) : (visuals::data::Colors::GRAY));
+				(row==hiliteRow) ? (game::Colors::CYAN) : (game::Colors::GRAY));
 			++gridRow;
 			++row;
 		}
@@ -79,13 +79,13 @@ namespace state::in_play::IslandBuy
 			std::format(
 				"Available Tonnage: {:.3f}",
 				game::avatar::Ship::AvailableTonnage()),
-			visuals::data::Colors::WHITE);
+			game::Colors::WHITE);
 		WriteTextToGrid(
 			{ 0, 19 }, 
 			std::format(
 				"Money: {:.3f}",
 				game::avatar::Statistics::GetMoney()),
-			visuals::data::Colors::WHITE);
+			game::Colors::WHITE);
 	}
 
 	static void RefreshGrid()

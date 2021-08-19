@@ -7,13 +7,7 @@
     <ClCompile Include="Options.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Application.cpp">
-      <Filter>Source\Application</Filter>
-    </ClCompile>
     <ClCompile Include="Application.Keyboard.cpp">
-      <Filter>Source\Application</Filter>
-    </ClCompile>
-    <ClCompile Include="Application.Renderer.cpp">
       <Filter>Source\Application</Filter>
     </ClCompile>
     <ClCompile Include="Game.Achievements.cpp">
@@ -142,11 +136,11 @@
     <ClCompile Include="Visuals.WorldMap.cpp">
       <Filter>Source\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Avatar.Docked.cpp">
-      <Filter>Source\Game</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Avatar.Docked.OnEnterDarkAlleyFailsInfamyRequirement.cpp">
       <Filter>Source\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.Starters.cpp">
+      <Filter>Source\Application</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

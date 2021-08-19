@@ -4,6 +4,16 @@
 #include <functional>
 namespace application::UIState
 {
+	void SetFinalState(int);
+	template<typename TState>
+	std::function<void()> DoSetFinalState(const TState& state)
+	{
+		return [state]() 
+		{
+			SetFinalState((int)state);
+		};
+	}
+
 	void Write(int);
 	int Read();
 	std::function<void()> GoTo(int);

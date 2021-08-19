@@ -37,10 +37,10 @@ namespace state::in_play::IslandSell
 
 	static void RefreshHeader()
 	{
-		WriteTextToGrid({ 0, 0 }, "<-", visuals::data::Colors::YELLOW);
-		WriteTextToGrid({ 37, 0 }, "->", visuals::data::Colors::YELLOW);
-		WriteTextToGrid({ 15, 0 }, "Page 1 of 1", visuals::data::Colors::YELLOW);
-		WriteTextToGrid({ 0,1 }, std::format("{:15s}   {:7s}   {:4s}", "Item", "  Price", " Own"), visuals::data::Colors::YELLOW);
+		WriteTextToGrid({ 0, 0 }, "<-", game::Colors::YELLOW);
+		WriteTextToGrid({ 37, 0 }, "->", game::Colors::YELLOW);
+		WriteTextToGrid({ 15, 0 }, "Page 1 of 1", game::Colors::YELLOW);
+		WriteTextToGrid({ 0,1 }, std::format("{:15s}   {:7s}   {:4s}", "Item", "  Price", " Own"), game::Colors::YELLOW);
 	}
 
 	static std::map<game::Item, double> unitPrices;
@@ -64,7 +64,7 @@ namespace state::in_play::IslandSell
 					itemDescriptor.name,
 					unitPrice.second,
 					game::avatar::Items::Read(unitPrice.first)),
-				(row == hiliteRow) ? (visuals::data::Colors::CYAN) : (visuals::data::Colors::GRAY));
+				(row == hiliteRow) ? (game::Colors::CYAN) : (game::Colors::GRAY));
 			++gridRow;
 			++row;
 		}
@@ -77,7 +77,7 @@ namespace state::in_play::IslandSell
 			std::format(
 				"Money: {:.3f}",
 				game::avatar::Statistics::GetMoney()),
-			visuals::data::Colors::GRAY);
+			game::Colors::GRAY);
 	}
 
 	static void RefreshGrid()

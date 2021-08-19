@@ -115,7 +115,7 @@ namespace state::in_play::HeadFor
 
 	static void HiliteGoBackButton(bool hilite)
 	{
-		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, (hilite) ? (visuals::data::Colors::CYAN) : (visuals::data::Colors::GRAY));
+		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, (hilite) ? (game::Colors::CYAN) : (game::Colors::GRAY));
 	}
 
 	void HoverOnGoBack(const common::XY<int>&)

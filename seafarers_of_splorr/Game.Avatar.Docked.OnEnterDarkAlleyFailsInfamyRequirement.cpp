@@ -12,13 +12,13 @@ namespace game::avatar::Docked
 					{
 						{19,9},
 						"You have been waylaid by a ruffian!",
-						visuals::data::Colors::RED,
+						game::Colors::RED,
 						visuals::HorizontalAlignment::CENTER
 					},
 					{
 						{19,11},
 						"Prepare to fight!",
-						visuals::data::Colors::RED,
+						game::Colors::RED,
 						visuals::HorizontalAlignment::CENTER
 					}
 				}

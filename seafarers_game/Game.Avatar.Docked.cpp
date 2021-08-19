@@ -10,7 +10,7 @@
 #include "Game.Islands.Quests.h"
 #include "Game.Islands.h"
 #include <map>
-#include "Visuals.Data.Colors.h"
+#include "Game.Colors.h"
 namespace game::avatar::Docked
 {
 	void Reset(const game::Difficulty&)
@@ -33,7 +33,7 @@ namespace game::avatar::Docked
 		}
 		data::game::avatar::Dock::SetLocation(location, (int)game::avatar::DockedState::DOCK);
 		auto island = game::Islands::Read(location).value();
-		game::avatar::Log::Write({ visuals::data::Colors::GREEN, std::format(FORMAT_DOCK, island.name) });
+		game::avatar::Log::Write({ game::Colors::GREEN, std::format(FORMAT_DOCK, island.name) });
 		return result;
 	}
 
@@ -64,7 +64,7 @@ namespace game::avatar::Docked
 		if (location.has_value())
 		{
 			auto island = game::Islands::Read(location.value()).value();
-			game::avatar::Log::Write({ visuals::data::Colors::GREEN, std::format(FORMAT_UNDOCK, island.name) });
+			game::avatar::Log::Write({ game::Colors::GREEN, std::format(FORMAT_UNDOCK, island.name) });
 			data::game::avatar::Dock::ClearLocation();
 			return true;
 		}
@@ -103,14 +103,14 @@ namespace game::avatar::Docked
 			OnEnterDarkAlleyFailsInfamyRequirement();
 			return 
 			{
-				visuals::data::Colors::GREEN,
+				game::Colors::GREEN,
 				"You enter dark alley.",
 				avatar::DockedState::DARK_ALLEY_ENTRANCE
 			};
 		}
 		return
 		{
-			visuals::data::Colors::GREEN,
+			game::Colors::GREEN,
 			"You enter dark alley.",
 			avatar::DockedState::DARK_ALLEY
 		};
@@ -120,7 +120,7 @@ namespace game::avatar::Docked
 	{
 		return
 		{
-			visuals::data::Colors::GREEN,
+			game::Colors::GREEN,
 			"You enter dark alley.",
 			avatar::DockedState::DARK_ALLEY
 		};

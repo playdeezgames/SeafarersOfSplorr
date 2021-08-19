@@ -82,7 +82,7 @@ namespace state::in_play::AtSea
 						{
 							{19,10},
 							"Yer reputation increases!",
-							visuals::data::Colors::GRAY,
+							game::Colors::GRAY,
 							visuals::HorizontalAlignment::CENTER
 						}
 					}

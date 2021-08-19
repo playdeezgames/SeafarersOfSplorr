@@ -51,13 +51,13 @@ namespace state::in_play::DarkAlley
 					{
 						{19,9},
 						"You don't have enough money!",
-						visuals::data::Colors::GRAY,
+						game::Colors::GRAY,
 						visuals::HorizontalAlignment::CENTER
 					},
 					{
 						{19,11},
 						std::format("Minimum bet: {:.4f}", GetMinimumWager()),
-						visuals::data::Colors::GRAY,
+						game::Colors::GRAY,
 						visuals::HorizontalAlignment::CENTER
 					}
 				}
