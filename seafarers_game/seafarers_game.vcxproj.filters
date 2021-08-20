@@ -167,6 +167,9 @@
     <ClInclude Include="Game.World.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Islands.DarkAlley.GamblingHand.h">
+      <Filter>Header Files\Islands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Commodities.cpp">
@@ -242,6 +245,9 @@
       <Filter>Source Files\Islands</Filter>
     </ClCompile>
     <ClCompile Include="Game.Islands.Ships.cpp">
+      <Filter>Source Files\Islands</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Islands.DarkAlley.GamblingHand.cpp">
       <Filter>Source Files\Islands</Filter>
     </ClCompile>
   </ItemGroup>

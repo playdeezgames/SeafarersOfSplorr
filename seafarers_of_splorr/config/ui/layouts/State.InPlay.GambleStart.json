@@ -20,6 +20,30 @@
         "drop-shadow-y": 2
     },
     {
+        "type": "Image",
+        "image-id": "FirstCard",
+        "sprite": "CardBackRed",
+        "color": "White",
+        "x": 256,
+        "y": 112
+    },
+    {
+        "type": "Image",
+        "image-id": "SecondCard",
+        "sprite": "CardBackRed",
+        "color": "White",
+        "x": 320,
+        "y": 112
+    },
+    {
+        "type": "Image",
+        "image-id": "ThirdCard",
+        "sprite": "CardBackRed",
+        "color": "White",
+        "x": 288,
+        "y": 184
+    },
+    {
         "type": "Layout",
         "name": "Sublayout.Modded"
     }

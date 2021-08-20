@@ -89,6 +89,9 @@
     <ClInclude Include="Data.SQLite.Store.h">
       <Filter>Header Files\Stores</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.Island.DarkAlley.GamblingHand.h">
+      <Filter>Header Files\Island</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">
@@ -146,6 +149,9 @@
       <Filter>Source Files\Island</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Island.Visits.cpp">
+      <Filter>Source Files\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Island.DarkAlley.GamblingHand.cpp">
       <Filter>Source Files\Island</Filter>
     </ClCompile>
   </ItemGroup>

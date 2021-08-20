@@ -25,7 +25,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Derp.cpp">
+    <ClCompile Include="Card.Card.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,0 +1,38 @@
+#include <Cards.Card.h>
+#include <Cards.Deck.h>
+#include <Data.Game.Island.DarkAlley.GamblingHand.h>
+#include "Game.Islands.DarkAlley.GamblingHand.h"
+#include "Game.Islands.Features.h"
+namespace game::islands::dark_alley::GamblingHand
+{
+	bool Deal(const common::XY<double>& location)
+	{
+		if (!game::islands::Features::Read(location, game::Feature::DARK_ALLEY))
+		{
+			return false;
+		}
+		cards::Deck<cards::Card> deck(cards::All());
+		deck.Shuffle();
+		data::game::island::dark_alley::GamblingHand::Data data =
+		{
+			cards::ToInt(deck.Draw().value()),
+			cards::ToInt(deck.Draw().value()),
+			cards::ToInt(deck.Draw().value())
+		};
+		data::game::island::dark_alley::GamblingHand::Write(location, data);
+		return true;
+	}
+
+	std::vector<cards::Card> Read(const common::XY<double>& location)
+	{
+		std::vector<cards::Card> result;
+		auto hand = data::game::island::dark_alley::GamblingHand::Read(location);
+		if (hand)
+		{
+			result.push_back(cards::OfInt(hand.value().firstCard));
+			result.push_back(cards::OfInt(hand.value().secondCard));
+			result.push_back(cards::OfInt(hand.value().thirdCard));
+		}
+		return result;
+	}
+}

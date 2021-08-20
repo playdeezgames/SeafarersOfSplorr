@@ -25,7 +25,7 @@
     <ClInclude Include="Cards.Suit.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Derp.cpp" />
+    <ClCompile Include="Card.Card.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

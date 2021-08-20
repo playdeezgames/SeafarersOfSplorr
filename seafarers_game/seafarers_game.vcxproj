@@ -44,6 +44,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Game.Islands.Commodities.h" />
     <ClInclude Include="Game.Islands.DarkAlley.FightCards.h" />
+    <ClInclude Include="Game.Islands.DarkAlley.GamblingHand.h" />
     <ClInclude Include="Game.Islands.DarkAlley.h" />
     <ClInclude Include="Game.Islands.Features.h" />
     <ClInclude Include="Game.Islands.h" />
@@ -79,6 +80,7 @@
     <ClCompile Include="Game.Islands.cpp" />
     <ClCompile Include="Game.Islands.DarkAlley.cpp" />
     <ClCompile Include="Game.Islands.DarkAlley.FightCards.cpp" />
+    <ClCompile Include="Game.Islands.DarkAlley.GamblingHand.cpp" />
     <ClCompile Include="Game.Islands.Features.cpp" />
     <ClCompile Include="Game.Islands.Generation.cpp" />
     <ClCompile Include="Game.Islands.Items.cpp" />
