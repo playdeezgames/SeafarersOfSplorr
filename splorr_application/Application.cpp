@@ -31,6 +31,10 @@ namespace application::Update
 {
 	void Handle(unsigned int);
 }
+namespace application::TextInput
+{
+	void Handle(const std::string&);
+}
 namespace Application
 {
 	static std::optional<::Command> KeyCodeToCommand(int code)
@@ -118,7 +122,8 @@ namespace application::Engine
 		{ SDL_KEYDOWN,              [](const SDL_Event& evt) { ::Application::HandleKeyDown(evt.key); }},
 		{ SDL_CONTROLLERBUTTONDOWN, [](const SDL_Event& evt) { ::Application::HandleControllerButtonDown(evt.cbutton); }},
 		{ SDL_MOUSEMOTION,          [](const SDL_Event& evt) { ::application::MouseMotion::Handle(evt.motion.x, evt.motion.y); }},
-		{ SDL_MOUSEBUTTONUP,        [](const SDL_Event& evt) { ::application::MouseButtonUp::Handle(evt.button.x, evt.button.y,mouseButtonTable.find(evt.button.button)->second); }}
+		{ SDL_MOUSEBUTTONUP,        [](const SDL_Event& evt) { ::application::MouseButtonUp::Handle(evt.button.x, evt.button.y,mouseButtonTable.find(evt.button.button)->second); }},
+		{ SDL_TEXTINPUT,            [](const SDL_Event& evt) { ::application::TextInput::Handle(evt.text.text); }}
 	};
 
 	void HandleEvent(const SDL_Event& evt)

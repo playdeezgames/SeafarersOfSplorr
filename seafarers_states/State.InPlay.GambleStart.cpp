@@ -2,6 +2,7 @@
 #include <Application.Command.h>
 #include <Application.MouseButtonUp.h>
 #include <Application.OnEnter.h>
+#include <Application.TextInput.h>
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Docked.h>
@@ -54,11 +55,17 @@ namespace state::in_play::GambleStart
 		Refresh();
 	}
 
+	static void OnTextInput(const std::string& text)
+	{
+		return;
+	}
+
 	void Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::IN_PLAY_GAMBLE_START, OnEnter);
 		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_GAMBLE_START, OnMouseButtonUp);
 		::application::Command::SetHandler(::UIState::IN_PLAY_GAMBLE_START, OnLeave);
 		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_GAMBLE_START, LAYOUT_NAME);
+		::application::TextInput::AddHandler(::UIState::IN_PLAY_GAMBLE_START, OnTextInput);
 	}
 }

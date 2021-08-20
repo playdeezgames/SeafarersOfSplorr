@@ -26,6 +26,7 @@
     <ClInclude Include="Application.MouseMotion.h" />
     <ClInclude Include="Application.OnEnter.h" />
     <ClInclude Include="Application.Renderer.h" />
+    <ClInclude Include="Application.TextInput.h" />
     <ClInclude Include="Application.UIState.h" />
     <ClInclude Include="Application.Update.h" />
     <ClInclude Include="Command.h" />
@@ -41,6 +42,7 @@
     <ClCompile Include="Application.MouseMotion.cpp" />
     <ClCompile Include="Application.OnEnter.cpp" />
     <ClCompile Include="Application.Renderer.cpp" />
+    <ClCompile Include="Application.TextInput.cpp" />
     <ClCompile Include="Application.UIState.cpp" />
     <ClCompile Include="Application.Update.cpp" />
     <ClCompile Include="Application.Engine.cpp" />
