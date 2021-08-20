@@ -150,23 +150,19 @@ namespace game::avatar::Docked
 		return false;
 	}
 
-	//TODO: this seems no longer necessary...
 	const std::map<avatar::DockedAction, std::function<bool(const avatar::DockedAction&)>> dockedActions =
 	{
-		{ avatar::DockedAction::UNDOCK, Undock},
-		{ avatar::DockedAction::ENTER_MARKET, DoActionTransition},
-		{ avatar::DockedAction::ENTER_DOCK, DoActionTransition},
-		{ avatar::DockedAction::ENTER_JOB_BOARD, DoActionTransition},
-		{ avatar::DockedAction::MARKET_BUY, DoActionTransition},
-		{ avatar::DockedAction::MARKET_SELL,DoActionTransition},
-		{ avatar::DockedAction::ENTER_SHIPYARD,DoActionTransition},
-		{ avatar::DockedAction::ENTER_DARK_ALLEY,DoActionTransition},
-		{ avatar::DockedAction::DEFEAT_RUFFIAN,DoActionTransition}
+		{ avatar::DockedAction::UNDOCK, Undock}
 	};
 
 	bool DoDockedAction(const avatar::DockedAction& action)
 	{
-		return dockedActions.find(action)->second(action);
+		auto iter = dockedActions.find(action);
+		if (iter != dockedActions.end())
+		{
+			return iter->second(action);
+		}
+		return DoActionTransition(action);
 	}
 
 }

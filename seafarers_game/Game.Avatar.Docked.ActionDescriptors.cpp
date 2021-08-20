@@ -160,6 +160,15 @@ namespace game::avatar::Docked
 				{
 					avatar::DockedState::DOCK,
 					OnEnterDarkAlley
+				},
+				{
+					avatar::DockedState::GAMBLE_START,
+					DoTransition(
+					{
+						game::Colors::GREEN,
+						"You leave the game.",
+						avatar::DockedState::DARK_ALLEY
+					})
 				}
 			}
 		},
@@ -181,7 +190,7 @@ namespace game::avatar::Docked
 					{
 						game::Colors::GREEN,
 						"You approach some shady characters playing a card game.",
-						avatar::DockedState::DARK_ALLEY_GAMBLING
+						avatar::DockedState::GAMBLE_START
 					})
 				}
 			}

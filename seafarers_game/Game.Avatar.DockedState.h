@@ -11,6 +11,6 @@ namespace game::avatar
 		SHIPYARD,
 		DARK_ALLEY_ENTRANCE,
 		DARK_ALLEY,
-		DARK_ALLEY_GAMBLING
+		GAMBLE_START
 	};
 }

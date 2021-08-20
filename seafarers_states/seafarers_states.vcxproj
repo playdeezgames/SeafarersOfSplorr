@@ -40,6 +40,7 @@
     <ClCompile Include="State.InPlay.DarkAlley.cpp" />
     <ClCompile Include="State.InPlay.DarkAlleyEntrance.cpp" />
     <ClCompile Include="State.InPlay.Docked.cpp" />
+    <ClCompile Include="State.InPlay.GambleStart.cpp" />
     <ClCompile Include="State.InPlay.HeadFor.cpp" />
     <ClCompile Include="State.InPlay.IslandBuy.cpp" />
     <ClCompile Include="State.InPlay.IslandJobs.cpp" />

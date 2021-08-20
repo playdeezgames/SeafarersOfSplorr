@@ -1,20 +1,20 @@
-#include "Application.Renderer.h"
-#include "Application.Command.h"
-#include "Application.MouseButtonUp.h"
-#include "Application.MouseMotion.h"
-#include "Application.OnEnter.h"
-#include "Application.UIState.h"
+#include <Application.Renderer.h>
+#include <Application.Command.h>
+#include <Application.MouseButtonUp.h>
+#include <Application.MouseMotion.h>
+#include <Application.OnEnter.h>
+#include <Application.UIState.h>
 #include <format>
-#include "Game.Audio.Mux.h"
-#include "Game.Avatar.Docked.h"
-#include "Game.Avatar.Statistics.h"
-#include "Visuals.Confirmations.h"
-#include "Game.Islands.DarkAlley.h"
-#include "Visuals.Messages.h"
+#include <Game.Audio.Mux.h>
+#include <Game.Avatar.Docked.h>
+#include <Game.Avatar.Statistics.h>
+#include <Game.Colors.h>
+#include <Game.Islands.DarkAlley.h>
 #include "UIState.h"
-#include "Visuals.Areas.h"
-#include "Game.Colors.h"
-#include "Visuals.Menus.h"
+#include <Visuals.Areas.h>
+#include <Visuals.Confirmations.h>
+#include <Visuals.Menus.h>
+#include <Visuals.Messages.h>
 namespace state::in_play::DarkAlley
 {
 	const std::string LAYOUT_NAME = "State.InPlay.DarkAlley";
@@ -42,6 +42,8 @@ namespace state::in_play::DarkAlley
 	{
 		if (GetMoney() >= GetMinimumWager())
 		{
+			game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::START_GAMBLING);
+			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			return;
 		}
 		visuals::Messages::Write(

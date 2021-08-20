@@ -95,6 +95,7 @@ namespace application::Engine
 		state::in_play::DarkAlley::Start,
 		state::in_play::Message::Start,
 		state::in_play::Confirm::Start,
+		state::in_play::GambleStart::Start,
 		sublayout::UIHamburger::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
