@@ -350,3 +350,5 @@ MigrationBackup/
 .ionide/
 
 **/autosave.db
+/splorr_data_tests/loadTest.json
+/splorr_data_tests/saveTest.json
