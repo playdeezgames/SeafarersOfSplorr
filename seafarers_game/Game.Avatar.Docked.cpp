@@ -118,13 +118,26 @@ namespace game::avatar::Docked
 
 	DockedStateTransition OnDefeatRuffian()
 	{
+		//TODO: add a message
 		return
 		{
 			game::Colors::GREEN,
-			"You enter dark alley.",
+			"You enter the dark alley.",
 			avatar::DockedState::DARK_ALLEY
 		};
 	}
+
+	DockedStateTransition OnStartGambling()
+	{
+		//TODO: add a message
+		return
+		{
+			game::Colors::GREEN,
+			"You approach some shady characters playing a card game.",
+			avatar::DockedState::GAMBLE_START
+		};
+	}
+
 
 	const std::map<avatar::DockedAction, std::map<avatar::DockedState, std::function<DockedStateTransition()>>>& GetActionDescriptors();
 

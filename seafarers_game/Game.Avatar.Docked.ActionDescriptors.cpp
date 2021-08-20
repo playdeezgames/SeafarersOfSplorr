@@ -8,6 +8,7 @@ namespace game::avatar::Docked
 {
 	DockedStateTransition OnEnterDarkAlley();
 	DockedStateTransition OnDefeatRuffian();
+	DockedStateTransition OnStartGambling();
 
 	static std::function<DockedStateTransition()> DoTransition(const DockedStateTransition& transition)
 	{
@@ -186,12 +187,7 @@ namespace game::avatar::Docked
 			{
 				{
 					avatar::DockedState::DARK_ALLEY,
-					DoTransition(
-					{
-						game::Colors::GREEN,
-						"You approach some shady characters playing a card game.",
-						avatar::DockedState::GAMBLE_START
-					})
+					OnStartGambling
 				}
 			}
 		}
