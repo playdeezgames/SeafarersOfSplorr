@@ -1,16 +1,16 @@
-#include "Application.Command.h"
-#include "Application.MouseButtonUp.h"
-#include "Application.MouseMotion.h"
-#include "Application.OnEnter.h"
-#include "Application.Renderer.h"
-#include "Application.UIState.h"
-#include "Common.Utility.h"
-#include "Data.JSON.Stores.h"
-#include "Game.Audio.Mux.h"
+#include <Application.Command.h>
+#include <Application.MouseButtonUp.h>
+#include <Application.MouseMotion.h>
+#include <Application.OnEnter.h>
+#include <Application.Renderer.h>
+#include <Application.UIState.h>
+#include <Common.Utility.h>
+#include <Data.JSON.Stores.h>
+#include <Game.Audio.Mux.h>
 #include "UIState.h"
-#include "Visuals.Areas.h"
-#include "Visuals.Menus.h"
-#include "Visuals.Texts.h"
+#include <Visuals.Areas.h>
+#include <Visuals.Menus.h>
+#include <Visuals.Texts.h>
 namespace state::MainMenu
 {
 	const std::string LAYOUT_NAME = "State.MainMenu";

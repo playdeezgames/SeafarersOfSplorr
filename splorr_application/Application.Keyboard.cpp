@@ -1,3 +1,5 @@
+#include "Application.Handlers.h"
+#include "Application.Keyboard.h"
 #include "Command.h"
 #include "Common.Data.h"
 #include "Data.JSON.Stores.h"
@@ -39,5 +41,31 @@ namespace application::Keyboard
 			return iter->second;
 		}
 		return std::nullopt;
+	}
+
+	static std::map<int, std::vector<Handler>> keyDownHandlers;
+
+	void AddHandler(int state, Handler handler)
+	{
+		keyDownHandlers[state].push_back(handler);
+	}
+
+	bool Handle(const std::string& keyName)
+	{
+		bool result = false;
+		application::Handlers::WithCurrent(
+			keyDownHandlers,
+			[&result, keyName](const std::vector<Handler>& handlers)
+			{
+				for (auto& handler : handlers)
+				{
+					if (handler(keyName))
+					{
+						result = true;
+						break;
+					}
+				}
+			});
+		return result;
 	}
 }

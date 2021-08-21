@@ -1,4 +1,5 @@
 #include <algorithm>
+#include "Application.Keyboard.h"
 #include "Application.UIState.h"
 #include "Command.h"
 #include <functional>
@@ -44,6 +45,10 @@ namespace Application
 
 	static void HandleKeyDown(const SDL_KeyboardEvent& evt)
 	{
+		if (application::Keyboard::Handle(SDL_GetKeyName(evt.keysym.sym)))
+		{
+			return;
+		}
 		auto command = application::Keyboard::ToCommand((int)evt.keysym.sym);
 		if (command)
 		{
