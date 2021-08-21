@@ -89,7 +89,7 @@ namespace state::in_play::GambleStart
 	const std::map<WagerItem, std::function<void()>> activators =
 	{
 		{ WagerItem::BET, application::UIState::GoTo(::UIState::IN_PLAY_GAMBLE_FINISH) },
-		{ WagerItem::CHANGE_BET, OnLeave },//TODO: make this work
+		{ WagerItem::CHANGE_BET, []() {} },//TODO: make this work
 		{ WagerItem::NO_BET, OnNoBet },
 		{ WagerItem::LEAVE, OnLeave }
 	};
