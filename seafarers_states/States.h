@@ -34,3 +34,4 @@ namespace state::in_play::DarkAlley { void Start(); }
 namespace state::in_play::Message { void Start(); }
 namespace state::in_play::Confirm { void Start(); }
 namespace state::in_play::GambleStart { void Start(); }
+namespace state::in_play::GambleFinish { void Start(); }

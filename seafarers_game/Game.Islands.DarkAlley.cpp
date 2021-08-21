@@ -32,4 +32,17 @@ namespace game::islands::DarkAlley
 				return data.minimumWager;
 			});
 	}
+
+	const double ANTE_MULTIPLIER = 0.1;
+
+	std::optional<double> GetAnte(const common::XY<double>& location)
+	{
+		auto minimum = GetMinimumWager(location);
+		if (minimum)
+		{
+			return minimum.value() * ANTE_MULTIPLIER;
+		}
+		return std::nullopt;
+	}
+
 }

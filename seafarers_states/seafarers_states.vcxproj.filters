@@ -148,5 +148,8 @@
     <ClCompile Include="State.InPlay.GambleStart.cpp">
       <Filter>Source Files\Docked</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.GambleFinish.cpp">
+      <Filter>Source Files\Docked</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

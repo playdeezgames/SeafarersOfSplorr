@@ -34,5 +34,6 @@
     "State.InPlay.DarkAlley": "config/ui/layouts/State.InPlay.DarkAlley.json",
     "State.InPlay.Message": "config/ui/layouts/State.InPlay.Message.json",
     "State.InPlay.Confirm": "config/ui/layouts/State.InPlay.Confirm.json",
-    "State.InPlay.GambleStart": "config/ui/layouts/State.InPlay.GambleStart.json"
+    "State.InPlay.GambleStart": "config/ui/layouts/State.InPlay.GambleStart.json",
+    "State.InPlay.GambleFinish": "config/ui/layouts/State.InPlay.GambleFinish.json"
 }

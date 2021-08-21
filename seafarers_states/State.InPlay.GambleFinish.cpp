@@ -22,18 +22,18 @@
 #include <Visuals.Texts.h>
 namespace state::in_play::GambleStart
 {
-	const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_GAMBLE_START;
-	const std::string LAYOUT_NAME = "State.InPlay.GambleStart";
-	const std::string MENU_ID = "Wager";
+	double GetCurrentWager();
+}
+namespace state::in_play::GambleFinish
+{
+	const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_GAMBLE_FINISH;
+	const std::string LAYOUT_NAME = "State.InPlay.GambleFinish";
+	const std::string MENU_ID = "Proceed";
 	const std::string IMAGE_FIRST_CARD = "FirstCard";
 	const std::string IMAGE_SECOND_CARD = "SecondCard";
-	const std::string TEXT_WAGER = "Wager";
-
-	static double currentWager = 0;
-	double GetCurrentWager()
-	{
-		return currentWager;
-	}
+	const std::string IMAGE_THIRD_CARD = "ThirdCard";
+	const std::string TEXT_RESULT = "Result";
+	const std::string TEXT_WIN_LOSE = "WinLose";
 
 	static void OnLeave()
 	{
@@ -41,87 +41,57 @@ namespace state::in_play::GambleStart
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
+	enum class ProceedItem
+	{
+		PLAY_AGAIN,
+		LEAVE
+	};
+
+	const std::map<ProceedItem, std::function<void()>> activators =
+	{
+		{ ProceedItem::PLAY_AGAIN, application::UIState::GoTo(::UIState::IN_PLAY_NEXT) },
+		{ ProceedItem::LEAVE, OnLeave }
+	};
+
+	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
+
 	static common::XY<double> GetDockedLocation()
 	{
 		return game::avatar::Docked::GetDockedLocation().value();
 	}
 
-	static void OnNoBet()
-	{
-		auto ante = game::islands::DarkAlley::GetAnte(GetDockedLocation()).value();
-		game::avatar::Statistics::ChangeMoney(-ante);
-		//TODO: if avatar now has less than minimum bet... leave gambling!
-		visuals::Messages::Write(
-			{
-				"==NO BET!==",
-				{
-					{
-						{19,9},
-						std::format("Pay the ante ({:.4f})", ante),
-						game::Colors::GRAY,
-						visuals::HorizontalAlignment::CENTER
-					},
-					{
-						{19,11},
-						"and are dealt two new cards.",
-						game::Colors::GRAY,
-						visuals::HorizontalAlignment::CENTER
-					},
-					{
-						{19,13},
-						std::format("Current funds: {:.4f}", game::avatar::Statistics::GetMoney()),
-						game::Colors::GRAY,
-						visuals::HorizontalAlignment::CENTER
-					}
-				}
-			});
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
-	}
-
-	enum class WagerItem
-	{
-		BET,
-		CHANGE_BET,
-		NO_BET,
-		LEAVE
-	};
-
-	const std::map<WagerItem, std::function<void()>> activators =
-	{
-		{ WagerItem::BET, application::UIState::GoTo(::UIState::IN_PLAY_GAMBLE_FINISH) },
-		{ WagerItem::CHANGE_BET, OnLeave },//TODO: make this work
-		{ WagerItem::NO_BET, OnNoBet },
-		{ WagerItem::LEAVE, OnLeave }
-	};
-
-	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
-
 	const size_t FIRST_CARD_INDEX = 0;
 	const size_t SECOND_CARD_INDEX = 1;
+	const size_t THIRD_CARD_INDEX = 2;
 
 	static void RefreshCards()
 	{
 		auto hand = game::islands::dark_alley::GamblingHand::Read(GetDockedLocation());
 		visuals::Images::SetSprite(LAYOUT_NAME, IMAGE_FIRST_CARD, visuals::CardSprites::GetSpriteForCard(hand[FIRST_CARD_INDEX]));
 		visuals::Images::SetSprite(LAYOUT_NAME, IMAGE_SECOND_CARD, visuals::CardSprites::GetSpriteForCard(hand[SECOND_CARD_INDEX]));
-	}
-
-	static void RefreshBet()
-	{
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_WAGER, std::format("Wager {:.4f}(ante={:.4f})", currentWager, game::islands::DarkAlley::GetAnte(GetDockedLocation()).value()));
+		visuals::Images::SetSprite(LAYOUT_NAME, IMAGE_THIRD_CARD, visuals::CardSprites::GetSpriteForCard(hand[THIRD_CARD_INDEX]));
 	}
 
 	static void Refresh()
 	{
-		RefreshBet();
 		RefreshCards();
 	}
 
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
-		game::islands::dark_alley::GamblingHand::Deal(GetDockedLocation());
-		currentWager = game::islands::DarkAlley::GetMinimumWager(GetDockedLocation()).value();
+		if (game::islands::dark_alley::GamblingHand::IsWinner(GetDockedLocation()))
+		{
+			visuals::Texts::SetText(LAYOUT_NAME, TEXT_RESULT, "You win!");
+			game::avatar::Statistics::ChangeMoney(GambleStart::GetCurrentWager());
+		}
+		else
+		{
+			visuals::Texts::SetText(LAYOUT_NAME, TEXT_RESULT, "You lose!");
+			game::avatar::Statistics::ChangeMoney(GambleStart::GetCurrentWager());
+		}
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_WIN_LOSE, std::format("You now have {:.4f}", game::avatar::Statistics::GetMoney()));
+		//TODO: hide "play again" if avatar has less than the minimum wager
 		Refresh();
 	}
 

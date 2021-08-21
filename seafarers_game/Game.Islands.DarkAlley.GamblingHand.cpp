@@ -35,4 +35,25 @@ namespace game::islands::dark_alley::GamblingHand
 		}
 		return result;
 	}
+
+	bool IsWinner(const common::XY<double>& location)
+	{
+		auto hand = Read(location);
+		if(!hand.empty())
+		{
+			auto first = std::get<0>(hand[0]);
+			auto second = std::get<0>(hand[1]);
+			auto third = std::get<0>(hand[2]);
+			if (first > second)
+			{
+				return (third > second) && (first > third);
+			}
+			else if (second > first)
+			{
+				return (third > first) && (second > third);
+			}
+		}
+		return false;
+	}
+
 }
