@@ -1,8 +1,8 @@
 #pragma once
 #include <Common.XY.h>
-#include <string>
-#include <optional>
 #include <list>
+#include <optional>
+#include <string>
 namespace data::game::Island
 {
 	struct Data

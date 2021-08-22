@@ -1,6 +1,6 @@
+#include <Common.Data.h>
 #include "Data.Game.Island.Item.h"
 #include "Data.Game.Common.h"
-#include "Common.Data.h"
 #include <format>
 namespace data::game::island::Item
 {

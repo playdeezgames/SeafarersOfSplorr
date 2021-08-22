@@ -1,5 +1,5 @@
-#include "Common.Data.h"
-#include "Common.Utility.h"
+#include <Common.Data.h>
+#include <Common.Utility.h>
 #include "Data.Game.Avatar.h"
 #include "Data.Game.Common.h"
 #include <format>

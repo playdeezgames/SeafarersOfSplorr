@@ -1,6 +1,6 @@
 #pragma once
+#include <Common.XY.h>
 #include <optional>
-#include "Common.XY.h"
 namespace data::game::avatar::Destination
 {
 	void Write(int, const common::XY<double>&);

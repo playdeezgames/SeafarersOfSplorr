@@ -1,5 +1,5 @@
 #pragma once
-#include "Common.XY.h"
+#include <Common.XY.h>
 #include <optional>
 namespace data::game::island::dark_alley::FightCard
 {

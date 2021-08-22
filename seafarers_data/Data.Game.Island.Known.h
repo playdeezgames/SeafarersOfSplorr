@@ -1,7 +1,7 @@
 #pragma once
-#include <optional>
-#include "Common.XY.h"
+#include <Common.XY.h>
 #include <list>
+#include <optional>
 namespace data::game::island::Known
 {
 	void Write(const common::XY<double>&);

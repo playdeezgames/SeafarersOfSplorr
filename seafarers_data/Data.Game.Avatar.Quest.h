@@ -1,7 +1,7 @@
 #pragma once
-#include "Common.XY.h"
-#include <string>
+#include <Common.XY.h>
 #include <optional>
+#include <string>
 namespace data::game::avatar::Quest
 {
 	struct QuestData

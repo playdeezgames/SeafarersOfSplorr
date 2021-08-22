@@ -1,7 +1,7 @@
 #pragma once
-#include "Common.XY.h"
-#include <optional>
+#include <Common.XY.h>
 #include <map>
+#include <optional>
 namespace data::game::island::Market
 {
 	struct MarketData
