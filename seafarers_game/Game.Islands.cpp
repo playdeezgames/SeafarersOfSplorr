@@ -1,14 +1,15 @@
-#include "Common.Heading.h"
-#include "Common.RNG.h"
-#include "Data.Game.Avatar.Destination.h"
-#include "Data.Game.Island.Item.h"
-#include "Game.Commodities.h"
-#include "Data.Game.Island.h"
-#include "Data.Game.Island.Known.h"
-#include "Data.Game.Island.Market.h"
-#include "Data.Game.Island.Quests.h"
-#include "Data.Game.Island.Visits.h"
+#include <Common.Heading.h>
+#include <Common.RNG.h>
+#include <Data.Game.Avatar.Destination.h>
+#include <Data.Game.Island.Item.h>
+#include <Data.Game.Island.h>
+#include <Data.Game.Island.Known.h>
+#include <Data.Game.Island.Market.h>
+#include <Data.Game.Island.Quests.h>
+#include <Data.Game.Island.Visits.h>
+#include <functional>
 #include "Game.Avatar.AtSea.h"
+#include "Game.Commodities.h"
 #include "Game.Islands.h"
 #include "Game.Items.h"
 #include "Game.World.h"
@@ -25,7 +26,7 @@ namespace game::Islands
 		GenerateIslands();
 	}
 
-	static void AddIsland(std::list<IslandModel>& result, const data::game::Island::IslandData& island, const common::XY<double>& avatarLocation)
+	static void AddIsland(std::list<IslandModel>& result, const data::game::Island::Data& island, const common::XY<double>& avatarLocation)
 	{
 		auto visitData = data::game::island::Visits::Read(island.location);
 		data::game::island::Known::Write(island.location);
@@ -38,40 +39,62 @@ namespace game::Islands
 			});
 	}
 
-	static void AddIslandWhenCloseEnough(std::list<IslandModel>& result, const data::game::Island::IslandData& island, const common::XY<double>& avatarLocation, double maximumDistance)
+	static void AddIslandWhenCloseEnough(std::list<IslandModel>& result, const data::game::Island::Data& island, const common::XY<double>& avatarLocation, std::function<bool(const data::game::Island::Data&, double)> filter)
 	{
 		auto distance = common::Heading::Distance(avatarLocation, island.location);
-		if (distance <= maximumDistance)
+		if (filter(island, distance))
 		{
 			AddIsland(result, island, avatarLocation);
 		}
 	}
 
-	static std::list<IslandModel> GetIslandsInRange(double maximumDistance)
+	static std::list<IslandModel> GetIslandsInRange(std::function<bool(const data::game::Island::Data&, double)> filter)
 	{
 		std::list<IslandModel> result;
 		auto avatarLocation = game::avatar::AtSea::GetLocation();
 		auto islands = data::game::Island::All();
 		for (auto& island : islands)
 		{
-			AddIslandWhenCloseEnough(result, island, avatarLocation, maximumDistance);
+			AddIslandWhenCloseEnough(result, island, avatarLocation, filter);
 		}
 		return result;
 	}
 
+	static std::function<bool(const data::game::Island::Data&, double)> FixedDistance(double maximumDistance)
+	{
+		return [maximumDistance](const data::game::Island::Data&, double distance)
+		{
+			return distance <= maximumDistance;
+		};
+	}
+
 	std::list<IslandModel> GetViewableIslands()
 	{
-		return GetIslandsInRange(game::World::GetViewDistance());
+		return GetIslandsInRange(FixedDistance(game::World::GetViewDistance()));
 	}
 
 	std::list<IslandModel> GetDockableIslands()
 	{
-		return GetIslandsInRange(game::World::GetDockDistance());
+		return GetIslandsInRange(FixedDistance(game::World::GetDockDistance()));
+	}
+
+	std::list<IslandModel> GetCareeningIslands()
+	{
+		return GetIslandsInRange(
+			[](const data::game::Island::Data& data, double distance) 
+			{
+				return distance < data.careeningDistance;
+			});
 	}
 
 	bool CanDock()
 	{
 		return !GetDockableIslands().empty();
+	}
+
+	bool CanCareen()
+	{
+		return !GetCareeningIslands().empty();
 	}
 
 	void AddVisit(const common::XY<double>& location, const int& turn)

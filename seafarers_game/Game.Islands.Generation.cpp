@@ -168,7 +168,7 @@ namespace game::Islands
 		auto names = GenerateNames(locations.size());
 		while (!locations.empty())
 		{
-			data::game::Island::IslandData data =
+			data::game::Island::Data data =
 			{
 				locations.front(),
 				*names.begin()

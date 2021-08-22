@@ -5,18 +5,19 @@
 #include <format>
 namespace data::game::Island
 {
-	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Islands]([X] REAL NOT NULL,[Y] REAL NOT NULL,[Name] TEXT NOT NULL,UNIQUE([X],[Y]));";
-	const std::string QUERY_ITEM = "SELECT [X],[Y],[Name] FROM [Islands] WHERE [X] = {:.4f} AND [Y]={:.4f};";
-	const std::string REPLACE_ITEM = "REPLACE INTO [Islands]([X],[Y],[Name]) VALUES ({:.4f},{:.4f},{});";
-	const std::string QUERY_ALL = "SELECT [X],[Y],[Name] FROM [Islands];";
+	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Islands]([X] REAL NOT NULL,[Y] REAL NOT NULL,[CareeningDistance] REAL NOT NULL,[Name] TEXT NOT NULL,UNIQUE([X],[Y]));";
+	const std::string QUERY_ITEM = "SELECT [X],[Y],[Name],[CareeningDistance] FROM [Islands] WHERE [X] = {:.4f} AND [Y]={:.4f};";
+	const std::string REPLACE_ITEM = "REPLACE INTO [Islands]([X],[Y],[Name],[CareeningDistance]) VALUES ({:.4f},{:.4f},{},{});";
+	const std::string QUERY_ALL = "SELECT [X],[Y],[Name],[CareeningDistance] FROM [Islands];";
 	const std::string CLEAR_ALL = "DELETE FROM [Islands];";
 	const std::string FIELD_X = "X";
 	const std::string FIELD_Y = "Y";
 	const std::string FIELD_NAME = "Name";
+	const std::string FIELD_CAREENING_DISTANCE = "CareeningDistance";
 
 	const auto AutoCreateIslandTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Write(const IslandData& data)
+	void Write(const Data& data)
 	{
 		AutoCreateIslandTable();
 		auto query =
@@ -24,24 +25,26 @@ namespace data::game::Island
 				REPLACE_ITEM,
 				data.location.GetX(), 
 				data.location.GetY(),
-				common::Data::QuoteString(data.name));
+				common::Data::QuoteString(data.name),
+				data.careeningDistance);
 		data::game::Common::Execute(query);
 	}
 
-	static IslandData ToIslandData(const std::map<std::string, std::string> record)
+	static Data ToIslandData(const std::map<std::string, std::string> record)
 	{
-		IslandData data =
+		Data data =
 		{
 			{
 				common::Data::ToDouble(record.find(FIELD_X)->second),
 				common::Data::ToDouble(record.find(FIELD_Y)->second)
 			},
-			record.find(FIELD_NAME)->second
+			record.find(FIELD_NAME)->second,
+			common::Data::ToDouble(record.find(FIELD_CAREENING_DISTANCE)->second)
 		};
 		return data;
 	}
 
-	std::optional<IslandData> Read(const common::XY<double>& location)
+	std::optional<Data> Read(const common::XY<double>& location)
 	{
 		AutoCreateIslandTable();
 		auto query =
@@ -56,11 +59,11 @@ namespace data::game::Island
 		return std::nullopt;
 	}
 
-	std::list<IslandData> All()
+	std::list<Data> All()
 	{
 		AutoCreateIslandTable();
 		auto records = data::game::Common::Execute(QUERY_ALL);
-		std::list<IslandData> result;
+		std::list<Data> result;
 		for (auto& record : records)
 		{
 			result.push_back(ToIslandData(record));
