@@ -3293,6 +3293,15 @@
         "width": 16,
         "height": 16
     },
+    "AtSeaWindDirection": {
+        "texture": "at-sea-icons",
+        "x": 144,
+        "y": 0,
+        "offset-x": -8,
+        "offset-y": -8,
+        "width": 16,
+        "height": 16
+    },
     "AtSeaCurrentHeading": {
         "texture": "at-sea-icons",
         "x": 0,

@@ -1,4 +1,6 @@
-#include "Data.Game.World.h"
+#include <Common.Heading.h>
+#include <Common.RNG.h>
+#include <Data.Game.World.h>
 #include "Game.World.h"
 #include <map>
 namespace game::World
@@ -50,14 +52,30 @@ namespace game::World
 	void Reset(const game::Difficulty& difficulty)
 	{
 		auto properties = worldProperties.find(difficulty)->second;
-		data::game::World::WorldData data = 
+		data::game::World::Data data = 
 		{
 			CURRENT_VERSION,
 			{properties.size, properties.size},
 			properties.minimumIslandDistance,
 			properties.viewDistance,
-			properties.dockDistance
+			properties.dockDistance,
+			common::RNG::FromRange(0.0, common::Heading::DEGREES)
 		};
 		data::game::World::Write(data);
+	}
+
+	double GetWindHeading()
+	{
+		return data::game::World::Read().value().windHeading;
+	}
+
+	void SetWindHeading(double heading)
+	{
+		auto data = data::game::World::Read();
+		if (data)
+		{
+			data.value().windHeading = heading;
+			data::game::World::Write(data.value());
+		}
 	}
 }

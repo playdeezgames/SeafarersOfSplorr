@@ -8,5 +8,7 @@ namespace game::World
 	double GetMinimumIslandDistance();
 	double GetViewDistance();
 	double GetDockDistance();
+	double GetWindHeading();
+	void SetWindHeading(double);
 	void Reset(const game::Difficulty&);
 }

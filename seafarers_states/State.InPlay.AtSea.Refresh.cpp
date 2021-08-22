@@ -38,6 +38,7 @@ namespace state::in_play::AtSea
 	const std::string IMAGE_DESTINATION_3 = "Destination3";
 	const std::string IMAGE_DESTINATION_4 = "Destination4";
 	const std::string IMAGE_QUEST_DESTINATION = "QuestDestination";
+	const std::string IMAGE_WIND_DIRECTION = "WindDirection";
 
 	const std::string MENU_ITEM_DOCK = "Dock";
 	const std::string MENU_ITEM_JOB = "Job";
@@ -145,6 +146,13 @@ namespace state::in_play::AtSea
 	const int TEXT_OFFSET_Y = 8;
 	const std::string FORMAT_AT_SEA_ISLAND = "AtSeaIsland{}";
 
+	static void RefreshWindDirection()
+	{
+		auto windHeading = common::Heading::ToRadians(game::World::GetWindHeading()+common::Heading::DEGREES/2.0);
+		common::XY<double> plot = { VIEW_CENTER.GetX() + std::cos(windHeading) * VIEW_RADIUS, VIEW_CENTER.GetY() + std::sin(windHeading) * VIEW_RADIUS };
+		visuals::Images::SetLocation(LAYOUT_NAME, IMAGE_WIND_DIRECTION, { (int)plot.GetX(), (int)plot.GetY() });
+	}
+
 	static void HideVisibleIslands()
 	{
 		for (int icon = 0; icon < ISLAND_ICON_COUNT; ++icon)
@@ -175,6 +183,7 @@ namespace state::in_play::AtSea
 
 	void RefreshAvatarStatus()
 	{
+		RefreshWindDirection();
 		RefreshAvatarHeading();
 		RefreshAvatarHealth();
 		RefreshAvatarSatiety();

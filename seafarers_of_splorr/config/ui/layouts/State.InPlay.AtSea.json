@@ -597,6 +597,14 @@
         "y": 182
     },
     {
+        "type": "Image",
+        "image-id": "WindDirection",
+        "sprite": "AtSeaWindDirection",
+        "color": "White",
+        "x": 162,
+        "y": 182
+    },
+    {
         "type":"SpriteGrid",
         "sprite-grid-id":"Log",
         "x":320,
