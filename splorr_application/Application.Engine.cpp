@@ -1,9 +1,9 @@
 #include "Application.Engine.h"
-#include "Data.JSON.h"
+#include <Data.JSON.h>
 #include <memory>
-#include <SDL.h> //legit
-#include <SDL_mixer.h>
+#include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 namespace application::Engine
 {
 	const std::string WIDTH = "width";

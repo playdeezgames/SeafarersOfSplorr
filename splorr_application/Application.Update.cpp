@@ -1,7 +1,7 @@
+#include "Application.Handlers.h"
 #include "Application.Update.h"
 #include <map>
 #include <vector>
-#include "Application.Handlers.h"
 namespace application::Update
 {
 	static std::map<int, std::vector<Handler>> handlers;

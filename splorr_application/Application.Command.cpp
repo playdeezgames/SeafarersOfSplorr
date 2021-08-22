@@ -1,6 +1,6 @@
 #include "Application.Command.h"
 #include "Application.Handlers.h"
-#include "Common.Utility.h"
+#include <Common.Utility.h>
 namespace application::Command
 {
 	static std::map<int, std::map<::Command, std::function<void()>>> commandHandlers;

@@ -1,6 +1,6 @@
+#include "Application.Handlers.h"
 #include "Application.MouseMotion.h"
 #include <map>
-#include "Application.Handlers.h"
 namespace application::MouseMotion
 {
 	static std::map<int, std::vector<Handler>> mouseMotionHandlers;
