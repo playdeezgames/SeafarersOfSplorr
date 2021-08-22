@@ -1,5 +1,5 @@
 #pragma once
-#include "Cards.Card.h"
+#include <Cards.Card.h>
 #include <string>
 namespace visuals::CardSprites
 {
