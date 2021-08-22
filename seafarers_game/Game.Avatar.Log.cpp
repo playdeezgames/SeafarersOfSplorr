@@ -1,4 +1,4 @@
-#include "Data.Game.Avatar.Log.h"
+#include <Data.Game.Avatar.Log.h>
 #include "Game.Avatar.Log.h"
 #include "Game.Colors.h"
 namespace game::avatar::Log

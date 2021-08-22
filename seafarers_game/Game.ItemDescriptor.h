@@ -1,7 +1,7 @@
 #pragma once
-#include <string>
 #include "Game.Commodity.h"
 #include <map>
+#include <string>
 namespace game
 {
 	struct ItemDescriptor

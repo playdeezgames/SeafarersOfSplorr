@@ -1,9 +1,9 @@
 #pragma once
+#include <Common.XY.h>
 #include "Game.Difficulty.h"
 #include <list>
-#include "Common.XY.h"
-#include <string>
 #include <optional>
+#include <string>
 namespace game::Islands
 {
 	struct IslandModel

@@ -10,5 +10,4 @@ namespace game
 		JOOLS,
 		LABOR
 	};
-
 }

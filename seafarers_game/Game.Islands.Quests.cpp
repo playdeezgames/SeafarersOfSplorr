@@ -1,6 +1,6 @@
-#include "Common.RNG.h"
-#include "Data.Game.Island.h"
-#include "Data.Game.Island.Quests.h"
+#include <Common.RNG.h>
+#include <Data.Game.Island.h>
+#include <Data.Game.Island.Quests.h>
 #include <format>
 #include "Game.Avatar.Statistics.h"
 #include "Game.Islands.h"

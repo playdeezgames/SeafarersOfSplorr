@@ -1,7 +1,7 @@
-#include "Data.Game.Avatar.h"
-#include "Common.Data.h"
-#include "Common.Heading.h"
-#include "Common.RNG.h"
+#include <Common.Data.h>
+#include <Common.Heading.h>
+#include <Common.RNG.h>
+#include <Data.Game.Avatar.h>
 #include "Game.Avatar.AtSea.h"
 #include "Game.Avatar.Items.h"
 #include "Game.Avatar.Ship.h"

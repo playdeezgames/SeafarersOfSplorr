@@ -1,6 +1,6 @@
+#include <Data.Game.Avatar.Statistics.h>
 #include "Game.Avatar.Statistic.h"
 #include "Game.Avatar.Statistics.h"
-#include "Data.Game.Avatar.Statistics.h"
 #include <map>
 #include <list>
 namespace game::avatar::Statistics

@@ -1,6 +1,6 @@
-#include "Data.Game.Avatar.Quest.h"
-#include "Data.Game.Island.Known.h"
-#include "Data.Game.Island.Quests.h"
+#include <Data.Game.Avatar.Quest.h>
+#include <Data.Game.Island.Known.h>
+#include <Data.Game.Island.Quests.h>
 #include "Game.Avatar.Quest.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Islands.h"

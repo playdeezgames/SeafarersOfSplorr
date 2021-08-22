@@ -1,5 +1,5 @@
+#include <Data.Game.Avatar.Destination.h>
 #include "Game.Avatar.Destination.h"
-#include "Data.Game.Avatar.Destination.h"
 namespace game::avatar::destination
 {
 	std::optional<common::XY<double>> GetDestination(const game::avatar::Destination& index)

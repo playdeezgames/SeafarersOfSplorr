@@ -1,5 +1,5 @@
-#include "Data.Game.Avatar.Dock.h"
-#include "Data.Game.Island.DarkAlley.h"
+#include <Data.Game.Avatar.Dock.h>
+#include <Data.Game.Island.DarkAlley.h>
 #include <format>
 #include <functional>
 #include "Game.Avatar.Docked.h"
@@ -7,10 +7,10 @@
 #include "Game.Avatar.Log.h"
 #include "Game.Avatar.Quest.h"
 #include "Game.Avatar.Statistics.h"
+#include "Game.Colors.h"
 #include "Game.Islands.Quests.h"
 #include "Game.Islands.h"
 #include <map>
-#include "Game.Colors.h"
 namespace game::avatar::Docked
 {
 	void Reset(const game::Difficulty&)

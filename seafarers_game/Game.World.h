@@ -1,6 +1,6 @@
 #pragma once
+#include <Common.XY.h>
 #include "Game.Difficulty.h"
-#include "Common.XY.h"
 namespace game::World
 {
 	common::XY<double> GetSize();

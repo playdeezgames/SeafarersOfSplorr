@@ -1,7 +1,7 @@
 #pragma once
+#include <Common.XY.h>
 #include "Game.Item.h"
 #include <map>
-#include "Common.XY.h"
 namespace game::islands::Items
 {
 	std::map<game::Item, double> GetPurchasePrices(const common::XY<double>&);

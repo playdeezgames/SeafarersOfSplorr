@@ -1,6 +1,6 @@
 #pragma once
-#include <functional>
 #include "Game.Difficulty.h"
+#include <functional>
 namespace game
 {
 	void AddResetter(std::function<void()>);

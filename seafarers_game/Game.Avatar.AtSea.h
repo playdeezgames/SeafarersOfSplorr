@@ -1,5 +1,5 @@
 #pragma once
-#include "Common.XY.h"
+#include <Common.XY.h>
 #include "Game.Difficulty.h"
 namespace game::avatar::AtSea
 {

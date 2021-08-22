@@ -1,7 +1,7 @@
-#include "Cards.Card.h"
-#include "Common.RNG.h"
-#include "Data.Game.Island.DarkAlley.h"
-#include "Data.Game.Island.DarkAlley.FightCard.h"
+#include <Cards.Card.h>
+#include <Common.RNG.h>
+#include <Data.Game.Island.DarkAlley.h>
+#include <Data.Game.Island.DarkAlley.FightCard.h>
 #include <functional>
 #include "Game.Avatar.Statistics.h"
 #include "Game.Islands.DarkAlley.FightCards.h"

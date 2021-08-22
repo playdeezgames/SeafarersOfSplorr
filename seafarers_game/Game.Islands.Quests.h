@@ -1,6 +1,6 @@
 #pragma once
-#include <optional>
 #include "Game.Quest.h"
+#include <optional>
 namespace game::islands::Quests
 {
 	void Update(const common::XY<double>&);

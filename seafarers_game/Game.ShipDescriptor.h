@@ -1,8 +1,8 @@
 #pragma once
-#include <string>
 #include "Game.Commodity.h"
-#include <map>
 #include "Game.Ship.Property.h"
+#include <map>
+#include <string>
 namespace game
 {
 	struct ShipDescriptor

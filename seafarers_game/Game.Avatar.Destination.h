@@ -1,7 +1,7 @@
 #pragma once
-#include <optional>
 #include "Common.XY.h"
 #include <list>
+#include <optional>
 namespace game::avatar
 {
 	enum class Destination

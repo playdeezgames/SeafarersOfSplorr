@@ -1,9 +1,9 @@
 #include "Game.Avatar.DockedAction.h"
 #include "Game.Avatar.DockedState.h"
 #include "Game.Avatar.Docked.DockedStateTransition.h"
-#include <map>
-#include <functional>
 #include "Game.Colors.h"
+#include <functional>
+#include <map>
 namespace game::avatar::Docked
 {
 	DockedStateTransition OnEnterDarkAlley();
