@@ -29,7 +29,7 @@ namespace state::in_play::AtSea
 	const std::string FORMAT_MONEY = "\x80 {:.3f}";
 	const std::string FORMAT_REPUTATION = "\x86 {:.0f}";
 	const std::string FORMAT_SATIETY = "\x82 {:.0f}";
-	const std::string FORMAT_HEADING = "\x84 {:.2f}";
+	const std::string FORMAT_HEADING = "\x84 {}";
 	const std::string FORMAT_SPEED = "\x85 {:.2f}";
 
 	const std::string IMAGE_CURRENT_HEADING = "CurrentHeading";
@@ -75,7 +75,10 @@ namespace state::in_play::AtSea
 	static void RefreshAvatarHeading()
 	{
 		auto heading = game::avatar::AtSea::GetHeading();
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_HEADING, std::format(FORMAT_HEADING, heading));
+		visuals::Texts::SetText(
+			LAYOUT_NAME, 
+			TEXT_AVATAR_HEADING, 
+			std::format(FORMAT_HEADING, common::Heading::ToCompassPoint(heading)));
 		visuals::Images::SetAngle(LAYOUT_NAME, IMAGE_CURRENT_HEADING, heading);
 	}
 

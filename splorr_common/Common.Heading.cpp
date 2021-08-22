@@ -16,6 +16,53 @@ namespace common::Heading
 		return degrees * TAU / DEGREES;
 	}
 
+	const std::vector<std::string> compassPoints =
+	{
+		"E",
+		"ExS",
+		"ESE",
+		"SExE",
+		"SE",
+		"SExS",
+		"SSE",
+		"SxE",
+		"S",
+		"SxW",
+		"SSW",
+		"SWxS",
+		"SW",
+		"SWxW",
+		"WSW",
+		"WxS",
+		"W",
+		"WxN",
+		"WNW",
+		"NWxW",
+		"NW",
+		"NWxN",
+		"NNW",
+		"NxW",
+		"N",
+		"NxE",
+		"NNE",
+		"NExN",
+		"NE",
+		"NExE",
+		"ENE",
+		"ExN"
+	};
+
+	const auto COMPASS_POINT_COUNT = compassPoints.size();
+	const double DEGREES_PER_COMPASS_POINT = DEGREES / (double)COMPASS_POINT_COUNT;
+	const double DEGREES_PER_HALF_COMPASS_POINT = DEGREES_PER_COMPASS_POINT / 2.0;
+
+	const std::string& ToCompassPoint(double degrees)
+	{
+		return compassPoints[
+			(size_t)std::floor(
+				ToDegrees(ToRadians(degrees + DEGREES_PER_HALF_COMPASS_POINT))/DEGREES_PER_COMPASS_POINT)];
+	}
+
 	common::XY<double> DegreesToXY(double degrees)
 	{
 		double radians = ToRadians(degrees);
