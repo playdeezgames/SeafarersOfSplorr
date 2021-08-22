@@ -1,15 +1,15 @@
-#include "Application.Renderer.h"
-#include "Application.Command.h"
-#include "Application.MouseButtonUp.h"
-#include "Application.OnEnter.h"
-#include "Application.UIState.h"
-#include "Common.Utility.h"
-#include "Game.Achievements.h"
-#include "Game.Audio.Mux.h"
+#include <Application.Renderer.h>
+#include <Application.Command.h>
+#include <Application.MouseButtonUp.h>
+#include <Application.OnEnter.h>
+#include <Application.UIState.h>
+#include <Common.Utility.h>
+#include <Game.Achievements.h>
+#include <Game.Audio.Mux.h>
 #include <format>
 #include <tuple>
 #include "UIState.h"
-#include "Visuals.Texts.h"
+#include <Visuals.Texts.h>
 namespace state::Statistics
 {
 	const std::string LAYOUT_NAME = "State.Statistics";

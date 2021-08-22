@@ -1,10 +1,10 @@
-#include "Application.Renderer.h"
-#include "Application.Command.h"
-#include "Application.Update.h"
-#include "Application.MouseButtonUp.h"
-#include "Application.OnEnter.h"
-#include "Application.UIState.h"
-#include "Game.Audio.Mux.h"
+#include <Application.Renderer.h>
+#include <Application.Command.h>
+#include <Application.Update.h>
+#include <Application.MouseButtonUp.h>
+#include <Application.OnEnter.h>
+#include <Application.UIState.h>
+#include <Game.Audio.Mux.h>
 #include "UIState.h"
 namespace state::Splash
 {

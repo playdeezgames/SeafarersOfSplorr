@@ -1,13 +1,13 @@
-#include "Application.Renderer.h"
-#include "Application.Command.h"
-#include "Application.MouseButtonUp.h"
-#include "Application.OnEnter.h"
-#include "Application.UIState.h"
-#include "Game.Audio.Mux.h"
-#include "Visuals.Messages.h"
+#include <Application.Renderer.h>
+#include <Application.Command.h>
+#include <Application.MouseButtonUp.h>
+#include <Application.OnEnter.h>
+#include <Application.UIState.h>
+#include <Game.Audio.Mux.h>
 #include "UIState.h"
-#include "Visuals.SpriteGrid.h"
-#include "Visuals.Texts.h"
+#include <Visuals.Messages.h>
+#include <Visuals.SpriteGrid.h>
+#include <Visuals.Texts.h>
 namespace state::in_play::Message
 {
 	const std::string LAYOUT_NAME = "State.InPlay.Message";

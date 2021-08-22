@@ -1,20 +1,20 @@
-#include "Application.Command.h"
-#include "Application.MouseButtonUp.h"
-#include "Application.OnEnter.h"
-#include "Application.Renderer.h"
-#include "Application.UIState.h"
-#include "Common.Utility.h"
+#include <Application.Command.h>
+#include <Application.MouseButtonUp.h>
+#include <Application.OnEnter.h>
+#include <Application.Renderer.h>
+#include <Application.UIState.h>
+#include <Common.Utility.h>
 #include <format>
-#include "Game.Audio.Mux.h"
-#include "Game.Avatar.Docked.h"
-#include "Game.Avatar.Ship.h"
-#include "Game.Avatar.Statistics.h"
-#include "Game.Islands.Markets.h"
-#include "Game.Islands.Ships.h"
-#include "Game.Ships.h"
+#include <Game.Audio.Mux.h>
+#include <Game.Avatar.Docked.h>
+#include <Game.Avatar.Ship.h>
+#include <Game.Avatar.Statistics.h>
+#include <Game.Colors.h>
+#include <Game.Islands.Markets.h>
+#include <Game.Islands.Ships.h>
+#include <Game.Ships.h>
 #include "UIState.h"
-#include "Game.Colors.h"
-#include "Visuals.SpriteGrid.h"
+#include <Visuals.SpriteGrid.h>
 namespace state::in_play::Shipyard
 {
 	const std::string LAYOUT_NAME = "State.InPlay.Shipyard";

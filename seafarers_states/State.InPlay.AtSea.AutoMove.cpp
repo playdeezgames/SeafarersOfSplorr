@@ -1,6 +1,6 @@
-#include "Application.UIState.h"
-#include "Game.Avatar.AtSea.h"
-#include "Game.Islands.h"
+#include <Application.UIState.h>
+#include <Game.Avatar.AtSea.h>
+#include <Game.Islands.h>
 #include "UIState.h"
 namespace state::in_play::AtSea
 {

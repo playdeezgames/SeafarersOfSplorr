@@ -1,19 +1,19 @@
-#include "Application.Command.h"
-#include "Application.MouseButtonUp.h"
-#include "Application.MouseMotion.h"
-#include "Application.OnEnter.h"
-#include "Application.Renderer.h"
-#include "Application.UIState.h"
-#include "Application.Update.h"
-#include "Game.Audio.Mux.h"
-#include "Game.Avatar.Destination.h"
-#include "Game.Islands.h"
+#include <Application.Command.h>
+#include <Application.MouseButtonUp.h>
+#include <Application.MouseMotion.h>
+#include <Application.OnEnter.h>
+#include <Application.Renderer.h>
+#include <Application.UIState.h>
+#include <Application.Update.h>
+#include <Game.Audio.Mux.h>
+#include <Game.Avatar.Destination.h>
+#include <Game.Islands.h>
 #include "UIState.h"
-#include "Visuals.Areas.h"
-#include "Game.Colors.h"
-#include "Visuals.Images.h"
-#include "Visuals.Texts.h"
-#include "Visuals.WorldMap.h"
+#include <Visuals.Areas.h>
+#include <Game.Colors.h>
+#include <Visuals.Images.h>
+#include <Visuals.Texts.h>
+#include <Visuals.WorldMap.h>
 namespace state::in_play::HeadFor
 {
 	const std::string LAYOUT_NAME = "State.InPlay.HeadFor";

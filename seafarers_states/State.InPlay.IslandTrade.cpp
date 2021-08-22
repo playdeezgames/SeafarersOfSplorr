@@ -1,19 +1,19 @@
-#include "Application.Command.h"
-#include "Application.MouseButtonUp.h"
-#include "Application.MouseMotion.h"
-#include "Application.OnEnter.h"
-#include "Application.Renderer.h"
-#include "Application.UIState.h"
-#include "Common.Utility.h"
-#include "Data.JSON.Stores.h"
+#include <Application.Command.h>
+#include <Application.MouseButtonUp.h>
+#include <Application.MouseMotion.h>
+#include <Application.OnEnter.h>
+#include <Application.Renderer.h>
+#include <Application.UIState.h>
+#include <Common.Utility.h>
+#include <Data.JSON.Stores.h>
 #include <format>
-#include "Game.Audio.Mux.h"
-#include "Game.Avatar.Docked.h"
-#include "Game.Islands.h"
+#include <Game.Audio.Mux.h>
+#include <Game.Avatar.Docked.h>
+#include <Game.Islands.h>
 #include "UIState.h"
-#include "Visuals.Areas.h"
-#include "Visuals.Menus.h"
-#include "Visuals.Texts.h"
+#include <Visuals.Areas.h>
+#include <Visuals.Menus.h>
+#include <Visuals.Texts.h>
 namespace state::in_play::IslandTrade
 {
 	const std::string LAYOUT_NAME = "State.InPlay.IslandTrade";

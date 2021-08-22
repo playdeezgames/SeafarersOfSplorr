@@ -1,10 +1,10 @@
-#include "Application.MouseButtonUp.h"
-#include "Application.MouseMotion.h"
-#include "Application.UIState.h"
-#include "Common.Utility.h"
+#include <Application.MouseButtonUp.h>
+#include <Application.MouseMotion.h>
+#include <Application.UIState.h>
+#include <Common.Utility.h>
 #include "UIState.h"
-#include "Visuals.Areas.h"
-#include "Visuals.Images.h"
+#include <Visuals.Areas.h>
+#include <Visuals.Images.h>
 namespace sublayout::UIHamburger
 {
 	const std::string LAYOUT_NAME = "Sublayout.UIHamburger";

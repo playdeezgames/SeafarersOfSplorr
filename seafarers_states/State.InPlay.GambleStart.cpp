@@ -12,7 +12,6 @@
 #include <Game.Colors.h>
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.DarkAlley.GamblingHand.h>
-#include <regex>
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Images.h>

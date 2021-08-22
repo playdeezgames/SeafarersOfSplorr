@@ -1,18 +1,18 @@
-#include "Common.Heading.h"
+#include <Common.Heading.h>
 #include <format>
-#include "Game.Avatar.AtSea.h"
-#include "Game.Avatar.Destination.h"
-#include "Game.Avatar.Log.h"
-#include "Game.Avatar.Quest.h"
-#include "Game.Avatar.Statistics.h"
-#include "Game.Islands.h"
-#include "Game.World.h"
+#include <Game.Avatar.AtSea.h>
+#include <Game.Avatar.Destination.h>
+#include <Game.Avatar.Log.h>
+#include <Game.Avatar.Quest.h>
+#include <Game.Avatar.Statistics.h>
+#include <Game.Islands.h>
+#include <Game.World.h>
 #include <map>
 #include <string>
-#include "Visuals.Images.h"
-#include "Visuals.Menus.h"
-#include "Visuals.SpriteGrid.h"
-#include "Visuals.Texts.h"
+#include <Visuals.Images.h>
+#include <Visuals.Menus.h>
+#include <Visuals.SpriteGrid.h>
+#include <Visuals.Texts.h>
 namespace state::in_play::AtSea
 {
 	const std::string LAYOUT_NAME = "State.InPlay.AtSea";

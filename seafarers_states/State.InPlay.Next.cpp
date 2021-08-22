@@ -1,10 +1,10 @@
-#include "Application.OnEnter.h"
-#include "Application.UIState.h"
-#include "Game.h"
-#include "Game.Avatar.Docked.h"
-#include "Game.Avatar.Statistics.h"
-#include "Visuals.Confirmations.h"
-#include "Visuals.Messages.h"
+#include <Application.OnEnter.h>
+#include <Application.UIState.h>
+#include <Game.h>
+#include <Game.Avatar.Docked.h>
+#include <Game.Avatar.Statistics.h>
+#include <Visuals.Confirmations.h>
+#include <Visuals.Messages.h>
 #include <map>
 #include "UIState.h"
 namespace state::in_play::Next

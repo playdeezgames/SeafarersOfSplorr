@@ -1,16 +1,16 @@
-#include "Application.Command.h"
-#include "Application.MouseButtonUp.h"
-#include "Application.OnEnter.h"
-#include "Application.Renderer.h"
-#include "Application.Update.h"
-#include "Application.UIState.h"
-#include "Common.RNG.h"
-#include "Data.JSON.Store.h"
-#include "Data.JSON.Stores.h"
-#include "Game.Achievements.h"
-#include "Game.Audio.Mux.h"
+#include <Application.Command.h>
+#include <Application.MouseButtonUp.h>
+#include <Application.OnEnter.h>
+#include <Application.Renderer.h>
+#include <Application.Update.h>
+#include <Application.UIState.h>
+#include <Common.RNG.h>
+#include <Data.JSON.Store.h>
+#include <Data.JSON.Stores.h>
+#include <Game.Achievements.h>
+#include <Game.Audio.Mux.h>
 #include "UIState.h"
-#include "Visuals.Texts.h"
+#include <Visuals.Texts.h>
 namespace state::Tip
 {
 	const size_t TICKS_TOTAL = 3000;
