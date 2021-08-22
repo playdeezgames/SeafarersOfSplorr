@@ -91,4 +91,10 @@ namespace common::Heading
 		}
 		return position;
 	}
+
+	double Difference(double first, double second)
+	{
+		auto difference = ToDegrees(ToRadians(first - second));
+		return (difference < DEGREES / 2.0) ? (difference) : (DEGREES - difference);
+	}
 }

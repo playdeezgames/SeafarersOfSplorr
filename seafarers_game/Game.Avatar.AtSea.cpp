@@ -54,13 +54,10 @@ namespace game::avatar::AtSea
 		data::game::Avatar::Write(data);
 	}
 
-	static void ApplyTurnEffects()
+	static void ApplyHunger()
 	{
-		const double TURN_DELTA = -1.0;
 		const double SATIETY_DELTA = -1.0;
 		const double HEALTH_DELTA = -1.0;
-		const double EAT_BENEFIT = 10.0;
-		game::avatar::Statistics::SpendTurn();
 		if (!game::avatar::Statistics::IsStarving())
 		{
 			game::avatar::Statistics::ChangeSatiety(SATIETY_DELTA);
@@ -69,6 +66,11 @@ namespace game::avatar::AtSea
 		{
 			game::avatar::Statistics::ChangeHealth(HEALTH_DELTA);
 		}
+	}
+
+	static void ApplyEating()
+	{
+		const double EAT_BENEFIT = 10.0;
 		if (game::avatar::Statistics::NeedToEat(EAT_BENEFIT))
 		{
 			auto rations = game::avatar::Items::Read(game::Item::RATIONS);
@@ -78,6 +80,20 @@ namespace game::avatar::AtSea
 				game::avatar::Items::Remove(game::Item::RATIONS, 1);
 			}
 		}
+	}
+
+	static void ApplyWindChange()
+	{
+		const double NORMAL_WIND_CHANGE = 5.0;
+		game::World::SetWindHeading(game::World::GetWindHeading()+common::RNG::FromRange(-NORMAL_WIND_CHANGE, NORMAL_WIND_CHANGE));
+	}
+
+	static void ApplyTurnEffects()
+	{
+		game::avatar::Statistics::SpendTurn();
+		ApplyHunger();
+		ApplyEating();
+		ApplyWindChange();
 	}
 
 	static common::XY<double> ClampAvatarLocation(const common::XY<double>& candidate, MoveResult& result)
@@ -111,10 +127,15 @@ namespace game::avatar::AtSea
 	{
 		MoveResult result = MoveResult::MOVED;
 		auto avatar = data::game::Avatar::Read().value();
+
+		auto effectiveSpeed = avatar.speed;
+		auto relativeHeading = common::Heading::Difference(game::World::GetWindHeading(), avatar.heading);
+		double multiplier = 1.0 - std::abs(relativeHeading / common::Heading::DEGREES);
+
 		auto shipDescriptor = game::Ships::Read(game::avatar::Ship::Read());
 		common::XY<double> delta =
 			common::Heading::DegreesToXY(avatar.heading) *
-			avatar.speed *
+			effectiveSpeed * multiplier *
 			shipDescriptor.properties.find(game::ship::Property::SPEED_FACTOR)->second;
 
 		avatar.location = ClampAvatarLocation(avatar.location + delta, result);
