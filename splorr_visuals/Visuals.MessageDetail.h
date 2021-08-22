@@ -1,5 +1,5 @@
 #pragma once
-#include "Common.XY.h"
+#include <Common.XY.h>
 #include <optional>
 #include <string>
 #include "Visuals.HorizontalAlignment.h"

@@ -1,6 +1,6 @@
 #pragma once
-#include "Visuals.MessageDetail.h"
 #include <list>
+#include "Visuals.MessageDetail.h"
 namespace visuals
 {
 	struct Message

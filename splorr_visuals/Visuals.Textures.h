@@ -1,9 +1,9 @@
 #pragma once
-#include <SDL.h>
+#include <Application.Engine.h>
 #include <map>
-#include <string>
 #include <memory>
-#include "Application.Engine.h"
+#include <SDL.h>
+#include <string>
 namespace visuals::Textures
 {
 	void SetStore(int);

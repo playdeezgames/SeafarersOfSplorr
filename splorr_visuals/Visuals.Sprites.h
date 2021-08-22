@@ -1,11 +1,11 @@
 #pragma once
-#include <string>
-#include <SDL.h>
-#include "Common.XY.h"
-#include <optional>
+#include <Application.Engine.h>
+#include <Common.XY.h>
 #include <memory>
+#include <optional>
+#include <SDL.h>
+#include <string>
 #include <tuple>
-#include "Application.Engine.h"
 namespace visuals::Sprites
 {
 	void SetStore(int);

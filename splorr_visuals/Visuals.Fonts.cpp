@@ -1,5 +1,5 @@
-#include "Data.JSON.h"
-#include "Data.JSON.Stores.h"
+#include <Data.JSON.h>
+#include <Data.JSON.Stores.h>
 #include <format>
 #include "Visuals.Colors.h"
 #include "Visuals.Fonts.h"

@@ -1,5 +1,5 @@
 #pragma once
-namespace visuals//TODO: moves to splorr_visuals
+namespace visuals
 {
 	enum class HorizontalAlignment
 	{

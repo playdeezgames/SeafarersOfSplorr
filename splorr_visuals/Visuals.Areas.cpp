@@ -1,6 +1,6 @@
-#include "Application.MouseButtonUp.h"
-#include "Application.Engine.h"
-#include "json.hpp"
+#include <Application.MouseButtonUp.h>
+#include <Application.Engine.h>
+#include <json.hpp>
 #include <SDL.h>
 #include "Visuals.Areas.h"
 #include "Visuals.Data.Properties.h"

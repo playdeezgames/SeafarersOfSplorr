@@ -1,5 +1,5 @@
-#include "Visuals.Messages.h"
 #include <queue>
+#include "Visuals.Messages.h"
 namespace visuals::Messages
 {
 	static std::queue<Message> messages;

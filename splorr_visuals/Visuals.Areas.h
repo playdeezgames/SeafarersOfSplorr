@@ -1,12 +1,12 @@
 #pragma once
-#include "Common.XY.h"
-#include <string>
-#include <set>
+#include <Common.XY.h>
 #include <functional>
+#include <json.hpp>
+#include <MouseButton.h>
 #include <optional>
-#include "json.hpp"
+#include <set>
+#include <string>
 #include "Visuals.DrawerFunction.h"
-#include "MouseButton.h"
 namespace visuals
 {
 	struct AreaMenu

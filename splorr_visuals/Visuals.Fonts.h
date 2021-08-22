@@ -1,6 +1,6 @@
 #pragma once
-#include "Application.Engine.h"
-#include "Common.XY.h"
+#include <Application.Engine.h>
+#include <Common.XY.h>
 #include <memory>
 #include <optional>
 #include <SDL.h>

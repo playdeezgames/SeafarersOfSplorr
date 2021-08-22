@@ -1,5 +1,5 @@
-#include "Visuals.Confirmations.h"
 #include <stack>
+#include "Visuals.Confirmations.h"
 namespace visuals::Confirmations
 {
 	static std::stack<Confirmation> confirmations;

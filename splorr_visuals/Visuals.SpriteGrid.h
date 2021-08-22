@@ -1,10 +1,10 @@
 #pragma once
-#include "Common.XY.h"
+#include <Common.XY.h>
 #include <functional>
+#include <json.hpp>
 #include <string>
-#include "Visuals.HorizontalAlignment.h"
-#include "json.hpp"
 #include "Visuals.DrawerFunction.h"
+#include "Visuals.HorizontalAlignment.h"
 namespace visuals::SpriteGrid
 {
 	void SetCell(const std::string&, const std::string&, const common::XY<int>&, const std::string&, const std::string&);

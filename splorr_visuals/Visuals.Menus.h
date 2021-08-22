@@ -1,9 +1,9 @@
 #pragma once
-#include "Common.Utility.h"
+#include <Common.Utility.h>
 #include <functional>
+#include <json.hpp>
 #include <optional>
 #include <string>
-#include "json.hpp"
 #include "Visuals.DrawerFunction.h"
 namespace visuals::Menus
 {

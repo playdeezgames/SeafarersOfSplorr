@@ -1,5 +1,5 @@
 #include <algorithm>
-#include "Data.JSON.h"
+#include <Data.JSON.h>
 #include "Visuals.Data.Properties.h"
 #include "Visuals.Fonts.h"
 #include "Visuals.Layouts.h"
