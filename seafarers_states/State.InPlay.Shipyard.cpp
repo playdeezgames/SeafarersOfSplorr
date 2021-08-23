@@ -40,7 +40,7 @@ namespace state::in_play::Shipyard
 
 	static void OnLeave()
 	{
-		game::avatar::Docked::DoDockedAction(game::avatar::Action::ENTER_DOCK);
+		game::avatar::Docked::DoAction(game::avatar::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

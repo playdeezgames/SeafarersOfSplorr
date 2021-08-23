@@ -36,7 +36,7 @@ namespace state::in_play::GambleStart
 
 	static void OnLeave()
 	{
-		game::avatar::Docked::DoDockedAction(game::avatar::Action::ENTER_DARK_ALLEY);
+		game::avatar::Docked::DoAction(game::avatar::Action::ENTER_DARK_ALLEY);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

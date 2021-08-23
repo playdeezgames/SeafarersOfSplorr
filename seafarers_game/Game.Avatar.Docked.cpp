@@ -168,7 +168,7 @@ namespace game::avatar::Docked
 		{ avatar::Action::UNDOCK, Undock}
 	};
 
-	bool DoDockedAction(const avatar::Action& action)
+	bool DoAction(const avatar::Action& action)
 	{
 		auto iter = dockedActions.find(action);
 		if (iter != dockedActions.end())
