@@ -70,7 +70,7 @@ namespace state::ConfirmOverwrite
 
 	static void ConfigureState(const ::UIState& state)
 	{
-		::application::OnEnter::AddHandler(state, game::audio::Mux::GoToTheme(game::audio::Mux::Theme::MAIN));
+		::application::OnEnter::AddHandler(state, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
 
 		::application::MouseButtonUp::AddHandler(state, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
 		::application::MouseMotion::AddHandler(state, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));

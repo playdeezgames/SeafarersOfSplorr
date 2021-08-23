@@ -64,7 +64,7 @@ namespace state::in_play::ChangeSpeed
 
 	void Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_CHANGE_SPEED, game::audio::Mux::GoToTheme(game::audio::Mux::Theme::MAIN));
+		::application::OnEnter::AddHandler(::UIState::IN_PLAY_CHANGE_SPEED, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
 		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_CHANGE_SPEED, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
 		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_CHANGE_SPEED, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
 		::application::Command::SetHandlers(::UIState::IN_PLAY_CHANGE_SPEED, commandHandlers);

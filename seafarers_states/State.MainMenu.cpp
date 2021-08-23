@@ -59,7 +59,7 @@ namespace state::MainMenu
 		{
 			visuals::Texts::SetText(SUBLAYOUT_MODDED, TEXT_MODDED, MODDED);
 		}
-		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
+		game::audio::Mux::Play(game::audio::Theme::MAIN);
 	}
 
 	void Start()

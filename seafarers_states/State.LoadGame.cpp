@@ -111,7 +111,7 @@ namespace state::LoadGame
 
 	void Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::LOAD_GAME, game::audio::Mux::GoToTheme(game::audio::Mux::Theme::MAIN));
+		::application::OnEnter::AddHandler(::UIState::LOAD_GAME, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
 		::application::MouseButtonUp::AddHandler(::UIState::LOAD_GAME, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
 		::application::MouseMotion::AddHandler(::UIState::LOAD_GAME, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
 		::application::Command::SetHandlers(::UIState::LOAD_GAME, commandHandlers);

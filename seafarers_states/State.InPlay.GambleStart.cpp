@@ -119,7 +119,7 @@ namespace state::in_play::GambleStart
 
 	static void OnEnter()
 	{
-		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
+		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		game::islands::dark_alley::GamblingHand::Deal(GetDockedLocation());
 		currentWager = game::islands::DarkAlley::GetMinimumWager(GetDockedLocation()).value();
 		Refresh();

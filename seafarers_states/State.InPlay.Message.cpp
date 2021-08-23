@@ -23,7 +23,7 @@ namespace state::in_play::Message
 
 	static void OnEnter()
 	{
-		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
+		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		if (!visuals::Messages::HasMessage())
 		{
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);

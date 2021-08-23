@@ -17,7 +17,7 @@ namespace state::About
 
 	void Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::ABOUT, game::audio::Mux::GoToTheme(game::audio::Mux::Theme::MAIN));
+		::application::OnEnter::AddHandler(::UIState::ABOUT, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
 		::application::MouseButtonUp::AddHandler(::UIState::ABOUT, OnMouseButtonUp);
 		::application::Command::SetHandler(::UIState::ABOUT, ::application::UIState::GoTo(::UIState::MAIN_MENU));
 		::application::Renderer::SetRenderLayout(::UIState::ABOUT, LAYOUT_NAME);

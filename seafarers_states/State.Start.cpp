@@ -57,7 +57,7 @@ namespace state::Start
 
 	void Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::START_GAME, game::audio::Mux::GoToTheme(game::audio::Mux::Theme::MAIN));
+		::application::OnEnter::AddHandler(::UIState::START_GAME, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
 		::application::MouseButtonUp::AddHandler(::UIState::START_GAME, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
 		::application::MouseMotion::AddHandler(::UIState::START_GAME, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
 		::application::Command::SetHandlers(::UIState::START_GAME, commandHandlers);

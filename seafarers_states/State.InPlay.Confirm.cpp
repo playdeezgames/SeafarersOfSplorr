@@ -65,7 +65,7 @@ namespace state::in_play::Confirm
 		{
 			confirmation = visuals::Confirmations::Read();
 			Refresh();
-			game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);//TODO: have this come from the confirmation object?
+			game::audio::Mux::Play(game::audio::Theme::MAIN);//TODO: have this come from the confirmation object?
 			return;
 		}
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);

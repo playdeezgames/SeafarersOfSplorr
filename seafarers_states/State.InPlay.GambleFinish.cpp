@@ -79,7 +79,7 @@ namespace state::in_play::GambleFinish
 
 	static void OnEnter()
 	{
-		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
+		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		if (game::islands::dark_alley::GamblingHand::IsWinner(GetDockedLocation()))
 		{
 			visuals::Texts::SetText(LAYOUT_NAME, TEXT_RESULT, "You win!");

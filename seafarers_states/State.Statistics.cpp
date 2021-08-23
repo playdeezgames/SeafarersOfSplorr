@@ -43,7 +43,7 @@ namespace state::Statistics
 
 	static void OnEnter()
 	{
-		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
+		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		for (auto& item : statisticsList)
 		{
 			SetStatisticText(std::get<0>(item), std::get<1>(item), std::get<2>(item));

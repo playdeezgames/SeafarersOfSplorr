@@ -35,7 +35,7 @@ namespace state::Splash
 
 	void Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::SPLASH, game::audio::Mux::GoToTheme(game::audio::Mux::Theme::MAIN));
+		::application::OnEnter::AddHandler(::UIState::SPLASH, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
 		::application::MouseButtonUp::AddHandler(::UIState::SPLASH, OnMouseButtonUp);
 		::application::Command::SetHandler(::UIState::SPLASH, RunOutTimer);
 		::application::Renderer::SetRenderLayout(::UIState::SPLASH, LAYOUT_NAME);

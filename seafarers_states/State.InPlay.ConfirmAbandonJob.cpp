@@ -46,7 +46,7 @@ namespace state::in_play::ConfirmAbandonJob
 
 	void Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_CONFIRM_ABANDON_JOB, game::audio::Mux::GoToTheme(game::audio::Mux::Theme::MAIN));
+		::application::OnEnter::AddHandler(::UIState::IN_PLAY_CONFIRM_ABANDON_JOB, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
 		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_CONFIRM_ABANDON_JOB, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
 		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_CONFIRM_ABANDON_JOB, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
 		::application::Command::SetHandlers(::UIState::IN_PLAY_CONFIRM_ABANDON_JOB, commandHandlers);

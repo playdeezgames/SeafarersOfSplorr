@@ -115,7 +115,7 @@ namespace state::in_play::AtSea
 
 	static void OnEnter()
 	{
-		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
+		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		RefreshAvatarStatus();
 		RefreshIslands();
 		UpdateAutoMoveState();

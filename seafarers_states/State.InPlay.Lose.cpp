@@ -19,7 +19,7 @@ namespace state::in_play::Lose
 	static void OnEnter()
 	{
 		game::audio::Sfx::Play(game::audio::GameSfx::DEATH);
-		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
+		game::audio::Mux::Play(game::audio::Theme::MAIN);
 	}
 
 	void Start()

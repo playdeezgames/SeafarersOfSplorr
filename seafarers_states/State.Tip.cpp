@@ -44,7 +44,7 @@ namespace state::Tip
 
 	static void OnEnter()
 	{
-		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
+		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		auto& store = data::json::Stores::GetStore(data::json::Store::TIPS);
 
 		auto index = common::RNG::FromRange(0u, store.size());

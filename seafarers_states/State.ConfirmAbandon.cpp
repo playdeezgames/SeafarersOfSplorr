@@ -44,7 +44,7 @@ namespace state::ConfirmAbandon
 
 	void Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::CONFIRM_ABANDON, game::audio::Mux::GoToTheme(game::audio::Mux::Theme::MAIN));
+		::application::OnEnter::AddHandler(::UIState::CONFIRM_ABANDON, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
 		::application::MouseButtonUp::AddHandler(::UIState::CONFIRM_ABANDON, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
 		::application::MouseMotion::AddHandler(::UIState::CONFIRM_ABANDON, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
 		::application::Command::SetHandlers(::UIState::CONFIRM_ABANDON, commandHandlers);

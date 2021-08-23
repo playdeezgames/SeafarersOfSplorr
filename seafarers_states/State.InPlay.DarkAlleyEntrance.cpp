@@ -394,7 +394,7 @@ namespace state::in_play::DarkAlleyEntrance
 
 	static void OnEnter()
 	{
-		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
+		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		game::islands::dark_alley::FightCards::Generate(GetDockedLocation());
 		hoverCard = std::nullopt;
 		fightResult = std::nullopt;

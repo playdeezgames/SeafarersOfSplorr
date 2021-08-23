@@ -1,13 +1,5 @@
 #pragma once
-namespace game::audio
-{
-	enum class GameSfx
-	{
-		DEATH,
-		ENEMY_HIT,
-		HIT
-	};
-}
+#include "Game.Audio.GameSfx.h"
 namespace game::audio::Sfx
 {
 	void Play(const game::audio::GameSfx&);

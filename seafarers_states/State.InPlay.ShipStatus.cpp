@@ -46,7 +46,7 @@ namespace state::in_play::ShipStatus
 
 	static void OnEnter()
 	{
-		game::audio::Mux::Play(game::audio::Mux::Theme::MAIN);
+		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		UpdateShipProperties();
 	}
 

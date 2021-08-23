@@ -17,7 +17,7 @@ namespace state::in_play::Win
 
 	void Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_WIN, game::audio::Mux::GoToTheme(game::audio::Mux::Theme::MAIN));
+		::application::OnEnter::AddHandler(::UIState::IN_PLAY_WIN, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
 		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_WIN, OnMouseButtonUp);
 		::application::Command::SetHandler(::UIState::IN_PLAY_WIN, ::application::UIState::GoTo(::UIState::MAIN_MENU));
 		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_WIN, LAYOUT_NAME);

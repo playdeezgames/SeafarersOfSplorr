@@ -176,6 +176,12 @@
     <ClInclude Include="Game.Avatar.h">
       <Filter>Header Files\Avatar</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Audio.GameSfx.h">
+      <Filter>Header Files\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Audio.Theme.h">
+      <Filter>Header Files\Audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Commodities.cpp">

@@ -39,7 +39,7 @@ namespace state::ConfirmQuit
 
 	void Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::CONFIRM_QUIT, game::audio::Mux::GoToTheme(game::audio::Mux::Theme::MAIN));
+		::application::OnEnter::AddHandler(::UIState::CONFIRM_QUIT, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
 		::application::MouseButtonUp::AddHandler(::UIState::CONFIRM_QUIT, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
 		::application::MouseMotion::AddHandler(::UIState::CONFIRM_QUIT, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
 		::application::Command::SetHandlers(::UIState::CONFIRM_QUIT, commandHandlers);

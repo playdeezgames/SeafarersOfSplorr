@@ -1,11 +1,8 @@
 #pragma once
 #include <functional>
+#include "Game.Audio.Theme.h"
 namespace game::audio::Mux
 {
-	enum class Theme
-	{
-		MAIN
-	};
 	void Play(const Theme&);
 	std::function<void()> GoToTheme(const Theme&);
 }
