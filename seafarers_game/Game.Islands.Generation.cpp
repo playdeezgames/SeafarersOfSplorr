@@ -5,7 +5,7 @@
 #include <Data.Game.Island.h>
 #include <Data.Game.Island.Known.h>
 #include <Data.Game.Island.Market.h>
-#include <Data.Game.Island.Quests.h>
+#include <Data.Game.Island.Quest.h>
 #include <Data.Game.Island.Visits.h>
 #include "Game.Commodities.h"
 #include "Game.Islands.h"
@@ -138,7 +138,7 @@ namespace game::Islands
 	{
 		for (auto& commodity : game::Commodities::All())
 		{
-			data::game::island::Market::MarketData data =
+			data::game::island::Market data =
 			{
 				common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0),
 				common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0),

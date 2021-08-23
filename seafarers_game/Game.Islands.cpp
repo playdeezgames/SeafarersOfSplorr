@@ -5,7 +5,7 @@
 #include <Data.Game.Island.h>
 #include <Data.Game.Island.Known.h>
 #include <Data.Game.Island.Market.h>
-#include <Data.Game.Island.Quests.h>
+#include <Data.Game.Island.Quest.h>
 #include <Data.Game.Island.Visits.h>
 #include <functional>
 #include "Game.Avatar.AtSea.h"

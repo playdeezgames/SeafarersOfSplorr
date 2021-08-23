@@ -2,7 +2,7 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.Market.h"
 #include <format>
-namespace data::game::island::Market
+namespace data::game::island
 {
 	static const std::string FIELD_X = "X";
 	static const std::string FIELD_Y = "Y";
@@ -19,7 +19,7 @@ namespace data::game::island::Market
 
 	static const auto AutoCreateIslandMarketsTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Write(const common::XY<double>& location, int commodityId, const MarketData& data)
+	void Market::Write(const common::XY<double>& location, int commodityId, const Market& data)
 	{
 		AutoCreateIslandMarketsTable();
 		data::game::Common::Execute(
@@ -27,7 +27,7 @@ namespace data::game::island::Market
 		);
 	}
 
-	std::optional<MarketData> Read(const common::XY<double>& location, int commodityId)
+	std::optional<Market> Market::Read(const common::XY<double>& location, int commodityId)
 	{
 		AutoCreateIslandMarketsTable();
 		auto records =
@@ -37,7 +37,7 @@ namespace data::game::island::Market
 		if (!records.empty())
 		{
 			auto& record = records.front();
-			return std::optional<MarketData>(
+			return std::optional<Market>(
 				{
 					common::Data::ToDouble(record[FIELD_SUPPLY]),
 					common::Data::ToDouble(record[FIELD_DEMAND]),
@@ -48,14 +48,14 @@ namespace data::game::island::Market
 		return std::nullopt;
 	}
 
-	std::map<int, MarketData> All(const common::XY<double>& location)
+	std::map<int, Market> Market::All(const common::XY<double>& location)
 	{
 		AutoCreateIslandMarketsTable();
 		auto records =
 			data::game::Common::Execute(
 				std::format(QUERY_ALL, location.GetX(), location.GetY())
 			);
-		std::map<int, MarketData> result;
+		std::map<int, Market> result;
 		for (auto& record : records)
 		{
 			result[common::Data::ToInt(record[FIELD_COMMODITY_ID])] =
@@ -69,7 +69,7 @@ namespace data::game::island::Market
 		return result;
 	}
 
-	void Clear()
+	void Market::Clear()
 	{
 		AutoCreateIslandMarketsTable();
 		data::game::Common::Execute(DELETE_ALL);

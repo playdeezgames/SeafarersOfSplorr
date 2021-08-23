@@ -2,18 +2,18 @@
 #include <Common.XY.h>
 #include <map>
 #include <optional>
-namespace data::game::island::Market
+namespace data::game::island
 {
-	struct MarketData
+	struct Market
 	{
 		double supply;
 		double demand;
 		double purchases;
 		double sales;
+		static void Write(const common::XY<double>&, int, const Market&);
+		static std::optional<Market> Read(const common::XY<double>&, int);
+		static std::map<int, Market> All(const common::XY<double>&);
+		static void Clear();
 	};
 
-	void Write(const common::XY<double>&, int, const MarketData&);
-	std::optional<MarketData> Read(const common::XY<double>&, int);
-	std::map<int, MarketData> All(const common::XY<double>&);
-	void Clear();
 }

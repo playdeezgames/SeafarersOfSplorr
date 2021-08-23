@@ -1,6 +1,6 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
-#include "Data.Game.Island.Quests.h"
+#include "Data.Game.Island.Quest.h"
 #include <format>
 namespace data::game::island::Quests
 {
