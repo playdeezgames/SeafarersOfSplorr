@@ -2,7 +2,7 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.DarkAlley.h"
 #include <format>
-namespace data::game::island::DarkAlley
+namespace data::game::island
 {
 	static const std::string FIELD_INFAMY_REQUIREMENT = "InfamyRequirement";
 	static const std::string FIELD_RUFFIAN_BRAWLING_STRENGTH = "RuffianBrawlingStrength";
@@ -14,13 +14,13 @@ namespace data::game::island::DarkAlley
 
 	static const auto AutoCreateDarkAlleysTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Clear()
+	void DarkAlley::Clear()
 	{
 		AutoCreateDarkAlleysTable();
 		data::game::Common::Execute(DELETE_ALL);
 	}
 
-	void Write(const common::XY<double>& location, const DarkAlleyData& data)
+	void DarkAlley::Write(const common::XY<double>& location, const DarkAlley& data)
 	{
 		AutoCreateDarkAlleysTable();
 		data::game::Common::Execute(
@@ -33,14 +33,14 @@ namespace data::game::island::DarkAlley
 				data.minimumWager));
 	}
 
-	std::optional<DarkAlleyData> Read(const common::XY<double>& location)
+	std::optional<DarkAlley> DarkAlley::Read(const common::XY<double>& location)
 	{
 		AutoCreateDarkAlleysTable();
 		auto records = data::game::Common::Execute(std::format(QUERY_ITEM, location.GetX(), location.GetY()));
 		if (!records.empty())
 		{
 			auto record = records.front();
-			return std::optional<DarkAlleyData>({
+			return std::optional<DarkAlley>({
 				common::Data::ToDouble(record[FIELD_INFAMY_REQUIREMENT]),
 				common::Data::ToDouble(record[FIELD_RUFFIAN_BRAWLING_STRENGTH]),
 				common::Data::ToDouble(record[FIELD_MINIMUM_WAGER])

@@ -1,16 +1,16 @@
 #pragma once
 #include <Common.XY.h>
 #include <optional>
-namespace data::game::island::DarkAlley
+namespace data::game::island
 {
-	struct DarkAlleyData
+	struct DarkAlley
 	{
 		double infamyRequirement;
 		double ruffianBrawlingStrength;
 		double minimumWager;
+		static void Clear();
+		static void Write(const common::XY<double>&, const DarkAlley&);
+		static std::optional<DarkAlley> Read(const common::XY<double>&);
 	};
 
-	void Clear();
-	void Write(const common::XY<double>&, const DarkAlleyData&);
-	std::optional<DarkAlleyData> Read(const common::XY<double>&);
 }

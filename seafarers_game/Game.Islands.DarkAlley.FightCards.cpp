@@ -78,7 +78,7 @@ namespace game::islands::dark_alley::FightCards
 		}
 	}
 
-	static size_t DetermineFaceCardCount(const data::game::island::DarkAlley::DarkAlleyData& darkAlley)
+	static size_t DetermineFaceCardCount(const data::game::island::DarkAlley& darkAlley)
 	{
 		auto brawling = game::avatar::Statistics::GetBrawling();
 		size_t faceCardCount =
@@ -96,7 +96,7 @@ namespace game::islands::dark_alley::FightCards
 		return std::make_tuple(rank, suit);
 	}
 
-	void PlaceFaceCards(std::map<size_t, DarkAlley::FightCard>& fightCards, std::set<cards::Card>& cards, const data::game::island::DarkAlley::DarkAlleyData& darkAlley)
+	void PlaceFaceCards(std::map<size_t, DarkAlley::FightCard>& fightCards, std::set<cards::Card>& cards, const data::game::island::DarkAlley& darkAlley)
 	{
 		size_t faceCardCount = DetermineFaceCardCount(darkAlley);
 		while (faceCardCount > 0)
@@ -153,7 +153,7 @@ namespace game::islands::dark_alley::FightCards
 		}
 	}
 
-	void DoGenerate(const common::XY<double>& location, const data::game::island::DarkAlley::DarkAlleyData& darkAlley)
+	void DoGenerate(const common::XY<double>& location, const data::game::island::DarkAlley& darkAlley)
 	{
 		std::map<size_t, DarkAlley::FightCard> fightCards;
 		std::set<cards::Card> cards;

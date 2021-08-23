@@ -3,7 +3,7 @@
 #include "Game.Islands.DarkAlley.h"
 namespace game::islands::DarkAlley
 {
-	static std::optional<double> ExtractDarkAlleyValue(const common::XY<double>& location, std::function<double(const data::game::island::DarkAlley::DarkAlleyData&)> extractor)
+	static std::optional<double> ExtractDarkAlleyValue(const common::XY<double>& location, std::function<double(const data::game::island::DarkAlley&)> extractor)
 	{
 		auto result = data::game::island::DarkAlley::Read(location);
 		if (result)
@@ -17,7 +17,7 @@ namespace game::islands::DarkAlley
 	{
 		return ExtractDarkAlleyValue(
 			location,
-			[](const data::game::island::DarkAlley::DarkAlleyData& data)
+			[](const data::game::island::DarkAlley& data)
 			{
 				return data.ruffianBrawlingStrength;
 			});
@@ -27,7 +27,7 @@ namespace game::islands::DarkAlley
 	{
 		return ExtractDarkAlleyValue(
 			location,
-			[](const data::game::island::DarkAlley::DarkAlleyData& data)
+			[](const data::game::island::DarkAlley& data)
 			{
 				return data.minimumWager;
 			});
