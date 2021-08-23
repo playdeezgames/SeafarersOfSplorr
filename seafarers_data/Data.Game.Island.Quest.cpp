@@ -2,7 +2,7 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.Quest.h"
 #include <format>
-namespace data::game::island::Quest
+namespace data::game::island
 {
 	static const std::string FIELD_X = "X";
 	static const std::string FIELD_Y = "Y";
@@ -19,7 +19,7 @@ namespace data::game::island::Quest
 
 	static const auto AutoCreateIslandQuestsTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Write(const QuestData& data)
+	void Quest::Write(const Quest& data)
 	{
 		AutoCreateIslandQuestsTable();
 		std::string query =
@@ -36,7 +36,7 @@ namespace data::game::island::Quest
 		data::game::Common::Execute(query);
 	}
 
-	std::optional<QuestData> Read(const common::XY<double>& location)
+	std::optional<Quest> Quest::Read(const common::XY<double>& location)
 	{
 		AutoCreateIslandQuestsTable();
 		std::string query = std::format(QUERY_ITEM, location.GetX(), location.GetY());
@@ -44,7 +44,7 @@ namespace data::game::island::Quest
 		if (!records.empty())
 		{
 			auto& record = records.front();
-			return std::optional<QuestData>(
+			return std::optional<Quest>(
 				{
 					{
 						common::Data::ToDouble(record[FIELD_X]),
@@ -63,7 +63,7 @@ namespace data::game::island::Quest
 		return std::nullopt;
 	}
 
-	void Clear(const common::XY<double>& location)
+	void Quest::Clear(const common::XY<double>& location)
 	{
 		AutoCreateIslandQuestsTable();
 		std::string query = std::format(DELETE_ITEM, location.GetX(), location.GetY());

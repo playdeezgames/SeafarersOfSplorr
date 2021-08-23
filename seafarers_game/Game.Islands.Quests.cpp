@@ -181,7 +181,7 @@ namespace game::islands::Quests
 			auto quest = data::game::island::Quest::Read(location);
 			if (!quest)
 			{
-				data::game::island::Quest::QuestData data =
+				data::game::island::Quest data =
 				{
 					location,
 					GenerateDestination(location),

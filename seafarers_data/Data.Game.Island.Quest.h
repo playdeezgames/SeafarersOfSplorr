@@ -2,9 +2,9 @@
 #include <Common.XY.h>
 #include <optional>
 #include <string>
-namespace data::game::island::Quest
+namespace data::game::island
 {
-	struct QuestData
+	struct Quest
 	{
 		common::XY<double> location;
 		common::XY<double> destination;
@@ -12,9 +12,9 @@ namespace data::game::island::Quest
 		std::string itemName;
 		std::string personName;
 		std::string professionName;
+		static void Write(const Quest&);
+		static std::optional<Quest> Read(const common::XY<double>&);
+		static void Clear(const common::XY<double>&);
 	};
 
-	void Write(const QuestData&);
-	std::optional<QuestData> Read(const common::XY<double>&);
-	void Clear(const common::XY<double>&);
 }
