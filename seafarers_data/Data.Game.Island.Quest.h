@@ -2,7 +2,7 @@
 #include <Common.XY.h>
 #include <optional>
 #include <string>
-namespace data::game::island::Quests
+namespace data::game::island::Quest
 {
 	struct QuestData
 	{

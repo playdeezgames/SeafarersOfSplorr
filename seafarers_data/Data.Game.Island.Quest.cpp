@@ -2,7 +2,7 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.Quest.h"
 #include <format>
-namespace data::game::island::Quests
+namespace data::game::island::Quest
 {
 	static const std::string FIELD_X = "X";
 	static const std::string FIELD_Y = "Y";

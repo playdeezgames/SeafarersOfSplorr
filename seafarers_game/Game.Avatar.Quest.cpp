@@ -15,7 +15,7 @@ namespace game::avatar::Quest
 		{
 			return AcceptQuestResult::ALREADY_HAS_QUEST;
 		}
-		auto quest = data::game::island::Quests::Read(location);
+		auto quest = data::game::island::Quest::Read(location);
 		if (quest)
 		{
 			data::game::avatar::Quest::Write(
@@ -25,7 +25,7 @@ namespace game::avatar::Quest
 					quest.value().itemName,
 					quest.value().personName,
 					quest.value().professionName}));
-			data::game::island::Quests::Clear(location);
+			data::game::island::Quest::Clear(location);
 			game::Islands::SetKnown(quest.value().destination, game::avatar::Statistics::GetTurnsRemaining());
 			data::game::island::Known::Write(quest.value().destination);
 			return AcceptQuestResult::ACCEPTED_QUEST;

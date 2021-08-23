@@ -178,10 +178,10 @@ namespace game::islands::Quests
 		auto islandModel = game::Islands::Read(location);
 		if (islandModel)
 		{
-			auto quest = data::game::island::Quests::Read(location);
+			auto quest = data::game::island::Quest::Read(location);
 			if (!quest)
 			{
-				data::game::island::Quests::QuestData data =
+				data::game::island::Quest::QuestData data =
 				{
 					location,
 					GenerateDestination(location),
@@ -190,14 +190,14 @@ namespace game::islands::Quests
 					GeneratePersonName(),
 					GenerateProfessionName()
 				};
-				data::game::island::Quests::Write(data);
+				data::game::island::Quest::Write(data);
 			}
 		}
 	}
 
 	std::optional<game::Quest::QuestModel> Read(const common::XY<double>& location)
 	{
-		auto quest = data::game::island::Quests::Read(location);
+		auto quest = data::game::island::Quest::Read(location);
 		if (quest)
 		{
 			return std::optional<game::Quest::QuestModel>({
