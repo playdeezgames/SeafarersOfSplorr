@@ -2,7 +2,7 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.DarkAlley.GamblingHand.h"
 #include <format>
-namespace data::game::island::dark_alley::GamblingHand
+namespace data::game::island::dark_alley
 {
 	static const std::string FIELD_FIRST_CARD = "FirstCard";
 	static const std::string FIELD_SECOND_CARD = "SecondCard";
@@ -13,20 +13,20 @@ namespace data::game::island::dark_alley::GamblingHand
 
 	static const auto AutoCreateDarkAlleyGamblingHandsTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Write(const common::XY<double>& location, const Data& data)
+	void GamblingHand::Write(const common::XY<double>& location, const GamblingHand& data)
 	{
 		AutoCreateDarkAlleyGamblingHandsTable();
 		data::game::Common::Execute(std::format(REPLACE_ITEM, location.GetX(), location.GetY(), data.firstCard, data.secondCard, data.thirdCard));
 	}
 
-	std::optional<Data> Read(const common::XY<double>& location)
+	std::optional<GamblingHand> GamblingHand::Read(const common::XY<double>& location)
 	{
 		AutoCreateDarkAlleyGamblingHandsTable();
 		auto records = Common::Execute(std::format(QUERY_ITEM, location.GetX(), location.GetY()));
 		if (!records.empty())
 		{
 			auto& record = records.front();
-			return std::optional<Data>(
+			return std::optional<GamblingHand>(
 			{
 				common::Data::ToInt(record[FIELD_FIRST_CARD]),
 				common::Data::ToInt(record[FIELD_SECOND_CARD]),

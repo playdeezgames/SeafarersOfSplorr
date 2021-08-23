@@ -13,7 +13,7 @@ namespace game::islands::dark_alley::GamblingHand
 		}
 		cards::Deck<cards::Card> deck(cards::All());
 		deck.Shuffle();
-		data::game::island::dark_alley::GamblingHand::Data data =
+		data::game::island::dark_alley::GamblingHand data =
 		{
 			cards::ToInt(deck.Draw().value()),
 			cards::ToInt(deck.Draw().value()),

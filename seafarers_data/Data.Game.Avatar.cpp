@@ -17,7 +17,7 @@ namespace data::game
 
 	static const auto AutoCreateAvatarTable = data::game::Common::Run(CREATE_TABLE);
 
-	std::optional<Avatar::Data> Avatar::Read()
+	std::optional<Avatar> Avatar::Read()
 	{
 		AutoCreateAvatarTable();
 		auto result = data::game::Common::Execute(
@@ -27,7 +27,7 @@ namespace data::game
 		if (!result.empty())
 		{
 			const auto& record = result.front();
-			Data data =
+			Avatar data =
 			{
 				{
 					common::Data::ToDouble(record.find(FIELD_X)->second),
@@ -42,7 +42,7 @@ namespace data::game
 		return std::nullopt;
 	}
 
-	void Avatar::Write(const Avatar::Data& avatarData)
+	void Avatar::Write(const Avatar& avatarData)
 	{
 		AutoCreateAvatarTable();
 		data::game::Common::Execute(

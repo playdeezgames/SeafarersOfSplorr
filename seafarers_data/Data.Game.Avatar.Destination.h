@@ -3,9 +3,8 @@
 #include <optional>
 namespace data::game::avatar
 {
-	class Destination
+	struct Destination
 	{
-	public:
 		static void Write(int, const common::XY<double>&);
 		static std::optional<common::XY<double>> Read(int);
 		static void Clear(int);

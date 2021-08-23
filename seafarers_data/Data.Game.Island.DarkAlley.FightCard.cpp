@@ -2,7 +2,7 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.DarkAlley.FightCard.h"
 #include <format>
-namespace data::game::island::dark_alley::FightCard
+namespace data::game::island::dark_alley
 {
 	static const std::string FIELD_SUIT_ID = "SuitId";
 	static const std::string FIELD_RANK_ID = "RankId";
@@ -15,14 +15,14 @@ namespace data::game::island::dark_alley::FightCard
 
 	static const auto AutoCreateDarkAlleyFightCardsTable = Common::Run(CREATE_TABLE);
 
-	std::optional<CardData> Read(const common::XY<double>& location, size_t index)
+	std::optional<FightCard> FightCard::Read(const common::XY<double>& location, size_t index)
 	{
 		AutoCreateDarkAlleyFightCardsTable();
 		auto records = Common::Execute(std::format(QUERY_ITEM, location.GetX(), location.GetY(), index));
 		if (!records.empty())
 		{
 			auto& record = records.front();
-			return std::optional<CardData>({
+			return std::optional<FightCard>({
 				common::Data::ToInt(record[FIELD_RANK_ID]),
 				common::Data::ToInt(record[FIELD_SUIT_ID]),
 				common::Data::ToInt(record[FIELD_ADJACENT]),
@@ -32,13 +32,13 @@ namespace data::game::island::dark_alley::FightCard
 		return std::nullopt;
 	}
 
-	void Write(const common::XY<double>& location, size_t index, const CardData& data)
+	void FightCard::Write(const common::XY<double>& location, size_t index, const FightCard& data)
 	{
 		AutoCreateDarkAlleyFightCardsTable();
 		Common::Execute(std::format(REPLACE_ITEM, location.GetX(), location.GetY(), index, data.rank, data.suit, data.adjacent, data.shown ? 1 : 0));
 	}
 
-	void Clear(const common::XY<double>& location)
+	void FightCard::Clear(const common::XY<double>& location)
 	{
 		AutoCreateDarkAlleyFightCardsTable();
 		Common::Execute(std::format(DELETE_ALL, location.GetX(), location.GetY()));

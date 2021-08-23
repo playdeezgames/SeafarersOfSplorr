@@ -172,7 +172,7 @@ namespace game::islands::dark_alley::FightCards
 		}
 	}
 
-	static DarkAlley::FightCard DataToFightCard(const data::game::island::dark_alley::FightCard::CardData& data)
+	static DarkAlley::FightCard DataToFightCard(const data::game::island::dark_alley::FightCard& data)
 	{
 		auto card = std::make_tuple((cards::Rank)data.rank, (cards::Suit)data.suit);
 		return 
