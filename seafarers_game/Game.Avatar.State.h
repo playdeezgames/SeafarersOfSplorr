@@ -1,7 +1,7 @@
 #pragma once
 namespace game::avatar
 {
-	enum class DockedState
+	enum class State
 	{
 		DOCK,
 		JOB_BOARD,

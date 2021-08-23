@@ -23,16 +23,16 @@ namespace state::in_play::Next
 		{visuals::Confirmations::HasConfirmation, ::UIState::IN_PLAY_CONFIRM}
 	};
 
-	const std::map<game::avatar::DockedState, ::UIState> dockedStateTable =
+	const std::map<game::avatar::State, ::UIState> dockedStateTable =
 	{
-		{ game::avatar::DockedState::DARK_ALLEY, ::UIState::IN_PLAY_DARK_ALLEY },
-		{ game::avatar::DockedState::DARK_ALLEY_ENTRANCE, ::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE }, 
-		{ game::avatar::DockedState::SHIPYARD, ::UIState::IN_PLAY_SHIPYARD },
-		{ game::avatar::DockedState::MARKET_BUY,::UIState::IN_PLAY_ISLAND_BUY },
-		{ game::avatar::DockedState::MARKET_SELL, ::UIState::IN_PLAY_ISLAND_SELL },
-		{ game::avatar::DockedState::MARKET, ::UIState::IN_PLAY_ISLAND_TRADE },
-		{ game::avatar::DockedState::JOB_BOARD, ::UIState::IN_PLAY_ISLAND_JOBS },
-		{ game::avatar::DockedState::GAMBLE_START, ::UIState::IN_PLAY_GAMBLE_START }
+		{ game::avatar::State::DARK_ALLEY, ::UIState::IN_PLAY_DARK_ALLEY },
+		{ game::avatar::State::DARK_ALLEY_ENTRANCE, ::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE }, 
+		{ game::avatar::State::SHIPYARD, ::UIState::IN_PLAY_SHIPYARD },
+		{ game::avatar::State::MARKET_BUY,::UIState::IN_PLAY_ISLAND_BUY },
+		{ game::avatar::State::MARKET_SELL, ::UIState::IN_PLAY_ISLAND_SELL },
+		{ game::avatar::State::MARKET, ::UIState::IN_PLAY_ISLAND_TRADE },
+		{ game::avatar::State::JOB_BOARD, ::UIState::IN_PLAY_ISLAND_JOBS },
+		{ game::avatar::State::GAMBLE_START, ::UIState::IN_PLAY_GAMBLE_START }
 	};
 
 	static void OnEnter()

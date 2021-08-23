@@ -31,7 +31,7 @@ namespace game::avatar::Docked
 		{
 			result = DockResult::COMPLETED_QUEST;
 		}
-		data::game::avatar::Dock::SetLocation(location, (int)game::avatar::DockedState::DOCK);
+		data::game::avatar::Dock::SetLocation(location, (int)game::avatar::State::DOCK);
 		auto island = game::Islands::Read(location).value();
 		game::avatar::Log::Write({ game::Colors::GREEN, std::format(FORMAT_DOCK, island.name) });
 		return result;
@@ -71,17 +71,17 @@ namespace game::avatar::Docked
 		return false;
 	}
 
-	std::optional<game::avatar::DockedState> GetDockedState()
+	std::optional<game::avatar::State> GetDockedState()
 	{
 		auto state = data::game::avatar::Dock::GetState();
 		if (state)
 		{
-			return (game::avatar::DockedState)state.value();
+			return (game::avatar::State)state.value();
 		}
 		return std::nullopt;
 	}
 
-	static bool SetDockedState(const game::avatar::DockedState& dockedState)
+	static bool SetDockedState(const game::avatar::State& dockedState)
 	{
 		auto location = GetDockedLocation();
 		if (location)
@@ -105,14 +105,14 @@ namespace game::avatar::Docked
 			{
 				game::Colors::GREEN,
 				"You enter dark alley.",
-				avatar::DockedState::DARK_ALLEY_ENTRANCE
+				avatar::State::DARK_ALLEY_ENTRANCE
 			};
 		}
 		return
 		{
 			game::Colors::GREEN,
 			"You enter dark alley.",
-			avatar::DockedState::DARK_ALLEY
+			avatar::State::DARK_ALLEY
 		};
 	}
 
@@ -123,7 +123,7 @@ namespace game::avatar::Docked
 		{
 			game::Colors::GREEN,
 			"You enter the dark alley.",
-			avatar::DockedState::DARK_ALLEY
+			avatar::State::DARK_ALLEY
 		};
 	}
 
@@ -134,12 +134,12 @@ namespace game::avatar::Docked
 		{
 			game::Colors::GREEN,
 			"You approach some shady characters playing a card game.",
-			avatar::DockedState::GAMBLE_START
+			avatar::State::GAMBLE_START
 		};
 	}
 
 
-	const std::map<avatar::DockedAction, std::map<avatar::DockedState, std::function<DockedStateTransition()>>>& GetActionDescriptors();
+	const std::map<avatar::DockedAction, std::map<avatar::State, std::function<DockedStateTransition()>>>& GetActionDescriptors();
 
 	bool DoActionTransition(const avatar::DockedAction& action)
 	{

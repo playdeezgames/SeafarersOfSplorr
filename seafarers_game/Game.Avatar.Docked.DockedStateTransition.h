@@ -7,7 +7,7 @@ namespace game::avatar::Docked
 	{
 		std::string logColor;
 		std::string logText;
-		DockedState dockedState;
+		State dockedState;
 	};
 }
 

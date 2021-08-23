@@ -15,36 +15,36 @@ namespace game::avatar::Docked
 		return [transition]() { return transition; };
 	}
 
-	const std::map<avatar::DockedAction, std::map<avatar::DockedState, std::function<DockedStateTransition()>>> actionDescriptors =
+	const std::map<avatar::DockedAction, std::map<avatar::State, std::function<DockedStateTransition()>>> actionDescriptors =
 	{
 		{
 			avatar::DockedAction::ENTER_MARKET,
 			{
 				{
-					avatar::DockedState::MARKET_BUY,
+					avatar::State::MARKET_BUY,
 					DoTransition(
 						{
 							game::Colors::GREEN,
 							"You enter the market.",
-							avatar::DockedState::MARKET
+							avatar::State::MARKET
 						})
 				},
 				{
-					avatar::DockedState::MARKET_SELL,
+					avatar::State::MARKET_SELL,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You enter the market.",
-						avatar::DockedState::MARKET
+						avatar::State::MARKET
 					})
 				},
 				{
-					avatar::DockedState::DOCK,
+					avatar::State::DOCK,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You enter the market.",
-						avatar::DockedState::MARKET
+						avatar::State::MARKET
 					})
 				}
 			}
@@ -53,48 +53,48 @@ namespace game::avatar::Docked
 			avatar::DockedAction::ENTER_DOCK,
 			{
 				{
-					avatar::DockedState::MARKET,
+					avatar::State::MARKET,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You leave the market.",
-						avatar::DockedState::DOCK
+						avatar::State::DOCK
 					})
 				},
 				{
-					avatar::DockedState::SHIPYARD,
+					avatar::State::SHIPYARD,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You leave the shipyard.",
-						avatar::DockedState::DOCK
+						avatar::State::DOCK
 					})
 				},
 				{
-					avatar::DockedState::JOB_BOARD,
+					avatar::State::JOB_BOARD,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You leave the job board.",
-						avatar::DockedState::DOCK
+						avatar::State::DOCK
 					})
 				},
 				{
-					avatar::DockedState::DARK_ALLEY_ENTRANCE,
+					avatar::State::DARK_ALLEY_ENTRANCE,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You leave the dark alley.",
-						avatar::DockedState::DOCK
+						avatar::State::DOCK
 					})
 				},
 				{
-					avatar::DockedState::DARK_ALLEY,
+					avatar::State::DARK_ALLEY,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You leave the dark alley.",
-						avatar::DockedState::DOCK
+						avatar::State::DOCK
 					})
 				},
 			}
@@ -103,12 +103,12 @@ namespace game::avatar::Docked
 			avatar::DockedAction::MARKET_BUY,
 			{
 				{
-					avatar::DockedState::MARKET,
+					avatar::State::MARKET,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You browse for items to buy.",
-						avatar::DockedState::MARKET_BUY
+						avatar::State::MARKET_BUY
 					})
 				}
 			}
@@ -117,12 +117,12 @@ namespace game::avatar::Docked
 			avatar::DockedAction::MARKET_SELL,
 			{
 				{
-					avatar::DockedState::MARKET,
+					avatar::State::MARKET,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You look to sell yer items.",
-						avatar::DockedState::MARKET_SELL
+						avatar::State::MARKET_SELL
 					})
 				}
 			}
@@ -131,12 +131,12 @@ namespace game::avatar::Docked
 			avatar::DockedAction::ENTER_JOB_BOARD,
 			{
 				{
-					avatar::DockedState::DOCK,
+					avatar::State::DOCK,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You check for posted jobs.",
-						avatar::DockedState::JOB_BOARD
+						avatar::State::JOB_BOARD
 					})
 				}
 			}
@@ -145,12 +145,12 @@ namespace game::avatar::Docked
 			avatar::DockedAction::ENTER_SHIPYARD,
 			{
 				{
-					avatar::DockedState::DOCK,
+					avatar::State::DOCK,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You enter the shipyard.",
-						avatar::DockedState::SHIPYARD
+						avatar::State::SHIPYARD
 					})
 				}
 			}
@@ -159,16 +159,16 @@ namespace game::avatar::Docked
 			avatar::DockedAction::ENTER_DARK_ALLEY,
 			{
 				{
-					avatar::DockedState::DOCK,
+					avatar::State::DOCK,
 					OnEnterDarkAlley
 				},
 				{
-					avatar::DockedState::GAMBLE_START,
+					avatar::State::GAMBLE_START,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You leave the game.",
-						avatar::DockedState::DARK_ALLEY
+						avatar::State::DARK_ALLEY
 					})
 				}
 			}
@@ -177,7 +177,7 @@ namespace game::avatar::Docked
 			avatar::DockedAction::DEFEAT_RUFFIAN,
 			{
 				{
-					avatar::DockedState::DARK_ALLEY_ENTRANCE,
+					avatar::State::DARK_ALLEY_ENTRANCE,
 					OnDefeatRuffian
 				}
 			}
@@ -186,14 +186,14 @@ namespace game::avatar::Docked
 			avatar::DockedAction::START_GAMBLING,
 			{
 				{
-					avatar::DockedState::DARK_ALLEY,
+					avatar::State::DARK_ALLEY,
 					OnStartGambling
 				}
 			}
 		}
 	};
 
-	const std::map<avatar::DockedAction, std::map<avatar::DockedState, std::function<DockedStateTransition()>>>& GetActionDescriptors()
+	const std::map<avatar::DockedAction, std::map<avatar::State, std::function<DockedStateTransition()>>>& GetActionDescriptors()
 	{
 		return actionDescriptors;
 	}
