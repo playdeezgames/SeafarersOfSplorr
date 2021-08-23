@@ -1,9 +1,12 @@
 #pragma once
 #include <Common.XY.h>
-namespace data::game::island::Feature
+namespace data::game::island
 {
-	void ClearAll();
-	void Write(const common::XY<double>&, int);
-	void Clear(const common::XY<double>&, int);
-	bool Read(const common::XY<double>&, int);
+	struct Feature
+	{
+		static void ClearAll();
+		static void Write(const common::XY<double>&, int);
+		static void Clear(const common::XY<double>&, int);
+		static bool Read(const common::XY<double>&, int);
+	};
 }
