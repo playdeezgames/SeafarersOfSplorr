@@ -58,7 +58,7 @@ namespace game::avatar::Docked
 
 	const std::string FORMAT_UNDOCK = "You undock from {}.";
 
-	static bool Undock(const avatar::DockedAction&)
+	static bool Undock(const avatar::Action&)
 	{
 		auto location = GetDockedLocation();
 		if (location.has_value())
@@ -139,9 +139,9 @@ namespace game::avatar::Docked
 	}
 
 
-	const std::map<avatar::DockedAction, std::map<avatar::State, std::function<DockedStateTransition()>>>& GetActionDescriptors();
+	const std::map<avatar::Action, std::map<avatar::State, std::function<DockedStateTransition()>>>& GetActionDescriptors();
 
-	bool DoActionTransition(const avatar::DockedAction& action)
+	bool DoActionTransition(const avatar::Action& action)
 	{
 		auto dockedState = GetState();
 		if (dockedState)
@@ -163,12 +163,12 @@ namespace game::avatar::Docked
 		return false;
 	}
 
-	const std::map<avatar::DockedAction, std::function<bool(const avatar::DockedAction&)>> dockedActions =
+	const std::map<avatar::Action, std::function<bool(const avatar::Action&)>> dockedActions =
 	{
-		{ avatar::DockedAction::UNDOCK, Undock}
+		{ avatar::Action::UNDOCK, Undock}
 	};
 
-	bool DoDockedAction(const avatar::DockedAction& action)
+	bool DoDockedAction(const avatar::Action& action)
 	{
 		auto iter = dockedActions.find(action);
 		if (iter != dockedActions.end())

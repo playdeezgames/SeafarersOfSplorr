@@ -1,4 +1,4 @@
-#include "Game.Avatar.DockedAction.h"
+#include "Game.Avatar.Action.h"
 #include "Game.Avatar.State.h"
 #include "Game.Avatar.Docked.DockedStateTransition.h"
 #include "Game.Colors.h"
@@ -15,10 +15,10 @@ namespace game::avatar::Docked
 		return [transition]() { return transition; };
 	}
 
-	const std::map<avatar::DockedAction, std::map<avatar::State, std::function<DockedStateTransition()>>> actionDescriptors =
+	const std::map<avatar::Action, std::map<avatar::State, std::function<DockedStateTransition()>>> actionDescriptors =
 	{
 		{
-			avatar::DockedAction::ENTER_MARKET,
+			avatar::Action::ENTER_MARKET,
 			{
 				{
 					avatar::State::MARKET_BUY,
@@ -50,7 +50,7 @@ namespace game::avatar::Docked
 			}
 		},
 		{
-			avatar::DockedAction::ENTER_DOCK,
+			avatar::Action::ENTER_DOCK,
 			{
 				{
 					avatar::State::MARKET,
@@ -100,7 +100,7 @@ namespace game::avatar::Docked
 			}
 		},
 		{
-			avatar::DockedAction::MARKET_BUY,
+			avatar::Action::MARKET_BUY,
 			{
 				{
 					avatar::State::MARKET,
@@ -114,7 +114,7 @@ namespace game::avatar::Docked
 			}
 		},
 		{
-			avatar::DockedAction::MARKET_SELL,
+			avatar::Action::MARKET_SELL,
 			{
 				{
 					avatar::State::MARKET,
@@ -128,7 +128,7 @@ namespace game::avatar::Docked
 			}
 		},
 		{
-			avatar::DockedAction::ENTER_JOB_BOARD,
+			avatar::Action::ENTER_JOB_BOARD,
 			{
 				{
 					avatar::State::DOCK,
@@ -142,7 +142,7 @@ namespace game::avatar::Docked
 			}
 		},
 		{
-			avatar::DockedAction::ENTER_SHIPYARD,
+			avatar::Action::ENTER_SHIPYARD,
 			{
 				{
 					avatar::State::DOCK,
@@ -156,7 +156,7 @@ namespace game::avatar::Docked
 			}
 		},
 		{
-			avatar::DockedAction::ENTER_DARK_ALLEY,
+			avatar::Action::ENTER_DARK_ALLEY,
 			{
 				{
 					avatar::State::DOCK,
@@ -174,7 +174,7 @@ namespace game::avatar::Docked
 			}
 		},
 		{
-			avatar::DockedAction::DEFEAT_RUFFIAN,
+			avatar::Action::DEFEAT_RUFFIAN,
 			{
 				{
 					avatar::State::DARK_ALLEY_ENTRANCE,
@@ -183,7 +183,7 @@ namespace game::avatar::Docked
 			}
 		},
 		{
-			avatar::DockedAction::START_GAMBLING,
+			avatar::Action::START_GAMBLING,
 			{
 				{
 					avatar::State::DARK_ALLEY,
@@ -193,7 +193,7 @@ namespace game::avatar::Docked
 		}
 	};
 
-	const std::map<avatar::DockedAction, std::map<avatar::State, std::function<DockedStateTransition()>>>& GetActionDescriptors()
+	const std::map<avatar::Action, std::map<avatar::State, std::function<DockedStateTransition()>>>& GetActionDescriptors()
 	{
 		return actionDescriptors;
 	}

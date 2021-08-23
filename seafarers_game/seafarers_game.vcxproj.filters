@@ -50,7 +50,7 @@
     <ClInclude Include="Game.Avatar.Docked.h">
       <Filter>Header Files\Avatar</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Avatar.DockedAction.h">
+    <ClInclude Include="Game.Avatar.Action.h">
       <Filter>Header Files\Avatar</Filter>
     </ClInclude>
     <ClInclude Include="Game.Avatar.State.h">

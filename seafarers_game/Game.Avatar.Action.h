@@ -1,7 +1,7 @@
 #pragma once
 namespace game::avatar
 {
-	enum class DockedAction
+	enum class Action
 	{
 		UNDOCK,
 		ENTER_DOCK,

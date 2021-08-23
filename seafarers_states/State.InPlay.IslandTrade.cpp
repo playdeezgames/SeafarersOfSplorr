@@ -28,19 +28,19 @@ namespace state::in_play::IslandTrade
 
 	static void OnBuy()
 	{
-		game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::MARKET_BUY);
+		game::avatar::Docked::DoDockedAction(game::avatar::Action::MARKET_BUY);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnSell()
 	{
-		game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::MARKET_SELL);
+		game::avatar::Docked::DoDockedAction(game::avatar::Action::MARKET_SELL);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnLeave()
 	{
-		game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
+		game::avatar::Docked::DoDockedAction(game::avatar::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

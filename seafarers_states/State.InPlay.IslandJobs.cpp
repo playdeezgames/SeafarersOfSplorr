@@ -41,7 +41,7 @@ namespace state::in_play::IslandJobs
 		switch (game::avatar::Quest::AcceptQuest(game::avatar::Docked::GetDockedLocation().value()))
 		{
 		case game::avatar::Quest::AcceptQuestResult::ACCEPTED_QUEST:
-			game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
+			game::avatar::Docked::DoDockedAction(game::avatar::Action::ENTER_DOCK);
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			break;
 		case game::avatar::Quest::AcceptQuestResult::ALREADY_HAS_QUEST:
@@ -52,7 +52,7 @@ namespace state::in_play::IslandJobs
 
 	static void OnCancel()
 	{
-		game::avatar::Docked::DoDockedAction(game::avatar::DockedAction::ENTER_DOCK);
+		game::avatar::Docked::DoDockedAction(game::avatar::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
