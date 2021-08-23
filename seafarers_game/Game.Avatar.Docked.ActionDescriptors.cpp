@@ -1,5 +1,5 @@
 #include "Game.Avatar.DockedAction.h"
-#include "Game.Avatar.DockedState.h"
+#include "Game.Avatar.State.h"
 #include "Game.Avatar.Docked.DockedStateTransition.h"
 #include "Game.Colors.h"
 #include <functional>

@@ -28,7 +28,7 @@
     <ClInclude Include="Game.Avatar.Docked.DockedStateTransition.h" />
     <ClInclude Include="Game.Avatar.Docked.h" />
     <ClInclude Include="Game.Avatar.DockedAction.h" />
-    <ClInclude Include="Game.Avatar.DockedState.h" />
+    <ClInclude Include="Game.Avatar.State.h" />
     <ClInclude Include="Game.Avatar.Items.h" />
     <ClInclude Include="Game.Avatar.Log.h" />
     <ClInclude Include="Game.Avatar.Quest.h" />

@@ -1,5 +1,5 @@
 #pragma once
-#include "Game.Avatar.DockedState.h"
+#include "Game.Avatar.State.h"
 #include <string>
 namespace game::avatar::Docked
 {
