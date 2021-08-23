@@ -2,7 +2,7 @@
 #include "Data.Game.Island.Item.h"
 #include "Data.Game.Common.h"
 #include <format>
-namespace data::game::island::Item
+namespace data::game::island
 {
 	static const std::string FIELD_X = "X";
 	static const std::string FIELD_Y = "Y";
@@ -16,32 +16,32 @@ namespace data::game::island::Item
 
 	static const auto AutoCreateIslandItemTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Set(const common::XY<double>& location, int item)
+	void Item::Set(const common::XY<double>& location, int item)
 	{
 		AutoCreateIslandItemTable();
 		data::game::Common::Execute(std::format(REPLACE_ITEM, location.GetX(), location.GetY(), item));
 	}
 
-	void Clear(const common::XY<double>& location, int item)
+	void Item::Clear(const common::XY<double>& location, int item)
 	{
 		AutoCreateIslandItemTable();
 		data::game::Common::Execute(std::format(DELETE_ITEM, location.GetX(), location.GetY(), item));
 	}
 
-	bool Get(const common::XY<double>& location, int item)
+	bool Item::Get(const common::XY<double>& location, int item)
 	{
 		AutoCreateIslandItemTable();
 		auto records = data::game::Common::Execute(std::format(QUERY_ITEM, location.GetX(), location.GetY(), item));
 		return !records.empty();
 	}
 
-	void ClearAll()
+	void Item::ClearAll()
 	{
 		AutoCreateIslandItemTable();
 		data::game::Common::Execute(DELETE_ALL);
 	}
 
-	std::set<int> GetAll(const common::XY<double>& location)
+	std::set<int> Item::GetAll(const common::XY<double>& location)
 	{
 		std::set<int> result;
 		AutoCreateIslandItemTable();
