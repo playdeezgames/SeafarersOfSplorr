@@ -33,7 +33,8 @@ namespace state::in_play::Next
 		{ game::avatar::State::MARKET_SELL, ::UIState::IN_PLAY_ISLAND_SELL },
 		{ game::avatar::State::MARKET, ::UIState::IN_PLAY_ISLAND_TRADE },
 		{ game::avatar::State::JOB_BOARD, ::UIState::IN_PLAY_ISLAND_JOBS },
-		{ game::avatar::State::GAMBLE_START, ::UIState::IN_PLAY_GAMBLE_START }
+		{ game::avatar::State::GAMBLE_START, ::UIState::IN_PLAY_GAMBLE_START },
+		{ game::avatar::State::AT_SEA, ::UIState::IN_PLAY_AT_SEA }
 	};
 
 	static void OnEnter()

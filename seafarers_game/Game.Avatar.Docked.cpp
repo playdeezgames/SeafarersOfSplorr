@@ -1,7 +1,9 @@
+#include <Data.Game.Avatar.h>
 #include <Data.Game.Avatar.Dock.h>
 #include <Data.Game.Island.DarkAlley.h>
 #include <format>
 #include <functional>
+#include "Game.Avatar.h"
 #include "Game.Avatar.Docked.h"
 #include "Game.Avatar.StateTransition.h"
 #include "Game.Avatar.Log.h"
@@ -31,7 +33,8 @@ namespace game::avatar::Docked
 		{
 			result = DockResult::COMPLETED_QUEST;
 		}
-		data::game::avatar::Dock::SetLocation(location, (int)game::avatar::State::DOCK);
+		data::game::avatar::Dock::SetLocation(location);
+		data::game::Avatar::SetState((int)game::avatar::State::DOCK);
 		auto island = game::Islands::Read(location).value();
 		game::avatar::Log::Write({ game::Colors::GREEN, std::format(FORMAT_DOCK, island.name) });
 		return result;
@@ -55,21 +58,4 @@ namespace game::avatar::Docked
 	{
 		return data::game::avatar::Dock::GetLocation();
 	}
-
-	const std::string FORMAT_UNDOCK = "You undock from {}.";
-
-	bool Undock(const avatar::Action&)
-	{
-		auto location = GetDockedLocation();
-		if (location.has_value())
-		{
-			auto island = game::Islands::Read(location.value()).value();
-			game::avatar::Log::Write({ game::Colors::GREEN, std::format(FORMAT_UNDOCK, island.name) });
-			data::game::avatar::Dock::ClearLocation();
-			return true;
-		}
-		return false;
-	}
-
-
 }

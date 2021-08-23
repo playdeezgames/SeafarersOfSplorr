@@ -55,4 +55,26 @@ namespace data::game::Avatar
 				avatarData.speed,
 				avatarData.state));
 	}
+
+	void SetState(int state)
+	{
+		AutoCreateAvatarTable();
+		auto data = Read();
+		if (data)
+		{
+			data.value().state = state;
+			Write(data.value());
+		}
+	}
+
+	std::optional<int> GetState()
+	{
+		AutoCreateAvatarTable();
+		auto data = Read();
+		if (data)
+		{
+			return data.value().state;
+		}
+		return std::nullopt;
+	}
 }

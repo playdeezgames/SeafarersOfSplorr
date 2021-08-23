@@ -3,6 +3,7 @@ namespace game::avatar
 {
 	enum class State
 	{
+		AT_SEA,
 		DOCK,
 		JOB_BOARD,
 		MARKET,
@@ -11,7 +12,7 @@ namespace game::avatar
 		SHIPYARD,
 		DARK_ALLEY_ENTRANCE,
 		DARK_ALLEY,
-		GAMBLE_START,
-		AT_SEA
+		GAMBLE_START
+		
 	};
 }

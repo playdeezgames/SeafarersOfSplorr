@@ -3,8 +3,7 @@
 #include <optional>
 namespace data::game::avatar::Dock
 {
-	void SetLocation(const common::XY<double>&, int);
+	void SetLocation(const common::XY<double>&);
 	void ClearLocation();
 	std::optional<common::XY<double>> GetLocation();
-	std::optional<int> GetState();
 }

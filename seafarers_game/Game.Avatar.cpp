@@ -1,43 +1,33 @@
-#include <Data.Game.Avatar.Dock.h>
+#include <Data.Game.Avatar.h>
 #include <functional>
 #include "Game.Avatar.h"
-#include "Game.Avatar.Docked.h"
 #include "Game.Avatar.Log.h"
 #include "Game.Avatar.StateTransition.h"
 #include <map>
-namespace game::avatar::Docked
-{
-	bool Undock(const avatar::Action&);
-}
 namespace game::avatar
 {
-	static bool SetDockedState(const game::avatar::State& dockedState)
+	static void SetState(const game::avatar::State& state)
 	{
-		auto location = game::avatar::Docked::GetDockedLocation();
-		if (location)
-		{
-			data::game::avatar::Dock::SetLocation(location.value(), (int)dockedState);
-		}
-		return false;
+		data::game::Avatar::SetState((int)state);
 	}
 
 	const std::map<avatar::Action, std::map<avatar::State, std::function<StateTransition()>>>& GetActionDescriptors();
 
-	bool DoActionTransition(const avatar::Action& action)
+	bool DoAction(const avatar::Action& action)
 	{
-		auto dockedState = GetState();
-		if (dockedState)
+		auto state = GetState();
+		if (state)
 		{
 			auto descriptor = GetActionDescriptors().find(action);
 			if (descriptor != GetActionDescriptors().end())
 			{
-				auto transition = descriptor->second.find(dockedState.value());
+				auto transition = descriptor->second.find(state.value());
 				{
 					if (transition != descriptor->second.end())
 					{
 						auto result = transition->second();
 						avatar::Log::Write({ result.logColor, result.logText });
-						SetDockedState(result.dockedState);
+						SetState(result.dockedState);
 					}
 				}
 			}
@@ -45,24 +35,9 @@ namespace game::avatar
 		return false;
 	}
 
-	const std::map<avatar::Action, std::function<bool(const avatar::Action&)>> dockedActions =
-	{
-		{ avatar::Action::UNDOCK, game::avatar::Docked::Undock}
-	};
-
-	bool DoAction(const avatar::Action& action)
-	{
-		auto iter = dockedActions.find(action);
-		if (iter != dockedActions.end())
-		{
-			return iter->second(action);
-		}
-		return DoActionTransition(action);
-	}
-
 	std::optional<game::avatar::State> GetState()
 	{
-		auto state = data::game::avatar::Dock::GetState();
+		auto state = data::game::Avatar::GetState();
 		if (state)
 		{
 			return (game::avatar::State)state.value();

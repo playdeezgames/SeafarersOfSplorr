@@ -1,14 +1,34 @@
 #include <Data.Game.Island.DarkAlley.h>
+#include <Data.Game.Avatar.Dock.h>
+#include <format>
+#include <functional>
 #include "Game.Avatar.Action.h"
 #include "Game.Avatar.Docked.h"
+#include "Game.Avatar.Log.h"
 #include "Game.Avatar.State.h"
 #include "Game.Avatar.StateTransition.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Colors.h"
-#include <functional>
+#include "Game.Islands.h"
 #include <map>
 namespace game::avatar
 {
+	const std::string FORMAT_UNDOCK = "You undock from {}.";
+
+	static bool Undock(const avatar::Action&)
+	{
+		auto location = game::avatar::Docked::GetDockedLocation();
+		if (location.has_value())
+		{
+			auto island = game::Islands::Read(location.value()).value();
+			game::avatar::Log::Write({ game::Colors::GREEN, std::format(FORMAT_UNDOCK, island.name) });
+			data::game::avatar::Dock::ClearLocation();
+			return true;
+		}
+		return false;
+	}
+
+
 	void OnEnterDarkAlleyFailsInfamyRequirement();
 
 	StateTransition OnEnterDarkAlley()
@@ -63,6 +83,20 @@ namespace game::avatar
 
 	const std::map<avatar::Action, std::map<avatar::State, std::function<StateTransition()>>> actionDescriptors =
 	{
+		{
+			avatar::Action::UNDOCK,
+			{
+				{
+					avatar::State::DOCK,
+					DoTransition(
+						{
+							game::Colors::GREEN,
+							"You undock.",
+							avatar::State::AT_SEA
+						})
+				}
+			}
+		},
 		{
 			avatar::Action::ENTER_MARKET,
 			{

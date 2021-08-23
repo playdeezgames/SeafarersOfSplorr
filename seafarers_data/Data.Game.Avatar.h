@@ -13,4 +13,6 @@ namespace data::game::Avatar
 
 	void Write(const AvatarData&);
 	std::optional<AvatarData> Read();
+	void SetState(int);
+	std::optional<int> GetState();
 }
