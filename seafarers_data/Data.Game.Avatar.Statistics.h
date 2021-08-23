@@ -2,16 +2,13 @@
 #include <optional>
 namespace data::game::avatar
 {
-	class Statistics
+	struct Statistics
 	{
-	public:
-		struct Data
-		{
-			std::optional<double> minimum;
-			std::optional<double> maximum;
-			double current;
-		};
-		static void Write(int, const Data&);
-		static std::optional<Data> Read(int);
+		std::optional<double> minimum;
+		std::optional<double> maximum;
+		double current;
+
+		static void Write(int, const Statistics&);
+		static std::optional<Statistics> Read(int);
 	};
 }

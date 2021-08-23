@@ -1,9 +1,8 @@
 #pragma once
 namespace data::game::avatar
 {
-	class Ship
+	struct Ship
 	{
-	public:
 		static void Write(int);
 		static int Read();
 	};
