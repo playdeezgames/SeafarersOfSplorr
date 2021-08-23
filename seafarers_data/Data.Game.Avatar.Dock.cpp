@@ -3,7 +3,7 @@
 #include "Data.Game.Common.h"
 #include <format>
 #include <string>
-namespace data::game::avatar::Dock
+namespace data::game::avatar
 {
 	const std::string FIELD_X = "X";
 	const std::string FIELD_Y = "Y";
@@ -14,7 +14,7 @@ namespace data::game::avatar::Dock
 
 	const auto AutoCreateAvatarDockTable = data::game::Common::Run(CREATE_TABLE);
 
-	void ClearLocation()
+	void Dock::ClearLocation()
 	{
 		AutoCreateAvatarDockTable();
 		std::string query =
@@ -23,7 +23,7 @@ namespace data::game::avatar::Dock
 	}
 
 
-	void SetLocation(const common::XY<double>& location)
+	void Dock::SetLocation(const common::XY<double>& location)
 	{
 		AutoCreateAvatarDockTable();
 		std::string query =
@@ -31,7 +31,7 @@ namespace data::game::avatar::Dock
 		data::game::Common::Execute(query);
 	}
 
-	std::optional<common::XY<double>> GetLocation()
+	std::optional<common::XY<double>> Dock::GetLocation()
 	{
 		AutoCreateAvatarDockTable();
 		std::string query = std::format(QUERY_ITEM, data::game::Common::AVATAR_ID);
