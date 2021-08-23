@@ -15,23 +15,22 @@ namespace game::avatar
 {
 	const std::string FORMAT_UNDOCK = "You undock from {}.";
 
-	static bool Undock(const avatar::Action&)
+	static StateTransition OnUndock()
 	{
 		auto location = game::avatar::Docked::GetDockedLocation();
-		if (location.has_value())
-		{
-			auto island = game::Islands::Read(location.value()).value();
-			game::avatar::Log::Write({ game::Colors::GREEN, std::format(FORMAT_UNDOCK, island.name) });
-			data::game::avatar::Dock::ClearLocation();
-			return true;
-		}
-		return false;
+		auto island = game::Islands::Read(location.value()).value();
+		game::avatar::Log::Write({ game::Colors::GREEN, std::format(FORMAT_UNDOCK, island.name) });
+		data::game::avatar::Dock::ClearLocation();
+		return {
+			game::Colors::GREEN,
+			"You undock.",
+			avatar::State::AT_SEA
+		};
 	}
-
 
 	void OnEnterDarkAlleyFailsInfamyRequirement();
 
-	StateTransition OnEnterDarkAlley()
+	static StateTransition OnEnterDarkAlley()
 	{
 		auto location = game::avatar::Docked::GetDockedLocation().value();
 		auto data = data::game::island::DarkAlley::Read(location).value();
@@ -54,7 +53,7 @@ namespace game::avatar
 		};
 	}
 
-	StateTransition OnDefeatRuffian()
+	static StateTransition OnDefeatRuffian()
 	{
 		//TODO: add a message
 		return
@@ -65,7 +64,7 @@ namespace game::avatar
 		};
 	}
 
-	StateTransition OnStartGambling()
+	static StateTransition OnStartGambling()
 	{
 		//TODO: add a message
 		return
@@ -88,12 +87,7 @@ namespace game::avatar
 			{
 				{
 					avatar::State::DOCK,
-					DoTransition(
-						{
-							game::Colors::GREEN,
-							"You undock.",
-							avatar::State::AT_SEA
-						})
+					OnUndock
 				}
 			}
 		},

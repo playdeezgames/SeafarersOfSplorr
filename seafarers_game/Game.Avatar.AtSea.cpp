@@ -5,6 +5,7 @@
 #include "Game.Avatar.AtSea.h"
 #include "Game.Avatar.Items.h"
 #include "Game.Avatar.Ship.h"
+#include "Game.Avatar.State.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Ships.h"
 #include "Game.World.h"
@@ -20,6 +21,7 @@ namespace game::avatar::AtSea
 			1.0
 		};
 		data::game::Avatar::Write(data);
+		data::game::Avatar::SetState((int)game::avatar::State::AT_SEA);
 	}
 
 	double GetHeading()
