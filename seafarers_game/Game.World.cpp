@@ -52,7 +52,7 @@ namespace game::World
 	void Reset(const game::Difficulty& difficulty)
 	{
 		auto properties = worldProperties.find(difficulty)->second;
-		data::game::World::Data data = 
+		data::game::World data = 
 		{
 			CURRENT_VERSION,
 			{properties.size, properties.size},

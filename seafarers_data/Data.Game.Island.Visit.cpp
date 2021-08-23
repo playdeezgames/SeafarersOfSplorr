@@ -1,9 +1,9 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
-#include "Data.Game.Island.Visits.h"
+#include "Data.Game.Island.Visit.h"
 #include <string>
 #include <format>
-namespace data::game::island::Visits
+namespace data::game::island
 {
 	static const std::string FIELD_X = "X";
 	static const std::string FIELD_Y = "Y";
@@ -16,7 +16,7 @@ namespace data::game::island::Visits
 
 	static const auto AutoCreateIslandVisitsTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Write(const VisitData& data)
+	void Visit::Write(const Visit& data)
 	{
 		AutoCreateIslandVisitsTable();
 		auto query = std::format(
@@ -28,7 +28,7 @@ namespace data::game::island::Visits
 		data::game::Common::Execute(query);
 	}
 
-	std::optional<VisitData> Read(const common::XY<double>& location)
+	std::optional<Visit> Visit::Read(const common::XY<double>& location)
 	{
 		AutoCreateIslandVisitsTable();
 		auto query = std::format(
@@ -39,7 +39,7 @@ namespace data::game::island::Visits
 		if (!result.empty())
 		{
 			auto& record = result.front();
-			return std::optional<VisitData>({
+			return std::optional<Visit>({
 				{
 					common::Data::ToDouble(record[FIELD_X]),
 					common::Data::ToDouble(record[FIELD_Y])
@@ -51,7 +51,7 @@ namespace data::game::island::Visits
 		return std::nullopt;
 	}
 
-	void Clear()
+	void Visit::Clear()
 	{
 		AutoCreateIslandVisitsTable();
 		data::game::Common::Execute(DELETE_ALL);

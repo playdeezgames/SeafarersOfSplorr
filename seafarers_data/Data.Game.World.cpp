@@ -20,7 +20,7 @@ namespace data::game
 
 	static const auto AutoCreateWorldsTable = data::game::Common::Run(CREATE_TABLE);
 
-	void World::Write(const World::Data& data)
+	void World::Write(const World& data)
 	{
 		AutoCreateWorldsTable();
 		data::game::Common::Execute(
@@ -35,14 +35,14 @@ namespace data::game
 				data.windHeading));
 	}
 
-	std::optional<World::Data> World::Read()
+	std::optional<World> World::Read()
 	{
 		AutoCreateWorldsTable();
 		auto result = data::game::Common::Execute(std::format(QUERY_ITEM, WORLD_ID));
 		if (!result.empty())
 		{
 			const auto& record = result.front();
-			Data data =
+			World data =
 			{
 				common::Data::ToInt(record.find(FIELD_VERSION)->second),
 				{

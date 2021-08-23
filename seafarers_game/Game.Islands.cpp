@@ -6,7 +6,7 @@
 #include <Data.Game.Island.Known.h>
 #include <Data.Game.Island.Market.h>
 #include <Data.Game.Island.Quest.h>
-#include <Data.Game.Island.Visits.h>
+#include <Data.Game.Island.Visit.h>
 #include <functional>
 #include "Game.Avatar.AtSea.h"
 #include "Game.Commodities.h"
@@ -28,7 +28,7 @@ namespace game::Islands
 
 	static void AddIsland(std::list<IslandModel>& result, const data::game::Island& island, const common::XY<double>& avatarLocation)
 	{
-		auto visitData = data::game::island::Visits::Read(island.location);
+		auto visitData = data::game::island::Visit::Read(island.location);
 		data::game::island::Known::Write(island.location);
 		result.push_back(
 			{
@@ -99,7 +99,7 @@ namespace game::Islands
 
 	void AddVisit(const common::XY<double>& location, const int& turn)
 	{
-		auto visitData = data::game::island::Visits::Read(location);
+		auto visitData = data::game::island::Visit::Read(location);
 		if (visitData)
 		{
 			auto islandVisits = visitData.value();
@@ -107,11 +107,11 @@ namespace game::Islands
 			{
 				islandVisits.visits = islandVisits.visits + 1;
 				islandVisits.lastVisit = turn;
-				data::game::island::Visits::Write(islandVisits);
+				data::game::island::Visit::Write(islandVisits);
 				return;
 			}
 		}
-		data::game::island::Visits::Write({
+		data::game::island::Visit::Write({
 			location,
 			1,
 			turn});
@@ -119,9 +119,9 @@ namespace game::Islands
 
 	void SetKnown(const common::XY<double>& location, const int& turn)
 	{
-		if (!data::game::island::Visits::Read(location))
+		if (!data::game::island::Visit::Read(location))
 		{
-			data::game::island::Visits::Write({
+			data::game::island::Visit::Write({
 				location,
 				0,
 				turn });
@@ -133,7 +133,7 @@ namespace game::Islands
 		auto data = data::game::Island::Read(location);
 		if (data)
 		{
-			auto visitData = data::game::island::Visits::Read(data.value().location);
+			auto visitData = data::game::island::Visit::Read(data.value().location);
 			return std::optional<IslandModel>({
 				{0.0, 0.0},
 				data.value().location,
@@ -153,7 +153,7 @@ namespace game::Islands
 			auto model = Read(knownLocation);
 			if (model)
 			{
-				auto visits = data::game::island::Visits::Read(knownLocation);
+				auto visits = data::game::island::Visit::Read(knownLocation);
 				if (visits)
 				{
 					result.push_back(model.value());

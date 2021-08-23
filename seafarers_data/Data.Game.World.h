@@ -3,19 +3,15 @@
 #include <optional>
 namespace data::game
 {
-	class World
+	struct World
 	{
-	public:
-		struct Data
-		{
-			int version;
-			common::XY<double> size;
-			double minimumIslandDistance;
-			double viewDistance;
-			double dockDistance;
-			double windHeading;
-		};
-		static void Write(const Data&);
-		static std::optional<Data> Read();
+		int version;
+		common::XY<double> size;
+		double minimumIslandDistance;
+		double viewDistance;
+		double dockDistance;
+		double windHeading;
+		static void Write(const World&);
+		static std::optional<World> Read();
 	};
 }

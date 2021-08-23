@@ -80,7 +80,7 @@
     <ClInclude Include="Data.Game.Island.Quest.h">
       <Filter>Header Files\Island</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Island.Visits.h">
+    <ClInclude Include="Data.Game.Island.Visit.h">
       <Filter>Header Files\Island</Filter>
     </ClInclude>
     <ClInclude Include="Data.JSON.Store.h">
@@ -148,7 +148,7 @@
     <ClCompile Include="Data.Game.Island.Quest.cpp">
       <Filter>Source Files\Island</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Island.Visits.cpp">
+    <ClCompile Include="Data.Game.Island.Visit.cpp">
       <Filter>Source Files\Island</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Island.DarkAlley.GamblingHand.cpp">

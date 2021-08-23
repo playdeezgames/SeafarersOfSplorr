@@ -6,7 +6,7 @@
 #include <Data.Game.Island.Known.h>
 #include <Data.Game.Island.Market.h>
 #include <Data.Game.Island.Quest.h>
-#include <Data.Game.Island.Visits.h>
+#include <Data.Game.Island.Visit.h>
 #include "Game.Commodities.h"
 #include "Game.Islands.h"
 #include "Game.Items.h"
@@ -127,7 +127,7 @@ namespace game::Islands
 	static void ClearData()
 	{
 		data::game::Island::Clear();
-		data::game::island::Visits::Clear();
+		data::game::island::Visit::Clear();
 		data::game::island::Known::Clear();
 		data::game::avatar::Destination::ClearAll();
 		data::game::island::Market::Clear();
