@@ -3,7 +3,7 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.h"
 #include <format>
-namespace data::game::Island
+namespace data::game
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Islands]([X] REAL NOT NULL,[Y] REAL NOT NULL,[CareeningDistance] REAL NOT NULL,[Name] TEXT NOT NULL,UNIQUE([X],[Y]));";
 	static const std::string QUERY_ITEM = "SELECT [X],[Y],[Name],[CareeningDistance] FROM [Islands] WHERE [X] = {:.4f} AND [Y]={:.4f};";
@@ -17,7 +17,7 @@ namespace data::game::Island
 
 	static const auto AutoCreateIslandTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Write(const Data& data)
+	void Island::Write(const Island& data)
 	{
 		AutoCreateIslandTable();
 		auto query =
@@ -30,9 +30,9 @@ namespace data::game::Island
 		data::game::Common::Execute(query);
 	}
 
-	static Data ToIslandData(const std::map<std::string, std::string> record)
+	static Island ToIslandData(const std::map<std::string, std::string> record)
 	{
-		Data data =
+		Island data =
 		{
 			{
 				common::Data::ToDouble(record.find(FIELD_X)->second),
@@ -44,7 +44,7 @@ namespace data::game::Island
 		return data;
 	}
 
-	std::optional<Data> Read(const common::XY<double>& location)
+	std::optional<Island> Island::Read(const common::XY<double>& location)
 	{
 		AutoCreateIslandTable();
 		auto query =
@@ -59,11 +59,11 @@ namespace data::game::Island
 		return std::nullopt;
 	}
 
-	std::list<Data> All()
+	std::list<Island> Island::All()
 	{
 		AutoCreateIslandTable();
 		auto records = data::game::Common::Execute(QUERY_ALL);
-		std::list<Data> result;
+		std::list<Island> result;
 		for (auto& record : records)
 		{
 			result.push_back(ToIslandData(record));
@@ -71,7 +71,7 @@ namespace data::game::Island
 		return result;
 	}
 
-	void Clear()
+	void Island::Clear()
 	{
 		AutoCreateIslandTable();
 		data::game::Common::Execute(CLEAR_ALL);

@@ -26,7 +26,7 @@ namespace game::Islands
 		GenerateIslands();
 	}
 
-	static void AddIsland(std::list<IslandModel>& result, const data::game::Island::Data& island, const common::XY<double>& avatarLocation)
+	static void AddIsland(std::list<IslandModel>& result, const data::game::Island& island, const common::XY<double>& avatarLocation)
 	{
 		auto visitData = data::game::island::Visits::Read(island.location);
 		data::game::island::Known::Write(island.location);
@@ -39,7 +39,7 @@ namespace game::Islands
 			});
 	}
 
-	static void AddIslandWhenCloseEnough(std::list<IslandModel>& result, const data::game::Island::Data& island, const common::XY<double>& avatarLocation, std::function<bool(const data::game::Island::Data&, double)> filter)
+	static void AddIslandWhenCloseEnough(std::list<IslandModel>& result, const data::game::Island& island, const common::XY<double>& avatarLocation, std::function<bool(const data::game::Island&, double)> filter)
 	{
 		auto distance = common::Heading::Distance(avatarLocation, island.location);
 		if (filter(island, distance))
@@ -48,7 +48,7 @@ namespace game::Islands
 		}
 	}
 
-	static std::list<IslandModel> GetIslandsInRange(std::function<bool(const data::game::Island::Data&, double)> filter)
+	static std::list<IslandModel> GetIslandsInRange(std::function<bool(const data::game::Island&, double)> filter)
 	{
 		std::list<IslandModel> result;
 		auto avatarLocation = game::avatar::AtSea::GetLocation();
@@ -60,9 +60,9 @@ namespace game::Islands
 		return result;
 	}
 
-	static std::function<bool(const data::game::Island::Data&, double)> FixedDistance(double maximumDistance)
+	static std::function<bool(const data::game::Island&, double)> FixedDistance(double maximumDistance)
 	{
-		return [maximumDistance](const data::game::Island::Data&, double distance)
+		return [maximumDistance](const data::game::Island&, double distance)
 		{
 			return distance <= maximumDistance;
 		};
@@ -81,7 +81,7 @@ namespace game::Islands
 	std::list<IslandModel> GetCareeningIslands()
 	{
 		return GetIslandsInRange(
-			[](const data::game::Island::Data& data, double distance) 
+			[](const data::game::Island& data, double distance) 
 			{
 				return distance < data.careeningDistance;
 			});

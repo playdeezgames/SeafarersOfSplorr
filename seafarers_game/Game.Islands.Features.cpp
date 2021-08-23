@@ -48,10 +48,10 @@ namespace game::islands::Features
 		}
 	}
 
-	static void GenerateFeature(const game::Feature& feature, const std::list<data::game::Island::Data>& islands)
+	static void GenerateFeature(const game::Feature& feature, const std::list<data::game::Island>& islands)
 	{
 		auto& descriptor = game::Features::Read(feature);
-		std::vector<data::game::Island::Data> candidates;
+		std::vector<data::game::Island> candidates;
 		for (auto island : islands)
 		{
 			candidates.push_back(island);
