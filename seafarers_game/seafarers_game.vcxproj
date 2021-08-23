@@ -23,6 +23,7 @@
     <ClInclude Include="Game.Audio.Mux.h" />
     <ClInclude Include="Game.Audio.Sfx.h" />
     <ClInclude Include="Game.Avatar.AtSea.h" />
+    <ClInclude Include="Game.Avatar.AtSeaState.h" />
     <ClInclude Include="Game.Avatar.Destination.h" />
     <ClInclude Include="Game.Avatar.Docked.DockedStateTransition.h" />
     <ClInclude Include="Game.Avatar.Docked.h" />

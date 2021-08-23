@@ -1,6 +1,8 @@
 #pragma once
 #include <Common.XY.h>
+#include "Game.Avatar.AtSeaState.h"
 #include "Game.Difficulty.h"
+#include <optional>
 namespace game::avatar::AtSea
 {
 	void Reset(const game::Difficulty&);
@@ -19,4 +21,5 @@ namespace game::avatar::AtSea
 		CLAMPED
 	};
 	MoveResult Move();
+	std::optional<game::avatar::AtSeaState> GetState();
 }
