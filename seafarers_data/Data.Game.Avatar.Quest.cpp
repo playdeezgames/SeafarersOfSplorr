@@ -17,7 +17,7 @@ namespace data::game::avatar
 
 	static const auto AutoCreateAvatarQuestTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Quest::Write(const std::optional<Data>& data)
+	void Quest::Write(const std::optional<Quest>& data)
 	{
 		AutoCreateAvatarQuestTable();
 		if (data)
@@ -38,7 +38,7 @@ namespace data::game::avatar
 		}
 	}
 
-	std::optional<Quest::Data> Quest::Read()
+	std::optional<Quest> Quest::Read()
 	{
 		AutoCreateAvatarQuestTable();
 		auto records = data::game::Common::Execute(
@@ -46,7 +46,7 @@ namespace data::game::avatar
 		if (!records.empty())
 		{
 			auto& record = records.front();
-			return std::optional<Data>({
+			return std::optional<Quest>({
 					{common::Data::ToDouble(record[FIELD_DESTINATION_X]),common::Data::ToDouble(record[FIELD_DESTINATION_Y])},
 					common::Data::ToDouble(record[FIELD_REWARD]),
 					record[FIELD_ITEM_NAME],

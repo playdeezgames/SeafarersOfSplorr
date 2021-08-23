@@ -19,7 +19,7 @@ namespace game::avatar::Quest
 		if (quest)
 		{
 			data::game::avatar::Quest::Write(
-				std::optional<data::game::avatar::Quest::Data>({
+				std::optional<data::game::avatar::Quest>({
 					quest.value().destination,
 					quest.value().reward,
 					quest.value().itemName,
