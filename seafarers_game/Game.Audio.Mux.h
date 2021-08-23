@@ -1,9 +1,12 @@
 #pragma once
 #include <functional>
 #include "Game.Audio.Theme.h"
-namespace game::audio::Mux
+namespace game::audio
 {
-	void Play(const Theme&);
-	std::function<void()> GoToTheme(const Theme&);
+	struct Mux
+	{
+		static void Play(const Theme&);
+		static std::function<void()> GoToTheme(const Theme&);
+	};
 }
 

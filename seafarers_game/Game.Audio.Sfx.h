@@ -1,7 +1,10 @@
 #pragma once
 #include "Game.Audio.GameSfx.h"
-namespace game::audio::Sfx
+namespace game::audio
 {
-	void Play(const game::audio::GameSfx&);
+	struct Sfx
+	{
+		static void Play(const game::audio::GameSfx&);
+	};
 }
 
