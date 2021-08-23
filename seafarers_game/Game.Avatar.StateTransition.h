@@ -1,7 +1,7 @@
 #pragma once
 #include "Game.Avatar.State.h"
 #include <string>
-namespace game::avatar::Docked
+namespace game::avatar
 {
 	struct StateTransition
 	{

@@ -1,6 +1,6 @@
 #include "Game.Avatar.Action.h"
 #include "Game.Avatar.State.h"
-#include "Game.Avatar.Docked.StateTransition.h"
+#include "Game.Avatar.StateTransition.h"
 #include "Game.Colors.h"
 #include <functional>
 #include <map>

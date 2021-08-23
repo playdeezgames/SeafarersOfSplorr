@@ -3,7 +3,7 @@
 #include <format>
 #include <functional>
 #include "Game.Avatar.Docked.h"
-#include "Game.Avatar.Docked.StateTransition.h"
+#include "Game.Avatar.StateTransition.h"
 #include "Game.Avatar.Log.h"
 #include "Game.Avatar.Quest.h"
 #include "Game.Avatar.Statistics.h"
