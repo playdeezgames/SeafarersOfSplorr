@@ -25,7 +25,7 @@
     <ClInclude Include="Game.Avatar.AtSea.h" />
     <ClInclude Include="Game.Avatar.AtSeaState.h" />
     <ClInclude Include="Game.Avatar.Destination.h" />
-    <ClInclude Include="Game.Avatar.Docked.DockedStateTransition.h" />
+    <ClInclude Include="Game.Avatar.Docked.StateTransition.h" />
     <ClInclude Include="Game.Avatar.Docked.h" />
     <ClInclude Include="Game.Avatar.Action.h" />
     <ClInclude Include="Game.Avatar.State.h" />

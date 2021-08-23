@@ -3,7 +3,7 @@
 #include <format>
 #include <functional>
 #include "Game.Avatar.Docked.h"
-#include "Game.Avatar.Docked.DockedStateTransition.h"
+#include "Game.Avatar.Docked.StateTransition.h"
 #include "Game.Avatar.Log.h"
 #include "Game.Avatar.Quest.h"
 #include "Game.Avatar.Statistics.h"
@@ -93,7 +93,7 @@ namespace game::avatar::Docked
 
 	void OnEnterDarkAlleyFailsInfamyRequirement();
 
-	DockedStateTransition OnEnterDarkAlley()
+	StateTransition OnEnterDarkAlley()
 	{
 		auto location = GetDockedLocation().value();
 		auto data = data::game::island::DarkAlley::Read(location).value();
@@ -116,7 +116,7 @@ namespace game::avatar::Docked
 		};
 	}
 
-	DockedStateTransition OnDefeatRuffian()
+	StateTransition OnDefeatRuffian()
 	{
 		//TODO: add a message
 		return
@@ -127,7 +127,7 @@ namespace game::avatar::Docked
 		};
 	}
 
-	DockedStateTransition OnStartGambling()
+	StateTransition OnStartGambling()
 	{
 		//TODO: add a message
 		return
@@ -139,7 +139,7 @@ namespace game::avatar::Docked
 	}
 
 
-	const std::map<avatar::Action, std::map<avatar::State, std::function<DockedStateTransition()>>>& GetActionDescriptors();
+	const std::map<avatar::Action, std::map<avatar::State, std::function<StateTransition()>>>& GetActionDescriptors();
 
 	bool DoActionTransition(const avatar::Action& action)
 	{

@@ -1,21 +1,21 @@
 #include "Game.Avatar.Action.h"
 #include "Game.Avatar.State.h"
-#include "Game.Avatar.Docked.DockedStateTransition.h"
+#include "Game.Avatar.Docked.StateTransition.h"
 #include "Game.Colors.h"
 #include <functional>
 #include <map>
 namespace game::avatar::Docked
 {
-	DockedStateTransition OnEnterDarkAlley();
-	DockedStateTransition OnDefeatRuffian();
-	DockedStateTransition OnStartGambling();
+	StateTransition OnEnterDarkAlley();
+	StateTransition OnDefeatRuffian();
+	StateTransition OnStartGambling();
 
-	static std::function<DockedStateTransition()> DoTransition(const DockedStateTransition& transition)
+	static std::function<StateTransition()> DoTransition(const StateTransition& transition)
 	{
 		return [transition]() { return transition; };
 	}
 
-	const std::map<avatar::Action, std::map<avatar::State, std::function<DockedStateTransition()>>> actionDescriptors =
+	const std::map<avatar::Action, std::map<avatar::State, std::function<StateTransition()>>> actionDescriptors =
 	{
 		{
 			avatar::Action::ENTER_MARKET,
@@ -193,7 +193,7 @@ namespace game::avatar::Docked
 		}
 	};
 
-	const std::map<avatar::Action, std::map<avatar::State, std::function<DockedStateTransition()>>>& GetActionDescriptors()
+	const std::map<avatar::Action, std::map<avatar::State, std::function<StateTransition()>>>& GetActionDescriptors()
 	{
 		return actionDescriptors;
 	}

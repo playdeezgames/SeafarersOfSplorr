@@ -3,7 +3,7 @@
 #include <string>
 namespace game::avatar::Docked
 {
-	struct DockedStateTransition
+	struct StateTransition
 	{
 		std::string logColor;
 		std::string logText;
