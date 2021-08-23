@@ -2,10 +2,13 @@
 #include <Common.XY.h>
 #include <list>
 #include <optional>
-namespace data::game::island::Known
+namespace data::game::island
 {
-	void Write(const common::XY<double>&);
-	bool Read(const common::XY<double>&);
-	void Clear();
-	std::list<common::XY<double>> All();
+	struct Known
+	{
+		static void Write(const common::XY<double>&);
+		static bool Read(const common::XY<double>&);
+		static void Clear();
+		static std::list<common::XY<double>> All();
+	};
 }

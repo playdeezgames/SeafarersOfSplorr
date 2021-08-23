@@ -3,7 +3,7 @@
 #include "Data.Game.Island.Known.h"
 #include <format>
 #include <string>
-namespace data::game::island::Known
+namespace data::game::island
 {
 	static const std::string FIELD_X = "X";
 	static const std::string FIELD_Y = "Y";
@@ -15,14 +15,14 @@ namespace data::game::island::Known
 
 	static const auto AutoCreateKnownIslandsTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Write(const common::XY<double>& location)
+	void Known::Write(const common::XY<double>& location)
 	{
 		AutoCreateKnownIslandsTable();
 		auto query = std::format(REPLACE_ITEM, location.GetX(), location.GetY());
 		data::game::Common::Execute(query);
 	}
 
-	bool Read(const common::XY<double>& location)
+	bool Known::Read(const common::XY<double>& location)
 	{
 		AutoCreateKnownIslandsTable();
 		auto query = std::format(QUERY_ITEM, location.GetX(), location.GetY());
@@ -30,13 +30,13 @@ namespace data::game::island::Known
 		return !result.empty();
 	}
 
-	void Clear()
+	void Known::Clear()
 	{
 		AutoCreateKnownIslandsTable();
 		data::game::Common::Execute(DELETE_ALL);
 	}
 
-	std::list<common::XY<double>> All()
+	std::list<common::XY<double>> Known::All()
 	{
 		AutoCreateKnownIslandsTable();
 		auto query = std::format(QUERY_ALL);
@@ -51,5 +51,4 @@ namespace data::game::island::Known
 		}
 		return result;
 	}
-
 }
