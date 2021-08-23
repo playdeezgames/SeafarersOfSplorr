@@ -2,7 +2,7 @@
 #include "Data.Game.Avatar.Items.h"
 #include "Data.Game.Common.h"
 #include <format>
-namespace data::game::avatar::Items
+namespace data::game::avatar
 {
 	static const std::string FIELD_ITEM_ID = "ItemId";
 	static const std::string FIELD_ITEM_COUNT = "ItemCount";
@@ -15,7 +15,7 @@ namespace data::game::avatar::Items
 
 	static const auto AutoCreateAvatarItemsTable = data::game::Common::Run(CREATE_TABLE);
 
-	size_t Read(const int& itemId)
+	size_t Items::Read(const int& itemId)
 	{
 		AutoCreateAvatarItemsTable();
 		auto records =
@@ -28,7 +28,7 @@ namespace data::game::avatar::Items
 		return 0;
 	}
 
-	void Write(const int& itemId, const size_t& count)
+	void Items::Write(const int& itemId, const size_t& count)
 	{
 		AutoCreateAvatarItemsTable();
 		data::game::Common::Execute(std::format(DELETE_ITEM, data::game::Common::AVATAR_ID, itemId));
@@ -38,13 +38,13 @@ namespace data::game::avatar::Items
 		}
 	}
 
-	void Clear()
+	void Items::Clear()
 	{
 		AutoCreateAvatarItemsTable();
 		data::game::Common::Execute(DELETE_ALL);
 	}
 
-	std::map<int, size_t> ReadAll()
+	std::map<int, size_t> Items::ReadAll()
 	{
 		std::map<int, size_t> result;
 		auto records =
@@ -55,5 +55,4 @@ namespace data::game::avatar::Items
 		}
 		return result;
 	}
-
 }

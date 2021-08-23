@@ -1,6 +1,10 @@
 #pragma once
-namespace data::game::avatar::Ship
+namespace data::game::avatar
 {
-	void Write(int);
-	int Read();
+	class Ship
+	{
+	public:
+		static void Write(int);
+		static int Read();
+	};
 }

@@ -2,17 +2,20 @@
 #include <Common.XY.h>
 #include <optional>
 #include <string>
-namespace data::game::avatar::Quest
+namespace data::game::avatar
 {
-	struct QuestData
+	class Quest
 	{
-		common::XY<double> destination;
-		double reward;
-		std::string itemName;
-		std::string personName;
-		std::string professionName;
+	public:
+		struct Data
+		{
+			common::XY<double> destination;
+			double reward;
+			std::string itemName;
+			std::string personName;
+			std::string professionName;
+		};
+		static void Write(const std::optional<Data>&);
+		static std::optional<Data> Read();
 	};
-
-	void Write(const std::optional<QuestData>&);
-	std::optional<QuestData> Read();
 }

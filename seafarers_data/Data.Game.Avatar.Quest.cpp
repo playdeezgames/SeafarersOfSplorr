@@ -2,7 +2,7 @@
 #include "Data.Game.Avatar.Quest.h"
 #include "Data.Game.Common.h"
 #include <format>
-namespace data::game::avatar::Quest
+namespace data::game::avatar
 {
 	static const std::string FIELD_DESTINATION_X = "DestinationX";
 	static const std::string FIELD_DESTINATION_Y = "DestinationY";
@@ -17,7 +17,7 @@ namespace data::game::avatar::Quest
 
 	static const auto AutoCreateAvatarQuestTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Write(const std::optional<QuestData>& data)
+	void Quest::Write(const std::optional<Data>& data)
 	{
 		AutoCreateAvatarQuestTable();
 		if (data)
@@ -38,7 +38,7 @@ namespace data::game::avatar::Quest
 		}
 	}
 
-	std::optional<QuestData> Read()
+	std::optional<Quest::Data> Quest::Read()
 	{
 		AutoCreateAvatarQuestTable();
 		auto records = data::game::Common::Execute(
@@ -46,7 +46,7 @@ namespace data::game::avatar::Quest
 		if (!records.empty())
 		{
 			auto& record = records.front();
-			return std::optional<QuestData>({
+			return std::optional<Data>({
 					{common::Data::ToDouble(record[FIELD_DESTINATION_X]),common::Data::ToDouble(record[FIELD_DESTINATION_Y])},
 					common::Data::ToDouble(record[FIELD_REWARD]),
 					record[FIELD_ITEM_NAME],

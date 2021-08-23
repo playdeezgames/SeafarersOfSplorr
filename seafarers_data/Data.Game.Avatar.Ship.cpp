@@ -2,7 +2,7 @@
 #include "Data.Game.Avatar.Ship.h"
 #include "Data.Game.Common.h"
 #include <format>
-namespace data::game::avatar::Ship
+namespace data::game::avatar
 {
 	static const std::string FIELD_SHIP_ID = "ShipId";
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarShips]([AvatarId] INT NOT NULL UNIQUE, [ShipId] INT NOT NULL);";
@@ -11,13 +11,13 @@ namespace data::game::avatar::Ship
 
 	static const auto AutoCreateAvatarShipTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Write(int ship)
+	void Ship::Write(int ship)
 	{
 		AutoCreateAvatarShipTable();
 		data::game::Common::Execute(std::format(REPLACE_ITEM, data::game::Common::AVATAR_ID, ship));
 	}
 
-	int Read()
+	int Ship::Read()
 	{
 		AutoCreateAvatarShipTable();
 		auto records = data::game::Common::Execute(std::format(QUERY_ITEM, data::game::Common::AVATAR_ID));

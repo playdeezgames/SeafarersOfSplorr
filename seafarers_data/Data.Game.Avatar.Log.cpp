@@ -2,7 +2,7 @@
 #include "Data.Game.Avatar.Log.h"
 #include "Data.Game.Common.h"
 #include <format>
-namespace data::game::avatar::Log
+namespace data::game::avatar
 {
 	static const std::string FIELD_LOG_COLOR = "LogColor";
 	static const std::string FIELD_LOG_TEXT = "LogText";
@@ -13,19 +13,19 @@ namespace data::game::avatar::Log
 
 	static const auto AutoCreateAvatarLogTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Clear()
+	void Log::Clear()
 	{
 		AutoCreateAvatarLogTable();
 		Common::Execute(std::format(DELETE_ALL, Common::AVATAR_ID));
 	}
 
-	void Write(const std::string& color, const std::string& text)
+	void Log::Write(const std::string& color, const std::string& text)
 	{
 		AutoCreateAvatarLogTable();
 		Common::Execute(std::format(INSERT_ITEM, Common::AVATAR_ID, common::Data::QuoteString(color), common::Data::QuoteString(text)));
 	}
 
-	std::list<std::tuple<std::string, std::string>> Read(size_t entryCount)
+	std::list<std::tuple<std::string, std::string>> Log::Read(size_t entryCount)
 	{
 		AutoCreateAvatarLogTable();
 		std::list<std::tuple<std::string, std::string>> results;

@@ -1,9 +1,13 @@
 #pragma once
 #include <map>
-namespace data::game::avatar::Items
+namespace data::game::avatar
 {
-	size_t Read(const int&);
-	std::map<int, size_t> ReadAll();
-	void Write(const int&, const size_t&);
-	void Clear();
+	class Items
+	{
+	public:
+		static size_t Read(const int&);
+		static std::map<int, size_t> ReadAll();
+		static void Write(const int&, const size_t&);
+		static void Clear();
+	};
 }
