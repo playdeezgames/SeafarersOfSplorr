@@ -71,7 +71,7 @@ namespace game::avatar::Docked
 		return false;
 	}
 
-	std::optional<game::avatar::State> GetDockedState()
+	std::optional<game::avatar::State> GetState()
 	{
 		auto state = data::game::avatar::Dock::GetState();
 		if (state)
@@ -143,7 +143,7 @@ namespace game::avatar::Docked
 
 	bool DoActionTransition(const avatar::DockedAction& action)
 	{
-		auto dockedState = GetDockedState();
+		auto dockedState = GetState();
 		if (dockedState)
 		{
 			auto descriptor = GetActionDescriptors().find(action);

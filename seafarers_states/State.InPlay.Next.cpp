@@ -46,7 +46,7 @@ namespace state::in_play::Next
 			}
 		}
 		game::AutoSave();
-		auto dockedState = game::avatar::Docked::GetDockedState();
+		auto dockedState = game::avatar::Docked::GetState();
 		if (dockedState)
 		{
 			auto iter = dockedStateTable.find(dockedState.value());
