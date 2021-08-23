@@ -1,14 +1,17 @@
 #pragma once
 #include <optional>
-namespace data::game::avatar::Statistics
+namespace data::game::avatar
 {
-	struct StatisticData
+	class Statistics
 	{
-		std::optional<double> minimum;
-		std::optional<double> maximum;
-		double current;
+	public:
+		struct Data
+		{
+			std::optional<double> minimum;
+			std::optional<double> maximum;
+			double current;
+		};
+		static void Write(int, const Data&);
+		static std::optional<Data> Read(int);
 	};
-
-	void Write(int, const StatisticData&);
-	std::optional<StatisticData> Read(int);
 }

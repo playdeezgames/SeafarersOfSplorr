@@ -3,7 +3,7 @@
 #include "Data.Game.Common.h"
 #include <format>
 #include <string>
-namespace data::game::avatar::Statistics
+namespace data::game::avatar
 {
 	static const std::string FIELD_MINIMUM = "Minimum";
 	static const std::string FIELD_MAXIMUM = "Maximum";
@@ -14,14 +14,14 @@ namespace data::game::avatar::Statistics
 
 	static const auto AutoCreateAvatarStatisticsTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Write(int statisticId, const StatisticData& data)
+	void Statistics::Write(int statisticId, const Data& data)
 	{
 		AutoCreateAvatarStatisticsTable();
 		auto query = std::format(REPLACE_ITEM, statisticId, common::Data::OfOptional(data.minimum), common::Data::OfOptional(data.maximum), data.current);
 		data::game::Common::Execute(query);
 	}
 
-	std::optional<StatisticData> Read(int statisticId)
+	std::optional<Statistics::Data> Statistics::Read(int statisticId)
 	{
 		AutoCreateAvatarStatisticsTable();
 		auto query = std::format(QUERY_ITEM, statisticId);
@@ -29,7 +29,7 @@ namespace data::game::avatar::Statistics
 		if (!result.empty())
 		{
 			auto record = result.front();
-			return std::optional<StatisticData>(
+			return std::optional<Data>(
 			{
 				common::Data::ToOptionalDouble(record[FIELD_MINIMUM]),
 				common::Data::ToOptionalDouble(record[FIELD_MAXIMUM]),
@@ -38,5 +38,4 @@ namespace data::game::avatar::Statistics
 		}
 		return std::nullopt;
 	}
-
 }
