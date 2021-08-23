@@ -10,9 +10,10 @@ namespace data::game::Avatar
 	const std::string FIELD_Y = "Y";
 	const std::string FIELD_HEADING = "Heading";
 	const std::string FIELD_SPEED = "Speed";
-	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Avatars]([AvatarId] INT NOT NULL UNIQUE,[X] REAL NOT NULL,[Y] REAL NOT NULL,[Heading] REAL NOT NULL,[Speed] REAL NOT NULL);";
-	const std::string QUERY_ITEM= "SELECT [X], [Y], [Heading], [Speed] FROM [Avatars] WHERE [AvatarId] = {};";
-	const std::string REPLACE_ITEM = "REPLACE INTO [Avatars]([AvatarId],[X],[Y],[Heading],[Speed]) VALUES ({},{},{},{},{});";
+	const std::string FIELD_STATE = "State";
+	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Avatars]([AvatarId] INT NOT NULL UNIQUE,[X] REAL NOT NULL,[Y] REAL NOT NULL,[Heading] REAL NOT NULL,[Speed] REAL NOT NULL, [State] INT NOT NULL);";
+	const std::string QUERY_ITEM= "SELECT [X], [Y], [Heading], [Speed], [State] FROM [Avatars] WHERE [AvatarId] = {};";
+	const std::string REPLACE_ITEM = "REPLACE INTO [Avatars]([AvatarId],[X],[Y],[Heading],[Speed],[State]) VALUES ({},{},{},{},{},{});";
 
 	const auto AutoCreateAvatarTable = data::game::Common::Run(CREATE_TABLE);
 
@@ -33,7 +34,8 @@ namespace data::game::Avatar
 					common::Data::ToDouble(record.find(FIELD_Y)->second)
 				},
 				common::Data::ToDouble(record.find(FIELD_HEADING)->second),
-				common::Data::ToDouble(record.find(FIELD_SPEED)->second)
+				common::Data::ToDouble(record.find(FIELD_SPEED)->second),
+				common::Data::ToInt(record.find(FIELD_STATE)->second)
 			};
 			return data;
 		}
@@ -50,6 +52,7 @@ namespace data::game::Avatar
 				avatarData.location.GetX(),
 				avatarData.location.GetY(),
 				avatarData.heading,
-				avatarData.speed));
+				avatarData.speed,
+				avatarData.state));
 	}
 }

@@ -6,6 +6,7 @@
 #include <Application.UIState.h>
 #include <format>
 #include <Game.Audio.Mux.h>
+#include <Game.Avatar.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
@@ -25,7 +26,7 @@ namespace state::in_play::DarkAlley
 		visuals::Confirmations::Write(
 			{
 				"Leave Dark Alley?",
-				[]() { game::avatar::Docked::DoAction(game::avatar::Action::ENTER_DOCK); },
+				[]() { game::avatar::DoAction(game::avatar::Action::ENTER_DOCK); },
 				[]() {}
 			});
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
@@ -42,7 +43,7 @@ namespace state::in_play::DarkAlley
 	{
 		if (GetMoney() >= GetMinimumWager())
 		{
-			game::avatar::Docked::DoAction(game::avatar::Action::START_GAMBLING);
+			game::avatar::DoAction(game::avatar::Action::START_GAMBLING);
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			return;
 		}

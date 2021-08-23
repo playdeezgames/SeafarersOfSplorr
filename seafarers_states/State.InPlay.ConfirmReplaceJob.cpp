@@ -6,6 +6,7 @@
 #include <Application.UIState.h>
 #include <Common.Utility.h>
 #include <Game.Audio.Mux.h>
+#include <Game.Avatar.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Quest.h>
 #include "UIState.h"
@@ -26,13 +27,13 @@ namespace state::in_play::ConfirmReplaceJob
 	{
 		game::avatar::Quest::AbandonQuest();
 		game::avatar::Quest::AcceptQuest(game::avatar::Docked::GetDockedLocation().value());
-		game::avatar::Docked::DoAction(game::avatar::Action::ENTER_DOCK);
+		game::avatar::DoAction(game::avatar::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnNo()
 	{
-		game::avatar::Docked::DoAction(game::avatar::Action::ENTER_DOCK);
+		game::avatar::DoAction(game::avatar::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

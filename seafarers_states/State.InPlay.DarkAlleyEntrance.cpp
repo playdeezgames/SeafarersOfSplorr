@@ -7,6 +7,7 @@
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Audio.Sfx.h>
+#include <Game.Avatar.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Islands.DarkAlley.h>
@@ -43,7 +44,7 @@ namespace state::in_play::DarkAlleyEntrance
 
 	static void OnLeave()
 	{
-		game::avatar::Docked::DoAction(game::avatar::Action::ENTER_DOCK);
+		game::avatar::DoAction(game::avatar::Action::ENTER_DOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -351,14 +352,14 @@ namespace state::in_play::DarkAlleyEntrance
 			case FightResult::WIN:
 				IncreaseInfamy();
 				IncreaseBrawling();
-				game::avatar::Docked::DoAction(game::avatar::Action::DEFEAT_RUFFIAN);
+				game::avatar::DoAction(game::avatar::Action::DEFEAT_RUFFIAN);
 				application::UIState::Write(::UIState::IN_PLAY_NEXT);
 				break;
 			}
 			return true;
 		}
 		game::avatar::Statistics::ChangeMoney(-game::avatar::Statistics::GetMoney()/2.0);
-		game::avatar::Docked::DoAction(game::avatar::Action::ENTER_DOCK);
+		game::avatar::DoAction(game::avatar::Action::ENTER_DOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		return true;
 	}

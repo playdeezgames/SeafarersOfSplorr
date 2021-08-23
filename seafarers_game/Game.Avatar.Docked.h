@@ -17,6 +17,4 @@ namespace game::avatar::Docked
 	std::optional<DockResult> Dock();
 	std::optional<common::XY<double>> GetDockedLocation();
 
-	bool DoAction(const avatar::Action&);
-	std::optional<game::avatar::State> GetState();
 }

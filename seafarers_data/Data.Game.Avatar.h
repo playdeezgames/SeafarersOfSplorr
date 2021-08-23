@@ -8,6 +8,7 @@ namespace data::game::Avatar
 		common::XY<double> location;
 		double heading;
 		double speed;
+		int state;
 	};
 
 	void Write(const AvatarData&);

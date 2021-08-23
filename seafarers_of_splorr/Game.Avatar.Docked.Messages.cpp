@@ -1,7 +1,7 @@
 #pragma once
 #include <Game.Colors.h>
 #include <Visuals.Messages.h>
-namespace game::avatar::Docked
+namespace game::avatar
 {
 	void OnEnterDarkAlleyFailsInfamyRequirement()
 	{

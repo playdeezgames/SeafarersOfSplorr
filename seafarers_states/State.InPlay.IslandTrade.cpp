@@ -8,6 +8,7 @@
 #include <Data.JSON.Stores.h>
 #include <format>
 #include <Game.Audio.Mux.h>
+#include <Game.Avatar.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Islands.h>
 #include "UIState.h"
@@ -28,19 +29,19 @@ namespace state::in_play::IslandTrade
 
 	static void OnBuy()
 	{
-		game::avatar::Docked::DoAction(game::avatar::Action::MARKET_BUY);
+		game::avatar::DoAction(game::avatar::Action::MARKET_BUY);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnSell()
 	{
-		game::avatar::Docked::DoAction(game::avatar::Action::MARKET_SELL);
+		game::avatar::DoAction(game::avatar::Action::MARKET_SELL);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnLeave()
 	{
-		game::avatar::Docked::DoAction(game::avatar::Action::ENTER_DOCK);
+		game::avatar::DoAction(game::avatar::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

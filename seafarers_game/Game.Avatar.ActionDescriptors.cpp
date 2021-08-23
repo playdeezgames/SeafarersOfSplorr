@@ -1,14 +1,60 @@
+#include <Data.Game.Island.DarkAlley.h>
 #include "Game.Avatar.Action.h"
+#include "Game.Avatar.Docked.h"
 #include "Game.Avatar.State.h"
 #include "Game.Avatar.StateTransition.h"
+#include "Game.Avatar.Statistics.h"
 #include "Game.Colors.h"
 #include <functional>
 #include <map>
-namespace game::avatar::Docked
+namespace game::avatar
 {
-	StateTransition OnEnterDarkAlley();
-	StateTransition OnDefeatRuffian();
-	StateTransition OnStartGambling();
+	void OnEnterDarkAlleyFailsInfamyRequirement();
+
+	StateTransition OnEnterDarkAlley()
+	{
+		auto location = game::avatar::Docked::GetDockedLocation().value();
+		auto data = data::game::island::DarkAlley::Read(location).value();
+		auto infamy = game::avatar::Statistics::GetInfamy();
+		if (infamy < data.infamyRequirement)
+		{
+			OnEnterDarkAlleyFailsInfamyRequirement();
+			return
+			{
+				game::Colors::GREEN,
+				"You enter dark alley.",
+				avatar::State::DARK_ALLEY_ENTRANCE
+			};
+		}
+		return
+		{
+			game::Colors::GREEN,
+			"You enter dark alley.",
+			avatar::State::DARK_ALLEY
+		};
+	}
+
+	StateTransition OnDefeatRuffian()
+	{
+		//TODO: add a message
+		return
+		{
+			game::Colors::GREEN,
+			"You enter the dark alley.",
+			avatar::State::DARK_ALLEY
+		};
+	}
+
+	StateTransition OnStartGambling()
+	{
+		//TODO: add a message
+		return
+		{
+			game::Colors::GREEN,
+			"You approach some shady characters playing a card game.",
+			avatar::State::GAMBLE_START
+		};
+	}
 
 	static std::function<StateTransition()> DoTransition(const StateTransition& transition)
 	{

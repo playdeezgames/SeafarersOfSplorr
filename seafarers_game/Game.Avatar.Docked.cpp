@@ -58,7 +58,7 @@ namespace game::avatar::Docked
 
 	const std::string FORMAT_UNDOCK = "You undock from {}.";
 
-	static bool Undock(const avatar::Action&)
+	bool Undock(const avatar::Action&)
 	{
 		auto location = GetDockedLocation();
 		if (location.has_value())
@@ -71,111 +71,5 @@ namespace game::avatar::Docked
 		return false;
 	}
 
-	std::optional<game::avatar::State> GetState()
-	{
-		auto state = data::game::avatar::Dock::GetState();
-		if (state)
-		{
-			return (game::avatar::State)state.value();
-		}
-		return std::nullopt;
-	}
-
-	static bool SetDockedState(const game::avatar::State& dockedState)
-	{
-		auto location = GetDockedLocation();
-		if (location)
-		{
-			data::game::avatar::Dock::SetLocation(location.value(), (int)dockedState);
-		}
-		return false;
-	}
-
-	void OnEnterDarkAlleyFailsInfamyRequirement();
-
-	StateTransition OnEnterDarkAlley()
-	{
-		auto location = GetDockedLocation().value();
-		auto data = data::game::island::DarkAlley::Read(location).value();
-		auto infamy = game::avatar::Statistics::GetInfamy();
-		if (infamy < data.infamyRequirement)
-		{
-			OnEnterDarkAlleyFailsInfamyRequirement();
-			return 
-			{
-				game::Colors::GREEN,
-				"You enter dark alley.",
-				avatar::State::DARK_ALLEY_ENTRANCE
-			};
-		}
-		return
-		{
-			game::Colors::GREEN,
-			"You enter dark alley.",
-			avatar::State::DARK_ALLEY
-		};
-	}
-
-	StateTransition OnDefeatRuffian()
-	{
-		//TODO: add a message
-		return
-		{
-			game::Colors::GREEN,
-			"You enter the dark alley.",
-			avatar::State::DARK_ALLEY
-		};
-	}
-
-	StateTransition OnStartGambling()
-	{
-		//TODO: add a message
-		return
-		{
-			game::Colors::GREEN,
-			"You approach some shady characters playing a card game.",
-			avatar::State::GAMBLE_START
-		};
-	}
-
-
-	const std::map<avatar::Action, std::map<avatar::State, std::function<StateTransition()>>>& GetActionDescriptors();
-
-	bool DoActionTransition(const avatar::Action& action)
-	{
-		auto dockedState = GetState();
-		if (dockedState)
-		{
-			auto descriptor = GetActionDescriptors().find(action);
-			if (descriptor != GetActionDescriptors().end())
-			{
-				auto transition = descriptor->second.find(dockedState.value());
-				{
-					if (transition != descriptor->second.end())
-					{
-						auto result = transition->second();
-						avatar::Log::Write({ result.logColor, result.logText });
-						SetDockedState(result.dockedState);
-					}
-				}
-			}
-		}
-		return false;
-	}
-
-	const std::map<avatar::Action, std::function<bool(const avatar::Action&)>> dockedActions =
-	{
-		{ avatar::Action::UNDOCK, Undock}
-	};
-
-	bool DoAction(const avatar::Action& action)
-	{
-		auto iter = dockedActions.find(action);
-		if (iter != dockedActions.end())
-		{
-			return iter->second(action);
-		}
-		return DoActionTransition(action);
-	}
 
 }

@@ -21,5 +21,4 @@ namespace game::avatar::AtSea
 		CLAMPED
 	};
 	MoveResult Move();
-	std::optional<game::avatar::AtSeaState> GetState();
 }

@@ -1,6 +1,7 @@
 #include <Application.OnEnter.h>
 #include <Application.UIState.h>
 #include <Game.h>
+#include <Game.Avatar.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Statistics.h>
 #include <Visuals.Confirmations.h>
@@ -46,7 +47,7 @@ namespace state::in_play::Next
 			}
 		}
 		game::AutoSave();
-		auto dockedState = game::avatar::Docked::GetState();
+		auto dockedState = game::avatar::GetState();
 		if (dockedState)
 		{
 			auto iter = dockedStateTable.find(dockedState.value());

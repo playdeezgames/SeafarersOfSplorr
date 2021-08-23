@@ -144,10 +144,4 @@ namespace game::avatar::AtSea
 		data::game::Avatar::Write(avatar);
 		return result;
 	}
-
-	std::optional<game::avatar::AtSeaState> GetState()
-	{
-		return std::nullopt;
-	}
-
 }
