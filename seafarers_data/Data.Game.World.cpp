@@ -4,7 +4,7 @@
 #include "Data.Game.World.h"
 #include <format>
 #include <string>
-namespace data::game::World
+namespace data::game
 {
 	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Worlds]([WorldId] INT NOT NULL UNIQUE,[Version] INT NOT NULL,[Width] REAL NOT NULL,[Height] REAL NOT NULL,[MinimumIslandDistance] REAL NOT NULL,[ViewDistance] REAL NOT NULL,[DockDistance] REAL NOT NULL,[WindHeading] REAL NOT NULL);";
 	const std::string QUERY_ITEM = "SELECT [Version],[Width],[Height],[MinimumIslandDistance],[ViewDistance],[DockDistance],[WindHeading] FROM [Worlds] WHERE [WorldId] = {};";
@@ -20,7 +20,7 @@ namespace data::game::World
 
 	const auto AutoCreateWorldsTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Write(const Data& data)
+	void World::Write(const World::Data& data)
 	{
 		AutoCreateWorldsTable();
 		data::game::Common::Execute(
@@ -35,7 +35,7 @@ namespace data::game::World
 				data.windHeading));
 	}
 
-	std::optional<Data> Read()
+	std::optional<World::Data> World::Read()
 	{
 		AutoCreateWorldsTable();
 		auto result = data::game::Common::Execute(std::format(QUERY_ITEM, WORLD_ID));
