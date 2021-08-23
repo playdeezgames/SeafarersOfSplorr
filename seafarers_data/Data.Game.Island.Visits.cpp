@@ -5,16 +5,16 @@
 #include <format>
 namespace data::game::island::Visits
 {
-	const std::string FIELD_X = "X";
-	const std::string FIELD_Y = "Y";
-	const std::string FIELD_VISITS = "Visits";
-	const std::string FIELD_TURN = "Turn";
-	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandVisits]([X] REAL NOT NULL, [Y] REAL NOT NULL, [Visits] INT NOT NULL, [Turn] INT NULL, UNIQUE([X],[Y]));";
-	const std::string QUERY_ITEM = "SELECT [X],[Y],[Visits],[Turn] FROM [IslandVisits] WHERE [X]={:.4f} AND  [Y]={:.4f};";
-	const std::string REPLACE_ITEM = "REPLACE INTO [IslandVisits]([X],[Y],[Visits],[Turn]) VALUES({:.4f},{:.4f},{},{});";
-	const std::string DELETE_ALL = "DELETE FROM [IslandVisits];";
+	static const std::string FIELD_X = "X";
+	static const std::string FIELD_Y = "Y";
+	static const std::string FIELD_VISITS = "Visits";
+	static const std::string FIELD_TURN = "Turn";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandVisits]([X] REAL NOT NULL, [Y] REAL NOT NULL, [Visits] INT NOT NULL, [Turn] INT NULL, UNIQUE([X],[Y]));";
+	static const std::string QUERY_ITEM = "SELECT [X],[Y],[Visits],[Turn] FROM [IslandVisits] WHERE [X]={:.4f} AND  [Y]={:.4f};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [IslandVisits]([X],[Y],[Visits],[Turn]) VALUES({:.4f},{:.4f},{},{});";
+	static const std::string DELETE_ALL = "DELETE FROM [IslandVisits];";
 
-	const auto AutoCreateIslandVisitsTable = data::game::Common::Run(CREATE_TABLE);
+	static const auto AutoCreateIslandVisitsTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Write(const VisitData& data)
 	{

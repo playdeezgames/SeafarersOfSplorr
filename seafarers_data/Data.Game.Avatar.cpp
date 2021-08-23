@@ -4,20 +4,20 @@
 #include "Data.Game.Common.h"
 #include <format>
 #include <optional>
-namespace data::game::Avatar
+namespace data::game
 {
-	const std::string FIELD_X = "X";
-	const std::string FIELD_Y = "Y";
-	const std::string FIELD_HEADING = "Heading";
-	const std::string FIELD_SPEED = "Speed";
-	const std::string FIELD_STATE = "State";
-	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Avatars]([AvatarId] INT NOT NULL UNIQUE,[X] REAL NOT NULL,[Y] REAL NOT NULL,[Heading] REAL NOT NULL,[Speed] REAL NOT NULL, [State] INT NOT NULL);";
-	const std::string QUERY_ITEM= "SELECT [X], [Y], [Heading], [Speed], [State] FROM [Avatars] WHERE [AvatarId] = {};";
-	const std::string REPLACE_ITEM = "REPLACE INTO [Avatars]([AvatarId],[X],[Y],[Heading],[Speed],[State]) VALUES ({},{},{},{},{},{});";
+	static const std::string FIELD_X = "X";
+	static const std::string FIELD_Y = "Y";
+	static const std::string FIELD_HEADING = "Heading";
+	static const std::string FIELD_SPEED = "Speed";
+	static const std::string FIELD_STATE = "State";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Avatars]([AvatarId] INT NOT NULL UNIQUE,[X] REAL NOT NULL,[Y] REAL NOT NULL,[Heading] REAL NOT NULL,[Speed] REAL NOT NULL, [State] INT NOT NULL);";
+	static const std::string QUERY_ITEM= "SELECT [X], [Y], [Heading], [Speed], [State] FROM [Avatars] WHERE [AvatarId] = {};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [Avatars]([AvatarId],[X],[Y],[Heading],[Speed],[State]) VALUES ({},{},{},{},{},{});";
 
-	const auto AutoCreateAvatarTable = data::game::Common::Run(CREATE_TABLE);
+	static const auto AutoCreateAvatarTable = data::game::Common::Run(CREATE_TABLE);
 
-	std::optional<AvatarData> Read()
+	std::optional<Avatar::Data> Avatar::Read()
 	{
 		AutoCreateAvatarTable();
 		auto result = data::game::Common::Execute(
@@ -27,7 +27,7 @@ namespace data::game::Avatar
 		if (!result.empty())
 		{
 			const auto& record = result.front();
-			AvatarData data =
+			Data data =
 			{
 				{
 					common::Data::ToDouble(record.find(FIELD_X)->second),
@@ -42,7 +42,7 @@ namespace data::game::Avatar
 		return std::nullopt;
 	}
 
-	void Write(const AvatarData& avatarData)
+	void Avatar::Write(const Avatar::Data& avatarData)
 	{
 		AutoCreateAvatarTable();
 		data::game::Common::Execute(
@@ -56,7 +56,7 @@ namespace data::game::Avatar
 				avatarData.state));
 	}
 
-	void SetState(int state)
+	void Avatar::SetState(int state)
 	{
 		AutoCreateAvatarTable();
 		auto data = Read();
@@ -67,7 +67,7 @@ namespace data::game::Avatar
 		}
 	}
 
-	std::optional<int> GetState()
+	std::optional<int> Avatar::GetState()
 	{
 		AutoCreateAvatarTable();
 		auto data = Read();

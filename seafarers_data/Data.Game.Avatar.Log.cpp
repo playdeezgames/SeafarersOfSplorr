@@ -4,14 +4,14 @@
 #include <format>
 namespace data::game::avatar::Log
 {
-	const std::string FIELD_LOG_COLOR = "LogColor";
-	const std::string FIELD_LOG_TEXT = "LogText";
-	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarLogs]([LogId] INTEGER PRIMARY KEY AUTOINCREMENT, [AvatarId] INT NOT NULL, [LogColor] TEXT NOT NULL, [LogText] TEXT NOT NULL);";
-	const std::string DELETE_ALL = "DELETE FROM [AvatarLogs] WHERE [AvatarId]={};";
-	const std::string QUERY_ALL = "SELECT [LogColor], [LogText] FROM [AvatarLogs] WHERE [AvatarId]={} ORDER BY [LogId] DESC LIMIT {};";
-	const std::string INSERT_ITEM = "INSERT INTO [AvatarLogs]([AvatarId],[LogColor],[LogText]) VALUES({},{},{});";
+	static const std::string FIELD_LOG_COLOR = "LogColor";
+	static const std::string FIELD_LOG_TEXT = "LogText";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarLogs]([LogId] INTEGER PRIMARY KEY AUTOINCREMENT, [AvatarId] INT NOT NULL, [LogColor] TEXT NOT NULL, [LogText] TEXT NOT NULL);";
+	static const std::string DELETE_ALL = "DELETE FROM [AvatarLogs] WHERE [AvatarId]={};";
+	static const std::string QUERY_ALL = "SELECT [LogColor], [LogText] FROM [AvatarLogs] WHERE [AvatarId]={} ORDER BY [LogId] DESC LIMIT {};";
+	static const std::string INSERT_ITEM = "INSERT INTO [AvatarLogs]([AvatarId],[LogColor],[LogText]) VALUES({},{},{});";
 
-	const auto AutoCreateAvatarLogTable = data::game::Common::Run(CREATE_TABLE);
+	static const auto AutoCreateAvatarLogTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Clear()
 	{

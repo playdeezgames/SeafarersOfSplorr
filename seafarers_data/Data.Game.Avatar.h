@@ -1,18 +1,21 @@
 #pragma once
 #include <Common.XY.h>
 #include <optional>
-namespace data::game::Avatar
+namespace data::game
 {
-	struct AvatarData
+	class Avatar 
 	{
-		common::XY<double> location;
-		double heading;
-		double speed;
-		int state;
+	public:
+		struct Data
+		{
+			common::XY<double> location;
+			double heading;
+			double speed;
+			int state;
+		};
+		static void Write(const Data&);
+		static std::optional<Data> Read();
+		static void SetState(int);
+		static std::optional<int> GetState();
 	};
-
-	void Write(const AvatarData&);
-	std::optional<AvatarData> Read();
-	void SetState(int);
-	std::optional<int> GetState();
 }

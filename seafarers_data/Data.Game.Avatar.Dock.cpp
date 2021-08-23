@@ -5,14 +5,14 @@
 #include <string>
 namespace data::game::avatar
 {
-	const std::string FIELD_X = "X";
-	const std::string FIELD_Y = "Y";
-	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarDocks]([AvatarId] INT NOT NULL UNIQUE,[X] REAL NOT NULL,[Y] REAL NOT NULL);";
-	const std::string QUERY_ITEM = "SELECT [X], [Y] FROM [AvatarDocks] WHERE [AvatarId] = {};";
-	const std::string REPLACE_ITEM = "REPLACE INTO [AvatarDocks]([AvatarId],[X],[Y]) VALUES({},{},{});";
-	const std::string DELETE_ITEM = "DELETE FROM [AvatarDocks] WHERE [AvatarId] = {};";
+	static const std::string FIELD_X = "X";
+	static const std::string FIELD_Y = "Y";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarDocks]([AvatarId] INT NOT NULL UNIQUE,[X] REAL NOT NULL,[Y] REAL NOT NULL);";
+	static const std::string QUERY_ITEM = "SELECT [X], [Y] FROM [AvatarDocks] WHERE [AvatarId] = {};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [AvatarDocks]([AvatarId],[X],[Y]) VALUES({},{},{});";
+	static const std::string DELETE_ITEM = "DELETE FROM [AvatarDocks] WHERE [AvatarId] = {};";
 
-	const auto AutoCreateAvatarDockTable = data::game::Common::Run(CREATE_TABLE);
+	static const auto AutoCreateAvatarDockTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Dock::ClearLocation()
 	{

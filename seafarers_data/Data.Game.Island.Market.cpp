@@ -4,20 +4,20 @@
 #include <format>
 namespace data::game::island::Market
 {
-	const std::string FIELD_X = "X";
-	const std::string FIELD_Y = "Y";
-	const std::string FIELD_COMMODITY_ID = "CommodityId";
-	const std::string FIELD_SUPPLY = "Supply";
-	const std::string FIELD_DEMAND = "Demand";
-	const std::string FIELD_PURCHASES = "Purchases";
-	const std::string FIELD_SALES = "Sales";
-	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandMarkets]([X] REAL NOT NULL, [Y] REAL NOT NULL, [CommodityId] INT NOT NULL,[Supply] REAL NOT NULL, [Demand] REAL NOT NULL, [Purchases] REAL NOT NULL, [Sales] REAL NOT NULL, UNIQUE([X],[Y],[CommodityId]));";
-	const std::string REPLACE_ITEM = "REPLACE INTO [IslandMarkets]([X],[Y],[CommodityId],[Supply],[Demand],[Purchases],[Sales]) VALUES ({:.4f},{:.4f},{},{},{},{},{})";
-	const std::string QUERY_ITEM = "SELECT [Supply], [Demand], [Purchases], [Sales] FROM [IslandMarkets] WHERE [X]={:.4f} AND [Y]={:.4f} AND [CommodityId]={};";
-	const std::string QUERY_ALL = "SELECT [CommodityId], [Supply], [Demand], [Purchases], [Sales] FROM [IslandMarkets] WHERE [X]={:.4f} AND [Y]={:.4f};";
-	const std::string DELETE_ALL = "DELETE FROM [IslandMarkets];";
+	static const std::string FIELD_X = "X";
+	static const std::string FIELD_Y = "Y";
+	static const std::string FIELD_COMMODITY_ID = "CommodityId";
+	static const std::string FIELD_SUPPLY = "Supply";
+	static const std::string FIELD_DEMAND = "Demand";
+	static const std::string FIELD_PURCHASES = "Purchases";
+	static const std::string FIELD_SALES = "Sales";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandMarkets]([X] REAL NOT NULL, [Y] REAL NOT NULL, [CommodityId] INT NOT NULL,[Supply] REAL NOT NULL, [Demand] REAL NOT NULL, [Purchases] REAL NOT NULL, [Sales] REAL NOT NULL, UNIQUE([X],[Y],[CommodityId]));";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [IslandMarkets]([X],[Y],[CommodityId],[Supply],[Demand],[Purchases],[Sales]) VALUES ({:.4f},{:.4f},{},{},{},{},{})";
+	static const std::string QUERY_ITEM = "SELECT [Supply], [Demand], [Purchases], [Sales] FROM [IslandMarkets] WHERE [X]={:.4f} AND [Y]={:.4f} AND [CommodityId]={};";
+	static const std::string QUERY_ALL = "SELECT [CommodityId], [Supply], [Demand], [Purchases], [Sales] FROM [IslandMarkets] WHERE [X]={:.4f} AND [Y]={:.4f};";
+	static const std::string DELETE_ALL = "DELETE FROM [IslandMarkets];";
 
-	const auto AutoCreateIslandMarketsTable = data::game::Common::Run(CREATE_TABLE);
+	static const auto AutoCreateIslandMarketsTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Write(const common::XY<double>& location, int commodityId, const MarketData& data)
 	{

@@ -5,14 +5,14 @@
 #include <string>
 namespace data::game::avatar::Statistics
 {
-	const std::string FIELD_MINIMUM = "Minimum";
-	const std::string FIELD_MAXIMUM = "Maximum";
-	const std::string FIELD_CURRENT = "Current";
-	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarStatistics]([StatisticId] INT NOT NULL UNIQUE,[Minimum] REAL NULL,[Maximum] REAL NULL,[Current] REAL NOT NULL);";
-	const std::string QUERY_ITEM = "SELECT [Minimum], [Maximum], [Current] FROM [AvatarStatistics] WHERE [StatisticId] = {};";
-	const std::string REPLACE_ITEM = "REPLACE INTO [AvatarStatistics]([StatisticId],[Minimum],[Maximum],[Current]) VALUES ({},{},{},{});";
+	static const std::string FIELD_MINIMUM = "Minimum";
+	static const std::string FIELD_MAXIMUM = "Maximum";
+	static const std::string FIELD_CURRENT = "Current";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarStatistics]([StatisticId] INT NOT NULL UNIQUE,[Minimum] REAL NULL,[Maximum] REAL NULL,[Current] REAL NOT NULL);";
+	static const std::string QUERY_ITEM = "SELECT [Minimum], [Maximum], [Current] FROM [AvatarStatistics] WHERE [StatisticId] = {};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [AvatarStatistics]([StatisticId],[Minimum],[Maximum],[Current]) VALUES ({},{},{},{});";
 
-	const auto AutoCreateAvatarStatisticsTable = data::game::Common::Run(CREATE_TABLE);
+	static const auto AutoCreateAvatarStatisticsTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Write(int statisticId, const StatisticData& data)
 	{

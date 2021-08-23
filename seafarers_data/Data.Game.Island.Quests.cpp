@@ -4,20 +4,20 @@
 #include <format>
 namespace data::game::island::Quests
 {
-	const std::string FIELD_X = "X";
-	const std::string FIELD_Y = "Y";
-	const std::string FIELD_DESTINATION_X = "DestinationX";
-	const std::string FIELD_DESTINATION_Y = "DestinationY";
-	const std::string FIELD_REWARD = "Reward";
-	const std::string FIELD_PERSON_NAME = "PersonName";
-	const std::string FIELD_ITEM_NAME = "ItemName";
-	const std::string FIELD_PROFESSION_NAME = "ProfessionName";
-	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandQuests]([X] REAL NOT NULL, [Y] REAL NOT NULL, [DestinationX] REAL NOT NULL, [DestinationY] REAL NOT NULL, [ItemName] TEXT NOT NULL, [PersonName] TEXT NOT NULL, [ProfessionName] TEXT NOT NULL , [Reward] REAL NOT NULL, UNIQUE([X],[Y]));";
-	const std::string QUERY_ITEM = "SELECT [X],[Y],[DestinationX],[DestinationY],[Reward],[ItemName],[PersonName],[ProfessionName] FROM [IslandQuests] WHERE [X]={:.4f} AND  [Y]={:.4f};";
-	const std::string REPLACE_ITEM = "REPLACE INTO [IslandQuests]([X],[Y],[DestinationX],[DestinationY],[Reward],[ItemName],[PersonName],[ProfessionName]) VALUES({:.4f},{:.4f},{:.4f},{:.4f},{:.4f},{},{},{});";
-	const std::string DELETE_ITEM = "DELETE FROM [IslandQuests] WHERE [X]={:.4f} AND  [Y]={:.4f};";
+	static const std::string FIELD_X = "X";
+	static const std::string FIELD_Y = "Y";
+	static const std::string FIELD_DESTINATION_X = "DestinationX";
+	static const std::string FIELD_DESTINATION_Y = "DestinationY";
+	static const std::string FIELD_REWARD = "Reward";
+	static const std::string FIELD_PERSON_NAME = "PersonName";
+	static const std::string FIELD_ITEM_NAME = "ItemName";
+	static const std::string FIELD_PROFESSION_NAME = "ProfessionName";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandQuests]([X] REAL NOT NULL, [Y] REAL NOT NULL, [DestinationX] REAL NOT NULL, [DestinationY] REAL NOT NULL, [ItemName] TEXT NOT NULL, [PersonName] TEXT NOT NULL, [ProfessionName] TEXT NOT NULL , [Reward] REAL NOT NULL, UNIQUE([X],[Y]));";
+	static const std::string QUERY_ITEM = "SELECT [X],[Y],[DestinationX],[DestinationY],[Reward],[ItemName],[PersonName],[ProfessionName] FROM [IslandQuests] WHERE [X]={:.4f} AND  [Y]={:.4f};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [IslandQuests]([X],[Y],[DestinationX],[DestinationY],[Reward],[ItemName],[PersonName],[ProfessionName]) VALUES({:.4f},{:.4f},{:.4f},{:.4f},{:.4f},{},{},{});";
+	static const std::string DELETE_ITEM = "DELETE FROM [IslandQuests] WHERE [X]={:.4f} AND  [Y]={:.4f};";
 
-	const auto AutoCreateIslandQuestsTable = data::game::Common::Run(CREATE_TABLE);
+	static const auto AutoCreateIslandQuestsTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Write(const QuestData& data)
 	{

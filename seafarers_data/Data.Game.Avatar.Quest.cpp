@@ -4,18 +4,18 @@
 #include <format>
 namespace data::game::avatar::Quest
 {
-	const std::string FIELD_DESTINATION_X = "DestinationX";
-	const std::string FIELD_DESTINATION_Y = "DestinationY";
-	const std::string FIELD_REWARD = "Reward";
-	const std::string FIELD_PERSON_NAME = "PersonName";
-	const std::string FIELD_ITEM_NAME = "ItemName";
-	const std::string FIELD_PROFESSION_NAME = "ProfessionName";
-	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarQuests]([AvatarId] INT NOT NULL UNIQUE,[DestinationX] REAL NOT NULL, [DestinationY] REAL NOT NULL, [ItemName] TEXT NOT NULL, [PersonName] TEXT NOT NULL, [ProfessionName] TEXT NOT NULL , [Reward] REAL NOT NULL);";
-	const std::string QUERY_ITEM = "SELECT [DestinationX],[DestinationY],[Reward],[ItemName],[PersonName],[ProfessionName] FROM [AvatarQuests] WHERE [AvatarId]={};";
-	const std::string REPLACE_ITEM = "REPLACE INTO [AvatarQuests]([AvatarId],[DestinationX],[DestinationY],[Reward],[ItemName],[PersonName],[ProfessionName]) VALUES({},{:.4f},{:.4f},{:.4f},{},{},{});";
-	const std::string DELETE_ITEM = "DELETE FROM [AvatarQuests] WHERE [AvatarId]={};";
+	static const std::string FIELD_DESTINATION_X = "DestinationX";
+	static const std::string FIELD_DESTINATION_Y = "DestinationY";
+	static const std::string FIELD_REWARD = "Reward";
+	static const std::string FIELD_PERSON_NAME = "PersonName";
+	static const std::string FIELD_ITEM_NAME = "ItemName";
+	static const std::string FIELD_PROFESSION_NAME = "ProfessionName";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarQuests]([AvatarId] INT NOT NULL UNIQUE,[DestinationX] REAL NOT NULL, [DestinationY] REAL NOT NULL, [ItemName] TEXT NOT NULL, [PersonName] TEXT NOT NULL, [ProfessionName] TEXT NOT NULL , [Reward] REAL NOT NULL);";
+	static const std::string QUERY_ITEM = "SELECT [DestinationX],[DestinationY],[Reward],[ItemName],[PersonName],[ProfessionName] FROM [AvatarQuests] WHERE [AvatarId]={};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [AvatarQuests]([AvatarId],[DestinationX],[DestinationY],[Reward],[ItemName],[PersonName],[ProfessionName]) VALUES({},{:.4f},{:.4f},{:.4f},{},{},{});";
+	static const std::string DELETE_ITEM = "DELETE FROM [AvatarQuests] WHERE [AvatarId]={};";
 
-	const auto AutoCreateAvatarQuestTable = data::game::Common::Run(CREATE_TABLE);
+	static const auto AutoCreateAvatarQuestTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Write(const std::optional<QuestData>& data)
 	{

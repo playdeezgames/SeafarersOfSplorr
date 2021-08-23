@@ -5,17 +5,17 @@
 #include <format>
 namespace data::game::Island
 {
-	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Islands]([X] REAL NOT NULL,[Y] REAL NOT NULL,[CareeningDistance] REAL NOT NULL,[Name] TEXT NOT NULL,UNIQUE([X],[Y]));";
-	const std::string QUERY_ITEM = "SELECT [X],[Y],[Name],[CareeningDistance] FROM [Islands] WHERE [X] = {:.4f} AND [Y]={:.4f};";
-	const std::string REPLACE_ITEM = "REPLACE INTO [Islands]([X],[Y],[Name],[CareeningDistance]) VALUES ({:.4f},{:.4f},{},{});";
-	const std::string QUERY_ALL = "SELECT [X],[Y],[Name],[CareeningDistance] FROM [Islands];";
-	const std::string CLEAR_ALL = "DELETE FROM [Islands];";
-	const std::string FIELD_X = "X";
-	const std::string FIELD_Y = "Y";
-	const std::string FIELD_NAME = "Name";
-	const std::string FIELD_CAREENING_DISTANCE = "CareeningDistance";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Islands]([X] REAL NOT NULL,[Y] REAL NOT NULL,[CareeningDistance] REAL NOT NULL,[Name] TEXT NOT NULL,UNIQUE([X],[Y]));";
+	static const std::string QUERY_ITEM = "SELECT [X],[Y],[Name],[CareeningDistance] FROM [Islands] WHERE [X] = {:.4f} AND [Y]={:.4f};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [Islands]([X],[Y],[Name],[CareeningDistance]) VALUES ({:.4f},{:.4f},{},{});";
+	static const std::string QUERY_ALL = "SELECT [X],[Y],[Name],[CareeningDistance] FROM [Islands];";
+	static const std::string CLEAR_ALL = "DELETE FROM [Islands];";
+	static const std::string FIELD_X = "X";
+	static const std::string FIELD_Y = "Y";
+	static const std::string FIELD_NAME = "Name";
+	static const std::string FIELD_CAREENING_DISTANCE = "CareeningDistance";
 
-	const auto AutoCreateIslandTable = data::game::Common::Run(CREATE_TABLE);
+	static const auto AutoCreateIslandTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Write(const Data& data)
 	{

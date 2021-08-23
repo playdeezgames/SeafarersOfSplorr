@@ -4,14 +4,14 @@
 #include <format>
 namespace data::game::island::dark_alley::GamblingHand
 {
-	const std::string FIELD_FIRST_CARD = "FirstCard";
-	const std::string FIELD_SECOND_CARD = "SecondCard";
-	const std::string FIELD_THIRD_CARD = "ThirdCard";
-	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [DarkAlleyGamblingHands]([X] REAL NOT NULL,[Y] REAL NOT NULL,[FirstCard] INT NOT NULL,[SecondCard] INT NOT NULL,[ThirdCard] INT NOT NULL, UNIQUE([X],[Y]));";
-	const std::string REPLACE_ITEM = "REPLACE INTO [DarkAlleyGamblingHands]([X],[Y],[FirstCard],[SecondCard],[ThirdCard]) VALUES ({:.4f},{:.4f},{},{},{});";
-	const std::string QUERY_ITEM = "SELECT [FirstCard],[SecondCard],[ThirdCard] FROM [DarkAlleyGamblingHands] WHERE [X]={:.4f} AND [Y]={:.4f};";
+	static const std::string FIELD_FIRST_CARD = "FirstCard";
+	static const std::string FIELD_SECOND_CARD = "SecondCard";
+	static const std::string FIELD_THIRD_CARD = "ThirdCard";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [DarkAlleyGamblingHands]([X] REAL NOT NULL,[Y] REAL NOT NULL,[FirstCard] INT NOT NULL,[SecondCard] INT NOT NULL,[ThirdCard] INT NOT NULL, UNIQUE([X],[Y]));";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [DarkAlleyGamblingHands]([X],[Y],[FirstCard],[SecondCard],[ThirdCard]) VALUES ({:.4f},{:.4f},{},{},{});";
+	static const std::string QUERY_ITEM = "SELECT [FirstCard],[SecondCard],[ThirdCard] FROM [DarkAlleyGamblingHands] WHERE [X]={:.4f} AND [Y]={:.4f};";
 
-	const auto AutoCreateDarkAlleyGamblingHandsTable = data::game::Common::Run(CREATE_TABLE);
+	static const auto AutoCreateDarkAlleyGamblingHandsTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Write(const common::XY<double>& location, const Data& data)
 	{

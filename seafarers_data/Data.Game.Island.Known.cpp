@@ -5,15 +5,15 @@
 #include <string>
 namespace data::game::island::Known
 {
-	const std::string FIELD_X = "X";
-	const std::string FIELD_Y = "Y";
-	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [KnownIslands]([X] REAL NOT NULL, [Y] REAL NOT NULL, UNIQUE([X],[Y]));";
-	const std::string QUERY_ITEM = "SELECT [X],[Y] FROM [KnownIslands] WHERE [X]={:.4f} AND  [Y]={:.4f};";
-	const std::string QUERY_ALL = "SELECT [X],[Y] FROM [KnownIslands];";
-	const std::string REPLACE_ITEM = "REPLACE INTO [KnownIslands]([X],[Y]) VALUES({:.4f},{:.4f});";
-	const std::string DELETE_ALL = "DELETE FROM [KnownIslands];";
+	static const std::string FIELD_X = "X";
+	static const std::string FIELD_Y = "Y";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [KnownIslands]([X] REAL NOT NULL, [Y] REAL NOT NULL, UNIQUE([X],[Y]));";
+	static const std::string QUERY_ITEM = "SELECT [X],[Y] FROM [KnownIslands] WHERE [X]={:.4f} AND  [Y]={:.4f};";
+	static const std::string QUERY_ALL = "SELECT [X],[Y] FROM [KnownIslands];";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [KnownIslands]([X],[Y]) VALUES({:.4f},{:.4f});";
+	static const std::string DELETE_ALL = "DELETE FROM [KnownIslands];";
 
-	const auto AutoCreateKnownIslandsTable = data::game::Common::Run(CREATE_TABLE);
+	static const auto AutoCreateKnownIslandsTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Write(const common::XY<double>& location)
 	{

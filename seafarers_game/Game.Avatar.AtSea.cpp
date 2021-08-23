@@ -14,7 +14,7 @@ namespace game::avatar::AtSea
 	void Reset(const game::Difficulty&)
 	{
 		auto worldSize = game::World::GetSize();
-		data::game::Avatar::AvatarData data =
+		data::game::Avatar::Data data =
 		{
 			{worldSize.GetX() / 2.0, worldSize.GetY() / 2.0},
 			common::Data::ModuloDouble(common::RNG::FromRange(0.0, common::Heading::DEGREES), common::Heading::DEGREES).value(),

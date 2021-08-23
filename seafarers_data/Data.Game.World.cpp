@@ -6,19 +6,19 @@
 #include <string>
 namespace data::game
 {
-	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Worlds]([WorldId] INT NOT NULL UNIQUE,[Version] INT NOT NULL,[Width] REAL NOT NULL,[Height] REAL NOT NULL,[MinimumIslandDistance] REAL NOT NULL,[ViewDistance] REAL NOT NULL,[DockDistance] REAL NOT NULL,[WindHeading] REAL NOT NULL);";
-	const std::string QUERY_ITEM = "SELECT [Version],[Width],[Height],[MinimumIslandDistance],[ViewDistance],[DockDistance],[WindHeading] FROM [Worlds] WHERE [WorldId] = {};";
-	const std::string REPLACE_ITEM = "REPLACE INTO [Worlds]([WorldId],[Version],[Width],[Height],[MinimumIslandDistance],[ViewDistance],[DockDistance],[WindHeading]) VALUES ({},{},{},{},{},{},{},{});";
-	const int WORLD_ID = 1;
-	const std::string FIELD_VERSION = "Version";
-	const std::string FIELD_WIDTH = "Width";
-	const std::string FIELD_HEIGHT = "Height";
-	const std::string FIELD_MINIMUM_ISLAND_DISTANCE = "MinimumIslandDistance";
-	const std::string FIELD_VIEW_DISTANCE = "ViewDistance";
-	const std::string FIELD_DOCK_DISTANCE = "DockDistance";
-	const std::string FIELD_WIND_HEADING = "WindHeading";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Worlds]([WorldId] INT NOT NULL UNIQUE,[Version] INT NOT NULL,[Width] REAL NOT NULL,[Height] REAL NOT NULL,[MinimumIslandDistance] REAL NOT NULL,[ViewDistance] REAL NOT NULL,[DockDistance] REAL NOT NULL,[WindHeading] REAL NOT NULL);";
+	static const std::string QUERY_ITEM = "SELECT [Version],[Width],[Height],[MinimumIslandDistance],[ViewDistance],[DockDistance],[WindHeading] FROM [Worlds] WHERE [WorldId] = {};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [Worlds]([WorldId],[Version],[Width],[Height],[MinimumIslandDistance],[ViewDistance],[DockDistance],[WindHeading]) VALUES ({},{},{},{},{},{},{},{});";
+	static const int WORLD_ID = 1;
+	static const std::string FIELD_VERSION = "Version";
+	static const std::string FIELD_WIDTH = "Width";
+	static const std::string FIELD_HEIGHT = "Height";
+	static const std::string FIELD_MINIMUM_ISLAND_DISTANCE = "MinimumIslandDistance";
+	static const std::string FIELD_VIEW_DISTANCE = "ViewDistance";
+	static const std::string FIELD_DOCK_DISTANCE = "DockDistance";
+	static const std::string FIELD_WIND_HEADING = "WindHeading";
 
-	const auto AutoCreateWorldsTable = data::game::Common::Run(CREATE_TABLE);
+	static const auto AutoCreateWorldsTable = data::game::Common::Run(CREATE_TABLE);
 
 	void World::Write(const World::Data& data)
 	{

@@ -4,17 +4,17 @@
 #include <format>
 namespace data::game::island::Item
 {
-	const std::string FIELD_X = "X";
-	const std::string FIELD_Y = "Y";
-	const std::string FIELD_ITEM_ID = "ItemId";
-	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandItems]([X],[Y],[ItemId], UNIQUE([X],[Y],[ItemId]));";
-	const std::string REPLACE_ITEM = "REPLACE INTO [IslandItems]([X],[Y],[ItemId]) VALUES({:.4f},{:.4f},{});";
-	const std::string DELETE_ITEM = "DELETE FROM [IslandItems] WHERE [X]={:.4f} AND [Y]={:.4f} AND [ItemId]={};";
-	const std::string DELETE_ALL = "DELETE FROM [IslandItems];";
-	const std::string QUERY_ITEM = "SELECT [ItemId] FROM [IslandItems] WHERE [X]={:.4f} AND [Y]={:.4f} AND [ItemId]={};";
-	const std::string QUERY_ALL = "SELECT [ItemId] FROM [IslandItems] WHERE [X]={:.4f} AND [Y]={:.4f}";
+	static const std::string FIELD_X = "X";
+	static const std::string FIELD_Y = "Y";
+	static const std::string FIELD_ITEM_ID = "ItemId";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandItems]([X],[Y],[ItemId], UNIQUE([X],[Y],[ItemId]));";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [IslandItems]([X],[Y],[ItemId]) VALUES({:.4f},{:.4f},{});";
+	static const std::string DELETE_ITEM = "DELETE FROM [IslandItems] WHERE [X]={:.4f} AND [Y]={:.4f} AND [ItemId]={};";
+	static const std::string DELETE_ALL = "DELETE FROM [IslandItems];";
+	static const std::string QUERY_ITEM = "SELECT [ItemId] FROM [IslandItems] WHERE [X]={:.4f} AND [Y]={:.4f} AND [ItemId]={};";
+	static const std::string QUERY_ALL = "SELECT [ItemId] FROM [IslandItems] WHERE [X]={:.4f} AND [Y]={:.4f}";
 
-	const auto AutoCreateIslandItemTable = data::game::Common::Run(CREATE_TABLE);
+	static const auto AutoCreateIslandItemTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Set(const common::XY<double>& location, int item)
 	{

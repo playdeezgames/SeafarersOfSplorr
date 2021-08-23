@@ -4,16 +4,16 @@
 #include <format>
 namespace data::game::avatar::Items
 {
-	const std::string FIELD_ITEM_ID = "ItemId";
-	const std::string FIELD_ITEM_COUNT = "ItemCount";
-	const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarItems]([AvatarId] INT NOT NULL,[ItemId] INT NOT NULL, [ItemCount] INT NOT NULL, UNIQUE([AvatarId],[ItemId]))";
-	const std::string REPLACE_ITEM = "REPLACE INTO [AvatarItems]([AvatarId],[ItemId],[ItemCount]) VALUES({},{},{});";
-	const std::string QUERY_ITEM = "SELECT [ItemCount] FROM [AvatarItems] WHERE [AvatarId]={} AND [ItemId]={};";
-	const std::string QUERY_ALL = "SELECT [ItemId],[ItemCount] FROM [AvatarItems] WHERE [AvatarId]={};";
-	const std::string DELETE_ALL = "DELETE FROM [AvatarItems];";
-	const std::string DELETE_ITEM = "DELETE FROM [AvatarItems] WHERE [AvatarId]={} AND [ItemId]={};";
+	static const std::string FIELD_ITEM_ID = "ItemId";
+	static const std::string FIELD_ITEM_COUNT = "ItemCount";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarItems]([AvatarId] INT NOT NULL,[ItemId] INT NOT NULL, [ItemCount] INT NOT NULL, UNIQUE([AvatarId],[ItemId]))";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [AvatarItems]([AvatarId],[ItemId],[ItemCount]) VALUES({},{},{});";
+	static const std::string QUERY_ITEM = "SELECT [ItemCount] FROM [AvatarItems] WHERE [AvatarId]={} AND [ItemId]={};";
+	static const std::string QUERY_ALL = "SELECT [ItemId],[ItemCount] FROM [AvatarItems] WHERE [AvatarId]={};";
+	static const std::string DELETE_ALL = "DELETE FROM [AvatarItems];";
+	static const std::string DELETE_ITEM = "DELETE FROM [AvatarItems] WHERE [AvatarId]={} AND [ItemId]={};";
 
-	const auto AutoCreateAvatarItemsTable = data::game::Common::Run(CREATE_TABLE);
+	static const auto AutoCreateAvatarItemsTable = data::game::Common::Run(CREATE_TABLE);
 
 	size_t Read(const int& itemId)
 	{
