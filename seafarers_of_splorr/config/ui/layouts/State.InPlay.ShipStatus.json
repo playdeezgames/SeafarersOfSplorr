@@ -62,6 +62,20 @@
         "drop-shadow-y": 2
     },
     {
+        "type": "Text",
+        "text-id": "Fouling",
+        "font": "default",
+        "color": "Gray",
+        "text": "<fouling>",
+        "x": 320,
+        "y": 80,
+        "horizontal-alignment": 0,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
         "type": "Layout",
         "name": "Sublayout.Modded"
     }

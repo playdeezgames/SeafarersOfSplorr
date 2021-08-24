@@ -7,6 +7,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Ships.h>
+#include <Game.Avatar.ShipStatistics.h>
 #include "UIState.h"
 #include <Visuals.Texts.h>
 namespace state::in_play::ShipStatus
@@ -16,10 +17,12 @@ namespace state::in_play::ShipStatus
 	const std::string TEXT_SHIP_TYPE = "ShipType";
 	const std::string TEXT_SPEED_FACTOR = "SpeedFactor";
 	const std::string TEXT_TONNAGE = "Tonnage";
+	const std::string TEXT_FOULING = "Fouling";
 
 	const std::string FORMAT_SHIP_TYPE = "Ship Type: {}";
 	const std::string FORMAT_SPEED_FACTOR = "Speed Factor: {}";
 	const std::string FORMAT_TONNAGE = "Tonnage: {}";
+	const std::string FORMAT_FOULING = "Fouling: {:.0f}%";
 
 	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
 	{
@@ -32,16 +35,24 @@ namespace state::in_play::ShipStatus
 		auto shipType = game::avatar::Ship::Read();
 		auto& descriptor = game::Ships::Read(shipType);
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_SHIP_TYPE, std::format(FORMAT_SHIP_TYPE, descriptor.name));
+
 		visuals::Texts::SetText(
 			LAYOUT_NAME,
 			TEXT_SPEED_FACTOR,
 			std::format(FORMAT_SPEED_FACTOR, 
 				descriptor.properties.find(game::ship::Property::SPEED_FACTOR)->second));
+
 		visuals::Texts::SetText(
 			LAYOUT_NAME,
 			TEXT_TONNAGE,
 			std::format(FORMAT_TONNAGE,
 				descriptor.properties.find(game::ship::Property::TONNAGE)->second));
+
+		visuals::Texts::SetText(
+			LAYOUT_NAME,
+			TEXT_FOULING,
+			std::format(FORMAT_FOULING,
+				game::avatar::ShipStatistics::GetFoulingPercentage()));
 	}
 
 	static void OnEnter()

@@ -3,12 +3,25 @@
 #include "Game.Avatar.ShipStatistics.h"
 namespace game::avatar
 {
+	static double GetMaximumFouling()
+	{
+		double portFouling = data::game::avatar::ShipStatistic::Read((int)ShipStatistic::PORT_FOULING).value().maximum.value();
+		double starboardFouling = data::game::avatar::ShipStatistic::Read((int)ShipStatistic::STARBOARD_FOULING).value().maximum.value();
+		return portFouling + starboardFouling;
+	}
+
 	double ShipStatistics::GetFouling()
 	{
 		double portFouling = data::game::avatar::ShipStatistic::Read((int)ShipStatistic::PORT_FOULING).value().current;
 		double starboardFouling = data::game::avatar::ShipStatistic::Read((int)ShipStatistic::STARBOARD_FOULING).value().current;
 		return portFouling + starboardFouling;
 	}
+
+	double ShipStatistics::GetFoulingPercentage()
+	{
+		return 100.0 * GetFouling() / GetMaximumFouling();
+	}
+
 
 	void ShipStatistics::IncreaseFouling(double multiplier)
 	{
