@@ -49,7 +49,8 @@ namespace state::in_play::AtSea
 		DOCK,
 		JOB,
 		CARGO,
-		SHIP
+		SHIP,
+		CAREEN
 	};
 
 	const std::string STOP_MOVE = "Stop Move";
@@ -99,7 +100,8 @@ namespace state::in_play::AtSea
 		{OrderMenuItem::HEAD_FOR, application::UIState::GoTo(::UIState::IN_PLAY_HEAD_FOR)},
 		{OrderMenuItem::JOB, application::UIState::GoTo(::UIState::IN_PLAY_CURRENT_JOB)},
 		{OrderMenuItem::CARGO, application::UIState::GoTo(::UIState::IN_PLAY_CARGO)},
-		{OrderMenuItem::SHIP, application::UIState::PushTo(::UIState::IN_PLAY_SHIP_STATUS)}
+		{OrderMenuItem::SHIP, application::UIState::PushTo(::UIState::IN_PLAY_SHIP_STATUS)},
+		{OrderMenuItem::CAREEN, []() {}}
 	};
 
 	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
