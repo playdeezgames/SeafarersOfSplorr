@@ -17,6 +17,9 @@ namespace game::Ships
 					{game::Commodity::WOOD, 100.0},
 					{game::Commodity::LABOR, 50.0}
 				},
+				{
+
+				},
 				1
 			}
 		},
@@ -31,6 +34,8 @@ namespace game::Ships
 				{
 					{game::Commodity::WOOD, 200.0},
 					{game::Commodity::LABOR, 75.0}
+				},
+				{
 				},
 				0
 			}
