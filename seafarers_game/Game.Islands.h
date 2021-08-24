@@ -4,24 +4,27 @@
 #include <list>
 #include <optional>
 #include <string>
-namespace game::Islands
+namespace game
 {
-	struct IslandModel
+	struct Islands
 	{
-		common::XY<double> relativeLocation;
-		common::XY<double> absoluteLocation;
-		std::string name;
-		std::optional<int> visits;
+		struct IslandModel
+		{
+			common::XY<double> relativeLocation;
+			common::XY<double> absoluteLocation;
+			std::string name;
+			std::optional<int> visits;
+		};
+		static void Reset(const game::Difficulty&);
+		static std::list<IslandModel> GetViewableIslands();
+		static std::list<IslandModel> GetDockableIslands();
+		static std::list<IslandModel> GetCareeningIslands();
+		static bool CanDock();
+		static bool CanCareen();
+		static std::list<IslandModel> GetKnownIslands();
+		static void AddVisit(const common::XY<double>&, const int&);
+		static void SetKnown(const common::XY<double>&, const int&);
+		static std::optional<IslandModel> Read(const common::XY<double>&);
+		static const std::string UNKNOWN;
 	};
-	void Reset(const game::Difficulty&);
-	std::list<IslandModel> GetViewableIslands();
-	std::list<IslandModel> GetDockableIslands();
-	std::list<IslandModel> GetCareeningIslands();
-	bool CanDock();
-	bool CanCareen();
-	std::list<IslandModel> GetKnownIslands();
-	void AddVisit(const common::XY<double>&, const int&);
-	void SetKnown(const common::XY<double>&, const int&);
-	std::optional<IslandModel> Read(const common::XY<double>&);
-	const std::string UNKNOWN = "????";
 }

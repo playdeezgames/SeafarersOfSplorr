@@ -6,14 +6,14 @@
 #include "Game.Features.h"
 #include "Game.Islands.Features.h"
 #include <vector>
-namespace game::islands::Features
+namespace game::islands
 {
-	bool Read(const common::XY<double>& xy, const game::Feature& feature)
+	bool Features::Read(const common::XY<double>& xy, const game::Feature& feature)
 	{
 		return data::game::island::Feature::Read(xy, (int)feature);
 	}
 
-	void Write(const common::XY<double>& xy, const game::Feature& feature, bool value)
+	void Features::Write(const common::XY<double>& xy, const game::Feature& feature, bool value)
 	{
 		if (value)
 		{
@@ -34,7 +34,7 @@ namespace game::islands::Features
 			});
 	}
 
-	const std::map<game::Feature, std::function<void(const common::XY<double>&)>> featureInitializers =
+	static const std::map<game::Feature, std::function<void(const common::XY<double>&)>> featureInitializers =
 	{
 		{game::Feature::DARK_ALLEY, InitializeDarkAlley}
 	};
@@ -86,7 +86,7 @@ namespace game::islands::Features
 		}
 	}
 
-	void Reset(const game::Difficulty&)
+	void Features::Reset(const game::Difficulty&)
 	{
 		data::game::island::Feature::ClearAll();
 		GenerateAllFeatures();

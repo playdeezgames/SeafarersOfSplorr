@@ -1,7 +1,7 @@
 #include <Data.Game.Island.DarkAlley.h>
 #include <functional>
 #include "Game.Islands.DarkAlley.h"
-namespace game::islands::DarkAlley
+namespace game::islands
 {
 	static std::optional<double> ExtractDarkAlleyValue(const common::XY<double>& location, std::function<double(const data::game::island::DarkAlley&)> extractor)
 	{
@@ -13,7 +13,7 @@ namespace game::islands::DarkAlley
 		return std::nullopt;
 	}
 
-	std::optional<double> GetRuffianBrawling(const common::XY<double>& location)
+	std::optional<double> DarkAlley::GetRuffianBrawling(const common::XY<double>& location)
 	{
 		return ExtractDarkAlleyValue(
 			location,
@@ -23,7 +23,7 @@ namespace game::islands::DarkAlley
 			});
 	}
 
-	std::optional<double> GetMinimumWager(const common::XY<double>& location)
+	std::optional<double> DarkAlley::GetMinimumWager(const common::XY<double>& location)
 	{
 		return ExtractDarkAlleyValue(
 			location,
@@ -33,9 +33,9 @@ namespace game::islands::DarkAlley
 			});
 	}
 
-	const double ANTE_MULTIPLIER = 0.1;
+	static const double ANTE_MULTIPLIER = 0.1;
 
-	std::optional<double> GetAnte(const common::XY<double>& location)
+	std::optional<double> DarkAlley::GetAnte(const common::XY<double>& location)
 	{
 		auto minimum = GetMinimumWager(location);
 		if (minimum)

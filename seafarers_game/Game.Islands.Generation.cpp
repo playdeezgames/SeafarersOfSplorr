@@ -15,7 +15,7 @@
 #include <set>
 #include <sstream>
 #include <vector>
-namespace game::Islands
+namespace game
 {
 	const size_t RETRY_COUNT = 500;
 
