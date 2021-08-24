@@ -3,7 +3,7 @@
 #include <Common.XY.h>
 #include <functional>
 #include <Game.Avatar.AtSea.h>
-#include <Game.Avatar.Destination.h>
+#include <Game.Avatar.Destinations.h>
 #include <Game.Avatar.Quest.h>
 #include <Game.Islands.h>
 #include <Game.World.h>
@@ -74,7 +74,7 @@ namespace visuals::WorldMap
 
 	static void DrawCurrentDestination(const std::shared_ptr<application::Engine::Renderer>& renderer, const game::avatar::Destination& destinationId, const InternalWorldMap& worldMap, const common::XY<double> worldSize)
 	{
-		auto currentDestination = game::avatar::destination::GetDestination(destinationId);
+		auto currentDestination = game::avatar::Destinations::GetDestination(destinationId);
 		if (currentDestination)
 		{
 			common::XY<int> plot = Plot(worldMap, worldSize, currentDestination.value());
@@ -84,7 +84,7 @@ namespace visuals::WorldMap
 
 	static void DrawCurrentDestinations(const std::shared_ptr<application::Engine::Renderer>& renderer, const InternalWorldMap& worldMap, const common::XY<double> worldSize)
 	{
-		for (auto destinationId : game::avatar::destination::All())
+		for (auto destinationId : game::avatar::Destinations::All())
 		{
 			DrawCurrentDestination(renderer, destinationId, worldMap, worldSize);
 		}

@@ -1,7 +1,4 @@
 #pragma once
-#include "Common.XY.h"
-#include <list>
-#include <optional>
 namespace game::avatar
 {
 	enum class Destination
@@ -11,10 +8,4 @@ namespace game::avatar
 		THREE,
 		FOUR
 	};
-}
-namespace game::avatar::destination
-{
-	const std::list<game::avatar::Destination>& All();
-	std::optional<common::XY<double>> GetDestination(const game::avatar::Destination&);
-	void SetDestination(const game::avatar::Destination&,const std::optional<common::XY<double>>&);
 }

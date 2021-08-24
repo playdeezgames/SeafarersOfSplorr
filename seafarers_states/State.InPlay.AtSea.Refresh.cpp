@@ -1,7 +1,7 @@
 #include <Common.Heading.h>
 #include <format>
 #include <Game.Avatar.AtSea.h>
-#include <Game.Avatar.Destination.h>
+#include <Game.Avatar.Destinations.h>
 #include <Game.Avatar.Log.h>
 #include <Game.Avatar.Quest.h>
 #include <Game.Avatar.Statistics.h>
@@ -100,7 +100,7 @@ namespace state::in_play::AtSea
 	static common::XY<double> Plot(const common::XY<double>&);
 	static void RefreshAvatarDestination(const game::avatar::Destination& destinationId)
 	{
-		auto destination = game::avatar::destination::GetDestination(destinationId);
+		auto destination = game::avatar::Destinations::GetDestination(destinationId);
 		auto imageId = destinationIdImages.find(destinationId)->second;
 		if (destination)
 		{
@@ -115,7 +115,7 @@ namespace state::in_play::AtSea
 
 	static void RefreshAvatarDestinations()
 	{
-		for (auto destinationId : game::avatar::destination::All())
+		for (auto destinationId : game::avatar::Destinations::All())
 		{
 			RefreshAvatarDestination(destinationId);
 		}

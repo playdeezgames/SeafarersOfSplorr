@@ -1,13 +1,13 @@
 #include <Data.Game.Avatar.Destination.h>
-#include "Game.Avatar.Destination.h"
-namespace game::avatar::destination
+#include "Game.Avatar.Destinations.h"
+namespace game::avatar
 {
-	std::optional<common::XY<double>> GetDestination(const game::avatar::Destination& index)
+	std::optional<common::XY<double>> Destinations::GetDestination(const game::avatar::Destination& index)
 	{
 		return data::game::avatar::Destination::Read((int)index);
 	}
 
-	void SetDestination(const game::avatar::Destination& index, const std::optional<common::XY<double>>& destination)
+	void Destinations::SetDestination(const game::avatar::Destination& index, const std::optional<common::XY<double>>& destination)
 	{
 		if (destination)
 		{
@@ -25,7 +25,7 @@ namespace game::avatar::destination
 		game::avatar::Destination::FOUR
 	};
 
-	const std::list<game::avatar::Destination>& All()
+	const std::list<game::avatar::Destination>& Destinations::All()
 	{
 		return allDestinations;
 	}

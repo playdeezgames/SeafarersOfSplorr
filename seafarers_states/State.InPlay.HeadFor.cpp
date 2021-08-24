@@ -6,7 +6,7 @@
 #include <Application.UIState.h>
 #include <Application.Update.h>
 #include <Game.Audio.Mux.h>
-#include <Game.Avatar.Destination.h>
+#include <Game.Avatar.Destinations.h>
 #include <Game.Islands.h>
 #include "UIState.h"
 #include <Visuals.Areas.h>
@@ -153,7 +153,7 @@ namespace state::in_play::HeadFor
 
 	static bool HandleWorldMapMouseButtonUp()
 	{
-		game::avatar::destination::SetDestination(currentDestinationId,visuals::WorldMap::GetDestination(LAYOUT_NAME, WORLD_MAP_ID));
+		game::avatar::Destinations::SetDestination(currentDestinationId,visuals::WorldMap::GetDestination(LAYOUT_NAME, WORLD_MAP_ID));
 		return true;
 	}
 

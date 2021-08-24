@@ -26,6 +26,7 @@
     <ClInclude Include="Game.Audio.Theme.h" />
     <ClInclude Include="Game.Avatar.AtSea.h" />
     <ClInclude Include="Game.Avatar.Destination.h" />
+    <ClInclude Include="Game.Avatar.Destinations.h" />
     <ClInclude Include="Game.Avatar.h" />
     <ClInclude Include="Game.Avatar.StateTransition.h" />
     <ClInclude Include="Game.Avatar.Docked.h" />
@@ -69,7 +70,7 @@
   <ItemGroup>
     <ClCompile Include="Game.Avatar.AtSea.cpp" />
     <ClCompile Include="Game.Avatar.cpp" />
-    <ClCompile Include="Game.Avatar.Destination.cpp" />
+    <ClCompile Include="Game.Avatar.Destinations.cpp" />
     <ClCompile Include="Game.Avatar.ActionDescriptors.cpp" />
     <ClCompile Include="Game.Avatar.Docked.cpp" />
     <ClCompile Include="Game.Avatar.Items.cpp" />

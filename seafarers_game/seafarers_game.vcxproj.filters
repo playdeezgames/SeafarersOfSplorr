@@ -179,6 +179,9 @@
     <ClInclude Include="Game.Audio.Theme.h">
       <Filter>Header Files\Audio</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Avatar.Destinations.h">
+      <Filter>Header Files\Avatar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Commodities.cpp">
@@ -202,7 +205,7 @@
     <ClCompile Include="Game.Avatar.AtSea.cpp">
       <Filter>Source Files\Avatar</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Avatar.Destination.cpp">
+    <ClCompile Include="Game.Avatar.Destinations.cpp">
       <Filter>Source Files\Avatar</Filter>
     </ClCompile>
     <ClCompile Include="Game.Avatar.ActionDescriptors.cpp">
