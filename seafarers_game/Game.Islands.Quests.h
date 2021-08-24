@@ -1,8 +1,11 @@
 #pragma once
 #include "Game.Quest.h"
 #include <optional>
-namespace game::islands::Quests
+namespace game::islands
 {
-	void Update(const common::XY<double>&);
-	std::optional<game::Quest> Read(const common::XY<double>&);
+	struct Quests
+	{
+		static void Update(const common::XY<double>&);
+		static std::optional<game::Quest> Read(const common::XY<double>&);
+	};
 }

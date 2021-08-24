@@ -7,9 +7,9 @@
 #include "Game.Islands.Quests.h"
 #include <map>
 #include <string>
-namespace game::islands::Quests
+namespace game::islands
 {
-	const double MAXIMUM_REWARD = 10.0;
+	static const double MAXIMUM_REWARD = 10.0;
 	static double GenerateReward()
 	{
 		double reputation = floor(game::avatar::Statistics::GetReputation());
@@ -26,7 +26,7 @@ namespace game::islands::Quests
 		return common::RNG::FromRange(minimum, maximum);
 	}
 
-	const std::map<std::string, size_t> itemAdverbs = 
+	static const std::map<std::string, size_t> itemAdverbs = 
 	{
 		{"woefully",1},
 		{"awfully",1},
@@ -40,7 +40,7 @@ namespace game::islands::Quests
 		{"mercifully",1}
 	};
 
-	const std::map<std::string, size_t> itemAdjectives =
+	static const std::map<std::string, size_t> itemAdjectives =
 	{
 		{"turgid",1},
 		{"odorous",1},
@@ -60,7 +60,7 @@ namespace game::islands::Quests
 		{"swollen",1}
 	};
 
-	const std::map<std::string, size_t> itemNames =
+	static const std::map<std::string, size_t> itemNames =
 	{
 		{"marital aid",1},
 		{"bed pan",1},
@@ -87,7 +87,7 @@ namespace game::islands::Quests
 			common::RNG::FromGenerator(itemNames, std::string()));
 	}
 
-	const std::map<std::string, size_t> peopleNames =
+	static const std::map<std::string, size_t> peopleNames =
 	{
 		{"Samuel",1},
 		{"Roberta",1},
@@ -109,7 +109,7 @@ namespace game::islands::Quests
 		return common::RNG::FromGenerator(peopleNames, std::string());
 	}
 
-	const std::map<std::string, size_t> professionAdjectives =
+	static const std::map<std::string, size_t> professionAdjectives =
 	{
 		{"lousy",1},
 		{"smelly",1},
@@ -126,7 +126,7 @@ namespace game::islands::Quests
 		{"rabid",1}
 	};
 
-	const std::map<std::string, size_t> professionNames =
+	static const std::map<std::string, size_t> professionNames =
 	{
 		{"harlot",1},
 		{"innkeeper",1},
@@ -173,7 +173,7 @@ namespace game::islands::Quests
 		throw "YOU SHOULD NOT GET HERE!";
 	}
 
-	void Update(const common::XY<double>& location)
+	void Quests::Update(const common::XY<double>& location)
 	{
 		auto islandModel = game::Islands::Read(location);
 		if (islandModel)
@@ -195,7 +195,7 @@ namespace game::islands::Quests
 		}
 	}
 
-	std::optional<game::Quest> Read(const common::XY<double>& location)
+	std::optional<game::Quest> Quests::Read(const common::XY<double>& location)
 	{
 		auto quest = data::game::island::Quest::Read(location);
 		if (quest)
