@@ -3,15 +3,15 @@
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Items.h"
 #include "Game.Ships.h"
-namespace game::avatar::Ship
+namespace game::avatar
 {
-	void Reset(const game::Difficulty&)
+	void Ship::Reset(const game::Difficulty&)
 	{
 		auto ship = game::Ships::GenerateForAvatar();
 		Write(ship);
 	}
 
-	void Write(const game::Ship& ship)
+	void Ship::Write(const game::Ship& ship)
 	{
 		data::game::avatar::Ship::Write((int)ship);
 		auto descriptor = Ships::Read(ship);
@@ -26,12 +26,12 @@ namespace game::avatar::Ship
 		}
 	}
 
-	game::Ship Read()
+	game::Ship Ship::Read()
 	{
 		return (game::Ship)data::game::avatar::Ship::Read();
 	}
 
-	double AvailableTonnage()
+	double Ship::AvailableTonnage()
 	{
 		return 
 			game::Ships::Read(Read()).properties.find(game::ship::Property::TONNAGE)->second -
