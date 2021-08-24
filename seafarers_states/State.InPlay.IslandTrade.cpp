@@ -66,8 +66,6 @@ namespace state::in_play::IslandTrade
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
-		auto location = game::avatar::Docked::GetDockedLocation().value();
-		auto island = game::Islands::Read(location).value();
 	}
 
 	void Start()

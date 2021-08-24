@@ -101,7 +101,7 @@ namespace state::in_play::AtSea
 		{OrderMenuItem::JOB, application::UIState::GoTo(::UIState::IN_PLAY_CURRENT_JOB)},
 		{OrderMenuItem::CARGO, application::UIState::GoTo(::UIState::IN_PLAY_CARGO)},
 		{OrderMenuItem::SHIP, application::UIState::PushTo(::UIState::IN_PLAY_SHIP_STATUS)},
-		{OrderMenuItem::CAREEN, []() {}}
+		{OrderMenuItem::CAREEN, application::UIState::PushTo(::UIState::IN_PLAY_AT_SEA_CAREEN_SELECT)}
 	};
 
 	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
