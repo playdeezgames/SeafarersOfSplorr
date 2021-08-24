@@ -44,7 +44,7 @@ namespace state::in_play::DarkAlleyEntrance
 
 	static void OnLeave()
 	{
-		game::avatar::DoAction(game::avatar::Action::ENTER_DOCK);
+		game::Avatar::DoAction(game::avatar::Action::ENTER_DOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -352,14 +352,14 @@ namespace state::in_play::DarkAlleyEntrance
 			case FightResult::WIN:
 				IncreaseInfamy();
 				IncreaseBrawling();
-				game::avatar::DoAction(game::avatar::Action::DEFEAT_RUFFIAN);
+				game::Avatar::DoAction(game::avatar::Action::DEFEAT_RUFFIAN);
 				application::UIState::Write(::UIState::IN_PLAY_NEXT);
 				break;
 			}
 			return true;
 		}
 		game::avatar::Statistics::ChangeMoney(-game::avatar::Statistics::GetMoney()/2.0);
-		game::avatar::DoAction(game::avatar::Action::ENTER_DOCK);
+		game::Avatar::DoAction(game::avatar::Action::ENTER_DOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		return true;
 	}

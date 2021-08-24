@@ -27,13 +27,13 @@ namespace state::in_play::ConfirmReplaceJob
 	{
 		game::avatar::Quest::AbandonQuest();
 		game::avatar::Quest::AcceptQuest(game::avatar::Docked::GetDockedLocation().value());
-		game::avatar::DoAction(game::avatar::Action::ENTER_DOCK);
+		game::Avatar::DoAction(game::avatar::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnNo()
 	{
-		game::avatar::DoAction(game::avatar::Action::ENTER_DOCK);
+		game::Avatar::DoAction(game::avatar::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

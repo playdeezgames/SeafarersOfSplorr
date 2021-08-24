@@ -27,7 +27,7 @@ namespace state::in_play::IslandBuy
 
 	static void OnLeave()
 	{
-		game::avatar::DoAction(game::avatar::Action::ENTER_MARKET);
+		game::Avatar::DoAction(game::avatar::Action::ENTER_MARKET);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

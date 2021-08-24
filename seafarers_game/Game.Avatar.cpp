@@ -6,20 +6,23 @@
 #include <map>
 namespace game::avatar
 {
+	const std::map<avatar::Action, std::map<avatar::State, std::function<StateTransition()>>>& GetActionDescriptors();
+}
+namespace game
+{
 	static void SetState(const game::avatar::State& state)
 	{
 		data::game::Avatar::SetState((int)state);
 	}
 
-	const std::map<avatar::Action, std::map<avatar::State, std::function<StateTransition()>>>& GetActionDescriptors();
 
-	bool DoAction(const avatar::Action& action)
+	bool Avatar::DoAction(const avatar::Action& action)
 	{
 		auto state = GetState();
 		if (state)
 		{
-			auto descriptor = GetActionDescriptors().find(action);
-			if (descriptor != GetActionDescriptors().end())
+			auto descriptor = avatar::GetActionDescriptors().find(action);
+			if (descriptor != avatar::GetActionDescriptors().end())
 			{
 				auto transition = descriptor->second.find(state.value());
 				{
@@ -35,7 +38,7 @@ namespace game::avatar
 		return false;
 	}
 
-	std::optional<game::avatar::State> GetState()
+	std::optional<game::avatar::State> Avatar::GetState()
 	{
 		auto state = data::game::Avatar::GetState();
 		if (state)

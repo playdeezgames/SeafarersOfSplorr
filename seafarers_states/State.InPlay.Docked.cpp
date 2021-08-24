@@ -38,31 +38,31 @@ namespace state::in_play::Docked
 
 	static void OnUndock()
 	{
-		game::avatar::DoAction(game::avatar::Action::UNDOCK);
+		game::Avatar::DoAction(game::avatar::Action::UNDOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnJob()
 	{
-		game::avatar::DoAction(game::avatar::Action::ENTER_JOB_BOARD);
+		game::Avatar::DoAction(game::avatar::Action::ENTER_JOB_BOARD);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnTrade()
 	{
-		game::avatar::DoAction(game::avatar::Action::ENTER_MARKET);
+		game::Avatar::DoAction(game::avatar::Action::ENTER_MARKET);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnShipyard()
 	{
-		game::avatar::DoAction(game::avatar::Action::ENTER_SHIPYARD);
+		game::Avatar::DoAction(game::avatar::Action::ENTER_SHIPYARD);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnDarkAlley()
 	{
-		game::avatar::DoAction(game::avatar::Action::ENTER_DARK_ALLEY);
+		game::Avatar::DoAction(game::avatar::Action::ENTER_DARK_ALLEY);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
