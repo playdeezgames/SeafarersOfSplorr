@@ -97,6 +97,7 @@ namespace application::Engine
 		state::in_play::Confirm::Start,
 		state::in_play::GambleStart::Start,
 		state::in_play::GambleFinish::Start,
+		state::in_play::AtSeaCareenSelect::Start,
 		sublayout::UIHamburger::Start,
 		Options::Initialize,
 		visuals::Layouts::Start

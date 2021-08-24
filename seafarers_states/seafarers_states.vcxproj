@@ -31,6 +31,7 @@
     <ClCompile Include="State.InPlay.AtSea.AutoMove.cpp" />
     <ClCompile Include="State.InPlay.AtSea.cpp" />
     <ClCompile Include="State.InPlay.AtSea.Refresh.cpp" />
+    <ClCompile Include="State.InPlay.AtSeaCareenSelect.cpp" />
     <ClCompile Include="State.InPlay.Cargo.cpp" />
     <ClCompile Include="State.InPlay.ChangeSpeed.cpp" />
     <ClCompile Include="State.InPlay.Confirm.cpp" />

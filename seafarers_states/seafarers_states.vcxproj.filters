@@ -151,5 +151,8 @@
     <ClCompile Include="State.InPlay.GambleFinish.cpp">
       <Filter>Source Files\Docked</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.AtSeaCareenSelect.cpp">
+      <Filter>Source Files\AtSea</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
