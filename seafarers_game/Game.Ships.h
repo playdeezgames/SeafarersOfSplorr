@@ -2,9 +2,12 @@
 #include "Game.Ship.h"
 #include "Game.ShipDescriptor.h"
 #include <list>
-namespace game::Ships
+namespace game
 {
-	const game::ShipDescriptor& Read(const game::Ship&);
-	const std::list<game::Ship>& All();
-	game::Ship GenerateForAvatar();
+	struct Ships
+	{
+		static const game::ShipDescriptor& Read(const game::Ship&);
+		static const std::list<game::Ship>& All();
+		static game::Ship GenerateForAvatar();
+	};
 }

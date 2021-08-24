@@ -1,7 +1,7 @@
 #include <Common.RNG.h>
 #include "Game.Ships.h"
 #include <map>
-namespace game::Ships
+namespace game
 {
 	const std::map<game::Ship, game::ShipDescriptor> ships =
 	{
@@ -44,12 +44,12 @@ namespace game::Ships
 
 	static std::list<game::Ship> shipList;
 
-	const game::ShipDescriptor& Read(const game::Ship& ship)
+	const game::ShipDescriptor& Ships::Read(const game::Ship & ship)
 	{
 		return ships.find(ship)->second;
 	}
 
-	const std::list<game::Ship>& All()
+	const std::list<game::Ship>& Ships::All()
 	{
 		if (shipList.empty())
 		{
@@ -63,7 +63,7 @@ namespace game::Ships
 
 	std::map<game::Ship, size_t> initialShipGenerator;
 
-	game::Ship GenerateForAvatar()
+	game::Ship Ships::GenerateForAvatar()
 	{
 		if (initialShipGenerator.empty())
 		{
@@ -78,5 +78,4 @@ namespace game::Ships
 		}
 		return common::RNG::FromGenerator(initialShipGenerator, game::Ship::RAFT);
 	}
-
 }
