@@ -104,7 +104,7 @@
     <ClInclude Include="Game.Islands.Commodities.h">
       <Filter>Header Files\Islands</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Islands.DarkAlley.FightCards.h">
+    <ClInclude Include="Game.Islands.DarkAlley.FightCard.h">
       <Filter>Header Files\Islands</Filter>
     </ClInclude>
     <ClInclude Include="Game.Islands.DarkAlley.h">
@@ -247,7 +247,7 @@
     <ClCompile Include="Game.Islands.DarkAlley.cpp">
       <Filter>Source Files\Islands</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Islands.DarkAlley.FightCards.cpp">
+    <ClCompile Include="Game.Islands.DarkAlley.FightCard.cpp">
       <Filter>Source Files\Islands</Filter>
     </ClCompile>
     <ClCompile Include="Game.Islands.Features.cpp">

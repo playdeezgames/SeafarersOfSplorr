@@ -4,16 +4,16 @@
 #include <Data.Game.Island.DarkAlley.FightCard.h>
 #include <functional>
 #include "Game.Avatar.Statistics.h"
-#include "Game.Islands.DarkAlley.FightCards.h"
+#include "Game.Islands.DarkAlley.FightCard.h"
 #include <list>
 #include <set>
-namespace game::islands::dark_alley::FightCards
+namespace game::islands::dark_alley
 {
-	const size_t CARD_ROWS = 3;
-	const size_t CARD_COLUMNS = 4;
-	const size_t CARD_COUNT = CARD_ROWS * CARD_COLUMNS;
+	static const size_t CARD_ROWS = 3;
+	static const size_t CARD_COLUMNS = 4;
+	static const size_t CARD_COUNT = CARD_ROWS * CARD_COLUMNS;
 
-	const std::list<cards::Rank> FACE_CARD_RANKS =
+	static const std::list<cards::Rank> FACE_CARD_RANKS =
 	{
 		cards::Rank::JACK,
 		cards::Rank::QUEEN,
@@ -26,7 +26,7 @@ namespace game::islands::dark_alley::FightCards
 		return std::find(FACE_CARD_RANKS.begin(), FACE_CARD_RANKS.end(), rank) != FACE_CARD_RANKS.end();
 	}
 
-	const std::list<cards::Rank> NONFACE_CARD_RANKS =
+	static const std::list<cards::Rank> NONFACE_CARD_RANKS =
 	{
 		cards::Rank::ACE,
 		cards::Rank::DEUCE,
@@ -40,7 +40,7 @@ namespace game::islands::dark_alley::FightCards
 		cards::Rank::TEN
 	};
 
-	const std::list<cards::Suit> CARD_SUITS =
+	static const std::list<cards::Suit> CARD_SUITS =
 	{
 		cards::Suit::CLUB,
 		cards::Suit::DIAMOND,
@@ -48,7 +48,7 @@ namespace game::islands::dark_alley::FightCards
 		cards::Suit::SPADE
 	};
 
-	const std::map<size_t, std::list<size_t>> ADJACENCIES =
+	static const std::map<size_t, std::list<size_t>> ADJACENCIES =
 	{
 		{0, {1,4,5}},
 		{1, {0,2,4,5,6}},
@@ -64,7 +64,7 @@ namespace game::islands::dark_alley::FightCards
 		{11, {6,7,10}}
 	};
 
-	static void WriteCards(const common::XY<double>& location, const std::map<size_t, DarkAlley::FightCard>& fightCards)
+	static void WriteCards(const common::XY<double>& location, const std::map<size_t, FightCard>& fightCards)
 	{
 		for (auto& fightCard : fightCards)
 		{
@@ -96,7 +96,7 @@ namespace game::islands::dark_alley::FightCards
 		return std::make_tuple(rank, suit);
 	}
 
-	void PlaceFaceCards(std::map<size_t, DarkAlley::FightCard>& fightCards, std::set<cards::Card>& cards, const data::game::island::DarkAlley& darkAlley)
+	static void PlaceFaceCards(std::map<size_t, FightCard>& fightCards, std::set<cards::Card>& cards, const data::game::island::DarkAlley& darkAlley)
 	{
 		size_t faceCardCount = DetermineFaceCardCount(darkAlley);
 		while (faceCardCount > 0)
@@ -121,7 +121,7 @@ namespace game::islands::dark_alley::FightCards
 		}
 	}
 
-	void PlaceNonfaceCards(std::map<size_t, DarkAlley::FightCard>& fightCards, std::set<cards::Card>& cards)
+	static void PlaceNonfaceCards(std::map<size_t, FightCard>& fightCards, std::set<cards::Card>& cards)
 	{
 		for (size_t index = 0; index < CARD_COUNT; ++index)
 		{
@@ -153,16 +153,16 @@ namespace game::islands::dark_alley::FightCards
 		}
 	}
 
-	void DoGenerate(const common::XY<double>& location, const data::game::island::DarkAlley& darkAlley)
+	static void DoGenerate(const common::XY<double>& location, const data::game::island::DarkAlley& darkAlley)
 	{
-		std::map<size_t, DarkAlley::FightCard> fightCards;
+		std::map<size_t, FightCard> fightCards;
 		std::set<cards::Card> cards;
 		PlaceFaceCards(fightCards, cards, darkAlley);
 		PlaceNonfaceCards(fightCards, cards);
 		WriteCards(location, fightCards);
 	}
 
-	void Generate(const common::XY<double>& location)
+	void FightCard::Generate(const common::XY<double>& location)
 	{
 		data::game::island::dark_alley::FightCard::Clear(location);
 		auto darkAlley = data::game::island::DarkAlley::Read(location);
@@ -172,7 +172,7 @@ namespace game::islands::dark_alley::FightCards
 		}
 	}
 
-	static DarkAlley::FightCard DataToFightCard(const data::game::island::dark_alley::FightCard& data)
+	static FightCard DataToFightCard(const data::game::island::dark_alley::FightCard& data)
 	{
 		auto card = std::make_tuple((cards::Rank)data.rank, (cards::Suit)data.suit);
 		return 
@@ -184,9 +184,9 @@ namespace game::islands::dark_alley::FightCards
 		};
 	}
 
-	std::map<size_t, DarkAlley::FightCard> Read(const common::XY<double>& location)
+	std::map<size_t, FightCard> FightCard::Read(const common::XY<double>& location)
 	{
-		std::map<size_t, DarkAlley::FightCard> result;
+		std::map<size_t, FightCard> result;
 		for (size_t index = 0; index < CARD_COUNT; ++index)
 		{
 			auto data = data::game::island::dark_alley::FightCard::Read(location, index);
@@ -195,7 +195,7 @@ namespace game::islands::dark_alley::FightCards
 		return result;
 	}
 
-	std::optional<DarkAlley::FightCard> Pick(const common::XY<double>& location, size_t index)
+	std::optional<FightCard> FightCard::Pick(const common::XY<double>& location, size_t index)
 	{
 		auto data = data::game::island::dark_alley::FightCard::Read(location, index);
 		if (data)

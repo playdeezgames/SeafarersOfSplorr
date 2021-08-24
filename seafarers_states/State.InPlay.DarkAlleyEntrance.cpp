@@ -11,7 +11,7 @@
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Islands.DarkAlley.h>
-#include <Game.Islands.DarkAlley.FightCards.h>
+#include <Game.Islands.DarkAlley.FightCard.h>
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Game.Colors.h>
@@ -185,7 +185,7 @@ namespace state::in_play::DarkAlleyEntrance
 
 	static void RefreshCards()
 	{
-		auto fightCards = game::islands::dark_alley::FightCards::Read(GetDockedLocation());
+		auto fightCards = game::islands::dark_alley::FightCard::Read(GetDockedLocation());
 		for (auto& fightCard : fightCards)
 		{
 			auto& cardImage = cardPositions.find(fightCard.first)->second.cardImage;
@@ -318,7 +318,7 @@ namespace state::in_play::DarkAlleyEntrance
 		hitsTaken++;
 	}
 
-	static void HandleFightCard(const game::islands::DarkAlley::FightCard& fightCard)
+	static void HandleFightCard(const game::islands::dark_alley::FightCard& fightCard)
 	{
 		if (fightCard.success)
 		{
@@ -368,7 +368,7 @@ namespace state::in_play::DarkAlleyEntrance
 	{
 		if (hoverCard && !fightResult.has_value())
 		{
-			auto fightCard = game::islands::dark_alley::FightCards::Pick(GetDockedLocation(), hoverCard.value());
+			auto fightCard = game::islands::dark_alley::FightCard::Pick(GetDockedLocation(), hoverCard.value());
 			if (fightCard)
 			{
 				HandleFightCard(fightCard.value());
@@ -395,7 +395,7 @@ namespace state::in_play::DarkAlleyEntrance
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
-		game::islands::dark_alley::FightCards::Generate(GetDockedLocation());
+		game::islands::dark_alley::FightCard::Generate(GetDockedLocation());
 		hoverCard = std::nullopt;
 		fightResult = std::nullopt;
 		hitsTaken = 0;
