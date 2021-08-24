@@ -1,4 +1,5 @@
 #include <Data.Game.Avatar.Ship.h>
+#include <Data.Game.Avatar.ShipStatistic.h>
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Items.h"
 #include "Game.Ships.h"
@@ -13,6 +14,16 @@ namespace game::avatar::Ship
 	void Write(const game::Ship& ship)
 	{
 		data::game::avatar::Ship::Write((int)ship);
+		auto descriptor = Ships::Read(ship);
+		for (auto statistic : descriptor.statistics)
+		{
+			data::game::avatar::ShipStatistic::Write((int)statistic.first, 
+				{
+					statistic.second.minimum,
+					statistic.second.maximum,
+					statistic.second.initial
+				});
+		}
 	}
 
 	game::Ship Read()
