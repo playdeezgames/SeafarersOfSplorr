@@ -2,7 +2,7 @@
 #include <map>
 namespace game
 {
-	const std::map<game::Commodity, game::CommodityDescriptor> commodityTable =
+	static const std::map<game::Commodity, game::CommodityDescriptor> commodityTable =
 	{
 		{game::Commodity::WHEAT, { "wheat", 1.0, 0.05, 0.05, 0.15}},
 		{game::Commodity::WOOD, { "wood", 7.5, 0.05, 0.05, 0.15}},

@@ -15,7 +15,7 @@
 #include <map>
 namespace game
 {
-	std::list<std::function<void()>> resetters;
+	static std::list<std::function<void()>> resetters;
 	void AddResetter(std::function<void()> resetter)
 	{
 		resetters.push_back(resetter);

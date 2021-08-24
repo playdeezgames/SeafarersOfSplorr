@@ -1,8 +1,8 @@
 #include "Game.Features.h"
 #include <map>
-namespace game::Features
+namespace game
 {
-	const std::map<game::Feature, game::FeatureDescriptor> featureDescriptors =
+	static const std::map<game::Feature, game::FeatureDescriptor> featureDescriptors =
 	{
 		{game::Feature::SHIPYARD,
 			{
@@ -19,14 +19,14 @@ namespace game::Features
 			}
 		}
 	};
-	std::list<game::Feature> featureList;
+	static std::list<game::Feature> featureList;
 
-	const game::FeatureDescriptor& Read(const game::Feature& feature)
+	const game::FeatureDescriptor& Features::Read(const game::Feature& feature)
 	{
 		return featureDescriptors.find(feature)->second;
 	}
 
-	const std::list<game::Feature>& All()
+	const std::list<game::Feature>& Features::All()
 	{
 		if (featureList.empty())
 		{
