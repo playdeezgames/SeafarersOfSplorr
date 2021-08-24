@@ -1,6 +1,6 @@
 #include "Game.Commodities.h"
 #include <map>
-namespace game::Commodities
+namespace game
 {
 	const std::map<game::Commodity, game::CommodityDescriptor> commodityTable =
 	{
@@ -14,12 +14,12 @@ namespace game::Commodities
 
 	static std::list<game::Commodity> commodityList;
 
-	const game::CommodityDescriptor& Read(const game::Commodity& commodity)
+	const game::CommodityDescriptor& Commodities::Read(const game::Commodity& commodity)
 	{
 		return commodityTable.find(commodity)->second;
 	}
 
-	const std::list<game::Commodity>& All()
+	const std::list<game::Commodity>& Commodities::All()
 	{
 		if (commodityList.empty())
 		{

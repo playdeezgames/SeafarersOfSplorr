@@ -2,8 +2,11 @@
 #include "Game.Commodity.h"
 #include "Game.CommodityDescriptor.h"
 #include <list>
-namespace game::Commodities
+namespace game
 {
-	const game::CommodityDescriptor& Read(const game::Commodity&);
-	const std::list<game::Commodity>& All();
+	struct Commodities
+	{
+		static const game::CommodityDescriptor& Read(const game::Commodity&);
+		static const std::list<game::Commodity>& All();
+	};
 }
