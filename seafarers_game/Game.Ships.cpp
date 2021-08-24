@@ -18,7 +18,30 @@ namespace game
 					{game::Commodity::LABOR, 50.0}
 				},
 				{
-
+					{
+						ShipStatistic::PORT_FOULING,
+						{
+							0.0,
+							0.125,
+							0.0
+						}
+					},
+					{
+						ShipStatistic::STARBOARD_FOULING,
+						{
+							0.0,
+							0.125,
+							0.0
+						}
+					},
+					{
+						ShipStatistic::FOULING_RATE,
+						{
+							0.001,
+							0.001,
+							0.001
+						}
+					}
 				},
 				1
 			}
@@ -36,6 +59,30 @@ namespace game
 					{game::Commodity::LABOR, 75.0}
 				},
 				{
+					{
+						ShipStatistic::PORT_FOULING,
+						{
+							0.0,
+							0.125,
+							0.0
+						}
+					},
+					{
+						ShipStatistic::STARBOARD_FOULING,
+						{
+							0.0,
+							0.125,
+							0.0
+						}
+					},
+					{
+						ShipStatistic::FOULING_RATE,
+						{
+							0.001,
+							0.001,
+							0.001
+						}
+					}
 				},
 				0
 			}
