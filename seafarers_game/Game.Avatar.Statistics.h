@@ -1,36 +1,31 @@
 #pragma once
 #include "Game.Difficulty.h"
 #include <string>
-namespace game::avatar::Statistics
+namespace game::avatar
 {
-	const std::string FORMAT_HEALTH = "\x83 {:.0f}";
-	const std::string FORMAT_BRAWLING = "\x88 {:.1f}";
-
-	void Reset(const game::Difficulty&);
-
-	double GetMoney();
-	void ChangeMoney(double);
-
-	double GetHealth();
-	void ChangeHealth(double);
-	bool IsDead();
-
-	double GetSatiety();
-	void ChangeSatiety(double);
-	bool IsStarving();
-	void Eat(double);
-	bool NeedToEat(double);
-
-	double GetReputation();
-	void ChangeReputation(double);
-
-	int GetTurnsRemaining();
-	void SpendTurn();
-	bool IsOutOfTurns();
-
-	double GetInfamy();
-	void ChangeInfamy(double);
-
-	double GetBrawling();
-	void ChangeBrawling(double);
+	struct Statistics
+	{
+		static const std::string FORMAT_HEALTH;
+		static const std::string FORMAT_BRAWLING;
+		static void Reset(const game::Difficulty&);
+		static double GetMoney();
+		static void ChangeMoney(double);
+		static double GetHealth();
+		static void ChangeHealth(double);
+		static bool IsDead();
+		static double GetSatiety();
+		static void ChangeSatiety(double);
+		static bool IsStarving();
+		static void Eat(double);
+		static bool NeedToEat(double);
+		static double GetReputation();
+		static void ChangeReputation(double);
+		static int GetTurnsRemaining();
+		static void SpendTurn();
+		static bool IsOutOfTurns();
+		static double GetInfamy();
+		static void ChangeInfamy(double);
+		static double GetBrawling();
+		static void ChangeBrawling(double);
+	};
 }

@@ -3,8 +3,11 @@
 #include "Game.Avatar.Statistics.h"
 #include <map>
 #include <list>
-namespace game::avatar::Statistics
+namespace game::avatar
 {
+	const std::string Statistics::FORMAT_HEALTH = "\x83 {:.0f}";
+	const std::string Statistics::FORMAT_BRAWLING = "\x88 {:.1f}";
+
 	struct StatisticDescriptor
 	{
 		game::avatar::Statistic statistic;
@@ -13,7 +16,7 @@ namespace game::avatar::Statistics
 		double initial;
 	};
 
-	const std::map<game::Difficulty, std::list<StatisticDescriptor>> initialValues =
+	static const std::map<game::Difficulty, std::list<StatisticDescriptor>> initialValues =
 	{
 		{game::Difficulty::EASY,
 			{
@@ -57,7 +60,7 @@ namespace game::avatar::Statistics
 			}}
 	};
 
-	void Reset(const game::Difficulty& difficulty)
+	void Statistics::Reset(const game::Difficulty& difficulty)
 	{
 		auto values = initialValues.find(difficulty)->second;
 		for (auto& value : values)
@@ -96,38 +99,38 @@ namespace game::avatar::Statistics
 		data::game::avatar::Statistic::Write((int)statistic, data);
 	}
 
-	double ChangeCurrent(const game::avatar::Statistic& statistic, double delta)
+	static double ChangeCurrent(const game::avatar::Statistic& statistic, double delta)
 	{
 		SetCurrent(statistic, GetCurrent(statistic) + delta);
 		return GetCurrent(statistic);
 	}
 
-	double GetMoney()
+	double Statistics::GetMoney()
 	{
 		return GetCurrent(game::avatar::Statistic::MONEY);
 	}
 
-	double GetHealth()
+	double Statistics::GetHealth()
 	{
 		return GetCurrent(game::avatar::Statistic::HEALTH);
 	}
 
-	double GetSatiety()
+	double Statistics::GetSatiety()
 	{
 		return GetCurrent(game::avatar::Statistic::SATIETY);
 	}
 
-	double GetInfamy()
+	double Statistics::GetInfamy()
 	{
 		return GetCurrent(game::avatar::Statistic::INFAMY);
 	}
 
-	double GetBrawling()
+	double Statistics::GetBrawling()
 	{
 		return GetCurrent(game::avatar::Statistic::BRAWLING);
 	}
 
-	void Eat(double amount)
+	void Statistics::Eat(double amount)
 	{
 		double healthDown = GetMaximum(game::avatar::Statistic::HEALTH).value() - GetCurrent(game::avatar::Statistic::HEALTH);
 		if (healthDown > 0)
@@ -141,7 +144,7 @@ namespace game::avatar::Statistics
 		}
 	}
 
-	bool NeedToEat(double amount)
+	bool Statistics::NeedToEat(double amount)
 	{
 		double totalDown =
 			GetMaximum(game::avatar::Statistic::HEALTH).value() - GetCurrent(game::avatar::Statistic::HEALTH) +
@@ -149,28 +152,28 @@ namespace game::avatar::Statistics
 		return totalDown >= amount;
 	}
 
-	double GetReputation()
+	double Statistics::GetReputation()
 	{
 		return GetCurrent(game::avatar::Statistic::REPUTATION);
 	}
 
-	void ChangeReputation(double delta)
+	void Statistics::ChangeReputation(double delta)
 	{
 		ChangeCurrent(game::avatar::Statistic::REPUTATION, delta);
 	}
 
-	int GetTurnsRemaining()
+	int Statistics::GetTurnsRemaining()
 	{
 		return (int)GetCurrent(game::avatar::Statistic::TURNS_REMAINING);
 	}
 
-	void SpendTurn()
+	void Statistics::SpendTurn()
 	{
 		const double TURN_DELTA = -1.0;
 		ChangeCurrent(game::avatar::Statistic::TURNS_REMAINING, TURN_DELTA);
 	}
 
-	bool IsOutOfTurns()
+	bool Statistics::IsOutOfTurns()
 	{
 		return GetCurrent(game::avatar::Statistic::TURNS_REMAINING) <= GetMinimum(game::avatar::Statistic::TURNS_REMAINING);
 	}
@@ -180,37 +183,37 @@ namespace game::avatar::Statistics
 		return GetCurrent(statistic) <= GetMinimum(statistic);
 	}
 
-	bool IsDead()
+	bool Statistics::IsDead()
 	{
 		return IsMinimal(Statistic::HEALTH);
 	}
 
-	bool IsStarving()
+	bool Statistics::IsStarving()
 	{
 		return IsMinimal(Statistic::SATIETY);
 	}
 
-	void ChangeMoney(double delta)
+	void Statistics::ChangeMoney(double delta)
 	{
 		ChangeCurrent(Statistic::MONEY, delta);
 	}
 
-	void ChangeHealth(double delta)
+	void Statistics::ChangeHealth(double delta)
 	{
 		ChangeCurrent(Statistic::HEALTH, delta);
 	}
 
-	void ChangeSatiety(double delta)
+	void Statistics::ChangeSatiety(double delta)
 	{
 		ChangeCurrent(Statistic::SATIETY, delta);
 	}
 
-	void ChangeInfamy(double delta)
+	void Statistics::ChangeInfamy(double delta)
 	{
 		ChangeCurrent(Statistic::INFAMY, delta);
 	}
 
-	void ChangeBrawling(double delta)
+	void Statistics::ChangeBrawling(double delta)
 	{
 		ChangeCurrent(Statistic::BRAWLING, delta);
 	}
