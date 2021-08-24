@@ -2,22 +2,26 @@
 #include <Common.XY.h>
 #include "Game.Difficulty.h"
 #include <optional>
-namespace game::avatar::AtSea
+namespace game::avatar
 {
-	void Reset(const game::Difficulty&);
-
-	double GetHeading();
-	void SetHeading(double);
-
-	double GetSpeed();
-	void SetSpeed(double);
-
-	common::XY<double> GetLocation();
-
-	enum class MoveResult
+	struct AtSea
 	{
-		MOVED,
-		CLAMPED
+		enum class MoveResult
+		{
+			MOVED,
+			CLAMPED
+		};
+
+		static void Reset(const game::Difficulty&);
+
+		static double GetHeading();
+		static void SetHeading(double);
+
+		static double GetSpeed();
+		static void SetSpeed(double);
+
+		static common::XY<double> GetLocation();
+
+		static MoveResult Move();
 	};
-	MoveResult Move();
 }

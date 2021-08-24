@@ -9,9 +9,9 @@
 #include "Game.Avatar.Statistics.h"
 #include "Game.Ships.h"
 #include "Game.World.h"
-namespace game::avatar::AtSea
+namespace game::avatar
 {
-	void Reset(const game::Difficulty&)
+	void AtSea::Reset(const game::Difficulty&)
 	{
 		auto worldSize = game::World::GetSize();
 		data::game::Avatar data =
@@ -24,12 +24,12 @@ namespace game::avatar::AtSea
 		data::game::Avatar::SetState((int)game::avatar::State::AT_SEA);
 	}
 
-	double GetHeading()
+	double AtSea::GetHeading()
 	{
 		return data::game::Avatar::Read().value().heading;
 	}
 
-	void SetHeading(double heading)
+	void AtSea::SetHeading(double heading)
 	{
 		auto data = data::game::Avatar::Read().value();
 		data.heading = common::Data::ModuloDouble(heading, common::Heading::DEGREES).value();
@@ -39,17 +39,17 @@ namespace game::avatar::AtSea
 	const double SPEED_MINIMUM = 0.0;
 	const double SPEED_MAXIMUM = 1.0;
 
-	common::XY<double> GetLocation()
+	common::XY<double> AtSea::GetLocation()
 	{
 		return data::game::Avatar::Read().value().location;
 	}
 
-	double GetSpeed()
+	double AtSea::GetSpeed()
 	{
 		return data::game::Avatar::Read().value().speed;
 	}
 
-	void SetSpeed(double speed)
+	void AtSea::SetSpeed(double speed)
 	{
 		auto data = data::game::Avatar::Read().value();
 		data.speed = common::Data::ClampDouble(speed, SPEED_MINIMUM, SPEED_MAXIMUM);
@@ -98,34 +98,34 @@ namespace game::avatar::AtSea
 		ApplyWindChange();
 	}
 
-	static common::XY<double> ClampAvatarLocation(const common::XY<double>& candidate, MoveResult& result)
+	static common::XY<double> ClampAvatarLocation(const common::XY<double>& candidate, AtSea::MoveResult& result)
 	{
 		auto nextLocation = candidate;
 		auto worldSize = game::World::GetSize();
 		if (nextLocation.GetX() < 0.0)
 		{
-			result = MoveResult::CLAMPED;
+			result = AtSea::MoveResult::CLAMPED;
 			nextLocation = { 0, nextLocation.GetY() };
 		}
 		if (nextLocation.GetX() > worldSize.GetX())
 		{
-			result = MoveResult::CLAMPED;
+			result = AtSea::MoveResult::CLAMPED;
 			nextLocation = { worldSize.GetX(), nextLocation.GetY() };
 		}
 		if (nextLocation.GetY() < 0.0)
 		{
-			result = MoveResult::CLAMPED;
+			result = AtSea::MoveResult::CLAMPED;
 			nextLocation = { nextLocation.GetX(), 0.0 };
 		}
 		if (nextLocation.GetY() > worldSize.GetY())
 		{
-			result = MoveResult::CLAMPED;
+			result = AtSea::MoveResult::CLAMPED;
 			nextLocation = { nextLocation.GetX(), worldSize.GetY() };
 		}
 		return nextLocation;
 	}
 
-	MoveResult Move()
+	AtSea::MoveResult AtSea::Move()
 	{
 		MoveResult result = MoveResult::MOVED;
 		auto avatar = data::game::Avatar::Read().value();
