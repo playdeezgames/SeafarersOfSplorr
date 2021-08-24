@@ -80,23 +80,9 @@ namespace game
 		return GetIslandsInRange(FixedDistance(game::World::GetDockDistance()));
 	}
 
-	std::list<Island> Islands::GetCareeningIslands()
-	{
-		return GetIslandsInRange(
-			[](const data::game::Island& data, double distance) 
-			{
-				return distance < data.careeningDistance;
-			});
-	}
-
 	bool Islands::CanDock()
 	{
 		return !GetDockableIslands().empty();
-	}
-
-	bool Islands::CanCareen()
-	{
-		return !GetCareeningIslands().empty();
 	}
 
 	void Islands::AddVisit(const common::XY<double>& location, const int& turn)

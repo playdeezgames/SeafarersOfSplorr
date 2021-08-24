@@ -171,8 +171,7 @@ namespace game
 			data::game::Island data =
 			{
 				locations.front(),
-				*names.begin(),
-				1.0
+				*names.begin()
 			};
 			data::game::Island::Write(data);
 			locations.pop_front();

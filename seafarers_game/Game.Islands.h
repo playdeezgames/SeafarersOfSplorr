@@ -12,9 +12,7 @@ namespace game
 		static void Reset(const game::Difficulty&);
 		static std::list<Island> GetViewableIslands();
 		static std::list<Island> GetDockableIslands();
-		static std::list<Island> GetCareeningIslands();
 		static bool CanDock();
-		static bool CanCareen();
 		static std::list<Island> GetKnownIslands();
 		static void AddVisit(const common::XY<double>&, const int&);
 		static void SetKnown(const common::XY<double>&, const int&);

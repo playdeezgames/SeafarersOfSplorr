@@ -5,15 +5,14 @@
 #include <format>
 namespace data::game
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Islands]([X] REAL NOT NULL,[Y] REAL NOT NULL,[CareeningDistance] REAL NOT NULL,[Name] TEXT NOT NULL,UNIQUE([X],[Y]));";
-	static const std::string QUERY_ITEM = "SELECT [X],[Y],[Name],[CareeningDistance] FROM [Islands] WHERE [X] = {:.4f} AND [Y]={:.4f};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [Islands]([X],[Y],[Name],[CareeningDistance]) VALUES ({:.4f},{:.4f},{},{});";
-	static const std::string QUERY_ALL = "SELECT [X],[Y],[Name],[CareeningDistance] FROM [Islands];";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Islands]([X] REAL NOT NULL,[Y] REAL NOT NULL,[Name] TEXT NOT NULL,UNIQUE([X],[Y]));";
+	static const std::string QUERY_ITEM = "SELECT [X],[Y],[Name] FROM [Islands] WHERE [X] = {:.4f} AND [Y]={:.4f};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [Islands]([X],[Y],[Name]) VALUES ({:.4f},{:.4f},{});";
+	static const std::string QUERY_ALL = "SELECT [X],[Y],[Name] FROM [Islands];";
 	static const std::string CLEAR_ALL = "DELETE FROM [Islands];";
 	static const std::string FIELD_X = "X";
 	static const std::string FIELD_Y = "Y";
 	static const std::string FIELD_NAME = "Name";
-	static const std::string FIELD_CAREENING_DISTANCE = "CareeningDistance";
 
 	static const auto AutoCreateIslandTable = data::game::Common::Run(CREATE_TABLE);
 
@@ -25,8 +24,7 @@ namespace data::game
 				REPLACE_ITEM,
 				data.location.GetX(), 
 				data.location.GetY(),
-				common::Data::QuoteString(data.name),
-				data.careeningDistance);
+				common::Data::QuoteString(data.name));
 		data::game::Common::Execute(query);
 	}
 
@@ -38,8 +36,7 @@ namespace data::game
 				common::Data::ToDouble(record.find(FIELD_X)->second),
 				common::Data::ToDouble(record.find(FIELD_Y)->second)
 			},
-			record.find(FIELD_NAME)->second,
-			common::Data::ToDouble(record.find(FIELD_CAREENING_DISTANCE)->second)
+			record.find(FIELD_NAME)->second
 		};
 		return data;
 	}
