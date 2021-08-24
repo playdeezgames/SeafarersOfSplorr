@@ -2,8 +2,11 @@
 #include "Game.Item.h"
 #include "Game.ItemDescriptor.h"
 #include <list>
-namespace game::Items
+namespace game
 {
-	const game::ItemDescriptor& Read(const game::Item&);
-	const std::list<game::Item>& All();
+	struct Items
+	{
+		static const game::ItemDescriptor& Read(const game::Item&);
+		static const std::list<game::Item>& All();
+	};
 }

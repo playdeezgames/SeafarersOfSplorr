@@ -1,8 +1,8 @@
 #include "Game.Items.h"
 #include <map>
-namespace game::Items
+namespace game
 {
-	std::map<game::Item, game::ItemDescriptor> itemTable =
+	static const std::map<game::Item, game::ItemDescriptor> itemTable =
 	{
 		{game::Item::RATIONS,
 			{
@@ -76,12 +76,12 @@ namespace game::Items
 
 	static std::list<game::Item> itemList;
 
-	const game::ItemDescriptor& Read(const game::Item& item)
+	const game::ItemDescriptor& Items::Read(const game::Item& item)
 	{
 		return itemTable.find(item)->second;
 	}
 
-	const std::list<game::Item>& All()
+	const std::list<game::Item>& Items::All()
 	{
 		if (itemList.empty())
 		{

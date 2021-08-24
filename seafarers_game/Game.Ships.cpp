@@ -3,7 +3,7 @@
 #include <map>
 namespace game
 {
-	const std::map<game::Ship, game::ShipDescriptor> ships =
+	static const std::map<game::Ship, game::ShipDescriptor> ships =
 	{
 		{
 			game::Ship::RAFT, 
