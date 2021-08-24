@@ -191,6 +191,9 @@
     <ClInclude Include="Game.Avatar.ShipStatistics.h">
       <Filter>Header Files\Avatar</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Island.h">
+      <Filter>Header Files\Islands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Commodities.cpp">

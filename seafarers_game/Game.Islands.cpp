@@ -28,7 +28,7 @@ namespace game
 		GenerateIslands();
 	}
 
-	static void AddIsland(std::list<Islands::IslandModel>& result, const data::game::Island& island, const common::XY<double>& avatarLocation)
+	static void AddIsland(std::list<Island>& result, const data::game::Island& island, const common::XY<double>& avatarLocation)
 	{
 		auto visitData = data::game::island::Visit::Read(island.location);
 		data::game::island::Known::Write(island.location);
@@ -41,7 +41,7 @@ namespace game
 			});
 	}
 
-	static void AddIslandWhenCloseEnough(std::list<Islands::IslandModel>& result, const data::game::Island& island, const common::XY<double>& avatarLocation, std::function<bool(const data::game::Island&, double)> filter)
+	static void AddIslandWhenCloseEnough(std::list<Island>& result, const data::game::Island& island, const common::XY<double>& avatarLocation, std::function<bool(const data::game::Island&, double)> filter)
 	{
 		auto distance = common::Heading::Distance(avatarLocation, island.location);
 		if (filter(island, distance))
@@ -50,9 +50,9 @@ namespace game
 		}
 	}
 
-	static std::list<Islands::IslandModel> GetIslandsInRange(std::function<bool(const data::game::Island&, double)> filter)
+	static std::list<Island> GetIslandsInRange(std::function<bool(const data::game::Island&, double)> filter)
 	{
-		std::list<Islands::IslandModel> result;
+		std::list<Island> result;
 		auto avatarLocation = game::avatar::AtSea::GetLocation();
 		auto islands = data::game::Island::All();
 		for (auto& island : islands)
@@ -70,17 +70,17 @@ namespace game
 		};
 	}
 
-	std::list<Islands::IslandModel> Islands::GetViewableIslands()
+	std::list<Island> Islands::GetViewableIslands()
 	{
 		return GetIslandsInRange(FixedDistance(game::World::GetViewDistance()));
 	}
 
-	std::list<Islands::IslandModel> Islands::GetDockableIslands()
+	std::list<Island> Islands::GetDockableIslands()
 	{
 		return GetIslandsInRange(FixedDistance(game::World::GetDockDistance()));
 	}
 
-	std::list<Islands::IslandModel> Islands::GetCareeningIslands()
+	std::list<Island> Islands::GetCareeningIslands()
 	{
 		return GetIslandsInRange(
 			[](const data::game::Island& data, double distance) 
@@ -130,13 +130,13 @@ namespace game
 		}
 	}
 
-	std::optional<Islands::IslandModel> Islands::Read(const common::XY<double>& location)//TODO: different model for docked?
+	std::optional<Island> Islands::Read(const common::XY<double>& location)//TODO: different model for docked?
 	{
 		auto data = data::game::Island::Read(location);
 		if (data)
 		{
 			auto visitData = data::game::island::Visit::Read(data.value().location);
-			return std::optional<Islands::IslandModel>({
+			return std::optional<Island>({
 				{0.0, 0.0},
 				data.value().location,
 				data.value().name,
@@ -146,10 +146,10 @@ namespace game
 		return std::nullopt;
 	}
 
-	std::list<Islands::IslandModel> Islands::GetKnownIslands()
+	std::list<Island> Islands::GetKnownIslands()
 	{
 		auto knownLocations = data::game::island::Known::All();
-		std::list<Islands::IslandModel> result;
+		std::list<Island> result;
 		for (auto& knownLocation : knownLocations)
 		{
 			auto model = Read(knownLocation);
