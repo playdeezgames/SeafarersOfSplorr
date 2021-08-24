@@ -1,4 +1,4 @@
-#include <Data.Game.Avatar.Statistics.h>
+#include <Data.Game.Avatar.Statistic.h>
 #include "Game.Avatar.Statistic.h"
 #include "Game.Avatar.Statistics.h"
 #include <map>
@@ -62,7 +62,7 @@ namespace game::avatar::Statistics
 		auto values = initialValues.find(difficulty)->second;
 		for (auto& value : values)
 		{
-			data::game::avatar::Statistics::Write((int)value.statistic,
+			data::game::avatar::Statistic::Write((int)value.statistic,
 				{
 					value.minimum,
 					value.maximum,
@@ -73,27 +73,27 @@ namespace game::avatar::Statistics
 
 	static std::optional<double> GetMaximum(const game::avatar::Statistic& statistic)
 	{
-		return data::game::avatar::Statistics::Read((int)statistic).value().maximum;
+		return data::game::avatar::Statistic::Read((int)statistic).value().maximum;
 	}
 
 	static std::optional<double> GetMinimum(const game::avatar::Statistic& statistic)
 	{
-		return data::game::avatar::Statistics::Read((int)statistic).value().minimum;
+		return data::game::avatar::Statistic::Read((int)statistic).value().minimum;
 	}
 
 	double GetCurrent(const game::avatar::Statistic& statistic)
 	{
-		return data::game::avatar::Statistics::Read((int)statistic).value().current;
+		return data::game::avatar::Statistic::Read((int)statistic).value().current;
 	}
 
 	static void SetCurrent(const game::avatar::Statistic& statistic, double value)
 	{
-		auto data = data::game::avatar::Statistics::Read((int)statistic).value();
+		auto data = data::game::avatar::Statistic::Read((int)statistic).value();
 		data.current =
 			(data.maximum.has_value() && value > data.maximum.value()) ? (data.maximum.value()) :
 			(data.minimum.has_value() && value < data.minimum.value()) ? (data.minimum.value()) :
 			(value);
-		data::game::avatar::Statistics::Write((int)statistic, data);
+		data::game::avatar::Statistic::Write((int)statistic, data);
 	}
 
 	double ChangeCurrent(const game::avatar::Statistic& statistic, double delta)

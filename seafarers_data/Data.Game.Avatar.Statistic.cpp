@@ -1,5 +1,5 @@
 #include <Common.Data.h>
-#include "Data.Game.Avatar.Statistics.h"
+#include "Data.Game.Avatar.Statistic.h"
 #include "Data.Game.Common.h"
 #include <format>
 #include <string>
@@ -14,14 +14,14 @@ namespace data::game::avatar
 
 	static const auto AutoCreateAvatarStatisticsTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Statistics::Write(int statisticId, const Statistics& data)
+	void Statistic::Write(int statisticId, const Statistic& data)
 	{
 		AutoCreateAvatarStatisticsTable();
 		auto query = std::format(REPLACE_ITEM, statisticId, common::Data::OfOptional(data.minimum), common::Data::OfOptional(data.maximum), data.current);
 		data::game::Common::Execute(query);
 	}
 
-	std::optional<Statistics> Statistics::Read(int statisticId)
+	std::optional<Statistic> Statistic::Read(int statisticId)
 	{
 		AutoCreateAvatarStatisticsTable();
 		auto query = std::format(QUERY_ITEM, statisticId);
@@ -29,7 +29,7 @@ namespace data::game::avatar
 		if (!result.empty())
 		{
 			auto record = result.front();
-			return std::optional<Statistics>(
+			return std::optional<Statistic>(
 			{
 				common::Data::ToOptionalDouble(record[FIELD_MINIMUM]),
 				common::Data::ToOptionalDouble(record[FIELD_MAXIMUM]),
