@@ -170,9 +170,6 @@
     <ClInclude Include="Game.Islands.DarkAlley.GamblingHand.h">
       <Filter>Header Files\Islands</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Avatar.AtSeaState.h">
-      <Filter>Header Files\Avatar</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Avatar.h">
       <Filter>Header Files\Avatar</Filter>
     </ClInclude>

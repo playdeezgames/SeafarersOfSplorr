@@ -25,7 +25,6 @@
     <ClInclude Include="Game.Audio.Sfx.h" />
     <ClInclude Include="Game.Audio.Theme.h" />
     <ClInclude Include="Game.Avatar.AtSea.h" />
-    <ClInclude Include="Game.Avatar.AtSeaState.h" />
     <ClInclude Include="Game.Avatar.Destination.h" />
     <ClInclude Include="Game.Avatar.h" />
     <ClInclude Include="Game.Avatar.StateTransition.h" />
