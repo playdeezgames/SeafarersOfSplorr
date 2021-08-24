@@ -1,7 +1,7 @@
 #include <Data.Game.Island.Market.h>
 #include "Game.Commodities.h"
 #include "Game.Islands.Commodities.h"
-namespace game::islands::Commodities
+namespace game::islands
 {
 	static double GetPurchasePrice(const common::XY<double>& location, const game::Commodity& commodity)
 	{
@@ -21,7 +21,7 @@ namespace game::islands::Commodities
 			(1.0 - commodityDescriptor.discount);
 	}
 
-	double GetPurchasePrice(const common::XY<double>& location, const std::map<Commodity, double>& table)
+	double Commodities::GetPurchasePrice(const common::XY<double>& location, const std::map<Commodity, double>& table)
 	{
 		double price = 0.0;
 		for (auto entry : table)
@@ -29,12 +29,12 @@ namespace game::islands::Commodities
 			auto commodity = entry.first;
 			auto commodityAmount = entry.second;
 			price +=
-				commodityAmount * GetPurchasePrice(location, entry.first);
+				commodityAmount * game::islands::GetPurchasePrice(location, entry.first);
 		}
 		return price;
 	}
 
-	double GetSalePrice(const common::XY<double>& location, const std::map<Commodity, double>& table)
+	double Commodities::GetSalePrice(const common::XY<double>& location, const std::map<Commodity, double>& table)
 	{
 		double price = 0.0;
 		for (auto entry : table)
@@ -42,7 +42,7 @@ namespace game::islands::Commodities
 			auto commodity = entry.first;
 			auto commodityAmount = entry.second;
 			price +=
-				commodityAmount * GetSalePrice(location, entry.first);
+				commodityAmount * game::islands::GetSalePrice(location, entry.first);
 		}
 		return price;
 	}
