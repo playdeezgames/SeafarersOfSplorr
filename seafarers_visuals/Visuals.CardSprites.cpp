@@ -1,8 +1,8 @@
 #include <map>
 #include "Visuals.CardSprites.h"
-namespace visuals::CardSprites
+namespace visuals
 {
-	const std::map<cards::Card, std::string> cardSprites =
+	static const std::map<cards::Card, std::string> cardSprites =
 	{
 		{{cards::Rank::DEUCE, cards::Suit::CLUB}, "Card2C" },
 		{{cards::Rank::DEUCE, cards::Suit::DIAMOND}, "Card2D" },
@@ -58,7 +58,7 @@ namespace visuals::CardSprites
 		{{cards::Rank::ACE, cards::Suit::SPADE}, "CardAS" }
 	};
 
-	const std::string& GetSpriteForCard(const cards::Card& card)
+	const std::string& CardSprites::GetSpriteForCard(const cards::Card& card)
 	{
 		return cardSprites.find(card)->second;
 	}

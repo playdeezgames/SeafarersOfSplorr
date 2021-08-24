@@ -4,13 +4,13 @@
 #include <optional>
 #include <string>
 #include "Visuals.DrawerFunction.h"
-namespace visuals::WorldMap
+namespace visuals
 {
-	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
-}
-namespace visuals::WorldMap
-{
-	void SetDestination(const std::string&, const std::string&, const std::optional<common::XY<int>>&);
-	std::optional<common::XY<double>> GetDestination(const std::string&, const std::string&);
-	std::optional<common::XY<double>> GetHoverIsland(const std::string&, const std::string&);
+	struct WorldMap
+	{
+		static DrawerFunction Internalize(const std::string&, const nlohmann::json&);
+		static void SetDestination(const std::string&, const std::string&, const std::optional<common::XY<int>>&);
+		static std::optional<common::XY<double>> GetDestination(const std::string&, const std::string&);
+		static std::optional<common::XY<double>> GetHoverIsland(const std::string&, const std::string&);
+	};
 }

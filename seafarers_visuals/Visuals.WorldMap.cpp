@@ -12,17 +12,17 @@
 #include "Visuals.Data.Properties.h"
 #include "Visuals.Sprites.h"
 #include "Visuals.WorldMap.h"
-namespace visuals::WorldMap
+namespace visuals
 {
-	const std::string SPRITE_WORLD_MAP_SHIP = "WorldMapShip";
-	const std::string SPRITE_WORLD_MAP_NEW_DESTINATION = "WorldMapNewDestination";
-	const std::string SPRITE_WORLD_MAP_CURRENT_DESTINATION_1 = "WorldMapCurrentDestination1";
-	const std::string SPRITE_WORLD_MAP_CURRENT_DESTINATION_2 = "WorldMapCurrentDestination2";
-	const std::string SPRITE_WORLD_MAP_CURRENT_DESTINATION_3 = "WorldMapCurrentDestination3";
-	const std::string SPRITE_WORLD_MAP_CURRENT_DESTINATION_4 = "WorldMapCurrentDestination4";
-	const std::string SPRITE_WORLD_MAP_QUEST_ISLAND = "WorldMapQuestIsland";
-	const std::string SPRITE_WORLD_MAP_ISLAND = "WorldMapIsland";
-	const std::string SPRITE_WORLD_MAP_HOVER_ISLAND = "WorldMapHoverIsland";
+	static const std::string SPRITE_WORLD_MAP_SHIP = "WorldMapShip";
+	static const std::string SPRITE_WORLD_MAP_NEW_DESTINATION = "WorldMapNewDestination";
+	static const std::string SPRITE_WORLD_MAP_CURRENT_DESTINATION_1 = "WorldMapCurrentDestination1";
+	static const std::string SPRITE_WORLD_MAP_CURRENT_DESTINATION_2 = "WorldMapCurrentDestination2";
+	static const std::string SPRITE_WORLD_MAP_CURRENT_DESTINATION_3 = "WorldMapCurrentDestination3";
+	static const std::string SPRITE_WORLD_MAP_CURRENT_DESTINATION_4 = "WorldMapCurrentDestination4";
+	static const std::string SPRITE_WORLD_MAP_QUEST_ISLAND = "WorldMapQuestIsland";
+	static const std::string SPRITE_WORLD_MAP_ISLAND = "WorldMapIsland";
+	static const std::string SPRITE_WORLD_MAP_HOVER_ISLAND = "WorldMapHoverIsland";
 
 	struct InternalWorldMap
 	{
@@ -64,7 +64,7 @@ namespace visuals::WorldMap
 		}
 	}
 
-	const std::map<game::avatar::Destination, std::string> destinationIdSprites =
+	static const std::map<game::avatar::Destination, std::string> destinationIdSprites =
 	{
 		{game::avatar::Destination::ONE, SPRITE_WORLD_MAP_CURRENT_DESTINATION_1},
 		{game::avatar::Destination::TWO, SPRITE_WORLD_MAP_CURRENT_DESTINATION_2},
@@ -146,7 +146,7 @@ namespace visuals::WorldMap
 		DrawNewDestination(renderer, worldMap, worldSize);
 	}
 
-	std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> Internalize(const std::string& layoutName, const nlohmann::json& model)
+	std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> WorldMap::Internalize(const std::string& layoutName, const nlohmann::json& model)
 	{
 		auto worldMapIndex = worldMaps.size();
 		worldMaps.push_back({
@@ -165,13 +165,13 @@ namespace visuals::WorldMap
 		};
 	}
 
-	void SetDestination(const std::string& layoutName, const std::string& worldMapId, const std::optional<common::XY<int>>& destination)
+	void WorldMap::SetDestination(const std::string& layoutName, const std::string& worldMapId, const std::optional<common::XY<int>>& destination)
 	{
 		size_t index = worldMapTable.find(layoutName)->second.find(worldMapId)->second;
 		worldMaps[index].destination = destination;
 	}
 
-	std::optional<common::XY<double>> GetDestination(const std::string& layoutName, const std::string& worldMapId)
+	std::optional<common::XY<double>> WorldMap::GetDestination(const std::string& layoutName, const std::string& worldMapId)
 	{
 		auto layoutIter = worldMapTable.find(layoutName);
 		if (layoutIter != worldMapTable.end())
@@ -190,7 +190,7 @@ namespace visuals::WorldMap
 		return std::nullopt;
 	}
 
-	std::optional<common::XY<double>> GetHoverIsland(const std::string& layoutName, const std::string& worldMapId)
+	std::optional<common::XY<double>> WorldMap::GetHoverIsland(const std::string& layoutName, const std::string& worldMapId)
 	{
 		auto layoutIter = worldMapTable.find(layoutName);
 		if (layoutIter != worldMapTable.end())
@@ -205,5 +205,4 @@ namespace visuals::WorldMap
 		}
 		return std::nullopt;
 	}
-
 }
