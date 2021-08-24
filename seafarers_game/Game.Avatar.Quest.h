@@ -9,7 +9,7 @@ namespace game::avatar::Quest
 		NO_QUEST_TO_ACCEPT,
 		ALREADY_HAS_QUEST
 	};
-	std::optional<game::Quest::QuestModel> Read();
+	std::optional<game::Quest> Read();
 	AcceptQuestResult AcceptQuest(const common::XY<double>&);
 	bool CompleteQuest(const common::XY<double>&);
 	bool AbandonQuest();

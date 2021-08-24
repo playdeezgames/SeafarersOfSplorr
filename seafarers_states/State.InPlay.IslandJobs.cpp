@@ -74,7 +74,7 @@ namespace state::in_play::IslandJobs
 		{::Command::RED, OnCancel }
 	};
 
-	static void UpdateQuestText(const game::Quest::QuestModel& questModel)
+	static void UpdateQuestText(const game::Quest& questModel)
 	{
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE1, "Please deliver this");//TODO: hardcoded
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE2, questModel.itemName);

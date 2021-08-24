@@ -57,12 +57,12 @@ namespace game::avatar::Quest
 		return false;
 	}
 
-	std::optional<game::Quest::QuestModel> Read()
+	std::optional<game::Quest> Read()
 	{
 		auto quest = data::game::avatar::Quest::Read();
 		if (quest)
 		{
-			return std::optional<game::Quest::QuestModel>({
+			return std::optional<game::Quest>({
 				quest.value().destination,
 				quest.value().reward,
 				quest.value().itemName,

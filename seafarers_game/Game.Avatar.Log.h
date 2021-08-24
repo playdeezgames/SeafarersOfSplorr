@@ -2,14 +2,14 @@
 #include "Game.Difficulty.h"
 #include <list>
 #include <string>
-namespace game::avatar::Log
+namespace game::avatar
 {
-	struct LogEntry
+	struct Log
 	{
 		std::string color;
 		std::string text;
+		static void Reset(const Difficulty&);
+		static std::list<Log> Read(size_t);
+		static void Write(const Log&);
 	};
-	void Reset(const Difficulty&);
-	std::list<LogEntry> Read(size_t);
-	void Write(const LogEntry&);
 }

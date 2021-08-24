@@ -95,7 +95,7 @@ namespace visuals::WorldMap
 		InternalWorldMap& worldMap, 
 		const common::XY<double> worldSize, 
 		double closest,
-		const std::optional<game::Quest::QuestModel>& quest,//TODO: does not need entire quest model, just the location would do
+		const std::optional<game::Quest>& quest,//TODO: does not need entire quest model, just the location would do
 		const game::Islands::IslandModel& knownIsland)
 	{
 		common::XY<int> plot = Plot(worldMap, worldSize, knownIsland.absoluteLocation);

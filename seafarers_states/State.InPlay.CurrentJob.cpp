@@ -52,7 +52,7 @@ namespace state::in_play::CurrentJob
 		{::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) }
 	};
 
-	static void UpdateQuestText(const game::Quest::QuestModel& questModel)//TODO: duplicated!
+	static void UpdateQuestText(const game::Quest& questModel)//TODO: duplicated!
 	{
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE1, "Please deliver this");//TODO: hardcoded
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE2, questModel.itemName);

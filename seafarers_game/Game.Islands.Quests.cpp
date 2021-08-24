@@ -195,12 +195,12 @@ namespace game::islands::Quests
 		}
 	}
 
-	std::optional<game::Quest::QuestModel> Read(const common::XY<double>& location)
+	std::optional<game::Quest> Read(const common::XY<double>& location)
 	{
 		auto quest = data::game::island::Quest::Read(location);
 		if (quest)
 		{
-			return std::optional<game::Quest::QuestModel>({
+			return std::optional<game::Quest>({
 				quest.value().destination,
 				quest.value().reward,
 				quest.value().itemName,

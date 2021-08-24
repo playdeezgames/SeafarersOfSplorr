@@ -1,9 +1,9 @@
 #pragma once
 #include <Common.XY.h>
 #include <string>
-namespace game::Quest
+namespace game
 {
-	struct QuestModel
+	struct Quest
 	{
 		common::XY<double> destination;
 		double reward;
