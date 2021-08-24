@@ -2,7 +2,7 @@
 #include "Game.Islands.Commodities.h"
 #include "Game.Islands.Items.h"
 #include "Game.Items.h"
-namespace game::islands::Items
+namespace game::islands
 {
 	static double GetItemPurchasePrice(
 		const common::XY<double>& location,
@@ -20,7 +20,7 @@ namespace game::islands::Items
 		return Commodities::GetSalePrice(location, itemDescriptor.commodities);
 	}
 
-	std::map<game::Item, double> GetPurchasePrices(const common::XY<double>& location)
+	std::map<game::Item, double> Items::GetPurchasePrices(const common::XY<double>& location)
 	{
 		std::map<game::Item, double> result;
 		auto itemsAvailable = data::game::island::Item::GetAll(location);
@@ -32,7 +32,7 @@ namespace game::islands::Items
 		return result;
 	}
 
-	std::map<game::Item, double> GetSalePrices(const common::XY<double>& location)
+	std::map<game::Item, double> Items::GetSalePrices(const common::XY<double>& location)
 	{
 		std::map<game::Item, double> result;
 		auto items = game::Items::All();

@@ -2,7 +2,7 @@
 #include "Game.Islands.Markets.h"
 #include "Game.Items.h"
 #include "Game.Ships.h"
-namespace game::islands::Markets
+namespace game::islands
 {
 	static void BuyQuantities(const common::XY<double>& location, const std::map<Commodity, double> commodities, size_t quantity)
 	{
@@ -32,25 +32,25 @@ namespace game::islands::Markets
 		}
 	}
 
-	void BuyItems(const common::XY<double>& location, const game::Item& item, size_t quantity)
+	void Markets::BuyItems(const common::XY<double>& location, const game::Item& item, size_t quantity)
 	{
 		auto descriptor = game::Items::Read(item);
 		BuyQuantities(location, descriptor.commodities, quantity);
 	}
 
-	void SellItems(const common::XY<double>& location, const game::Item& item, size_t quantity)
+	void Markets::SellItems(const common::XY<double>& location, const game::Item& item, size_t quantity)
 	{
 		auto descriptor = game::Items::Read(item);
 		SellQuantities(location, descriptor.commodities, quantity);
 	}
 
-	void BuyShip(const common::XY<double>& location, const game::Ship& ship)
+	void Markets::BuyShip(const common::XY<double>& location, const game::Ship& ship)
 	{
 		auto descriptor = game::Ships::Read(ship);
 		BuyQuantities(location, descriptor.commodities, 1);
 	}
 
-	void SellShip(const common::XY<double>& location, const game::Ship& ship)
+	void Markets::SellShip(const common::XY<double>& location, const game::Ship& ship)
 	{
 		auto descriptor = game::Ships::Read(ship);
 		SellQuantities(location, descriptor.commodities, 1);
