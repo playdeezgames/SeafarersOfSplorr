@@ -4,12 +4,12 @@
 #include "Game.Avatar.Quest.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Islands.h"
-namespace game::avatar::Quest
+namespace game::avatar
 {
 	const double REPUTATION_REWARD = 1.0;
 	const double REPUTATION_PENALTY = -1.0;
 
-	AcceptQuestResult AcceptQuest(const common::XY<double>& location)
+	Quest::AcceptQuestResult Quest::AcceptQuest(const common::XY<double>& location)
 	{
 		if (data::game::avatar::Quest::Read())
 		{
@@ -33,7 +33,7 @@ namespace game::avatar::Quest
 		return AcceptQuestResult::NO_QUEST_TO_ACCEPT;
 	}
 
-	bool CompleteQuest(const common::XY<double>& location)
+	bool Quest::CompleteQuest(const common::XY<double>& location)
 	{
 		auto quest = data::game::avatar::Quest::Read();
 		if (quest.has_value() && quest.value().destination == location)
@@ -46,7 +46,7 @@ namespace game::avatar::Quest
 		return false;
 	}
 
-	bool AbandonQuest()
+	bool Quest::AbandonQuest()
 	{
 		if (data::game::avatar::Quest::Read())
 		{
@@ -57,7 +57,7 @@ namespace game::avatar::Quest
 		return false;
 	}
 
-	std::optional<game::Quest> Read()
+	std::optional<game::Quest> Quest::Read()
 	{
 		auto quest = data::game::avatar::Quest::Read();
 		if (quest)
