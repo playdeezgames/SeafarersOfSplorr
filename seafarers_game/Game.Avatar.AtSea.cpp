@@ -5,6 +5,7 @@
 #include "Game.Avatar.AtSea.h"
 #include "Game.Avatar.Items.h"
 #include "Game.Avatar.Ship.h"
+#include "Game.Avatar.ShipStatistics.h"
 #include "Game.Avatar.State.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Ships.h"
@@ -130,7 +131,9 @@ namespace game::avatar
 		MoveResult result = MoveResult::MOVED;
 		auto avatar = data::game::Avatar::Read().value();
 
-		auto effectiveSpeed = avatar.speed;
+		auto fouling = ShipStatistics::GetFouling();
+		ShipStatistics::IncreaseFouling(avatar.speed);
+		auto effectiveSpeed = avatar.speed * (1.0 - fouling);
 		auto relativeHeading = common::Heading::Difference(game::World::GetWindHeading(), avatar.heading);
 		double multiplier = 1.0 - std::abs(relativeHeading / common::Heading::DEGREES);
 

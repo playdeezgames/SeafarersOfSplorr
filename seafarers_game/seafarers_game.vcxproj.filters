@@ -188,6 +188,9 @@
     <ClInclude Include="Game.ShipStatisticDescriptor.h">
       <Filter>Header Files\Ships</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Avatar.ShipStatistics.h">
+      <Filter>Header Files\Avatar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Commodities.cpp">
@@ -269,6 +272,9 @@
       <Filter>Source Files\Islands</Filter>
     </ClCompile>
     <ClCompile Include="Game.Avatar.cpp">
+      <Filter>Source Files\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Avatar.ShipStatistics.cpp">
       <Filter>Source Files\Avatar</Filter>
     </ClCompile>
   </ItemGroup>
