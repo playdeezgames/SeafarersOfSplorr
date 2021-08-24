@@ -1,9 +1,9 @@
 #include <Data.Game.Avatar.Items.h>
 #include "Game.Avatar.Items.h"
 #include "Game.Items.h"
-namespace game::avatar::Items
+namespace game::avatar
 {
-	std::map<game::Item, size_t> All()
+	std::map<game::Item, size_t> Items::All()
 	{
 		std::map<game::Item, size_t> result;
 		auto inventory = data::game::avatar::Items::ReadAll();
@@ -14,24 +14,24 @@ namespace game::avatar::Items
 		return result;
 	}
 
-	size_t Read(const game::Item& item)
+	size_t Items::Read(const game::Item& item)
 	{
 		return data::game::avatar::Items::Read((int)item);
 	}
 
-	void Add(const game::Item& item, const size_t& count)
+	void Items::Add(const game::Item& item, const size_t& count)
 	{
 		auto previous = Read(item);
 		data::game::avatar::Items::Write((int)item, previous + count);
 	}
 
-	void Remove(const game::Item& item, const size_t& count)
+	void Items::Remove(const game::Item& item, const size_t& count)
 	{
 		auto previous = Read(item);
 		data::game::avatar::Items::Write((int)item, (previous>=count) ? (previous - count) : (0));
 	}
 
-	double TotalTonnage()
+	double Items::TotalTonnage()
 	{
 		double tonnage = 0.0;
 		for (auto& entry : All())
@@ -42,7 +42,7 @@ namespace game::avatar::Items
 		return tonnage;
 	}
 
-	void Reset(const game::Difficulty&)
+	void Items::Reset(const game::Difficulty&)
 	{
 		data::game::avatar::Items::Clear();
 	}

@@ -2,13 +2,15 @@
 #include "Game.Difficulty.h"
 #include "Game.Item.h"
 #include <map>
-namespace game::avatar::Items
+namespace game::avatar
 {
-	std::map<game::Item, size_t> All();
-	size_t Read(const game::Item&);
-	void Add(const game::Item&, const size_t&);
-	void Remove(const game::Item&, const size_t&);
-	void Reset(const game::Difficulty&);
-
-	double TotalTonnage();
+	struct Items
+	{
+		static std::map<game::Item, size_t> All();
+		static size_t Read(const game::Item&);
+		static void Add(const game::Item&, const size_t&);
+		static void Remove(const game::Item&, const size_t&);
+		static void Reset(const game::Difficulty&);
+		static double TotalTonnage();
+	};
 }
