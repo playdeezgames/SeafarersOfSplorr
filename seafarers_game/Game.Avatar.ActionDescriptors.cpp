@@ -264,6 +264,53 @@ namespace game::avatar
 					OnStartGambling
 				}
 			}
+		},
+		{
+			avatar::Action::CAREEN_TO_PORT,
+			{
+				{
+					avatar::State::AT_SEA,
+					DoTransition({
+						game::Colors::GREEN,
+						"You heave down to port.",
+						avatar::State::CAREENED_TO_PORT
+					})
+				}
+			}
+		},
+		{
+			avatar::Action::CAREEN_TO_STARBOARD,
+			{
+				{
+					avatar::State::AT_SEA,
+					DoTransition({
+						game::Colors::GREEN,
+						"You heave down to starboard.",
+						avatar::State::CAREENED_TO_STARBOARD
+					})
+				}
+			}
+		},
+		{
+			avatar::Action::UNCAREEN,
+			{
+				{
+					avatar::State::CAREENED_TO_PORT,
+					DoTransition({
+						game::Colors::GREEN,
+						"You right the vessel.",
+						avatar::State::AT_SEA
+					})
+				},
+				{
+					avatar::State::CAREENED_TO_STARBOARD,
+					DoTransition({
+						game::Colors::GREEN,
+						"You right the vessel.",
+						avatar::State::AT_SEA
+					})
+				}
+			}
 		}
 	};
 
