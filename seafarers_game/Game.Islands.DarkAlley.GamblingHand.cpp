@@ -3,9 +3,9 @@
 #include <Data.Game.Island.DarkAlley.GamblingHand.h>
 #include "Game.Islands.DarkAlley.GamblingHand.h"
 #include "Game.Islands.Features.h"
-namespace game::islands::dark_alley::GamblingHand
+namespace game::islands::dark_alley
 {
-	bool Deal(const common::XY<double>& location)
+	bool GamblingHand::Deal(const common::XY<double>& location)
 	{
 		if (!game::islands::Features::Read(location, game::Feature::DARK_ALLEY))
 		{
@@ -23,7 +23,7 @@ namespace game::islands::dark_alley::GamblingHand
 		return true;
 	}
 
-	std::vector<cards::Card> Read(const common::XY<double>& location)
+	std::vector<cards::Card> GamblingHand::Read(const common::XY<double>& location)
 	{
 		std::vector<cards::Card> result;
 		auto hand = data::game::island::dark_alley::GamblingHand::Read(location);
@@ -36,7 +36,7 @@ namespace game::islands::dark_alley::GamblingHand
 		return result;
 	}
 
-	bool IsWinner(const common::XY<double>& location)
+	bool GamblingHand::IsWinner(const common::XY<double>& location)
 	{
 		auto hand = Read(location);
 		if(!hand.empty())

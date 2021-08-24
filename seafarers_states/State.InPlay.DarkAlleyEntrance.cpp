@@ -10,11 +10,11 @@
 #include <Game.Avatar.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Statistics.h>
+#include <Game.Colors.h>
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.DarkAlley.FightCard.h>
 #include "UIState.h"
 #include <Visuals.Areas.h>
-#include <Game.Colors.h>
 #include <Visuals.CardSprites.h>
 #include <Visuals.Images.h>
 #include <Visuals.Texts.h>
