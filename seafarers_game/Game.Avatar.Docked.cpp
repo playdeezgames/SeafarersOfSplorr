@@ -13,25 +13,25 @@
 #include "Game.Islands.Quests.h"
 #include "Game.Islands.h"
 #include <map>
-namespace game::avatar::Docked
+namespace game::avatar
 {
-	void Reset(const game::Difficulty&)
+	void Docked::Reset(const game::Difficulty&)
 	{
 
 	}
 
-	const std::string FORMAT_DOCK = "You dock at {}!";
+	static const std::string FORMAT_DOCK = "You dock at {}!";
 
-	static std::optional<DockResult> DoDock(const common::XY<double>& location)
+	static std::optional<Docked::DockResult> DoDock(const common::XY<double>& location)
 	{
-		std::optional<DockResult> result = DockResult::DOCKED;
+		std::optional<Docked::DockResult> result = Docked::DockResult::DOCKED;
 		game::Islands::AddVisit(
 			location,
 			game::avatar::Statistics::GetTurnsRemaining());
 		game::islands::Quests::Update(location);
 		if (game::avatar::Quest::CompleteQuest(location))
 		{
-			result = DockResult::COMPLETED_QUEST;
+			result = Docked::DockResult::COMPLETED_QUEST;
 		}
 		data::game::avatar::Dock::SetLocation(location);
 		data::game::Avatar::SetState((int)game::avatar::State::DOCK);
@@ -40,7 +40,7 @@ namespace game::avatar::Docked
 		return result;
 	}
 
-	std::optional<DockResult> Dock()
+	std::optional<Docked::DockResult> Docked::Dock()
 	{
 		if (GetDockedLocation().has_value())
 		{
@@ -54,7 +54,7 @@ namespace game::avatar::Docked
 		return std::nullopt;
 	}
 
-	std::optional<common::XY<double>> GetDockedLocation()
+	std::optional<common::XY<double>> Docked::GetDockedLocation()
 	{
 		return data::game::avatar::Dock::GetLocation();
 	}

@@ -4,17 +4,19 @@
 #include "Game.Avatar.State.h"
 #include "Game.Difficulty.h"
 #include <optional>
-namespace game::avatar::Docked
+namespace game::avatar
 {
-	void Reset(const game::Difficulty&);
-
-	enum class DockResult
+	struct Docked
 	{
-		DOCKED,
-		COMPLETED_QUEST,
-		ALREADY_DOCKED
+		enum class DockResult
+		{
+			DOCKED,
+			COMPLETED_QUEST,
+			ALREADY_DOCKED
+		};
+		static void Reset(const game::Difficulty&);
+		static std::optional<DockResult> Dock();
+		static std::optional<common::XY<double>> GetDockedLocation();
 	};
-	std::optional<DockResult> Dock();
-	std::optional<common::XY<double>> GetDockedLocation();
 
 }
