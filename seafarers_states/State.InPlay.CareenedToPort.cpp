@@ -10,46 +10,39 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
 #include <Game.Avatar.Docked.h>
+#include <Game.Avatar.ShipStatistics.h>
 #include <Game.Islands.h>
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
 #include <Visuals.Texts.h>
-namespace state::in_play::AtSeaCareenSelect
+namespace state::in_play::CareenedToPort
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_AT_SEA_CAREEN_SELECT;
-	static const std::string LAYOUT_NAME = "State.InPlay.AtSeaCareenSelect";
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CAREENED_TO_PORT;
+	static const std::string LAYOUT_NAME = "State.InPlay.CareenedToPort";
 	static const std::string MENU_ID = "Careen";
 
 	enum class CareenMenuItem
 	{
-		STARBOARD,
-		PORT,
-		BELAY
+		CLEAN_HULL,
+		WEIGH_ANCHOR
 	};
 
-	static void OnStarboard()
+	static void OnCleanHull()
 	{
-		game::Avatar::DoAction(game::avatar::Action::CAREEN_TO_STARBOARD);
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		game::avatar::ShipStatistics::CleanHull(game::Side::STARBOARD);
 	}
 
-	static void OnPort()
+	static void OnWeighAnchor()
 	{
-		game::Avatar::DoAction(game::avatar::Action::CAREEN_TO_PORT);
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
-	}
-
-	static void OnBelay()
-	{
+		game::Avatar::DoAction(game::avatar::Action::UNCAREEN);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	const std::map<CareenMenuItem, std::function<void()>> activators =
 	{
-		{ CareenMenuItem::STARBOARD, OnStarboard },
-		{ CareenMenuItem::PORT, OnPort },
-		{ CareenMenuItem::BELAY, OnBelay }
+		{ CareenMenuItem::CLEAN_HULL, OnCleanHull },
+		{ CareenMenuItem::WEIGH_ANCHOR, OnWeighAnchor },
 	};
 
 	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
@@ -59,8 +52,8 @@ namespace state::in_play::AtSeaCareenSelect
 		{::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
 		{::Command::GREEN, ActivateItem },
-		{::Command::BACK, OnBelay },
-		{::Command::RED, OnBelay }
+		{::Command::BACK, OnWeighAnchor },
+		{::Command::RED, OnWeighAnchor }
 	};
 
 	static void OnEnter()

@@ -36,5 +36,7 @@
     "State.InPlay.Confirm": "config/ui/layouts/State.InPlay.Confirm.json",
     "State.InPlay.GambleStart": "config/ui/layouts/State.InPlay.GambleStart.json",
     "State.InPlay.GambleFinish": "config/ui/layouts/State.InPlay.GambleFinish.json",
-    "State.InPlay.AtSeaCareenSelect": "config/ui/layouts/State.InPlay.AtSeaCareenSelect.json"
+    "State.InPlay.AtSeaCareenSelect": "config/ui/layouts/State.InPlay.AtSeaCareenSelect.json",
+    "State.InPlay.CareenedToPort": "config/ui/layouts/State.InPlay.CareenedToPort.json",
+    "State.InPlay.CareenedToStarboard": "config/ui/layouts/State.InPlay.CareenedToStarboard.json"
 }

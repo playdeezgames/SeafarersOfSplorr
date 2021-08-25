@@ -1,6 +1,9 @@
 #include <Data.Game.Avatar.ShipStatistic.h>
-#include "Game.ShipStatistic.h"
+#include "Game.Avatar.Log.h"
 #include "Game.Avatar.ShipStatistics.h"
+#include "Game.Colors.h"
+#include "Game.ShipStatistic.h"
+#include <map>
 namespace game::avatar
 {
 	static double GetMaximumFouling()
@@ -41,5 +44,26 @@ namespace game::avatar
 		}
 		data::game::avatar::ShipStatistic::Write((int)ShipStatistic::PORT_FOULING, portFouling);
 		data::game::avatar::ShipStatistic::Write((int)ShipStatistic::STARBOARD_FOULING, starboardFouling);
+	}
+
+	struct SideDescriptor
+	{
+		ShipStatistic statistic;
+		std::string cleaningMessage;
+	};
+
+	static const std::map<game::Side, SideDescriptor> foulingTable =
+	{
+		{ Side::PORT, {ShipStatistic::PORT_FOULING, "You clean the port hull."}},
+		{ Side::STARBOARD, {ShipStatistic::STARBOARD_FOULING, "You clean the starboard hull."}},
+	};
+
+	void ShipStatistics::CleanHull(const Side& side)
+	{
+		auto descriptor = foulingTable.find(side)->second;
+		auto fouling = data::game::avatar::ShipStatistic::Read((int)descriptor.statistic).value();
+		fouling.current = fouling.minimum.value_or(0.0);
+		data::game::avatar::ShipStatistic::Write((int)descriptor.statistic, fouling);
+		Log::Write({Colors::GRAY, descriptor.cleaningMessage});
 	}
 }

@@ -194,6 +194,9 @@
     <ClInclude Include="Game.Island.h">
       <Filter>Header Files\Islands</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Side.h">
+      <Filter>Header Files\Ships</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Commodities.cpp">

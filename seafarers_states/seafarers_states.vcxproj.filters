@@ -154,5 +154,11 @@
     <ClCompile Include="State.InPlay.AtSeaCareenSelect.cpp">
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.CareenedToPort.cpp">
+      <Filter>Source Files\AtSea</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.CareenedToStarboard.cpp">
+      <Filter>Source Files\AtSea</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
