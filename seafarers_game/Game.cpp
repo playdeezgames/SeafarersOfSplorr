@@ -107,4 +107,10 @@ namespace game
 		}
 	}
 
+	void ApplyTurnEffects()
+	{
+		avatar::AtSea::ApplyTurnEffects();
+		Islands::ApplyTurnEffects();
+	}
+
 }

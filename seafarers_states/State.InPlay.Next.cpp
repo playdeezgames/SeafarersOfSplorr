@@ -1,4 +1,5 @@
 #include <Application.OnEnter.h>
+#include <Application.Update.h>
 #include <Application.UIState.h>
 #include <Game.h>
 #include <Game.Avatar.h>
@@ -66,8 +67,14 @@ namespace state::in_play::Next
 		return;
 	}
 
+	static void OnUpdate(const unsigned int&)
+	{
+		OnEnter();
+	}
+
 	void Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::IN_PLAY_NEXT, OnEnter);
+		::application::Update::AddHandler(::UIState::IN_PLAY_NEXT, OnUpdate);
 	}
 }

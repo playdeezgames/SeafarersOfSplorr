@@ -2,6 +2,7 @@
 #include <Common.Heading.h>
 #include <Common.RNG.h>
 #include <Data.Game.Avatar.h>
+#include "Game.h"
 #include "Game.Avatar.AtSea.h"
 #include "Game.Avatar.Items.h"
 #include "Game.Avatar.Ship.h"
@@ -92,9 +93,8 @@ namespace game::avatar
 		game::World::SetWindHeading(game::World::GetWindHeading()+common::RNG::FromRange(-NORMAL_WIND_CHANGE, NORMAL_WIND_CHANGE));
 	}
 
-	static void ApplyTurnEffects()
+	void AtSea::ApplyTurnEffects()
 	{
-		Islands::ApplyTurnEffects();
 		game::avatar::Statistics::SpendTurn();
 		ApplyHunger();
 		ApplyEating();
@@ -147,7 +147,7 @@ namespace game::avatar
 
 		avatar.location = ClampAvatarLocation(avatar.location + delta, result);
 
-		ApplyTurnEffects();
+		game::ApplyTurnEffects();
 		data::game::Avatar::Write(avatar);
 		return result;
 	}

@@ -13,4 +13,5 @@ namespace game
 	bool DoesSlotExist(int);
 	void LoadFromSlot(int);
 	void SaveToSlot(int);
+	void ApplyTurnEffects();
 }

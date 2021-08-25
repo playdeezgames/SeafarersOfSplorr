@@ -23,5 +23,6 @@ namespace game::avatar
 		static common::XY<double> GetLocation();
 
 		static MoveResult Move();
+		static void ApplyTurnEffects();
 	};
 }

@@ -71,6 +71,21 @@ namespace common::Utility
 		}
 		return std::nullopt;
 	}
+	template<typename TItem>
+	std::optional<TItem> GetNth(const std::list<TItem>& items, size_t index)
+	{
+		auto iter = items.begin();
+		while (index > 0 && iter != items.end())
+		{
+			iter++;
+			index--;
+		}
+		if (iter != items.end())
+		{
+			return *iter;
+		}
+		return std::nullopt;
+	}
 }
 
 

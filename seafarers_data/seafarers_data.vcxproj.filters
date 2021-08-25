@@ -95,6 +95,9 @@
     <ClInclude Include="Data.Game.Avatar.ShipStatistic.h">
       <Filter>Header Files\Avatar</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.Merchant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">
@@ -159,6 +162,9 @@
     </ClCompile>
     <ClCompile Include="Data.Game.Avatar.ShipStatistic.cpp">
       <Filter>Source Files\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Merchant.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
