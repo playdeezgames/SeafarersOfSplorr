@@ -21,6 +21,21 @@
     <Filter Include="Source Files\Utility">
       <UniqueIdentifier>{8704e9d7-d68c-48c4-9db3-a600a1df95bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Careening">
+      <UniqueIdentifier>{babb2734-14a4-4c2b-b9b3-06e706eaf646}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AtSea\Status">
+      <UniqueIdentifier>{2cb8c9b2-d21e-4132-8a44-fafba0ab2c36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Docked\Jobs">
+      <UniqueIdentifier>{06b5f530-4605-4784-9525-1c6c869b4410}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Docked\DarkAlley">
+      <UniqueIdentifier>{da113126-3d9d-4b41-8493-cd891ba88077}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Docked\Trading">
+      <UniqueIdentifier>{92350df5-07e8-48ad-ba08-feea747d60c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="States.h">
@@ -85,47 +100,17 @@
     <ClCompile Include="State.InPlay.AtSea.Refresh.cpp">
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.Cargo.cpp">
-      <Filter>Source Files\AtSea</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.ChangeSpeed.cpp">
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.HeadFor.cpp">
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.CurrentJob.cpp">
-      <Filter>Source Files\AtSea</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.ConfirmAbandonJob.cpp">
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.ConfirmReplaceJob.cpp">
-      <Filter>Source Files\Docked</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.DarkAlley.cpp">
-      <Filter>Source Files\Docked</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.DarkAlleyEntrance.cpp">
-      <Filter>Source Files\Docked</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.Docked.cpp">
       <Filter>Source Files\Docked</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.IslandBuy.cpp">
-      <Filter>Source Files\Docked</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.IslandJobs.cpp">
-      <Filter>Source Files\Docked</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.IslandSell.cpp">
-      <Filter>Source Files\Docked</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.IslandTrade.cpp">
-      <Filter>Source Files\Docked</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.ShipStatus.cpp">
-      <Filter>Source Files\AtSea</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.Shipyard.cpp">
       <Filter>Source Files\Docked</Filter>
@@ -145,20 +130,50 @@
     <ClCompile Include="State.InPlay.Win.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.GambleStart.cpp">
-      <Filter>Source Files\Docked</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.GambleFinish.cpp">
-      <Filter>Source Files\Docked</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.AtSeaCareenSelect.cpp">
-      <Filter>Source Files\AtSea</Filter>
+      <Filter>Source Files\Careening</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.CareenedToPort.cpp">
-      <Filter>Source Files\AtSea</Filter>
+      <Filter>Source Files\Careening</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.CareenedToStarboard.cpp">
-      <Filter>Source Files\AtSea</Filter>
+      <Filter>Source Files\Careening</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.Cargo.cpp">
+      <Filter>Source Files\AtSea\Status</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.ShipStatus.cpp">
+      <Filter>Source Files\AtSea\Status</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.CurrentJob.cpp">
+      <Filter>Source Files\AtSea\Status</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.ConfirmReplaceJob.cpp">
+      <Filter>Source Files\Docked\Jobs</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.IslandJobs.cpp">
+      <Filter>Source Files\Docked\Jobs</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.DarkAlley.cpp">
+      <Filter>Source Files\Docked\DarkAlley</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.DarkAlleyEntrance.cpp">
+      <Filter>Source Files\Docked\DarkAlley</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.GambleFinish.cpp">
+      <Filter>Source Files\Docked\DarkAlley</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.GambleStart.cpp">
+      <Filter>Source Files\Docked\DarkAlley</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.IslandBuy.cpp">
+      <Filter>Source Files\Docked\Trading</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.IslandSell.cpp">
+      <Filter>Source Files\Docked\Trading</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.IslandTrade.cpp">
+      <Filter>Source Files\Docked\Trading</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

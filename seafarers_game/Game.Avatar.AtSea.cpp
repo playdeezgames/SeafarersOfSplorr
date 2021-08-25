@@ -8,6 +8,7 @@
 #include "Game.Avatar.ShipStatistics.h"
 #include "Game.Avatar.State.h"
 #include "Game.Avatar.Statistics.h"
+#include "Game.Islands.h"
 #include "Game.Ships.h"
 #include "Game.World.h"
 namespace game::avatar
@@ -93,6 +94,7 @@ namespace game::avatar
 
 	static void ApplyTurnEffects()
 	{
+		Islands::ApplyTurnEffects();
 		game::avatar::Statistics::SpendTurn();
 		ApplyHunger();
 		ApplyEating();

@@ -18,5 +18,6 @@ namespace game
 		static void SetKnown(const common::XY<double>&, const int&);
 		static std::optional<Island> Read(const common::XY<double>&);
 		static const std::string UNKNOWN;
+		static void ApplyTurnEffects();
 	};
 }
