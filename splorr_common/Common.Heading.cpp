@@ -77,6 +77,12 @@ namespace common::Heading
 		return (x == 0.0 && y == 0.0) ? (0.0) : (ToDegrees(atan2(y, x)));
 	}
 
+	double XYToRadians(const common::XY<double>& xy)
+	{
+		return ToRadians(XYToDegrees(xy));
+	}
+
+
 	double Distance(const common::XY<double>& first, const common::XY<double>& second)
 	{
 		return sqrt((first.GetX() - second.GetX()) * (first.GetX() - second.GetX()) + (first.GetY() - second.GetY()) * (first.GetY() - second.GetY()));

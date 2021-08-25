@@ -10,6 +10,7 @@
 #include "Game.Avatar.Statistics.h"
 #include "Game.Islands.h"
 #include "Game.Islands.Features.h"
+#include "Game.Merchants.h"
 #include "Game.World.h"
 #include <list>
 #include <map>
@@ -20,6 +21,7 @@ namespace game
 	{
 		resetters.push_back(resetter);
 	}
+
 	std::function<void()> DoAddResetter(std::function<void()> resetter)
 	{
 		return [resetter]()
@@ -27,6 +29,7 @@ namespace game
 			AddResetter(resetter);
 		};
 	}
+
 	void Reset(const Difficulty& difficulty)
 	{
 		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);
@@ -39,6 +42,7 @@ namespace game
 		game::avatar::Items::Reset(difficulty);
 		game::avatar::Ship::Reset(difficulty);
 		game::avatar::Log::Reset(difficulty);
+		game::Merchants::Reset(difficulty);
 		for (auto& resetter : resetters)
 		{
 			resetter();
@@ -111,6 +115,6 @@ namespace game
 	{
 		avatar::AtSea::ApplyTurnEffects();
 		Islands::ApplyTurnEffects();
+		Merchants::ApplyTurnEffects();
 	}
-
 }

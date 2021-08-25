@@ -1,4 +1,5 @@
 #pragma once
+#include <cmath>
 namespace common
 {
 	template<typename TDimension>
@@ -26,6 +27,10 @@ namespace common
 		}
 		const TDimension& GetX() const { return x; }
 		const TDimension& GetY() const { return y; }
+		double GetMagnitude() const
+		{
+			return sqrt(GetX() * GetX() + GetY() * GetY());
+		}
 	};
 	template<typename TDimension>
 	XY<TDimension> operator+(const XY<TDimension>& first, const XY<TDimension>& second)
