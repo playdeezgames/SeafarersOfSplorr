@@ -15,7 +15,7 @@ namespace game
 			{
 				"dark alley",
 				1,
-				1.0 //TODO: should be 0.6
+				0.6
 			}
 		}
 	};
