@@ -20,6 +20,7 @@
 #include <Visuals.Sprites.h>
 #include <Visuals.Textures.h>
 #include <Visuals.WorldMap.h>
+#include <Visuals.Navigator.h>
 #include <Visuals.Confirmations.h>
 #include <Visuals.Messages.h>
 namespace application::Engine
@@ -44,6 +45,7 @@ namespace application::Engine
 		visuals::Fonts::DoSetStore(data::json::Store::FONTS),
 		visuals::Layouts::DoSetStore(data::json::Store::LAYOUTS),
 		visuals::Layouts::DoRegisterType("WorldMap", visuals::WorldMap::Internalize),
+		visuals::Layouts::DoRegisterType("Navigator", visuals::Navigator::Internalize),
 		visuals::Messages::Reset,
 		application::Keyboard::DoSetStore(data::json::Store::KEYS),
 		Options::DoSetStore(data::json::Store::OPTIONS),

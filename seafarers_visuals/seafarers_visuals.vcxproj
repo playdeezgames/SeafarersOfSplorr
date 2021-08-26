@@ -20,10 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Visuals.CardSprites.h" />
+    <ClInclude Include="Visuals.Navigator.h" />
     <ClInclude Include="Visuals.WorldMap.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Visuals.CardSprites.cpp" />
+    <ClCompile Include="Visuals.Navigator.cpp" />
     <ClCompile Include="Visuals.WorldMap.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

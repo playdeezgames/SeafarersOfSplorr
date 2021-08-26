@@ -172,7 +172,7 @@ namespace game
 			{
 				locations.front(),
 				*names.begin(),
-				common::RNG::FromRange(0.005,0.01)//TODO: should be a world setting?
+				common::RNG::FromRange(0.001,0.005)//TODO: should be a world setting?
 			};
 			data::game::Island::Write(data);
 			locations.pop_front();

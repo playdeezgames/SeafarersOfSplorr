@@ -200,6 +200,9 @@
     <ClInclude Include="Game.Merchants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Merchant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Commodities.cpp">

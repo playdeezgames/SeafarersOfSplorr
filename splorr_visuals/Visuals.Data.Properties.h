@@ -31,6 +31,7 @@ namespace visuals::data::Properties
 	const std::string NAME = "name";
 	const std::string OFFSET_X = "offset-x";
 	const std::string OFFSET_Y = "offset-y";
+	const std::string RADIUS = "radius";
 	const std::string RED = "red";
 	const std::string ROW_HEIGHT = "row-height";
 	const std::string SPRITE = "sprite";

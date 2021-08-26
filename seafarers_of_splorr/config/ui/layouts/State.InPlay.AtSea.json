@@ -624,6 +624,12 @@
         "y": 182
     },
     {
+        "type": "Navigator",
+        "x": 162,
+        "y": 182,
+        "radius": 150
+    },
+    {
         "type":"SpriteGrid",
         "sprite-grid-id":"Log",
         "x":320,

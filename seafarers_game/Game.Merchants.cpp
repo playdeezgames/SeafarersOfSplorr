@@ -43,4 +43,18 @@ namespace game
 	{
 		data::game::Merchant::Clear();
 	}
+
+	std::list<Merchant> Merchants::All()
+	{
+		std::list<Merchant> result;
+		auto merchants = data::game::Merchant::All();
+		for (auto& merchant : merchants)
+		{
+			result.push_back({
+				merchant.location
+				});
+		}
+		return result;
+	}
+
 }

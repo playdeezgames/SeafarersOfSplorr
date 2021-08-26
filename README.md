@@ -21,3 +21,4 @@
 * https://game-icons.net/1x1/delapouite/crow-nest.html
 * https://game-icons.net/1x1/lorc/muscle-up.html
 * https://game-icons.net/1x1/lorc/fluffy-trefoil.html
+* https://game-icons.net/1x1/delapouite/sinagot.html
