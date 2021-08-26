@@ -4,34 +4,34 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_mixer.h>
-namespace application::Engine
+namespace application
 {
-	const std::string WIDTH = "width";
-	const std::string HEIGHT = "height";
-	const std::string LOGICAL_WIDTH = "logicalWidth";
-	const std::string LOGICAL_HEIGHT = "logicalHeight";
-	const std::string TITLE = "title";
-	const std::string ICON = "icon";
-	const std::string MIXER_FREQUENCY = "mixerFrequency";
-	const std::string CHANNEL_COUNT = "channelCount";
-	const std::string CHUNK_SIZE = "chunkSize";
+	static const std::string WIDTH = "width";
+	static const std::string HEIGHT = "height";
+	static const std::string LOGICAL_WIDTH = "logicalWidth";
+	static const std::string LOGICAL_HEIGHT = "logicalHeight";
+	static const std::string TITLE = "title";
+	static const std::string ICON = "icon";
+	static const std::string MIXER_FREQUENCY = "mixerFrequency";
+	static const std::string CHANNEL_COUNT = "channelCount";
+	static const std::string CHUNK_SIZE = "chunkSize";
 
 	static std::shared_ptr<SDL_Window> window = nullptr;
-	static std::shared_ptr<Renderer> renderer = nullptr;
+	static std::shared_ptr<Engine::Renderer> renderer = nullptr;
 
-	void SetFullscreen(bool flag)
+	void Engine::SetFullscreen(bool flag)
 	{
 		SDL_SetWindowFullscreen(window.get(), (flag) ? (SDL_WINDOW_FULLSCREEN_DESKTOP) : (0));
 	}
 
-	bool IsFullscreen()
+	bool Engine::IsFullscreen()
 	{
 		return (SDL_GetWindowFlags(window.get()) & SDL_WINDOW_FULLSCREEN) > 0;
 	}
 
 	extern void Start(const std::vector<std::string>&);
 	extern bool IsRunning();
-	extern void Update(unsigned int);
+	extern void Updatify(unsigned int);
 	extern void HandleEvent(const SDL_Event&);
 
 	static std::map<int, SDL_GameController*> controllers;
@@ -84,7 +84,7 @@ namespace application::Engine
 			&pw,
 			&pr);
 		window = std::shared_ptr<SDL_Window>(pw, SDL_DestroyWindow);
-		renderer = std::make_shared<Renderer>(pr);
+		renderer = std::make_shared<Engine::Renderer>(pr);
 		SDL_RenderSetLogicalSize(renderer.get()->renderer.get(), logicalWidth, logicalHeight);
 		SDL_SetWindowTitle(window.get(), windowTitle.c_str());
 		auto iconSurface = IMG_Load(iconFileName.c_str());
@@ -128,9 +128,9 @@ namespace application::Engine
 		while (IsRunning())
 		{
 			auto frameTicks = SDL_GetTicks();
-			Update(frameTicks - currentTicks);
+			Updatify(frameTicks - currentTicks);
 			currentTicks = frameTicks;
-			Render(renderer);
+			Engine::Render(renderer);
 			ReportRenderTicks(SDL_GetTicks() - frameTicks);
 			SDL_RenderPresent(renderer.get()->renderer.get());
 			while (SDL_PollEvent(&evt))
@@ -146,7 +146,7 @@ namespace application::Engine
 		Mix_Quit();
 	}
 
-	int Run(const std::string& configFile, const std::vector<std::string>& arguments)
+	int Engine::Run(const std::string& configFile, const std::vector<std::string>& arguments)
 	{
 		atexit(DoFinish);
 		DoStart(configFile, arguments);
@@ -154,11 +154,11 @@ namespace application::Engine
 		return 0;
 	}
 
-	Renderer::Renderer(SDL_Renderer* r)
+	Engine::Renderer::Renderer(SDL_Renderer* r)
 	{
 		this->renderer = std::shared_ptr<SDL_Renderer>(r, SDL_DestroyRenderer);
 	}
-	void Renderer::Copy(std::shared_ptr<SDL_Texture> texture, const SDL_Rect* source, const SDL_Rect* destination, double angle) const
+	void Engine::Renderer::Copy(std::shared_ptr<SDL_Texture> texture, const SDL_Rect* source, const SDL_Rect* destination, double angle) const
 	{
 		SDL_RenderCopyEx(renderer.get(), texture.get(), source, destination, angle, nullptr, SDL_FLIP_NONE);
 	}

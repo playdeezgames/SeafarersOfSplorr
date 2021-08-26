@@ -11,10 +11,9 @@ namespace application::Renderer
 		renderLayouts[state] = layoutName;
 	}
 }
-namespace application::Engine
+namespace application
 {
-	void RenderLayout(const std::shared_ptr<application::Engine::Renderer>&, const std::string&);
-	void Render(const std::shared_ptr<application::Engine::Renderer>& renderer)
+	void Engine::Render(const std::shared_ptr<application::Engine::Renderer>& renderer)
 	{
 		auto layoutName = ::application::Renderer::renderLayouts.find(::application::UIState::Read());
 		if (layoutName != ::application::Renderer::renderLayouts.end())

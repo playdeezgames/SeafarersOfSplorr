@@ -23,7 +23,7 @@
 #include <Visuals.Navigator.h>
 #include <Visuals.Confirmations.h>
 #include <Visuals.Messages.h>
-namespace application::Engine
+namespace application
 {
 	std::vector<std::function<void()>> starters =
 	{
@@ -106,4 +106,9 @@ namespace application::Engine
 		Options::Initialize,
 		visuals::Layouts::Start
 	};
+
+	const std::vector<std::function<void()>>& Engine::GetStarters()
+	{
+		return starters;
+	}
 }

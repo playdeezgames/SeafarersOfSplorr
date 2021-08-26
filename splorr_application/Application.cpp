@@ -1,5 +1,6 @@
 #include <algorithm>
 #include "Application.Command.h"
+#include "Application.Engine.h"
 #include "Application.Keyboard.h"
 #include "Application.UIState.h"
 #include "Command.h"
@@ -78,13 +79,11 @@ namespace application::UIState
 {
 	extern std::optional<int> finalState;
 }
-namespace application::Engine
+namespace application
 {
-	extern std::vector<std::function<void()>> starters;
-
 	void Start(const std::vector<std::string>& arguments)
 	{
-		std::for_each(starters.begin(), starters.end(), [](auto p) { p(); });
+		std::for_each(Engine::GetStarters().begin(), Engine::GetStarters().end(), [](auto p) { p(); });
 	}
 
 	bool IsRunning()
@@ -94,7 +93,7 @@ namespace application::Engine
 
 	static std::optional<int> currentState = std::nullopt;
 
-	void Update(unsigned int ticks)
+	void Updatify(unsigned int ticks)
 	{
 		if (!currentState || currentState.value() != ::application::UIState::Read())
 		{

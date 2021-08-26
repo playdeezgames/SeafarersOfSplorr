@@ -1,11 +1,8 @@
+#include <Application.Engine.h>
 #include "Common.RNG.h"
 #include "Common.Utility.h"
 #include "Game.Achievements.h"
 #include <SDL.h>
-namespace application::Engine
-{
-	int Run(const std::string&, const std::vector<std::string>&);
-}
 static std::vector<std::string> ParseCommandLine(int argc, char** argv)
 {
 	std::vector<std::string> arguments;
