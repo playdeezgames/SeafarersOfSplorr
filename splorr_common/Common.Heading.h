@@ -1,16 +1,19 @@
 #pragma once
 #include "Common.XY.h"
 #include <string>
-namespace common::Heading
+namespace common
 {
-	common::XY<double> DegreesToXY(double);
-	double XYToDegrees(const common::XY<double>&);
-	double XYToRadians(const common::XY<double>&);
-	double ToDegrees(double);
-	double ToRadians(double);
-	const std::string& ToCompassPoint(double);
-	const double DEGREES = 360.0;
-	double Distance(const common::XY<double>&, const common::XY<double>&);
-	common::XY<double> ClampDistance(const common::XY<double>&, double);
-	double Difference(double, double);
+	struct Heading
+	{
+		static common::XY<double> DegreesToXY(double);
+		static double XYToDegrees(const common::XY<double>&);
+		static double XYToRadians(const common::XY<double>&);
+		static double ToDegrees(double);
+		static double ToRadians(double);
+		static const std::string& ToCompassPoint(double);
+		static const double DEGREES;
+		static double Distance(const common::XY<double>&, const common::XY<double>&);
+		static common::XY<double> ClampDistance(const common::XY<double>&, double);
+		static double Difference(double, double);
+	};
 }

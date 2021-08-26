@@ -2,21 +2,22 @@
 #include "Common.Utility.h"
 #include "Common.Heading.h"
 #include <cmath>
-namespace common::Heading
+namespace common
 {
-	const double TAU = 2.0 * 3.141592653589793;
+	const double Heading::DEGREES = 360.0;
+	static const double TAU = 2.0 * 3.141592653589793;
 
-	double ToDegrees(double radians)
+	double Heading::ToDegrees(double radians)
 	{
 		return common::Data::ModuloDouble(radians * DEGREES / TAU, DEGREES).value();
 	}
 
-	double ToRadians(double degrees)
+	double Heading::ToRadians(double degrees)
 	{
 		return degrees * TAU / DEGREES;
 	}
 
-	const std::vector<std::string> compassPoints =
+	static const std::vector<std::string> compassPoints =
 	{
 		"E",
 		"ExS",
@@ -52,43 +53,43 @@ namespace common::Heading
 		"ExN"
 	};
 
-	const auto COMPASS_POINT_COUNT = compassPoints.size();
-	const double DEGREES_PER_COMPASS_POINT = DEGREES / (double)COMPASS_POINT_COUNT;
-	const double DEGREES_PER_HALF_COMPASS_POINT = DEGREES_PER_COMPASS_POINT / 2.0;
+	static const auto COMPASS_POINT_COUNT = compassPoints.size();
+	static const double DEGREES_PER_COMPASS_POINT = Heading::DEGREES / (double)COMPASS_POINT_COUNT;
+	static const double DEGREES_PER_HALF_COMPASS_POINT = DEGREES_PER_COMPASS_POINT / 2.0;
 
-	const std::string& ToCompassPoint(double degrees)
+	const std::string& Heading::ToCompassPoint(double degrees)
 	{
 		return compassPoints[
 			(size_t)std::floor(
 				ToDegrees(ToRadians(degrees + DEGREES_PER_HALF_COMPASS_POINT))/DEGREES_PER_COMPASS_POINT)];
 	}
 
-	common::XY<double> DegreesToXY(double degrees)
+	common::XY<double> Heading::DegreesToXY(double degrees)
 	{
 		double radians = ToRadians(degrees);
 		return { cos(radians), sin(radians) };
 
 	}
 
-	double XYToDegrees(const common::XY<double>& xy)
+	double Heading::XYToDegrees(const common::XY<double>& xy)
 	{
 		double x = xy.GetX();
 		double y = xy.GetY();
 		return (x == 0.0 && y == 0.0) ? (0.0) : (ToDegrees(atan2(y, x)));
 	}
 
-	double XYToRadians(const common::XY<double>& xy)
+	double Heading::XYToRadians(const common::XY<double>& xy)
 	{
 		return ToRadians(XYToDegrees(xy));
 	}
 
 
-	double Distance(const common::XY<double>& first, const common::XY<double>& second)
+	double Heading::Distance(const common::XY<double>& first, const common::XY<double>& second)
 	{
 		return sqrt((first.GetX() - second.GetX()) * (first.GetX() - second.GetX()) + (first.GetY() - second.GetY()) * (first.GetY() - second.GetY()));
 	}
 
-	common::XY<double> ClampDistance(const common::XY<double>& position, double maximum)
+	common::XY<double> Heading::ClampDistance(const common::XY<double>& position, double maximum)
 	{
 		auto distance = Distance(position, { 0.0,0.0 });
 		if (distance > maximum)
@@ -98,7 +99,7 @@ namespace common::Heading
 		return position;
 	}
 
-	double Difference(double first, double second)
+	double Heading::Difference(double first, double second)
 	{
 		auto difference = ToDegrees(ToRadians(first - second));
 		return (difference < DEGREES / 2.0) ? (difference) : (DEGREES - difference);

@@ -2,32 +2,35 @@
 #include <sstream>
 #include <string>
 #include <optional>
-namespace common::Data
+namespace common
 {
-	double ToDouble(const std::string&);
-	int ToInt(const std::string&);
-
-	std::optional<int> ToOptionalInt(const std::string&);
-	std::optional<double> ToOptionalDouble(const std::string&);
-
-	std::optional<int> ToPercentage(int, int);
-
-	double ClampDouble(double, double, double);
-	std::optional<double> ModuloDouble(double, double);
-
-	std::string QuoteString(const std::string&);
-	template<typename TValue>
-	std::string OfOptional(const std::optional<TValue>& value)
+	struct Data
 	{
-		std::stringstream ss;
-		if (value.has_value())
+		static double ToDouble(const std::string&);
+		static int ToInt(const std::string&);
+
+		static std::optional<int> ToOptionalInt(const std::string&);
+		static std::optional<double> ToOptionalDouble(const std::string&);
+
+		static std::optional<int> ToPercentage(int, int);
+
+		static double ClampDouble(double, double, double);
+		static std::optional<double> ModuloDouble(double, double);
+
+		static std::string QuoteString(const std::string&);
+		template<typename TValue>
+		static std::string OfOptional(const std::optional<TValue>& value)
 		{
-			ss << value.value();
+			std::stringstream ss;
+			if (value.has_value())
+			{
+				ss << value.value();
+			}
+			else
+			{
+				ss << "NULL";
+			}
+			return ss.str();
 		}
-		else
-		{
-			ss << "NULL";
-		}
-		return ss.str();
-	}
+	};
 }

@@ -2,51 +2,54 @@
 #include <list>
 #include <map>
 #include <optional>
-namespace common::RNG
+namespace common
 {
-	void Seed();
-	int FromRange(int, int);
-	size_t FromRange(size_t, size_t);
-	double FromRange(double, double);
-	template <typename TResult>
-	std::optional<TResult> FromList(const std::list<TResult>& items)
+	struct RNG
 	{
-		if (!items.empty())
+		static void Seed();
+		static int FromRange(int, int);
+		static size_t FromRange(size_t, size_t);
+		static double FromRange(double, double);
+		template <typename TResult>
+		static std::optional<TResult> FromList(const std::list<TResult>& items)
 		{
-			size_t index = FromRange(0u, items.size());
-			auto iter = items.begin();
-			while (index > 0)
+			if (!items.empty())
 			{
-				--index;
-				++iter;
+				size_t index = FromRange(0u, items.size());
+				auto iter = items.begin();
+				while (index > 0)
+				{
+					--index;
+					++iter;
+				}
+				return std::optional<TResult>(*iter);
 			}
-			return std::optional<TResult>(*iter);
+			return std::nullopt;
 		}
-		return std::nullopt;
-	}
-	template <typename TResult>
-	TResult FromGenerator(const std::map<TResult, size_t>& table, TResult defaultValue)
-	{
-		size_t total = 0u;
-		for (auto& entry : table)
+		template <typename TResult>
+		static TResult FromGenerator(const std::map<TResult, size_t>& table, TResult defaultValue)
 		{
-			total += entry.second;
-		}
-		if (total > 0)
-		{
-			size_t generated = FromRange(0u, total);
+			size_t total = 0u;
 			for (auto& entry : table)
 			{
-				if (generated < entry.second)
+				total += entry.second;
+			}
+			if (total > 0)
+			{
+				size_t generated = FromRange(0u, total);
+				for (auto& entry : table)
 				{
-					return entry.first;
-				}
-				else
-				{
-					generated -= entry.second;
+					if (generated < entry.second)
+					{
+						return entry.first;
+					}
+					else
+					{
+						generated -= entry.second;
+					}
 				}
 			}
+			return defaultValue;
 		}
-		return defaultValue;
-	}
+	};
 }

@@ -1,6 +1,6 @@
 #include "Common.Data.h"
 #include "Harness.h"
-namespace common::Data
+namespace common
 {
 	static auto tests =
 	{
@@ -8,49 +8,49 @@ namespace common::Data
 			"common::Data::ToDouble should return 0.0 when given garbage",
 			[]()
 			{
-				auto actual = ToDouble("GARBAGE");
+				auto actual = Data::ToDouble("GARBAGE");
 				Assert(actual == 0.0, "Actual should be zero");
 			}),
 		AddTest(
 			"common::Data::ToDouble should parse a valid int",
 			[]()
 			{
-				auto actual = ToDouble("1");
+				auto actual = Data::ToDouble("1");
 				Assert(actual == 1.0, "Actual should be 1");
 			}),
 		AddTest(
 			"common::Data::ToDouble should parse a valid double",
 			[]()
 			{
-				auto actual = ToDouble("1.2");
+				auto actual = Data::ToDouble("1.2");
 				Assert(actual == 1.2, "Actual should be 1.2");
 			}),
 		AddTest(
 			"common::Data::ToInt should return 0 when given garbage",
 			[]()
 			{
-				auto actual = ToInt("GARBAGE");
+				auto actual = Data::ToInt("GARBAGE");
 				Assert(actual == 0, "Actual should be zero");
 			}),
 		AddTest(
 			"common::Data::ToInt should parse a valid int",
 			[]()
 			{
-				auto actual = ToInt("1");
+				auto actual = Data::ToInt("1");
 				Assert(actual == 1, "Actual should be 1");
 			}),
 		AddTest(
 			"common::Data::ToOptionalInt should return nullopt when given empty string",
 			[]()
 			{
-				auto actual = ToOptionalInt("");
+				auto actual = Data::ToOptionalInt("");
 				Assert(!actual.has_value(), "Actual should should not have a value");
 			}),
 		AddTest(
 			"common::Data::ToOptionalInt should parse a valid int",
 			[]()
 			{
-				auto actual = ToOptionalInt("1");
+				auto actual = Data::ToOptionalInt("1");
 				Assert(actual.has_value(), "Actual should have a value");
 				Assert(actual.value()==1, "Actual should have a value of 1");
 			}),
@@ -58,14 +58,14 @@ namespace common::Data
 			"common::Data::ToOptionalDouble should return nullopt when given empty string",
 			[]()
 			{
-				auto actual = ToOptionalDouble("");
+				auto actual = Data::ToOptionalDouble("");
 				Assert(!actual.has_value(), "Actual should should not have a value");
 			}),
 		AddTest(
 			"common::Data::ToOptionalDouble should parse a valid int",
 			[]()
 			{
-				auto actual = ToOptionalDouble("1");
+				auto actual = Data::ToOptionalDouble("1");
 				Assert(actual.has_value(), "Actual should have a value");
 				Assert(actual.value() == 1.0, "Actual should have a value of 1.0");
 			}),
@@ -73,7 +73,7 @@ namespace common::Data
 			"common::Data::ToOptionalDouble should parse a valid double",
 			[]()
 			{
-				auto actual = ToOptionalDouble("1.2");
+				auto actual = Data::ToOptionalDouble("1.2");
 				Assert(actual.has_value(), "Actual should have a value");
 				Assert(actual.value() == 1.2, "Actual should have a value of 1.2");
 			}),
@@ -81,14 +81,14 @@ namespace common::Data
 			"common::Data::ToPercentage should return nullopt when given a 0 for maximum",
 			[]()
 			{
-				auto actual = ToPercentage(0,0);
+				auto actual = Data::ToPercentage(0,0);
 				Assert(!actual.has_value(), "Actual not have a value");
 			}),
 		AddTest(
 			"common::Data::ToPercentage should return percentage when given a nonzero for maximum",
 			[]()
 			{
-				auto actual = ToPercentage(2,10);
+				auto actual = Data::ToPercentage(2,10);
 				Assert(actual.has_value(), "Actual should have a value");
 				Assert(actual.value()==20, "Actual should be the correct percentage");
 			}),
@@ -99,7 +99,7 @@ namespace common::Data
 				const double minimum = 10.0;
 				const double maximum = 20.0;
 				const double value = 5.0;
-				auto actual = ClampDouble(value, minimum, maximum);
+				auto actual = Data::ClampDouble(value, minimum, maximum);
 				Assert(actual >= minimum, "Actual should be no lower than minimum");
 				Assert(actual <= maximum, "Actual should be no higher than maximum");
 				Assert(actual == minimum, "Actual should be minimum when less than minimum is passed");
@@ -111,7 +111,7 @@ namespace common::Data
 				const double minimum = 10.0;
 				const double maximum = 20.0;
 				const double value = 25.0;
-				auto actual = ClampDouble(value, minimum, maximum);
+				auto actual = Data::ClampDouble(value, minimum, maximum);
 				Assert(actual >= minimum, "Actual should be no lower than minimum");
 				Assert(actual <= maximum, "Actual should be no higher than maximum");
 				Assert(actual == maximum, "Actual should be maximum when higher than maximum is passed");
@@ -123,7 +123,7 @@ namespace common::Data
 				const double minimum = 10.0;
 				const double maximum = 20.0;
 				const double value = 15.0;
-				auto actual = ClampDouble(value, minimum, maximum);
+				auto actual = Data::ClampDouble(value, minimum, maximum);
 				Assert(actual >= minimum, "Actual should be no lower than minimum");
 				Assert(actual <= maximum, "Actual should be no higher than maximum");
 				Assert(actual == value, "Actual should be value when value is in range");
@@ -132,7 +132,7 @@ namespace common::Data
 			"common::Data::ModuloDouble should return nullopt when divisor is 0.0",
 			[]()
 			{
-				auto actual = ModuloDouble(0.0, 0.0);
+				auto actual = Data::ModuloDouble(0.0, 0.0);
 				Assert(!actual.has_value(), "Actual should not have a value when divisor is zero");
 			}),
 		AddTest(
@@ -141,7 +141,7 @@ namespace common::Data
 			{
 				const double expected = 0.5;
 				const double divisor = 1.0;
-				auto actual = ModuloDouble(expected, divisor);
+				auto actual = Data::ModuloDouble(expected, divisor);
 				Assert(actual.has_value(), "Actual should have a value when divisor is nonzero");
 				Assert(actual.value() >= 0.0, "Actual should have a positive value");
 				Assert(actual.value() < divisor, "Actual should have a value less than divisor");
@@ -153,7 +153,7 @@ namespace common::Data
 			{
 				const double expected = 0.5;
 				const double divisor = 1.0;
-				auto actual = ModuloDouble(-0.5, divisor);
+				auto actual = Data::ModuloDouble(-0.5, divisor);
 				Assert(actual.has_value(), "Actual should have a value when divisor is nonzero");
 				Assert(actual.value() >= 0.0, "Actual should have a positive value");
 				Assert(actual.value() < divisor, "Actual should have a value less than divisor");
@@ -165,7 +165,7 @@ namespace common::Data
 			{
 				const double expected = 0.5;
 				const double divisor = 1.0;
-				auto actual = ModuloDouble(1.5, divisor);
+				auto actual = Data::ModuloDouble(1.5, divisor);
 				Assert(actual.has_value(), "Actual should have a value when divisor is nonzero");
 				Assert(actual.value() >= 0.0, "Actual should have a positive value");
 				Assert(actual.value() < divisor, "Actual should have a value less than divisor");
@@ -176,7 +176,7 @@ namespace common::Data
 			[]()
 			{
 				const std::string expected = "'TEST'";
-				auto actual = QuoteString("TEST");
+				auto actual = Data::QuoteString("TEST");
 				Assert(actual==expected, "Actual should have single quotes around it");
 			}),
 		AddTest(
@@ -184,7 +184,7 @@ namespace common::Data
 			[]()
 			{
 				const std::string expected = "'TE''ST'";
-				auto actual = QuoteString("TE'ST");
+				auto actual = Data::QuoteString("TE'ST");
 				Assert(actual == expected, "Actual should double existing quotes");
 			}),
 		AddTest(
@@ -192,7 +192,7 @@ namespace common::Data
 			[]()
 			{
 				const std::string expected = "NULL";
-				auto actual = OfOptional<int>(std::nullopt);
+				auto actual = Data::OfOptional<int>(std::nullopt);
 				Assert(actual == expected, "Actual should return \"NULL\"");
 			}),
 		AddTest(
@@ -200,7 +200,7 @@ namespace common::Data
 			[]()
 			{
 				const std::string expected = "1";
-				auto actual = OfOptional<int>(1);
+				auto actual = Data::OfOptional<int>(1);
 				Assert(actual == expected, "Actual should return \"1\"");
 			})
 	};

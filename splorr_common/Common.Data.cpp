@@ -1,7 +1,7 @@
 #include "Common.Data.h"
-namespace common::Data
+namespace common
 {
-	int ToInt(const std::string& text)
+	int Data::ToInt(const std::string& text)
 	{
 		std::stringstream ss;
 		ss.str(text);
@@ -10,7 +10,7 @@ namespace common::Data
 		return result;
 	}
 
-	std::optional<int> ToOptionalInt(const std::string& text)
+	std::optional<int> Data::ToOptionalInt(const std::string& text)
 	{
 		if (!text.empty())
 		{
@@ -20,7 +20,7 @@ namespace common::Data
 	}
 
 
-	double ToDouble(const std::string& text)
+	double Data::ToDouble(const std::string& text)
 	{
 		std::stringstream ss;
 		ss.str(text);
@@ -29,7 +29,7 @@ namespace common::Data
 		return result;
 	}
 
-	std::optional<double> ToOptionalDouble(const std::string& text)
+	std::optional<double> Data::ToOptionalDouble(const std::string& text)
 	{
 		if (!text.empty())
 		{
@@ -38,7 +38,7 @@ namespace common::Data
 		return std::nullopt;
 	}
 
-	std::optional<int> ToPercentage(int value, int maximum)
+	std::optional<int> Data::ToPercentage(int value, int maximum)
 	{
 		if (maximum != 0)
 		{
@@ -47,7 +47,7 @@ namespace common::Data
 		return std::nullopt;
 	}
 
-	double ClampDouble(double value, double minimum, double maximum)
+	double Data::ClampDouble(double value, double minimum, double maximum)
 	{
 		return
 			(value < minimum) ? (minimum) :
@@ -55,7 +55,7 @@ namespace common::Data
 			value;
 	}
 
-	std::optional<double> ModuloDouble(double value, double divisor)
+	std::optional<double> Data::ModuloDouble(double value, double divisor)
 	{
 		if (divisor != 0.0)
 		{
@@ -64,7 +64,7 @@ namespace common::Data
 		return std::nullopt;
 	}
 
-	std::string QuoteString(const std::string& original)
+	std::string Data::QuoteString(const std::string& original)
 	{
 		std::stringstream ss;
 		ss << "'";

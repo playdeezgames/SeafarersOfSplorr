@@ -3,7 +3,7 @@
 #include <functional>
 #include "Harness.h"
 #include <string>
-namespace common::RNG
+namespace common
 {
 	static auto tests =
 	{
@@ -13,7 +13,7 @@ namespace common::RNG
 			{
 				const int minimum = -10;
 				const int maximum = 10;
-				auto actual = FromRange(minimum, maximum);
+				auto actual = RNG::FromRange(minimum, maximum);
 				Assert(actual >= minimum,"Actual should be equal to or greater than minimum");
 				Assert(actual < maximum, "Actual should be less than maximum");
 			}),
@@ -23,7 +23,7 @@ namespace common::RNG
 			{
 				const size_t minimum = 10;
 				const size_t maximum = 20;
-				auto actual = FromRange(minimum, maximum);
+				auto actual = RNG::FromRange(minimum, maximum);
 				Assert(actual >= minimum, "Actual should be equal to or greater than minimum");
 				Assert(actual < maximum, "Actual should be less than maximum");
 			}),
@@ -33,7 +33,7 @@ namespace common::RNG
 			{
 				const double minimum = 10.0;
 				const double maximum = 20.0;
-				auto actual = FromRange(minimum, maximum);
+				auto actual = RNG::FromRange(minimum, maximum);
 				Assert(actual >= minimum, "Actual should be equal to or greater than minimum");
 				Assert(actual < maximum, "Actual should be less than maximum");
 			}),
@@ -42,7 +42,7 @@ namespace common::RNG
 			[]() 
 			{
 				std::list<int> inputList;//empty!
-				auto actual = FromList(inputList);
+				auto actual = RNG::FromList(inputList);
 				Assert(!actual.has_value(),"Actual should be nullopt");
 			}),
 		AddTest(
@@ -51,7 +51,7 @@ namespace common::RNG
 			{
 				const int expected = 10;
 				std::list<int> inputList = { expected };
-				auto actual = FromList(inputList);
+				auto actual = RNG::FromList(inputList);
 				Assert(actual.has_value(), "Actual should have a value");
 				Assert(actual.value() == expected, "Actual should be expected value");
 			}),
@@ -60,7 +60,7 @@ namespace common::RNG
 			[]()
 			{
 				std::list<int> inputList = { 10, 20 };
-				auto actual = FromList(inputList);
+				auto actual = RNG::FromList(inputList);
 				Assert(actual.has_value(), "Actual should have a value");
 				Assert(std::find(inputList.begin(), inputList.end(), actual.value()) != inputList.end(), "Actual should have a value in the list");
 			}),
@@ -70,7 +70,7 @@ namespace common::RNG
 			{
 				const int expected = 10;
 				std::map<int, size_t> inputTable;//empty!
-				auto actual = FromGenerator(inputTable, expected);
+				auto actual = RNG::FromGenerator(inputTable, expected);
 				Assert(actual == expected, "Actual should have default value");
 			}),
 		AddTest(
@@ -82,7 +82,7 @@ namespace common::RNG
 				{
 					{20, 1}
 				};
-				auto actual = FromGenerator(inputTable, defaultValue);
+				auto actual = RNG::FromGenerator(inputTable, defaultValue);
 				Assert(actual != defaultValue, "Actual should not have default value");
 			}),
 	};
