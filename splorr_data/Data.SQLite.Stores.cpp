@@ -1,11 +1,11 @@
 #include "Data.SQLite.Stores.h"
 #include <memory>
 #include "sqlite3.h"
-namespace data::sqlite::Stores
+namespace data::sqlite
 {
 	static std::map<int, std::shared_ptr<sqlite3>> connections;
 	static std::map<int, std::string> connectionStrings;
-	void SetConnection(int index, const std::string& connectionString)
+	void Stores::SetConnection(int index, const std::string& connectionString)
 	{
 		connectionStrings[index] = connectionString;
 	}
@@ -51,7 +51,7 @@ namespace data::sqlite::Stores
 		return results;
 	}
 
-	std::list<std::map<std::string, std::string>> Execute(int store, const std::string& query)
+	std::list<std::map<std::string, std::string>> Stores::Execute(int store, const std::string& query)
 	{
 		auto connection = GetConnection(store);
 		if (connection)
@@ -61,7 +61,7 @@ namespace data::sqlite::Stores
 		return std::list<std::map<std::string, std::string>>();
 	}
 
-	void Copy(int storeFrom, int storeTo)
+	void Stores::Copy(int storeFrom, int storeTo)
 	{
 		auto connectionFrom = GetConnection(storeFrom);
 		auto connectionTo = GetConnection(storeTo);
@@ -70,7 +70,7 @@ namespace data::sqlite::Stores
 		sqlite3_backup_finish(handle);
 	}
 
-	void Bounce(int store)
+	void Stores::Bounce(int store)
 	{
 		connections.erase(store);
 	}

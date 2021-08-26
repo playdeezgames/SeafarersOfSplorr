@@ -3,12 +3,12 @@
 #include <map>
 #include <optional>
 #include <string>
-namespace data::json::Stores
+namespace data::json
 {
 	static std::map<int, nlohmann::json> stores;
 	static bool modded = false;
 
-	nlohmann::json& GetStore(int store)
+	nlohmann::json& Stores::GetStore(int store)
 	{
 		return stores[store];
 	}
@@ -21,7 +21,7 @@ namespace data::json::Stores
 
 	static std::map<int, storeFile> storeFiles;
 
-	void SetStoreFile(int store, const std::string& filename, std::optional<unsigned char> checksum)
+	void Stores::SetStoreFile(int store, const std::string& filename, std::optional<unsigned char> checksum)
 	{
 		storeFiles[store] = { filename, checksum };
 	}
@@ -44,7 +44,7 @@ namespace data::json::Stores
 		return result;
 	}
 
-	void Start()
+	void Stores::Start()
 	{
 		for (auto& entry : storeFiles)
 		{
@@ -60,7 +60,7 @@ namespace data::json::Stores
 		}
 	}
 
-	void Save(int store)
+	void Stores::Save(int store)
 	{
 		auto iter = storeFiles.find(store);
 		if (iter != storeFiles.end())
@@ -69,7 +69,7 @@ namespace data::json::Stores
 		}
 	}
 
-	bool IsModded()
+	bool Stores::IsModded()
 	{
 		return modded;
 	}

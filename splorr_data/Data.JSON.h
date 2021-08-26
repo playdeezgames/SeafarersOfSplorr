@@ -1,8 +1,11 @@
 #pragma once
 #include <string>
 #include "json.hpp"
-namespace data::JSON
+namespace data
 {
-	nlohmann::json Load(const std::string&);
-	void Save(const std::string&, const nlohmann::json&);
+	struct JSON
+	{
+		static nlohmann::json Load(const std::string&);
+		static void Save(const std::string&, const nlohmann::json&);
+	};
 }

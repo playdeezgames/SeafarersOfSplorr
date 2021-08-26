@@ -1,8 +1,8 @@
 #include "Data.JSON.h"
 #include <fstream>
-namespace data::JSON
+namespace data
 {
-	nlohmann::json Load(const std::string& fileName)
+	nlohmann::json JSON::Load(const std::string& fileName)
 	{
 		nlohmann::json document;
 		std::ifstream input(fileName);
@@ -14,7 +14,7 @@ namespace data::JSON
 		return document;
 	}
 
-	void Save(const std::string& fileName, const nlohmann::json& document)
+	void JSON::Save(const std::string& fileName, const nlohmann::json& document)
 	{
 		std::ofstream output(fileName);
 		if (output.is_open())
