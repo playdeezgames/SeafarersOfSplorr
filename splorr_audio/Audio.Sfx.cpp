@@ -4,11 +4,7 @@
 #include <memory>
 #include <json.hpp>
 #include <SDL_mixer.h>
-namespace Audio
-{
-	int ClampVolume(int);
-}
-namespace audio::Sfx
+namespace audio
 {
 	static std::map<std::string, std::shared_ptr<Mix_Chunk>> sounds;
 	static int sfxVolume = MIX_MAX_VOLUME;
@@ -23,19 +19,19 @@ namespace audio::Sfx
 	static bool initialized = false;
 	static std::optional<int> store = std::nullopt;
 
-	void SetStore(int s)
+	void Sfx::SetStore(int s)
 	{
 		store = s;
 	}
 
-	void Initialize()
+	void Sfx::Initialize()
 	{
 		if (!initialized)
 		{
 			nlohmann::json& j = data::json::Stores::GetStore(store.value());
 			for (auto& i : j.items())
 			{
-				Sfx::AddSound(i.key(), i.value());
+				AddSound(i.key(), i.value());
 			}
 			initialized = true;
 		}
@@ -43,7 +39,7 @@ namespace audio::Sfx
 
 	static void Play(const std::string& name)
 	{
-		Initialize();
+		Sfx::Initialize();
 		if (!Audio::IsMuted())
 		{
 			const auto& item = sounds.find(name);
@@ -54,7 +50,7 @@ namespace audio::Sfx
 		}
 	}
 
-	void Play(const std::optional<std::string>& name)
+	void Sfx::Play(const std::optional<std::string>& name)
 	{
 		if (name)
 		{
@@ -62,7 +58,7 @@ namespace audio::Sfx
 		}
 	}
 
-	void SetVolume(int volume)
+	void Sfx::SetVolume(int volume)
 	{
 		Initialize();
 		sfxVolume = Audio::ClampVolume(volume);
@@ -72,7 +68,7 @@ namespace audio::Sfx
 		}
 	}
 
-	int GetVolume()
+	int Sfx::GetVolume()
 	{
 		return sfxVolume;
 	}

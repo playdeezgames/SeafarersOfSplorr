@@ -1,46 +1,38 @@
 #include <SDL_mixer.h>
-namespace audio::Sfx
+#include "Audio.Mux.h"
+#include "Audio.Sfx.h"
+#include "Audio.h"
+int Audio::ClampVolume(int volume)
 {
-	void Initialize();
+	return
+		(volume < 0) ? (0) :
+		(volume > MIX_MAX_VOLUME) ? (MIX_MAX_VOLUME) :
+		(volume);
 }
-namespace audio::Mux
+
+static bool muted = false;
+
+static void Initialize()
 {
-	void Initialize();
+	::audio::Sfx::Initialize();
+	::audio::Mux::Initialize();
 }
-namespace Audio
+
+void Audio::SetMuted(bool newValue)
 {
-	int ClampVolume(int volume)
+	Initialize();
+	muted = newValue;
+	if (muted)
 	{
-		return
-			(volume < 0) ? (0) :
-			(volume > MIX_MAX_VOLUME) ? (MIX_MAX_VOLUME) :
-			(volume);
+		Mix_PauseMusic();
 	}
-
-	static bool muted = false;
-
-	void Initialize()
+	else
 	{
-		::audio::Sfx::Initialize();
-		::audio::Mux::Initialize();
+		Mix_ResumeMusic();
 	}
+}
 
-	void SetMuted(bool newValue)
-	{
-		Initialize();
-		muted = newValue;
-		if (muted)
-		{
-			Mix_PauseMusic();
-		}
-		else
-		{
-			Mix_ResumeMusic();
-		}
-	}
-
-	bool IsMuted()
-	{
-		return muted;
-	}
+bool Audio::IsMuted()
+{
+	return muted;
 }

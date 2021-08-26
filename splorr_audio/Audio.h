@@ -1,7 +1,7 @@
 #pragma once
-namespace Audio
+struct Audio
 {
-	void SetMuted(bool);
-	bool IsMuted();
-}
-
+	static void SetMuted(bool);
+	static bool IsMuted();
+	static int ClampVolume(int);
+};

@@ -1,19 +1,23 @@
 #pragma once
 #include <functional>
 #include <string>
-namespace audio::Mux
+namespace audio
 {
-	void SetStore(int);
-	template<typename TStore>
-	std::function<void()> DoSetStore(const TStore& store)
+	struct Mux
 	{
-		return [store]()
+		static void SetStore(int);
+		template<typename TStore>
+		static std::function<void()> DoSetStore(const TStore& store)
 		{
-			SetStore((int)store);
-		};
-	}
-	void Play(const std::string&);
-	void SetVolume(int);
-	int GetVolume();
+			return [store]()
+			{
+				SetStore((int)store);
+			};
+		}
+		static void Play(const std::string&);
+		static void SetVolume(int);
+		static int GetVolume();
+		static void Initialize();
+	};
 }
 

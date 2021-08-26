@@ -1,4 +1,5 @@
 #include "Audio.h"
+#include "Audio.Mux.h"
 #include <Data.JSON.Stores.h>
 #include <json.hpp>
 #include <map>
@@ -6,11 +7,7 @@
 #include <optional>
 #include <SDL_mixer.h>
 #include <string>
-namespace Audio
-{
-	int ClampVolume(int);
-}
-namespace audio::Mux
+namespace audio
 {
 	static std::map<std::string, std::shared_ptr<Mix_Music>> music;
 	static int muxVolume = MIX_MAX_VOLUME;
@@ -37,12 +34,12 @@ namespace audio::Mux
 	static bool initialized = false;
 	static std::optional<int> store = std::nullopt;
 
-	void SetStore(int s)
+	void Mux::SetStore(int s)
 	{
 		store = s;
 	}
 
-	void Initialize()
+	void Mux::Initialize()
 	{
 		if (!initialized)
 		{
@@ -50,7 +47,7 @@ namespace audio::Mux
 			nlohmann::json& j = data::json::Stores::GetStore(store.value());
 			for (auto& i : j.items())
 			{
-				Mux::AddMusic(i.key(), i.value());
+				AddMusic(i.key(), i.value());
 			}
 			initialized = true;
 		}
@@ -58,7 +55,7 @@ namespace audio::Mux
 
 	static std::optional<std::string> currentSong = std::nullopt;
 
-	void Play(const std::string& song)
+	void Mux::Play(const std::string& song)
 	{
 		Initialize();
 		if (!Audio::IsMuted())
@@ -72,14 +69,14 @@ namespace audio::Mux
 		}
 	}
 
-	void SetVolume(int volume)
+	void Mux::SetVolume(int volume)
 	{
 		Initialize();
 		muxVolume = Audio::ClampVolume(volume);
 		Mix_VolumeMusic(muxVolume);
 	}
 
-	int GetVolume()
+	int Mux::GetVolume()
 	{
 		return muxVolume;
 	}
