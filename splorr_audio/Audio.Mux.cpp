@@ -1,5 +1,6 @@
 #include "Audio.h"
 #include "Audio.Mux.h"
+#include "Audio.Platform.h"
 #include <Data.JSON.Stores.h>
 #include <json.hpp>
 #include <map>
@@ -10,7 +11,7 @@
 namespace audio
 {
 	static std::map<std::string, std::shared_ptr<Mix_Music>> music;
-	static int muxVolume = MIX_MAX_VOLUME;
+	static int muxVolume = audio::Platform::VOLUME_MAXIMUM;
 
 	const int LOOP_FOREVER = -1;
 	static void HookFreeMusic(Mix_Music* m)

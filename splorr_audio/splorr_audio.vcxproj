@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Audio.Platform.h" />
     <ClInclude Include="Audio.h" />
     <ClInclude Include="Audio.Mux.h" />
     <ClInclude Include="Audio.Sfx.h" />

@@ -1,12 +1,12 @@
-#include <SDL_mixer.h>
+#include "Audio.Platform.h"
 #include "Audio.Mux.h"
 #include "Audio.Sfx.h"
 #include "Audio.h"
 int Audio::ClampVolume(int volume)
 {
 	return
-		(volume < 0) ? (0) :
-		(volume > MIX_MAX_VOLUME) ? (MIX_MAX_VOLUME) :
+		(volume < audio::Platform::VOLUME_MINIMUM) ? (audio::Platform::VOLUME_MINIMUM) :
+		(volume > audio::Platform::VOLUME_MAXIMUM) ? (audio::Platform::VOLUME_MAXIMUM) :
 		(volume);
 }
 
@@ -24,11 +24,11 @@ void Audio::SetMuted(bool newValue)
 	muted = newValue;
 	if (muted)
 	{
-		Mix_PauseMusic();
+		audio::Platform::PauseMusic();
 	}
 	else
 	{
-		Mix_ResumeMusic();
+		audio::Platform::ResumeMusic();
 	}
 }
 
