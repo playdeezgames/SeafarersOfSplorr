@@ -2,18 +2,23 @@
 #include "Command.h"
 #include <functional>
 #include <map>
-namespace application::Command
+namespace application
 {
-	void SetHandlers(int, const std::map<::Command, std::function<void()>>&);
-	template<typename TState>
-	void SetHandlers(const TState& state, const std::map<::Command, std::function<void()>>& handlers)
+	struct Command
 	{
-		SetHandlers((int)state, handlers);
-	}
-	void SetHandler(int, std::function<void()>);
-	template<typename TState>
-	void SetHandler(const TState& state, std::function<void()> handler)
-	{
-		SetHandler((int)state, handler);
-	}
+		static void Handle(const ::Command&);
+
+		static void SetHandlers(int, const std::map<::Command, std::function<void()>>&);
+		template<typename TState>
+		static void SetHandlers(const TState& state, const std::map<::Command, std::function<void()>>& handlers)
+		{
+			SetHandlers((int)state, handlers);
+		}
+		static void SetHandler(int, std::function<void()>);
+		template<typename TState>
+		static void SetHandler(const TState& state, std::function<void()> handler)
+		{
+			SetHandler((int)state, handler);
+		}
+	};
 }

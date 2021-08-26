@@ -1,4 +1,5 @@
 #include <algorithm>
+#include "Application.Command.h"
 #include "Application.Keyboard.h"
 #include "Application.UIState.h"
 #include "Command.h"
@@ -8,10 +9,6 @@
 #include <optional>
 #include <SDL.h>
 #include <vector>
-namespace application::Command
-{
-	void Handle(const ::Command& command);
-}
 namespace application::Keyboard
 {
 	std::optional<::Command> ToCommand(int);

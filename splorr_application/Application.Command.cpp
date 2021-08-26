@@ -1,11 +1,11 @@
 #include "Application.Command.h"
 #include "Application.Handlers.h"
 #include <Common.Utility.h>
-namespace application::Command
+namespace application
 {
 	static std::map<int, std::map<::Command, std::function<void()>>> commandHandlers;
 
-	void Handle(const ::Command& command)
+	void Command::Handle(const ::Command& command)
 	{
 		application::Handlers::WithCurrent(commandHandlers, 
 			[command](const std::map<::Command, std::function<void()>>& handlers) 
@@ -14,12 +14,12 @@ namespace application::Command
 			});
 	}
 
-	void SetHandlers(int state, const std::map<::Command, std::function<void()>>& handlers)
+	void Command::SetHandlers(int state, const std::map<::Command, std::function<void()>>& handlers)
 	{
 		commandHandlers[state] = handlers;
 	}
 
-	const std::vector<::Command> commands =
+	static const std::vector<::Command> commands =
 	{
 		::Command::UP,
 		::Command::DOWN,
@@ -35,7 +35,7 @@ namespace application::Command
 		::Command::START
 	};
 
-	void SetHandler(int state, std::function<void()> handler)
+	void Command::SetHandler(int state, std::function<void()> handler)
 	{
 		std::map<::Command, std::function<void()>> commandHandlers;
 		for (auto command : commands)
@@ -44,5 +44,4 @@ namespace application::Command
 		}
 		SetHandlers(state, commandHandlers);
 	}
-
 }
