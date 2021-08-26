@@ -9,10 +9,6 @@
 #include <optional>
 #include <SDL.h>
 #include <vector>
-namespace application::Keyboard
-{
-	std::optional<::Command> ToCommand(int);
-}
 namespace application::MouseButtonUp
 {
 	void Handle(const int&, const int&, const MouseButton&);

@@ -4,7 +4,7 @@
 #include <Common.Data.h>
 #include <Data.JSON.Stores.h>
 #pragma warning (disable: 26812)
-namespace application::Keyboard
+namespace application
 {
 	static std::map<int, ::Command> keyboardCommands;
 
@@ -12,7 +12,7 @@ namespace application::Keyboard
 
 	static std::optional<int> store;
 
-	void SetStore(int s)
+	void Keyboard::SetStore(int s)
 	{
 		store = s;
 	}
@@ -32,7 +32,7 @@ namespace application::Keyboard
 		}
 	}
 
-	std::optional<::Command> ToCommand(int keycode)
+	std::optional<::Command> Keyboard::ToCommand(int keycode)
 	{
 		Initialize();
 		auto iter = keyboardCommands.find(keycode);
@@ -43,14 +43,14 @@ namespace application::Keyboard
 		return std::nullopt;
 	}
 
-	static std::map<int, std::vector<Handler>> keyDownHandlers;
+	static std::map<int, std::vector<Keyboard::Handler>> keyDownHandlers;
 
-	void AddHandler(int state, Handler handler)
+	void Keyboard::AddHandler(int state, Handler handler)
 	{
 		keyDownHandlers[state].push_back(handler);
 	}
 
-	bool Handle(const std::string& keyName)
+	bool Keyboard::Handle(const std::string& keyName)
 	{
 		bool result = false;
 		application::Handlers::WithCurrent(
