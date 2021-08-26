@@ -10,6 +10,7 @@
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
+#include <Visuals.MenuItems.h>
 namespace state::LoadGame
 {
 	const std::string LAYOUT_NAME = "State.LoadGame";

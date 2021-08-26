@@ -6,11 +6,11 @@
 #include <memory>
 #include <SDL_image.h>
 #include "Visuals.Textures.h"
-namespace visuals::Textures
+namespace visuals
 {
 	static std::optional<int> store;
 
-	void SetStore(int s)
+	void Textures::SetStore(int s)
 	{
 		store = s;
 	}
@@ -38,7 +38,7 @@ namespace visuals::Textures
 		}
 	}
 
-	const std::shared_ptr<SDL_Texture>& Read(const std::shared_ptr<application::Engine::Renderer>& renderer, const std::string& name)
+	const std::shared_ptr<SDL_Texture>& Textures::Read(const std::shared_ptr<application::Engine::Renderer>& renderer, const std::string& name)
 	{
 		Initialize(renderer);
 		return table.find(name)->second;

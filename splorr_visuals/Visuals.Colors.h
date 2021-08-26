@@ -3,16 +3,19 @@
 #include <string>
 #include <tuple>
 #include <vector>
-namespace visuals::Colors
+namespace visuals
 {
-	void SetStore(int);
-	template<typename TStore>
-	std::function<void()> DoSetStore(const TStore& store)
+	struct Colors
 	{
-		return [store]() 
+		static void SetStore(int);
+		template<typename TStore>
+		static std::function<void()> DoSetStore(const TStore& store)
 		{
-			SetStore((int)store);
-		};
-	}
-	std::tuple<unsigned char, unsigned char, unsigned char, unsigned char> Read(const std::string&);
+			return [store]() 
+			{
+				SetStore((int)store);
+			};
+		}
+		static std::tuple<unsigned char, unsigned char, unsigned char, unsigned char> Read(const std::string&);
+	};
 }

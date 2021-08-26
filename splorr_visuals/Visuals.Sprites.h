@@ -6,17 +6,20 @@
 #include <SDL.h>
 #include <string>
 #include <tuple>
-namespace visuals::Sprites
+namespace visuals
 {
-	void SetStore(int);
-	template<typename TStore>
-	std::function<void()> DoSetStore(const TStore& store)
+	struct Sprites
 	{
-		return [store]()
+		static void SetStore(int);
+		template<typename TStore>
+		static std::function<void()> DoSetStore(const TStore& store)
 		{
-			SetStore((int)store);
-		};
-	}
-	void Draw(const std::string&, const std::shared_ptr<application::Engine::Renderer>&, const ::common::XY<int>&, const std::tuple<unsigned char, unsigned char, unsigned char, unsigned char>&, double angle=0.0);
-	std::optional<int> GetWidth(const std::string&);
+			return [store]()
+			{
+				SetStore((int)store);
+			};
+		}
+		static void Draw(const std::string&, const std::shared_ptr<application::Engine::Renderer>&, const ::common::XY<int>&, const std::tuple<unsigned char, unsigned char, unsigned char, unsigned char>&, double angle=0.0);
+		static std::optional<int> GetWidth(const std::string&);
+	};
 }

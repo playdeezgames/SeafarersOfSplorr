@@ -4,11 +4,11 @@
 #include <vector>
 #include "Visuals.Colors.h"
 #include "Visuals.Data.Properties.h"
-namespace visuals::Colors
+namespace visuals
 {
 	static std::optional<int> store;
 
-	void SetStore(int s)
+	void Colors::SetStore(int s)
 	{
 		store = s;
 	}
@@ -22,7 +22,7 @@ namespace visuals::Colors
 		return { r,g,b,a };
 	}
 
-	std::tuple<unsigned char, unsigned char, unsigned char, unsigned char> Read(const std::string& key)
+	std::tuple<unsigned char, unsigned char, unsigned char, unsigned char> Colors::Read(const std::string& key)
 	{
 		return ParseDescriptor(::data::json::Stores::GetStore(store.value())[key]);
 	}

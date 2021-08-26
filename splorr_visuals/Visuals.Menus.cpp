@@ -5,7 +5,8 @@
 #include "Visuals.Fonts.h"
 #include "Visuals.Layouts.h"
 #include "Visuals.Menus.h"
-namespace visuals::Menu
+#include "Visuals.MenuItems.h"
+namespace visuals
 {
 	struct InternalMenuItem
 	{
@@ -78,7 +79,7 @@ namespace visuals::Menu
 		return menuItemIndex;
 	}
 
-	std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> Internalize(const std::string& layoutName, const nlohmann::json& model)
+	std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> Menus::Internalize(const std::string& layoutName, const nlohmann::json& model)
 	{
 		size_t menuIndex = internalMenus.size();
 		InternalMenu internalMenu = {
@@ -129,13 +130,10 @@ namespace visuals::Menu
 	{
 		return menuItemTable.find(layoutName)->second.find(menuItemId)->second;
 	}
-}
-namespace visuals::Menus
-{
 
-	std::optional<int> ReadIndex(const std::string& layoutName, const std::string& menuId)
+	std::optional<int> Menus::ReadIndex(const std::string& layoutName, const std::string& menuId)
 	{
-		return Menu::GetMenu(layoutName, menuId).index;
+		return GetMenu(layoutName, menuId).index;
 	}
 
 	enum class WriteConditional
@@ -144,43 +142,43 @@ namespace visuals::Menus
 		FORCE
 	};
 
-	static void WriteIndex(const std::string& layoutName, const std::string& menuId, int index, WriteConditional conditional)
+	static void WriteIndex2(const std::string& layoutName, const std::string& menuId, int index, WriteConditional conditional)
 	{
-		auto menuIndex = Menu::GetMenuIndex(layoutName, menuId);
-		size_t menuItemId = visuals::Menu::internalMenus[menuIndex].menuItems[index];
-		if ((conditional==WriteConditional::FORCE) || visuals::Menu::internalMenuItems[menuItemId].enabled)
+		auto menuIndex = GetMenuIndex(layoutName, menuId);
+		size_t menuItemId = internalMenus[menuIndex].menuItems[index];
+		if ((conditional==WriteConditional::FORCE) || internalMenuItems[menuItemId].enabled)
 		{
-			visuals::Menu::internalMenus[menuIndex].index = index;
+			internalMenus[menuIndex].index = index;
 		}
 	}
 
-	void WriteIndex(const std::string& layoutName, const std::string& menuId, int index)
+	void Menus::WriteIndex(const std::string& layoutName, const std::string& menuId, int index)
 	{
-		WriteIndex(layoutName, menuId, index, WriteConditional::CHECK);
+		WriteIndex2(layoutName, menuId, index, WriteConditional::CHECK);
 	}
 
-	void WriteMenuItemId(const std::string& layoutName, const std::string& menuId, const std::string& menuItemId)
+	void Menus::WriteMenuItemId(const std::string& layoutName, const std::string& menuId, const std::string& menuItemId)
 	{
-		auto menuIndex = Menu::GetMenuIndex(layoutName, menuId);
-		auto iter = visuals::Menu::internalMenus[menuIndex].menuItemIds.find(menuItemId);
-		if (iter != visuals::Menu::internalMenus[menuIndex].menuItemIds.end())
+		auto menuIndex = GetMenuIndex(layoutName, menuId);
+		auto iter = internalMenus[menuIndex].menuItemIds.find(menuItemId);
+		if (iter != internalMenus[menuIndex].menuItemIds.end())
 		{
 			WriteIndex(layoutName, menuId, (int)iter->second);
 		}
 	}
 
-	size_t GetCount(const std::string& layoutName, const std::string& menuId)
+	size_t Menus::GetCount(const std::string& layoutName, const std::string& menuId)
 	{
-		return Menu::GetMenu(layoutName, menuId).menuItems.size();
+		return GetMenu(layoutName, menuId).menuItems.size();
 	}
 
 	static bool HasEnabledIndices(const std::string& layoutName, const std::string& menuId)
 	{
-		auto& menu = Menu::GetMenu(layoutName, menuId);
+		auto& menu = GetMenu(layoutName, menuId);
 		auto& menuItems = menu.menuItems;
 		for (auto menuItem : menuItems)
 		{
-			if (visuals::Menu::internalMenuItems[menuItem].enabled)
+			if (internalMenuItems[menuItem].enabled)
 			{
 				return true;
 			}
@@ -190,11 +188,11 @@ namespace visuals::Menus
 
 	static bool IsEnabledIndex(const std::string& layoutName, const std::string& menuId, size_t index)
 	{
-		if (index < GetCount(layoutName, menuId))
+		if (index < Menus::GetCount(layoutName, menuId))
 		{
-			auto& menu = Menu::GetMenu(layoutName, menuId);
+			auto& menu = GetMenu(layoutName, menuId);
 			auto& menuItem = menu.menuItems[index];
-			return visuals::Menu::internalMenuItems[menuItem].enabled;
+			return internalMenuItems[menuItem].enabled;
 		}
 		return false;
 	}
@@ -205,7 +203,7 @@ namespace visuals::Menus
 		PREVIOUS
 	};
 
-	const std::map<Change, int> changeDeltas =
+	static const std::map<Change, int> changeDeltas =
 	{
 		{Change::NEXT, 1},
 		{Change::PREVIOUS, -1}
@@ -215,22 +213,22 @@ namespace visuals::Menus
 	{
 		if (HasEnabledIndices(layoutName, menuId))
 		{
-			auto itemCount = GetCount(layoutName, menuId);
+			auto itemCount = Menus::GetCount(layoutName, menuId);
 			int delta = changeDeltas.find(change)->second;
 			do
 			{
-				auto index = ReadIndex(layoutName, menuId).value();
+				auto index = Menus::ReadIndex(layoutName, menuId).value();
 				auto nextIndex = ((size_t)index + (int)itemCount + delta) % itemCount;
-				WriteIndex(layoutName, menuId, (int)nextIndex, WriteConditional::FORCE);
-			} while (!IsEnabledIndex(layoutName, menuId, *ReadIndex(layoutName, menuId)));
+				WriteIndex2(layoutName, menuId, (int)nextIndex, WriteConditional::FORCE);
+			} while (!IsEnabledIndex(layoutName, menuId, *Menus::ReadIndex(layoutName, menuId)));
 		}
 		else 
 		{
-			WriteIndex(layoutName, menuId, 0, WriteConditional::FORCE);
+			WriteIndex2(layoutName, menuId, 0, WriteConditional::FORCE);
 		}
 	}
 
-	std::function<void()> NavigateNext(const std::string& layoutName, const std::string& menuId)
+	std::function<void()> Menus::NavigateNext(const std::string& layoutName, const std::string& menuId)
 	{
 		return [layoutName, menuId]() 
 		{
@@ -238,24 +236,22 @@ namespace visuals::Menus
 		};
 	}
 
-	std::function<void()> NavigatePrevious(const std::string& layoutName, const std::string& menuId)
+	std::function<void()> Menus::NavigatePrevious(const std::string& layoutName, const std::string& menuId)
 	{
 		return [layoutName, menuId]()
 		{
 			ChangeMenuIndex(layoutName, menuId, Change::PREVIOUS);
 		};
 	}
-}
-namespace visuals::MenuItems
-{
-	void SetText(const std::string& layoutName, const std::string& menuItemId, const std::string& text)
+
+	void MenuItems::SetText(const std::string& layoutName, const std::string& menuItemId, const std::string& text)
 	{
-		auto menuItemIndex = Menu::GetMenuItemIndex(layoutName, menuItemId);
-		visuals::Menu::internalMenuItems[menuItemIndex].text = text;
+		auto menuItemIndex = GetMenuItemIndex(layoutName, menuItemId);
+		internalMenuItems[menuItemIndex].text = text;
 	}
-	void SetEnabled(const std::string& layoutName, const std::string& menuItemId, bool enabled)
+	void MenuItems::SetEnabled(const std::string& layoutName, const std::string& menuItemId, bool enabled)
 	{
-		auto menuItemIndex = Menu::GetMenuItemIndex(layoutName, menuItemId);
-		visuals::Menu::internalMenuItems[menuItemIndex].enabled = enabled;
+		auto menuItemIndex = GetMenuItemIndex(layoutName, menuItemId);
+		internalMenuItems[menuItemIndex].enabled = enabled;
 	}
 }

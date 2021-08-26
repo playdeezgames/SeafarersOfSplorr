@@ -1,27 +1,27 @@
 #include <stack>
 #include "Visuals.Confirmations.h"
-namespace visuals::Confirmations
+namespace visuals
 {
 	static std::stack<Confirmation> confirmations;
 
-	bool HasConfirmation()
+	bool Confirmations::HasConfirmation()
 	{
 		return !confirmations.empty();
 	}
 
-	Confirmation Read()
+	Confirmation Confirmations::Read()
 	{
 		Confirmation result = confirmations.top();
 		confirmations.pop();
 		return result;
 	}
 
-	void Write(const Confirmation& confirmation)
+	void Confirmations::Write(const Confirmation& confirmation)
 	{
 		confirmations.push(confirmation);
 	}
 
-	void Reset()
+	void Confirmations::Reset()
 	{
 		while (HasConfirmation())
 		{

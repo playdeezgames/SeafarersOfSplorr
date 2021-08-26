@@ -5,35 +5,17 @@
 #include "Visuals.DrawerFunction.h"
 #include "Visuals.Data.Properties.h"
 #include "Visuals.Layouts.h"
-namespace visuals::Text
-{
-	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
-}
-namespace visuals::Sublayout
-{
-	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
-}
-namespace visuals::SpriteGrid
-{
-	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
-}
-namespace visuals::Menu
-{
-	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
-}
-namespace visuals::Image
-{
-	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
-}
-namespace visuals::Areas
-{
-	DrawerFunction Internalize(const std::string&, const nlohmann::json&);
-}
-namespace visuals::Layouts
+#include "Visuals.Images.h"
+#include "Visuals.Texts.h"
+#include "Visuals.Menus.h"
+#include "Visuals.Areas.h"
+#include "Visuals.SpriteGrid.h"
+#include "Visuals.Sublayout.h"
+namespace visuals
 {
 	static std::optional<int> store;
 
-	void SetStore(int s)
+	void Layouts::SetStore(int s)
 	{
 		store = s;
 	}
@@ -48,20 +30,20 @@ namespace visuals::Layouts
 
 	static std::map<std::string, InternalizerFunction> internalizers =
 	{
-		{"Image", visuals::Image::Internalize},
-		{"Text", visuals::Text::Internalize},
-		{"Menu", visuals::Menu::Internalize},
+		{"Image", visuals::Images::Internalize},
+		{"Text", visuals::Texts::Internalize},
+		{"Menu", visuals::Menus::Internalize},
 		{"Layout", visuals::Sublayout::Internalize},
 		{"Area", visuals::Areas::Internalize},
 		{"SpriteGrid", visuals::SpriteGrid::Internalize}
 	};
 
-	void RegisterType(const std::string& typeName, InternalizerFunction internalizer)
+	void Layouts::RegisterType(const std::string& typeName, InternalizerFunction internalizer)
 	{
 		internalizers[typeName] = internalizer;
 	}
 
-	std::function<void()> DoRegisterType(const std::string& typeName, InternalizerFunction internalizer)
+	std::function<void()> Layouts::DoRegisterType(const std::string& typeName, InternalizerFunction internalizer)
 	{
 		return [typeName, internalizer]() 
 		{
@@ -89,7 +71,7 @@ namespace visuals::Layouts
 		InternalizeTypedDrawn(layoutName, types, drawn);
 	}
 
-	static void Internalize(const std::string& layoutName, const nlohmann::json& model)
+	void Layouts::Internalize(const std::string& layoutName, const nlohmann::json& model)
 	{
 		internalLayouts[layoutName] = {};
 		for (auto& drawn : model)
@@ -103,11 +85,11 @@ namespace visuals::Layouts
 		if (!layouts.contains(layoutName))
 		{
 			layouts[layoutName] = ::data::JSON::Load(::data::json::Stores::GetStore(store.value())[layoutName]);
-			Internalize(layoutName, layouts[layoutName]);
+			Layouts::Internalize(layoutName, layouts[layoutName]);
 		}
 	}
 
-	void Start()
+	void Layouts::Start()
 	{
 		auto& layoutStore = ::data::json::Stores::GetStore(store.value());
 		for (auto& entry : layoutStore.items())
@@ -122,7 +104,7 @@ namespace visuals::Layouts
 		return layouts.find(layoutName)->second;
 	}
 
-	void Draw(const std::shared_ptr<application::Engine::Renderer>& renderer, const std::string& layoutName)
+	void Layouts::Draw(const std::shared_ptr<application::Engine::Renderer>& renderer, const std::string& layoutName)
 	{
 		InitializeLayout(layoutName);
 		auto& internalLayout = internalLayouts[layoutName];

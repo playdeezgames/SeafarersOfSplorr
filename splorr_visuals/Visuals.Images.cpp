@@ -7,7 +7,7 @@
 #include "Visuals.Images.h"
 #include "Visuals.Layouts.h"
 #include "Visuals.Sprites.h"
-namespace visuals::Image
+namespace visuals
 {
 	struct InternalImage
 	{
@@ -21,7 +21,7 @@ namespace visuals::Image
 	static std::vector<InternalImage> images;
 	static std::map<std::string, std::map<std::string, size_t>> imageTable;
 
-	const std::tuple<unsigned char, unsigned char, unsigned char, unsigned char> defaultColor = { 255, 255, 255, 255 };
+	static const std::tuple<unsigned char, unsigned char, unsigned char, unsigned char> defaultColor = { 255, 255, 255, 255 };
 
 	static void DrawInternalImage(const std::shared_ptr<application::Engine::Renderer>& renderer, size_t imageIndex)
 	{
@@ -37,7 +37,7 @@ namespace visuals::Image
 		}
 	}
 
-	std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> Internalize(const std::string& layoutName, const nlohmann::json& model)
+	std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> Images::Internalize(const std::string& layoutName, const nlohmann::json& model)
 	{
 		auto imageIndex = images.size();
 		images.push_back(
@@ -58,31 +58,29 @@ namespace visuals::Image
 			DrawInternalImage(renderer, imageIndex);
 		};
 	}
-}
-namespace visuals::Images
-{
-	void SetSprite(const std::string& layoutName, const std::string& imageId, const std::string& spriteName)
+
+	void Images::SetSprite(const std::string& layoutName, const std::string& imageId, const std::string& spriteName)
 	{
-		auto imageIndex = visuals::Image::imageTable[layoutName][imageId];
-		visuals::Image::images[imageIndex].sprite = spriteName;
+		auto imageIndex = imageTable[layoutName][imageId];
+		images[imageIndex].sprite = spriteName;
 	}
 
-	void SetVisible(const std::string& layoutName, const std::string& imageId, bool visible)
+	void Images::SetVisible(const std::string& layoutName, const std::string& imageId, bool visible)
 	{
-		auto imageIndex = visuals::Image::imageTable[layoutName][imageId];
-		visuals::Image::images[imageIndex].visible = visible;
+		auto imageIndex = imageTable[layoutName][imageId];
+		images[imageIndex].visible = visible;
 	}
 
-	void SetAngle(const std::string& layoutName, const std::string& imageId, double angle)
+	void Images::SetAngle(const std::string& layoutName, const std::string& imageId, double angle)
 	{
-		auto imageIndex = visuals::Image::imageTable[layoutName][imageId];
-		visuals::Image::images[imageIndex].angle = angle;
+		auto imageIndex = imageTable[layoutName][imageId];
+		images[imageIndex].angle = angle;
 	}
 
-	void SetLocation(const std::string& layoutName, const std::string& imageId, const common::XY<int>& location)
+	void Images::SetLocation(const std::string& layoutName, const std::string& imageId, const common::XY<int>& location)
 	{
-		auto imageIndex = visuals::Image::imageTable[layoutName][imageId];
-		visuals::Image::images[imageIndex].xy = location;
+		auto imageIndex = imageTable[layoutName][imageId];
+		images[imageIndex].xy = location;
 	}
 
 }

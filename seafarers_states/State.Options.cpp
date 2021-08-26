@@ -16,6 +16,7 @@
 #include <SDL_mixer.h>
 #include "UIState.h"
 #include <Visuals.Menus.h>
+#include <Visuals.MenuItems.h>
 #include <Visuals.Areas.h>
 namespace state::Options
 {

@@ -4,11 +4,11 @@
 #include "Visuals.Data.Properties.h"
 #include "Visuals.Sprites.h"
 #include "Visuals.Textures.h"
-namespace visuals::Sprites
+namespace visuals
 {
 	static std::optional<int> store;
 
-	void SetStore(int s)
+	void Sprites::SetStore(int s)
 	{
 		store = s;
 	}
@@ -90,7 +90,7 @@ namespace visuals::Sprites
 		renderer.get()->Copy(texture, &rcSource, &rcDestination, angle);
 	}
 
-	void Draw(const std::string& spriteName, const std::shared_ptr<application::Engine::Renderer>& renderer, const ::common::XY<int>& xy, const std::tuple<unsigned char, unsigned char, unsigned char, unsigned char>& color, double angle)
+	void Sprites::Draw(const std::string& spriteName, const std::shared_ptr<application::Engine::Renderer>& renderer, const ::common::XY<int>& xy, const std::tuple<unsigned char, unsigned char, unsigned char, unsigned char>& color, double angle)
 	{
 		Initialize();
 		auto iter = internalSprites.find(spriteName);
@@ -101,7 +101,7 @@ namespace visuals::Sprites
 		}
 	}
 
-	std::optional<int> GetWidth(const std::string& spriteName)
+	std::optional<int> Sprites::GetWidth(const std::string& spriteName)
 	{
 		Initialize();
 		auto iter = internalSprites.find(spriteName);

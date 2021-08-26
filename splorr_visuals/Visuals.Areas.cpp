@@ -5,16 +5,12 @@
 #include "Visuals.Areas.h"
 #include "Visuals.Data.Properties.h"
 #include "Visuals.Menus.h"
-namespace visuals::Layouts
-{
-	nlohmann::json& GetLayout(const std::string&);
-}
-namespace visuals::Areas
+namespace visuals
 {
 	static std::map<std::string, std::vector<visuals::Area>> areaLists;
 	static std::map<std::string, std::map<std::string, visuals::Area>> areaTable;
 
-	std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> Internalize(const std::string& layoutName, const nlohmann::json& model)
+	std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> Areas::Internalize(const std::string& layoutName, const nlohmann::json& model)
 	{
 		int x = model[visuals::data::Properties::X];
 		int y = model[visuals::data::Properties::Y];
@@ -53,7 +49,7 @@ namespace visuals::Areas
 		return noAreas;
 	}
 
-	std::set<std::string> Get(const std::string& layoutName, const common::XY<int>& xy)
+	std::set<std::string> Areas::Get(const std::string& layoutName, const common::XY<int>& xy)
 	{
 		std::set<std::string> result;
 		for (auto& area : GetForLayout(layoutName))
@@ -66,13 +62,13 @@ namespace visuals::Areas
 		return result;
 	}
 
-	Area Get(const std::string& layoutName, const std::string& areaName)
+	Area Areas::Get(const std::string& layoutName, const std::string& areaName)
 	{
 		return areaTable.find(layoutName)->second.find(areaName)->second;
 	}
 
 	std::function<void(const common::XY<int>& xy)> 
-		HandleMouseMotion(
+		Areas::HandleMouseMotion(
 			const std::string& layoutName, 
 			std::function<void(const std::string&, const common::XY<int>&)> areaHandler,
 			std::function<void(const common::XY<int>&)> noAreaHandler
@@ -95,7 +91,7 @@ namespace visuals::Areas
 	}
 
 	std::function<void(const common::XY<int>& xy)>
-		HandleMouseMotion(
+		Areas::HandleMouseMotion(
 			const std::string& layoutName,
 			std::function<void(const std::string&, const common::XY<int>&)> areaHandler
 		)
@@ -104,7 +100,7 @@ namespace visuals::Areas
 	}
 
 
-	std::function<bool(const common::XY<int>&, MouseButton)> HandleMouseButtonUp(const std::string& layoutName, std::function<bool(const std::string&)> areaHandler)
+	std::function<bool(const common::XY<int>&, MouseButton)> Areas::HandleMouseButtonUp(const std::string& layoutName, std::function<bool(const std::string&)> areaHandler)
 	{
 		return [layoutName, areaHandler](const common::XY<int>& xy, MouseButton)
 		{
@@ -120,7 +116,7 @@ namespace visuals::Areas
 		};
 	}
 
-	std::function<void(const common::XY<int>&)> HandleMenuMouseMotion(const std::string& layoutName)
+	std::function<void(const common::XY<int>&)> Areas::HandleMenuMouseMotion(const std::string& layoutName)
 	{
 		return [layoutName](const common::XY<int>& xy) {
 			auto areas = visuals::Areas::Get(layoutName, xy);
@@ -138,7 +134,7 @@ namespace visuals::Areas
 		};
 	}
 
-	std::function<bool(const common::XY<int>&, MouseButton)> HandleMenuMouseButtonUp(const std::string& layoutName, std::function<void()> handler)
+	std::function<bool(const common::XY<int>&, MouseButton)> Areas::HandleMenuMouseButtonUp(const std::string& layoutName, std::function<void()> handler)
 	{
 		return [layoutName, handler](const common::XY<int>& xy, MouseButton)
 		{

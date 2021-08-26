@@ -1,9 +1,12 @@
 #pragma once
 #include "Visuals.Confirmation.h"
-namespace visuals::Confirmations
+namespace visuals
 {
-	bool HasConfirmation();
-	Confirmation Read();
-	void Write(const Confirmation&);
-	void Reset();
+	struct Confirmations
+	{
+		static bool HasConfirmation();
+		static Confirmation Read();
+		static void Write(const Confirmation&);
+		static void Reset();
+	};
 }

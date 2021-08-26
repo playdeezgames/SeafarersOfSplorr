@@ -4,17 +4,20 @@
 #include <memory>
 #include <SDL.h>
 #include <string>
-namespace visuals::Textures
+namespace visuals
 {
-	void SetStore(int);
-	template<typename TStore>
-	std::function<void()> DoSetStore(const TStore& store)
+	struct Textures
 	{
-		return [store]()
+		static void SetStore(int);
+		template<typename TStore>
+		static std::function<void()> DoSetStore(const TStore& store)
 		{
-			SetStore((int)store);
-		};
-	}
-	const std::shared_ptr<SDL_Texture>& Read(const std::shared_ptr<application::Engine::Renderer>&, const std::string&);
+			return [store]()
+			{
+				SetStore((int)store);
+			};
+		}
+		static const std::shared_ptr<SDL_Texture>& Read(const std::shared_ptr<application::Engine::Renderer>&, const std::string&);
+	};
 }
 

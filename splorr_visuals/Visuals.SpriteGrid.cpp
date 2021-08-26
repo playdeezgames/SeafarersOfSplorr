@@ -8,7 +8,8 @@
 #include "Visuals.Data.Properties.h"
 #include "Visuals.Fonts.h"
 #include "Visuals.Sprites.h"
-namespace visuals::SpriteGrid
+#include "Visuals.SpriteGrid.h"
+namespace visuals
 {
 	struct InternalSpriteCell
 	{
@@ -49,7 +50,7 @@ namespace visuals::SpriteGrid
 		}
 	}
 
-	std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> Internalize(const std::string& layoutName, const nlohmann::json& model)
+	std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> SpriteGrid::Internalize(const std::string& layoutName, const nlohmann::json& model)
 	{
 		size_t gridIndex = spriteGrids.size();
 		spriteGrids.push_back(
@@ -77,7 +78,7 @@ namespace visuals::SpriteGrid
 		};
 	}
 
-	void SetCell(const std::string& layoutName, const std::string& spriteGridId, const common::XY<int>& location, const std::string& spriteName, const std::string& color)
+	void SpriteGrid::SetCell(const std::string& layoutName, const std::string& spriteGridId, const common::XY<int>& location, const std::string& spriteName, const std::string& color)
 	{
 		size_t gridIndex = spriteGridTable[layoutName][spriteGridId];
 		auto& spriteGrid = spriteGrids[gridIndex];
@@ -88,7 +89,7 @@ namespace visuals::SpriteGrid
 		};
 	}
 
-	void ClearCell(const std::string& layoutName, const std::string& spriteGridId, const common::XY<int>& location)
+	void SpriteGrid::ClearCell(const std::string& layoutName, const std::string& spriteGridId, const common::XY<int>& location)
 	{
 		size_t gridIndex = spriteGridTable[layoutName][spriteGridId];
 		auto& spriteGrid = spriteGrids[gridIndex];
@@ -119,7 +120,7 @@ namespace visuals::SpriteGrid
 		}
 	}
 
-	void WriteText(const std::string& layoutName, const std::string& spriteGridId, const common::XY<int>& location, const std::string& fontName, const std::string& text, const std::string& color, const visuals::HorizontalAlignment& alignment)
+	void SpriteGrid::WriteText(const std::string& layoutName, const std::string& spriteGridId, const common::XY<int>& location, const std::string& fontName, const std::string& text, const std::string& color, const visuals::HorizontalAlignment& alignment)
 	{
 		auto x = location.GetX();
 		switch (alignment)
@@ -134,14 +135,14 @@ namespace visuals::SpriteGrid
 		DoWriteText(layoutName, spriteGridId, { x,location.GetY() }, fontName, text, color);
 	}
 
-	void Clear(const std::string& layoutName, const std::string& spriteGridId)
+	void SpriteGrid::Clear(const std::string& layoutName, const std::string& spriteGridId)
 	{
 		size_t gridIndex = spriteGridTable[layoutName][spriteGridId];
 		auto& spriteGrid = spriteGrids[gridIndex];
 		spriteGrid.cells.clear();
 	}
 
-	int GetCellHeight(const std::string& layoutName, const std::string& spriteGridId)
+	int SpriteGrid::GetCellHeight(const std::string& layoutName, const std::string& spriteGridId)
 	{
 		size_t gridIndex = spriteGridTable[layoutName][spriteGridId];
 		auto& spriteGrid = spriteGrids[gridIndex];
@@ -149,7 +150,7 @@ namespace visuals::SpriteGrid
 	}
 
 	std::function<void(const common::XY<int>&, const std::string&, const std::string&)>
-		DoWriteToGrid(
+		SpriteGrid::DoWriteToGrid(
 			const std::string& layoutName,
 			const std::string& spriteGridId,
 			const std::string& fontName,
@@ -160,6 +161,4 @@ namespace visuals::SpriteGrid
 			visuals::SpriteGrid::WriteText(layoutName, spriteGridId, location, fontName, text, color, alignment);
 		};
 	}
-
-
 }

@@ -1,9 +1,12 @@
 #pragma once
 #include "Visuals.Message.h"
-namespace visuals::Messages
+namespace visuals
 {
-	bool HasMessage();
-	Message Read();
-	void Write(const Message&);
-	void Reset();
+	struct Messages
+	{
+		static bool HasMessage();
+		static Message Read();
+		static void Write(const Message&);
+		static void Reset();
+	};
 }

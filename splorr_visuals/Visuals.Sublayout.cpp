@@ -3,7 +3,8 @@
 #include <SDL.h>
 #include "Visuals.Layouts.h"
 #include "Visuals.Data.Properties.h"
-namespace visuals::Sublayout
+#include "Visuals.Sublayout.h"
+namespace visuals
 {
 	struct InternalSublayout
 	{
@@ -18,7 +19,7 @@ namespace visuals::Sublayout
 		visuals::Layouts::Draw(renderer, sublayout.name);
 	}
 
-	std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> Internalize(const std::string& layoutName, const nlohmann::json& model)
+	std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> Sublayout::Internalize(const std::string& layoutName, const nlohmann::json& model)
 	{
 		size_t index = internalSublayouts.size();
 		internalSublayouts.push_back(

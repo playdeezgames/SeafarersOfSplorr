@@ -6,19 +6,23 @@
 #include <string>
 #include <vector>
 #include "Visuals.DrawerFunction.h"
-namespace visuals::Layouts
+namespace visuals
 {
-	void SetStore(int);
-	template<typename TStore>
-	std::function<void()> DoSetStore(const TStore& store)
+	struct Layouts
 	{
-		return [store]()
+		static void SetStore(int);
+		template<typename TStore>
+		static std::function<void()> DoSetStore(const TStore& store)
 		{
-			SetStore((int)store);
-		};
-	}
-	void RegisterType(const std::string&, InternalizerFunction);
-	std::function<void()> DoRegisterType(const std::string&, InternalizerFunction);
-	void Draw(const std::shared_ptr<application::Engine::Renderer>&, const std::string&);
-	void Start();
+			return [store]()
+			{
+				SetStore((int)store);
+			};
+		}
+		static void RegisterType(const std::string&, InternalizerFunction);
+		static std::function<void()> DoRegisterType(const std::string&, InternalizerFunction);
+		static void Draw(const std::shared_ptr<application::Engine::Renderer>&, const std::string&);
+		static void Start();
+		static void Internalize(const std::string&, const nlohmann::json&);
+	};
 }

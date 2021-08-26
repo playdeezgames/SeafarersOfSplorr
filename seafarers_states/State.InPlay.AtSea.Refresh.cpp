@@ -11,6 +11,7 @@
 #include <string>
 #include <Visuals.Images.h>
 #include <Visuals.Menus.h>
+#include <Visuals.MenuItems.h>
 #include <Visuals.SpriteGrid.h>
 #include <Visuals.Texts.h>
 namespace state::in_play::AtSea

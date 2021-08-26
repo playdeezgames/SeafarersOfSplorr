@@ -15,6 +15,7 @@
 #include <Visuals.Areas.h>
 #include <Visuals.Images.h>
 #include <Visuals.Menus.h>
+#include <Visuals.MenuItems.h>
 #include <Visuals.Messages.h>
 namespace state::in_play::AtSea
 {

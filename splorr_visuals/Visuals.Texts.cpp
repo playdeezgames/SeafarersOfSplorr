@@ -3,7 +3,8 @@
 #include "Visuals.Data.Properties.h"
 #include "Visuals.Fonts.h"
 #include "Visuals.Layouts.h"
-namespace visuals::Text
+#include "Visuals.Texts.h"
+namespace visuals
 {
 	struct InternalText
 	{
@@ -42,7 +43,7 @@ namespace visuals::Text
 			text.alignment);
 	}
 
-	std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> Internalize(const std::string& layoutName, const nlohmann::json& model)
+	std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> Texts::Internalize(const std::string& layoutName, const nlohmann::json& model)
 	{
 		size_t textIndex = internalTexts.size();
 		internalTexts.push_back(
@@ -69,25 +70,22 @@ namespace visuals::Text
 			DrawInternalText(renderer, textIndex);
 		};
 	}
-}
 
-namespace visuals::Texts
-{
-	void SetText(const std::string& layoutName, const std::string& textId, const std::string& text)
+	void Texts::SetText(const std::string& layoutName, const std::string& textId, const std::string& text)
 	{
-		auto textIndex = visuals::Text::textTable[layoutName][textId];
-		visuals::Text::internalTexts[textIndex].text = text;
+		auto textIndex = textTable[layoutName][textId];
+		internalTexts[textIndex].text = text;
 	}
 
-	void SetColor(const std::string& layoutName, const std::string& textId, const std::string& color)
+	void Texts::SetColor(const std::string& layoutName, const std::string& textId, const std::string& color)
 	{
-		auto textIndex = visuals::Text::textTable[layoutName][textId];
-		visuals::Text::internalTexts[textIndex].color = color;
+		auto textIndex = textTable[layoutName][textId];
+		internalTexts[textIndex].color = color;
 	}
 
-	void SetLocation(const std::string& layoutName, const std::string& textId, const common::XY<int>& location)
+	void Texts::SetLocation(const std::string& layoutName, const std::string& textId, const common::XY<int>& location)
 	{
-		auto textIndex = visuals::Text::textTable[layoutName][textId];
-		visuals::Text::internalTexts[textIndex].xy = location;
+		auto textIndex = textTable[layoutName][textId];
+		internalTexts[textIndex].xy = location;
 	}
 }

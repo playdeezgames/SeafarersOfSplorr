@@ -6,17 +6,20 @@
 #include <SDL.h>
 #include <string>
 #include "Visuals.HorizontalAlignment.h"
-namespace visuals::Fonts
+namespace visuals
 {
-	void SetStore(int);
-	template<typename TStore>
-	std::function<void()> DoSetStore(const TStore& store)
+	struct Fonts
 	{
-		return [store]()
+		static void SetStore(int);
+		template<typename TStore>
+		static std::function<void()> DoSetStore(const TStore& store)
 		{
-			SetStore((int)store);
-		};
-	}
-	void WriteText(const std::string&, const std::shared_ptr<application::Engine::Renderer>&, const common::XY<int>&, const std::string& text, const std::string& color, const HorizontalAlignment& alignment);
-	std::optional<std::string> GetGlyphSpriteName(const std::string&, char);
+			return [store]()
+			{
+				SetStore((int)store);
+			};
+		}
+		static void WriteText(const std::string&, const std::shared_ptr<application::Engine::Renderer>&, const common::XY<int>&, const std::string& text, const std::string& color, const HorizontalAlignment& alignment);
+		static std::optional<std::string> GetGlyphSpriteName(const std::string&, char);
+	};
 }

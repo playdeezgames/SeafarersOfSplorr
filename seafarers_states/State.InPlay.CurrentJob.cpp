@@ -16,6 +16,7 @@
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
+#include <Visuals.MenuItems.h>
 #include <Visuals.Texts.h>
 namespace state::in_play::CurrentJob
 {

@@ -5,12 +5,16 @@
 #include <string>
 #include "Visuals.DrawerFunction.h"
 #include "Visuals.HorizontalAlignment.h"
-namespace visuals::SpriteGrid
+namespace visuals
 {
-	void SetCell(const std::string&, const std::string&, const common::XY<int>&, const std::string&, const std::string&);
-	void WriteText(const std::string&, const std::string&, const common::XY<int>&, const std::string&, const std::string&, const std::string&, const visuals::HorizontalAlignment&);
-	void ClearCell(const std::string&, const std::string&, const common::XY<int>&);
-	void Clear(const std::string&, const std::string&);
-	int GetCellHeight(const std::string&, const std::string&);
-	std::function<void(const common::XY<int>&, const std::string&, const std::string&)> DoWriteToGrid(const std::string&, const std::string&, const std::string&, const visuals::HorizontalAlignment&);
+	struct SpriteGrid
+	{
+		static void SetCell(const std::string&, const std::string&, const common::XY<int>&, const std::string&, const std::string&);
+		static void WriteText(const std::string&, const std::string&, const common::XY<int>&, const std::string&, const std::string&, const std::string&, const visuals::HorizontalAlignment&);
+		static void ClearCell(const std::string&, const std::string&, const common::XY<int>&);
+		static void Clear(const std::string&, const std::string&);
+		static int GetCellHeight(const std::string&, const std::string&);
+		static std::function<void(const common::XY<int>&, const std::string&, const std::string&)> DoWriteToGrid(const std::string&, const std::string&, const std::string&, const visuals::HorizontalAlignment&);
+		static DrawerFunction Internalize(const std::string&, const nlohmann::json&);
+	};
 }
