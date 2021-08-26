@@ -1,20 +1,20 @@
 #include "Application.Handlers.h"
 #include "Application.MouseButtonUp.h"
 #include <map>
-namespace application::MouseButtonUp
+namespace application
 {
-	static std::map<int, std::vector<Handler>> mouseUpHandlers;
+	static std::map<int, std::vector<MouseButtonUp::Handler>> mouseUpHandlers;
 
-	void AddHandler(int state, Handler handler)
+	void MouseButtonUp::AddHandler(int state, MouseButtonUp::Handler handler)
 	{
 		mouseUpHandlers[state].push_back(handler);
 	}
 
-	void Handle(const int& x, const int& y, const MouseButton& button)
+	void MouseButtonUp::Handle(const int& x, const int& y, const MouseButton& button)
 	{
 		application::Handlers::WithCurrent(
 			mouseUpHandlers,
-			[x,y,button](const std::vector<Handler>& handlers)
+			[x,y,button](const std::vector<MouseButtonUp::Handler>& handlers)
 		{ 
 			for (auto& handler : handlers)
 			{

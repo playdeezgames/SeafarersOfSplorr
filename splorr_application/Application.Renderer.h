@@ -1,11 +1,14 @@
 #pragma once
 #include <string>
-namespace application::Renderer
+namespace application
 {
-	void SetRenderLayout(int, const std::string&);
-	template<typename TState>
-	void SetRenderLayout(const TState& state, const std::string& layoutName)
+	struct Renderer
 	{
-		SetRenderLayout((int)state, layoutName);
-	}
+		static void SetRenderLayout(int, const std::string&);
+		template<typename TState>
+		static void SetRenderLayout(const TState& state, const std::string& layoutName)
+		{
+			SetRenderLayout((int)state, layoutName);
+		}
+	};
 }

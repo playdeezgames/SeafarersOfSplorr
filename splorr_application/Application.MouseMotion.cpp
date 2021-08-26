@@ -1,15 +1,15 @@
 #include "Application.Handlers.h"
 #include "Application.MouseMotion.h"
 #include <map>
-namespace application::MouseMotion
+namespace application
 {
-	static std::map<int, std::vector<Handler>> mouseMotionHandlers;
+	static std::map<int, std::vector<MouseMotion::Handler>> mouseMotionHandlers;
 
-	void Handle(const int& x, const int& y)
+	void MouseMotion::Handle(const int& x, const int& y)
 	{
 		application::Handlers::WithCurrent(
 			mouseMotionHandlers,
-			[x,y](const std::vector<Handler>& handlers)
+			[x,y](const std::vector<MouseMotion::Handler>& handlers)
 		{ 
 			for (auto& handler : handlers)
 			{
@@ -18,7 +18,7 @@ namespace application::MouseMotion
 		});
 	}
 
-	void AddHandler(int state, Handler handler)
+	void MouseMotion::AddHandler(int state, MouseMotion::Handler handler)
 	{
 		mouseMotionHandlers[state].push_back(handler);
 	}

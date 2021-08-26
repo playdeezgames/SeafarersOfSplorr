@@ -2,22 +2,22 @@
 #include "Application.OnEnter.h"
 #include <map>
 #include <vector>
-namespace application::OnEnter
+namespace application
 {
-	static std::map<int, std::vector<Handler>> handlers;
+	static std::map<int, std::vector<OnEnter::Handler>> handlers;
 
-	void AddHandler(int state, Handler handler)
+	void OnEnter::AddHandler(int state, OnEnter::Handler handler)
 	{
 		if (handlers.find(state) == handlers.end())
 		{
-			handlers[state] = std::vector<Handler>();
+			handlers[state] = std::vector<OnEnter::Handler>();
 		}
 		handlers[state].push_back(handler);
 	}
 
-	void Handle()
+	void OnEnter::Handle()
 	{
-		application::Handlers::WithCurrent(handlers, [](const std::vector<Handler>& enterers)
+		application::Handlers::WithCurrent(handlers, [](const std::vector<OnEnter::Handler>& enterers)
 		{
 			for (auto& enterer : enterers)
 			{

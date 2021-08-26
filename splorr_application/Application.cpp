@@ -2,7 +2,12 @@
 #include "Application.Command.h"
 #include "Application.Engine.h"
 #include "Application.Keyboard.h"
+#include "Application.MouseButtonUp.h"
+#include "Application.MouseMotion.h"
+#include "Application.OnEnter.h"
+#include "Application.TextInput.h"
 #include "Application.UIState.h"
+#include "Application.Update.h"
 #include "Command.h"
 #include <functional>
 #include <map>
@@ -10,26 +15,6 @@
 #include <optional>
 #include <SDL.h>
 #include <vector>
-namespace application::MouseButtonUp
-{
-	void Handle(const int&, const int&, const MouseButton&);
-}
-namespace application::MouseMotion
-{
-	void Handle(const int&, const int&);
-}
-namespace application::OnEnter
-{
-	void Handle();
-}
-namespace application::Update
-{
-	void Handle(unsigned int);
-}
-namespace application::TextInput
-{
-	void Handle(const std::string&);
-}
 namespace Application
 {
 	static std::optional<::Command> KeyCodeToCommand(int code)
@@ -75,10 +60,6 @@ namespace Application
 		}
 	}
 }
-namespace application::UIState
-{
-	extern std::optional<int> finalState;
-}
 namespace application
 {
 	void Start(const std::vector<std::string>& arguments)
@@ -88,7 +69,7 @@ namespace application
 
 	bool IsRunning()
 	{
-		return ::application::UIState::Read() != application::UIState::finalState.value();
+		return ::application::UIState::Read() != application::UIState::GetFinalState();
 	}
 
 	static std::optional<int> currentState = std::nullopt;
@@ -113,9 +94,11 @@ namespace application
 		{SDL_BUTTON_X2, MouseButton::X2}
 	};
 
+
+
 	const std::map<unsigned int, std::function<void(const SDL_Event&)>> eventHandlers =
 	{
-		{ SDL_QUIT,                 [](const SDL_Event&    ) { ::application::UIState::Write(application::UIState::finalState.value()); }},
+		{ SDL_QUIT,                 [](const SDL_Event&    ) { ::application::UIState::Write(application::UIState::GetFinalState()); }},
 		{ SDL_KEYDOWN,              [](const SDL_Event& evt) { ::Application::HandleKeyDown(evt.key); }},
 		{ SDL_CONTROLLERBUTTONDOWN, [](const SDL_Event& evt) { ::Application::HandleControllerButtonDown(evt.cbutton); }},
 		{ SDL_MOUSEMOTION,          [](const SDL_Event& evt) { ::application::MouseMotion::Handle(evt.motion.x, evt.motion.y); }},

@@ -1,16 +1,16 @@
 #pragma once
 #include <functional>
-namespace Options
+struct Options
 {
-	void SetStore(int);
+	static void SetStore(int);
 	template<typename TStore>
-	std::function<void()> DoSetStore(const TStore& store)
+	static std::function<void()> DoSetStore(const TStore& store)
 	{
-		return [store]() 
+		return [store]()
 		{
 			SetStore((int)store);
 		};
 	}
-	void Initialize();
-	void Save();
-}
+	static void Initialize();
+	static void Save();
+};

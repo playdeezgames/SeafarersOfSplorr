@@ -1,23 +1,29 @@
 #include "Application.UIState.h"
 #include <stack>
-namespace application::UIState
+namespace application
 {
-	std::optional<int> finalState;
+	static std::optional<int> finalState;
 
-	void SetFinalState(int s)
+	void UIState::SetFinalState(int s)
 	{
 		finalState = s;
 	}
 
+	int UIState::GetFinalState()
+	{
+		return finalState.value();
+	}
+
+
 	static int uiState = 0;//TODO: we may need to set this!
 	static std::stack<int> stateStack;
 
-	void Write(int state)
+	void UIState::Write(int state)
 	{
 		uiState = state;
 	}
 
-	std::function<void()> GoTo(int state)
+	std::function<void()> UIState::GoTo(int state)
 	{
 		return [state]()
 		{
@@ -25,31 +31,31 @@ namespace application::UIState
 		};
 	}
 
-	int Read()
+	int UIState::Read()
 	{
 		return uiState;
 	}
 
-	void Push(int state)
+	void UIState::Push(int state)
 	{
 		stateStack.push(uiState);
 		Write(state);
 	}
 
-	std::function<void()> PushTo(int state)
+	std::function<void()> UIState::PushTo(int state)
 	{
 		return [state]() {
 			Push(state);
 		};
 	}
 
-	void Pop()
+	void UIState::Pop()
 	{
 		uiState = stateStack.top();
 		stateStack.pop();
 	}
 
-	std::function<void()> PopFrom()
+	std::function<void()> UIState::PopFrom()
 	{
 		return []() {
 			Pop();

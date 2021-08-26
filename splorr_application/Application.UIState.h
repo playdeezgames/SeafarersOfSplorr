@@ -2,45 +2,49 @@
 #include <optional>
 #include <string>
 #include <functional>
-namespace application::UIState
+namespace application
 {
-	void SetFinalState(int);
-	template<typename TState>
-	std::function<void()> DoSetFinalState(const TState& state)
+	struct UIState
 	{
-		return [state]() 
+		static void SetFinalState(int);
+		template<typename TState>
+		static std::function<void()> DoSetFinalState(const TState& state)
 		{
-			SetFinalState((int)state);
-		};
-	}
+			return [state]() 
+			{
+				SetFinalState((int)state);
+			};
+		}
+		static int GetFinalState();
 
-	void Write(int);
-	int Read();
-	std::function<void()> GoTo(int);
+		static void Write(int);
+		static int Read();
+		static std::function<void()> GoTo(int);
 
-	void Push(int);
-	void Pop();
-	std::function<void()> PushTo(int);
-	std::function<void()> PopFrom();
+		static void Push(int);
+		static void Pop();
+		static std::function<void()> PushTo(int);
+		static std::function<void()> PopFrom();
 
-	template<typename TState>
-	void Write(const TState& state)
-	{
-		Write((int)state);
-	}
-	template<typename TState>
-	std::function<void()> GoTo(const TState& state)
-	{
-		return GoTo((int)state);
-	}
-	template<typename TState>
-	void Push(const TState& state)
-	{
-		Push((int)state);
-	}
-	template<typename TState>
-	std::function<void()> PushTo(const TState& state)
-	{
-		return PushTo((int)state);
-	}
+		template<typename TState>
+		static void Write(const TState& state)
+		{
+			Write((int)state);
+		}
+		template<typename TState>
+		static std::function<void()> GoTo(const TState& state)
+		{
+			return GoTo((int)state);
+		}
+		template<typename TState>
+		static void Push(const TState& state)
+		{
+			Push((int)state);
+		}
+		template<typename TState>
+		static std::function<void()> PushTo(const TState& state)
+		{
+			return PushTo((int)state);
+		}
+	};
 }

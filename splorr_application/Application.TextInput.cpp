@@ -1,15 +1,15 @@
 #include "Application.Handlers.h"
 #include "Application.TextInput.h"
 #include <map>
-namespace application::TextInput
+namespace application
 {
-	static std::map<int, std::vector<Handler>> textInputHandlers;
+	static std::map<int, std::vector<TextInput::Handler>> textInputHandlers;
 
-	void Handle(const std::string& text)
+	void TextInput::Handle(const std::string& text)
 	{
 		application::Handlers::WithCurrent(
 			textInputHandlers,
-			[text](const std::vector<Handler>& handlers)
+			[text](const std::vector<TextInput::Handler>& handlers)
 			{
 				for (auto& handler : handlers)
 				{
@@ -18,7 +18,7 @@ namespace application::TextInput
 			});
 	}
 
-	void AddHandler(int state, Handler handler)
+	void TextInput::AddHandler(int state, TextInput::Handler handler)
 	{
 		textInputHandlers[state].push_back(handler);
 	}
