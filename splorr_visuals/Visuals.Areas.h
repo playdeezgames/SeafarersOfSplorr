@@ -6,23 +6,8 @@
 #include <optional>
 #include <set>
 #include <string>
+#include "Visuals.Area.h"
 #include "Visuals.DrawerFunction.h"
-namespace visuals
-{
-	struct AreaMenu
-	{
-		std::string menuId;
-		std::string menuItemId;
-	};
-	struct Area
-	{
-		std::string areaId;
-		common::XY<int> xy;
-		common::XY<size_t> size;
-		bool Contains(const common::XY<int>&) const;
-		std::optional<AreaMenu> menu;
-	};
-}
 namespace visuals::Areas
 {
 	std::set<std::string> Get(const std::string&, const common::XY<int>&);

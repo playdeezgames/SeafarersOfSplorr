@@ -9,14 +9,6 @@ namespace visuals::Layouts
 {
 	nlohmann::json& GetLayout(const std::string&);
 }
-namespace visuals
-{
-	bool Area::Contains(const common::XY<int>& location) const
-	{
-		auto difference = location - xy;
-		return(difference.GetX() >= 0 && difference.GetY() >= 0 && difference.GetX() < size.GetX() && difference.GetY() < size.GetY());
-	}
-}
 namespace visuals::Areas
 {
 	static std::map<std::string, std::vector<visuals::Area>> areaLists;

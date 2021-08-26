@@ -65,6 +65,12 @@
     <ClInclude Include="Visuals.DrawerFunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Visuals.AreaMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Visuals.Area.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Visuals.Confirmations.cpp">
@@ -104,6 +110,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Visuals.Texts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Visuals.Area.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
