@@ -1,9 +1,10 @@
 #include <map>
 #include "Mazes.Direction.h"
+#include "Mazes.Directions.h"
 #include <string>
 namespace mazes
 {
-	const std::vector<Direction> allDirections = 
+	static const std::vector<Direction> allDirections = 
 	{
 		Direction::NORTH,
 		Direction::EAST,
@@ -16,7 +17,7 @@ namespace mazes
 		return allDirections;
 	}
 
-	const std::map<Direction, Direction> opposites =
+	static const std::map<Direction, Direction> opposites =
 	{
 		{Direction::EAST, Direction::WEST},
 		{Direction::SOUTH, Direction::NORTH},
@@ -29,7 +30,7 @@ namespace mazes
 		return opposites.find(direction)->second;
 	}
 
-	const std::map<Direction, int> deltaColumns =
+	static const std::map<Direction, int> deltaColumns =
 	{
 		{Direction::EAST, 1},
 		{Direction::WEST, -1},
@@ -42,7 +43,7 @@ namespace mazes
 		return column + deltaColumns.find(direction)->second;
 	}
 
-	const std::map<Direction, int> deltaRows =
+	static const std::map<Direction, int> deltaRows =
 	{
 		{Direction::EAST, 0},
 		{Direction::WEST, 0},

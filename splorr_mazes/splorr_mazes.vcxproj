@@ -20,11 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mazes.Direction.h" />
+    <ClInclude Include="Mazes.Directions.h" />
     <ClInclude Include="Mazes.Door.h" />
     <ClInclude Include="Mazes.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Mazes.Direction.cpp" />
+    <ClCompile Include="Mazes.Directions.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
