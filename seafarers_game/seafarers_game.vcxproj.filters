@@ -39,6 +39,9 @@
     <Filter Include="Source Files\Islands">
       <UniqueIdentifier>{03628875-d3ae-4e27-a48d-0f8623f28eab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Merchants">
+      <UniqueIdentifier>{ad0e1ec1-04f5-41a3-a410-b5d294a173a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Avatar.Destination.h">
@@ -198,10 +201,10 @@
       <Filter>Header Files\Ships</Filter>
     </ClInclude>
     <ClInclude Include="Game.Merchants.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Merchants</Filter>
     </ClInclude>
     <ClInclude Include="Game.Merchant.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Merchants</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

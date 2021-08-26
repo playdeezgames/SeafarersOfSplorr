@@ -8,6 +8,9 @@ namespace data::game
 		int merchantId;
 		common::XY<double> location;
 		common::XY<double> destination;
+		int shipType;
+		int cargoType;
+		int cargoQuantity;
 
 		static void Add(const Merchant&);
 		static std::list<Merchant> All();
