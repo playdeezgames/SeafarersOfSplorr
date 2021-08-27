@@ -19,6 +19,8 @@ namespace application
 		static bool IsFullscreen();
 		static void RenderLayout(const std::shared_ptr<Renderer>&, const std::string&);
 		static const std::vector<std::function<void()>>& GetStarters();
-		static int Run(const std::string&, const std::vector<std::string>&);
+		static int Run(const std::vector<std::string>&);
+		static bool ShouldStart();
+		static const std::string CONFIG_FILE;
 	};
 }

@@ -146,10 +146,10 @@ namespace application
 		Mix_Quit();
 	}
 
-	int Engine::Run(const std::string& configFile, const std::vector<std::string>& arguments)
+	int Engine::Run(const std::vector<std::string>& arguments)
 	{
 		atexit(DoFinish);
-		DoStart(configFile, arguments);
+		DoStart(CONFIG_FILE, arguments);
 		DoPump();
 		return 0;
 	}

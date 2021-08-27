@@ -3,6 +3,20 @@
 #include "Common.Utility.h"
 #include "Game.Achievements.h"
 #include <SDL.h>
+namespace application
+{
+	bool Engine::ShouldStart()
+	{
+		if (game::Achievements::ShouldRestartApp())
+		{
+			return false;
+		}
+		return true;
+	}
+	const std::string Engine::CONFIG_FILE = "config/ui/application.json";
+
+}
+//TODO: move vv to splorr_application
 static std::vector<std::string> ParseCommandLine(int argc, char** argv)
 {
 	std::vector<std::string> arguments;
@@ -15,13 +29,12 @@ static std::vector<std::string> ParseCommandLine(int argc, char** argv)
 }
 int main(int argc, char** argv)
 {
-	if (game::Achievements::ShouldRestartApp())
+	if (!application::Engine::ShouldStart())
 	{
 		return 0;
 	}
-	const std::string APPLICATION = "config/ui/application.json";
 	common::RNG::Seed();
 	auto arguments = ParseCommandLine(argc, argv);
-	return application::Engine::Run(APPLICATION, arguments);
+	return application::Engine::Run(arguments);
 }
 
