@@ -29,6 +29,7 @@
     <ClInclude Include="Data.Game.Avatar.ShipStatistic.h" />
     <ClInclude Include="Data.Game.Avatar.Statistic.h" />
     <ClInclude Include="Data.Game.Common.h" />
+    <ClInclude Include="Data.Game.Demigod.h" />
     <ClInclude Include="Data.Game.Island.DarkAlley.FightCard.h" />
     <ClInclude Include="Data.Game.Island.DarkAlley.GamblingHand.h" />
     <ClInclude Include="Data.Game.Island.DarkAlley.h" />
@@ -55,6 +56,7 @@
     <ClCompile Include="Data.Game.Avatar.ShipStatistic.cpp" />
     <ClCompile Include="Data.Game.Avatar.Statistic.cpp" />
     <ClCompile Include="Data.Game.Common.cpp" />
+    <ClCompile Include="Data.Game.Demigod.cpp" />
     <ClCompile Include="Data.Game.Island.cpp" />
     <ClCompile Include="Data.Game.Island.DarkAlley.cpp" />
     <ClCompile Include="Data.Game.Island.DarkAlley.FightCard.cpp" />

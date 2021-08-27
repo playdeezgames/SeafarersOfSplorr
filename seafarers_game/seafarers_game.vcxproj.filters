@@ -42,6 +42,9 @@
     <Filter Include="Header Files\Merchants">
       <UniqueIdentifier>{ad0e1ec1-04f5-41a3-a410-b5d294a173a9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Demigods">
+      <UniqueIdentifier>{4fd9f52c-415b-4c9a-ad1d-2ba03b180a46}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Avatar.Destination.h">
@@ -206,6 +209,12 @@
     <ClInclude Include="Game.Merchant.h">
       <Filter>Header Files\Merchants</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Demigod.h">
+      <Filter>Header Files\Demigods</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Demigods.h">
+      <Filter>Header Files\Demigods</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Commodities.cpp">
@@ -293,6 +302,9 @@
       <Filter>Source Files\Avatar</Filter>
     </ClCompile>
     <ClCompile Include="Game.Merchants.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Demigods.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

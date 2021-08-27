@@ -98,6 +98,9 @@
     <ClInclude Include="Data.Game.Merchant.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.Demigod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">
@@ -164,6 +167,9 @@
       <Filter>Source Files\Avatar</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Merchant.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Demigod.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

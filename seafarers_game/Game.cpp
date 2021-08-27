@@ -8,6 +8,7 @@
 #include "Game.Avatar.Log.h"
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Statistics.h"
+#include "Game.Demigods.h"
 #include "Game.Islands.h"
 #include "Game.Islands.Features.h"
 #include "Game.Merchants.h"
@@ -43,6 +44,7 @@ namespace game
 		game::avatar::Ship::Reset(difficulty);
 		game::avatar::Log::Reset(difficulty);
 		game::Merchants::Reset(difficulty);
+		game::Demigods::Reset(difficulty);
 		for (auto& resetter : resetters)
 		{
 			resetter();
