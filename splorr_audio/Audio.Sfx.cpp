@@ -37,7 +37,7 @@ namespace audio
 		}
 	}
 
-	static void Play(const std::string& name)
+	static void Play2(const std::string& name)
 	{
 		Sfx::Initialize();
 		if (!Audio::IsMuted())
@@ -54,7 +54,7 @@ namespace audio
 	{
 		if (name)
 		{
-			Play(name.value());
+			Play2(name.value());
 		}
 	}
 
