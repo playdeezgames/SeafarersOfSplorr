@@ -10,5 +10,6 @@ namespace game
 		common::XY<double> absoluteLocation;
 		std::string name;
 		std::optional<int> visits;
+		std::string patronDemigod;
 	};
 }

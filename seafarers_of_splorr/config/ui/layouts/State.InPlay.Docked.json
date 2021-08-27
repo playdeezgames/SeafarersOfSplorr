@@ -128,6 +128,20 @@
     },
     {
         "type": "Text",
+        "text-id": "island-demigod",
+        "font": "default",
+        "color": "Gray",
+        "text": "<demigod>",
+        "x": 632,
+        "y": 304,
+        "horizontal-alignment": -1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
         "text-id": "island-name",
         "font": "default",
         "color": "Gray",

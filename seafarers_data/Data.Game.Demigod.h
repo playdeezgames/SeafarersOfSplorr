@@ -1,4 +1,5 @@
 #pragma once
+#include <list>
 #include <string>
 namespace data::game
 {
@@ -8,5 +9,6 @@ namespace data::game
 		size_t patronWeight;
 		static void Clear();
 		static void Add(const Demigod&);
+		static std::list<Demigod> All();
 	};
 }

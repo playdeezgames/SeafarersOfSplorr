@@ -5,15 +5,16 @@
 #include <format>
 namespace data::game
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Islands]([X] REAL NOT NULL,[Y] REAL NOT NULL,[Name] TEXT NOT NULL,[MerchantSpawnRate] REAL NOT NULL,UNIQUE([X],[Y]));";
-	static const std::string QUERY_ITEM = "SELECT [X],[Y],[Name],[MerchantSpawnRate] FROM [Islands] WHERE [X] = {:.4f} AND [Y]={:.4f};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [Islands]([X],[Y],[Name],[MerchantSpawnRate]) VALUES ({:.4f},{:.4f},{},{});";
-	static const std::string QUERY_ALL = "SELECT [X],[Y],[Name],[MerchantSpawnRate] FROM [Islands];";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Islands]([X] REAL NOT NULL,[Y] REAL NOT NULL,[Name] TEXT NOT NULL,[MerchantSpawnRate] REAL NOT NULL,[PatronDemigod] TEXT NOT NULL,UNIQUE([X],[Y]));";
+	static const std::string QUERY_ITEM = "SELECT [X],[Y],[Name],[MerchantSpawnRate],[PatronDemigod] FROM [Islands] WHERE [X] = {:.4f} AND [Y]={:.4f};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [Islands]([X],[Y],[Name],[MerchantSpawnRate],[PatronDemigod]) VALUES ({:.4f},{:.4f},{},{},{});";
+	static const std::string QUERY_ALL = "SELECT [X],[Y],[Name],[MerchantSpawnRate],[PatronDemigod] FROM [Islands];";
 	static const std::string CLEAR_ALL = "DELETE FROM [Islands];";
 	static const std::string FIELD_X = "X";
 	static const std::string FIELD_Y = "Y";
 	static const std::string FIELD_NAME = "Name";
 	static const std::string FIELD_MERCHANT_SPAWN_RATE = "MerchantSpawnRate";
+	static const std::string FIELD_PATRON_DEMIGOD = "PatronDemigod";
 
 	static const auto AutoCreateIslandTable = data::game::Common::Run(CREATE_TABLE);
 
@@ -26,7 +27,8 @@ namespace data::game
 				data.location.GetX(), 
 				data.location.GetY(),
 				common::Data::QuoteString(data.name),
-				data.merchantSpawnRate);
+				data.merchantSpawnRate,
+				common::Data::QuoteString(data.patronDemigod));
 		data::game::Common::Execute(query);
 	}
 
@@ -39,7 +41,8 @@ namespace data::game
 				common::Data::ToDouble(record.find(FIELD_Y)->second)
 			},
 			record.find(FIELD_NAME)->second,
-			common::Data::ToDouble(record.find(FIELD_MERCHANT_SPAWN_RATE)->second)
+			common::Data::ToDouble(record.find(FIELD_MERCHANT_SPAWN_RATE)->second),
+			record.find(FIELD_PATRON_DEMIGOD)->second
 		};
 		return data;
 	}

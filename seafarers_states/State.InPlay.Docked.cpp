@@ -24,9 +24,11 @@ namespace state::in_play::Docked
 	const std::string MENU_ITEM_SHIPYARD = "Shipyard";
 	const std::string MENU_ITEM_DARK_ALLEY = "DarkAlley";
 	const std::string TEXT_ISLAND_NAME = "island-name";
+	const std::string TEXT_ISLAND_DEMIGOD= "island-demigod";
 	const std::string TEXT_ISLAND_VISITS = "island-visits";
 	const std::string FORMAT_NAME = "Name: {}";
 	const std::string FORMAT_VISITS = "Visits: {}";
+	const std::string FORMAT_DEMIGOD = "Demigod: {}";
 
 	enum class OrderMenuItem
 	{
@@ -97,6 +99,7 @@ namespace state::in_play::Docked
 	{
 		auto location = game::avatar::Docked::GetDockedLocation().value();
 		auto island = game::Islands::Read(location).value();
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_ISLAND_DEMIGOD, std::format(FORMAT_DEMIGOD, island.patronDemigod));
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_ISLAND_NAME, std::format(FORMAT_NAME,island.name));
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_ISLAND_VISITS, std::format(FORMAT_VISITS, island.visits.value_or(0)));
 		for (auto featureMenuItem : featureMenuItems)

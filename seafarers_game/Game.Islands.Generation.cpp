@@ -1,6 +1,7 @@
 #include <Common.Heading.h>
 #include <Common.RNG.h>
 #include <Data.Game.Avatar.Destination.h>
+#include <Data.Game.Demigod.h>
 #include <Data.Game.Island.Item.h>
 #include <Data.Game.Island.h>
 #include <Data.Game.Island.Known.h>
@@ -161,6 +162,17 @@ namespace game
 		}
 	}
 
+	static std::string GeneratePatronDemigod()
+	{
+		auto demigods = data::game::Demigod::All();
+		std::map<std::string, size_t> table;
+		for (auto& demigod : demigods)
+		{
+			table[demigod.name] = demigod.patronWeight;
+		}
+		return common::RNG::FromGenerator(table, std::string(""));
+	}
+
 	void GenerateIslands()
 	{
 		ClearData();
@@ -172,7 +184,8 @@ namespace game
 			{
 				locations.front(),
 				*names.begin(),
-				common::RNG::FromRange(0.001,0.005)//TODO: should be a world setting?
+				common::RNG::FromRange(0.001,0.005),//TODO: should be a world setting?
+				GeneratePatronDemigod()
 			};
 			data::game::Island::Write(data);
 			locations.pop_front();

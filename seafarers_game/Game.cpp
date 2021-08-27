@@ -35,6 +35,7 @@ namespace game
 	{
 		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);
 		game::World::Reset(difficulty);
+		game::Demigods::Reset(difficulty);
 		game::Islands::Reset(difficulty);
 		game::islands::Features::Reset(difficulty);
 		game::avatar::AtSea::Reset(difficulty);
@@ -44,7 +45,6 @@ namespace game
 		game::avatar::Ship::Reset(difficulty);
 		game::avatar::Log::Reset(difficulty);
 		game::Merchants::Reset(difficulty);
-		game::Demigods::Reset(difficulty);
 		for (auto& resetter : resetters)
 		{
 			resetter();

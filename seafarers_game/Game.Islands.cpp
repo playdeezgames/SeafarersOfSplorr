@@ -38,7 +38,8 @@ namespace game
 				(island.location - avatarLocation),
 				island.location,
 				island.name,
-				(visitData.has_value()) ? (std::optional<int>(visitData.value().visits)) : (std::nullopt)
+				(visitData.has_value()) ? (std::optional<int>(visitData.value().visits)) : (std::nullopt),
+				island.patronDemigod
 			});
 	}
 
@@ -127,7 +128,8 @@ namespace game
 				{0.0, 0.0},
 				data.value().location,
 				data.value().name,
-				(visitData.has_value()) ? (std::optional<int>(visitData.value().visits)) : (std::nullopt)
+				(visitData.has_value()) ? (std::optional<int>(visitData.value().visits)) : (std::nullopt),
+				data.value().patronDemigod
 				});
 		}
 		return std::nullopt;
