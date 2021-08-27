@@ -19,11 +19,10 @@ namespace game::avatar
 	{
 		auto location = game::avatar::Docked::GetDockedLocation();
 		auto island = game::Islands::Read(location.value()).value();
-		game::avatar::Log::Write({ game::Colors::GREEN, std::format(FORMAT_UNDOCK, island.name) });
 		data::game::avatar::Dock::ClearLocation();
 		return {
 			game::Colors::GREEN,
-			"You undock.",
+			std::format(FORMAT_UNDOCK, island.name),
 			avatar::State::AT_SEA
 		};
 	}
