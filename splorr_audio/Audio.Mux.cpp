@@ -6,28 +6,21 @@
 #include <map>
 #include <memory>
 #include <optional>
-#include <SDL_mixer.h>
 #include <string>
 namespace audio
 {
-	static std::map<std::string, std::shared_ptr<Mix_Music>> music;
-	static int muxVolume = audio::Platform::VOLUME_MAXIMUM;
-
-	const int LOOP_FOREVER = -1;
-	static void HookFreeMusic(Mix_Music* m)
-	{
-		Mix_FreeMusic(m);
-	}
+	static std::map<std::string, size_t> music;
 
 	static void AddMusic(const std::string& name, const std::string& filename)
 	{
-		music[name] = std::shared_ptr<Mix_Music>(Mix_LoadMUS(filename.c_str()), HookFreeMusic);
+		music[name] = Platform::LoadMusic(filename);
 	}
 
 	static void Finish()
 	{
 		while (music.begin() != music.end())
 		{
+			Platform::UnloadMusic(music.begin()->second);
 			music.erase(music.begin());
 		}
 	}
@@ -65,7 +58,7 @@ namespace audio
 			{
 				currentSong = song;
 				const auto& item = music.find(song);
-				Mix_FadeInMusic(item->second.get(), LOOP_FOREVER, 1000);
+				Platform::StartMusic(item->second);
 			}
 		}
 	}
@@ -73,13 +66,12 @@ namespace audio
 	void Mux::SetVolume(int volume)
 	{
 		Initialize();
-		muxVolume = Audio::ClampVolume(volume);
-		Mix_VolumeMusic(muxVolume);
+		Platform::SetMusicVolumne(Audio::ClampVolume(volume));
 	}
 
 	int Mux::GetVolume()
 	{
-		return muxVolume;
+		return Platform::GetMusicVolume();
 	}
 
 }
