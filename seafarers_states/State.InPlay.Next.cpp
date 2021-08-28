@@ -37,7 +37,8 @@ namespace state::in_play::Next
 		{ game::avatar::State::GAMBLE_START, ::UIState::IN_PLAY_GAMBLE_START },
 		{ game::avatar::State::AT_SEA, ::UIState::IN_PLAY_AT_SEA },
 		{ game::avatar::State::CAREENED_TO_PORT, ::UIState::IN_PLAY_CAREENED_TO_PORT },
-		{ game::avatar::State::CAREENED_TO_STARBOARD, ::UIState::IN_PLAY_CAREENED_TO_STARBOARD }
+		{ game::avatar::State::CAREENED_TO_STARBOARD, ::UIState::IN_PLAY_CAREENED_TO_STARBOARD },
+		{ game::avatar::State::TEMPLE, ::UIState::IN_PLAY_TEMPLE }
 	};
 
 	static void OnEnter()

@@ -23,12 +23,12 @@ namespace state::in_play::Docked
 	const std::string MENU_ID = "Order";
 	const std::string MENU_ITEM_SHIPYARD = "Shipyard";
 	const std::string MENU_ITEM_DARK_ALLEY = "DarkAlley";
+	const std::string MENU_ITEM_TEMPLE = "Temple";
 	const std::string TEXT_ISLAND_NAME = "island-name";
-	const std::string TEXT_ISLAND_DEMIGOD= "island-demigod";
 	const std::string TEXT_ISLAND_VISITS = "island-visits";
-	const std::string FORMAT_NAME = "Name: {}";
+	const std::string FORMAT_NAME = "Island Name: {}";
 	const std::string FORMAT_VISITS = "Visits: {}";
-	const std::string FORMAT_DEMIGOD = "Demigod: {}";
+	const std::string FORMAT_TEMPLE = "Temple of {}";
 
 	enum class OrderMenuItem
 	{
@@ -36,7 +36,8 @@ namespace state::in_play::Docked
 		JOBS,
 		TRADE,
 		SHIPYARD,
-		DARK_ALLEY
+		DARK_ALLEY,
+		TEMPLE
 	};
 
 	static void OnUndock()
@@ -69,13 +70,20 @@ namespace state::in_play::Docked
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
+	static void OnTemple()
+	{
+		game::Avatar::DoAction(game::avatar::Action::ENTER_TEMPLE);
+		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
+	}
+
 	const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
 		{ OrderMenuItem::UNDOCK, OnUndock },
 		{ OrderMenuItem::JOBS, OnJob },
 		{ OrderMenuItem::TRADE, OnTrade },
 		{ OrderMenuItem::SHIPYARD, OnShipyard },
-		{ OrderMenuItem::DARK_ALLEY, OnDarkAlley }
+		{ OrderMenuItem::DARK_ALLEY, OnDarkAlley },
+		{ OrderMenuItem::TEMPLE, OnTemple }
 	};
 
 	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
@@ -99,7 +107,7 @@ namespace state::in_play::Docked
 	{
 		auto location = game::avatar::Docked::GetDockedLocation().value();
 		auto island = game::Islands::Read(location).value();
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_ISLAND_DEMIGOD, std::format(FORMAT_DEMIGOD, island.patronDemigod));
+		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_TEMPLE, std::format(FORMAT_TEMPLE, island.patronDemigod));
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_ISLAND_NAME, std::format(FORMAT_NAME,island.name));
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_ISLAND_VISITS, std::format(FORMAT_VISITS, island.visits.value_or(0)));
 		for (auto featureMenuItem : featureMenuItems)

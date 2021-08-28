@@ -170,6 +170,15 @@ namespace game::avatar
 						avatar::State::DOCK
 					})
 				},
+				{
+					avatar::State::TEMPLE,
+					DoTransition(
+					{
+						game::Colors::GREEN,
+						"You leave the temple.",
+						avatar::State::DOCK
+					})
+				},
 			}
 		},
 		{
@@ -210,6 +219,20 @@ namespace game::avatar
 						game::Colors::GREEN,
 						"You check for posted jobs.",
 						avatar::State::JOB_BOARD
+					})
+				}
+			}
+		},
+		{
+			avatar::Action::ENTER_TEMPLE,
+			{
+				{
+					avatar::State::DOCK,
+					DoTransition(
+					{
+						game::Colors::GREEN,
+						"You enter the temple.",
+						avatar::State::TEMPLE
 					})
 				}
 			}

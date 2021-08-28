@@ -102,6 +102,7 @@ namespace application
 		state::in_play::AtSeaCareenSelect::Start,
 		state::in_play::CareenedToPort::Start,
 		state::in_play::CareenedToStarboard::Start,
+		state::in_play::Temple::Start,
 		sublayout::UIHamburger::Start,
 		Options::Initialize,
 		visuals::Layouts::Start

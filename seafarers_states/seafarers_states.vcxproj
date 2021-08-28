@@ -55,6 +55,7 @@
     <ClCompile Include="State.InPlay.Next.cpp" />
     <ClCompile Include="State.InPlay.ShipStatus.cpp" />
     <ClCompile Include="State.InPlay.Shipyard.cpp" />
+    <ClCompile Include="State.InPlay.Temple.cpp" />
     <ClCompile Include="State.InPlay.Win.cpp" />
     <ClCompile Include="State.LeavePlay.cpp" />
     <ClCompile Include="State.LoadGame.cpp" />

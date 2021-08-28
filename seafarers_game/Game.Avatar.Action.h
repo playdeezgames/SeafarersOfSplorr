@@ -15,6 +15,7 @@ namespace game::avatar
 		START_GAMBLING,
 		CAREEN_TO_PORT,
 		CAREEN_TO_STARBOARD,
-		UNCAREEN
+		UNCAREEN,
+		ENTER_TEMPLE
 	};
 }

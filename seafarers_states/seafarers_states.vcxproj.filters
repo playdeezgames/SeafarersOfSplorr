@@ -175,5 +175,8 @@
     <ClCompile Include="State.InPlay.IslandTrade.cpp">
       <Filter>Source Files\Docked\Trading</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.Temple.cpp">
+      <Filter>Source Files\Docked</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

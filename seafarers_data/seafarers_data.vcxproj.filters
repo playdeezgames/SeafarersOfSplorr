@@ -24,6 +24,12 @@
     <Filter Include="Header Files\Stores">
       <UniqueIdentifier>{894a6eff-d210-4967-a19d-3145f2990a36}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Demigod">
+      <UniqueIdentifier>{02569f34-02fd-4c96-99f4-a1058f3320f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Demigod">
+      <UniqueIdentifier>{6efb8dd5-d82a-4a9c-952a-61c07e9bf061}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data.Game.Common.h">
@@ -98,14 +104,14 @@
     <ClInclude Include="Data.Game.Merchant.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Demigod.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Data.Game.Avatar.Plight.h">
       <Filter>Header Files\Avatar</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.Demigod.h">
+      <Filter>Header Files\Demigod</Filter>
+    </ClInclude>
     <ClInclude Include="Data.Game.DemigodItem.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Demigod</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -175,14 +181,14 @@
     <ClCompile Include="Data.Game.Merchant.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Demigod.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Data.Game.Avatar.Plight.cpp">
       <Filter>Source Files\Avatar</Filter>
     </ClCompile>
+    <ClCompile Include="Data.Game.Demigod.cpp">
+      <Filter>Source Files\Demigod</Filter>
+    </ClCompile>
     <ClCompile Include="Data.Game.DemigodItem.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Demigod</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

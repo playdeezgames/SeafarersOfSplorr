@@ -38,3 +38,4 @@ namespace state::in_play::GambleFinish { void Start(); }
 namespace state::in_play::AtSeaCareenSelect { void Start(); }
 namespace state::in_play::CareenedToPort { void Start(); }
 namespace state::in_play::CareenedToStarboard { void Start(); }
+namespace state::in_play::Temple { void Start(); }

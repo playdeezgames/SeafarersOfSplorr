@@ -63,6 +63,12 @@
                 "menu-item-id": "DarkAlley",
                 "x": 320,
                 "y": 96
+            },
+            {
+                "text": "<temple>",
+                "menu-item-id": "Temple",
+                "x": 320,
+                "y": 112
             }
         ]
     },
@@ -127,18 +133,16 @@
         }
     },
     {
-        "type": "Text",
-        "text-id": "island-demigod",
-        "font": "default",
-        "color": "Gray",
-        "text": "<demigod>",
-        "x": 632,
-        "y": 304,
-        "horizontal-alignment": -1,
-        "drop-shadow": true,
-        "drop-shadow-color": "Black",
-        "drop-shadow-x": 2,
-        "drop-shadow-y": 2
+        "type":"Area",
+        "area-id":"Temple",
+        "x":240,
+        "y":112,
+        "width":160,
+        "height":16,
+        "menu":{
+            "menu-id":"Order",
+            "menu-item-id":"Temple"
+        }
     },
     {
         "type": "Text",
