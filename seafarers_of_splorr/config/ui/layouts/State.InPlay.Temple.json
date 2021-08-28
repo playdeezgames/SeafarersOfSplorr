@@ -8,6 +8,7 @@
     },
     {
         "type": "Text",
+        "text-id": "Caption",
         "font": "default",
         "color": "LightGreen",
         "text": "==TEMPLE of <demigod>==",

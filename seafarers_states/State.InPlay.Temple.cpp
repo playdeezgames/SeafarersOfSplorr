@@ -20,6 +20,8 @@ namespace state::in_play::Temple
 	static const ::UIState CURRENT_LAYOUT = ::UIState::IN_PLAY_TEMPLE;
 	static const std::string LAYOUT_NAME = "State.InPlay.Temple";
 	static const std::string MENU_ID = "Temple";
+	static const std::string FORMAT_TEMPLE = "==Temple of {}==";
+	static const std::string TEXT_CAPTION = "Caption";
 
 	enum class TempleMenuItem
 	{
@@ -58,6 +60,9 @@ namespace state::in_play::Temple
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
+		auto location = game::avatar::Docked::GetDockedLocation().value();
+		auto island = game::Islands::Read(location).value();
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_CAPTION, std::format(FORMAT_TEMPLE, island.patronDemigod));
 	}
 
 	void Start()

@@ -11,24 +11,31 @@ namespace game
 {
 	static const std::map<std::string, size_t> consonants =
 	{
-		{"ch",1},
-		{"th",1},
-		{"zh",1},
-		{"sh",1},
-		{"l",1},
-		{"r",1},
-		{"z",1}
+		{"CH",1},
+		{"TH",1},
+		{"ZH",1},
+		{"SH",1},
+		{"PH",1},
+		{"L",1},
+		{"R",1},
+		{"X",1},
+		{"Q",1},
+		{"Z",1}
 	};
 
 	static const std::map<std::string, size_t> vowels =
 	{
-		{"'",1},
-		{"a",1},
-		{"e",1},
-		{"i",1},
-		{"o",1},
-		{"u",1},
-		{"y",1},
+		{"'",10},
+		{"A",10},
+		{"AA",1},
+		{"E",10},
+		{"I",10},
+		{"II",1},
+		{"O",10},
+		{"U",10},
+		{"UU",1},
+		{"Y",10},
+		{"YY",1},
 	};
 
 	static std::string GenerateName()
