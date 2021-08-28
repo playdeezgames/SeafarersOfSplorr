@@ -1,3 +1,4 @@
+#include <Common.RNG.h>
 #include <Data.Game.Avatar.Plight.h>
 #include "Game.Avatar.Plights.h"
 #include <map>
@@ -74,5 +75,18 @@ namespace game::avatar
 				data::game::avatar::Plight::Write(plight);
 			}
 		}
+	}
+
+	Plight Plights::Generate(const PlightType& type)
+	{
+		std::map<Plight, size_t> generator;
+		for (auto& descriptor : descriptors)
+		{
+			if (descriptor.second.type == type)
+			{
+				generator[descriptor.first] = descriptor.second.generationWeight;
+			}
+		}
+		return common::RNG::FromGenerator(generator, Plight::AGING_IMMUNITY);
 	}
 }

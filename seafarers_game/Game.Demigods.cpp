@@ -1,6 +1,7 @@
 #include <Common.RNG.h>
 #include <Data.Game.Demigod.h>
 #include <Data.Game.DemigodItem.h>
+#include "Game.Avatar.Plights.h"
 #include "Game.Items.h"
 #include "Game.Demigods.h"
 #include <map>
@@ -77,7 +78,13 @@ namespace game
 		{
 			data::game::Demigod::Add({
 				name,
-				(size_t)common::RNG::FromRange(1, 11)//TODO: hardcoded
+				(size_t)common::RNG::FromRange(1, 11),//TODO: hardcoded
+				5.0,
+				2.0,
+				(int)avatar::Plights::Generate(avatar::PlightType::BLESSING),
+				-5.0,
+				0.5,
+				(int)avatar::Plights::Generate(avatar::PlightType::CURSE)
 				});
 			for (auto item : items)
 			{
