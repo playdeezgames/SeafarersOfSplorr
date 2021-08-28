@@ -9,6 +9,8 @@ namespace data::game::avatar
 	static const std::string DELETE_ITEM = "DELETE FROM [Plights] WHERE [PlightId]={};";
 	static const std::string REPLACE_ITEM = "REPLACE INTO [Plights]([PlightId], [Duration]) VALUES({}, {});";
 	static const std::string QUERY_ITEM = "SELECT [Duration] FROM [Plights] WHERE [PlightId]={};";
+	static const std::string QUERY_ALL = "SELECT [PlightId], [Duration] FROM [Plights];";
+	static const std::string FIELD_PLIGHT_ID = "PlightId";
 	static const std::string FIELD_DURATION = "Duration";
 
 	static const auto AutoCreatePlightTable = Common::Run(CREATE_TABLE);
@@ -44,6 +46,21 @@ namespace data::game::avatar
 	{
 		AutoCreatePlightTable();
 		Common::Execute(DELETE_ALL);
-
 	}
+
+	std::list<Plight> Plight::All()
+	{
+		AutoCreatePlightTable();
+		std::list<Plight> result;
+		auto records = Common::Execute(QUERY_ALL);
+		for (auto& record : records)
+		{
+			result.push_back({
+				common::Data::ToInt(record[FIELD_PLIGHT_ID]),
+				common::Data::ToOptionalInt(record[FIELD_DURATION])
+				});
+		}
+		return result;
+	}
+
 }

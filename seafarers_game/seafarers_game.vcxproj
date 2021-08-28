@@ -29,7 +29,9 @@
     <ClInclude Include="Game.Avatar.Destinations.h" />
     <ClInclude Include="Game.Avatar.h" />
     <ClInclude Include="Game.Avatar.Plight.h" />
+    <ClInclude Include="Game.Avatar.PlightDescriptor.h" />
     <ClInclude Include="Game.Avatar.Plights.h" />
+    <ClInclude Include="Game.Avatar.PlightType.h" />
     <ClInclude Include="Game.Avatar.ShipStatistics.h" />
     <ClInclude Include="Game.Avatar.StateTransition.h" />
     <ClInclude Include="Game.Avatar.Docked.h" />

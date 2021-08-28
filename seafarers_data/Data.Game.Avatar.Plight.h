@@ -1,5 +1,6 @@
 #pragma once
 #include <optional>
+#include <list>
 namespace data::game::avatar
 {
 	struct Plight
@@ -10,5 +11,6 @@ namespace data::game::avatar
 		static void Write(const Plight&);
 		static void Clear(int);
 		static void Clear();
+		static std::list<Plight> All();
 	};
 }

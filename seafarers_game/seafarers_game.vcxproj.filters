@@ -221,6 +221,12 @@
     <ClInclude Include="Game.Avatar.Plights.h">
       <Filter>Header Files\Avatar</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Avatar.PlightDescriptor.h">
+      <Filter>Header Files\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Avatar.PlightType.h">
+      <Filter>Header Files\Avatar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Commodities.cpp">

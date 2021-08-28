@@ -30,7 +30,7 @@ namespace game
 
 	static std::string GenerateName()
 	{
-		size_t nameLength = 2 * (common::RNG::FromRange(1, 3) + common::RNG::FromRange(1, 3)) + 1;
+		size_t nameLength = (size_t)(2 * (common::RNG::FromRange(1, 3) + common::RNG::FromRange(1, 3)) + 1);
 		bool vowel = false;
 		std::string result = "";
 		while (nameLength > 0)
