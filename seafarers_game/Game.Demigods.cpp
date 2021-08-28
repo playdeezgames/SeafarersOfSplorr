@@ -1,5 +1,7 @@
 #include <Common.RNG.h>
 #include <Data.Game.Demigod.h>
+#include <Data.Game.DemigodItem.h>
+#include "Game.Items.h"
 #include "Game.Demigods.h"
 #include <map>
 #include <set>
@@ -30,7 +32,8 @@ namespace game
 
 	static std::string GenerateName()
 	{
-		size_t nameLength = (size_t)(2 * (common::RNG::FromRange(1, 3) + common::RNG::FromRange(1, 3)) + 1);
+		//TODO: hardcoded
+		size_t nameLength = 2 * (common::RNG::FromRange((size_t)1, (size_t)3) + common::RNG::FromRange((size_t)1, (size_t)3)) + 1;
 		bool vowel = false;
 		std::string result = "";
 		while (nameLength > 0)
@@ -62,18 +65,32 @@ namespace game
 	void Demigods::Reset(const Difficulty&)
 	{
 		data::game::Demigod::Clear();
+		data::game::DemigodItem::Clear();
 		auto demigodCount =
-			common::RNG::FromRange(1, 3) +
-			common::RNG::FromRange(1, 3) +
-			common::RNG::FromRange(1, 3) +
-			common::RNG::FromRange(1, 3);
+			common::RNG::FromRange(1, 3) +//TODO: hardcoded
+			common::RNG::FromRange(1, 3) +//TODO: hardcoded
+			common::RNG::FromRange(1, 3) +//TODO: hardcoded
+			common::RNG::FromRange(1, 3);//TODO: hardcoded
 		auto names = GenerateNames(demigodCount);
+		auto items = Items::All();
 		for (auto name : names)
 		{
 			data::game::Demigod::Add({
 				name,
-				(size_t)common::RNG::FromRange(1, 11)
+				(size_t)common::RNG::FromRange(1, 11)//TODO: hardcoded
 				});
+			for (auto item : items)
+			{
+				data::game::DemigodItem::Write(name, (int)item, common::RNG::FromRange(-1.0, 1.0));//TODO: hardcoded
+			}
 		}
+	}
+
+	void Demigods::MakeOffering(const std::string& demigod, const Item& item)
+	{
+		//TODO: get favor/disfavor amount for this item and this demigod
+		//TODO: change favor with demigod for the avatar
+		//TODO: if hits blessing threshold, give blessing and change next blessing threshold
+		//TODO: if hits curse threshold, give curse and change next curse threshold
 	}
 }
