@@ -45,21 +45,39 @@
     <Filter Include="Header Files\Demigods">
       <UniqueIdentifier>{4fd9f52c-415b-4c9a-ad1d-2ba03b180a46}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Avatar\State">
+      <UniqueIdentifier>{7e317248-d5c2-49dc-befd-6a080e794e31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Avatar\Plight">
+      <UniqueIdentifier>{d9a2cc00-84e0-4eb1-9401-5cee85dbc35a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Avatar\Ship">
+      <UniqueIdentifier>{f27ab0d4-69f9-40d7-a155-c1ce49aa15ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Avatar\Statistic">
+      <UniqueIdentifier>{f455b516-9eb5-447f-a66d-c3a553edc0a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Avatar\Destination">
+      <UniqueIdentifier>{81aa24fe-2a9a-4e9d-bab4-b4a81751604a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Islands\DarkAlley">
+      <UniqueIdentifier>{4409cc6b-118f-4b7c-bc52-eb342cc15031}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Islands\Trade">
+      <UniqueIdentifier>{a08423a1-aba7-4dd4-ab85-4041c025144f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Trade">
+      <UniqueIdentifier>{fbdf2962-31a5-4a22-b678-a6ede14a2e07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Islands\DarkAlley">
+      <UniqueIdentifier>{c8711537-33ea-4351-ba03-fda64b379a77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Islands\Trade">
+      <UniqueIdentifier>{41300da2-b0b3-4d76-84fa-528ea2f52c68}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.Avatar.Destination.h">
-      <Filter>Header Files\Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.StateTransition.h">
-      <Filter>Header Files\Avatar</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Avatar.Docked.h">
-      <Filter>Header Files\Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Action.h">
-      <Filter>Header Files\Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.State.h">
       <Filter>Header Files\Avatar</Filter>
     </ClInclude>
     <ClInclude Include="Game.Avatar.Items.h">
@@ -69,15 +87,6 @@
       <Filter>Header Files\Avatar</Filter>
     </ClInclude>
     <ClInclude Include="Game.Avatar.Quest.h">
-      <Filter>Header Files\Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Ship.h">
-      <Filter>Header Files\Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Statistic.h">
-      <Filter>Header Files\Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Statistics.h">
       <Filter>Header Files\Avatar</Filter>
     </ClInclude>
     <ClInclude Include="Game.Avatar.AtSea.h">
@@ -107,25 +116,10 @@
     <ClInclude Include="Game.Features.h">
       <Filter>Header Files\Features</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Islands.Commodities.h">
-      <Filter>Header Files\Islands</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.DarkAlley.FightCard.h">
-      <Filter>Header Files\Islands</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.DarkAlley.h">
-      <Filter>Header Files\Islands</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Islands.Features.h">
       <Filter>Header Files\Islands</Filter>
     </ClInclude>
     <ClInclude Include="Game.Islands.h">
-      <Filter>Header Files\Islands</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.Items.h">
-      <Filter>Header Files\Islands</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.Markets.h">
       <Filter>Header Files\Islands</Filter>
     </ClInclude>
     <ClInclude Include="Game.Islands.Quests.h">
@@ -173,9 +167,6 @@
     <ClInclude Include="Game.World.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Islands.DarkAlley.GamblingHand.h">
-      <Filter>Header Files\Islands</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Avatar.h">
       <Filter>Header Files\Avatar</Filter>
     </ClInclude>
@@ -185,17 +176,11 @@
     <ClInclude Include="Game.Audio.Theme.h">
       <Filter>Header Files\Audio</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Avatar.Destinations.h">
-      <Filter>Header Files\Avatar</Filter>
-    </ClInclude>
     <ClInclude Include="Game.ShipStatistic.h">
       <Filter>Header Files\Ships</Filter>
     </ClInclude>
     <ClInclude Include="Game.ShipStatisticDescriptor.h">
       <Filter>Header Files\Ships</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.ShipStatistics.h">
-      <Filter>Header Files\Avatar</Filter>
     </ClInclude>
     <ClInclude Include="Game.Island.h">
       <Filter>Header Files\Islands</Filter>
@@ -215,30 +200,69 @@
     <ClInclude Include="Game.Demigods.h">
       <Filter>Header Files\Demigods</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Avatar.Plight.h">
-      <Filter>Header Files\Avatar</Filter>
+    <ClInclude Include="Game.Avatar.Action.h">
+      <Filter>Header Files\Avatar\State</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Avatar.Plights.h">
-      <Filter>Header Files\Avatar</Filter>
+    <ClInclude Include="Game.Avatar.State.h">
+      <Filter>Header Files\Avatar\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Avatar.StateTransition.h">
+      <Filter>Header Files\Avatar\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Avatar.Plight.h">
+      <Filter>Header Files\Avatar\Plight</Filter>
     </ClInclude>
     <ClInclude Include="Game.Avatar.PlightDescriptor.h">
-      <Filter>Header Files\Avatar</Filter>
+      <Filter>Header Files\Avatar\Plight</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Avatar.Plights.h">
+      <Filter>Header Files\Avatar\Plight</Filter>
     </ClInclude>
     <ClInclude Include="Game.Avatar.PlightType.h">
-      <Filter>Header Files\Avatar</Filter>
+      <Filter>Header Files\Avatar\Plight</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Avatar.Ship.h">
+      <Filter>Header Files\Avatar\Ship</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Avatar.ShipStatistics.h">
+      <Filter>Header Files\Avatar\Ship</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Avatar.Statistic.h">
+      <Filter>Header Files\Avatar\Statistic</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Avatar.Statistics.h">
+      <Filter>Header Files\Avatar\Statistic</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Avatar.Destination.h">
+      <Filter>Header Files\Avatar\Destination</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Avatar.Destinations.h">
+      <Filter>Header Files\Avatar\Destination</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Islands.DarkAlley.FightCard.h">
+      <Filter>Header Files\Islands\DarkAlley</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Islands.DarkAlley.GamblingHand.h">
+      <Filter>Header Files\Islands\DarkAlley</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Islands.DarkAlley.h">
+      <Filter>Header Files\Islands\DarkAlley</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Islands.Commodities.h">
+      <Filter>Header Files\Islands\Trade</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Islands.Markets.h">
+      <Filter>Header Files\Islands\Trade</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Islands.Items.h">
+      <Filter>Header Files\Islands\Trade</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.Commodities.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.Features.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Items.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.Ships.cpp">
@@ -274,16 +298,7 @@
     <ClCompile Include="Game.Avatar.Statistics.cpp">
       <Filter>Source Files\Avatar</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Islands.Commodities.cpp">
-      <Filter>Source Files\Islands</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Islands.cpp">
-      <Filter>Source Files\Islands</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.DarkAlley.cpp">
-      <Filter>Source Files\Islands</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.DarkAlley.FightCard.cpp">
       <Filter>Source Files\Islands</Filter>
     </ClCompile>
     <ClCompile Include="Game.Islands.Features.cpp">
@@ -292,19 +307,10 @@
     <ClCompile Include="Game.Islands.Generation.cpp">
       <Filter>Source Files\Islands</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Islands.Items.cpp">
-      <Filter>Source Files\Islands</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.Markets.cpp">
-      <Filter>Source Files\Islands</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Islands.Quests.cpp">
       <Filter>Source Files\Islands</Filter>
     </ClCompile>
     <ClCompile Include="Game.Islands.Ships.cpp">
-      <Filter>Source Files\Islands</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.DarkAlley.GamblingHand.cpp">
       <Filter>Source Files\Islands</Filter>
     </ClCompile>
     <ClCompile Include="Game.Avatar.cpp">
@@ -313,14 +319,38 @@
     <ClCompile Include="Game.Avatar.ShipStatistics.cpp">
       <Filter>Source Files\Avatar</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Merchants.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Demigods.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.Avatar.Plights.cpp">
       <Filter>Source Files\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Commodities.cpp">
+      <Filter>Source Files\Trade</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Items.cpp">
+      <Filter>Source Files\Trade</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Merchants.cpp">
+      <Filter>Source Files\Trade</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Islands.DarkAlley.cpp">
+      <Filter>Source Files\Islands\DarkAlley</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Islands.DarkAlley.FightCard.cpp">
+      <Filter>Source Files\Islands\DarkAlley</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Islands.DarkAlley.GamblingHand.cpp">
+      <Filter>Source Files\Islands\DarkAlley</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Islands.Commodities.cpp">
+      <Filter>Source Files\Islands\Trade</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Islands.Items.cpp">
+      <Filter>Source Files\Islands\Trade</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Islands.Markets.cpp">
+      <Filter>Source Files\Islands\Trade</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
