@@ -13,5 +13,9 @@ namespace audio
 		static void SetMusicVolumne(int);
 		static int GetMusicVolume();
 		static void StartMusic(size_t);
+		static size_t LoadSound(const std::string&);
+		static void UnloadSounds();
+		static void PlaySound(size_t);
+		static void SetSoundVolume(size_t, int);
 	};
 }

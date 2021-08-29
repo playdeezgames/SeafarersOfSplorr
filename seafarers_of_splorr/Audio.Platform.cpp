@@ -4,8 +4,12 @@
 namespace audio
 {
 	static std::vector<Mix_Music*> music;
+	static std::vector<Mix_Chunk*> sounds;
 	static const int LOOP_FOREVER = -1;
 	static const int FADE_IN_MILLISECONDS = 1000;
+	static const int ANY_CHANNEL = -1;
+	static const int NO_LOOPS = 0;
+
 
 	const int Platform::VOLUME_MAXIMUM = MIX_MAX_VOLUME;
 
@@ -52,4 +56,32 @@ namespace audio
 	{
 		Mix_FadeInMusic(music[index], LOOP_FOREVER, FADE_IN_MILLISECONDS);
 	}
+
+	size_t Platform::LoadSound(const std::string& filename)
+	{
+		auto result = sounds.size();
+		sounds.push_back(Mix_LoadWAV_RW(SDL_RWFromFile(filename.c_str(), "rb"), 1));
+		return result;
+		
+	}
+
+	void Platform::UnloadSounds()
+	{
+		for (auto& sound : sounds)
+		{
+			Mix_FreeChunk(sound);
+			sound = nullptr;
+		}
+	}
+
+	void Platform::PlaySound(size_t index)
+	{
+		Mix_PlayChannel(ANY_CHANNEL, sounds[index], NO_LOOPS);
+	}
+
+	void Platform::SetSoundVolume(size_t index, int volume)
+	{
+		Mix_VolumeChunk(sounds[index], volume);
+	}
+
 }
