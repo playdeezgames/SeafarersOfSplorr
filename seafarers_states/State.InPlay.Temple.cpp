@@ -31,7 +31,7 @@ namespace state::in_play::Temple
 
 	static void OnMakeOffering()
 	{
-		//TODO:
+		::application::UIState::Write(::UIState::IN_PLAY_MAKE_OFFERING);
 	}
 
 	static void OnLeave()

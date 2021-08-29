@@ -178,5 +178,8 @@
     <ClCompile Include="State.InPlay.Temple.cpp">
       <Filter>Source Files\Docked</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.MakeOffering.cpp">
+      <Filter>Source Files\Docked</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

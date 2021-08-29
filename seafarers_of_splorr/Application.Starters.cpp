@@ -103,6 +103,7 @@ namespace application
 		state::in_play::CareenedToPort::Start,
 		state::in_play::CareenedToStarboard::Start,
 		state::in_play::Temple::Start,
+		state::in_play::MakeOffering::Start,
 		sublayout::UIHamburger::Start,
 		Options::Initialize,
 		visuals::Layouts::Start

@@ -112,6 +112,7 @@ namespace game
 			{
 				auto favor = data::game::avatar::DemigodFavor::Read(name).value_or(0.0);
 				favor += delta.value();
+				data::game::avatar::DemigodFavor::Write(name, favor);
 				if (favor >= demigod.value().blessingThreshold)
 				{
 					game::avatar::Plights::Inflict((game::avatar::Plight)demigod.value().blessingPlightId);
