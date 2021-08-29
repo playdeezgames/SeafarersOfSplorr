@@ -102,34 +102,54 @@ namespace game
 		}
 	}
 
+	static void ApplyBlessing(data::game::Demigod& demigod, const Item& item, double favor)
+	{
+		if (favor >= demigod.blessingThreshold)
+		{
+			game::avatar::Plights::Inflict((game::avatar::Plight)demigod.blessingPlightId);
+			favor -= demigod.blessingThreshold;
+			data::game::avatar::DemigodFavor::Write(demigod.name, favor);
+			demigod.blessingThreshold *= demigod.blessingMultiplier;
+			data::game::Demigod::Write(demigod);
+		}
+	}
+
+	static void ApplyCurse(data::game::Demigod& demigod, const Item& item, double favor)
+	{
+		if (favor <= demigod.curseThreshold)
+		{
+			game::avatar::Plights::Inflict((game::avatar::Plight)demigod.cursePlightId);
+			favor -= demigod.curseThreshold;
+			data::game::avatar::DemigodFavor::Write(demigod.name, favor);
+			demigod.curseThreshold *= demigod.curseMultiplier;
+			data::game::Demigod::Write(demigod);
+		}
+	}
+
+	static void ApplyFavor(data::game::Demigod& demigod, const Item& item, double delta)
+	{
+		auto favor = data::game::avatar::DemigodFavor::Read(demigod.name).value_or(0.0);
+		favor += delta;
+		data::game::avatar::DemigodFavor::Write(demigod.name, favor);
+		ApplyBlessing(demigod, item, favor);
+		ApplyCurse(demigod, item, favor);
+	}
+
+	static void DoMakeOffering(data::game::Demigod& demigod, const Item& item)
+	{
+		auto delta = data::game::DemigodItem::Read(demigod.name, (int)item);
+		if (delta)
+		{
+			ApplyFavor(demigod, item, delta.value());
+		}
+	}
+
 	void Demigods::MakeOffering(const std::string& name, const Item& item)
 	{
 		auto demigod = data::game::Demigod::Read(name);
 		if(demigod)
 		{
-			auto delta = data::game::DemigodItem::Read(name, (int)item);
-			if (delta)
-			{
-				auto favor = data::game::avatar::DemigodFavor::Read(name).value_or(0.0);
-				favor += delta.value();
-				data::game::avatar::DemigodFavor::Write(name, favor);
-				if (favor >= demigod.value().blessingThreshold)
-				{
- 					game::avatar::Plights::Inflict((game::avatar::Plight)demigod.value().blessingPlightId);
-					favor -= demigod.value().blessingThreshold;
-					data::game::avatar::DemigodFavor::Write(name, favor);
-					demigod.value().blessingThreshold *= demigod.value().blessingMultiplier;
-					data::game::Demigod::Write(demigod.value());
-				}
-				if (favor <= demigod.value().curseThreshold)
-				{
-					game::avatar::Plights::Inflict((game::avatar::Plight)demigod.value().cursePlightId);
-					favor -= demigod.value().curseThreshold;
-					data::game::avatar::DemigodFavor::Write(name, favor);
-					demigod.value().curseThreshold *= demigod.value().curseMultiplier;
-					data::game::Demigod::Write(demigod.value());
-				}
-			}
+			DoMakeOffering(demigod.value(), item);
 		}
 	}
 }
