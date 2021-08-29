@@ -115,7 +115,7 @@ namespace game
 				data::game::avatar::DemigodFavor::Write(name, favor);
 				if (favor >= demigod.value().blessingThreshold)
 				{
-					game::avatar::Plights::Inflict((game::avatar::Plight)demigod.value().blessingPlightId);
+ 					game::avatar::Plights::Inflict((game::avatar::Plight)demigod.value().blessingPlightId);
 					favor -= demigod.value().blessingThreshold;
 					data::game::avatar::DemigodFavor::Write(name, favor);
 					demigod.value().blessingThreshold *= demigod.value().blessingMultiplier;

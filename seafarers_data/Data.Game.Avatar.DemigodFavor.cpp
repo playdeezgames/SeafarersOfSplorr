@@ -21,7 +21,7 @@ namespace data::game::avatar
 	std::optional<double> DemigodFavor::Read(const std::string& name)
 	{
 		AutoCreateAvatarDemigodFavorTable();
-		auto records = Common::Execute(std::format(DELETE_ALL, Common::AVATAR_ID, common::Data::QuoteString(name)));
+		auto records = Common::Execute(std::format(QUERY_ITEM, Common::AVATAR_ID, common::Data::QuoteString(name)));
 		if (!records.empty())
 		{
 			return common::Data::ToOptionalDouble(records.front()[FIELD_FAVOR]);
