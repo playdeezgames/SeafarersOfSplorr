@@ -5,6 +5,7 @@
 #include "Game.h"
 #include "Game.Avatar.AtSea.h"
 #include "Game.Avatar.Items.h"
+#include "Game.Avatar.Plights.h"
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.ShipStatistics.h"
 #include "Game.Avatar.State.h"
@@ -61,15 +62,22 @@ namespace game::avatar
 
 	static void ApplyHunger()
 	{
-		const double SATIETY_DELTA = -1.0;
-		const double HEALTH_DELTA = -1.0;
+		double delta = -1.0;
+		if (Plights::Has(Plight::DOUBLE_HUNGER) && !Plights::Has(Plight::HUNGER_IMMUNITY))
+		{
+			delta *= 2.0;
+		}
+		if (Plights::Has(Plight::HUNGER_IMMUNITY) && !Plights::Has(Plight::DOUBLE_HUNGER))
+		{
+			delta = 0.0;
+		}
 		if (!game::avatar::Statistics::IsStarving())
 		{
-			game::avatar::Statistics::ChangeSatiety(SATIETY_DELTA);
+			game::avatar::Statistics::ChangeSatiety(delta);
 		}
 		else
 		{
-			game::avatar::Statistics::ChangeHealth(HEALTH_DELTA);
+			game::avatar::Statistics::ChangeHealth(delta);
 		}
 	}
 
@@ -93,9 +101,25 @@ namespace game::avatar
 		game::World::SetWindHeading(game::World::GetWindHeading()+common::RNG::FromRange(-NORMAL_WIND_CHANGE, NORMAL_WIND_CHANGE));
 	}
 
+	static void ApplyTurn()
+	{
+		if (Plights::Has(Plight::DOUBLE_AGING) && !Plights::Has(Plight::AGING_IMMUNITY))
+		{
+			game::avatar::Statistics::SpendTurn();
+			game::avatar::Statistics::SpendTurn();
+			return;
+		}
+		if (Plights::Has(Plight::AGING_IMMUNITY) && !Plights::Has(Plight::DOUBLE_AGING))
+		{
+			//do nothing!
+			return;
+		}
+		game::avatar::Statistics::SpendTurn();
+	}
+
 	void AtSea::ApplyTurnEffects()
 	{
-		game::avatar::Statistics::SpendTurn();
+		ApplyTurn();
 		ApplyHunger();
 		ApplyEating();
 		ApplyWindChange();

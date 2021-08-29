@@ -12,6 +12,7 @@
 #include "Game.Islands.h"
 #include "Game.Islands.Features.h"
 #include "Game.Merchants.h"
+#include "Game.Avatar.Plights.h"
 #include "Game.World.h"
 #include <list>
 #include <map>
@@ -118,5 +119,6 @@ namespace game
 		avatar::AtSea::ApplyTurnEffects();
 		Islands::ApplyTurnEffects();
 		Merchants::ApplyTurnEffects();
+		avatar::Plights::ApplyTurnEffects();
 	}
 }

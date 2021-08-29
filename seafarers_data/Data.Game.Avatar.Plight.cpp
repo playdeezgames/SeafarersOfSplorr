@@ -4,7 +4,7 @@
 #include <format>
 namespace data::game::avatar
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Plights]([PlightId] INT NOT NULL UNIQUE, [Duration] INT NULL]);";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Plights]([PlightId] INT NOT NULL UNIQUE, [Duration] INT NULL);";
 	static const std::string DELETE_ALL = "DELETE FROM [Plights];";
 	static const std::string DELETE_ITEM = "DELETE FROM [Plights] WHERE [PlightId]={};";
 	static const std::string REPLACE_ITEM = "REPLACE INTO [Plights]([PlightId], [Duration]) VALUES({}, {});";
