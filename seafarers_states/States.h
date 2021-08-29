@@ -1,6 +1,15 @@
 #pragma once
-namespace state::About { void Start(); }
-namespace state::ConfirmQuit { void Start(); }
+namespace state
+{ 
+	struct About
+	{
+		static void Start(); 
+	};
+	struct ConfirmQuit
+	{
+		static void Start();
+	};
+}
 namespace state::MainMenu { void Start(); }
 namespace state::Options { void Start(); }
 namespace state::Splash { void Start(); }

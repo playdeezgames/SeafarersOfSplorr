@@ -6,13 +6,15 @@
 #include <Application.UIState.h>
 #include <Common.Utility.h>
 #include <Game.Audio.Mux.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
-namespace state::ConfirmQuit
+namespace state
 {
-	const std::string LAYOUT_NAME = "State.ConfirmQuit";
-	const std::string MENU_ID = "ConfirmQuit";
+	static const ::UIState CURRENT_STATE = ::UIState::CONFIRM_QUIT;
+	static const std::string LAYOUT_NAME = "State.ConfirmQuit";
+	static const std::string MENU_ID = "ConfirmQuit";
 
 	enum class ConfirmQuitItem
 	{
@@ -20,15 +22,15 @@ namespace state::ConfirmQuit
 		YES
 	};
 
-	const std::map<ConfirmQuitItem, std::function<void()>> activators =
+	static const std::map<ConfirmQuitItem, std::function<void()>> activators =
 	{
 		{ ConfirmQuitItem::NO, ::application::UIState::GoTo(::UIState::MAIN_MENU) },
 		{ ConfirmQuitItem::YES, ::application::UIState::GoTo(::UIState::QUIT) }
 	};
 
-	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
+	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
-	const std::map<Command, std::function<void()>> commandHandlers =
+	static const std::map<Command, std::function<void()>> commandHandlers =
 	{
 		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
@@ -37,12 +39,12 @@ namespace state::ConfirmQuit
 		{ ::Command::RED, ::application::UIState::GoTo(::UIState::MAIN_MENU) }
 	};
 
-	void Start()
+	void ConfirmQuit::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::CONFIRM_QUIT, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
-		::application::MouseButtonUp::AddHandler(::UIState::CONFIRM_QUIT, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
-		::application::MouseMotion::AddHandler(::UIState::CONFIRM_QUIT, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-		::application::Command::SetHandlers(::UIState::CONFIRM_QUIT, commandHandlers);
-		::application::Renderer::SetRenderLayout(::UIState::CONFIRM_QUIT, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(CURRENT_STATE, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
+		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
+		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
+		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
 	}
 }
