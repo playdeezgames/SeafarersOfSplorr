@@ -1,5 +1,6 @@
 #pragma once
 #include <list>
+#include <optional>
 #include <string>
 namespace data::game
 {
@@ -14,7 +15,8 @@ namespace data::game
 		double curseMultiplier;
 		int cursePlightId;
 		static void Clear();
-		static void Add(const Demigod&);
 		static std::list<Demigod> All();
+		static std::optional<Demigod> Read(const std::string&);
+		static void Write(const Demigod&);
 	};
 }

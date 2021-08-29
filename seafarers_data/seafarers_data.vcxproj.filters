@@ -113,6 +113,9 @@
     <ClInclude Include="Data.Game.DemigodItem.h">
       <Filter>Header Files\Demigod</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.Avatar.DemigodFavor.h">
+      <Filter>Header Files\Avatar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">
@@ -189,6 +192,9 @@
     </ClCompile>
     <ClCompile Include="Data.Game.DemigodItem.cpp">
       <Filter>Source Files\Demigod</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Avatar.DemigodFavor.cpp">
+      <Filter>Source Files\Avatar</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

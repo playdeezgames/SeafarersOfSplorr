@@ -11,5 +11,6 @@ namespace game::avatar
 		static void ApplyTurnEffects();
 		static const PlightDescriptor& Read(const Plight&);
 		static Plight Generate(const PlightType&);
+		static void Inflict(const Plight&);
 	};
 }

@@ -89,4 +89,21 @@ namespace game::avatar
 		}
 		return common::RNG::FromGenerator(generator, Plight::AGING_IMMUNITY);
 	}
+
+	void Plights::Inflict(const Plight& plight)
+	{
+		auto& descriptor = Read(plight);
+		std::optional<size_t> duration = std::nullopt;
+		if (descriptor.durationMinimum)
+		{
+			duration = descriptor.durationMinimum;
+			if (descriptor.durationMaximum)
+			{
+				duration = common::RNG::FromRange(descriptor.durationMinimum.value(), descriptor.durationMaximum.value() + 1);
+			}
+		}
+
+		data::game::avatar::Plight::Write({(int)plight, (duration)?(std::optional<int>((int)duration.value())):(std::nullopt) });
+	}
+
 }

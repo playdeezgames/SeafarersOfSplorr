@@ -1,4 +1,5 @@
 #include <Common.RNG.h>
+#include <Data.Game.Avatar.DemigodFavor.h>
 #include <Data.Game.Demigod.h>
 #include <Data.Game.DemigodItem.h>
 #include "Game.Avatar.Plights.h"
@@ -74,6 +75,7 @@ namespace game
 	{
 		data::game::Demigod::Clear();
 		data::game::DemigodItem::Clear();
+		data::game::avatar::DemigodFavor::Clear();
 		auto demigodCount =
 			common::RNG::FromRange(1, 3) +//TODO: hardcoded
 			common::RNG::FromRange(1, 3) +//TODO: hardcoded
@@ -83,7 +85,7 @@ namespace game
 		auto items = Items::All();
 		for (auto name : names)
 		{
-			data::game::Demigod::Add({
+			data::game::Demigod::Write({
 				name,
 				(size_t)common::RNG::FromRange(1, 11),//TODO: hardcoded
 				5.0,
@@ -100,11 +102,33 @@ namespace game
 		}
 	}
 
-	void Demigods::MakeOffering(const std::string& demigod, const Item& item)
+	void Demigods::MakeOffering(const std::string& name, const Item& item)
 	{
-		//TODO: get favor/disfavor amount for this item and this demigod
-		//TODO: change favor with demigod for the avatar
-		//TODO: if hits blessing threshold, give blessing and change next blessing threshold
-		//TODO: if hits curse threshold, give curse and change next curse threshold
+		auto demigod = data::game::Demigod::Read(name);
+		if(demigod)
+		{
+			auto delta = data::game::DemigodItem::Read(name, (int)item);
+			if (delta)
+			{
+				auto favor = data::game::avatar::DemigodFavor::Read(name).value_or(0.0);
+				favor += delta.value();
+				if (favor >= demigod.value().blessingThreshold)
+				{
+					game::avatar::Plights::Inflict((game::avatar::Plight)demigod.value().blessingPlightId);
+					favor -= demigod.value().blessingThreshold;
+					data::game::avatar::DemigodFavor::Write(name, favor);
+					demigod.value().blessingThreshold *= demigod.value().blessingMultiplier;
+					data::game::Demigod::Write(demigod.value());
+				}
+				if (favor <= demigod.value().curseThreshold)
+				{
+					game::avatar::Plights::Inflict((game::avatar::Plight)demigod.value().cursePlightId);
+					favor -= demigod.value().curseThreshold;
+					data::game::avatar::DemigodFavor::Write(name, favor);
+					demigod.value().curseThreshold *= demigod.value().curseMultiplier;
+					data::game::Demigod::Write(demigod.value());
+				}
+			}
+		}
 	}
 }
