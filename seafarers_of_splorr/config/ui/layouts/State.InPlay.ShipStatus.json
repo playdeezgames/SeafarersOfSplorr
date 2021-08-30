@@ -76,6 +76,95 @@
         "drop-shadow-y": 2
     },
     {
+        "type": "Menu",
+        "menu-id": "ShipStatus",
+        "index": 0,
+        "font": "default",
+        "colors": {
+            "active": "Cyan",
+            "inactive": "Gray"
+        },
+        "horizontal-alignment": -1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2,
+        "menu-items": [
+            {
+                "text": "Change Speed...",
+                "menu-item-id": "ChangeSpeed",
+                "x": 632,
+                "y": 288
+            },
+            {
+                "text": "Cargo",
+                "menu-item-id": "Cargo",
+                "x": 632,
+                "y": 304
+            },
+            {
+                "text": "Careen...",
+                "menu-item-id": "Careen",
+                "x": 632,
+                "y": 320
+            },
+            {
+                "text": "Go Back",
+                "menu-item-id": "GoBack",
+                "x": 632,
+                "y": 336
+            }
+        ]
+    },
+    {
+        "type": "Area",
+        "area-id": "ChangeSpeed",
+        "x": 320,
+        "y": 288,
+        "width": 320,
+        "height": 16,
+        "menu": {
+            "menu-id": "ShipStatus",
+            "menu-item-id": "ChangeSpeed"
+        }
+    },
+    {
+        "type": "Area",
+        "area-id": "Cargo",
+        "x": 320,
+        "y": 304,
+        "width": 320,
+        "height": 16,
+        "menu": {
+            "menu-id": "ShipStatus",
+            "menu-item-id": "Cargo"
+        }
+    },
+    {
+        "type": "Area",
+        "area-id": "Careen",
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 16,
+        "menu": {
+            "menu-id": "ShipStatus",
+            "menu-item-id": "Careen"
+        }
+    },
+    {
+        "type": "Area",
+        "area-id": "GoBack",
+        "x": 320,
+        "y": 336,
+        "width": 320,
+        "height": 16,
+        "menu": {
+            "menu-id": "ShipStatus",
+            "menu-item-id": "GoBack"
+        }
+    },
+    {
         "type": "Layout",
         "name": "Sublayout.Modded"
     }

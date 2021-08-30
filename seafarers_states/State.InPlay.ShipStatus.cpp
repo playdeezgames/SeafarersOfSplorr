@@ -1,5 +1,6 @@
 #include <Application.Command.h>
 #include <Application.MouseButtonUp.h>
+#include <Application.MouseMotion.h>
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
@@ -9,25 +10,52 @@
 #include <Game.Ships.h>
 #include <Game.Avatar.ShipStatistics.h>
 #include "UIState.h"
+#include <Visuals.Areas.h>
+#include <Visuals.Menus.h>
 #include <Visuals.Texts.h>
 namespace state::in_play::ShipStatus
 {
-	const std::string LAYOUT_NAME = "State.InPlay.ShipStatus";
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_SHIP_STATUS;
+	static const std::string LAYOUT_NAME = "State.InPlay.ShipStatus";
 
-	const std::string TEXT_SHIP_TYPE = "ShipType";
-	const std::string TEXT_SPEED_FACTOR = "SpeedFactor";
-	const std::string TEXT_TONNAGE = "Tonnage";
-	const std::string TEXT_FOULING = "Fouling";
+	static const std::string TEXT_SHIP_TYPE = "ShipType";
+	static const std::string TEXT_SPEED_FACTOR = "SpeedFactor";
+	static const std::string TEXT_TONNAGE = "Tonnage";
+	static const std::string TEXT_FOULING = "Fouling";
 
-	const std::string FORMAT_SHIP_TYPE = "Ship Type: {}";
-	const std::string FORMAT_SPEED_FACTOR = "Speed Factor: {}";
-	const std::string FORMAT_TONNAGE = "Tonnage: {}";
-	const std::string FORMAT_FOULING = "Fouling: {:.0f}%";
+	static const std::string FORMAT_SHIP_TYPE = "Ship Type: {}";
+	static const std::string FORMAT_SPEED_FACTOR = "Speed Factor: {}";
+	static const std::string FORMAT_TONNAGE = "Tonnage: {}";
+	static const std::string FORMAT_FOULING = "Fouling: {:.0f}%";
 
-	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
+	static const std::string MENU_ID = "ShipStatus";
+
+	enum class ShipStatusItem
+	{
+		CHANGE_SPEED,
+		CARGO,
+		CAREEN,
+		GO_BACK
+	};
+
+	static void OnGoBack()
 	{
 		::application::UIState::Pop();
-		return true;
+	}
+
+	static void OnCareen()
+	{
+
+	}
+
+	static void OnCargo()
+	{
+
+	}
+
+	static void OnChangeSpeed()
+	{
+
 	}
 
 	static void UpdateShipProperties()
@@ -61,11 +89,31 @@ namespace state::in_play::ShipStatus
 		UpdateShipProperties();
 	}
 
+	static const std::map<ShipStatusItem, std::function<void()>> activators =
+	{
+		{ ShipStatusItem::CAREEN, OnCareen },
+		{ ShipStatusItem::CARGO, OnCargo },
+		{ ShipStatusItem::CHANGE_SPEED, OnChangeSpeed },
+		{ ShipStatusItem::GO_BACK, OnGoBack }
+	};
+
+	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
+
+	static const std::map<Command, std::function<void()>> commandHandlers =
+	{
+		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
+		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
+		{ ::Command::GREEN, ActivateItem },
+		{ ::Command::BACK, OnGoBack },
+		{ ::Command::RED, OnGoBack }
+	};
+
 	void Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_SHIP_STATUS, OnEnter);
-		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_SHIP_STATUS, OnMouseButtonUp);
-		::application::Command::SetHandler(::UIState::IN_PLAY_SHIP_STATUS, application::UIState::PopFrom());
-		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_SHIP_STATUS, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
+		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
+		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
+		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
 	}
 }
