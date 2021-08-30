@@ -13,6 +13,7 @@ namespace common
 		static std::optional<double> ToOptionalDouble(const std::string&);
 
 		static std::optional<int> ToPercentage(int, int);
+		static std::optional<double> ToPercentage(double, double);
 
 		static double ClampDouble(double, double, double);
 		static std::optional<double> ModuloDouble(double, double);

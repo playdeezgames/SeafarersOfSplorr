@@ -1,3 +1,4 @@
+#include <Common.Data.h>
 #include <Data.Game.Avatar.ShipStatistic.h>
 #include "Game.Avatar.Log.h"
 #include "Game.Avatar.ShipStatistics.h"
@@ -20,9 +21,17 @@ namespace game::avatar
 		return portFouling + starboardFouling;
 	}
 
+	double ShipStatistics::GetFoulingPercentage(const game::Side& side)
+	{
+		double maximum = data::game::avatar::ShipStatistic::Read((int)side).value().maximum.value();
+		double current = data::game::avatar::ShipStatistic::Read((int)side).value().current;
+		return common::Data::ToPercentage(current, maximum).value();
+	}
+
+
 	double ShipStatistics::GetFoulingPercentage()
 	{
-		return 100.0 * GetFouling() / GetMaximumFouling();
+		return common::Data::ToPercentage(GetFouling(), GetMaximumFouling()).value();
 	}
 
 

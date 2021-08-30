@@ -10,17 +10,23 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
 #include <Game.Avatar.Docked.h>
+#include <Game.Avatar.ShipStatistics.h>
 #include <Game.Islands.h>
 #include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
+#include <Visuals.MenuItems.h>
 #include <Visuals.Texts.h>
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_AT_SEA_CAREEN_SELECT;
 	static const std::string LAYOUT_NAME = "State.InPlay.AtSeaCareenSelect";
 	static const std::string MENU_ID = "Careen";
+	static const std::string MENU_ITEM_PORT = "Port";
+	static const std::string MENU_ITEM_STARBOARD = "Starboard";
+	static const std::string FORMAT_PORT = "Port({:.0f}%)";
+	static const std::string FORMAT_STARBOARD = "Starboard({:.0f}%)";
 
 	enum class CareenMenuItem
 	{
@@ -67,6 +73,8 @@ namespace state::in_play
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
+		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_PORT, std::format(FORMAT_PORT, game::avatar::ShipStatistics::GetFoulingPercentage(game::Side::PORT)));
+		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_STARBOARD, std::format(FORMAT_STARBOARD, game::avatar::ShipStatistics::GetFoulingPercentage(game::Side::STARBOARD)));
 	}
 
 	void AtSeaCareenSelect::Start()

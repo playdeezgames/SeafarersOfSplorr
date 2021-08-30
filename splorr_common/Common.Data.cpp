@@ -47,6 +47,15 @@ namespace common
 		return std::nullopt;
 	}
 
+	std::optional<double> Data::ToPercentage(double value, double maximum)
+	{
+		if (maximum != 0.0)
+		{
+			return value * 100.0 / maximum;
+		}
+		return std::nullopt;
+	}
+
 	double Data::ClampDouble(double value, double minimum, double maximum)
 	{
 		return
