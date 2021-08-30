@@ -9,11 +9,12 @@
 #include <Game.Avatar.Ship.h>
 #include <Game.Ships.h>
 #include <Game.Avatar.ShipStatistics.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
 #include <Visuals.Texts.h>
-namespace state::in_play::ShipStatus
+namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_SHIP_STATUS;
 	static const std::string LAYOUT_NAME = "State.InPlay.ShipStatus";
@@ -108,7 +109,7 @@ namespace state::in_play::ShipStatus
 		{ ::Command::RED, OnGoBack }
 	};
 
-	void Start()
+	void ShipStatus::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));

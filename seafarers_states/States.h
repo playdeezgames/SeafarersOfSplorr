@@ -9,6 +9,13 @@ namespace state
 	{
 		static void Start();
 	};
+	namespace in_play
+	{
+		struct ShipStatus
+		{
+			static void Start();
+		};
+	}
 }
 namespace state::MainMenu { void Start(); }
 namespace state::Options { void Start(); }
@@ -35,7 +42,6 @@ namespace state::in_play::IslandTrade { void Start(); }
 namespace state::in_play::IslandBuy { void Start(); }
 namespace state::in_play::IslandSell { void Start(); }
 namespace state::in_play::Cargo { void Start(); }
-namespace state::in_play::ShipStatus { void Start(); }
 namespace state::in_play::Next { void Start(); }
 namespace state::in_play::Shipyard { void Start(); }
 namespace state::in_play::DarkAlleyEntrance { void Start(); }
