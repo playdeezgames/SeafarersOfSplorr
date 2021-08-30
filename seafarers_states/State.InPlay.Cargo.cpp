@@ -13,19 +13,26 @@
 #include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.SpriteGrid.h>
-namespace state::in_play::Cargo
+namespace state::in_play
 {
-	const std::string LAYOUT_NAME = "State.InPlay.Cargo";
-	const std::string SPRITE_GRID_ID = "Grid";
-	const std::string FONT_DEFAULT = "default";
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CARGO;
+	static const std::string LAYOUT_NAME = "State.InPlay.Cargo";
+	static const std::string SPRITE_GRID_ID = "Grid";
+	static const std::string FONT_DEFAULT = "default";
 
-	const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
+	static const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
+
+	static void OnLeave()
+	{
+		::application::UIState::Pop();
+	}
 
 	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
 	{
-		::application::UIState::Write(::UIState::IN_PLAY_AT_SEA);
+		OnLeave();
 		return true;
 	}
 
@@ -98,14 +105,14 @@ namespace state::in_play::Cargo
 		RefreshStatistics();
 	}
 
-	void OnEnter()
+	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		UpdateManifest();
 		RefreshGrid();
 	}
 
-	const std::map<::Command, std::function<void()>> commandHandlers =
+	static const std::map<::Command, std::function<void()>> commandHandlers =
 	{
 		{ ::Command::UP, common::Utility::DoPreviousItem(hiliteRow, manifest, RefreshManifest) },
 		{ ::Command::DOWN, common::Utility::DoNextItem(hiliteRow, manifest, RefreshManifest) },
@@ -113,11 +120,11 @@ namespace state::in_play::Cargo
 		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) }
 	};
 
-	void Start()
+	void Cargo::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_CARGO, OnEnter);
-		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_CARGO, OnMouseButtonUp);
-		::application::Command::SetHandlers(::UIState::IN_PLAY_CARGO, commandHandlers);
-		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_CARGO, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
+		::application::MouseButtonUp::AddHandler(CURRENT_STATE, OnMouseButtonUp);
+		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
 	}
 }

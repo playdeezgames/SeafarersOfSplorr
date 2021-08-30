@@ -133,12 +133,6 @@
         "drop-shadow-y": 2,
         "menu-items": [
             {
-                "text": "Change Speed...",
-                "menu-item-id":"ChangeSpeed",
-                "x": 480,
-                "y": 32
-            },
-            {
                 "text": "Head For...",
                 "menu-item-id":"HeadFor",
                 "x": 480,
@@ -165,24 +159,10 @@
                 "enabled": false
             },
             {
-                "text": "Cargo",
-                "menu-item-id":"Cargo",
-                "x": 480,
-                "y": 112,
-                "enabled": true
-            },
-            {
-                "text": "Ship",
+                "text": "Ship Status",
                 "menu-item-id":"Ship",
                 "x": 480,
                 "y": 128,
-                "enabled": true
-            },
-            {
-                "text": "Careen...",
-                "menu-item-id":"Careen",
-                "x": 480,
-                "y": 144,
                 "enabled": true
             }
         ]
@@ -194,18 +174,6 @@
     {
         "type": "Layout",
         "name": "Sublayout.Modded"
-    },
-    {
-        "type":"Area",
-        "area-id":"ChangeSpeed",
-        "x":320,
-        "y":32,
-        "width":320,
-        "height":16,
-        "menu":{
-            "menu-id":"Order",
-            "menu-item-id":"ChangeSpeed"
-        }
     },
     {
         "type":"Area",
@@ -257,18 +225,6 @@
     },
     {
         "type":"Area",
-        "area-id":"Cargo",
-        "x":320,
-        "y":112,
-        "width":320,
-        "height":16,
-        "menu":{
-            "menu-id":"Order",
-            "menu-item-id":"Cargo"
-        }
-    },
-    {
-        "type":"Area",
         "area-id":"Ship",
         "x":320,
         "y":128,
@@ -277,18 +233,6 @@
         "menu":{
             "menu-id":"Order",
             "menu-item-id":"Ship"
-        }
-    },
-    {
-        "type":"Area",
-        "area-id":"Careen",
-        "x":320,
-        "y":144,
-        "width":320,
-        "height":16,
-        "menu":{
-            "menu-id":"Order",
-            "menu-item-id":"Careen"
         }
     },
     {

@@ -44,14 +44,11 @@ namespace state::in_play::AtSea
 
 	enum class OrderMenuItem
 	{
-		CHANGE_SPEED,
 		HEAD_FOR,
 		MOVE,
 		DOCK,
 		JOB,
-		CARGO,
-		SHIP,
-		CAREEN
+		SHIP
 	};
 
 	const std::string STOP_MOVE = "Stop Move";
@@ -95,14 +92,11 @@ namespace state::in_play::AtSea
 
 	const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
-		{OrderMenuItem::CHANGE_SPEED, ::application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_SPEED)},
 		{OrderMenuItem::MOVE, ToggleAutoMove},
 		{OrderMenuItem::DOCK, OnDock},
 		{OrderMenuItem::HEAD_FOR, application::UIState::GoTo(::UIState::IN_PLAY_HEAD_FOR)},
 		{OrderMenuItem::JOB, application::UIState::GoTo(::UIState::IN_PLAY_CURRENT_JOB)},
-		{OrderMenuItem::CARGO, application::UIState::GoTo(::UIState::IN_PLAY_CARGO)},
-		{OrderMenuItem::SHIP, application::UIState::PushTo(::UIState::IN_PLAY_SHIP_STATUS)},
-		{OrderMenuItem::CAREEN, application::UIState::PushTo(::UIState::IN_PLAY_AT_SEA_CAREEN_SELECT)}
+		{OrderMenuItem::SHIP, application::UIState::PushTo(::UIState::IN_PLAY_SHIP_STATUS)}
 	};
 
 	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);

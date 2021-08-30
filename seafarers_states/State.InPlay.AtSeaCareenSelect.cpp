@@ -11,11 +11,12 @@
 #include <Game.Avatar.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Islands.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
 #include <Visuals.Texts.h>
-namespace state::in_play::AtSeaCareenSelect
+namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_AT_SEA_CAREEN_SELECT;
 	static const std::string LAYOUT_NAME = "State.InPlay.AtSeaCareenSelect";
@@ -42,19 +43,19 @@ namespace state::in_play::AtSeaCareenSelect
 
 	static void OnBelay()
 	{
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		application::UIState::Pop();
 	}
 
-	const std::map<CareenMenuItem, std::function<void()>> activators =
+	static const std::map<CareenMenuItem, std::function<void()>> activators =
 	{
 		{ CareenMenuItem::STARBOARD, OnStarboard },
 		{ CareenMenuItem::PORT, OnPort },
 		{ CareenMenuItem::BELAY, OnBelay }
 	};
 
-	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
+	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
-	const std::map<::Command, std::function<void()>> commandHandlers =
+	static const std::map<::Command, std::function<void()>> commandHandlers =
 	{
 		{::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
@@ -68,7 +69,7 @@ namespace state::in_play::AtSeaCareenSelect
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 	}
 
-	void Start()
+	void AtSeaCareenSelect::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));

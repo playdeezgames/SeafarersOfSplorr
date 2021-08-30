@@ -11,6 +11,26 @@ namespace state
 	};
 	namespace in_play
 	{
+		struct AtSeaCareenSelect
+		{
+			static void Start();
+		};
+		struct Cargo
+		{
+			static void Start();
+		};
+		struct CareenedToPort 
+		{ 
+			static void Start(); 
+		};
+		struct CareenedToStarboard 
+		{ 
+			static void Start(); 
+		};
+		struct ChangeSpeed
+		{
+			static void Start();
+		};
 		struct ShipStatus
 		{
 			static void Start();
@@ -29,7 +49,6 @@ namespace state::ConfirmOverwrite { void Start(); }
 namespace state::Tip { void Start(); }
 namespace state::Statistics { void Start(); }
 namespace state::in_play::AtSea { void Start(); }
-namespace state::in_play::ChangeSpeed { void Start(); }
 namespace state::in_play::Docked { void Start(); }
 namespace state::in_play::Win { void Start(); }
 namespace state::in_play::Lose { void Start(); }
@@ -41,7 +60,6 @@ namespace state::in_play::CurrentJob { void Start(); }
 namespace state::in_play::IslandTrade { void Start(); }
 namespace state::in_play::IslandBuy { void Start(); }
 namespace state::in_play::IslandSell { void Start(); }
-namespace state::in_play::Cargo { void Start(); }
 namespace state::in_play::Next { void Start(); }
 namespace state::in_play::Shipyard { void Start(); }
 namespace state::in_play::DarkAlleyEntrance { void Start(); }
@@ -50,8 +68,5 @@ namespace state::in_play::Message { void Start(); }
 namespace state::in_play::Confirm { void Start(); }
 namespace state::in_play::GambleStart { void Start(); }
 namespace state::in_play::GambleFinish { void Start(); }
-namespace state::in_play::AtSeaCareenSelect { void Start(); }
-namespace state::in_play::CareenedToPort { void Start(); }
-namespace state::in_play::CareenedToStarboard { void Start(); }
 namespace state::in_play::Temple { void Start(); }
 namespace state::in_play::MakeOffering { void Start(); }

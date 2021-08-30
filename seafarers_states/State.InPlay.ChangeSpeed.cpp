@@ -8,13 +8,14 @@
 #include <Game.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.AtSea.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
-namespace state::in_play::ChangeSpeed
+namespace state::in_play
 {
-	const std::string LAYOUT_NAME = "State.InPlay.ChangeSpeed";
-	const std::string MENU_ID = "ChangeSpeed";
+	static const std::string LAYOUT_NAME = "State.InPlay.ChangeSpeed";
+	static const std::string MENU_ID = "ChangeSpeed";
 
 	enum class ChangeSpeedItem
 	{
@@ -26,34 +27,39 @@ namespace state::in_play::ChangeSpeed
 		BELAY
 	};
 
+	static void OnLeave()
+	{
+		::application::UIState::Pop();
+	}
+
 	static std::function<void()> SetSpeed(double speed)
 	{
 		return [speed]()
 		{
 			game::avatar::AtSea::SetSpeed(speed);
-			application::UIState::Write(::UIState::IN_PLAY_AT_SEA);
+			OnLeave();
 		};
 	}
 
-	const double SPEED_ALL_STOP = 0.0;
-	const double SPEED_ONE_THIRD = 0.3;
-	const double SPEED_TWO_THIRDS = 0.6;
-	const double SPEED_FULL = 0.9;
-	const double SPEED_FLANK = 1.0;
+	static const double SPEED_ALL_STOP = 0.0;
+	static const double SPEED_ONE_THIRD = 0.3;
+	static const double SPEED_TWO_THIRDS = 0.6;
+	static const double SPEED_FULL = 0.9;
+	static const double SPEED_FLANK = 1.0;
 
-	const std::map<ChangeSpeedItem, std::function<void()>> activators =
+	static const std::map<ChangeSpeedItem, std::function<void()>> activators =
 	{
 		{ ChangeSpeedItem::ALL_STOP, SetSpeed(SPEED_ALL_STOP) },
 		{ ChangeSpeedItem::AHEAD_ONE_THIRD, SetSpeed(SPEED_ONE_THIRD) },
 		{ ChangeSpeedItem::AHEAD_TWO_THIRDS, SetSpeed(SPEED_TWO_THIRDS) },
 		{ ChangeSpeedItem::AHEAD_FULL, SetSpeed(SPEED_FULL) },
 		{ ChangeSpeedItem::AHEAD_FLANK, SetSpeed(SPEED_FLANK) },
-		{ ChangeSpeedItem::BELAY, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) }
+		{ ChangeSpeedItem::BELAY, ::application::UIState::PopFrom() }
 	};
 
-	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
+	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
-	const std::map<::Command, std::function<void()>> commandHandlers =
+	static const std::map<::Command, std::function<void()>> commandHandlers =
 	{
 		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
@@ -62,7 +68,7 @@ namespace state::in_play::ChangeSpeed
 		{ ::Command::GREEN, ActivateItem }
 	};
 
-	void Start()
+	void ChangeSpeed::Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::IN_PLAY_CHANGE_SPEED, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
 		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_CHANGE_SPEED, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
