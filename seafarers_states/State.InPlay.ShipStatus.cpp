@@ -7,12 +7,14 @@
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Ship.h>
-#include <Game.Ships.h>
 #include <Game.Avatar.ShipStatistics.h>
+#include <Game.Islands.h>
+#include <Game.Ships.h>
 #include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
+#include <Visuals.MenuItems.h>
 #include <Visuals.Texts.h>
 namespace state::in_play
 {
@@ -30,6 +32,7 @@ namespace state::in_play
 	static const std::string FORMAT_FOULING = "Fouling: {:.0f}%";
 
 	static const std::string MENU_ID = "ShipStatus";
+	static const std::string MENU_ITEM_ID = "Careen";
 
 	enum class ShipStatusItem
 	{
@@ -87,6 +90,7 @@ namespace state::in_play
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
+		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_ID, game::Islands::CanDock());
 		UpdateShipProperties();
 	}
 
