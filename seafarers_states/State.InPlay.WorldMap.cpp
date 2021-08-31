@@ -18,13 +18,14 @@
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_WORLD_MAP;
-	const std::string LAYOUT_NAME = "State.InPlay.HeadFor";
+	const std::string LAYOUT_NAME = "State.InPlay.WorldMap";
 
 	const std::string AREA_WORLD_MAP = "WorldMap";
 	const std::string AREA_SELECT_1 = "Select1";
 	const std::string AREA_SELECT_2 = "Select2";
 	const std::string AREA_SELECT_3 = "Select3";
 	const std::string AREA_SELECT_4 = "Select4";
+	const std::string AREA_REMOVE_TARGET= "RemoveTarget";
 	const std::string AREA_GO_BACK = "GoBack";
 
 	const std::string IMAGE_SELECT_1 = "Selection1";
@@ -38,6 +39,7 @@ namespace state::in_play
 
 	const std::string WORLD_MAP_ID = "WorldMap";
 	const std::string TEXT_HOVER_ISLAND = "HoverIsland";
+	const std::string TEXT_REMOVE_TARGET = "RemoveTarget";
 	const std::string TEXT_GO_BACK = "GoBack";
 
 	const std::string NO_HOVER_TEXT = "-";
@@ -115,6 +117,11 @@ namespace state::in_play
 		};
 	}
 
+	static void HiliteRemoveTargetButton(bool hilite)
+	{
+		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_REMOVE_TARGET, (hilite) ? (game::Colors::CYAN) : (game::Colors::GRAY));
+	}
+
 	static void HiliteGoBackButton(bool hilite)
 	{
 		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, (hilite) ? (game::Colors::CYAN) : (game::Colors::GRAY));
@@ -123,6 +130,13 @@ namespace state::in_play
 	void HoverOnGoBack(const common::XY<int>&)
 	{
 		HiliteGoBackButton(true);
+		HiliteRemoveTargetButton(false);
+	}
+
+	void HoverOnRemoveTarget(const common::XY<int>&)
+	{
+		HiliteGoBackButton(false);
+		HiliteRemoveTargetButton(true);
 	}
 
 	const std::map<std::string, std::function<void(const common::XY<int>&)>> areaMotionHandlerTable =
@@ -132,12 +146,14 @@ namespace state::in_play
 		{AREA_SELECT_2, HoverOnDestinationId(game::avatar::Destination::TWO)},
 		{AREA_SELECT_3, HoverOnDestinationId(game::avatar::Destination::THREE)},
 		{AREA_SELECT_4, HoverOnDestinationId(game::avatar::Destination::FOUR)},
-		{AREA_GO_BACK, HoverOnGoBack}
+		{AREA_GO_BACK, HoverOnGoBack},
+		{AREA_REMOVE_TARGET, HoverOnRemoveTarget}
 	};
 
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
 	{
 		HiliteGoBackButton(false);
+		HiliteRemoveTargetButton(false);
 		auto entry = areaMotionHandlerTable.find(areaName);
 		if (entry != areaMotionHandlerTable.end())
 		{
@@ -148,6 +164,7 @@ namespace state::in_play
 	static void OnMouseMotionOutsideArea(const common::XY<int>& location)
 	{
 		HiliteGoBackButton(false);
+		HiliteRemoveTargetButton(false);
 		hoverDestinationId = std::nullopt;
 		RefreshHovers();
 		visuals::WorldMap::SetDestination(LAYOUT_NAME, WORLD_MAP_ID, std::nullopt);
@@ -168,14 +185,20 @@ namespace state::in_play
 		};
 	}
 
-	const std::map<std::string, std::function<void()>> areaButtonHandlerTable =
+	static void OnRemoveTarget()
+	{
+		game::avatar::Destinations::SetDestination(currentDestinationId, std::nullopt);
+	}
+
+	static const std::map<std::string, std::function<void()>> areaButtonHandlerTable =
 	{
 		{AREA_WORLD_MAP, HandleWorldMapMouseButtonUp},
 		{AREA_SELECT_1, SelectDestinationId(game::avatar::Destination::ONE)},
 		{AREA_SELECT_2, SelectDestinationId(game::avatar::Destination::TWO)},
 		{AREA_SELECT_3, SelectDestinationId(game::avatar::Destination::THREE)},
 		{AREA_SELECT_4, SelectDestinationId(game::avatar::Destination::FOUR)},
-		{AREA_GO_BACK, application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA)}
+		{AREA_GO_BACK, application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA)},
+		{AREA_REMOVE_TARGET, OnRemoveTarget}
 	};
 
 	static bool OnMouseButtonUpInArea(const std::string& areaName)

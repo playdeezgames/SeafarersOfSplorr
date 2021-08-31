@@ -57,6 +57,20 @@
         "drop-shadow-y": 2
     },
     {
+        "text-id": "RemoveTarget",
+        "type": "Text",
+        "font": "default",
+        "color": "Gray",
+        "text": "Remove Target",
+        "x": 632,
+        "y": 320,
+        "horizontal-alignment": -1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
         "text-id": "GoBack",
         "type": "Text",
         "font": "default",
@@ -99,16 +113,16 @@
         "type": "Image",
         "sprite": "AtSeaDestination2",
         "color": "White",
-        "x": 384,
-        "y": 172
+        "x": 368,
+        "y": 188
     },
     {
         "type": "Image",
         "image-id": "Selection2",
         "sprite": "AtSeaSelection",
         "color": "White",
-        "x": 384,
-        "y": 172,
+        "x": 368,
+        "y": 188,
         "visible":false
     },
     {
@@ -116,24 +130,24 @@
         "image-id": "Hover2",
         "sprite": "AtSeaSelectionHover",
         "color": "White",
-        "x": 384,
-        "y": 172,
+        "x": 368,
+        "y": 188,
         "visible":false
     },
     {
         "type": "Image",
         "sprite": "AtSeaDestination3",
         "color": "White",
-        "x": 400,
-        "y": 172
+        "x": 368,
+        "y": 204
     },
     {
         "type": "Image",
         "image-id": "Selection3",
         "sprite": "AtSeaSelection",
         "color": "White",
-        "x": 400,
-        "y": 172,
+        "x": 368,
+        "y": 204,
         "visible":false
     },
     {
@@ -141,24 +155,24 @@
         "image-id": "Hover3",
         "sprite": "AtSeaSelectionHover",
         "color": "White",
-        "x": 400,
-        "y": 172,
+        "x": 368,
+        "y": 204,
         "visible":false
     },
     {
         "type": "Image",
         "sprite": "AtSeaDestination4",
         "color": "White",
-        "x": 416,
-        "y": 172
+        "x": 368,
+        "y": 220
     },
     {
         "type": "Image",
         "image-id": "Selection4",
         "sprite": "AtSeaSelection",
         "color": "White",
-        "x": 416,
-        "y": 172,
+        "x": 368,
+        "y": 220,
         "visible":false
     },
     {
@@ -166,8 +180,8 @@
         "image-id": "Hover4",
         "sprite": "AtSeaSelectionHover",
         "color": "White",
-        "x": 416,
-        "y": 172,
+        "x": 368,
+        "y": 220,
         "visible":false
     },
     {
@@ -181,25 +195,33 @@
     {
         "type":"Area",
         "area-id": "Select2",
-        "x": 376,
-        "y": 164,
+        "x": 360,
+        "y": 180,
         "width": 16,
         "height": 16
     },
     {
         "type":"Area",
         "area-id": "Select3",
-        "x": 392,
-        "y": 164,
+        "x": 360,
+        "y": 196,
         "width": 16,
         "height": 16
     },
     {
         "type":"Area",
         "area-id": "Select4",
-        "x": 408,
-        "y": 164,
+        "x": 360,
+        "y": 212,
         "width": 16,
+        "height": 16
+    },
+    {
+        "type":"Area",
+        "area-id": "RemoveTarget",
+        "x": 424,
+        "y": 320,
+        "width": 208,
         "height": 16
     },
     {
