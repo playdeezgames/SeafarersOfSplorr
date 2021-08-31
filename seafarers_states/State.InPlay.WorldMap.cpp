@@ -1,8 +1,10 @@
 #include <Application.Command.h>
+#include <Application.Keyboard.h>
 #include <Application.MouseButtonUp.h>
 #include <Application.MouseMotion.h>
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
+#include <Application.TextInput.h>
 #include <Application.UIState.h>
 #include <Application.Update.h>
 #include <Game.Audio.Mux.h>
@@ -233,8 +235,20 @@ namespace state::in_play
 		Refresh();
 	}
 
+	static bool OnKeyDown(const std::string& key)
+	{
+		return false;
+	}
+
+	static void OnTextInput(const std::string& text)
+	{
+		return;
+	}
+
 	void WorldMap::Start()
 	{
+		::application::Keyboard::AddHandler(CURRENT_STATE, OnKeyDown);
+		::application::TextInput::AddHandler(CURRENT_STATE, OnTextInput);
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseMotion(LAYOUT_NAME,OnMouseMotionInArea,OnMouseMotionOutsideArea));
 		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
