@@ -46,6 +46,7 @@ namespace state::in_play::AtSea
 	{
 		WORLD_MAP,
 		MOVE,
+		MOVE_ONCE,
 		DOCK,
 		JOB,
 		SHIP
@@ -90,18 +91,28 @@ namespace state::in_play::AtSea
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	const std::map<OrderMenuItem, std::function<void()>> activators =
+	static void OnMoveOnce()
+	{
+		if (!IsAutoMoveEngaged())
+		{
+			game::avatar::AtSea::Move();
+			application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		}
+	}
+
+	static const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
 		{OrderMenuItem::MOVE, ToggleAutoMove},
+		{OrderMenuItem::MOVE_ONCE, OnMoveOnce},
 		{OrderMenuItem::DOCK, OnDock},
 		{OrderMenuItem::WORLD_MAP, application::UIState::GoTo(::UIState::IN_PLAY_WORLD_MAP)},
 		{OrderMenuItem::JOB, application::UIState::GoTo(::UIState::IN_PLAY_CURRENT_JOB)},
 		{OrderMenuItem::SHIP, application::UIState::PushTo(::UIState::IN_PLAY_SHIP_STATUS)}
 	};
 
-	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
+	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
-	const std::map<::Command, std::function<void()>> commandHandlers =
+	static const std::map<::Command, std::function<void()>> commandHandlers =
 	{
 		{::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },

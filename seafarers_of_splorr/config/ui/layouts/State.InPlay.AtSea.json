@@ -136,11 +136,17 @@
                 "text": "World Map",
                 "menu-item-id":"WorldMap",
                 "x": 480,
-                "y": 48
+                "y": 32
             },
             {
                 "text": "Start Move",
                 "menu-item-id":"Move",
+                "x": 480,
+                "y": 48
+            },
+            {
+                "text": "Move Once",
+                "menu-item-id":"MoveOnce",
                 "x": 480,
                 "y": 64
             },
@@ -162,7 +168,7 @@
                 "text": "Ship Status",
                 "menu-item-id":"Ship",
                 "x": 480,
-                "y": 128,
+                "y": 112,
                 "enabled": true
             }
         ]
@@ -179,7 +185,7 @@
         "type":"Area",
         "area-id":"WorldMap",
         "x":320,
-        "y":48,
+        "y":32,
         "width":320,
         "height":16,
         "menu":{
@@ -191,12 +197,24 @@
         "type":"Area",
         "area-id":"Move",
         "x":320,
-        "y":64,
+        "y":48,
         "width":320,
         "height":16,
         "menu":{
             "menu-id":"Order",
             "menu-item-id":"Move"
+        }
+    },
+    {
+        "type":"Area",
+        "area-id":"MoveOnce",
+        "x":320,
+        "y":64,
+        "width":320,
+        "height":16,
+        "menu":{
+            "menu-id":"Order",
+            "menu-item-id":"MoveOnce"
         }
     },
     {
@@ -227,7 +245,7 @@
         "type":"Area",
         "area-id":"Ship",
         "x":320,
-        "y":128,
+        "y":112,
         "width":320,
         "height":16,
         "menu":{
