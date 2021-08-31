@@ -86,7 +86,8 @@ namespace common
 
 	double Heading::Distance(const common::XY<double>& first, const common::XY<double>& second)
 	{
-		return sqrt((first.GetX() - second.GetX()) * (first.GetX() - second.GetX()) + (first.GetY() - second.GetY()) * (first.GetY() - second.GetY()));
+		auto difference = first - second;
+		return difference.GetMagnitude();
 	}
 
 	common::XY<double> Heading::ClampDistance(const common::XY<double>& position, double maximum)
