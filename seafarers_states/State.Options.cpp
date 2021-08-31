@@ -6,6 +6,7 @@
 #include <Application.UIState.h>
 #include <Audio.h>
 #include <Audio.Mux.h>
+#include <Audio.Platform.h>
 #include <Audio.Sfx.h>
 #include <Application.Engine.h>
 #include <Common.Data.h>
@@ -13,7 +14,6 @@
 #include <Game.Audio.Mux.h>
 #include <Options.h>
 #include <format>
-#include <SDL_mixer.h>
 #include "UIState.h"
 #include <Visuals.Menus.h>
 #include <Visuals.MenuItems.h>
@@ -87,13 +87,13 @@ namespace state::Options
 
 	static void RefreshSfxMenuItem()
 	{
-		std::string ss = std::format(FORMAT_SFX_VOLUMNE, common::Data::ToPercentage(::audio::Sfx::GetVolume(), MIX_MAX_VOLUME).value());
+		std::string ss = std::format(FORMAT_SFX_VOLUMNE, common::Data::ToPercentage(::audio::Sfx::GetVolume(), audio::Platform::VOLUME_MAXIMUM).value());
 		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_SFX_VOLUME, ss);
 	}
 
 	static void RefreshMuxMenuItem()
 	{
-		std::string ss = std::format(FORMAT_MUX_VOLUMNE, common::Data::ToPercentage(::audio::Mux::GetVolume(), MIX_MAX_VOLUME).value());
+		std::string ss = std::format(FORMAT_MUX_VOLUMNE, common::Data::ToPercentage(::audio::Mux::GetVolume(), audio::Platform::VOLUME_MAXIMUM).value());
 		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_MUX_VOLUME, ss);
 	}
 
