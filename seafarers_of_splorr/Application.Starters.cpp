@@ -81,7 +81,7 @@ namespace application
 		state::in_play::Docked::Start,
 		state::in_play::Win::Start,
 		state::in_play::Lose::Start,
-		state::in_play::HeadFor::Start,
+		state::in_play::WorldMap::Start,
 		state::in_play::IslandJobs::Start,
 		state::in_play::ConfirmReplaceJob::Start,
 		state::in_play::ConfirmAbandonJob::Start,

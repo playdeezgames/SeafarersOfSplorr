@@ -133,8 +133,8 @@
         "drop-shadow-y": 2,
         "menu-items": [
             {
-                "text": "Head For...",
-                "menu-item-id":"HeadFor",
+                "text": "World Map",
+                "menu-item-id":"WorldMap",
                 "x": 480,
                 "y": 48
             },
@@ -177,14 +177,14 @@
     },
     {
         "type":"Area",
-        "area-id":"HeadFor",
+        "area-id":"WorldMap",
         "x":320,
         "y":48,
         "width":320,
         "height":16,
         "menu":{
             "menu-id":"Order",
-            "menu-item-id":"HeadFor"
+            "menu-item-id":"WorldMap"
         }
     },
     {

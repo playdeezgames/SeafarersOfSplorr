@@ -103,7 +103,7 @@
     <ClCompile Include="State.InPlay.ChangeSpeed.cpp">
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.HeadFor.cpp">
+    <ClCompile Include="State.InPlay.WorldMap.cpp">
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.ConfirmAbandonJob.cpp">

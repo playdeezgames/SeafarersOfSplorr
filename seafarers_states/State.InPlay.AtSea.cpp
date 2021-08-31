@@ -19,19 +19,19 @@
 #include <Visuals.Messages.h>
 namespace state::in_play::AtSea
 {
-	const std::string LAYOUT_NAME = "State.InPlay.AtSea";
+	static const std::string LAYOUT_NAME = "State.InPlay.AtSea";
 
-	const std::string MENU_ID = "Order";
+	static const std::string MENU_ID = "Order";
 
-	const std::string AREA_CHANGE_HEADING = "ChangeHeading";
-	const std::string AREA_CHANGE_SPEED = "ChangeSpeed";
-	const std::string AREA_MOVE = "Move";
+	static const std::string AREA_CHANGE_HEADING = "ChangeHeading";
+	static const std::string AREA_CHANGE_SPEED = "ChangeSpeed";
+	static const std::string AREA_MOVE = "Move";
 
-	const std::string IMAGE_NEW_HEADING = "NewHeading";
+	static const std::string IMAGE_NEW_HEADING = "NewHeading";
 
-	const std::string MENU_ITEM_MOVE = "Move";
+	static const std::string MENU_ITEM_MOVE = "Move";
 
-	const common::XY<int> CENTER = { 160, 160 };//TODO: hardcoded
+	static const common::XY<int> CENTER = { 160, 160 };//TODO: hardcoded
 
 	void RefreshAvatarStatus();
 	void RefreshIslands();
@@ -44,15 +44,15 @@ namespace state::in_play::AtSea
 
 	enum class OrderMenuItem
 	{
-		HEAD_FOR,
+		WORLD_MAP,
 		MOVE,
 		DOCK,
 		JOB,
 		SHIP
 	};
 
-	const std::string STOP_MOVE = "Stop Move";
-	const std::string START_MOVE = "Start Move";
+	static const std::string STOP_MOVE = "Stop Move";
+	static const std::string START_MOVE = "Start Move";
 
 	static void RefreshMoveMenuItem()
 	{
@@ -94,7 +94,7 @@ namespace state::in_play::AtSea
 	{
 		{OrderMenuItem::MOVE, ToggleAutoMove},
 		{OrderMenuItem::DOCK, OnDock},
-		{OrderMenuItem::HEAD_FOR, application::UIState::GoTo(::UIState::IN_PLAY_HEAD_FOR)},
+		{OrderMenuItem::WORLD_MAP, application::UIState::GoTo(::UIState::IN_PLAY_WORLD_MAP)},
 		{OrderMenuItem::JOB, application::UIState::GoTo(::UIState::IN_PLAY_CURRENT_JOB)},
 		{OrderMenuItem::SHIP, application::UIState::PushTo(::UIState::IN_PLAY_SHIP_STATUS)}
 	};

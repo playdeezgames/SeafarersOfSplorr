@@ -7,15 +7,17 @@
 #include <Application.Update.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Destinations.h>
+#include <Game.Colors.h>
 #include <Game.Islands.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
-#include <Game.Colors.h>
 #include <Visuals.Images.h>
 #include <Visuals.Texts.h>
 #include <Visuals.WorldMap.h>
-namespace state::in_play::HeadFor
+namespace state::in_play
 {
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_WORLD_MAP;
 	const std::string LAYOUT_NAME = "State.InPlay.HeadFor";
 
 	const std::string AREA_WORLD_MAP = "WorldMap";
@@ -208,13 +210,13 @@ namespace state::in_play::HeadFor
 		Refresh();
 	}
 
-	void Start()
+	void WorldMap::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_HEAD_FOR, OnEnter);
-		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_HEAD_FOR, visuals::Areas::HandleMouseMotion(LAYOUT_NAME,OnMouseMotionInArea,OnMouseMotionOutsideArea));
-		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_HEAD_FOR, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
-		::application::Command::SetHandlers(::UIState::IN_PLAY_HEAD_FOR, commandHandlers);
-		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_HEAD_FOR, LAYOUT_NAME);
-		::application::Update::AddHandler(::UIState::IN_PLAY_HEAD_FOR, OnUpdate);
+		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
+		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseMotion(LAYOUT_NAME,OnMouseMotionInArea,OnMouseMotionOutsideArea));
+		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
+		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		::application::Update::AddHandler(CURRENT_STATE, OnUpdate);
 	}
 }

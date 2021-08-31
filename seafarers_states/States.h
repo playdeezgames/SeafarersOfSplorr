@@ -35,6 +35,10 @@ namespace state
 		{
 			static void Start();
 		};
+		struct WorldMap
+		{
+			static void Start();
+		};
 	}
 }
 namespace state::MainMenu { void Start(); }
@@ -52,7 +56,6 @@ namespace state::in_play::AtSea { void Start(); }
 namespace state::in_play::Docked { void Start(); }
 namespace state::in_play::Win { void Start(); }
 namespace state::in_play::Lose { void Start(); }
-namespace state::in_play::HeadFor { void Start(); }
 namespace state::in_play::IslandJobs { void Start(); }
 namespace state::in_play::ConfirmReplaceJob { void Start(); }
 namespace state::in_play::ConfirmAbandonJob { void Start(); }
