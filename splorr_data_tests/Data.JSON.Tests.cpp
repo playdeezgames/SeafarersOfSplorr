@@ -31,7 +31,7 @@ namespace common
 				Assert(json.is_object(), "loaded json should be an object");
 			}),
 		AddTest(
-			"should",
+			"data::JSON::Save should save a json file",
 			[]() {
 				const std::string fileName = ".\\saveTest.json";
 				RemoveExistingFile(fileName);
