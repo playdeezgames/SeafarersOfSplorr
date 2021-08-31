@@ -15,6 +15,7 @@
 #include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
+#include <Visuals.MenuItems.h>
 #include <Visuals.Menus.h>
 #include <Visuals.Texts.h>
 namespace state::in_play
@@ -22,6 +23,8 @@ namespace state::in_play
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CAREENED_TO_PORT;
 	static const std::string LAYOUT_NAME = "State.InPlay.CareenedToPort";
 	static const std::string MENU_ID = "Careen";
+	static const std::string MENU_ITEM_CLEAN_HULL = "CleanHull";
+	static const std::string FORMAT_CLEAN_HULL = "Clean Starbord Hull({:.0f}% Fouled)";
 
 	enum class CareenMenuItem
 	{
@@ -29,9 +32,21 @@ namespace state::in_play
 		WEIGH_ANCHOR
 	};
 
+	static void Refresh()
+	{
+		visuals::MenuItems::SetText(
+			LAYOUT_NAME, 
+			MENU_ITEM_CLEAN_HULL, 
+			std::format(
+				FORMAT_CLEAN_HULL, 
+				game::avatar::ShipStatistics::GetFoulingPercentage(
+					game::Side::STARBOARD)));
+	}
+
 	static void OnCleanHull()
 	{
 		game::avatar::ShipStatistics::CleanHull(game::Side::STARBOARD);
+		Refresh();
 	}
 
 	static void OnWeighAnchor()
@@ -60,6 +75,7 @@ namespace state::in_play
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
+		Refresh();
 	}
 
 	void CareenedToPort::Start()
