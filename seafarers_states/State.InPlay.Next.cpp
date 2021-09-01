@@ -12,6 +12,8 @@
 #include "UIState.h"
 namespace state::in_play
 {
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_NEXT;
+
 	struct StatusChecker
 	{
 		std::function<bool()> checker;
@@ -26,7 +28,7 @@ namespace state::in_play
 		{visuals::Confirmations::HasConfirmation, ::UIState::IN_PLAY_CONFIRM}
 	};
 
-	static const std::map<game::avatar::State, ::UIState> dockedStateTable =
+	static const std::map<game::avatar::State, ::UIState> avatarStateTable =
 	{
 		{ game::avatar::State::DARK_ALLEY, ::UIState::IN_PLAY_DARK_ALLEY },
 		{ game::avatar::State::DARK_ALLEY_ENTRANCE, ::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE }, 
@@ -53,11 +55,11 @@ namespace state::in_play
 			}
 		}
 		game::AutoSave();
-		auto dockedState = game::Avatar::GetState();
-		if (dockedState)
+		auto avatarState = game::Avatar::GetState();
+		if (avatarState)
 		{
-			auto iter = dockedStateTable.find(dockedState.value());
-			if(iter!=dockedStateTable.end())
+			auto iter = avatarStateTable.find(avatarState.value());
+			if(iter!= avatarStateTable.end())
 			{
 				application::UIState::Write(iter->second);
 				return;
@@ -76,7 +78,7 @@ namespace state::in_play
 
 	void Next::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_NEXT, OnEnter);
-		::application::Update::AddHandler(::UIState::IN_PLAY_NEXT, OnUpdate);
+		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
+		::application::Update::AddHandler(CURRENT_STATE, OnUpdate);
 	}
 }
