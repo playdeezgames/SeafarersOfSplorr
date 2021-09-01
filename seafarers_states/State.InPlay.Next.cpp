@@ -8,8 +8,9 @@
 #include <Visuals.Confirmations.h>
 #include <Visuals.Messages.h>
 #include <map>
+#include "States.h"
 #include "UIState.h"
-namespace state::in_play::Next
+namespace state::in_play
 {
 	struct StatusChecker
 	{
@@ -17,7 +18,7 @@ namespace state::in_play::Next
 		::UIState destination;
 	};
 
-	const std::list<StatusChecker> statusCheckers =
+	static const std::list<StatusChecker> statusCheckers =
 	{
 		{game::avatar::Statistics::IsOutOfTurns, ::UIState::IN_PLAY_WIN},
 		{game::avatar::Statistics::IsDead, ::UIState::IN_PLAY_LOSE},
@@ -25,7 +26,7 @@ namespace state::in_play::Next
 		{visuals::Confirmations::HasConfirmation, ::UIState::IN_PLAY_CONFIRM}
 	};
 
-	const std::map<game::avatar::State, ::UIState> dockedStateTable =
+	static const std::map<game::avatar::State, ::UIState> dockedStateTable =
 	{
 		{ game::avatar::State::DARK_ALLEY, ::UIState::IN_PLAY_DARK_ALLEY },
 		{ game::avatar::State::DARK_ALLEY_ENTRANCE, ::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE }, 
@@ -73,7 +74,7 @@ namespace state::in_play::Next
 		OnEnter();
 	}
 
-	void Start()
+	void Next::Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::IN_PLAY_NEXT, OnEnter);
 		::application::Update::AddHandler(::UIState::IN_PLAY_NEXT, OnUpdate);

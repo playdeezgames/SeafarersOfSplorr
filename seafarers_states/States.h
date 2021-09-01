@@ -31,6 +31,10 @@ namespace state
 		{
 			static void Start();
 		};
+		struct Next
+		{
+			static void Start();
+		};
 		struct ShipStatus
 		{
 			static void Start();
@@ -66,7 +70,6 @@ namespace state::in_play::CurrentJob { void Start(); }
 namespace state::in_play::IslandTrade { void Start(); }
 namespace state::in_play::IslandBuy { void Start(); }
 namespace state::in_play::IslandSell { void Start(); }
-namespace state::in_play::Next { void Start(); }
 namespace state::in_play::Shipyard { void Start(); }
 namespace state::in_play::DarkAlleyEntrance { void Start(); }
 namespace state::in_play::DarkAlley { void Start(); }
