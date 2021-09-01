@@ -39,10 +39,16 @@ namespace game
 		{"YY",1},
 	};
 
+	static const std::map<size_t, size_t> nameLengths = 
+	{
+		{5,1},
+		{7,2},
+		{9,1}
+	};
+
 	static std::string GenerateName()
 	{
-		//TODO: hardcoded
-		size_t nameLength = 2 * (common::RNG::FromRange((size_t)1, (size_t)3) + common::RNG::FromRange((size_t)1, (size_t)3)) + 1;
+		size_t nameLength = common::RNG::FromGenerator(nameLengths,(size_t)0);
 		bool vowel = false;
 		std::string result = "";
 		while (nameLength > 0)
@@ -71,16 +77,25 @@ namespace game
 		return result;
 	}
 
+	static const std::map<int, size_t> demigodCounts =
+	{
+		{4,1},
+		{5,4},
+		{6,10},
+		{7,16},
+		{8,19},
+		{9,16},
+		{10,10},
+		{11,4},
+		{12,1}
+	};
+
 	void Demigods::Reset(const Difficulty&)
 	{
 		data::game::Demigod::Clear();
 		data::game::DemigodItem::Clear();
 		data::game::avatar::DemigodFavor::Clear();
-		auto demigodCount =
-			common::RNG::FromRange(1, 3) +//TODO: hardcoded
-			common::RNG::FromRange(1, 3) +//TODO: hardcoded
-			common::RNG::FromRange(1, 3) +//TODO: hardcoded
-			common::RNG::FromRange(1, 3);//TODO: hardcoded
+		auto demigodCount = common::RNG::FromGenerator(demigodCounts, 0);
 		auto names = GenerateNames(demigodCount);
 		auto items = Items::All();
 		for (auto name : names)
