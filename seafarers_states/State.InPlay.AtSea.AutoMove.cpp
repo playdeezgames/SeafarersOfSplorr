@@ -1,10 +1,13 @@
 #include <Application.UIState.h>
+#include <format>
 #include <Game.Avatar.AtSea.h>
+#include <Game.Colors.h>
 #include <Game.Islands.h>
 #include "UIState.h"
+#include <Visuals.Messages.h>
 namespace state::in_play::AtSea
 {
-	const size_t TICKS_TOTAL = 250;
+	static const size_t TICKS_TOTAL = 250;
 	static size_t ticksLeft = TICKS_TOTAL;
 	enum class AutoMoveState
 	{
@@ -50,6 +53,37 @@ namespace state::in_play::AtSea
 		}
 	}
 
+	static void AddArrivalMessage()
+	{
+		auto island = game::Islands::GetDockableIslands().front();
+		if (island.visits.has_value())
+		{
+			visuals::Messages::Write({
+					"==ARRIVAL!==",
+					{
+						{
+							{19,10},
+							std::format("You arrive at {}.", island.name),
+							game::Colors::GRAY,
+							visuals::HorizontalAlignment::CENTER
+						}
+					}
+				});
+			return;
+		}
+		visuals::Messages::Write({
+				"==ARRIVAL!==",
+				{
+					{
+						{19,10},
+						"You arrive at an unknown island.",
+						game::Colors::GRAY,
+						visuals::HorizontalAlignment::CENTER
+					}
+				}
+		});
+	}
+
 	void UpdateAutoMoveState()
 	{
 		if (game::Islands::CanDock())
@@ -57,6 +91,8 @@ namespace state::in_play::AtSea
 			if (autoMoveState == AutoMoveState::ON)
 			{
 				autoMoveState = AutoMoveState::OFF;
+				AddArrivalMessage();
+				application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			}
 		}
 		else
