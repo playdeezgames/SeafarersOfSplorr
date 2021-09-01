@@ -86,10 +86,30 @@ namespace state::in_play
 		}
 	}
 
+	static const std::map<game::avatar::Destination, std::string> nameTexts =
+	{
+		{game::avatar::Destination::ONE, "DestinationName1"},
+		{game::avatar::Destination::TWO, "DestinationName2"},
+		{game::avatar::Destination::THREE, "DestinationName3"},
+		{game::avatar::Destination::FOUR, "DestinationName4"},
+	};
+
+	static void RefreshNames()
+	{
+		for (auto& entry : nameTexts)
+		{
+			visuals::Texts::SetText(
+				LAYOUT_NAME, 
+				entry.second, 
+				game::avatar::Destinations::GetDestinationName(entry.first).value_or(""));
+		}
+	}
+
 	static void Refresh()
 	{
 		RefreshHovers();
 		RefreshSelection();
+		RefreshNames();
 	}
 
 	const std::map<::Command, std::function<void()>> commandHandlers =
@@ -235,14 +255,29 @@ namespace state::in_play
 		Refresh();
 	}
 
+	static const std::string BACKSPACE = "Backspace";
+
+	static void ClearDestinationName()
+	{
+		game::avatar::Destinations::SetDestinationName(currentDestinationId, "");
+	}
+
 	static bool OnKeyDown(const std::string& key)
 	{
+		if (key == BACKSPACE)
+		{
+			ClearDestinationName();
+			Refresh();
+			return true;
+		}
 		return false;
 	}
 
 	static void OnTextInput(const std::string& text)
 	{
-		return;
+		auto name = game::avatar::Destinations::GetDestinationName(currentDestinationId).value_or("") + text;
+		game::avatar::Destinations::SetDestinationName(currentDestinationId, name);
+		Refresh();
 	}
 
 	void WorldMap::Start()
