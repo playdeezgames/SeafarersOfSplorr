@@ -10,9 +10,10 @@ namespace data::game::avatar
 	static const std::string FIELD_PERSON_NAME = "PersonName";
 	static const std::string FIELD_ITEM_NAME = "ItemName";
 	static const std::string FIELD_PROFESSION_NAME = "ProfessionName";
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarQuests]([AvatarId] INT NOT NULL UNIQUE,[DestinationX] REAL NOT NULL, [DestinationY] REAL NOT NULL, [ItemName] TEXT NOT NULL, [PersonName] TEXT NOT NULL, [ProfessionName] TEXT NOT NULL , [Reward] REAL NOT NULL);";
-	static const std::string QUERY_ITEM = "SELECT [DestinationX],[DestinationY],[Reward],[ItemName],[PersonName],[ProfessionName] FROM [AvatarQuests] WHERE [AvatarId]={};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [AvatarQuests]([AvatarId],[DestinationX],[DestinationY],[Reward],[ItemName],[PersonName],[ProfessionName]) VALUES({},{:.4f},{:.4f},{:.4f},{},{},{});";
+	static const std::string FIELD_RECEIPT_EMOTION = "ReceiptEmotion";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarQuests]([AvatarId] INT NOT NULL UNIQUE,[DestinationX] REAL NOT NULL, [DestinationY] REAL NOT NULL, [ItemName] TEXT NOT NULL, [PersonName] TEXT NOT NULL, [ProfessionName] TEXT NOT NULL, [ReceiptEmotion] TEXT NOT NULL, [Reward] REAL NOT NULL);";
+	static const std::string QUERY_ITEM = "SELECT [DestinationX],[DestinationY],[Reward],[ItemName],[PersonName],[ProfessionName],[ReceiptEmotion] FROM [AvatarQuests] WHERE [AvatarId]={};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [AvatarQuests]([AvatarId],[DestinationX],[DestinationY],[Reward],[ItemName],[PersonName],[ProfessionName],[ReceiptEmotion]) VALUES({},{:.4f},{:.4f},{:.4f},{},{},{},{});";
 	static const std::string DELETE_ITEM = "DELETE FROM [AvatarQuests] WHERE [AvatarId]={};";
 
 	static const auto AutoCreateAvatarQuestTable = data::game::Common::Run(CREATE_TABLE);
@@ -30,7 +31,8 @@ namespace data::game::avatar
 					data.value().reward,
 					common::Data::QuoteString(data.value().itemName),
 					common::Data::QuoteString(data.value().personName),
-					common::Data::QuoteString(data.value().professionName)));
+					common::Data::QuoteString(data.value().professionName),
+					common::Data::QuoteString(data.value().receiptEmotion)));
 		}
 		else
 		{
@@ -51,7 +53,8 @@ namespace data::game::avatar
 					common::Data::ToDouble(record[FIELD_REWARD]),
 					record[FIELD_ITEM_NAME],
 					record[FIELD_PERSON_NAME],
-					record[FIELD_PROFESSION_NAME]});
+					record[FIELD_PROFESSION_NAME],
+					record[FIELD_RECEIPT_EMOTION] });
 		}
 		return std::nullopt;
 	}

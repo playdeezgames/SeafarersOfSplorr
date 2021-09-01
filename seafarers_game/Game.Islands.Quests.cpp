@@ -146,7 +146,38 @@ namespace game::islands
 		{"bogan",1},
 		{"dog",1},
 		{"knacker",1},
-		{"mudlark",1}
+		{"mudlark",1},
+		{"gong farmer",1}
+	};
+
+	static const std::map<std::string, size_t> receiptAdverbs =
+	{
+		{"horribly",1},
+		{"incredibly",1},
+		{"barely",1},
+		{"extremely",1},
+		{"fanatically",1},
+		{"visibly",1},
+		{"uncannily",1},
+		{"unnervingly",1},
+		{"creepily",1}
+	};
+
+	static const std::map<std::string, size_t> receiptAdjectives =
+	{
+		{"surprised",1},
+		{"aroused",1},
+		{"angry",1},
+		{"elated",1},
+		{"nonchalant",1},
+		{"apathetic",1},
+		{"happy",1},
+		{"grumpy",1},
+		{"sad",1},
+		{"disappointed",1},
+		{"surly",1},
+		{"indifferent",1},
+		{"miffed",1}
 	};
 
 	static std::string GenerateProfessionName()
@@ -154,7 +185,13 @@ namespace game::islands
 		return std::format("{} {}",
 			common::RNG::FromGenerator(professionAdjectives, std::string()),
 			common::RNG::FromGenerator(professionNames, std::string()));
+	}
 
+	static std::string GenerateReceiptEmotion()
+	{
+		return std::format("{} {}",
+			common::RNG::FromGenerator(receiptAdverbs, std::string()),
+			common::RNG::FromGenerator(receiptAdjectives, std::string()));
 	}
 
 	static common::XY<double> GenerateDestination(const common::XY<double>& location)
@@ -190,7 +227,8 @@ namespace game::islands
 					GenerateReward(),
 					GenerateItemName(),
 					GeneratePersonName(),
-					GenerateProfessionName()
+					GenerateProfessionName(),
+					GenerateReceiptEmotion()
 				};
 				data::game::island::Quest::Write(data);
 			}
@@ -207,7 +245,8 @@ namespace game::islands
 				quest.value().reward,
 				quest.value().itemName,
 				quest.value().personName,
-				quest.value().professionName});
+				quest.value().professionName,
+				quest.value().receiptEmotion});
 		}
 		return std::nullopt;
 	}

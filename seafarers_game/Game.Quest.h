@@ -10,5 +10,6 @@ namespace game
 		std::string itemName;
 		std::string personName;
 		std::string professionName;
+		std::string receiptEmotion;
 	};
 }

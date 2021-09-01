@@ -24,7 +24,8 @@ namespace game::avatar
 					quest.value().reward,
 					quest.value().itemName,
 					quest.value().personName,
-					quest.value().professionName}));
+					quest.value().professionName ,
+					quest.value().receiptEmotion}));
 			data::game::island::Quest::Clear(location);
 			game::Islands::SetKnown(quest.value().destination, game::avatar::Statistics::GetTurnsRemaining());
 			data::game::island::Known::Write(quest.value().destination);
@@ -67,7 +68,8 @@ namespace game::avatar
 				quest.value().reward,
 				quest.value().itemName,
 				quest.value().personName,
-				quest.value().professionName});
+				quest.value().professionName,
+				quest.value().receiptEmotion});
 		}
 		return std::nullopt;
 	}

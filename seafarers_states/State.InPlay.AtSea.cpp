@@ -7,9 +7,11 @@
 #include <Application.Update.h>
 #include <Common.Heading.h>
 #include <Common.Utility.h>
+#include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.AtSea.h>
 #include <Game.Avatar.Docked.h>
+#include <Game.Avatar.Quest.h>
 #include <Game.Colors.h>
 #include "UIState.h"
 #include <Visuals.Areas.h>
@@ -73,6 +75,7 @@ namespace state::in_play::AtSea
 
 	static void OnDock()
 	{
+		auto quest = game::avatar::Quest::Read();
 		if (game::avatar::Docked::Dock() == game::avatar::Docked::DockResult::COMPLETED_QUEST)
 		{
 			visuals::Messages::Write(
@@ -80,7 +83,31 @@ namespace state::in_play::AtSea
 					"==DELIVERY COMPLETE==",
 					{
 						{
-							{19,10},
+							{19,5},
+							std::format("{} the {}",quest.value().personName, quest.value().professionName),
+							game::Colors::GRAY,
+							visuals::HorizontalAlignment::CENTER
+						},
+						{
+							{19,7},
+							std::format("is {}",quest.value().receiptEmotion),
+							game::Colors::GRAY,
+							visuals::HorizontalAlignment::CENTER
+						},
+						{
+							{19,9},
+							"when given the",
+							game::Colors::GRAY,
+							visuals::HorizontalAlignment::CENTER
+						},
+						{
+							{19,11},
+							std::format("{}.",quest.value().itemName),
+							game::Colors::GRAY,
+							visuals::HorizontalAlignment::CENTER
+						},
+						{
+							{19,14},
 							"Yer reputation increases!",
 							game::Colors::GRAY,
 							visuals::HorizontalAlignment::CENTER

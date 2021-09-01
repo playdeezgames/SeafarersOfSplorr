@@ -12,6 +12,7 @@ namespace data::game::island
 		std::string itemName;
 		std::string personName;
 		std::string professionName;
+		std::string receiptEmotion;
 		static void Write(const Quest&);
 		static std::optional<Quest> Read(const common::XY<double>&);
 		static void Clear(const common::XY<double>&);
