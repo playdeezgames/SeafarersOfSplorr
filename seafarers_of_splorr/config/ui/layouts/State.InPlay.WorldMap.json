@@ -110,6 +110,20 @@
         "visible":false
     },
     {
+        "text-id": "DestinationName1",
+        "type": "Text",
+        "font": "default",
+        "color": "Gray",
+        "text": "<destination1>",
+        "x": 376,
+        "y": 164,
+        "horizontal-alignment": 1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
         "type": "Image",
         "sprite": "AtSeaDestination2",
         "color": "White",
@@ -133,6 +147,20 @@
         "x": 368,
         "y": 188,
         "visible":false
+    },
+    {
+        "text-id": "DestinationName2",
+        "type": "Text",
+        "font": "default",
+        "color": "Gray",
+        "text": "<destination2>",
+        "x": 376,
+        "y": 180,
+        "horizontal-alignment": 1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
     },
     {
         "type": "Image",
@@ -160,6 +188,20 @@
         "visible":false
     },
     {
+        "text-id": "DestinationName3",
+        "type": "Text",
+        "font": "default",
+        "color": "Gray",
+        "text": "<destination3>",
+        "x": 376,
+        "y": 196,
+        "horizontal-alignment": 1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
         "type": "Image",
         "sprite": "AtSeaDestination4",
         "color": "White",
@@ -183,6 +225,20 @@
         "x": 368,
         "y": 220,
         "visible":false
+    },
+    {
+        "text-id": "DestinationName4",
+        "type": "Text",
+        "font": "default",
+        "color": "Gray",
+        "text": "<destination4>",
+        "x": 376,
+        "y": 212,
+        "horizontal-alignment": 1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
     },
     {
         "type":"Area",

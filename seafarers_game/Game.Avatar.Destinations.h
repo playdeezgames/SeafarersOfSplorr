@@ -3,12 +3,17 @@
 #include "Game.Avatar.Destination.h"
 #include <list>
 #include <optional>
+#include <string>
 namespace game::avatar
 {
 	struct Destinations
 	{
-		static const std::list<game::avatar::Destination>& All();
-		static std::optional<common::XY<double>> GetDestination(const game::avatar::Destination&);
-		static void SetDestination(const game::avatar::Destination&, const std::optional<common::XY<double>>&);
+		static const std::list<Destination>& All();
+
+		static std::optional<common::XY<double>> GetDestination(const Destination&);
+		static void SetDestination(const Destination&, const std::optional<common::XY<double>>&);
+
+		static std::optional<std::string> GetDestinationName(const Destination&);
+		static void SetDestinationName(const Destination&, const std::string&);
 	};
 }

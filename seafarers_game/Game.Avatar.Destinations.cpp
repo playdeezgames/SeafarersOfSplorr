@@ -1,4 +1,5 @@
 #include <Data.Game.Avatar.Destination.h>
+#include <Data.Game.Avatar.DestinationName.h>
 #include "Game.Avatar.Destinations.h"
 namespace game::avatar
 {
@@ -30,4 +31,13 @@ namespace game::avatar
 		return allDestinations;
 	}
 
+	std::optional<std::string> Destinations::GetDestinationName(const Destination& destination)
+	{
+		return data::game::avatar::DestinationName::Read((int)destination);
+	}
+
+	void Destinations::SetDestinationName(const Destination& destination, const std::string& name)
+	{
+		data::game::avatar::DestinationName::Write((int)destination, name);
+	}
 }

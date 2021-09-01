@@ -7,7 +7,7 @@ namespace data::game::avatar
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [DestinationNames]([DestinationId] INT NOT NULL UNIQUE, [DestinationName] TEXT NOT NULL);";
 	static const std::string REPLACE_ITEM = "REPLACE ITEM [DestinationNames]([DestinationId],[DestinationName]) VALUES({},{});";
 	static const std::string QUERY_ITEM = "SELECT [DestinationName] FROM [DestinationNames] WHERE [DestinationId]={};";
-	static const std::string DELETE_ALL = "DELETE [DestinationNames];";
+	static const std::string DELETE_ALL = "DELETE FROM [DestinationNames];";
 	static const std::string FIELD_DESTINATION_NAME = "DestinationName";
 
 	static const auto AutoCreateDestinationNamesTable = Common::Run(CREATE_TABLE);
