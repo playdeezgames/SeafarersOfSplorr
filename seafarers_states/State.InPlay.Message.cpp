@@ -4,16 +4,18 @@
 #include <Application.OnEnter.h>
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Messages.h>
 #include <Visuals.SpriteGrid.h>
 #include <Visuals.Texts.h>
-namespace state::in_play::Message
+namespace state::in_play
 {
-	const std::string LAYOUT_NAME = "State.InPlay.Message";
-	const std::string SPRITE_GRID = "Grid";
-	const std::string TEXT_CAPTION = "Caption";
-	const std::string FONT_DEFAULT = "default";
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_MESSAGE;
+	static const std::string LAYOUT_NAME = "State.InPlay.Message";
+	static const std::string SPRITE_GRID = "Grid";
+	static const std::string TEXT_CAPTION = "Caption";
+	static const std::string FONT_DEFAULT = "default";
 
 	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
 	{
@@ -38,11 +40,11 @@ namespace state::in_play::Message
 		}
 	}
 
-	void Start()
+	void Message::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_MESSAGE, OnEnter);
-		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_MESSAGE, OnMouseButtonUp);
-		::application::Command::SetHandler(::UIState::IN_PLAY_MESSAGE, ::application::UIState::GoTo(::UIState::IN_PLAY_NEXT));
-		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_MESSAGE, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
+		::application::MouseButtonUp::AddHandler(CURRENT_STATE, OnMouseButtonUp);
+		::application::Command::SetHandler(CURRENT_STATE, ::application::UIState::GoTo(::UIState::IN_PLAY_NEXT));
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
 	}
 }
