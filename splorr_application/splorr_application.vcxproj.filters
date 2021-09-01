@@ -47,7 +47,7 @@
     <ClInclude Include="Application.Keyboard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Options.h">
+    <ClInclude Include="Application.Options.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Application.TextInput.h">
@@ -85,7 +85,7 @@
     <ClCompile Include="Application.Keyboard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Options.cpp">
+    <ClCompile Include="Application.Options.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Application.TextInput.cpp">
