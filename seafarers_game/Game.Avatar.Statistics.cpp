@@ -7,6 +7,12 @@ namespace game::avatar
 {
 	const std::string Statistics::FORMAT_HEALTH = "\x83 {:.0f}";
 	const std::string Statistics::FORMAT_BRAWLING = "\x88 {:.1f}";
+	const std::string Statistics::FORMAT_TURNS = "\x81 {:d}";
+	const std::string Statistics::FORMAT_MONEY = "\x80 {:.3f}";
+	const std::string Statistics::FORMAT_REPUTATION = "\x86 {:.0f}";
+	const std::string Statistics::FORMAT_SATIETY = "\x82 {:.0f}";
+	const std::string Statistics::FORMAT_HEADING = "\x84 {}";
+	const std::string Statistics::FORMAT_SPEED = "\x85 {:.2f}";
 
 	struct StatisticDescriptor
 	{

@@ -26,13 +26,6 @@ namespace state::in_play::AtSea
 	const std::string TEXT_AVATAR_MONEY = "avatar-money";
 	const std::string TEXT_AVATAR_REPUTATION = "avatar-reputation";
 
-	const std::string FORMAT_TURNS = "\x81 {:d}";
-	const std::string FORMAT_MONEY = "\x80 {:.3f}";
-	const std::string FORMAT_REPUTATION = "\x86 {:.0f}";
-	const std::string FORMAT_SATIETY = "\x82 {:.0f}";
-	const std::string FORMAT_HEADING = "\x84 {}";
-	const std::string FORMAT_SPEED = "\x85 {:.2f}";
-
 	const std::string IMAGE_CURRENT_HEADING = "CurrentHeading";
 	const std::string IMAGE_DESTINATION_1 = "Destination1";
 	const std::string IMAGE_DESTINATION_2 = "Destination2";
@@ -50,17 +43,17 @@ namespace state::in_play::AtSea
 
 	static void RefreshAvatarSatiety()
 	{
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_SATIETY, std::format(FORMAT_SATIETY, game::avatar::Statistics::GetSatiety()));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_SATIETY, std::format(game::avatar::Statistics::FORMAT_SATIETY, game::avatar::Statistics::GetSatiety()));
 	}
 
 	static void RefreshAvatarMoney()
 	{
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_MONEY, std::format(FORMAT_MONEY, game::avatar::Statistics::GetMoney()));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_MONEY, std::format(game::avatar::Statistics::FORMAT_MONEY, game::avatar::Statistics::GetMoney()));
 	}
 
 	static void RefreshAvatarReputation()
 	{
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_REPUTATION, std::format(FORMAT_REPUTATION, game::avatar::Statistics::GetReputation()));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_REPUTATION, std::format(game::avatar::Statistics::FORMAT_REPUTATION, game::avatar::Statistics::GetReputation()));
 	}
 
 	static void RefreshAvatarHealth()
@@ -70,7 +63,7 @@ namespace state::in_play::AtSea
 
 	static void RefreshAvatarTurns()
 	{
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_TURNS, std::format(FORMAT_TURNS, game::avatar::Statistics::GetTurnsRemaining()));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_TURNS, std::format(game::avatar::Statistics::FORMAT_TURNS, game::avatar::Statistics::GetTurnsRemaining()));
 	}
 
 	static void RefreshAvatarHeading()
@@ -79,14 +72,14 @@ namespace state::in_play::AtSea
 		visuals::Texts::SetText(
 			LAYOUT_NAME, 
 			TEXT_AVATAR_HEADING, 
-			std::format(FORMAT_HEADING, common::Heading::ToCompassPoint(heading)));
+			std::format(game::avatar::Statistics::FORMAT_HEADING, common::Heading::ToCompassPoint(heading)));
 		visuals::Images::SetAngle(LAYOUT_NAME, IMAGE_CURRENT_HEADING, heading);
 	}
 
 	static void RefreshAvatarSpeed()
 	{
 		auto speed = game::avatar::AtSea::GetSpeed();
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_SPEED, std::format(FORMAT_SPEED, speed));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_SPEED, std::format(game::avatar::Statistics::FORMAT_SPEED, speed));
 	}
 
 	const std::map<game::avatar::Destination, std::string> destinationIdImages =

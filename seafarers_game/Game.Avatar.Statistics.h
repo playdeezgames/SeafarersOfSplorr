@@ -7,6 +7,12 @@ namespace game::avatar
 	{
 		static const std::string FORMAT_HEALTH;
 		static const std::string FORMAT_BRAWLING;
+		static const std::string FORMAT_TURNS;
+		static const std::string FORMAT_MONEY;
+		static const std::string FORMAT_REPUTATION;
+		static const std::string FORMAT_SATIETY;
+		static const std::string FORMAT_HEADING;
+		static const std::string FORMAT_SPEED;
 		static void Reset(const game::Difficulty&);
 		static double GetMoney();
 		static void ChangeMoney(double);

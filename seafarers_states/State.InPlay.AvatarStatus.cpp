@@ -43,6 +43,12 @@ namespace state::in_play
 	static void RefreshGrid()
 	{
 		visuals::SpriteGrid::Clear(LAYOUT_NAME, SPRITE_GRID_ID);
+		WriteTextToGrid({ 0,0 }, std::format(game::avatar::Statistics::FORMAT_MONEY, game::avatar::Statistics::GetMoney()), game::Colors::YELLOW);
+		WriteTextToGrid({ 0,1 }, std::format(game::avatar::Statistics::FORMAT_REPUTATION, game::avatar::Statistics::GetReputation()), game::Colors::BLUE);
+		WriteTextToGrid({ 0,2 }, std::format(game::avatar::Statistics::FORMAT_BRAWLING, game::avatar::Statistics::GetBrawling()), game::Colors::BROWN);
+		WriteTextToGrid({ 0,3 }, std::format(game::avatar::Statistics::FORMAT_HEALTH, game::avatar::Statistics::GetHealth()), game::Colors::RED);
+		WriteTextToGrid({ 0,4 }, std::format(game::avatar::Statistics::FORMAT_SATIETY, game::avatar::Statistics::GetSatiety()), game::Colors::MAGENTA);
+		WriteTextToGrid({ 0,5 }, std::format(game::avatar::Statistics::FORMAT_TURNS, game::avatar::Statistics::GetTurnsRemaining()), game::Colors::DARK_GRAY);
 	}
 
 	static void OnEnter()
