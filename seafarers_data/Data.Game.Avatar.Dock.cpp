@@ -14,28 +14,23 @@ namespace data::game::avatar
 
 	static const auto AutoCreateAvatarDockTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Dock::ClearLocation()
+	void Dock::Clear()
 	{
 		AutoCreateAvatarDockTable();
-		std::string query =
-			(std::format(DELETE_ITEM, data::game::Common::AVATAR_ID));
-		data::game::Common::Execute(query);
+		data::game::Common::Execute(std::format(DELETE_ITEM, data::game::Common::AVATAR_ID));
 	}
 
 
-	void Dock::SetLocation(const common::XY<double>& location)
+	void Dock::Write(const common::XY<double>& location)
 	{
 		AutoCreateAvatarDockTable();
-		std::string query =
-			std::format(REPLACE_ITEM, data::game::Common::AVATAR_ID, location.GetX(), location.GetY());
-		data::game::Common::Execute(query);
+		data::game::Common::Execute(std::format(REPLACE_ITEM, data::game::Common::AVATAR_ID, location.GetX(), location.GetY()));
 	}
 
-	std::optional<common::XY<double>> Dock::GetLocation()
+	std::optional<common::XY<double>> Dock::Read()
 	{
 		AutoCreateAvatarDockTable();
-		std::string query = std::format(QUERY_ITEM, data::game::Common::AVATAR_ID);
-		auto result = data::game::Common::Execute(query);
+		auto result = data::game::Common::Execute(std::format(QUERY_ITEM, data::game::Common::AVATAR_ID));
 		if (!result.empty())
 		{
 			auto& record = result.front();

@@ -19,7 +19,7 @@ namespace game::avatar
 	{
 		auto location = game::avatar::Docked::GetDockedLocation();
 		auto island = game::Islands::Read(location.value()).value();
-		data::game::avatar::Dock::ClearLocation();
+		data::game::avatar::Dock::Clear();
 		return {
 			game::Colors::GREEN,
 			std::format(FORMAT_UNDOCK, island.name),

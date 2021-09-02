@@ -27,16 +27,16 @@ namespace game::avatar
 		std::optional<Docked::DockResult> result = Docked::DockResult::DOCKED;
 		game::Islands::AddVisit(
 			location,
-			game::avatar::Statistics::GetTurnsRemaining());
+			Statistics::GetTurnsRemaining());
 		game::islands::Quests::Update(location);
 		if (game::avatar::Quest::CompleteQuest(location))
 		{
 			result = Docked::DockResult::COMPLETED_QUEST;
 		}
-		data::game::avatar::Dock::SetLocation(location);
+		data::game::avatar::Dock::Write(location);
 		data::game::Avatar::SetState((int)game::avatar::State::DOCK);
 		auto island = game::Islands::Read(location).value();
-		game::avatar::Log::Write({ game::Colors::GREEN, std::format(FORMAT_DOCK, island.name) });
+		Log::Write({ game::Colors::GREEN, std::format(FORMAT_DOCK, island.name) });
 		return result;
 	}
 
@@ -56,6 +56,6 @@ namespace game::avatar
 
 	std::optional<common::XY<double>> Docked::GetDockedLocation()
 	{
-		return data::game::avatar::Dock::GetLocation();
+		return data::game::avatar::Dock::Read();
 	}
 }
