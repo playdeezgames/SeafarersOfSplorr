@@ -44,7 +44,7 @@ namespace data::game::avatar
 		data::game::Common::Execute(DELETE_ALL);
 	}
 
-	std::map<int, size_t> Items::ReadAll()
+	std::map<int, size_t> Items::All()
 	{
 		std::map<int, size_t> result;
 		auto records =

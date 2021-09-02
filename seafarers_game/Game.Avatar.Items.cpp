@@ -6,7 +6,7 @@ namespace game::avatar
 	std::map<game::Item, size_t> Items::All()
 	{
 		std::map<game::Item, size_t> result;
-		auto inventory = data::game::avatar::Items::ReadAll();
+		auto inventory = data::game::avatar::Items::All();
 		for (auto& item : inventory)
 		{
 			result[(game::Item)item.first] = item.second;
