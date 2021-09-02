@@ -15,6 +15,10 @@ namespace state
 		{
 			static void Start();
 		};
+		struct AvatarStatus
+		{
+			static void Start();
+		};
 		struct Cargo
 		{
 			static void Start();
@@ -28,6 +32,10 @@ namespace state
 			static void Start(); 
 		};
 		struct ChangeSpeed
+		{
+			static void Start();
+		};
+		struct MakeOffering
 		{
 			static void Start();
 		};
@@ -81,4 +89,4 @@ namespace state::in_play::Confirm { void Start(); }
 namespace state::in_play::GambleStart { void Start(); }
 namespace state::in_play::GambleFinish { void Start(); }
 namespace state::in_play::Temple { void Start(); }
-namespace state::in_play::MakeOffering { void Start(); }
+

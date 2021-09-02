@@ -104,6 +104,7 @@ namespace application
 		state::in_play::CareenedToStarboard::Start,
 		state::in_play::Temple::Start,
 		state::in_play::MakeOffering::Start,
+		state::in_play::AvatarStatus::Start,
 		sublayout::UIHamburger::Start,
 		Options::Initialize,
 		visuals::Layouts::Start

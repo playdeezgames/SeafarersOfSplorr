@@ -40,5 +40,6 @@
     "State.InPlay.CareenedToPort": "config/ui/layouts/State.InPlay.CareenedToPort.json",
     "State.InPlay.CareenedToStarboard": "config/ui/layouts/State.InPlay.CareenedToStarboard.json",
     "State.InPlay.Temple": "config/ui/layouts/State.InPlay.Temple.json",
-    "State.InPlay.MakeOffering": "config/ui/layouts/State.InPlay.MakeOffering.json"
+    "State.InPlay.MakeOffering": "config/ui/layouts/State.InPlay.MakeOffering.json",
+    "State.InPlay.AvatarStatus": "config/ui/layouts/State.InPlay.AvatarStatus.json"
 }

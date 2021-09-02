@@ -42,7 +42,6 @@ namespace state::in_play::AtSea
 	const std::string IMAGE_WIND_DIRECTION = "WindDirection";
 
 	const std::string MENU_ITEM_DOCK = "Dock";
-	const std::string MENU_ITEM_JOB = "Job";
 
 	const std::string SPRITE_GRID_LOG = "Log";
 
@@ -195,7 +194,6 @@ namespace state::in_play::AtSea
 		RefreshAvatarDestinations();
 		RefreshAvatarQuestDestination();
 		RefreshLog();
-		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_JOB, game::avatar::Quest::Read().has_value());
 	}
 
 	void RefreshIslands()

@@ -50,7 +50,7 @@ namespace state::in_play::AtSea
 		MOVE,
 		MOVE_ONCE,
 		DOCK,
-		JOB,
+		STATUS,
 		SHIP
 	};
 
@@ -133,7 +133,7 @@ namespace state::in_play::AtSea
 		{OrderMenuItem::MOVE_ONCE, OnMoveOnce},
 		{OrderMenuItem::DOCK, OnDock},
 		{OrderMenuItem::WORLD_MAP, application::UIState::GoTo(::UIState::IN_PLAY_WORLD_MAP)},
-		{OrderMenuItem::JOB, application::UIState::PushTo(::UIState::IN_PLAY_CURRENT_JOB)},
+		{OrderMenuItem::STATUS, application::UIState::PushTo(::UIState::IN_PLAY_AVATAR_STATUS)},
 		{OrderMenuItem::SHIP, application::UIState::PushTo(::UIState::IN_PLAY_SHIP_STATUS)}
 	};
 

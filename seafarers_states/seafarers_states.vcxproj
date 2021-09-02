@@ -32,6 +32,7 @@
     <ClCompile Include="State.InPlay.AtSea.cpp" />
     <ClCompile Include="State.InPlay.AtSea.Refresh.cpp" />
     <ClCompile Include="State.InPlay.AtSeaCareenSelect.cpp" />
+    <ClCompile Include="State.InPlay.AvatarStatus.cpp" />
     <ClCompile Include="State.InPlay.CareenedToPort.cpp" />
     <ClCompile Include="State.InPlay.CareenedToStarboard.cpp" />
     <ClCompile Include="State.InPlay.Cargo.cpp" />

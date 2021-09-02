@@ -16,17 +16,18 @@
 #include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Messages.h>
 #include <Visuals.SpriteGrid.h>
-namespace state::in_play::MakeOffering
+namespace state::in_play
 {
-	const ::UIState CURRENT_LAYOUT = ::UIState::IN_PLAY_MAKE_OFFERING;
-	const std::string LAYOUT_NAME = "State.InPlay.MakeOffering";
-	const std::string SPRITE_GRID_ID = "Grid";
-	const std::string FONT_DEFAULT = "default";
+	static const ::UIState CURRENT_LAYOUT = ::UIState::IN_PLAY_MAKE_OFFERING;
+	static const std::string LAYOUT_NAME = "State.InPlay.MakeOffering";
+	static const std::string SPRITE_GRID_ID = "Grid";
+	static const std::string FONT_DEFAULT = "default";
 
-	const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
+	static const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
 
 	static void OnLeave()
 	{
@@ -90,7 +91,7 @@ namespace state::in_play::MakeOffering
 		RefreshStatistics();
 	}
 
-	void OnEnter()
+	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		UpdateItems();
@@ -191,7 +192,7 @@ namespace state::in_play::MakeOffering
 		}
 	}
 
-	const std::map<::Command, std::function<void()>> commandHandlers =
+	static const std::map<::Command, std::function<void()>> commandHandlers =
 	{
 		{ ::Command::UP, common::Utility::DoPreviousItem(hiliteRow, items, RefreshItems) },
 		{ ::Command::DOWN, common::Utility::DoNextItem(hiliteRow, items, RefreshItems) },
@@ -200,7 +201,7 @@ namespace state::in_play::MakeOffering
 		{ ::Command::RED, OnLeave }
 	};
 
-	void Start()
+	void MakeOffering::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_LAYOUT, OnEnter);
 		::application::MouseButtonUp::AddHandler(CURRENT_LAYOUT, OnMouseButtonUp);

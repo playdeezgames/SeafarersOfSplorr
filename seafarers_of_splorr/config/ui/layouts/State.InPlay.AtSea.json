@@ -158,11 +158,10 @@
                 "enabled": false
             },
             {
-                "text": "Job",
-                "menu-item-id":"Job",
+                "text": "Status",
+                "menu-item-id":"Status",
                 "x": 480,
-                "y": 96,
-                "enabled": false
+                "y": 96
             },
             {
                 "text": "Ship Status",
@@ -231,14 +230,14 @@
     },
     {
         "type":"Area",
-        "area-id":"Job",
+        "area-id":"Status",
         "x":320,
         "y":96,
         "width":320,
         "height":16,
         "menu":{
             "menu-id":"Order",
-            "menu-item-id":"Job"
+            "menu-item-id":"Status"
         }
     },
     {

@@ -181,5 +181,8 @@
     <ClCompile Include="State.InPlay.MakeOffering.cpp">
       <Filter>Source Files\Docked</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.AvatarStatus.cpp">
+      <Filter>Source Files\AtSea\Status</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
