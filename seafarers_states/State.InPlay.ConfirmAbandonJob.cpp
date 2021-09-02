@@ -30,7 +30,7 @@ namespace state::in_play::ConfirmAbandonJob
 
 	const std::map<ConfirmAbandonJobItem, std::function<void()>> activators =
 	{
-		{ ConfirmAbandonJobItem::NO, ::application::UIState::PopFrom() },
+		{ ConfirmAbandonJobItem::NO, ::application::UIState::Pop },
 		{ ConfirmAbandonJobItem::YES, AbandonJob }
 	};
 
@@ -41,8 +41,8 @@ namespace state::in_play::ConfirmAbandonJob
 		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
 		{ ::Command::GREEN, ActivateItem },
-		{ ::Command::BACK, ::application::UIState::PopFrom() },
-		{ ::Command::RED, ::application::UIState::PopFrom() }
+		{ ::Command::BACK, ::application::UIState::Pop },
+		{ ::Command::RED, ::application::UIState::Pop }
 	};
 
 	void Start()

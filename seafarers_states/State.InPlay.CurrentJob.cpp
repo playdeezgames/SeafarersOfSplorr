@@ -39,7 +39,7 @@ namespace state::in_play::CurrentJob
 	const std::map<CurrentJobMenuItem, std::function<void()>> activators =
 	{
 		{ CurrentJobMenuItem::ABANDON, ::application::UIState::GoTo(::UIState::IN_PLAY_CONFIRM_ABANDON_JOB) },
-		{ CurrentJobMenuItem::CANCEL, ::application::UIState::PopFrom() }
+		{ CurrentJobMenuItem::CANCEL, ::application::UIState::Pop }
 	};
 
 	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
@@ -49,8 +49,8 @@ namespace state::in_play::CurrentJob
 		{::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
 		{::Command::GREEN, ActivateItem },
-		{::Command::BACK, ::application::UIState::PopFrom() },
-		{::Command::RED, ::application::UIState::PopFrom() }
+		{::Command::BACK, ::application::UIState::Pop },
+		{::Command::RED, ::application::UIState::Pop }
 	};
 
 	static void UpdateQuestText(const game::Quest& questModel)//TODO: duplicated!

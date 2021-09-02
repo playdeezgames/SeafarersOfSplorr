@@ -55,10 +55,9 @@ namespace application
 		stateStack.pop();
 	}
 
-	std::function<void()> UIState::PopFrom()
+	bool UIState::CanPop()
 	{
-		return []() {
-			Pop();
-		};
+		return !stateStack.empty();
 	}
+
 }
