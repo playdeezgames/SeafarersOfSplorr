@@ -5,10 +5,18 @@
 #include <list>
 namespace game
 {
+	enum class OfferingResult
+	{
+		COOLING_DOWN,
+		SUCCESS,
+		BLESSING,
+		CURSE,
+		FAILURE
+	};
 	struct Demigods
 	{
 		static void Reset(const Difficulty&);
-		static void MakeOffering(const std::string&, const Item&);
+		static OfferingResult MakeOffering(const std::string&, const Item&);
 		static void ApplyTurnEffects();
 	};
 }

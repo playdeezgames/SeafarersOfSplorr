@@ -120,7 +120,7 @@ namespace game
 		auto items = Items::All();
 		for (auto name : names)
 		{
-			data::game::Demigod::Write({
+			data::game::Demigod demigod ={ 
 				name,
 				common::RNG::FromGenerator(patronWeights, (size_t)0),
 				BLESSING_THRESHOLD,
@@ -128,7 +128,9 @@ namespace game
 				(int)avatar::Plights::Generate(avatar::PlightType::BLESSING),
 				CURSE_THRESHOLD,
 				CURSE_MULTIPLIER,
-				(int)avatar::Plights::Generate(avatar::PlightType::CURSE)});
+				(int)avatar::Plights::Generate(avatar::PlightType::CURSE),
+				(size_t)0};
+			data::game::Demigod::Write(demigod);
 			for (auto item : items)
 			{
 				data::game::DemigodItem::Write(name, (int)item, common::RNG::FromRange(OFFERING_FAVOR_MINIMUM, OFFERING_FAVOR_MAXIMUM));
@@ -136,7 +138,7 @@ namespace game
 		}
 	}
 
-	static void ApplyBlessing(data::game::Demigod& demigod, const Item& item, double favor)
+	static bool ApplyBlessing(data::game::Demigod& demigod, const Item& item, double favor)
 	{
 		if (favor >= demigod.blessingThreshold)
 		{
@@ -145,10 +147,12 @@ namespace game
 			data::game::avatar::DemigodFavor::Write(demigod.name, favor);
 			demigod.blessingThreshold *= demigod.blessingMultiplier;
 			data::game::Demigod::Write(demigod);
+			return true;
 		}
+		return false;
 	}
 
-	static void ApplyCurse(data::game::Demigod& demigod, const Item& item, double favor)
+	static bool ApplyCurse(data::game::Demigod& demigod, const Item& item, double favor)
 	{
 		if (favor <= demigod.curseThreshold)
 		{
@@ -157,34 +161,61 @@ namespace game
 			data::game::avatar::DemigodFavor::Write(demigod.name, favor);
 			demigod.curseThreshold *= demigod.curseMultiplier;
 			data::game::Demigod::Write(demigod);
+			return true;
 		}
+		return false;
 	}
 
-	static void ApplyFavor(data::game::Demigod& demigod, const Item& item, double delta)
+	static OfferingResult ApplyFavor(data::game::Demigod& demigod, const Item& item, double delta)
 	{
 		auto favor = data::game::avatar::DemigodFavor::Read(demigod.name).value_or(0.0);
 		favor += delta;
 		data::game::avatar::DemigodFavor::Write(demigod.name, favor);
-		ApplyBlessing(demigod, item, favor);
-		ApplyCurse(demigod, item, favor);
+		if (ApplyBlessing(demigod, item, favor))
+		{
+			return OfferingResult::BLESSING;
+		}
+		if (ApplyCurse(demigod, item, favor))
+		{
+			return OfferingResult::CURSE;
+		}
+		return OfferingResult::SUCCESS;
 	}
 
-	static void DoMakeOffering(data::game::Demigod& demigod, const Item& item)
+	static void UpdateCooldown(data::game::Demigod& demigod)
+	{
+		demigod.offeringCooldown++;
+		data::game::Demigod::Write(demigod);
+	}
+
+	static OfferingResult DoMakeOffering(data::game::Demigod& demigod, const Item& item)
 	{
 		auto delta = data::game::DemigodItem::Read(demigod.name, (int)item);
 		if (delta)
 		{
-			ApplyFavor(demigod, item, delta.value());
+			UpdateCooldown(demigod);
+			return ApplyFavor(demigod, item, delta.value());
 		}
+		return OfferingResult::SUCCESS;
 	}
 
-	void Demigods::MakeOffering(const std::string& name, const Item& item)
+	static OfferingResult CheckOfferingCooldown(data::game::Demigod& demigod, const Item& item)
+	{
+		if (demigod.offeringCooldown > 0)
+		{
+			return OfferingResult::COOLING_DOWN;
+		}
+		return DoMakeOffering(demigod, item);
+	}
+
+	OfferingResult Demigods::MakeOffering(const std::string& name, const Item& item)
 	{
 		auto demigod = data::game::Demigod::Read(name);
 		if(demigod)
 		{
-			DoMakeOffering(demigod.value(), item);
+			CheckOfferingCooldown(demigod.value(), item);
 		}
+		return OfferingResult::FAILURE;
 	}
 
 	void Demigods::ApplyTurnEffects()
