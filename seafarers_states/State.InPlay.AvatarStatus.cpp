@@ -9,6 +9,7 @@
 #include <Game.Avatar.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Items.h>
+#include <Game.Avatar.Plights.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Demigods.h>
@@ -28,6 +29,7 @@ namespace state::in_play
 	static const std::string FONT_DEFAULT = "default";
 
 	static const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
+	static const auto WriteTextToGridRight = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::RIGHT);
 
 	static void OnLeave()
 	{
@@ -40,15 +42,38 @@ namespace state::in_play
 		return true;
 	}
 
+	static void UpdateStatistics()
+	{
+		WriteTextToGridRight({ 39,0 }, std::format(game::avatar::Statistics::FORMAT_MONEY, game::avatar::Statistics::GetMoney()), game::Colors::YELLOW);
+		WriteTextToGridRight({ 39,1 }, std::format(game::avatar::Statistics::FORMAT_REPUTATION, game::avatar::Statistics::GetReputation()), game::Colors::BLUE);
+		WriteTextToGridRight({ 39,2 }, std::format(game::avatar::Statistics::FORMAT_BRAWLING, game::avatar::Statistics::GetBrawling()), game::Colors::BROWN);
+		WriteTextToGridRight({ 39,3 }, std::format(game::avatar::Statistics::FORMAT_HEALTH, game::avatar::Statistics::GetHealth()), game::Colors::RED);
+		WriteTextToGridRight({ 39,4 }, std::format(game::avatar::Statistics::FORMAT_SATIETY, game::avatar::Statistics::GetSatiety()), game::Colors::MAGENTA);
+		WriteTextToGridRight({ 39,5 }, std::format(game::avatar::Statistics::FORMAT_TURNS, game::avatar::Statistics::GetTurnsRemaining()), game::Colors::DARK_GRAY);
+	}
+
+	static void UpdatePlights()
+	{
+		WriteTextToGrid({ 0,0 }, "Plights:", game::Colors::GRAY);
+		auto inflicted = game::avatar::Plights::GetInflicted();
+		int row = 1;
+		if (inflicted.empty())
+		{
+			WriteTextToGrid({ 0, row }, "(none)", game::Colors::GRAY);
+			return;
+		}
+		for (auto& plight : inflicted)
+		{
+			auto descriptor = game::avatar::Plights::Read(plight);
+			WriteTextToGrid({ 0,row++ }, descriptor.name, (descriptor.type == game::avatar::PlightType::CURSE) ? (game::Colors::RED) : (game::Colors::GREEN));
+		}
+	}
+
 	static void RefreshGrid()
 	{
 		visuals::SpriteGrid::Clear(LAYOUT_NAME, SPRITE_GRID_ID);
-		WriteTextToGrid({ 0,0 }, std::format(game::avatar::Statistics::FORMAT_MONEY, game::avatar::Statistics::GetMoney()), game::Colors::YELLOW);
-		WriteTextToGrid({ 0,1 }, std::format(game::avatar::Statistics::FORMAT_REPUTATION, game::avatar::Statistics::GetReputation()), game::Colors::BLUE);
-		WriteTextToGrid({ 0,2 }, std::format(game::avatar::Statistics::FORMAT_BRAWLING, game::avatar::Statistics::GetBrawling()), game::Colors::BROWN);
-		WriteTextToGrid({ 0,3 }, std::format(game::avatar::Statistics::FORMAT_HEALTH, game::avatar::Statistics::GetHealth()), game::Colors::RED);
-		WriteTextToGrid({ 0,4 }, std::format(game::avatar::Statistics::FORMAT_SATIETY, game::avatar::Statistics::GetSatiety()), game::Colors::MAGENTA);
-		WriteTextToGrid({ 0,5 }, std::format(game::avatar::Statistics::FORMAT_TURNS, game::avatar::Statistics::GetTurnsRemaining()), game::Colors::DARK_GRAY);
+		UpdateStatistics();
+		UpdatePlights();
 	}
 
 	static void OnEnter()
