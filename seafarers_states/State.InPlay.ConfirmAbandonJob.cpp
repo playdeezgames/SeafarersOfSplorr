@@ -24,12 +24,13 @@ namespace state::in_play::ConfirmAbandonJob
 	static void AbandonJob()
 	{
 		game::avatar::Quest::AbandonQuest();
+		application::UIState::Pop();
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	const std::map<ConfirmAbandonJobItem, std::function<void()>> activators =
 	{
-		{ ConfirmAbandonJobItem::NO, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) },
+		{ ConfirmAbandonJobItem::NO, ::application::UIState::PopFrom() },
 		{ ConfirmAbandonJobItem::YES, AbandonJob }
 	};
 
@@ -40,8 +41,8 @@ namespace state::in_play::ConfirmAbandonJob
 		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
 		{ ::Command::GREEN, ActivateItem },
-		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) },
-		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) }
+		{ ::Command::BACK, ::application::UIState::PopFrom() },
+		{ ::Command::RED, ::application::UIState::PopFrom() }
 	};
 
 	void Start()

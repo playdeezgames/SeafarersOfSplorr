@@ -55,6 +55,9 @@ namespace state::in_play
 			}
 		}
 		game::AutoSave();
+
+		//TODO: if there is a state on the stack, deal with it first...
+
 		auto avatarState = game::Avatar::GetState();
 		if (avatarState)
 		{
