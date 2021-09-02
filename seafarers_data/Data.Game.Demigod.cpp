@@ -4,11 +4,11 @@
 #include <format>
 namespace data::game
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Demigods]([Name] TEXT NOT NULL UNIQUE, [PatronWeight] INT NOT NULL,[BlessingThreshold] REAL NOT NULL,[BlessingMultiplier] REAL NOT NULL,[BlessingPlightId] INT NOT NULL,[CurseThreshold] REAL NOT NULL,[CurseMultiplier] REAL NOT NULL,[CursePlightId] INT NOT NULL);";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [Demigods]([Name],[PatronWeight],[BlessingThreshold],[BlessingMultiplier],[BlessingPlightId],[CurseThreshold],[CurseMultiplier],[CursePlightId]) VALUES({},{},{},{},{},{},{},{});";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Demigods]([Name] TEXT NOT NULL UNIQUE, [PatronWeight] INT NOT NULL,[BlessingThreshold] REAL NOT NULL,[BlessingMultiplier] REAL NOT NULL,[BlessingPlightId] INT NOT NULL,[CurseThreshold] REAL NOT NULL,[CurseMultiplier] REAL NOT NULL,[CursePlightId] INT NOT NULL,[OfferingCooldown] INT NOT NULL);";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [Demigods]([Name],[PatronWeight],[BlessingThreshold],[BlessingMultiplier],[BlessingPlightId],[CurseThreshold],[CurseMultiplier],[CursePlightId],[OfferingCooldown]) VALUES({},{},{},{},{},{},{},{},{});";
 	static const std::string DELETE_ALL = "DELETE FROM [Demigods];";
-	static const std::string QUERY_ALL = "SELECT [Name],[PatronWeight],[BlessingThreshold],[BlessingMultiplier],[BlessingPlightId],[CurseThreshold],[CurseMultiplier],[CursePlightId] FROM [Demigods];";
-	static const std::string QUERY_ITEM = "SELECT [Name],[PatronWeight],[BlessingThreshold],[BlessingMultiplier],[BlessingPlightId],[CurseThreshold],[CurseMultiplier],[CursePlightId] FROM [Demigods] WHERE [Name]={};";
+	static const std::string QUERY_ALL = "SELECT [Name],[PatronWeight],[BlessingThreshold],[BlessingMultiplier],[BlessingPlightId],[CurseThreshold],[CurseMultiplier],[CursePlightId],[OfferingCooldown] FROM [Demigods];";
+	static const std::string QUERY_ITEM = "SELECT [Name],[PatronWeight],[BlessingThreshold],[BlessingMultiplier],[BlessingPlightId],[CurseThreshold],[CurseMultiplier],[CursePlightId],[OfferingCooldown] FROM [Demigods] WHERE [Name]={};";
 	static const std::string FIELD_NAME = "Name";
 	static const std::string FIELD_PATRON_WEIGHT = "PatronWeight";
 	static const std::string FIELD_BLESSING_THRESHOLD = "BlessingThreshold";
@@ -17,6 +17,7 @@ namespace data::game
 	static const std::string FIELD_CURSE_TRESHOLD = "CurseThreshold";
 	static const std::string FIELD_CURSE_MULTIPLIER = "CurseMultiplier";
 	static const std::string FIELD_CURSE_PLIGHT_ID = "CursePlightId";
+	static const std::string FIELD_OFFERING_COOLDOWN = "OfferingCooldown";
 
 	static const auto AutoCreateDemigodTable = data::game::Common::Run(CREATE_TABLE);
 
@@ -38,7 +39,8 @@ namespace data::game
 				demigod.blessingPlightId,
 				demigod.curseThreshold,
 				demigod.curseMultiplier,
-				demigod.cursePlightId));
+				demigod.cursePlightId,
+				demigod.offeringCooldown));
 	}
 
 	static Demigod ToDemigod(const std::map<std::string, std::string>& record)
@@ -51,7 +53,8 @@ namespace data::game
 				common::Data::ToInt(record.find(FIELD_BLESSING_PLIGHT_ID)->second),
 				common::Data::ToDouble(record.find(FIELD_CURSE_TRESHOLD)->second),
 				common::Data::ToDouble(record.find(FIELD_CURSE_MULTIPLIER)->second),
-				common::Data::ToInt(record.find(FIELD_CURSE_PLIGHT_ID)->second)
+				common::Data::ToInt(record.find(FIELD_CURSE_PLIGHT_ID)->second),
+				(size_t)common::Data::ToInt(record.find(FIELD_OFFERING_COOLDOWN)->second)
 		};
 	}
 
