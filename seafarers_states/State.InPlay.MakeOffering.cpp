@@ -17,6 +17,7 @@
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
 #include "UIState.h"
+#include <Visuals.Messages.h>
 #include <Visuals.SpriteGrid.h>
 namespace state::in_play::MakeOffering
 {
@@ -96,18 +97,97 @@ namespace state::in_play::MakeOffering
 		RefreshGrid();
 	}
 
+	static void OnOfferingResult(game::OfferingResult result)
+	{
+		switch (result)
+		{
+		case game::OfferingResult::BLESSING:
+			visuals::Messages::Write(
+				{
+				"==BLESSING RECEIVED==",
+					{
+						{
+							{19,9},
+							"The demigod is sufficiently please with you",
+							game::Colors::GRAY,
+							visuals::HorizontalAlignment::CENTER
+						},
+						{
+							{19,11},
+							"and decides to bless you!",
+							game::Colors::GRAY,
+							visuals::HorizontalAlignment::CENTER
+						}
+					}
+				});
+			break;
+		case game::OfferingResult::CURSE:
+			visuals::Messages::Write(
+				{
+				"==CURSE RECEIVED==",
+					{
+						{
+							{19,9},
+							"The demigod is sufficiently displeased with you",
+							game::Colors::RED,
+							visuals::HorizontalAlignment::CENTER
+						},
+						{
+							{19,11},
+							"and decides to curse you!",
+							game::Colors::RED,
+							visuals::HorizontalAlignment::CENTER
+						}
+					}
+				});
+			break;
+		case game::OfferingResult::COOLING_DOWN:
+			visuals::Messages::Write(
+				{
+				"",
+					{
+						{
+							{19,9},
+							"You have given enough for now...",
+							game::Colors::GRAY,
+							visuals::HorizontalAlignment::CENTER
+						},
+						{
+							{19,11},
+							"...try again later.",
+							game::Colors::GRAY,
+							visuals::HorizontalAlignment::CENTER
+						}
+					}
+				});
+			break;
+		case game::OfferingResult::SUCCESS:
+			visuals::Messages::Write(
+				{
+				"==OFFERING ACCEPTED==",
+					{
+						{
+							{19,10},
+							"Yer offering has been accepted.",
+							game::Colors::GRAY,
+							visuals::HorizontalAlignment::CENTER
+						}
+					}
+				});
+			break;
+		}
+	}
+
 	static void OfferItem()
 	{
 		auto item = common::Utility::GetNthKey(items, hiliteRow);
 		if (item)
 		{
-			//TODO: message about offering
 			auto location = game::avatar::Docked::GetDockedLocation().value();
 			auto island = game::Islands::Read(location).value();
 			game::avatar::Items::Remove(item.value(), 1);
-			game::Demigods::MakeOffering(island.patronDemigod, item.value());
-			UpdateItems();
-			RefreshGrid();
+			OnOfferingResult(game::Demigods::MakeOffering(island.patronDemigod, item.value()));
+			OnLeave();
 		}
 	}
 

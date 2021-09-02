@@ -213,7 +213,7 @@ namespace game
 		auto demigod = data::game::Demigod::Read(name);
 		if(demigod)
 		{
-			CheckOfferingCooldown(demigod.value(), item);
+			return CheckOfferingCooldown(demigod.value(), item);
 		}
 		return OfferingResult::FAILURE;
 	}
