@@ -25,7 +25,7 @@ namespace game::avatar
 			1.0
 		};
 		data::game::Avatar::Write(data);
-		data::game::Avatar::SetState((int)game::avatar::State::AT_SEA);
+		data::game::Avatar::WriteState((int)game::avatar::State::AT_SEA);
 	}
 
 	double AtSea::GetHeading()

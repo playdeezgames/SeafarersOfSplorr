@@ -11,7 +11,7 @@ namespace data::game
 		int state;
 		static void Write(const Avatar&);
 		static std::optional<Avatar> Read();
-		static void SetState(int);
-		static std::optional<int> GetState();
+		static void WriteState(int);
+		static std::optional<int> ReadState();
 	};
 }

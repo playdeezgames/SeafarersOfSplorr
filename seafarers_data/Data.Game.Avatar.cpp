@@ -56,7 +56,7 @@ namespace data::game
 				avatarData.state));
 	}
 
-	void Avatar::SetState(int state)
+	void Avatar::WriteState(int state)
 	{
 		AutoCreateAvatarTable();
 		auto data = Read();
@@ -67,7 +67,7 @@ namespace data::game
 		}
 	}
 
-	std::optional<int> Avatar::GetState()
+	std::optional<int> Avatar::ReadState()
 	{
 		AutoCreateAvatarTable();
 		auto data = Read();

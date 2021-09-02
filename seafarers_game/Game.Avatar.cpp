@@ -12,7 +12,7 @@ namespace game
 {
 	static void SetState(const game::avatar::State& state)
 	{
-		data::game::Avatar::SetState((int)state);
+		data::game::Avatar::WriteState((int)state);
 	}
 
 
@@ -40,7 +40,7 @@ namespace game
 
 	std::optional<game::avatar::State> Avatar::GetState()
 	{
-		auto state = data::game::Avatar::GetState();
+		auto state = data::game::Avatar::ReadState();
 		if (state)
 		{
 			return (game::avatar::State)state.value();
