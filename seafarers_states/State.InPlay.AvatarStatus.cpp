@@ -55,7 +55,7 @@ namespace state::in_play
 	static void UpdatePlights()
 	{
 		WriteTextToGrid({ 0,0 }, "Plights:", game::Colors::GRAY);
-		auto inflicted = game::avatar::Plights::GetInflicted();
+		auto inflicted = game::avatar::Plights::InflictedWith();
 		int row = 1;
 		if (inflicted.empty())
 		{

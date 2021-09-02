@@ -13,6 +13,6 @@ namespace game::avatar
 		static const PlightDescriptor& Read(const Plight&);
 		static Plight Generate(const PlightType&);
 		static void Inflict(const Plight&);
-		static std::set<Plight> GetInflicted();
+		static std::set<Plight> InflictedWith();
 	};
 }

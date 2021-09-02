@@ -106,7 +106,7 @@ namespace game::avatar
 		data::game::avatar::Plight::Write({(int)plight, (duration)?(std::optional<int>((int)duration.value())):(std::nullopt) });
 	}
 
-	std::set<Plight> Plights::GetInflicted()
+	std::set<Plight> Plights::InflictedWith()
 	{
 		std::set<Plight> result;
 		auto plights = data::game::avatar::Plight::All();
