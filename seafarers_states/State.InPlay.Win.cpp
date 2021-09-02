@@ -4,10 +4,12 @@
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
+#include "States.h"
 #include "UIState.h"
-namespace state::in_play::Win
+namespace state::in_play
 {
-	const std::string LAYOUT_NAME = "State.InPlay.Win";
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_WIN;
+	static const std::string LAYOUT_NAME = "State.InPlay.Win";
 
 	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
 	{
@@ -15,11 +17,11 @@ namespace state::in_play::Win
 		return true;
 	}
 
-	void Start()
+	void Win::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_WIN, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
-		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_WIN, OnMouseButtonUp);
-		::application::Command::SetHandler(::UIState::IN_PLAY_WIN, ::application::UIState::GoTo(::UIState::MAIN_MENU));
-		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_WIN, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(CURRENT_STATE, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
+		::application::MouseButtonUp::AddHandler(CURRENT_STATE, OnMouseButtonUp);
+		::application::Command::SetHandler(CURRENT_STATE, ::application::UIState::GoTo(::UIState::MAIN_MENU));
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
 	}
 }

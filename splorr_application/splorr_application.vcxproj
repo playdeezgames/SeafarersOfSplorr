@@ -32,7 +32,7 @@
     <ClInclude Include="Command.h" />
     <ClInclude Include="Application.Engine.h" />
     <ClInclude Include="MouseButton.h" />
-    <ClInclude Include="Options.h" />
+    <ClInclude Include="Application.Options.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.Command.cpp" />
@@ -46,7 +46,7 @@
     <ClCompile Include="Application.UIState.cpp" />
     <ClCompile Include="Application.Update.cpp" />
     <ClCompile Include="Application.Engine.cpp" />
-    <ClCompile Include="Options.cpp" />
+    <ClCompile Include="Application.Options.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

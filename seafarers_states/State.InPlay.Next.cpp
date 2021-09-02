@@ -8,16 +8,19 @@
 #include <Visuals.Confirmations.h>
 #include <Visuals.Messages.h>
 #include <map>
+#include "States.h"
 #include "UIState.h"
-namespace state::in_play::Next
+namespace state::in_play
 {
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_NEXT;
+
 	struct StatusChecker
 	{
 		std::function<bool()> checker;
 		::UIState destination;
 	};
 
-	const std::list<StatusChecker> statusCheckers =
+	static const std::list<StatusChecker> statusCheckers =
 	{
 		{game::avatar::Statistics::IsOutOfTurns, ::UIState::IN_PLAY_WIN},
 		{game::avatar::Statistics::IsDead, ::UIState::IN_PLAY_LOSE},
@@ -25,7 +28,7 @@ namespace state::in_play::Next
 		{visuals::Confirmations::HasConfirmation, ::UIState::IN_PLAY_CONFIRM}
 	};
 
-	const std::map<game::avatar::State, ::UIState> dockedStateTable =
+	static const std::map<game::avatar::State, ::UIState> avatarStateTable =
 	{
 		{ game::avatar::State::DARK_ALLEY, ::UIState::IN_PLAY_DARK_ALLEY },
 		{ game::avatar::State::DARK_ALLEY_ENTRANCE, ::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE }, 
@@ -52,11 +55,11 @@ namespace state::in_play::Next
 			}
 		}
 		game::AutoSave();
-		auto dockedState = game::Avatar::GetState();
-		if (dockedState)
+		auto avatarState = game::Avatar::GetState();
+		if (avatarState)
 		{
-			auto iter = dockedStateTable.find(dockedState.value());
-			if(iter!=dockedStateTable.end())
+			auto iter = avatarStateTable.find(avatarState.value());
+			if(iter!= avatarStateTable.end())
 			{
 				application::UIState::Write(iter->second);
 				return;
@@ -73,9 +76,9 @@ namespace state::in_play::Next
 		OnEnter();
 	}
 
-	void Start()
+	void Next::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_NEXT, OnEnter);
-		::application::Update::AddHandler(::UIState::IN_PLAY_NEXT, OnUpdate);
+		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
+		::application::Update::AddHandler(CURRENT_STATE, OnUpdate);
 	}
 }

@@ -2,6 +2,7 @@
 #include <Application.MouseButtonUp.h>
 #include <Application.MouseMotion.h>
 #include <Application.OnEnter.h>
+#include <Application.Options.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Audio.h>
@@ -12,7 +13,6 @@
 #include <Common.Data.h>
 #include <Common.Utility.h>
 #include <Game.Audio.Mux.h>
-#include <Options.h>
 #include <format>
 #include "UIState.h"
 #include <Visuals.Menus.h>
@@ -50,13 +50,13 @@ namespace state::Options
 	{
 		::audio::Sfx::SetVolume(::audio::Sfx::GetVolume() + delta);
 		::audio::Sfx::Play(SFX_SAMPLE);
-		::Options::Save();
+		application::Options::Save();
 	}
 
 	static void AdjustMuxVolume(int delta)
 	{
 		::audio::Mux::SetVolume(::audio::Mux::GetVolume() + delta);
-		::Options::Save();
+		application::Options::Save();
 	}
 
 	static OptionsItem GetCurrentItem()
@@ -119,14 +119,14 @@ namespace state::Options
 	static void ToggleMute()
 	{
 		Audio::SetMuted(!Audio::IsMuted()); 
-		::Options::Save(); 
+		application::Options::Save();
 		Refresh();
 	}
 
 	static void ToggleFullscreen()
 	{
 		application::Engine::SetFullscreen(!application::Engine::IsFullscreen());
-		::Options::Save();
+		application::Options::Save();
 	}
 
 	const std::map<OptionsItem, std::function<void()>> activators =

@@ -1,4 +1,5 @@
 #include <Application.Keyboard.h>
+#include <Application.Options.h>
 #include <Application.UIState.h>
 #include <Audio.Mux.h>
 #include <Audio.Sfx.h>
@@ -9,7 +10,6 @@
 #include <functional>
 #include <Game.h>
 #include <Game.Achievements.h>
-#include <Options.h>
 #include <States.h>
 #include <Sublayouts.h>
 #include <UIState.h>

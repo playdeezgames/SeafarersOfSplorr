@@ -31,7 +31,19 @@ namespace state
 		{
 			static void Start();
 		};
+		struct Message
+		{
+			static void Start();
+		};
+		struct Next
+		{
+			static void Start();
+		};
 		struct ShipStatus
+		{
+			static void Start();
+		};
+		struct Win
 		{
 			static void Start();
 		};
@@ -54,7 +66,6 @@ namespace state::Tip { void Start(); }
 namespace state::Statistics { void Start(); }
 namespace state::in_play::AtSea { void Start(); }
 namespace state::in_play::Docked { void Start(); }
-namespace state::in_play::Win { void Start(); }
 namespace state::in_play::Lose { void Start(); }
 namespace state::in_play::IslandJobs { void Start(); }
 namespace state::in_play::ConfirmReplaceJob { void Start(); }
@@ -63,11 +74,9 @@ namespace state::in_play::CurrentJob { void Start(); }
 namespace state::in_play::IslandTrade { void Start(); }
 namespace state::in_play::IslandBuy { void Start(); }
 namespace state::in_play::IslandSell { void Start(); }
-namespace state::in_play::Next { void Start(); }
 namespace state::in_play::Shipyard { void Start(); }
 namespace state::in_play::DarkAlleyEntrance { void Start(); }
 namespace state::in_play::DarkAlley { void Start(); }
-namespace state::in_play::Message { void Start(); }
 namespace state::in_play::Confirm { void Start(); }
 namespace state::in_play::GambleStart { void Start(); }
 namespace state::in_play::GambleFinish { void Start(); }
