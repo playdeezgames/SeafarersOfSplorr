@@ -9,5 +9,6 @@ namespace game
 	{
 		static void Reset(const Difficulty&);
 		static void MakeOffering(const std::string&, const Item&);
+		static void ApplyTurnEffects();
 	};
 }

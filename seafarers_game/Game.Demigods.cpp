@@ -186,4 +186,18 @@ namespace game
 			DoMakeOffering(demigod.value(), item);
 		}
 	}
+
+	void Demigods::ApplyTurnEffects()
+	{
+		auto demigods = data::game::Demigod::All();
+		for (auto& demigod : demigods)
+		{
+			if (demigod.offeringCooldown > 0)
+			{
+				demigod.offeringCooldown--;
+				data::game::Demigod::Write(demigod);
+			}
+		}
+	}
+
 }

@@ -120,5 +120,6 @@ namespace game
 		Islands::ApplyTurnEffects();
 		Merchants::ApplyTurnEffects();
 		avatar::Plights::ApplyTurnEffects();
+		Demigods::ApplyTurnEffects();
 	}
 }
