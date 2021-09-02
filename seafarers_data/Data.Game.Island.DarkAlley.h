@@ -8,6 +8,7 @@ namespace data::game::island
 		double infamyRequirement;
 		double ruffianBrawlingStrength;
 		double minimumWager;
+
 		static void Clear();
 		static void Write(const common::XY<double>&, const DarkAlley&);
 		static std::optional<DarkAlley> Read(const common::XY<double>&);

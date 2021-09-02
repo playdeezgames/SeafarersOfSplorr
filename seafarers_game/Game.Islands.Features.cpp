@@ -88,7 +88,7 @@ namespace game::islands
 
 	void Features::Reset(const game::Difficulty&)
 	{
-		data::game::island::Feature::ClearAll();
+		data::game::island::Feature::Clear();
 		GenerateAllFeatures();
 	}
 }

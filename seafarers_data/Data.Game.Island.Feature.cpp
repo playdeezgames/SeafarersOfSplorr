@@ -12,7 +12,7 @@ namespace data::game::island
 
 	static const auto AutoCreateIslandFeaturesTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Feature::ClearAll()
+	void Feature::Clear()
 	{
 		AutoCreateIslandFeaturesTable();
 		data::game::Common::Execute(DELETE_ALL);
