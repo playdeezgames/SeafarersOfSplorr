@@ -90,8 +90,28 @@ namespace game
 		{12,1}
 	};
 
+	static const std::map<size_t, size_t> patronWeights =
+	{
+		{1,1},
+		{2,1},
+		{3,1},
+		{4,1},
+		{5,1},
+		{6,1},
+		{7,1},
+		{8,1},
+		{9,1},
+		{10,1}
+	};
+
 	void Demigods::Reset(const Difficulty&)
 	{
+		const double BLESSING_THRESHOLD = 5.0;
+		const double BLESSING_MULTIPLIER = 2.0;
+		const double CURSE_THRESHOLD = -5.0;
+		const double CURSE_MULTIPLIER = 0.5;
+		const double OFFERING_FAVOR_MINIMUM = -1.0;
+		const double OFFERING_FAVOR_MAXIMUM = 1.0;
 		data::game::Demigod::Clear();
 		data::game::DemigodItem::Clear();
 		data::game::avatar::DemigodFavor::Clear();
@@ -102,17 +122,16 @@ namespace game
 		{
 			data::game::Demigod::Write({
 				name,
-				(size_t)common::RNG::FromRange(1, 11),//TODO: hardcoded
-				5.0,
-				2.0,
+				common::RNG::FromGenerator(patronWeights, (size_t)0),
+				BLESSING_THRESHOLD,
+				BLESSING_MULTIPLIER,
 				(int)avatar::Plights::Generate(avatar::PlightType::BLESSING),
-				-5.0,
-				0.5,
-				(int)avatar::Plights::Generate(avatar::PlightType::CURSE)
-				});
+				CURSE_THRESHOLD,
+				CURSE_MULTIPLIER,
+				(int)avatar::Plights::Generate(avatar::PlightType::CURSE)});
 			for (auto item : items)
 			{
-				data::game::DemigodItem::Write(name, (int)item, common::RNG::FromRange(-1.0, 1.0));//TODO: hardcoded
+				data::game::DemigodItem::Write(name, (int)item, common::RNG::FromRange(OFFERING_FAVOR_MINIMUM, OFFERING_FAVOR_MAXIMUM));
 			}
 		}
 	}
