@@ -23,7 +23,7 @@ namespace state::in_play
 	static const std::list<StatusChecker> statusCheckers =
 	{
 		{game::avatar::Statistics::IsOutOfTurns, ::UIState::IN_PLAY_WIN},
-		{game::avatar::Statistics::IsDead, ::UIState::IN_PLAY_LOSE},
+		{game::avatar::Statistics::IsDead, ::UIState::IN_PLAY_LOSE}, 
 		{visuals::Messages::HasMessage, ::UIState::IN_PLAY_MESSAGE},
 		{visuals::Confirmations::HasConfirmation, ::UIState::IN_PLAY_CONFIRM}
 	};
@@ -56,7 +56,11 @@ namespace state::in_play
 		}
 		game::AutoSave();
 
-		//TODO: if there is a state on the stack, deal with it first...
+		if (application::UIState::CanPop())
+		{
+			application::UIState::Pop();
+			return;
+		}
 
 		auto avatarState = game::Avatar::GetState();
 		if (avatarState)
