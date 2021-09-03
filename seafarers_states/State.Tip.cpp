@@ -9,15 +9,16 @@
 #include <Data.JSON.Stores.h>
 #include <Game.Achievements.h>
 #include <Game.Audio.Mux.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Texts.h>
-namespace state::Tip
+namespace state
 {
-	const size_t TICKS_TOTAL = 3000;
-	const std::string LAYOUT_NAME = "State.Tip";
-	const std::string TEXT_TIP_1 = "Tip1";
-	const std::string TEXT_TIP_2 = "Tip2";
-	const std::string TEXT_TIP_3 = "Tip3";
+	static const size_t TICKS_TOTAL = 3000;
+	static const std::string LAYOUT_NAME = "State.Tip";
+	static const std::string TEXT_TIP_1 = "Tip1";
+	static const std::string TEXT_TIP_2 = "Tip2";
+	static const std::string TEXT_TIP_3 = "Tip3";
 	static size_t ticksLeft = TICKS_TOTAL;
 
 	static void RunOutTimer()
@@ -55,7 +56,7 @@ namespace state::Tip
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_TIP_3, tip[2]);
 	}
 
-	void Start()
+	void Tip::Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::TIP, OnEnter);
 		::application::MouseButtonUp::AddHandler(::UIState::TIP, OnMouseButtonUp);

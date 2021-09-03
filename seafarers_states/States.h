@@ -45,6 +45,10 @@ namespace state
 	{ 
 		static void Start(); 
 	};
+	struct Tip
+	{
+		static void Start();
+	};
 	namespace in_play
 	{
 		struct AtSeaCareenSelect
@@ -97,7 +101,6 @@ namespace state
 		};
 	}
 }
-namespace state::Tip { void Start(); }
 namespace state::Statistics { void Start(); }
 namespace state::in_play::AtSea { void Start(); }
 namespace state::in_play::Docked { void Start(); }
