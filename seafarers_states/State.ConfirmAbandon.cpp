@@ -11,8 +11,9 @@
 #include <Visuals.Menus.h>
 namespace state::ConfirmAbandon
 {
-	const std::string LAYOUT_NAME = "State.ConfirmAbandon";
-	const std::string MENU_ID = "ConfirmAbandon";
+	static const ::UIState CURRENT_STATE = ::UIState::CONFIRM_ABANDON;
+	static const std::string LAYOUT_NAME = "State.ConfirmAbandon";
+	static const std::string MENU_ID = "ConfirmAbandon";
 
 	enum class ConfirmAbandonItem
 	{
@@ -44,10 +45,10 @@ namespace state::ConfirmAbandon
 
 	void Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::CONFIRM_ABANDON, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
-		::application::MouseButtonUp::AddHandler(::UIState::CONFIRM_ABANDON, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
-		::application::MouseMotion::AddHandler(::UIState::CONFIRM_ABANDON, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-		::application::Command::SetHandlers(::UIState::CONFIRM_ABANDON, commandHandlers);
-		::application::Renderer::SetRenderLayout(::UIState::CONFIRM_ABANDON, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(CURRENT_STATE, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
+		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
+		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
+		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
 	}
 }

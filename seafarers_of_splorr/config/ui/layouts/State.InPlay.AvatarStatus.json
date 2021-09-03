@@ -32,6 +32,58 @@
         "drop-shadow-y": 2
     },
     {
+        "type": "Menu",
+        "menu-id": "Status",
+        "index": 0,
+        "font": "default",
+        "colors": {
+            "active": "Cyan",
+            "inactive": "Gray"
+        },
+        "horizontal-alignment": -1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2,
+        "menu-items": [
+            {
+                "text": "Job",
+                "menu-item-id": "Job",
+                "x": 632,
+                "y": 320
+            },
+            {
+                "text": "Go Back",
+                "menu-item-id": "GoBack",
+                "x": 632,
+                "y": 336
+            }
+        ]
+    },
+    {
+        "type":"Area",
+        "area-id":"Job",
+        "x":480,
+        "y":320,
+        "width":160,
+        "height":16,
+        "menu": {
+            "menu-id": "Status",
+            "menu-item-id": "Job"
+        }
+    },
+    {
+        "type":"Area",
+        "area-id":"GoBack",
+        "x":480,
+        "y":336,
+        "width":160,
+        "height":16,
+        "menu": {
+            "menu-id": "Status",
+            "menu-item-id": "GoBack"
+        }
+    },    {
         "type": "Layout",
         "name": "Sublayout.Modded"
     }
