@@ -1,5 +1,6 @@
 #include <Application.Command.h>
 #include <Application.MouseButtonUp.h>
+#include <Application.MouseMotion.h>
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
@@ -16,25 +17,25 @@
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
 #include "UIState.h"
+#include <Visuals.Areas.h>
 #include <Visuals.SpriteGrid.h>
+#include <Visuals.Texts.h>
 namespace state::in_play::IslandBuy
 {
-	const std::string LAYOUT_NAME = "State.InPlay.IslandBuy";
-	const std::string SPRITE_GRID_ID = "Grid";
-	const std::string FONT_DEFAULT = "default";
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_ISLAND_BUY;
+	static const std::string LAYOUT_NAME = "State.InPlay.IslandBuy";
+	static const std::string SPRITE_GRID_ID = "Grid";
+	static const std::string FONT_DEFAULT = "default";
+	static const std::string AREA_LIST = "List";
+	static const std::string AREA_GO_BACK = "GoBack";
+	static const std::string TEXT_GO_BACK = "GoBack";
 
-	const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
+	static const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
 
 	static void OnLeave()
 	{
 		game::Avatar::DoAction(game::avatar::Action::ENTER_MARKET);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
-	}
-
-	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
-	{
-		OnLeave();
-		return true;
 	}
 
 	static void RefreshHeader()
@@ -47,6 +48,7 @@ namespace state::in_play::IslandBuy
 
 	static std::map<game::Item, double> unitPrices;
 	static size_t hiliteRow = 0;
+	static bool hoverGoBack = false;
 
 	static void UpdateUnitPrices()
 	{
@@ -78,7 +80,7 @@ namespace state::in_play::IslandBuy
 		WriteTextToGrid(
 			{ 0, 18 },
 			std::format(
-				"Available Tonnage: {:.3f}",
+				"Avail. Tonn.: {:.3f}",
 				game::avatar::Ship::AvailableTonnage()),
 			game::Colors::WHITE);
 		WriteTextToGrid(
@@ -89,19 +91,30 @@ namespace state::in_play::IslandBuy
 			game::Colors::WHITE);
 	}
 
+	static void RefreshButton()
+	{
+		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, (hoverGoBack) ? (game::Colors::CYAN) : (game::Colors::GRAY));
+	}
+
 	static void RefreshGrid()
 	{
 		visuals::SpriteGrid::Clear(LAYOUT_NAME, SPRITE_GRID_ID);
 		RefreshHeader();
 		RefreshUnitPrices();
 		RefreshStatistics();
+		RefreshButton();
 	}
 
-	void OnEnter()
+	static void Refresh()
+	{
+		RefreshGrid();
+	}
+
+	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		UpdateUnitPrices();
-		RefreshGrid();
+		Refresh();
 	}
 
 	static void BuyItem()
@@ -119,26 +132,61 @@ namespace state::in_play::IslandBuy
 					game::avatar::Items::Add(item.value(), 1);
 
 					UpdateUnitPrices();
-					RefreshGrid();
+					Refresh();
 				}
 			}
 		}
 	}
 
-	const std::map<::Command, std::function<void()>> commandHandlers =
+	static bool OnMouseButtonUpInArea(const std::string& areaName)
 	{
-		{ ::Command::UP, common::Utility::DoPreviousItem(hiliteRow, unitPrices, RefreshUnitPrices) },
-		{ ::Command::DOWN, common::Utility::DoNextItem(hiliteRow, unitPrices, RefreshUnitPrices) },
+		if (areaName == AREA_GO_BACK)
+		{
+			OnLeave();
+		}
+		else if (areaName == AREA_LIST)
+		{
+			BuyItem();
+		}
+		return true;
+	}
+
+	static const std::map<::Command, std::function<void()>> commandHandlers =
+	{
+		{ ::Command::UP, common::Utility::DoPreviousItem(hiliteRow, unitPrices, Refresh) },
+		{ ::Command::DOWN, common::Utility::DoNextItem(hiliteRow, unitPrices, Refresh) },
 		{ ::Command::GREEN, BuyItem },
 		{ ::Command::BACK, OnLeave },
 		{ ::Command::RED, OnLeave }
 	};
 
+	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
+	{
+		hoverGoBack = false;
+		if (areaName == AREA_LIST)
+		{
+			auto cellHeight = visuals::SpriteGrid::GetCellHeight(LAYOUT_NAME, SPRITE_GRID_ID);
+			hiliteRow = location.GetY() / cellHeight;
+		}
+		else if (areaName == AREA_GO_BACK)
+		{
+			hoverGoBack = true;
+		}
+		Refresh();
+	}
+
+	static void OnMouseMotionOutsideArea(const common::XY<int>&)
+	{
+		hoverGoBack = false;
+		Refresh();
+	}
+
 	void Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_ISLAND_BUY, OnEnter);
-		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_ISLAND_BUY, OnMouseButtonUp);
-		::application::Command::SetHandlers(::UIState::IN_PLAY_ISLAND_BUY, commandHandlers);
-		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_ISLAND_BUY, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
+		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
+		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea, OnMouseMotionOutsideArea));
+		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
 	}
 }

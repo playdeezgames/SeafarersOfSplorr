@@ -147,7 +147,8 @@ namespace game::islands
 		{"dog",1},
 		{"knacker",1},
 		{"mudlark",1},
-		{"gong farmer",1}
+		{"gong farmer",1},
+		{"ox-wanker",1}
 	};
 
 	static const std::map<std::string, size_t> receiptAdverbs =
