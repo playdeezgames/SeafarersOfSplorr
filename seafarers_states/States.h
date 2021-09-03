@@ -9,6 +9,10 @@ namespace state
 	{
 		static void Start();
 	};
+	struct LeavePlay 
+	{ 
+		static void Start(); 
+	};
 	struct MainMenu
 	{
 		static void Start();
@@ -77,7 +81,6 @@ namespace state
 		};
 	}
 }
-namespace state::LeavePlay { void Start(); }
 namespace state::LoadGame { void Start(); }
 namespace state::SaveGame { void Start(); }
 namespace state::ConfirmAbandon { void Start(); }
