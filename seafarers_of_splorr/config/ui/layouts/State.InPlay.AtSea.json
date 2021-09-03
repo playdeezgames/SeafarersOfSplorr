@@ -151,24 +151,24 @@
                 "y": 64
             },
             {
-                "text": "Dock",
-                "menu-item-id":"Dock",
-                "x": 480,
-                "y": 80,
-                "enabled": false
-            },
-            {
                 "text": "Status",
                 "menu-item-id":"Status",
                 "x": 480,
-                "y": 96
+                "y": 80
             },
             {
                 "text": "Ship Status",
                 "menu-item-id":"Ship",
                 "x": 480,
-                "y": 112,
+                "y": 96,
                 "enabled": true
+            },
+            {
+                "text": "Dock",
+                "menu-item-id":"Dock",
+                "x": 480,
+                "y": 112,
+                "enabled": false
             }
         ]
     },
@@ -220,7 +220,7 @@
         "type":"Area",
         "area-id":"Dock",
         "x":320,
-        "y":80,
+        "y":112,
         "width":320,
         "height":16,
         "menu":{
@@ -232,7 +232,7 @@
         "type":"Area",
         "area-id":"Status",
         "x":320,
-        "y":96,
+        "y":80,
         "width":320,
         "height":16,
         "menu":{
@@ -244,7 +244,7 @@
         "type":"Area",
         "area-id":"Ship",
         "x":320,
-        "y":112,
+        "y":96,
         "width":320,
         "height":16,
         "menu":{

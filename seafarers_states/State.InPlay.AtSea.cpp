@@ -49,9 +49,9 @@ namespace state::in_play::AtSea
 		WORLD_MAP,
 		MOVE,
 		MOVE_ONCE,
-		DOCK,
 		STATUS,
-		SHIP
+		SHIP,
+		DOCK
 	};
 
 	static const std::string STOP_MOVE = "Stop Move";
