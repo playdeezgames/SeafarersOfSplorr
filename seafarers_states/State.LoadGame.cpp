@@ -7,27 +7,28 @@
 #include <Common.Utility.h>
 #include <Game.h>
 #include <Game.Audio.Mux.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
 #include <Visuals.MenuItems.h>
-namespace state::LoadGame
+namespace state
 {
-	const std::string LAYOUT_NAME = "State.LoadGame";
-	const std::string MENU_ID = "LoadGame";
-	const std::string MENU_ITEM_AUTOSAVE = "Autosave";
-	const std::string MENU_ITEM_SLOT1 = "Slot1";
-	const std::string MENU_ITEM_SLOT2 = "Slot2";
-	const std::string MENU_ITEM_SLOT3 = "Slot3";
-	const std::string MENU_ITEM_SLOT4 = "Slot4";
-	const std::string MENU_ITEM_SLOT5 = "Slot5";
-	const std::string AUTOSAVE_PRESENT = "(autosave)";
-	const std::string NOT_PRESENT = "-";
-	const std::string SLOT_PRESENT_1 = "Slot 1";
-	const std::string SLOT_PRESENT_2 = "Slot 2";
-	const std::string SLOT_PRESENT_3 = "Slot 3";
-	const std::string SLOT_PRESENT_4 = "Slot 4";
-	const std::string SLOT_PRESENT_5 = "Slot 5";
+	static const std::string LAYOUT_NAME = "State.LoadGame";
+	static const std::string MENU_ID = "LoadGame";
+	static const std::string MENU_ITEM_AUTOSAVE = "Autosave";
+	static const std::string MENU_ITEM_SLOT1 = "Slot1";
+	static const std::string MENU_ITEM_SLOT2 = "Slot2";
+	static const std::string MENU_ITEM_SLOT3 = "Slot3";
+	static const std::string MENU_ITEM_SLOT4 = "Slot4";
+	static const std::string MENU_ITEM_SLOT5 = "Slot5";
+	static const std::string AUTOSAVE_PRESENT = "(autosave)";
+	static const std::string NOT_PRESENT = "-";
+	static const std::string SLOT_PRESENT_1 = "Slot 1";
+	static const std::string SLOT_PRESENT_2 = "Slot 2";
+	static const std::string SLOT_PRESENT_3 = "Slot 3";
+	static const std::string SLOT_PRESENT_4 = "Slot 4";
+	static const std::string SLOT_PRESENT_5 = "Slot 5";
 
 	enum class LoadGameItem
 	{
@@ -66,7 +67,7 @@ namespace state::LoadGame
 		};
 	}
 
-	const std::map<LoadGameItem, std::function<void()>> activators =
+	static const std::map<LoadGameItem, std::function<void()>> activators =
 	{
 		{ LoadGameItem::AUTOSAVE, LoadFromAutosave },
 		{ LoadGameItem::SLOT_1, SlotLoader(1) },
@@ -77,9 +78,9 @@ namespace state::LoadGame
 		{ LoadGameItem::BACK, GoBack }
 	};
 
-	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
+	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
-	const std::map<::Command, std::function<void()>> commandHandlers =
+	static const std::map<::Command, std::function<void()>> commandHandlers =
 	{
 		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
@@ -110,7 +111,7 @@ namespace state::LoadGame
 		UpdateMenuItem(game::DoesSlotExist(5), MENU_ITEM_SLOT5, SLOT_PRESENT_5);
 	}
 
-	void Start()
+	void LoadGame::Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::LOAD_GAME, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
 		::application::MouseButtonUp::AddHandler(::UIState::LOAD_GAME, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
