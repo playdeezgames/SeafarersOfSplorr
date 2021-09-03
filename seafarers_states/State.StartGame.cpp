@@ -7,13 +7,14 @@
 #include <Common.Utility.h>
 #include <Game.h>
 #include <Game.Audio.Mux.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Menus.h>
 #include <Visuals.Areas.h>
-namespace state::Start
+namespace state
 {
-	const std::string LAYOUT_NAME = "State.Start";
-	const std::string MENU_ID = "Start";
+	static const std::string LAYOUT_NAME = "State.Start";
+	static const std::string MENU_ID = "Start";
 
 	enum class StartGameItem
 	{
@@ -34,7 +35,7 @@ namespace state::Start
 		};
 	}
 
-	const std::map<StartGameItem, std::function<void()>> activators =
+	static const std::map<StartGameItem, std::function<void()>> activators =
 	{
 		{ StartGameItem::NEW_GAME_EASY, NewGame(game::Difficulty::EASY) },
 		{ StartGameItem::NEW_GAME_NORMAL, NewGame(game::Difficulty::NORMAL) },
@@ -44,9 +45,9 @@ namespace state::Start
 		{ StartGameItem::BACK, ::application::UIState::GoTo(::UIState::MAIN_MENU) }
 	};
 
-	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
+	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
-	const std::map<::Command, std::function<void()>> commandHandlers =
+	static const std::map<::Command, std::function<void()>> commandHandlers =
 	{
 		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
@@ -55,7 +56,7 @@ namespace state::Start
 		{ ::Command::GREEN, ActivateItem }
 	};
 
-	void Start()
+	void StartGame::Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::START_GAME, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
 		::application::MouseButtonUp::AddHandler(::UIState::START_GAME, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));

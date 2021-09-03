@@ -66,7 +66,7 @@ namespace application
 		state::About::Start,
 		state::ConfirmQuit::Start,
 		state::Options::Start,
-		state::Start::Start,
+		state::StartGame::Start,
 		state::LeavePlay::Start,
 		game::DoAddResetter(visuals::Confirmations::Reset),
 		game::DoAddResetter(visuals::Messages::Reset),

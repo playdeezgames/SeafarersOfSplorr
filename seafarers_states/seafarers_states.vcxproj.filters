@@ -79,7 +79,7 @@
     <ClCompile Include="State.Splash.cpp">
       <Filter>Source Files\Boilerplate</Filter>
     </ClCompile>
-    <ClCompile Include="State.Start.cpp">
+    <ClCompile Include="State.StartGame.cpp">
       <Filter>Source Files\Boilerplate</Filter>
     </ClCompile>
     <ClCompile Include="State.Statistics.cpp">
