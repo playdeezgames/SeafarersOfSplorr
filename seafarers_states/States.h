@@ -25,6 +25,10 @@ namespace state
 	{ 
 		static void Start(); 
 	};
+	struct SaveGame
+	{
+		static void Start();
+	};
 	struct Splash 
 	{ 
 		static void Start(); 
@@ -85,7 +89,6 @@ namespace state
 		};
 	}
 }
-namespace state::SaveGame { void Start(); }
 namespace state::ConfirmAbandon { void Start(); }
 namespace state::ConfirmOverwrite { void Start(); }
 namespace state::Tip { void Start(); }
