@@ -5,6 +5,14 @@ namespace state
 	{
 		static void Start(); 
 	};
+	struct ConfirmAbandon 
+	{ 
+		static void Start(); 
+	};
+	struct ConfirmOverwrite 
+	{ 
+		static void Start(); 
+	};
 	struct ConfirmQuit
 	{
 		static void Start();
@@ -89,8 +97,6 @@ namespace state
 		};
 	}
 }
-namespace state::ConfirmAbandon { void Start(); }
-namespace state::ConfirmOverwrite { void Start(); }
 namespace state::Tip { void Start(); }
 namespace state::Statistics { void Start(); }
 namespace state::in_play::AtSea { void Start(); }

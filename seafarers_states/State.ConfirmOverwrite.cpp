@@ -7,13 +7,14 @@
 #include <Common.Utility.h>
 #include <Game.h>
 #include <Game.Audio.Mux.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
-namespace state::ConfirmOverwrite
+namespace state
 {
-	const std::string LAYOUT_NAME = "State.ConfirmOverwrite";
-	const std::string MENU_ID = "ConfirmOverwrite";
+	static const std::string LAYOUT_NAME = "State.ConfirmOverwrite";
+	static const std::string MENU_ID = "ConfirmOverwrite";
 
 	enum class ConfirmOverwriteItem
 	{
@@ -21,7 +22,7 @@ namespace state::ConfirmOverwrite
 		YES
 	};
 
-	const std::map<::UIState, int> slotTable =
+	static const std::map<::UIState, int> slotTable =
 	{
 		{::UIState::CONFIRM_OVERWRITE_SLOT1, 1},
 		{::UIState::CONFIRM_OVERWRITE_SLOT2, 2},
@@ -37,15 +38,15 @@ namespace state::ConfirmOverwrite
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	const std::map<ConfirmOverwriteItem, std::function<void()>> activators =
+	static const std::map<ConfirmOverwriteItem, std::function<void()>> activators =
 	{
 		{ ConfirmOverwriteItem::NO, application::UIState::GoTo(::UIState::SAVE_GAME) },
 		{ ConfirmOverwriteItem::YES, ConfirmOverwrite }
 	};
 
-	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
+	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
-	const std::map<Command, std::function<void()>> commandHandlers =
+	static const std::map<Command, std::function<void()>> commandHandlers =
 	{
 		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
@@ -59,7 +60,7 @@ namespace state::ConfirmOverwrite
 		visuals::Menus::WriteIndex(LAYOUT_NAME, MENU_ID, (int)item);
 	}
 
-	const std::vector<::UIState> states =
+	static const std::vector<::UIState> states =
 	{
 		::UIState::CONFIRM_OVERWRITE_SLOT1,
 		::UIState::CONFIRM_OVERWRITE_SLOT2,
@@ -78,7 +79,7 @@ namespace state::ConfirmOverwrite
 		::application::Renderer::SetRenderLayout(state, LAYOUT_NAME);
 	}
 
-	void Start()
+	void ConfirmOverwrite::Start()
 	{
 		for (auto state : states)
 		{

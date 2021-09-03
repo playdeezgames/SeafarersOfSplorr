@@ -6,10 +6,11 @@
 #include <Application.UIState.h>
 #include <Common.Utility.h>
 #include <Game.Audio.Mux.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
-namespace state::ConfirmAbandon
+namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::CONFIRM_ABANDON;
 	static const std::string LAYOUT_NAME = "State.ConfirmAbandon";
@@ -26,15 +27,15 @@ namespace state::ConfirmAbandon
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	const std::map<ConfirmAbandonItem, std::function<void()>> activators =
+	static const std::map<ConfirmAbandonItem, std::function<void()>> activators =
 	{
 		{ ConfirmAbandonItem::NO, CancelAbandon },
 		{ ConfirmAbandonItem::YES, ::application::UIState::GoTo(::UIState::MAIN_MENU) }
 	};
 
-	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
+	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
-	const std::map<Command, std::function<void()>> commandHandlers =
+	static const std::map<Command, std::function<void()>> commandHandlers =
 	{
 		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
@@ -43,7 +44,7 @@ namespace state::ConfirmAbandon
 		{ ::Command::RED, ::application::UIState::GoTo(::UIState::MAIN_MENU) }
 	};
 
-	void Start()
+	void ConfirmAbandon::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
 		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
