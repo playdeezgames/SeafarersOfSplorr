@@ -17,6 +17,10 @@ namespace state
 	{ 
 		static void Start(); 
 	};
+	struct Splash 
+	{ 
+		static void Start(); 
+	};
 	namespace in_play
 	{
 		struct AtSeaCareenSelect
@@ -69,7 +73,6 @@ namespace state
 		};
 	}
 }
-namespace state::Splash { void Start(); }
 namespace state::Start { void Start(); }
 namespace state::LeavePlay { void Start(); }
 namespace state::LoadGame { void Start(); }

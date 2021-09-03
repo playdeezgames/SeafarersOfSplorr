@@ -5,11 +5,12 @@
 #include <Application.OnEnter.h>
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
+#include "States.h"
 #include "UIState.h"
-namespace state::Splash
+namespace state
 {
-	const size_t TICKS_TOTAL = 3000;
-	const std::string LAYOUT_NAME = "State.Splash";
+	static const size_t TICKS_TOTAL = 3000;
+	static const std::string LAYOUT_NAME = "State.Splash";
 	static size_t ticksLeft = TICKS_TOTAL;
 
 	static void RunOutTimer()
@@ -33,7 +34,7 @@ namespace state::Splash
 		return true;
 	}
 
-	void Start()
+	void Splash::Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::SPLASH, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
 		::application::MouseButtonUp::AddHandler(::UIState::SPLASH, OnMouseButtonUp);
