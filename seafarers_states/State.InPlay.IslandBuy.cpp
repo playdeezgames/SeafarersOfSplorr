@@ -42,7 +42,7 @@ namespace state::in_play::IslandBuy
 		WriteTextToGrid({ 0, 0 }, "<-", game::Colors::YELLOW);
 		WriteTextToGrid({ 37, 0 }, "->", game::Colors::YELLOW);
 		WriteTextToGrid({ 15, 0 }, "Page 1 of 1", game::Colors::YELLOW);
-		WriteTextToGrid({ 0,1 }, std::format("{:15s}   {:7s}   {:4s}   {:5s}", "Item", "  Price", " Own", "Tonn."), game::Colors::YELLOW);
+		WriteTextToGrid({ 0,1 }, std::format("{:14s}   {:7s}   {:4s}   {:5s}", "Item", "  Price", " Own", "Tonn."), game::Colors::YELLOW);
 	}
 
 	static std::map<game::Item, double> unitPrices;
@@ -62,7 +62,7 @@ namespace state::in_play::IslandBuy
 			auto& itemDescriptor = game::Items::Read(unitPrice.first);
 			WriteTextToGrid(
 				{ 0, gridRow }, 
-				std::format("{:15s} | {:7.3f} | {:4d} | {:5.3f}", 
+				std::format("{:14s} | {:7.3f} | {:4d} | {:5.3f}", 
 					itemDescriptor.name, 
 					unitPrice.second,
 					game::avatar::Items::Read(unitPrice.first),
