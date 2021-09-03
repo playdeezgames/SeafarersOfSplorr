@@ -9,6 +9,14 @@ namespace state
 	{
 		static void Start();
 	};
+	struct MainMenu
+	{
+		static void Start();
+	};
+	struct Options 
+	{ 
+		static void Start(); 
+	};
 	namespace in_play
 	{
 		struct AtSeaCareenSelect
@@ -61,8 +69,6 @@ namespace state
 		};
 	}
 }
-namespace state::MainMenu { void Start(); }
-namespace state::Options { void Start(); }
 namespace state::Splash { void Start(); }
 namespace state::Start { void Start(); }
 namespace state::LeavePlay { void Start(); }

@@ -14,26 +14,28 @@
 #include <Common.Utility.h>
 #include <Game.Audio.Mux.h>
 #include <format>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Menus.h>
 #include <Visuals.MenuItems.h>
 #include <Visuals.Areas.h>
-namespace state::Options
+namespace state
 {
-	const std::string LAYOUT_NAME = "State.Options";
-	const std::string MENU_ID = "Options";
-	const std::string MENU_ITEM_MUTE = "Mute";
-	const std::string MENU_ITEM_SFX_VOLUME = "SfxVolume";
-	const std::string MENU_ITEM_MUX_VOLUME = "MuxVolume";
-	const std::string MUTE = "Mute";
-	const std::string UNMUTE = "Unmute";
-	const std::string AREA_SFX_DECREASE = "DecreaseSfxVolume";
-	const std::string AREA_SFX_INCREASE = "IncreaseSfxVolume";
-	const std::string AREA_MUX_DECREASE = "DecreaseMuxVolume";
-	const std::string AREA_MUX_INCREASE = "IncreaseMuxVolume";
-	const int VOLUME_DELTA = 8;
-	const std::string FORMAT_SFX_VOLUMNE = "< SFX Volume ({}%) >";
-	const std::string FORMAT_MUX_VOLUMNE = "< MUX Volume ({}%) >";
+	static const ::UIState CURRENT_STATE = ::UIState::OPTIONS;
+	static const std::string LAYOUT_NAME = "State.Options";
+	static const std::string MENU_ID = "Options";
+	static const std::string MENU_ITEM_MUTE = "Mute";
+	static const std::string MENU_ITEM_SFX_VOLUME = "SfxVolume";
+	static const std::string MENU_ITEM_MUX_VOLUME = "MuxVolume";
+	static const std::string MUTE = "Mute";
+	static const std::string UNMUTE = "Unmute";
+	static const std::string AREA_SFX_DECREASE = "DecreaseSfxVolume";
+	static const std::string AREA_SFX_INCREASE = "IncreaseSfxVolume";
+	static const std::string AREA_MUX_DECREASE = "DecreaseMuxVolume";
+	static const std::string AREA_MUX_INCREASE = "IncreaseMuxVolume";
+	static const int VOLUME_DELTA = 8;
+	static const std::string FORMAT_SFX_VOLUMNE = "< SFX Volume ({}%) >";
+	static const std::string FORMAT_MUX_VOLUMNE = "< MUX Volume ({}%) >";
 
 	enum class OptionsItem
 	{
@@ -44,7 +46,7 @@ namespace state::Options
 		BACK
 	};
 
-	const std::string SFX_SAMPLE = "woohoo";
+	static const std::string SFX_SAMPLE = "woohoo";
 
 	static void AdjustSfxVolume(int delta)
 	{
@@ -64,7 +66,7 @@ namespace state::Options
 		return (OptionsItem)visuals::Menus::ReadIndex(LAYOUT_NAME, MENU_ID).value();
 	}
 
-	const std::map<OptionsItem, std::function<void(int)>> itemChangers =
+	static const std::map<OptionsItem, std::function<void(int)>> itemChangers =
 	{
 		{ OptionsItem::SFX_VOLUME, AdjustSfxVolume },
 		{ OptionsItem::MUX_VOLUME, AdjustMuxVolume }
@@ -129,7 +131,7 @@ namespace state::Options
 		application::Options::Save();
 	}
 
-	const std::map<OptionsItem, std::function<void()>> activators =
+	static const std::map<OptionsItem, std::function<void()>> activators =
 	{
 		{ OptionsItem::TOGGLE_MUTE, ToggleMute },
 		{ OptionsItem::BACK, ::application::UIState::Pop },
@@ -137,7 +139,7 @@ namespace state::Options
 
 	};
 
-	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
+	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
 	const std::map<::Command, std::function<void()>> commandHandlers =
 	{
@@ -155,7 +157,7 @@ namespace state::Options
 		common::Utility::Dispatch(commandHandlers, command);
 	}
 
-	const std::map<std::string, std::function<void()>> areaClickActions =
+	static const std::map<std::string, std::function<void()>> areaClickActions =
 	{
 		{AREA_MUX_DECREASE, DecreaseItem},
 		{AREA_SFX_DECREASE, DecreaseItem},
@@ -175,9 +177,9 @@ namespace state::Options
 		return true;
 	}
 
-	void Start()
+	void Options::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::OPTIONS, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
+		::application::OnEnter::AddHandler(CURRENT_STATE, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
 		::application::MouseButtonUp::AddHandler(::UIState::OPTIONS, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
 		::application::MouseMotion::AddHandler(::UIState::OPTIONS, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
 		::application::Command::SetHandlers(::UIState::OPTIONS, commandHandlers);

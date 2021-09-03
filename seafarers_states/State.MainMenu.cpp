@@ -7,17 +7,19 @@
 #include <Common.Utility.h>
 #include <Data.JSON.Stores.h>
 #include <Game.Audio.Mux.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
 #include <Visuals.Texts.h>
-namespace state::MainMenu
+namespace state
 {
-	const std::string LAYOUT_NAME = "State.MainMenu";
-	const std::string MENU_ID = "Main";
-	const std::string SUBLAYOUT_MODDED = "Sublayout.Modded";
-	const std::string TEXT_MODDED = "modded";
-	const std::string MODDED = "Modded";
+	static const ::UIState CURRENT_STATE = ::UIState::MAIN_MENU;
+	static const std::string LAYOUT_NAME = "State.MainMenu";
+	static const std::string MENU_ID = "Main";
+	static const std::string SUBLAYOUT_MODDED = "Sublayout.Modded";
+	static const std::string TEXT_MODDED = "modded";
+	static const std::string MODDED = "Modded";
 
 	enum class MainMenuItem
 	{
@@ -33,7 +35,7 @@ namespace state::MainMenu
 		::application::UIState::Write(::UIState::ABOUT);
 	}
 
-	const std::map<MainMenuItem, std::function<void()>> activators =
+	static const std::map<MainMenuItem, std::function<void()>> activators =
 	{
 		{ MainMenuItem::START, ::application::UIState::GoTo(::UIState::START_GAME) },
 		{ MainMenuItem::OPTIONS, ::application::UIState::PushTo(::UIState::OPTIONS)  },
@@ -42,9 +44,9 @@ namespace state::MainMenu
 		{ MainMenuItem::QUIT, ::application::UIState::GoTo(::UIState::CONFIRM_QUIT)  },
 	};
 
-	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
+	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
-	const std::map<::Command, std::function<void()>> commandHandlers =
+	static const std::map<::Command, std::function<void()>> commandHandlers =
 	{
 		{::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
@@ -62,12 +64,12 @@ namespace state::MainMenu
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 	}
 
-	void Start()
+	void MainMenu::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::MAIN_MENU, OnEnter);
-		::application::MouseMotion::AddHandler(::UIState::MAIN_MENU, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-		::application::MouseButtonUp::AddHandler(::UIState::MAIN_MENU, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
-		::application::Command::SetHandlers(::UIState::MAIN_MENU, commandHandlers);
-		::application::Renderer::SetRenderLayout(::UIState::MAIN_MENU, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
+		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
+		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
+		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
 	}
 }
