@@ -1,5 +1,6 @@
 #include <Application.Command.h>
 #include <Application.MouseButtonUp.h>
+#include <Application.MouseMotion.h>
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
@@ -15,12 +16,17 @@
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
 #include "UIState.h"
+#include <Visuals.Areas.h>
 #include <Visuals.SpriteGrid.h>
+#include <Visuals.Texts.h>
 namespace state::in_play::IslandSell
 {
 	const std::string LAYOUT_NAME = "State.InPlay.IslandSell";
 	const std::string SPRITE_GRID_ID = "Grid";
 	const std::string FONT_DEFAULT = "default";
+	static const std::string AREA_LIST = "List";
+	static const std::string AREA_GO_BACK = "GoBack";
+	static const std::string TEXT_GO_BACK = "GoBack";
 
 	const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
 
@@ -46,6 +52,7 @@ namespace state::in_play::IslandSell
 
 	static std::map<game::Item, double> unitPrices;
 	static size_t hiliteRow = 0;
+	static bool hoverGoBack = false;
 
 	static void UpdateUnitPrices()
 	{
@@ -89,11 +96,22 @@ namespace state::in_play::IslandSell
 		RefreshStatistics();
 	}
 
+	static void RefreshButton()
+	{
+		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, (hoverGoBack) ? (game::Colors::CYAN) : (game::Colors::GRAY));
+	}
+
+	static void Refresh()
+	{
+		RefreshGrid();
+		RefreshButton();
+	}
+
 	void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		UpdateUnitPrices();
-		RefreshGrid();
+		Refresh();
 	}
 
 	static void SellItem()
@@ -110,25 +128,62 @@ namespace state::in_play::IslandSell
 				game::avatar::Items::Remove(item.value(), 1);
 
 				UpdateUnitPrices();
-				RefreshGrid();
+				Refresh();
 			}
 		}
 	}
 
 	const std::map<::Command, std::function<void()>> commandHandlers =
 	{
-		{ ::Command::UP, common::Utility::DoPreviousItem(hiliteRow, unitPrices, RefreshUnitPrices) },
-		{ ::Command::DOWN, common::Utility::DoNextItem(hiliteRow, unitPrices, RefreshUnitPrices) },
+		{ ::Command::UP, common::Utility::DoPreviousItem(hiliteRow, unitPrices, Refresh) },
+		{ ::Command::DOWN, common::Utility::DoNextItem(hiliteRow, unitPrices, Refresh) },
 		{ ::Command::GREEN, SellItem },
 		{ ::Command::BACK, OnLeave },
 		{ ::Command::RED, OnLeave }
 	};
 
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_ISLAND_SELL;
+
+	static bool OnMouseButtonUpInArea(const std::string& areaName)
+	{
+		if (areaName == AREA_GO_BACK)
+		{
+			OnLeave();
+		}
+		else if (areaName == AREA_LIST)
+		{
+			SellItem();
+		}
+		return true;
+	}
+
+	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
+	{
+		hoverGoBack = false;
+		if (areaName == AREA_LIST)
+		{
+			auto cellHeight = visuals::SpriteGrid::GetCellHeight(LAYOUT_NAME, SPRITE_GRID_ID);
+			hiliteRow = location.GetY() / cellHeight;
+		}
+		else if (areaName == AREA_GO_BACK)
+		{
+			hoverGoBack = true;
+		}
+		Refresh();
+	}
+
+	static void OnMouseMotionOutsideArea(const common::XY<int>&)
+	{
+		hoverGoBack = false;
+		Refresh();
+	}
+
 	void Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_ISLAND_SELL, OnEnter);
-		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_ISLAND_SELL, OnMouseButtonUp);
-		::application::Command::SetHandlers(::UIState::IN_PLAY_ISLAND_SELL, commandHandlers);
-		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_ISLAND_SELL, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
+		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
+		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea, OnMouseMotionOutsideArea));
+		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
 	}
 }

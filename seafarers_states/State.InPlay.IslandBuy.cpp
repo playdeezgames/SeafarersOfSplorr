@@ -102,11 +102,11 @@ namespace state::in_play::IslandBuy
 		RefreshHeader();
 		RefreshUnitPrices();
 		RefreshStatistics();
-		RefreshButton();
 	}
 
 	static void Refresh()
 	{
+		RefreshButton();
 		RefreshGrid();
 	}
 
