@@ -8,13 +8,14 @@
 #include <Game.Audio.Mux.h>
 #include <format>
 #include <tuple>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Texts.h>
-namespace state::Statistics
+namespace state
 {
-	const std::string LAYOUT_NAME = "State.Statistics";
-	const std::string TEXT_MOVES_MADE = "MovesMade";
-	const std::string TEXT_GAMES_PLAYED = "GamesPlayed";
+	static const std::string LAYOUT_NAME = "State.Statistics";
+	static const std::string TEXT_MOVES_MADE = "MovesMade";
+	static const std::string TEXT_GAMES_PLAYED = "GamesPlayed";
 
 	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
 	{
@@ -35,7 +36,7 @@ namespace state::Statistics
 		}
 	}
 
-	const std::vector<std::tuple<std::string, std::string, game::Statistic>> statisticsList =
+	static const std::vector<std::tuple<std::string, std::string, game::Statistic>> statisticsList =
 	{
 		{ TEXT_MOVES_MADE, "Moves Made", game::Statistic::MOVES_MADE},
 		{ TEXT_GAMES_PLAYED, "Games Played", game::Statistic::GAMES_PLAYED}
@@ -50,7 +51,7 @@ namespace state::Statistics
 		}
 	}
 
-	void Start()
+	void Statistics::Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::STATISTICS, OnEnter);
 		::application::MouseButtonUp::AddHandler(::UIState::STATISTICS, OnMouseButtonUp);

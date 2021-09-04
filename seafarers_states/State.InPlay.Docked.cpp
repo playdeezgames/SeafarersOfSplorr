@@ -12,23 +12,24 @@
 #include <Game.Avatar.Docked.h>
 #include <Game.Islands.h>
 #include <Game.Islands.Features.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
 #include <Visuals.MenuItems.h>
 #include <Visuals.Texts.h>
-namespace state::in_play::Docked
+namespace state::in_play
 {
-	const std::string LAYOUT_NAME = "State.InPlay.Docked";
-	const std::string MENU_ID = "Order";
-	const std::string MENU_ITEM_SHIPYARD = "Shipyard";
-	const std::string MENU_ITEM_DARK_ALLEY = "DarkAlley";
-	const std::string MENU_ITEM_TEMPLE = "Temple";
-	const std::string TEXT_ISLAND_NAME = "island-name";
-	const std::string TEXT_ISLAND_VISITS = "island-visits";
-	const std::string FORMAT_NAME = "Island Name: {}";
-	const std::string FORMAT_VISITS = "Visits: {}";
-	const std::string FORMAT_TEMPLE = "Temple of {}";
+	static const std::string LAYOUT_NAME = "State.InPlay.Docked";
+	static const std::string MENU_ID = "Order";
+	static const std::string MENU_ITEM_SHIPYARD = "Shipyard";
+	static const std::string MENU_ITEM_DARK_ALLEY = "DarkAlley";
+	static const std::string MENU_ITEM_TEMPLE = "Temple";
+	static const std::string TEXT_ISLAND_NAME = "island-name";
+	static const std::string TEXT_ISLAND_VISITS = "island-visits";
+	static const std::string FORMAT_NAME = "Island Name: {}";
+	static const std::string FORMAT_VISITS = "Visits: {}";
+	static const std::string FORMAT_TEMPLE = "Temple of {}";
 
 	enum class OrderMenuItem
 	{
@@ -76,7 +77,7 @@ namespace state::in_play::Docked
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	const std::map<OrderMenuItem, std::function<void()>> activators =
+	static const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
 		{ OrderMenuItem::UNDOCK, OnUndock },
 		{ OrderMenuItem::JOBS, OnJob },
@@ -86,9 +87,9 @@ namespace state::in_play::Docked
 		{ OrderMenuItem::TEMPLE, OnTemple }
 	};
 
-	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
+	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
-	const std::map<::Command, std::function<void()>> commandHandlers =
+	static const std::map<::Command, std::function<void()>> commandHandlers =
 	{
 		{::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
@@ -97,7 +98,7 @@ namespace state::in_play::Docked
 		{::Command::RED, OnUndock }
 	};
 
-	const std::map<std::string, game::Feature> featureMenuItems =
+	static const std::map<std::string, game::Feature> featureMenuItems =
 	{
 		{MENU_ITEM_SHIPYARD, game::Feature::SHIPYARD},
 		{MENU_ITEM_DARK_ALLEY, game::Feature::DARK_ALLEY}
@@ -125,7 +126,7 @@ namespace state::in_play::Docked
 		RefreshIslandDetails();
 	}
 
-	void Start()
+	void Docked::Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::IN_PLAY_DOCKED, OnEnter);
 		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_DOCKED, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));

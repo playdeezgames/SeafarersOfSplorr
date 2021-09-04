@@ -45,6 +45,10 @@ namespace state
 	{ 
 		static void Start(); 
 	};
+	struct Statistics 
+	{ 
+		static void Start(); 
+	};
 	struct Tip
 	{
 		static void Start();
@@ -75,6 +79,10 @@ namespace state
 		{
 			static void Start();
 		};
+		struct Docked 
+		{ 
+			static void Start(); 
+		};
 		struct MakeOffering
 		{
 			static void Start();
@@ -101,9 +109,7 @@ namespace state
 		};
 	}
 }
-namespace state::Statistics { void Start(); }
 namespace state::in_play::AtSea { void Start(); }
-namespace state::in_play::Docked { void Start(); }
 namespace state::in_play::Lose { void Start(); }
 namespace state::in_play::IslandJobs { void Start(); }
 namespace state::in_play::ConfirmReplaceJob { void Start(); }
