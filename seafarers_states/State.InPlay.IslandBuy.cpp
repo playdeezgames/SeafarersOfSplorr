@@ -29,7 +29,13 @@ namespace state::in_play
 	static const std::string FONT_DEFAULT = "default";
 	static const std::string AREA_LIST = "List";
 	static const std::string AREA_GO_BACK = "GoBack";
+	static const std::string AREA_INCREASE_QUANTITY = "IncreaseQuantity";
+	static const std::string AREA_DECREASE_QUANTITY = "DecreaseQuantity";
 	static const std::string TEXT_GO_BACK = "GoBack";
+	static const std::string TEXT_INCREASE_QUANTITY = "IncreaseQuantity";
+	static const std::string TEXT_QUANTITY = "Quantity";
+	static const std::string TEXT_DECREASE_QUANTITY = "DecreaseQuantity";
+	static const std::string FORMAT_QUANTITY = "Qty: {}";
 
 	static const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
 
@@ -49,7 +55,26 @@ namespace state::in_play
 
 	static std::map<game::Item, double> unitPrices;
 	static size_t hiliteRow = 0;
-	static bool hoverGoBack = false;
+	static const std::vector<size_t> quantities = 
+	{
+		1,
+		2,
+		5,
+		10,
+		20,
+		50,
+		100,
+		200,
+		500
+	};
+	static size_t quantityIndex = 0;
+	enum class HoverButton
+	{
+		GO_BACK,
+		INCREASE_QUANTITY,
+		DECREASE_QUANTITY
+	};
+	static std::optional<HoverButton> hoverButton = std::nullopt;
 
 	static void UpdateUnitPrices()
 	{
@@ -92,9 +117,12 @@ namespace state::in_play
 			game::Colors::WHITE);
 	}
 
-	static void RefreshButton()
+	static void RefreshButtons()
 	{
-		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, (hoverGoBack) ? (game::Colors::CYAN) : (game::Colors::GRAY));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_QUANTITY, std::format(FORMAT_QUANTITY, quantities[quantityIndex]));
+		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, (hoverButton.has_value() && hoverButton.value()== HoverButton::GO_BACK) ? (game::Colors::CYAN) : (game::Colors::GRAY));
+		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_INCREASE_QUANTITY, (hoverButton.has_value() && hoverButton.value() == HoverButton::INCREASE_QUANTITY) ? (game::Colors::CYAN) : (game::Colors::GRAY));
+		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_DECREASE_QUANTITY, (hoverButton.has_value() && hoverButton.value() == HoverButton::DECREASE_QUANTITY) ? (game::Colors::CYAN) : (game::Colors::GRAY));
 	}
 
 	static void RefreshGrid()
@@ -107,7 +135,7 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		RefreshButton();
+		RefreshButtons();
 		RefreshGrid();
 	}
 
@@ -123,14 +151,15 @@ namespace state::in_play
 		auto item = common::Utility::GetNthKey(unitPrices, hiliteRow);
 		if (item)
 		{
-			double price = unitPrices[item.value()];
-			if (game::avatar::Statistics::GetMoney() >= price)
+			auto quantity = quantities[quantityIndex];
+			double totalPrice = unitPrices[item.value()] * quantity;
+			if (game::avatar::Statistics::GetMoney() >= totalPrice)
 			{
-				if (game::avatar::Ship::AvailableTonnage() >= game::Items::Read(item.value()).tonnage)
+				if (game::avatar::Ship::AvailableTonnage() >= game::Items::Read(item.value()).tonnage * quantity)
 				{
-					game::avatar::Statistics::ChangeMoney(-price);
-					game::islands::Markets::BuyItems(game::avatar::Docked::GetDockedLocation().value(), item.value(), 1);
-					game::avatar::Items::Add(item.value(), 1);
+					game::avatar::Statistics::ChangeMoney(-totalPrice);
+					game::islands::Markets::BuyItems(game::avatar::Docked::GetDockedLocation().value(), item.value(), quantity);
+					game::avatar::Items::Add(item.value(), quantity);
 
 					UpdateUnitPrices();
 					Refresh();
@@ -149,6 +178,16 @@ namespace state::in_play
 		{
 			BuyItem();
 		}
+		else if (areaName == AREA_DECREASE_QUANTITY && quantityIndex>0)
+		{
+			quantityIndex--;
+			Refresh();
+		}
+		else if (areaName == AREA_INCREASE_QUANTITY && quantityIndex < quantities.size()-1)
+		{
+			quantityIndex++;
+			Refresh();
+		}
 		return true;
 	}
 
@@ -163,7 +202,7 @@ namespace state::in_play
 
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
 	{
-		hoverGoBack = false;
+		hoverButton = std::nullopt;
 		if (areaName == AREA_LIST)
 		{
 			auto cellHeight = visuals::SpriteGrid::GetCellHeight(LAYOUT_NAME, SPRITE_GRID_ID);
@@ -171,14 +210,22 @@ namespace state::in_play
 		}
 		else if (areaName == AREA_GO_BACK)
 		{
-			hoverGoBack = true;
+			hoverButton = HoverButton::GO_BACK;
+		}
+		else if (areaName == AREA_DECREASE_QUANTITY)
+		{
+			hoverButton = HoverButton::DECREASE_QUANTITY;
+		}
+		else if (areaName == AREA_INCREASE_QUANTITY)
+		{
+			hoverButton = HoverButton::INCREASE_QUANTITY;
 		}
 		Refresh();
 	}
 
 	static void OnMouseMotionOutsideArea(const common::XY<int>&)
 	{
-		hoverGoBack = false;
+		hoverButton = std::nullopt;
 		Refresh();
 	}
 
