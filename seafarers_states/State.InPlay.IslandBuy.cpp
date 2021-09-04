@@ -200,26 +200,31 @@ namespace state::in_play
 		{ ::Command::RED, OnLeave }
 	};
 
+	static std::function<void(const common::XY<int>&)> GoToHoverButton(HoverButton button)
+	{
+		return [button](const common::XY<int>&)
+		{
+			hoverButton = button;
+		};
+	}
+
+	static void SetHiliteRow(const common::XY<int>& location)
+	{
+		hiliteRow = location.GetY() / visuals::SpriteGrid::GetCellHeight(LAYOUT_NAME, SPRITE_GRID_ID);
+	}
+
+	static const std::map<std::string, std::function<void(const common::XY<int>&)>> mouseMotionHandlers =
+	{
+		{ AREA_LIST, SetHiliteRow },
+		{ AREA_GO_BACK, GoToHoverButton(HoverButton::GO_BACK) },
+		{ AREA_DECREASE_QUANTITY, GoToHoverButton(HoverButton::DECREASE_QUANTITY) },
+		{ AREA_INCREASE_QUANTITY, GoToHoverButton(HoverButton::INCREASE_QUANTITY) }
+	};
+
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
 	{
 		hoverButton = std::nullopt;
-		if (areaName == AREA_LIST)
-		{
-			auto cellHeight = visuals::SpriteGrid::GetCellHeight(LAYOUT_NAME, SPRITE_GRID_ID);
-			hiliteRow = location.GetY() / cellHeight;
-		}
-		else if (areaName == AREA_GO_BACK)
-		{
-			hoverButton = HoverButton::GO_BACK;
-		}
-		else if (areaName == AREA_DECREASE_QUANTITY)
-		{
-			hoverButton = HoverButton::DECREASE_QUANTITY;
-		}
-		else if (areaName == AREA_INCREASE_QUANTITY)
-		{
-			hoverButton = HoverButton::INCREASE_QUANTITY;
-		}
+		common::Utility::DispatchParameter(mouseMotionHandlers, areaName, location);
 		Refresh();
 	}
 

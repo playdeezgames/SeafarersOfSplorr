@@ -27,6 +27,15 @@ namespace common
 			}
 			return defaultResult;
 		}
+		template<typename TEnum, typename TParameter>
+		static void DispatchParameter(const std::map<TEnum, std::function<void(const TParameter&)>> handlers, const TEnum& key, const TParameter& parameter)
+		{
+			auto iter = handlers.find(key);
+			if (iter != handlers.end())
+			{
+				iter->second(parameter);
+			}
+		}
 		template<typename TEnum, typename TResult, typename TParameter>
 		static TResult DispatchParameter(const std::map<TEnum, std::function<TResult(const TParameter&)>> handlers, const TEnum& key, const TParameter& parameter, const TResult& defaultResult)
 		{
