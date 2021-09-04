@@ -81,6 +81,8 @@ namespace state::in_play
 		unitPrices = game::islands::Items::GetPurchasePrices(game::avatar::Docked::GetDockedLocation().value());
 	}
 
+	static const std::string LIST_ITEM_FORMAT = "{:14s} | {:7.3f} | {:4d} | {:5.3f}";
+
 	static void RefreshUnitPrices()
 	{
 		int row = 0;
@@ -90,7 +92,7 @@ namespace state::in_play
 			auto& itemDescriptor = game::Items::Read(unitPrice.first);
 			WriteTextToGrid(
 				{ 0, gridRow }, 
-				std::format("{:14s} | {:7.3f} | {:4d} | {:5.3f}", 
+				std::format(LIST_ITEM_FORMAT,
 					itemDescriptor.name, 
 					unitPrice.second,
 					game::avatar::Items::Read(unitPrice.first),
@@ -101,18 +103,21 @@ namespace state::in_play
 		}
 	}
 
+	static const std::string FORMAT_TONNAGE = "Avail. Tonn.: {:.3f}";
+	static const std::string FORMAT_MONEY = "Money: {:.3f}";
+
 	static void RefreshStatistics()
 	{
 		WriteTextToGrid(
 			{ 0, 18 },
 			std::format(
-				"Avail. Tonn.: {:.3f}",
+				FORMAT_TONNAGE,
 				game::avatar::Ship::AvailableTonnage()),
 			game::Colors::WHITE);
 		WriteTextToGrid(
 			{ 0, 19 }, 
 			std::format(
-				"Money: {:.3f}",
+				FORMAT_MONEY,
 				game::avatar::Statistics::GetMoney()),
 			game::Colors::WHITE);
 	}
@@ -168,26 +173,35 @@ namespace state::in_play
 		}
 	}
 
-	static bool OnMouseButtonUpInArea(const std::string& areaName)
+	static void DecreaseQuantity()
 	{
-		if (areaName == AREA_GO_BACK)
-		{
-			OnLeave();
-		}
-		else if (areaName == AREA_LIST)
-		{
-			BuyItem();
-		}
-		else if (areaName == AREA_DECREASE_QUANTITY && quantityIndex>0)
+		if (quantityIndex > 0)
 		{
 			quantityIndex--;
 			Refresh();
 		}
-		else if (areaName == AREA_INCREASE_QUANTITY && quantityIndex < quantities.size()-1)
+	}
+
+	static void IncreaseQuantity()
+	{
+		if (quantityIndex < quantities.size() - 1)
 		{
 			quantityIndex++;
 			Refresh();
 		}
+	}
+
+	static const std::map<std::string, std::function<void()>> mouseButtonHandlers =
+	{
+		{ AREA_GO_BACK, OnLeave},
+		{ AREA_LIST, BuyItem },
+		{ AREA_DECREASE_QUANTITY, DecreaseQuantity },
+		{ AREA_INCREASE_QUANTITY, IncreaseQuantity }
+	};
+
+	static bool OnMouseButtonUpInArea(const std::string& areaName)
+	{
+		common::Utility::Dispatch(mouseButtonHandlers, areaName);
 		return true;
 	}
 
