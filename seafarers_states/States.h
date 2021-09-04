@@ -103,6 +103,15 @@ namespace state
 		{ 
 			static void Start(); 
 		};
+		struct GambleFinish 
+		{ 
+			static void Start(); 
+		};
+		struct GambleStart 
+		{ 
+			static double GetCurrentWager();//TODO: is this the best place for this?
+			static void Start(); 
+		};
 		struct IslandBuy
 		{
 			static void Start();
@@ -149,10 +158,8 @@ namespace state
 		};
 	}
 }
-namespace state::in_play::AtSea { void Start(); }
+namespace state::in_play::AtSea { void Start(); }//TODO: <- the snakes in the pet shop fire
 namespace state::in_play::Shipyard { void Start(); }
 namespace state::in_play::Confirm { void Start(); }
-namespace state::in_play::GambleStart { void Start(); }
-namespace state::in_play::GambleFinish { void Start(); }
 namespace state::in_play::Temple { void Start(); }
 

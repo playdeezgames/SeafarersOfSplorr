@@ -13,6 +13,7 @@
 #include <Game.Colors.h>
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.DarkAlley.GamblingHand.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Images.h>
@@ -20,17 +21,17 @@
 #include <Visuals.Menus.h>
 #include <Visuals.Messages.h>
 #include <Visuals.Texts.h>
-namespace state::in_play::GambleStart
+namespace state::in_play
 {
-	const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_GAMBLE_START;
-	const std::string LAYOUT_NAME = "State.InPlay.GambleStart";
-	const std::string MENU_ID = "Wager";
-	const std::string IMAGE_FIRST_CARD = "FirstCard";
-	const std::string IMAGE_SECOND_CARD = "SecondCard";
-	const std::string TEXT_WAGER = "Wager";
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_GAMBLE_START;
+	static const std::string LAYOUT_NAME = "State.InPlay.GambleStart";
+	static const std::string MENU_ID = "Wager";
+	static const std::string IMAGE_FIRST_CARD = "FirstCard";
+	static const std::string IMAGE_SECOND_CARD = "SecondCard";
+	static const std::string TEXT_WAGER = "Wager";
 
 	static double currentWager = 0;
-	double GetCurrentWager()
+	double GambleStart::GetCurrentWager()
 	{
 		return currentWager;
 	}
@@ -125,7 +126,7 @@ namespace state::in_play::GambleStart
 		Refresh();
 	}
 
-	const std::map<::Command, std::function<void()>> commandHandlers =
+	static const std::map<::Command, std::function<void()>> commandHandlers =
 	{
 		{::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
@@ -134,7 +135,7 @@ namespace state::in_play::GambleStart
 		{::Command::RED, ::application::UIState::GoTo(::UIState::CONFIRM_QUIT) }
 	};
 
-	void Start()
+	void GambleStart::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));

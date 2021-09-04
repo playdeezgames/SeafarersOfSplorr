@@ -13,6 +13,7 @@
 #include <Game.Colors.h>
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.DarkAlley.GamblingHand.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Images.h>
@@ -20,20 +21,16 @@
 #include <Visuals.Menus.h>
 #include <Visuals.Messages.h>
 #include <Visuals.Texts.h>
-namespace state::in_play::GambleStart
+namespace state::in_play
 {
-	double GetCurrentWager();
-}
-namespace state::in_play::GambleFinish
-{
-	const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_GAMBLE_FINISH;
-	const std::string LAYOUT_NAME = "State.InPlay.GambleFinish";
-	const std::string MENU_ID = "Proceed";
-	const std::string IMAGE_FIRST_CARD = "FirstCard";
-	const std::string IMAGE_SECOND_CARD = "SecondCard";
-	const std::string IMAGE_THIRD_CARD = "ThirdCard";
-	const std::string TEXT_RESULT = "Result";
-	const std::string TEXT_WIN_LOSE = "WinLose";
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_GAMBLE_FINISH;
+	static const std::string LAYOUT_NAME = "State.InPlay.GambleFinish";
+	static const std::string MENU_ID = "Proceed";
+	static const std::string IMAGE_FIRST_CARD = "FirstCard";
+	static const std::string IMAGE_SECOND_CARD = "SecondCard";
+	static const std::string IMAGE_THIRD_CARD = "ThirdCard";
+	static const std::string TEXT_RESULT = "Result";
+	static const std::string TEXT_WIN_LOSE = "WinLose";
 
 	static void OnLeave()
 	{
@@ -47,22 +44,22 @@ namespace state::in_play::GambleFinish
 		LEAVE
 	};
 
-	const std::map<ProceedItem, std::function<void()>> activators =
+	static const std::map<ProceedItem, std::function<void()>> activators =
 	{
 		{ ProceedItem::PLAY_AGAIN, application::UIState::GoTo(::UIState::IN_PLAY_NEXT) },
 		{ ProceedItem::LEAVE, OnLeave }
 	};
 
-	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
+	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
 	static common::XY<double> GetDockedLocation()
 	{
 		return game::avatar::Docked::GetDockedLocation().value();
 	}
 
-	const size_t FIRST_CARD_INDEX = 0;
-	const size_t SECOND_CARD_INDEX = 1;
-	const size_t THIRD_CARD_INDEX = 2;
+	static const size_t FIRST_CARD_INDEX = 0;
+	static const size_t SECOND_CARD_INDEX = 1;
+	static const size_t THIRD_CARD_INDEX = 2;
 
 	static void RefreshCards()
 	{
@@ -95,7 +92,7 @@ namespace state::in_play::GambleFinish
 		Refresh();
 	}
 
-	const std::map<::Command, std::function<void()>> commandHandlers =
+	static const std::map<::Command, std::function<void()>> commandHandlers =
 	{
 		{::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
@@ -104,7 +101,7 @@ namespace state::in_play::GambleFinish
 		{::Command::RED, ::application::UIState::GoTo(::UIState::CONFIRM_QUIT) }
 	};
 
-	void Start()
+	void GambleFinish::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
