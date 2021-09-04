@@ -85,6 +85,8 @@ namespace state::in_play
 		unitPrices = game::islands::Items::GetSalePrices(game::avatar::Docked::GetDockedLocation().value());
 	}
 
+	static const std::string FORMAT_LINE_ITEM = "{:15s} | {:7.3f} | {:4d}";
+
 	static void RefreshUnitPrices()
 	{
 		int row = 0;
@@ -94,7 +96,7 @@ namespace state::in_play
 			auto& itemDescriptor = game::Items::Read(unitPrice.first);
 			WriteTextToGrid(
 				{ 0, gridRow },
-				std::format("{:15s} | {:7.3f} | {:4d}",
+				std::format(FORMAT_LINE_ITEM,
 					itemDescriptor.name,
 					unitPrice.second,
 					game::avatar::Items::Read(unitPrice.first)),
@@ -104,12 +106,14 @@ namespace state::in_play
 		}
 	}
 
+	static const std::string FORMAT_MONEY = "Money: {:.3f}";
+
 	static void RefreshStatistics()
 	{
 		WriteTextToGrid(
 			{ 0, 19 },
 			std::format(
-				"Money: {:.3f}",
+				FORMAT_MONEY,
 				game::avatar::Statistics::GetMoney()),
 			game::Colors::GRAY);
 	}
@@ -175,49 +179,63 @@ namespace state::in_play
 
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_ISLAND_SELL;
 
-	static bool OnMouseButtonUpInArea(const std::string& areaName)
+	static void DecreaseQuantity()
 	{
-		if (areaName == AREA_GO_BACK)
-		{
-			OnLeave();
-		}
-		else if (areaName == AREA_LIST)
-		{
-			SellItem();
-		}
-		else if (areaName == AREA_DECREASE_QUANTITY && quantityIndex > 0)
+		if (quantityIndex > 0)
 		{
 			quantityIndex--;
 			Refresh();
 		}
-		else if (areaName == AREA_INCREASE_QUANTITY && quantityIndex < quantities.size() - 1)
+	}
+
+	static void IncreaseQuantity()
+	{
+		if (quantityIndex < quantities.size() - 1)
 		{
 			quantityIndex++;
 			Refresh();
 		}
+	}
+
+	static const std::map<std::string, std::function<void()>> mouseButtonHandlers =
+	{
+		{AREA_GO_BACK, OnLeave},
+		{AREA_LIST, SellItem},
+		{AREA_DECREASE_QUANTITY, DecreaseQuantity},
+		{AREA_INCREASE_QUANTITY, IncreaseQuantity}
+	};
+
+	static bool OnMouseButtonUpInArea(const std::string& areaName)
+	{
+		common::Utility::Dispatch(mouseButtonHandlers, areaName);
 		return true;
 	}
+
+	static std::function<void(const common::XY<int>&)> SetHoverButton(HoverButton button)
+	{
+		return [button](const common::XY<int>&) 
+		{ 
+			hoverButton = button;
+		};
+	}
+
+	static void SetHiliteRow(const common::XY<int>& location)
+	{
+		hiliteRow = location.GetY() / visuals::SpriteGrid::GetCellHeight(LAYOUT_NAME, SPRITE_GRID_ID);
+	}
+
+	static const std::map<std::string, std::function<void(const common::XY<int>&)>> mouseMotionHandlers =
+	{
+		{ AREA_LIST, SetHiliteRow},
+		{AREA_GO_BACK, SetHoverButton(HoverButton::GO_BACK)},
+		{AREA_DECREASE_QUANTITY, SetHoverButton(HoverButton::DECREASE_QUANTITY)},
+		{AREA_INCREASE_QUANTITY, SetHoverButton(HoverButton::INCREASE_QUANTITY)}
+	};
 
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
 	{
 		hoverButton = std::nullopt;
-		if (areaName == AREA_LIST)
-		{
-			auto cellHeight = visuals::SpriteGrid::GetCellHeight(LAYOUT_NAME, SPRITE_GRID_ID);
-			hiliteRow = location.GetY() / cellHeight;
-		}
-		else if (areaName == AREA_GO_BACK)
-		{
-			hoverButton = HoverButton::GO_BACK;
-		}
-		else if (areaName == AREA_DECREASE_QUANTITY)
-		{
-			hoverButton = HoverButton::DECREASE_QUANTITY;
-		}
-		else if (areaName == AREA_INCREASE_QUANTITY)
-		{
-			hoverButton = HoverButton::INCREASE_QUANTITY;
-		}
+		common::Utility::DispatchParameter(mouseMotionHandlers, areaName, location);
 		Refresh();
 	}
 
