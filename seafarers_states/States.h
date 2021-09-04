@@ -87,7 +87,19 @@ namespace state
 		{ 
 			static void Start(); 
 		};
-		struct Docked 
+		struct CurrentJob
+		{
+			static void Start();
+		};
+		struct DarkAlley
+		{
+			static void Start();
+		};
+		struct DarkAlleyEntrance
+		{
+			static void Start();
+		};
+		struct Docked
 		{ 
 			static void Start(); 
 		};
@@ -138,10 +150,7 @@ namespace state
 	}
 }
 namespace state::in_play::AtSea { void Start(); }
-namespace state::in_play::CurrentJob { void Start(); }
 namespace state::in_play::Shipyard { void Start(); }
-namespace state::in_play::DarkAlleyEntrance { void Start(); }
-namespace state::in_play::DarkAlley { void Start(); }
 namespace state::in_play::Confirm { void Start(); }
 namespace state::in_play::GambleStart { void Start(); }
 namespace state::in_play::GambleFinish { void Start(); }

@@ -11,15 +11,16 @@
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.DarkAlley.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Confirmations.h>
 #include <Visuals.Menus.h>
 #include <Visuals.Messages.h>
-namespace state::in_play::DarkAlley
+namespace state::in_play
 {
-	const std::string LAYOUT_NAME = "State.InPlay.DarkAlley";
-	const std::string MENU_ID = "DarkAlley";
+	static const std::string LAYOUT_NAME = "State.InPlay.DarkAlley";
+	static const std::string MENU_ID = "DarkAlley";
 
 	static void OnLeave()
 	{
@@ -37,7 +38,7 @@ namespace state::in_play::DarkAlley
 		return game::islands::DarkAlley::GetMinimumWager(game::avatar::Docked::GetDockedLocation().value()).value();
 	}
 
-	const auto GetMoney = game::avatar::Statistics::GetMoney;
+	static const auto GetMoney = game::avatar::Statistics::GetMoney;
 
 	static void OnGamble()
 	{
@@ -74,15 +75,15 @@ namespace state::in_play::DarkAlley
 		GAMBLE
 	};
 
-	const std::map<DarkAlleyMenuItem, std::function<void()>> activators =
+	static const std::map<DarkAlleyMenuItem, std::function<void()>> activators =
 	{
 		{ DarkAlleyMenuItem::GAMBLE, OnGamble },
 		{ DarkAlleyMenuItem::LEAVE, OnLeave }
 	};
 
-	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
+	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
-	void Start()
+	void DarkAlley::Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::IN_PLAY_DARK_ALLEY, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
 		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_DARK_ALLEY, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));

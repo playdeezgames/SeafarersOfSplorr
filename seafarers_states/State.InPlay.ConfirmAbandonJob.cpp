@@ -16,7 +16,7 @@ namespace state::in_play
 	static const std::string LAYOUT_NAME = "State.InPlay.ConfirmAbandonJob";
 	static const std::string MENU_ID = "ConfirmAbandon";
 
-	static enum class ConfirmAbandonJobItem
+	enum class ConfirmAbandonJobItem
 	{
 		NO,
 		YES

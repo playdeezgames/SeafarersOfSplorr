@@ -13,22 +13,23 @@
 #include <Game.Avatar.Quest.h>
 #include <Game.Islands.h>
 #include <Game.Islands.Quests.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
 #include <Visuals.MenuItems.h>
 #include <Visuals.Texts.h>
-namespace state::in_play::CurrentJob
+namespace state::in_play
 {
-	const std::string LAYOUT_NAME = "State.InPlay.AvatarJob";
-	const std::string MENU_ID = "CurrentJob";
-	const std::string MENU_ITEM_ABANDON_JOB = "Abandon";
-	const std::string TEXT_LINE1 = "Line1";
-	const std::string TEXT_LINE2 = "Line2";
-	const std::string TEXT_LINE3 = "Line3";
-	const std::string TEXT_LINE4 = "Line4";
-	const std::string TEXT_LINE5 = "Line5";
-	const std::string TEXT_LINE6 = "Line6";
+	static const std::string LAYOUT_NAME = "State.InPlay.AvatarJob";
+	static const std::string MENU_ID = "CurrentJob";
+	static const std::string MENU_ITEM_ABANDON_JOB = "Abandon";
+	static const std::string TEXT_LINE1 = "Line1";
+	static const std::string TEXT_LINE2 = "Line2";
+	static const std::string TEXT_LINE3 = "Line3";
+	static const std::string TEXT_LINE4 = "Line4";
+	static const std::string TEXT_LINE5 = "Line5";
+	static const std::string TEXT_LINE6 = "Line6";
 
 	enum class CurrentJobMenuItem
 	{
@@ -36,15 +37,15 @@ namespace state::in_play::CurrentJob
 		CANCEL
 	};
 
-	const std::map<CurrentJobMenuItem, std::function<void()>> activators =
+	static const std::map<CurrentJobMenuItem, std::function<void()>> activators =
 	{
 		{ CurrentJobMenuItem::ABANDON, ::application::UIState::GoTo(::UIState::IN_PLAY_CONFIRM_ABANDON_JOB) },
 		{ CurrentJobMenuItem::CANCEL, ::application::UIState::Pop }
 	};
 
-	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
+	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
-	const std::map<::Command, std::function<void()>> commandHandlers =
+	static const std::map<::Command, std::function<void()>> commandHandlers =
 	{
 		{::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
@@ -95,7 +96,7 @@ namespace state::in_play::CurrentJob
 		UpdateText();
 	}
 
-	void Start()
+	void CurrentJob::Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::IN_PLAY_CURRENT_JOB, OnEnter);
 		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_CURRENT_JOB, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));

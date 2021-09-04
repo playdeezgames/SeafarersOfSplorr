@@ -21,7 +21,7 @@ namespace state::in_play
 	static const std::string LAYOUT_NAME = "State.InPlay.IslandTrade";
 	static const std::string MENU_ID = "Trade";
 
-	static enum class TradeMenuItem
+	enum class TradeMenuItem
 	{
 		BUY,
 		SELL,

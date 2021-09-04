@@ -13,21 +13,22 @@
 #include <Game.Colors.h>
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.DarkAlley.FightCard.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.CardSprites.h>
 #include <Visuals.Images.h>
 #include <Visuals.Texts.h>
-namespace state::in_play::DarkAlleyEntrance
+namespace state::in_play
 {
-	const std::string LAYOUT_NAME = "State.InPlay.DarkAlleyEntrance";
-	const std::string SPRITE_CARD_BACK = "CardBackRed";
-	const std::string TEXT_ENEMY_BRAWLING = "EnemyBrawling";
-	const std::string TEXT_BRAWLING = "Brawling";
-	const std::string TEXT_HEALTH = "Health";
-	const std::string TEXT_BUTTON = "Button";
-	const std::string AREA_BUTTON_HOVER = "ButtonHover";
-	const std::string TEXT_FIGHT_STATE = "FightState";
+	static const std::string LAYOUT_NAME = "State.InPlay.DarkAlleyEntrance";
+	static const std::string SPRITE_CARD_BACK = "CardBackRed";
+	static const std::string TEXT_ENEMY_BRAWLING = "EnemyBrawling";
+	static const std::string TEXT_BRAWLING = "Brawling";
+	static const std::string TEXT_HEALTH = "Health";
+	static const std::string TEXT_BUTTON = "Button";
+	static const std::string AREA_BUTTON_HOVER = "ButtonHover";
+	static const std::string TEXT_FIGHT_STATE = "FightState";
 
 	static std::optional<size_t> hoverCard = std::nullopt;
 	
@@ -48,7 +49,7 @@ namespace state::in_play::DarkAlleyEntrance
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	const std::map<std::string, size_t> cardAreas =
+	static const std::map<std::string, size_t> cardAreas =
 	{
 		{"Card0Hover", 0},
 		{"Card1Hover", 1},
@@ -71,7 +72,7 @@ namespace state::in_play::DarkAlleyEntrance
 		std::string cardSelectImage;
 	};
 
-	const std::map<size_t, CardPosition> cardPositions =
+	static const std::map<size_t, CardPosition> cardPositions =
 	{
 		{
 			0, 
@@ -200,7 +201,7 @@ namespace state::in_play::DarkAlleyEntrance
 		}
 	}
 
-	const auto GetRuffianBrawling = []() { return game::islands::DarkAlley::GetRuffianBrawling(GetDockedLocation()).value(); };
+	static const auto GetRuffianBrawling = []() { return game::islands::DarkAlley::GetRuffianBrawling(GetDockedLocation()).value(); };
 
 	static void RefreshStatistics()
 	{
@@ -403,7 +404,7 @@ namespace state::in_play::DarkAlleyEntrance
 		Refresh();
 	}
 
-	void Start()
+	void DarkAlleyEntrance::Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE, OnEnter);
 		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea, OnMouseMotionOutsideArea));
