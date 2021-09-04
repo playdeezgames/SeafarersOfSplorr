@@ -14,13 +14,14 @@
 #include <Game.Islands.Markets.h>
 #include <Game.Islands.Ships.h>
 #include <Game.Ships.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.SpriteGrid.h>
-namespace state::in_play::Shipyard
+namespace state::in_play
 {
-	const std::string LAYOUT_NAME = "State.InPlay.Shipyard";
-	const std::string SPRITE_GRID_ID = "Grid";
-	const std::string FONT_DEFAULT = "default";
+	static const std::string LAYOUT_NAME = "State.InPlay.Shipyard";
+	static const std::string SPRITE_GRID_ID = "Grid";
+	static const std::string FONT_DEFAULT = "default";
 
 	static std::map<game::Ship, double> shipPrices;
 	static size_t hiliteRow = 0;
@@ -37,7 +38,7 @@ namespace state::in_play::Shipyard
 		}
 	}
 
-	const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
+	static const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
 
 	static void OnLeave()
 	{
@@ -88,7 +89,7 @@ namespace state::in_play::Shipyard
 		RefreshStatistics();
 	}
 
-	void OnEnter()
+	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		UpdateShipPrices();
@@ -116,7 +117,7 @@ namespace state::in_play::Shipyard
 		}
 	}
 
-	const std::map<::Command, std::function<void()>> commandHandlers =
+	static const std::map<::Command, std::function<void()>> commandHandlers =
 	{
 		{ ::Command::UP, common::Utility::DoPreviousItem(hiliteRow, shipPrices, RefreshShipPrices) },
 		{ ::Command::DOWN, common::Utility::DoNextItem(hiliteRow, shipPrices, RefreshShipPrices) },
@@ -125,7 +126,7 @@ namespace state::in_play::Shipyard
 		{ ::Command::RED, OnLeave }
 	};
 
-	void Start()
+	void Shipyard::Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::IN_PLAY_SHIPYARD, OnEnter);
 		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_SHIPYARD, OnMouseButtonUp);
