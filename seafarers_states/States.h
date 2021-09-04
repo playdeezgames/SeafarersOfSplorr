@@ -83,6 +83,10 @@ namespace state
 		{ 
 			static void Start(); 
 		};
+		struct Lose 
+		{ 
+			static void Start(); 
+		};
 		struct MakeOffering
 		{
 			static void Start();
@@ -110,7 +114,6 @@ namespace state
 	}
 }
 namespace state::in_play::AtSea { void Start(); }
-namespace state::in_play::Lose { void Start(); }
 namespace state::in_play::IslandJobs { void Start(); }
 namespace state::in_play::ConfirmReplaceJob { void Start(); }
 namespace state::in_play::ConfirmAbandonJob { void Start(); }

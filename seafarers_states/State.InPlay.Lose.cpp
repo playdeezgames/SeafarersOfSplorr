@@ -5,10 +5,11 @@
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Audio.Sfx.h>
+#include "States.h"
 #include "UIState.h"
-namespace state::in_play::Lose
+namespace state::in_play
 {
-	const std::string LAYOUT_NAME = "State.InPlay.Lose";
+	static const std::string LAYOUT_NAME = "State.InPlay.Lose";
 
 	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
 	{
@@ -22,7 +23,7 @@ namespace state::in_play::Lose
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 	}
 
-	void Start()
+	void Lose::Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::IN_PLAY_LOSE, OnEnter);
 		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_LOSE, OnMouseButtonUp);
