@@ -15,22 +15,23 @@
 #include <Game.Avatar.Quest.h>
 #include <Game.Islands.h>
 #include <Game.Islands.Quests.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
 #include <Visuals.MenuItems.h>
 #include <Visuals.Texts.h>
-namespace state::in_play::IslandJobs
+namespace state::in_play
 {
-	const std::string LAYOUT_NAME = "State.InPlay.IslandJobs";
-	const std::string MENU_ID = "AcceptJob";
-	const std::string MENU_ITEM_ACCEPT_JOB = "Accept";
-	const std::string TEXT_LINE1 = "Line1";
-	const std::string TEXT_LINE2 = "Line2";
-	const std::string TEXT_LINE3 = "Line3";
-	const std::string TEXT_LINE4 = "Line4";
-	const std::string TEXT_LINE5 = "Line5";
-	const std::string TEXT_LINE6 = "Line6";
+	static const std::string LAYOUT_NAME = "State.InPlay.IslandJobs";
+	static const std::string MENU_ID = "AcceptJob";
+	static const std::string MENU_ITEM_ACCEPT_JOB = "Accept";
+	static const std::string TEXT_LINE1 = "Line1";
+	static const std::string TEXT_LINE2 = "Line2";
+	static const std::string TEXT_LINE3 = "Line3";
+	static const std::string TEXT_LINE4 = "Line4";
+	static const std::string TEXT_LINE5 = "Line5";
+	static const std::string TEXT_LINE6 = "Line6";
 
 	enum class AcceptJobMenuItem
 	{
@@ -64,9 +65,9 @@ namespace state::in_play::IslandJobs
 		{ AcceptJobMenuItem::CANCEL, OnCancel }
 	};
 
-	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
+	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
-	const std::map<::Command, std::function<void()>> commandHandlers =
+	static const std::map<::Command, std::function<void()>> commandHandlers =
 	{
 		{::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
@@ -118,7 +119,7 @@ namespace state::in_play::IslandJobs
 		UpdateText();
 	}
 
-	void Start()
+	void IslandJobs::Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::IN_PLAY_ISLAND_JOBS, OnEnter);
 		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_ISLAND_JOBS, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
