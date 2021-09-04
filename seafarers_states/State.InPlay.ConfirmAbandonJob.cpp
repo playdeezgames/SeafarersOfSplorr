@@ -7,15 +7,16 @@
 #include <Common.Utility.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Quest.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
-namespace state::in_play::ConfirmAbandonJob
+namespace state::in_play
 {
-	const std::string LAYOUT_NAME = "State.InPlay.ConfirmAbandonJob";
-	const std::string MENU_ID = "ConfirmAbandon";
+	static const std::string LAYOUT_NAME = "State.InPlay.ConfirmAbandonJob";
+	static const std::string MENU_ID = "ConfirmAbandon";
 
-	enum class ConfirmAbandonJobItem
+	static enum class ConfirmAbandonJobItem
 	{
 		NO,
 		YES
@@ -28,15 +29,15 @@ namespace state::in_play::ConfirmAbandonJob
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	const std::map<ConfirmAbandonJobItem, std::function<void()>> activators =
+	static const std::map<ConfirmAbandonJobItem, std::function<void()>> activators =
 	{
 		{ ConfirmAbandonJobItem::NO, ::application::UIState::Pop },
 		{ ConfirmAbandonJobItem::YES, AbandonJob }
 	};
 
-	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
+	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
-	const std::map<Command, std::function<void()>> commandHandlers =
+	static const std::map<Command, std::function<void()>> commandHandlers =
 	{
 		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
@@ -45,7 +46,7 @@ namespace state::in_play::ConfirmAbandonJob
 		{ ::Command::RED, ::application::UIState::Pop }
 	};
 
-	void Start()
+	void ConfirmAbandonJob::Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::IN_PLAY_CONFIRM_ABANDON_JOB, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
 		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_CONFIRM_ABANDON_JOB, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));

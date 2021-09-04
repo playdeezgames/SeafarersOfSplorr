@@ -9,15 +9,16 @@
 #include <Game.Avatar.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Quest.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
-namespace state::in_play::ConfirmReplaceJob
+namespace state::in_play
 {
-	const std::string LAYOUT_NAME = "State.InPlay.ConfirmReplaceJob";
-	const std::string MENU_ID = "ConfirmReplace";
+	static const std::string LAYOUT_NAME = "State.InPlay.ConfirmReplaceJob";
+	static const std::string MENU_ID = "ConfirmReplace";
 
-	enum class ConfirmReplaceJobItem
+	static enum class ConfirmReplaceJobItem
 	{
 		NO,
 		YES
@@ -37,15 +38,15 @@ namespace state::in_play::ConfirmReplaceJob
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	const std::map<ConfirmReplaceJobItem, std::function<void()>> activators =
+	static const std::map<ConfirmReplaceJobItem, std::function<void()>> activators =
 	{
 		{ ConfirmReplaceJobItem::NO, OnNo },
 		{ ConfirmReplaceJobItem::YES, ReplaceJob }
 	};
 
-	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
+	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
-	const std::map<Command, std::function<void()>> commandHandlers =
+	static const std::map<Command, std::function<void()>> commandHandlers =
 	{
 		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
@@ -54,7 +55,7 @@ namespace state::in_play::ConfirmReplaceJob
 		{ ::Command::RED, OnNo }
 	};
 
-	void Start()
+	void ConfirmReplaceJob::Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::IN_PLAY_CONFIRM_REPLACE_JOB, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
 		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_CONFIRM_REPLACE_JOB, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));

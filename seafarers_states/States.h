@@ -79,6 +79,14 @@ namespace state
 		{
 			static void Start();
 		};
+		struct ConfirmAbandonJob 
+		{ 
+			static void Start(); 
+		};
+		struct ConfirmReplaceJob 
+		{ 
+			static void Start(); 
+		};
 		struct Docked 
 		{ 
 			static void Start(); 
@@ -118,8 +126,6 @@ namespace state
 	}
 }
 namespace state::in_play::AtSea { void Start(); }
-namespace state::in_play::ConfirmReplaceJob { void Start(); }
-namespace state::in_play::ConfirmAbandonJob { void Start(); }
 namespace state::in_play::CurrentJob { void Start(); }
 namespace state::in_play::IslandTrade { void Start(); }
 namespace state::in_play::IslandBuy { void Start(); }
