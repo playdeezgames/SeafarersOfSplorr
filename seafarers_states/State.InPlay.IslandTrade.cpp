@@ -11,16 +11,17 @@
 #include <Game.Avatar.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Islands.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
 #include <Visuals.Texts.h>
-namespace state::in_play::IslandTrade
+namespace state::in_play
 {
-	const std::string LAYOUT_NAME = "State.InPlay.IslandTrade";
-	const std::string MENU_ID = "Trade";
+	static const std::string LAYOUT_NAME = "State.InPlay.IslandTrade";
+	static const std::string MENU_ID = "Trade";
 
-	enum class TradeMenuItem
+	static enum class TradeMenuItem
 	{
 		BUY,
 		SELL,
@@ -45,16 +46,16 @@ namespace state::in_play::IslandTrade
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	const std::map<TradeMenuItem, std::function<void()>> activators =
+	static const std::map<TradeMenuItem, std::function<void()>> activators =
 	{
 		{ TradeMenuItem::BUY, OnBuy },
 		{ TradeMenuItem::SELL, OnSell },
 		{ TradeMenuItem::LEAVE, OnLeave }
 	};
 
-	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
+	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
-	const std::map<::Command, std::function<void()>> commandHandlers =
+	static const std::map<::Command, std::function<void()>> commandHandlers =
 	{
 		{::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
@@ -68,7 +69,7 @@ namespace state::in_play::IslandTrade
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 	}
 
-	void Start()
+	void IslandTrade::Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::IN_PLAY_ISLAND_TRADE, OnEnter);
 		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_ISLAND_TRADE, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));

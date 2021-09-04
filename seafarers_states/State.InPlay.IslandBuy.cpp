@@ -16,11 +16,12 @@
 #include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.SpriteGrid.h>
 #include <Visuals.Texts.h>
-namespace state::in_play::IslandBuy
+namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_ISLAND_BUY;
 	static const std::string LAYOUT_NAME = "State.InPlay.IslandBuy";
@@ -181,7 +182,7 @@ namespace state::in_play::IslandBuy
 		Refresh();
 	}
 
-	void Start()
+	void IslandBuy::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));

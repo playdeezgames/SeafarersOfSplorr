@@ -15,20 +15,21 @@
 #include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.SpriteGrid.h>
 #include <Visuals.Texts.h>
-namespace state::in_play::IslandSell
+namespace state::in_play
 {
-	const std::string LAYOUT_NAME = "State.InPlay.IslandSell";
-	const std::string SPRITE_GRID_ID = "Grid";
-	const std::string FONT_DEFAULT = "default";
+	static const std::string LAYOUT_NAME = "State.InPlay.IslandSell";
+	static const std::string SPRITE_GRID_ID = "Grid";
+	static const std::string FONT_DEFAULT = "default";
 	static const std::string AREA_LIST = "List";
 	static const std::string AREA_GO_BACK = "GoBack";
 	static const std::string TEXT_GO_BACK = "GoBack";
 
-	const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
+	static const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
 
 	static void OnLeave()
 	{
@@ -107,7 +108,7 @@ namespace state::in_play::IslandSell
 		RefreshButton();
 	}
 
-	void OnEnter()
+	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		UpdateUnitPrices();
@@ -133,7 +134,7 @@ namespace state::in_play::IslandSell
 		}
 	}
 
-	const std::map<::Command, std::function<void()>> commandHandlers =
+	static const std::map<::Command, std::function<void()>> commandHandlers =
 	{
 		{ ::Command::UP, common::Utility::DoPreviousItem(hiliteRow, unitPrices, Refresh) },
 		{ ::Command::DOWN, common::Utility::DoNextItem(hiliteRow, unitPrices, Refresh) },
@@ -178,7 +179,7 @@ namespace state::in_play::IslandSell
 		Refresh();
 	}
 
-	void Start()
+	void IslandSell::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));

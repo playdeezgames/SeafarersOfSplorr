@@ -91,9 +91,21 @@ namespace state
 		{ 
 			static void Start(); 
 		};
+		struct IslandBuy
+		{
+			static void Start();
+		};
 		struct IslandJobs
 		{
 			static void Start();
+		};
+		struct IslandSell 
+		{ 
+			static void Start(); 
+		};
+		struct IslandTrade 
+		{ 
+			static void Start(); 
 		};
 		struct Lose 
 		{ 
@@ -127,9 +139,6 @@ namespace state
 }
 namespace state::in_play::AtSea { void Start(); }
 namespace state::in_play::CurrentJob { void Start(); }
-namespace state::in_play::IslandTrade { void Start(); }
-namespace state::in_play::IslandBuy { void Start(); }
-namespace state::in_play::IslandSell { void Start(); }
 namespace state::in_play::Shipyard { void Start(); }
 namespace state::in_play::DarkAlleyEntrance { void Start(); }
 namespace state::in_play::DarkAlley { void Start(); }
