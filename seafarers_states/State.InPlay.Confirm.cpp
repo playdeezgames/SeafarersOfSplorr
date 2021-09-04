@@ -7,15 +7,16 @@
 #include <Common.Utility.h>
 #include <Game.Audio.Mux.h>
 #include <Visuals.Confirmations.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
 #include <Visuals.Texts.h>
-namespace state::in_play::Confirm
+namespace state::in_play
 {
-	const std::string LAYOUT_NAME = "State.InPlay.Confirm";
-	const std::string MENU_ID = "Confirm";
-	const std::string TEXT_PROMPT = "Prompt";
+	static const std::string LAYOUT_NAME = "State.InPlay.Confirm";
+	static const std::string MENU_ID = "Confirm";
+	static const std::string TEXT_PROMPT = "Prompt";
 
 	enum class ConfirmItem
 	{
@@ -37,15 +38,15 @@ namespace state::in_play::Confirm
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	const std::map<ConfirmItem, std::function<void()>> activators =
+	static const std::map<ConfirmItem, std::function<void()>> activators =
 	{
 		{ ConfirmItem::NO, OnNo },
 		{ ConfirmItem::YES, OnYes }
 	};
 
-	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
+	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
-	const std::map<Command, std::function<void()>> commandHandlers =
+	static const std::map<Command, std::function<void()>> commandHandlers =
 	{
 		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
@@ -71,7 +72,7 @@ namespace state::in_play::Confirm
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	void Start()
+	void Confirm::Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::IN_PLAY_CONFIRM, OnEnter);
 		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_CONFIRM, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));

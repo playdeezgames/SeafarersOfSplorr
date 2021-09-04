@@ -79,6 +79,10 @@ namespace state
 		{
 			static void Start();
 		};
+		struct Confirm
+		{
+			static void Start();
+		};
 		struct ConfirmAbandonJob 
 		{ 
 			static void Start(); 
@@ -160,6 +164,5 @@ namespace state
 }
 namespace state::in_play::AtSea { void Start(); }//TODO: <- the snakes in the pet shop fire
 namespace state::in_play::Shipyard { void Start(); }
-namespace state::in_play::Confirm { void Start(); }
 namespace state::in_play::Temple { void Start(); }
 
