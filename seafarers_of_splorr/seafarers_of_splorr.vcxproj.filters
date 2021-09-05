@@ -19,9 +19,6 @@
     <ClCompile Include="Game.Avatar.Docked.Messages.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Audio.Platform.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">

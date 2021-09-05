@@ -14,9 +14,8 @@ namespace application
 		return true;
 	}
 	const std::string Engine::CONFIG_FILE = "config/ui/application.json";
-
 }
-//TODO: move vv to splorr_application
+//TODO: move vv to splorr_platform
 static std::vector<std::string> ParseCommandLine(int argc, char** argv)
 {
 	std::vector<std::string> arguments;

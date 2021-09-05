@@ -1,7 +1,7 @@
 #include <Audio.Platform.h>
 #include <SDL_mixer.h>
 #include <vector>
-namespace audio//TODO: this goes into splorr_platform
+namespace audio
 {
 	static std::vector<Mix_Music*> music;
 	static std::vector<Mix_Chunk*> sounds;
@@ -62,7 +62,7 @@ namespace audio//TODO: this goes into splorr_platform
 		auto result = sounds.size();
 		sounds.push_back(Mix_LoadWAV_RW(SDL_RWFromFile(filename.c_str(), "rb"), 1));
 		return result;
-		
+
 	}
 
 	void Platform::UnloadSounds()
