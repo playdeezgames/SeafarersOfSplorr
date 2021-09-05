@@ -31,6 +31,11 @@ namespace common
 		{
 			return sqrt(GetX() * GetX() + GetY() * GetY());
 		}
+		template<typename TOther>
+		XY<TOther> Convert() const
+		{
+			return XY<TOther>((TOther)GetX(), (TOther)GetY());
+		}
 	};
 	template<typename TDimension>
 	XY<TDimension> operator+(const XY<TDimension>& first, const XY<TDimension>& second)

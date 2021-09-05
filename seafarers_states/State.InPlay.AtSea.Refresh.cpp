@@ -26,13 +26,11 @@ namespace state::in_play::AtSea
 	const std::string TEXT_AVATAR_MONEY = "avatar-money";
 	const std::string TEXT_AVATAR_REPUTATION = "avatar-reputation";
 
-	const std::string IMAGE_CURRENT_HEADING = "CurrentHeading";
 	const std::string IMAGE_DESTINATION_1 = "Destination1";
 	const std::string IMAGE_DESTINATION_2 = "Destination2";
 	const std::string IMAGE_DESTINATION_3 = "Destination3";
 	const std::string IMAGE_DESTINATION_4 = "Destination4";
 	const std::string IMAGE_QUEST_DESTINATION = "QuestDestination";
-	const std::string IMAGE_WIND_DIRECTION = "WindDirection";
 
 	const std::string MENU_ITEM_DOCK = "Dock";
 
@@ -66,17 +64,16 @@ namespace state::in_play::AtSea
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_TURNS, std::format(game::avatar::Statistics::FORMAT_TURNS, game::avatar::Statistics::GetTurnsRemaining()));
 	}
 
-	static void RefreshAvatarHeading()
+	static void RefreshAvatarHeading()//TODO: send to sublayout
 	{
 		auto heading = game::avatar::AtSea::GetHeading();
 		visuals::Texts::SetText(
 			LAYOUT_NAME, 
 			TEXT_AVATAR_HEADING, 
 			std::format(game::avatar::Statistics::FORMAT_HEADING, common::Heading::ToCompassPoint(heading)));
-		visuals::Images::SetAngle(LAYOUT_NAME, IMAGE_CURRENT_HEADING, heading);
 	}
 
-	static void RefreshAvatarSpeed()
+	static void RefreshAvatarSpeed()//TODO: send to sublayout
 	{
 		auto speed = game::avatar::AtSea::GetSpeed();
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_SPEED, std::format(game::avatar::Statistics::FORMAT_SPEED, speed));
@@ -114,47 +111,8 @@ namespace state::in_play::AtSea
 		}
 	}
 
-	static void RefreshAvatarQuestDestination()
-	{
-		const double FUDGE_FACTOR = 0.5;
-		auto quest = game::avatar::Quest::Read();
-		if (quest)
-		{
-			auto clampedDistance = common::Heading::ClampDistance(quest.value().destination - game::avatar::AtSea::GetLocation(), game::World::GetViewDistance() + FUDGE_FACTOR);
-			auto plot = Plot(clampedDistance);
-			visuals::Images::SetLocation(LAYOUT_NAME, IMAGE_QUEST_DESTINATION, { (int)plot.GetX(), (int)plot.GetY() });
-			visuals::Images::SetVisible(LAYOUT_NAME, IMAGE_QUEST_DESTINATION, true);
-			return;
-		}
-		visuals::Images::SetVisible(LAYOUT_NAME, IMAGE_QUEST_DESTINATION, false);
-	}
-
-	//TODO: get this not hardcoded
-	const common::XY<double> VIEW_CENTER = { 162.0,182.0 };
-	const double VIEW_RADIUS = 144.0;
-	const int ISLAND_ICON_COUNT = 10;
-	const int IMAGE_OFFSET_X = 0;
-	const int IMAGE_OFFSET_Y = 0;
-	const int TEXT_OFFSET_X = 0;
-	const int TEXT_OFFSET_Y = 8;
-	const std::string FORMAT_AT_SEA_ISLAND = "AtSeaIsland{}";
-
-	static void RefreshWindDirection()
-	{
-		auto windHeading = common::Heading::ToRadians(game::World::GetWindHeading()+common::Heading::DEGREES/2.0);
-		common::XY<double> plot = { VIEW_CENTER.GetX() + std::cos(windHeading) * VIEW_RADIUS, VIEW_CENTER.GetY() + std::sin(windHeading) * VIEW_RADIUS };
-		visuals::Images::SetLocation(LAYOUT_NAME, IMAGE_WIND_DIRECTION, { (int)plot.GetX(), (int)plot.GetY() });
-	}
-
-	static void HideVisibleIslands()
-	{
-		for (int icon = 0; icon < ISLAND_ICON_COUNT; ++icon)
-		{
-			auto visualId = std::format(FORMAT_AT_SEA_ISLAND, icon);
-			visuals::Images::SetVisible(LAYOUT_NAME, visualId, false);
-			visuals::Texts::SetText(LAYOUT_NAME, visualId, "");
-		}
-	}
+	static const common::XY<double> VIEW_CENTER = { 162.0,182.0 };
+	static const double VIEW_RADIUS = 144.0;
 
 	static common::XY<double> Plot(const common::XY<double>& location)
 	{
@@ -176,7 +134,6 @@ namespace state::in_play::AtSea
 
 	void RefreshAvatarStatus()
 	{
-		RefreshWindDirection();
 		RefreshAvatarHeading();
 		RefreshAvatarHealth();
 		RefreshAvatarSatiety();
@@ -185,28 +142,11 @@ namespace state::in_play::AtSea
 		RefreshAvatarReputation();
 		RefreshAvatarTurns();
 		RefreshAvatarDestinations();
-		RefreshAvatarQuestDestination();
 		RefreshLog();
 	}
 
 	void RefreshIslands()
 	{
-		HideVisibleIslands();
-		auto islands = game::Islands::GetViewableIslands();
-		int icon = 0;
-		double dockDistance = game::World::GetDockDistance();
-		bool canDock = false;
-		for (auto& entry : islands)
-		{
-			canDock |= (common::Heading::Distance(entry.relativeLocation, { 0.0, 0.0 }) <= dockDistance);
-			auto plot = Plot(entry.relativeLocation);
-			auto visualId = std::format(FORMAT_AT_SEA_ISLAND, icon);
-			visuals::Images::SetLocation(LAYOUT_NAME, visualId, { (int)plot.GetX() + IMAGE_OFFSET_X,(int)plot.GetY() + IMAGE_OFFSET_Y });
-			visuals::Images::SetVisible(LAYOUT_NAME, visualId, true);
-			visuals::Texts::SetLocation(LAYOUT_NAME, visualId, { (int)plot.GetX() + TEXT_OFFSET_X,(int)plot.GetY() + TEXT_OFFSET_Y });
-			visuals::Texts::SetText(LAYOUT_NAME, visualId, (entry.visits.has_value()) ? (entry.name) : (game::Islands::UNKNOWN));
-			++icon;
-		}
-		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_DOCK, canDock);
+		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_DOCK, game::Islands::CanDock());
 	}
 }
