@@ -1,4 +1,5 @@
 #include "Application.Engine.h"
+#include "Application.Platform.h"
 #include <Data.JSON.h>
 #include <memory>
 #include <SDL.h>
@@ -45,7 +46,7 @@ namespace application
 		controllers.clear();
 	}
 
-	static void HookMixQuit()
+	static void HookMixQuit()//TODO: to audio platform
 	{
 		Mix_Quit();
 	}
@@ -55,7 +56,7 @@ namespace application
 		int mixerFrequency = properties[MIXER_FREQUENCY];
 		int channelCount = properties[CHANNEL_COUNT];
 		int chunkSize = properties[CHUNK_SIZE];
-		Mix_Init(MIX_INIT_OGG);
+		Mix_Init(MIX_INIT_OGG);//TODO: to audio platform
 		Mix_OpenAudio
 		(
 			mixerFrequency,
@@ -75,7 +76,7 @@ namespace application
 		int logicalHeight = properties[LOGICAL_HEIGHT];
 		std::string windowTitle = properties[TITLE];
 		std::string iconFileName = properties[ICON];
-		SDL_Window* pw = nullptr;
+		SDL_Window* pw = nullptr;//TODO: to application platform
 		SDL_Renderer* pr = nullptr;
 		SDL_CreateWindowAndRenderer(
 			windowWidth,
@@ -106,19 +107,13 @@ namespace application
 
 	static void DoStart(const std::string& configFile, const std::vector<std::string>& arguments)
 	{
-		SDL_Init(SDL_INIT_EVERYTHING);
-		atexit(SDL_Quit);
+		Platform::Initialize();
 
 		auto properties = ::data::JSON::Load(configFile);
 		StartAudio(properties);
 		StartWindow(properties);
 		StartControllers();
 		Start(arguments);
-	}
-
-	static void ReportRenderTicks(unsigned int renderTicks)
-	{
-		SDL_LogDebug(0, "%u", renderTicks);
 	}
 
 	static void DoPump()
@@ -131,7 +126,6 @@ namespace application
 			Updatify(frameTicks - currentTicks);
 			currentTicks = frameTicks;
 			Engine::Render(renderer);
-			ReportRenderTicks(SDL_GetTicks() - frameTicks);
 			SDL_RenderPresent(renderer.get()->renderer.get());
 			while (SDL_PollEvent(&evt))
 			{

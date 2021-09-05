@@ -25,6 +25,7 @@
     <ClInclude Include="Application.MouseButtonUp.h" />
     <ClInclude Include="Application.MouseMotion.h" />
     <ClInclude Include="Application.OnEnter.h" />
+    <ClInclude Include="Application.Platform.h" />
     <ClInclude Include="Application.Renderer.h" />
     <ClInclude Include="Application.TextInput.h" />
     <ClInclude Include="Application.UIState.h" />

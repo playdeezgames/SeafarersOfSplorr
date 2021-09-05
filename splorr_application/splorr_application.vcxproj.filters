@@ -53,6 +53,9 @@
     <ClInclude Include="Application.TextInput.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Application.Platform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.Command.cpp">

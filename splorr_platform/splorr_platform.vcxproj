@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Application.Platform.cpp" />
     <ClCompile Include="Audio.Platform.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
