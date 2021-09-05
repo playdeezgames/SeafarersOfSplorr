@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Audio.Platform.cpp" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -81,11 +82,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\lib\SDL2-2.0.14\include;E:\lib\SDL2_mixer-2.0.4\include;..\splorr_audio;$(IncludePath)</IncludePath>
+    <IncludePath>../splorr_common;../splorr_application;E:\lib\SDL2-2.0.14\include;E:\lib\SDL2_mixer-2.0.4\include;..\splorr_audio;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>E:\lib\SDL2-2.0.14\include;E:\lib\SDL2_mixer-2.0.4\include;..\splorr_audio;$(IncludePath)</IncludePath>
+    <IncludePath>../splorr_common;../splorr_application;E:\lib\SDL2-2.0.14\include;E:\lib\SDL2_mixer-2.0.4\include;..\splorr_audio;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
