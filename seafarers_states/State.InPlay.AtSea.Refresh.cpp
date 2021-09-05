@@ -26,12 +26,6 @@ namespace state::in_play::AtSea
 	const std::string TEXT_AVATAR_MONEY = "avatar-money";
 	const std::string TEXT_AVATAR_REPUTATION = "avatar-reputation";
 
-	const std::string IMAGE_DESTINATION_1 = "Destination1";
-	const std::string IMAGE_DESTINATION_2 = "Destination2";
-	const std::string IMAGE_DESTINATION_3 = "Destination3";
-	const std::string IMAGE_DESTINATION_4 = "Destination4";
-	const std::string IMAGE_QUEST_DESTINATION = "QuestDestination";
-
 	const std::string MENU_ITEM_DOCK = "Dock";
 
 	const std::string SPRITE_GRID_LOG = "Log";
