@@ -144,9 +144,4 @@ namespace state::in_play::AtSea
 		RefreshAvatarDestinations();
 		RefreshLog();
 	}
-
-	void RefreshIslands()
-	{
-		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_DOCK, game::Islands::CanDock());
-	}
 }

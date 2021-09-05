@@ -12,6 +12,7 @@
 #include <Game.Avatar.AtSea.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Quest.h>
+#include <Game.Islands.h>
 #include <Game.Colors.h>
 #include "UIState.h"
 #include <Visuals.Areas.h>
@@ -32,11 +33,12 @@ namespace state::in_play::AtSea
 	static const std::string IMAGE_NEW_HEADING = "NewHeading";
 
 	static const std::string MENU_ITEM_MOVE = "Move";
+	const std::string MENU_ITEM_DOCK = "Dock";
+
 
 	static const common::XY<int> CENTER = { 160, 160 };//TODO: hardcoded
 
 	void RefreshAvatarStatus();
-	void RefreshIslands();
 	void DoAutomoveTimer(const unsigned int&);
 	void ToggleAutoMove();
 	bool IsAutoMoveEngaged();
@@ -152,7 +154,7 @@ namespace state::in_play::AtSea
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		RefreshAvatarStatus();
-		RefreshIslands();
+		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_DOCK, game::Islands::CanDock());
 		UpdateAutoMoveState();
 	}
 
