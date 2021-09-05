@@ -11,15 +11,18 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.AtSea.h>
 #include <Game.Avatar.Docked.h>
+#include <Game.Avatar.Log.h>
 #include <Game.Avatar.Quest.h>
 #include <Game.Islands.h>
 #include <Game.Colors.h>
+#include "Sublayouts.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Images.h>
 #include <Visuals.Menus.h>
 #include <Visuals.MenuItems.h>
 #include <Visuals.Messages.h>
+#include <Visuals.SpriteGrid.h>
 namespace state::in_play::AtSea
 {
 	static const std::string LAYOUT_NAME = "State.InPlay.AtSea";
@@ -33,12 +36,14 @@ namespace state::in_play::AtSea
 	static const std::string IMAGE_NEW_HEADING = "NewHeading";
 
 	static const std::string MENU_ITEM_MOVE = "Move";
-	const std::string MENU_ITEM_DOCK = "Dock";
+	static const std::string MENU_ITEM_DOCK = "Dock";
 
+	static const std::string SPRITE_GRID_LOG = "Log";
+	static const std::string FONT_LOG = "font5x7";
+	static const size_t LOG_ENTRIES = 20;
 
 	static const common::XY<int> CENTER = { 160, 160 };//TODO: hardcoded
 
-	void RefreshAvatarStatus();
 	void DoAutomoveTimer(const unsigned int&);
 	void ToggleAutoMove();
 	bool IsAutoMoveEngaged();
@@ -150,10 +155,23 @@ namespace state::in_play::AtSea
 		{::Command::RED, ::application::UIState::GoTo(::UIState::LEAVE_PLAY) }
 	};
 
+	static void RefreshLog()
+	{
+		visuals::SpriteGrid::Clear(LAYOUT_NAME, SPRITE_GRID_LOG);
+		auto entries = game::avatar::Log::Read(LOG_ENTRIES);
+		int row = (int)entries.size() - 1;
+		for (auto entry : entries)
+		{
+			visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_LOG, { 0,row }, FONT_LOG, entry.text, entry.color, visuals::HorizontalAlignment::LEFT);
+			--row;
+		}
+	}
+
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
-		RefreshAvatarStatus();
+		sublayout::AtSeaAvatarStatus::Refresh();
+		RefreshLog();
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_DOCK, game::Islands::CanDock());
 		UpdateAutoMoveState();
 	}
@@ -186,7 +204,7 @@ namespace state::in_play::AtSea
 		if (areaName == AREA_CHANGE_HEADING)
 		{
 			game::avatar::AtSea::SetHeading(newHeading);
-			RefreshAvatarStatus();
+			sublayout::AtSeaAvatarStatus::Refresh();
 			return true;
 		}
 		return false;

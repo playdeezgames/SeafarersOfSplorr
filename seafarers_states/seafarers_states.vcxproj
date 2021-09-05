@@ -30,7 +30,7 @@
     <ClCompile Include="State.ConfirmQuit.cpp" />
     <ClCompile Include="State.InPlay.AtSea.AutoMove.cpp" />
     <ClCompile Include="State.InPlay.AtSea.cpp" />
-    <ClCompile Include="State.InPlay.AtSea.Refresh.cpp" />
+    <ClCompile Include="Sublayout.AtSeaAvatarStatus.cpp" />
     <ClCompile Include="State.InPlay.AtSeaCareenSelect.cpp" />
     <ClCompile Include="State.InPlay.AvatarStatus.cpp" />
     <ClCompile Include="State.InPlay.CareenedToPort.cpp" />
