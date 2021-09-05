@@ -1,7 +1,7 @@
 #include <Audio.Platform.h>
 #include <SDL_mixer.h>
 #include <vector>
-namespace audio
+namespace audio//TODO: this goes into splorr_platform
 {
 	static std::vector<Mix_Music*> music;
 	static std::vector<Mix_Chunk*> sounds;
