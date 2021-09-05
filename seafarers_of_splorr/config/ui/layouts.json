@@ -14,6 +14,7 @@
     "State.Tip":"config/ui/layouts/State.Tip.json",
     "State.Statistics":"config/ui/layouts/State.Statistics.json",
     "Sublayout.UIHamburger":"config/ui/layouts/Sublayout.UIHamburger.json",
+    "Sublayout.AtSeaStatistics":"config/ui/layouts/Sublayout.AtSeaStatistics.json",
     "State.InPlay.AtSea":"config/ui/layouts/State.InPlay.AtSea.json",
     "State.InPlay.ChangeSpeed":"config/ui/layouts/State.InPlay.ChangeSpeed.json",
     "State.InPlay.Docked":"config/ui/layouts/State.InPlay.Docked.json",

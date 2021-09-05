@@ -173,14 +173,6 @@
         ]
     },
     {
-        "type": "Layout",
-        "name": "Sublayout.UIHamburger"
-    },
-    {
-        "type": "Layout",
-        "name": "Sublayout.Modded"
-    },
-    {
         "type":"Area",
         "area-id":"WorldMap",
         "x":320,
@@ -299,5 +291,17 @@
         "drop-shadow-color": "Black",
         "drop-shadow-x": 1,
         "drop-shadow-y": 1
+    },
+    {
+        "type": "Layout",
+        "name": "Sublayout.AtSeaStatistics"
+    },
+    {
+        "type": "Layout",
+        "name": "Sublayout.UIHamburger"
+    },
+    {
+        "type": "Layout",
+        "name": "Sublayout.Modded"
     }
 ]
