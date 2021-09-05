@@ -79,47 +79,6 @@ namespace state::in_play::AtSea
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_AVATAR_SPEED, std::format(game::avatar::Statistics::FORMAT_SPEED, speed));
 	}
 
-	const std::map<game::avatar::Destination, std::string> destinationIdImages =
-	{
-		{game::avatar::Destination::ONE, IMAGE_DESTINATION_1},
-		{game::avatar::Destination::TWO, IMAGE_DESTINATION_2},
-		{game::avatar::Destination::THREE, IMAGE_DESTINATION_3},
-		{game::avatar::Destination::FOUR, IMAGE_DESTINATION_4}
-	};
-
-	static common::XY<double> Plot(const common::XY<double>&);
-	static void RefreshAvatarDestination(const game::avatar::Destination& destinationId)
-	{
-		auto destination = game::avatar::Destinations::GetDestination(destinationId);
-		auto imageId = destinationIdImages.find(destinationId)->second;
-		if (destination)
-		{
-			auto clampedDistance = common::Heading::ClampDistance(destination.value() - game::avatar::AtSea::GetLocation(), game::World::GetViewDistance() + 0.5);//TODO: magic number
-			auto plot = Plot(clampedDistance);
-			visuals::Images::SetLocation(LAYOUT_NAME, imageId, { (int)plot.GetX(), (int)plot.GetY() });
-			visuals::Images::SetVisible(LAYOUT_NAME, imageId, true);
-			return;
-		}
-		visuals::Images::SetVisible(LAYOUT_NAME, imageId, false);
-	}
-
-	static void RefreshAvatarDestinations()
-	{
-		for (auto destinationId : game::avatar::Destinations::All())
-		{
-			RefreshAvatarDestination(destinationId);
-		}
-	}
-
-	static const common::XY<double> VIEW_CENTER = { 162.0,182.0 };
-	static const double VIEW_RADIUS = 144.0;
-
-	static common::XY<double> Plot(const common::XY<double>& location)
-	{
-		double viewScale = VIEW_RADIUS / game::World::GetViewDistance();
-		return location * viewScale + VIEW_CENTER;
-	}
-
 	static void RefreshLog()
 	{
 		visuals::SpriteGrid::Clear(LAYOUT_NAME, SPRITE_GRID_LOG);
@@ -141,7 +100,6 @@ namespace state::in_play::AtSea
 		RefreshAvatarMoney();
 		RefreshAvatarReputation();
 		RefreshAvatarTurns();
-		RefreshAvatarDestinations();
 		RefreshLog();
 	}
 }

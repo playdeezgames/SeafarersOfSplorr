@@ -2,6 +2,7 @@
 #include <Common.XY.h>
 #include <functional>
 #include <Game.Avatar.AtSea.h>
+#include <Game.Avatar.Destinations.h>
 #include <Game.Avatar.Quest.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>
@@ -23,6 +24,10 @@ namespace visuals
 	static const std::string SPRITE_SHIP = "AtSeaShip";
 	static const std::string SPRITE_ISLAND = "AtSeaIsland";
 	static const std::string SPRITE_QUEST_DESTINATION = "AtSeaQuestDestination";
+	static const std::string SPRITE_DESTINATION_1 = "AtSeaDestination1";
+	static const std::string SPRITE_DESTINATION_2 = "AtSeaDestination2";
+	static const std::string SPRITE_DESTINATION_3 = "AtSeaDestination3";
+	static const std::string SPRITE_DESTINATION_4 = "AtSeaDestination4";
 
 	static const std::string FONT_ISLAND_NAME = "font5x7";
 
@@ -163,6 +168,46 @@ namespace visuals
 		}
 	}
 
+	static const std::map<game::avatar::Destination, std::string> destinationSprites = 
+	{
+		{game::avatar::Destination::ONE, SPRITE_DESTINATION_1},
+		{game::avatar::Destination::TWO, SPRITE_DESTINATION_2},
+		{game::avatar::Destination::THREE, SPRITE_DESTINATION_3},
+		{game::avatar::Destination::FOUR, SPRITE_DESTINATION_4}
+	};
+
+	static void DrawAvatarDestination(
+		const std::shared_ptr<application::Engine::Renderer>& renderer,
+		std::function<common::XY<int>(const common::XY<double>&)> plotter,
+		const InternalNavigator& navigator,
+		const game::avatar::Destination& destinationId)
+	{
+		auto destination = game::avatar::Destinations::GetDestination(destinationId);
+		if (destination)
+		{
+			auto clampedDistance = common::Heading::ClampDistance(destination.value() - game::avatar::AtSea::GetLocation(), game::World::GetViewDistance() + 0.5);//TODO: magic number
+			auto plot = plotter(clampedDistance + game::avatar::AtSea::GetLocation());
+			Sprites::Draw(
+				destinationSprites.find(destinationId)->second,
+				renderer,
+				plot,
+				visuals::Colors::Read(game::Colors::WHITE));
+		}
+	}
+
+
+	static void DrawAvatarDestinations(
+		const std::shared_ptr<application::Engine::Renderer>& renderer,
+		std::function<common::XY<int>(const common::XY<double>&)> plotter,
+		const InternalNavigator& navigator)
+	{
+		for (auto destinationId : game::avatar::Destinations::All())
+		{
+			DrawAvatarDestination(renderer, plotter, navigator, destinationId);
+		}
+	}
+
+
 	static void DrawInternalNavigator(const std::shared_ptr<application::Engine::Renderer>& renderer, size_t navigatorIndex)
 	{
 		auto& navigator = navigators[navigatorIndex];
@@ -173,6 +218,7 @@ namespace visuals
 		DrawIslands(renderer, plotter, filter, navigator);
 		DrawMerchants(renderer, plotter, filter);
 		DrawWindDirection(renderer, navigator);
+		DrawAvatarDestinations(renderer, plotter, navigator);
 		DrawQuestDestination(renderer, plotter, navigator);
 		//
 	}
