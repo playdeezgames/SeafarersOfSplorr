@@ -3,9 +3,10 @@
 #include <Game.Avatar.AtSea.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>
+#include "States.h"
 #include "UIState.h"
 #include <Visuals.Messages.h>
-namespace state::in_play::AtSea
+namespace state::in_play
 {
 	static const size_t TICKS_TOTAL = 250;
 	static size_t ticksLeft = TICKS_TOTAL;
@@ -16,11 +17,11 @@ namespace state::in_play::AtSea
 		STARTING
 	};
 	static AutoMoveState autoMoveState = AutoMoveState::OFF;
-	bool IsAutoMoveEngaged()
+	bool AtSea::IsAutoMoveEngaged()
 	{
 		return autoMoveState != AutoMoveState::OFF;
 	}
-	void ToggleAutoMove()
+	void AtSea::ToggleAutoMove()
 	{
 		if (autoMoveState == AutoMoveState::OFF)
 		{
@@ -33,7 +34,7 @@ namespace state::in_play::AtSea
 		}
 	}
 
-	void DoAutomoveTimer(const unsigned int& ticks)
+	void AtSea::DoAutomoveTimer(const unsigned int& ticks)
 	{
 		if (autoMoveState != AutoMoveState::OFF)
 		{
@@ -84,7 +85,7 @@ namespace state::in_play::AtSea
 		});
 	}
 
-	void UpdateAutoMoveState()
+	void AtSea::UpdateAutoMoveState()
 	{
 		if (game::Islands::CanDock())
 		{

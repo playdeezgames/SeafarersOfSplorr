@@ -15,6 +15,7 @@
 #include <Game.Avatar.Quest.h>
 #include <Game.Islands.h>
 #include <Game.Colors.h>
+#include "States.h"
 #include "Sublayouts.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
@@ -23,7 +24,7 @@
 #include <Visuals.MenuItems.h>
 #include <Visuals.Messages.h>
 #include <Visuals.SpriteGrid.h>
-namespace state::in_play::AtSea
+namespace state::in_play
 {
 	static const std::string LAYOUT_NAME = "State.InPlay.AtSea";
 
@@ -44,10 +45,6 @@ namespace state::in_play::AtSea
 
 	static const common::XY<int> CENTER = { 160, 160 };//TODO: hardcoded
 
-	void DoAutomoveTimer(const unsigned int&);
-	void ToggleAutoMove();
-	bool IsAutoMoveEngaged();
-	void UpdateAutoMoveState();
 
 	static double newHeading = 0.0;
 
@@ -69,14 +66,14 @@ namespace state::in_play::AtSea
 		visuals::MenuItems::SetText(
 			LAYOUT_NAME,
 			MENU_ITEM_MOVE,
-			(IsAutoMoveEngaged()) ?
+			(AtSea::IsAutoMoveEngaged()) ?
 			(STOP_MOVE) :
 			(START_MOVE));
 	}
 
 	static void OnUpdate(const unsigned int& ticks)
 	{
-		DoAutomoveTimer(ticks);
+		AtSea::DoAutomoveTimer(ticks);
 		RefreshMoveMenuItem();
 	}
 
@@ -127,7 +124,7 @@ namespace state::in_play::AtSea
 
 	static void OnMoveOnce()
 	{
-		if (!IsAutoMoveEngaged())
+		if (!AtSea::IsAutoMoveEngaged())
 		{
 			game::avatar::AtSea::Move();
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
@@ -136,7 +133,7 @@ namespace state::in_play::AtSea
 
 	static const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
-		{OrderMenuItem::MOVE, ToggleAutoMove},
+		{OrderMenuItem::MOVE, AtSea::ToggleAutoMove},
 		{OrderMenuItem::MOVE_ONCE, OnMoveOnce},
 		{OrderMenuItem::DOCK, OnDock},
 		{OrderMenuItem::WORLD_MAP, application::UIState::GoTo(::UIState::IN_PLAY_WORLD_MAP)},
@@ -173,7 +170,7 @@ namespace state::in_play::AtSea
 		sublayout::AtSeaAvatarStatus::Refresh();
 		RefreshLog();
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_DOCK, game::Islands::CanDock());
-		UpdateAutoMoveState();
+		AtSea::UpdateAutoMoveState();
 	}
 
 	static void OnMouseMotionInHelm(const common::XY<int>& location)
@@ -210,7 +207,7 @@ namespace state::in_play::AtSea
 		return false;
 	}
 
-	void Start()
+	void AtSea::Start()
 	{
 		::application::Update::AddHandler(::UIState::IN_PLAY_AT_SEA, OnUpdate);
 		::application::OnEnter::AddHandler(::UIState::IN_PLAY_AT_SEA, OnEnter);

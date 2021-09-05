@@ -55,6 +55,14 @@ namespace state
 	};
 	namespace in_play
 	{
+		struct AtSea
+		{
+			static void DoAutomoveTimer(const unsigned int&);
+			static void ToggleAutoMove();
+			static bool IsAutoMoveEngaged();
+			static void UpdateAutoMoveState();
+			static void Start();
+		};
 		struct AtSeaCareenSelect
 		{
 			static void Start();
@@ -170,5 +178,4 @@ namespace state
 		};
 	}
 }
-namespace state::in_play::AtSea { void Start(); }//TODO: <- the snakes in the pet shop fire
 
