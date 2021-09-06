@@ -74,6 +74,16 @@ namespace game::avatar
 		};
 	}
 
+	static StateTransition OnStartFishing()
+	{
+		return
+		{
+			game::Colors::RED,
+			"You cannot fish right now.",
+			avatar::State::AT_SEA
+		};
+	}
+
 	static std::function<StateTransition()> DoTransition(const StateTransition& transition)
 	{
 		return [transition]() { return transition; };
@@ -333,6 +343,15 @@ namespace game::avatar
 					})
 				}
 			}
+		},
+		{
+			avatar::Action::START_FISHING,
+			{
+				{
+					avatar::State::AT_SEA,
+					OnStartFishing
+				}
+			}
 		}
 	};
 
@@ -340,5 +359,4 @@ namespace game::avatar
 	{
 		return actionDescriptors;
 	}
-
 }

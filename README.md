@@ -23,3 +23,4 @@
 * https://game-icons.net/1x1/lorc/fluffy-trefoil.html
 * https://game-icons.net/1x1/delapouite/sinagot.html
 * https://game-icons.net/1x1/delapouite/double-fish.html
+* https://game-icons.net/1x1/delapouite/boat-fishing.html

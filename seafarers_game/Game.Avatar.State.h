@@ -15,6 +15,7 @@ namespace game::avatar
 		GAMBLE_START,
 		CAREENED_TO_PORT,
 		CAREENED_TO_STARBOARD,
-		TEMPLE
+		TEMPLE,
+		FISHING
 	};
 }
