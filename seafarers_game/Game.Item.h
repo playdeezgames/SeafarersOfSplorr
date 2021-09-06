@@ -8,6 +8,8 @@ namespace game
 		JOOLS,
 		CLOTH,
 		TROUSERS,
-		FISH
+		FISH,
+		FISHING_POLE,
+		BAIT
 	};
 }

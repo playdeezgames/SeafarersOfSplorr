@@ -6,13 +6,13 @@ namespace game
 	{
 		{game::Item::RATIONS,
 			{
-				"rations",
+				"hardtack",
 				{
 					{game::Commodity::WHEAT, 0.1}
 				},
 				1,
 				0,
-				0.001
+				0.02
 			}
 		},
 		{game::Item::SACK_OF_WHEAT,
@@ -69,7 +69,30 @@ namespace game
 				},
 				1,
 				1,
-				0.05
+				0.1
+			}
+		},
+		{game::Item::FISHING_POLE,
+			{
+				"fishing pole",
+				{
+					{game::Commodity::WOOD, 0.25},
+					{game::Commodity::SILK, 0.25}
+				},
+				1,
+				1,
+				0.3
+			}
+		},
+		{game::Item::BAIT,
+			{
+				"bait",
+				{
+					{game::Commodity::MEAT, 0.01}
+				},
+				1,
+				1,
+				0.001
 			}
 		}
 	};
@@ -92,5 +115,4 @@ namespace game
 		}
 		return itemList;
 	}
-
 }

@@ -8,6 +8,7 @@ namespace game
 		MEAT,
 		WOOL,
 		JOOLS,
-		LABOR
+		LABOR,
+		SILK
 	};
 }

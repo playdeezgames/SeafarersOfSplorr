@@ -9,7 +9,8 @@ namespace game
 		{game::Commodity::WOOL, { "wool", 2.5, 0.05, 0.05, 0.15}},
 		{game::Commodity::LABOR, { "labor", 1.0, 0.05, 0.05, 0.15}},
 		{game::Commodity::MEAT, { "meat", 5.0, 0.05, 0.05, 0.15}},
-		{game::Commodity::JOOLS, { "jools", 100.0, 0.05, 0.05, 0.15}}
+		{game::Commodity::JOOLS, { "jools", 100.0, 0.05, 0.05, 0.15}},
+		{game::Commodity::SILK, { "silk", 50.0, 0.05, 0.05, 0.15}}
 	};
 
 	static std::list<game::Commodity> commodityList;
