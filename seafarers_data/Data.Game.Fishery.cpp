@@ -8,6 +8,7 @@ namespace data::game
 	static const std::string INSERT_ITEM = "INSERT INTO [Fisheries]([FishType],[X],[Y],[MoveX],[MoveY],[Radius]) VALUES({},{},{},{},{},{});";
 	static const std::string DELETE_ALL = "DELETE FROM [Fisheries];";
 	static const std::string QUERY_ALL = "SELECT [FisheryId],[FishType],[X],[Y],[MoveX],[MoveY],[Radius] FROM [Fisheries];";
+	static const std::string UPDATE_ITEM = "UPDATE [Fisheries] SET [X]={},[Y]={},[MoveX]={},[MoveY]={} WHERE [FisheryId]={};";
 	static const std::string FIELD_FISHERY_ID = "FisheryId";
 	static const std::string FIELD_FISH_TYPE = "FishType";
 	static const std::string FIELD_X = "X";
@@ -57,6 +58,7 @@ namespace data::game
 
 	std::list<Fishery> Fishery::All()
 	{
+		AutoCreateFisheryTable();
 		std::list<Fishery> result;
 		auto records = Common::Execute(QUERY_ALL);
 		for (auto& record : records)
@@ -65,4 +67,18 @@ namespace data::game
 		}
 		return result;
 	}
+
+	void Fishery::Write(const Fishery& fishery)
+	{
+		AutoCreateFisheryTable();
+		Common::Execute(
+			std::format(
+				UPDATE_ITEM,
+				fishery.location.GetX(), 
+				fishery.location.GetY(), 
+				fishery.movement.GetX(), 
+				fishery.movement.GetY(), 
+				fishery.fisheryId));
+	}
+
 }

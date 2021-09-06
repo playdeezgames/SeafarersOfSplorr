@@ -49,7 +49,28 @@ namespace game
 
 	void Fisheries::ApplyTurnEffects()
 	{
-
+		auto worldSize = World::GetSize();
+		for (auto& fishery : data::game::Fishery::All())
+		{
+			fishery.location = fishery.location + fishery.movement;
+			if (fishery.location.GetX() < 0.0)
+			{
+				fishery.movement = { std::abs(fishery.movement.GetX()), fishery.movement.GetY() };
+			}
+			if (fishery.location.GetY() < 0.0)
+			{
+				fishery.movement = { fishery.movement.GetX(), std::abs(fishery.movement.GetY()) };
+			}
+			if (fishery.location.GetX() >= worldSize.GetX())
+			{
+				fishery.movement = { -std::abs(fishery.movement.GetX()), fishery.movement.GetY() };
+			}
+			if (fishery.location.GetY() >=worldSize.GetY())
+			{
+				fishery.movement = { fishery.movement.GetX(), -std::abs(fishery.movement.GetY()) };
+			}
+			data::game::Fishery::Write(fishery);
+		}
 	}
 
 	std::list<Fishery> Fisheries::All()
