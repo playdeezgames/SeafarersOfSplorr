@@ -5,6 +5,7 @@
 #include <Game.Avatar.Destinations.h>
 #include <Game.Avatar.Quest.h>
 #include <Game.Colors.h>
+#include <Game.Fisheries.h>
 #include <Game.Islands.h>
 #include <Game.Merchants.h>
 #include <Game.World.h>
@@ -28,6 +29,7 @@ namespace visuals
 	static const std::string SPRITE_DESTINATION_2 = "AtSeaDestination2";
 	static const std::string SPRITE_DESTINATION_3 = "AtSeaDestination3";
 	static const std::string SPRITE_DESTINATION_4 = "AtSeaDestination4";
+	static const std::string SPRITE_FISHERY = "AtSeaFishery";
 
 	static const std::string FONT_ISLAND_NAME = "font5x7";
 
@@ -65,7 +67,6 @@ namespace visuals
 	static void DrawIslands(
 		const std::shared_ptr<application::Engine::Renderer>& renderer,
 		std::function<common::XY<int>(const common::XY<double>&)> plotter,
-		std::function<bool(const common::XY<int>&)> drawFilter,
 		const InternalNavigator& navigator)
 	{
 		auto islands = game::Islands::GetViewableIslands();
@@ -207,20 +208,36 @@ namespace visuals
 		}
 	}
 
+	static void DrawFisheries(
+		const std::shared_ptr<application::Engine::Renderer>& renderer,
+		std::function<common::XY<int>(const common::XY<double>&)> plotter,
+		std::function<bool(const common::XY<int>&)> drawFilter,
+		const InternalNavigator& navigator)
+	{
+		auto fisheries = game::Fisheries::All();
+		for (auto& fishery : fisheries)
+		{
+			auto plot = plotter(fishery.location);
+			if (drawFilter(plot))
+			{
+				Sprites::Draw(SPRITE_FISHERY, renderer, plot, visuals::Colors::Read(game::Colors::WHITE));
+			}
+		}
+	}
 
 	static void DrawInternalNavigator(const std::shared_ptr<application::Engine::Renderer>& renderer, size_t navigatorIndex)
 	{
 		auto& navigator = navigators[navigatorIndex];
 		auto plotter = MakePlotter(navigator);
 		auto filter = MakeDrawFilter(navigator);
+		DrawFisheries(renderer, plotter, filter, navigator);
 		DrawCurrentHeading(renderer, navigator);
-		DrawShip(renderer, navigator);
-		DrawIslands(renderer, plotter, filter, navigator);
+		DrawIslands(renderer, plotter, navigator);
 		DrawMerchants(renderer, plotter, filter);
+		DrawShip(renderer, navigator);
 		DrawWindDirection(renderer, navigator);
 		DrawAvatarDestinations(renderer, plotter, navigator);
 		DrawQuestDestination(renderer, plotter, navigator);
-		//
 	}
 
 	std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> Navigator::Internalize(const std::string& layoutName, const nlohmann::json& model)
