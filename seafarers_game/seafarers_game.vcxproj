@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game.Fishery.h" />
     <ClInclude Include="Game.FishDescriptor.h" />
     <ClInclude Include="Game.Fisheries.h" />
     <ClInclude Include="Game.Achievements.h" />

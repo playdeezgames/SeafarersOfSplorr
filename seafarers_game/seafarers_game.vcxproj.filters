@@ -75,6 +75,12 @@
     <Filter Include="Source Files\Islands\Trade">
       <UniqueIdentifier>{41300da2-b0b3-4d76-84fa-528ea2f52c68}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Fishing">
+      <UniqueIdentifier>{5fedc41f-83ec-4fa7-9084-8d1e5a155c81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Fishing">
+      <UniqueIdentifier>{ce218a84-e813-498e-8032-dd1f8d71c7d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Avatar.Docked.h">
@@ -257,17 +263,20 @@
     <ClInclude Include="Game.Islands.Items.h">
       <Filter>Header Files\Islands\Trade</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Fish.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Game.FishDescriptor.h">
+      <Filter>Header Files\Fishing</Filter>
     </ClInclude>
     <ClInclude Include="Game.Fisheries.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Fishing</Filter>
     </ClInclude>
-    <ClInclude Include="Game.FishDescriptor.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Game.Fish.h">
+      <Filter>Header Files\Fishing</Filter>
     </ClInclude>
     <ClInclude Include="Game.Fishes.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Fishing</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Fishery.h">
+      <Filter>Header Files\Fishing</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -365,10 +374,10 @@
       <Filter>Source Files\Islands\Trade</Filter>
     </ClCompile>
     <ClCompile Include="Game.Fisheries.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Fishing</Filter>
     </ClCompile>
     <ClCompile Include="Game.Fishes.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Fishing</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

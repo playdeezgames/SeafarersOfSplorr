@@ -52,4 +52,13 @@ namespace game
 
 	}
 
+	std::list<Fishery> Fisheries::All()
+	{
+		std::list<Fishery> result;
+		for (auto& fishery : data::game::Fishery::All())
+		{
+			result.push_back({ fishery.location });
+		}
+		return result;
+	}
 }

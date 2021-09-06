@@ -1,5 +1,6 @@
 #pragma once
 #include <Common.XY.h>
+#include <list>
 namespace data::game
 {
 	struct Fishery
@@ -12,5 +13,6 @@ namespace data::game
 
 		static void Clear();
 		static void Add(const Fishery&);
+		static std::list<Fishery> All();
 	};
 }
