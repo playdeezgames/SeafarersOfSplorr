@@ -5,6 +5,6 @@ namespace game
 	{
 		TUNA,
 		MARLIN,
-		TILAPIA
+		COD
 	};
 }

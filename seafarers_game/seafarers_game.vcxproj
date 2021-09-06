@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game.FishDescriptor.h" />
+    <ClInclude Include="Game.Fisheries.h" />
     <ClInclude Include="Game.Achievements.h" />
     <ClInclude Include="Game.Audio.GameSfx.h" />
     <ClInclude Include="Game.Audio.Mux.h" />
@@ -53,6 +55,7 @@
     <ClInclude Include="Game.FeatureDescriptor.h" />
     <ClInclude Include="Game.Features.h" />
     <ClInclude Include="Game.Fish.h" />
+    <ClInclude Include="Game.Fishes.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Game.Island.h" />
     <ClInclude Include="Game.Islands.Commodities.h" />
@@ -98,6 +101,8 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game.Demigods.cpp" />
     <ClCompile Include="Game.Features.cpp" />
+    <ClCompile Include="Game.Fisheries.cpp" />
+    <ClCompile Include="Game.Fishes.cpp" />
     <ClCompile Include="Game.Islands.Commodities.cpp" />
     <ClCompile Include="Game.Islands.cpp" />
     <ClCompile Include="Game.Islands.DarkAlley.cpp" />

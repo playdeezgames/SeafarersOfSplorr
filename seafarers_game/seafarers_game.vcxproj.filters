@@ -260,6 +260,15 @@
     <ClInclude Include="Game.Fish.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Fisheries.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.FishDescriptor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Fishes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -354,6 +363,12 @@
     </ClCompile>
     <ClCompile Include="Game.Islands.Markets.cpp">
       <Filter>Source Files\Islands\Trade</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Fisheries.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Fishes.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

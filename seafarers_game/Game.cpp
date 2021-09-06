@@ -9,6 +9,7 @@
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Demigods.h"
+#include "Game.Fisheries.h"
 #include "Game.Islands.h"
 #include "Game.Islands.Features.h"
 #include "Game.Merchants.h"
@@ -35,17 +36,18 @@ namespace game
 	void Reset(const Difficulty& difficulty)
 	{
 		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);
-		game::World::Reset(difficulty);
-		game::Demigods::Reset(difficulty);
-		game::Islands::Reset(difficulty);
-		game::islands::Features::Reset(difficulty);
-		game::avatar::AtSea::Reset(difficulty);
-		game::avatar::Docked::Reset(difficulty);
-		game::avatar::Statistics::Reset(difficulty);
-		game::avatar::Items::Reset(difficulty);
-		game::avatar::Ship::Reset(difficulty);
-		game::avatar::Log::Reset(difficulty);
-		game::Merchants::Reset(difficulty);
+		World::Reset(difficulty);
+		Demigods::Reset(difficulty);
+		Islands::Reset(difficulty);
+		islands::Features::Reset(difficulty);
+		avatar::AtSea::Reset(difficulty);
+		avatar::Docked::Reset(difficulty);
+		avatar::Statistics::Reset(difficulty);
+		avatar::Items::Reset(difficulty);
+		avatar::Ship::Reset(difficulty);
+		avatar::Log::Reset(difficulty);
+		Merchants::Reset(difficulty);
+		Fisheries::Reset(difficulty);
 		for (auto& resetter : resetters)
 		{
 			resetter();
@@ -121,5 +123,6 @@ namespace game
 		Merchants::ApplyTurnEffects();
 		avatar::Plights::ApplyTurnEffects();
 		Demigods::ApplyTurnEffects();
+		Fisheries::ApplyTurnEffects();
 	}
 }
