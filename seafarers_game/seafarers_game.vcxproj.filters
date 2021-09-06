@@ -257,6 +257,9 @@
     <ClInclude Include="Game.Islands.Items.h">
       <Filter>Header Files\Islands\Trade</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Fish.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">

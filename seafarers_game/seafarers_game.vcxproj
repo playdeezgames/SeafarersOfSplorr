@@ -52,6 +52,7 @@
     <ClInclude Include="Game.Feature.h" />
     <ClInclude Include="Game.FeatureDescriptor.h" />
     <ClInclude Include="Game.Features.h" />
+    <ClInclude Include="Game.Fish.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Game.Island.h" />
     <ClInclude Include="Game.Islands.Commodities.h" />
