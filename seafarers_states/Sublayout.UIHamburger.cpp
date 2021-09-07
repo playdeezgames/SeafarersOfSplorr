@@ -2,18 +2,19 @@
 #include <Application.MouseMotion.h>
 #include <Application.UIState.h>
 #include <Common.Utility.h>
+#include "Sublayouts.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Images.h>
-namespace sublayout::UIHamburger
+namespace sublayout
 {
-	const std::string LAYOUT_NAME = "Sublayout.UIHamburger";
-	const std::string AREA_UI_HAMBURGER = "UIHamburger";
-	const std::string IMAGE_UI_HAMBURGER = "ui-hamburger";
-	const std::string SPRITE_UI_HAMBURGER_NORMAL = "UIHamburgerNormal";
-	const std::string SPRITE_UI_HAMBURGER_HOVER = "UIHamburgerHover";
+	static const std::string LAYOUT_NAME = "Sublayout.UIHamburger";
+	static const std::string AREA_UI_HAMBURGER = "UIHamburger";
+	static const std::string IMAGE_UI_HAMBURGER = "ui-hamburger";
+	static const std::string SPRITE_UI_HAMBURGER_NORMAL = "UIHamburgerNormal";
+	static const std::string SPRITE_UI_HAMBURGER_HOVER = "UIHamburgerHover";
 
-	const std::vector<::UIState> states =
+	static const std::vector<::UIState> states =
 	{
 		::UIState::IN_PLAY_AT_SEA,
 		::UIState::IN_PLAY_CHANGE_HEADING
@@ -35,7 +36,7 @@ namespace sublayout::UIHamburger
 		return true;
 	}
 
-	const std::map<std::string, std::function<bool()>> mouseUpHandlers =
+	static const std::map<std::string, std::function<bool()>> mouseUpHandlers =
 	{
 		{AREA_UI_HAMBURGER, LeavePlay }
 	};
@@ -45,7 +46,7 @@ namespace sublayout::UIHamburger
 		return common::Utility::Dispatch(mouseUpHandlers, area, false);
 	}
 
-	void Start()
+	void UIHamburger::Start()
 	{
 		for (auto state : states)
 		{

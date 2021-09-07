@@ -4,6 +4,7 @@
 #include <functional>
 #include "Game.Avatar.Action.h"
 #include "Game.Avatar.Docked.h"
+#include "Game.Avatar.Items.h"
 #include "Game.Avatar.Log.h"
 #include "Game.Avatar.State.h"
 #include "Game.Avatar.StateTransition.h"
@@ -76,6 +77,13 @@ namespace game::avatar
 
 	static StateTransition OnStartFishing()
 	{
+		if (game::avatar::Items::Has(Item::FISHING_POLE))
+		{
+			if (game::avatar::Items::Has(Item::BAIT))
+			{
+				//TODO: generate fishing minigame
+			}
+		}
 		return
 		{
 			game::Colors::RED,

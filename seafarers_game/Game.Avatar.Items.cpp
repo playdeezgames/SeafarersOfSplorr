@@ -19,6 +19,12 @@ namespace game::avatar
 		return data::game::avatar::Items::Read((int)item);
 	}
 
+	bool Items::Has(const Item& item)
+	{
+		return Read(item) > 0;
+	}
+
+
 	void Items::Add(const game::Item& item, const size_t& count)
 	{
 		auto previous = Read(item);
