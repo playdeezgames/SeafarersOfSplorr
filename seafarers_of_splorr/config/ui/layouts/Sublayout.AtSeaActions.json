@@ -7,5 +7,23 @@
         "color": "White",
         "x": 336,
         "y": 336
+    },
+    {
+        "type": "Image",
+        "image-id": "hover-fishing",
+        "area-id":"Fishing",
+        "sprite": "AtSeaHoverButton",
+        "color": "White",
+        "x": 336,
+        "y": 336,
+        "visible":false
+    },
+    {
+        "type":"Area",
+        "area-id":"fishing",
+        "x":320,
+        "y":320,
+        "width":32,
+        "height":32
     }
 ]

@@ -126,6 +126,7 @@ namespace application
 		state::in_play::MakeOffering::Start,
 		state::in_play::AvatarStatus::Start,
 		sublayout::UIHamburger::Start,
+		sublayout::AtSeaActions::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};

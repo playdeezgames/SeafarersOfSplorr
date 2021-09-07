@@ -184,5 +184,8 @@
     <ClCompile Include="State.InPlay.AvatarStatus.cpp">
       <Filter>Source Files\AtSea\Status</Filter>
     </ClCompile>
+    <ClCompile Include="Sublayout.AtSeaActions.cpp">
+      <Filter>Source Files\AtSea</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
