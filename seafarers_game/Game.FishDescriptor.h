@@ -1,6 +1,8 @@
 #pragma once
+#include <Common.XY.h>
 #include <functional>
 #include "Game.Fish.h"
+#include <list>
 #include <string>
 namespace game
 {
@@ -10,5 +12,6 @@ namespace game
 		std::function<size_t()> countGenerator;
 		std::function<double()> radiusGenerator;
 		std::function<double()> speedGenerator;
+		std::list<common::XY<int>> shape;
 	};
 }
