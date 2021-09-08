@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game.Fishboard.h" />
     <ClInclude Include="Game.Fishery.h" />
     <ClInclude Include="Game.FishDescriptor.h" />
     <ClInclude Include="Game.Fisheries.h" />
@@ -102,6 +103,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game.Demigods.cpp" />
     <ClCompile Include="Game.Features.cpp" />
+    <ClCompile Include="Game.Fishboard.cpp" />
     <ClCompile Include="Game.Fisheries.cpp" />
     <ClCompile Include="Game.Fishes.cpp" />
     <ClCompile Include="Game.Islands.Commodities.cpp" />

@@ -10,6 +10,7 @@
 #include "Game.Avatar.StateTransition.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Colors.h"
+#include "Game.Fishboard.h"
 #include "Game.Islands.h"
 #include <map>
 namespace game::avatar
@@ -81,7 +82,7 @@ namespace game::avatar
 		{
 			if (game::avatar::Items::Has(Item::BAIT))
 			{
-				//TODO: generate fishing minigame
+				Fishboard::Generate();
 				return
 				{
 					game::Colors::GRAY,

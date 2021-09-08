@@ -4,7 +4,7 @@
 #include <format>
 namespace data::game
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [FishBoards]([AvatarId] INT NOT NULL, [X] INT NOT NULL, [Y} INT NOT NULL, [Revealed] INT NOT NULL, [FishType] INT NULL, UNIQUE([AvatarId],[X],[Y]));";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [FishBoards]([AvatarId] INT NOT NULL, [X] INT NOT NULL, [Y] INT NOT NULL, [Revealed] INT NOT NULL, [FishType] INT NULL, UNIQUE([AvatarId],[X],[Y]));";
 	static const std::string DELETE_ALL = "DELETE FROM [FishBoards] WHERE [AvatarId]={};";
 	static const std::string REPLACE_ITEM = "REPLACE INTO [FishBoards] ([AvatarId],[X],[Y],[Revealed],[FishType]) VALUES ({},{},{},{},{});";
 	static const std::string QUERY_ALL = "SELECT [X],[Y],[Revealed],[FishType] FROM [FishBoards] WHERE [AvatarId]={};";

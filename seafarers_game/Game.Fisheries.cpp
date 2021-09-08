@@ -1,6 +1,7 @@
 #include <Common.Heading.h>
 #include <Common.RNG.h>
 #include <Data.Game.Fishery.h>
+#include "Game.Avatar.AtSea.h"
 #include "Game.Fishes.h"
 #include "Game.Fisheries.h"
 #include "Game.World.h"
@@ -78,8 +79,27 @@ namespace game
 		std::list<Fishery> result;
 		for (auto& fishery : data::game::Fishery::All())
 		{
-			result.push_back({ fishery.location });
+			result.push_back({ 
+				fishery.location,
+				fishery.radius,
+				(Fish)fishery.fishType});
 		}
 		return result;
 	}
+
+	std::list<Fishery> Fisheries::Available()
+	{
+		auto avatarLocation = avatar::AtSea::GetLocation();
+		std::list<Fishery> result;
+		for (auto& fishery : All())
+		{
+			auto distance = (fishery.location - avatarLocation).GetMagnitude();
+			if (distance <= fishery.radius)
+			{
+				result.push_back(fishery);
+			}
+		}
+		return result;
+	}
+
 }

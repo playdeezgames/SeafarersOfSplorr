@@ -278,6 +278,9 @@
     <ClInclude Include="Game.Fishery.h">
       <Filter>Header Files\Fishing</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Fishboard.h">
+      <Filter>Header Files\Fishing</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -377,6 +380,9 @@
       <Filter>Source Files\Fishing</Filter>
     </ClCompile>
     <ClCompile Include="Game.Fishes.cpp">
+      <Filter>Source Files\Fishing</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Fishboard.cpp">
       <Filter>Source Files\Fishing</Filter>
     </ClCompile>
   </ItemGroup>
