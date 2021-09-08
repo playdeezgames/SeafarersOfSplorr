@@ -20,6 +20,12 @@
         "drop-shadow-y": 2
     },
     {
+        "type":"Fishboard",
+        "fishboard-id":"Fishboard",
+        "x":160,
+        "y":32
+    },
+    {
         "type": "Menu",
         "menu-id": "Fishing",
         "index": 0,

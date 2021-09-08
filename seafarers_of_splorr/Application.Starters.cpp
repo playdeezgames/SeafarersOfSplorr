@@ -16,6 +16,7 @@
 #include <vector>
 #include <Visuals.Colors.h>
 #include <Visuals.Confirmations.h>
+#include <Visuals.Fishboard.h>
 #include <Visuals.Fonts.h>
 #include <Visuals.Layouts.h>
 #include <Visuals.Messages.h>
@@ -37,6 +38,7 @@ namespace application
 	static const std::string FILE_CONFIG_TIPS = "config/tips.json";
 	static const std::string VISUAL_TYPE_WORLD_MAP = "WorldMap";
 	static const std::string VISUAL_TYPE_NAVIGATOR = "Navigator";
+	static const std::string VISUAL_TYPE_FISHBOARD = "Fishboard";
 	static const std::string CONNECTION_MEMORY = ":memory:";
 	static const std::string CONNECTION_AUTOSAVE = "autosave.db";
 	static const std::string CONNECTION_SLOT_1 = "slot1.db";
@@ -66,6 +68,7 @@ namespace application
 		visuals::Layouts::DoSetStore(data::json::Store::LAYOUTS),
 		visuals::Layouts::DoRegisterType(VISUAL_TYPE_WORLD_MAP, visuals::WorldMap::Internalize),
 		visuals::Layouts::DoRegisterType(VISUAL_TYPE_NAVIGATOR, visuals::Navigator::Internalize),
+		visuals::Layouts::DoRegisterType(VISUAL_TYPE_FISHBOARD, visuals::Fishboard::Internalize),
 		visuals::Messages::Reset,
 		application::Keyboard::DoSetStore(data::json::Store::KEYS),
 		Options::DoSetStore(data::json::Store::OPTIONS),
