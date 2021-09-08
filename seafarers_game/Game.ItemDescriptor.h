@@ -11,5 +11,6 @@ namespace game
 		size_t present;
 		size_t notPresent;
 		double tonnage;
+		size_t initialInventory;
 	};
 }

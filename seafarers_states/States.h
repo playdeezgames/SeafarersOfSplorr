@@ -115,11 +115,15 @@ namespace state
 		{ 
 			static void Start(); 
 		};
-		struct GambleFinish 
-		{ 
-			static void Start(); 
+		struct Fishing
+		{
+			static void Start();
 		};
-		struct GambleStart 
+		struct GambleFinish
+		{
+			static void Start();
+		};
+		struct GambleStart
 		{ 
 			static double GetCurrentWager();//TODO: is this the best place for this?
 			static void Start(); 

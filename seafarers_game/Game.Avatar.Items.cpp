@@ -51,5 +51,10 @@ namespace game::avatar
 	void Items::Reset(const game::Difficulty&)
 	{
 		data::game::avatar::Items::Clear();
+		for (auto& item : game::Items::All())
+		{
+			auto& descriptor = game::Items::Read(item);
+			Add(item, descriptor.initialInventory);
+		}
 	}
 }

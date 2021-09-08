@@ -17,6 +17,7 @@ namespace game::avatar
 		CAREEN_TO_STARBOARD,
 		UNCAREEN,
 		ENTER_TEMPLE,
-		START_FISHING
+		START_FISHING,
+		STOP_FISHING
 	};
 }

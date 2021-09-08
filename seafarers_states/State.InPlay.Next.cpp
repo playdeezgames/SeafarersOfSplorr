@@ -41,7 +41,8 @@ namespace state::in_play
 		{ game::avatar::State::AT_SEA, ::UIState::IN_PLAY_AT_SEA },
 		{ game::avatar::State::CAREENED_TO_PORT, ::UIState::IN_PLAY_CAREENED_TO_PORT },
 		{ game::avatar::State::CAREENED_TO_STARBOARD, ::UIState::IN_PLAY_CAREENED_TO_STARBOARD },
-		{ game::avatar::State::TEMPLE, ::UIState::IN_PLAY_TEMPLE }
+		{ game::avatar::State::TEMPLE, ::UIState::IN_PLAY_TEMPLE },
+		{ game::avatar::State::FISHING, ::UIState::IN_PLAY_FISHING }
 	};
 
 	static void OnEnter()

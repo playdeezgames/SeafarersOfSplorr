@@ -187,5 +187,8 @@
     <ClCompile Include="Sublayout.AtSeaActions.cpp">
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.Fishing.cpp">
+      <Filter>Source Files\AtSea</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

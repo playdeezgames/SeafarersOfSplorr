@@ -58,12 +58,6 @@ namespace state::in_play
 		::application::UIState::Pop();
 	}
 
-	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
-	{
-		OnLeave();
-		return true;
-	}
-
 	static void UpdateStatistics()
 	{
 		WriteTextToGridRight({ 39,0 }, std::format(game::avatar::Statistics::FORMAT_MONEY, game::avatar::Statistics::GetMoney()), game::Colors::YELLOW);

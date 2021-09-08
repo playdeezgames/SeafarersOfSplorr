@@ -82,12 +82,28 @@ namespace game::avatar
 			if (game::avatar::Items::Has(Item::BAIT))
 			{
 				//TODO: generate fishing minigame
+				return
+				{
+					game::Colors::GRAY,
+					"Nice day for fishin', innit? Huh-ha!",
+					avatar::State::FISHING
+				};
 			}
 		}
 		return
 		{
 			game::Colors::RED,
 			"You cannot fish right now.",
+			avatar::State::AT_SEA
+		};
+	}
+
+	static StateTransition OnStopFishing()
+	{
+		return
+		{
+			game::Colors::GRAY,
+			"You wake from yer nap.",
 			avatar::State::AT_SEA
 		};
 	}
@@ -358,6 +374,15 @@ namespace game::avatar
 				{
 					avatar::State::AT_SEA,
 					OnStartFishing
+				}
+			}
+		},
+		{
+			avatar::Action::STOP_FISHING,
+			{
+				{
+					avatar::State::FISHING,
+					OnStopFishing
 				}
 			}
 		}

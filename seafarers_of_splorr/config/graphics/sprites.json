@@ -3452,5 +3452,32 @@
         "y": 4,
         "width": 4,
         "height": 4
+    },
+    "FishboardFish": {
+        "texture": "fishboard",
+        "offset-x": 0,
+        "offset-y": 0,
+        "x": 0,
+        "y": 0,
+        "width": 64,
+        "height": 64
+    },
+    "FishboardHidden": {
+        "texture": "fishboard",
+        "offset-x": 0,
+        "offset-y": 0,
+        "x": 64,
+        "y": 0,
+        "width": 64,
+        "height": 64
+    },
+    "FishboardSelect": {
+        "texture": "fishboard",
+        "offset-x": 0,
+        "offset-y": 0,
+        "x": 128,
+        "y": 0,
+        "width": 64,
+        "height": 64
     }
 }
