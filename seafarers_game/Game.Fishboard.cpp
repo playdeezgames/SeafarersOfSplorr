@@ -33,15 +33,19 @@ namespace game
 		}
 	}
 
-	static Fish GenerateFish()
+	static std::optional<Fish> GenerateFish()
 	{
 		std::map<Fish, size_t> fishGenerator;
 		auto fisheries = Fisheries::Available();
 		for (auto fishery : fisheries)
 		{
-			fishGenerator[fishery.fish] = fishGenerator[fishery.fish] + 1;
+			fishGenerator[fishery.fish]++;
 		}
-		return common::RNG::FromGenerator(fishGenerator, Fish::COD);//TODO: have a different default fish
+		if (!fishGenerator.empty())
+		{
+			return common::RNG::FromGenerator(fishGenerator, Fish::COD);//note - default is just there to satisfy the parameter list
+		}
+		return std::nullopt;
 	}
 
 	void Fishboard::Generate()
@@ -50,16 +54,19 @@ namespace game
 		ClearFishboard();
 
 		auto fish = GenerateFish();
-		auto descriptor = Fishes::Read(fish);
-		int x = (int)common::RNG::FromRange(0u, COLUMNS + 1u - descriptor.size.GetX());
-		int y = (int)common::RNG::FromRange(0u, ROWS + 1u - descriptor.size.GetY());
-		common::XY<int> origin = { x,y };
-		for (auto& location : descriptor.shape)
+		if (fish)
 		{
-			data::game::FishBoard::Write({
-				(location + origin),
-				false,
-				(int)fish});
+			auto descriptor = Fishes::Read(fish.value());
+			int x = (int)common::RNG::FromRange(0u, COLUMNS + 1u - descriptor.size.GetX());
+			int y = (int)common::RNG::FromRange(0u, ROWS + 1u - descriptor.size.GetY());
+			common::XY<int> origin = { x,y };
+			for (auto& location : descriptor.shape)
+			{
+				data::game::FishBoard::Write({
+					(location + origin),
+					false,
+					(int)fish.value() });
+			}
 		}
 	}
 }
