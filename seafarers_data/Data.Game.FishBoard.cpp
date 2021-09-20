@@ -8,6 +8,7 @@ namespace data::game
 	static const std::string DELETE_ALL = "DELETE FROM [FishBoards] WHERE [AvatarId]={};";
 	static const std::string REPLACE_ITEM = "REPLACE INTO [FishBoards] ([AvatarId],[X],[Y],[Revealed],[FishType]) VALUES ({},{},{},{},{});";
 	static const std::string QUERY_ALL = "SELECT [X],[Y],[Revealed],[FishType] FROM [FishBoards] WHERE [AvatarId]={};";
+	static const std::string QUERY_ITEM = "SELECT [X],[Y],[Revealed],[FishType] FROM [FishBoards] WHERE [AvatarId]={} AND [X]={} AND [Y]={};";
 	static const std::string FIELD_X = "X";
 	static const std::string FIELD_Y = "Y";
 	static const std::string FIELD_REVEALED = "Revealed";
@@ -57,4 +58,16 @@ namespace data::game
 		}
 		return results;
 	}
+
+	std::optional<FishBoard> FishBoard::Read(const common::XY<int>& location)
+	{
+		AutoCreateFishBoardTable();
+		auto records = Common::Execute(std::format(QUERY_ITEM, Common::AVATAR_ID, location.GetX(), location.GetY()));
+		if (!records.empty())
+		{
+			return ToFishBoard(records.front());
+		}
+		return std::nullopt;
+	}
+
 }

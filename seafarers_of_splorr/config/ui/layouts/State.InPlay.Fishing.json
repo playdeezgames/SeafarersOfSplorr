@@ -50,6 +50,14 @@
     },
     {
         "type":"Area",
+        "area-id":"Fishboard",
+        "x":160,
+        "y":32,
+        "width":320,
+        "height":320
+    },    
+    {
+        "type":"Area",
         "area-id":"GoBack",
         "x":480,
         "y":336,
@@ -59,7 +67,8 @@
             "menu-id": "Fishing",
             "menu-item-id": "GoBack"
         }
-    },    {
+    },    
+    {
         "type": "Layout",
         "name": "Sublayout.Modded"
     }

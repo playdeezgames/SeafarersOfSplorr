@@ -15,6 +15,7 @@
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Demigods.h>
+#include <Game.Fishboard.h>
 #include <Game.Islands.h>
 #include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>
@@ -22,6 +23,7 @@
 #include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
+#include <Visuals.Fishboard.h>
 #include <Visuals.MenuItems.h>
 #include <Visuals.Menus.h>
 #include <Visuals.Messages.h>
@@ -32,6 +34,8 @@ namespace state::in_play
 	static const std::string LAYOUT_NAME = "State.InPlay.Fishing";
 	static const std::string FONT_DEFAULT = "default";
 	static const std::string MENU_ID = "Fishing";
+	static const std::string FISHBOARD_ID = "Fishboard";
+	static const std::string AREA_FISHBOARD = "Fishboard";
 
 	enum class StatusMenuItem
 	{
@@ -71,11 +75,37 @@ namespace state::in_play
 		{ ::Command::RED, OnLeave }
 	};
 
+	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
+	{
+		if (areaName == AREA_FISHBOARD)
+		{
+			visuals::Fishboard::HandleMouseMotion(LAYOUT_NAME, FISHBOARD_ID, location);
+		}
+	}
+
+	static void OnMouseMotionOutsideArea(const common::XY<int>& location)
+	{
+		//TODO: either do something here, or get rid of it!
+	}
+
+	static bool OnMouseButtonUp(const std::string& areaName)
+	{
+		if (areaName == AREA_FISHBOARD)
+		{
+			auto cursor = visuals::Fishboard::ReadCursor(LAYOUT_NAME, FISHBOARD_ID);
+			game::Fishboard::Reveal(cursor);
+		}
+		return false;
+	}
+
+
 	void Fishing::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
+		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUp));
 		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
+		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea, OnMouseMotionOutsideArea));
 		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
 	}

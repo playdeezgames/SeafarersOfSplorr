@@ -69,4 +69,32 @@ namespace game
 			}
 		}
 	}
+
+	void Fishboard::Reveal(const common::XY<int>& location)
+	{
+		auto boardCell = data::game::FishBoard::Read(location).value();
+		boardCell.revealed = true;
+		data::game::FishBoard::Write(boardCell);
+	}
+
+	std::optional<Fishboard> Fishboard::Read(const common::XY<int>& location)
+	{
+		auto boardCell = data::game::FishBoard::Read(location);
+		if (boardCell)
+		{
+			std::optional<Fish> fish = std::nullopt;
+			if (boardCell.value().fishType.has_value())
+			{
+				fish = (Fish)boardCell.value().fishType.value();
+			}
+			Fishboard result = 
+			{
+				boardCell.value().revealed,
+				fish
+
+			};
+			return result;
+		}
+		return std::nullopt;
+	}
 }
