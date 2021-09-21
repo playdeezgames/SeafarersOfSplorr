@@ -7,6 +7,13 @@
         "y": 0
     },
     {
+        "type": "Image",
+        "sprite": "FishboardFrame",
+        "color": "White",
+        "x": 160,
+        "y": 32
+    },
+    {
         "type": "Text",
         "font": "default",
         "color": "LightGreen",

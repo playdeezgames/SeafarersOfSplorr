@@ -3453,7 +3453,7 @@
         "width": 4,
         "height": 4
     },
-    "FishboardFish": {
+    "FishboardFishRed": {
         "texture": "fishboard",
         "offset-x": 0,
         "offset-y": 0,
@@ -3479,5 +3479,32 @@
         "y": 0,
         "width": 64,
         "height": 64
+    },
+    "FishboardFishPurple": {
+        "texture": "fishboard",
+        "offset-x": 0,
+        "offset-y": 0,
+        "x": 192,
+        "y": 0,
+        "width": 64,
+        "height": 64
+    },
+    "FishboardFishGreen": {
+        "texture": "fishboard",
+        "offset-x": 0,
+        "offset-y": 0,
+        "x": 256,
+        "y": 0,
+        "width": 64,
+        "height": 64
+    },
+    "FishboardFrame": {
+        "texture": "fishboard-frame",
+        "offset-x": 0,
+        "offset-y": 0,
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
     }
 }

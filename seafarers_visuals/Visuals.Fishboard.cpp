@@ -16,7 +16,7 @@ namespace visuals
 	static const int BOARD_HEIGHT = CELL_HEIGHT * CELL_ROWS;
 	static const std::string SPRITE_HIDDEN = "FishboardHidden";
 	static const std::string SPRITE_SELECT = "FishboardSelect";
-	static const std::string SPRITE_FISH = "FishboardFish";
+	static const std::string SPRITE_FISH = "FishboardFishRed";
 
 	struct InternalFishboard
 	{
