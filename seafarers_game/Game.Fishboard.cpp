@@ -28,7 +28,7 @@ namespace game
 				data::game::FishBoard::Write({
 					{(int)column,(int)row},
 					false,
-					std::nullopt});
+					std::nullopt });
 			}
 		}
 	}
@@ -72,9 +72,14 @@ namespace game
 
 	void Fishboard::Reveal(const common::XY<int>& location)
 	{
-		auto boardCell = data::game::FishBoard::Read(location).value();
-		boardCell.revealed = true;
-		data::game::FishBoard::Write(boardCell);
+		auto guesses = ReadGuesses();
+		if (guesses > 0)
+		{
+			auto boardCell = data::game::FishBoard::Read(location).value();
+			boardCell.revealed = true;
+			data::game::FishBoard::Write(boardCell);
+			data::game::FishGame::WriteGuesses(guesses - 1);
+		}
 	}
 
 	std::optional<Fishboard> Fishboard::Read(const common::XY<int>& location)
@@ -87,7 +92,7 @@ namespace game
 			{
 				fish = (Fish)boardCell.value().fishType.value();
 			}
-			Fishboard result = 
+			Fishboard result =
 			{
 				boardCell.value().revealed,
 				fish
@@ -96,5 +101,15 @@ namespace game
 			return result;
 		}
 		return std::nullopt;
+	}
+
+	int Fishboard::ReadGuesses()
+	{
+		return data::game::FishGame::ReadGuesses();
+	}
+
+	double Fishboard::ReadProgressPercentage()
+	{
+		return 100.0 * data::game::FishBoard::ReadRevealedFishCount() / data::game::FishBoard::ReadFishCount();
 	}
 }

@@ -70,4 +70,29 @@ namespace data::game
 		return std::nullopt;
 	}
 
+	size_t FishBoard::ReadFishCount()
+	{
+		size_t count = 0;
+		for (auto cell : All())
+		{
+			if (cell.fishType)
+			{
+				count++;
+			}
+		}
+		return count;
+	}
+
+	size_t FishBoard::ReadRevealedFishCount()
+	{
+		size_t count = 0;
+		for (auto cell : All())
+		{
+			if (cell.fishType && cell.revealed)
+			{
+				count++;
+			}
+		}
+		return count;
+	}
 }

@@ -28,6 +28,7 @@
 #include <Visuals.Menus.h>
 #include <Visuals.Messages.h>
 #include <Visuals.SpriteGrid.h>
+#include <Visuals.Texts.h>
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_FISHING;
@@ -36,6 +37,8 @@ namespace state::in_play
 	static const std::string MENU_ID = "Fishing";
 	static const std::string FISHBOARD_ID = "Fishboard";
 	static const std::string AREA_FISHBOARD = "Fishboard";
+	static const std::string TEXT_GUESSES = "Guesses";
+	static const std::string TEXT_PROGRESS = "Progress";
 
 	enum class StatusMenuItem
 	{
@@ -55,9 +58,20 @@ namespace state::in_play
 
 	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
+	static void RefreshGuesses()
+	{
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_GUESSES, std::format("{}", game::Fishboard::ReadGuesses()));
+	}
+
+	static void RefreshProgress()
+	{
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_PROGRESS, std::format("{:.0f}%", game::Fishboard::ReadProgressPercentage()));
+	}
 
 	static void Refresh()
 	{
+		RefreshGuesses();
+		RefreshProgress();
 	}
 
 	static void OnEnter()
@@ -94,6 +108,7 @@ namespace state::in_play
 		{
 			auto cursor = visuals::Fishboard::ReadCursor(LAYOUT_NAME, FISHBOARD_ID);
 			game::Fishboard::Reveal(cursor);
+			Refresh();
 		}
 		return false;
 	}

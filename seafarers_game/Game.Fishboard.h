@@ -14,5 +14,7 @@ namespace game
 		static void Generate();
 		static void Reveal(const common::XY<int>&);
 		static std::optional<Fishboard> Read(const common::XY<int>&);
+		static int ReadGuesses();
+		static double ReadProgressPercentage();
 	};
 }

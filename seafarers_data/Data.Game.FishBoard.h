@@ -14,5 +14,7 @@ namespace data::game
 		static void Write(const FishBoard&);
 		static std::list<FishBoard> All();
 		static std::optional<FishBoard> Read(const common::XY<int>&);
+		static size_t ReadFishCount();
+		static size_t ReadRevealedFishCount();
 	};
 }
