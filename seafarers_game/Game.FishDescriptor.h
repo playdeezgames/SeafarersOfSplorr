@@ -17,5 +17,6 @@ namespace game
 		common::XY<size_t> size;
 		Item item;
 		size_t junkWeight;
+		std::string sprite;
 	};
 }

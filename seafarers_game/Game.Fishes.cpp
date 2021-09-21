@@ -17,7 +17,8 @@ namespace game
 				},
 				{ 4, 1 },
 				Item::FISH,
-				0
+				0,
+				"FishboardFishRed"
 			}
 		},
 		{
@@ -32,7 +33,8 @@ namespace game
 				},
 				{ 1, 4 },
 				Item::FISH,
-				0
+				0,
+				"FishboardFishPurple"
 			}
 		},
 		{
@@ -47,7 +49,8 @@ namespace game
 				},
 				{ 2, 2 },
 				Item::FISH,
-				0
+				0,
+				"FishboardFishGreen"
 			}
 		},
 		{
@@ -62,7 +65,8 @@ namespace game
 				},
 				{ 1, 1 },
 				Item::TROUSERS,
-				1
+				1,
+				"FishboardFishTrousers"
 			}
 		}
 	};

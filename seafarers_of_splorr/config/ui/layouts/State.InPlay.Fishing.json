@@ -102,7 +102,7 @@
         "drop-shadow-y": 2,
         "menu-items": [
             {
-                "text": "Go Back",
+                "text": "Give Up!",
                 "menu-item-id": "GoBack",
                 "x": 632,
                 "y": 336

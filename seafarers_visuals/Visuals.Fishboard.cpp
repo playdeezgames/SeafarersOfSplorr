@@ -1,5 +1,6 @@
 #include <Common.XY.h>
 #include <Game.Colors.h>
+#include <Game.Fishes.h>
 #include <Game.Fishboard.h>
 #include <Visuals.Colors.h>
 #include <Visuals.Data.Properties.h>
@@ -50,7 +51,8 @@ namespace visuals
 				{
 					if (cell.fish)
 					{
-						DrawSprite(renderer, fishboard, { column, row }, SPRITE_FISH);
+						auto descriptor = game::Fishes::Read(cell.fish.value());
+						DrawSprite(renderer, fishboard, { column, row }, descriptor.sprite);
 					}
 				}
 				else
