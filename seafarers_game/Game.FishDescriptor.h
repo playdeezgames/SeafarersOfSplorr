@@ -2,6 +2,7 @@
 #include <Common.XY.h>
 #include <functional>
 #include "Game.Fish.h"
+#include "Game.Item.h"
 #include <list>
 #include <string>
 namespace game
@@ -14,5 +15,7 @@ namespace game
 		std::function<double()> speedGenerator;
 		std::list<common::XY<int>> shape;
 		common::XY<size_t> size;
+		Item item;
+		size_t junkWeight;
 	};
 }

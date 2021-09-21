@@ -5,6 +5,7 @@ namespace game
 	{
 		TUNA,
 		MARLIN,
-		COD
+		COD,
+		TROUSERS
 	};
 }

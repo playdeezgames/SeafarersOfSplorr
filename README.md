@@ -26,3 +26,4 @@
 * https://game-icons.net/1x1/delapouite/boat-fishing.html
 * https://game-icons.net/1x1/various-artists/salmon.html
 * https://game-icons.net/1x1/lorc/waves.html
+* https://game-icons.net/1x1/lucasms/trousers.html

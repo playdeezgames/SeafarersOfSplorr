@@ -41,6 +41,17 @@ namespace game
 		{
 			fishGenerator[fishery.fish]++;
 		}
+		if (fishGenerator.empty())
+		{
+			for (auto fish : Fishes::All())
+			{
+				const auto& descriptor = Fishes::Read(fish);
+				if (descriptor.junkWeight > 0)
+				{
+					fishGenerator[fish] = descriptor.junkWeight;
+				}
+			}
+		}
 		if (!fishGenerator.empty())
 		{
 			return common::RNG::FromGenerator(fishGenerator, Fish::COD);//note - default is just there to satisfy the parameter list
