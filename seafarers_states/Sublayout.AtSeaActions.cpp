@@ -1,6 +1,7 @@
 #include <Application.MouseButtonUp.h>
 #include <Application.MouseMotion.h>
 #include <Application.UIState.h>
+#include <functional>
 #include <Game.Avatar.h>
 #include "Sublayouts.h"
 #include "UIState.h"
@@ -11,20 +12,48 @@ namespace sublayout
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_AT_SEA;
 	static const std::string LAYOUT_NAME = "Sublayout.AtSeaActions";
 
+	static const std::string IMAGE_FISHING_HOVER = "hover-fishing";
+	static const std::string IMAGE_FISHING_ACTION = "action-fishing";
+
 	static const std::string AREA_FISHING = "fishing";
-	static const std::string IMAGE_FISHING = "hover-fishing";
+
+	static const std::string SPRITE_FISHING_DISABLED = "AtSeaStartFishingDisabled";
+	static const std::string SPRITE_FISHING_ENABLED = "AtSeaStartFishing";
 
 	enum class HoverButton
 	{
 		FISHING
 	};
 
-	static std::optional<HoverButton> hoverButton = std::nullopt;
-
-	static const std::map<HoverButton, std::string> hoverImages =
+	struct ActionDescriptor
 	{
-		{HoverButton::FISHING, IMAGE_FISHING}
+		std::string hoverImage;
+		std::string actionImage;
+		std::string enabledSprite;
+		std::string disabledSprite;
+		std::function<bool()> isEnabled;
 	};
+
+	static bool IsFishingEnabled()
+	{
+		//TODO: there needs to be a fishing pole and bait
+		return true;
+	}
+
+	static const std::map<HoverButton, ActionDescriptor> actions =
+	{
+		{HoverButton::FISHING, 
+			{
+				IMAGE_FISHING_HOVER,
+				IMAGE_FISHING_ACTION,
+				SPRITE_FISHING_ENABLED,
+				SPRITE_FISHING_DISABLED,
+				IsFishingEnabled
+			}
+		}
+	};
+
+	static std::optional<HoverButton> hoverButton = std::nullopt;
 
 	static const std::map<std::string, HoverButton> hoverAreas =
 	{
@@ -33,9 +62,17 @@ namespace sublayout
 
 	static void Refresh()
 	{
-		for (auto& entry : hoverImages)
+		for (auto& entry : actions)
 		{
-			visuals::Images::SetVisible(LAYOUT_NAME, entry.second, hoverButton.has_value() && hoverButton.value() == entry.first);
+			visuals::Images::SetVisible(LAYOUT_NAME, entry.second.hoverImage, hoverButton.has_value() && hoverButton.value() == entry.first && entry.second.isEnabled());
+			if (entry.second.isEnabled())
+			{
+				visuals::Images::SetSprite(LAYOUT_NAME, entry.second.actionImage, entry.second.enabledSprite);
+			}
+			else
+			{
+				visuals::Images::SetSprite(LAYOUT_NAME, entry.second.actionImage, entry.second.disabledSprite);
+			}
 		}
 	}
 
