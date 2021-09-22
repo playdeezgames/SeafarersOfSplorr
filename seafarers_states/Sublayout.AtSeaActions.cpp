@@ -3,6 +3,7 @@
 #include <Application.UIState.h>
 #include <functional>
 #include <Game.Avatar.h>
+#include <Game.Avatar.Items.h>
 #include "Sublayouts.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
@@ -36,8 +37,9 @@ namespace sublayout
 
 	static bool IsFishingEnabled()
 	{
-		//TODO: there needs to be a fishing pole and bait
-		return true;
+		return 
+				game::avatar::Items::Has(game::Item::FISHING_POLE) && 
+				game::avatar::Items::Has(game::Item::BAIT);
 	}
 
 	static const std::map<HoverButton, ActionDescriptor> actions =

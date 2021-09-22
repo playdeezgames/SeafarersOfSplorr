@@ -1,6 +1,7 @@
 #include <Common.RNG.h>
 #include <Data.Game.FishBoard.h>
 #include <Data.Game.FishGame.h>
+#include "Game.Avatar.Items.h"
 #include "Game.Fishboard.h"
 #include "Game.Fisheries.h"
 #include "Game.Fishes.h"
@@ -63,7 +64,7 @@ namespace game
 	{
 		ClearFishGame();
 		ClearFishboard();
-
+		avatar::Items::Remove(Item::BAIT, 1);
 		auto fish = GenerateFish();
 		if (fish)
 		{
