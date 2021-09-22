@@ -10,12 +10,12 @@ namespace game
 			{
 				"marlin",
 				[]() { return common::RNG::FromRange(1,3); },
-				[]() { return common::RNG::FromRange(10.0,20.0); },
+				[]() { return common::RNG::FromRange(2.5,5.0); },
 				[]() { return common::RNG::FromRange(0.1,0.2); },
 				{
-					{0,0},{1,0},{2,0},{3,0}
+					{0,0},{1,0}
 				},
-				{ 4, 1 },
+				{ 2, 1 },
 				Item::FISH,
 				0,
 				"FishboardFishRed"
@@ -26,12 +26,12 @@ namespace game
 			{
 				"cod",
 				[]() { return common::RNG::FromRange(5,11); },
-				[]() { return common::RNG::FromRange(20.0,40.0); },
+				[]() { return common::RNG::FromRange(5.0,10.0); },
 				[]() { return common::RNG::FromRange(0.1,0.2); },
 				{
-					{0,0},{0,1},{0,2},{0,3}
+					{0,0},{0,1}
 				},
-				{ 1, 4 },
+				{ 1, 2 },
 				Item::FISH,
 				0,
 				"FishboardFishPurple"
@@ -42,10 +42,10 @@ namespace game
 			{
 				"tuna",
 				[]() { return common::RNG::FromRange(2,5); },
-				[]() { return common::RNG::FromRange(15.0,30.0); },
+				[]() { return common::RNG::FromRange(3.0,6.0); },
 				[]() { return common::RNG::FromRange(0.1,0.2); },
 				{
-					{0,0},{0,1},{1,0},{1,1}
+					{0,0},{1,1}
 				},
 				{ 2, 2 },
 				Item::FISH,

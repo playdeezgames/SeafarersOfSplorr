@@ -15,7 +15,7 @@ namespace game
 	const size_t Fishboard::COLUMNS = 5;
 	const size_t Fishboard::ROWS = 5;
 
-	static int INITIAL_GUESSES = 10;
+	static int INITIAL_GUESSES = 5;
 
 	static void ClearFishGame()
 	{
