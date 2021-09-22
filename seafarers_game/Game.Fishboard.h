@@ -15,6 +15,11 @@ namespace game
 		static void Reveal(const common::XY<int>&);
 		static std::optional<Fishboard> Read(const common::XY<int>&);
 		static int ReadGuesses();
+		static bool HasGuessesLeft();
 		static double ReadProgressPercentage();
+		static bool IsRevealed();
+		static bool HasGivenUp();
+		static void GiveUp();
+		static void AddBait();
 	};
 }

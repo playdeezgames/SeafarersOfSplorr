@@ -35,6 +35,8 @@ namespace state::in_play
 	static const std::string LAYOUT_NAME = "State.InPlay.Fishing";
 	static const std::string FONT_DEFAULT = "default";
 	static const std::string MENU_ID = "Fishing";
+	static const std::string MENU_ITEM_GO_BACK = "GoBack";
+	static const std::string MENU_ITEM_MORE_BAIT = "MoreBait";
 	static const std::string FISHBOARD_ID = "Fishboard";
 	static const std::string AREA_FISHBOARD = "Fishboard";
 	static const std::string TEXT_GUESSES = "Guesses";
@@ -42,18 +44,32 @@ namespace state::in_play
 
 	enum class StatusMenuItem
 	{
+		MORE_BAIT,
 		GO_BACK
 	};
 
-	static void OnLeave()
+	static void Refresh();
+	static void OnMoreBait()
 	{
-		game::Avatar::DoAction(game::avatar::Action::STOP_FISHING);
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		game::Fishboard::AddBait();
+		Refresh();
+	}
+	static void OnGoBack()
+	{
+		if (game::Fishboard::IsRevealed() || game::Fishboard::HasGivenUp())
+		{
+			game::Avatar::DoAction(game::avatar::Action::STOP_FISHING);
+			application::UIState::Write(::UIState::IN_PLAY_NEXT);
+			return;
+		}
+		game::Fishboard::GiveUp();
+		Refresh();
 	}
 
 	static const std::map<StatusMenuItem, std::function<void()>> activators =
 	{
-		{ StatusMenuItem::GO_BACK, OnLeave }
+		{ StatusMenuItem::GO_BACK, OnGoBack },
+		{ StatusMenuItem::MORE_BAIT, OnMoreBait }
 	};
 
 	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
@@ -68,8 +84,27 @@ namespace state::in_play
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_PROGRESS, std::format("{:.0f}%", game::Fishboard::ReadProgressPercentage()));
 	}
 
+	static bool ShouldShowMoreBaitMenuItem()
+	{
+		return 
+			(!game::Fishboard::HasGuessesLeft()) && 
+			!game::Fishboard::IsRevealed() && 
+			!game::Fishboard::HasGivenUp() &&
+			game::avatar::Items::Has(game::Item::BAIT);
+	}
+
+	static void RefreshMenu()
+	{
+		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_MORE_BAIT, ShouldShowMoreBaitMenuItem());
+		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_GO_BACK, 
+			(game::Fishboard::IsRevealed()) ? ("Done!") :
+			(game::Fishboard::HasGivenUp()) ? ("Go Back") :
+			("Give Up!"));
+	}
+
 	static void Refresh()
 	{
+		RefreshMenu();
 		RefreshGuesses();
 		RefreshProgress();
 	}
@@ -85,8 +120,8 @@ namespace state::in_play
 		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
 		{ ::Command::GREEN, ActivateItem },
-		{ ::Command::BACK, OnLeave },
-		{ ::Command::RED, OnLeave }
+		{ ::Command::BACK, OnGoBack },
+		{ ::Command::RED, OnGoBack }
 	};
 
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)

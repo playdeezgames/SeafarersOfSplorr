@@ -102,6 +102,13 @@
         "drop-shadow-y": 2,
         "menu-items": [
             {
+                "text": "More Bait",
+                "menu-item-id": "MoreBait",
+                "x": 632,
+                "y": 320,
+                "enabled": false
+            },
+            {
                 "text": "Give Up!",
                 "menu-item-id": "GoBack",
                 "x": 632,
@@ -127,6 +134,18 @@
         "menu": {
             "menu-id": "Fishing",
             "menu-item-id": "GoBack"
+        }
+    },    
+    {
+        "type":"Area",
+        "area-id":"MoreBait",
+        "x":480,
+        "y":320,
+        "width":160,
+        "height":16,
+        "menu": {
+            "menu-id": "Fishing",
+            "menu-item-id": "MoreBait"
         }
     },    
     {

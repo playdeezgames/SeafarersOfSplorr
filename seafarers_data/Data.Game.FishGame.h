@@ -6,5 +6,7 @@ namespace data::game
 		static int ReadGuesses();
 		static void WriteGuesses(int);
 		static void Clear();
+		static bool ReadGivenUp();
+		static void WriteGivenUp(bool);
 	};
 }

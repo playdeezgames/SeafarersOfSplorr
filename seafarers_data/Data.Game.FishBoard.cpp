@@ -95,4 +95,17 @@ namespace data::game
 		}
 		return count;
 	}
+
+	std::optional<int> FishBoard::ReadFish()
+	{
+		for (auto cell : All())
+		{
+			if (cell.fishType)
+			{
+				return cell.fishType;
+			}
+		}
+		return std::nullopt;
+	}
+
 }

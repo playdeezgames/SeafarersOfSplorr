@@ -2,9 +2,13 @@
 #include <Data.Game.FishBoard.h>
 #include <Data.Game.FishGame.h>
 #include "Game.Avatar.Items.h"
+#include "Game.Avatar.Log.h"
+#include "Game.Colors.h"
 #include "Game.Fishboard.h"
 #include "Game.Fisheries.h"
 #include "Game.Fishes.h"
+#include "Game.Items.h"
+#include <format>
 #include <map>
 namespace game
 {
@@ -84,13 +88,26 @@ namespace game
 
 	void Fishboard::Reveal(const common::XY<int>& location)
 	{
-		auto guesses = ReadGuesses();
-		if (guesses > 0)
+		if (!IsRevealed())
 		{
-			auto boardCell = data::game::FishBoard::Read(location).value();
-			boardCell.revealed = true;
-			data::game::FishBoard::Write(boardCell);
-			data::game::FishGame::WriteGuesses(guesses - 1);
+			auto guesses = ReadGuesses();
+			if (guesses > 0)
+			{
+				auto boardCell = data::game::FishBoard::Read(location).value();
+				boardCell.revealed = true;
+				data::game::FishBoard::Write(boardCell);
+				data::game::FishGame::WriteGuesses(guesses - 1);
+			}
+			if (IsRevealed())
+			{
+				Fish fish = (Fish)data::game::FishBoard::ReadFish().value();
+				auto descriptor = Fishes::Read(fish);
+				game::avatar::Items::Add(descriptor.item, 1);
+				auto itemDescriptor = Items::Read(descriptor.item);
+				avatar::Log::Write({
+					game::Colors::GREEN,
+					std::format("You reel in a {}!", itemDescriptor.name) });
+			}
 		}
 	}
 
@@ -123,5 +140,32 @@ namespace game
 	double Fishboard::ReadProgressPercentage()
 	{
 		return 100.0 * data::game::FishBoard::ReadRevealedFishCount() / data::game::FishBoard::ReadFishCount();
+	}
+
+	bool Fishboard::IsRevealed()
+	{
+		return data::game::FishBoard::ReadRevealedFishCount() == data::game::FishBoard::ReadFishCount();
+	}
+
+	bool Fishboard::HasGivenUp()
+	{
+		return data::game::FishGame::ReadGivenUp();
+	}
+
+	void Fishboard::GiveUp()
+	{
+		data::game::FishGame::WriteGuesses(0);
+		data::game::FishGame::WriteGivenUp(true);
+	}
+
+	bool Fishboard::HasGuessesLeft()
+	{
+		return ReadGuesses() > 0;
+	}
+
+	void Fishboard::AddBait()
+	{
+		avatar::Items::Remove(Item::BAIT, 1);
+		data::game::FishGame::WriteGuesses(data::game::FishGame::ReadGuesses() + 5);
 	}
 }

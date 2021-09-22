@@ -16,6 +16,8 @@ namespace visuals
 	static const int BOARD_WIDTH = CELL_WIDTH * CELL_COLUMNS;
 	static const int BOARD_HEIGHT = CELL_HEIGHT * CELL_ROWS;
 	static const std::string SPRITE_HIDDEN = "FishboardHidden";
+	static const std::string SPRITE_REVEALED = "FishboardFishRevealed";
+	
 	static const std::string SPRITE_SELECT = "FishboardSelect";
 	static const std::string SPRITE_FISH = "FishboardFishRed";
 
@@ -42,12 +44,25 @@ namespace visuals
 
 	static void DrawCells(const std::shared_ptr<application::Engine::Renderer>& renderer, const InternalFishboard& fishboard)
 	{
+		auto hasGivenUp = game::Fishboard::HasGivenUp();
 		for (int column = 0; column < CELL_COLUMNS; ++column)
 		{
 			for (int row = 0; row < CELL_ROWS; ++row)
 			{
 				auto cell = game::Fishboard::Read({ column, row }).value();
-				if (cell.revealed)
+				if (hasGivenUp)
+				{
+					if (cell.fish)
+					{
+						auto descriptor = game::Fishes::Read(cell.fish.value());
+						DrawSprite(renderer, fishboard, { column, row }, descriptor.sprite);
+					}
+					if (!cell.revealed)
+					{
+						DrawSprite(renderer, fishboard, { column, row }, SPRITE_REVEALED);
+					}
+				}
+				else if (cell.revealed)
 				{
 					if (cell.fish)
 					{
