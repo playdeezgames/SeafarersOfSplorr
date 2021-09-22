@@ -48,13 +48,17 @@ namespace game::avatar
 		return tonnage;
 	}
 
-	void Items::Reset(const game::Difficulty&)
+	void Items::Reset(const game::Difficulty& difficulty)
 	{
 		data::game::avatar::Items::Clear();
 		for (auto& item : game::Items::All())
 		{
 			auto& descriptor = game::Items::Read(item);
-			Add(item, descriptor.initialInventory);
+			auto iter = descriptor.initialInventories.find(difficulty);
+			if (iter != descriptor.initialInventories.end())
+			{
+				Add(item, iter->second);
+			}
 		}
 	}
 }

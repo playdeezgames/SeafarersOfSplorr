@@ -13,7 +13,7 @@ namespace game
 				1,
 				0,
 				0.02,
-				0
+				{}
 			}
 		},
 		{game::Item::SACK_OF_WHEAT,
@@ -25,7 +25,7 @@ namespace game
 				1,
 				0,
 				0.1,
-				0
+				{}
 			}
 		},
 		{game::Item::CLOTH,
@@ -38,7 +38,7 @@ namespace game
 				3,
 				1,
 				0.25,
-				0
+				{}
 			}
 		},
 		{game::Item::FISH,
@@ -50,7 +50,7 @@ namespace game
 				5,
 				1,
 				0.02,
-				0
+				{}
 			}
 		},
 		{game::Item::JOOLS,
@@ -62,7 +62,7 @@ namespace game
 				1,
 				0,
 				0.0,
-				0
+				{}
 			}
 		},
 		{game::Item::TROUSERS,
@@ -75,7 +75,11 @@ namespace game
 				1,
 				1,
 				0.1,
-				1
+				{
+					{Difficulty::EASY, 1},
+					{Difficulty::NORMAL, 1},
+					{Difficulty::HARD, 1}
+				}
 			}
 		},
 		{game::Item::FISHING_POLE,
@@ -88,7 +92,9 @@ namespace game
 				1,
 				1,
 				0.3,
-				1
+				{
+					{Difficulty::EASY, 1}
+				}
 			}
 		},
 		{game::Item::BAIT,
@@ -100,7 +106,9 @@ namespace game
 				1,
 				1,
 				0.001,
-				10
+				{
+					{Difficulty::EASY, 10}
+				}
 			}
 		}
 	};

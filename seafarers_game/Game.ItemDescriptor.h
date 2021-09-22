@@ -1,5 +1,6 @@
 #pragma once
 #include "Game.Commodity.h"
+#include "Game.Difficulty.h"
 #include <map>
 #include <string>
 namespace game
@@ -11,6 +12,6 @@ namespace game
 		size_t present;
 		size_t notPresent;
 		double tonnage;
-		size_t initialInventory;
+		std::map<Difficulty, size_t> initialInventories;
 	};
 }
