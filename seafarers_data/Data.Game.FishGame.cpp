@@ -8,6 +8,8 @@ namespace data::game
 	static const std::string DELETE_ITEM = "DELETE FROM [FishGames] WHERE [AvatarId]={};";
 	static const std::string QUERY_ITEM = "SELECT [Guesses],[GivenUp] FROM [FishGames] WHERE [AvatarId]={};";
 	static const std::string REPLACE_ITEM = "REPLACE INTO [FishGames]([AvatarId],[Guesses],[GivenUp]) VALUES({},{},{});";
+	static const std::string UPDATE_GUESSES = "UPDATE [FishGames] SET [Guesses]={} WHERE [AvatarId]={};";
+	static const std::string UPDATE_GIVEN_UP = "UPDATE [FishGames] SET [GivenUp]={} WHERE [AvatarId]={};";
 	static const std::string FIELD_GUESSES = "Guesses";
 	static const std::string FIELD_GIVEN_UP = "GivenUp";
 
@@ -27,13 +29,19 @@ namespace data::game
 	void FishGame::WriteGuesses(int guesses)
 	{
 		AutoCreateFishGameTable();
-		Common::Execute(std::format(REPLACE_ITEM, Common::AVATAR_ID, guesses, (ReadGivenUp())?(1):(0)));
+		Common::Execute(std::format(UPDATE_GUESSES, guesses, Common::AVATAR_ID));
 	}
 
 	void FishGame::Clear()
 	{
 		AutoCreateFishGameTable();
 		Common::Execute(std::format(DELETE_ITEM, Common::AVATAR_ID));
+	}
+
+	void FishGame::Start(int guesses)
+	{
+		AutoCreateFishGameTable();
+		Common::Execute(std::format(REPLACE_ITEM, Common::AVATAR_ID, guesses, 0));
 	}
 
 	bool FishGame::ReadGivenUp()
@@ -45,13 +53,11 @@ namespace data::game
 			return common::Data::ToInt(records.front()[FIELD_GIVEN_UP])!=0;
 		}
 		return false;
-
 	}
 
 	void FishGame::WriteGivenUp(bool flag)
 	{
 		AutoCreateFishGameTable();
-		Common::Execute(std::format(REPLACE_ITEM, Common::AVATAR_ID, ReadGuesses(), (flag) ? (1) : (0)));
+		Common::Execute(std::format(UPDATE_GIVEN_UP, (flag) ? (1) : (0), Common::AVATAR_ID));
 	}
-
 }

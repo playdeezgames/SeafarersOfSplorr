@@ -80,5 +80,4 @@ namespace data::game
 				fishery.movement.GetY(), 
 				fishery.fisheryId));
 	}
-
 }

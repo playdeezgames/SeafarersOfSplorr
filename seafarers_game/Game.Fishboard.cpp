@@ -20,7 +20,7 @@ namespace game
 	static void ClearFishGame()
 	{
 		data::game::FishGame::Clear();
-		data::game::FishGame::WriteGuesses(INITIAL_GUESSES);
+		data::game::FishGame::Start(INITIAL_GUESSES);
 	}
 
 	static void ClearFishboard()
