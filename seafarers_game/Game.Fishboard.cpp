@@ -49,14 +49,19 @@ namespace game
 		}
 	}
 
-	static std::map<Fish, size_t> MakeFishGenerator()
+	static void AddFisheries(std::map<Fish, size_t>& fishGenerator)
 	{
-		std::map<Fish, size_t> fishGenerator;
 		auto fisheries = Fisheries::Available();
 		for (auto fishery : fisheries)
 		{
 			fishGenerator[fishery.fish]++;
 		}
+	}
+
+	static std::map<Fish, size_t> MakeFishGenerator()
+	{
+		std::map<Fish, size_t> fishGenerator;
+		AddFisheries(fishGenerator);
 		if (fishGenerator.empty())
 		{
 			AddJunk(fishGenerator);
