@@ -100,7 +100,7 @@ namespace game
 			}
 			if (IsRevealed())
 			{
-				Fish fish = (Fish)data::game::FishboardCell::ReadFish().value();
+				Fish fish = (Fish)*data::game::FishboardCell::ReadFish().begin();//TODO: this is a little weird
 				auto descriptor = Fishes::Read(fish);
 				game::avatar::Items::Add(descriptor.item, 1);
 				auto itemDescriptor = Items::Read(descriptor.item);

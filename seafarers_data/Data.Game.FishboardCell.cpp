@@ -96,16 +96,17 @@ namespace data::game
 		return count;
 	}
 
-	std::optional<int> FishboardCell::ReadFish()
+	std::set<int> FishboardCell::ReadFish()
 	{
+		std::set<int> result;
 		for (auto cell : All())
 		{
-			if (cell.fishType)
+			if (cell.fishType && !result.contains(cell.fishType.value()))
 			{
-				return cell.fishType;
+				result.insert(cell.fishType.value());
 			}
 		}
-		return std::nullopt;
+		return result;
 	}
 
 }

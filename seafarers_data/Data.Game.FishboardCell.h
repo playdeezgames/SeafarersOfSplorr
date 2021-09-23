@@ -2,6 +2,7 @@
 #include <Common.XY.h>
 #include <list>
 #include <optional>
+#include <set>
 namespace data::game
 {
 	struct FishboardCell
@@ -17,6 +18,6 @@ namespace data::game
 
 		static size_t ReadFishCount();
 		static size_t ReadRevealedFishCount();
-		static std::optional<int> ReadFish();//TODO: perhaps this is a set?
+		static std::set<int> ReadFish();
 	};
 }
