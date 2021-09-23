@@ -15,7 +15,7 @@ namespace game
 		static void Generate();
 
 		static void RevealCell(const common::XY<int>&);
-		static bool IsRevealed();
+		static bool IsFullyRevealed();
 
 		static std::optional<Fishboard> ReadCell(const common::XY<int>&);
 

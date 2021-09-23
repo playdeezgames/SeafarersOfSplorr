@@ -56,7 +56,7 @@ namespace state::in_play
 	}
 	static void OnGoBack()
 	{
-		if (game::Fishboard::IsRevealed() || game::Fishboard::HasGivenUp())
+		if (game::Fishboard::IsFullyRevealed() || game::Fishboard::HasGivenUp())
 		{
 			game::Avatar::DoAction(game::avatar::Action::STOP_FISHING);
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
@@ -88,7 +88,7 @@ namespace state::in_play
 	{
 		return 
 			(!game::Fishboard::HasGuessesLeft()) && 
-			!game::Fishboard::IsRevealed() && 
+			!game::Fishboard::IsFullyRevealed() &&
 			!game::Fishboard::HasGivenUp() &&
 			game::avatar::Items::Has(game::Item::BAIT);
 	}
@@ -97,7 +97,7 @@ namespace state::in_play
 	{
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_MORE_BAIT, ShouldShowMoreBaitMenuItem());
 		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_GO_BACK, 
-			(game::Fishboard::IsRevealed()) ? ("Done!") :
+			(game::Fishboard::IsFullyRevealed()) ? ("Done!") :
 			(game::Fishboard::HasGivenUp()) ? ("Go Back") :
 			("Give Up!"));
 	}

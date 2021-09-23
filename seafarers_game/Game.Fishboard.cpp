@@ -103,28 +103,33 @@ namespace game
 		PlaceFish(GenerateFish());
 	}
 
+	static void DoRevealCell(const common::XY<int>& location)
+	{
+		auto guesses = Fishboard::ReadGuesses();
+		if (guesses > 0)
+		{
+			auto boardCell = data::game::FishboardCell::Read(location).value();
+			boardCell.revealed = true;
+			data::game::FishboardCell::Write(boardCell);
+			data::game::FishGame::WriteGuesses(guesses - 1);
+		}
+		if (Fishboard::IsFullyRevealed())
+		{
+			Fish fish = (Fish)*data::game::FishboardCell::ReadFish().begin();//TODO: this is a little weird
+			auto descriptor = Fishes::Read(fish);
+			game::avatar::Items::Add(descriptor.item, 1);
+			auto itemDescriptor = Items::Read(descriptor.item);
+			avatar::Log::Write({
+				game::Colors::GREEN,
+				std::format("You reel in a {}!", itemDescriptor.name) });
+		}
+	}
+
 	void Fishboard::RevealCell(const common::XY<int>& location)
 	{
-		if (!IsRevealed())
+		if (!IsFullyRevealed())
 		{
-			auto guesses = ReadGuesses();
-			if (guesses > 0)
-			{
-				auto boardCell = data::game::FishboardCell::Read(location).value();
-				boardCell.revealed = true;
-				data::game::FishboardCell::Write(boardCell);
-				data::game::FishGame::WriteGuesses(guesses - 1);
-			}
-			if (IsRevealed())
-			{
-				Fish fish = (Fish)*data::game::FishboardCell::ReadFish().begin();//TODO: this is a little weird
-				auto descriptor = Fishes::Read(fish);
-				game::avatar::Items::Add(descriptor.item, 1);
-				auto itemDescriptor = Items::Read(descriptor.item);
-				avatar::Log::Write({
-					game::Colors::GREEN,
-					std::format("You reel in a {}!", itemDescriptor.name) });
-			}
+			DoRevealCell(location);
 		}
 	}
 
@@ -142,7 +147,6 @@ namespace game
 			{
 				boardCell.value().revealed,
 				fish
-
 			};
 			return result;
 		}
@@ -159,7 +163,7 @@ namespace game
 		return 100.0 * data::game::FishboardCell::ReadRevealedFishCount() / data::game::FishboardCell::ReadFishCount();
 	}
 
-	bool Fishboard::IsRevealed()
+	bool Fishboard::IsFullyRevealed()
 	{
 		return data::game::FishboardCell::ReadRevealedFishCount() == data::game::FishboardCell::ReadFishCount();
 	}
