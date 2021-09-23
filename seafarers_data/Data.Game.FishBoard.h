@@ -4,18 +4,19 @@
 #include <optional>
 namespace data::game
 {
-	struct FishBoard
+	struct FishboardCell
 	{
 		common::XY<int> location;
 		bool revealed;
 		std::optional<int> fishType;
 
 		static void Clear();
-		static void Write(const FishBoard&);
-		static std::list<FishBoard> All();
-		static std::optional<FishBoard> Read(const common::XY<int>&);
+		static void Write(const FishboardCell&);
+		static std::list<FishboardCell> All();
+		static std::optional<FishboardCell> Read(const common::XY<int>&);
+
 		static size_t ReadFishCount();
 		static size_t ReadRevealedFishCount();
-		static std::optional<int> ReadFish();
+		static std::optional<int> ReadFish();//TODO: perhaps this is a set?
 	};
 }

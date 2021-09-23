@@ -16,13 +16,13 @@ namespace data::game
 
 	static const auto AutoCreateFishBoardTable = Common::Run(CREATE_TABLE);
 
-	void FishBoard::Clear()
+	void FishboardCell::Clear()
 	{
 		AutoCreateFishBoardTable();
 		Common::Execute(std::format(DELETE_ALL, Common::AVATAR_ID));
 	}
 
-	void FishBoard::Write(const FishBoard& cell)
+	void FishboardCell::Write(const FishboardCell& cell)
 	{
 		AutoCreateFishBoardTable();
 		Common::Execute(
@@ -35,7 +35,7 @@ namespace data::game
 				common::Data::OfOptional(cell.fishType)));
 	}
 
-	static FishBoard ToFishBoard(const std::map<std::string, std::string> record)
+	static FishboardCell ToFishBoard(const std::map<std::string, std::string> record)
 	{
 		return {
 			{
@@ -47,11 +47,11 @@ namespace data::game
 		};
 	}
 
-	std::list<FishBoard> FishBoard::All()
+	std::list<FishboardCell> FishboardCell::All()
 	{
 		AutoCreateFishBoardTable();
 		auto records = Common::Execute(std::format(QUERY_ALL, Common::AVATAR_ID));
-		std::list<FishBoard> results;
+		std::list<FishboardCell> results;
 		for (auto& record : records)
 		{
 			results.push_back(ToFishBoard(record));
@@ -59,7 +59,7 @@ namespace data::game
 		return results;
 	}
 
-	std::optional<FishBoard> FishBoard::Read(const common::XY<int>& location)
+	std::optional<FishboardCell> FishboardCell::Read(const common::XY<int>& location)
 	{
 		AutoCreateFishBoardTable();
 		auto records = Common::Execute(std::format(QUERY_ITEM, Common::AVATAR_ID, location.GetX(), location.GetY()));
@@ -70,7 +70,7 @@ namespace data::game
 		return std::nullopt;
 	}
 
-	size_t FishBoard::ReadFishCount()
+	size_t FishboardCell::ReadFishCount()
 	{
 		size_t count = 0;
 		for (auto cell : All())
@@ -83,7 +83,7 @@ namespace data::game
 		return count;
 	}
 
-	size_t FishBoard::ReadRevealedFishCount()
+	size_t FishboardCell::ReadRevealedFishCount()
 	{
 		size_t count = 0;
 		for (auto cell : All())
@@ -96,7 +96,7 @@ namespace data::game
 		return count;
 	}
 
-	std::optional<int> FishBoard::ReadFish()
+	std::optional<int> FishboardCell::ReadFish()
 	{
 		for (auto cell : All())
 		{

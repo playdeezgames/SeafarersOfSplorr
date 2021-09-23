@@ -25,12 +25,12 @@ namespace game
 
 	static void ClearFishboard()
 	{
-		data::game::FishBoard::Clear();
+		data::game::FishboardCell::Clear();
 		for (size_t column = 0; column < Fishboard::COLUMNS; ++column)
 		{
 			for (size_t row = 0; row < Fishboard::ROWS; ++row)
 			{
-				data::game::FishBoard::Write({
+				data::game::FishboardCell::Write({
 					{(int)column,(int)row},
 					false,
 					std::nullopt });
@@ -78,7 +78,7 @@ namespace game
 			common::XY<int> origin = { x,y };
 			for (auto& location : descriptor.shape)
 			{
-				data::game::FishBoard::Write({
+				data::game::FishboardCell::Write({
 					(location + origin),
 					false,
 					(int)fish.value() });
@@ -93,14 +93,14 @@ namespace game
 			auto guesses = ReadGuesses();
 			if (guesses > 0)
 			{
-				auto boardCell = data::game::FishBoard::Read(location).value();
+				auto boardCell = data::game::FishboardCell::Read(location).value();
 				boardCell.revealed = true;
-				data::game::FishBoard::Write(boardCell);
+				data::game::FishboardCell::Write(boardCell);
 				data::game::FishGame::WriteGuesses(guesses - 1);
 			}
 			if (IsRevealed())
 			{
-				Fish fish = (Fish)data::game::FishBoard::ReadFish().value();
+				Fish fish = (Fish)data::game::FishboardCell::ReadFish().value();
 				auto descriptor = Fishes::Read(fish);
 				game::avatar::Items::Add(descriptor.item, 1);
 				auto itemDescriptor = Items::Read(descriptor.item);
@@ -113,7 +113,7 @@ namespace game
 
 	std::optional<Fishboard> Fishboard::Read(const common::XY<int>& location)
 	{
-		auto boardCell = data::game::FishBoard::Read(location);
+		auto boardCell = data::game::FishboardCell::Read(location);
 		if (boardCell)
 		{
 			std::optional<Fish> fish = std::nullopt;
@@ -139,12 +139,12 @@ namespace game
 
 	double Fishboard::ReadProgressPercentage()
 	{
-		return 100.0 * data::game::FishBoard::ReadRevealedFishCount() / data::game::FishBoard::ReadFishCount();
+		return 100.0 * data::game::FishboardCell::ReadRevealedFishCount() / data::game::FishboardCell::ReadFishCount();
 	}
 
 	bool Fishboard::IsRevealed()
 	{
-		return data::game::FishBoard::ReadRevealedFishCount() == data::game::FishBoard::ReadFishCount();
+		return data::game::FishboardCell::ReadRevealedFishCount() == data::game::FishboardCell::ReadFishCount();
 	}
 
 	bool Fishboard::HasGivenUp()
