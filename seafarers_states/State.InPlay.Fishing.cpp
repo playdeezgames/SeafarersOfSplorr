@@ -132,11 +132,6 @@ namespace state::in_play
 		}
 	}
 
-	static void OnMouseMotionOutsideArea(const common::XY<int>& location)
-	{
-		//TODO: either do something here, or get rid of it!
-	}
-
 	static bool OnMouseButtonUp(const std::string& areaName)
 	{
 		if (areaName == AREA_FISHBOARD)
@@ -155,7 +150,7 @@ namespace state::in_play
 		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
 		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUp));
 		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea, OnMouseMotionOutsideArea));
+		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea));
 		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
 	}
