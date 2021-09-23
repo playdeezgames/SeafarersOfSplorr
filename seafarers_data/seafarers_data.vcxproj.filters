@@ -125,7 +125,7 @@
     <ClInclude Include="Data.Game.Avatar.DestinationName.h">
       <Filter>Header Files\Avatar</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.FishBoard.h">
+    <ClInclude Include="Data.Game.FishboardCell.h">
       <Filter>Header Files\Fishing</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.Fishery.h">
@@ -220,7 +220,7 @@
     <ClCompile Include="Data.Game.Fishery.cpp">
       <Filter>Source Files\Fishing</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.FishBoard.cpp">
+    <ClCompile Include="Data.Game.FishboardCell.cpp">
       <Filter>Source Files\Fishing</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.FishGame.cpp">

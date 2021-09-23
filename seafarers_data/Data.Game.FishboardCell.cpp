@@ -1,6 +1,6 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
-#include "Data.Game.FishBoard.h"
+#include "Data.Game.FishboardCell.h"
 #include <format>
 namespace data::game
 {

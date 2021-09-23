@@ -1,5 +1,5 @@
 #include <Common.RNG.h>
-#include <Data.Game.FishBoard.h>
+#include <Data.Game.FishboardCell.h>
 #include <Data.Game.FishGame.h>
 #include "Game.Avatar.Items.h"
 #include "Game.Avatar.Log.h"
