@@ -49,7 +49,7 @@ namespace visuals
 		{
 			for (int row = 0; row < CELL_ROWS; ++row)
 			{
-				auto cell = game::Fishboard::Read({ column, row }).value();
+				auto cell = game::Fishboard::ReadCell({ column, row }).value();
 				if (hasGivenUp)
 				{
 					if (cell.fish)

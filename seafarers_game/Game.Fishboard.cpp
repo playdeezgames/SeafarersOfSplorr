@@ -86,7 +86,7 @@ namespace game
 		}
 	}
 
-	void Fishboard::Reveal(const common::XY<int>& location)
+	void Fishboard::RevealCell(const common::XY<int>& location)
 	{
 		if (!IsRevealed())
 		{
@@ -111,7 +111,7 @@ namespace game
 		}
 	}
 
-	std::optional<Fishboard> Fishboard::Read(const common::XY<int>& location)
+	std::optional<Fishboard> Fishboard::ReadCell(const common::XY<int>& location)
 	{
 		auto boardCell = data::game::FishboardCell::Read(location);
 		if (boardCell)

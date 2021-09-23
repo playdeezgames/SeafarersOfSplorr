@@ -142,7 +142,7 @@ namespace state::in_play
 		if (areaName == AREA_FISHBOARD)
 		{
 			auto cursor = visuals::Fishboard::ReadCursor(LAYOUT_NAME, FISHBOARD_ID);
-			game::Fishboard::Reveal(cursor);
+			game::Fishboard::RevealCell(cursor);
 			Refresh();
 		}
 		return false;
