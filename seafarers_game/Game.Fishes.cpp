@@ -72,6 +72,7 @@ namespace game
 	};
 
 	static std::list<Fish> fishes;
+	static std::list<Fish> junk;
 
 	std::list<Fish> Fishes::All()
 	{
@@ -84,6 +85,22 @@ namespace game
 		}
 		return fishes;
 	}
+
+	std::list<Fish> Fishes::AllJunk()
+	{
+		if (junk.empty())
+		{
+			for (auto& descriptor : descriptors)
+			{
+				if (descriptor.second.junkWeight > 0)
+				{
+					junk.push_back(descriptor.first);
+				}
+			}
+		}
+		return junk;
+	}
+
 
 	const FishDescriptor& Fishes::Read(const Fish& fish)
 	{
