@@ -202,4 +202,14 @@ namespace game
 		avatar::Items::Remove(Item::BAIT, 1);
 		data::game::FishGame::WriteGuesses(data::game::FishGame::ReadGuesses() + ADDITIONAL_GUESSES);
 	}
+
+	FishboardState Fishboard::GetState()
+	{
+		return 
+			(IsFullyRevealed()) ? (FishboardState::DONE) :
+			(HasGivenUp()) ? (FishboardState::GAVE_UP) :
+			(ReadGuesses() > 0) ? (FishboardState::FISHING) :
+			(FishboardState::OUT_OF_GUESSES);
+	}
+
 }

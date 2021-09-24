@@ -48,22 +48,86 @@ namespace state::in_play
 		GO_BACK
 	};
 
-	static void Refresh();
+	static bool ShouldShowMoreBaitMenuItem()
+	{
+		return
+			game::Fishboard::GetState() == game::FishboardState::OUT_OF_GUESSES &&
+			game::avatar::Items::Has(game::Item::BAIT);
+	}
+
+	static const std::map<game::FishboardState, std::string> goBackMenuItemTexts =
+	{
+		{game::FishboardState::DONE, "Done!"},
+		{game::FishboardState::GAVE_UP, "Go Back"},
+		{game::FishboardState::FISHING, "Give Up!"},
+		{game::FishboardState::OUT_OF_GUESSES, "Give Up!"}
+	};
+
+	static std::string GetGoBackMenuItemText()
+	{
+		return goBackMenuItemTexts.find(game::Fishboard::GetState())->second;
+	}
+	static void RefreshMenu()
+	{
+		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_MORE_BAIT, ShouldShowMoreBaitMenuItem());
+		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_GO_BACK,
+			GetGoBackMenuItemText());
+	}
+
+	static void RefreshGuesses()
+	{
+		visuals::Texts::SetText(
+			LAYOUT_NAME,
+			TEXT_GUESSES,
+			std::format("{}",
+				game::Fishboard::ReadGuesses()));
+	}
+
+	static void RefreshProgress()
+	{
+		visuals::Texts::SetText(
+			LAYOUT_NAME,
+			TEXT_PROGRESS,
+			std::format("{:.0f}%",
+				game::Fishboard::ReadProgressPercentage()));
+	}
+
+	static void Refresh()
+	{
+		RefreshMenu();
+		RefreshGuesses();
+		RefreshProgress();
+	}
+
 	static void OnMoreBait()
 	{
 		game::Fishboard::AddBait();
 		Refresh();
 	}
-	static void OnGoBack()
+
+	static void OnDoGoBack()
 	{
-		if (game::Fishboard::IsFullyRevealed() || game::Fishboard::HasGivenUp())
-		{
-			game::Avatar::DoAction(game::avatar::Action::STOP_FISHING);
-			application::UIState::Write(::UIState::IN_PLAY_NEXT);
-			return;
-		}
+		game::Avatar::DoAction(game::avatar::Action::STOP_FISHING);
+		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+	}
+
+	static void OnGiveUp()
+	{
 		game::Fishboard::GiveUp();
 		Refresh();
+	}
+
+	static const std::map<game::FishboardState, std::function<void()>> handleGoBacks =
+	{
+		{game::FishboardState::DONE, OnDoGoBack},
+		{game::FishboardState::FISHING, OnGiveUp},
+		{game::FishboardState::GAVE_UP, OnDoGoBack},
+		{game::FishboardState::OUT_OF_GUESSES, OnGiveUp}
+	};
+
+	static void OnGoBack()
+	{
+		handleGoBacks.find(game::Fishboard::GetState())->second();
 	}
 
 	static const std::map<StatusMenuItem, std::function<void()>> activators =
@@ -73,41 +137,6 @@ namespace state::in_play
 	};
 
 	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
-
-	static void RefreshGuesses()
-	{
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_GUESSES, std::format("{}", game::Fishboard::ReadGuesses()));
-	}
-
-	static void RefreshProgress()
-	{
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_PROGRESS, std::format("{:.0f}%", game::Fishboard::ReadProgressPercentage()));
-	}
-
-	static bool ShouldShowMoreBaitMenuItem()
-	{
-		return 
-			(!game::Fishboard::HasGuessesLeft()) && 
-			!game::Fishboard::IsFullyRevealed() &&
-			!game::Fishboard::HasGivenUp() &&
-			game::avatar::Items::Has(game::Item::BAIT);
-	}
-
-	static void RefreshMenu()
-	{
-		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_MORE_BAIT, ShouldShowMoreBaitMenuItem());
-		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_GO_BACK, 
-			(game::Fishboard::IsFullyRevealed()) ? ("Done!") :
-			(game::Fishboard::HasGivenUp()) ? ("Go Back") :
-			("Give Up!"));
-	}
-
-	static void Refresh()
-	{
-		RefreshMenu();
-		RefreshGuesses();
-		RefreshProgress();
-	}
 
 	static void OnEnter()
 	{
@@ -132,17 +161,22 @@ namespace state::in_play
 		}
 	}
 
+	static bool OnMouseButtonUpInFishboard()
+	{
+		auto cursor = visuals::Fishboard::ReadCursor(LAYOUT_NAME, FISHBOARD_ID);
+		game::Fishboard::RevealCell(cursor);
+		Refresh();
+		return true;
+	}
+
 	static bool OnMouseButtonUp(const std::string& areaName)
 	{
 		if (areaName == AREA_FISHBOARD)
 		{
-			auto cursor = visuals::Fishboard::ReadCursor(LAYOUT_NAME, FISHBOARD_ID);
-			game::Fishboard::RevealCell(cursor);
-			Refresh();
+			return OnMouseButtonUpInFishboard();
 		}
 		return false;
 	}
-
 
 	void Fishing::Start()
 	{

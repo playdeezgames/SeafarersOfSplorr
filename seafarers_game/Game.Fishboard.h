@@ -1,6 +1,7 @@
 #pragma once
 #include <Common.XY.h>
 #include "Game.Fish.h"
+#include "Game.FishboardState.h"
 #include <optional>
 namespace game
 {
@@ -28,5 +29,7 @@ namespace game
 		static void GiveUp();
 
 		static void AddBait();
+
+		static FishboardState GetState();
 	};
 }
