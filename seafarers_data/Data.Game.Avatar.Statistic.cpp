@@ -40,7 +40,7 @@ namespace data::game::avatar
 	}
 	void Statistic::Write(int statisticId, const Statistic& statistic)
 	{
-		Write(Common::AVATAR_ID, statistic);
+		Write(Common::AVATAR_ID, statisticId, statistic);
 	}
 	std::optional<Statistic> Statistic::Read(int statisticId)
 	{

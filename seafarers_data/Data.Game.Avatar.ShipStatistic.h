@@ -8,6 +8,10 @@ namespace data::game::avatar
 		std::optional<double> maximum;
 		double current;
 
+		static void Write(int, int, const ShipStatistic&);
+		static std::optional<ShipStatistic> Read(int, int);
+		static void Clear(int);
+
 		static void Write(int, const ShipStatistic&);
 		static std::optional<ShipStatistic> Read(int);
 		static void Clear();

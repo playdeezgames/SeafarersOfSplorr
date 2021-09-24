@@ -15,17 +15,17 @@ namespace data::game::avatar
 
 	static const auto AutoCreateAvatarShipStatisticsTable = data::game::Common::Run(CREATE_TABLE);
 
-	void ShipStatistic::Write(int statisticId, const ShipStatistic& data)
+	void ShipStatistic::Write(int avatarId, int statisticId, const ShipStatistic& data)
 	{
 		AutoCreateAvatarShipStatisticsTable();
-		auto query = std::format(REPLACE_ITEM, Common::AVATAR_ID, statisticId, common::Data::OfOptional(data.minimum), common::Data::OfOptional(data.maximum), data.current);
+		auto query = std::format(REPLACE_ITEM, avatarId, statisticId, common::Data::OfOptional(data.minimum), common::Data::OfOptional(data.maximum), data.current);
 		data::game::Common::Execute(query);
 	}
 
-	std::optional<ShipStatistic> ShipStatistic::Read(int statisticId)
+	std::optional<ShipStatistic> ShipStatistic::Read(int avatarId, int statisticId)
 	{
 		AutoCreateAvatarShipStatisticsTable();
-		auto query = std::format(QUERY_ITEM, statisticId, Common::AVATAR_ID);
+		auto query = std::format(QUERY_ITEM, statisticId, avatarId);
 		auto result = data::game::Common::Execute(query);
 		if (!result.empty())
 		{
@@ -40,9 +40,24 @@ namespace data::game::avatar
 		return std::nullopt;
 	}
 
-	void ShipStatistic::Clear()
+	void ShipStatistic::Clear(int avatarId)
 	{
 		AutoCreateAvatarShipStatisticsTable();
-		data::game::Common::Execute(std::format(DELETE_ALL, Common::AVATAR_ID));
+		data::game::Common::Execute(std::format(DELETE_ALL, avatarId));
+	}
+
+	void ShipStatistic::Write(int statisticId, const ShipStatistic& statistic)
+	{
+		Write(Common::AVATAR_ID, statisticId, statistic);
+	}
+
+	std::optional<ShipStatistic> ShipStatistic::Read(int statisticId)
+	{
+		return Read(Common::AVATAR_ID, statisticId);
+	}
+
+	void ShipStatistic::Clear()
+	{
+		Clear(Common::AVATAR_ID);
 	}
 }
