@@ -73,7 +73,6 @@ namespace game::avatar
 		for (auto& value : values)
 		{
 			data::game::avatar::Statistic::Write(
-				data::game::Common::AVATAR_ID,
 				(int)value.statistic,
 				{
 					value.minimum,
@@ -106,7 +105,6 @@ namespace game::avatar
 			(data.minimum.has_value() && value < data.minimum.value()) ? (data.minimum.value()) :
 			(value);
 		data::game::avatar::Statistic::Write(
-			data::game::Common::AVATAR_ID,
 			(int)statistic, 
 			data);
 	}

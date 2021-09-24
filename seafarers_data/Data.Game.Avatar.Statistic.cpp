@@ -17,14 +17,14 @@ namespace data::game::avatar
 	void Statistic::Write(int avatarId, int statisticId, const Statistic& data)
 	{
 		AutoCreateAvatarStatisticsTable();
-		auto query = std::format(REPLACE_ITEM, Common::AVATAR_ID, statisticId, common::Data::OfOptional(data.minimum), common::Data::OfOptional(data.maximum), data.current);
+		auto query = std::format(REPLACE_ITEM, avatarId, statisticId, common::Data::OfOptional(data.minimum), common::Data::OfOptional(data.maximum), data.current);
 		data::game::Common::Execute(query);
 	}
 
-	std::optional<Statistic> Statistic::Read(int statisticId)
+	std::optional<Statistic> Statistic::Read(int avatarId, int statisticId)
 	{
 		AutoCreateAvatarStatisticsTable();
-		auto query = std::format(QUERY_ITEM, statisticId, Common::AVATAR_ID);
+		auto query = std::format(QUERY_ITEM, statisticId, avatarId);
 		auto result = data::game::Common::Execute(query);
 		if (!result.empty())
 		{
@@ -38,4 +38,13 @@ namespace data::game::avatar
 		}
 		return std::nullopt;
 	}
+	void Statistic::Write(int statisticId, const Statistic& statistic)
+	{
+		Write(Common::AVATAR_ID, statistic);
+	}
+	std::optional<Statistic> Statistic::Read(int statisticId)
+	{
+		return Read(Common::AVATAR_ID, statisticId);
+	}
+
 }

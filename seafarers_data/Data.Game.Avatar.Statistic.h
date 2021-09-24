@@ -9,6 +9,8 @@ namespace data::game::avatar
 		double current;
 
 		static void Write(int, int, const Statistic&);
+		static std::optional<Statistic> Read(int, int);
+		static void Write(int, const Statistic&);
 		static std::optional<Statistic> Read(int);
 	};
 }
