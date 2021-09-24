@@ -134,6 +134,9 @@
     <ClInclude Include="Data.Game.FishGame.h">
       <Filter>Header Files\Fishing</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.Avatar.Equipment.h">
+      <Filter>Header Files\Avatar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">
@@ -225,6 +228,9 @@
     </ClCompile>
     <ClCompile Include="Data.Game.FishGame.cpp">
       <Filter>Source Files\Fishing</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Avatar.Equipment.cpp">
+      <Filter>Source Files\Avatar</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
