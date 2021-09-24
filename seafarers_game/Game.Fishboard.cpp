@@ -16,6 +16,7 @@ namespace game
 	const size_t Fishboard::ROWS = 5;//static members!
 
 	static const int INITIAL_GUESSES = 5;
+	static const int ADDITIONAL_GUESSES = 5;
 	static const Fish DEFAULT_FISH = Fish::COD;//TODO: FOR NOW!!
 	static const Item BAIT_ITEM = Item::BAIT;
 
@@ -151,24 +152,18 @@ namespace game
 		}
 	}
 
-	std::optional<Fishboard> Fishboard::ReadCell(const common::XY<int>& location)
+	Fishboard Fishboard::ReadCell(const common::XY<int>& location)
 	{
-		auto boardCell = data::game::FishboardCell::Read(location);
-		if (boardCell)
+		auto boardCell = data::game::FishboardCell::Read(location).value();
+		std::optional<Fish> fish =
+			(boardCell.fishType.has_value()) ?
+			(std::optional<Fish>((Fish)boardCell.fishType.value())) :
+			(std::nullopt);
+		return 
 		{
-			std::optional<Fish> fish = std::nullopt;
-			if (boardCell.value().fishType.has_value())
-			{
-				fish = (Fish)boardCell.value().fishType.value();
-			}
-			Fishboard result =
-			{
-				boardCell.value().revealed,
-				fish
-			};
-			return result;
-		}
-		return std::nullopt;
+			boardCell.revealed,
+			fish
+		};
 	}
 
 	int Fishboard::ReadGuesses()
@@ -205,6 +200,6 @@ namespace game
 	void Fishboard::AddBait()
 	{
 		avatar::Items::Remove(Item::BAIT, 1);
-		data::game::FishGame::WriteGuesses(data::game::FishGame::ReadGuesses() + 5);
+		data::game::FishGame::WriteGuesses(data::game::FishGame::ReadGuesses() + ADDITIONAL_GUESSES);
 	}
 }
