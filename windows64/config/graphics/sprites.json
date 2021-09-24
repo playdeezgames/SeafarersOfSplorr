@@ -3311,6 +3311,42 @@
         "width": 16,
         "height": 16
     },
+    "AtSeaFishery": {
+        "texture": "at-sea-icons",
+        "x": 176,
+        "y": 0,
+        "offset-x": -8,
+        "offset-y": -8,
+        "width": 16,
+        "height": 16
+    },
+    "AtSeaStartFishing": {
+        "texture": "at-sea-icons",
+        "x": 0,
+        "y": 160,
+        "offset-x": -16,
+        "offset-y": -16,
+        "width": 32,
+        "height": 32
+    },
+    "AtSeaHoverButton": {
+        "texture": "at-sea-icons",
+        "x": 32,
+        "y": 160,
+        "offset-x": -16,
+        "offset-y": -16,
+        "width": 32,
+        "height": 32
+    },
+    "AtSeaStartFishingDisabled": {
+        "texture": "at-sea-icons",
+        "x": 64,
+        "y": 160,
+        "offset-x": -16,
+        "offset-y": -16,
+        "width": 32,
+        "height": 32
+    },
     "AtSeaCurrentHeading": {
         "texture": "at-sea-icons",
         "x": 0,
@@ -3425,5 +3461,86 @@
         "y": 4,
         "width": 4,
         "height": 4
+    },
+    "FishboardFishRed": {
+        "texture": "fishboard",
+        "offset-x": 0,
+        "offset-y": 0,
+        "x": 0,
+        "y": 0,
+        "width": 64,
+        "height": 64
+    },
+    "FishboardHidden": {
+        "texture": "fishboard",
+        "offset-x": 0,
+        "offset-y": 0,
+        "x": 64,
+        "y": 0,
+        "width": 64,
+        "height": 64
+    },
+    "FishboardSelect": {
+        "texture": "fishboard",
+        "offset-x": 0,
+        "offset-y": 0,
+        "x": 128,
+        "y": 0,
+        "width": 64,
+        "height": 64
+    },
+    "FishboardFishPurple": {
+        "texture": "fishboard",
+        "offset-x": 0,
+        "offset-y": 0,
+        "x": 192,
+        "y": 0,
+        "width": 64,
+        "height": 64
+    },
+    "FishboardFishGreen": {
+        "texture": "fishboard",
+        "offset-x": 0,
+        "offset-y": 0,
+        "x": 256,
+        "y": 0,
+        "width": 64,
+        "height": 64
+    },
+    "FishboardFishTrousers": {
+        "texture": "fishboard",
+        "offset-x": 0,
+        "offset-y": 0,
+        "x": 0,
+        "y": 64,
+        "width": 64,
+        "height": 64
+    },
+    "FishboardFishRevealed": {
+        "texture": "fishboard",
+        "offset-x": 0,
+        "offset-y": 0,
+        "x": 64,
+        "y": 64,
+        "width": 64,
+        "height": 64
+    },
+    "FishboardFishSeaweed": {
+        "texture": "fishboard",
+        "offset-x": 0,
+        "offset-y": 0,
+        "x": 128,
+        "y": 64,
+        "width": 64,
+        "height": 64
+    },
+    "FishboardFrame": {
+        "texture": "fishboard-frame",
+        "offset-x": 0,
+        "offset-y": 0,
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
     }
 }
