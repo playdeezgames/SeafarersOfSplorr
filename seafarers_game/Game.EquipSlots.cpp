@@ -5,9 +5,21 @@ namespace game
 	static const std::map<EquipSlot, EquipSlotDescriptor> equipSlotDescriptors = 
 	{
 		{EquipSlot::LEGS,
-			{"legs"}},
+			{
+				"legs",
+				{
+					Item::TROUSERS
+				}
+			}},
 		{EquipSlot::PRISON_WALLET,
-			{"'prison wallet'"}}
+			{
+				"'prison wallet'",
+				{
+					Item::BAIT,
+					Item::JOOLS,
+					Item::SEAWEED
+				}
+			}}
 	};
 
 	static std::list<EquipSlot> equipSlots;

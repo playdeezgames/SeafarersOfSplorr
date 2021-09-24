@@ -401,7 +401,7 @@
       <Filter>Source Files\Fishing</Filter>
     </ClCompile>
     <ClCompile Include="Game.EquipSlots.cpp">
-      <Filter>Source Files\Avatar</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
