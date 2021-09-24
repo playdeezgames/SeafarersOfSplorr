@@ -93,7 +93,7 @@ namespace game
 				1,
 				0.3,
 				{
-					{Difficulty::EASY, 1}
+					//{Difficulty::EASY, 1}
 				}
 			}
 		},
@@ -107,7 +107,7 @@ namespace game
 				1,
 				0.001,
 				{
-					{Difficulty::EASY, 10}
+					//{Difficulty::EASY, 10}
 				}
 			}
 		},
