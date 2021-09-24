@@ -68,6 +68,22 @@ namespace game
 				1,
 				"FishboardFishTrousers"
 			}
+		},
+		{
+			Fish::SEAWEED,
+			{
+				"seaweed",
+				[]() { return 0; },
+				[]() { return 0.0; },
+				[]() { return 0.0; },
+				{
+					{0,0}
+				},
+				{ 1, 1 },
+				Item::SEAWEED,
+				99,
+				"FishboardFishSeaweed"
+			}
 		}
 	};
 

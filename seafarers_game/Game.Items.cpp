@@ -110,6 +110,19 @@ namespace game
 					{Difficulty::EASY, 10}
 				}
 			}
+		},
+		{ game::Item::SEAWEED,
+			{
+				"seaweed",
+				{
+					{game::Commodity::SEAWEED, 1.0}
+				},
+				1,
+				1,
+				0.00001,
+				{
+				}
+			}
 		}
 	};
 

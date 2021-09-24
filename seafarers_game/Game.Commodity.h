@@ -9,6 +9,7 @@ namespace game
 		WOOL,
 		JOOLS,
 		LABOR,
-		SILK
+		SILK,
+		SEAWEED
 	};
 }

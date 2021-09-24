@@ -3525,6 +3525,15 @@
         "width": 64,
         "height": 64
     },
+    "FishboardFishSeaweed": {
+        "texture": "fishboard",
+        "offset-x": 0,
+        "offset-y": 0,
+        "x": 128,
+        "y": 64,
+        "width": 64,
+        "height": 64
+    },
     "FishboardFrame": {
         "texture": "fishboard-frame",
         "offset-x": 0,

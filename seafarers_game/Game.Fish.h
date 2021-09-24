@@ -6,6 +6,7 @@ namespace game
 		TUNA,
 		MARLIN,
 		COD,
-		TROUSERS
+		TROUSERS,
+		SEAWEED
 	};
 }

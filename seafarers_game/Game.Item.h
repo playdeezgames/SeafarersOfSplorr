@@ -10,6 +10,7 @@ namespace game
 		TROUSERS,
 		FISH,
 		FISHING_POLE,
-		BAIT
+		BAIT,
+		SEAWEED
 	};
 }
