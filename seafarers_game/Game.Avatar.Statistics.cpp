@@ -1,4 +1,5 @@
 #include <Data.Game.Avatar.Statistic.h>
+#include <Data.Game.Common.h>
 #include "Game.Avatar.Statistic.h"
 #include "Game.Avatar.Statistics.h"
 #include <map>
@@ -71,7 +72,9 @@ namespace game::avatar
 		auto values = initialValues.find(difficulty)->second;
 		for (auto& value : values)
 		{
-			data::game::avatar::Statistic::Write((int)value.statistic,
+			data::game::avatar::Statistic::Write(
+				data::game::Common::AVATAR_ID,
+				(int)value.statistic,
 				{
 					value.minimum,
 					value.maximum,
@@ -102,7 +105,10 @@ namespace game::avatar
 			(data.maximum.has_value() && value > data.maximum.value()) ? (data.maximum.value()) :
 			(data.minimum.has_value() && value < data.minimum.value()) ? (data.minimum.value()) :
 			(value);
-		data::game::avatar::Statistic::Write((int)statistic, data);
+		data::game::avatar::Statistic::Write(
+			data::game::Common::AVATAR_ID,
+			(int)statistic, 
+			data);
 	}
 
 	static double ChangeCurrent(const game::avatar::Statistic& statistic, double delta)
