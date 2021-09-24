@@ -103,25 +103,43 @@ namespace game
 		PlaceFish(GenerateFish());
 	}
 
+	static void MakeGuess(const common::XY<int>& location, int guesses)
+	{
+		auto boardCell = data::game::FishboardCell::Read(location).value();
+		boardCell.revealed = true;
+		data::game::FishboardCell::Write(boardCell);
+		data::game::FishGame::WriteGuesses(guesses - 1);
+	}
+
+	static void ReelInFish(Fish fish)
+	{
+		auto descriptor = Fishes::Read((Fish)fish);
+		game::avatar::Items::Add(descriptor.item, 1);
+		auto itemDescriptor = Items::Read(descriptor.item);
+		avatar::Log::Write({
+			game::Colors::GREEN,
+			std::format("You reel in a {}!", itemDescriptor.name) });
+	}
+
+	static void ReelInAllFish()
+	{
+		auto allFish = data::game::FishboardCell::ReadFish();
+		for (auto fish : allFish)
+		{
+			ReelInFish((Fish)fish);
+		}
+	}
+
 	static void DoRevealCell(const common::XY<int>& location)
 	{
 		auto guesses = Fishboard::ReadGuesses();
 		if (guesses > 0)
 		{
-			auto boardCell = data::game::FishboardCell::Read(location).value();
-			boardCell.revealed = true;
-			data::game::FishboardCell::Write(boardCell);
-			data::game::FishGame::WriteGuesses(guesses - 1);
+			MakeGuess(location, guesses);
 		}
 		if (Fishboard::IsFullyRevealed())
 		{
-			Fish fish = (Fish)*data::game::FishboardCell::ReadFish().begin();//TODO: this is a little weird
-			auto descriptor = Fishes::Read(fish);
-			game::avatar::Items::Add(descriptor.item, 1);
-			auto itemDescriptor = Items::Read(descriptor.item);
-			avatar::Log::Write({
-				game::Colors::GREEN,
-				std::format("You reel in a {}!", itemDescriptor.name) });
+			ReelInAllFish();
 		}
 	}
 
