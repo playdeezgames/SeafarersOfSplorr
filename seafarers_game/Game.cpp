@@ -4,6 +4,7 @@
 #include "Game.h"
 #include "Game.Avatar.AtSea.h"
 #include "Game.Avatar.Docked.h"
+#include "Game.Avatar.Equipment.h"
 #include "Game.Avatar.Items.h"
 #include "Game.Avatar.Log.h"
 #include "Game.Avatar.Ship.h"
@@ -46,6 +47,7 @@ namespace game
 		avatar::Items::Reset(difficulty);
 		avatar::Ship::Reset(difficulty);
 		avatar::Log::Reset(difficulty);
+		avatar::Equipment::Reset(difficulty);
 		Merchants::Reset(difficulty);
 		Fisheries::Reset(difficulty);
 		for (auto& resetter : resetters)

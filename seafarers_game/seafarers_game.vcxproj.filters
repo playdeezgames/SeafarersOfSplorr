@@ -296,6 +296,9 @@
     <ClInclude Include="Game.EquipSlots.h">
       <Filter>Header Files\Avatar\Equipment</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Avatar.Equipment.h">
+      <Filter>Header Files\Avatar\Equipment</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -402,6 +405,9 @@
     </ClCompile>
     <ClCompile Include="Game.EquipSlots.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Avatar.Equipment.cpp">
+      <Filter>Source Files\Avatar</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
