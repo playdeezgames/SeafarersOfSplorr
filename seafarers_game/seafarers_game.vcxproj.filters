@@ -81,6 +81,9 @@
     <Filter Include="Source Files\Fishing">
       <UniqueIdentifier>{ce218a84-e813-498e-8032-dd1f8d71c7d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Avatar\Equipment">
+      <UniqueIdentifier>{9bd4ef81-2416-4817-ae49-8035c9d1b335}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Avatar.Docked.h">
@@ -284,6 +287,15 @@
     <ClInclude Include="Game.FishboardState.h">
       <Filter>Header Files\Fishing</Filter>
     </ClInclude>
+    <ClInclude Include="Game.EquipSlot.h">
+      <Filter>Header Files\Avatar\Equipment</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.EquipSlotDescriptor.h">
+      <Filter>Header Files\Avatar\Equipment</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.EquipSlots.h">
+      <Filter>Header Files\Avatar\Equipment</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -387,6 +399,9 @@
     </ClCompile>
     <ClCompile Include="Game.Fishboard.cpp">
       <Filter>Source Files\Fishing</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.EquipSlots.cpp">
+      <Filter>Source Files\Avatar</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
