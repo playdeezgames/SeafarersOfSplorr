@@ -70,7 +70,7 @@ namespace state::in_play
 
 	static void RefreshItem(int& row, size_t index, std::optional<game::Item> item)
 	{
-		auto color = (index == equipSlotIndex) ? (game::Colors::WHITE) : (game::Colors::DARK_GRAY);//TODO: just pass in a bool
+		auto color = (index == itemIndex) ? (game::Colors::WHITE) : (game::Colors::DARK_GRAY);//TODO: just pass in a bool
 		if (item)
 		{
 			auto itemDescriptor = game::Items::Read(item.value());
