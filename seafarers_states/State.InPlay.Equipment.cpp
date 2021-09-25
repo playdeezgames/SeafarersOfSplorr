@@ -4,12 +4,20 @@
 #include <Application.OnEnter.h>
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
+#include <Game.Avatar.Equipment.h>
+#include <Game.Colors.h>
+#include <Game.EquipSlots.h>
+#include <Game.Items.h>
 #include "States.h"
 #include "UIState.h"
+#include <Visuals.SpriteGrid.h>
 namespace state::in_play
 {
 	static const std::string LAYOUT_NAME = "State.InPlay.Equipment";
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_EQUIPMENT;
+	static const std::string SPRITE_GRID_ID = "Grid";
+	static const std::string FONT_DEFAULT = "default";
+	static const std::string EMPTY = "(empty)";
 
 	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
 	{
@@ -17,11 +25,54 @@ namespace state::in_play
 		return true;
 	}
 
+	static void RefreshEquipSlots()
+	{
+		int row = 0;
+		auto& equipSlots = game::EquipSlots::All();
+		for (auto& equipSlot : equipSlots)
+		{
+			auto equipSlotDescriptor = game::EquipSlots::Read(equipSlot);
+			visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { 0, row }, FONT_DEFAULT, equipSlotDescriptor.name, game::Colors::GRAY, visuals::HorizontalAlignment::LEFT);
+			++row;
+
+			auto item = game::avatar::Equipment::Read(equipSlot);
+			if (item)
+			{
+				auto itemDescriptor = game::Items::Read(item.value());
+				visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { 2, row }, FONT_DEFAULT, itemDescriptor.name, game::Colors::GRAY, visuals::HorizontalAlignment::LEFT);
+			}
+			else
+			{
+				visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { 2, row }, FONT_DEFAULT, EMPTY, game::Colors::GRAY, visuals::HorizontalAlignment::LEFT);
+			}
+			++row;
+			++row;
+		}
+	}
+
+	static void Refresh()
+	{
+		visuals::SpriteGrid::Clear(LAYOUT_NAME, SPRITE_GRID_ID);
+		RefreshEquipSlots();
+	}
+
+	static void OnEnter()
+	{
+		game::audio::Mux::Play(game::audio::Theme::MAIN);
+		Refresh();
+	}
+
+	static const std::map<::Command, std::function<void()>> commandHandlers =
+	{
+		{ ::Command::BACK, ::application::UIState::Pop },
+		{ ::Command::RED, ::application::UIState::Pop }
+	};
+
 	void Equipment::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
+		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::MouseButtonUp::AddHandler(CURRENT_STATE, OnMouseButtonUp);
-		::application::Command::SetHandler(CURRENT_STATE, ::application::UIState::Pop);
+		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
 	}
 }
