@@ -19,6 +19,9 @@ namespace state::in_play
 	static const std::string SPRITE_GRID_ID = "Grid";
 	static const std::string FONT_DEFAULT = "default";
 	static const std::string EMPTY = "(empty)";
+	static const int EQUIP_SLOT_X = 0;
+	static const int EQUIPPED_ITEM_X = 2;
+	static const int EQUIPPABLE_ITEM_X = 39;
 
 	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
 	{
@@ -37,18 +40,18 @@ namespace state::in_play
 	{
 		auto color = (index == equipSlotIndex) ? (game::Colors::WHITE) : (game::Colors::DARK_GRAY);//TODO: just pass in a bool
 		auto equipSlotDescriptor = game::EquipSlots::Read(equipSlot);
-		visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { 0, row }, FONT_DEFAULT, equipSlotDescriptor.name, color, visuals::HorizontalAlignment::LEFT);
+		visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { EQUIP_SLOT_X, row }, FONT_DEFAULT, equipSlotDescriptor.name, color, visuals::HorizontalAlignment::LEFT);
 		++row;
 
 		auto item = game::avatar::Equipment::Read(equipSlot);
 		if (item)
 		{
 			auto itemDescriptor = game::Items::Read(item.value());
-			visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { 2, row }, FONT_DEFAULT, itemDescriptor.name, color, visuals::HorizontalAlignment::LEFT);
+			visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { EQUIPPED_ITEM_X, row }, FONT_DEFAULT, itemDescriptor.name, color, visuals::HorizontalAlignment::LEFT);
 		}
 		else
 		{
-			visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { 2, row }, FONT_DEFAULT, EMPTY, color, visuals::HorizontalAlignment::LEFT);
+			visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { EQUIPPED_ITEM_X, row }, FONT_DEFAULT, EMPTY, color, visuals::HorizontalAlignment::LEFT);
 		}
 		++row;
 		++row;
@@ -74,11 +77,11 @@ namespace state::in_play
 		if (item)
 		{
 			auto itemDescriptor = game::Items::Read(item.value());
-			visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { 39, row }, FONT_DEFAULT, itemDescriptor.name, color, visuals::HorizontalAlignment::RIGHT);
+			visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { EQUIPPABLE_ITEM_X, row }, FONT_DEFAULT, itemDescriptor.name, color, visuals::HorizontalAlignment::RIGHT);
 		}
 		else
 		{
-			visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { 39, row }, FONT_DEFAULT, EMPTY, color, visuals::HorizontalAlignment::RIGHT);
+			visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { EQUIPPABLE_ITEM_X, row }, FONT_DEFAULT, EMPTY, color, visuals::HorizontalAlignment::RIGHT);
 		}
 		++row;
 	}
