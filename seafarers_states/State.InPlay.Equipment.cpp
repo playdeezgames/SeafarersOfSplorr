@@ -25,28 +25,42 @@ namespace state::in_play
 		return true;
 	}
 
+	static const std::list<game::EquipSlot> equipSlots =
+	{
+		game::EquipSlot::LEGS,
+		game::EquipSlot::PRISON_WALLET
+	};
+	static size_t equipSlotIndex = 0;
+
+	static void RefreshEquipSlot(int& row, size_t index, const game::EquipSlot& equipSlot)
+	{
+		auto color = (index == equipSlotIndex) ? (game::Colors::WHITE) : (game::Colors::DARK_GRAY);
+		auto equipSlotDescriptor = game::EquipSlots::Read(equipSlot);
+		visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { 0, row }, FONT_DEFAULT, equipSlotDescriptor.name, color, visuals::HorizontalAlignment::LEFT);
+		++row;
+
+		auto item = game::avatar::Equipment::Read(equipSlot);
+		if (item)
+		{
+			auto itemDescriptor = game::Items::Read(item.value());
+			visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { 2, row }, FONT_DEFAULT, itemDescriptor.name, color, visuals::HorizontalAlignment::LEFT);
+		}
+		else
+		{
+			visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { 2, row }, FONT_DEFAULT, EMPTY, color, visuals::HorizontalAlignment::LEFT);
+		}
+		++row;
+		++row;
+	}
+
 	static void RefreshEquipSlots()
 	{
 		int row = 0;
-		auto& equipSlots = game::EquipSlots::All();
+		size_t index = 0;
 		for (auto& equipSlot : equipSlots)
 		{
-			auto equipSlotDescriptor = game::EquipSlots::Read(equipSlot);
-			visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { 0, row }, FONT_DEFAULT, equipSlotDescriptor.name, game::Colors::GRAY, visuals::HorizontalAlignment::LEFT);
-			++row;
-
-			auto item = game::avatar::Equipment::Read(equipSlot);
-			if (item)
-			{
-				auto itemDescriptor = game::Items::Read(item.value());
-				visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { 2, row }, FONT_DEFAULT, itemDescriptor.name, game::Colors::GRAY, visuals::HorizontalAlignment::LEFT);
-			}
-			else
-			{
-				visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { 2, row }, FONT_DEFAULT, EMPTY, game::Colors::GRAY, visuals::HorizontalAlignment::LEFT);
-			}
-			++row;
-			++row;
+			RefreshEquipSlot(row, index, equipSlot);
+			++index;
 		}
 	}
 
