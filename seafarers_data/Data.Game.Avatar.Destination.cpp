@@ -16,17 +16,17 @@ namespace data::game::avatar
 
 	static const auto AutoCreateAvatarDestinationsTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Destination::Write(int destinationId, const common::XY<double>& location)
+	void Destination::Write(int avatarId, int destinationId, const common::XY<double>& location)
 	{
 		AutoCreateAvatarDestinationsTable();
-		auto query = std::format(REPLACE_ITEM, data::game::Common::AVATAR_ID, destinationId, location.GetX(), location.GetY());
+		auto query = std::format(REPLACE_ITEM, avatarId, destinationId, location.GetX(), location.GetY());
 		data::game::Common::Execute(query);
 	}
 
-	std::optional<common::XY<double>> Destination::Read(int destinationId)
+	std::optional<common::XY<double>> Destination::Read(int avatarId, int destinationId)
 	{
 		AutoCreateAvatarDestinationsTable();
-		auto query = std::format(QUERY_ITEM, data::game::Common::AVATAR_ID, destinationId);
+		auto query = std::format(QUERY_ITEM, avatarId, destinationId);
 		auto result = data::game::Common::Execute(query);
 		if (!result.empty())
 		{
@@ -40,18 +40,36 @@ namespace data::game::avatar
 		return std::nullopt;
 	}
 
-	void Destination::Clear(int destinationId)
+	void Destination::Clear(int avatarId, int destinationId)
 	{
 		AutoCreateAvatarDestinationsTable();
-		auto query = std::format(DELETE_ITEM, data::game::Common::AVATAR_ID, destinationId);
+		auto query = std::format(DELETE_ITEM, avatarId, destinationId);
 		data::game::Common::Execute(query);
+	}
+
+	void Destination::ClearAll(int avatarId)
+	{
+		AutoCreateAvatarDestinationsTable();
+		auto query = std::format(DELETE_ALL, avatarId);
+		data::game::Common::Execute(query);
+	}
+	void Destination::Write(int destinationId, const common::XY<double>& location)
+	{
+		Write(Common::AVATAR_ID, destinationId, location);
+	}
+
+	std::optional<common::XY<double>> Destination::Read(int destinationId)
+	{
+		return Read(Common::AVATAR_ID, destinationId);
+	}
+
+	void Destination::Clear(int destinationId)
+	{
+		Clear(Common::AVATAR_ID, destinationId);
 	}
 
 	void Destination::ClearAll()
 	{
-		AutoCreateAvatarDestinationsTable();
-		auto query = std::format(DELETE_ALL, data::game::Common::AVATAR_ID);
-		data::game::Common::Execute(query);
+		ClearAll(Common::AVATAR_ID);
 	}
-
 }
