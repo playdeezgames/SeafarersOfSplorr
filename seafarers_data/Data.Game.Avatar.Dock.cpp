@@ -14,23 +14,23 @@ namespace data::game::avatar
 
 	static const auto AutoCreateAvatarDockTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Dock::Clear()
+	void Dock::Clear(int avatarId)
 	{
 		AutoCreateAvatarDockTable();
-		data::game::Common::Execute(std::format(DELETE_ITEM, data::game::Common::AVATAR_ID));
+		data::game::Common::Execute(std::format(DELETE_ITEM, avatarId));
 	}
 
 
-	void Dock::Write(const common::XY<double>& location)
+	void Dock::Write(int avatarId, const common::XY<double>& location)
 	{
 		AutoCreateAvatarDockTable();
-		data::game::Common::Execute(std::format(REPLACE_ITEM, data::game::Common::AVATAR_ID, location.GetX(), location.GetY()));
+		data::game::Common::Execute(std::format(REPLACE_ITEM, avatarId, location.GetX(), location.GetY()));
 	}
 
-	std::optional<common::XY<double>> Dock::Read()
+	std::optional<common::XY<double>> Dock::Read(int avatarId)
 	{
 		AutoCreateAvatarDockTable();
-		auto result = data::game::Common::Execute(std::format(QUERY_ITEM, data::game::Common::AVATAR_ID));
+		auto result = data::game::Common::Execute(std::format(QUERY_ITEM, avatarId));
 		if (!result.empty())
 		{
 			auto& record = result.front();
@@ -41,5 +41,20 @@ namespace data::game::avatar
 				});
 		}
 		return std::nullopt;
+	}
+
+	void Dock::Write(const common::XY<double>& location)
+	{
+		Write(Common::AVATAR_ID, location);
+	}
+
+	void Dock::Clear()
+	{
+		Clear(Common::AVATAR_ID);
+	}
+
+	std::optional<common::XY<double>> Dock::Read()
+	{
+		return Read(Common::AVATAR_ID);
 	}
 }
