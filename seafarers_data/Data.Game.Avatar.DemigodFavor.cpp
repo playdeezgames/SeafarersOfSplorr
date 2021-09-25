@@ -12,16 +12,16 @@ namespace data::game::avatar
 
 	static const auto AutoCreateAvatarDemigodFavorTable = Common::Run(CREATE_TABLE);
 
-	void DemigodFavor::Write(const std::string& name, double favor)
+	void DemigodFavor::Write(int avatarId, const std::string& name, double favor)
 	{
 		AutoCreateAvatarDemigodFavorTable();
-		Common::Execute(std::format(REPLACE_ITEM, Common::AVATAR_ID, common::Data::QuoteString(name), favor));
+		Common::Execute(std::format(REPLACE_ITEM, avatarId, common::Data::QuoteString(name), favor));
 	}
 
-	std::optional<double> DemigodFavor::Read(const std::string& name)
+	std::optional<double> DemigodFavor::Read(int avatarId, const std::string& name)
 	{
 		AutoCreateAvatarDemigodFavorTable();
-		auto records = Common::Execute(std::format(QUERY_ITEM, Common::AVATAR_ID, common::Data::QuoteString(name)));
+		auto records = Common::Execute(std::format(QUERY_ITEM, avatarId, common::Data::QuoteString(name)));
 		if (!records.empty())
 		{
 			return common::Data::ToOptionalDouble(records.front()[FIELD_FAVOR]);
@@ -29,9 +29,24 @@ namespace data::game::avatar
 		return std::nullopt;
 	}
 
-	void DemigodFavor::Clear()
+	void DemigodFavor::Clear(int avatarId)
 	{
 		AutoCreateAvatarDemigodFavorTable();
-		Common::Execute(std::format(DELETE_ALL, Common::AVATAR_ID));
+		Common::Execute(std::format(DELETE_ALL, avatarId));
+	}
+
+	void DemigodFavor::Write(const std::string& name, double favor)
+	{
+		Write(Common::AVATAR_ID, name, favor);
+	}
+
+	std::optional<double> DemigodFavor::Read(const std::string& name)
+	{
+		return Read(Common::AVATAR_ID, name);
+	}
+
+	void DemigodFavor::Clear()
+	{
+		Clear(Common::AVATAR_ID);
 	}
 }
