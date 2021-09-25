@@ -9,7 +9,7 @@ namespace data::game::avatar
 	static const std::string QUERY_ALL = "SELECT [EquipSlotId],[ItemId] FROM [AvatarEquipment] WHERE [AvatarId]={};";
 	static const std::string DELETE_ITEM = "DELETE FROM [AvatarEquipment] WHERE [AvatarId]={} AND [EquipSlotId]={};";
 	static const std::string DELETE_ALL = "DELETE FROM [AvatarEquipment] WHERE [AvatarId]={};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [AvatarEquipment] VALUES([AvatarId],[EquipSlotId],[ItemId]) VALUES({},{},{});";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [AvatarEquipment] ([AvatarId],[EquipSlotId],[ItemId]) VALUES({},{},{});";
 	static const std::string FIELD_ITEM_ID = "ItemId";
 	static const std::string FIELD_EQUIP_SLOT_ID = "EquipSlotId";
 

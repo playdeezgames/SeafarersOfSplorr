@@ -9,6 +9,11 @@ namespace game::avatar
 
 	std::optional<Item> Equipment::Read(const EquipSlot& equipSlot)
 	{
+		auto item = data::game::avatar::Equipment::Read((int)equipSlot);
+		if (item)
+		{
+			return (Item)item.value();
+		}
 		return std::nullopt;
 	}
 

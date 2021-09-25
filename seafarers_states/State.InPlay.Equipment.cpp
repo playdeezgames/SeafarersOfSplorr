@@ -153,8 +153,28 @@ namespace state::in_play
 		Refresh();
 	}
 
+	static void NextItem()
+	{
+		auto oldItem = items[itemIndex];
+		itemIndex = (itemIndex + 1) % items.size();
+		auto newItem = items[itemIndex];
+		if (oldItem)
+		{
+			game::avatar::Items::Add(oldItem.value(), 1);
+			game::avatar::Equipment::Unequip(equipSlots[equipSlotIndex]);
+		}
+		if (newItem)
+		{
+			game::avatar::Items::Remove(newItem.value(), 1);
+			game::avatar::Equipment::Equip(equipSlots[equipSlotIndex], newItem.value());
+		}
+		UpdateItems();
+		Refresh();
+	}
+
 	static const std::map<::Command, std::function<void()>> commandHandlers =
 	{
+		{ ::Command::YELLOW, NextItem},
 		{ ::Command::UP, PreviousSlot},
 		{ ::Command::DOWN, NextSlot},
 		{ ::Command::BACK, ::application::UIState::Pop },
