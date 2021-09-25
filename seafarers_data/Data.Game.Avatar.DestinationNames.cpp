@@ -4,18 +4,18 @@
 #include <format>
 namespace data::game::avatar
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [DestinationNames]([DestinationId] INT NOT NULL UNIQUE, [DestinationName] TEXT NOT NULL);";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [DestinationNames]([DestinationId],[DestinationName]) VALUES({},{});";
-	static const std::string QUERY_ITEM = "SELECT [DestinationName] FROM [DestinationNames] WHERE [DestinationId]={};";
-	static const std::string DELETE_ALL = "DELETE FROM [DestinationNames];";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [DestinationNames]([AvatarId] INT NOT NULL,[DestinationId] INT NOT NULL, [DestinationName] TEXT NOT NULL, UNIQUE([AvatarId],[DestinationId]));";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [DestinationNames]([AvatarId],[DestinationId],[DestinationName]) VALUES({},{},{});";
+	static const std::string QUERY_ITEM = "SELECT [DestinationName] FROM [DestinationNames] WHERE [AvatarId]={} AND [DestinationId]={};";
+	static const std::string DELETE_ALL = "DELETE FROM [DestinationNames] WHERE [AvatarId]={};";
 	static const std::string FIELD_DESTINATION_NAME = "DestinationName";
 
 	static const auto AutoCreateDestinationNamesTable = Common::Run(CREATE_TABLE);
 
-	std::optional<std::string> DestinationName::Read(int index)
+	std::optional<std::string> DestinationName::Read(int avatarId, int index)
 	{
 		AutoCreateDestinationNamesTable();
-		auto records = Common::Execute(std::format(QUERY_ITEM, index));
+		auto records = Common::Execute(std::format(QUERY_ITEM, avatarId, index));
 		if (!records.empty())
 		{
 			auto& record = records.front();
@@ -24,19 +24,35 @@ namespace data::game::avatar
 		return std::nullopt;
 	}
 
-	void DestinationName::Write(int index, const std::string& name)
+	void DestinationName::Write(int avatarId, int index, const std::string& name)
 	{
 		AutoCreateDestinationNamesTable();
 		Common::Execute(
 			std::format(
-				REPLACE_ITEM, 
-				index, 
+				REPLACE_ITEM,
+				avatarId,
+				index,
 				common::Data::QuoteString(name)));
+	}
+
+	void DestinationName::Clear(int avatarId)
+	{
+		AutoCreateDestinationNamesTable();
+		Common::Execute(std::format(DELETE_ALL, avatarId));
+	}
+
+	std::optional<std::string> DestinationName::Read(int destinationId)
+	{
+		return Read(Common::AVATAR_ID, destinationId);
+	}
+
+	void DestinationName::Write(int destinationId, const std::string& name)
+	{
+		Write(Common::AVATAR_ID, destinationId, name);
 	}
 
 	void DestinationName::Clear()
 	{
-		AutoCreateDestinationNamesTable();
-		Common::Execute(DELETE_ALL);
+		Clear(Common::AVATAR_ID);
 	}
 }
