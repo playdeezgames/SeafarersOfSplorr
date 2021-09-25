@@ -17,13 +17,13 @@ namespace data::game
 
 	static const auto AutoCreateAvatarTable = data::game::Common::Run(CREATE_TABLE);
 
-	std::optional<Avatar> Avatar::Read()
+	std::optional<Avatar> Avatar::Read(int avatarId)
 	{
 		AutoCreateAvatarTable();
 		auto result = data::game::Common::Execute(
 			std::format(
 				QUERY_ITEM,
-				data::game::Common::AVATAR_ID));
+				avatarId));
 		if (!result.empty())
 		{
 			const auto& record = result.front();
@@ -42,13 +42,13 @@ namespace data::game
 		return std::nullopt;
 	}
 
-	void Avatar::Write(const Avatar& avatarData)
+	void Avatar::Write(int avatarId, const Avatar& avatarData)
 	{
 		AutoCreateAvatarTable();
 		data::game::Common::Execute(
 			std::format(
 				REPLACE_ITEM,
-				data::game::Common::AVATAR_ID,
+				avatarId,
 				avatarData.location.GetX(),
 				avatarData.location.GetY(),
 				avatarData.heading,
@@ -56,25 +56,43 @@ namespace data::game
 				avatarData.state));
 	}
 
-	void Avatar::WriteState(int state)
+	void Avatar::WriteState(int avatarId, int state)
 	{
-		AutoCreateAvatarTable();
-		auto data = Read();
+		auto data = Read(avatarId);
 		if (data)
 		{
 			data.value().state = state;
-			Write(data.value());
+			Write(avatarId,data.value());
 		}
 	}
 
-	std::optional<int> Avatar::ReadState()
+	std::optional<int> Avatar::ReadState(int avatarId)
 	{
-		AutoCreateAvatarTable();
-		auto data = Read();
+		auto data = Read(avatarId);
 		if (data)
 		{
 			return data.value().state;
 		}
 		return std::nullopt;
+	}
+
+	void Avatar::Write(const Avatar& avatar)
+	{
+		Write(Common::AVATAR_ID, avatar);
+	}
+
+	std::optional<Avatar> Avatar::Read()
+	{
+		return Read(Common::AVATAR_ID);
+	}
+
+	void Avatar::WriteState(int state)
+	{
+		WriteState(Common::AVATAR_ID, state);
+	}
+
+	std::optional<int> Avatar::ReadState()
+	{
+		return ReadState(Common::AVATAR_ID);
 	}
 }
