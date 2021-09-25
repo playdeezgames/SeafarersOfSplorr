@@ -117,4 +117,9 @@ namespace game::avatar
 		return result;
 	}
 
+	void Plights::Reset(const Difficulty&)
+	{
+		data::game::avatar::Plight::ClearAll();
+	}
+
 }

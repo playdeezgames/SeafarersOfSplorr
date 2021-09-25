@@ -2,6 +2,7 @@
 #include "Game.Avatar.Plight.h"
 #include "Game.Avatar.PlightType.h"
 #include "Game.Avatar.PlightDescriptor.h"
+#include "Game.Difficulty.h"
 #include <optional>
 #include <set>
 namespace game::avatar
@@ -14,5 +15,6 @@ namespace game::avatar
 		static Plight Generate(const PlightType&);
 		static void Inflict(const Plight&);
 		static std::set<Plight> InflictedWith();
+		static void Reset(const Difficulty&);
 	};
 }

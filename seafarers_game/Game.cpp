@@ -7,6 +7,7 @@
 #include "Game.Avatar.Equipment.h"
 #include "Game.Avatar.Items.h"
 #include "Game.Avatar.Log.h"
+#include "Game.Avatar.Plights.h"
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Demigods.h"
@@ -14,7 +15,6 @@
 #include "Game.Islands.h"
 #include "Game.Islands.Features.h"
 #include "Game.Merchants.h"
-#include "Game.Avatar.Plights.h"
 #include "Game.World.h"
 #include <list>
 #include <map>
@@ -37,19 +37,21 @@ namespace game
 	void Reset(const Difficulty& difficulty)
 	{
 		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);
-		World::Reset(difficulty);
-		Demigods::Reset(difficulty);
-		Islands::Reset(difficulty);
-		islands::Features::Reset(difficulty);
+
+		World::Reset(difficulty);//must be done first to establish world size
 		avatar::AtSea::Reset(difficulty);
 		avatar::Docked::Reset(difficulty);
-		avatar::Statistics::Reset(difficulty);
-		avatar::Items::Reset(difficulty);
-		avatar::Ship::Reset(difficulty);
-		avatar::Log::Reset(difficulty);
 		avatar::Equipment::Reset(difficulty);
-		Merchants::Reset(difficulty);
+		avatar::Items::Reset(difficulty);
+		avatar::Log::Reset(difficulty);
+		avatar::Plights::Reset(difficulty);
+		avatar::Ship::Reset(difficulty);
+		avatar::Statistics::Reset(difficulty);
+		Demigods::Reset(difficulty);
 		Fisheries::Reset(difficulty);
+		Islands::Reset(difficulty);
+		islands::Features::Reset(difficulty);
+		Merchants::Reset(difficulty);
 		for (auto& resetter : resetters)
 		{
 			resetter();
