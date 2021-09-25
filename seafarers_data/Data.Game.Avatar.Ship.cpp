@@ -11,16 +11,26 @@ namespace data::game::avatar
 
 	static const auto AutoCreateAvatarShipTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Ship::Write(int ship)
+	void Ship::Write(int avatarId, int ship)
 	{
 		AutoCreateAvatarShipTable();
-		data::game::Common::Execute(std::format(REPLACE_ITEM, data::game::Common::AVATAR_ID, ship));
+		data::game::Common::Execute(std::format(REPLACE_ITEM, avatarId, ship));
+	}
+
+	int Ship::Read(int avatarId)
+	{
+		AutoCreateAvatarShipTable();
+		auto records = data::game::Common::Execute(std::format(QUERY_ITEM, avatarId));
+		return common::Data::ToInt(records.front()[FIELD_SHIP_ID]);
+	}
+
+	void Ship::Write(int ship)
+	{
+		Write(Common::AVATAR_ID, ship);
 	}
 
 	int Ship::Read()
 	{
-		AutoCreateAvatarShipTable();
-		auto records = data::game::Common::Execute(std::format(QUERY_ITEM, data::game::Common::AVATAR_ID));
-		return common::Data::ToInt(records.front()[FIELD_SHIP_ID]);
+		return Read(Common::AVATAR_ID);
 	}
 }
