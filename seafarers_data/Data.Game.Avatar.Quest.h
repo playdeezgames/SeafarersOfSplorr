@@ -13,6 +13,8 @@ namespace data::game::avatar
 		std::string professionName;
 		std::string receiptEmotion;
 
+		static void Write(int,const std::optional<Quest>&);
+		static std::optional<Quest> Read(int);
 		static void Write(const std::optional<Quest>&);
 		static std::optional<Quest> Read();
 	};

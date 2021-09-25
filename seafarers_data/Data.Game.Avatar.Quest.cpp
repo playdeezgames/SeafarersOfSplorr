@@ -18,7 +18,7 @@ namespace data::game::avatar
 
 	static const auto AutoCreateAvatarQuestTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Quest::Write(const std::optional<Quest>& data)
+	void Quest::Write(int avatarId, const std::optional<Quest>& data)
 	{
 		AutoCreateAvatarQuestTable();
 		if (data)
@@ -36,15 +36,15 @@ namespace data::game::avatar
 		}
 		else
 		{
-			data::game::Common::Execute(std::format(DELETE_ITEM, data::game::Common::AVATAR_ID));
+			data::game::Common::Execute(std::format(DELETE_ITEM, avatarId));
 		}
 	}
 
-	std::optional<Quest> Quest::Read()
+	std::optional<Quest> Quest::Read(int avatarId)
 	{
 		AutoCreateAvatarQuestTable();
 		auto records = data::game::Common::Execute(
-			std::format(QUERY_ITEM, data::game::Common::AVATAR_ID));
+			std::format(QUERY_ITEM, avatarId));
 		if (!records.empty())
 		{
 			auto& record = records.front();
@@ -57,5 +57,15 @@ namespace data::game::avatar
 					record[FIELD_RECEIPT_EMOTION] });
 		}
 		return std::nullopt;
+	}
+
+	void Quest::Write(const std::optional<Quest>& quest)
+	{
+		Write(Common::AVATAR_ID, quest);
+	}
+
+	std::optional<Quest> Quest::Read()
+	{
+		return Read(Common::AVATAR_ID);
 	}
 }
