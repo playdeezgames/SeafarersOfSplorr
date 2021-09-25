@@ -112,8 +112,12 @@ namespace state
 			static void Start();
 		};
 		struct Docked
-		{ 
-			static void Start(); 
+		{
+			static void Start();
+		};
+		struct Equipment
+		{
+			static void Start();
 		};
 		struct Fishing
 		{

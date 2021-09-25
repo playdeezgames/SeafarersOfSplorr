@@ -44,5 +44,6 @@
     "State.InPlay.Temple": "config/ui/layouts/State.InPlay.Temple.json",
     "State.InPlay.MakeOffering": "config/ui/layouts/State.InPlay.MakeOffering.json",
     "State.InPlay.AvatarStatus": "config/ui/layouts/State.InPlay.AvatarStatus.json",
-    "State.InPlay.Fishing": "config/ui/layouts/State.InPlay.Fishing.json"
+    "State.InPlay.Fishing": "config/ui/layouts/State.InPlay.Fishing.json",
+    "State.InPlay.Equipment": "config/ui/layouts/State.InPlay.Equipment.json"
 }

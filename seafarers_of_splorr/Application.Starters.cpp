@@ -129,6 +129,7 @@ namespace application
 		state::in_play::MakeOffering::Start,
 		state::in_play::AvatarStatus::Start,
 		state::in_play::Fishing::Start,
+		state::in_play::Equipment::Start,
 		sublayout::UIHamburger::Start,
 		sublayout::AtSeaActions::Start,
 		Options::Initialize,

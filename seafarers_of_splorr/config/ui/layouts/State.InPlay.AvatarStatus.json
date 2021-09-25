@@ -47,6 +47,12 @@
         "drop-shadow-y": 2,
         "menu-items": [
             {
+                "text": "Equipment",
+                "menu-item-id": "Equipment",
+                "x": 632,
+                "y": 304
+            },
+            {
                 "text": "Job",
                 "menu-item-id": "Job",
                 "x": 632,
@@ -59,6 +65,18 @@
                 "y": 336
             }
         ]
+    },
+    {
+        "type":"Area",
+        "area-id":"Equipment",
+        "x":480,
+        "y":304,
+        "width":160,
+        "height":16,
+        "menu": {
+            "menu-id": "Status",
+            "menu-item-id": "Equipment"
+        }
     },
     {
         "type":"Area",

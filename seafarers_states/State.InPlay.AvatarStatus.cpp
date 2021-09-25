@@ -37,12 +37,14 @@ namespace state::in_play
 
 	enum class StatusMenuItem
 	{
+		EQUIPMENT,
 		JOB,
 		GO_BACK
 	};
 
 	static const std::map<StatusMenuItem, std::function<void()>> activators =
 	{
+		{ StatusMenuItem::EQUIPMENT,  ::application::UIState::PushTo(::UIState::IN_PLAY_EQUIPMENT)},
 		{ StatusMenuItem::JOB, ::application::UIState::PushTo(::UIState::IN_PLAY_CURRENT_JOB) },
 		{ StatusMenuItem::GO_BACK, ::application::UIState::Pop }
 	};
