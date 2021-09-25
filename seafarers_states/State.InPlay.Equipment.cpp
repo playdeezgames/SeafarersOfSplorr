@@ -76,8 +76,22 @@ namespace state::in_play
 		Refresh();
 	}
 
+	static void PreviousSlot()
+	{
+		equipSlotIndex = (equipSlotIndex + equipSlots.size() - 1) % equipSlots.size();
+		Refresh();
+	}
+
+	static void NextSlot()
+	{
+		equipSlotIndex = (equipSlotIndex + 1) % equipSlots.size();
+		Refresh();
+	}
+
 	static const std::map<::Command, std::function<void()>> commandHandlers =
 	{
+		{ ::Command::UP, PreviousSlot},
+		{ ::Command::DOWN, NextSlot},
 		{ ::Command::BACK, ::application::UIState::Pop },
 		{ ::Command::RED, ::application::UIState::Pop }
 	};
