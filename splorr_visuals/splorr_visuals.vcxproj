@@ -22,6 +22,7 @@
     <ClInclude Include="Visuals.Area.h" />
     <ClInclude Include="Visuals.AreaMenu.h" />
     <ClInclude Include="Visuals.Areas.h" />
+    <ClInclude Include="Visuals.Buttons.h" />
     <ClInclude Include="Visuals.Colors.h" />
     <ClInclude Include="Visuals.Confirmation.h" />
     <ClInclude Include="Visuals.Confirmations.h" />
@@ -45,6 +46,7 @@
   <ItemGroup>
     <ClCompile Include="Visuals.Area.cpp" />
     <ClCompile Include="Visuals.Areas.cpp" />
+    <ClCompile Include="Visuals.Buttons.cpp" />
     <ClCompile Include="Visuals.Colors.cpp" />
     <ClCompile Include="Visuals.Confirmations.cpp" />
     <ClCompile Include="Visuals.Fonts.cpp" />

@@ -20,6 +20,7 @@ namespace visuals::data::Properties
 	const std::string FONT = "font";
 	const std::string GREEN = "green";
 	const std::string HEIGHT = "height";
+	const std::string HILITE = "hilite";
 	const std::string HORIZONTAL_ALIGNMENT = "horizontal-alignment";
 	const std::string IMAGE_ID = "image-id";
 	const std::string INACTIVE = "inactive";
@@ -29,6 +30,7 @@ namespace visuals::data::Properties
 	const std::string MENU_ITEM_ID = "menu-item-id";
 	const std::string MENU_ITEMS = "menu-items";
 	const std::string NAME = "name";
+	const std::string NORMAL = "normal";
 	const std::string OFFSET_X = "offset-x";
 	const std::string OFFSET_Y = "offset-y";
 	const std::string RADIUS = "radius";

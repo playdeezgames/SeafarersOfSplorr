@@ -77,6 +77,9 @@
     <ClInclude Include="Visuals.Sublayout.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Visuals.Buttons.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Visuals.Confirmations.cpp">
@@ -119,6 +122,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Visuals.Area.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Visuals.Buttons.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

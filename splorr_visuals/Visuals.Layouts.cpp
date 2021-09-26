@@ -2,6 +2,7 @@
 #include <Data.JSON.h>
 #include <Data.JSON.Stores.h>
 #include <functional>
+#include "Visuals.Buttons.h"
 #include "Visuals.DrawerFunction.h"
 #include "Visuals.Data.Properties.h"
 #include "Visuals.Layouts.h"
@@ -35,7 +36,8 @@ namespace visuals
 		{"Menu", visuals::Menus::Internalize},
 		{"Layout", visuals::Sublayout::Internalize},
 		{"Area", visuals::Areas::Internalize},
-		{"SpriteGrid", visuals::SpriteGrid::Internalize}
+		{"SpriteGrid", visuals::SpriteGrid::Internalize},
+		{"Button", visuals::Buttons::Internalize}
 	};
 
 	void Layouts::RegisterType(const std::string& typeName, InternalizerFunction internalizer)

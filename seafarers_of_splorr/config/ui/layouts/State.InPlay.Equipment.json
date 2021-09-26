@@ -32,6 +32,22 @@
         "drop-shadow-y": 2
     },
     {
+        "type": "Button",
+        "font": "default",
+        "colors": {
+            "hilite":"Cyan",
+            "normal":"Gray"
+        },
+        "text": "Go Back",
+        "x": 632,
+        "y": 336,
+        "horizontal-alignment": -1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
         "type":"Area",
         "area-id":"EquipSlot",
         "x":8,
@@ -46,6 +62,14 @@
         "y":32,
         "width":312,
         "height":288
+    },
+    {
+        "type":"Area",
+        "area-id":"GoBack",
+        "x":480,
+        "y":336,
+        "width":160,
+        "height":16
     },
     {
         "type": "Layout",

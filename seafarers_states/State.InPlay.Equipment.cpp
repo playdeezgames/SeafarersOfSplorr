@@ -13,6 +13,7 @@
 #include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
+#include <Visuals.Buttons.h>
 #include <Visuals.SpriteGrid.h>
 namespace state::in_play
 {
@@ -21,8 +22,10 @@ namespace state::in_play
 	static const std::string SPRITE_GRID_ID = "Grid";
 	static const std::string AREA_EQUIP_SLOT = "EquipSlot";
 	static const std::string AREA_ITEM = "Item";
+	static const std::string AREA_GO_BACK = "GoBack";
 	static const std::string FONT_DEFAULT = "default";
 	static const std::string EMPTY = "(empty)";
+	static const std::string BUTTON_GO_BACK = "GoBack";
 	static const int EQUIP_SLOT_X = 0;
 	static const int EQUIP_SLOT_ROW_HEIGHT = 48;
 	static const int ITEM_ROW_HEIGHT = 16;
@@ -245,10 +248,16 @@ namespace state::in_play
 		}
 	}
 
+	static void OnMouseMotionGoBack(const common::XY<int>&)
+	{
+		visuals::Buttons::SetHoverButton(LAYOUT_NAME, BUTTON_GO_BACK);
+	}
+
 	static const std::map<std::string, std::function<void(const common::XY<int>&)>> mouseMotionHandlers =
 	{
 		{AREA_EQUIP_SLOT, OnMouseMotionInEquipSlot},
-		{AREA_ITEM, OnMouseMotionInItems}
+		{AREA_ITEM, OnMouseMotionInItems},
+		{AREA_GO_BACK, OnMouseMotionGoBack}
 	};
 
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
@@ -264,6 +273,7 @@ namespace state::in_play
 	{
 		hoverItem = std::nullopt;
 		hoverEquipSlot = std::nullopt;
+		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
 	}
 
 	static bool MouseButtonUpInEquipSlot()
@@ -286,10 +296,17 @@ namespace state::in_play
 		return false;
 	}
 
+	static bool MouseButtonUpGoBack()
+	{
+		::application::UIState::Pop();
+		return true;
+	}
+
 	static const std::map<std::string, std::function<bool()>> mouseButtonHandlers =
 	{
 		{AREA_EQUIP_SLOT, MouseButtonUpInEquipSlot},
-		{AREA_ITEM, MouseButtonUpInItems}
+		{AREA_ITEM, MouseButtonUpInItems},
+		{AREA_GO_BACK, MouseButtonUpGoBack}
 	};
 
 	static bool OnMouseButtonUp(const std::string& areaName)
