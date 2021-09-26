@@ -71,18 +71,25 @@ namespace state::in_play
 	static std::vector<std::optional<game::Item>> items;
 	static size_t itemIndex;
 
-	static void RefreshItem(int& row, size_t index, std::optional<game::Item> item)
+	static std::string GetEquippableItemName(const std::optional<game::Item>& item)
 	{
-		auto color = (index == itemIndex) ? (game::Colors::WHITE) : (game::Colors::DARK_GRAY);//TODO: just pass in a bool
-		if (item)
-		{
-			auto itemDescriptor = game::Items::Read(item.value());
-			visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { EQUIPPABLE_ITEM_X, row }, FONT_DEFAULT, itemDescriptor.name, color, visuals::HorizontalAlignment::RIGHT);
-		}
-		else
-		{
-			visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { EQUIPPABLE_ITEM_X, row }, FONT_DEFAULT, EMPTY, color, visuals::HorizontalAlignment::RIGHT);
-		}
+		return 
+			(item.has_value()) ? 
+			(game::Items::Read(item.value()).name) : 
+			(EMPTY);
+	}
+
+	static void RefreshItem(int& row, bool hilite, const std::optional<game::Item>& item)
+	{
+		auto color = (hilite) ? (game::Colors::WHITE) : (game::Colors::DARK_GRAY);
+		visuals::SpriteGrid::WriteText(
+			LAYOUT_NAME, 
+			SPRITE_GRID_ID, 
+			{ EQUIPPABLE_ITEM_X, row }, 
+			FONT_DEFAULT, 
+			GetEquippableItemName(item), 
+			color, 
+			visuals::HorizontalAlignment::RIGHT);
 		++row;
 	}
 
@@ -92,7 +99,7 @@ namespace state::in_play
 		size_t index=0;
 		for (auto& item : items)
 		{
-			RefreshItem(row, index, item);
+			RefreshItem(row, index == itemIndex, item);
 			index++;
 		}
 	}
@@ -104,18 +111,15 @@ namespace state::in_play
 		RefreshItems();
 	}
 
-	static void UpdateItems()//TODO: ugly - refactor
+	static std::set<game::Item> DetermineCandidates(const game::EquipSlot& equipSlot)
 	{
-		items.clear();
-		items.push_back(std::nullopt);
-		auto equipSlot = equipSlots[equipSlotIndex];
 		std::set<game::Item> candidates;
-		auto current = game::avatar::Equipment::Read(equipSlot);
+		auto current = game::avatar::Equipment::Read(equipSlot);//add current item
 		if (current)
 		{
 			candidates.insert(current.value());
 		}
-		auto equipSlotDescriptor = game::EquipSlots::Read(equipSlot);
+		auto equipSlotDescriptor = game::EquipSlots::Read(equipSlot);//add other possible items
 		for (auto equippableItem : equipSlotDescriptor.items)
 		{
 			if (game::avatar::Items::Has(equippableItem))
@@ -123,15 +127,34 @@ namespace state::in_play
 				candidates.insert(equippableItem);
 			}
 		}
-		for (auto candidate : candidates)
-		{
-			items.push_back(candidate);
-		}
+		return candidates;
+	}
+
+	static void UpdateItemIndex(const game::EquipSlot& equipSlot)
+	{
+		auto current = game::avatar::Equipment::Read(equipSlot);
 		itemIndex = 0;
 		while (items[itemIndex] != current)
 		{
 			itemIndex++;
 		}
+	}
+
+	static void DoUpdateItems(const std::set<game::Item>& candidates)
+	{
+		items.clear();
+		items.push_back(std::nullopt);//you can always equip nothing... thats called UNequipping!
+		for (auto candidate : candidates)
+		{
+			items.push_back(candidate);
+		}
+	}
+
+	static void UpdateItems()
+	{
+		auto equipSlot = equipSlots[equipSlotIndex];
+		DoUpdateItems(DetermineCandidates(equipSlot));
+		UpdateItemIndex(equipSlot);
 	}
 
 	static void OnEnter()
@@ -156,23 +179,38 @@ namespace state::in_play
 		Refresh();
 	}
 
-	static void NextItem()
+	static void UnequipItem(const std::optional<game::Item>& item)
 	{
-		auto oldItem = items[itemIndex];
-		itemIndex = (itemIndex + 1) % items.size();
-		auto newItem = items[itemIndex];
-		if (oldItem)
+		if (item)
 		{
-			game::avatar::Items::Add(oldItem.value(), 1);
+			game::avatar::Items::Add(item.value(), 1);
 			game::avatar::Equipment::Unequip(equipSlots[equipSlotIndex]);
 		}
-		if (newItem)
+	}
+
+	static void EquipItem(const std::optional<game::Item>& item)
+	{
+		if (item)
 		{
-			game::avatar::Items::Remove(newItem.value(), 1);
-			game::avatar::Equipment::Equip(equipSlots[equipSlotIndex], newItem.value());
+			game::avatar::Items::Remove(item.value(), 1);
+			game::avatar::Equipment::Equip(equipSlots[equipSlotIndex], item.value());
 		}
+	}
+
+	static void SetItemIndex(size_t newItemIndex)
+	{
+		auto oldItem = items[itemIndex];
+		itemIndex = newItemIndex;
+		auto newItem = items[itemIndex];
+		UnequipItem(oldItem);
+		EquipItem(newItem);
 		UpdateItems();
 		Refresh();
+	}
+
+	static void NextItem()
+	{
+		SetItemIndex((itemIndex + 1) % items.size());
 	}
 
 	static const std::map<::Command, std::function<void()>> commandHandlers =
