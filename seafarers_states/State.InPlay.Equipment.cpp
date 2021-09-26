@@ -1,6 +1,7 @@
 #include <Application.Renderer.h>
 #include <Application.Command.h>
 #include <Application.MouseButtonUp.h>
+#include <Application.MouseMotion.h>
 #include <Application.OnEnter.h>
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
@@ -11,23 +12,22 @@
 #include <Game.Items.h>
 #include "States.h"
 #include "UIState.h"
+#include <Visuals.Areas.h>
 #include <Visuals.SpriteGrid.h>
 namespace state::in_play
 {
 	static const std::string LAYOUT_NAME = "State.InPlay.Equipment";
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_EQUIPMENT;
 	static const std::string SPRITE_GRID_ID = "Grid";
+	static const std::string AREA_EQUIP_SLOT = "EquipSlot";
+	static const std::string AREA_ITEM = "Item";
 	static const std::string FONT_DEFAULT = "default";
 	static const std::string EMPTY = "(empty)";
 	static const int EQUIP_SLOT_X = 0;
+	static const int EQUIP_SLOT_ROW_HEIGHT = 48;
+	static const int ITEM_ROW_HEIGHT = 16;
 	static const int EQUIPPED_ITEM_X = 2;
 	static const int EQUIPPABLE_ITEM_X = 39;
-
-	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
-	{
-		::application::UIState::Pop();
-		return true;
-	}
 
 	static const std::vector<game::EquipSlot> equipSlots =
 	{
@@ -35,6 +35,7 @@ namespace state::in_play
 		game::EquipSlot::PRISON_WALLET
 	};
 	static size_t equipSlotIndex = 0;
+	static std::optional<size_t> hoverEquipSlot = std::nullopt;
 
 	static void RefreshEquipSlot(int& row, size_t index, const game::EquipSlot& equipSlot)
 	{
@@ -69,7 +70,8 @@ namespace state::in_play
 	}
 
 	static std::vector<std::optional<game::Item>> items;
-	static size_t itemIndex;
+	static size_t itemIndex=0;
+	static std::optional<size_t> hoverItem=std::nullopt;
 
 	static std::string GetEquippableItemName(const std::optional<game::Item>& item)
 	{
@@ -164,19 +166,22 @@ namespace state::in_play
 		Refresh();
 	}
 
-	static void PreviousSlot()
+	static void SetEquipSlotIndex(size_t newIndex)
 	{
-		equipSlotIndex = (equipSlotIndex + equipSlots.size() - 1) % equipSlots.size();
+		equipSlotIndex = newIndex;
 		UpdateItems();
 		Refresh();
+	}
+
+	static void PreviousSlot()
+	{
+		SetEquipSlotIndex((equipSlotIndex + equipSlots.size() - 1) % equipSlots.size());
 	}
 
 
 	static void NextSlot()
 	{
-		equipSlotIndex = (equipSlotIndex + 1) % equipSlots.size();
-		UpdateItems();
-		Refresh();
+		SetEquipSlotIndex((equipSlotIndex + 1) % equipSlots.size());
 	}
 
 	static void UnequipItem(const std::optional<game::Item>& item)
@@ -222,10 +227,86 @@ namespace state::in_play
 		{ ::Command::RED, ::application::UIState::Pop }
 	};
 
+	static void OnMouseMotionInEquipSlot(const common::XY<int>& location)
+	{
+		size_t candidate = location.GetY() / EQUIP_SLOT_ROW_HEIGHT;
+		if (candidate < equipSlots.size())
+		{
+			hoverEquipSlot = candidate;
+		}
+	}
+
+	static void OnMouseMotionInItems(const common::XY<int>& location)
+	{
+		size_t candidate = location.GetY() / ITEM_ROW_HEIGHT;
+		if (candidate < items.size())
+		{
+			hoverItem = candidate;
+		}
+	}
+
+	static const std::map<std::string, std::function<void(const common::XY<int>&)>> mouseMotionHandlers =
+	{
+		{AREA_EQUIP_SLOT, OnMouseMotionInEquipSlot},
+		{AREA_ITEM, OnMouseMotionInItems}
+	};
+
+	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
+	{
+		auto iter = mouseMotionHandlers.find(areaName);
+		if (iter != mouseMotionHandlers.end())
+		{
+			iter->second(location);
+		}
+	}
+
+	static void OnMouseMotionOutsideArea(const common::XY<int>&)
+	{
+		hoverItem = std::nullopt;
+		hoverEquipSlot = std::nullopt;
+	}
+
+	static bool MouseButtonUpInEquipSlot()
+	{
+		if (hoverEquipSlot)
+		{
+			SetEquipSlotIndex(hoverEquipSlot.value());
+			return true;
+		}
+		return false;
+	}
+
+	static bool MouseButtonUpInItems()
+	{
+		if (hoverItem)
+		{
+			SetItemIndex(hoverItem.value());
+			return true;
+		}
+		return false;
+	}
+
+	static const std::map<std::string, std::function<bool()>> mouseButtonHandlers =
+	{
+		{AREA_EQUIP_SLOT, MouseButtonUpInEquipSlot},
+		{AREA_ITEM, MouseButtonUpInItems}
+	};
+
+	static bool OnMouseButtonUp(const std::string& areaName)
+	{
+		auto iter = mouseButtonHandlers.find(areaName);
+		if (iter != mouseButtonHandlers.end())
+		{
+			return iter->second();
+		}
+		return false;
+	}
+
 	void Equipment::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::MouseButtonUp::AddHandler(CURRENT_STATE, OnMouseButtonUp);
+		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea, OnMouseMotionOutsideArea));
+		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUp));
 		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
 	}

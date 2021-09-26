@@ -32,6 +32,22 @@
         "drop-shadow-y": 2
     },
     {
+        "type":"Area",
+        "area-id":"EquipSlot",
+        "x":8,
+        "y":32,
+        "width":312,
+        "height":288
+    },
+    {
+        "type":"Area",
+        "area-id":"Item",
+        "x":320,
+        "y":32,
+        "width":312,
+        "height":288
+    },
+    {
         "type": "Layout",
         "name": "Sublayout.Modded"
     }
