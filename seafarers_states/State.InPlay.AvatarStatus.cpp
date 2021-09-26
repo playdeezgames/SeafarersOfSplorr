@@ -44,9 +44,9 @@ namespace state::in_play
 
 	static const std::map<StatusMenuItem, std::function<void()>> activators =
 	{
-		{ StatusMenuItem::EQUIPMENT,  ::application::UIState::PushTo(::UIState::IN_PLAY_EQUIPMENT)},
-		{ StatusMenuItem::JOB, ::application::UIState::PushTo(::UIState::IN_PLAY_CURRENT_JOB) },
-		{ StatusMenuItem::GO_BACK, ::application::UIState::Pop }
+		{ StatusMenuItem::EQUIPMENT,  ::application::UIState::GoTo(::UIState::IN_PLAY_EQUIPMENT)},
+		{ StatusMenuItem::JOB, ::application::UIState::GoTo(::UIState::IN_PLAY_CURRENT_JOB) },
+		{ StatusMenuItem::GO_BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_NEXT) }
 	};
 
 	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
@@ -57,7 +57,7 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		::application::UIState::Pop();
+		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void UpdateStatistics()

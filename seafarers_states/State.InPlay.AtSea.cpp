@@ -137,8 +137,8 @@ namespace state::in_play
 		{OrderMenuItem::MOVE_ONCE, OnMoveOnce},
 		{OrderMenuItem::DOCK, OnDock},
 		{OrderMenuItem::WORLD_MAP, application::UIState::GoTo(::UIState::IN_PLAY_WORLD_MAP)},
-		{OrderMenuItem::STATUS, application::UIState::PushTo(::UIState::IN_PLAY_AVATAR_STATUS)},
-		{OrderMenuItem::SHIP, application::UIState::PushTo(::UIState::IN_PLAY_SHIP_STATUS)}
+		{OrderMenuItem::STATUS, application::UIState::GoTo(::UIState::IN_PLAY_AVATAR_STATUS)},
+		{OrderMenuItem::SHIP, application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS)}
 	};
 
 	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);

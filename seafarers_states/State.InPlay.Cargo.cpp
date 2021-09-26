@@ -27,7 +27,7 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		::application::UIState::Pop();
+		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)

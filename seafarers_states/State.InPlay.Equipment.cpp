@@ -226,8 +226,8 @@ namespace state::in_play
 		{ ::Command::YELLOW, NextItem},
 		{ ::Command::UP, PreviousSlot},
 		{ ::Command::DOWN, NextSlot},
-		{ ::Command::BACK, ::application::UIState::Pop },
-		{ ::Command::RED, ::application::UIState::Pop }
+		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_AVATAR_STATUS) },
+		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_AVATAR_STATUS) }
 	};
 
 	static void OnMouseMotionInEquipSlot(const common::XY<int>& location)
@@ -298,7 +298,7 @@ namespace state::in_play
 
 	static bool MouseButtonUpGoBack()
 	{
-		::application::UIState::Pop();
+		::application::UIState::Write(::UIState::IN_PLAY_AVATAR_STATUS);
 		return true;
 	}
 

@@ -44,22 +44,22 @@ namespace state::in_play
 
 	static void OnGoBack()
 	{
-		::application::UIState::Pop();
+		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnCareen()
 	{
-		::application::UIState::Push(::UIState::IN_PLAY_AT_SEA_CAREEN_SELECT);
+		::application::UIState::Write(::UIState::IN_PLAY_AT_SEA_CAREEN_SELECT);
 	}
 
 	static void OnCargo()
 	{
-		::application::UIState::Push(::UIState::IN_PLAY_CARGO);
+		::application::UIState::Write(::UIState::IN_PLAY_CARGO);
 	}
 
 	static void OnChangeSpeed()
 	{
-		::application::UIState::Push(::UIState::IN_PLAY_CHANGE_SPEED);
+		::application::UIState::Write(::UIState::IN_PLAY_CHANGE_SPEED);
 	}
 
 	static void UpdateShipProperties()
