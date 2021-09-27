@@ -10,6 +10,8 @@ namespace data::game
 		common::XY<double> location;
 		common::XY<double> movement;
 		double radius;
+		int stock;
+		int depletion;
 
 		static void Clear();
 		static void Add(const Fishery&);

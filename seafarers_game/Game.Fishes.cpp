@@ -12,6 +12,7 @@ namespace game
 				[]() { return common::RNG::FromRange(1,3); },
 				[]() { return common::RNG::FromRange(2.5,5.0); },
 				[]() { return common::RNG::FromRange(0.1,0.2); },
+				[]() { return 100; },
 				{
 					{0,0},{1,0}
 				},
@@ -28,6 +29,7 @@ namespace game
 				[]() { return common::RNG::FromRange(5,11); },
 				[]() { return common::RNG::FromRange(5.0,10.0); },
 				[]() { return common::RNG::FromRange(0.1,0.2); },
+				[]() { return 100; },
 				{
 					{0,0},{0,1}
 				},
@@ -44,6 +46,7 @@ namespace game
 				[]() { return common::RNG::FromRange(2,5); },
 				[]() { return common::RNG::FromRange(3.0,6.0); },
 				[]() { return common::RNG::FromRange(0.1,0.2); },
+				[]() { return 100; },
 				{
 					{0,0},{1,1}
 				},
@@ -60,6 +63,7 @@ namespace game
 				[]() { return 0; },
 				[]() { return 0.0; },
 				[]() { return 0.0; },
+				[]() { return 0; },
 				{
 					{0,0}
 				},
@@ -76,6 +80,7 @@ namespace game
 				[]() { return 0; },
 				[]() { return 0.0; },
 				[]() { return 0.0; },
+				[]() { return 0; },
 				{
 					{0,0}
 				},

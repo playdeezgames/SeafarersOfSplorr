@@ -4,11 +4,11 @@
 #include <format>
 namespace data::game
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Fisheries]([FisheryId] INTEGER PRIMARY KEY AUTOINCREMENT,[FishType] INT NOT NULL,[X] REAL NOT NULL,[Y] REAL NOT NULL,[MoveX] REAL NOT NULL,[MoveY] REAL NOT NULL,[Radius] REAL NOT NULL);";
-	static const std::string INSERT_ITEM = "INSERT INTO [Fisheries]([FishType],[X],[Y],[MoveX],[MoveY],[Radius]) VALUES({},{},{},{},{},{});";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Fisheries]([FisheryId] INTEGER PRIMARY KEY AUTOINCREMENT,[FishType] INT NOT NULL,[X] REAL NOT NULL,[Y] REAL NOT NULL,[MoveX] REAL NOT NULL,[MoveY] REAL NOT NULL,[Radius] REAL NOT NULL,[Stock] INT NOT NULL,[Depletion] INT NOT NULL);";
+	static const std::string INSERT_ITEM = "INSERT INTO [Fisheries]([FishType],[X],[Y],[MoveX],[MoveY],[Radius],[Stock],[Depletion]) VALUES({},{},{},{},{},{},{},{});";
 	static const std::string DELETE_ALL = "DELETE FROM [Fisheries];";
-	static const std::string QUERY_ALL = "SELECT [FisheryId],[FishType],[X],[Y],[MoveX],[MoveY],[Radius] FROM [Fisheries];";
-	static const std::string UPDATE_ITEM = "UPDATE [Fisheries] SET [X]={},[Y]={},[MoveX]={},[MoveY]={} WHERE [FisheryId]={};";
+	static const std::string QUERY_ALL = "SELECT [FisheryId],[FishType],[X],[Y],[MoveX],[MoveY],[Radius],[Stock],[Depletion] FROM [Fisheries];";
+	static const std::string UPDATE_ITEM = "UPDATE [Fisheries] SET [X]={},[Y]={},[MoveX]={},[MoveY]={},[Stock]={},[Depletion]={} WHERE [FisheryId]={};";
 	static const std::string FIELD_FISHERY_ID = "FisheryId";
 	static const std::string FIELD_FISH_TYPE = "FishType";
 	static const std::string FIELD_X = "X";
@@ -16,6 +16,8 @@ namespace data::game
 	static const std::string FIELD_MOVE_X = "MoveX";
 	static const std::string FIELD_MOVE_Y = "MoveY";
 	static const std::string FIELD_RADIUS = "Radius";
+	static const std::string FIELD_STOCK = "Stock";
+	static const std::string FIELD_DEPLETION = "Depletion";
 
 	static const auto AutoCreateFisheryTable = Common::Run(CREATE_TABLE);
 
@@ -36,6 +38,8 @@ namespace data::game
 				fishery.location.GetY(),
 				fishery.movement.GetX(),
 				fishery.movement.GetY(),
+				fishery.radius,
+				fishery.stock,
 				fishery.radius));
 	}
 
@@ -52,7 +56,9 @@ namespace data::game
 				common::Data::ToDouble(record.find(FIELD_MOVE_X)->second),
 				common::Data::ToDouble(record.find(FIELD_MOVE_Y)->second)
 			},
-			common::Data::ToDouble(record.find(FIELD_RADIUS)->second)
+			common::Data::ToDouble(record.find(FIELD_RADIUS)->second),
+			common::Data::ToInt(record.find(FIELD_STOCK)->second),
+			common::Data::ToInt(record.find(FIELD_DEPLETION)->second)
 		};
 	}
 
@@ -78,6 +84,8 @@ namespace data::game
 				fishery.location.GetY(), 
 				fishery.movement.GetX(), 
 				fishery.movement.GetY(), 
+				fishery.stock,
+				fishery.depletion,
 				fishery.fisheryId));
 	}
 }

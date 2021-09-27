@@ -13,6 +13,7 @@ namespace game
 		double radius = descriptor.radiusGenerator();
 		double speed = descriptor.speedGenerator();
 		double radians = common::Heading::ToRadians(common::RNG::FromRange(0.0, common::Heading::DEGREES));
+		int stock = descriptor.stockGenerator();
 		data::game::Fishery::Add({
 			0,
 			(int)fish,
@@ -24,7 +25,9 @@ namespace game
 				speed * std::cos(radians),
 				speed * std::sin(radians)
 			},
-			radius
+			radius,
+			stock,
+			0
 		});
 	}
 
