@@ -66,6 +66,7 @@ namespace game
 				};
 				if (common::RNG::FromGenerator(inStock, false))
 				{
+					data::game::FishGame::WriteFisheryId(fisheryId);
 					fishGenerator[(Fish)fishery.value().fish] = 1;
 				}
 			}
