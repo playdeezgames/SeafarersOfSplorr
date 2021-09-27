@@ -41,6 +41,7 @@ namespace state::in_play
 	static const std::string AREA_FISHBOARD = "Fishboard";
 	static const std::string TEXT_GUESSES = "Guesses";
 	static const std::string TEXT_PROGRESS = "Progress";
+	static const std::string TEXT_BAIT = "Bait";
 
 	enum class StatusMenuItem
 	{
@@ -92,11 +93,21 @@ namespace state::in_play
 				game::Fishboard::ReadProgressPercentage()));
 	}
 
+	static void RefreshBait()
+	{
+		visuals::Texts::SetText(
+			LAYOUT_NAME,
+			TEXT_BAIT,
+			std::format("{}",
+				(int)game::avatar::Items::Read(game::Item::BAIT)));
+	}
+
 	static void Refresh()
 	{
 		RefreshMenu();
 		RefreshGuesses();
 		RefreshProgress();
+		RefreshBait();
 	}
 
 	static void OnMoreBait()
