@@ -17,5 +17,6 @@ namespace data::game
 		static void Add(const Fishery&);
 		static std::list<Fishery> All();
 		static void Write(const Fishery&);
+		static std::optional<Fishery> Read(int);
 	};
 }

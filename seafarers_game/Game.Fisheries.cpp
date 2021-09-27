@@ -77,15 +77,23 @@ namespace game
 		}
 	}
 
+	static Fishery ToFishery(const data::game::Fishery& fishery)
+	{
+		return {
+				fishery.fisheryId,
+				fishery.location,
+				fishery.radius,
+				(Fish)fishery.fishType,
+				(size_t)fishery.stock,
+				(size_t)fishery.depletion };
+	}
+
 	std::list<Fishery> Fisheries::All()
 	{
 		std::list<Fishery> result;
 		for (auto& fishery : data::game::Fishery::All())
 		{
-			result.push_back({ 
-				fishery.location,
-				fishery.radius,
-				(Fish)fishery.fishType});
+			result.push_back(ToFishery(fishery));
 		}
 		return result;
 	}
@@ -103,6 +111,16 @@ namespace game
 			}
 		}
 		return result;
+	}
+
+	std::optional<Fishery> Fisheries::Read(int fisheryId)
+	{
+		auto fishery = data::game::Fishery::Read(fisheryId);
+		if (fishery)
+		{
+			return ToFishery(fishery.value());
+		}
+		return std::nullopt;
 	}
 
 }

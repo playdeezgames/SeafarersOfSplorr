@@ -50,19 +50,32 @@ namespace game
 		}
 	}
 
-	static void AddFisheries(std::map<Fish, size_t>& fishGenerator)
-	{
-		auto fisheries = Fisheries::Available();
-		for (auto fishery : fisheries)
-		{
-			fishGenerator[fishery.fish]++;
-		}
-	}
-
-	static std::map<Fish, size_t> MakeFishGenerator()
+	static std::map<Fish, size_t> AddFisheries(const std::map<int, size_t>& fisheryGenerator)
 	{
 		std::map<Fish, size_t> fishGenerator;
-		AddFisheries(fishGenerator);
+		if (!fisheryGenerator.empty())
+		{
+			int fisheryId = common::RNG::FromGenerator(fisheryGenerator, 0);
+			auto fishery = Fisheries::Read(fisheryId);
+			if (fishery)
+			{
+				std::map<bool, size_t> inStock =
+				{
+					{true, fishery.value().stock},
+					{false, fishery.value().depletion}
+				};
+				if (common::RNG::FromGenerator(inStock, false))
+				{
+					fishGenerator[(Fish)fishery.value().fish] = 1;
+				}
+			}
+		}
+		return fishGenerator;
+	}
+
+	static std::map<Fish, size_t> MakeFishGenerator(const std::map<int, size_t>& fisheryGenerator)
+	{
+		std::map<Fish, size_t> fishGenerator = AddFisheries(fisheryGenerator);
 		if (fishGenerator.empty())
 		{
 			AddJunk(fishGenerator);
@@ -70,9 +83,20 @@ namespace game
 		return fishGenerator;
 	}
 
+	static std::map<int, size_t> MakeFisheryGenerator()
+	{
+		std::map<int, size_t> generator;
+		auto fisheries = Fisheries::Available();
+		for (auto fishery : fisheries)
+		{
+			generator[fishery.fisheryId] = fishery.stock + fishery.depletion;
+		}
+		return generator;
+	}
+
 	static Fish GenerateFish()
 	{
-		std::map<Fish, size_t> fishGenerator = MakeFishGenerator();
+		std::map<Fish, size_t> fishGenerator = MakeFishGenerator(MakeFisheryGenerator());
 		return common::RNG::FromGenerator(fishGenerator, DEFAULT_FISH);
 	}
 

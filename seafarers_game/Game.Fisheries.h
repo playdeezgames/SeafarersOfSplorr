@@ -9,5 +9,6 @@ namespace game
 		static void ApplyTurnEffects();
 		static std::list<Fishery> All();
 		static std::list<Fishery> Available();
+		static std::optional<Fishery> Read(int);
 	};
 }

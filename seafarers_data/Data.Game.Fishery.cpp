@@ -8,6 +8,7 @@ namespace data::game
 	static const std::string INSERT_ITEM = "INSERT INTO [Fisheries]([FishType],[X],[Y],[MoveX],[MoveY],[Radius],[Stock],[Depletion]) VALUES({},{},{},{},{},{},{},{});";
 	static const std::string DELETE_ALL = "DELETE FROM [Fisheries];";
 	static const std::string QUERY_ALL = "SELECT [FisheryId],[FishType],[X],[Y],[MoveX],[MoveY],[Radius],[Stock],[Depletion] FROM [Fisheries];";
+	static const std::string QUERY_BY_ID = "SELECT [FisheryId],[FishType],[X],[Y],[MoveX],[MoveY],[Radius],[Stock],[Depletion] FROM [Fisheries] WHERE [FisheryId]={};";
 	static const std::string UPDATE_ITEM = "UPDATE [Fisheries] SET [X]={},[Y]={},[MoveX]={},[MoveY]={},[Stock]={},[Depletion]={} WHERE [FisheryId]={};";
 	static const std::string FIELD_FISHERY_ID = "FisheryId";
 	static const std::string FIELD_FISH_TYPE = "FishType";
@@ -88,4 +89,16 @@ namespace data::game
 				fishery.depletion,
 				fishery.fisheryId));
 	}
+
+	std::optional<Fishery> Fishery::Read(int fisheryId)
+	{
+		AutoCreateFisheryTable();
+		auto records = Common::Execute(std::format(QUERY_BY_ID,fisheryId));
+		if(!records.empty())
+		{
+			return (ToFishery(records.front()));
+		}
+		return std::nullopt;
+	}
+
 }
