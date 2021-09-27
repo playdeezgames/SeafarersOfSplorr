@@ -3,32 +3,32 @@
 #include <Data.Game.World.h>
 #include "Game.World.h"
 #include <map>
-namespace game::World
+namespace game
 {
-	const int CURRENT_VERSION = 1;
+	static const int CURRENT_VERSION = 1;
 
-	common::XY<double> GetSize()
+	common::XY<double> World::GetSize()
 	{
 		return data::game::World::Read().value().size;
 	}
 
-	int GetVersion()
+	int World::GetVersion()
 	{
 		return data::game::World::Read().value().version;
 	}
 
-	double GetMinimumIslandDistance()
+	double World::GetMinimumIslandDistance()
 	{
 		return data::game::World::Read().value().minimumIslandDistance;
 
 	}
 
-	double GetViewDistance()
+	double World::GetViewDistance()
 	{
 		return data::game::World::Read().value().viewDistance;
 	}
 
-	double GetDockDistance()
+	double World::GetDockDistance()
 	{
 		return data::game::World::Read().value().dockDistance;
 	}
@@ -41,7 +41,7 @@ namespace game::World
 		double dockDistance;
 	};
 
-	const std::map<game::Difficulty, WorldProperties> worldProperties =
+	static const std::map<game::Difficulty, WorldProperties> worldProperties =
 	{
 		{game::Difficulty::EASY, {100.0, 10.0, 10.0, 1.0}},
 		{game::Difficulty::NORMAL, {150.0, 15.0, 10.0, 1.0}},
@@ -49,7 +49,7 @@ namespace game::World
 		{game::Difficulty::HARDCORE, {250.0, 25.0, 10.0, 1.0}}
 	};
 
-	void Reset(const game::Difficulty& difficulty)
+	void World::Reset(const game::Difficulty& difficulty)
 	{
 		auto properties = worldProperties.find(difficulty)->second;
 		data::game::World data = 
@@ -64,12 +64,12 @@ namespace game::World
 		data::game::World::Write(data);
 	}
 
-	double GetWindHeading()
+	double World::GetWindHeading()
 	{
 		return data::game::World::Read().value().windHeading;
 	}
 
-	void SetWindHeading(double heading)
+	void World::SetWindHeading(double heading)
 	{
 		auto data = data::game::World::Read();
 		if (data)
@@ -79,7 +79,7 @@ namespace game::World
 		}
 	}
 
-	double GetWindSpeedMultiplier(double heading)
+	double World::GetWindSpeedMultiplier(double heading)
 	{
 		auto relativeHeading = common::Heading::Difference(game::World::GetWindHeading(), heading);
 		return 1.0 - std::abs(relativeHeading / common::Heading::DEGREES);

@@ -1,15 +1,18 @@
 #pragma once
 #include <Common.XY.h>
 #include "Game.Difficulty.h"
-namespace game::World
+namespace game
 {
-	common::XY<double> GetSize();
-	int GetVersion();
-	double GetMinimumIslandDistance();
-	double GetViewDistance();
-	double GetDockDistance();
-	double GetWindHeading();
-	double GetWindSpeedMultiplier(double);
-	void SetWindHeading(double);
-	void Reset(const game::Difficulty&);
+	struct World
+	{
+		static common::XY<double> GetSize();
+		static int GetVersion();
+		static double GetMinimumIslandDistance();
+		static double GetViewDistance();
+		static double GetDockDistance();
+		static double GetWindHeading();
+		static double GetWindSpeedMultiplier(double);
+		static void SetWindHeading(double);
+		static void Reset(const game::Difficulty&);
+	};
 }
