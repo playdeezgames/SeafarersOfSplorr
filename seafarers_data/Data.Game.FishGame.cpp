@@ -75,7 +75,7 @@ namespace data::game
 		auto records = Common::Execute(std::format(QUERY_ITEM, Common::AVATAR_ID));
 		if (!records.empty())
 		{
-			return common::Data::ToOptionalInt(records.front()[FIELD_FISHERY_ID]) != 0;
+			return common::Data::ToOptionalInt(records.front()[FIELD_FISHERY_ID]);
 		}
 		return std::nullopt;
 

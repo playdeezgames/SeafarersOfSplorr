@@ -1,5 +1,6 @@
 #include <Common.RNG.h>
 #include <Data.Game.FishboardCell.h>
+#include <Data.Game.Fishery.h>
 #include <Data.Game.FishGame.h>
 #include "Game.Avatar.Items.h"
 #include "Game.Avatar.Log.h"
@@ -147,6 +148,17 @@ namespace game
 			std::format("You reel in a {}!", itemDescriptor.name) });
 	}
 
+	static void DepleteFishery()
+	{
+		auto fisheryId = data::game::FishGame::ReadFisheryId();
+		if (fisheryId)
+		{
+			auto fishery = data::game::Fishery::Read(fisheryId.value()).value();
+			fishery.depletion++;
+			data::game::Fishery::Write(fishery);
+		}
+	}
+
 	static void ReelInAllFish()
 	{
 		auto allFish = data::game::FishboardCell::ReadFish();
@@ -154,6 +166,7 @@ namespace game
 		{
 			ReelInFish((Fish)fish);
 		}
+		DepleteFishery();
 	}
 
 	static void DoRevealCell(const common::XY<int>& location)
