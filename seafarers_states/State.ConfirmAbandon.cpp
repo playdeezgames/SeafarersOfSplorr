@@ -27,10 +27,19 @@ namespace state
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
+	static void ConfirmAbandon()
+	{
+		::application::UIState::Write(::UIState::MAIN_MENU);
+		if (in_play::AtSea::IsAutoMoveEngaged())
+		{
+			in_play::AtSea::ToggleAutoMove();
+		}
+	}
+
 	static const std::map<ConfirmAbandonItem, std::function<void()>> activators =
 	{
 		{ ConfirmAbandonItem::NO, CancelAbandon },
-		{ ConfirmAbandonItem::YES, ::application::UIState::GoTo(::UIState::MAIN_MENU) }
+		{ ConfirmAbandonItem::YES, ConfirmAbandon }
 	};
 
 	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);

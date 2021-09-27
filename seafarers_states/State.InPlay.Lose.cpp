@@ -21,6 +21,10 @@ namespace state::in_play
 	{
 		game::audio::Sfx::Play(game::audio::GameSfx::DEATH);
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
+		if (AtSea::IsAutoMoveEngaged())
+		{
+			AtSea::ToggleAutoMove();
+		}
 	}
 
 	void Lose::Start()
