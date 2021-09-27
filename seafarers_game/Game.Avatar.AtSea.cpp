@@ -160,8 +160,8 @@ namespace game::avatar
 		auto fouling = ShipStatistics::GetFouling();
 		ShipStatistics::IncreaseFouling(avatar.speed);
 		auto effectiveSpeed = avatar.speed * (1.0 - fouling);
-		auto relativeHeading = common::Heading::Difference(game::World::GetWindHeading(), avatar.heading);
-		double multiplier = 1.0 - std::abs(relativeHeading / common::Heading::DEGREES);
+
+		double multiplier = World::GetWindSpeedMultiplier(avatar.heading);
 
 		auto shipDescriptor = game::Ships::Read(game::avatar::Ship::Read());
 		common::XY<double> delta =

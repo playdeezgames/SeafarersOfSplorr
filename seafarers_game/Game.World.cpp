@@ -78,4 +78,11 @@ namespace game::World
 			data::game::World::Write(data.value());
 		}
 	}
+
+	double GetWindSpeedMultiplier(double heading)
+	{
+		auto relativeHeading = common::Heading::Difference(game::World::GetWindHeading(), heading);
+		return 1.0 - std::abs(relativeHeading / common::Heading::DEGREES);
+	}
+
 }

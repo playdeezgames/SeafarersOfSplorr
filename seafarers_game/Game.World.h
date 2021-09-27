@@ -9,6 +9,7 @@ namespace game::World
 	double GetViewDistance();
 	double GetDockDistance();
 	double GetWindHeading();
+	double GetWindSpeedMultiplier(double);
 	void SetWindHeading(double);
 	void Reset(const game::Difficulty&);
 }

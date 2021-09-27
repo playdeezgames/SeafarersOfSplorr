@@ -5,10 +5,11 @@
 #include <Common.XY.h>
 #include <Data.Game.Island.h>
 #include <Data.Game.Merchant.h>
-#include "Game.Merchants.h"
-#include "Game.Ships.h"
 #include "Game.Islands.Markets.h"
 #include "Game.Items.h"
+#include "Game.Merchants.h"
+#include "Game.Ships.h"
+#include "Game.World.h"
 namespace game
 {
 	static const std::map<Ship, size_t> shipTypeGenerator =
@@ -44,26 +45,45 @@ namespace game
 			});
 	}
 
-	void Merchants::ApplyTurnEffects()
+	static const double MERCHANT_DOCK_DISTANCE = 0.5;
+
+	static bool MoveMerchant(data::game::Merchant& merchant)
 	{
 		const double MAXIMUM_STEP = 1.0;
+		auto difference = merchant.destination - merchant.location;
+		double magnitude = difference.GetMagnitude();
+		if (magnitude > MERCHANT_DOCK_DISTANCE)
+		{
+			double heading = common::Heading::XYToDegrees(difference);
+			double stepSize = (magnitude > MAXIMUM_STEP) ? (MAXIMUM_STEP) : (magnitude);
+			auto delta = difference * (stepSize / magnitude) * World::GetWindSpeedMultiplier(heading);
+			merchant.location = merchant.location + delta;
+			data::game::Merchant::Update(merchant);
+			return true;
+		}
+		return false;
+	}
+
+	static void SellGoods(data::game::Merchant& merchant)
+	{
+		game::islands::Markets::SellItems(merchant.location, (game::Item)merchant.cargoType, merchant.cargoQuantity);
+		data::game::Merchant::Remove(merchant.merchantId);
+	}
+
+	static void ApplyMerchantTurnEffects(data::game::Merchant& merchant)
+	{
+		if(!MoveMerchant(merchant))
+		{
+			SellGoods(merchant);
+		}
+	}
+
+	void Merchants::ApplyTurnEffects()
+	{
 		auto merchants = data::game::Merchant::All();
 		for (auto& merchant : merchants)
 		{
-			auto difference = merchant.destination - merchant.location;
-			double magnitude = difference.GetMagnitude();
-			if (magnitude > 0.0)
-			{
-				double stepSize = (magnitude > MAXIMUM_STEP) ? (MAXIMUM_STEP) : (magnitude);
-				auto delta = difference * (stepSize / magnitude);
-				merchant.location = merchant.location + delta;
-				data::game::Merchant::Update(merchant);
-			}
-			else
-			{
-				game::islands::Markets::SellItems(merchant.location, (game::Item)merchant.cargoType, merchant.cargoQuantity);
-				data::game::Merchant::Remove(merchant.merchantId);
-			}
+			ApplyMerchantTurnEffects(merchant);
 		}
 	}
 
