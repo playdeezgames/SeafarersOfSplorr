@@ -1,5 +1,6 @@
 #include <Application.Command.h>
 #include <Application.MouseButtonUp.h>
+#include <Application.MouseMotion.h>
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
@@ -15,6 +16,8 @@
 #include <Game.Items.h>
 #include "States.h"
 #include "UIState.h"
+#include <Visuals.Areas.h>
+#include <Visuals.Buttons.h>
 #include <Visuals.SpriteGrid.h>
 namespace state::in_play
 {
@@ -22,18 +25,14 @@ namespace state::in_play
 	static const std::string LAYOUT_NAME = "State.InPlay.Cargo";
 	static const std::string SPRITE_GRID_ID = "Grid";
 	static const std::string FONT_DEFAULT = "default";
+	static const std::string BUTTON_GO_BACK = "GoBack";
+	static const std::string AREA_GO_BACK = "GoBack";
 
 	static const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
 
 	static void OnLeave()
 	{
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
-	}
-
-	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
-	{
-		OnLeave();
-		return true;
 	}
 
 	static void RefreshHeader()
@@ -120,10 +119,35 @@ namespace state::in_play
 		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) }
 	};
 
+	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>&)
+	{
+		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
+		if (areaName == AREA_GO_BACK)
+		{
+			visuals::Buttons::SetHoverButton(LAYOUT_NAME, BUTTON_GO_BACK);
+		}
+	}
+
+	static void OnMouseMotionOutsideAreas(const common::XY<int>&)
+	{
+		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
+	}
+
+	static bool OnMouseButtonUpInArea(const std::string& areaName)
+	{
+		if (areaName == AREA_GO_BACK)
+		{
+			OnLeave();
+			return true;
+		}
+		return false;
+	}
+
 	void Cargo::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::MouseButtonUp::AddHandler(CURRENT_STATE, OnMouseButtonUp);
+		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
+		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea, OnMouseMotionOutsideAreas));
 		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
 	}
