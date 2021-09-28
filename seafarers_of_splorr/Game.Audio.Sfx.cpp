@@ -7,7 +7,9 @@ namespace game::audio
 	{
 		{ GameSfx::DEATH, "death" },
 		{ GameSfx::ENEMY_HIT, "enemyhit" },
-		{ GameSfx::HIT, "hit" }
+		{ GameSfx::HIT, "hit" },
+		{ GameSfx::SHUCKS, "shucks" },
+		{ GameSfx::WOOHOO, "woohoo" }
 	};
 
 	void Sfx::Play(const game::audio::GameSfx& gameSfx)

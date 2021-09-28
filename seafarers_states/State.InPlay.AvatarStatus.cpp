@@ -38,10 +38,8 @@ namespace state::in_play
 	static const std::string BUTTON_JOB = "Job";
 	static const std::string BUTTON_GO_BACK = "GoBack";
 
-	static void OnEquipment()
-	{
-		::application::UIState::Write(::UIState::IN_PLAY_EQUIPMENT);
-	}
+	static const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
+	static const auto WriteTextToGridRight = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::RIGHT);
 
 	static void OnJob()
 	{
@@ -51,13 +49,7 @@ namespace state::in_play
 		}
 	}
 
-	static const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
-	static const auto WriteTextToGridRight = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::RIGHT);
-
-	static void OnLeave()
-	{
-		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
-	}
+	static const auto OnLeave = ::application::UIState::GoTo(::UIState::IN_PLAY_NEXT);
 
 	static void UpdateStatistics()
 	{
@@ -141,7 +133,7 @@ namespace state::in_play
 	static const std::map<std::string, std::function<void()>> areaActions =
 	{
 		{AREA_GO_BACK, OnLeave},
-		{AREA_EQUIPMENT, OnEquipment},
+		{AREA_EQUIPMENT, ::application::UIState::GoTo(::UIState::IN_PLAY_EQUIPMENT)},
 		{AREA_JOB, OnJob}
 	};
 

@@ -5,6 +5,8 @@ namespace game::audio
 	{
 		DEATH,
 		ENEMY_HIT,
-		HIT
+		HIT,
+		SHUCKS,
+		WOOHOO
 	};
 }
