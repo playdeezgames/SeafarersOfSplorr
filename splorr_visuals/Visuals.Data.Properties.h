@@ -7,6 +7,7 @@ namespace visuals::data::Properties
 	const std::string ANGLE = "angle";
 	const std::string AREA_ID = "area-id";
 	const std::string BLUE = "blue";
+	const std::string BUTTON_ID = "button-id";
 	const std::string CELL_HEIGHT = "cell-height";
 	const std::string CELL_WIDTH = "cell-width";
 	const std::string COLOR = "color";

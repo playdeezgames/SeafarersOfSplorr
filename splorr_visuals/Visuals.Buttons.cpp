@@ -17,6 +17,7 @@ namespace visuals
 		std::string dropShadowColor;
 		common::XY<int> dropShadowXY;
 		std::string layoutName;
+		bool enabled;
 	};
 
 	static std::vector<InternalButton> internalButtons;
@@ -26,24 +27,27 @@ namespace visuals
 	static void DrawInternalButton(const std::shared_ptr<application::Engine::Renderer>& renderer, size_t buttonIndex)
 	{
 		auto& button = internalButtons[buttonIndex];
-		bool hilite = hoverButtons.contains(button.layoutName) && hoverButtons[button.layoutName] == buttonIndex;
-		if (button.dropShadow)
+		if (button.enabled)
 		{
+			bool hilite = hoverButtons.contains(button.layoutName) && hoverButtons[button.layoutName] == buttonIndex;
+			if (button.dropShadow)
+			{
+				visuals::Fonts::WriteText(
+					button.font,
+					renderer,
+					button.xy + button.dropShadowXY,
+					button.text,
+					button.dropShadowColor,
+					button.alignment);
+			}
 			visuals::Fonts::WriteText(
 				button.font,
 				renderer,
-				button.xy + button.dropShadowXY,
+				button.xy,
 				button.text,
-				button.dropShadowColor,
+				(hilite) ? (button.hiliteColor) : (button.normalColor),
 				button.alignment);
 		}
-		visuals::Fonts::WriteText(
-			button.font,
-			renderer,
-			button.xy,
-			button.text,
-			(hilite) ? (button.hiliteColor) : (button.normalColor),
-			button.alignment);
 	}
 
 	DrawerFunction Buttons::Internalize(const std::string& layoutName, const nlohmann::json& model)
@@ -64,11 +68,12 @@ namespace visuals
 				common::XY<int>(
 					model[visuals::data::Properties::DROP_SHADOW_X],
 					model[visuals::data::Properties::DROP_SHADOW_Y]),
-				layoutName
+				layoutName,
+				(model.count(visuals::data::Properties::ENABLED)) ? ((bool)model[visuals::data::Properties::ENABLED]) : (true)
 			});
-		if (model.count(visuals::data::Properties::TEXT_ID) > 0)
+		if (model.count(visuals::data::Properties::BUTTON_ID) > 0)
 		{
-			buttonTable[layoutName][model[visuals::data::Properties::TEXT_ID]] = buttonIndex;
+			buttonTable[layoutName][model[visuals::data::Properties::BUTTON_ID]] = buttonIndex;
 		}
 		return [buttonIndex](const std::shared_ptr<application::Engine::Renderer>& renderer)
 		{
@@ -88,5 +93,15 @@ namespace visuals
 			hoverButtons.erase(layoutName);
 		}
 	}
+	
+	void Buttons::SetEnabled(const std::string& layoutName, const std::string& buttonName, bool enabled)
+	{
+		auto buttonId = buttonTable[layoutName][buttonName];
+		internalButtons[buttonId].enabled = enabled;
+	}
 
+	bool Buttons::IsEnabled(const std::string& layoutName, const std::string& buttonName)
+	{
+		return internalButtons[buttonTable[layoutName][buttonName]].enabled;
+	}
 }

@@ -32,39 +32,58 @@
         "drop-shadow-y": 2
     },
     {
-        "type": "Menu",
-        "menu-id": "Status",
-        "index": 0,
+        "type": "Button",
+        "button-id":"Equipment",
         "font": "default",
         "colors": {
-            "active": "Cyan",
-            "inactive": "Gray"
+            "hilite":"Cyan",
+            "normal":"Gray"
         },
+        "text": "Equipment",
+        "x": 632,
+        "y": 304,
         "horizontal-alignment": -1,
         "drop-shadow": true,
         "drop-shadow-color": "Black",
         "drop-shadow-x": 2,
         "drop-shadow-y": 2,
-        "menu-items": [
-            {
-                "text": "Equipment",
-                "menu-item-id": "Equipment",
-                "x": 632,
-                "y": 304
-            },
-            {
-                "text": "Job",
-                "menu-item-id": "Job",
-                "x": 632,
-                "y": 320
-            },
-            {
-                "text": "Go Back",
-                "menu-item-id": "GoBack",
-                "x": 632,
-                "y": 336
-            }
-        ]
+        "enabled": true
+    },
+    {
+        "type": "Button",
+        "button-id":"Job",
+        "font": "default",
+        "colors": {
+            "hilite":"Cyan",
+            "normal":"Gray"
+        },
+        "text": "Job",
+        "x": 632,
+        "y": 320,
+        "horizontal-alignment": -1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2,
+        "enabled": true
+    },
+    {
+        "type": "Button",
+        "button-id":"GoBack",
+        "font": "default",
+        "colors": {
+            "hilite":"Cyan",
+            "normal":"Gray"
+        },
+        "text": "Go Back",
+        "x": 632,
+        "y": 336,
+        "horizontal-alignment": -1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2,
+        "enabled": true
     },
     {
         "type":"Area",
@@ -72,11 +91,7 @@
         "x":480,
         "y":304,
         "width":160,
-        "height":16,
-        "menu": {
-            "menu-id": "Status",
-            "menu-item-id": "Equipment"
-        }
+        "height":16
     },
     {
         "type":"Area",
@@ -84,11 +99,7 @@
         "x":480,
         "y":320,
         "width":160,
-        "height":16,
-        "menu": {
-            "menu-id": "Status",
-            "menu-item-id": "Job"
-        }
+        "height":16
     },
     {
         "type":"Area",
@@ -96,12 +107,9 @@
         "x":480,
         "y":336,
         "width":160,
-        "height":16,
-        "menu": {
-            "menu-id": "Status",
-            "menu-item-id": "GoBack"
-        }
-    },    {
+        "height":16
+    },    
+    {
         "type": "Layout",
         "name": "Sublayout.Modded"
     }

@@ -33,6 +33,7 @@
     },
     {
         "type": "Button",
+        "button-id": "GoBack",
         "font": "default",
         "colors": {
             "hilite":"Cyan",
@@ -45,7 +46,8 @@
         "drop-shadow": true,
         "drop-shadow-color": "Black",
         "drop-shadow-x": 2,
-        "drop-shadow-y": 2
+        "drop-shadow-y": 2,
+        "enabled": true
     },
     {
         "type":"Area",

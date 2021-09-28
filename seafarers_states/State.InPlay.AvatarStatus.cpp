@@ -22,8 +22,7 @@
 #include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
-#include <Visuals.MenuItems.h>
-#include <Visuals.Menus.h>
+#include <Visuals.Buttons.h>
 #include <Visuals.Messages.h>
 #include <Visuals.SpriteGrid.h>
 namespace state::in_play
@@ -32,25 +31,25 @@ namespace state::in_play
 	static const std::string LAYOUT_NAME = "State.InPlay.AvatarStatus";
 	static const std::string SPRITE_GRID_ID = "Grid";
 	static const std::string FONT_DEFAULT = "default";
-	static const std::string MENU_ID = "Status";
-	static const std::string MENU_ITEM_JOB = "Job";
+	static const std::string AREA_EQUIPMENT = "Equipment";
+	static const std::string AREA_JOB = "Job";
+	static const std::string AREA_GO_BACK = "GoBack";
+	static const std::string BUTTON_EQUIPMENT = "Equipment";
+	static const std::string BUTTON_JOB = "Job";
+	static const std::string BUTTON_GO_BACK = "GoBack";
 
-	enum class StatusMenuItem
+	static void OnEquipment()
 	{
-		EQUIPMENT,
-		JOB,
-		GO_BACK
-	};
+		::application::UIState::Write(::UIState::IN_PLAY_EQUIPMENT);
+	}
 
-	static const std::map<StatusMenuItem, std::function<void()>> activators =
+	static void OnJob()
 	{
-		{ StatusMenuItem::EQUIPMENT,  ::application::UIState::GoTo(::UIState::IN_PLAY_EQUIPMENT)},
-		{ StatusMenuItem::JOB, ::application::UIState::GoTo(::UIState::IN_PLAY_CURRENT_JOB) },
-		{ StatusMenuItem::GO_BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_NEXT) }
-	};
-
-	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
-
+		if (visuals::Buttons::IsEnabled(LAYOUT_NAME, BUTTON_JOB))
+		{
+			::application::UIState::Write(::UIState::IN_PLAY_CURRENT_JOB);
+		}
+	}
 
 	static const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
 	static const auto WriteTextToGridRight = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::RIGHT);
@@ -96,7 +95,7 @@ namespace state::in_play
 
 	static void RefreshMenu()
 	{
-		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_JOB, game::avatar::Quest::Read().has_value());
+		visuals::Buttons::SetEnabled(LAYOUT_NAME, BUTTON_JOB, game::avatar::Quest::Read().has_value());
 	}
 
 	static void Refresh()
@@ -113,18 +112,55 @@ namespace state::in_play
 
 	static const std::map<::Command, std::function<void()>> commandHandlers =
 	{
-		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
-		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
-		{ ::Command::GREEN, ActivateItem },
 		{ ::Command::BACK, OnLeave },
 		{ ::Command::RED, OnLeave }
 	};
 
+	static const std::map<std::string, std::string> areaButtons = 
+	{
+		{AREA_GO_BACK, BUTTON_GO_BACK},
+		{AREA_EQUIPMENT, BUTTON_EQUIPMENT},
+		{AREA_JOB, BUTTON_JOB}
+	};
+
+	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>&)
+	{
+		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
+		auto iter = areaButtons.find(areaName);
+		if (iter != areaButtons.end())
+		{
+			visuals::Buttons::SetHoverButton(LAYOUT_NAME, iter->second);
+		}
+	}
+
+	static void OnMouseMotionOutsideAreas(const common::XY<int>&)
+	{
+		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
+	}
+
+	static const std::map<std::string, std::function<void()>> areaActions =
+	{
+		{AREA_GO_BACK, OnLeave},
+		{AREA_EQUIPMENT, OnEquipment},
+		{AREA_JOB, OnJob}
+	};
+
+	static bool OnMouseButtonUpInArea(const std::string& areaName)
+	{
+		auto iter = areaActions.find(areaName);
+		if (iter != areaActions.end())
+		{
+			iter->second();
+			return true;
+		}
+		return false;
+	}
+
 	void AvatarStatus::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
-		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
+		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea, OnMouseMotionOutsideAreas));
+		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
 		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
 	}
