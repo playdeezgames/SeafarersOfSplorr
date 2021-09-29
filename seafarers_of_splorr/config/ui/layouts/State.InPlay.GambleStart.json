@@ -92,12 +92,6 @@
                 "y": 272
             },
             {
-                "text": "Change Bet...",
-                "menu-item-id": "ChangeBet",
-                "x": 320,
-                "y": 288
-            },
-            {
                 "text": "No Bet",
                 "menu-item-id": "NoBet",
                 "x": 320,
@@ -121,18 +115,6 @@
         "menu":{
             "menu-id":"Wager",
             "menu-item-id":"Bet"
-        }
-    },
-    {
-        "type":"Area",
-        "area-id":"ChangeBet",
-        "x":240,
-        "y":288,
-        "width":160,
-        "height":16,
-        "menu":{
-            "menu-id":"Wager",
-            "menu-item-id":"ChangeBet"
         }
     },
     {

@@ -36,22 +36,15 @@ namespace state::in_play
 		return currentWager;
 	}
 
-	static void OnLeave()
-	{
-		game::Avatar::DoAction(game::avatar::Action::ENTER_DARK_ALLEY);
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
-	}
-
 	static common::XY<double> GetDockedLocation()
 	{
 		return game::avatar::Docked::GetDockedLocation().value();
 	}
 
-	static void OnNoBet()
+	static void OnPayAnte(const std::string& message)
 	{
 		auto ante = game::islands::DarkAlley::GetAnte(GetDockedLocation()).value();
 		game::avatar::Statistics::ChangeMoney(-ante);
-		//TODO: if avatar now has less than minimum bet... leave gambling!
 		visuals::Messages::Write(
 			{
 				"==NO BET!==",
@@ -64,7 +57,7 @@ namespace state::in_play
 					},
 					{
 						{19,11},
-						"and are dealt two new cards.",
+						message,
 						game::Colors::GRAY,
 						visuals::HorizontalAlignment::CENTER
 					},
@@ -76,13 +69,24 @@ namespace state::in_play
 					}
 				}
 			});
+	}
+
+	static void OnLeave()
+	{
+		OnPayAnte("and leave the area.");
+		game::Avatar::DoAction(game::avatar::Action::ENTER_DARK_ALLEY);
+		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+	}
+
+	static void OnNoBet()
+	{
+		OnPayAnte("and are dealt two new cards.");
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	enum class WagerItem
 	{
 		BET,
-		CHANGE_BET,
 		NO_BET,
 		LEAVE
 	};
@@ -90,7 +94,6 @@ namespace state::in_play
 	const std::map<WagerItem, std::function<void()>> activators =
 	{
 		{ WagerItem::BET, application::UIState::GoTo(::UIState::IN_PLAY_GAMBLE_FINISH) },
-		{ WagerItem::CHANGE_BET, []() {} },//TODO: make this work
 		{ WagerItem::NO_BET, OnNoBet },
 		{ WagerItem::LEAVE, OnLeave }
 	};
@@ -131,8 +134,8 @@ namespace state::in_play
 		{::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
 		{::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
 		{::Command::GREEN, ActivateItem },
-		{::Command::BACK, ::application::UIState::GoTo(::UIState::CONFIRM_QUIT) },
-		{::Command::RED, ::application::UIState::GoTo(::UIState::CONFIRM_QUIT) }
+		{::Command::BACK, OnLeave },
+		{::Command::RED, OnLeave }
 	};
 
 	void GambleStart::Start()
