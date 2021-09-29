@@ -7,6 +7,7 @@
 #include <Common.Data.h>
 #include <format>
 #include <Game.Audio.Mux.h>
+#include <Game.Audio.Sfx.h>
 #include <Game.Avatar.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Statistics.h>
@@ -79,11 +80,13 @@ namespace state::in_play
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		if (game::islands::dark_alley::GamblingHand::IsWinner(GetDockedLocation()))
 		{
+			game::audio::Sfx::Play(game::audio::GameSfx::WOOHOO);
 			visuals::Texts::SetText(LAYOUT_NAME, TEXT_RESULT, "You win!");
 			game::avatar::Statistics::ChangeMoney(GambleStart::GetCurrentWager());
 		}
 		else
 		{
+			game::audio::Sfx::Play(game::audio::GameSfx::SHUCKS);
 			visuals::Texts::SetText(LAYOUT_NAME, TEXT_RESULT, "You lose!");
 			game::avatar::Statistics::ChangeMoney(GambleStart::GetCurrentWager());
 		}
