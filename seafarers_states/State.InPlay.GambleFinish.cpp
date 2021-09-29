@@ -20,6 +20,7 @@
 #include <Visuals.Images.h>
 #include <Visuals.CardSprites.h>
 #include <Visuals.Menus.h>
+#include <Visuals.MenuItems.h>
 #include <Visuals.Messages.h>
 #include <Visuals.Texts.h>
 namespace state::in_play
@@ -32,6 +33,7 @@ namespace state::in_play
 	static const std::string IMAGE_THIRD_CARD = "ThirdCard";
 	static const std::string TEXT_RESULT = "Result";
 	static const std::string TEXT_WIN_LOSE = "WinLose";
+	static const std::string MENU_ITEM_PLAY_AGAIN = "PlayAgain";
 
 	static void OnLeave()
 	{
@@ -88,10 +90,12 @@ namespace state::in_play
 		{
 			game::audio::Sfx::Play(game::audio::GameSfx::SHUCKS);
 			visuals::Texts::SetText(LAYOUT_NAME, TEXT_RESULT, "You lose!");
-			game::avatar::Statistics::ChangeMoney(GambleStart::GetCurrentWager());
+			game::avatar::Statistics::ChangeMoney(-GambleStart::GetCurrentWager());
 		}
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_WIN_LOSE, std::format("You now have {:.4f}", game::avatar::Statistics::GetMoney()));
-		//TODO: hide "play again" if avatar has less than the minimum wager
+		auto money = game::avatar::Statistics::GetMoney();
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_WIN_LOSE, std::format("You now have {:.4f}", money));
+		bool canPlayAgain = money >= game::islands::DarkAlley::GetMinimumWager(GetDockedLocation());
+		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_PLAY_AGAIN, canPlayAgain);
 		Refresh();
 	}
 

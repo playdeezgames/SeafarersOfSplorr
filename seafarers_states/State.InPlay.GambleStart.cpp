@@ -81,6 +81,11 @@ namespace state::in_play
 	static void OnNoBet()
 	{
 		OnPayAnte("and are dealt two new cards.");
+		bool canPlayAgain = game::avatar::Statistics::GetMoney() >= game::islands::DarkAlley::GetMinimumWager(GetDockedLocation());
+		if (!canPlayAgain)
+		{
+			game::Avatar::DoAction(game::avatar::Action::ENTER_DARK_ALLEY);
+		}
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
