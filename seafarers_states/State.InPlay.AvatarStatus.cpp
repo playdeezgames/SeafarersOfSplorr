@@ -25,6 +25,7 @@
 #include <Visuals.Buttons.h>
 #include <Visuals.Messages.h>
 #include <Visuals.SpriteGrid.h>
+#include <Visuals.Texts.h>
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_AVATAR_STATUS;
@@ -37,6 +38,7 @@ namespace state::in_play
 	static const std::string BUTTON_EQUIPMENT = "Equipment";
 	static const std::string BUTTON_JOB = "Job";
 	static const std::string BUTTON_GO_BACK = "GoBack";
+	static const std::string TEXT_TOOL_TIP = "ToolTip";
 
 	static const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
 	static const auto WriteTextToGridRight = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::RIGHT);
@@ -123,11 +125,13 @@ namespace state::in_play
 		{
 			visuals::Buttons::SetHoverButton(LAYOUT_NAME, iter->second);
 		}
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_TOOL_TIP, visuals::Areas::Get(LAYOUT_NAME, areaName).toolTip.value_or(""));
 	}
 
 	static void OnMouseMotionOutsideAreas(const common::XY<int>&)
 	{
 		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_TOOL_TIP, "");
 	}
 
 	static const std::map<std::string, std::function<void()>> areaActions =

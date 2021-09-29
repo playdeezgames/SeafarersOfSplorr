@@ -11,5 +11,6 @@ namespace visuals
 		common::XY<size_t> size;
 		bool Contains(const common::XY<int>&) const;
 		std::optional<AreaMenu> menu;
+		std::optional<std::string> toolTip;
 	};
 }

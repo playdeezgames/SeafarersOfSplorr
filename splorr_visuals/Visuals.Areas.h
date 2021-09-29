@@ -14,6 +14,7 @@ namespace visuals
 	{
 		static std::set<std::string> Get(const std::string&, const common::XY<int>&);
 		static Area Get(const std::string&, const std::string&);
+		static std::optional<std::string> GetToolTip(const std::string&, const std::string&);
 		static std::function<void(const common::XY<int>&)> HandleMenuMouseMotion(const std::string&);
 		static std::function<void(const common::XY<int>&)> HandleMouseMotion(const std::string&, std::function<void(const std::string&, const common::XY<int>&)>, std::function<void(const common::XY<int>&)>);
 		static std::function<void(const common::XY<int>&)> HandleMouseMotion(const std::string&, std::function<void(const std::string&, const common::XY<int>&)>);

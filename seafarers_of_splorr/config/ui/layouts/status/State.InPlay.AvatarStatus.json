@@ -20,6 +20,20 @@
         "drop-shadow-y": 2
     },
     {
+        "type": "Text",
+        "text-id":"ToolTip",
+        "font": "font5x7",
+        "color": "Gray",
+        "text": "",
+        "x": 632,
+        "y": 8,
+        "horizontal-alignment": -1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 1,
+        "drop-shadow-y": 1
+    },
+    {
         "type":"SpriteGrid",
         "sprite-grid-id":"Grid",
         "x":8,
@@ -106,6 +120,60 @@
         "area-id":"GoBack",
         "x":480,
         "y":336,
+        "width":160,
+        "height":16
+    },    
+    {
+        "type":"Area",
+        "area-id":"HoverMoney",
+        "tool-tip": "Money",
+        "x":480,
+        "y":32,
+        "width":160,
+        "height":16
+    },    
+    {
+        "type":"Area",
+        "area-id":"HoverReputation",
+        "tool-tip": "Reputation",
+        "x":480,
+        "y":48,
+        "width":160,
+        "height":16
+    },    
+    {
+        "type":"Area",
+        "area-id":"HoverBrawling",
+        "tool-tip": "Brawling",
+        "x":480,
+        "y":64,
+        "width":160,
+        "height":16
+    },    
+    {
+        "type":"Area",
+        "area-id":"HoverHealth",
+        "tool-tip": "Health",
+        "x":480,
+        "y":80,
+        "width":160,
+        "height":16
+    },    
+    {
+        "type":"Area",
+        "area-id":"HoverHunger",
+        "tool-tip": "Hunger",
+        "x":480,
+        "y":96,
+        "width":160,
+        "height":16
+    },    
+    {
+        "type":"Area",
+        "area-id":"HoverTurns",
+        "tool-tip": "Turns Remaining",
+        "x":480,
+        "y":112,
         "width":160,
         "height":16
     },    

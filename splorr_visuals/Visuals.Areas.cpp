@@ -18,6 +18,7 @@ namespace visuals
 		size_t height = model[visuals::data::Properties::HEIGHT];
 		std::string areaId = model[visuals::data::Properties::AREA_ID];
 		std::optional<AreaMenu> areaMenu = std::nullopt;
+		std::optional<std::string> toolTip = (model.count(visuals::data::Properties::TOOL_TIP) > 0) ? (std::optional<std::string>(model[visuals::data::Properties::TOOL_TIP])) : (std::nullopt);
 		if (model.count(visuals::data::Properties::MENU))
 		{
 			areaMenu = 
@@ -31,7 +32,8 @@ namespace visuals
 			areaId,
 			common::XY<int>(x,y),
 			common::XY<size_t>(width, height),
-			areaMenu
+			areaMenu,
+			toolTip
 		};
 		areaLists[layoutName].push_back(area);
 		areaTable[layoutName][areaId] = area;
@@ -154,5 +156,10 @@ namespace visuals
 			}
 			return false;
 		};
+	}
+
+	std::optional<std::string> Areas::GetToolTip(const std::string& layoutName, const std::string& areaName)
+	{
+		return Get(layoutName, areaName).toolTip;
 	}
 }
