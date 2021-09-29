@@ -1,3 +1,4 @@
+#include <Application.MouseMotion.h>
 #include <Common.Heading.h>
 #include <format>
 #include <Game.Avatar.AtSea.h>
@@ -10,6 +11,8 @@
 #include <map>
 #include <string>
 #include "Sublayouts.h"
+#include "UIState.h"
+#include <Visuals.Areas.h>
 #include <Visuals.Images.h>
 #include <Visuals.Menus.h>
 #include <Visuals.MenuItems.h>
@@ -18,6 +21,7 @@
 namespace sublayout
 {
 	static const std::string SUBLAYOUT_NAME = "Sublayout.AtSeaStatistics";
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_AT_SEA;
 
 	static const std::string TEXT_AVATAR_TURNS = "avatar-turns";
 	static const std::string TEXT_AVATAR_HEALTH = "avatar-health";
@@ -26,6 +30,7 @@ namespace sublayout
 	static const std::string TEXT_AVATAR_SPEED = "avatar-speed";
 	static const std::string TEXT_AVATAR_MONEY = "avatar-money";
 	static const std::string TEXT_AVATAR_REPUTATION = "avatar-reputation";
+	static const std::string TEXT_TOOL_TIP = "tool-tip";
 
 	static void RefreshAvatarSatiety()
 	{
@@ -77,4 +82,20 @@ namespace sublayout
 		RefreshAvatarReputation();
 		RefreshAvatarTurns();
 	}
+
+	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>&)
+	{
+		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_TOOL_TIP, visuals::Areas::GetToolTip(SUBLAYOUT_NAME, areaName).value_or(""));
+	}
+
+	static void OnMouseMotionOutsideAreas(const common::XY<int>&)
+	{
+		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_TOOL_TIP, "");
+	}
+
+	void AtSeaAvatarStatus::Start()
+	{
+		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseMotion(SUBLAYOUT_NAME, OnMouseMotionInArea, OnMouseMotionOutsideAreas));
+	}
+
 }

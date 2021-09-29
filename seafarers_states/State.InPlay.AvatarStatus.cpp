@@ -125,7 +125,7 @@ namespace state::in_play
 		{
 			visuals::Buttons::SetHoverButton(LAYOUT_NAME, iter->second);
 		}
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_TOOL_TIP, visuals::Areas::Get(LAYOUT_NAME, areaName).toolTip.value_or(""));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_TOOL_TIP, visuals::Areas::Get(LAYOUT_NAME, areaName).value().toolTip.value_or(""));
 	}
 
 	static void OnMouseMotionOutsideAreas(const common::XY<int>&)

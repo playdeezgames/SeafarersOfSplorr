@@ -8,6 +8,7 @@ namespace sublayout
 	struct AtSeaAvatarStatus
 	{
 		static void Refresh();
+		static void Start();
 	};
 	struct UIHamburger
 	{

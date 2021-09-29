@@ -132,6 +132,7 @@ namespace application
 		state::in_play::Equipment::Start,
 		sublayout::UIHamburger::Start,
 		sublayout::AtSeaActions::Start,
+		sublayout::AtSeaAvatarStatus::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};

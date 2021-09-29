@@ -64,9 +64,19 @@ namespace visuals
 		return result;
 	}
 
-	Area Areas::Get(const std::string& layoutName, const std::string& areaName)
+	std::optional<Area> Areas::Get(const std::string& layoutName, const std::string& areaName)
 	{
-		return areaTable.find(layoutName)->second.find(areaName)->second;
+		auto layout = areaTable.find(layoutName);
+		if (layout == areaTable.end())
+		{
+			return std::nullopt;
+		}
+		auto area = layout->second.find(areaName);
+		if (area == layout->second.end())
+		{
+			return std::nullopt;
+		}
+		return area->second;
 	}
 
 	std::function<void(const common::XY<int>& xy)> 
@@ -87,7 +97,7 @@ namespace visuals
 			for (auto& area : areas)
 			{
 				auto a = Get(layoutName, area);
-				areaHandler(area, xy - a.xy);
+				areaHandler(area, xy - a.value().xy);
 			}
 		};
 	}
@@ -127,9 +137,9 @@ namespace visuals
 				for (auto& area : areas)
 				{
 					auto a = Get(layoutName, area);
-					if (a.menu)
+					if (a.value().menu)
 					{
-						visuals::Menus::WriteMenuItemId(layoutName, a.menu.value().menuId, a.menu.value().menuItemId);
+						visuals::Menus::WriteMenuItemId(layoutName, a.value().menu.value().menuId, a.value().menu.value().menuItemId);
 					}
 				}
 			}
@@ -146,9 +156,9 @@ namespace visuals
 				for (auto& area : areas)
 				{
 					auto a = Get(layoutName, area);
-					if (a.menu)
+					if (a.value().menu)
 					{
-						visuals::Menus::WriteMenuItemId(layoutName, a.menu.value().menuId, a.menu.value().menuItemId);
+						visuals::Menus::WriteMenuItemId(layoutName, a.value().menu.value().menuId, a.value().menu.value().menuItemId);
 						handler();
 						return true;
 					}
@@ -160,6 +170,11 @@ namespace visuals
 
 	std::optional<std::string> Areas::GetToolTip(const std::string& layoutName, const std::string& areaName)
 	{
-		return Get(layoutName, areaName).toolTip;
+		auto area = Get(layoutName, areaName);
+		if (area)
+		{
+			return area.value().toolTip;
+		}
+		return std::nullopt;
 	}
 }
