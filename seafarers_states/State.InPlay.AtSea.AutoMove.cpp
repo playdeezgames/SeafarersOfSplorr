@@ -1,6 +1,7 @@
 #include <Application.UIState.h>
 #include <format>
 #include <Game.Avatar.AtSea.h>
+#include <Game.Avatar.Log.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>
 #include "States.h"
@@ -25,11 +26,17 @@ namespace state::in_play
 	{
 		if (autoMoveState == AutoMoveState::OFF)
 		{
+			game::avatar::Log::Write({
+				game::Colors::GRAY,
+				"Steady as she goes!"});
 			ticksLeft = TICKS_TOTAL;
 			autoMoveState = (game::Islands::CanDock()) ? (AutoMoveState::STARTING) : (AutoMoveState::ON);
 		}
 		else
 		{
+			game::avatar::Log::Write({
+				game::Colors::GRAY,
+				"All stop!" });
 			autoMoveState = AutoMoveState::OFF;
 		}
 	}
@@ -91,6 +98,9 @@ namespace state::in_play
 		{
 			if (autoMoveState == AutoMoveState::ON)
 			{
+				game::avatar::Log::Write({
+					game::Colors::GRAY,
+					"Land ho!" });
 				autoMoveState = AutoMoveState::OFF;
 				AddArrivalMessage();
 				application::UIState::Write(::UIState::IN_PLAY_NEXT);

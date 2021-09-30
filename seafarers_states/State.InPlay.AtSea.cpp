@@ -126,6 +126,9 @@ namespace state::in_play
 	{
 		if (!AtSea::IsAutoMoveEngaged())
 		{
+			game::avatar::Log::Write({
+				game::Colors::GRAY,
+				"You move ahead... cautiously." });
 			game::avatar::AtSea::Move();
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		}
@@ -200,8 +203,13 @@ namespace state::in_play
 	{
 		if (areaName == AREA_CHANGE_HEADING)
 		{
+			game::avatar::Log::Write({
+				game::Colors::GRAY,
+				std::format("Come about to {}!", common::Heading::ToCompassPoint(newHeading))
+				});
 			game::avatar::AtSea::SetHeading(newHeading);
 			sublayout::AtSeaAvatarStatus::Refresh();
+			RefreshLog();
 			return true;
 		}
 		return false;
