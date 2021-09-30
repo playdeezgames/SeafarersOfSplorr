@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.Avatar.Equipment.h" />
     <ClInclude Include="Game.EquipSlot.h" />
     <ClInclude Include="Game.EquipSlotDescriptor.h" />
     <ClInclude Include="Game.EquipSlots.h" />
@@ -33,25 +32,6 @@
     <ClInclude Include="Game.Audio.Mux.h" />
     <ClInclude Include="Game.Audio.Sfx.h" />
     <ClInclude Include="Game.Audio.Theme.h" />
-    <ClInclude Include="Game.Avatar.AtSea.h" />
-    <ClInclude Include="Game.Avatar.Destination.h" />
-    <ClInclude Include="Game.Avatar.Destinations.h" />
-    <ClInclude Include="Game.Avatar.h" />
-    <ClInclude Include="Game.Avatar.Plight.h" />
-    <ClInclude Include="Game.Avatar.PlightDescriptor.h" />
-    <ClInclude Include="Game.Avatar.Plights.h" />
-    <ClInclude Include="Game.Avatar.PlightType.h" />
-    <ClInclude Include="Game.Avatar.ShipStatistics.h" />
-    <ClInclude Include="Game.Avatar.StateTransition.h" />
-    <ClInclude Include="Game.Avatar.Docked.h" />
-    <ClInclude Include="Game.Avatar.Action.h" />
-    <ClInclude Include="Game.Avatar.State.h" />
-    <ClInclude Include="Game.Avatar.Items.h" />
-    <ClInclude Include="Game.Avatar.Log.h" />
-    <ClInclude Include="Game.Avatar.Quest.h" />
-    <ClInclude Include="Game.Avatar.Ship.h" />
-    <ClInclude Include="Game.Avatar.Statistic.h" />
-    <ClInclude Include="Game.Avatar.Statistics.h" />
     <ClInclude Include="Game.Commodities.h" />
     <ClInclude Include="Game.Commodity.h" />
     <ClInclude Include="Game.CommodityDescriptor.h" />
@@ -92,19 +72,6 @@
     <ClInclude Include="Game.Colors.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.Avatar.AtSea.cpp" />
-    <ClCompile Include="Game.Avatar.cpp" />
-    <ClCompile Include="Game.Avatar.Destinations.cpp" />
-    <ClCompile Include="Game.Avatar.ActionDescriptors.cpp" />
-    <ClCompile Include="Game.Avatar.Docked.cpp" />
-    <ClCompile Include="Game.Avatar.Equipment.cpp" />
-    <ClCompile Include="Game.Avatar.Items.cpp" />
-    <ClCompile Include="Game.Avatar.Log.cpp" />
-    <ClCompile Include="Game.Avatar.Plights.cpp" />
-    <ClCompile Include="Game.Avatar.Quest.cpp" />
-    <ClCompile Include="Game.Avatar.Ship.cpp" />
-    <ClCompile Include="Game.Avatar.ShipStatistics.cpp" />
-    <ClCompile Include="Game.Avatar.Statistics.cpp" />
     <ClCompile Include="Game.Commodities.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game.Demigods.cpp" />
@@ -189,11 +156,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\splorr_cards;..\splorr_data;..\splorr_common;..\seafarers_data;$(IncludePath)</IncludePath>
+    <IncludePath>..\seafarers_game_avatar;..\splorr_cards;..\splorr_data;..\splorr_common;..\seafarers_data;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\splorr_cards;..\splorr_data;..\splorr_common;..\seafarers_data;$(IncludePath)</IncludePath>
+    <IncludePath>..\seafarers_game_avatar;..\splorr_cards;..\splorr_data;..\splorr_common;..\seafarers_data;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

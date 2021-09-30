@@ -9,9 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Header Files\Avatar">
-      <UniqueIdentifier>{28be41f9-1e1a-462b-95f5-9bcf38c1fdde}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Audio">
       <UniqueIdentifier>{ed7134ca-fe86-4c03-a54c-82c6b078941a}</UniqueIdentifier>
     </Filter>
@@ -33,9 +30,6 @@
     <Filter Include="Header Files\Utility">
       <UniqueIdentifier>{73f30f16-ac81-43ca-acb5-364e21d57893}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Avatar">
-      <UniqueIdentifier>{2ceea5b0-b0c1-4c60-b9f7-7b206647b7a1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Islands">
       <UniqueIdentifier>{03628875-d3ae-4e27-a48d-0f8623f28eab}</UniqueIdentifier>
     </Filter>
@@ -44,21 +38,6 @@
     </Filter>
     <Filter Include="Header Files\Demigods">
       <UniqueIdentifier>{4fd9f52c-415b-4c9a-ad1d-2ba03b180a46}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Avatar\State">
-      <UniqueIdentifier>{7e317248-d5c2-49dc-befd-6a080e794e31}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Avatar\Plight">
-      <UniqueIdentifier>{d9a2cc00-84e0-4eb1-9401-5cee85dbc35a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Avatar\Ship">
-      <UniqueIdentifier>{f27ab0d4-69f9-40d7-a155-c1ce49aa15ef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Avatar\Statistic">
-      <UniqueIdentifier>{f455b516-9eb5-447f-a66d-c3a553edc0a7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Avatar\Destination">
-      <UniqueIdentifier>{81aa24fe-2a9a-4e9d-bab4-b4a81751604a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Islands\DarkAlley">
       <UniqueIdentifier>{4409cc6b-118f-4b7c-bc52-eb342cc15031}</UniqueIdentifier>
@@ -81,26 +60,11 @@
     <Filter Include="Source Files\Fishing">
       <UniqueIdentifier>{ce218a84-e813-498e-8032-dd1f8d71c7d4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Avatar\Equipment">
+    <Filter Include="Header Files\Equipment">
       <UniqueIdentifier>{9bd4ef81-2416-4817-ae49-8035c9d1b335}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.Avatar.Docked.h">
-      <Filter>Header Files\Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Items.h">
-      <Filter>Header Files\Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Log.h">
-      <Filter>Header Files\Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Quest.h">
-      <Filter>Header Files\Avatar</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.AtSea.h">
-      <Filter>Header Files\Avatar</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Audio.Mux.h">
       <Filter>Header Files\Audio</Filter>
     </ClInclude>
@@ -176,9 +140,6 @@
     <ClInclude Include="Game.World.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Avatar.h">
-      <Filter>Header Files\Avatar</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Audio.GameSfx.h">
       <Filter>Header Files\Audio</Filter>
     </ClInclude>
@@ -208,45 +169,6 @@
     </ClInclude>
     <ClInclude Include="Game.Demigods.h">
       <Filter>Header Files\Demigods</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Action.h">
-      <Filter>Header Files\Avatar\State</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.State.h">
-      <Filter>Header Files\Avatar\State</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.StateTransition.h">
-      <Filter>Header Files\Avatar\State</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Plight.h">
-      <Filter>Header Files\Avatar\Plight</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.PlightDescriptor.h">
-      <Filter>Header Files\Avatar\Plight</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Plights.h">
-      <Filter>Header Files\Avatar\Plight</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.PlightType.h">
-      <Filter>Header Files\Avatar\Plight</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Ship.h">
-      <Filter>Header Files\Avatar\Ship</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.ShipStatistics.h">
-      <Filter>Header Files\Avatar\Ship</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Statistic.h">
-      <Filter>Header Files\Avatar\Statistic</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Statistics.h">
-      <Filter>Header Files\Avatar\Statistic</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Destination.h">
-      <Filter>Header Files\Avatar\Destination</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Destinations.h">
-      <Filter>Header Files\Avatar\Destination</Filter>
     </ClInclude>
     <ClInclude Include="Game.Islands.DarkAlley.FightCard.h">
       <Filter>Header Files\Islands\DarkAlley</Filter>
@@ -288,16 +210,13 @@
       <Filter>Header Files\Fishing</Filter>
     </ClInclude>
     <ClInclude Include="Game.EquipSlot.h">
-      <Filter>Header Files\Avatar\Equipment</Filter>
+      <Filter>Header Files\Equipment</Filter>
     </ClInclude>
     <ClInclude Include="Game.EquipSlotDescriptor.h">
-      <Filter>Header Files\Avatar\Equipment</Filter>
+      <Filter>Header Files\Equipment</Filter>
     </ClInclude>
     <ClInclude Include="Game.EquipSlots.h">
-      <Filter>Header Files\Avatar\Equipment</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Avatar.Equipment.h">
-      <Filter>Header Files\Avatar\Equipment</Filter>
+      <Filter>Header Files\Equipment</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -312,33 +231,6 @@
     </ClCompile>
     <ClCompile Include="Game.World.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Avatar.AtSea.cpp">
-      <Filter>Source Files\Avatar</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Avatar.Destinations.cpp">
-      <Filter>Source Files\Avatar</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Avatar.ActionDescriptors.cpp">
-      <Filter>Source Files\Avatar</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Avatar.Docked.cpp">
-      <Filter>Source Files\Avatar</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Avatar.Items.cpp">
-      <Filter>Source Files\Avatar</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Avatar.Log.cpp">
-      <Filter>Source Files\Avatar</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Avatar.Quest.cpp">
-      <Filter>Source Files\Avatar</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Avatar.Ship.cpp">
-      <Filter>Source Files\Avatar</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Avatar.Statistics.cpp">
-      <Filter>Source Files\Avatar</Filter>
     </ClCompile>
     <ClCompile Include="Game.Islands.cpp">
       <Filter>Source Files\Islands</Filter>
@@ -355,17 +247,8 @@
     <ClCompile Include="Game.Islands.Ships.cpp">
       <Filter>Source Files\Islands</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Avatar.cpp">
-      <Filter>Source Files\Avatar</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Avatar.ShipStatistics.cpp">
-      <Filter>Source Files\Avatar</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Demigods.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Avatar.Plights.cpp">
-      <Filter>Source Files\Avatar</Filter>
     </ClCompile>
     <ClCompile Include="Game.Commodities.cpp">
       <Filter>Source Files\Trade</Filter>
@@ -405,9 +288,6 @@
     </ClCompile>
     <ClCompile Include="Game.EquipSlots.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Avatar.Equipment.cpp">
-      <Filter>Source Files\Avatar</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

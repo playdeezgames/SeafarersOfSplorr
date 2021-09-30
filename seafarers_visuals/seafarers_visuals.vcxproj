@@ -90,11 +90,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\splorr_data;..\splorr_visuals;..\seafarers_game;..\splorr_common;E:\lib\SDL2-2.0.14\include;..\splorr_application;..\splorr_cards;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <IncludePath>..\splorr_data;..\splorr_visuals;..\seafarers_game_avatar;..\seafarers_game;..\splorr_common;E:\lib\SDL2-2.0.14\include;..\splorr_application;..\splorr_cards;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\splorr_data;..\splorr_visuals;..\seafarers_game;..\splorr_common;E:\lib\SDL2-2.0.14\include;..\splorr_application;..\splorr_cards;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <IncludePath>..\splorr_data;..\splorr_visuals;..\seafarers_game_avatar;..\seafarers_game;..\splorr_common;E:\lib\SDL2-2.0.14\include;..\splorr_application;..\splorr_cards;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
