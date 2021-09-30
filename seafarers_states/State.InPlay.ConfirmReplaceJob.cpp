@@ -8,7 +8,9 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
 #include <Game.Avatar.Docked.h>
+#include <Game.Avatar.Log.h>
 #include <Game.Avatar.Quest.h>
+#include <Game.Colors.h>
 #include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
@@ -26,6 +28,9 @@ namespace state::in_play
 
 	static void ReplaceJob()
 	{
+		game::avatar::Log::Write({
+			game::Colors::RED,
+			"You replace yer job, and yer reputation suffers!" });
 		game::avatar::Quest::AbandonQuest();
 		game::avatar::Quest::AcceptQuest(game::avatar::Docked::GetDockedLocation().value());
 		game::Avatar::DoAction(game::avatar::Action::ENTER_DOCK);

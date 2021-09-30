@@ -12,7 +12,9 @@
 #include <Game.Avatar.h>
 #include <Game.Avatar.AtSea.h>
 #include <Game.Avatar.Docked.h>
+#include <Game.Avatar.Log.h>
 #include <Game.Avatar.Quest.h>
+#include <Game.Colors.h>
 #include <Game.Islands.h>
 #include <Game.Islands.Quests.h>
 #include "States.h"
@@ -44,6 +46,9 @@ namespace state::in_play
 		switch (game::avatar::Quest::AcceptQuest(game::avatar::Docked::GetDockedLocation().value()))
 		{
 		case game::avatar::Quest::AcceptQuestResult::ACCEPTED_QUEST:
+			game::avatar::Log::Write({
+				game::Colors::GRAY,
+				"You accept the job!" });
 			game::Avatar::DoAction(game::avatar::Action::ENTER_DOCK);
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			break;

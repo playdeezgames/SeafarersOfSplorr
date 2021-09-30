@@ -82,6 +82,9 @@ namespace state::in_play
 		auto quest = game::avatar::Quest::Read();
 		if (game::avatar::Docked::Dock() == game::avatar::Docked::DockResult::COMPLETED_QUEST)
 		{
+			game::avatar::Log::Write({
+				game::Colors::GREEN,
+				"You completed yer job, and yer reputation increases!" });
 			visuals::Messages::Write(
 				{
 					"==DELIVERY COMPLETE==",

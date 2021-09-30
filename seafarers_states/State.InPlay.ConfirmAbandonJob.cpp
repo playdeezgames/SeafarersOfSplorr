@@ -7,6 +7,8 @@
 #include <Common.Utility.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Quest.h>
+#include <Game.Avatar.Log.h>
+#include <Game.Colors.h>
 #include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
@@ -24,6 +26,9 @@ namespace state::in_play
 
 	static void AbandonJob()
 	{
+		game::avatar::Log::Write({
+			game::Colors::RED,
+			"You abandon yer job, and yer reputation suffers!"});
 		game::avatar::Quest::AbandonQuest();
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
