@@ -1,5 +1,6 @@
 #include <Common.Heading.h>
 #include <Common.XY.h>
+#include <format>
 #include <functional>
 #include <Game.Avatar.AtSea.h>
 #include <Game.Avatar.Destinations.h>
@@ -32,6 +33,7 @@ namespace visuals
 	static const std::string SPRITE_FISHERY = "AtSeaFishery";
 
 	static const std::string FONT_ISLAND_NAME = "font5x7";
+	static const std::string FONT_DISTANCE = "font3x5";
 
 	struct InternalNavigator
 	{
@@ -151,6 +153,16 @@ namespace visuals
 			visuals::Colors::Read(game::Colors::WHITE));
 	}
 
+	static void DrawTargetDistance(
+		const std::shared_ptr<application::Engine::Renderer>& renderer,
+		const common::XY<int>& plot,
+		double distance)
+	{
+		Fonts::WriteText(FONT_DISTANCE, renderer, plot + common::XY<int>(1, -3), std::format("{:.0f}", distance), "Black", HorizontalAlignment::CENTER);
+		Fonts::WriteText(FONT_DISTANCE, renderer, plot + common::XY<int>(-1, -3), std::format("{:.0f}", distance), "Black", HorizontalAlignment::CENTER);
+		Fonts::WriteText(FONT_DISTANCE, renderer, plot + common::XY<int>(0, -3), std::format("{:.0f}", distance), "White", HorizontalAlignment::CENTER);
+	}
+
 	static void DrawQuestDestination(
 		const std::shared_ptr<application::Engine::Renderer>& renderer,
 		std::function<common::XY<int>(const common::XY<double>&)> plotter,
@@ -159,13 +171,15 @@ namespace visuals
 		auto quest = game::avatar::Quest::Read();
 		if (quest)
 		{
-			auto clampedDistance = common::Heading::ClampDistance(quest.value().destination - game::avatar::AtSea::GetLocation(), game::World::GetViewDistance());
+			auto difference = quest.value().destination - game::avatar::AtSea::GetLocation();
+			auto clampedDistance = common::Heading::ClampDistance(difference, game::World::GetViewDistance());
 			auto plot = plotter(clampedDistance+ game::avatar::AtSea::GetLocation());
 			Sprites::Draw(
 				SPRITE_QUEST_DESTINATION,
 				renderer,
 				plot,
 				visuals::Colors::Read(game::Colors::WHITE));
+			DrawTargetDistance(renderer, plot, difference.GetMagnitude());
 		}
 	}
 
@@ -186,13 +200,15 @@ namespace visuals
 		auto destination = game::avatar::Destinations::GetDestination(destinationId);
 		if (destination)
 		{
-			auto clampedDistance = common::Heading::ClampDistance(destination.value() - game::avatar::AtSea::GetLocation(), game::World::GetViewDistance() + 0.5);//TODO: magic number
+			auto difference = destination.value() - game::avatar::AtSea::GetLocation();
+			auto clampedDistance = common::Heading::ClampDistance(difference, game::World::GetViewDistance() + 0.5);//TODO: magic number
 			auto plot = plotter(clampedDistance + game::avatar::AtSea::GetLocation());
 			Sprites::Draw(
 				destinationSprites.find(destinationId)->second,
 				renderer,
 				plot,
-				visuals::Colors::Read(game::Colors::WHITE));
+				visuals::Colors::Read(game::Colors::WHITE)); 
+			DrawTargetDistance(renderer, plot, difference.GetMagnitude());
 		}
 	}
 
