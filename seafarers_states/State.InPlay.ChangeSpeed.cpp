@@ -5,9 +5,13 @@
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Common.Utility.h>
+#include <Common.Data.h>
+#include <format>
 #include <Game.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.AtSea.h>
+#include <Game.Avatar.Log.h>
+#include <Game.Colors.h>
 #include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
@@ -32,20 +36,24 @@ namespace state::in_play
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	static std::function<void()> SetSpeed(double speed)
-	{
-		return [speed]()
-		{
-			game::avatar::AtSea::SetSpeed(speed);
-			OnLeave();
-		};
-	}
-
 	static const double SPEED_ALL_STOP = 0.0;
 	static const double SPEED_ONE_THIRD = 0.3;
 	static const double SPEED_TWO_THIRDS = 0.6;
 	static const double SPEED_FULL = 0.9;
 	static const double SPEED_FLANK = 1.0;
+
+	static std::function<void()> SetSpeed(double speed)
+	{
+		return [speed]()
+		{
+			
+			game::avatar::Log::Write(
+				{game::Colors::GRAY,
+				std::format("Set speed to {:.0f}%!", common::Data::ToPercentage(speed, SPEED_FLANK).value())});
+			game::avatar::AtSea::SetSpeed(speed);
+			OnLeave();
+		};
+	}
 
 	static const std::map<ChangeSpeedItem, std::function<void()>> activators =
 	{
