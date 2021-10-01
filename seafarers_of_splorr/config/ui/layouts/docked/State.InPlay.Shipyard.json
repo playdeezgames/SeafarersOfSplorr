@@ -51,6 +51,14 @@
     },
     {
         "type":"Area",
+        "area-id":"List",
+        "x":8,
+        "y":64,
+        "width":624,
+        "height":256
+    },
+    {
+        "type":"Area",
         "area-id":"GoBack",
         "x":480,
         "y":336,

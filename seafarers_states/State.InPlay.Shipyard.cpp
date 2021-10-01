@@ -28,6 +28,8 @@ namespace state::in_play
 	static const std::string FONT_DEFAULT = "default";
 
 	static const std::string AREA_GO_BACK = "GoBack";
+	static const std::string AREA_LIST = "List";
+
 	static const std::string BUTTON_GO_BACK = "GoBack";
 
 	static std::map<game::Ship, double> shipPrices;
@@ -143,9 +145,20 @@ namespace state::in_play
 		visuals::Buttons::SetHoverButton(LAYOUT_NAME, BUTTON_GO_BACK);
 	}
 
+	static void OnMouseMotionList(const common::XY<int>& xy)
+	{
+		size_t candidateRow = xy.GetY() / visuals::SpriteGrid::GetCellHeight(LAYOUT_NAME, SPRITE_GRID_ID);
+		if (candidateRow < shipPrices.size())
+		{
+			hiliteRow = candidateRow;
+			RefreshGrid();
+		}
+	}
+
 	static const std::map<std::string, std::function<void(const common::XY<int>&)>> mouseMotionHandlers =
 	{
-		{AREA_GO_BACK, OnMouseMotionGoBack}
+		{AREA_GO_BACK, OnMouseMotionGoBack},
+		{AREA_LIST, OnMouseMotionList}
 	};
 
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& position)
