@@ -33,7 +33,7 @@ namespace state::in_play
 	static const std::string BUTTON_GO_BACK = "GoBack";
 
 	static std::map<game::Ship, double> shipPrices;
-	static size_t hiliteRow = 0;
+	static std::optional<size_t> hiliteRow = std::nullopt;
 
 	static void UpdateShipPrices()
 	{
@@ -69,6 +69,7 @@ namespace state::in_play
 	{
 		int row = 0;
 		int gridRow = 2;
+		auto money = game::avatar::Statistics::GetMoney();
 		auto ship = game::avatar::Ship::Read();
 		for (auto& unitPrice : shipPrices)
 		{
@@ -79,7 +80,10 @@ namespace state::in_play
 					shipDescriptor.name,
 					(ship == unitPrice.first) ? ("*") : (" "),
 					unitPrice.second),
-				(row == hiliteRow) ? (game::Colors::CYAN) : (game::Colors::GRAY));
+				(row == hiliteRow && money>=unitPrice.second) ? (game::Colors::CYAN) : 
+				(row == hiliteRow && money<unitPrice.second) ? (game::Colors::LIGHT_RED) :
+				(money < unitPrice.second) ? (game::Colors::RED) :
+				(game::Colors::GRAY));
 			++gridRow;
 			++row;
 		}
@@ -104,7 +108,7 @@ namespace state::in_play
 	{
 		auto location = game::avatar::Docked::GetDockedLocation().value();
 		auto currentShip = game::avatar::Ship::Read();
-		auto ship = common::Utility::GetNthKey(shipPrices, hiliteRow);
+		std::optional<game::Ship> ship = common::Utility::GetNthKey(shipPrices, hiliteRow);
 		if (ship)
 		{
 			//TODO: if current cargo is too much for the new ship type, deny buying the ship type
