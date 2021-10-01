@@ -106,11 +106,17 @@ namespace state::in_play
 		}
 	}
 
+	static void RefreshButtons()
+	{
+		visuals::Buttons::SetEnabled(LAYOUT_NAME, BUTTON_REMOVE_TARGET, game::avatar::Destinations::GetDestination(currentDestinationId).has_value());
+	}
+
 	static void Refresh()
 	{
 		RefreshHovers();
 		RefreshSelection();
 		RefreshNames();
+		RefreshButtons();
 	}
 
 	const std::map<::Command, std::function<void()>> commandHandlers =
@@ -182,6 +188,7 @@ namespace state::in_play
 	static bool HandleWorldMapMouseButtonUp()
 	{
 		game::avatar::Destinations::SetDestination(currentDestinationId,visuals::WorldMap::GetDestination(LAYOUT_NAME, WORLD_MAP_ID));
+		Refresh();
 		return true;
 	}
 
@@ -190,13 +197,14 @@ namespace state::in_play
 		return [destinationId]()
 		{
 			currentDestinationId = destinationId;
-			RefreshSelection();
+			Refresh();
 		};
 	}
 
 	static void OnRemoveTarget()
 	{
 		game::avatar::Destinations::SetDestination(currentDestinationId, std::nullopt);
+		Refresh();
 	}
 
 	static const std::map<std::string, std::function<void()>> areaButtonHandlerTable =
