@@ -155,7 +155,6 @@ namespace state::in_play
 		if (candidateRow < shipPrices.size())
 		{
 			hiliteRow = candidateRow;
-			RefreshGrid();
 		}
 	}
 
@@ -168,16 +167,20 @@ namespace state::in_play
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& position)
 	{
 		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
+		hiliteRow = std::nullopt;
 		auto iter = mouseMotionHandlers.find(areaName);
 		if (iter != mouseMotionHandlers.end())
 		{
 			iter->second(position);
 		}
+		RefreshGrid();
 	}
 
 	static void OnMouseMotionOutsideAreas(const common::XY<int>&)
 	{
 		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
+		hiliteRow = std::nullopt;
+		RefreshGrid();
 	}
 
 	void Shipyard::Start()
