@@ -1,3 +1,4 @@
+#include <Application.OnEnter.h>
 #include <Application.MouseButtonUp.h>
 #include <Application.MouseMotion.h>
 #include <Application.UIState.h>
@@ -114,6 +115,7 @@ namespace sublayout
 
 	void AtSeaActions::Start()
 	{
+		::application::OnEnter::AddHandler(CURRENT_STATE, Refresh);
 		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
 		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea, OnMouseMotionOutsideAreas));
 	}
