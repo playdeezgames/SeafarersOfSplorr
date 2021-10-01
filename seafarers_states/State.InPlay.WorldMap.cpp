@@ -14,6 +14,7 @@
 #include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
+#include <Visuals.Buttons.h>
 #include <Visuals.Images.h>
 #include <Visuals.Texts.h>
 #include <Visuals.WorldMap.h>
@@ -41,8 +42,8 @@ namespace state::in_play
 
 	const std::string WORLD_MAP_ID = "WorldMap";
 	const std::string TEXT_HOVER_ISLAND = "HoverIsland";
-	const std::string TEXT_REMOVE_TARGET = "RemoveTarget";
-	const std::string TEXT_GO_BACK = "GoBack";
+	const std::string BUTTON_REMOVE_TARGET = "RemoveTarget";
+	const std::string BUTTON_GO_BACK = "GoBack";
 
 	const std::string NO_HOVER_TEXT = "-";
 
@@ -139,26 +140,14 @@ namespace state::in_play
 		};
 	}
 
-	static void HiliteRemoveTargetButton(bool hilite)
-	{
-		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_REMOVE_TARGET, (hilite) ? (game::Colors::CYAN) : (game::Colors::GRAY));
-	}
-
-	static void HiliteGoBackButton(bool hilite)
-	{
-		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, (hilite) ? (game::Colors::CYAN) : (game::Colors::GRAY));
-	}
-
 	void HoverOnGoBack(const common::XY<int>&)
 	{
-		HiliteGoBackButton(true);
-		HiliteRemoveTargetButton(false);
+		visuals::Buttons::SetHoverButton(LAYOUT_NAME, BUTTON_GO_BACK);
 	}
 
 	void HoverOnRemoveTarget(const common::XY<int>&)
 	{
-		HiliteGoBackButton(false);
-		HiliteRemoveTargetButton(true);
+		visuals::Buttons::SetHoverButton(LAYOUT_NAME, BUTTON_REMOVE_TARGET);
 	}
 
 	const std::map<std::string, std::function<void(const common::XY<int>&)>> areaMotionHandlerTable =
@@ -174,8 +163,7 @@ namespace state::in_play
 
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
 	{
-		HiliteGoBackButton(false);
-		HiliteRemoveTargetButton(false);
+		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
 		auto entry = areaMotionHandlerTable.find(areaName);
 		if (entry != areaMotionHandlerTable.end())
 		{
@@ -185,8 +173,7 @@ namespace state::in_play
 	
 	static void OnMouseMotionOutsideArea(const common::XY<int>& location)
 	{
-		HiliteGoBackButton(false);
-		HiliteRemoveTargetButton(false);
+		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
 		hoverDestinationId = std::nullopt;
 		RefreshHovers();
 		visuals::WorldMap::SetDestination(LAYOUT_NAME, WORLD_MAP_ID, std::nullopt);

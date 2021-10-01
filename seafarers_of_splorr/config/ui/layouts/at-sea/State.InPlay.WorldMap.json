@@ -57,10 +57,13 @@
         "drop-shadow-y": 2
     },
     {
-        "text-id": "RemoveTarget",
-        "type": "Text",
+        "button-id": "RemoveTarget",
+        "type": "Button",
         "font": "default",
-        "color": "Gray",
+        "colors": {
+            "hilite":"Cyan",
+            "normal":"Gray"
+        },
         "text": "Remove Target",
         "x": 632,
         "y": 320,
@@ -71,10 +74,13 @@
         "drop-shadow-y": 2
     },
     {
-        "text-id": "GoBack",
-        "type": "Text",
+        "button-id": "GoBack",
+        "type": "Button",
         "font": "default",
-        "color": "Gray",
+        "colors": {
+            "hilite":"Cyan",
+            "normal":"Gray"
+        },
         "text": "Go Back",
         "x": 632,
         "y": 336,
