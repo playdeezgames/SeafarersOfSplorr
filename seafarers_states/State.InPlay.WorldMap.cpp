@@ -101,7 +101,7 @@ namespace state::in_play
 			visuals::Texts::SetText(
 				LAYOUT_NAME, 
 				entry.second, 
-				game::avatar::Destinations::GetDestinationName(entry.first).value_or(""));
+				game::avatar::Destinations::GetDestinationName(entry.first).value_or("(unnamed)"));
 		}
 	}
 
