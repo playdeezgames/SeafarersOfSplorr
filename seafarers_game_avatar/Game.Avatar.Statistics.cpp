@@ -32,7 +32,7 @@ namespace game::avatar
 				{game::avatar::Statistic::SATIETY, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
 				{game::avatar::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
 #ifdef _DEBUG
-				{game::avatar::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 100.0},
+				{game::avatar::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 1000.0},
 #else
 				{game::avatar::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 #endif

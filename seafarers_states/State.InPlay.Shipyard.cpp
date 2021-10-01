@@ -1,5 +1,6 @@
 #include <Application.Command.h>
 #include <Application.MouseButtonUp.h>
+#include <Application.MouseMotion.h>
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
@@ -16,12 +17,18 @@
 #include <Game.Ships.h>
 #include "States.h"
 #include "UIState.h"
+#include <Visuals.Areas.h>
+#include <Visuals.Buttons.h>
 #include <Visuals.SpriteGrid.h>
 namespace state::in_play
 {
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_SHIPYARD;
 	static const std::string LAYOUT_NAME = "State.InPlay.Shipyard";
 	static const std::string SPRITE_GRID_ID = "Grid";
 	static const std::string FONT_DEFAULT = "default";
+
+	static const std::string AREA_GO_BACK = "GoBack";
+	static const std::string BUTTON_GO_BACK = "GoBack";
 
 	static std::map<game::Ship, double> shipPrices;
 	static size_t hiliteRow = 0;
@@ -44,12 +51,6 @@ namespace state::in_play
 	{
 		game::Avatar::DoAction(game::avatar::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
-	}
-
-	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
-	{
-		OnLeave();
-		return true;
 	}
 
 	static void RefreshStatistics()
@@ -85,6 +86,7 @@ namespace state::in_play
 	static void RefreshGrid()
 	{
 		visuals::SpriteGrid::Clear(LAYOUT_NAME, SPRITE_GRID_ID);
+		WriteTextToGrid({ 0,1 }, "Ship Type    Price", game::Colors::YELLOW);
 		RefreshShipPrices();
 		RefreshStatistics();
 	}
@@ -126,11 +128,47 @@ namespace state::in_play
 		{ ::Command::RED, OnLeave }
 	};
 
+	static bool OnMouseButtonUpInArea(const std::string& areaName)
+	{
+		if (areaName == AREA_GO_BACK)
+		{
+			OnLeave();
+			return true;
+		}
+		return false;
+	}
+
+	static void OnMouseMotionGoBack(const common::XY<int>&)
+	{
+		visuals::Buttons::SetHoverButton(LAYOUT_NAME, BUTTON_GO_BACK);
+	}
+
+	static const std::map<std::string, std::function<void(const common::XY<int>&)>> mouseMotionHandlers =
+	{
+		{AREA_GO_BACK, OnMouseMotionGoBack}
+	};
+
+	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& position)
+	{
+		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
+		auto iter = mouseMotionHandlers.find(areaName);
+		if (iter != mouseMotionHandlers.end())
+		{
+			iter->second(position);
+		}
+	}
+
+	static void OnMouseMotionOutsideAreas(const common::XY<int>&)
+	{
+		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
+	}
+
 	void Shipyard::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_SHIPYARD, OnEnter);
-		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_SHIPYARD, OnMouseButtonUp);
-		::application::Command::SetHandlers(::UIState::IN_PLAY_SHIPYARD, commandHandlers);
-		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_SHIPYARD, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
+		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
+		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea, OnMouseMotionOutsideAreas));
+		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
 	}
 }

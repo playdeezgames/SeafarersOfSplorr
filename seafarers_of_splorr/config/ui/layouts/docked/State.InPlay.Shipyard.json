@@ -32,6 +32,32 @@
         "drop-shadow-y": 2
     },
     {
+        "type": "Button",
+        "button-id": "GoBack",
+        "font": "default",
+        "colors": {
+            "hilite":"Cyan",
+            "normal":"Gray"
+        },
+        "text": "Go Back",
+        "x": 632,
+        "y": 336,
+        "horizontal-alignment": -1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2,
+        "enabled": true
+    },
+    {
+        "type":"Area",
+        "area-id":"GoBack",
+        "x":480,
+        "y":336,
+        "width":160,
+        "height":16
+    },
+    {
         "type": "Layout",
         "name": "Sublayout.Modded"
     }
