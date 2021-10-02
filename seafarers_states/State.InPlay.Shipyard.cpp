@@ -9,6 +9,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
 #include <Game.Avatar.Docked.h>
+#include <Game.Avatar.Items.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
@@ -121,28 +122,45 @@ namespace state::in_play
 		};
 	}
 
+	static void CheckTonnage(game::Ship desiredShip, double price)
+	{
+		if (game::avatar::Items::TotalTonnage() <= game::Ships::GetAvailableTonnage(desiredShip))
+		{
+			visuals::Confirmations::Write(
+				{
+					"Are you sure?",
+					DoBuyShip(desiredShip, price),
+					[]() {}
+				});
+			application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		}
+		else
+		{
+			visuals::Messages::Write({ "Too Much Cargo!",{} });
+			application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		}
+	}
+
+	static void CheckAvailableFunds(game::Ship desiredShip)
+	{
+		double price = shipPrices[desiredShip];
+		if (game::avatar::Statistics::GetMoney() >= price)
+		{
+			CheckTonnage(desiredShip, price);
+		}
+		else
+		{
+			visuals::Messages::Write({ "Insufficient Funds!",{} });
+			application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		}
+	}
+
 	static void TryBuyShip()
 	{
 		std::optional<game::Ship> desiredShip = common::Utility::GetNthKey(shipPrices, hiliteRow);
 		if (desiredShip)
 		{
-			double price = shipPrices[desiredShip.value()];
-			if (game::avatar::Statistics::GetMoney() >= price)
-			{
-				//TODO: tonnage check!
-				visuals::Confirmations::Write(
-					{
-						"Are you sure?",
-						DoBuyShip(desiredShip.value(), price),
-						[]() {}
-					});
-				application::UIState::Write(::UIState::IN_PLAY_NEXT);
-			}
-			else
-			{
-				visuals::Messages::Write({ "Insufficient Funds!",{} });
-				application::UIState::Write(::UIState::IN_PLAY_NEXT);
-			}
+			CheckAvailableFunds(desiredShip.value());
 		}
 	}
 

@@ -125,4 +125,10 @@ namespace game
 		}
 		return common::RNG::FromGenerator(initialShipGenerator, game::Ship::RAFT);
 	}
+
+	double Ships::GetAvailableTonnage(const game::Ship& ship)
+	{
+		return Read(ship).properties.find(ship::Property::TONNAGE)->second;
+	}
+
 }
