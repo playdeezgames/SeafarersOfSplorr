@@ -18,7 +18,9 @@
 #include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
+#include <Visuals.Confirmations.h>
 #include <Visuals.Buttons.h>
+#include <Visuals.Messages.h>
 #include <Visuals.SpriteGrid.h>
 namespace state::in_play
 {
@@ -104,23 +106,42 @@ namespace state::in_play
 		RefreshGrid();
 	}
 
-	static void BuyShip()
+	static std::function<void()> DoBuyShip(game::Ship desiredShip, double price)
 	{
-		auto location = game::avatar::Docked::GetDockedLocation().value();
-		auto currentShip = game::avatar::Ship::Read();
-		std::optional<game::Ship> ship = common::Utility::GetNthKey(shipPrices, hiliteRow);
-		if (ship)
+		return [desiredShip, price]()
 		{
-			//TODO: if current cargo is too much for the new ship type, deny buying the ship type
-			double price = shipPrices[ship.value()];
+			auto location = game::avatar::Docked::GetDockedLocation().value();
+			auto currentShip = game::avatar::Ship::Read();
+			game::avatar::Statistics::ChangeMoney(-price);
+			game::avatar::Ship::Write(desiredShip);
+			game::islands::Markets::BuyShip(location, desiredShip);
+			game::islands::Markets::SellShip(location, currentShip);
+			UpdateShipPrices();
+			RefreshGrid();
+		};
+	}
+
+	static void TryBuyShip()
+	{
+		std::optional<game::Ship> desiredShip = common::Utility::GetNthKey(shipPrices, hiliteRow);
+		if (desiredShip)
+		{
+			double price = shipPrices[desiredShip.value()];
 			if (game::avatar::Statistics::GetMoney() >= price)
 			{
-				game::avatar::Statistics::ChangeMoney(-price);
-				game::avatar::Ship::Write(ship.value());
-				game::islands::Markets::BuyShip(location, ship.value());
-				game::islands::Markets::SellShip(location, currentShip);
-				UpdateShipPrices();
-				RefreshGrid();
+				//TODO: tonnage check!
+				visuals::Confirmations::Write(
+					{
+						"Are you sure?",
+						DoBuyShip(desiredShip.value(), price),
+						[]() {}
+					});
+				application::UIState::Write(::UIState::IN_PLAY_NEXT);
+			}
+			else
+			{
+				visuals::Messages::Write({ "Insufficient Funds!",{} });
+				application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			}
 		}
 	}
@@ -129,19 +150,20 @@ namespace state::in_play
 	{
 		{ ::Command::UP, common::Utility::DoPreviousItem(hiliteRow, shipPrices, RefreshShipPrices) },
 		{ ::Command::DOWN, common::Utility::DoNextItem(hiliteRow, shipPrices, RefreshShipPrices) },
-		{ ::Command::GREEN, BuyShip },
+		{ ::Command::GREEN, TryBuyShip },
 		{ ::Command::BACK, OnLeave },
 		{ ::Command::RED, OnLeave }
 	};
 
+	static const std::map<std::string, std::function<void()>> buttonUpHandlers =
+	{
+		{AREA_GO_BACK, OnLeave},
+		{AREA_LIST, TryBuyShip}
+	};
+
 	static bool OnMouseButtonUpInArea(const std::string& areaName)
 	{
-		if (areaName == AREA_GO_BACK)
-		{
-			OnLeave();
-			return true;
-		}
-		return false;
+		return common::Utility::Dispatch(buttonUpHandlers, areaName, true, false);
 	}
 
 	static void OnMouseMotionGoBack(const common::XY<int>&)
