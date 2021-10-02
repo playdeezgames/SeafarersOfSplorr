@@ -3,7 +3,6 @@
 #include <Data.JSON.h>
 #include <memory>
 #include <SDL.h>
-#include <SDL_image.h>
 #include <SDL_mixer.h>
 namespace application
 {
@@ -17,17 +16,14 @@ namespace application
 	static const std::string CHANNEL_COUNT = "channelCount";
 	static const std::string CHUNK_SIZE = "chunkSize";
 
-	static std::shared_ptr<SDL_Window> window = nullptr;
-	static std::shared_ptr<Engine::Renderer> renderer = nullptr;
-
 	void Engine::SetFullscreen(bool flag)
 	{
-		SDL_SetWindowFullscreen(window.get(), (flag) ? (SDL_WINDOW_FULLSCREEN_DESKTOP) : (0));
+		Platform::SetFullscreen(flag);
 	}
 
 	bool Engine::IsFullscreen()
 	{
-		return (SDL_GetWindowFlags(window.get()) & SDL_WINDOW_FULLSCREEN) > 0;
+		return Platform::IsFullscreen();
 	}
 
 	extern void Start(const std::vector<std::string>&);
@@ -76,21 +72,8 @@ namespace application
 		int logicalHeight = properties[LOGICAL_HEIGHT];
 		std::string windowTitle = properties[TITLE];
 		std::string iconFileName = properties[ICON];
-		SDL_Window* pw = nullptr;//TODO: to application platform
-		SDL_Renderer* pr = nullptr;
-		SDL_CreateWindowAndRenderer(
-			windowWidth,
-			windowHeight,
-			SDL_WINDOW_RESIZABLE,
-			&pw,
-			&pr);
-		window = std::shared_ptr<SDL_Window>(pw, SDL_DestroyWindow);
-		renderer = std::make_shared<Engine::Renderer>(pr);
-		SDL_RenderSetLogicalSize(renderer.get()->renderer.get(), logicalWidth, logicalHeight);
-		SDL_SetWindowTitle(window.get(), windowTitle.c_str());
-		auto iconSurface = IMG_Load(iconFileName.c_str());
-		SDL_SetWindowIcon(window.get(), iconSurface);
-		SDL_FreeSurface(iconSurface);
+		Platform::StartWindow(windowWidth, windowHeight, logicalWidth, logicalHeight, windowTitle, iconFileName);
+
 	}
 
 	static void StartControllers()
@@ -125,8 +108,8 @@ namespace application
 			auto frameTicks = SDL_GetTicks();
 			Updatify(frameTicks - currentTicks);
 			currentTicks = frameTicks;
-			Engine::Render(renderer);
-			SDL_RenderPresent(renderer.get()->renderer.get());
+			Engine::Render(Platform::GetRenderer());
+			Platform::Present();
 			while (SDL_PollEvent(&evt))
 			{
 				HandleEvent(evt);
