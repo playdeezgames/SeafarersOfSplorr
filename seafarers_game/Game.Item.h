@@ -11,6 +11,7 @@ namespace game
 		FISH,
 		FISHING_POLE,
 		BAIT,
-		SEAWEED
+		SEAWEED,
+		POSH_TROUSERS
 	};
 }

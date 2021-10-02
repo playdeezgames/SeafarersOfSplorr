@@ -8,7 +8,8 @@ namespace game
 			{
 				"legs",
 				{
-					Item::TROUSERS
+					Item::TROUSERS,
+					Item::POSH_TROUSERS
 				}
 			}},
 		{EquipSlot::PRISON_WALLET,

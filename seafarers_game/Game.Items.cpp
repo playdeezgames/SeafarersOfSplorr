@@ -123,6 +123,20 @@ namespace game
 				{
 				}
 			}
+		},
+		{ game::Item::POSH_TROUSERS,
+			{
+				"posh trousers",
+				{
+					{game::Commodity::SILK, 1.0},
+					{game::Commodity::LABOR, 0.75}
+				},
+				1,
+				9,
+				0.1,
+				{
+				}
+			}
 		}
 	};
 
