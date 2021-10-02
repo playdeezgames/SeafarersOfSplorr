@@ -137,6 +137,16 @@ namespace common
 			}
 			return std::nullopt;
 		}
+		template<typename TKey, typename TValue>
+		static std::optional<TValue> TryGetKey(const std::map<TKey, TValue>& table, const TKey& key)
+		{
+			auto iter = table.find(key);
+			if (iter != table.end())
+			{
+				return iter->second;
+			}
+			return std::nullopt;
+		}
 	};
 }
 

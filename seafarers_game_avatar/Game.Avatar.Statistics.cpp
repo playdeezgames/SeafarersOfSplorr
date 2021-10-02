@@ -1,7 +1,10 @@
+#include <Common.Utility.h>
 #include <Data.Game.Avatar.Statistic.h>
 #include <Data.Game.Common.h>
+#include "Game.Avatar.Equipment.h"
 #include "Game.Avatar.Statistic.h"
 #include "Game.Avatar.Statistics.h"
+#include <Game.Item.h>
 #include <map>
 #include <list>
 namespace game::avatar
@@ -14,6 +17,8 @@ namespace game::avatar
 	const std::string Statistics::FORMAT_SATIETY = "\x82 {:.0f}";
 	const std::string Statistics::FORMAT_HEADING = "\x84 {}";
 	const std::string Statistics::FORMAT_SPEED = "\x85 {:.2f}";
+	const std::string Statistics::FORMAT_POSHNESS = "\x89 {:.0f}";
+	const std::string Statistics::FORMAT_DIGNITY = "\x8A {:.0f}";
 
 	struct StatisticDescriptor
 	{
@@ -21,6 +26,23 @@ namespace game::avatar
 		std::optional<double> minimum;
 		std::optional<double> maximum;
 		double initial;
+	};
+
+	static const std::map<Item, double> dignityBuffs =
+	{
+		{ Item::TROUSERS, 100.0 },
+		{ Item::POSH_TROUSERS, 100.0 }
+	};
+
+	static const std::map<Item, double> poshBuffs =
+	{
+		{ Item::POSH_TROUSERS, 100.0 }
+	};
+
+	static const std::map<game::avatar::Statistic, std::map<Item, double>> allBuffs =
+	{
+		{Statistic::DIGNITY, dignityBuffs},
+		{Statistic::POSHNESS, poshBuffs}
 	};
 
 	static const std::map<game::Difficulty, std::list<StatisticDescriptor>> initialValues =
@@ -32,13 +54,18 @@ namespace game::avatar
 				{game::avatar::Statistic::SATIETY, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
 				{game::avatar::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
 #ifdef _DEBUG
-				{game::avatar::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 1000.0},
+				{game::avatar::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 #else
 				{game::avatar::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 #endif
 				{game::avatar::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::avatar::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::avatar::Statistic::DIGNITY, std::optional<double>(0.0), std::optional<double>(100.0), 0.0},
+				{
+					game::avatar::Statistic::DIGNITY, 
+					std::optional<double>(0.0), 
+					std::optional<double>(100.0), 
+					0.0
+				},
 				{game::avatar::Statistic::POSHNESS, std::optional<double>(0.0), std::nullopt, 0.0}
 			}},
 		{game::Difficulty::NORMAL,
@@ -50,7 +77,12 @@ namespace game::avatar
 				{game::avatar::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::avatar::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::avatar::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::avatar::Statistic::DIGNITY, std::optional<double>(0.0), std::optional<double>(100.0), 0.0},
+				{
+					game::avatar::Statistic::DIGNITY,
+					std::optional<double>(0.0),
+					std::optional<double>(100.0),
+					0.0
+				},
 				{game::avatar::Statistic::POSHNESS, std::optional<double>(0.0), std::nullopt, 0.0}
 			}},
 		{game::Difficulty::HARD,
@@ -62,7 +94,12 @@ namespace game::avatar
 				{game::avatar::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::avatar::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::avatar::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::avatar::Statistic::DIGNITY, std::optional<double>(0.0), std::optional<double>(100.0), 0.0},
+				{
+					game::avatar::Statistic::DIGNITY,
+					std::optional<double>(0.0),
+					std::optional<double>(100.0),
+					0.0
+				},
 				{game::avatar::Statistic::POSHNESS, std::optional<double>(0.0), std::nullopt, 0.0}
 			}},
 		{game::Difficulty::HARDCORE,
@@ -74,7 +111,12 @@ namespace game::avatar
 				{game::avatar::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::avatar::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::avatar::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::avatar::Statistic::DIGNITY, std::optional<double>(0.0), std::optional<double>(100.0), 0.0},
+				{
+					game::avatar::Statistic::DIGNITY,
+					std::optional<double>(0.0),
+					std::optional<double>(100.0),
+					0.0
+				},
 				{game::avatar::Statistic::POSHNESS, std::optional<double>(0.0), std::nullopt, 0.0}
 			}}
 	};
@@ -104,9 +146,28 @@ namespace game::avatar
 		return data::game::avatar::Statistic::Read((int)statistic).value().minimum;
 	}
 
-	double GetCurrent(const game::avatar::Statistic& statistic)
+	static double GetCurrent(const game::avatar::Statistic& statistic)
 	{
 		return data::game::avatar::Statistic::Read((int)statistic).value().current;
+	}
+
+	static double GetCurrentWithBuffs(const game::avatar::Statistic& statistic)
+	{
+
+		auto current = GetCurrent(statistic);
+		auto itemBuffs = common::Utility::TryGetKey(allBuffs, statistic);
+		if (itemBuffs)
+		{
+			for (auto& itemBuff : itemBuffs.value())
+			{
+				if (game::avatar::Equipment::IsEquipped(itemBuff.first))
+				{
+					current += itemBuff.second;
+				}
+			}
+		}
+		return current;
+
 	}
 
 	static void SetCurrent(const game::avatar::Statistic& statistic, double value)
@@ -239,4 +300,15 @@ namespace game::avatar
 	{
 		ChangeCurrent(Statistic::BRAWLING, delta);
 	}
+
+	double Statistics::GetDignity()
+	{
+		return GetCurrentWithBuffs(avatar::Statistic::DIGNITY);
+	}
+
+	double Statistics::GetPoshness()
+	{
+		return GetCurrentWithBuffs(avatar::Statistic::POSHNESS);
+	}
+
 }

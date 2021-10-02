@@ -61,6 +61,8 @@ namespace state::in_play
 		WriteTextToGridRight({ 39,3 }, std::format(game::avatar::Statistics::FORMAT_HEALTH, game::avatar::Statistics::GetHealth()), game::Colors::RED);
 		WriteTextToGridRight({ 39,4 }, std::format(game::avatar::Statistics::FORMAT_SATIETY, game::avatar::Statistics::GetSatiety()), game::Colors::MAGENTA);
 		WriteTextToGridRight({ 39,5 }, std::format(game::avatar::Statistics::FORMAT_TURNS, game::avatar::Statistics::GetTurnsRemaining()), game::Colors::DARK_GRAY);
+		WriteTextToGridRight({ 39,6 }, std::format(game::avatar::Statistics::FORMAT_DIGNITY, game::avatar::Statistics::GetDignity()), game::Colors::GRAY);
+		WriteTextToGridRight({ 39,7 }, std::format(game::avatar::Statistics::FORMAT_POSHNESS, game::avatar::Statistics::GetPoshness()), game::Colors::CYAN);
 	}
 
 	static void UpdatePlights()

@@ -13,6 +13,8 @@ namespace game::avatar
 		static const std::string FORMAT_SATIETY;
 		static const std::string FORMAT_HEADING;
 		static const std::string FORMAT_SPEED;
+		static const std::string FORMAT_POSHNESS;
+		static const std::string FORMAT_DIGNITY;
 		static void Reset(const game::Difficulty&);
 		static double GetMoney();
 		static void ChangeMoney(double);
@@ -33,5 +35,7 @@ namespace game::avatar
 		static void ChangeInfamy(double);
 		static double GetBrawling();
 		static void ChangeBrawling(double);
+		static double GetDignity();
+		static double GetPoshness();
 	};
 }

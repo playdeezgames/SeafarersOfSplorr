@@ -30,6 +30,23 @@ namespace game::avatar
 	std::map<EquipSlot, Item> Equipment::All()
 	{
 		std::map<EquipSlot, Item> result;
+		for (auto& entry : data::game::avatar::Equipment::All())
+		{
+			result[(EquipSlot)entry.first] = (Item)entry.second;
+		}
 		return result;
 	}
+
+	bool Equipment::IsEquipped(const Item& item)
+	{
+		for (auto& entry : All())
+		{
+			if (entry.second == item)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 }

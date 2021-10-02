@@ -178,6 +178,24 @@
         "height":16
     },    
     {
+        "type":"Area",
+        "area-id":"HoverDignity",
+        "tool-tip": "Dignity",
+        "x":480,
+        "y":128,
+        "width":160,
+        "height":16
+    },    
+    {
+        "type":"Area",
+        "area-id":"HoverPoshness",
+        "tool-tip": "Poshness",
+        "x":480,
+        "y":144,
+        "width":160,
+        "height":16
+    },    
+    {
         "type": "Layout",
         "name": "Sublayout.Modded"
     }

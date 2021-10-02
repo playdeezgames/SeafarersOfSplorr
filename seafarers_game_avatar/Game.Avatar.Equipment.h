@@ -13,5 +13,6 @@ namespace game::avatar
 		static void Equip(const EquipSlot&, const Item&);
 		static void Unequip(const EquipSlot&);
 		static std::map<EquipSlot, Item> All();
+		static bool IsEquipped(const Item&);
 	};
 }
