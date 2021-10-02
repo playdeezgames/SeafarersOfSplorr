@@ -85,4 +85,9 @@ namespace game
 		return 1.0 - std::abs(relativeHeading / common::Heading::DEGREES);
 	}
 
+	double World::GetUnfoulingLaborMultiplier()
+	{
+		return 100.0;//TODO: put this in configuration somewhere!
+	}
+
 }

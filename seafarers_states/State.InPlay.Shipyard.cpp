@@ -11,11 +11,14 @@
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Items.h>
 #include <Game.Avatar.Ship.h>
+#include <Game.Avatar.ShipStatistics.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
+#include <Game.Islands.Commodities.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Islands.Ships.h>
 #include <Game.Ships.h>
+#include <Game.World.h>
 #include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
@@ -31,9 +34,11 @@ namespace state::in_play
 	static const std::string FONT_DEFAULT = "default";
 
 	static const std::string AREA_GO_BACK = "GoBack";
+	static const std::string AREA_UNFOUL = "Unfoul";
 	static const std::string AREA_LIST = "List";
 
 	static const std::string BUTTON_GO_BACK = "GoBack";
+	static const std::string BUTTON_UNFOUL = "Unfoul";
 
 	static std::map<game::Ship, double> shipPrices;
 	static std::optional<size_t> hiliteRow = std::nullopt;
@@ -65,6 +70,12 @@ namespace state::in_play
 			std::format(
 				"Money: {:.3f}",
 				game::avatar::Statistics::GetMoney()),
+			game::Colors::WHITE);
+		WriteTextToGrid(
+			{ 0, 18 },
+			std::format(
+				"Fouling: {:.0f}%",
+				game::avatar::ShipStatistics::GetFoulingPercentage()),
 			game::Colors::WHITE);
 	}
 
@@ -173,9 +184,48 @@ namespace state::in_play
 		{ ::Command::RED, OnLeave }
 	};
 
+	static std::function<void()> DoUnfoul(double price)
+	{
+		return [price]() 
+		{
+			game::avatar::Statistics::ChangeMoney(-price);
+			game::avatar::ShipStatistics::CleanHull(game::Side::STARBOARD);
+			game::avatar::ShipStatistics::CleanHull(game::Side::PORT);
+		};
+	}
+
+	static void OnUnfoul()
+	{
+		double fouling = game::avatar::ShipStatistics::GetFouling();
+		if (fouling > 0)
+		{
+			double labor = game::World::GetUnfoulingLaborMultiplier() * fouling;
+			double price = game::islands::Commodities::GetPurchasePrice(game::avatar::Docked::GetDockedLocation().value(),
+				{
+					{game::Commodity::LABOR, labor}
+				});
+			if (game::avatar::Statistics::GetMoney() >= price)
+			{
+				visuals::Confirmations::Write(
+					{
+						"Are you sure?",
+						DoUnfoul(price),
+						[]() {}
+					});
+				application::UIState::Write(::UIState::IN_PLAY_NEXT);
+			}
+			else
+			{
+				visuals::Messages::Write({ "Insufficient Funds!",{} });
+				application::UIState::Write(::UIState::IN_PLAY_NEXT);
+			}
+		}
+	}
+
 	static const std::map<std::string, std::function<void()>> buttonUpHandlers =
 	{
 		{AREA_GO_BACK, OnLeave},
+		{AREA_UNFOUL, OnUnfoul},
 		{AREA_LIST, TryBuyShip}
 	};
 
@@ -187,6 +237,11 @@ namespace state::in_play
 	static void OnMouseMotionGoBack(const common::XY<int>&)
 	{
 		visuals::Buttons::SetHoverButton(LAYOUT_NAME, BUTTON_GO_BACK);
+	}
+
+	static void OnMouseMotionUnfoul(const common::XY<int>&)
+	{
+		visuals::Buttons::SetHoverButton(LAYOUT_NAME, BUTTON_UNFOUL);
 	}
 
 	static void OnMouseMotionList(const common::XY<int>& xy)
@@ -201,6 +256,7 @@ namespace state::in_play
 	static const std::map<std::string, std::function<void(const common::XY<int>&)>> mouseMotionHandlers =
 	{
 		{AREA_GO_BACK, OnMouseMotionGoBack},
+		{AREA_UNFOUL, OnMouseMotionUnfoul},
 		{AREA_LIST, OnMouseMotionList}
 	};
 

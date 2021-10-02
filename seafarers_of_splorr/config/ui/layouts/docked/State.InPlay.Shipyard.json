@@ -33,6 +33,24 @@
     },
     {
         "type": "Button",
+        "button-id": "Unfoul",
+        "font": "default",
+        "colors": {
+            "hilite":"Cyan",
+            "normal":"Gray"
+        },
+        "text": "Unfoul Ship",
+        "x": 632,
+        "y": 320,
+        "horizontal-alignment": -1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2,
+        "enabled": true
+    },
+    {
+        "type": "Button",
         "button-id": "GoBack",
         "font": "default",
         "colors": {
@@ -62,6 +80,14 @@
         "area-id":"GoBack",
         "x":480,
         "y":336,
+        "width":160,
+        "height":16
+    },
+    {
+        "type":"Area",
+        "area-id":"Unfoul",
+        "x":480,
+        "y":320,
         "width":160,
         "height":16
     },

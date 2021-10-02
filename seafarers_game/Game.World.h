@@ -12,6 +12,7 @@ namespace game
 		static double GetDockDistance();
 		static double GetWindHeading();
 		static double GetWindSpeedMultiplier(double);
+		static double GetUnfoulingLaborMultiplier();
 		static void SetWindHeading(double);
 		static void Reset(const game::Difficulty&);
 	};
