@@ -168,11 +168,7 @@ namespace state::in_play
 	{
 		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
 		hiliteRow = std::nullopt;
-		auto iter = mouseMotionHandlers.find(areaName);
-		if (iter != mouseMotionHandlers.end())
-		{
-			iter->second(position);
-		}
+		common::Utility::DispatchParameter(mouseMotionHandlers, areaName, position);
 		RefreshGrid();
 	}
 
