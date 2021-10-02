@@ -9,6 +9,8 @@ namespace game::avatar
 		MONEY,
 		REPUTATION,
 		BRAWLING,
-		INFAMY
+		INFAMY,
+		DIGNITY,
+		POSHNESS
 	};
 }

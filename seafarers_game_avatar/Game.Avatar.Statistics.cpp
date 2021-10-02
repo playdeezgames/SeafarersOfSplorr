@@ -37,7 +37,9 @@ namespace game::avatar
 				{game::avatar::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 #endif
 				{game::avatar::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::avatar::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0}
+				{game::avatar::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0},
+				{game::avatar::Statistic::DIGNITY, std::optional<double>(0.0), std::optional<double>(100.0), 0.0},
+				{game::avatar::Statistic::POSHNESS, std::optional<double>(0.0), std::nullopt, 0.0}
 			}},
 		{game::Difficulty::NORMAL,
 			{
@@ -47,7 +49,9 @@ namespace game::avatar
 				{game::avatar::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
 				{game::avatar::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::avatar::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::avatar::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0}
+				{game::avatar::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0},
+				{game::avatar::Statistic::DIGNITY, std::optional<double>(0.0), std::optional<double>(100.0), 0.0},
+				{game::avatar::Statistic::POSHNESS, std::optional<double>(0.0), std::nullopt, 0.0}
 			}},
 		{game::Difficulty::HARD,
 			{
@@ -57,7 +61,9 @@ namespace game::avatar
 				{game::avatar::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
 				{game::avatar::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::avatar::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::avatar::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0}
+				{game::avatar::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0},
+				{game::avatar::Statistic::DIGNITY, std::optional<double>(0.0), std::optional<double>(100.0), 0.0},
+				{game::avatar::Statistic::POSHNESS, std::optional<double>(0.0), std::nullopt, 0.0}
 			}},
 		{game::Difficulty::HARDCORE,
 			{
@@ -67,7 +73,9 @@ namespace game::avatar
 				{game::avatar::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
 				{game::avatar::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::avatar::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::avatar::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0}
+				{game::avatar::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0},
+				{game::avatar::Statistic::DIGNITY, std::optional<double>(0.0), std::optional<double>(100.0), 0.0},
+				{game::avatar::Statistic::POSHNESS, std::optional<double>(0.0), std::nullopt, 0.0}
 			}}
 	};
 
