@@ -7,6 +7,7 @@
 #include <Application.TextInput.h>
 #include <Application.UIState.h>
 #include <Application.Update.h>
+#include <Common.Utility.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Destinations.h>
 #include <Game.Colors.h>
@@ -170,11 +171,7 @@ namespace state::in_play
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
 	{
 		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
-		auto entry = areaMotionHandlerTable.find(areaName);
-		if (entry != areaMotionHandlerTable.end())
-		{
-			entry->second(location);
-		}
+		common::Utility::DispatchParameter(areaMotionHandlerTable, areaName, location);
 	}
 	
 	static void OnMouseMotionOutsideArea(const common::XY<int>& location)
@@ -220,13 +217,7 @@ namespace state::in_play
 
 	static bool OnMouseButtonUpInArea(const std::string& areaName)
 	{
-		auto entry = areaButtonHandlerTable.find(areaName);
-		if (entry != areaButtonHandlerTable.end())
-		{
-			entry->second();
-			return true;
-		}
-		return false;
+		return common::Utility::Dispatch(areaButtonHandlerTable, areaName, true, false);
 	}
 
 	static void OnUpdate(const unsigned int&)

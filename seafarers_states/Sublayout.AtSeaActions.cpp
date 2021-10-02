@@ -2,6 +2,7 @@
 #include <Application.MouseButtonUp.h>
 #include <Application.MouseMotion.h>
 #include <Application.UIState.h>
+#include <Common.Utility.h>
 #include <functional>
 #include <Game.Avatar.h>
 #include <Game.Avatar.Items.h>
@@ -85,14 +86,14 @@ namespace sublayout
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
+	static const std::map<HoverButton, std::function<void()>> buttonUpHandlers =
+	{
+		{HoverButton::FISHING, OnFishing}
+	};
+
 	static bool OnMouseButtonUpInArea(const std::string& area)
 	{
-		switch (hoverAreas.find(area)->second)
-		{
-		case HoverButton::FISHING:
-			OnFishing();
-			break;
-		}
+		common::Utility::Dispatch(buttonUpHandlers, hoverAreas.find(area)->second);
 		return true;
 	}
 

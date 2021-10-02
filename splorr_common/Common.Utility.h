@@ -9,7 +9,7 @@ namespace common
 	struct Utility
 	{
 		template<typename TEnum>
-		static void Dispatch(const std::map<TEnum, std::function<void()>> handlers, const TEnum& key)
+		static void Dispatch(const std::map<TEnum, std::function<void()>>& handlers, const TEnum& key)
 		{
 			auto iter = handlers.find(key);
 			if (iter != handlers.end())
@@ -18,7 +18,7 @@ namespace common
 			}
 		}
 		template<typename TEnum, typename TResult>
-		static TResult Dispatch(const std::map<TEnum, std::function<TResult()>> handlers, const TEnum& key, const TResult& defaultResult)
+		static TResult Dispatch(const std::map<TEnum, std::function<TResult()>>& handlers, const TEnum& key, const TResult& defaultResult)
 		{
 			auto iter = handlers.find(key);
 			if (iter != handlers.end())
@@ -28,7 +28,7 @@ namespace common
 			return defaultResult;
 		}
 		template<typename TEnum, typename TParameter>
-		static void DispatchParameter(const std::map<TEnum, std::function<void(const TParameter&)>> handlers, const TEnum& key, const TParameter& parameter)
+		static void DispatchParameter(const std::map<TEnum, std::function<void(const TParameter&)>>& handlers, const TEnum& key, const TParameter& parameter)
 		{
 			auto iter = handlers.find(key);
 			if (iter != handlers.end())
@@ -37,7 +37,7 @@ namespace common
 			}
 		}
 		template<typename TEnum, typename TResult, typename TParameter>
-		static TResult DispatchParameter(const std::map<TEnum, std::function<TResult(const TParameter&)>> handlers, const TEnum& key, const TParameter& parameter, const TResult& defaultResult)
+		static TResult DispatchParameter(const std::map<TEnum, std::function<TResult(const TParameter&)>>& handlers, const TEnum& key, const TParameter& parameter, const TResult& defaultResult)
 		{
 			auto iter = handlers.find(key);
 			if (iter != handlers.end())
@@ -45,6 +45,17 @@ namespace common
 				return iter->second(parameter);
 			}
 			return defaultResult;
+		}
+		template<typename TEnum, typename TResult>
+		static TResult Dispatch(const std::map<TEnum, std::function<void()>>& handlers, const TEnum& key, const TResult& handledResult, const TResult& unhandledResult)
+		{
+			auto iter = handlers.find(key);
+			if (iter != handlers.end())
+			{
+				iter->second();
+				return handledResult;
+			}
+			return unhandledResult;
 		}
 
 		template<typename TKey, typename TValue>
