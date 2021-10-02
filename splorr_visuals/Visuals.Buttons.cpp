@@ -104,4 +104,12 @@ namespace visuals
 	{
 		return internalButtons[buttonTable[layoutName][buttonName]].enabled;
 	}
+
+	std::function<void()> Buttons::DoSetHoverButton(const std::string& layoutName, const std::string& buttonName)
+	{
+		return [layoutName, buttonName]()
+		{
+			SetHoverButton(layoutName, buttonName);
+		};
+	}
 }

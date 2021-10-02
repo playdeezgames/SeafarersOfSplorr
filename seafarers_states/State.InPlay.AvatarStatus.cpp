@@ -110,21 +110,17 @@ namespace state::in_play
 		{ ::Command::RED, OnLeave }
 	};
 
-	static const std::map<std::string, std::string> areaButtons = 
+	static const std::map<std::string, std::function<void()>> areaButtons = 
 	{
-		{AREA_GO_BACK, BUTTON_GO_BACK},
-		{AREA_EQUIPMENT, BUTTON_EQUIPMENT},
-		{AREA_JOB, BUTTON_JOB}
+		{AREA_GO_BACK, visuals::Buttons::DoSetHoverButton(LAYOUT_NAME, BUTTON_GO_BACK)},
+		{AREA_EQUIPMENT, visuals::Buttons::DoSetHoverButton(LAYOUT_NAME, BUTTON_EQUIPMENT)},
+		{AREA_JOB, visuals::Buttons::DoSetHoverButton(LAYOUT_NAME, BUTTON_JOB)}
 	};
 
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>&)
 	{
 		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
-		auto iter = areaButtons.find(areaName);
-		if (iter != areaButtons.end())
-		{
-			visuals::Buttons::SetHoverButton(LAYOUT_NAME, iter->second);
-		}
+		common::Utility::Dispatch(areaButtons, areaName);
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_TOOL_TIP, visuals::Areas::Get(LAYOUT_NAME, areaName).value().toolTip.value_or(""));
 	}
 
@@ -143,13 +139,7 @@ namespace state::in_play
 
 	static bool OnMouseButtonUpInArea(const std::string& areaName)
 	{
-		auto iter = areaActions.find(areaName);
-		if (iter != areaActions.end())
-		{
-			iter->second();
-			return true;
-		}
-		return false;
+		return common::Utility::Dispatch(areaActions, areaName, true, false);
 	}
 
 	void AvatarStatus::Start()
