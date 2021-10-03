@@ -29,7 +29,7 @@ namespace state::in_play
 	static const std::string FORMAT_SHIP_TYPE = "Ship Type: {}";
 	static const std::string FORMAT_SPEED_FACTOR = "Speed Factor: {}";
 	static const std::string FORMAT_TONNAGE = "Tonnage: {}/{}";
-	static const std::string FORMAT_FOULING = "Fouling: {:.0f}%";
+	static const std::string FORMAT_FOULING = "Fouling: {:.0f}%({:.0f}%P, {:.0f}%S)";
 
 	static const std::string MENU_ID = "ShipStatus";
 	static const std::string MENU_ITEM_ID = "Careen";
@@ -84,7 +84,10 @@ namespace state::in_play
 			LAYOUT_NAME,
 			TEXT_FOULING,
 			std::format(FORMAT_FOULING,
-				game::avatar::ShipStatistics::GetFoulingPercentage()));
+				game::avatar::ShipStatistics::GetFoulingPercentage(),
+				game::avatar::ShipStatistics::GetFoulingPercentage(game::Side::PORT),
+				game::avatar::ShipStatistics::GetFoulingPercentage(game::Side::STARBOARD)
+				));
 	}
 
 	static void OnEnter()
