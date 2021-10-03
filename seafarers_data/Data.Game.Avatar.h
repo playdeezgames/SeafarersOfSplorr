@@ -1,6 +1,7 @@
 #pragma once
 #include <Common.XY.h>
 #include <optional>
+#include <string>
 namespace data::game
 {
 	struct Avatar 
@@ -9,6 +10,7 @@ namespace data::game
 		double heading;
 		double speed;
 		int state;
+		std::string name;
 
 		static void Write(int, const Avatar&);
 		static std::optional<Avatar> Read(int);

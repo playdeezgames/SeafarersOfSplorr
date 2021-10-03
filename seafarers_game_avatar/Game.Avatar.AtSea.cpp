@@ -22,7 +22,9 @@ namespace game::avatar
 		{
 			{worldSize.GetX() / 2.0, worldSize.GetY() / 2.0},
 			common::Data::ModuloDouble(common::RNG::FromRange(0.0, common::Heading::DEGREES), common::Heading::DEGREES).value(),
-			1.0
+			1.0,
+			0,
+			"nada"//TODO: generate a name?
 		};
 		data::game::Avatar::Write(data);
 		data::game::Avatar::WriteState((int)game::avatar::State::AT_SEA);
