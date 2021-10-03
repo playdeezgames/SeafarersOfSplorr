@@ -32,8 +32,8 @@ namespace game
 		auto item = common::RNG::FromGenerator(cargoTypeGenerator, Item::SACK_OF_WHEAT);
 		auto itemDescriptor = Items::Read(item);
 		auto ship = common::RNG::FromGenerator(shipTypeGenerator, Ship::RAFT);
-		auto shipDescriptor = Ships::Read(ship);
-		auto cargoQuantity = (size_t)common::RNG::FromRange(0.0, shipDescriptor.properties[game::ship::Property::TONNAGE] / itemDescriptor.tonnage);
+		auto tonnage = Ships::GetTotalTonnage(ship);
+		auto cargoQuantity = (size_t)common::RNG::FromRange(0.0, tonnage / itemDescriptor.tonnage);
 		game::islands::Markets::BuyItems(location, item, cargoQuantity);
 		data::game::Merchant::Add({ 
 				0, //merchant id is auto assigned

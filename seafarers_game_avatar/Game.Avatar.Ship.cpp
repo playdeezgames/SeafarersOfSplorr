@@ -14,8 +14,8 @@ namespace game::avatar
 	void Ship::Write(const game::Ship& ship)
 	{
 		data::game::avatar::Ship::Write((int)ship);
-		auto descriptor = Ships::Read(ship);
-		for (auto statistic : descriptor.statistics)
+		auto statistics = Ships::GetStatistics(ship);
+		for (auto statistic : statistics)
 		{
 			data::game::avatar::ShipStatistic::Write((int)statistic.first, 
 				{
@@ -34,7 +34,7 @@ namespace game::avatar
 	double Ship::AvailableTonnage()
 	{
 		return 
-			game::Ships::Read(Read()).properties.find(game::ship::Property::TONNAGE)->second -
+			game::Ships::GetTotalTonnage(Read()) -
 			game::avatar::Items::TotalTonnage();
 	}
 }

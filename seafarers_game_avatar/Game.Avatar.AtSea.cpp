@@ -163,11 +163,12 @@ namespace game::avatar
 
 		double multiplier = World::GetWindSpeedMultiplier(avatar.heading);
 
-		auto shipDescriptor = game::Ships::Read(game::avatar::Ship::Read());
+		auto speedFactor = game::Ships::GetSpeedFactor(game::avatar::Ship::Read());
+
 		common::XY<double> delta =
 			common::Heading::DegreesToXY(avatar.heading) *
 			effectiveSpeed * multiplier *
-			shipDescriptor.properties.find(game::ship::Property::SPEED_FACTOR)->second;
+			speedFactor;
 
 		avatar.location = ClampAvatarLocation(avatar.location + delta, result);
 

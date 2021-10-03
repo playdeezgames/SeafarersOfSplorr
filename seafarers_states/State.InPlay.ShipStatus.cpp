@@ -28,7 +28,7 @@ namespace state::in_play
 
 	static const std::string FORMAT_SHIP_TYPE = "Ship Type: {}";
 	static const std::string FORMAT_SPEED_FACTOR = "Speed Factor: {}";
-	static const std::string FORMAT_TONNAGE = "Tonnage: {}";
+	static const std::string FORMAT_TONNAGE = "Tonnage: {}/{}";
 	static const std::string FORMAT_FOULING = "Fouling: {:.0f}%";
 
 	static const std::string MENU_ID = "ShipStatus";
@@ -65,20 +65,20 @@ namespace state::in_play
 	static void UpdateShipProperties()
 	{
 		auto shipType = game::avatar::Ship::Read();
-		auto& descriptor = game::Ships::Read(shipType);
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_SHIP_TYPE, std::format(FORMAT_SHIP_TYPE, descriptor.name));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_SHIP_TYPE, std::format(FORMAT_SHIP_TYPE, game::Ships::GetName(shipType)));
 
 		visuals::Texts::SetText(
 			LAYOUT_NAME,
 			TEXT_SPEED_FACTOR,
 			std::format(FORMAT_SPEED_FACTOR, 
-				descriptor.properties.find(game::ship::Property::SPEED_FACTOR)->second));
+				game::Ships::GetSpeedFactor(shipType)));
 
 		visuals::Texts::SetText(
 			LAYOUT_NAME,
 			TEXT_TONNAGE,
 			std::format(FORMAT_TONNAGE,
-				descriptor.properties.find(game::ship::Property::TONNAGE)->second));
+				game::avatar::Ship::AvailableTonnage(),
+				game::Ships::GetTotalTonnage(shipType)));
 
 		visuals::Texts::SetText(
 			LAYOUT_NAME,

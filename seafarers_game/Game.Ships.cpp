@@ -91,7 +91,7 @@ namespace game
 
 	static std::list<game::Ship> shipList;
 
-	const game::ShipDescriptor& Ships::Read(const game::Ship & ship)
+	static const game::ShipDescriptor& Read(const game::Ship & ship)
 	{
 		return ships.find(ship)->second;
 	}
@@ -126,9 +126,28 @@ namespace game
 		return common::RNG::FromGenerator(initialShipGenerator, game::Ship::RAFT);
 	}
 
-	double Ships::GetAvailableTonnage(const game::Ship& ship)
+	double Ships::GetTotalTonnage(const game::Ship& ship)
 	{
 		return Read(ship).properties.find(ship::Property::TONNAGE)->second;
 	}
 
+	const std::string& Ships::GetName(const game::Ship& ship)
+	{
+		return Read(ship).name;
+	}
+
+	double Ships::GetSpeedFactor(const game::Ship& ship)
+	{
+		return Read(ship).properties.find(ship::Property::SPEED_FACTOR)->second;
+	}
+
+	const std::map<game::Commodity, double> Ships::GetCommodities(const game::Ship& ship)
+	{
+		return Read(ship).commodities;
+	}
+
+	const const std::map<ShipStatistic, ShipStatisticDescriptor>& Ships::GetStatistics(const game::Ship& ship)
+	{
+		return Read(ship).statistics;
+	}
 }

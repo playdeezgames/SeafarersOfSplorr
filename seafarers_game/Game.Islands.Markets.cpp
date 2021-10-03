@@ -46,13 +46,13 @@ namespace game::islands
 
 	void Markets::BuyShip(const common::XY<double>& location, const game::Ship& ship)
 	{
-		auto descriptor = game::Ships::Read(ship);
-		BuyQuantities(location, descriptor.commodities, 1);
+		auto commodities = game::Ships::GetCommodities(ship);
+		BuyQuantities(location, commodities, 1);
 	}
 
 	void Markets::SellShip(const common::XY<double>& location, const game::Ship& ship)
 	{
-		auto descriptor = game::Ships::Read(ship);
-		SellQuantities(location, descriptor.commodities, 1);
+		auto commodities = game::Ships::GetCommodities(ship);
+		SellQuantities(location, commodities, 1);
 	}
 }

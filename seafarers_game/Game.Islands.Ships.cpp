@@ -7,8 +7,8 @@ namespace game::islands
 		const common::XY<double>& location,
 		const game::Ship& ship)
 	{
-		auto& shipDescriptor = game::Ships::Read(ship);
-		return Commodities::GetPurchasePrice(location, shipDescriptor.commodities);
+		auto& commodities = game::Ships::GetCommodities(ship);
+		return Commodities::GetPurchasePrice(location, commodities);
 	}
 
 
@@ -17,8 +17,8 @@ namespace game::islands
 		const common::XY<double>& location,
 		const game::Ship& ship)
 	{
-		auto& shipDescriptor = game::Ships::Read(ship);
-		return Commodities::GetSalePrice(location, shipDescriptor.commodities);
+		auto& commodities = game::Ships::GetCommodities(ship);
+		return Commodities::GetSalePrice(location, commodities);
 	}
 
 	std::map<game::Ship, double> Ships::GetPurchasePrices(const common::XY<double>& location)

@@ -6,9 +6,12 @@ namespace game
 {
 	struct Ships
 	{
-		static const game::ShipDescriptor& Read(const game::Ship&);//TODO: refactor me out!
 		static const std::list<game::Ship>& All();
 		static game::Ship GenerateForAvatar();
-		static double GetAvailableTonnage(const game::Ship&);
+		static double GetTotalTonnage(const game::Ship&);
+		static const std::string& GetName(const game::Ship&);
+		static double GetSpeedFactor(const game::Ship&);
+		static const std::map<game::Commodity, double> GetCommodities(const game::Ship&);
+		static const std::map<ShipStatistic, ShipStatisticDescriptor>& GetStatistics(const game::Ship&);
 	};
 }

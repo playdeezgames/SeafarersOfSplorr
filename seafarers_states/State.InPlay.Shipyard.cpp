@@ -85,18 +85,17 @@ namespace state::in_play
 		int gridRow = 2;
 		auto money = game::avatar::Statistics::GetMoney();
 		auto ship = game::avatar::Ship::Read();
-		for (auto& unitPrice : shipPrices)
+		for (auto& shipPrice : shipPrices)
 		{
-			auto& shipDescriptor = game::Ships::Read(unitPrice.first);
 			WriteTextToGrid(
 				{ 0, gridRow },
 				std::format("{:10s}{}| {:7.3f}",
-					shipDescriptor.name,
-					(ship == unitPrice.first) ? ("*") : (" "),
-					unitPrice.second),
-				(row == hiliteRow && money>=unitPrice.second) ? (game::Colors::CYAN) : 
-				(row == hiliteRow && money<unitPrice.second) ? (game::Colors::LIGHT_RED) :
-				(money < unitPrice.second) ? (game::Colors::RED) :
+					game::Ships::GetName(shipPrice.first),
+					(ship == shipPrice.first) ? ("*") : (" "),
+					shipPrice.second),
+				(row == hiliteRow && money>= shipPrice.second) ? (game::Colors::CYAN) :
+				(row == hiliteRow && money< shipPrice.second) ? (game::Colors::LIGHT_RED) :
+				(money < shipPrice.second) ? (game::Colors::RED) :
 				(game::Colors::GRAY));
 			++gridRow;
 			++row;
@@ -135,7 +134,7 @@ namespace state::in_play
 
 	static void CheckTonnage(game::Ship desiredShip, double price)
 	{
-		if (game::avatar::Items::TotalTonnage() <= game::Ships::GetAvailableTonnage(desiredShip))
+		if (game::avatar::Items::TotalTonnage() <= game::Ships::GetTotalTonnage(desiredShip))
 		{
 			visuals::Confirmations::Write(
 				{
