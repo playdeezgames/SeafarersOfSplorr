@@ -1,8 +1,19 @@
 #include <Common.RNG.h>
 #include "Game.Ships.h"
+#include "Game.Ship.Property.h"
 #include <map>
+#include <string>
 namespace game
 {
+	struct ShipDescriptor
+	{
+		std::string name;
+		std::map<game::ship::Property, double> properties;
+		std::map<game::Commodity, double> commodities;
+		std::map<ShipStatistic, ShipStatisticDescriptor> statistics;
+		size_t initialShipGenerationWeight;
+	};
+
 	static const std::map<game::Ship, game::ShipDescriptor> ships =
 	{
 		{
@@ -146,7 +157,7 @@ namespace game
 		return Read(ship).commodities;
 	}
 
-	const const std::map<ShipStatistic, ShipStatisticDescriptor>& Ships::GetStatistics(const game::Ship& ship)
+	const std::map<ShipStatistic, ShipStatisticDescriptor>& Ships::GetStatistics(const game::Ship& ship)
 	{
 		return Read(ship).statistics;
 	}

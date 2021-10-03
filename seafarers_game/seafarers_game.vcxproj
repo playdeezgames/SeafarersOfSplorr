@@ -63,7 +63,6 @@
     <ClInclude Include="Game.Quest.h" />
     <ClInclude Include="Game.Ship.h" />
     <ClInclude Include="Game.Ship.Property.h" />
-    <ClInclude Include="Game.ShipDescriptor.h" />
     <ClInclude Include="Game.Ships.h" />
     <ClInclude Include="Game.ShipStatistic.h" />
     <ClInclude Include="Game.ShipStatisticDescriptor.h" />

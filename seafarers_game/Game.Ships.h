@@ -1,7 +1,10 @@
 #pragma once
+#include "Game.Commodity.h"
 #include "Game.Ship.h"
-#include "Game.ShipDescriptor.h"
+#include "Game.ShipStatistic.h"
+#include "Game.ShipStatisticDescriptor.h"
 #include <list>
+#include <string>
 namespace game
 {
 	struct Ships
