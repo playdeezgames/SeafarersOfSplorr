@@ -81,6 +81,33 @@
         "drop-shadow-y": 2
     },
     {
+        "type": "Text",
+        "font": "default",
+        "color": "Gray",
+        "text": "Bait:",
+        "x": 8,
+        "y": 128,
+        "horizontal-alignment": 1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Text",
+        "text-id":"Bait",
+        "font": "default",
+        "color": "Gray",
+        "text": "(bait)",
+        "x": 8,
+        "y": 144,
+        "horizontal-alignment": 1,
+        "drop-shadow": true,
+        "drop-shadow-color": "Black",
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
         "type":"Fishboard",
         "fishboard-id":"Fishboard",
         "x":160,

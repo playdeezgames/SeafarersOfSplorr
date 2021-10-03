@@ -89,12 +89,6 @@
                 "text": "Bet!",
                 "menu-item-id": "Bet",
                 "x": 320,
-                "y": 272
-            },
-            {
-                "text": "Change Bet...",
-                "menu-item-id": "ChangeBet",
-                "x": 320,
                 "y": 288
             },
             {
@@ -115,24 +109,12 @@
         "type":"Area",
         "area-id":"Bet",
         "x":240,
-        "y":272,
-        "width":160,
-        "height":16,
-        "menu":{
-            "menu-id":"Wager",
-            "menu-item-id":"Bet"
-        }
-    },
-    {
-        "type":"Area",
-        "area-id":"ChangeBet",
-        "x":240,
         "y":288,
         "width":160,
         "height":16,
         "menu":{
             "menu-id":"Wager",
-            "menu-item-id":"ChangeBet"
+            "menu-item-id":"Bet"
         }
     },
     {
