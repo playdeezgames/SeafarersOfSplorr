@@ -49,7 +49,7 @@ namespace state::in_play
 
 	static void OnBelay()
 	{
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 	}
 
 	static const std::map<CareenMenuItem, std::function<void()>> activators =
