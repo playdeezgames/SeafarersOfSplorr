@@ -36,6 +36,12 @@
     <Filter Include="Source Files\Fishing">
       <UniqueIdentifier>{f52bb6bd-fa49-4e91-8135-9c93d58c2b3d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Player">
+      <UniqueIdentifier>{8502177f-0eb3-48a1-b683-374d6db53904}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Player">
+      <UniqueIdentifier>{17a4a3b3-8049-4ca7-996f-366aabf18076}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data.Game.Common.h">
@@ -137,6 +143,9 @@
     <ClInclude Include="Data.Game.Avatar.Equipment.h">
       <Filter>Header Files\Avatar</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.Player.h">
+      <Filter>Header Files\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">
@@ -231,6 +240,9 @@
     </ClCompile>
     <ClCompile Include="Data.Game.Avatar.Equipment.cpp">
       <Filter>Source Files\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Player.cpp">
+      <Filter>Source Files\Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
