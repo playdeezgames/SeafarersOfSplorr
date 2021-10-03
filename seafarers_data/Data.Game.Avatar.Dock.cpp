@@ -1,6 +1,7 @@
 #include <Common.Data.h>
 #include "Data.Game.Avatar.Dock.h"
 #include "Data.Game.Common.h"
+#include "Data.Game.Player.h"
 #include <format>
 #include <string>
 namespace data::game::avatar
@@ -45,16 +46,16 @@ namespace data::game::avatar
 
 	void Dock::Write(const common::XY<double>& location)
 	{
-		Write(Common::AVATAR_ID, location);
+		Write(Player::GetAvatarId(), location);
 	}
 
 	void Dock::Clear()
 	{
-		Clear(Common::AVATAR_ID);
+		Clear(Player::GetAvatarId());
 	}
 
 	std::optional<common::XY<double>> Dock::Read()
 	{
-		return Read(Common::AVATAR_ID);
+		return Read(Player::GetAvatarId());
 	}
 }

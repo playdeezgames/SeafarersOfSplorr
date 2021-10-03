@@ -1,6 +1,7 @@
 #include <Common.Data.h>
 #include "Data.Game.Avatar.Quest.h"
 #include "Data.Game.Common.h"
+#include "Data.Game.Player.h"
 #include <format>
 namespace data::game::avatar
 {
@@ -25,7 +26,7 @@ namespace data::game::avatar
 		{
 			data::game::Common::Execute(
 				std::format(REPLACE_ITEM,
-					data::game::Common::AVATAR_ID,
+					data::game::Player::GetAvatarId(),
 					data.value().destination.GetX(),
 					data.value().destination.GetY(),
 					data.value().reward,
@@ -61,11 +62,11 @@ namespace data::game::avatar
 
 	void Quest::Write(const std::optional<Quest>& quest)
 	{
-		Write(Common::AVATAR_ID, quest);
+		Write(Player::GetAvatarId(), quest);
 	}
 
 	std::optional<Quest> Quest::Read()
 	{
-		return Read(Common::AVATAR_ID);
+		return Read(Player::GetAvatarId());
 	}
 }

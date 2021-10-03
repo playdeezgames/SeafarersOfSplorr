@@ -1,6 +1,7 @@
 #include <Common.Data.h>
 #include "Data.Game.Avatar.Statistic.h"
 #include "Data.Game.Common.h"
+#include "Data.Game.Player.h"
 #include <format>
 #include <string>
 namespace data::game::avatar
@@ -40,11 +41,11 @@ namespace data::game::avatar
 	}
 	void Statistic::Write(int statisticId, const Statistic& statistic)
 	{
-		Write(Common::AVATAR_ID, statisticId, statistic);
+		Write(Player::GetAvatarId(), statisticId, statistic);
 	}
 	std::optional<Statistic> Statistic::Read(int statisticId)
 	{
-		return Read(Common::AVATAR_ID, statisticId);
+		return Read(Player::GetAvatarId(), statisticId);
 	}
 
 }

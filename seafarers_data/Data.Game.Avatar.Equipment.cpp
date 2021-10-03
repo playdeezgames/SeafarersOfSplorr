@@ -1,6 +1,7 @@
 #include <Common.Data.h>
 #include "Data.Game.Avatar.Equipment.h"
 #include "Data.Game.Common.h"
+#include "Data.Game.Player.h"
 #include <format>
 namespace data::game::avatar
 {
@@ -57,21 +58,21 @@ namespace data::game::avatar
 
 	std::optional<int> Equipment::Read(int equipSlotId) 
 	{
-		return Read(Common::AVATAR_ID, equipSlotId);
+		return Read(Player::GetAvatarId(), equipSlotId);
 	}
 
 	void Equipment::Write(int equipSlotId, const std::optional<int>& itemId) 
 	{
-		Write(Common::AVATAR_ID, equipSlotId, itemId);
+		Write(Player::GetAvatarId(), equipSlotId, itemId);
 	}
 
 	void Equipment::Clear() 
 	{
-		Clear(Common::AVATAR_ID);
+		Clear(Player::GetAvatarId());
 	}
 
 	std::map<int, int> Equipment::All() 
 	{
-		return All(Common::AVATAR_ID);
+		return All(Player::GetAvatarId());
 	}
 }

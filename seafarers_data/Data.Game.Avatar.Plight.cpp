@@ -1,6 +1,7 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Avatar.Plight.h"
+#include "Data.Game.Player.h"
 #include <format>
 namespace data::game::avatar
 {
@@ -66,27 +67,27 @@ namespace data::game::avatar
 
 	std::optional<Plight> Plight::Read(int plightId)
 	{
-		return Read(Common::AVATAR_ID, plightId);
+		return Read(Player::GetAvatarId(), plightId);
 	}
 
 	void Plight::Write(const Plight& plight)
 	{
-		Write(Common::AVATAR_ID, plight);
+		Write(Player::GetAvatarId(), plight);
 	}
 
 	void Plight::ClearPlight(int plightId)
 	{
-		ClearPlight(Common::AVATAR_ID, plightId);
+		ClearPlight(Player::GetAvatarId(), plightId);
 	}
 
 	void Plight::Clear()
 	{
-		Clear(Common::AVATAR_ID);
+		Clear(Player::GetAvatarId());
 	}
 
 	std::list<Plight> Plight::All()
 	{
-		return All(Common::AVATAR_ID);
+		return All(Player::GetAvatarId());
 	}
 
 	void Plight::ClearAll()

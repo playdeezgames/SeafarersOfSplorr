@@ -1,6 +1,7 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Avatar.DestinationName.h"
+#include "Data.Game.Player.h"
 #include <format>
 namespace data::game::avatar
 {
@@ -43,16 +44,16 @@ namespace data::game::avatar
 
 	std::optional<std::string> DestinationName::Read(int destinationId)
 	{
-		return Read(Common::AVATAR_ID, destinationId);
+		return Read(Player::GetAvatarId(), destinationId);
 	}
 
 	void DestinationName::Write(int destinationId, const std::string& name)
 	{
-		Write(Common::AVATAR_ID, destinationId, name);
+		Write(Player::GetAvatarId(), destinationId, name);
 	}
 
 	void DestinationName::Clear()
 	{
-		Clear(Common::AVATAR_ID);
+		Clear(Player::GetAvatarId());
 	}
 }

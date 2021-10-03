@@ -4,6 +4,6 @@ namespace data::game
 {
 	int Player::GetAvatarId()
 	{
-		return Common::AVATAR_ID;
+		return 1;//TODO: put this in an actual db table
 	}
 }

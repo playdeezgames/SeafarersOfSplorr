@@ -2,6 +2,7 @@
 #include <Common.Utility.h>
 #include "Data.Game.Avatar.h"
 #include "Data.Game.Common.h"
+#include "Data.Game.Player.h"
 #include <format>
 #include <optional>
 namespace data::game
@@ -78,21 +79,21 @@ namespace data::game
 
 	void Avatar::Write(const Avatar& avatar)
 	{
-		Write(Common::AVATAR_ID, avatar);
+		Write(Player::GetAvatarId(), avatar);
 	}
 
 	std::optional<Avatar> Avatar::Read()
 	{
-		return Read(Common::AVATAR_ID);
+		return Read(Player::GetAvatarId());
 	}
 
 	void Avatar::WriteState(int state)
 	{
-		WriteState(Common::AVATAR_ID, state);
+		WriteState(Player::GetAvatarId(), state);
 	}
 
 	std::optional<int> Avatar::ReadState()
 	{
-		return ReadState(Common::AVATAR_ID);
+		return ReadState(Player::GetAvatarId());
 	}
 }

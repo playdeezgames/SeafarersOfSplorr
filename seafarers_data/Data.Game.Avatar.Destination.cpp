@@ -2,6 +2,7 @@
 #include "Data.Game.Avatar.Destination.h"
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.Known.h"
+#include "Data.Game.Player.h"
 #include <format>
 #include <string>
 namespace data::game::avatar
@@ -55,21 +56,21 @@ namespace data::game::avatar
 	}
 	void Destination::Write(int destinationId, const common::XY<double>& location)
 	{
-		Write(Common::AVATAR_ID, destinationId, location);
+		Write(Player::GetAvatarId(), destinationId, location);
 	}
 
 	std::optional<common::XY<double>> Destination::Read(int destinationId)
 	{
-		return Read(Common::AVATAR_ID, destinationId);
+		return Read(Player::GetAvatarId(), destinationId);
 	}
 
 	void Destination::Clear(int destinationId)
 	{
-		Clear(Common::AVATAR_ID, destinationId);
+		Clear(Player::GetAvatarId(), destinationId);
 	}
 
 	void Destination::ClearAll()
 	{
-		ClearAll(Common::AVATAR_ID);
+		ClearAll(Player::GetAvatarId());
 	}
 }

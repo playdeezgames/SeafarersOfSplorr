@@ -1,6 +1,7 @@
 #include <Common.Data.h>
 #include "Data.Game.Avatar.Items.h"
 #include "Data.Game.Common.h"
+#include "Data.Game.Player.h"
 #include <format>
 namespace data::game::avatar
 {
@@ -65,21 +66,21 @@ namespace data::game::avatar
 
 	size_t Items::Read(const int& itemId)
 	{
-		return Read(Common::AVATAR_ID, itemId);
+		return Read(Player::GetAvatarId(), itemId);
 	}
 
 	std::map<int, size_t> Items::All()
 	{
-		return All(Common::AVATAR_ID);
+		return All(Player::GetAvatarId());
 	}
 
 	void Items::Write(const int& itemId, const size_t& itemCount)
 	{
-		Write(Common::AVATAR_ID, itemId, itemCount);
+		Write(Player::GetAvatarId(), itemId, itemCount);
 	}
 
 	void Items::Clear()
 	{
-		Clear(Common::AVATAR_ID);
+		Clear(Player::GetAvatarId());
 	}
 }

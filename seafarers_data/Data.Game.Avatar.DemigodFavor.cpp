@@ -1,6 +1,7 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Avatar.DemigodFavor.h"
+#include "Data.Game.Player.h"
 #include <format>
 namespace data::game::avatar
 {
@@ -37,16 +38,16 @@ namespace data::game::avatar
 
 	void DemigodFavor::Write(const std::string& name, double favor)
 	{
-		Write(Common::AVATAR_ID, name, favor);
+		Write(Player::GetAvatarId(), name, favor);
 	}
 
 	std::optional<double> DemigodFavor::Read(const std::string& name)
 	{
-		return Read(Common::AVATAR_ID, name);
+		return Read(Player::GetAvatarId(), name);
 	}
 
 	void DemigodFavor::Clear()
 	{
-		Clear(Common::AVATAR_ID);
+		Clear(Player::GetAvatarId());
 	}
 }

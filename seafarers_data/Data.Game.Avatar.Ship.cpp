@@ -1,6 +1,7 @@
 #include <Common.Data.h>
 #include "Data.Game.Avatar.Ship.h"
 #include "Data.Game.Common.h"
+#include "Data.Game.Player.h"
 #include <format>
 namespace data::game::avatar
 {
@@ -26,11 +27,11 @@ namespace data::game::avatar
 
 	void Ship::Write(int ship)
 	{
-		Write(Common::AVATAR_ID, ship);
+		Write(Player::GetAvatarId(), ship);
 	}
 
 	int Ship::Read()
 	{
-		return Read(Common::AVATAR_ID);
+		return Read(Player::GetAvatarId());
 	}
 }

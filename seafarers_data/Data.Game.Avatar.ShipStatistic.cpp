@@ -1,6 +1,7 @@
 #include <Common.Data.h>
 #include "Data.Game.Avatar.ShipStatistic.h"
 #include "Data.Game.Common.h"
+#include "Data.Game.Player.h"
 #include <format>
 #include <string>
 namespace data::game::avatar
@@ -48,16 +49,16 @@ namespace data::game::avatar
 
 	void ShipStatistic::Write(int statisticId, const ShipStatistic& statistic)
 	{
-		Write(Common::AVATAR_ID, statisticId, statistic);
+		Write(Player::GetAvatarId(), statisticId, statistic);
 	}
 
 	std::optional<ShipStatistic> ShipStatistic::Read(int statisticId)
 	{
-		return Read(Common::AVATAR_ID, statisticId);
+		return Read(Player::GetAvatarId(), statisticId);
 	}
 
 	void ShipStatistic::Clear()
 	{
-		Clear(Common::AVATAR_ID);
+		Clear(Player::GetAvatarId());
 	}
 }

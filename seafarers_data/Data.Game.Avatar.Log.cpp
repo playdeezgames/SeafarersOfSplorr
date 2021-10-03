@@ -1,6 +1,7 @@
 #include <Common.Data.h>
 #include "Data.Game.Avatar.Log.h"
 #include "Data.Game.Common.h"
+#include "Data.Game.Player.h"
 #include <format>
 namespace data::game::avatar
 {
@@ -42,17 +43,17 @@ namespace data::game::avatar
 	}
 	void Log::Clear()
 	{
-		Clear(Common::AVATAR_ID);
+		Clear(Player::GetAvatarId());
 	}
 
 	void Log::Write(const std::string& color, const std::string& text)
 	{
-		Write(Common::AVATAR_ID, color, text);
+		Write(Player::GetAvatarId(), color, text);
 	}
 
 	std::list<std::tuple<std::string, std::string>> Log::Read(size_t entryCount)
 	{
-		return Read(Common::AVATAR_ID, entryCount);
+		return Read(Player::GetAvatarId(), entryCount);
 	}
 
 	void Log::ClearAll()
