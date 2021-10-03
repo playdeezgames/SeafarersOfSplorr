@@ -62,7 +62,7 @@ namespace state::in_play
 		{ ChangeSpeedItem::AHEAD_TWO_THIRDS, SetSpeed(SPEED_TWO_THIRDS) },
 		{ ChangeSpeedItem::AHEAD_FULL, SetSpeed(SPEED_FULL) },
 		{ ChangeSpeedItem::AHEAD_FLANK, SetSpeed(SPEED_FLANK) },
-		{ ChangeSpeedItem::BELAY, ::application::UIState::GoTo(::UIState::IN_PLAY_NEXT) }
+		{ ChangeSpeedItem::BELAY, ::application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS) }
 	};
 
 	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
