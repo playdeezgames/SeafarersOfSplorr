@@ -12,9 +12,11 @@ namespace data::game
 	static const std::string FIELD_HEADING = "Heading";
 	static const std::string FIELD_SPEED = "Speed";
 	static const std::string FIELD_STATE = "State";
+	static const std::string FIELD_MAX_AVATAR_ID = "MaxAvatarId";
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Avatars]([AvatarId] INT NOT NULL UNIQUE,[X] REAL NOT NULL,[Y] REAL NOT NULL,[Heading] REAL NOT NULL,[Speed] REAL NOT NULL, [State] INT NOT NULL);";
 	static const std::string QUERY_ITEM= "SELECT [X], [Y], [Heading], [Speed], [State] FROM [Avatars] WHERE [AvatarId] = {};";
 	static const std::string REPLACE_ITEM = "REPLACE INTO [Avatars]([AvatarId],[X],[Y],[Heading],[Speed],[State]) VALUES ({},{},{},{},{},{});";
+	static const std::string QUERY_MAX_AVATAR_ID = "SELECT COALESCE(MAX([AvatarId]),0) [MaxAvatarId] FROM [Avatars];";
 
 	static const auto AutoCreateAvatarTable = data::game::Common::Run(CREATE_TABLE);
 
@@ -96,4 +98,11 @@ namespace data::game
 	{
 		return ReadState(Player::GetAvatarId());
 	}
+
+	int Avatar::NextId()
+	{
+		AutoCreateAvatarTable();
+		return common::Data::ToInt(Common::Execute(QUERY_MAX_AVATAR_ID).front()[FIELD_MAX_AVATAR_ID])+1;
+	}
+
 }
