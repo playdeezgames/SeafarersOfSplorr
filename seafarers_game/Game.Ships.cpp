@@ -16,7 +16,8 @@ namespace game
 		{"Boaty",1},
 		{"Smelly",1},
 		{"Focus on",1},
-		{"Huge",1}
+		{"Huge",1},
+		{"Flogging",1}
 	};
 
 	static const std::map<std::string, size_t> shipNameNouns =
@@ -30,7 +31,8 @@ namespace game
 		{"McGrumpyface",1},
 		{"Cat",1},
 		{"Happiness",1},
-		{"Tracks of Land",1}
+		{"Tracks of Land",1},
+		{"Bishop",1}
 	};
 
 	struct ShipDescriptor
