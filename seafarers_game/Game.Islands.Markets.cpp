@@ -1,7 +1,7 @@
 #include <Data.Game.Island.Market.h>
 #include "Game.Islands.Markets.h"
 #include "Game.Items.h"
-#include "Game.Ships.h"
+#include "Game.ShipTypes.h"
 namespace game::islands
 {
 	static void BuyQuantities(const common::XY<double>& location, const std::map<Commodity, double> commodities, size_t quantity)

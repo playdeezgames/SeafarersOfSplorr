@@ -1,5 +1,5 @@
 #include <Common.RNG.h>
-#include "Game.Ships.h"
+#include "Game.ShipTypes.h"
 #include "Game.Ship.Property.h"
 #include <map>
 #include <string>

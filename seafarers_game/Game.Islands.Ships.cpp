@@ -1,6 +1,6 @@
 #include "Game.Islands.Commodities.h"
 #include "Game.Islands.Ships.h"
-#include "Game.Ships.h"
+#include "Game.ShipTypes.h"
 namespace game::islands
 {
 	static double GetPurchasePrice(

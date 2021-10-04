@@ -4,7 +4,7 @@
 #include <Data.Game.Ship.h>
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Items.h"
-#include "Game.Ships.h"
+#include "Game.ShipTypes.h"
 namespace game::avatar
 {
 	void Ship::Reset(const game::Difficulty&)

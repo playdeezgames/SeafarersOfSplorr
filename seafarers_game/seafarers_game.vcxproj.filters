@@ -116,7 +116,7 @@
     <ClInclude Include="Game.Ship.Property.h">
       <Filter>Header Files\Ships</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Ships.h">
+    <ClInclude Include="Game.ShipTypes.h">
       <Filter>Header Files\Ships</Filter>
     </ClInclude>
     <ClInclude Include="Game.Difficulty.h">

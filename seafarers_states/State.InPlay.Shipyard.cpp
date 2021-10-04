@@ -17,7 +17,7 @@
 #include <Game.Islands.Commodities.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Islands.Ships.h>
-#include <Game.Ships.h>
+#include <Game.ShipTypes.h>
 #include <Game.World.h>
 #include "States.h"
 #include "UIState.h"

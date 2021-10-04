@@ -9,7 +9,7 @@
 #include <Game.Avatar.Ship.h>
 #include <Game.Avatar.ShipStatistics.h>
 #include <Game.Islands.h>
-#include <Game.Ships.h>
+#include <Game.ShipTypes.h>
 #include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>

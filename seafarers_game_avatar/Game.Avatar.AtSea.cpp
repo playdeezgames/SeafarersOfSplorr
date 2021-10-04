@@ -11,7 +11,7 @@
 #include "Game.Avatar.State.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Islands.h"
-#include "Game.Ships.h"
+#include "Game.ShipTypes.h"
 #include "Game.World.h"
 namespace game::avatar
 {

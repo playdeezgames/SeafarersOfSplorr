@@ -8,7 +8,7 @@
 #include "Game.Islands.Markets.h"
 #include "Game.Items.h"
 #include "Game.Merchants.h"
-#include "Game.Ships.h"
+#include "Game.ShipTypes.h"
 #include "Game.World.h"
 namespace game
 {
