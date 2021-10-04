@@ -137,7 +137,7 @@ namespace game
 		return ships.find(ship)->second;
 	}
 
-	const std::list<game::ShipType>& Ships::All()
+	const std::list<game::ShipType>& ShipTypes::All()
 	{
 		if (shipList.empty())
 		{
@@ -151,7 +151,7 @@ namespace game
 
 	std::map<game::ShipType, size_t> initialShipGenerator;
 
-	game::ShipType Ships::GenerateForAvatar()
+	game::ShipType ShipTypes::GenerateForAvatar()
 	{
 		if (initialShipGenerator.empty())
 		{
@@ -167,27 +167,27 @@ namespace game
 		return common::RNG::FromGenerator(initialShipGenerator, game::ShipType::RAFT);
 	}
 
-	double Ships::GetTotalTonnage(const game::ShipType& ship)
+	double ShipTypes::GetTotalTonnage(const game::ShipType& ship)
 	{
 		return Read(ship).properties.find(ship::Property::TONNAGE)->second;
 	}
 
-	const std::string& Ships::GetName(const game::ShipType& ship)
+	const std::string& ShipTypes::GetName(const game::ShipType& ship)
 	{
 		return Read(ship).name;
 	}
 
-	double Ships::GetSpeedFactor(const game::ShipType& ship)
+	double ShipTypes::GetSpeedFactor(const game::ShipType& ship)
 	{
 		return Read(ship).properties.find(ship::Property::SPEED_FACTOR)->second;
 	}
 
-	const std::map<game::Commodity, double> Ships::GetCommodities(const game::ShipType& ship)
+	const std::map<game::Commodity, double> ShipTypes::GetCommodities(const game::ShipType& ship)
 	{
 		return Read(ship).commodities;
 	}
 
-	const std::map<ShipStatistic, ShipStatisticDescriptor>& Ships::GetStatistics(const game::ShipType& ship)
+	const std::map<ShipStatistic, ShipStatisticDescriptor>& ShipTypes::GetStatistics(const game::ShipType& ship)
 	{
 		return Read(ship).statistics;
 	}

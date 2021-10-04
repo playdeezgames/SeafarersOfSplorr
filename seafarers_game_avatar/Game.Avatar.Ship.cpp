@@ -9,7 +9,7 @@ namespace game::avatar
 {
 	void Ship::Reset(const game::Difficulty&)
 	{
-		auto ship = game::Ships::GenerateForAvatar();
+		auto ship = game::ShipTypes::GenerateForAvatar();
 		Write(ship);
 	}
 
@@ -17,7 +17,7 @@ namespace game::avatar
 	{
 		auto shipId = data::game::Ship::NextId();//TODO: this is STILL wrong
 		data::game::avatar::Ship::Write(data::game::Player::GetAvatarId(), (int)ship, shipId);
-		auto statistics = Ships::GetStatistics(ship);
+		auto statistics = ShipTypes::GetStatistics(ship);
 		for (auto statistic : statistics)
 		{
 			data::game::avatar::ShipStatistic::Write((int)statistic.first, 
@@ -37,7 +37,7 @@ namespace game::avatar
 	double Ship::AvailableTonnage()
 	{
 		return 
-			game::Ships::GetTotalTonnage(Read()) -
+			game::ShipTypes::GetTotalTonnage(Read()) -
 			game::avatar::Items::TotalTonnage();
 	}
 }

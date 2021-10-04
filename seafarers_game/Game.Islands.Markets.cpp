@@ -46,13 +46,13 @@ namespace game::islands
 
 	void Markets::BuyShipType(const common::XY<double>& location, const game::ShipType& ship)
 	{
-		auto commodities = game::Ships::GetCommodities(ship);
+		auto commodities = game::ShipTypes::GetCommodities(ship);
 		BuyQuantities(location, commodities, 1);
 	}
 
 	void Markets::SellShipType(const common::XY<double>& location, const game::ShipType& ship)
 	{
-		auto commodities = game::Ships::GetCommodities(ship);
+		auto commodities = game::ShipTypes::GetCommodities(ship);
 		SellQuantities(location, commodities, 1);
 	}
 }

@@ -7,7 +7,7 @@
 #include <string>
 namespace game
 {
-	struct Ships//TODO: rename to shiptypes
+	struct ShipTypes
 	{
 		static const std::list<game::ShipType>& All();
 		static game::ShipType GenerateForAvatar();

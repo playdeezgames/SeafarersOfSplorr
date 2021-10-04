@@ -90,7 +90,7 @@ namespace state::in_play
 			WriteTextToGrid(
 				{ 0, gridRow },
 				std::format("{:10s}{}| {:7.3f}",
-					game::Ships::GetName(shipPrice.first),
+					game::ShipTypes::GetName(shipPrice.first),
 					(ship == shipPrice.first) ? ("*") : (" "),
 					shipPrice.second),
 				(row == hiliteRow && money>= shipPrice.second) ? (game::Colors::CYAN) :
@@ -134,7 +134,7 @@ namespace state::in_play
 
 	static void CheckTonnage(game::ShipType desiredShip, double price)
 	{
-		if (game::avatar::Items::TotalTonnage() <= game::Ships::GetTotalTonnage(desiredShip))
+		if (game::avatar::Items::TotalTonnage() <= game::ShipTypes::GetTotalTonnage(desiredShip))
 		{
 			visuals::Confirmations::Write(
 				{

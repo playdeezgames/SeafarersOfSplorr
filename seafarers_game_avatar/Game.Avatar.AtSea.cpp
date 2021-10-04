@@ -165,7 +165,7 @@ namespace game::avatar
 
 		double multiplier = World::GetWindSpeedMultiplier(avatar.heading);
 
-		auto speedFactor = game::Ships::GetSpeedFactor(game::avatar::Ship::Read());
+		auto speedFactor = game::ShipTypes::GetSpeedFactor(game::avatar::Ship::Read());
 
 		common::XY<double> delta =
 			common::Heading::DegreesToXY(avatar.heading) *

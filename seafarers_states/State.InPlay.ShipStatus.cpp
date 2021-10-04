@@ -65,20 +65,20 @@ namespace state::in_play
 	static void UpdateShipProperties()
 	{
 		auto shipType = game::avatar::Ship::Read();
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_SHIP_TYPE, std::format(FORMAT_SHIP_TYPE, game::Ships::GetName(shipType)));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_SHIP_TYPE, std::format(FORMAT_SHIP_TYPE, game::ShipTypes::GetName(shipType)));
 
 		visuals::Texts::SetText(
 			LAYOUT_NAME,
 			TEXT_SPEED_FACTOR,
 			std::format(FORMAT_SPEED_FACTOR, 
-				game::Ships::GetSpeedFactor(shipType)));
+				game::ShipTypes::GetSpeedFactor(shipType)));
 
 		visuals::Texts::SetText(
 			LAYOUT_NAME,
 			TEXT_TONNAGE,
 			std::format(FORMAT_TONNAGE,
 				game::avatar::Ship::AvailableTonnage(),
-				game::Ships::GetTotalTonnage(shipType)));
+				game::ShipTypes::GetTotalTonnage(shipType)));
 
 		visuals::Texts::SetText(
 			LAYOUT_NAME,

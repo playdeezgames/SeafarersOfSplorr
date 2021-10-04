@@ -92,7 +92,7 @@
     <ClCompile Include="Game.Islands.Ships.cpp" />
     <ClCompile Include="Game.Items.cpp" />
     <ClCompile Include="Game.Merchants.cpp" />
-    <ClCompile Include="Game.Ships.cpp" />
+    <ClCompile Include="Game.ShipTypes.cpp" />
     <ClCompile Include="Game.World.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
