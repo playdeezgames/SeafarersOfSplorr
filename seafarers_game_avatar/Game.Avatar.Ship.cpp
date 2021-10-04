@@ -1,6 +1,7 @@
 #include <Data.Game.Avatar.Ship.h>
 #include <Data.Game.Avatar.ShipStatistic.h>
 #include <Data.Game.Player.h>
+#include <Data.Game.Ship.h>
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Items.h"
 #include "Game.Ships.h"
@@ -14,7 +15,8 @@ namespace game::avatar
 
 	void Ship::Write(const game::ShipType& ship)
 	{
-		data::game::avatar::Ship::Write(data::game::Player::GetAvatarId(), (int)ship);
+		auto shipId = data::game::Ship::NextId();//TODO: this is STILL wrong
+		data::game::avatar::Ship::Write(data::game::Player::GetAvatarId(), (int)ship, shipId);
 		auto statistics = Ships::GetStatistics(ship);
 		for (auto statistic : statistics)
 		{
