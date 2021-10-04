@@ -25,13 +25,13 @@ namespace data::game::avatar
 		return common::Data::ToInt(records.front()[FIELD_SHIP_ID]);
 	}
 
-	void Ship::Write(int ship)
-	{
-		Write(Player::GetAvatarId(), ship);
-	}
+	//void Ship::Write(int ship)
+	//{
+	//	Write(Player::GetAvatarId(), ship);
+	//}
 
-	int Ship::Read()
-	{
-		return Read(Player::GetAvatarId());
-	}
+	//int Ship::Read()
+	//{
+	//	return Read(Player::GetAvatarId());
+	//}
 }

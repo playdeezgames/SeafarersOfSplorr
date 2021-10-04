@@ -155,6 +155,9 @@
     <ClInclude Include="Data.Game.Ship.h">
       <Filter>Header Files\Ship</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.Ship.Statistic.h">
+      <Filter>Header Files\Ship</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">
@@ -254,6 +257,9 @@
       <Filter>Source Files\Player</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Ship.cpp">
+      <Filter>Source Files\Ship</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Ship.Statistic.cpp">
       <Filter>Source Files\Ship</Filter>
     </ClCompile>
   </ItemGroup>

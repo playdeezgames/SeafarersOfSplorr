@@ -1,5 +1,6 @@
 #include <Data.Game.Avatar.Ship.h>
 #include <Data.Game.Avatar.ShipStatistic.h>
+#include <Data.Game.Player.h>
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Items.h"
 #include "Game.Ships.h"
@@ -13,7 +14,7 @@ namespace game::avatar
 
 	void Ship::Write(const game::Ship& ship)
 	{
-		data::game::avatar::Ship::Write((int)ship);
+		data::game::avatar::Ship::Write(data::game::Player::GetAvatarId(), (int)ship);
 		auto statistics = Ships::GetStatistics(ship);
 		for (auto statistic : statistics)
 		{
@@ -28,7 +29,7 @@ namespace game::avatar
 
 	game::Ship Ship::Read()
 	{
-		return (game::Ship)data::game::avatar::Ship::Read();
+		return (game::Ship)data::game::avatar::Ship::Read(data::game::Player::GetAvatarId());
 	}
 
 	double Ship::AvailableTonnage()
