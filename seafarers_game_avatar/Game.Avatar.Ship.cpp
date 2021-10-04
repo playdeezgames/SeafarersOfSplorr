@@ -29,7 +29,7 @@ namespace game::avatar
 
 	game::Ship Ship::Read()
 	{
-		return (game::Ship)data::game::avatar::Ship::Read(data::game::Player::GetAvatarId());
+		return (game::Ship)data::game::avatar::Ship::ReadShipType(data::game::Player::GetAvatarId());
 	}
 
 	double Ship::AvailableTonnage()
