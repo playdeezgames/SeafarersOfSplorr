@@ -12,10 +12,10 @@
 #include "Game.World.h"
 namespace game
 {
-	static const std::map<Ship, size_t> shipTypeGenerator =
+	static const std::map<ShipType, size_t> shipTypeGenerator =
 	{
-		{ Ship::RAFT, 10},
-		{ Ship::JUNK, 1}
+		{ ShipType::RAFT, 10},
+		{ ShipType::JUNK, 1}
 	};
 
 	static const std::map<Item, size_t> cargoTypeGenerator =
@@ -31,7 +31,7 @@ namespace game
 		auto island = common::Utility::GetNth(islands, index);
 		auto item = common::RNG::FromGenerator(cargoTypeGenerator, Item::SACK_OF_WHEAT);
 		auto itemDescriptor = Items::Read(item);
-		auto ship = common::RNG::FromGenerator(shipTypeGenerator, Ship::RAFT);
+		auto ship = common::RNG::FromGenerator(shipTypeGenerator, ShipType::RAFT);
 		auto tonnage = Ships::GetTotalTonnage(ship);
 		auto cargoQuantity = (size_t)common::RNG::FromRange(0.0, tonnage / itemDescriptor.tonnage);
 		game::islands::Markets::BuyItems(location, item, cargoQuantity);

@@ -7,14 +7,14 @@
 #include <string>
 namespace game
 {
-	struct Ships
+	struct Ships//TODO: rename to shiptypes
 	{
-		static const std::list<game::Ship>& All();
-		static game::Ship GenerateForAvatar();
-		static double GetTotalTonnage(const game::Ship&);
-		static const std::string& GetName(const game::Ship&);
-		static double GetSpeedFactor(const game::Ship&);
-		static const std::map<game::Commodity, double> GetCommodities(const game::Ship&);
-		static const std::map<ShipStatistic, ShipStatisticDescriptor>& GetStatistics(const game::Ship&);
+		static const std::list<game::ShipType>& All();
+		static game::ShipType GenerateForAvatar();
+		static double GetTotalTonnage(const game::ShipType&);
+		static const std::string& GetName(const game::ShipType&);
+		static double GetSpeedFactor(const game::ShipType&);
+		static const std::map<game::Commodity, double> GetCommodities(const game::ShipType&);
+		static const std::map<ShipStatistic, ShipStatisticDescriptor>& GetStatistics(const game::ShipType&);
 	};
 }

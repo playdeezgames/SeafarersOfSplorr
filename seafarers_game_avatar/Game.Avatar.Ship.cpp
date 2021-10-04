@@ -12,7 +12,7 @@ namespace game::avatar
 		Write(ship);
 	}
 
-	void Ship::Write(const game::Ship& ship)
+	void Ship::Write(const game::ShipType& ship)
 	{
 		data::game::avatar::Ship::Write(data::game::Player::GetAvatarId(), (int)ship);
 		auto statistics = Ships::GetStatistics(ship);
@@ -27,9 +27,9 @@ namespace game::avatar
 		}
 	}
 
-	game::Ship Ship::Read()
+	game::ShipType Ship::Read()
 	{
-		return (game::Ship)data::game::avatar::Ship::ReadShipType(data::game::Player::GetAvatarId());
+		return (game::ShipType)data::game::avatar::Ship::ReadShipType(data::game::Player::GetAvatarId());
 	}
 
 	double Ship::AvailableTonnage()

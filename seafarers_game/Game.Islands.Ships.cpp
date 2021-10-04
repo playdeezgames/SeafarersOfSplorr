@@ -5,7 +5,7 @@ namespace game::islands
 {
 	static double GetPurchasePrice(
 		const common::XY<double>& location,
-		const game::Ship& ship)
+		const game::ShipType& ship)
 	{
 		auto& commodities = game::Ships::GetCommodities(ship);
 		return Commodities::GetPurchasePrice(location, commodities);
@@ -15,15 +15,15 @@ namespace game::islands
 
 	double Ships::GetSalePrice(
 		const common::XY<double>& location,
-		const game::Ship& ship)
+		const game::ShipType& ship)
 	{
 		auto& commodities = game::Ships::GetCommodities(ship);
 		return Commodities::GetSalePrice(location, commodities);
 	}
 
-	std::map<game::Ship, double> Ships::GetPurchasePrices(const common::XY<double>& location)
+	std::map<game::ShipType, double> Ships::GetPurchasePrices(const common::XY<double>& location)
 	{
-		std::map<game::Ship, double> result;
+		std::map<game::ShipType, double> result;
 		auto shipsAvailable = game::Ships::All();
 		for (auto& ship : shipsAvailable)
 		{
@@ -33,9 +33,9 @@ namespace game::islands
 		return result;
 	}
 
-	std::map<game::Ship, double> Ships::GetSalePrices(const common::XY<double>& location)
+	std::map<game::ShipType, double> Ships::GetSalePrices(const common::XY<double>& location)
 	{
-		std::map<game::Ship, double> result;
+		std::map<game::ShipType, double> result;
 		auto shipsAvailable = game::Ships::All();
 		for (auto& ship : shipsAvailable)
 		{

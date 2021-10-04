@@ -14,10 +14,10 @@ namespace game
 		size_t initialShipGenerationWeight;
 	};
 
-	static const std::map<game::Ship, game::ShipDescriptor> ships =
+	static const std::map<game::ShipType, game::ShipDescriptor> ships =
 	{
 		{
-			game::Ship::RAFT, 
+			game::ShipType::RAFT,
 			{
 				"raft",
 				{
@@ -58,7 +58,7 @@ namespace game
 			}
 		},
 		{
-			game::Ship::JUNK, 
+			game::ShipType::JUNK,
 			{
 				"junk",
 				{
@@ -100,14 +100,14 @@ namespace game
 		}
 	};
 
-	static std::list<game::Ship> shipList;
+	static std::list<game::ShipType> shipList;
 
-	static const game::ShipDescriptor& Read(const game::Ship & ship)
+	static const game::ShipDescriptor& Read(const game::ShipType& ship)
 	{
 		return ships.find(ship)->second;
 	}
 
-	const std::list<game::Ship>& Ships::All()
+	const std::list<game::ShipType>& Ships::All()
 	{
 		if (shipList.empty())
 		{
@@ -119,9 +119,9 @@ namespace game
 		return shipList;
 	}
 
-	std::map<game::Ship, size_t> initialShipGenerator;
+	std::map<game::ShipType, size_t> initialShipGenerator;
 
-	game::Ship Ships::GenerateForAvatar()
+	game::ShipType Ships::GenerateForAvatar()
 	{
 		if (initialShipGenerator.empty())
 		{
@@ -134,30 +134,30 @@ namespace game
 				}
 			}
 		}
-		return common::RNG::FromGenerator(initialShipGenerator, game::Ship::RAFT);
+		return common::RNG::FromGenerator(initialShipGenerator, game::ShipType::RAFT);
 	}
 
-	double Ships::GetTotalTonnage(const game::Ship& ship)
+	double Ships::GetTotalTonnage(const game::ShipType& ship)
 	{
 		return Read(ship).properties.find(ship::Property::TONNAGE)->second;
 	}
 
-	const std::string& Ships::GetName(const game::Ship& ship)
+	const std::string& Ships::GetName(const game::ShipType& ship)
 	{
 		return Read(ship).name;
 	}
 
-	double Ships::GetSpeedFactor(const game::Ship& ship)
+	double Ships::GetSpeedFactor(const game::ShipType& ship)
 	{
 		return Read(ship).properties.find(ship::Property::SPEED_FACTOR)->second;
 	}
 
-	const std::map<game::Commodity, double> Ships::GetCommodities(const game::Ship& ship)
+	const std::map<game::Commodity, double> Ships::GetCommodities(const game::ShipType& ship)
 	{
 		return Read(ship).commodities;
 	}
 
-	const std::map<ShipStatistic, ShipStatisticDescriptor>& Ships::GetStatistics(const game::Ship& ship)
+	const std::map<ShipStatistic, ShipStatisticDescriptor>& Ships::GetStatistics(const game::ShipType& ship)
 	{
 		return Read(ship).statistics;
 	}

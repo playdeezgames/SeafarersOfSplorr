@@ -8,7 +8,7 @@ namespace game::islands
 	{
 		static void BuyItems(const common::XY<double>&, const game::Item&, size_t);
 		static void SellItems(const common::XY<double>&, const game::Item&, size_t);
-		static void BuyShip(const common::XY<double>&, const game::Ship&);
-		static void SellShip(const common::XY<double>&, const game::Ship&);
+		static void BuyShip(const common::XY<double>&, const game::ShipType&);//TODO: rename to buyshiptype
+		static void SellShip(const common::XY<double>&, const game::ShipType&);//TODO: rename to sellshiptype
 	};
 }

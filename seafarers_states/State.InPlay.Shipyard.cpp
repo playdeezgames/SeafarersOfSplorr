@@ -40,7 +40,7 @@ namespace state::in_play
 	static const std::string BUTTON_GO_BACK = "GoBack";
 	static const std::string BUTTON_UNFOUL = "Unfoul";
 
-	static std::map<game::Ship, double> shipPrices;
+	static std::map<game::ShipType, double> shipPrices;
 	static std::optional<size_t> hiliteRow = std::nullopt;
 
 	static void UpdateShipPrices()
@@ -117,7 +117,7 @@ namespace state::in_play
 		RefreshGrid();
 	}
 
-	static std::function<void()> DoBuyShip(game::Ship desiredShip, double price)
+	static std::function<void()> DoBuyShip(game::ShipType desiredShip, double price)
 	{
 		return [desiredShip, price]()
 		{
@@ -132,7 +132,7 @@ namespace state::in_play
 		};
 	}
 
-	static void CheckTonnage(game::Ship desiredShip, double price)
+	static void CheckTonnage(game::ShipType desiredShip, double price)
 	{
 		if (game::avatar::Items::TotalTonnage() <= game::Ships::GetTotalTonnage(desiredShip))
 		{
@@ -151,7 +151,7 @@ namespace state::in_play
 		}
 	}
 
-	static void CheckAvailableFunds(game::Ship desiredShip)
+	static void CheckAvailableFunds(game::ShipType desiredShip)
 	{
 		double price = shipPrices[desiredShip];
 		if (game::avatar::Statistics::GetMoney() >= price)
@@ -167,7 +167,7 @@ namespace state::in_play
 
 	static void TryBuyShip()
 	{
-		std::optional<game::Ship> desiredShip = common::Utility::GetNthKey(shipPrices, hiliteRow);
+		std::optional<game::ShipType> desiredShip = common::Utility::GetNthKey(shipPrices, hiliteRow);
 		if (desiredShip)
 		{
 			CheckAvailableFunds(desiredShip.value());

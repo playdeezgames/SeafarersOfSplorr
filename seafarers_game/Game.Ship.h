@@ -1,7 +1,7 @@
 #pragma once
 namespace game
 {
-	enum class Ship
+	enum class ShipType
 	{
 		RAFT,
 		JUNK
