@@ -5,7 +5,5 @@ namespace data::game::avatar
 	{
 		static void Write(int, int);
 		static int Read(int);
-		//static void Write(int);
-		//static int Read();
 	};
 }
