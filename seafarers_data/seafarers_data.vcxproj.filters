@@ -42,6 +42,12 @@
     <Filter Include="Source Files\Player">
       <UniqueIdentifier>{17a4a3b3-8049-4ca7-996f-366aabf18076}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Ship">
+      <UniqueIdentifier>{801907e8-642a-4e8a-9344-3c7ea40b63c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Ship">
+      <UniqueIdentifier>{e76df9de-9f65-4ada-b91a-135187c0b7ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data.Game.Common.h">
@@ -146,6 +152,9 @@
     <ClInclude Include="Data.Game.Player.h">
       <Filter>Header Files\Player</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.Ship.h">
+      <Filter>Header Files\Ship</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">
@@ -243,6 +252,9 @@
     </ClCompile>
     <ClCompile Include="Data.Game.Player.cpp">
       <Filter>Source Files\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Ship.cpp">
+      <Filter>Source Files\Ship</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
