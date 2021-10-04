@@ -1,6 +1,6 @@
 #pragma once
 #include "Game.Commodity.h"
-#include "Game.Ship.h"
+#include "Game.ShipType.h"
 #include "Game.ShipStatistic.h"
 #include "Game.ShipStatisticDescriptor.h"
 #include <list>

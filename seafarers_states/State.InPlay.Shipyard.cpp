@@ -125,8 +125,8 @@ namespace state::in_play
 			auto currentShip = game::avatar::Ship::Read();
 			game::avatar::Statistics::ChangeMoney(-price);
 			game::avatar::Ship::Write(desiredShip);
-			game::islands::Markets::BuyShip(location, desiredShip);
-			game::islands::Markets::SellShip(location, currentShip);
+			game::islands::Markets::BuyShipType(location, desiredShip);
+			game::islands::Markets::SellShipType(location, currentShip);
 			UpdateShipPrices();
 			RefreshGrid();
 		};

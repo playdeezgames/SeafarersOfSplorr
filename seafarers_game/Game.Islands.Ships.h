@@ -1,6 +1,6 @@
 #pragma once
 #include <Common.XY.h>
-#include "Game.Ship.h"
+#include "Game.ShipType.h"
 #include <map>
 namespace game::islands
 {

@@ -1,6 +1,6 @@
 #pragma once
 #include "Game.Difficulty.h"
-#include "Game.Ship.h"
+#include "Game.ShipType.h"
 namespace game::avatar
 {
 	struct Ship
