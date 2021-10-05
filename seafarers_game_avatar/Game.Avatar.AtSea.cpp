@@ -26,7 +26,6 @@ namespace game::avatar
 		{
 			{worldSize.GetX() / 2.0, worldSize.GetY() / 2.0},
 			common::Data::ModuloDouble(common::RNG::FromRange(0.0, common::Heading::DEGREES), common::Heading::DEGREES).value(),
-			1.0,
 			0,
 			"nada"//TODO: generate a name?
 		};
@@ -59,14 +58,17 @@ namespace game::avatar
 
 	double AtSea::GetSpeed()
 	{
-		return data::game::Avatar::Read().value().speed;
+		auto shipId = game::avatar::Ship::Read().value();
+		auto ship = data::game::Ship::Read(shipId).value();
+		return ship.speed;
 	}
 
 	void AtSea::SetSpeed(double speed)
 	{
-		auto data = data::game::Avatar::Read().value();
-		data.speed = common::Data::ClampDouble(speed, SPEED_MINIMUM, SPEED_MAXIMUM);
-		data::game::Avatar::Write(data);
+		auto shipId = game::avatar::Ship::Read().value();
+		auto ship = data::game::Ship::Read(shipId).value();
+		ship.speed = common::Data::ClampDouble(speed, SPEED_MINIMUM, SPEED_MAXIMUM);
+		data::game::Ship::Write(ship);
 	}
 
 	static void ApplyHunger()
@@ -167,12 +169,13 @@ namespace game::avatar
 		auto avatar = data::game::Avatar::Read().value();
 
 		auto fouling = ShipStatistics::GetFouling();
-		ShipStatistics::IncreaseFouling(avatar.speed);
-		auto effectiveSpeed = avatar.speed * (1.0 - fouling);
+		auto shipId = game::avatar::Ship::Read().value();
+		auto ship = data::game::Ship::Read(shipId).value();
+		ShipStatistics::IncreaseFouling(ship.speed);
+		auto effectiveSpeed = ship.speed * (1.0 - fouling);
 
 		double multiplier = World::GetWindSpeedMultiplier(avatar.heading);
 
-		auto shipId = game::avatar::Ship::Read().value();
 		auto shipType = game::Ship::GetShipType(shipId).value();
 		auto speedFactor = game::ShipTypes::GetSpeedFactor(shipType);
 

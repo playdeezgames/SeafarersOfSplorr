@@ -8,7 +8,6 @@ namespace data::game
 	{
 		common::XY<double> location;
 		double heading;
-		double speed;
 		int state;
 		std::string name;
 
