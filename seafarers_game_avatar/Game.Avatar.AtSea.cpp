@@ -25,7 +25,6 @@ namespace game::avatar
 		data::game::Avatar data =
 		{
 			{worldSize.GetX() / 2.0, worldSize.GetY() / 2.0},
-			common::Data::ModuloDouble(common::RNG::FromRange(0.0, common::Heading::DEGREES), common::Heading::DEGREES).value(),
 			0,
 			"nada"//TODO: generate a name?
 		};
@@ -38,14 +37,17 @@ namespace game::avatar
 
 	double AtSea::GetHeading()
 	{
-		return data::game::Avatar::Read().value().heading;
+		auto shipId = game::avatar::Ship::Read().value();
+		auto ship = data::game::Ship::Read(shipId).value();
+		return ship.heading;
 	}
 
 	void AtSea::SetHeading(double heading)
 	{
-		auto data = data::game::Avatar::Read().value();
-		data.heading = common::Data::ModuloDouble(heading, common::Heading::DEGREES).value();
-		data::game::Avatar::Write(data);
+		auto shipId = game::avatar::Ship::Read().value();
+		auto ship = data::game::Ship::Read(shipId).value();
+		ship.heading = common::Data::ModuloDouble(heading, common::Heading::DEGREES).value();
+		data::game::Ship::Write(ship);
 	}
 
 	const double SPEED_MINIMUM = 0.0;
@@ -174,13 +176,13 @@ namespace game::avatar
 		ShipStatistics::IncreaseFouling(ship.speed);
 		auto effectiveSpeed = ship.speed * (1.0 - fouling);
 
-		double multiplier = World::GetWindSpeedMultiplier(avatar.heading);
+		double multiplier = World::GetWindSpeedMultiplier(ship.heading);
 
 		auto shipType = game::Ship::GetShipType(shipId).value();
 		auto speedFactor = game::ShipTypes::GetSpeedFactor(shipType);
 
 		common::XY<double> delta =
-			common::Heading::DegreesToXY(avatar.heading) *
+			common::Heading::DegreesToXY(ship.heading) *
 			effectiveSpeed * multiplier *
 			speedFactor;
 

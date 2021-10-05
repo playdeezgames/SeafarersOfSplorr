@@ -7,7 +7,6 @@ namespace data::game
 	struct Avatar 
 	{
 		common::XY<double> location;
-		double heading;
 		int state;
 		std::string name;
 

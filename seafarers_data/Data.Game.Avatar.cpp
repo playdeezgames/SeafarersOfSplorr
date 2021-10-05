@@ -9,13 +9,12 @@ namespace data::game
 {
 	static const std::string FIELD_X = "X";
 	static const std::string FIELD_Y = "Y";
-	static const std::string FIELD_HEADING = "Heading";
 	static const std::string FIELD_STATE = "State";
 	static const std::string FIELD_NAME = "Name";
 	static const std::string FIELD_MAX_AVATAR_ID = "MaxAvatarId";
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Avatars]([AvatarId] INT NOT NULL UNIQUE,[X] REAL NOT NULL,[Y] REAL NOT NULL,[Heading] REAL NOT NULL,[State] INT NOT NULL, [Name] TEXT NOT NULL);";
-	static const std::string QUERY_ITEM= "SELECT [X], [Y], [Heading], [State],[Name] FROM [Avatars] WHERE [AvatarId] = {};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [Avatars]([AvatarId],[X],[Y],[Heading],[State],[Name]) VALUES ({},{},{},{},{},{});";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Avatars]([AvatarId] INT NOT NULL UNIQUE,[X] REAL NOT NULL,[Y] REAL NOT NULL,[State] INT NOT NULL, [Name] TEXT NOT NULL);";
+	static const std::string QUERY_ITEM= "SELECT [X], [Y], [State],[Name] FROM [Avatars] WHERE [AvatarId] = {};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [Avatars]([AvatarId],[X],[Y],[State],[Name]) VALUES ({},{},{},{},{});";
 	static const std::string QUERY_MAX_AVATAR_ID = "SELECT COALESCE(MAX([AvatarId]),0) [MaxAvatarId] FROM [Avatars];";
 
 	static const auto AutoCreateAvatarTable = data::game::Common::Run(CREATE_TABLE);
@@ -36,7 +35,6 @@ namespace data::game
 					common::Data::ToDouble(record.find(FIELD_X)->second),
 					common::Data::ToDouble(record.find(FIELD_Y)->second)
 				},
-				common::Data::ToDouble(record.find(FIELD_HEADING)->second),
 				common::Data::ToInt(record.find(FIELD_STATE)->second),
 				record.find(FIELD_NAME)->second
 			};
@@ -54,7 +52,6 @@ namespace data::game
 				avatarId,
 				avatarData.location.GetX(),
 				avatarData.location.GetY(),
-				avatarData.heading,
 				avatarData.state,
 				common::Data::QuoteString(avatarData.name)));
 	}
