@@ -6,11 +6,12 @@ namespace data::game
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Ships]([ShipId] INT NOT NULL UNIQUE,[ShipType] INT NOT NULL,[Name] TEXT NOT NULL,[X] REAL NOT NULL,[Y] REAL NOT NULL,[Heading] REAL NOT NULL,[Speed] REAL NOT NULL);";
 	static const std::string QUERY_ITEM = "SELECT [ShipId],[ShipType],[Name],[X],[Y],[Heading],[Speed] FROM [Ships] WHERE [ShipId]={};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [Ships] ([ShipId],[ShipType],[Name],[X],[Y],[Heading],[Speed]) VALUES({},{},{},{:.4f},{:.4f},{:.4f},{:.4f}]);";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [Ships] ([ShipId],[ShipType],[Name],[X],[Y],[Heading],[Speed]) VALUES({},{},{},{:.4f},{:.4f},{:.4f},{:.4f});";
 	static const std::string QUERY_MAX_ID = "SELECT COALESCE(MAX([ShipId]),0) MaxShipId FROM [Ships];";
+	static const std::string DELETE_ALL = "DELETE FROM [Ships];";
 	static const std::string FIELD_SHIP_ID = "ShipId";
 	static const std::string FIELD_MAX_SHIP_ID = "MaxShipId";
-	static const std::string FIELD_SHIP_TYPE = "ShipTYpe";
+	static const std::string FIELD_SHIP_TYPE = "ShipType";
 	static const std::string FIELD_NAME = "Name";
 	static const std::string FIELD_X = "X";
 	static const std::string FIELD_Y = "Y";
@@ -21,17 +22,19 @@ namespace data::game
 	void Ship::Write(const Ship& ship)
 	{
 		AutoCreateShipTable();
+		auto query = std::format(
+			REPLACE_ITEM,
+			ship.shipId,
+			ship.shipType,
+			common::Data::QuoteString(ship.name),
+			ship.location.GetX(),
+			ship.location.GetY(),
+			ship.heading,
+			ship.speed
+		);
 		Common::Execute(
-			std::format(
-				REPLACE_ITEM, 
-				ship.shipId, 
-				ship.shipType,
-				common::Data::QuoteString(ship.name),
-				ship.location.GetX(),
-				ship.location.GetY(),
-				ship.heading,
-				ship.speed
-			));
+			query
+			);
 	}
 
 	static Ship ToShip(const std::map<std::string, std::string> table)
@@ -65,4 +68,11 @@ namespace data::game
 		AutoCreateShipTable();
 		return common::Data::ToInt(Common::Execute(QUERY_MAX_ID).front()[FIELD_MAX_SHIP_ID]) + 1;
 	}
+
+	void Ship::Clear()
+	{
+		AutoCreateShipTable();
+		Common::Execute(DELETE_ALL);
+	}
+
 }

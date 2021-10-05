@@ -9,6 +9,7 @@
 #include <Game.Avatar.Ship.h>
 #include <Game.Avatar.ShipStatistics.h>
 #include <Game.Islands.h>
+#include <Game.Ship.h>
 #include <Game.ShipTypes.h>
 #include "States.h"
 #include "UIState.h"
@@ -64,7 +65,8 @@ namespace state::in_play
 
 	static void UpdateShipProperties()
 	{
-		auto shipType = game::avatar::Ship::Read();
+		auto shipId = game::avatar::Ship::Read().value();
+		auto shipType = game::Ship::GetShipType(shipId).value();
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_SHIP_TYPE, std::format(FORMAT_SHIP_TYPE, game::ShipTypes::GetName(shipType)));
 
 		visuals::Texts::SetText(
@@ -77,7 +79,7 @@ namespace state::in_play
 			LAYOUT_NAME,
 			TEXT_TONNAGE,
 			std::format(FORMAT_TONNAGE,
-				game::avatar::Ship::AvailableTonnage(),
+				game::avatar::Ship::AvailableTonnage().value(),
 				game::ShipTypes::GetTotalTonnage(shipType)));
 
 		visuals::Texts::SetText(

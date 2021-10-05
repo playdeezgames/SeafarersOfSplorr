@@ -2,6 +2,9 @@
 #include <Common.Heading.h>
 #include <Common.RNG.h>
 #include <Data.Game.Avatar.h>
+#include <Data.Game.Avatar.Ship.h>
+#include <Data.Game.Player.h>
+#include <Data.Game.Ship.h>
 #include "Game.h"
 #include "Game.Avatar.AtSea.h"
 #include "Game.Avatar.Items.h"
@@ -11,6 +14,7 @@
 #include "Game.Avatar.State.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Islands.h"
+#include <Game.Ship.h>
 #include "Game.ShipTypes.h"
 #include "Game.World.h"
 namespace game::avatar
@@ -27,6 +31,9 @@ namespace game::avatar
 			"nada"//TODO: generate a name?
 		};
 		data::game::Avatar::Write(data);
+		auto shipType = game::ShipTypes::GenerateForAvatar();
+		int shipId = game::Ship::Add(shipType, "starting ship", { worldSize.GetX() / 2.0, worldSize.GetY() / 2.0 }, common::Data::ModuloDouble(common::RNG::FromRange(0.0, common::Heading::DEGREES), common::Heading::DEGREES).value(), 1.0);
+		data::game::avatar::Ship::Write(data::game::Player::GetAvatarId(), shipId);
 		data::game::Avatar::WriteState((int)game::avatar::State::AT_SEA);
 	}
 
@@ -165,7 +172,9 @@ namespace game::avatar
 
 		double multiplier = World::GetWindSpeedMultiplier(avatar.heading);
 
-		auto speedFactor = game::ShipTypes::GetSpeedFactor(game::avatar::Ship::Read());
+		auto shipId = game::avatar::Ship::Read().value();
+		auto shipType = game::Ship::GetShipType(shipId).value();
+		auto speedFactor = game::ShipTypes::GetSpeedFactor(shipType);
 
 		common::XY<double> delta =
 			common::Heading::DegreesToXY(avatar.heading) *

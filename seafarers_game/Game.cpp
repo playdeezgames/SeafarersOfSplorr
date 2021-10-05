@@ -39,13 +39,13 @@ namespace game
 		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);
 
 		World::Reset(difficulty);//must be done first to establish world size
+		avatar::Ship::Reset(difficulty);
 		avatar::AtSea::Reset(difficulty);
 		avatar::Docked::Reset(difficulty);
 		avatar::Equipment::Reset(difficulty);
 		avatar::Items::Reset(difficulty);
 		avatar::Log::Reset(difficulty);
 		avatar::Plights::Reset(difficulty);
-		avatar::Ship::Reset(difficulty);
 		avatar::Statistics::Reset(difficulty);
 		Demigods::Reset(difficulty);
 		Fisheries::Reset(difficulty);

@@ -112,7 +112,7 @@ namespace state::in_play
 			{ 0, 18 },
 			std::format(
 				FORMAT_TONNAGE,
-				game::avatar::Ship::AvailableTonnage()),
+				game::avatar::Ship::AvailableTonnage().value()),
 			game::Colors::WHITE);
 		WriteTextToGrid(
 			{ 0, 19 }, 

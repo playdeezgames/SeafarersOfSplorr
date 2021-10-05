@@ -116,9 +116,6 @@
     <ClInclude Include="Data.Game.Island.DarkAlley.GamblingHand.h">
       <Filter>Header Files\Island</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Avatar.ShipStatistic.h">
-      <Filter>Header Files\Avatar</Filter>
-    </ClInclude>
     <ClInclude Include="Data.Game.Merchant.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -219,9 +216,6 @@
     </ClCompile>
     <ClCompile Include="Data.Game.Island.DarkAlley.GamblingHand.cpp">
       <Filter>Source Files\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Avatar.ShipStatistic.cpp">
-      <Filter>Source Files\Avatar</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Merchant.cpp">
       <Filter>Source Files</Filter>

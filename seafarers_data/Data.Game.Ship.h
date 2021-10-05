@@ -15,6 +15,7 @@ namespace data::game
 
 		static void Write(const Ship&);
 		static std::optional<Ship> Read(int);
+		static void Clear();
 
 		static int NextId();
 	};

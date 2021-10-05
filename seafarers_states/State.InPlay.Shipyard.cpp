@@ -17,6 +17,7 @@
 #include <Game.Islands.Commodities.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Islands.Ships.h>
+#include <Game.Ship.h>
 #include <Game.ShipTypes.h>
 #include <Game.World.h>
 #include "States.h"
@@ -47,7 +48,7 @@ namespace state::in_play
 	{
 		auto location = game::avatar::Docked::GetDockedLocation().value();
 		auto prices = game::islands::Ships::GetPurchasePrices(location);
-		auto tradeIn = game::islands::Ships::GetSalePrice(location, game::avatar::Ship::Read());
+		auto tradeIn = game::islands::Ships::GetSalePrice(location, game::Ship::GetShipType(game::avatar::Ship::Read().value()).value());
 		shipPrices.clear();
 		for (auto price : prices)
 		{
@@ -84,14 +85,15 @@ namespace state::in_play
 		int row = 0;
 		int gridRow = 2;
 		auto money = game::avatar::Statistics::GetMoney();
-		auto ship = game::avatar::Ship::Read();
+		auto shipId = game::avatar::Ship::Read().value();
+		auto shipType = game::Ship::GetShipType(shipId).value();
 		for (auto& shipPrice : shipPrices)
 		{
 			WriteTextToGrid(
 				{ 0, gridRow },
 				std::format("{:10s}{}| {:7.3f}",
 					game::ShipTypes::GetName(shipPrice.first),
-					(ship == shipPrice.first) ? ("*") : (" "),
+					(shipType == shipPrice.first) ? ("*") : (" "),
 					shipPrice.second),
 				(row == hiliteRow && money>= shipPrice.second) ? (game::Colors::CYAN) :
 				(row == hiliteRow && money< shipPrice.second) ? (game::Colors::LIGHT_RED) :
@@ -117,16 +119,18 @@ namespace state::in_play
 		RefreshGrid();
 	}
 
-	static std::function<void()> DoBuyShip(game::ShipType desiredShip, double price)
+	static std::function<void()> DoBuyShip(game::ShipType desiredShipType, double price)
 	{
-		return [desiredShip, price]()
+		return [desiredShipType, price]()
 		{
 			auto location = game::avatar::Docked::GetDockedLocation().value();
-			auto currentShip = game::avatar::Ship::Read();
+			auto currentShipId = game::avatar::Ship::Read().value();
+			auto currentShipType = game::Ship::GetShipType(currentShipId).value();
 			game::avatar::Statistics::ChangeMoney(-price);
-			game::avatar::Ship::Write(desiredShip);
-			game::islands::Markets::BuyShipType(location, desiredShip);
-			game::islands::Markets::SellShipType(location, currentShip);
+			auto desiredShipId = game::Ship::Add(desiredShipType,"shippy mcshipface", location, 0.0, 1.0);//TODO: generate ship name
+			game::avatar::Ship::Write(desiredShipId);
+			game::islands::Markets::BuyShipType(location, desiredShipType);
+			game::islands::Markets::SellShipType(location, currentShipType);
 			UpdateShipPrices();
 			RefreshGrid();
 		};

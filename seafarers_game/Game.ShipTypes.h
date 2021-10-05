@@ -4,6 +4,7 @@
 #include "Game.ShipStatistic.h"
 #include "Game.ShipStatisticDescriptor.h"
 #include <list>
+#include <map>
 #include <string>
 namespace game
 {

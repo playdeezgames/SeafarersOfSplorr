@@ -215,6 +215,9 @@
     <ClInclude Include="Game.EquipSlots.h">
       <Filter>Header Files\Equipment</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Ship.h">
+      <Filter>Header Files\Ships</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -284,6 +287,9 @@
       <Filter>Source Files\Fishing</Filter>
     </ClCompile>
     <ClCompile Include="Game.EquipSlots.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Ship.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
