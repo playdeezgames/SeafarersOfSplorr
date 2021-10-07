@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Avatar.Action.h" />
-    <ClInclude Include="Game.Avatar.AtSea.h" />
     <ClInclude Include="Game.Avatar.Destination.h" />
     <ClInclude Include="Game.Avatar.Destinations.h" />
     <ClInclude Include="Game.Avatar.Docked.h" />
@@ -42,7 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Avatar.ActionDescriptors.cpp" />
-    <ClCompile Include="Game.Avatar.AtSea.cpp" />
     <ClCompile Include="Game.Avatar.cpp" />
     <ClCompile Include="Game.Avatar.Destinations.cpp" />
     <ClCompile Include="Game.Avatar.Docked.cpp" />

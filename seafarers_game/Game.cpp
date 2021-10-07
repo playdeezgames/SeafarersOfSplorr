@@ -3,7 +3,6 @@
 #include <Data.SQLite.Stores.h>
 #include "Game.h"
 #include <Game.Avatar.h>
-#include <Game.Avatar.AtSea.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Equipment.h>
 #include <Game.Avatar.Items.h>

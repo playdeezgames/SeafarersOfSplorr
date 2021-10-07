@@ -1,6 +1,5 @@
 #include <Application.UIState.h>
 #include <format>
-#include <Game.Avatar.AtSea.h>
 #include <Game.Avatar.Log.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>

@@ -1,7 +1,6 @@
 #include <Application.MouseMotion.h>
 #include <Common.Heading.h>
 #include <format>
-#include <Game.Avatar.AtSea.h>
 #include <Game.Avatar.Destinations.h>
 #include <Game.Avatar.Log.h>
 #include <Game.Avatar.Quest.h>

@@ -9,7 +9,6 @@
 #include <format>
 #include <Game.h>
 #include <Game.Audio.Mux.h>
-#include <Game.Avatar.AtSea.h>
 #include <Game.Avatar.Log.h>
 #include <Game.Colors.h>
 #include <Game.Ship.h>
