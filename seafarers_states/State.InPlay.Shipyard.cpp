@@ -18,6 +18,7 @@
 #include <Game.Islands.Markets.h>
 #include <Game.Islands.Ships.h>
 #include <Game.Ship.h>
+#include <Game.ShipNames.h>
 #include <Game.ShipTypes.h>
 #include <Game.World.h>
 #include "States.h"
@@ -127,8 +128,8 @@ namespace state::in_play
 			auto currentShipId = game::avatar::Ship::Read().value().shipId;
 			auto currentShipType = game::Ship::GetShipType(currentShipId).value();
 			game::avatar::Statistics::ChangeMoney(-price);
-			auto desiredShipId = game::Ship::Add(desiredShipType,"shippy mcshipface", location, 0.0, 1.0);//TODO: generate ship name
-			game::avatar::Ship::Write(desiredShipId);
+			auto desiredShipId = game::Ship::Add(desiredShipType,game::ShipNames::Generate(), location, 0.0, 1.0);
+			game::avatar::Ship::Write({ desiredShipId });
 			game::islands::Markets::BuyShipType(location, desiredShipType);
 			game::islands::Markets::SellShipType(location, currentShipType);
 			UpdateShipPrices();

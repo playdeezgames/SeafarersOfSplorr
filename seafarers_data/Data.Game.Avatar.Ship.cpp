@@ -13,10 +13,10 @@ namespace data::game::avatar
 
 	static const auto AutoCreateAvatarShipTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Ship::Write(int avatarId, int shipId)
+	void Ship::Write(int avatarId, const Ship& ship)
 	{
 		AutoCreateAvatarShipTable();
-		data::game::Common::Execute(std::format(REPLACE_ITEM, avatarId, shipId));
+		data::game::Common::Execute(std::format(REPLACE_ITEM, avatarId, ship.shipId));
 	}
 
 	std::optional<Ship> Ship::Read(int avatarId)

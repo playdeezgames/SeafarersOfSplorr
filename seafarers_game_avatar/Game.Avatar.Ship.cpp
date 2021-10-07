@@ -13,9 +13,9 @@ namespace game::avatar
 		data::game::Ship::Clear();
 	}
 
-	void Ship::Write(int shipId)
+	void Ship::Write(const Ship& ship)
 	{
-		data::game::avatar::Ship::Write(data::game::Player::GetAvatarId(), shipId);
+		data::game::avatar::Ship::Write(data::game::Player::GetAvatarId(), { ship.shipId });
 		
 	}
 

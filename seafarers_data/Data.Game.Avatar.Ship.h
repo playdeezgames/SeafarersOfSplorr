@@ -6,7 +6,7 @@ namespace data::game::avatar
 	{
 		int shipId;
 
-		static void Write(int, int);
+		static void Write(int, const Ship&);
 		static std::optional<Ship> Read(int);
 	};
 }

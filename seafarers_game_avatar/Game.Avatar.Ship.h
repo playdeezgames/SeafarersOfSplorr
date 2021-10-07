@@ -8,7 +8,7 @@ namespace game::avatar
 		int shipId;
 
 		static void Reset(const game::Difficulty&);
-		static void Write(int);
+		static void Write(const Ship&);
 		static std::optional<Ship> Read();
 		static std::optional<double> AvailableTonnage();
 	};
