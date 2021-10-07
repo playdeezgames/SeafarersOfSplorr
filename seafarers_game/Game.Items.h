@@ -8,5 +8,6 @@ namespace game
 	{
 		static const game::ItemDescriptor& Read(const game::Item&);
 		static const std::list<game::Item>& All();
+		static const std::map<game::Item, size_t>& RationsGenerator();
 	};
 }

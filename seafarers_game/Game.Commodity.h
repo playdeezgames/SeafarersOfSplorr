@@ -10,6 +10,7 @@ namespace game
 		JOOLS,
 		LABOR,
 		SILK,
-		SEAWEED
+		SEAWEED,
+		SALT
 	};
 }

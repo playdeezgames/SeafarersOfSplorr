@@ -2,6 +2,7 @@
 #include "Game.Commodity.h"
 #include "Game.Difficulty.h"
 #include <map>
+#include <optional>
 #include <string>
 namespace game
 {
@@ -13,5 +14,6 @@ namespace game
 		size_t notPresent;
 		double tonnage;
 		std::map<Difficulty, size_t> initialInventories;
+		std::optional<size_t> avatarRationWeight;
 	};
 }

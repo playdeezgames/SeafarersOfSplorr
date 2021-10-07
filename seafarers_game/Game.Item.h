@@ -12,6 +12,7 @@ namespace game
 		FISHING_POLE,
 		BAIT,
 		SEAWEED,
-		POSH_TROUSERS
+		POSH_TROUSERS,
+		SALTED_FISH
 	};
 }

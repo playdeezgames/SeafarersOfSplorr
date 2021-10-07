@@ -13,7 +13,8 @@ namespace game
 				1,
 				0,
 				0.02,
-				{}
+				{},
+				1
 			}
 		},
 		{game::Item::SACK_OF_WHEAT,
@@ -25,7 +26,8 @@ namespace game
 				1,
 				0,
 				0.1,
-				{}
+				{},
+				std::nullopt
 			}
 		},
 		{game::Item::CLOTH,
@@ -38,7 +40,8 @@ namespace game
 				3,
 				1,
 				0.25,
-				{}
+				{},
+				std::nullopt
 			}
 		},
 		{game::Item::FISH,
@@ -50,7 +53,8 @@ namespace game
 				5,
 				1,
 				0.02,
-				{}
+				{},
+				std::nullopt
 			}
 		},
 		{game::Item::JOOLS,
@@ -62,7 +66,8 @@ namespace game
 				1,
 				0,
 				0.0,
-				{}
+				{},
+				std::nullopt
 			}
 		},
 		{game::Item::TROUSERS,
@@ -79,7 +84,8 @@ namespace game
 					{Difficulty::EASY, 1},
 					{Difficulty::NORMAL, 1},
 					{Difficulty::HARD, 1}
-				}
+				},
+				std::nullopt
 			}
 		},
 		{game::Item::FISHING_POLE,
@@ -94,7 +100,8 @@ namespace game
 				0.3,
 				{
 					//{Difficulty::EASY, 1}
-				}
+				},
+				std::nullopt
 			}
 		},
 		{game::Item::BAIT,
@@ -108,7 +115,8 @@ namespace game
 				0.001,
 				{
 					//{Difficulty::EASY, 10}
-				}
+				},
+				std::nullopt
 			}
 		},
 		{ game::Item::SEAWEED,
@@ -121,7 +129,8 @@ namespace game
 				1,
 				0.00001,
 				{
-				}
+				},
+				std::nullopt
 			}
 		},
 		{ game::Item::POSH_TROUSERS,
@@ -135,7 +144,24 @@ namespace game
 				9,
 				0.1,
 				{
-				}
+				},
+				std::nullopt
+			}
+		},
+		{ game::Item::SALTED_FISH,
+			{
+				"salted fish",
+				{
+					{game::Commodity::MEAT, 0.2},
+					{game::Commodity::SALT, 0.2},
+					{game::Commodity::LABOR, 0.1}
+				},
+				1,
+				1,
+				0.02,
+				{
+				},
+				0
 			}
 		}
 	};
@@ -157,5 +183,22 @@ namespace game
 			}
 		}
 		return itemList;
+	}
+
+	static std::map<game::Item, size_t> rationsGenerator;
+
+	const std::map<game::Item, size_t>& Items::RationsGenerator()
+	{
+		if (rationsGenerator.empty())
+		{
+			for (auto& entry : itemTable)
+			{
+				if (entry.second.avatarRationWeight.has_value())
+				{
+					rationsGenerator[entry.first] = entry.second.avatarRationWeight.value();
+				}
+			}
+		}
+		return rationsGenerator;
 	}
 }
