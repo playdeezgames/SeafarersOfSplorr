@@ -15,6 +15,7 @@
 #include "Game.Avatar.Statistics.h"
 #include "Game.Islands.h"
 #include <Game.Ship.h>
+#include <Game.ShipNames.h>
 #include "Game.ShipTypes.h"
 #include "Game.World.h"
 namespace game::avatar
@@ -29,7 +30,7 @@ namespace game::avatar
 		};
 		data::game::Avatar::Write(data);
 		auto shipType = game::ShipTypes::GenerateForAvatar();
-		int shipId = game::Ship::Add(shipType, "starting ship", { worldSize.GetX() / 2.0, worldSize.GetY() / 2.0 }, common::Data::ModuloDouble(common::RNG::FromRange(0.0, common::Heading::DEGREES), common::Heading::DEGREES).value(), 1.0);
+		int shipId = game::Ship::Add(shipType, game::ShipNames::Generate(), { worldSize.GetX() / 2.0, worldSize.GetY() / 2.0 }, common::Data::ModuloDouble(common::RNG::FromRange(0.0, common::Heading::DEGREES), common::Heading::DEGREES).value(), 1.0);
 		data::game::avatar::Ship::Write(data::game::Player::GetAvatarId(), shipId);
 		data::game::Avatar::WriteState((int)game::avatar::State::AT_SEA);
 	}
