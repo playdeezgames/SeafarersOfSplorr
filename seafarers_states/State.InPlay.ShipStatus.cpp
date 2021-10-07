@@ -22,11 +22,13 @@ namespace state::in_play
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_SHIP_STATUS;
 	static const std::string LAYOUT_NAME = "State.InPlay.ShipStatus";
 
+	static const std::string TEXT_SHIP_NAME = "ShipName";
 	static const std::string TEXT_SHIP_TYPE = "ShipType";
 	static const std::string TEXT_SPEED_FACTOR = "SpeedFactor";
 	static const std::string TEXT_TONNAGE = "Tonnage";
 	static const std::string TEXT_FOULING = "Fouling";
 
+	static const std::string FORMAT_SHIP_NAME = "Name: {}";
 	static const std::string FORMAT_SHIP_TYPE = "Ship Type: {}";
 	static const std::string FORMAT_SPEED_FACTOR = "Speed Factor: {}";
 	static const std::string FORMAT_TONNAGE = "Tonnage: {}/{}";
@@ -72,8 +74,14 @@ namespace state::in_play
 		visuals::Texts::SetText(
 			LAYOUT_NAME,
 			TEXT_SPEED_FACTOR,
-			std::format(FORMAT_SPEED_FACTOR, 
+			std::format(FORMAT_SPEED_FACTOR,
 				game::ShipTypes::GetSpeedFactor(shipType)));
+
+		visuals::Texts::SetText(
+			LAYOUT_NAME,
+			TEXT_SHIP_NAME,
+			std::format(FORMAT_SHIP_NAME,
+				game::Ship::GetName()));
 
 		visuals::Texts::SetText(
 			LAYOUT_NAME,

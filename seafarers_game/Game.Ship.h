@@ -7,5 +7,6 @@ namespace game
 	{
 		static std::optional<ShipType> GetShipType(int);
 		static int Add(const ShipType&, const std::string&, const common::XY<double>, double, double);
+		static std::string GetName();
 	};
 }

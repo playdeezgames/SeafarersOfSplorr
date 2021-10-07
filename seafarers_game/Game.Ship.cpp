@@ -1,6 +1,6 @@
 #include <Data.Game.Ship.h>
 #include <Data.Game.Ship.Statistic.h>
-
+#include <Game.Avatar.Ship.h>
 #include "Game.Ship.h"
 #include "Game.ShipTypes.h"
 namespace game
@@ -40,4 +40,10 @@ namespace game
 		return shipId;
 	}
 
+	std::string Ship::GetName()
+	{
+		auto shipId = game::avatar::Ship::Read().value();
+		auto ship = data::game::Ship::Read(shipId).value();
+		return ship.name;
+	}
 }
