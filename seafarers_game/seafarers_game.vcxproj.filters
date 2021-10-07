@@ -221,6 +221,9 @@
     <ClInclude Include="Game.BerthType.h">
       <Filter>Header Files\Ships</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -296,6 +299,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.ShipNames.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

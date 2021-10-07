@@ -2,6 +2,7 @@
 #include <Data.Game.Avatar.DemigodFavor.h>
 #include <Data.Game.Demigod.h>
 #include <Data.Game.DemigodItem.h>
+#include "Game.Player.h"
 #include "Game.Avatar.Plights.h"
 #include "Game.Items.h"
 #include "Game.Demigods.h"
@@ -114,7 +115,7 @@ namespace game
 		const double OFFERING_FAVOR_MAXIMUM = 1.0;
 		data::game::Demigod::Clear();
 		data::game::DemigodItem::Clear();
-		data::game::avatar::DemigodFavor::Clear();
+		data::game::avatar::DemigodFavor::Clear(Player::GetAvatarId());
 		auto demigodCount = common::RNG::FromGenerator(demigodCounts, 0);
 		auto names = GenerateNames(demigodCount);
 		auto items = Items::All();
@@ -144,7 +145,7 @@ namespace game
 		{
 			game::avatar::Plights::Inflict((game::avatar::Plight)demigod.blessingPlightId);
 			favor -= demigod.blessingThreshold;
-			data::game::avatar::DemigodFavor::Write(demigod.name, favor);
+			data::game::avatar::DemigodFavor::Write(Player::GetAvatarId(), demigod.name, favor);
 			demigod.blessingThreshold *= demigod.blessingMultiplier;
 			data::game::Demigod::Write(demigod);
 			return true;
@@ -158,7 +159,7 @@ namespace game
 		{
 			game::avatar::Plights::Inflict((game::avatar::Plight)demigod.cursePlightId);
 			favor -= demigod.curseThreshold;
-			data::game::avatar::DemigodFavor::Write(demigod.name, favor);
+			data::game::avatar::DemigodFavor::Write(Player::GetAvatarId(), demigod.name, favor);
 			demigod.curseThreshold *= demigod.curseMultiplier;
 			data::game::Demigod::Write(demigod);
 			return true;
@@ -168,9 +169,9 @@ namespace game
 
 	static OfferingResult ApplyFavor(data::game::Demigod& demigod, const Item& item, double delta)
 	{
-		auto favor = data::game::avatar::DemigodFavor::Read(demigod.name).value_or(0.0);
+		auto favor = data::game::avatar::DemigodFavor::Read(Player::GetAvatarId(), demigod.name).value_or(0.0);
 		favor += delta;
-		data::game::avatar::DemigodFavor::Write(demigod.name, favor);
+		data::game::avatar::DemigodFavor::Write(Player::GetAvatarId(), demigod.name, favor);
 		if (ApplyBlessing(demigod, item, favor))
 		{
 			return OfferingResult::BLESSING;

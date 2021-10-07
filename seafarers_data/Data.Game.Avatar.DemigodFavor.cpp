@@ -35,19 +35,4 @@ namespace data::game::avatar
 		AutoCreateAvatarDemigodFavorTable();
 		Common::Execute(std::format(DELETE_ALL, avatarId));
 	}
-
-	void DemigodFavor::Write(const std::string& name, double favor)
-	{
-		Write(Player::GetAvatarId(), name, favor);
-	}
-
-	std::optional<double> DemigodFavor::Read(const std::string& name)
-	{
-		return Read(Player::GetAvatarId(), name);
-	}
-
-	void DemigodFavor::Clear()
-	{
-		Clear(Player::GetAvatarId());
-	}
 }
