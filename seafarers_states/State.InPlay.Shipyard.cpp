@@ -48,7 +48,7 @@ namespace state::in_play
 	{
 		auto location = game::avatar::Docked::GetDockedLocation().value();
 		auto prices = game::islands::Ships::GetPurchasePrices(location);
-		auto tradeIn = game::islands::Ships::GetSalePrice(location, game::Ship::GetShipType(game::avatar::Ship::Read().value()).value());
+		auto tradeIn = game::islands::Ships::GetSalePrice(location, game::Ship::GetShipType(game::avatar::Ship::Read().value().shipId).value());
 		shipPrices.clear();
 		for (auto price : prices)
 		{
@@ -85,7 +85,7 @@ namespace state::in_play
 		int row = 0;
 		int gridRow = 2;
 		auto money = game::avatar::Statistics::GetMoney();
-		auto shipId = game::avatar::Ship::Read().value();
+		auto shipId = game::avatar::Ship::Read().value().shipId;
 		auto shipType = game::Ship::GetShipType(shipId).value();
 		for (auto& shipPrice : shipPrices)
 		{
@@ -124,7 +124,7 @@ namespace state::in_play
 		return [desiredShipType, price]()
 		{
 			auto location = game::avatar::Docked::GetDockedLocation().value();
-			auto currentShipId = game::avatar::Ship::Read().value();
+			auto currentShipId = game::avatar::Ship::Read().value().shipId;
 			auto currentShipType = game::Ship::GetShipType(currentShipId).value();
 			game::avatar::Statistics::ChangeMoney(-price);
 			auto desiredShipId = game::Ship::Add(desiredShipType,"shippy mcshipface", location, 0.0, 1.0);//TODO: generate ship name

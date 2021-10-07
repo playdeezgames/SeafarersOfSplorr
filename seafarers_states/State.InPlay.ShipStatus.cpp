@@ -67,7 +67,7 @@ namespace state::in_play
 
 	static void UpdateShipProperties()
 	{
-		auto shipId = game::avatar::Ship::Read().value();
+		auto shipId = game::avatar::Ship::Read().value().shipId;
 		auto shipType = game::Ship::GetShipType(shipId).value();
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_SHIP_TYPE, std::format(FORMAT_SHIP_TYPE, game::ShipTypes::GetName(shipType)));
 

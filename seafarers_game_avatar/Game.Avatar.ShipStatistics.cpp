@@ -10,7 +10,7 @@ namespace game::avatar
 {
 	static double GetMaximumFouling()
 	{
-		int shipId = game::avatar::Ship::Read().value();
+		int shipId = game::avatar::Ship::Read().value().shipId;
 		double portFouling = data::game::ship::Statistic::Read(shipId, (int)ShipStatistic::PORT_FOULING).value().maximum.value();
 		double starboardFouling = data::game::ship::Statistic::Read(shipId, (int)ShipStatistic::STARBOARD_FOULING).value().maximum.value();
 		return portFouling + starboardFouling;
@@ -18,7 +18,7 @@ namespace game::avatar
 
 	double ShipStatistics::GetFouling()
 	{
-		int shipId = game::avatar::Ship::Read().value();
+		int shipId = game::avatar::Ship::Read().value().shipId;
 		double portFouling = data::game::ship::Statistic::Read(shipId, (int)ShipStatistic::PORT_FOULING).value().current;
 		double starboardFouling = data::game::ship::Statistic::Read(shipId, (int)ShipStatistic::STARBOARD_FOULING).value().current;
 		return portFouling + starboardFouling;
@@ -26,7 +26,7 @@ namespace game::avatar
 
 	double ShipStatistics::GetFoulingPercentage(const game::Side& side)
 	{
-		int shipId = game::avatar::Ship::Read().value();
+		int shipId = game::avatar::Ship::Read().value().shipId;
 		double maximum = data::game::ship::Statistic::Read(shipId, (int)side).value().maximum.value();
 		double current = data::game::ship::Statistic::Read(shipId, (int)side).value().current;
 		return common::Data::ToPercentage(current, maximum).value();
@@ -41,7 +41,7 @@ namespace game::avatar
 
 	void ShipStatistics::IncreaseFouling(double multiplier)
 	{
-		int shipId = game::avatar::Ship::Read().value();
+		int shipId = game::avatar::Ship::Read().value().shipId;
 		auto portFouling = data::game::ship::Statistic::Read(shipId, (int)ShipStatistic::PORT_FOULING).value();
 		auto starboardFouling = data::game::ship::Statistic::Read(shipId, (int)ShipStatistic::STARBOARD_FOULING).value();
 		auto foulingRate = data::game::ship::Statistic::Read(shipId, (int)ShipStatistic::FOULING_RATE).value().current;
@@ -75,7 +75,7 @@ namespace game::avatar
 
 	void ShipStatistics::CleanHull(const Side& side)
 	{
-		int shipId = game::avatar::Ship::Read().value();
+		int shipId = game::avatar::Ship::Read().value().shipId;
 		auto descriptor = foulingTable.find(side)->second;
 		auto fouling = data::game::ship::Statistic::Read(shipId, (int)descriptor.statistic).value();
 		fouling.current = fouling.minimum.value_or(0.0);

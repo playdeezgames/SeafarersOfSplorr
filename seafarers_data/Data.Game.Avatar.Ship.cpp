@@ -19,13 +19,14 @@ namespace data::game::avatar
 		data::game::Common::Execute(std::format(REPLACE_ITEM, avatarId, shipId));
 	}
 
-	std::optional<int> Ship::Read(int avatarId)
+	std::optional<Ship> Ship::Read(int avatarId)
 	{
 		AutoCreateAvatarShipTable();
 		auto records = data::game::Common::Execute(std::format(QUERY_ITEM, avatarId));
 		if (!records.empty())
 		{
-			return common::Data::ToInt(records.front()[FIELD_SHIP_ID]);
+			Ship ship = { common::Data::ToInt(records.front()[FIELD_SHIP_ID]) };
+			return ship;
 		}
 		return std::nullopt;
 	}

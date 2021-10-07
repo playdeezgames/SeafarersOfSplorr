@@ -19,17 +19,25 @@ namespace game::avatar
 		
 	}
 
-	std::optional<int> Ship::Read()
+	std::optional<Ship> Ship::Read()
 	{
-		return data::game::avatar::Ship::Read(data::game::Player::GetAvatarId());
+		auto data = data::game::avatar::Ship::Read(data::game::Player::GetAvatarId());
+		if (data)
+		{
+			Ship ship = {
+				data.value().shipId
+				};
+			return ship;
+		}
+		return std::nullopt;
 	}
 
 	std::optional<double> Ship::AvailableTonnage()
 	{
-		auto shipId = Read();
-		if (shipId)
+		auto ship = Read();
+		if (ship)
 		{
-			auto shipType = game::Ship::GetShipType(shipId.value());
+			auto shipType = game::Ship::GetShipType(ship.value().shipId);
 			if (shipType)
 			{
 				return

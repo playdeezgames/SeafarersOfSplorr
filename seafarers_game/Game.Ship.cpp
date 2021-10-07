@@ -47,21 +47,21 @@ namespace game
 
 	std::string Ship::GetName()
 	{
-		auto shipId = game::avatar::Ship::Read().value();
+		auto shipId = game::avatar::Ship::Read().value().shipId;
 		auto ship = data::game::Ship::Read(shipId).value();
 		return ship.name;
 	}
 
 	double Ship::GetHeading()
 	{
-		auto shipId = game::avatar::Ship::Read().value();
+		auto shipId = game::avatar::Ship::Read().value().shipId;
 		auto ship = data::game::Ship::Read(shipId).value();
 		return ship.heading;
 	}
 
 	void Ship::SetHeading(double heading)
 	{
-		auto shipId = game::avatar::Ship::Read().value();
+		auto shipId = game::avatar::Ship::Read().value().shipId;
 		auto ship = data::game::Ship::Read(shipId).value();
 		ship.heading = common::Data::ModuloDouble(heading, common::Heading::DEGREES).value();
 		data::game::Ship::Write(ship);
@@ -72,21 +72,21 @@ namespace game
 
 	common::XY<double> Ship::GetLocation()
 	{
-		auto shipId = game::avatar::Ship::Read().value();
+		auto shipId = game::avatar::Ship::Read().value().shipId;
 		auto ship = data::game::Ship::Read(shipId).value();
 		return ship.location;
 	}
 
 	double Ship::GetSpeed()
 	{
-		auto shipId = game::avatar::Ship::Read().value();
+		auto shipId = game::avatar::Ship::Read().value().shipId;
 		auto ship = data::game::Ship::Read(shipId).value();
 		return ship.speed;
 	}
 
 	void Ship::SetSpeed(double speed)
 	{
-		auto shipId = game::avatar::Ship::Read().value();
+		auto shipId = game::avatar::Ship::Read().value().shipId;
 		auto ship = data::game::Ship::Read(shipId).value();
 		ship.speed = common::Data::ClampDouble(speed, SPEED_MINIMUM, SPEED_MAXIMUM);
 		data::game::Ship::Write(ship);
@@ -123,7 +123,7 @@ namespace game
 		MoveResult result = MoveResult::MOVED;
 
 		auto fouling = avatar::ShipStatistics::GetFouling();
-		auto shipId = game::avatar::Ship::Read().value();
+		auto shipId = game::avatar::Ship::Read().value().shipId;
 		auto ship = data::game::Ship::Read(shipId).value();
 		avatar::ShipStatistics::IncreaseFouling(ship.speed);
 		auto effectiveSpeed = ship.speed * (1.0 - fouling);
