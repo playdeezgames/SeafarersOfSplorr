@@ -24,7 +24,6 @@ namespace game::avatar
 		auto worldSize = game::World::GetSize();
 		data::game::Avatar data =
 		{
-			{worldSize.GetX() / 2.0, worldSize.GetY() / 2.0},
 			0,
 			"nada"//TODO: generate a name?
 		};
@@ -55,7 +54,9 @@ namespace game::avatar
 
 	common::XY<double> AtSea::GetLocation()
 	{
-		return data::game::Avatar::Read().value().location;
+		auto shipId = game::avatar::Ship::Read().value();
+		auto ship = data::game::Ship::Read(shipId).value();
+		return ship.location;
 	}
 
 	double AtSea::GetSpeed()
@@ -168,7 +169,6 @@ namespace game::avatar
 	AtSea::MoveResult AtSea::Move()
 	{
 		MoveResult result = MoveResult::MOVED;
-		auto avatar = data::game::Avatar::Read().value();
 
 		auto fouling = ShipStatistics::GetFouling();
 		auto shipId = game::avatar::Ship::Read().value();
@@ -186,10 +186,10 @@ namespace game::avatar
 			effectiveSpeed * multiplier *
 			speedFactor;
 
-		avatar.location = ClampAvatarLocation(avatar.location + delta, result);
+		ship.location = ClampAvatarLocation(ship.location + delta, result);
 
 		game::ApplyTurnEffects();
-		data::game::Avatar::Write(avatar);
+		data::game::Ship::Write(ship);
 		return result;
 	}
 }
