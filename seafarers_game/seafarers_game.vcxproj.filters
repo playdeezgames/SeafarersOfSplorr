@@ -221,6 +221,9 @@
     <ClInclude Include="Game.ShipNames.h">
       <Filter>Header Files\Ships</Filter>
     </ClInclude>
+    <ClInclude Include="Game.BerthType.h">
+      <Filter>Header Files\Ships</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">

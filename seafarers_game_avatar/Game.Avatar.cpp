@@ -140,7 +140,7 @@ namespace game
 				common::RNG::FromRange(0.0, common::Heading::DEGREES), 
 				common::Heading::DEGREES).value(), 
 			1.0);
-		game::avatar::Ship::Write({ shipId });
+		game::avatar::Ship::Write({ shipId, BerthType::CAPTAIN });
 	}
 
 }

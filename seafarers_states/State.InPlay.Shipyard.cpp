@@ -129,7 +129,8 @@ namespace state::in_play
 			auto currentShipType = game::Ship::GetShipType(currentShipId).value();
 			game::avatar::Statistics::ChangeMoney(-price);
 			auto desiredShipId = game::Ship::Add(desiredShipType,game::ShipNames::Generate(), location, 0.0, 1.0);
-			game::avatar::Ship::Write({ desiredShipId });
+			//TODO: transfer crew/passengers/captives?
+			game::avatar::Ship::Write({ desiredShipId, game::BerthType::CAPTAIN });
 			game::islands::Markets::BuyShipType(location, desiredShipType);
 			game::islands::Markets::SellShipType(location, currentShipType);
 			UpdateShipPrices();
@@ -141,6 +142,7 @@ namespace state::in_play
 	{
 		if (game::avatar::Items::TotalTonnage() <= game::ShipTypes::GetTotalTonnage(desiredShip))
 		{
+			//TODO: check crew capacity!
 			visuals::Confirmations::Write(
 				{
 					"Are you sure?",

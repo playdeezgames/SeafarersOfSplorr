@@ -15,7 +15,11 @@ namespace game::avatar
 
 	void Ship::Write(const Ship& ship)
 	{
-		data::game::avatar::Ship::Write(data::game::Player::GetAvatarId(), { ship.shipId });
+		data::game::avatar::Ship::Write(data::game::Player::GetAvatarId(), 
+			{ 
+				ship.shipId,
+				(int)ship.berthType
+			});
 		
 	}
 
@@ -25,7 +29,8 @@ namespace game::avatar
 		if (data)
 		{
 			Ship ship = {
-				data.value().shipId
+				data.value().shipId,
+				(BerthType)data.value().berthType
 				};
 			return ship;
 		}

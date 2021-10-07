@@ -1,4 +1,5 @@
 #include <Common.RNG.h>
+#include "Game.BerthType.h"
 #include "Game.ShipTypes.h"
 #include "Game.Ship.Property.h"
 #include <map>
@@ -12,6 +13,7 @@ namespace game
 		std::map<game::Commodity, double> commodities;
 		std::map<ShipStatistic, ShipStatisticDescriptor> statistics;
 		size_t initialShipGenerationWeight;
+		std::map<BerthType, size_t> berths;
 	};
 
 	static const std::map<game::ShipType, game::ShipDescriptor> ships =
@@ -54,7 +56,10 @@ namespace game
 						}
 					}
 				},
-				1
+				1,
+				{
+					{BerthType::CAPTAIN, 1}
+				}
 			}
 		},
 		{
@@ -95,7 +100,10 @@ namespace game
 						}
 					}
 				},
-				0
+				0,
+				{
+					{BerthType::CAPTAIN, 1}
+				}
 			}
 		}
 	};
