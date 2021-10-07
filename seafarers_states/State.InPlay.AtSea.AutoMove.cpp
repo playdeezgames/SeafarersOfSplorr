@@ -4,6 +4,7 @@
 #include <Game.Avatar.Log.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>
+#include <Game.Ship.h>
 #include "States.h"
 #include "UIState.h"
 #include <Visuals.Messages.h>
@@ -48,7 +49,7 @@ namespace state::in_play
 			if (ticks >= ticksLeft)
 			{
 				ticksLeft = TICKS_TOTAL;
-				if (game::avatar::AtSea::Move() == game::avatar::AtSea::MoveResult::CLAMPED)
+				if (game::Ship::Move() == game::Ship::MoveResult::CLAMPED)
 				{
 					autoMoveState = AutoMoveState::OFF;
 				}

@@ -13,5 +13,11 @@ namespace game
 		static double GetSpeed();
 		static void SetSpeed(double);
 		static common::XY<double> GetLocation();
+		enum class MoveResult
+		{
+			MOVED,
+			CLAMPED
+		};
+		static MoveResult Move();
 	};
 }

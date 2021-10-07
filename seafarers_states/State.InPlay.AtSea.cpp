@@ -133,7 +133,7 @@ namespace state::in_play
 			game::avatar::Log::Write({
 				game::Colors::GRAY,
 				"You move ahead... cautiously." });
-			game::avatar::AtSea::Move();
+			game::Ship::Move();
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		}
 	}
