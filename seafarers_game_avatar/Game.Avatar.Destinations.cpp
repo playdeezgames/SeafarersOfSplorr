@@ -1,21 +1,22 @@
 #include <Data.Game.Avatar.Destination.h>
 #include <Data.Game.Avatar.DestinationName.h>
 #include "Game.Avatar.Destinations.h"
+#include <Game.Player.h>
 namespace game::avatar
 {
 	std::optional<common::XY<double>> Destinations::GetDestination(const game::avatar::Destination& index)
 	{
-		return data::game::avatar::Destination::Read((int)index);
+		return data::game::avatar::Destination::Read(Player::GetAvatarId(), (int)index);
 	}
 
 	void Destinations::SetDestination(const game::avatar::Destination& index, const std::optional<common::XY<double>>& destination)
 	{
 		if (destination)
 		{
-			data::game::avatar::Destination::Write((int)index, destination.value());
+			data::game::avatar::Destination::Write(Player::GetAvatarId(), (int)index, destination.value());
 			return;
 		}
-		data::game::avatar::Destination::Clear((int)index);
+		data::game::avatar::Destination::Clear(Player::GetAvatarId(), (int)index);
 	}
 
 	static std::list<game::avatar::Destination> allDestinations = 

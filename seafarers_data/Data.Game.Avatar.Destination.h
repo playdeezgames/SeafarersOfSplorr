@@ -9,9 +9,5 @@ namespace data::game::avatar
 		static std::optional<common::XY<double>> Read(int, int);
 		static void Clear(int, int);
 		static void ClearAll(int);
-		static void Write(int, const common::XY<double>&);
-		static std::optional<common::XY<double>> Read(int);
-		static void Clear(int);
-		static void ClearAll();
 	};
 }

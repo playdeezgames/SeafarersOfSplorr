@@ -54,23 +54,4 @@ namespace data::game::avatar
 		auto query = std::format(DELETE_ALL, avatarId);
 		data::game::Common::Execute(query);
 	}
-	void Destination::Write(int destinationId, const common::XY<double>& location)
-	{
-		Write(Player::GetAvatarId(), destinationId, location);
-	}
-
-	std::optional<common::XY<double>> Destination::Read(int destinationId)
-	{
-		return Read(Player::GetAvatarId(), destinationId);
-	}
-
-	void Destination::Clear(int destinationId)
-	{
-		Clear(Player::GetAvatarId(), destinationId);
-	}
-
-	void Destination::ClearAll()
-	{
-		ClearAll(Player::GetAvatarId());
-	}
 }

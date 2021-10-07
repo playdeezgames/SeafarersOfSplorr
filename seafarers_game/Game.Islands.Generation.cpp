@@ -12,6 +12,7 @@
 #include "Game.Commodities.h"
 #include "Game.Islands.h"
 #include "Game.Items.h"
+#include "Game.Player.h"
 #include "Game.World.h"
 #include <map>
 #include <set>
@@ -131,7 +132,7 @@ namespace game
 		data::game::Island::Clear();
 		data::game::island::Visit::Clear();
 		data::game::island::Known::Clear();
-		data::game::avatar::Destination::ClearAll();
+		data::game::avatar::Destination::ClearAll(Player::GetAvatarId());
 		data::game::avatar::DestinationName::Clear();
 		data::game::island::Market::Clear();
 		data::game::island::Item::ClearAll();
