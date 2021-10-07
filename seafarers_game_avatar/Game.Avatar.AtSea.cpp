@@ -22,17 +22,19 @@ namespace game::avatar
 {
 	void AtSea::Reset(const game::Difficulty&)
 	{
-		auto worldSize = game::World::GetSize();
 		data::game::Avatar data =
 		{
 			0,
 			"nada"//TODO: generate a name?
 		};
 		data::game::Avatar::Write(data);
+		data::game::Avatar::WriteState((int)game::avatar::State::AT_SEA);
+
+		auto worldSize = game::World::GetSize();
 		auto shipType = game::ShipTypes::GenerateForAvatar();
 		int shipId = game::Ship::Add(shipType, game::ShipNames::Generate(), { worldSize.GetX() / 2.0, worldSize.GetY() / 2.0 }, common::Data::ModuloDouble(common::RNG::FromRange(0.0, common::Heading::DEGREES), common::Heading::DEGREES).value(), 1.0);
+
 		data::game::avatar::Ship::Write(data::game::Player::GetAvatarId(), shipId);
-		data::game::Avatar::WriteState((int)game::avatar::State::AT_SEA);
 	}
 
 
@@ -71,12 +73,6 @@ namespace game::avatar
 		}
 	}
 
-	static void ApplyWindChange()
-	{
-		const double NORMAL_WIND_CHANGE = 5.0;
-		game::World::SetWindHeading(game::World::GetWindHeading()+common::RNG::FromRange(-NORMAL_WIND_CHANGE, NORMAL_WIND_CHANGE));
-	}
-
 	static void ApplyTurn()
 	{
 		if (Plights::Has(Plight::DOUBLE_AGING) && !Plights::Has(Plight::AGING_IMMUNITY))
@@ -98,7 +94,6 @@ namespace game::avatar
 		ApplyTurn();
 		ApplyHunger();
 		ApplyEating();
-		ApplyWindChange();
 	}
 
 	static common::XY<double> ClampAvatarLocation(const common::XY<double>& candidate, AtSea::MoveResult& result)

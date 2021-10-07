@@ -6,7 +6,7 @@ namespace game::avatar
 {
 	struct AtSea
 	{
-		enum class MoveResult
+		enum class MoveResult//TODO: move to ship
 		{
 			MOVED,
 			CLAMPED
@@ -14,7 +14,7 @@ namespace game::avatar
 
 		static void Reset(const game::Difficulty&);
 
-		static MoveResult Move();
-		static void ApplyTurnEffects();
+		static MoveResult Move();//TODO: move to ship
+		static void ApplyTurnEffects();//TODO: move to avatar
 	};
 }

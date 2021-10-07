@@ -120,13 +120,22 @@ namespace game
 		}
 	}
 
+	static const std::list<std::function<void()>> turnEffects = 
+	{
+		avatar::AtSea::ApplyTurnEffects,
+		Islands::ApplyTurnEffects,
+		Merchants::ApplyTurnEffects,
+		avatar::Plights::ApplyTurnEffects,
+		Demigods::ApplyTurnEffects,
+		Fisheries::ApplyTurnEffects,
+		World::ApplyTurnEffects,
+	};
+
 	void ApplyTurnEffects()
 	{
-		avatar::AtSea::ApplyTurnEffects();
-		Islands::ApplyTurnEffects();
-		Merchants::ApplyTurnEffects();
-		avatar::Plights::ApplyTurnEffects();
-		Demigods::ApplyTurnEffects();
-		Fisheries::ApplyTurnEffects();
+		for (auto turnEffect : turnEffects)
+		{
+			turnEffect();
+		}
 	}
 }

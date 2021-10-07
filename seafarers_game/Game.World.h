@@ -15,5 +15,6 @@ namespace game
 		static double GetUnfoulingLaborMultiplier();
 		static void SetWindHeading(double);
 		static void Reset(const game::Difficulty&);
+		static void ApplyTurnEffects();
 	};
 }

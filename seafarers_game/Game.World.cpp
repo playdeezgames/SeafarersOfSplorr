@@ -90,4 +90,15 @@ namespace game
 		return 100.0;//TODO: put this in configuration somewhere!
 	}
 
+	static void ApplyWindChange()
+	{
+		const double NORMAL_WIND_CHANGE = 5.0;
+		game::World::SetWindHeading(game::World::GetWindHeading() + common::RNG::FromRange(-NORMAL_WIND_CHANGE, NORMAL_WIND_CHANGE));
+	}
+
+	void World::ApplyTurnEffects()
+	{
+		ApplyWindChange();
+	}
+
 }
