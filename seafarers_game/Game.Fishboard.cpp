@@ -142,10 +142,9 @@ namespace game
 	{
 		auto descriptor = Fishes::Read((Fish)fish);
 		game::avatar::Items::Add(descriptor.item, 1);
-		auto itemDescriptor = Items::Read(descriptor.item);
 		avatar::Log::Write({
 			game::Colors::GREEN,
-			std::format("You reel in a {}!", itemDescriptor.name) });
+			std::format("You reel in a {}!", Items::GetName(descriptor.item)) });
 	}
 
 	static void DepleteFishery()

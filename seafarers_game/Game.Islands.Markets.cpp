@@ -34,14 +34,14 @@ namespace game::islands
 
 	void Markets::BuyItems(const common::XY<double>& location, const game::Item& item, size_t quantity)
 	{
-		auto descriptor = game::Items::Read(item);
-		BuyQuantities(location, descriptor.commodities, quantity);
+		auto commodities = game::Items::GetCommodities(item);
+		BuyQuantities(location, commodities, quantity);
 	}
 
 	void Markets::SellItems(const common::XY<double>& location, const game::Item& item, size_t quantity)
 	{
-		auto descriptor = game::Items::Read(item);
-		SellQuantities(location, descriptor.commodities, quantity);
+		auto commodities = game::Items::GetCommodities(item);
+		SellQuantities(location, commodities, quantity);
 	}
 
 	void Markets::BuyShipType(const common::XY<double>& location, const game::ShipType& ship)

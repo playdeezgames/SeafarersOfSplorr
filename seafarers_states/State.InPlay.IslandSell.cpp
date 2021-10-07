@@ -93,11 +93,10 @@ namespace state::in_play
 		int gridRow = 2;
 		for (auto& unitPrice : unitPrices)
 		{
-			auto& itemDescriptor = game::Items::Read(unitPrice.first);
 			WriteTextToGrid(
 				{ 0, gridRow },
 				std::format(FORMAT_LINE_ITEM,
-					itemDescriptor.name,
+					game::Items::GetName(unitPrice.first),
 					unitPrice.second,
 					game::avatar::Items::Read(unitPrice.first)),
 				(row == hiliteRow) ? (game::Colors::CYAN) : (game::Colors::GRAY));

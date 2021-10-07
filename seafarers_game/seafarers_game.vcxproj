@@ -57,7 +57,6 @@
     <ClInclude Include="Game.Islands.Quests.h" />
     <ClInclude Include="Game.Islands.Ships.h" />
     <ClInclude Include="Game.Item.h" />
-    <ClInclude Include="Game.ItemDescriptor.h" />
     <ClInclude Include="Game.Items.h" />
     <ClInclude Include="Game.Merchant.h" />
     <ClInclude Include="Game.Merchants.h" />

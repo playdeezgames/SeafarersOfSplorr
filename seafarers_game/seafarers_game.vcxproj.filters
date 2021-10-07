@@ -104,9 +104,6 @@
     <ClInclude Include="Game.Item.h">
       <Filter>Header Files\Items</Filter>
     </ClInclude>
-    <ClInclude Include="Game.ItemDescriptor.h">
-      <Filter>Header Files\Items</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Items.h">
       <Filter>Header Files\Items</Filter>
     </ClInclude>

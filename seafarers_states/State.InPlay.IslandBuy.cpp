@@ -89,14 +89,13 @@ namespace state::in_play
 		int gridRow = 2;
 		for (auto& unitPrice : unitPrices)
 		{
-			auto& itemDescriptor = game::Items::Read(unitPrice.first);
 			WriteTextToGrid(
 				{ 0, gridRow }, 
 				std::format(LIST_ITEM_FORMAT,
-					itemDescriptor.name, 
+					game::Items::GetName(unitPrice.first), 
 					unitPrice.second,
 					game::avatar::Items::Read(unitPrice.first),
-					itemDescriptor.tonnage), 
+					game::Items::GetUnitTonnage(unitPrice.first)), 
 				(row==hiliteRow) ? (game::Colors::CYAN) : (game::Colors::GRAY));
 			++gridRow;
 			++row;
@@ -160,7 +159,7 @@ namespace state::in_play
 			double totalPrice = unitPrices[item.value()] * quantity;
 			if (game::avatar::Statistics::GetMoney() >= totalPrice)
 			{
-				if (game::avatar::Ship::AvailableTonnage() >= game::Items::Read(item.value()).tonnage * quantity)
+				if (game::avatar::Ship::AvailableTonnage() >= game::Items::GetUnitTonnage(item.value()) * quantity)
 				{
 					game::avatar::Statistics::ChangeMoney(-totalPrice);
 					game::islands::Markets::BuyItems(game::avatar::Docked::GetDockedLocation().value(), item.value(), quantity);

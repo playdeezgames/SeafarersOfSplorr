@@ -69,11 +69,10 @@ namespace state::in_play
 		int gridRow = 2;
 		for (auto& item : items)
 		{
-			auto& itemDescriptor = game::Items::Read(item.first);
 			WriteTextToGrid(
 				{ 0, gridRow },
 				std::format("{:15s}",
-					itemDescriptor.name),
+					game::Items::GetName(item.first)),
 				(row == hiliteRow) ? (game::Colors::CYAN) : (game::Colors::GRAY));
 			++gridRow;
 			++row;

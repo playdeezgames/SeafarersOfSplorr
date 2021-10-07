@@ -50,8 +50,7 @@ namespace state::in_play
 		auto item = game::avatar::Equipment::Read(equipSlot);
 		if (item)
 		{
-			auto itemDescriptor = game::Items::Read(item.value());
-			visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { EQUIPPED_ITEM_X, row }, FONT_DEFAULT, itemDescriptor.name, color, visuals::HorizontalAlignment::LEFT);
+			visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { EQUIPPED_ITEM_X, row }, FONT_DEFAULT, game::Items::GetName(item.value()), color, visuals::HorizontalAlignment::LEFT);
 		}
 		else
 		{
@@ -80,7 +79,7 @@ namespace state::in_play
 	{
 		return 
 			(item.has_value()) ? 
-			(game::Items::Read(item.value()).name) : 
+			(game::Items::GetName(item.value())) : 
 			(EMPTY);
 	}
 

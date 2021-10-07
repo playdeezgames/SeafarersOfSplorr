@@ -42,8 +42,8 @@ namespace game::avatar
 		double tonnage = 0.0;
 		for (auto& entry : All())
 		{
-			auto& descriptor = game::Items::Read(entry.first);
-			tonnage += descriptor.tonnage * (double)entry.second;
+			auto unitTonnage = game::Items::GetUnitTonnage(entry.first);
+			tonnage += unitTonnage * (double)entry.second;
 		}
 		return tonnage;
 	}
@@ -53,9 +53,9 @@ namespace game::avatar
 		data::game::avatar::Items::Clear();
 		for (auto& item : game::Items::All())
 		{
-			auto& descriptor = game::Items::Read(item);
-			auto iter = descriptor.initialInventories.find(difficulty);
-			if (iter != descriptor.initialInventories.end())
+			auto& initialInventories = game::Items::GetInitialInventories(item);
+			auto iter = initialInventories.find(difficulty);
+			if (iter != initialInventories.end())
 			{
 				Add(item, iter->second);
 			}

@@ -156,8 +156,7 @@ namespace game
 	{
 		for (auto& item : game::Items::All())
 		{
-			auto descriptor = game::Items::Read(item);
-			if (common::RNG::FromRange(0u, descriptor.present + descriptor.notPresent) < descriptor.present)
+			if (Items::GeneratePresence(item))
 			{
 				data::game::island::Item::Set(location, (int)item);
 			}

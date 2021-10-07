@@ -1,7 +1,19 @@
+#include <Common.RNG.h>
 #include "Game.Items.h"
 #include <map>
 namespace game
 {
+	struct ItemDescriptor
+	{
+		std::string name;
+		std::map<game::Commodity, double> commodities;
+		size_t present;
+		size_t notPresent;
+		double tonnage;
+		std::map<Difficulty, size_t> initialInventories;
+		std::optional<size_t> avatarRationWeight;
+	};
+
 	static const std::map<game::Item, game::ItemDescriptor> itemTable =
 	{
 		{game::Item::RATIONS,
@@ -168,7 +180,7 @@ namespace game
 
 	static std::list<game::Item> itemList;
 
-	const game::ItemDescriptor& Items::Read(const game::Item& item)
+	static const game::ItemDescriptor& Read(const game::Item& item)
 	{
 		return itemTable.find(item)->second;
 	}
@@ -201,4 +213,33 @@ namespace game
 		}
 		return rationsGenerator;
 	}
+
+	const std::string& Items::GetName(const game::Item& item)
+	{
+		return Read(item).name;
+	}
+
+	bool Items::GeneratePresence(const game::Item& item)
+	{
+		auto& descriptor = Read(item);
+		return common::RNG::FromRange(0u, descriptor.present + descriptor.notPresent) < descriptor.present;
+
+
+	}
+
+	const std::map<Commodity, double>& Items::GetCommodities(const game::Item& item)
+	{
+		return Read(item).commodities;
+	}
+
+	double Items::GetUnitTonnage(const game::Item& item)
+	{
+		return Read(item).tonnage;
+	}
+
+	const std::map<Difficulty, size_t>& Items::GetInitialInventories(const game::Item& item)
+	{
+		return Read(item).initialInventories;
+	}
+
 }
