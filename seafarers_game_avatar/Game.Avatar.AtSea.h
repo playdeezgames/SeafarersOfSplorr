@@ -12,9 +12,6 @@ namespace game::avatar
 			CLAMPED
 		};
 
-		static void Reset(const game::Difficulty&);
-
 		static MoveResult Move();//TODO: move to ship
-		static void ApplyTurnEffects();//TODO: move to avatar
 	};
 }
