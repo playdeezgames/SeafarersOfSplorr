@@ -12,6 +12,7 @@
 #include <Game.Avatar.AtSea.h>
 #include <Game.Avatar.Log.h>
 #include <Game.Colors.h>
+#include <Game.Ship.h>
 #include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
@@ -50,7 +51,7 @@ namespace state::in_play
 			game::avatar::Log::Write(
 				{game::Colors::GRAY,
 				std::format("Set speed to {:.0f}%!", common::Data::ToPercentage(speed, SPEED_FLANK).value())});
-			game::avatar::AtSea::SetSpeed(speed);
+			game::Ship::SetSpeed(speed);
 			OnLeave();
 		};
 	}

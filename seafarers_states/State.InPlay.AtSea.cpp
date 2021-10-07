@@ -13,8 +13,9 @@
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Log.h>
 #include <Game.Avatar.Quest.h>
-#include <Game.Islands.h>
 #include <Game.Colors.h>
+#include <Game.Islands.h>
+#include <Game.Ship.h>
 #include "States.h"
 #include "Sublayouts.h"
 #include "UIState.h"
@@ -210,7 +211,7 @@ namespace state::in_play
 				game::Colors::GRAY,
 				std::format("Come about to {}!", common::Heading::ToCompassPoint(newHeading))
 				});
-			game::avatar::AtSea::SetHeading(newHeading);
+			game::Ship::SetHeading(newHeading);
 			sublayout::AtSeaAvatarStatus::Refresh();
 			RefreshLog();
 			return true;

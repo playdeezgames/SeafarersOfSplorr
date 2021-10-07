@@ -6,6 +6,7 @@
 #include <Game.Avatar.Destinations.h>
 #include <Game.Avatar.Quest.h>
 #include <Game.Islands.h>
+#include <Game.Ship.h>
 #include <Game.World.h>
 #include <json.hpp>
 #include <map>
@@ -51,7 +52,7 @@ namespace visuals
 
 	static void DrawAvatar(const std::shared_ptr<application::Engine::Renderer>& renderer, const InternalWorldMap& worldMap, const common::XY<double> worldSize)
 	{
-		auto avatarLocation = game::avatar::AtSea::GetLocation();
+		auto avatarLocation = game::Ship::GetLocation();
 		common::XY<int> plot = Plot(worldMap, worldSize, avatarLocation);
 		visuals::Sprites::Draw(SPRITE_WORLD_MAP_SHIP, renderer, plot, { 0xff,0xff,0xff,0xff });
 	}

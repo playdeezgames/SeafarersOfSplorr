@@ -9,6 +9,7 @@
 #include <Game.Fisheries.h>
 #include <Game.Islands.h>
 #include <Game.Merchants.h>
+#include <Game.Ship.h>
 #include <Game.World.h>
 #include <Visuals.Colors.h>
 #include <Visuals.Data.Properties.h>
@@ -49,7 +50,7 @@ namespace visuals
 	{
 		return [navigator](const common::XY<double>& location)
 		{
-			auto avatarLocation = game::avatar::AtSea::GetLocation();
+			auto avatarLocation = game::Ship::GetLocation();
 			auto difference = (location - avatarLocation);
 			auto scaledDifference = difference * (double)navigator.radius / game::World::GetViewDistance();
 			common::XY<int> plottedDifference = {(int)scaledDifference.GetX(), (int)scaledDifference.GetY()};
@@ -115,7 +116,7 @@ namespace visuals
 		const std::shared_ptr<application::Engine::Renderer>& renderer,
 		const InternalNavigator& navigator)
 	{
-		auto heading = game::avatar::AtSea::GetHeading();
+		auto heading = game::Ship::GetHeading();
 		Sprites::Draw(
 			SPRITE_CURRENT_HEADING, 
 			renderer, 
@@ -171,9 +172,9 @@ namespace visuals
 		auto quest = game::avatar::Quest::Read();
 		if (quest)
 		{
-			auto difference = quest.value().destination - game::avatar::AtSea::GetLocation();
+			auto difference = quest.value().destination - game::Ship::GetLocation();
 			auto clampedDistance = common::Heading::ClampDistance(difference, game::World::GetViewDistance());
-			auto plot = plotter(clampedDistance+ game::avatar::AtSea::GetLocation());
+			auto plot = plotter(clampedDistance+ game::Ship::GetLocation());
 			Sprites::Draw(
 				SPRITE_QUEST_DESTINATION,
 				renderer,
@@ -200,9 +201,9 @@ namespace visuals
 		auto destination = game::avatar::Destinations::GetDestination(destinationId);
 		if (destination)
 		{
-			auto difference = destination.value() - game::avatar::AtSea::GetLocation();
+			auto difference = destination.value() - game::Ship::GetLocation();
 			auto clampedDistance = common::Heading::ClampDistance(difference, game::World::GetViewDistance() + 0.5);//TODO: magic number
-			auto plot = plotter(clampedDistance + game::avatar::AtSea::GetLocation());
+			auto plot = plotter(clampedDistance + game::Ship::GetLocation());
 			Sprites::Draw(
 				destinationSprites.find(destinationId)->second,
 				renderer,

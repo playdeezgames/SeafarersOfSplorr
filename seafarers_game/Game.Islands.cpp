@@ -13,6 +13,7 @@
 #include "Game.Islands.h"
 #include "Game.Items.h"
 #include "Game.Merchants.h"
+#include "Game.Ship.h"
 #include "Game.World.h"
 #include <map>
 #include <set>
@@ -55,7 +56,7 @@ namespace game
 	static std::list<Island> GetIslandsInRange(std::function<bool(const data::game::Island&, double)> filter)
 	{
 		std::list<Island> result;
-		auto avatarLocation = game::avatar::AtSea::GetLocation();
+		auto avatarLocation = game::Ship::GetLocation();
 		auto islands = data::game::Island::All();
 		for (auto& island : islands)
 		{

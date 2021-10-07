@@ -7,6 +7,7 @@
 #include <Game.Avatar.Quest.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Islands.h>
+#include <Game.Ship.h>
 #include <Game.World.h>
 #include <map>
 #include <string>
@@ -59,7 +60,7 @@ namespace sublayout
 
 	static void RefreshAvatarHeading()
 	{
-		auto heading = game::avatar::AtSea::GetHeading();
+		auto heading = game::Ship::GetHeading();
 		visuals::Texts::SetText(
 			SUBLAYOUT_NAME,
 			TEXT_AVATAR_HEADING, 
@@ -68,7 +69,7 @@ namespace sublayout
 
 	static void RefreshAvatarSpeed()
 	{
-		auto speed = game::avatar::AtSea::GetSpeed();
+		auto speed = game::Ship::GetSpeed();
 		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_SPEED, std::format(game::avatar::Statistics::FORMAT_SPEED, speed));
 	}
 

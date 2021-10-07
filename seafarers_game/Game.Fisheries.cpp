@@ -2,6 +2,7 @@
 #include <Common.RNG.h>
 #include <Data.Game.Fishery.h>
 #include "Game.Avatar.AtSea.h"
+#include "Game.Ship.h"
 #include "Game.Fishes.h"
 #include "Game.Fisheries.h"
 #include "Game.World.h"
@@ -100,7 +101,7 @@ namespace game
 
 	std::list<Fishery> Fisheries::Available()
 	{
-		auto avatarLocation = avatar::AtSea::GetLocation();
+		auto avatarLocation = Ship::GetLocation();
 		std::list<Fishery> result;
 		for (auto& fishery : All())
 		{

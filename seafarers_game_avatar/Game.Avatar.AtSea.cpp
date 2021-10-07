@@ -35,45 +35,6 @@ namespace game::avatar
 		data::game::Avatar::WriteState((int)game::avatar::State::AT_SEA);
 	}
 
-	double AtSea::GetHeading()
-	{
-		auto shipId = game::avatar::Ship::Read().value();
-		auto ship = data::game::Ship::Read(shipId).value();
-		return ship.heading;
-	}
-
-	void AtSea::SetHeading(double heading)
-	{
-		auto shipId = game::avatar::Ship::Read().value();
-		auto ship = data::game::Ship::Read(shipId).value();
-		ship.heading = common::Data::ModuloDouble(heading, common::Heading::DEGREES).value();
-		data::game::Ship::Write(ship);
-	}
-
-	const double SPEED_MINIMUM = 0.0;
-	const double SPEED_MAXIMUM = 1.0;
-
-	common::XY<double> AtSea::GetLocation()
-	{
-		auto shipId = game::avatar::Ship::Read().value();
-		auto ship = data::game::Ship::Read(shipId).value();
-		return ship.location;
-	}
-
-	double AtSea::GetSpeed()
-	{
-		auto shipId = game::avatar::Ship::Read().value();
-		auto ship = data::game::Ship::Read(shipId).value();
-		return ship.speed;
-	}
-
-	void AtSea::SetSpeed(double speed)
-	{
-		auto shipId = game::avatar::Ship::Read().value();
-		auto ship = data::game::Ship::Read(shipId).value();
-		ship.speed = common::Data::ClampDouble(speed, SPEED_MINIMUM, SPEED_MAXIMUM);
-		data::game::Ship::Write(ship);
-	}
 
 	static void ApplyHunger()
 	{

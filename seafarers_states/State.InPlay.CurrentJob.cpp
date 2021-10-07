@@ -13,6 +13,7 @@
 #include <Game.Avatar.Quest.h>
 #include <Game.Islands.h>
 #include <Game.Islands.Quests.h>
+#include "Game.Ship.h"
 #include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
@@ -63,7 +64,7 @@ namespace state::in_play
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE6, std::format("Reward: {:.2f}", questModel.reward));
 
 		auto islandModel = game::Islands::Read(questModel.destination).value();
-		double distance = common::Heading::Distance(questModel.destination, game::avatar::AtSea::GetLocation());
+		double distance = common::Heading::Distance(questModel.destination, game::Ship::GetLocation());
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE5, std::format("at {} ({:.2f}).", islandModel.name, distance));
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_ABANDON_JOB, true);
 	}
