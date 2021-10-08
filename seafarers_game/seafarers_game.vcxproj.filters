@@ -80,9 +80,6 @@
     <ClInclude Include="Game.Feature.h">
       <Filter>Header Files\Features</Filter>
     </ClInclude>
-    <ClInclude Include="Game.FeatureDescriptor.h">
-      <Filter>Header Files\Features</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Features.h">
       <Filter>Header Files\Features</Filter>
     </ClInclude>

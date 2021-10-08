@@ -2,6 +2,13 @@
 #include <map>
 namespace game
 {
+	struct FeatureDescriptor
+	{
+		std::string name;
+		size_t minimumCount;//at least this many have to exist in a given world, up to the number of islands present
+		double coveragePercentage;//the percentage of islands with this feature
+	};
+
 	static const std::map<game::Feature, game::FeatureDescriptor> featureDescriptors =
 	{
 		{game::Feature::SHIPYARD,
@@ -21,7 +28,7 @@ namespace game
 	};
 	static std::list<game::Feature> featureList;
 
-	const game::FeatureDescriptor& Features::Read(const game::Feature& feature)
+	static const game::FeatureDescriptor& Read(const game::Feature& feature)
 	{
 		return featureDescriptors.find(feature)->second;
 	}
@@ -36,5 +43,20 @@ namespace game
 			}
 		}
 		return featureList;
+	}
+
+	const std::string& Features::GetName(const game::Feature& feature)
+	{
+		return Read(feature).name;
+	}
+
+	size_t Features::GetMinimumCount(const game::Feature& feature)
+	{
+		return Read(feature).minimumCount;
+	}
+
+	double Features::GetCoveragePercentage(const game::Feature& feature)
+	{
+		return Read(feature).coveragePercentage;
 	}
 }

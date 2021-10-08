@@ -1,12 +1,14 @@
 #pragma once
 #include "Game.Feature.h"
-#include "Game.FeatureDescriptor.h"
 #include <list>
+#include <string>
 namespace game
 {
 	struct Features
 	{
-		static const game::FeatureDescriptor& Read(const game::Feature&);
 		static const std::list<game::Feature>& All();
+		static const std::string& GetName(const game::Feature&);
+		static size_t GetMinimumCount(const game::Feature&);
+		static double GetCoveragePercentage(const game::Feature&);
 	};
 }

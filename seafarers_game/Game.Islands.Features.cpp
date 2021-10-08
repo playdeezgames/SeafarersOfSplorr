@@ -50,16 +50,16 @@ namespace game::islands
 
 	static void GenerateFeature(const game::Feature& feature, const std::list<data::game::Island>& islands)
 	{
-		auto& descriptor = game::Features::Read(feature);
+		
 		std::vector<data::game::Island> candidates;
 		for (auto island : islands)
 		{
 			candidates.push_back(island);
 		}
-		size_t islandCount = (size_t)(descriptor.coveragePercentage * (double)islands.size());
-		if (islandCount < descriptor.minimumCount)
+		size_t islandCount = (size_t)(game::Features::GetCoveragePercentage(feature) * (double)islands.size());
+		if (islandCount < game::Features::GetMinimumCount(feature))
 		{
-			islandCount = descriptor.minimumCount;
+			islandCount = game::Features::GetMinimumCount(feature);
 		}
 		if (islandCount > islands.size())
 		{

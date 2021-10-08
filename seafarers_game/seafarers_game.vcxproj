@@ -38,7 +38,6 @@
     <ClInclude Include="Game.Demigods.h" />
     <ClInclude Include="Game.Difficulty.h" />
     <ClInclude Include="Game.Feature.h" />
-    <ClInclude Include="Game.FeatureDescriptor.h" />
     <ClInclude Include="Game.Features.h" />
     <ClInclude Include="Game.Fish.h" />
     <ClInclude Include="Game.Fishes.h" />
