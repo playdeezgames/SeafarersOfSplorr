@@ -3,7 +3,6 @@
 #include "Data.Game.Avatar.h"
 #include "Data.Game.Common.h"
 #include "Data.Game.Player.h"
-#include <format>
 #include <optional>
 namespace data::game
 {
@@ -21,9 +20,8 @@ namespace data::game
 	{
 		AutoCreateAvatarTable();
 		auto result = data::game::Common::Execute(
-			std::format(
 				QUERY_ITEM,
-				avatarId));
+				avatarId);
 		if (!result.empty())
 		{
 			const auto& record = result.front();
@@ -41,11 +39,10 @@ namespace data::game
 	{
 		AutoCreateAvatarTable();
 		data::game::Common::Execute(
-			std::format(
 				REPLACE_ITEM,
 				avatarId,
 				avatarData.state,
-				common::Data::QuoteString(avatarData.name)));
+				common::Data::QuoteString(avatarData.name));
 	}
 
 	void Avatar::WriteState(int avatarId, int state)

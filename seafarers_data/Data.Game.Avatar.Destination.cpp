@@ -3,7 +3,6 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.Known.h"
 #include "Data.Game.Player.h"
-#include <format>
 #include <string>
 namespace data::game::avatar
 {
@@ -20,15 +19,13 @@ namespace data::game::avatar
 	void Destination::Write(int avatarId, int destinationId, const common::XY<double>& location)
 	{
 		AutoCreateAvatarDestinationsTable();
-		auto query = std::format(REPLACE_ITEM, avatarId, destinationId, location.GetX(), location.GetY());
-		data::game::Common::Execute(query);
+		Common::Execute(REPLACE_ITEM, avatarId, destinationId, location.GetX(), location.GetY());
 	}
 
 	std::optional<common::XY<double>> Destination::Read(int avatarId, int destinationId)
 	{
 		AutoCreateAvatarDestinationsTable();
-		auto query = std::format(QUERY_ITEM, avatarId, destinationId);
-		auto result = data::game::Common::Execute(query);
+		auto result = Common::Execute(QUERY_ITEM, avatarId, destinationId);
 		if (!result.empty())
 		{
 			auto& record = result.front();
@@ -44,14 +41,12 @@ namespace data::game::avatar
 	void Destination::Clear(int avatarId, int destinationId)
 	{
 		AutoCreateAvatarDestinationsTable();
-		auto query = std::format(DELETE_ITEM, avatarId, destinationId);
-		data::game::Common::Execute(query);
+		Common::Execute(DELETE_ITEM, avatarId, destinationId);
 	}
 
 	void Destination::ClearAll(int avatarId)
 	{
 		AutoCreateAvatarDestinationsTable();
-		auto query = std::format(DELETE_ALL, avatarId);
-		data::game::Common::Execute(query);
+		Common::Execute(DELETE_ALL, avatarId);
 	}
 }

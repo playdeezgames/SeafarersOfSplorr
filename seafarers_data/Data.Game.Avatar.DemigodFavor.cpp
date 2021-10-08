@@ -2,7 +2,6 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Avatar.DemigodFavor.h"
 #include "Data.Game.Player.h"
-#include <format>
 namespace data::game::avatar
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarDemigodFavor]([AvatarId] INT NOT NULL,[DemigodName] TEXT NOT NULL,[Favor] REAL NOT NULL, UNIQUE([AvatarId],[DemigodName]));";
@@ -16,13 +15,13 @@ namespace data::game::avatar
 	void DemigodFavor::Write(int avatarId, const std::string& name, double favor)
 	{
 		AutoCreateAvatarDemigodFavorTable();
-		Common::Execute(std::format(REPLACE_ITEM, avatarId, common::Data::QuoteString(name), favor));
+		Common::Execute(REPLACE_ITEM, avatarId, common::Data::QuoteString(name), favor);
 	}
 
 	std::optional<double> DemigodFavor::Read(int avatarId, const std::string& name)
 	{
 		AutoCreateAvatarDemigodFavorTable();
-		auto records = Common::Execute(std::format(QUERY_ITEM, avatarId, common::Data::QuoteString(name)));
+		auto records = Common::Execute(QUERY_ITEM, avatarId, common::Data::QuoteString(name));
 		if (!records.empty())
 		{
 			return common::Data::ToOptionalDouble(records.front()[FIELD_FAVOR]);
@@ -33,6 +32,6 @@ namespace data::game::avatar
 	void DemigodFavor::Clear(int avatarId)
 	{
 		AutoCreateAvatarDemigodFavorTable();
-		Common::Execute(std::format(DELETE_ALL, avatarId));
+		Common::Execute(DELETE_ALL, avatarId);
 	}
 }
