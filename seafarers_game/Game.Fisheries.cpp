@@ -10,10 +10,10 @@ namespace game
 	static void GenerateFishery(const Fish& fish)
 	{
 		auto worldSize = World::GetSize();
-		double radius = Fishes::GetRadiusGenerator(fish)();
-		double speed = Fishes::GetSpeedGenerator(fish)();
+		double radius = Fishes::GenerateRadius(fish);
+		double speed = Fishes::GenerateSpeed(fish);
 		double radians = common::Heading::ToRadians(common::RNG::FromRange(0.0, common::Heading::DEGREES));
-		int stock = Fishes::GetStockGenerator(fish)();
+		int stock = Fishes::GenerateStock(fish);
 		data::game::Fishery::Add({
 			0,
 			(int)fish,
@@ -33,7 +33,7 @@ namespace game
 
 	static void GenerateFisheries(const Fish& fish)
 	{
-		size_t fisheryCount = Fishes::GetCountGenerator(fish)();
+		size_t fisheryCount = Fishes::GenerateCount(fish);
 		while (fisheryCount > 0)
 		{
 			GenerateFishery(fish);

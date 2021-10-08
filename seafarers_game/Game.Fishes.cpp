@@ -1,4 +1,5 @@
 #include <Common.RNG.h>
+#include <functional>
 #include "Game.Fishes.h"
 #include <map>
 namespace game
@@ -136,7 +137,6 @@ namespace game
 		return junk;
 	}
 
-
 	static const FishDescriptor& Read(const Fish& fish)
 	{
 		return descriptors.find(fish)->second;
@@ -147,25 +147,25 @@ namespace game
 		return Read(fish).name;
 	}
 
-	std::function<size_t()> Fishes::GetCountGenerator(const Fish& fish)
+	size_t Fishes::GenerateCount(const Fish& fish)
 	{
-		return Read(fish).countGenerator;
+		return Read(fish).countGenerator();
 	}
 
-	std::function<double()> Fishes::GetRadiusGenerator(const Fish& fish)
+	double Fishes::GenerateRadius(const Fish& fish)
 	{
-		return Read(fish).radiusGenerator;
+		return Read(fish).radiusGenerator();
 	}
 
-	std::function<double()> Fishes::GetSpeedGenerator(const Fish& fish)
+	double Fishes::GenerateSpeed(const Fish& fish)
 	{
-		return Read(fish).speedGenerator;
+		return Read(fish).speedGenerator();
 
 	}
 
-	std::function<int()> Fishes::GetStockGenerator(const Fish& fish)
+	int Fishes::GenerateStock(const Fish& fish)
 	{
-		return Read(fish).stockGenerator;
+		return Read(fish).stockGenerator();
 
 	}
 
