@@ -41,21 +41,6 @@ namespace data::game::avatar
 		}
 		return results;
 	}
-	void Log::Clear()
-	{
-		Clear(Player::GetAvatarId());
-	}
-
-	void Log::Write(const std::string& color, const std::string& text)
-	{
-		Write(Player::GetAvatarId(), color, text);
-	}
-
-	std::list<std::tuple<std::string, std::string>> Log::Read(size_t entryCount)
-	{
-		return Read(Player::GetAvatarId(), entryCount);
-	}
-
 	void Log::ClearAll()
 	{
 		AutoCreateAvatarLogTable();
