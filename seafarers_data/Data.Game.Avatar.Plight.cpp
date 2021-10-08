@@ -65,31 +65,6 @@ namespace data::game::avatar
 		return result;
 	}
 
-	std::optional<Plight> Plight::Read(int plightId)
-	{
-		return Read(Player::GetAvatarId(), plightId);
-	}
-
-	void Plight::Write(const Plight& plight)
-	{
-		Write(Player::GetAvatarId(), plight);
-	}
-
-	void Plight::ClearPlight(int plightId)
-	{
-		ClearPlight(Player::GetAvatarId(), plightId);
-	}
-
-	void Plight::Clear()
-	{
-		Clear(Player::GetAvatarId());
-	}
-
-	std::list<Plight> Plight::All()
-	{
-		return All(Player::GetAvatarId());
-	}
-
 	void Plight::ClearAll()
 	{
 		AutoCreatePlightTable();

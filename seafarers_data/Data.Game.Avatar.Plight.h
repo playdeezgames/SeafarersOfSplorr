@@ -14,12 +14,6 @@ namespace data::game::avatar
 		static void Clear(int);
 		static std::list<Plight> All(int);
 
-		static std::optional<Plight> Read(int);
-		static void Write(const Plight&);
-		static void ClearPlight(int);
-		static void Clear();
-		static std::list<Plight> All();
-
 		static void ClearAll();
 	};
 }

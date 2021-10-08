@@ -1,6 +1,7 @@
 #include <Common.RNG.h>
 #include <Data.Game.Avatar.Plight.h>
 #include "Game.Avatar.Plights.h"
+#include <Game.Player.h>
 #include <map>
 namespace game::avatar
 {
@@ -56,12 +57,12 @@ namespace game::avatar
 
 	bool Plights::Has(const Plight& plightId)
 	{
-		return data::game::avatar::Plight::Read((int)plightId).has_value();
+		return data::game::avatar::Plight::Read(Player::GetAvatarId(), (int)plightId).has_value();
 	}
 
 	void Plights::ApplyTurnEffects()
 	{
-		auto plights = data::game::avatar::Plight::All();
+		auto plights = data::game::avatar::Plight::All(Player::GetAvatarId());
 		for (auto& plight : plights)
 		{
 			if (plight.duration.has_value())
@@ -72,7 +73,7 @@ namespace game::avatar
 					data::game::avatar::Plight::Clear(plight.plightId);
 					continue;
 				}
-				data::game::avatar::Plight::Write(plight);
+				data::game::avatar::Plight::Write(Player::GetAvatarId(), plight);
 			}
 		}
 	}
@@ -103,13 +104,13 @@ namespace game::avatar
 			}
 		}
 
-		data::game::avatar::Plight::Write({(int)plight, (duration)?(std::optional<int>((int)duration.value())):(std::nullopt) });
+		data::game::avatar::Plight::Write(Player::GetAvatarId(), {(int)plight, (duration)?(std::optional<int>((int)duration.value())):(std::nullopt) });
 	}
 
 	std::set<Plight> Plights::InflictedWith()
 	{
 		std::set<Plight> result;
-		auto plights = data::game::avatar::Plight::All();
+		auto plights = data::game::avatar::Plight::All(Player::GetAvatarId());
 		for (auto& plight : plights)
 		{
 			result.insert((Plight)plight.plightId);
