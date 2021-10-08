@@ -8,8 +8,5 @@ namespace data::game::avatar
 		static void Write(int, const common::XY<double>&);
 		static void Clear(int);
 		static std::optional<common::XY<double>> Read(int);
-		static void Write(const common::XY<double>&);
-		static void Clear();
-		static std::optional<common::XY<double>> Read();
 	};
 }

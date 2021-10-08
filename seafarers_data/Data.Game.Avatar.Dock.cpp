@@ -43,19 +43,4 @@ namespace data::game::avatar
 		}
 		return std::nullopt;
 	}
-
-	void Dock::Write(const common::XY<double>& location)
-	{
-		Write(Player::GetAvatarId(), location);
-	}
-
-	void Dock::Clear()
-	{
-		Clear(Player::GetAvatarId());
-	}
-
-	std::optional<common::XY<double>> Dock::Read()
-	{
-		return Read(Player::GetAvatarId());
-	}
 }

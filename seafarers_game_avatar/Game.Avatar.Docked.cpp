@@ -12,6 +12,7 @@
 #include "Game.Colors.h"
 #include "Game.Islands.Quests.h"
 #include "Game.Islands.h"
+#include <Game.Player.h>
 #include <map>
 namespace game::avatar
 {
@@ -33,7 +34,7 @@ namespace game::avatar
 		{
 			result = Docked::DockResult::COMPLETED_QUEST;
 		}
-		data::game::avatar::Dock::Write(location);
+		data::game::avatar::Dock::Write(Player::GetAvatarId(), location);
 		data::game::Avatar::WriteState((int)game::avatar::State::DOCK);
 		auto island = game::Islands::Read(location).value();
 		Log::Write({ game::Colors::GREEN, std::format(FORMAT_DOCK, island.name) });
@@ -56,6 +57,6 @@ namespace game::avatar
 
 	std::optional<common::XY<double>> Docked::GetDockedLocation()
 	{
-		return data::game::avatar::Dock::Read();
+		return data::game::avatar::Dock::Read(Player::GetAvatarId());
 	}
 }

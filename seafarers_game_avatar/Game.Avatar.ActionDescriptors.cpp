@@ -12,6 +12,7 @@
 #include "Game.Colors.h"
 #include "Game.Fishboard.h"
 #include "Game.Islands.h"
+#include <Game.Player.h>
 #include <map>
 namespace game::avatar
 {
@@ -21,7 +22,7 @@ namespace game::avatar
 	{
 		auto location = game::avatar::Docked::GetDockedLocation();
 		auto island = game::Islands::Read(location.value()).value();
-		data::game::avatar::Dock::Clear();
+		data::game::avatar::Dock::Clear(Player::GetAvatarId());
 		return {
 			game::Colors::GREEN,
 			std::format(FORMAT_UNDOCK, island.name),
