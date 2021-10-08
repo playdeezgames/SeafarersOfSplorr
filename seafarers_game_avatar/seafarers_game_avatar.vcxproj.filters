@@ -35,9 +35,6 @@
     <ClInclude Include="Game.Avatar.Plight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Avatar.PlightDescriptor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Avatar.Plights.h">
       <Filter>Header Files</Filter>
     </ClInclude>
