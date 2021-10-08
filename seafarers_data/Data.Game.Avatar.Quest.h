@@ -15,7 +15,5 @@ namespace data::game::avatar
 
 		static void Write(int,const std::optional<Quest>&);
 		static std::optional<Quest> Read(int);
-		static void Write(const std::optional<Quest>&);
-		static std::optional<Quest> Read();
 	};
 }

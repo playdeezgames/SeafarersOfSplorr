@@ -59,14 +59,4 @@ namespace data::game::avatar
 		}
 		return std::nullopt;
 	}
-
-	void Quest::Write(const std::optional<Quest>& quest)
-	{
-		Write(Player::GetAvatarId(), quest);
-	}
-
-	std::optional<Quest> Quest::Read()
-	{
-		return Read(Player::GetAvatarId());
-	}
 }

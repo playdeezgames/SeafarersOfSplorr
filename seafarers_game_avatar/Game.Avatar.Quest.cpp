@@ -4,6 +4,7 @@
 #include "Game.Avatar.Quest.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Islands.h"
+#include <Game.Player.h>
 namespace game::avatar
 {
 	const double REPUTATION_REWARD = 1.0;
@@ -11,7 +12,7 @@ namespace game::avatar
 
 	Quest::AcceptQuestResult Quest::AcceptQuest(const common::XY<double>& location)
 	{
-		if (data::game::avatar::Quest::Read())
+		if (data::game::avatar::Quest::Read(Player::GetAvatarId()))
 		{
 			return AcceptQuestResult::ALREADY_HAS_QUEST;
 		}
@@ -19,6 +20,7 @@ namespace game::avatar
 		if (quest)
 		{
 			data::game::avatar::Quest::Write(
+				Player::GetAvatarId(),
 				std::optional<data::game::avatar::Quest>({
 					quest.value().destination,
 					quest.value().reward,
@@ -36,12 +38,12 @@ namespace game::avatar
 
 	bool Quest::CompleteQuest(const common::XY<double>& location)
 	{
-		auto quest = data::game::avatar::Quest::Read();
+		auto quest = data::game::avatar::Quest::Read(Player::GetAvatarId());
 		if (quest.has_value() && quest.value().destination == location)
 		{
 			game::avatar::Statistics::ChangeMoney(quest.value().reward);
 			game::avatar::Statistics::ChangeReputation(REPUTATION_REWARD);
-			data::game::avatar::Quest::Write(std::nullopt);
+			data::game::avatar::Quest::Write(Player::GetAvatarId(), std::nullopt);
 			return true;
 		}
 		return false;
@@ -49,10 +51,10 @@ namespace game::avatar
 
 	bool Quest::AbandonQuest()
 	{
-		if (data::game::avatar::Quest::Read())
+		if (data::game::avatar::Quest::Read(Player::GetAvatarId()))
 		{
 			game::avatar::Statistics::ChangeReputation(REPUTATION_PENALTY);
-			data::game::avatar::Quest::Write(std::nullopt);
+			data::game::avatar::Quest::Write(Player::GetAvatarId(), std::nullopt);
 			return true;
 		}
 		return false;
@@ -60,7 +62,7 @@ namespace game::avatar
 
 	std::optional<game::Quest> Quest::Read()
 	{
-		auto quest = data::game::avatar::Quest::Read();
+		auto quest = data::game::avatar::Quest::Read(Player::GetAvatarId());
 		if (quest)
 		{
 			return std::optional<game::Quest>({
