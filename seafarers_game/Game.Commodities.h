@@ -6,7 +6,10 @@ namespace game
 {
 	struct Commodities
 	{
-		static const game::CommodityDescriptor& Read(const game::Commodity&);
 		static const std::list<game::Commodity>& All();
+		static double GetBasePrice(const game::Commodity&);
+		static double GetDemandFactor(const game::Commodity&);
+		static double GetSupplyFactor(const game::Commodity&);
+		static double GetDiscount(const game::Commodity&);
 	};
 }

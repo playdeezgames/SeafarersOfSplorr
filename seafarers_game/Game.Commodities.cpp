@@ -2,6 +2,15 @@
 #include <map>
 namespace game
 {
+	struct CommodityDescriptor
+	{
+		std::string name;
+		double basePrice;
+		double supplyFactor;
+		double demandFactor;
+		double discount;
+	};
+
 	static const std::map<game::Commodity, game::CommodityDescriptor> commodityTable =
 	{
 		{game::Commodity::WHEAT, { "wheat", 1.0, 0.05, 0.05, 0.15}},
@@ -17,7 +26,7 @@ namespace game
 
 	static std::list<game::Commodity> commodityList;
 
-	const game::CommodityDescriptor& Commodities::Read(const game::Commodity& commodity)
+	static const game::CommodityDescriptor& Read(const game::Commodity& commodity)
 	{
 		return commodityTable.find(commodity)->second;
 	}
@@ -32,5 +41,25 @@ namespace game
 			}
 		}
 		return commodityList;
+	}
+
+	double Commodities::GetBasePrice(const game::Commodity& commodity)
+	{
+		return commodityTable.find(commodity)->second.basePrice;
+	}
+
+	double Commodities::GetDemandFactor(const game::Commodity& commodity)
+	{
+		return commodityTable.find(commodity)->second.demandFactor;
+	}
+
+	double Commodities::GetSupplyFactor(const game::Commodity& commodity)
+	{
+		return commodityTable.find(commodity)->second.supplyFactor;
+	}
+
+	double Commodities::GetDiscount(const game::Commodity& commodity)
+	{
+		return commodityTable.find(commodity)->second.discount;
 	}
 }
