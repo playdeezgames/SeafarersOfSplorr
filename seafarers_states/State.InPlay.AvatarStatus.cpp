@@ -77,8 +77,7 @@ namespace state::in_play
 		}
 		for (auto& plight : inflicted)
 		{
-			auto descriptor = game::avatar::Plights::Read(plight);
-			WriteTextToGrid({ 0,row++ }, descriptor.name, (descriptor.type == game::avatar::PlightType::CURSE) ? (game::Colors::RED) : (game::Colors::GREEN));
+			WriteTextToGrid({ 0,row++ }, game::avatar::Plights::GetName(plight), (game::avatar::Plights::GetType(plight) == game::avatar::PlightType::CURSE) ? (game::Colors::RED) : (game::Colors::GREEN));
 		}
 	}
 

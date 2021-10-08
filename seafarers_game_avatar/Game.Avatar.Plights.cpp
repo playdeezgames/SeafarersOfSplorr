@@ -3,8 +3,18 @@
 #include "Game.Avatar.Plights.h"
 #include <Game.Player.h>
 #include <map>
+#include <string>
 namespace game::avatar
 {
+	struct PlightDescriptor
+	{
+		std::string name;
+		PlightType type;
+		std::optional<size_t> durationMinimum;
+		std::optional<size_t> durationMaximum;
+		size_t generationWeight;
+	};
+
 	static const std::map<Plight, PlightDescriptor> descriptors =
 	{
 		{
@@ -49,7 +59,7 @@ namespace game::avatar
 		}
 	};
 
-	const PlightDescriptor& Plights::Read(const Plight& plight)
+	static const PlightDescriptor& Read(const Plight& plight)
 	{
 		return descriptors.find(plight)->second;
 	}
@@ -123,4 +133,13 @@ namespace game::avatar
 		data::game::avatar::Plight::ClearAll();
 	}
 
+	const std::string& Plights::GetName(const Plight& plight)
+	{
+		return Read(plight).name;
+	}
+
+	PlightType Plights::GetType(const Plight& plight)
+	{
+		return Read(plight).type;
+	}
 }
