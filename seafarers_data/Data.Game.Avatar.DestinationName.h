@@ -8,8 +8,5 @@ namespace data::game::avatar
 		static std::optional<std::string> Read(int, int);
 		static void Write(int, int, const std::string&);
 		static void Clear(int);
-		static std::optional<std::string> Read(int);
-		static void Write(int, const std::string&);
-		static void Clear();
 	};
 }

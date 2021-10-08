@@ -133,7 +133,7 @@ namespace game
 		data::game::island::Visit::Clear();
 		data::game::island::Known::Clear();
 		data::game::avatar::Destination::ClearAll(Player::GetAvatarId());
-		data::game::avatar::DestinationName::Clear();
+		data::game::avatar::DestinationName::Clear(Player::GetAvatarId());
 		data::game::island::Market::Clear();
 		data::game::island::Item::ClearAll();
 	}

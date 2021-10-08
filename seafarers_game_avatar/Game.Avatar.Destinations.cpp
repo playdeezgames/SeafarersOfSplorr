@@ -34,11 +34,11 @@ namespace game::avatar
 
 	std::optional<std::string> Destinations::GetDestinationName(const Destination& destination)
 	{
-		return data::game::avatar::DestinationName::Read((int)destination);
+		return data::game::avatar::DestinationName::Read(Player::GetAvatarId(), (int)destination);
 	}
 
 	void Destinations::SetDestinationName(const Destination& destination, const std::string& name)
 	{
-		data::game::avatar::DestinationName::Write((int)destination, name);
+		data::game::avatar::DestinationName::Write(Player::GetAvatarId(), (int)destination, name);
 	}
 }

@@ -41,19 +41,4 @@ namespace data::game::avatar
 		AutoCreateDestinationNamesTable();
 		Common::Execute(std::format(DELETE_ALL, avatarId));
 	}
-
-	std::optional<std::string> DestinationName::Read(int destinationId)
-	{
-		return Read(Player::GetAvatarId(), destinationId);
-	}
-
-	void DestinationName::Write(int destinationId, const std::string& name)
-	{
-		Write(Player::GetAvatarId(), destinationId, name);
-	}
-
-	void DestinationName::Clear()
-	{
-		Clear(Player::GetAvatarId());
-	}
 }
