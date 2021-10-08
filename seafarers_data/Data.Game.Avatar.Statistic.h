@@ -10,7 +10,5 @@ namespace data::game::avatar
 
 		static void Write(int, int, const Statistic&);
 		static std::optional<Statistic> Read(int, int);
-		static void Write(int, const Statistic&);
-		static std::optional<Statistic> Read(int);
 	};
 }

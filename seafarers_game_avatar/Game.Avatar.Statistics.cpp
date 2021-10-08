@@ -5,6 +5,7 @@
 #include "Game.Avatar.Statistic.h"
 #include "Game.Avatar.Statistics.h"
 #include <Game.Item.h>
+#include <Game.Player.h>
 #include <map>
 #include <list>
 namespace game::avatar
@@ -127,6 +128,7 @@ namespace game::avatar
 		for (auto& value : values)
 		{
 			data::game::avatar::Statistic::Write(
+				Player::GetAvatarId(),
 				(int)value.statistic,
 				{
 					value.minimum,
@@ -138,17 +140,17 @@ namespace game::avatar
 
 	static std::optional<double> GetMaximum(const game::avatar::Statistic& statistic)
 	{
-		return data::game::avatar::Statistic::Read((int)statistic).value().maximum;
+		return data::game::avatar::Statistic::Read(Player::GetAvatarId(), (int)statistic).value().maximum;
 	}
 
 	static std::optional<double> GetMinimum(const game::avatar::Statistic& statistic)
 	{
-		return data::game::avatar::Statistic::Read((int)statistic).value().minimum;
+		return data::game::avatar::Statistic::Read(Player::GetAvatarId(), (int)statistic).value().minimum;
 	}
 
 	static double GetCurrent(const game::avatar::Statistic& statistic)
 	{
-		return data::game::avatar::Statistic::Read((int)statistic).value().current;
+		return data::game::avatar::Statistic::Read(Player::GetAvatarId(), (int)statistic).value().current;
 	}
 
 	static double GetCurrentWithBuffs(const game::avatar::Statistic& statistic)
@@ -172,12 +174,13 @@ namespace game::avatar
 
 	static void SetCurrent(const game::avatar::Statistic& statistic, double value)
 	{
-		auto data = data::game::avatar::Statistic::Read((int)statistic).value();
+		auto data = data::game::avatar::Statistic::Read(Player::GetAvatarId(), (int)statistic).value();
 		data.current =
 			(data.maximum.has_value() && value > data.maximum.value()) ? (data.maximum.value()) :
 			(data.minimum.has_value() && value < data.minimum.value()) ? (data.minimum.value()) :
 			(value);
 		data::game::avatar::Statistic::Write(
+			Player::GetAvatarId(),
 			(int)statistic, 
 			data);
 	}

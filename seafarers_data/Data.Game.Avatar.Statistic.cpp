@@ -39,13 +39,4 @@ namespace data::game::avatar
 		}
 		return std::nullopt;
 	}
-	void Statistic::Write(int statisticId, const Statistic& statistic)
-	{
-		Write(Player::GetAvatarId(), statisticId, statistic);
-	}
-	std::optional<Statistic> Statistic::Read(int statisticId)
-	{
-		return Read(Player::GetAvatarId(), statisticId);
-	}
-
 }
