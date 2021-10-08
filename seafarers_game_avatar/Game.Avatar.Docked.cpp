@@ -35,7 +35,7 @@ namespace game::avatar
 			result = Docked::DockResult::COMPLETED_QUEST;
 		}
 		data::game::avatar::Dock::Write(Player::GetAvatarId(), location);
-		data::game::Avatar::WriteState((int)game::avatar::State::DOCK);
+		data::game::Avatar::WriteState(Player::GetAvatarId(), (int)game::avatar::State::DOCK);
 		auto island = game::Islands::Read(location).value();
 		Log::Write({ game::Colors::GREEN, std::format(FORMAT_DOCK, island.name) });
 		return result;

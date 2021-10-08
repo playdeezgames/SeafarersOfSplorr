@@ -68,30 +68,9 @@ namespace data::game
 		return std::nullopt;
 	}
 
-	void Avatar::Write(const Avatar& avatar)
-	{
-		Write(Player::GetAvatarId(), avatar);
-	}
-
-	std::optional<Avatar> Avatar::Read()
-	{
-		return Read(Player::GetAvatarId());
-	}
-
-	void Avatar::WriteState(int state)
-	{
-		WriteState(Player::GetAvatarId(), state);
-	}
-
-	std::optional<int> Avatar::ReadState()
-	{
-		return ReadState(Player::GetAvatarId());
-	}
-
 	int Avatar::NextId()
 	{
 		AutoCreateAvatarTable();
 		return common::Data::ToInt(Common::Execute(QUERY_MAX_AVATAR_ID).front()[FIELD_MAX_AVATAR_ID])+1;
 	}
-
 }

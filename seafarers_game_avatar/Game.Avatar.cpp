@@ -11,6 +11,7 @@
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Avatar.StateTransition.h"
+#include <Game.Player.h>
 #include <Game.Ship.h>
 #include <Game.ShipNames.h>
 #include <Game.ShipTypes.h>
@@ -24,7 +25,7 @@ namespace game
 {
 	static void SetState(const game::avatar::State& state)
 	{
-		data::game::Avatar::WriteState((int)state);
+		data::game::Avatar::WriteState(Player::GetAvatarId(), (int)state);
 	}
 
 
@@ -52,7 +53,7 @@ namespace game
 
 	std::optional<game::avatar::State> Avatar::GetState()
 	{
-		auto state = data::game::Avatar::ReadState();
+		auto state = data::game::Avatar::ReadState(Player::GetAvatarId());
 		if (state)
 		{
 			return (game::avatar::State)state.value();
@@ -124,8 +125,8 @@ namespace game
 			0,
 			"nada"//TODO: generate a name?
 		};
-		data::game::Avatar::Write(data);
-		data::game::Avatar::WriteState((int)game::avatar::State::AT_SEA);
+		data::game::Avatar::Write(Player::GetAvatarId(), data);
+		data::game::Avatar::WriteState(Player::GetAvatarId(), (int)game::avatar::State::AT_SEA);
 
 		auto worldSize = game::World::GetSize();
 		auto shipType = game::ShipTypes::GenerateForAvatar();
@@ -142,5 +143,4 @@ namespace game
 			1.0);
 		game::avatar::Ship::Write({ shipId, BerthType::CAPTAIN });
 	}
-
 }
