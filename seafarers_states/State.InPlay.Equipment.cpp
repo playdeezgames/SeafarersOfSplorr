@@ -43,8 +43,7 @@ namespace state::in_play
 	static void RefreshEquipSlot(int& row, size_t index, const game::EquipSlot& equipSlot)
 	{
 		auto color = (index == equipSlotIndex) ? (game::Colors::WHITE) : (game::Colors::DARK_GRAY);//TODO: just pass in a bool
-		auto equipSlotDescriptor = game::EquipSlots::Read(equipSlot);
-		visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { EQUIP_SLOT_X, row }, FONT_DEFAULT, equipSlotDescriptor.name, color, visuals::HorizontalAlignment::LEFT);
+		visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { EQUIP_SLOT_X, row }, FONT_DEFAULT, game::EquipSlots::GetName(equipSlot), color, visuals::HorizontalAlignment::LEFT);
 		++row;
 
 		auto item = game::avatar::Equipment::Read(equipSlot);
@@ -123,8 +122,8 @@ namespace state::in_play
 		{
 			candidates.insert(current.value());
 		}
-		auto equipSlotDescriptor = game::EquipSlots::Read(equipSlot);//add other possible items
-		for (auto equippableItem : equipSlotDescriptor.items)
+		auto equippableItems = game::EquipSlots::GetItems(equipSlot);//add other possible items
+		for (auto equippableItem : equippableItems)
 		{
 			if (game::avatar::Items::Has(equippableItem))
 			{

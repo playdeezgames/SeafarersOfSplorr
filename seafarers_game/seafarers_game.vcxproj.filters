@@ -203,9 +203,6 @@
     <ClInclude Include="Game.EquipSlot.h">
       <Filter>Header Files\Equipment</Filter>
     </ClInclude>
-    <ClInclude Include="Game.EquipSlotDescriptor.h">
-      <Filter>Header Files\Equipment</Filter>
-    </ClInclude>
     <ClInclude Include="Game.EquipSlots.h">
       <Filter>Header Files\Equipment</Filter>
     </ClInclude>

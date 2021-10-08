@@ -21,7 +21,6 @@
   <ItemGroup>
     <ClInclude Include="Game.BerthType.h" />
     <ClInclude Include="Game.EquipSlot.h" />
-    <ClInclude Include="Game.EquipSlotDescriptor.h" />
     <ClInclude Include="Game.EquipSlots.h" />
     <ClInclude Include="Game.Fishboard.h" />
     <ClInclude Include="Game.FishboardState.h" />

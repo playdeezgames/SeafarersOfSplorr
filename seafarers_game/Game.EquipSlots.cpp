@@ -2,6 +2,12 @@
 #include <map>
 namespace game
 {
+	struct EquipSlotDescriptor
+	{
+		std::string name;
+		std::set<Item> items;
+	};
+
 	static const std::map<EquipSlot, EquipSlotDescriptor> equipSlotDescriptors = 
 	{
 		{EquipSlot::LEGS,
@@ -37,8 +43,18 @@ namespace game
 		return equipSlots;
 	}
 
-	const EquipSlotDescriptor& EquipSlots::Read(const EquipSlot& equipSlot)
+	static const EquipSlotDescriptor& Read(const EquipSlot& equipSlot)
 	{
 		return equipSlotDescriptors.find(equipSlot)->second;
+	}
+
+	const std::string& EquipSlots::GetName(const EquipSlot& equipSlot)
+	{
+		return Read(equipSlot).name;
+	}
+
+	const std::set<Item>& EquipSlots::GetItems(const EquipSlot& equipSlot)
+	{
+		return Read(equipSlot).items;
 	}
 }
