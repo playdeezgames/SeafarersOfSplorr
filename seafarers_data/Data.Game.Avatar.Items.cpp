@@ -63,24 +63,4 @@ namespace data::game::avatar
 		}
 		return result;
 	}
-
-	size_t Items::Read(const int& itemId)
-	{
-		return Read(Player::GetAvatarId(), itemId);
-	}
-
-	std::map<int, size_t> Items::All()
-	{
-		return All(Player::GetAvatarId());
-	}
-
-	void Items::Write(const int& itemId, const size_t& itemCount)
-	{
-		Write(Player::GetAvatarId(), itemId, itemCount);
-	}
-
-	void Items::Clear()
-	{
-		Clear(Player::GetAvatarId());
-	}
 }

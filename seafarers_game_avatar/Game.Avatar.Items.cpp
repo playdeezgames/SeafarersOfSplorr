@@ -1,12 +1,13 @@
 #include <Data.Game.Avatar.Items.h>
 #include "Game.Avatar.Items.h"
 #include "Game.Items.h"
+#include <Game.Player.h>
 namespace game::avatar
 {
 	std::map<game::Item, size_t> Items::All()
 	{
 		std::map<game::Item, size_t> result;
-		auto inventory = data::game::avatar::Items::All();
+		auto inventory = data::game::avatar::Items::All(Player::GetAvatarId());
 		for (auto& item : inventory)
 		{
 			result[(game::Item)item.first] = item.second;
@@ -16,7 +17,7 @@ namespace game::avatar
 
 	size_t Items::Read(const game::Item& item)
 	{
-		return data::game::avatar::Items::Read((int)item);
+		return data::game::avatar::Items::Read(Player::GetAvatarId(), (int)item);
 	}
 
 	bool Items::Has(const Item& item)
@@ -28,13 +29,13 @@ namespace game::avatar
 	void Items::Add(const game::Item& item, const size_t& count)
 	{
 		auto previous = Read(item);
-		data::game::avatar::Items::Write((int)item, previous + count);
+		data::game::avatar::Items::Write(Player::GetAvatarId(), (int)item, previous + count);
 	}
 
 	void Items::Remove(const game::Item& item, const size_t& count)
 	{
 		auto previous = Read(item);
-		data::game::avatar::Items::Write((int)item, (previous>=count) ? (previous - count) : (0));
+		data::game::avatar::Items::Write(Player::GetAvatarId(), (int)item, (previous>=count) ? (previous - count) : (0));
 	}
 
 	double Items::TotalTonnage()
@@ -50,7 +51,7 @@ namespace game::avatar
 
 	void Items::Reset(const game::Difficulty& difficulty)
 	{
-		data::game::avatar::Items::Clear();
+		data::game::avatar::Items::Clear(Player::GetAvatarId());
 		for (auto& item : game::Items::All())
 		{
 			auto& initialInventories = game::Items::GetInitialInventories(item);
