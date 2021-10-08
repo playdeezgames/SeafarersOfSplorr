@@ -55,24 +55,4 @@ namespace data::game::avatar
 		}
 		return result;
 	}
-
-	std::optional<int> Equipment::Read(int equipSlotId) 
-	{
-		return Read(Player::GetAvatarId(), equipSlotId);
-	}
-
-	void Equipment::Write(int equipSlotId, const std::optional<int>& itemId) 
-	{
-		Write(Player::GetAvatarId(), equipSlotId, itemId);
-	}
-
-	void Equipment::Clear() 
-	{
-		Clear(Player::GetAvatarId());
-	}
-
-	std::map<int, int> Equipment::All() 
-	{
-		return All(Player::GetAvatarId());
-	}
 }
