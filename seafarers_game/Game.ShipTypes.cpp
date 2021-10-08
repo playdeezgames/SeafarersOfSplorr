@@ -6,6 +6,13 @@
 #include <string>
 namespace game
 {
+	struct ShipStatisticDescriptor
+	{
+		std::optional<double> minimum;
+		std::optional<double> maximum;
+		double initial;
+	};
+
 	struct ShipDescriptor
 	{
 		std::string name;
@@ -165,8 +172,36 @@ namespace game
 		return Read(ship).commodities;
 	}
 
-	const std::map<ShipStatistic, ShipStatisticDescriptor>& ShipTypes::GetStatistics(const game::ShipType& ship)
+	static std::map<ShipType, std::list<ShipStatistic>> statisticLists;
+
+	const std::list<ShipStatistic>& ShipTypes::GetStatistics(const game::ShipType& ship)
 	{
-		return Read(ship).statistics;
+		if (statisticLists.contains(ship))
+		{
+			return statisticLists.find(ship)->second;
+		}
+		std::list<ShipStatistic> statistics;
+		for (auto entry : Read(ship).statistics)
+		{
+			statistics.push_back(entry.first);
+		}
+		statisticLists[ship] = statistics;
+		return statisticLists[ship];
+	}
+
+	std::optional<double> ShipTypes::GetMinimumStatistic(const game::ShipType& shipType, const game::ShipStatistic& statistic)
+	{
+		return Read(shipType).statistics.find(statistic)->second.minimum;
+	}
+
+	std::optional<double> ShipTypes::GetMaximumStatistic(const game::ShipType& shipType, const game::ShipStatistic& statistic)
+	{
+		return Read(shipType).statistics.find(statistic)->second.maximum;
+
+	}
+
+	double ShipTypes::GetInitialStatistic(const game::ShipType& shipType, const game::ShipStatistic& statistic)
+	{
+		return Read(shipType).statistics.find(statistic)->second.initial;
 	}
 }

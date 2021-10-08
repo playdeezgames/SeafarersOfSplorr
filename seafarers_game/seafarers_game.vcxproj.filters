@@ -137,9 +137,6 @@
     <ClInclude Include="Game.ShipStatistic.h">
       <Filter>Header Files\Ships</Filter>
     </ClInclude>
-    <ClInclude Include="Game.ShipStatisticDescriptor.h">
-      <Filter>Header Files\Ships</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Island.h">
       <Filter>Header Files\Islands</Filter>
     </ClInclude>

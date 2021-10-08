@@ -64,7 +64,6 @@
     <ClInclude Include="Game.Ship.Property.h" />
     <ClInclude Include="Game.ShipTypes.h" />
     <ClInclude Include="Game.ShipStatistic.h" />
-    <ClInclude Include="Game.ShipStatisticDescriptor.h" />
     <ClInclude Include="Game.Side.h" />
     <ClInclude Include="Game.World.h" />
     <ClInclude Include="Game.Colors.h" />

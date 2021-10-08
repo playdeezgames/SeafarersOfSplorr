@@ -1,7 +1,10 @@
 #pragma once
-enum class ShipStatistic
+namespace game
 {
-	PORT_FOULING,
-	STARBOARD_FOULING,
-	FOULING_RATE
-};
+	enum class ShipStatistic
+	{
+		PORT_FOULING,
+		STARBOARD_FOULING,
+		FOULING_RATE
+	};
+}

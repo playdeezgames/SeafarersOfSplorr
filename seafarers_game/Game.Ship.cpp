@@ -35,11 +35,11 @@ namespace game
 		for (auto statistic : statistics)
 		{
 			data::game::ship::Statistic::Write(shipId, 
-				(int)statistic.first, 
+				(int)statistic, 
 				{
-					statistic.second.minimum,
-					statistic.second.maximum,
-					statistic.second.initial
+					game::ShipTypes::GetMinimumStatistic(shipType, statistic),
+					game::ShipTypes::GetMaximumStatistic(shipType, statistic),
+					game::ShipTypes::GetInitialStatistic(shipType, statistic)
 				});
 		}
 		return shipId;
