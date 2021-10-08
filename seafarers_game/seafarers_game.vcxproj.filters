@@ -176,9 +176,6 @@
     <ClInclude Include="Game.Islands.Items.h">
       <Filter>Header Files\Islands\Trade</Filter>
     </ClInclude>
-    <ClInclude Include="Game.FishDescriptor.h">
-      <Filter>Header Files\Fishing</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Fisheries.h">
       <Filter>Header Files\Fishing</Filter>
     </ClInclude>
