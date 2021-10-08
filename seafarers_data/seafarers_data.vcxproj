@@ -29,6 +29,7 @@
     <ClInclude Include="Data.Game.Avatar.Log.h" />
     <ClInclude Include="Data.Game.Avatar.Plight.h" />
     <ClInclude Include="Data.Game.Avatar.Quest.h" />
+    <ClInclude Include="Data.Game.Avatar.Rations.h" />
     <ClInclude Include="Data.Game.Avatar.Ship.h" />
     <ClInclude Include="Data.Game.Avatar.Statistic.h" />
     <ClInclude Include="Data.Game.Common.h" />
@@ -66,6 +67,7 @@
     <ClCompile Include="Data.Game.Avatar.Log.cpp" />
     <ClCompile Include="Data.Game.Avatar.Plight.cpp" />
     <ClCompile Include="Data.Game.Avatar.Quest.cpp" />
+    <ClCompile Include="Data.Game.Avatar.Rations.cpp" />
     <ClCompile Include="Data.Game.Avatar.Ship.cpp" />
     <ClCompile Include="Data.Game.Avatar.Statistic.cpp" />
     <ClCompile Include="Data.Game.Common.cpp" />
