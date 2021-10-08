@@ -3,6 +3,20 @@
 #include <map>
 namespace game
 {
+	struct FishDescriptor
+	{
+		std::string name;
+		std::function<size_t()> countGenerator;
+		std::function<double()> radiusGenerator;
+		std::function<double()> speedGenerator;
+		std::function<int()> stockGenerator;
+		std::list<common::XY<int>> shape;
+		common::XY<size_t> size;
+		Item item;
+		size_t junkWeight;
+		std::string sprite;
+	};
+
 	static const std::map<Fish, FishDescriptor> descriptors =
 	{
 		{
@@ -123,8 +137,66 @@ namespace game
 	}
 
 
-	const FishDescriptor& Fishes::Read(const Fish& fish)
+	static const FishDescriptor& Read(const Fish& fish)
 	{
 		return descriptors.find(fish)->second;
 	}
+
+	const std::string& Fishes::GetName(const Fish& fish)
+	{
+		return Read(fish).name;
+	}
+
+	std::function<size_t()> Fishes::GetCountGenerator(const Fish& fish)
+	{
+		return Read(fish).countGenerator;
+	}
+
+	std::function<double()> Fishes::GetRadiusGenerator(const Fish& fish)
+	{
+		return Read(fish).radiusGenerator;
+	}
+
+	std::function<double()> Fishes::GetSpeedGenerator(const Fish& fish)
+	{
+		return Read(fish).speedGenerator;
+
+	}
+
+	std::function<int()> Fishes::GetStockGenerator(const Fish& fish)
+	{
+		return Read(fish).stockGenerator;
+
+	}
+
+	const std::list<common::XY<int>>& Fishes::GetShape(const Fish& fish)
+	{
+		return Read(fish).shape;
+
+	}
+
+	const common::XY<size_t>& Fishes::GetSize(const Fish& fish)
+	{
+		return Read(fish).size;
+
+	}
+
+	Item Fishes::GetItem(const Fish& fish)
+	{
+		return Read(fish).item;
+
+	}
+
+	size_t Fishes::GetJunkWeight(const Fish& fish)
+	{
+		return Read(fish).junkWeight;
+
+	}
+
+	const std::string& Fishes::GetSprite(const Fish& fish)
+	{
+		return Read(fish).sprite;
+
+	}
+
 }

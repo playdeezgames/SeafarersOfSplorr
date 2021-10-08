@@ -7,13 +7,13 @@
 #include "Game.World.h"
 namespace game
 {
-	static void GenerateFishery(const Fish& fish, const FishDescriptor& descriptor)
+	static void GenerateFishery(const Fish& fish)
 	{
 		auto worldSize = World::GetSize();
-		double radius = descriptor.radiusGenerator();
-		double speed = descriptor.speedGenerator();
+		double radius = Fishes::GetRadiusGenerator(fish)();
+		double speed = Fishes::GetSpeedGenerator(fish)();
 		double radians = common::Heading::ToRadians(common::RNG::FromRange(0.0, common::Heading::DEGREES));
-		int stock = descriptor.stockGenerator();
+		int stock = Fishes::GetStockGenerator(fish)();
 		data::game::Fishery::Add({
 			0,
 			(int)fish,
@@ -31,12 +31,12 @@ namespace game
 		});
 	}
 
-	static void GenerateFisheries(const Fish& fish, const FishDescriptor& descriptor)
+	static void GenerateFisheries(const Fish& fish)
 	{
-		size_t fisheryCount = descriptor.countGenerator();
+		size_t fisheryCount = Fishes::GetCountGenerator(fish)();
 		while (fisheryCount > 0)
 		{
-			GenerateFishery(fish, descriptor);
+			GenerateFishery(fish);
 			fisheryCount--;
 		}
 	}
@@ -46,8 +46,7 @@ namespace game
 		data::game::Fishery::Clear();
 		for (auto& fish : game::Fishes::All())
 		{
-			auto& descriptor = game::Fishes::Read(fish);
-			GenerateFisheries(fish, descriptor);
+			GenerateFisheries(fish);
 		}
 	}
 

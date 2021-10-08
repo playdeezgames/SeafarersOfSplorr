@@ -46,8 +46,7 @@ namespace game
 	{
 		for (auto fish : Fishes::AllJunk())
 		{
-			const auto& descriptor = Fishes::Read(fish);
-			fishGenerator[fish] = descriptor.junkWeight;
+			fishGenerator[fish] = Fishes::GetJunkWeight(fish);
 		}
 	}
 
@@ -111,9 +110,8 @@ namespace game
 
 	static void PlaceFish(Fish fish)
 	{
-		auto descriptor = Fishes::Read(fish);
-		common::XY<int> origin = GeneratePosition(descriptor.size);
-		for (auto& location : descriptor.shape)
+		common::XY<int> origin = GeneratePosition(Fishes::GetSize(fish));
+		for (auto& location : Fishes::GetShape(fish))
 		{
 			data::game::FishboardCell::Write({
 				(location + origin),
@@ -140,11 +138,11 @@ namespace game
 
 	static void ReelInFish(Fish fish)
 	{
-		auto descriptor = Fishes::Read((Fish)fish);
-		game::avatar::Items::Add(descriptor.item, 1);
+		auto item = Fishes::GetItem(fish);
+		game::avatar::Items::Add(item, 1);
 		avatar::Log::Write({
 			game::Colors::GREEN,
-			std::format("You reel in a {}!", Items::GetName(descriptor.item)) });
+			std::format("You reel in a {}!", Items::GetName(item)) });
 	}
 
 	static void DepleteFishery()

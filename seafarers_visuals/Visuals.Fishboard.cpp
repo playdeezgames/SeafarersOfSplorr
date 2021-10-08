@@ -54,8 +54,7 @@ namespace visuals
 				{
 					if (cell.fish)
 					{
-						auto descriptor = game::Fishes::Read(cell.fish.value());
-						DrawSprite(renderer, fishboard, { column, row }, descriptor.sprite);
+						DrawSprite(renderer, fishboard, { column, row }, game::Fishes::GetSprite(cell.fish.value()));
 					}
 					if (!cell.revealed)
 					{
@@ -66,8 +65,7 @@ namespace visuals
 				{
 					if (cell.fish)
 					{
-						auto descriptor = game::Fishes::Read(cell.fish.value());
-						DrawSprite(renderer, fishboard, { column, row }, descriptor.sprite);
+						DrawSprite(renderer, fishboard, { column, row }, game::Fishes::GetSprite(cell.fish.value()));
 					}
 				}
 				else

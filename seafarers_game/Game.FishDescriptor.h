@@ -7,17 +7,4 @@
 #include <string>
 namespace game
 {
-	struct FishDescriptor
-	{
-		std::string name;
-		std::function<size_t()> countGenerator;
-		std::function<double()> radiusGenerator;
-		std::function<double()> speedGenerator;
-		std::function<int()> stockGenerator;
-		std::list<common::XY<int>> shape;
-		common::XY<size_t> size;
-		Item item;
-		size_t junkWeight;
-		std::string sprite;
-	};
 }
