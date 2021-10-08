@@ -1,6 +1,5 @@
 #pragma once
 #include "Game.Commodity.h"
-#include "Game.CommodityDescriptor.h"
 #include <list>
 namespace game
 {

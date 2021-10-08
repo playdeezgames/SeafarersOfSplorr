@@ -77,9 +77,6 @@
     <ClInclude Include="Game.Commodity.h">
       <Filter>Header Files\Commodities</Filter>
     </ClInclude>
-    <ClInclude Include="Game.CommodityDescriptor.h">
-      <Filter>Header Files\Commodities</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Feature.h">
       <Filter>Header Files\Features</Filter>
     </ClInclude>

@@ -35,7 +35,6 @@
     <ClInclude Include="Game.Audio.Theme.h" />
     <ClInclude Include="Game.Commodities.h" />
     <ClInclude Include="Game.Commodity.h" />
-    <ClInclude Include="Game.CommodityDescriptor.h" />
     <ClInclude Include="Game.Demigod.h" />
     <ClInclude Include="Game.Demigods.h" />
     <ClInclude Include="Game.Difficulty.h" />

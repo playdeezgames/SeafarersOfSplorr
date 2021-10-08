@@ -1,5 +1,6 @@
 #include "Game.Commodities.h"
 #include <map>
+#include <string>
 namespace game
 {
 	struct CommodityDescriptor
