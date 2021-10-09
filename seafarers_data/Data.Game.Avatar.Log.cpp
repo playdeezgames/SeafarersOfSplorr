@@ -2,7 +2,6 @@
 #include "Data.Game.Avatar.Log.h"
 #include "Data.Game.Common.h"
 #include "Data.Game.Player.h"
-#include <format>
 namespace data::game::avatar
 {
 	static const std::string FIELD_LOG_COLOR = "LogColor";
@@ -18,20 +17,20 @@ namespace data::game::avatar
 	void Log::Clear(int avatarId)
 	{
 		AutoCreateAvatarLogTable();
-		Common::Execute(std::format(DELETE_ALL, avatarId));
+		Common::Execute(DELETE_ALL, avatarId);
 	}
 
 	void Log::Write(int avatarId,const std::string& color, const std::string& text)
 	{
 		AutoCreateAvatarLogTable();
-		Common::Execute(std::format(INSERT_ITEM, avatarId, common::Data::QuoteString(color), common::Data::QuoteString(text)));
+		Common::Execute(INSERT_ITEM, avatarId, common::Data::QuoteString(color), common::Data::QuoteString(text));
 	}
 
 	std::list<std::tuple<std::string, std::string>> Log::Read(int avatarId,size_t entryCount)
 	{
 		AutoCreateAvatarLogTable();
 		std::list<std::tuple<std::string, std::string>> results;
-		auto records = Common::Execute(std::format(QUERY_ALL, avatarId, entryCount));
+		auto records = Common::Execute(QUERY_ALL, avatarId, entryCount);
 		for (auto record : records)
 		{
 			results.push_back(
@@ -44,6 +43,6 @@ namespace data::game::avatar
 	void Log::ClearAll()
 	{
 		AutoCreateAvatarLogTable();
-		Common::Execute(std::format(DELETE_ALL_LOGS));
+		Common::Execute(DELETE_ALL_LOGS);
 	}
 }

@@ -2,7 +2,6 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Avatar.DestinationName.h"
 #include "Data.Game.Player.h"
-#include <format>
 namespace data::game::avatar
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [DestinationNames]([AvatarId] INT NOT NULL,[DestinationId] INT NOT NULL, [DestinationName] TEXT NOT NULL, UNIQUE([AvatarId],[DestinationId]));";
@@ -16,7 +15,7 @@ namespace data::game::avatar
 	std::optional<std::string> DestinationName::Read(int avatarId, int index)
 	{
 		AutoCreateDestinationNamesTable();
-		auto records = Common::Execute(std::format(QUERY_ITEM, avatarId, index));
+		auto records = Common::Execute(QUERY_ITEM, avatarId, index);
 		if (!records.empty())
 		{
 			auto& record = records.front();
@@ -29,16 +28,15 @@ namespace data::game::avatar
 	{
 		AutoCreateDestinationNamesTable();
 		Common::Execute(
-			std::format(
 				REPLACE_ITEM,
 				avatarId,
 				index,
-				common::Data::QuoteString(name)));
+				common::Data::QuoteString(name));
 	}
 
 	void DestinationName::Clear(int avatarId)
 	{
 		AutoCreateDestinationNamesTable();
-		Common::Execute(std::format(DELETE_ALL, avatarId));
+		Common::Execute(DELETE_ALL, avatarId);
 	}
 }

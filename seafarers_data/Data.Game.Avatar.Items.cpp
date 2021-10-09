@@ -2,7 +2,6 @@
 #include "Data.Game.Avatar.Items.h"
 #include "Data.Game.Common.h"
 #include "Data.Game.Player.h"
-#include <format>
 namespace data::game::avatar
 {
 	static const std::string FIELD_ITEM_ID = "ItemId";
@@ -21,7 +20,7 @@ namespace data::game::avatar
 	{
 		AutoCreateAvatarItemsTable();
 		auto records =
-			data::game::Common::Execute(std::format(QUERY_ITEM, avatarId, itemId));
+			data::game::Common::Execute(QUERY_ITEM, avatarId, itemId);
 		if (!records.empty())
 		{
 			auto& record = records.front();
@@ -33,17 +32,17 @@ namespace data::game::avatar
 	void Items::Write(int avatarId, const int& itemId, const size_t& count)
 	{
 		AutoCreateAvatarItemsTable();
-		data::game::Common::Execute(std::format(DELETE_ITEM, avatarId, itemId));
+		data::game::Common::Execute(DELETE_ITEM, avatarId, itemId);
 		if (count > 0)
 		{
-			data::game::Common::Execute(std::format(REPLACE_ITEM, avatarId, itemId, count));
+			data::game::Common::Execute(REPLACE_ITEM, avatarId, itemId, count);
 		}
 	}
 
 	void Items::Clear(int avatarId)
 	{
 		AutoCreateAvatarItemsTable();
-		data::game::Common::Execute(std::format(DELETE_ALL, avatarId));
+		data::game::Common::Execute(DELETE_ALL, avatarId);
 	}
 
 	void Items::ClearAll()
@@ -56,7 +55,7 @@ namespace data::game::avatar
 	{
 		std::map<int, size_t> result;
 		auto records =
-			data::game::Common::Execute(std::format(QUERY_ALL, avatarId));
+			data::game::Common::Execute(QUERY_ALL, avatarId);
 		for (auto& record : records)
 		{
 			result[common::Data::ToInt(record[FIELD_ITEM_ID])] = (size_t)common::Data::ToInt(record[FIELD_ITEM_COUNT]);
