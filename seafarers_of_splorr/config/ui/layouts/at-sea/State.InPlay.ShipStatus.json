@@ -105,6 +105,12 @@
         "drop-shadow-y": 2,
         "menu-items": [
             {
+                "text": "Crew",
+                "menu-item-id": "Crew",
+                "x": 632,
+                "y": 272
+            },
+            {
                 "text": "Change Speed...",
                 "menu-item-id": "ChangeSpeed",
                 "x": 632,
@@ -129,6 +135,18 @@
                 "y": 336
             }
         ]
+    },
+    {
+        "type": "Area",
+        "area-id": "Crew",
+        "x": 320,
+        "y": 272,
+        "width": 320,
+        "height": 16,
+        "menu": {
+            "menu-id": "ShipStatus",
+            "menu-item-id": "Crew"
+        }
     },
     {
         "type": "Area",

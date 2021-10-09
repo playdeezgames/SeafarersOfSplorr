@@ -4,7 +4,6 @@
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
-#include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Avatar.ShipStatistics.h>
@@ -39,6 +38,7 @@ namespace state::in_play
 
 	enum class ShipStatusItem
 	{
+		CREW,
 		CHANGE_SPEED,
 		CARGO,
 		CAREEN,
@@ -48,6 +48,10 @@ namespace state::in_play
 	static void OnGoBack()
 	{
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
+	}
+
+	static void OnCrew()
+	{
 	}
 
 	static void OnCareen()
@@ -69,35 +73,38 @@ namespace state::in_play
 	{
 		auto shipId = game::avatar::Ship::Read().value().shipId;
 		auto shipType = game::Ship::GetShipType(shipId).value();
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_SHIP_TYPE, std::format(FORMAT_SHIP_TYPE, game::ShipTypes::GetName(shipType)));
+		visuals::Texts::SetText(
+			LAYOUT_NAME, 
+			TEXT_SHIP_TYPE, 
+			FORMAT_SHIP_TYPE, 
+			game::ShipTypes::GetName(shipType));
 
 		visuals::Texts::SetText(
 			LAYOUT_NAME,
 			TEXT_SPEED_FACTOR,
-			std::format(FORMAT_SPEED_FACTOR,
-				game::ShipTypes::GetSpeedFactor(shipType)));
+			FORMAT_SPEED_FACTOR,
+			game::ShipTypes::GetSpeedFactor(shipType));
 
 		visuals::Texts::SetText(
 			LAYOUT_NAME,
 			TEXT_SHIP_NAME,
-			std::format(FORMAT_SHIP_NAME,
-				game::Ship::GetName()));
+			FORMAT_SHIP_NAME,
+			game::Ship::GetName());
 
 		visuals::Texts::SetText(
 			LAYOUT_NAME,
 			TEXT_TONNAGE,
-			std::format(FORMAT_TONNAGE,
-				game::avatar::Ship::AvailableTonnage().value(),
-				game::ShipTypes::GetTotalTonnage(shipType)));
+			FORMAT_TONNAGE,
+			game::avatar::Ship::AvailableTonnage().value(),
+			game::ShipTypes::GetTotalTonnage(shipType));
 
 		visuals::Texts::SetText(
 			LAYOUT_NAME,
 			TEXT_FOULING,
-			std::format(FORMAT_FOULING,
-				game::avatar::ShipStatistics::GetFoulingPercentage(),
-				game::avatar::ShipStatistics::GetFoulingPercentage(game::Side::PORT),
-				game::avatar::ShipStatistics::GetFoulingPercentage(game::Side::STARBOARD)
-				));
+			FORMAT_FOULING,
+			game::avatar::ShipStatistics::GetFoulingPercentage(),
+			game::avatar::ShipStatistics::GetFoulingPercentage(game::Side::PORT),
+			game::avatar::ShipStatistics::GetFoulingPercentage(game::Side::STARBOARD));
 	}
 
 	static void OnEnter()
@@ -109,6 +116,7 @@ namespace state::in_play
 
 	static const std::map<ShipStatusItem, std::function<void()>> activators =
 	{
+		{ ShipStatusItem::CREW, OnCrew }, 
 		{ ShipStatusItem::CAREEN, OnCareen },
 		{ ShipStatusItem::CARGO, OnCargo },
 		{ ShipStatusItem::CHANGE_SPEED, OnChangeSpeed },
