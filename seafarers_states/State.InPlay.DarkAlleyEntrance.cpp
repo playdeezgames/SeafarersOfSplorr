@@ -197,7 +197,7 @@ namespace state::in_play
 				cardPositions.find(fightCard.first)->second.adjacentText, 
 				(!fightCard.second.shown || fightCard.second.success) ?
 				("") :
-				(std::format("{}", fightCard.second.adjacent)));
+				(std::format("{}", fightCard.second.adjacent)));//TODO: >_<
 		}
 	}
 
@@ -208,21 +208,18 @@ namespace state::in_play
 		visuals::Texts::SetText(
 			LAYOUT_NAME, 
 			TEXT_ENEMY_BRAWLING, 
-			std::format(
-				game::avatar::Statistics::FORMAT_BRAWLING, 
-				GetRuffianBrawling()));
+			game::avatar::Statistics::FORMAT_BRAWLING, 
+			GetRuffianBrawling());
 		visuals::Texts::SetText(
 			LAYOUT_NAME, 
 			TEXT_BRAWLING, 
-			std::format(
-				game::avatar::Statistics::FORMAT_BRAWLING, 
-				game::avatar::Statistics::GetBrawling()));
+			game::avatar::Statistics::FORMAT_BRAWLING, 
+			game::avatar::Statistics::GetBrawling());
 		visuals::Texts::SetText(
 			LAYOUT_NAME, 
 			TEXT_HEALTH, 
-			std::format(
-				game::avatar::Statistics::FORMAT_HEALTH, 
-				game::avatar::Statistics::GetHealth()));
+			game::avatar::Statistics::FORMAT_HEALTH, 
+			game::avatar::Statistics::GetHealth());
 	}
 
 	static std::string GetButtonText()

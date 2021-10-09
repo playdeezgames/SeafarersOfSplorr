@@ -46,10 +46,10 @@ namespace state::in_play
 	{
 		return [speed]()
 		{
-			
 			game::avatar::Log::Write(
-				{game::Colors::GRAY,
-				std::format("Set speed to {:.0f}%!", common::Data::ToPercentage(speed, SPEED_FLANK).value())});
+				game::Colors::GRAY,
+				"Set speed to{:.0f} % !", 
+				common::Data::ToPercentage(speed, SPEED_FLANK).value());
 			game::Ship::SetSpeed(speed);
 			OnLeave();
 		};

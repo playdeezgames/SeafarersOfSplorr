@@ -63,7 +63,7 @@ namespace state::in_play
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		auto location = game::avatar::Docked::GetDockedLocation().value();
 		auto island = game::Islands::Read(location).value();
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_CAPTION, std::format(FORMAT_TEMPLE, island.patronDemigod));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_CAPTION, FORMAT_TEMPLE, island.patronDemigod);
 	}
 
 	void Temple::Start()

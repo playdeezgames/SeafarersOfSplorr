@@ -123,7 +123,7 @@ namespace state::in_play
 
 	static void RefreshButtons()
 	{
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_QUANTITY, std::format(FORMAT_QUANTITY, quantities[quantityIndex]));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_QUANTITY, FORMAT_QUANTITY, quantities[quantityIndex]);
 		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, (hoverButton.has_value() && hoverButton.value()== HoverButton::GO_BACK) ? (game::Colors::CYAN) : (game::Colors::GRAY));
 		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_INCREASE_QUANTITY, (hoverButton.has_value() && hoverButton.value() == HoverButton::INCREASE_QUANTITY) ? (game::Colors::CYAN) : (game::Colors::GRAY));
 		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_DECREASE_QUANTITY, (hoverButton.has_value() && hoverButton.value() == HoverButton::DECREASE_QUANTITY) ? (game::Colors::CYAN) : (game::Colors::GRAY));

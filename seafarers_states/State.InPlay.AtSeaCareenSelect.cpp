@@ -73,8 +73,16 @@ namespace state::in_play
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
-		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_PORT, std::format(FORMAT_PORT, game::avatar::ShipStatistics::GetFoulingPercentage(game::Side::PORT)));
-		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_STARBOARD, std::format(FORMAT_STARBOARD, game::avatar::ShipStatistics::GetFoulingPercentage(game::Side::STARBOARD)));
+		visuals::MenuItems::SetText(
+			LAYOUT_NAME, 
+			MENU_ITEM_PORT, 
+			FORMAT_PORT, 
+			game::avatar::ShipStatistics::GetFoulingPercentage(game::Side::PORT));
+		visuals::MenuItems::SetText(
+			LAYOUT_NAME, 
+			MENU_ITEM_STARBOARD, 
+			FORMAT_STARBOARD, 
+			game::avatar::ShipStatistics::GetFoulingPercentage(game::Side::STARBOARD));
 	}
 
 	void AtSeaCareenSelect::Start()

@@ -117,7 +117,7 @@ namespace state::in_play
 
 	static void RefreshBet()
 	{
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_WAGER, std::format("Wager {:.4f}(ante={:.4f})", currentWager, game::islands::DarkAlley::GetAnte(GetDockedLocation()).value()));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_WAGER, "Wager {:.4f}(ante={:.4f})", currentWager, game::islands::DarkAlley::GetAnte(GetDockedLocation()).value());
 	}
 
 	static void Refresh()

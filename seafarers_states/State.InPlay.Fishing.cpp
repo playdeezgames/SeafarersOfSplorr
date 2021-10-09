@@ -80,8 +80,8 @@ namespace state::in_play
 		visuals::Texts::SetText(
 			LAYOUT_NAME,
 			TEXT_GUESSES,
-			std::format("{}",
-				game::Fishboard::ReadGuesses()));
+			"{}",
+			game::Fishboard::ReadGuesses());
 	}
 
 	static void RefreshProgress()
@@ -89,8 +89,8 @@ namespace state::in_play
 		visuals::Texts::SetText(
 			LAYOUT_NAME,
 			TEXT_PROGRESS,
-			std::format("{:.0f}%",
-				game::Fishboard::ReadProgressPercentage()));
+			"{:.0f}%",
+			game::Fishboard::ReadProgressPercentage());
 	}
 
 	static void RefreshBait()
@@ -98,8 +98,8 @@ namespace state::in_play
 		visuals::Texts::SetText(
 			LAYOUT_NAME,
 			TEXT_BAIT,
-			std::format("{}",
-				(int)game::avatar::Items::Read(game::Item::BAIT)));
+			"{}",
+			(int)game::avatar::Items::Read(game::Item::BAIT));
 	}
 
 	static void Refresh()

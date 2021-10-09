@@ -37,10 +37,9 @@ namespace state::in_play
 		visuals::MenuItems::SetText(
 			LAYOUT_NAME, 
 			MENU_ITEM_CLEAN_HULL, 
-			std::format(
-				FORMAT_CLEAN_HULL, 
-				game::avatar::ShipStatistics::GetFoulingPercentage(
-					game::Side::STARBOARD)));
+			FORMAT_CLEAN_HULL, 
+			game::avatar::ShipStatistics::GetFoulingPercentage(
+				game::Side::STARBOARD));
 	}
 
 	static void OnCleanHull()

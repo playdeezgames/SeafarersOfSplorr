@@ -28,11 +28,11 @@ namespace state
 		auto value = game::Statistics::Read(statistic);
 		if (value)
 		{
-			visuals::Texts::SetText(LAYOUT_NAME, textId, std::format("{}: {}", caption, value.value()));
+			visuals::Texts::SetText(LAYOUT_NAME, textId, "{}: {}", caption, value.value());
 		}
 		else
 		{
-			visuals::Texts::SetText(LAYOUT_NAME, textId, std::format("{}: -", caption));
+			visuals::Texts::SetText(LAYOUT_NAME, textId, "{}: -", caption);
 		}
 	}
 

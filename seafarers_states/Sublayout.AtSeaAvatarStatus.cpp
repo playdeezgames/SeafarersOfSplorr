@@ -34,27 +34,27 @@ namespace sublayout
 
 	static void RefreshAvatarSatiety()
 	{
-		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_SATIETY, std::format(game::avatar::Statistics::FORMAT_SATIETY, game::avatar::Statistics::GetSatiety()));
+		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_SATIETY, game::avatar::Statistics::FORMAT_SATIETY, game::avatar::Statistics::GetSatiety());
 	}
 
 	static void RefreshAvatarMoney()
 	{
-		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_MONEY, std::format(game::avatar::Statistics::FORMAT_MONEY, game::avatar::Statistics::GetMoney()));
+		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_MONEY, game::avatar::Statistics::FORMAT_MONEY, game::avatar::Statistics::GetMoney());
 	}
 
 	static void RefreshAvatarReputation()
 	{
-		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_REPUTATION, std::format(game::avatar::Statistics::FORMAT_REPUTATION, game::avatar::Statistics::GetReputation()));
+		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_REPUTATION, game::avatar::Statistics::FORMAT_REPUTATION, game::avatar::Statistics::GetReputation());
 	}
 
 	static void RefreshAvatarHealth()
 	{
-		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_HEALTH, std::format(game::avatar::Statistics::FORMAT_HEALTH, game::avatar::Statistics::GetHealth()));
+		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_HEALTH, game::avatar::Statistics::FORMAT_HEALTH, game::avatar::Statistics::GetHealth());
 	}
 
 	static void RefreshAvatarTurns()
 	{
-		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_TURNS, std::format(game::avatar::Statistics::FORMAT_TURNS, game::avatar::Statistics::GetTurnsRemaining()));
+		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_TURNS, game::avatar::Statistics::FORMAT_TURNS, game::avatar::Statistics::GetTurnsRemaining());
 	}
 
 	static void RefreshAvatarHeading()
@@ -63,13 +63,18 @@ namespace sublayout
 		visuals::Texts::SetText(
 			SUBLAYOUT_NAME,
 			TEXT_AVATAR_HEADING, 
-			std::format(game::avatar::Statistics::FORMAT_HEADING, common::Heading::ToCompassPoint(heading)));
+			game::avatar::Statistics::FORMAT_HEADING, 
+			common::Heading::ToCompassPoint(heading));
 	}
 
 	static void RefreshAvatarSpeed()
 	{
 		auto speed = game::Ship::GetSpeed();
-		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_SPEED, std::format(game::avatar::Statistics::FORMAT_SPEED, speed));
+		visuals::Texts::SetText(
+			SUBLAYOUT_NAME, 
+			TEXT_AVATAR_SPEED, 
+			game::avatar::Statistics::FORMAT_SPEED, 
+			speed);
 	}
 
 	void AtSeaAvatarStatus::Refresh()

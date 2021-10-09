@@ -206,10 +206,10 @@ namespace state::in_play
 	{
 		if (areaName == AREA_CHANGE_HEADING)
 		{
-			game::avatar::Log::Write({
+			game::avatar::Log::Write(
 				game::Colors::GRAY,
-				std::format("Come about to {}!", common::Heading::ToCompassPoint(newHeading))
-				});
+				"Come about to {}!",
+				common::Heading::ToCompassPoint(newHeading));
 			game::Ship::SetHeading(newHeading);
 			sublayout::AtSeaAvatarStatus::Refresh();
 			RefreshLog();

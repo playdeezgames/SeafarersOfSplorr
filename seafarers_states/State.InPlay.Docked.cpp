@@ -108,9 +108,9 @@ namespace state::in_play
 	{
 		auto location = game::avatar::Docked::GetDockedLocation().value();
 		auto island = game::Islands::Read(location).value();
-		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_TEMPLE, std::format(FORMAT_TEMPLE, island.patronDemigod));
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_ISLAND_NAME, std::format(FORMAT_NAME,island.name));
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_ISLAND_VISITS, std::format(FORMAT_VISITS, island.visits.value_or(0)));
+		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_TEMPLE, FORMAT_TEMPLE, island.patronDemigod);
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_ISLAND_NAME, FORMAT_NAME, island.name);
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_ISLAND_VISITS, FORMAT_VISITS, island.visits.value_or(0));
 		for (auto featureMenuItem : featureMenuItems)
 		{
 			visuals::MenuItems::SetEnabled(

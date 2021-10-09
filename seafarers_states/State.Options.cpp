@@ -34,8 +34,8 @@ namespace state
 	static const std::string AREA_MUX_DECREASE = "DecreaseMuxVolume";
 	static const std::string AREA_MUX_INCREASE = "IncreaseMuxVolume";
 	static const int VOLUME_DELTA = 8;
-	static const std::string FORMAT_SFX_VOLUMNE = "< SFX Volume ({}%) >";
-	static const std::string FORMAT_MUX_VOLUMNE = "< MUX Volume ({}%) >";
+	static const std::string FORMAT_SFX_VOLUME = "< SFX Volume ({}%) >";
+	static const std::string FORMAT_MUX_VOLUME = "< MUX Volume ({}%) >";
 
 	enum class OptionsItem
 	{
@@ -89,14 +89,12 @@ namespace state
 
 	static void RefreshSfxMenuItem()
 	{
-		std::string ss = std::format(FORMAT_SFX_VOLUMNE, common::Data::ToPercentage(::audio::Sfx::GetVolume(), audio::Platform::VOLUME_MAXIMUM).value());
-		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_SFX_VOLUME, ss);
+		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_SFX_VOLUME, FORMAT_SFX_VOLUME, common::Data::ToPercentage(::audio::Sfx::GetVolume(), audio::Platform::VOLUME_MAXIMUM).value());
 	}
 
 	static void RefreshMuxMenuItem()
 	{
-		std::string ss = std::format(FORMAT_MUX_VOLUMNE, common::Data::ToPercentage(::audio::Mux::GetVolume(), audio::Platform::VOLUME_MAXIMUM).value());
-		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_MUX_VOLUME, ss);
+		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_MUX_VOLUME, FORMAT_MUX_VOLUME, common::Data::ToPercentage(::audio::Mux::GetVolume(), audio::Platform::VOLUME_MAXIMUM).value());
 	}
 
 	static void Refresh()
