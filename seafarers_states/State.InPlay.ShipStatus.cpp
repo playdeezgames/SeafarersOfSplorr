@@ -52,6 +52,7 @@ namespace state::in_play
 
 	static void OnCrew()
 	{
+		::application::UIState::Write(::UIState::IN_PLAY_CREW_LIST);
 	}
 
 	static void OnCareen()

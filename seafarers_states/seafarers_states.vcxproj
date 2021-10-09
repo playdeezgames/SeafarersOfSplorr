@@ -30,6 +30,7 @@
     <ClCompile Include="State.ConfirmQuit.cpp" />
     <ClCompile Include="State.InPlay.AtSea.AutoMove.cpp" />
     <ClCompile Include="State.InPlay.AtSea.cpp" />
+    <ClCompile Include="State.InPlay.CrewList.cpp" />
     <ClCompile Include="State.InPlay.Equipment.cpp" />
     <ClCompile Include="State.InPlay.Fishing.cpp" />
     <ClCompile Include="Sublayout.AtSeaActions.cpp" />

@@ -99,6 +99,10 @@ namespace state
 		{ 
 			static void Start(); 
 		};
+		struct CrewList
+		{
+			static void Start();
+		};
 		struct CurrentJob
 		{
 			static void Start();
