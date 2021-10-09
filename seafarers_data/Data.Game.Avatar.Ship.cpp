@@ -3,7 +3,6 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Player.h"
 #include "Data.Game.Ship.h"
-#include <format>
 namespace data::game::avatar
 {
 	static const std::string FIELD_SHIP_ID = "ShipId";
@@ -17,13 +16,13 @@ namespace data::game::avatar
 	void Ship::Write(int avatarId, const Ship& ship)
 	{
 		AutoCreateAvatarShipTable();
-		data::game::Common::Execute(std::format(REPLACE_ITEM, avatarId, ship.shipId, ship.berthType));
+		data::game::Common::Execute(REPLACE_ITEM, avatarId, ship.shipId, ship.berthType);
 	}
 
 	std::optional<Ship> Ship::Read(int avatarId)
 	{
 		AutoCreateAvatarShipTable();
-		auto records = data::game::Common::Execute(std::format(QUERY_ITEM, avatarId));
+		auto records = data::game::Common::Execute(QUERY_ITEM, avatarId);
 		if (!records.empty())
 		{
 			Ship ship = 

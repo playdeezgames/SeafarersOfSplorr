@@ -2,7 +2,6 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.FishGame.h"
 #include "Data.Game.Player.h"
-#include <format>
 namespace data::game
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [FishGames]([AvatarId] INT NOT NULL UNIQUE,[Guesses] INT NOT NULL,[GivenUp] INT NOT NULL,[FisheryId] INT NULL);";
@@ -21,7 +20,7 @@ namespace data::game
 	int FishGame::ReadGuesses()
 	{
 		AutoCreateFishGameTable();
-		auto records = Common::Execute(std::format(QUERY_ITEM, Player::GetAvatarId()));
+		auto records = Common::Execute(QUERY_ITEM, Player::GetAvatarId());
 		if (!records.empty())
 		{
 			return common::Data::ToInt(records.front()[FIELD_GUESSES]);
@@ -32,25 +31,25 @@ namespace data::game
 	void FishGame::WriteGuesses(int guesses)
 	{
 		AutoCreateFishGameTable();
-		Common::Execute(std::format(UPDATE_GUESSES, guesses, Player::GetAvatarId()));
+		Common::Execute(UPDATE_GUESSES, guesses, Player::GetAvatarId());
 	}
 
 	void FishGame::Clear()
 	{
 		AutoCreateFishGameTable();
-		Common::Execute(std::format(DELETE_ITEM, Player::GetAvatarId()));
+		Common::Execute(DELETE_ITEM, Player::GetAvatarId());
 	}
 
 	void FishGame::Start(int guesses)
 	{
 		AutoCreateFishGameTable();
-		Common::Execute(std::format(REPLACE_ITEM, Player::GetAvatarId(), guesses, 0, "NULL"));
+		Common::Execute(REPLACE_ITEM, Player::GetAvatarId(), guesses, 0, "NULL");
 	}
 
 	bool FishGame::ReadGivenUp()
 	{
 		AutoCreateFishGameTable();
-		auto records = Common::Execute(std::format(QUERY_ITEM, Player::GetAvatarId()));
+		auto records = Common::Execute(QUERY_ITEM, Player::GetAvatarId());
 		if (!records.empty())
 		{
 			return common::Data::ToInt(records.front()[FIELD_GIVEN_UP])!=0;
@@ -61,19 +60,19 @@ namespace data::game
 	void FishGame::WriteGivenUp(bool flag)
 	{
 		AutoCreateFishGameTable();
-		Common::Execute(std::format(UPDATE_GIVEN_UP, (flag) ? (1) : (0), Player::GetAvatarId()));
+		Common::Execute(UPDATE_GIVEN_UP, (flag) ? (1) : (0), Player::GetAvatarId());
 	}
 
 	void FishGame::WriteFisheryId(std::optional<int> fisheryId)
 	{
 		AutoCreateFishGameTable();
-		Common::Execute(std::format(UPDATE_FISHERY_ID, common::Data::OfOptional(fisheryId), Player::GetAvatarId()));
+		Common::Execute(UPDATE_FISHERY_ID, common::Data::OfOptional(fisheryId), Player::GetAvatarId());
 	}
 
 	std::optional<int> FishGame::ReadFisheryId()
 	{
 		AutoCreateFishGameTable();
-		auto records = Common::Execute(std::format(QUERY_ITEM, Player::GetAvatarId()));
+		auto records = Common::Execute(QUERY_ITEM, Player::GetAvatarId());
 		if (!records.empty())
 		{
 			return common::Data::ToOptionalInt(records.front()[FIELD_FISHERY_ID]);

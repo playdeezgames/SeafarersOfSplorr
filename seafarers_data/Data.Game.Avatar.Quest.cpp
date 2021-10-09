@@ -2,7 +2,6 @@
 #include "Data.Game.Avatar.Quest.h"
 #include "Data.Game.Common.h"
 #include "Data.Game.Player.h"
-#include <format>
 namespace data::game::avatar
 {
 	static const std::string FIELD_DESTINATION_X = "DestinationX";
@@ -25,19 +24,19 @@ namespace data::game::avatar
 		if (data)
 		{
 			data::game::Common::Execute(
-				std::format(REPLACE_ITEM,
-					data::game::Player::GetAvatarId(),
-					data.value().destination.GetX(),
-					data.value().destination.GetY(),
-					data.value().reward,
-					common::Data::QuoteString(data.value().itemName),
-					common::Data::QuoteString(data.value().personName),
-					common::Data::QuoteString(data.value().professionName),
-					common::Data::QuoteString(data.value().receiptEmotion)));
+				REPLACE_ITEM,
+				data::game::Player::GetAvatarId(),
+				data.value().destination.GetX(),
+				data.value().destination.GetY(),
+				data.value().reward,
+				common::Data::QuoteString(data.value().itemName),
+				common::Data::QuoteString(data.value().personName),
+				common::Data::QuoteString(data.value().professionName),
+				common::Data::QuoteString(data.value().receiptEmotion));
 		}
 		else
 		{
-			data::game::Common::Execute(std::format(DELETE_ITEM, avatarId));
+			data::game::Common::Execute(DELETE_ITEM, avatarId);
 		}
 	}
 
@@ -45,7 +44,7 @@ namespace data::game::avatar
 	{
 		AutoCreateAvatarQuestTable();
 		auto records = data::game::Common::Execute(
-			std::format(QUERY_ITEM, avatarId));
+			QUERY_ITEM, avatarId);
 		if (!records.empty())
 		{
 			auto& record = records.front();

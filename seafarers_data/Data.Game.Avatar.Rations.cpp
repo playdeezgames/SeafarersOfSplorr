@@ -1,7 +1,6 @@
 #include <Common.Data.h>
 #include "Data.Game.Avatar.Rations.h"
 #include "Data.Game.Common.h"
-#include <format>
 namespace data::game::avatar
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarRations]([AvatarId] INT NOT NULL UNIQUE,[ItemId] INT NOT NULL);";
@@ -16,13 +15,13 @@ namespace data::game::avatar
 	void Rations::Write(int avatarId, int itemId)
 	{
 		AutoCreateAvatarRationsTable();
-		Common::Execute(std::format(REPLACE_ITEM, avatarId, itemId));
+		Common::Execute(REPLACE_ITEM, avatarId, itemId);
 	}
 
 	std::optional<int> Rations::Read(int avatarId)
 	{
 		AutoCreateAvatarRationsTable();
-		auto records = Common::Execute(std::format(QUERY_ITEM, avatarId));
+		auto records = Common::Execute(QUERY_ITEM, avatarId);
 		if (!records.empty())
 		{
 			return common::Data::ToOptionalInt(records.front()[FIELD_ITEM_ID]);
@@ -33,13 +32,13 @@ namespace data::game::avatar
 	void Rations::Clear(int avatarId)
 	{
 		AutoCreateAvatarRationsTable();
-		Common::Execute(std::format(DELETE_ITEM, avatarId));
+		Common::Execute(DELETE_ITEM, avatarId);
 
 	}
 
 	void Rations::ClearAll()
 	{
 		AutoCreateAvatarRationsTable();
-		Common::Execute(std::format(DELETE_ALL));
+		Common::Execute(DELETE_ALL);
 	}
 }

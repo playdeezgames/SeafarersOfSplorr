@@ -1,7 +1,6 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Demigod.h"
-#include <format>
 namespace data::game
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Demigods]([Name] TEXT NOT NULL UNIQUE, [PatronWeight] INT NOT NULL,[BlessingThreshold] REAL NOT NULL,[BlessingMultiplier] REAL NOT NULL,[BlessingPlightId] INT NOT NULL,[CurseThreshold] REAL NOT NULL,[CurseMultiplier] REAL NOT NULL,[CursePlightId] INT NOT NULL,[OfferingCooldown] INT NOT NULL);";
@@ -31,16 +30,16 @@ namespace data::game
 	{
 		AutoCreateDemigodTable();
 		data::game::Common::Execute(
-			std::format(REPLACE_ITEM, 
-				common::Data::QuoteString(demigod.name), 
-				demigod.patronWeight,
-				demigod.blessingThreshold,
-				demigod.blessingMultiplier,
-				demigod.blessingPlightId,
-				demigod.curseThreshold,
-				demigod.curseMultiplier,
-				demigod.cursePlightId,
-				demigod.offeringCooldown));
+			REPLACE_ITEM, 
+			common::Data::QuoteString(demigod.name), 
+			demigod.patronWeight,
+			demigod.blessingThreshold,
+			demigod.blessingMultiplier,
+			demigod.blessingPlightId,
+			demigod.curseThreshold,
+			demigod.curseMultiplier,
+			demigod.cursePlightId,
+			demigod.offeringCooldown);
 	}
 
 	static Demigod ToDemigod(const std::map<std::string, std::string>& record)
@@ -73,7 +72,7 @@ namespace data::game
 	std::optional<Demigod> Demigod::Read(const std::string& name)
 	{
 		AutoCreateDemigodTable();
-		auto records = Common::Execute(std::format(QUERY_ITEM, common::Data::QuoteString(name)));
+		auto records = Common::Execute(QUERY_ITEM, common::Data::QuoteString(name));
 		if (!records.empty())
 		{
 			return ToDemigod(records.front());

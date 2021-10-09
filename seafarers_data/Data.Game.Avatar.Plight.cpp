@@ -2,7 +2,6 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Avatar.Plight.h"
 #include "Data.Game.Player.h"
-#include <format>
 namespace data::game::avatar
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Plights]([AvatarId] INT NOT NULL,[PlightId] INT NOT NULL, [Duration] INT NULL, UNIQUE([AvatarId],[PlightId]));";
@@ -20,7 +19,7 @@ namespace data::game::avatar
 	std::optional<Plight> Plight::Read(int avatarId, int plightId)
 	{
 		AutoCreatePlightTable();
-		auto records = Common::Execute(std::format(QUERY_ITEM, plightId, avatarId));
+		auto records = Common::Execute(QUERY_ITEM, plightId, avatarId);
 		if (!records.empty())
 		{
 			auto& record = records.front();
@@ -35,26 +34,26 @@ namespace data::game::avatar
 	void Plight::Write(int avatarId, const Plight& plight)
 	{
 		AutoCreatePlightTable();
-		Common::Execute(std::format(REPLACE_ITEM, avatarId, plight.plightId, common::Data::OfOptional(plight.duration)));
+		Common::Execute(REPLACE_ITEM, avatarId, plight.plightId, common::Data::OfOptional(plight.duration));
 	}
 
 	void Plight::ClearPlight(int avatarId, int plightId)
 	{
 		AutoCreatePlightTable();
-		Common::Execute(std::format(DELETE_ITEM, plightId, avatarId));
+		Common::Execute(DELETE_ITEM, plightId, avatarId);
 
 	}
 	void Plight::Clear(int avatarId)
 	{
 		AutoCreatePlightTable();
-		Common::Execute(std::format(DELETE_ALL,avatarId));
+		Common::Execute(DELETE_ALL,avatarId);
 	}
 
 	std::list<Plight> Plight::All(int avatarId)
 	{
 		AutoCreatePlightTable();
 		std::list<Plight> result;
-		auto records = Common::Execute(std::format(QUERY_ALL, avatarId));
+		auto records = Common::Execute(QUERY_ALL, avatarId);
 		for (auto& record : records)
 		{
 			result.push_back({

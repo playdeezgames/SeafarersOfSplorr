@@ -1,7 +1,6 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Fishery.h"
-#include <format>
 namespace data::game
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Fisheries]([FisheryId] INTEGER PRIMARY KEY AUTOINCREMENT,[FishType] INT NOT NULL,[X] REAL NOT NULL,[Y] REAL NOT NULL,[MoveX] REAL NOT NULL,[MoveY] REAL NOT NULL,[Radius] REAL NOT NULL,[Stock] INT NOT NULL,[Depletion] INT NOT NULL);";
@@ -32,16 +31,15 @@ namespace data::game
 	{
 		AutoCreateFisheryTable();
 		Common::Execute(
-			std::format(
-				INSERT_ITEM, 
-				fishery.fishType,
-				fishery.location.GetX(),
-				fishery.location.GetY(),
-				fishery.movement.GetX(),
-				fishery.movement.GetY(),
-				fishery.radius,
-				fishery.stock,
-				fishery.radius));
+			INSERT_ITEM, 
+			fishery.fishType,
+			fishery.location.GetX(),
+			fishery.location.GetY(),
+			fishery.movement.GetX(),
+			fishery.movement.GetY(),
+			fishery.radius,
+			fishery.stock,
+			fishery.radius);
 	}
 
 	static Fishery ToFishery(const std::map<std::string, std::string>& record)
@@ -79,21 +77,20 @@ namespace data::game
 	{
 		AutoCreateFisheryTable();
 		Common::Execute(
-			std::format(
-				UPDATE_ITEM,
-				fishery.location.GetX(), 
-				fishery.location.GetY(), 
-				fishery.movement.GetX(), 
-				fishery.movement.GetY(), 
-				fishery.stock,
-				fishery.depletion,
-				fishery.fisheryId));
+			UPDATE_ITEM,
+			fishery.location.GetX(), 
+			fishery.location.GetY(), 
+			fishery.movement.GetX(), 
+			fishery.movement.GetY(), 
+			fishery.stock,
+			fishery.depletion,
+			fishery.fisheryId);
 	}
 
 	std::optional<Fishery> Fishery::Read(int fisheryId)
 	{
 		AutoCreateFisheryTable();
-		auto records = Common::Execute(std::format(QUERY_BY_ID,fisheryId));
+		auto records = Common::Execute(QUERY_BY_ID,fisheryId);
 		if(!records.empty())
 		{
 			return (ToFishery(records.front()));

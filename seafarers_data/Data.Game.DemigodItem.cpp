@@ -1,7 +1,6 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.DemigodItem.h"
-#include <format>
 namespace data::game
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [DemigodItems]([Name] TEXT NOT NULL,[ItemId] INT NOT NULL,[Favor] REAL NOT NULL,UNIQUE([Name],[ItemId]));";
@@ -17,10 +16,9 @@ namespace data::game
 		AutoCreateDemigodItemsTable();
 		auto records = 
 			Common::Execute(
-				std::format(
-					QUERY_ITEM, 
-					common::Data::QuoteString(demigod),
-					itemId));
+				QUERY_ITEM, 
+				common::Data::QuoteString(demigod),
+				itemId);
 		if (!records.empty())
 		{
 			auto record = records.front();
@@ -32,7 +30,7 @@ namespace data::game
 	void DemigodItem::Write(const std::string& demigod, int itemId, double favor)
 	{
 		AutoCreateDemigodItemsTable();
-		Common::Execute(std::format(REPLACE_ITEM, common::Data::QuoteString(demigod), itemId, favor));
+		Common::Execute(REPLACE_ITEM, common::Data::QuoteString(demigod), itemId, favor);
 	}
 
 	void DemigodItem::Clear()

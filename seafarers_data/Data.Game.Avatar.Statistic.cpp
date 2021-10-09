@@ -2,7 +2,6 @@
 #include "Data.Game.Avatar.Statistic.h"
 #include "Data.Game.Common.h"
 #include "Data.Game.Player.h"
-#include <format>
 #include <string>
 namespace data::game::avatar
 {
@@ -18,15 +17,13 @@ namespace data::game::avatar
 	void Statistic::Write(int avatarId, int statisticId, const Statistic& data)
 	{
 		AutoCreateAvatarStatisticsTable();
-		auto query = std::format(REPLACE_ITEM, avatarId, statisticId, common::Data::OfOptional(data.minimum), common::Data::OfOptional(data.maximum), data.current);
-		data::game::Common::Execute(query);
+		data::game::Common::Execute(REPLACE_ITEM, avatarId, statisticId, common::Data::OfOptional(data.minimum), common::Data::OfOptional(data.maximum), data.current);
 	}
 
 	std::optional<Statistic> Statistic::Read(int avatarId, int statisticId)
 	{
 		AutoCreateAvatarStatisticsTable();
-		auto query = std::format(QUERY_ITEM, statisticId, avatarId);
-		auto result = data::game::Common::Execute(query);
+		auto result = data::game::Common::Execute(QUERY_ITEM, statisticId, avatarId);
 		if (!result.empty())
 		{
 			auto record = result.front();
