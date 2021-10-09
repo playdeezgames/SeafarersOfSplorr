@@ -2,6 +2,7 @@
 #include "Game.Avatar.Action.h"
 #include "Game.Avatar.State.h"
 #include "Game.Difficulty.h"
+#include "Game.Item.h"
 #include <optional>
 namespace game
 {
@@ -11,5 +12,7 @@ namespace game
 		static std::optional<game::avatar::State> GetState();
 		static void ApplyTurnEffects();
 		static void Reset(const game::Difficulty&);
+		static std::optional<game::Item> GetRations();
+		static void SetRations(const std::optional<game::Item>&);
 	};
 }

@@ -10,7 +10,7 @@ namespace game
 	struct Items
 	{
 		static const std::list<game::Item>& All();
-		static const std::map<game::Item, size_t>& RationsGenerator();//TODO: change to GenerateRations
+		static game::Item GenerateRations();
 		static const std::string& GetName(const game::Item&);
 		static bool GeneratePresence(const game::Item&);
 		static const std::map<Commodity, double>& GetCommodities(const game::Item&);

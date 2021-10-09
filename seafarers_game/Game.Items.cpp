@@ -199,7 +199,7 @@ namespace game
 
 	static std::map<game::Item, size_t> rationsGenerator;
 
-	const std::map<game::Item, size_t>& Items::RationsGenerator()
+	game::Item Items::GenerateRations()
 	{
 		if (rationsGenerator.empty())
 		{
@@ -211,7 +211,7 @@ namespace game
 				}
 			}
 		}
-		return rationsGenerator;
+		return common::RNG::FromGenerator(rationsGenerator, rationsGenerator.begin()->first);
 	}
 
 	const std::string& Items::GetName(const game::Item& item)
@@ -223,8 +223,6 @@ namespace game
 	{
 		auto& descriptor = Read(item);
 		return common::RNG::FromRange(0u, descriptor.present + descriptor.notPresent) < descriptor.present;
-
-
 	}
 
 	const std::map<Commodity, double>& Items::GetCommodities(const game::Item& item)

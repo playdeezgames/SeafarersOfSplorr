@@ -2,7 +2,7 @@
 #include <Common.Heading.h>
 #include <Common.RNG.h>
 #include <Data.Game.Avatar.h>
-//#include <Data.Game.Player.h>
+#include <Data.Game.Avatar.Rations.h>
 #include <functional>
 #include "Game.Avatar.h"
 #include "Game.Avatar.Items.h"
@@ -11,6 +11,7 @@
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Avatar.StateTransition.h"
+#include <Game.Items.h>
 #include <Game.Player.h>
 #include <Game.Ship.h>
 #include <Game.ShipNames.h>
@@ -128,6 +129,8 @@ namespace game
 		data::game::Avatar::Write(Player::GetAvatarId(), data);
 		data::game::Avatar::WriteState(Player::GetAvatarId(), (int)game::avatar::State::AT_SEA);
 
+		data::game::avatar::Rations::Write(Player::GetAvatarId(), (int)game::Items::GenerateRations());
+
 		auto worldSize = game::World::GetSize();
 		auto shipType = game::ShipTypes::GenerateForAvatar();
 		int shipId = game::Ship::Add(
@@ -142,5 +145,24 @@ namespace game
 				common::Heading::DEGREES).value(), 
 			1.0);
 		game::avatar::Ship::Write({ shipId, BerthType::CAPTAIN });
+	}
+
+	std::optional<game::Item> Avatar::GetRations()
+	{
+		auto itemId = data::game::avatar::Rations::Read(Player::GetAvatarId());
+		if (itemId)
+		{
+			return (game::Item)itemId.value();
+		}
+		return std::nullopt;
+	}
+
+	void Avatar::SetRations(const std::optional<game::Item>& item)
+	{
+		data::game::avatar::Rations::Clear(Player::GetAvatarId());
+		if (item)
+		{
+			data::game::avatar::Rations::Write(Player::GetAvatarId(), (int)item.value());
+		}
 	}
 }
