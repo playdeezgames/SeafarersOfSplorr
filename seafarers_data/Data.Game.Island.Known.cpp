@@ -1,7 +1,6 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.Known.h"
-#include <format>
 #include <string>
 namespace data::game::island
 {
@@ -18,15 +17,13 @@ namespace data::game::island
 	void Known::Write(const common::XY<double>& location)
 	{
 		AutoCreateKnownIslandsTable();
-		auto query = std::format(REPLACE_ITEM, location.GetX(), location.GetY());
-		data::game::Common::Execute(query);
+		data::game::Common::Execute(REPLACE_ITEM, location.GetX(), location.GetY());
 	}
 
 	bool Known::Read(const common::XY<double>& location)
 	{
 		AutoCreateKnownIslandsTable();
-		auto query = std::format(QUERY_ITEM, location.GetX(), location.GetY());
-		auto result = data::game::Common::Execute(query);
+		auto result = data::game::Common::Execute(QUERY_ITEM, location.GetX(), location.GetY());
 		return !result.empty();
 	}
 
@@ -39,8 +36,7 @@ namespace data::game::island
 	std::list<common::XY<double>> Known::All()
 	{
 		AutoCreateKnownIslandsTable();
-		auto query = std::format(QUERY_ALL);
-		auto records = data::game::Common::Execute(query);
+		auto records = data::game::Common::Execute(QUERY_ALL);
 		std::list<common::XY<double>> result;
 		for (auto& record : records)
 		{

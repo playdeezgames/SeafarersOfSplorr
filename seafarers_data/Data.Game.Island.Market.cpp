@@ -1,7 +1,6 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.Market.h"
-#include <format>
 namespace data::game::island
 {
 	static const std::string FIELD_X = "X";
@@ -23,7 +22,14 @@ namespace data::game::island
 	{
 		AutoCreateIslandMarketsTable();
 		data::game::Common::Execute(
-			std::format(REPLACE_ITEM, location.GetX(), location.GetY(), commodityId, data.supply, data.demand, data.purchases, data.sales)
+			REPLACE_ITEM, 
+			location.GetX(), 
+			location.GetY(), 
+			commodityId, 
+			data.supply, 
+			data.demand, 
+			data.purchases, 
+			data.sales
 		);
 	}
 
@@ -32,7 +38,10 @@ namespace data::game::island
 		AutoCreateIslandMarketsTable();
 		auto records =
 			data::game::Common::Execute(
-				std::format(QUERY_ITEM, location.GetX(), location.GetY(), commodityId)
+				QUERY_ITEM, 
+				location.GetX(), 
+				location.GetY(), 
+				commodityId
 			);
 		if (!records.empty())
 		{
@@ -53,7 +62,9 @@ namespace data::game::island
 		AutoCreateIslandMarketsTable();
 		auto records =
 			data::game::Common::Execute(
-				std::format(QUERY_ALL, location.GetX(), location.GetY())
+				QUERY_ALL, 
+				location.GetX(), 
+				location.GetY()
 			);
 		std::map<int, Market> result;
 		for (auto& record : records)

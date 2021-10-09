@@ -2,7 +2,6 @@
 #include "Data.Game.Ship.Statistic.h"
 #include "Data.Game.Common.h"
 #include "Data.Game.Player.h"
-#include <format>
 #include <string>
 namespace data::game::ship
 {
@@ -19,15 +18,13 @@ namespace data::game::ship
 	void Statistic::Write(int shipId, int statisticId, const Statistic& data)
 	{
 		AutoCreateShipStatisticsTable();
-		auto query = std::format(REPLACE_ITEM, shipId, statisticId, common::Data::OfOptional(data.minimum), common::Data::OfOptional(data.maximum), data.current);
-		data::game::Common::Execute(query);
+		data::game::Common::Execute(REPLACE_ITEM, shipId, statisticId, common::Data::OfOptional(data.minimum), common::Data::OfOptional(data.maximum), data.current);
 	}
 
 	std::optional<Statistic> Statistic::Read(int shipId, int statisticId)
 	{
 		AutoCreateShipStatisticsTable();
-		auto query = std::format(QUERY_ITEM, statisticId, shipId);
-		auto result = data::game::Common::Execute(query);
+		auto result = data::game::Common::Execute(QUERY_ITEM, statisticId, shipId);
 		if (!result.empty())
 		{
 			auto record = result.front();
@@ -44,7 +41,7 @@ namespace data::game::ship
 	void Statistic::Clear(int shipId)
 	{
 		AutoCreateShipStatisticsTable();
-		data::game::Common::Execute(std::format(DELETE_ALL, shipId));
+		data::game::Common::Execute(DELETE_ALL, shipId);
 	}
 
 }

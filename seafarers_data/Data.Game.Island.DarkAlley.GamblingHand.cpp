@@ -1,7 +1,6 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.DarkAlley.GamblingHand.h"
-#include <format>
 namespace data::game::island::dark_alley
 {
 	static const std::string FIELD_FIRST_CARD = "FirstCard";
@@ -16,13 +15,13 @@ namespace data::game::island::dark_alley
 	void GamblingHand::Write(const common::XY<double>& location, const GamblingHand& data)
 	{
 		AutoCreateDarkAlleyGamblingHandsTable();
-		data::game::Common::Execute(std::format(REPLACE_ITEM, location.GetX(), location.GetY(), data.firstCard, data.secondCard, data.thirdCard));
+		data::game::Common::Execute(REPLACE_ITEM, location.GetX(), location.GetY(), data.firstCard, data.secondCard, data.thirdCard);
 	}
 
 	std::optional<GamblingHand> GamblingHand::Read(const common::XY<double>& location)
 	{
 		AutoCreateDarkAlleyGamblingHandsTable();
-		auto records = Common::Execute(std::format(QUERY_ITEM, location.GetX(), location.GetY()));
+		auto records = Common::Execute(QUERY_ITEM, location.GetX(), location.GetY());
 		if (!records.empty())
 		{
 			auto& record = records.front();

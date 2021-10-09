@@ -2,7 +2,6 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.Visit.h"
 #include <string>
-#include <format>
 namespace data::game::island
 {
 	static const std::string FIELD_X = "X";
@@ -19,23 +18,21 @@ namespace data::game::island
 	void Visit::Write(const Visit& data)
 	{
 		AutoCreateIslandVisitsTable();
-		auto query = std::format(
+		data::game::Common::Execute(
 			REPLACE_ITEM,
 			data.location.GetX(),
 			data.location.GetY(),
 			data.visits,
 			common::Data::OfOptional(data.lastVisit));
-		data::game::Common::Execute(query);
 	}
 
 	std::optional<Visit> Visit::Read(const common::XY<double>& location)
 	{
 		AutoCreateIslandVisitsTable();
-		auto query = std::format(
+		auto result = data::game::Common::Execute(
 			QUERY_ITEM,
 			location.GetX(),
 			location.GetY());
-		auto result = data::game::Common::Execute(query);
 		if (!result.empty())
 		{
 			auto& record = result.front();

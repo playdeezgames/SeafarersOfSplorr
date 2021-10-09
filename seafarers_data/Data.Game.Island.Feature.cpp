@@ -1,7 +1,6 @@
 #include <Common.Data.h>
 #include "Data.Game.Island.Feature.h"
 #include "Data.Game.Common.h"
-#include <format>
 namespace data::game::island
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandFeatures]([X] REAL NOT NULL,[Y] REAL NOT NULL,[FeatureId] INT NOT NULL,UNIQUE([X],[Y],[FeatureId]));";
@@ -21,19 +20,19 @@ namespace data::game::island
 	void Feature::Write(const common::XY<double>& xy, int featureId)
 	{
 		AutoCreateIslandFeaturesTable();
-		data::game::Common::Execute(std::format(REPLACE_ITEM, xy.GetX(), xy.GetY(), featureId));
+		data::game::Common::Execute(REPLACE_ITEM, xy.GetX(), xy.GetY(), featureId);
 	}
 
 	void Feature::Clear(const common::XY<double>& xy, int featureId)
 	{
 		AutoCreateIslandFeaturesTable();
-		data::game::Common::Execute(std::format(DELETE_ITEM, xy.GetX(), xy.GetY(), featureId));
+		data::game::Common::Execute(DELETE_ITEM, xy.GetX(), xy.GetY(), featureId);
 	}
 
 	bool Feature::Read(const common::XY<double>& xy, int featureId)
 	{
 		AutoCreateIslandFeaturesTable();
-		auto records = data::game::Common::Execute(std::format(QUERY_ITEM, xy.GetX(), xy.GetY(), featureId));
+		auto records = data::game::Common::Execute(QUERY_ITEM, xy.GetX(), xy.GetY(), featureId);
 		return !records.empty();
 	}
 }

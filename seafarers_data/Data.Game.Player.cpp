@@ -2,7 +2,6 @@
 #include "Data.Game.Avatar.h"
 #include "Data.Game.Common.h"
 #include "Data.Game.Player.h"
-#include <format>
 namespace data::game
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Players]([PlayerId] INT NOT NULL UNIQUE CHECK([PlayerId]=1),[AvatarId] INT NOT NULL UNIQUE);";
@@ -17,13 +16,13 @@ namespace data::game
 	int Player::GetAvatarId()
 	{
 		AutoCreatePlayerTable();
-		auto records = Common::Execute(std::format(QUERY_ITEM, PLAYER_ID));
+		auto records = Common::Execute(QUERY_ITEM, PLAYER_ID);
 		if (!records.empty())
 		{
 			return common::Data::ToInt(records.front()[FIELD_AVATAR_ID]);
 		}
 		int avatarId = Avatar::NextId();
-		Common::Execute(std::format(REPLACE_ITEM, PLAYER_ID, avatarId));
+		Common::Execute(REPLACE_ITEM, PLAYER_ID, avatarId);
 		return avatarId;
 	}
 }

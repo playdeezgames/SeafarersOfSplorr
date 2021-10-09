@@ -1,7 +1,6 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.DarkAlley.h"
-#include <format>
 namespace data::game::island
 {
 	static const std::string FIELD_INFAMY_REQUIREMENT = "InfamyRequirement";
@@ -24,19 +23,18 @@ namespace data::game::island
 	{
 		AutoCreateDarkAlleysTable();
 		data::game::Common::Execute(
-			std::format(
 				REPLACE_ITEM, 
 				location.GetX(), 
 				location.GetY(), 
 				data.infamyRequirement, 
 				data.ruffianBrawlingStrength,
-				data.minimumWager));
+				data.minimumWager);
 	}
 
 	std::optional<DarkAlley> DarkAlley::Read(const common::XY<double>& location)
 	{
 		AutoCreateDarkAlleysTable();
-		auto records = data::game::Common::Execute(std::format(QUERY_ITEM, location.GetX(), location.GetY()));
+		auto records = data::game::Common::Execute(QUERY_ITEM, location.GetX(), location.GetY());
 		if (!records.empty())
 		{
 			auto record = records.front();

@@ -1,7 +1,6 @@
 #include <Common.Data.h>
 #include "Data.Game.Island.Item.h"
 #include "Data.Game.Common.h"
-#include <format>
 namespace data::game::island
 {
 	static const std::string FIELD_X = "X";
@@ -19,19 +18,19 @@ namespace data::game::island
 	void Item::Set(const common::XY<double>& location, int item)
 	{
 		AutoCreateIslandItemTable();
-		data::game::Common::Execute(std::format(REPLACE_ITEM, location.GetX(), location.GetY(), item));
+		data::game::Common::Execute(REPLACE_ITEM, location.GetX(), location.GetY(), item);
 	}
 
 	void Item::Clear(const common::XY<double>& location, int item)
 	{
 		AutoCreateIslandItemTable();
-		data::game::Common::Execute(std::format(DELETE_ITEM, location.GetX(), location.GetY(), item));
+		data::game::Common::Execute(DELETE_ITEM, location.GetX(), location.GetY(), item);
 	}
 
 	bool Item::Get(const common::XY<double>& location, int item)
 	{
 		AutoCreateIslandItemTable();
-		auto records = data::game::Common::Execute(std::format(QUERY_ITEM, location.GetX(), location.GetY(), item));
+		auto records = data::game::Common::Execute(QUERY_ITEM, location.GetX(), location.GetY(), item);
 		return !records.empty();
 	}
 
@@ -45,7 +44,7 @@ namespace data::game::island
 	{
 		std::set<int> result;
 		AutoCreateIslandItemTable();
-		auto records = data::game::Common::Execute(std::format(QUERY_ALL, location.GetX(), location.GetY()));
+		auto records = data::game::Common::Execute(QUERY_ALL, location.GetX(), location.GetY());
 		for (auto& record : records)
 		{
 			result.insert(common::Data::ToInt(record[FIELD_ITEM_ID]));

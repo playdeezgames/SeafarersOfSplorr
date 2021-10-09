@@ -1,7 +1,6 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Ship.h"
-#include <format>
 namespace data::game
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Ships]([ShipId] INT NOT NULL UNIQUE,[ShipType] INT NOT NULL,[Name] TEXT NOT NULL,[X] REAL NOT NULL,[Y] REAL NOT NULL,[Heading] REAL NOT NULL,[Speed] REAL NOT NULL);";
@@ -22,7 +21,7 @@ namespace data::game
 	void Ship::Write(const Ship& ship)
 	{
 		AutoCreateShipTable();
-		auto query = std::format(
+		Common::Execute(
 			REPLACE_ITEM,
 			ship.shipId,
 			ship.shipType,
@@ -30,11 +29,7 @@ namespace data::game
 			ship.location.GetX(),
 			ship.location.GetY(),
 			ship.heading,
-			ship.speed
-		);
-		Common::Execute(
-			query
-			);
+			ship.speed);
 	}
 
 	static Ship ToShip(const std::map<std::string, std::string> table)
@@ -55,7 +50,7 @@ namespace data::game
 	std::optional<Ship> Ship::Read(int shipId)
 	{
 		AutoCreateShipTable();
-		auto records = Common::Execute(std::format(QUERY_ITEM, shipId));
+		auto records = Common::Execute(QUERY_ITEM, shipId);
 		if (!records.empty())
 		{
 			return ToShip(records.front());

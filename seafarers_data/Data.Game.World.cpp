@@ -2,7 +2,6 @@
 #include <Common.Utility.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.World.h"
-#include <format>
 #include <string>
 namespace data::game
 {
@@ -24,21 +23,21 @@ namespace data::game
 	{
 		AutoCreateWorldsTable();
 		data::game::Common::Execute(
-			std::format(REPLACE_ITEM, 
-				WORLD_ID,
-				data.version,
-				data.size.GetX(),
-				data.size.GetY(),
-				data.minimumIslandDistance,
-				data.viewDistance,
-				data.dockDistance,
-				data.windHeading));
+			REPLACE_ITEM, 
+			WORLD_ID,
+			data.version,
+			data.size.GetX(),
+			data.size.GetY(),
+			data.minimumIslandDistance,
+			data.viewDistance,
+			data.dockDistance,
+			data.windHeading);
 	}
 
 	std::optional<World> World::Read()
 	{
 		AutoCreateWorldsTable();
-		auto result = data::game::Common::Execute(std::format(QUERY_ITEM, WORLD_ID));
+		auto result = data::game::Common::Execute(QUERY_ITEM, WORLD_ID);
 		if (!result.empty())
 		{
 			const auto& record = result.front();

@@ -1,7 +1,6 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Merchant.h"
-#include <format>
 namespace data::game
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Merchants]([MerchantId] INTEGER PRIMARY KEY AUTOINCREMENT,[X] REAL NOT NULL,[Y] REAL NOT NULL,[DestinationX] REAL NOT NULL,[DestinationY] REAL NOT NULL,[ShipType] INT NOT NULL,[CargoType] INT NOT NULL,[CargoQuantity] INT NOT NULL);";
@@ -24,14 +23,15 @@ namespace data::game
 	void Merchant::Add(const Merchant& merchant)
 	{
 		AutoCreateMerchantsTable();
-		Common::Execute(std::format(INSERT_ITEM, 
+		Common::Execute(
+			INSERT_ITEM, 
 			merchant.location.GetX(), 
 			merchant.location.GetY(),
 			merchant.destination.GetX(),
 			merchant.destination.GetY(),
 			merchant.shipType,
 			merchant.cargoType,
-			merchant.cargoQuantity));
+			merchant.cargoQuantity);
 	}
 
 	static Merchant ToMerchant(const std::map<std::string, std::string> record)
@@ -68,25 +68,23 @@ namespace data::game
 	{
 		AutoCreateMerchantsTable();
 		Common::Execute(
-			std::format(
-				UPDATE_ITEM,
-				merchant.location.GetX(),
-				merchant.location.GetY(),
-				merchant.destination.GetX(),
-				merchant.destination.GetY(),
-				merchant.shipType,
-				merchant.cargoType,
-				merchant.cargoQuantity,
-				merchant.merchantId));
+			UPDATE_ITEM,
+			merchant.location.GetX(),
+			merchant.location.GetY(),
+			merchant.destination.GetX(),
+			merchant.destination.GetY(),
+			merchant.shipType,
+			merchant.cargoType,
+			merchant.cargoQuantity,
+			merchant.merchantId);
 	}
 
 	void Merchant::Remove(int merchantId)
 	{
 		AutoCreateMerchantsTable();
 		Common::Execute(
-			std::format(
-				DELETE_ITEM,
-				merchantId));
+			DELETE_ITEM,
+			merchantId);
 	}
 
 	void Merchant::Clear()

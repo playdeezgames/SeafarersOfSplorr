@@ -2,7 +2,6 @@
 #include <Common.Utility.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.h"
-#include <format>
 namespace data::game
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Islands]([X] REAL NOT NULL,[Y] REAL NOT NULL,[Name] TEXT NOT NULL,[MerchantSpawnRate] REAL NOT NULL,[PatronDemigod] TEXT NOT NULL,UNIQUE([X],[Y]));";
@@ -21,15 +20,13 @@ namespace data::game
 	void Island::Write(const Island& data)
 	{
 		AutoCreateIslandTable();
-		auto query =
-			std::format(
-				REPLACE_ITEM,
-				data.location.GetX(), 
-				data.location.GetY(),
-				common::Data::QuoteString(data.name),
-				data.merchantSpawnRate,
-				common::Data::QuoteString(data.patronDemigod));
-		data::game::Common::Execute(query);
+		data::game::Common::Execute(
+			REPLACE_ITEM,
+			data.location.GetX(),
+			data.location.GetY(),
+			common::Data::QuoteString(data.name),
+			data.merchantSpawnRate,
+			common::Data::QuoteString(data.patronDemigod));
 	}
 
 	static Island ToIslandData(const std::map<std::string, std::string> record)
@@ -50,11 +47,10 @@ namespace data::game
 	std::optional<Island> Island::Read(const common::XY<double>& location)
 	{
 		AutoCreateIslandTable();
-		auto query =
-			std::format(
-				QUERY_ITEM,
-				location.GetX(), location.GetY());
-		auto result = data::game::Common::Execute(query);
+		auto result = data::game::Common::Execute(
+			QUERY_ITEM,
+			location.GetX(),
+			location.GetY());
 		if (!result.empty())
 		{
 			return ToIslandData(result.front());
