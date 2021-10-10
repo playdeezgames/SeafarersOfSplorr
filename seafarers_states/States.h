@@ -99,6 +99,11 @@ namespace state
 		{ 
 			static void Start(); 
 		};
+		struct CrewDetail
+		{
+			static void SetAvatarId(int);
+			static void Start();
+		};
 		struct CrewList
 		{
 			static void Start();

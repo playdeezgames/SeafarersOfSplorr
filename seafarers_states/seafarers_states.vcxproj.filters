@@ -196,5 +196,8 @@
     <ClCompile Include="State.InPlay.CrewList.cpp">
       <Filter>Source Files\AtSea\Status</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.CrewDetail.cpp">
+      <Filter>Source Files\AtSea\Status</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

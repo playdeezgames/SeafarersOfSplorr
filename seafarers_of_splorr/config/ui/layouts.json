@@ -14,6 +14,7 @@
     "State.InPlay.Confirm": "config/ui/layouts/utility/State.InPlay.Confirm.json",
     "State.InPlay.ConfirmAbandonJob": "config/ui/layouts/at-sea/State.InPlay.ConfirmAbandonJob.json",
     "State.InPlay.ConfirmReplaceJob": "config/ui/layouts/docked/State.InPlay.ConfirmReplaceJob.json",
+    "State.InPlay.CrewDetail": "config/ui/layouts/at-sea/State.InPlay.CrewDetail.json",
     "State.InPlay.CrewList": "config/ui/layouts/at-sea/State.InPlay.CrewList.json",
     "State.InPlay.DarkAlley": "config/ui/layouts/docked/State.InPlay.DarkAlley.json",
     "State.InPlay.DarkAlleyEntrance": "config/ui/layouts/docked/State.InPlay.DarkAlleyEntrance.json",

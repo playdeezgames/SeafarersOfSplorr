@@ -131,6 +131,7 @@ namespace application
 		state::in_play::Fishing::Start,
 		state::in_play::Equipment::Start,
 		state::in_play::CrewList::Start,
+		state::in_play::CrewDetail::Start,
 		sublayout::UIHamburger::Start,
 		sublayout::AtSeaActions::Start,
 		sublayout::AtSeaAvatarStatus::Start,

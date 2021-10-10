@@ -36,7 +36,7 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		::application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 	}
 
 	struct RosterItem
@@ -44,6 +44,7 @@ namespace state::in_play
 		std::string name;
 		std::string berth;
 		std::string mark;
+		int avatarId;
 	};
 
 	static std::vector<RosterItem> rosterItems;
@@ -93,7 +94,8 @@ namespace state::in_play
 			rosterItems.push_back({
 				entry.name,
 				berthNames.find(entry.berthType)->second,
-				(entry.avatarId==game::Player::GetAvatarId()) ? ("*") : (" ")
+				(entry.avatarId==game::Player::GetAvatarId()) ? ("*") : (" "),
+				entry.avatarId
 				});
 		}
 	}
@@ -151,7 +153,11 @@ namespace state::in_play
 
 	static void OnCrewDetail()
 	{
-		//TODO: go to crew detail
+		if (rosterIndex)
+		{
+			CrewDetail::SetAvatarId(rosterItems[rosterIndex.value()].avatarId);
+			application::UIState::Write(::UIState::IN_PLAY_CREW_DETAIL);
+		}
 	}
 
 	static const std::map<std::string, std::function<void()>> buttonUpAreas =
