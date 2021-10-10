@@ -46,24 +46,25 @@ namespace game
 		return shipId;
 	}
 
-	std::string Ship::GetName()
+	static data::game::Ship GetAvatarShip()
 	{
 		auto shipId = game::avatar::Ship::Read().value().shipId;
-		auto ship = data::game::Ship::Read(shipId).value();
-		return ship.name;
+		return data::game::Ship::Read(shipId).value();
+	}
+
+	std::string Ship::GetName()
+	{
+		return GetAvatarShip().name;
 	}
 
 	double Ship::GetHeading()
 	{
-		auto shipId = game::avatar::Ship::Read().value().shipId;
-		auto ship = data::game::Ship::Read(shipId).value();
-		return ship.heading;
+		return GetAvatarShip().heading;
 	}
 
 	void Ship::SetHeading(double heading)
 	{
-		auto shipId = game::avatar::Ship::Read().value().shipId;
-		auto ship = data::game::Ship::Read(shipId).value();
+		auto ship = GetAvatarShip();
 		ship.heading = common::Data::ModuloDouble(heading, common::Heading::DEGREES).value();
 		data::game::Ship::Write(ship);
 	}
@@ -73,22 +74,17 @@ namespace game
 
 	common::XY<double> Ship::GetLocation()
 	{
-		auto shipId = game::avatar::Ship::Read().value().shipId;
-		auto ship = data::game::Ship::Read(shipId).value();
-		return ship.location;
+		return GetAvatarShip().location;
 	}
 
 	double Ship::GetSpeed()
 	{
-		auto shipId = game::avatar::Ship::Read().value().shipId;
-		auto ship = data::game::Ship::Read(shipId).value();
-		return ship.speed;
+		return GetAvatarShip().speed;
 	}
 
 	void Ship::SetSpeed(double speed)
 	{
-		auto shipId = game::avatar::Ship::Read().value().shipId;
-		auto ship = data::game::Ship::Read(shipId).value();
+		auto ship = GetAvatarShip();
 		ship.speed = common::Data::ClampDouble(speed, SPEED_MINIMUM, SPEED_MAXIMUM);
 		data::game::Ship::Write(ship);
 	}
@@ -124,14 +120,13 @@ namespace game
 		MoveResult result = MoveResult::MOVED;
 
 		auto fouling = avatar::ShipStatistics::GetFouling();
-		auto shipId = game::avatar::Ship::Read().value().shipId;
-		auto ship = data::game::Ship::Read(shipId).value();
+		auto ship = GetAvatarShip();
 		avatar::ShipStatistics::IncreaseFouling(ship.speed);
 		auto effectiveSpeed = ship.speed * (1.0 - fouling);
 
 		double multiplier = World::GetWindSpeedMultiplier(ship.heading);
 
-		auto shipType = game::Ship::GetShipType(shipId).value();
+		auto shipType = game::Ship::GetShipType(ship.shipId).value();
 		auto speedFactor = game::ShipTypes::GetSpeedFactor(shipType);
 
 		common::XY<double> delta =
