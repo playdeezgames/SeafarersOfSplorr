@@ -2,7 +2,7 @@
 #include "Data.SQLite.Store.h"
 #include "Data.SQLite.Stores.h"
 #include <sstream>
-namespace data::game
+namespace data::game//20211010
 {
 	std::list<std::map<std::string, std::string>> Common::Execute(const std::string& query)
 	{

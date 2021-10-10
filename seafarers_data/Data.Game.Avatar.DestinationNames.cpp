@@ -2,12 +2,13 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Avatar.DestinationName.h"
 #include "Data.Game.Player.h"
-namespace data::game::avatar
+namespace data::game::avatar//20211010
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [DestinationNames]([AvatarId] INT NOT NULL,[DestinationId] INT NOT NULL, [DestinationName] TEXT NOT NULL, UNIQUE([AvatarId],[DestinationId]));";
 	static const std::string REPLACE_ITEM = "REPLACE INTO [DestinationNames]([AvatarId],[DestinationId],[DestinationName]) VALUES({},{},{});";
 	static const std::string QUERY_ITEM = "SELECT [DestinationName] FROM [DestinationNames] WHERE [AvatarId]={} AND [DestinationId]={};";
 	static const std::string DELETE_ALL = "DELETE FROM [DestinationNames] WHERE [AvatarId]={};";
+
 	static const std::string FIELD_DESTINATION_NAME = "DestinationName";
 
 	static const auto AutoCreateDestinationNamesTable = Common::Run(CREATE_TABLE);
@@ -37,6 +38,8 @@ namespace data::game::avatar
 	void DestinationName::Clear(int avatarId)
 	{
 		AutoCreateDestinationNamesTable();
-		Common::Execute(DELETE_ALL, avatarId);
+		Common::Execute(
+			DELETE_ALL, 
+			avatarId);
 	}
 }

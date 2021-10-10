@@ -12,6 +12,7 @@ namespace data::game
 	static const std::string QUERY_FISH_COUNT = "SELECT COUNT([FishType]) AS [FishCount] FROM [FishboardCells] WHERE [AvatarId]={} AND [FishType] IS NOT NULL;";
 	static const std::string QUERY_REVEALED_FISH_COUNT = "SELECT COUNT([FishType]) AS [FishCount] FROM [FishboardCells] WHERE [AvatarId]={} AND [FishType] IS NOT NULL AND [Revealed]<>0;";
 	static const std::string QUERY_FISHES = "SELECT DISTINCT [FishType] FROM [FishboardCells] WHERE [AvatarId]={} AND [FishType] IS NOT NULL;";
+
 	static const std::string FIELD_X = "X";
 	static const std::string FIELD_Y = "Y";
 	static const std::string FIELD_REVEALED = "Revealed";

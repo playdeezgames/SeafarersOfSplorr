@@ -1,7 +1,7 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Merchant.h"
-namespace data::game
+namespace data::game//20211010
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Merchants]([MerchantId] INTEGER PRIMARY KEY AUTOINCREMENT,[X] REAL NOT NULL,[Y] REAL NOT NULL,[DestinationX] REAL NOT NULL,[DestinationY] REAL NOT NULL,[ShipType] INT NOT NULL,[CargoType] INT NOT NULL,[CargoQuantity] INT NOT NULL);";
 	static const std::string INSERT_ITEM = "INSERT INTO [Merchants]([X],[Y],[DestinationX],[DestinationY],[ShipType],[CargoType],[CargoQuantity]) VALUES({:.4f},{:.4f},{:.4f},{:.4f},{},{},{});";
@@ -9,6 +9,7 @@ namespace data::game
 	static const std::string DELETE_ITEM = "DELETE FROM [Merchants] WHERE [MerchantId]={};";
 	static const std::string DELETE_ALL = "DELETE FROM [Merchants];";
 	static const std::string QUERY_ALL = "SELECT [MerchantId],[X],[Y],[DestinationX],[DestinationY],[ShipType],[CargoType],[CargoQuantity] FROM [Merchants];";
+
 	static const std::string FIELD_MERCHANT_ID = "MerchantId";
 	static const std::string FIELD_X = "X";
 	static const std::string FIELD_Y = "Y";

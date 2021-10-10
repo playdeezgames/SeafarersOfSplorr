@@ -9,6 +9,7 @@ namespace data::game
 	static const std::string REPLACE_ITEM = "REPLACE INTO [Islands]([X],[Y],[Name],[MerchantSpawnRate],[PatronDemigod]) VALUES ({:.4f},{:.4f},{},{},{});";
 	static const std::string QUERY_ALL = "SELECT [X],[Y],[Name],[MerchantSpawnRate],[PatronDemigod] FROM [Islands];";
 	static const std::string CLEAR_ALL = "DELETE FROM [Islands];";
+
 	static const std::string FIELD_X = "X";
 	static const std::string FIELD_Y = "Y";
 	static const std::string FIELD_NAME = "Name";
@@ -29,7 +30,7 @@ namespace data::game
 			common::Data::QuoteString(data.patronDemigod));
 	}
 
-	static Island ToIslandData(const std::map<std::string, std::string> record)
+	static Island ToIsland(const std::map<std::string, std::string> record)
 	{
 		Island data =
 		{
@@ -53,7 +54,7 @@ namespace data::game
 			location.GetY());
 		if (!result.empty())
 		{
-			return ToIslandData(result.front());
+			return ToIsland(result.front());
 		}
 		return std::nullopt;
 	}
@@ -65,7 +66,7 @@ namespace data::game
 		std::list<Island> result;
 		for (auto& record : records)
 		{
-			result.push_back(ToIslandData(record));
+			result.push_back(ToIsland(record));
 		}
 		return result;
 	}

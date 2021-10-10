@@ -1,8 +1,14 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.Market.h"
-namespace data::game::island
+namespace data::game::island//20211010
 {
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandMarkets]([X] REAL NOT NULL, [Y] REAL NOT NULL, [CommodityId] INT NOT NULL,[Supply] REAL NOT NULL, [Demand] REAL NOT NULL, [Purchases] REAL NOT NULL, [Sales] REAL NOT NULL, UNIQUE([X],[Y],[CommodityId]));";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [IslandMarkets]([X],[Y],[CommodityId],[Supply],[Demand],[Purchases],[Sales]) VALUES ({:.4f},{:.4f},{},{},{},{},{})";
+	static const std::string QUERY_ITEM = "SELECT [Supply], [Demand], [Purchases], [Sales] FROM [IslandMarkets] WHERE [X]={:.4f} AND [Y]={:.4f} AND [CommodityId]={};";
+	static const std::string QUERY_ALL = "SELECT [CommodityId], [Supply], [Demand], [Purchases], [Sales] FROM [IslandMarkets] WHERE [X]={:.4f} AND [Y]={:.4f};";
+	static const std::string DELETE_ALL = "DELETE FROM [IslandMarkets];";
+
 	static const std::string FIELD_X = "X";
 	static const std::string FIELD_Y = "Y";
 	static const std::string FIELD_COMMODITY_ID = "CommodityId";
@@ -10,11 +16,6 @@ namespace data::game::island
 	static const std::string FIELD_DEMAND = "Demand";
 	static const std::string FIELD_PURCHASES = "Purchases";
 	static const std::string FIELD_SALES = "Sales";
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandMarkets]([X] REAL NOT NULL, [Y] REAL NOT NULL, [CommodityId] INT NOT NULL,[Supply] REAL NOT NULL, [Demand] REAL NOT NULL, [Purchases] REAL NOT NULL, [Sales] REAL NOT NULL, UNIQUE([X],[Y],[CommodityId]));";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [IslandMarkets]([X],[Y],[CommodityId],[Supply],[Demand],[Purchases],[Sales]) VALUES ({:.4f},{:.4f},{},{},{},{},{})";
-	static const std::string QUERY_ITEM = "SELECT [Supply], [Demand], [Purchases], [Sales] FROM [IslandMarkets] WHERE [X]={:.4f} AND [Y]={:.4f} AND [CommodityId]={};";
-	static const std::string QUERY_ALL = "SELECT [CommodityId], [Supply], [Demand], [Purchases], [Sales] FROM [IslandMarkets] WHERE [X]={:.4f} AND [Y]={:.4f};";
-	static const std::string DELETE_ALL = "DELETE FROM [IslandMarkets];";
 
 	static const auto AutoCreateIslandMarketsTable = data::game::Common::Run(CREATE_TABLE);
 
@@ -33,6 +34,17 @@ namespace data::game::island
 		);
 	}
 
+	static Market ToMarket(const std::map<std::string, std::string> record)
+	{
+		return
+		{
+			common::Data::ToDouble(record.find(FIELD_SUPPLY)->second),
+			common::Data::ToDouble(record.find(FIELD_DEMAND)->second),
+			common::Data::ToDouble(record.find(FIELD_PURCHASES)->second),
+			common::Data::ToDouble(record.find(FIELD_SALES)->second)
+		};
+	}
+
 	std::optional<Market> Market::Read(const common::XY<double>& location, int commodityId)
 	{
 		AutoCreateIslandMarketsTable();
@@ -45,14 +57,7 @@ namespace data::game::island
 			);
 		if (!records.empty())
 		{
-			auto& record = records.front();
-			return std::optional<Market>(
-				{
-					common::Data::ToDouble(record[FIELD_SUPPLY]),
-					common::Data::ToDouble(record[FIELD_DEMAND]),
-					common::Data::ToDouble(record[FIELD_PURCHASES]),
-					common::Data::ToDouble(record[FIELD_SALES])
-				});
+			return ToMarket(records.front());
 		}
 		return std::nullopt;
 	}
@@ -70,12 +75,7 @@ namespace data::game::island
 		for (auto& record : records)
 		{
 			result[common::Data::ToInt(record[FIELD_COMMODITY_ID])] =
-				{
-					common::Data::ToDouble(record[FIELD_SUPPLY]),
-					common::Data::ToDouble(record[FIELD_DEMAND]),
-					common::Data::ToDouble(record[FIELD_PURCHASES]),
-					common::Data::ToDouble(record[FIELD_SALES])
-				};
+				ToMarket(record);
 		}
 		return result;
 	}

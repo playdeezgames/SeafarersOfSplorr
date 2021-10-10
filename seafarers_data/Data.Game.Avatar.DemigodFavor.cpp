@@ -2,12 +2,13 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Avatar.DemigodFavor.h"
 #include "Data.Game.Player.h"
-namespace data::game::avatar
+namespace data::game::avatar//20211010
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarDemigodFavor]([AvatarId] INT NOT NULL,[DemigodName] TEXT NOT NULL,[Favor] REAL NOT NULL, UNIQUE([AvatarId],[DemigodName]));";
 	static const std::string REPLACE_ITEM = "REPLACE INTO [AvatarDemigodFavor]([AvatarId],[DemigodName],[Favor]) VALUES({},{},{});";
 	static const std::string QUERY_ITEM = "SELECT [Favor] FROM [AvatarDemigodFavor] WHERE [AvatarId]={} AND [DemigodName]={};";
 	static const std::string DELETE_ALL = "DELETE FROM [AvatarDemigodFavor] WHERE [AvatarId]={};";
+
 	static const std::string FIELD_FAVOR = "Favor";
 
 	static const auto AutoCreateAvatarDemigodFavorTable = Common::Run(CREATE_TABLE);
@@ -15,7 +16,11 @@ namespace data::game::avatar
 	void DemigodFavor::Write(int avatarId, const std::string& name, double favor)
 	{
 		AutoCreateAvatarDemigodFavorTable();
-		Common::Execute(REPLACE_ITEM, avatarId, common::Data::QuoteString(name), favor);
+		Common::Execute(
+			REPLACE_ITEM, 
+			avatarId, 
+			common::Data::QuoteString(name), 
+			favor);
 	}
 
 	std::optional<double> DemigodFavor::Read(int avatarId, const std::string& name)

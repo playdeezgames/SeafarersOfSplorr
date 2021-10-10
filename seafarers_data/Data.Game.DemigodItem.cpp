@@ -7,6 +7,7 @@ namespace data::game
 	static const std::string DELETE_ALL = "DELETE FROM [DemigodItems];";
 	static const std::string QUERY_ITEM = "SELECT [Favor] FROM [DemigodItems] WHERE [Name]={} AND [ItemId]={};";
 	static const std::string REPLACE_ITEM = "REPLACE INTO [DemigodItems]([Name],[ItemId],[Favor]) VALUES({},{},{});";
+
 	static const std::string FIELD_FAVOR = "Favor";
 
 	static const auto AutoCreateDemigodItemsTable = Common::Run(CREATE_TABLE);
@@ -21,8 +22,7 @@ namespace data::game
 				itemId);
 		if (!records.empty())
 		{
-			auto record = records.front();
-			return common::Data::ToOptionalDouble(record[FIELD_FAVOR]);
+			return common::Data::ToOptionalDouble(records.front()[FIELD_FAVOR]);
 		}
 		return std::nullopt;
 	}
@@ -30,7 +30,11 @@ namespace data::game
 	void DemigodItem::Write(const std::string& demigod, int itemId, double favor)
 	{
 		AutoCreateDemigodItemsTable();
-		Common::Execute(REPLACE_ITEM, common::Data::QuoteString(demigod), itemId, favor);
+		Common::Execute(
+			REPLACE_ITEM, 
+			common::Data::QuoteString(demigod), 
+			itemId, 
+			favor);
 	}
 
 	void DemigodItem::Clear()

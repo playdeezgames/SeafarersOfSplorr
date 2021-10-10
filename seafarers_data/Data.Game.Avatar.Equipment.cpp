@@ -2,7 +2,7 @@
 #include "Data.Game.Avatar.Equipment.h"
 #include "Data.Game.Common.h"
 #include "Data.Game.Player.h"
-namespace data::game::avatar
+namespace data::game::avatar//20211010
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarEquipment]([AvatarId] INT NOT NULL,[EquipSlotId] INT NOT NULL,[ItemId] INT NOT NULL,UNIQUE([AvatarId],[EquipSlotId]));";
 	static const std::string QUERY_ITEM = "SELECT [ItemId] FROM [AvatarEquipment] WHERE [AvatarId]={} AND [EquipSlotId]={};";
@@ -10,6 +10,7 @@ namespace data::game::avatar
 	static const std::string DELETE_ITEM = "DELETE FROM [AvatarEquipment] WHERE [AvatarId]={} AND [EquipSlotId]={};";
 	static const std::string DELETE_ALL = "DELETE FROM [AvatarEquipment] WHERE [AvatarId]={};";
 	static const std::string REPLACE_ITEM = "REPLACE INTO [AvatarEquipment] ([AvatarId],[EquipSlotId],[ItemId]) VALUES({},{},{});";
+
 	static const std::string FIELD_ITEM_ID = "ItemId";
 	static const std::string FIELD_EQUIP_SLOT_ID = "EquipSlotId";
 
@@ -29,18 +30,26 @@ namespace data::game::avatar
 	void Equipment::Write(int avatarId, int equipSlotId, const std::optional<int>& itemId)
 	{
 		AutoCreateAvatarEquipmentTable();
+		Common::Execute(
+			DELETE_ITEM, 
+			avatarId, 
+			equipSlotId);
 		if (itemId)
 		{
-			Common::Execute(REPLACE_ITEM, avatarId, equipSlotId, itemId.value());
-			return;
+			Common::Execute(
+				REPLACE_ITEM, 
+				avatarId, 
+				equipSlotId, 
+				itemId.value());
 		}
-		Common::Execute(DELETE_ITEM, avatarId, equipSlotId);
 	}
 
 	void Equipment::Clear(int avatarId)
 	{
 		AutoCreateAvatarEquipmentTable();
-		Common::Execute(DELETE_ALL, avatarId);
+		Common::Execute(
+			DELETE_ALL, 
+			avatarId);
 	}
 
 	std::map<int, int> Equipment::All(int avatarId)

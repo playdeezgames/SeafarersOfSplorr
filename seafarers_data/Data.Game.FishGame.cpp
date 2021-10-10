@@ -2,7 +2,7 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.FishGame.h"
 #include "Data.Game.Player.h"
-namespace data::game
+namespace data::game//20211010
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [FishGames]([AvatarId] INT NOT NULL UNIQUE,[Guesses] INT NOT NULL,[GivenUp] INT NOT NULL,[FisheryId] INT NULL);";
 	static const std::string DELETE_ITEM = "DELETE FROM [FishGames] WHERE [AvatarId]={};";
@@ -11,6 +11,7 @@ namespace data::game
 	static const std::string UPDATE_GUESSES = "UPDATE [FishGames] SET [Guesses]={} WHERE [AvatarId]={};";
 	static const std::string UPDATE_GIVEN_UP = "UPDATE [FishGames] SET [GivenUp]={} WHERE [AvatarId]={};";
 	static const std::string UPDATE_FISHERY_ID = "UPDATE [FishGames] SET [FisheryId]={} WHERE [AvatarId]={};";
+
 	static const std::string FIELD_GUESSES = "Guesses";
 	static const std::string FIELD_GIVEN_UP = "GivenUp";
 	static const std::string FIELD_FISHERY_ID = "FisheryId";
@@ -78,7 +79,5 @@ namespace data::game
 			return common::Data::ToOptionalInt(records.front()[FIELD_FISHERY_ID]);
 		}
 		return std::nullopt;
-
 	}
-
 }
