@@ -1,5 +1,6 @@
 #include <Common.Data.h>
 #include <Common.Heading.h>
+#include <Data.Game.Avatar.Ship.h>
 #include <Data.Game.Ship.h>
 #include <Data.Game.Ship.Statistic.h>
 #include "Game.h"
@@ -144,5 +145,4 @@ namespace game
 		data::game::Ship::Write(ship);
 		return result;
 	}
-
 }

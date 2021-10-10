@@ -4,6 +4,7 @@
 #include "Game.Difficulty.h"
 #include "Game.Item.h"
 #include <optional>
+#include <string>
 namespace game
 {
 	struct Avatar
@@ -14,5 +15,6 @@ namespace game
 		static void Reset(const game::Difficulty&);
 		static std::optional<game::Item> GetRations();
 		static void SetRations(const std::optional<game::Item>&);
+		static std::optional<std::string> GetName(int);
 	};
 }

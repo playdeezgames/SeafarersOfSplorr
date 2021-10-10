@@ -165,4 +165,15 @@ namespace game
 			data::game::avatar::Rations::Write(Player::GetAvatarId(), (int)item.value());
 		}
 	}
+
+	std::optional<std::string> Avatar::GetName(int avatarId)
+	{
+		auto avatar = data::game::Avatar::Read(avatarId);
+		if (avatar)
+		{
+			return avatar.value().name;
+		}
+		return std::nullopt;
+	}
+
 }

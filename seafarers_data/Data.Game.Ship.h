@@ -2,6 +2,7 @@
 #include <Common.XY.h>
 #include <optional>
 #include <string>
+#include <vector>
 namespace data::game
 {
 	struct Ship

@@ -10,10 +10,13 @@
 #include <Game.Avatar.Items.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Avatar.Statistics.h>
+#include <Game.BerthType.h>
 #include <Game.Colors.h>
 #include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
+#include <Game.Player.h>
+#include <Game.Ship.Crew.h>
 #include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
@@ -35,14 +38,68 @@ namespace state::in_play
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
+	struct RosterItem
+	{
+		std::string name;
+		std::string berth;
+		std::string mark;
+	};
+
+	static std::vector<RosterItem> rosterItems;
+	static std::optional<size_t> rosterIndex = std::nullopt;
+
+	static void RefreshHeader()
+	{
+		WriteTextToGrid({ 0, 0 }, "<-", game::Colors::YELLOW);
+		WriteTextToGrid({ 37, 0 }, "->", game::Colors::YELLOW);
+		WriteTextToGrid({ 15, 0 }, "Page 1 of 1", game::Colors::YELLOW);
+		WriteTextToGrid({ 0,1 }, std::format(" {:15s}   {:15s}", "Name", "Berth"), game::Colors::YELLOW);
+	}
+
+	static void RefreshRoster()
+	{
+		size_t index = 0;
+		for (auto& rosterItem : rosterItems)
+		{
+			WriteTextToGrid({ 0,2+(int)index }, std::format("{:1s}{:15s}   {:15s}",rosterItem.mark, rosterItem.name, rosterItem.berth), game::Colors::GRAY);
+		}
+	}
+
 	static void Refresh()
 	{
+		visuals::SpriteGrid::Clear(LAYOUT_NAME, SPRITE_GRID_ID);
+		RefreshHeader();
+		RefreshRoster();
+	}
 
+	static const std::map<game::BerthType, std::string> berthNames =
+	{
+		{game::BerthType::CAPTAIN, "Captain"},
+		{game::BerthType::CAPTIVE, "Captive"},
+		{game::BerthType::CREW, "Crew"},
+		{game::BerthType::OFFICER, "Officer"},
+		{game::BerthType::PASSENGER, "Passenger"}
+	};
+
+	static void UpdateRoster()
+	{
+		rosterItems.clear();
+		auto crew = game::ship::Crew::Read();
+		for (auto& entry : crew)
+		{
+			rosterItems.push_back({
+				entry.name,
+				berthNames.find(entry.berthType)->second,
+				(entry.avatarId==game::Player::GetAvatarId()) ? ("*") : (" ")
+				});
+		}
 	}
 
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
+		UpdateRoster();
+		Refresh();
 	}
 
 	static const std::map<::Command, std::function<void()>> commandHandlers =

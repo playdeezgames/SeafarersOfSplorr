@@ -7,9 +7,11 @@ namespace data::game::avatar
 {
 	static const std::string FIELD_SHIP_ID = "ShipId";
 	static const std::string FIELD_BERTH_TYPE = "BerthType";
+	static const std::string FIELD_AVATAR_ID = "AvatarId";
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarShips]([AvatarId] INT NOT NULL UNIQUE, [ShipId] INT NOT NULL,[BerthType] INT NOT NULL);";
 	static const std::string REPLACE_ITEM = "REPLACE INTO [AvatarShips]([AvatarId], [ShipId], [BerthType]) VALUES({},{},{});";
 	static const std::string QUERY_ITEM = "SELECT [ShipId],[BerthType] FROM [AvatarShips] WHERE [AvatarId]={};";
+	static const std::string QUERY_CREW_FOR_SHIP = "SELECT [AvatarId], [BerthType] FROM [AvatarShips] WHERE [ShipId]={};";
 
 	static const auto AutoCreateAvatarShipTable = data::game::Common::Run(CREATE_TABLE);
 
@@ -34,4 +36,24 @@ namespace data::game::avatar
 		}
 		return std::nullopt;
 	}
+
+	std::vector<ShipCrew> ShipCrew::Read(int shipId)
+	{
+		AutoCreateAvatarShipTable();
+		std::vector<ShipCrew> result;
+		auto records = Common::Execute(QUERY_CREW_FOR_SHIP, shipId);
+		if (!records.empty())
+		{
+			for (auto& record : records)
+			{
+				result.push_back(
+					{
+						common::Data::ToInt(record[FIELD_AVATAR_ID]),
+						common::Data::ToInt(record[FIELD_BERTH_TYPE])
+					});
+			}
+		}
+		return result;
+	}
+
 }

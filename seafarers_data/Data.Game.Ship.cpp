@@ -69,5 +69,4 @@ namespace data::game
 		AutoCreateShipTable();
 		Common::Execute(DELETE_ALL);
 	}
-
 }

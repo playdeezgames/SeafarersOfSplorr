@@ -1,6 +1,7 @@
 #pragma once
 #include "Game.ShipType.h"
 #include <optional>
+#include <vector>
 namespace game
 {
 	struct Ship
@@ -19,5 +20,6 @@ namespace game
 			CLAMPED
 		};
 		static MoveResult Move();
+		static std::vector<int> GetCrew();
 	};
 }

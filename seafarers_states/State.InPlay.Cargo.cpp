@@ -40,7 +40,7 @@ namespace state::in_play
 		WriteTextToGrid({ 0, 0 }, "<-", game::Colors::YELLOW);
 		WriteTextToGrid({ 37, 0 }, "->", game::Colors::YELLOW);
 		WriteTextToGrid({ 15, 0 }, "Page 1 of 1", game::Colors::YELLOW);
-		WriteTextToGrid({ 0,1 }, std::format("{:15s}   {:4s}", "Item", "  Price", " Own"), game::Colors::YELLOW);
+		WriteTextToGrid({ 0,1 }, std::format("{:15s}   {:4s}", "Item", " Own"), game::Colors::YELLOW);
 	}
 
 	static std::map<game::Item, size_t> manifest;
