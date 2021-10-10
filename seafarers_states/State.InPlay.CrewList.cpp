@@ -30,6 +30,7 @@ namespace state::in_play
 	static const std::string FONT_DEFAULT = "default";
 	static const std::string BUTTON_GO_BACK = "GoBack";
 	static const std::string AREA_GO_BACK = "GoBack";
+	static const std::string AREA_LIST = "List";
 
 	static const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
 
@@ -61,7 +62,9 @@ namespace state::in_play
 		size_t index = 0;
 		for (auto& rosterItem : rosterItems)
 		{
-			WriteTextToGrid({ 0,2+(int)index }, std::format("{:1s}{:15s}   {:15s}",rosterItem.mark, rosterItem.name, rosterItem.berth), game::Colors::GRAY);
+			auto color = (rosterIndex.has_value() && rosterIndex.value() == index) ? (game::Colors::CYAN) : (game::Colors::GRAY);
+			WriteTextToGrid({ 0,2+(int)index }, std::format("{:1s}{:15s}   {:15s}",rosterItem.mark, rosterItem.name, rosterItem.berth), color);
+			index++;
 		}
 	}
 
@@ -108,28 +111,58 @@ namespace state::in_play
 		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) }
 	};
 
-	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>&)
+	static void OnHoverGoBack(const common::XY<int>&)
+	{
+		visuals::Buttons::SetHoverButton(LAYOUT_NAME, BUTTON_GO_BACK);
+	}
+
+	static void OnHoverList(const common::XY<int>& location)
+	{
+		size_t row = (size_t)(location.GetY() / visuals::SpriteGrid::GetCellHeight(LAYOUT_NAME, SPRITE_GRID_ID));
+		if (row < rosterItems.size())
+		{
+			rosterIndex = row;
+		}
+		else
+		{
+			rosterIndex = std::nullopt;
+		}
+		Refresh();
+	}
+
+	static const std::map<std::string, std::function<void(const common::XY<int>&)>> motionAreas =
+	{
+		{AREA_GO_BACK, OnHoverGoBack},
+		{AREA_LIST, OnHoverList}
+	};
+
+	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
 	{
 		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
-		if (areaName == AREA_GO_BACK)
-		{
-			visuals::Buttons::SetHoverButton(LAYOUT_NAME, BUTTON_GO_BACK);
-		}
+		common::Utility::DispatchParameter(motionAreas, areaName, location);
 	}
 
 	static void OnMouseMotionOutsideAreas(const common::XY<int>&)
 	{
 		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
+		rosterIndex = std::nullopt;
+		Refresh();
 	}
+
+	static void OnCrewDetail()
+	{
+		//TODO: go to crew detail
+	}
+
+	static const std::map<std::string, std::function<void()>> buttonUpAreas =
+	{
+		{AREA_GO_BACK, OnLeave},
+		{AREA_LIST, OnCrewDetail}
+	};
 
 	static bool OnMouseButtonUpInArea(const std::string& areaName)
 	{
-		if (areaName == AREA_GO_BACK)
-		{
-			OnLeave();
-			return true;
-		}
-		return false;
+		return common::Utility::Dispatch(buttonUpAreas, areaName, true, false);
 	}
 
 	void CrewList::Start()
