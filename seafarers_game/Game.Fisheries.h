@@ -1,7 +1,7 @@
 #pragma once
 #include "Game.Difficulty.h"
 #include "Game.Fishery.h"
-namespace game
+namespace game//20211011
 {
 	struct Fisheries
 	{

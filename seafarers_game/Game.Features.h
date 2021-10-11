@@ -2,7 +2,7 @@
 #include "Game.Feature.h"
 #include <list>
 #include <string>
-namespace game
+namespace game//20211011
 {
 	struct Features
 	{

@@ -187,7 +187,7 @@ namespace game
 		}
 	}
 
-	Fishboard Fishboard::ReadCell(const common::XY<int>& location)
+	FishboardCell Fishboard::ReadCell(const common::XY<int>& location)
 	{
 		auto boardCell = data::game::FishboardCell::Read(location).value();
 		std::optional<Fish> fish =

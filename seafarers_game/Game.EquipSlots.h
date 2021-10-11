@@ -4,7 +4,7 @@
 #include <list>
 #include <set>
 #include <string>
-namespace game
+namespace game//20211011
 {
 	struct EquipSlots
 	{

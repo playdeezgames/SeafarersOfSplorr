@@ -1,24 +1,23 @@
 #pragma once
 #include <Common.XY.h>
 #include "Game.Fish.h"
+#include "Game.FishboardCell.h"
 #include "Game.FishboardState.h"
 #include <optional>
-namespace game
+namespace game//20211011
 {
 	struct Fishboard
 	{
-		bool revealed;
-		std::optional<Fish> fish;
 
 		static const size_t COLUMNS;
 		static const size_t ROWS;
 
 		static void Generate();
 
-		static void RevealCell(const common::XY<int>&);
+		static void RevealCell(const common::XY<int>&);//TODO: call this "reveal"?
 		static bool IsFullyRevealed();
 
-		static Fishboard ReadCell(const common::XY<int>&);
+		static FishboardCell ReadCell(const common::XY<int>&);//TODO: call this "read"?
 
 		static int ReadGuesses();
 		static bool HasGuessesLeft();
