@@ -1,7 +1,7 @@
 #include "Game.Avatar.h"
 #include "Game.Avatar.Ship.h"
 #include "Game.Ship.Crew.h"
-#include <Data.Game.Avatar.Ship.h>
+#include <Data.Game.Avatar.ShipCrew.h>
 namespace game::ship
 {
 	std::vector<Crew> Crew::Read()

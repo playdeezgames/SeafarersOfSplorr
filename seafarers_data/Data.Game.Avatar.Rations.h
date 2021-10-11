@@ -1,6 +1,6 @@
 #pragma once
 #include <optional>
-namespace data::game::avatar
+namespace data::game::avatar//20211011
 {
 	struct Rations
 	{

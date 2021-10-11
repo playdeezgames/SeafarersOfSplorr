@@ -1,14 +1,7 @@
 #pragma once
 #include <optional>
-#include <vector>
-namespace data::game::avatar
+namespace data::game::avatar//20211011
 {
-	struct ShipCrew
-	{
-		int avatarId;
-		int berthType;
-		static std::vector<ShipCrew> Read(int);
-	};
 	struct Ship
 	{
 		int shipId;

@@ -3,7 +3,7 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Player.h"
 #include "Data.Game.Ship.h"
-namespace data::game::avatar//20211010
+namespace data::game::avatar//20211011
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarShips]([AvatarId] INT NOT NULL UNIQUE, [ShipId] INT NOT NULL,[BerthType] INT NOT NULL);";
 	static const std::string REPLACE_ITEM = "REPLACE INTO [AvatarShips]([AvatarId], [ShipId], [BerthType]) VALUES({},{},{});";
@@ -14,7 +14,10 @@ namespace data::game::avatar//20211010
 	static const std::string FIELD_BERTH_TYPE = "BerthType";
 	static const std::string FIELD_AVATAR_ID = "AvatarId";
 
-	static const auto AutoCreateAvatarShipTable = data::game::Common::Run(CREATE_TABLE);
+	void AutoCreateAvatarShipTable()
+	{
+		data::game::Common::Execute(CREATE_TABLE);
+	}
 
 	void Ship::Write(int avatarId, const Ship& ship)
 	{
@@ -45,26 +48,4 @@ namespace data::game::avatar//20211010
 		}
 		return std::nullopt;
 	}
-
-	static ShipCrew ToShipCrew(const std::map<std::string, std::string>& record)
-	{
-		return
-		{
-			common::Data::ToInt(record.find(FIELD_AVATAR_ID)->second),
-			common::Data::ToInt(record.find(FIELD_BERTH_TYPE)->second)
-		};
-	}
-
-	std::vector<ShipCrew> ShipCrew::Read(int shipId)
-	{
-		AutoCreateAvatarShipTable();
-		std::vector<ShipCrew> result;
-		auto records = Common::Execute(QUERY_CREW_FOR_SHIP, shipId);
-		for (auto& record : records)
-		{
-			result.push_back(ToShipCrew(record));
-		}
-		return result;
-	}
-
 }

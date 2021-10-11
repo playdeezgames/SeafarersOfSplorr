@@ -2,7 +2,7 @@
 #include <Common.XY.h>
 #include <optional>
 #include <string>
-namespace data::game::avatar
+namespace data::game::avatar//20211011
 {
 	struct Quest
 	{

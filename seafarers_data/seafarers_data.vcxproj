@@ -31,6 +31,7 @@
     <ClInclude Include="Data.Game.Avatar.Quest.h" />
     <ClInclude Include="Data.Game.Avatar.Rations.h" />
     <ClInclude Include="Data.Game.Avatar.Ship.h" />
+    <ClInclude Include="Data.Game.Avatar.ShipCrew.h" />
     <ClInclude Include="Data.Game.Avatar.Statistic.h" />
     <ClInclude Include="Data.Game.Common.h" />
     <ClInclude Include="Data.Game.Demigod.h" />
@@ -69,6 +70,7 @@
     <ClCompile Include="Data.Game.Avatar.Quest.cpp" />
     <ClCompile Include="Data.Game.Avatar.Rations.cpp" />
     <ClCompile Include="Data.Game.Avatar.Ship.cpp" />
+    <ClCompile Include="Data.Game.Avatar.ShipCrew.cpp" />
     <ClCompile Include="Data.Game.Avatar.Statistic.cpp" />
     <ClCompile Include="Data.Game.Common.cpp" />
     <ClCompile Include="Data.Game.Demigod.cpp" />
