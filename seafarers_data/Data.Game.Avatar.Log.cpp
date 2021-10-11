@@ -33,28 +33,6 @@ namespace data::game::avatar//20211011
 			common::Data::QuoteString(text));
 	}
 
-	static std::tuple<std::string, std::string> ToTuple(const std::map<std::string, std::string> record)
-	{
-		return std::make_tuple(
-			record.find(FIELD_LOG_COLOR)->second,
-			record.find(FIELD_LOG_TEXT)->second);
-	}
-
-	std::list<std::tuple<std::string, std::string>> Log::Read(int avatarId,size_t entryCount)
-	{
-		AutoCreateAvatarLogTable();
-		std::list<std::tuple<std::string, std::string>> results;
-		auto records = Common::Execute(
-			QUERY_ALL, 
-			avatarId, 
-			entryCount);
-		for (auto record : records)
-		{
-			results.push_back(ToTuple(record));
-		}
-		return results;
-	}
-
 	static Log ToLog(const std::map<std::string, std::string> record)
 	{
 		return
@@ -64,7 +42,7 @@ namespace data::game::avatar//20211011
 		};
 	}
 
-	static std::list<Log> Read2(int avatarId, size_t entryCount)
+	std::list<Log> Log::Read(int avatarId, size_t entryCount)
 	{
 		AutoCreateAvatarLogTable();
 		std::list<Log> results;

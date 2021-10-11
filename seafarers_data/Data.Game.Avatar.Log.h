@@ -11,8 +11,7 @@ namespace data::game::avatar//20211011
 
 		static void Clear(int);
 		static void Write(int,const std::string&, const std::string&);
-		static std::list<std::tuple<std::string, std::string>> Read(int,size_t);
-		static std::list<Log> Read2(int, size_t);
+		static std::list<Log> Read(int, size_t);
 		static void ClearAll();
 	};
 }

@@ -20,8 +20,8 @@ namespace game::avatar
 		{
 			results.push_back(
 				{
-					std::get<0>(entry),
-					std::get<1>(entry)
+					entry.color,
+					entry.text
 				});
 		}
 		return results;
