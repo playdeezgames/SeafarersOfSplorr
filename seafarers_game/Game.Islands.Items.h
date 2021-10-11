@@ -2,7 +2,7 @@
 #include <Common.XY.h>
 #include "Game.Item.h"
 #include <map>
-namespace game::islands
+namespace game::islands//20211011
 {
 	struct Items
 	{

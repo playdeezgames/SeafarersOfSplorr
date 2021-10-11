@@ -2,7 +2,7 @@
 #include <Cards.Card.h>
 #include <Common.XY.h>
 #include <vector>
-namespace game::islands::dark_alley
+namespace game::islands::dark_alley//20211011
 {
 	struct GamblingHand
 	{

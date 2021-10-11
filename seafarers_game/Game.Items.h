@@ -5,16 +5,16 @@
 #include <list>
 #include <map>
 #include <string>
-namespace game
+namespace game//20211011
 {
 	struct Items
 	{
 		static const std::list<game::Item>& All();
-		static game::Item GenerateRations();
+		static game::Item GenerateRations();//for avatar
 		static const std::string& GetName(const game::Item&);
-		static bool GeneratePresence(const game::Item&);
+		static bool GeneratePresence(const game::Item&);//for island
 		static const std::map<Commodity, double>& GetCommodities(const game::Item&);
 		static double GetUnitTonnage(const game::Item&);
-		static const std::map<Difficulty, size_t>& GetInitialInventories(const game::Item&);
+		static const std::map<Difficulty, size_t>& GetInitialInventories(const game::Item&);//for avatar
 	};
 }

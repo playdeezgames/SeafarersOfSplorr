@@ -3,7 +3,7 @@
 #include "Game.Difficulty.h"
 #include "Game.Merchant.h"
 #include <list>
-namespace game
+namespace game//20211011
 {
 	struct Merchants
 	{

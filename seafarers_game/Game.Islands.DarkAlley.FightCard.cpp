@@ -72,8 +72,8 @@ namespace game::islands::dark_alley
 				{
 					(int)std::get<0>(fightCard.second.card),
 					(int)std::get<1>(fightCard.second.card),
-					fightCard.second.adjacent,
-					fightCard.second.shown
+					fightCard.second.adjacentSuccesses,
+					fightCard.second.revealed
 				});
 		}
 	}

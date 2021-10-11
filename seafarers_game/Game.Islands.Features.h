@@ -2,7 +2,7 @@
 #include <Common.XY.h>
 #include "Game.Difficulty.h"
 #include "Game.Feature.h"
-namespace game::islands
+namespace game::islands//20211011
 {
 	struct Features
 	{

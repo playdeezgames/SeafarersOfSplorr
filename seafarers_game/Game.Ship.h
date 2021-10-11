@@ -7,7 +7,7 @@ namespace game
 	struct Ship
 	{
 		static std::optional<ShipType> GetShipType(int);
-		static int Add(const ShipType&, const std::string&, const common::XY<double>, double, double);
+		static int Add(const ShipType&, const std::string&, const common::XY<double>, double, double);//TODO: yuck!
 		static std::string GetName();
 		static double GetHeading();
 		static void SetHeading(double);
@@ -20,6 +20,6 @@ namespace game
 			CLAMPED
 		};
 		static MoveResult Move();
-		static std::vector<int> GetCrew();
+		static std::vector<int> GetCrew();//TODO: ????
 	};
 }

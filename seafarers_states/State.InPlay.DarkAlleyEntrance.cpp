@@ -191,13 +191,13 @@ namespace state::in_play
 		{
 			auto& cardImage = cardPositions.find(fightCard.first)->second.cardImage;
 			auto& sprite = visuals::CardSprites::GetSpriteForCard(fightCard.second.card);
-			visuals::Images::SetSprite(LAYOUT_NAME, cardImage, (fightCard.second.shown) ? (sprite) :(SPRITE_CARD_BACK));
+			visuals::Images::SetSprite(LAYOUT_NAME, cardImage, (fightCard.second.revealed) ? (sprite) :(SPRITE_CARD_BACK));
 			visuals::Texts::SetText(
 				LAYOUT_NAME, 
 				cardPositions.find(fightCard.first)->second.adjacentText, 
-				(!fightCard.second.shown || fightCard.second.success) ?
+				(!fightCard.second.revealed || fightCard.second.success) ?
 				("") :
-				(std::format("{}", fightCard.second.adjacent)));//TODO: >_<
+				(std::format("{}", fightCard.second.adjacentSuccesses)));//TODO: >_<
 		}
 	}
 

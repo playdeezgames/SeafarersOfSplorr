@@ -1,5 +1,5 @@
 #pragma once
-namespace game
+namespace game//20211011
 {
 	enum class BerthType
 	{

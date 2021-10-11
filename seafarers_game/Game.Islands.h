@@ -5,7 +5,7 @@
 #include <list>
 #include <optional>
 #include <string>
-namespace game
+namespace game//20211011
 {
 	struct Islands
 	{
@@ -14,8 +14,8 @@ namespace game
 		static std::list<Island> GetDockableIslands();
 		static bool CanDock();
 		static std::list<Island> GetKnownIslands();
-		static void AddVisit(const common::XY<double>&, const int&);
-		static void SetKnown(const common::XY<double>&, const int&);
+		static void AddVisit(const common::XY<double>&, const int&);//location and turn
+		static void SetKnown(const common::XY<double>&, const int&);//location and turn
 		static std::optional<Island> Read(const common::XY<double>&);
 		static const std::string UNKNOWN;
 		static void ApplyTurnEffects();

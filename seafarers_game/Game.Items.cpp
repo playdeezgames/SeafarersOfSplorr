@@ -199,7 +199,7 @@ namespace game
 
 	static std::map<game::Item, size_t> rationsGenerator;
 
-	game::Item Items::GenerateRations()
+	Item Items::GenerateRations()
 	{
 		if (rationsGenerator.empty())
 		{
