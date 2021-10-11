@@ -149,9 +149,6 @@
     <ClInclude Include="Game.Merchant.h">
       <Filter>Header Files\Merchants</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Demigod.h">
-      <Filter>Header Files\Demigods</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Demigods.h">
       <Filter>Header Files\Demigods</Filter>
     </ClInclude>

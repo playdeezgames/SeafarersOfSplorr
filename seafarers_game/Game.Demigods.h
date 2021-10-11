@@ -1,5 +1,4 @@
 #pragma once
-#include "Game.Demigod.h"
 #include "Game.Difficulty.h"
 #include "Game.Item.h"
 #include <list>
