@@ -49,26 +49,6 @@ namespace data::game//20211011
 			common::Data::QuoteString(avatar.name));
 	}
 
-	void Avatar::WriteState(int avatarId, int state)
-	{
-		auto data = Read(avatarId);
-		if (data)
-		{
-			data.value().state = state;
-			Write(avatarId,data.value());
-		}
-	}
-
-	std::optional<int> Avatar::ReadState(int avatarId)
-	{
-		auto data = Read(avatarId);
-		if (data)
-		{
-			return data.value().state;
-		}
-		return std::nullopt;
-	}
-
 	int Avatar::NextId()
 	{
 		AutoCreateAvatarTable();

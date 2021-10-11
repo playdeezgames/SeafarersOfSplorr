@@ -26,9 +26,10 @@ namespace game
 {
 	static void SetState(const game::avatar::State& state)
 	{
-		data::game::Avatar::WriteState(Player::GetAvatarId(), (int)state);
+		auto avatar = data::game::Avatar::Read(Player::GetAvatarId()).value();
+		avatar.state = (int)state;
+		data::game::Avatar::Write(Player::GetAvatarId(), avatar);
 	}
-
 
 	bool Avatar::DoAction(const avatar::Action& action)
 	{
@@ -54,10 +55,10 @@ namespace game
 
 	std::optional<game::avatar::State> Avatar::GetState()
 	{
-		auto state = data::game::Avatar::ReadState(Player::GetAvatarId());
-		if (state)
+		auto avatar = data::game::Avatar::Read(Player::GetAvatarId());
+		if (avatar)
 		{
-			return (game::avatar::State)state.value();
+			return (game::avatar::State)avatar.value().state;
 		}
 		return std::nullopt;
 	}
@@ -127,7 +128,7 @@ namespace game
 			"nada"//TODO: generate a name?
 		};
 		data::game::Avatar::Write(Player::GetAvatarId(), data);
-		data::game::Avatar::WriteState(Player::GetAvatarId(), (int)game::avatar::State::AT_SEA);
+		SetState(game::avatar::State::AT_SEA);
 
 		data::game::avatar::Rations::Write(Player::GetAvatarId(), (int)game::Items::GenerateRations());
 

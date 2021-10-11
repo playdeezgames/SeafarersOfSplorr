@@ -14,7 +14,7 @@
 #include "Game.Islands.h"
 #include <Game.Player.h>
 #include <map>
-namespace game::avatar
+namespace game::avatar//20211011
 {
 	void Docked::Reset(const game::Difficulty&)
 	{
@@ -22,6 +22,13 @@ namespace game::avatar
 	}
 
 	static const std::string FORMAT_DOCK = "You dock at {}!";
+
+	static void SetAvatarStateToDocked()
+	{
+		auto avatar = data::game::Avatar::Read(Player::GetAvatarId()).value();
+		avatar.state = (int)game::avatar::State::DOCK;
+		data::game::Avatar::Write(Player::GetAvatarId(), avatar);
+	}
 
 	static std::optional<Docked::DockResult> DoDock(const common::XY<double>& location)
 	{
@@ -35,7 +42,7 @@ namespace game::avatar
 			result = Docked::DockResult::COMPLETED_QUEST;
 		}
 		data::game::avatar::Dock::Write(Player::GetAvatarId(), location);
-		data::game::Avatar::WriteState(Player::GetAvatarId(), (int)game::avatar::State::DOCK);
+		SetAvatarStateToDocked();
 		auto island = game::Islands::Read(location).value();
 		Log::Write({ game::Colors::GREEN, std::format(FORMAT_DOCK, island.name) });
 		return result;

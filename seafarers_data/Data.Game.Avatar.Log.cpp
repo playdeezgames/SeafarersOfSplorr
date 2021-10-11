@@ -54,6 +54,32 @@ namespace data::game::avatar//20211011
 		}
 		return results;
 	}
+
+	static Log ToLog(const std::map<std::string, std::string> record)
+	{
+		return
+		{
+			record.find(FIELD_LOG_COLOR)->second,
+			record.find(FIELD_LOG_TEXT)->second
+		};
+	}
+
+	static std::list<Log> Read2(int avatarId, size_t entryCount)
+	{
+		AutoCreateAvatarLogTable();
+		std::list<Log> results;
+		auto records = Common::Execute(
+			QUERY_ALL,
+			avatarId,
+			entryCount);
+		for (auto record : records)
+		{
+			results.push_back(ToLog(record));
+		}
+		return results;
+	}
+
+
 	void Log::ClearAll()
 	{
 		AutoCreateAvatarLogTable();
