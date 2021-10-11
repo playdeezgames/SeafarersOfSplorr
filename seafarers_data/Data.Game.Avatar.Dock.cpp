@@ -3,7 +3,7 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Player.h"
 #include <string>
-namespace data::game::avatar//20211010
+namespace data::game::avatar//20211011
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarDocks]([AvatarId] INT NOT NULL UNIQUE,[X] REAL NOT NULL,[Y] REAL NOT NULL);";
 	static const std::string QUERY_ITEM = "SELECT [X], [Y] FROM [AvatarDocks] WHERE [AvatarId] = {};";
@@ -18,28 +18,29 @@ namespace data::game::avatar//20211010
 	void Dock::Clear(int avatarId)
 	{
 		AutoCreateAvatarDockTable();
-		data::game::Common::Execute(DELETE_ITEM, avatarId);
+		data::game::Common::Execute(
+			DELETE_ITEM, 
+			avatarId);
 	}
 
 
 	void Dock::Write(int avatarId, const common::XY<double>& location)
 	{
 		AutoCreateAvatarDockTable();
-		data::game::Common::Execute(REPLACE_ITEM, avatarId, location.GetX(), location.GetY());
+		data::game::Common::Execute(
+			REPLACE_ITEM, 
+			avatarId, 
+			location.GetX(), 
+			location.GetY());
 	}
 
 	std::optional<common::XY<double>> Dock::Read(int avatarId)
 	{
 		AutoCreateAvatarDockTable();
-		auto result = data::game::Common::Execute(QUERY_ITEM, avatarId);
-		if (!result.empty())
+		auto records = data::game::Common::Execute(QUERY_ITEM, avatarId);
+		if (!records.empty())
 		{
-			auto& record = result.front();
-			return std::optional<common::XY<double>>(
-				{
-					common::Data::ToDouble(record[FIELD_X]),
-					common::Data::ToDouble(record[FIELD_Y])
-				});
+			return Common::ToXY(records.front());
 		}
 		return std::nullopt;
 	}

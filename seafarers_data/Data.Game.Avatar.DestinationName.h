@@ -3,7 +3,7 @@
 #include <string>
 namespace data::game::avatar
 {
-	struct DestinationName
+	struct DestinationName//20211011
 	{
 		static std::optional<std::string> Read(int, int);
 		static void Write(int, int, const std::string&);

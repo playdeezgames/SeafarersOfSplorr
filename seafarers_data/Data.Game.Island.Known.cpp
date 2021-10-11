@@ -33,15 +33,6 @@ namespace data::game::island//20211010
 		data::game::Common::Execute(DELETE_ALL);
 	}
 
-	static common::XY<double> ToXY(const std::map<std::string, std::string>& record)
-	{
-		return
-		{
-			common::Data::ToDouble(record.find(FIELD_X)->second),
-			common::Data::ToDouble(record.find(FIELD_Y)->second)
-		};
-	}
-
 	std::list<common::XY<double>> Known::All()
 	{
 		AutoCreateKnownIslandsTable();
@@ -49,7 +40,7 @@ namespace data::game::island//20211010
 		std::list<common::XY<double>> result;
 		for (auto& record : records)
 		{
-			result.push_back(ToXY(record));
+			result.push_back(Common::ToXY(record));
 		}
 		return result;
 	}

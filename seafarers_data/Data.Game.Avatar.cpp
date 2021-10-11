@@ -4,7 +4,7 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Player.h"
 #include <optional>
-namespace data::game//20211010
+namespace data::game//20211011
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Avatars]([AvatarId] INT NOT NULL UNIQUE,[State] INT NOT NULL, [Name] TEXT NOT NULL);";
 	static const std::string QUERY_ITEM= "SELECT [State],[Name] FROM [Avatars] WHERE [AvatarId] = {};";
@@ -17,33 +17,36 @@ namespace data::game//20211010
 
 	static const auto AutoCreateAvatarTable = data::game::Common::Run(CREATE_TABLE);
 
+	static Avatar ToAvatar(const std::map<std::string, std::string> record)
+	{
+		return
+		{
+			common::Data::ToInt(record.find(FIELD_STATE)->second),
+			record.find(FIELD_NAME)->second
+		};
+	}
+
 	std::optional<Avatar> Avatar::Read(int avatarId)
 	{
 		AutoCreateAvatarTable();
-		auto result = data::game::Common::Execute(
+		auto records = data::game::Common::Execute(
 				QUERY_ITEM,
 				avatarId);
-		if (!result.empty())
+		if (!records.empty())
 		{
-			const auto& record = result.front();
-			Avatar data =
-			{
-				common::Data::ToInt(record.find(FIELD_STATE)->second),
-				record.find(FIELD_NAME)->second
-			};
-			return data;
+			return ToAvatar(records.front());
 		}
 		return std::nullopt;
 	}
 
-	void Avatar::Write(int avatarId, const Avatar& avatarData)
+	void Avatar::Write(int avatarId, const Avatar& avatar)
 	{
 		AutoCreateAvatarTable();
 		data::game::Common::Execute(
-				REPLACE_ITEM,
-				avatarId,
-				avatarData.state,
-				common::Data::QuoteString(avatarData.name));
+			REPLACE_ITEM,
+			avatarId,
+			avatar.state,
+			common::Data::QuoteString(avatar.name));
 	}
 
 	void Avatar::WriteState(int avatarId, int state)

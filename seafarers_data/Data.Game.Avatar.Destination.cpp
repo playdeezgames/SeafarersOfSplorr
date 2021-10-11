@@ -4,7 +4,7 @@
 #include "Data.Game.Island.Known.h"
 #include "Data.Game.Player.h"
 #include <string>
-namespace data::game::avatar//20211010
+namespace data::game::avatar//20211011
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarDestinations]([AvatarId] INT NOT NULL,[DestinationId] INT NOT NULL, [X] REAL NOT NULL, [Y] REAL NOT NULL, UNIQUE([AvatarId],[DestinationId]));";
 	static const std::string QUERY_ITEM = "SELECT [X],[Y] FROM [AvatarDestinations] WHERE [AvatarId]={} AND [DestinationId]={};";
@@ -21,25 +21,20 @@ namespace data::game::avatar//20211010
 	{
 		AutoCreateAvatarDestinationsTable();
 		Common::Execute(
-			REPLACE_ITEM, 
-			avatarId, 
-			destinationId, 
-			location.GetX(), 
+			REPLACE_ITEM,
+			avatarId,
+			destinationId,
+			location.GetX(),
 			location.GetY());
 	}
 
 	std::optional<common::XY<double>> Destination::Read(int avatarId, int destinationId)
 	{
 		AutoCreateAvatarDestinationsTable();
-		auto result = Common::Execute(QUERY_ITEM, avatarId, destinationId);
-		if (!result.empty())
+		auto records = Common::Execute(QUERY_ITEM, avatarId, destinationId);
+		if (!records.empty())
 		{
-			auto& record = result.front();
-			return std::optional<common::XY<double>>(
-				{
-					common::Data::ToDouble(record[FIELD_X]),
-					common::Data::ToDouble(record[FIELD_Y])
-				});
+			return Common::ToXY(records.front());
 		}
 		return std::nullopt;
 	}
