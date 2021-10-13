@@ -13,7 +13,7 @@ namespace common
 		XY(const TDimension& x, const TDimension& y) : x(x), y(y) {}
 		XY(const XY<TDimension>& other) : x(other.x), y(other.y) {}
 		XY(XY<TDimension>&& other) noexcept : x(other.x), y(other.y) {}
-		XY<TDimension>& operator=(XY<TDimension>&& other)
+		XY<TDimension>& operator=(XY<TDimension>&& other) noexcept
 		{
 			x = other.x;
 			y = other.y;

@@ -128,7 +128,7 @@ namespace state::in_play
 			auto currentShipId = game::avatar::Ship::Read().value().shipId;
 			auto currentShipType = game::Ship::GetShipType(currentShipId).value();
 			game::avatar::Statistics::ChangeMoney(-price);
-			auto desiredShipId = game::Ship::Add(desiredShipType,game::ShipNames::Generate(), location, 0.0, 1.0);
+			auto desiredShipId = game::Ship::Add({ desiredShipType,game::ShipNames::Generate(), location, 0.0, 1.0 });
 			//TODO: transfer crew/passengers/captives?
 			game::avatar::Ship::Write({ desiredShipId, game::BerthType::CAPTAIN });
 			game::islands::Markets::BuyShipType(location, desiredShipType);

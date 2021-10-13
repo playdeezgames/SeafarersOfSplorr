@@ -21,28 +21,33 @@ namespace game
 		return std::nullopt;
 	}
 
-	int Ship::Add(const ShipType& shipType, const std::string& name, const common::XY<double> location, double heading, double speed)
+	static void AddShipStatistics(int shipId, ShipType shipType)
 	{
-		int shipId = data::game::Ship::NextId();
-		data::game::Ship::Write({
-			shipId,
-			(int)shipType,
-			name,
-			location,
-			heading,
-			speed
-			});
 		auto statistics = game::ShipTypes::GetStatistics(shipType);
 		for (auto statistic : statistics)
 		{
-			data::game::ship::Statistic::Write(shipId, 
-				(int)statistic, 
+			data::game::ship::Statistic::Write(shipId,
+				(int)statistic,
 				{
 					game::ShipTypes::GetMinimumStatistic(shipType, statistic),
 					game::ShipTypes::GetMaximumStatistic(shipType, statistic),
 					game::ShipTypes::GetInitialStatistic(shipType, statistic)
 				});
 		}
+	}
+
+	int Ship::Add(const Ship& ship)
+	{
+		int shipId = data::game::Ship::NextId();
+		data::game::Ship::Write({
+			shipId,
+			(int)ship.shipType,
+			ship.name,
+			ship.location,
+			ship.heading,
+			ship.speed
+			});
+		AddShipStatistics(shipId, ship.shipType);
 		return shipId;
 	}
 
@@ -88,6 +93,8 @@ namespace game
 		ship.speed = common::Data::ClampDouble(speed, SPEED_MINIMUM, SPEED_MAXIMUM);
 		data::game::Ship::Write(ship);
 	}
+
+	//TODO: i hate this function a lot
 	static common::XY<double> ClampAvatarLocation(const common::XY<double>& candidate, Ship::MoveResult& result)
 	{
 		auto nextLocation = candidate;
@@ -115,26 +122,37 @@ namespace game
 		return nextLocation;
 	}
 
+	static void HandleFouling()
+	{
+
+	}
+
+	static double GetEffectiveSpeed(int shipId, double heading, double speed)
+	{
+		auto fouling = avatar::ShipStatistics::GetFouling();
+		auto effectiveSpeed = speed * (1.0 - fouling);
+
+		effectiveSpeed *= World::GetWindSpeedMultiplier(heading);
+
+		auto shipType = game::Ship::GetShipType(shipId).value();
+		effectiveSpeed *= game::ShipTypes::GetSpeedFactor(shipType);
+
+		return effectiveSpeed;
+	}
+
 	Ship::MoveResult Ship::Move()
 	{
 		MoveResult result = MoveResult::MOVED;
 
-		auto fouling = avatar::ShipStatistics::GetFouling();
 		auto ship = GetAvatarShip();
-		avatar::ShipStatistics::IncreaseFouling(ship.speed);
-		auto effectiveSpeed = ship.speed * (1.0 - fouling);
-
-		double multiplier = World::GetWindSpeedMultiplier(ship.heading);
-
-		auto shipType = game::Ship::GetShipType(ship.shipId).value();
-		auto speedFactor = game::ShipTypes::GetSpeedFactor(shipType);
 
 		common::XY<double> delta =
 			common::Heading::DegreesToXY(ship.heading) *
-			effectiveSpeed * multiplier *
-			speedFactor;
+			GetEffectiveSpeed(ship.shipId, ship.heading, ship.speed);
 
 		ship.location = ClampAvatarLocation(ship.location + delta, result);
+
+		avatar::ShipStatistics::IncreaseFouling(ship.speed);
 
 		game::ApplyTurnEffects();
 		data::game::Ship::Write(ship);
