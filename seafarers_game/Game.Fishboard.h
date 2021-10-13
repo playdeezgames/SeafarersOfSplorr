@@ -19,6 +19,9 @@ namespace game//20211013
 
 		static FishboardCell Read(const common::XY<int>&);
 
+		//^ fishboard things
+		//v fish game things
+
 		static int ReadGuesses();
 		static bool HasGuessesLeft();
 
@@ -30,5 +33,9 @@ namespace game//20211013
 		static void AddBait();
 
 		static FishboardState GetState();
+	};
+	struct FishGame
+	{
+
 	};
 }

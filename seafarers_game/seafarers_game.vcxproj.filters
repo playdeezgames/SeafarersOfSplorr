@@ -292,5 +292,8 @@
     <ClCompile Include="Game.Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Game.FishGame.cpp">
+      <Filter>Source Files\Fishing</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
