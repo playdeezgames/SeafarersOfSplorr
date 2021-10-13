@@ -102,9 +102,9 @@ namespace game
 			(Ship::MoveResult::MOVED);
 	}
 
-	static void HandleFouling(const data::game::Ship& ship)
+	static void HandleFouling(double speed)
 	{
-		avatar::ShipStatistics::IncreaseFouling(ship.speed);
+		avatar::ShipStatistics::IncreaseFouling(speed);
 	}
 
 	static double GetEffectiveSpeed(int shipId, double heading, double speed)
@@ -134,7 +134,7 @@ namespace game
 
 		result = ClampAvatarLocation(ship.location);
 
-		HandleFouling(ship);
+		HandleFouling(ship.speed);
 
 		game::ApplyTurnEffects();
 		data::game::Ship::Write(ship);

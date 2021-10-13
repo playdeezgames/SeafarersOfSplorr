@@ -177,10 +177,10 @@ namespace game::islands::dark_alley
 		auto card = std::make_tuple((cards::Rank)data.rank, (cards::Suit)data.suit);
 		return 
 		{
-				card,
-				data.adjacent,
-				data.shown,
-				IsFaceCard(card)
+			card,
+			data.adjacent,
+			data.shown,
+			IsFaceCard(card)
 		};
 	}
 
