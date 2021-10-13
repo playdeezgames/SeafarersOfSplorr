@@ -1,7 +1,8 @@
 #include <Common.XY.h>
 #include <Game.Colors.h>
-#include <Game.Fishes.h>
 #include <Game.Fishboard.h>
+#include <Game.Fishes.h>
+#include <Game.FishGame.h>
 #include <Visuals.Colors.h>
 #include <Visuals.Data.Properties.h>
 #include <Visuals.Sprites.h>

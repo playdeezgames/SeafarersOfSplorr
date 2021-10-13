@@ -8,6 +8,7 @@
 #include "Game.Fishboard.h"
 #include "Game.Fisheries.h"
 #include "Game.Fishes.h"
+#include "Game.FishGame.h"
 #include "Game.Items.h"
 #include <format>
 #include <map>

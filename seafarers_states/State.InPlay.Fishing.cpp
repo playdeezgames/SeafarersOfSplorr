@@ -16,6 +16,7 @@
 #include <Game.Colors.h>
 #include <Game.Demigods.h>
 #include <Game.Fishboard.h>
+#include <Game.FishGame.h>
 #include <Game.Islands.h>
 #include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>

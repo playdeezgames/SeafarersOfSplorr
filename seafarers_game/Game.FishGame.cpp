@@ -7,6 +7,7 @@
 #include "Game.Colors.h"
 #include "Game.Fishboard.h"
 #include "Game.Fisheries.h"
+#include "Game.FishGame.h"
 #include "Game.Fishes.h"
 #include "Game.Items.h"
 #include <format>

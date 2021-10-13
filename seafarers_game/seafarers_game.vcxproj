@@ -24,6 +24,7 @@
     <ClInclude Include="Game.EquipSlots.h" />
     <ClInclude Include="Game.Fishboard.h" />
     <ClInclude Include="Game.FishboardCell.h" />
+    <ClInclude Include="Game.FishGame.h" />
     <ClInclude Include="Game.FishGameState.h" />
     <ClInclude Include="Game.Fishery.h" />
     <ClInclude Include="Game.Fisheries.h" />

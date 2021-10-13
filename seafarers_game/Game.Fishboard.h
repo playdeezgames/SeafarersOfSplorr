@@ -20,17 +20,4 @@ namespace game//20211013
 		static bool IsFullyRevealed();
 		static double ReadProgressPercentage();
 	};
-	struct FishGame
-	{
-		static int ReadGuesses();
-		static bool HasGuessesLeft();
-
-
-		static bool HasGivenUp();
-		static void GiveUp();
-
-		static void AddBait();
-
-		static FishGameState GetState();
-	};
 }
