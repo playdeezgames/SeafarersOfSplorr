@@ -10,7 +10,6 @@ namespace game
 	static void GenerateFishery(const Fish& fish)
 	{
 		auto worldSize = World::GetSize();
-		double radius = Fishes::GenerateRadius(fish);
 		double speed = Fishes::GenerateSpeed(fish);
 		double radians = common::Heading::ToRadians(common::RNG::FromRange(0.0, common::Heading::DEGREES));
 		int stock = Fishes::GenerateStock(fish);
@@ -25,7 +24,7 @@ namespace game
 				speed * std::cos(radians),
 				speed * std::sin(radians)
 			},
-			radius,
+			Fishes::GenerateRadius(fish),
 			stock,
 			0
 		});
