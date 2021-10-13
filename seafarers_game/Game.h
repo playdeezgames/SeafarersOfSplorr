@@ -1,7 +1,7 @@
 #pragma once
 #include "Game.Difficulty.h"
 #include <functional>
-namespace game
+namespace game//20211013
 {
 	std::function<void()> DoAddResetter(std::function<void()>);
 	void Start();
