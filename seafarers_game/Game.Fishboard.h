@@ -4,7 +4,7 @@
 #include "Game.FishboardCell.h"
 #include "Game.FishboardState.h"
 #include <optional>
-namespace game//20211011
+namespace game//20211013
 {
 	struct Fishboard
 	{
@@ -14,10 +14,10 @@ namespace game//20211011
 
 		static void Generate();
 
-		static void RevealCell(const common::XY<int>&);//TODO: call this "reveal"?
+		static void Reveal(const common::XY<int>&);
 		static bool IsFullyRevealed();
 
-		static FishboardCell ReadCell(const common::XY<int>&);//TODO: call this "read"?
+		static FishboardCell Read(const common::XY<int>&);
 
 		static int ReadGuesses();
 		static bool HasGuessesLeft();

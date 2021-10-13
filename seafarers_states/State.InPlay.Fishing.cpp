@@ -175,7 +175,7 @@ namespace state::in_play
 	static bool OnMouseButtonUpInFishboard()
 	{
 		auto cursor = visuals::Fishboard::ReadCursor(LAYOUT_NAME, FISHBOARD_ID);
-		game::Fishboard::RevealCell(cursor);
+		game::Fishboard::Reveal(cursor);
 		Refresh();
 		return true;
 	}
