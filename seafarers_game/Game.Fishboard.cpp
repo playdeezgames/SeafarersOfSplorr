@@ -253,13 +253,13 @@ namespace game
 		data::game::FishGame::WriteGuesses(data::game::FishGame::ReadGuesses() + ADDITIONAL_GUESSES);
 	}
 
-	FishboardState Fishboard::GetState()
+	FishGameState Fishboard::GetState()
 	{
 		return 
-			(IsFullyRevealed()) ? (FishboardState::DONE) :
-			(HasGivenUp()) ? (FishboardState::GAVE_UP) :
-			(ReadGuesses() > 0) ? (FishboardState::FISHING) :
-			(FishboardState::OUT_OF_GUESSES);
+			(IsFullyRevealed()) ? (FishGameState::DONE) :
+			(HasGivenUp()) ? (FishGameState::GAVE_UP) :
+			(ReadGuesses() > 0) ? (FishGameState::FISHING) :
+			(FishGameState::OUT_OF_GUESSES);
 	}
 
 }

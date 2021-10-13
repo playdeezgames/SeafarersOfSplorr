@@ -32,7 +32,7 @@ namespace game//20211013
 
 		static void AddBait();
 
-		static FishboardState GetState();
+		static FishGameState GetState();
 	};
 	struct FishGame
 	{

@@ -52,16 +52,16 @@ namespace state::in_play
 	static bool ShouldShowMoreBaitMenuItem()
 	{
 		return
-			game::Fishboard::GetState() == game::FishboardState::OUT_OF_GUESSES &&
+			game::Fishboard::GetState() == game::FishGameState::OUT_OF_GUESSES &&
 			game::avatar::Items::Has(game::Item::BAIT);
 	}
 
-	static const std::map<game::FishboardState, std::string> goBackMenuItemTexts =
+	static const std::map<game::FishGameState, std::string> goBackMenuItemTexts =
 	{
-		{game::FishboardState::DONE, "Done!"},
-		{game::FishboardState::GAVE_UP, "Go Back"},
-		{game::FishboardState::FISHING, "Give Up!"},
-		{game::FishboardState::OUT_OF_GUESSES, "Give Up!"}
+		{game::FishGameState::DONE, "Done!"},
+		{game::FishGameState::GAVE_UP, "Go Back"},
+		{game::FishGameState::FISHING, "Give Up!"},
+		{game::FishGameState::OUT_OF_GUESSES, "Give Up!"}
 	};
 
 	static std::string GetGoBackMenuItemText()
@@ -128,12 +128,12 @@ namespace state::in_play
 		Refresh();
 	}
 
-	static const std::map<game::FishboardState, std::function<void()>> handleGoBacks =
+	static const std::map<game::FishGameState, std::function<void()>> handleGoBacks =
 	{
-		{game::FishboardState::DONE, OnDoGoBack},
-		{game::FishboardState::FISHING, OnGiveUp},
-		{game::FishboardState::GAVE_UP, OnDoGoBack},
-		{game::FishboardState::OUT_OF_GUESSES, OnGiveUp}
+		{game::FishGameState::DONE, OnDoGoBack},
+		{game::FishGameState::FISHING, OnGiveUp},
+		{game::FishGameState::GAVE_UP, OnDoGoBack},
+		{game::FishGameState::OUT_OF_GUESSES, OnGiveUp}
 	};
 
 	static void OnGoBack()

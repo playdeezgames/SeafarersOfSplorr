@@ -1,7 +1,7 @@
 #pragma once
-namespace game//20211011
+namespace game//20211013
 {
-	enum class FishboardState
+	enum class FishGameState
 	{
 		DONE,
 		GAVE_UP,
