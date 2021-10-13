@@ -101,4 +101,30 @@ namespace game
 		ApplyWindChange();
 	}
 
+	bool World::ClampLocation(common::XY<double>& location)
+	{
+		bool result = false;
+		auto worldSize = game::World::GetSize();
+		if (location.GetX() < 0.0)
+		{
+			result = true;
+			location = { 0, location.GetY() };
+		}
+		if (location.GetX() > worldSize.GetX())
+		{
+			result = true;
+			location = { worldSize.GetX(), location.GetY() };
+		}
+		if (location.GetY() < 0.0)
+		{
+			result = true;
+			location = { location.GetX(), 0.0 };
+		}
+		if (location.GetY() > worldSize.GetY())
+		{
+			result = true;
+			location = { location.GetX(), worldSize.GetY() };
+		}
+		return result;
+	}
 }

@@ -94,37 +94,17 @@ namespace game
 		data::game::Ship::Write(ship);
 	}
 
-	//TODO: i hate this function a lot
-	static common::XY<double> ClampAvatarLocation(const common::XY<double>& candidate, Ship::MoveResult& result)
+	static Ship::MoveResult ClampAvatarLocation(common::XY<double>& candidate)//TODO: swap result and location
 	{
-		auto nextLocation = candidate;
-		auto worldSize = game::World::GetSize();
-		if (nextLocation.GetX() < 0.0)
-		{
-			result = Ship::MoveResult::CLAMPED;
-			nextLocation = { 0, nextLocation.GetY() };
-		}
-		if (nextLocation.GetX() > worldSize.GetX())
-		{
-			result = Ship::MoveResult::CLAMPED;
-			nextLocation = { worldSize.GetX(), nextLocation.GetY() };
-		}
-		if (nextLocation.GetY() < 0.0)
-		{
-			result = Ship::MoveResult::CLAMPED;
-			nextLocation = { nextLocation.GetX(), 0.0 };
-		}
-		if (nextLocation.GetY() > worldSize.GetY())
-		{
-			result = Ship::MoveResult::CLAMPED;
-			nextLocation = { nextLocation.GetX(), worldSize.GetY() };
-		}
-		return nextLocation;
+		return 
+			(game::World::ClampLocation(candidate)) ?
+			(Ship::MoveResult::CLAMPED) : 
+			(Ship::MoveResult::MOVED);
 	}
 
-	static void HandleFouling()
+	static void HandleFouling(const data::game::Ship& ship)
 	{
-
+		avatar::ShipStatistics::IncreaseFouling(ship.speed);
 	}
 
 	static double GetEffectiveSpeed(int shipId, double heading, double speed)
@@ -150,9 +130,11 @@ namespace game
 			common::Heading::DegreesToXY(ship.heading) *
 			GetEffectiveSpeed(ship.shipId, ship.heading, ship.speed);
 
-		ship.location = ClampAvatarLocation(ship.location + delta, result);
+		ship.location = ship.location + delta;
 
-		avatar::ShipStatistics::IncreaseFouling(ship.speed);
+		result = ClampAvatarLocation(ship.location);
+
+		HandleFouling(ship);
 
 		game::ApplyTurnEffects();
 		data::game::Ship::Write(ship);

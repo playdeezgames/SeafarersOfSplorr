@@ -16,5 +16,6 @@ namespace game//20211013
 		static void SetWindHeading(double);
 		static void Reset(const game::Difficulty&);
 		static void ApplyTurnEffects();
+		static bool ClampLocation(common::XY<double>&);
 	};
 }
