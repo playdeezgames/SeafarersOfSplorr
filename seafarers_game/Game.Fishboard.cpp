@@ -17,7 +17,6 @@ namespace game
 	const size_t Fishboard::ROWS = 5;//static members!
 
 	static const int INITIAL_GUESSES = 5;
-	static const int ADDITIONAL_GUESSES = 5;
 	static const Fish DEFAULT_FISH = Fish::COD;//TODO: FOR NOW!!
 	static const Item BAIT_ITEM = Item::BAIT;
 
@@ -183,7 +182,7 @@ namespace game
 
 	static void DoReveal(const common::XY<int>& location)
 	{
-		auto guesses = Fishboard::ReadGuesses();
+		auto guesses = FishGame::ReadGuesses();
 		if (guesses > 0)
 		{
 			MakeGuess(location, guesses);
@@ -216,50 +215,13 @@ namespace game
 		};
 	}
 
-	int Fishboard::ReadGuesses()
+	bool Fishboard::IsFullyRevealed()
 	{
-		return data::game::FishGame::ReadGuesses();
+		return data::game::FishboardCell::ReadRevealedFishCount() == data::game::FishboardCell::ReadFishCount();
 	}
 
 	double Fishboard::ReadProgressPercentage()
 	{
 		return 100.0 * data::game::FishboardCell::ReadRevealedFishCount() / data::game::FishboardCell::ReadFishCount();
 	}
-
-	bool Fishboard::IsFullyRevealed()
-	{
-		return data::game::FishboardCell::ReadRevealedFishCount() == data::game::FishboardCell::ReadFishCount();
-	}
-
-	bool Fishboard::HasGivenUp()
-	{
-		return data::game::FishGame::ReadGivenUp();
-	}
-
-	void Fishboard::GiveUp()
-	{
-		data::game::FishGame::WriteGuesses(0);
-		data::game::FishGame::WriteGivenUp(true);
-	}
-
-	bool Fishboard::HasGuessesLeft()
-	{
-		return ReadGuesses() > 0;
-	}
-
-	void Fishboard::AddBait()
-	{
-		avatar::Items::Remove(Item::BAIT, 1);
-		data::game::FishGame::WriteGuesses(data::game::FishGame::ReadGuesses() + ADDITIONAL_GUESSES);
-	}
-
-	FishGameState Fishboard::GetState()
-	{
-		return 
-			(IsFullyRevealed()) ? (FishGameState::DONE) :
-			(HasGivenUp()) ? (FishGameState::GAVE_UP) :
-			(ReadGuesses() > 0) ? (FishGameState::FISHING) :
-			(FishGameState::OUT_OF_GUESSES);
-	}
-
 }

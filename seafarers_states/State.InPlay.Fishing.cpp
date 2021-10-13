@@ -52,7 +52,7 @@ namespace state::in_play
 	static bool ShouldShowMoreBaitMenuItem()
 	{
 		return
-			game::Fishboard::GetState() == game::FishGameState::OUT_OF_GUESSES &&
+			game::FishGame::GetState() == game::FishGameState::OUT_OF_GUESSES &&
 			game::avatar::Items::Has(game::Item::BAIT);
 	}
 
@@ -66,7 +66,7 @@ namespace state::in_play
 
 	static std::string GetGoBackMenuItemText()
 	{
-		return goBackMenuItemTexts.find(game::Fishboard::GetState())->second;
+		return goBackMenuItemTexts.find(game::FishGame::GetState())->second;
 	}
 	static void RefreshMenu()
 	{
@@ -81,7 +81,7 @@ namespace state::in_play
 			LAYOUT_NAME,
 			TEXT_GUESSES,
 			"{}",
-			game::Fishboard::ReadGuesses());
+			game::FishGame::ReadGuesses());
 	}
 
 	static void RefreshProgress()
@@ -112,7 +112,7 @@ namespace state::in_play
 
 	static void OnMoreBait()
 	{
-		game::Fishboard::AddBait();
+		game::FishGame::AddBait();
 		Refresh();
 	}
 
@@ -124,7 +124,7 @@ namespace state::in_play
 
 	static void OnGiveUp()
 	{
-		game::Fishboard::GiveUp();
+		game::FishGame::GiveUp();
 		Refresh();
 	}
 
@@ -138,7 +138,7 @@ namespace state::in_play
 
 	static void OnGoBack()
 	{
-		handleGoBacks.find(game::Fishboard::GetState())->second();
+		handleGoBacks.find(game::FishGame::GetState())->second();
 	}
 
 	static const std::map<StatusMenuItem, std::function<void()>> activators =

@@ -8,24 +8,23 @@ namespace game//20211013
 {
 	struct Fishboard
 	{
-
 		static const size_t COLUMNS;
 		static const size_t ROWS;
 
 		static void Generate();
 
 		static void Reveal(const common::XY<int>&);
-		static bool IsFullyRevealed();
 
 		static FishboardCell Read(const common::XY<int>&);
 
-		//^ fishboard things
-		//v fish game things
-
+		static bool IsFullyRevealed();
+		static double ReadProgressPercentage();
+	};
+	struct FishGame
+	{
 		static int ReadGuesses();
 		static bool HasGuessesLeft();
 
-		static double ReadProgressPercentage();
 
 		static bool HasGivenUp();
 		static void GiveUp();
@@ -33,9 +32,5 @@ namespace game//20211013
 		static void AddBait();
 
 		static FishGameState GetState();
-	};
-	struct FishGame
-	{
-
 	};
 }

@@ -44,7 +44,7 @@ namespace visuals
 
 	static void DrawCells(const std::shared_ptr<application::Engine::Renderer>& renderer, const InternalFishboard& fishboard)
 	{
-		auto hasGivenUp = game::Fishboard::HasGivenUp();
+		auto hasGivenUp = game::FishGame::HasGivenUp();
 		for (int column = 0; column < CELL_COLUMNS; ++column)
 		{
 			for (int row = 0; row < CELL_ROWS; ++row)
