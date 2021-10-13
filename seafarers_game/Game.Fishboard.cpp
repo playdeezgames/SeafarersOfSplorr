@@ -12,7 +12,7 @@
 #include "Game.Items.h"
 #include <format>
 #include <map>
-namespace game
+namespace game//20211013
 {
 	const size_t Fishboard::COLUMNS = 5;//static members!
 	const size_t Fishboard::ROWS = 5;//static members!
@@ -42,6 +42,7 @@ namespace game
 		}
 	}
 
+	//vvvv Fish/Junk Generator
 	static void AddJunk(std::map<Fish, size_t>& fishGenerator)
 	{
 		for (auto fish : Fishes::AllJunk())
@@ -115,6 +116,7 @@ namespace game
 		std::map<Fish, size_t> fishGenerator = MakeFishGenerator(MakeFisheryGenerator());
 		return common::RNG::FromGenerator(fishGenerator, DEFAULT_FISH);
 	}
+	//^^^^  Fish/Junk Generator
 
 	static common::XY<int> GeneratePosition(const common::XY<size_t>& size)
 	{

@@ -11,7 +11,6 @@ namespace game//20211013
 		static int ReadGuesses();
 		static bool HasGuessesLeft();
 
-
 		static bool HasGivenUp();
 		static void GiveUp();
 
