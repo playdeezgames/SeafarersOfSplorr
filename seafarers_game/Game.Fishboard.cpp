@@ -50,26 +50,41 @@ namespace game
 		}
 	}
 
+	static bool GenerateFisheryHasStock(const Fishery& fishery)
+	{
+		std::map<bool, size_t> inStock =
+		{
+			{true, fishery.stock},
+			{false, fishery.depletion}
+		};
+		return (common::RNG::FromGenerator(inStock, false));
+	}
+
+	static void AddFishFromFishery(int fisheryId, const Fishery& fishery, std::map<Fish, size_t>& fishGenerator)
+	{
+		if (GenerateFisheryHasStock(fishery))
+		{
+			data::game::FishGame::WriteFisheryId(fisheryId);
+			fishGenerator[(Fish)fishery.fish] = 1;
+		}
+	}
+
+	static void AddFishFromFisheries(const std::map<int, size_t>& fisheryGenerator, std::map<Fish, size_t>& fishGenerator)
+	{
+		int fisheryId = common::RNG::FromGenerator(fisheryGenerator, 0);
+		auto fishery = Fisheries::Read(fisheryId);
+		if (fishery)
+		{
+			AddFishFromFishery(fisheryId, fishery.value(), fishGenerator);
+		}
+	}
+
 	static std::map<Fish, size_t> AddFisheries(const std::map<int, size_t>& fisheryGenerator)
 	{
 		std::map<Fish, size_t> fishGenerator;
 		if (!fisheryGenerator.empty())
 		{
-			int fisheryId = common::RNG::FromGenerator(fisheryGenerator, 0);
-			auto fishery = Fisheries::Read(fisheryId);
-			if (fishery)
-			{
-				std::map<bool, size_t> inStock =
-				{
-					{true, fishery.value().stock},
-					{false, fishery.value().depletion}
-				};
-				if (common::RNG::FromGenerator(inStock, false))
-				{
-					data::game::FishGame::WriteFisheryId(fisheryId);
-					fishGenerator[(Fish)fishery.value().fish] = 1;
-				}
-			}
+			AddFishFromFisheries(fisheryGenerator, fishGenerator);
 		}
 		return fishGenerator;
 	}
@@ -166,7 +181,7 @@ namespace game
 		DepleteFishery();
 	}
 
-	static void DoRevealCell(const common::XY<int>& location)
+	static void DoReveal(const common::XY<int>& location)
 	{
 		auto guesses = Fishboard::ReadGuesses();
 		if (guesses > 0)
@@ -183,7 +198,7 @@ namespace game
 	{
 		if (!IsFullyRevealed())
 		{
-			DoRevealCell(location);
+			DoReveal(location);
 		}
 	}
 
