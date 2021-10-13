@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-namespace game::Colors
+namespace game::Colors//20211013
 {
 	const std::string BLACK = "Black";
 	const std::string BLUE = "Blue";
@@ -18,5 +18,4 @@ namespace game::Colors
 	const std::string LIGHT_MAGENTA = "LightMagenta";
 	const std::string YELLOW = "Yellow";
 	const std::string WHITE = "White";
-
 }

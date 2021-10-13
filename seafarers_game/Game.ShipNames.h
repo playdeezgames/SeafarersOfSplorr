@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-namespace game
+namespace game//20211013
 {
 	struct ShipNames
 	{

@@ -2,7 +2,7 @@
 #include "Game.ShipType.h"
 #include <optional>
 #include <vector>
-namespace game
+namespace game//20211013
 {
 	struct Ship
 	{

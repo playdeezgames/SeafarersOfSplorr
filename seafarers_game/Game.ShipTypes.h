@@ -6,7 +6,7 @@
 #include <map>
 #include <optional>
 #include <string>
-namespace game
+namespace game//20211013
 {
 	struct ShipTypes
 	{
