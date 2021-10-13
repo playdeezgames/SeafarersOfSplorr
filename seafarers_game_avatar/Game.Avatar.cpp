@@ -130,7 +130,7 @@ namespace game
 		data::game::Avatar::Write(Player::GetAvatarId(), data);
 		SetState(game::avatar::State::AT_SEA);
 
-		data::game::avatar::Rations::Write(Player::GetAvatarId(), (int)game::Items::GenerateRations());
+		data::game::avatar::Rations::Write(Player::GetAvatarId(), (int)game::Items::GenerateRationsForAvatar());
 
 		auto worldSize = game::World::GetSize();
 		auto shipType = game::ShipTypes::GenerateForAvatar();

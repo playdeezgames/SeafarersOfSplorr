@@ -157,7 +157,7 @@ namespace game
 	{
 		for (auto& item : game::Items::All())
 		{
-			if (Items::GeneratePresence(item))
+			if (Items::GeneratePresenceForIsland(item))
 			{
 				data::game::island::Item::Set(location, (int)item);
 			}

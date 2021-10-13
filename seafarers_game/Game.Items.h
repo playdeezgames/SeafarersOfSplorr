@@ -10,9 +10,9 @@ namespace game//20211011
 	struct Items
 	{
 		static const std::list<game::Item>& All();
-		static game::Item GenerateRations();//for avatar
+		static game::Item GenerateRationsForAvatar();
 		static const std::string& GetName(const game::Item&);
-		static bool GeneratePresence(const game::Item&);//for island
+		static bool GeneratePresenceForIsland(const game::Item&);//for island
 		static const std::map<Commodity, double>& GetCommodities(const game::Item&);
 		static double GetUnitTonnage(const game::Item&);
 		static const std::map<Difficulty, size_t>& GetInitialInventories(const game::Item&);//for avatar

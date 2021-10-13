@@ -2,7 +2,7 @@
 #include <Common.XY.h>
 #include <optional>
 #include <string>
-namespace game
+namespace game//20211013
 {
 	struct Island
 	{

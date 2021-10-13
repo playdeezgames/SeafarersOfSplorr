@@ -199,7 +199,7 @@ namespace game
 
 	static std::map<game::Item, size_t> rationsGenerator;
 
-	Item Items::GenerateRations()
+	Item Items::GenerateRationsForAvatar()
 	{
 		if (rationsGenerator.empty())
 		{
@@ -219,7 +219,7 @@ namespace game
 		return Read(item).name;
 	}
 
-	bool Items::GeneratePresence(const game::Item& item)
+	bool Items::GeneratePresenceForIsland(const game::Item& item)
 	{
 		auto& descriptor = Read(item);
 		return common::RNG::FromRange(0u, descriptor.present + descriptor.notPresent) < descriptor.present;
