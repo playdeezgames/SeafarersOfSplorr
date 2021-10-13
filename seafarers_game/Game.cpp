@@ -21,7 +21,7 @@
 namespace game
 {
 	static std::list<std::function<void()>> resetters;
-	void AddResetter(std::function<void()> resetter)
+	static void AddResetter(std::function<void()> resetter)
 	{
 		resetters.push_back(resetter);
 	}
