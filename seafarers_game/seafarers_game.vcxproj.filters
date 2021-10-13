@@ -185,7 +185,7 @@
     <ClInclude Include="Game.Fishboard.h">
       <Filter>Header Files\Fishing</Filter>
     </ClInclude>
-    <ClInclude Include="Game.FishboardState.h">
+    <ClInclude Include="Game.FishGameState.h">
       <Filter>Header Files\Fishing</Filter>
     </ClInclude>
     <ClInclude Include="Game.EquipSlot.h">
