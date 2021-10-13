@@ -56,6 +56,7 @@
     <ClInclude Include="Game.Items.h" />
     <ClInclude Include="Game.Merchant.h" />
     <ClInclude Include="Game.Merchants.h" />
+    <ClInclude Include="Game.OfferingResult.h" />
     <ClInclude Include="Game.Player.h" />
     <ClInclude Include="Game.Quest.h" />
     <ClInclude Include="Game.Ship.h" />

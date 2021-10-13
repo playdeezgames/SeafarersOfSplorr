@@ -209,6 +209,9 @@
     <ClInclude Include="Game.FishboardCell.h">
       <Filter>Header Files\Fishing</Filter>
     </ClInclude>
+    <ClInclude Include="Game.OfferingResult.h">
+      <Filter>Header Files\Demigods</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">

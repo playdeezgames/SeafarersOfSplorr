@@ -1,17 +1,10 @@
 #pragma once
 #include "Game.Difficulty.h"
 #include "Game.Item.h"
-#include <list>
-namespace game
+#include "Game.OfferingResult.h"
+#include <string>
+namespace game//20211013
 {
-	enum class OfferingResult
-	{
-		COOLING_DOWN,
-		SUCCESS,
-		BLESSING,
-		CURSE,
-		FAILURE
-	};
 	struct Demigods
 	{
 		static void Reset(const Difficulty&);
