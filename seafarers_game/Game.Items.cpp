@@ -1,7 +1,7 @@
 #include <Common.RNG.h>
 #include "Game.Items.h"
 #include <map>
-namespace game
+namespace game//20211014
 {
 	struct ItemDescriptor
 	{
@@ -235,7 +235,7 @@ namespace game
 		return Read(item).tonnage;
 	}
 
-	const std::map<Difficulty, size_t>& Items::GetInitialInventories(const game::Item& item)
+	const std::map<Difficulty, size_t>& Items::GetInitialInventoriesForAvatar(const game::Item& item)
 	{
 		return Read(item).initialInventories;
 	}

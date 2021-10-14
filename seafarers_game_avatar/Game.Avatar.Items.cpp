@@ -2,7 +2,7 @@
 #include "Game.Avatar.Items.h"
 #include "Game.Items.h"
 #include <Game.Player.h>
-namespace game::avatar
+namespace game::avatar//20211014
 {
 	std::map<game::Item, size_t> Items::All()
 	{
@@ -54,7 +54,7 @@ namespace game::avatar
 		data::game::avatar::Items::Clear(Player::GetAvatarId());
 		for (auto& item : game::Items::All())
 		{
-			auto& initialInventories = game::Items::GetInitialInventories(item);
+			auto& initialInventories = game::Items::GetInitialInventoriesForAvatar(item);
 			auto iter = initialInventories.find(difficulty);
 			if (iter != initialInventories.end())
 			{
