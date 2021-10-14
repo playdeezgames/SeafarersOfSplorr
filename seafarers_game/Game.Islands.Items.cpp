@@ -1,46 +1,43 @@
 #include <Data.Game.Island.Item.h>
+#include <functional>
 #include "Game.Islands.Commodities.h"
 #include "Game.Islands.Items.h"
 #include "Game.Items.h"
-namespace game::islands
+namespace game::islands//20211014
 {
 	static double GetItemPurchasePrice(
 		const common::XY<double>& location,
 		const game::Item& item)
 	{
-		auto& commodities = game::Items::GetCommodities(item);
-		return Commodities::GetPurchasePrice(location, commodities);
+		return Commodities::GetPurchasePrice(location, game::Items::GetCommodities(item));
 	}
 
 	static double GetItemSellPrice(
 		const common::XY<double>& location,
 		const game::Item& item)
 	{
-		auto& commodities = game::Items::GetCommodities(item);
-		return Commodities::GetSalePrice(location, commodities);
+		return Commodities::GetSalePrice(location, game::Items::GetCommodities(item));
 	}
 
-	std::map<game::Item, double> Items::GetPurchasePrices(const common::XY<double>& location)
+	static std::map<game::Item, double> GetPrices(const common::XY<double>& location, std::function<double(const common::XY<double>&, const Item&)> unitPricer)
 	{
 		std::map<game::Item, double> result;
 		auto itemsAvailable = data::game::island::Item::GetAll(location);
 		for (auto& item : itemsAvailable)
 		{
-			double price = GetItemPurchasePrice(location, (game::Item)item);
+			double price = unitPricer(location, (game::Item)item);
 			result[(game::Item)item] = price;
 		}
 		return result;
 	}
 
+	std::map<game::Item, double> Items::GetPurchasePrices(const common::XY<double>& location)
+	{
+		return GetPrices(location, GetItemPurchasePrice);
+	}
+
 	std::map<game::Item, double> Items::GetSalePrices(const common::XY<double>& location)
 	{
-		std::map<game::Item, double> result;
-		auto items = game::Items::All();
-		for (auto& item : items)
-		{
-			double price = GetItemSellPrice(location, (game::Item)item);
-			result[(game::Item)item] = price;
-		}
-		return result;
+		return GetPrices(location, GetItemSellPrice);
 	}
 }
