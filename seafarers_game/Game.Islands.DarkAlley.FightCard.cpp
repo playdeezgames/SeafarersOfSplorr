@@ -64,7 +64,9 @@ namespace game::islands::dark_alley
 		{11, {6,7,10}}
 	};
 
-	static void WriteCards(const common::XY<double>& location, const std::map<size_t, FightCard>& fightCards)
+	static void WriteCards(
+		const common::XY<double>& location, 
+		const std::map<size_t, FightCard>& fightCards)
 	{
 		for (auto& fightCard : fightCards)
 		{
@@ -96,29 +98,75 @@ namespace game::islands::dark_alley
 		return std::make_tuple(rank, suit);
 	}
 
-	static void PlaceFaceCards(std::map<size_t, FightCard>& fightCards, std::set<cards::Card>& cards, const data::game::island::DarkAlley& darkAlley)
+	static cards::Card GenerateFaceCard()
+	{
+		return GenerateCard(FACE_CARD_RANKS);
+	}
+
+	static void PlaceCard(
+		std::map<size_t, FightCard>& fightCards, 
+		cards::Card card)
+	{
+		size_t index;
+		do
+		{
+			index = common::RNG::FromRange(0u, CARD_COUNT);
+		} while (fightCards.find(index) != fightCards.end());
+		fightCards[index] =
+		{
+			card,
+			0,
+			false
+		};
+	}
+
+	static void PlaceFaceCards(
+		std::map<size_t, FightCard>& fightCards, 
+		std::set<cards::Card>& cards, 
+		const data::game::island::DarkAlley& darkAlley)
 	{
 		size_t faceCardCount = DetermineFaceCardCount(darkAlley);
 		while (faceCardCount > 0)
 		{
-			auto card = GenerateCard(FACE_CARD_RANKS);
+			auto card = GenerateFaceCard();
 			if (!cards.contains(card))
 			{
 				cards.insert(card);
-				size_t index;
-				do
-				{
-					index = common::RNG::FromRange(0u, CARD_COUNT);
-				} while (fightCards.find(index) != fightCards.end());
-				fightCards[index] =
-				{
-					card,
-					0,
-					false
-				};
+				PlaceCard(fightCards, card);
 				faceCardCount--;
 			}
 		}
+	}
+
+	static cards::Card GenerateNonfaceCard()
+	{
+		return GenerateCard(NONFACE_CARD_RANKS);
+	}
+
+	static cards::Card PlaceNonfaceCard(std::set<cards::Card>& cards)
+	{
+		auto card = GenerateNonfaceCard();
+		while (cards.contains(card))
+		{
+			card = GenerateNonfaceCard();
+		}
+		cards.insert(card);
+		return card;
+	}
+
+	static int CountAjacencies(std::map<size_t, FightCard>& fightCards, int index)
+	{
+		auto adjacencies = ADJACENCIES.find(index)->second;
+		int count = 0;
+		for (auto adjacency : adjacencies)
+		{
+			auto neighbor = fightCards.find(adjacency);
+			if (neighbor != fightCards.end() && IsFaceCard(neighbor->second.card))
+			{
+				count++;
+			}
+		}
+		return count;
 	}
 
 	static void PlaceNonfaceCards(std::map<size_t, FightCard>& fightCards, std::set<cards::Card>& cards)
@@ -127,22 +175,9 @@ namespace game::islands::dark_alley
 		{
 			if (fightCards.find(index) == fightCards.end())
 			{
-				auto card = GenerateCard(NONFACE_CARD_RANKS);
-				while (cards.contains(card))
-				{
-					card = GenerateCard(NONFACE_CARD_RANKS);
-				}
-				cards.insert(card);
-				auto adjacencies = ADJACENCIES.find(index)->second;
-				int count = 0;
-				for (auto adjacency : adjacencies)
-				{
-					auto neighbor = fightCards.find(adjacency);
-					if (neighbor != fightCards.end() && IsFaceCard(neighbor->second.card))
-					{
-						count++;
-					}
-				}
+				auto card = PlaceNonfaceCard(cards);
+
+				int count = CountAjacencies(fightCards, index);
 				fightCards[index] =
 				{
 					card,
