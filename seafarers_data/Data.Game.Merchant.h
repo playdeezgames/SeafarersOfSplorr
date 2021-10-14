@@ -1,7 +1,7 @@
 #pragma once
 #include <Common.XY.h>
 #include <list>
-namespace data::game
+namespace data::game//20211014
 {
 	struct Merchant
 	{

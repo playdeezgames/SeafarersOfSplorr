@@ -1,5 +1,5 @@
 #pragma once
-namespace data::game
+namespace data::game//20211014
 {
 	struct Player
 	{

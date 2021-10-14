@@ -2,7 +2,7 @@
 #include <Common.XY.h>
 #include <list>
 #include <optional>
-namespace data::game::island
+namespace data::game::island//20211014
 {
 	struct Known
 	{

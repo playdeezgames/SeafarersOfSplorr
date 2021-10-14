@@ -3,7 +3,7 @@
 #include <optional>
 #include <string>
 #include <vector>
-namespace data::game
+namespace data::game//20211014
 {
 	struct Ship
 	{
