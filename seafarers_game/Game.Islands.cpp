@@ -18,7 +18,7 @@
 #include <set>
 #include <sstream>
 #include <vector>
-namespace game
+namespace game//20211014
 {
 	const std::string Islands::UNKNOWN = "????";
 
@@ -29,11 +29,14 @@ namespace game
 		GenerateIslands();
 	}
 
-	static void AddIsland(std::list<Island>& result, const data::game::Island& island, const common::XY<double>& avatarLocation)
+	static void KnowIsland(
+		std::list<Island>& accumulator, 
+		const data::game::Island& island, 
+		const common::XY<double>& avatarLocation)
 	{
 		auto visitData = data::game::island::Visit::Read(island.location);
 		data::game::island::Known::Write(island.location);
-		result.push_back(
+		accumulator.push_back(
 			{
 				(island.location - avatarLocation),
 				island.location,
@@ -43,25 +46,25 @@ namespace game
 			});
 	}
 
-	static void AddIslandWhenCloseEnough(std::list<Island>& result, const data::game::Island& island, const common::XY<double>& avatarLocation, std::function<bool(const data::game::Island&, double)> filter)
+	static void KnowIslandWhenCloseEnough(std::list<Island>& accumulator, const data::game::Island& island, const common::XY<double>& avatarLocation, std::function<bool(const data::game::Island&, double)> filter)
 	{
 		auto distance = common::Heading::Distance(avatarLocation, island.location);
 		if (filter(island, distance))
 		{
-			AddIsland(result, island, avatarLocation);
+			KnowIsland(accumulator, island, avatarLocation);
 		}
 	}
 
 	static std::list<Island> GetIslandsInRange(std::function<bool(const data::game::Island&, double)> filter)
 	{
-		std::list<Island> result;
+		std::list<Island> accumulator;
 		auto avatarLocation = game::Ship::GetLocation();
 		auto islands = data::game::Island::All();
 		for (auto& island : islands)
 		{
-			AddIslandWhenCloseEnough(result, island, avatarLocation, filter);
+			KnowIslandWhenCloseEnough(accumulator, island, avatarLocation, filter);
 		}
-		return result;
+		return accumulator;
 	}
 
 	static std::function<bool(const data::game::Island&, double)> FixedDistance(double maximumDistance)
@@ -87,24 +90,37 @@ namespace game
 		return !GetDockableIslands().empty();
 	}
 
-	void Islands::AddVisit(const common::XY<double>& location, const int& turn)
+	static void AddSubsequentVisit(
+		data::game::island::Visit islandVisits, 
+		const int& currentTurn)
 	{
-		auto visitData = data::game::island::Visit::Read(location);
-		if (visitData)
+		if (islandVisits.lastVisit != currentTurn)
 		{
-			auto islandVisits = visitData.value();
-			if (islandVisits.lastVisit != turn)
-			{
-				islandVisits.visits = islandVisits.visits + 1;
-				islandVisits.lastVisit = turn;
-				data::game::island::Visit::Write(islandVisits);
-				return;
-			}
+			islandVisits.visits++;
+			islandVisits.lastVisit = currentTurn;
+			data::game::island::Visit::Write(islandVisits);
 		}
+	}
+
+	static void AddInitialVisit(const common::XY<double>& location, const int& currentTurn)
+	{
 		data::game::island::Visit::Write({
 			location,
 			1,
-			turn});
+			currentTurn });
+	}
+
+	void Islands::AddVisit(const common::XY<double>& location, const int& currentTurn)
+	{
+		auto previousVisits = data::game::island::Visit::Read(location);
+		if (previousVisits)
+		{
+			AddSubsequentVisit(previousVisits.value(), currentTurn);
+		}
+		else
+		{
+			AddInitialVisit(location, currentTurn);
+		}
 	}
 
 	void Islands::SetKnown(const common::XY<double>& location, const int& turn)
@@ -118,21 +134,34 @@ namespace game
 		}
 	}
 
-	std::optional<Island> Islands::Read(const common::XY<double>& location)//TODO: different model for docked?
+	static Island ToIsland(const data::game::Island& island)
 	{
-		auto data = data::game::Island::Read(location);
-		if (data)
-		{
-			auto visitData = data::game::island::Visit::Read(data.value().location);
-			return std::optional<Island>({
+		auto previousVisits = data::game::island::Visit::Read(island.location);
+		return {
 				{0.0, 0.0},
-				data.value().location,
-				data.value().name,
-				(visitData.has_value()) ? (std::optional<int>(visitData.value().visits)) : (std::nullopt),
-				data.value().patronDemigod
-				});
+				island.location,
+				island.name,
+				(previousVisits.has_value()) ? (std::optional<int>(previousVisits.value().visits)) : (std::nullopt),
+				island.patronDemigod
+			};
+	}
+
+	std::optional<Island> Islands::Read(const common::XY<double>& location)
+	{
+		auto island = data::game::Island::Read(location);
+		if (island)
+		{
+			return ToIsland(island.value());
 		}
 		return std::nullopt;
+	}
+
+	static void ObfuscateIfUnknown(game::Island& island)
+	{
+		if (!data::game::island::Visit::Read(island.absoluteLocation))
+		{
+			island.name = Islands::UNKNOWN;
+		}
 	}
 
 	std::list<Island> Islands::GetKnownIslands()
@@ -144,17 +173,8 @@ namespace game
 			auto model = Read(knownLocation);
 			if (model)
 			{
-				auto visits = data::game::island::Visit::Read(knownLocation);
-				if (visits)
-				{
-					result.push_back(model.value());
-				}
-				else
-				{
-					auto obfuscated = model.value();
-					obfuscated.name = game::Islands::UNKNOWN;
-					result.push_back(obfuscated);
-				}
+				ObfuscateIfUnknown(model.value());
+				result.push_back(model.value());
 			}
 		}
 		return result;
@@ -170,8 +190,7 @@ namespace game
 
 	void Islands::ApplyTurnEffects()
 	{
-		auto islands = data::game::Island::All();
-		for (auto& island : islands)
+		for (auto& island : data::game::Island::All())
 		{
 			SpawnMerchant(island);
 		}
