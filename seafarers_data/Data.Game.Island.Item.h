@@ -1,7 +1,7 @@
 #pragma once
 #include <Common.XY.h>
 #include <set>
-namespace data::game::island
+namespace data::game::island//20211014
 {
 	struct Item
 	{

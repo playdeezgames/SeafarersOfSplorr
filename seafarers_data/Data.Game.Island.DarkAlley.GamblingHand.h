@@ -1,7 +1,7 @@
 #pragma once
 #include <Common.XY.h>
 #include <optional>
-namespace data::game::island::dark_alley
+namespace data::game::island::dark_alley//20211014
 {
 	struct GamblingHand
 	{

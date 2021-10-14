@@ -3,7 +3,7 @@
 #include <list>
 #include <optional>
 #include <string>
-namespace data::game
+namespace data::game//20211014
 {
 	struct Island
 	{

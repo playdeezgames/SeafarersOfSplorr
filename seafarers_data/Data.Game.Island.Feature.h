@@ -1,6 +1,6 @@
 #pragma once
 #include <Common.XY.h>
-namespace data::game::island
+namespace data::game::island//20211014
 {
 	struct Feature
 	{
