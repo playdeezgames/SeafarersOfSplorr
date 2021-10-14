@@ -3,7 +3,7 @@
 #include <Data.Game.Island.DarkAlley.GamblingHand.h>
 #include "Game.Islands.DarkAlley.GamblingHand.h"
 #include "Game.Islands.Features.h"
-namespace game::islands::dark_alley
+namespace game::islands::dark_alley//20211014
 {
 	bool GamblingHand::Deal(const common::XY<double>& location)
 	{
