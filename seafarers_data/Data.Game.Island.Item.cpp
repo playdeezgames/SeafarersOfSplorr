@@ -1,7 +1,7 @@
 #include <Common.Data.h>
 #include "Data.Game.Island.Item.h"
 #include "Data.Game.Common.h"
-namespace data::game::island//20211010
+namespace data::game::island//20211014
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandItems]([X],[Y],[ItemId], UNIQUE([X],[Y],[ItemId]));";
 	static const std::string REPLACE_ITEM = "REPLACE INTO [IslandItems]([X],[Y],[ItemId]) VALUES({:.4f},{:.4f},{});";
@@ -16,7 +16,7 @@ namespace data::game::island//20211010
 
 	static const auto AutoCreateIslandItemTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Item::Set(const common::XY<double>& location, int item)
+	void Item::Write(const common::XY<double>& location, int item)
 	{
 		AutoCreateIslandItemTable();
 		data::game::Common::Execute(
@@ -36,7 +36,7 @@ namespace data::game::island//20211010
 			item);
 	}
 
-	bool Item::Get(const common::XY<double>& location, int item)
+	bool Item::Read(const common::XY<double>& location, int item)
 	{
 		AutoCreateIslandItemTable();
 		return !data::game::Common::Execute(QUERY_ITEM, location.GetX(), location.GetY(), item).empty();

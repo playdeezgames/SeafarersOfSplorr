@@ -5,9 +5,9 @@ namespace data::game::island//20211014
 {
 	struct Item
 	{
-		static void Set(const common::XY<double>&, int);
+		static void Write(const common::XY<double>&, int);
 		static void Clear(const common::XY<double>&, int);
-		static bool Get(const common::XY<double>&, int);
+		static bool Read(const common::XY<double>&, int);
 		static std::set<int> GetAll(const common::XY<double>&);
 		static void ClearAll();
 	};

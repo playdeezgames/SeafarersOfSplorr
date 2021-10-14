@@ -18,7 +18,7 @@
 #include <set>
 #include <sstream>
 #include <vector>
-namespace game
+namespace game//20211014
 {
 	const size_t RETRY_COUNT = 500;
 
@@ -159,7 +159,7 @@ namespace game
 		{
 			if (Items::GeneratePresenceForIsland(item))
 			{
-				data::game::island::Item::Set(location, (int)item);
+				data::game::island::Item::Write(location, (int)item);
 			}
 		}
 	}
