@@ -6,7 +6,7 @@
 #include "Game.Features.h"
 #include "Game.Islands.Features.h"
 #include <vector>
-namespace game::islands
+namespace game::islands//20211014
 {
 	bool Features::Read(const common::XY<double>& xy, const game::Feature& feature)
 	{
@@ -25,12 +25,27 @@ namespace game::islands
 		}
 	}
 
+	static double GenerateInfamyRequirement()
+	{
+		return common::RNG::FromRange(1.0, 6.0) + common::RNG::FromRange(1.0, 6.0) + common::RNG::FromRange(1.0, 6.0);
+	}
+
+	static double GenerateRuffianBrawlingStrength()
+	{
+		return common::RNG::FromRange(1.0, 6.0) + common::RNG::FromRange(1.0, 6.0);
+	}
+
+	static double GenerateMinimumWager()
+	{
+		return common::RNG::FromRange(1.0, 4.0) + common::RNG::FromRange(1.0, 4.0);
+	}
+
 	static void InitializeDarkAlley(const common::XY<double>& location)
 	{
 		data::game::island::DarkAlley::Write(location, {
-			common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0),
-			common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0),
-			common::RNG::FromRange(1.0,4.0) + common::RNG::FromRange(1.0,4.0)
+			GenerateInfamyRequirement(),
+			GenerateRuffianBrawlingStrength(),
+			GenerateMinimumWager()
 			});
 	}
 
@@ -48,31 +63,38 @@ namespace game::islands
 		}
 	}
 
-	static void GenerateFeature(const game::Feature& feature, const std::list<data::game::Island>& islands)
+	static size_t DetermineIslandCountForFeature(const game::Feature& feature, size_t totalIslandCount)
 	{
-		
-		std::vector<data::game::Island> candidates;
-		for (auto island : islands)
-		{
-			candidates.push_back(island);
-		}
-		size_t islandCount = (size_t)(game::Features::GetCoveragePercentage(feature) * (double)islands.size());
+		size_t islandCount = (size_t)(game::Features::GetCoveragePercentage(feature) * (double)totalIslandCount);
 		if (islandCount < game::Features::GetMinimumCount(feature))
 		{
 			islandCount = game::Features::GetMinimumCount(feature);
 		}
-		if (islandCount > islands.size())
+		if (islandCount > totalIslandCount)
 		{
-			islandCount = islands.size();
+			islandCount = totalIslandCount;
 		}
+		return islandCount;
+	}
+
+	static void GenerateFeature(const game::Feature& feature, const std::list<data::game::Island>& islands)
+	{
+		std::vector<common::XY<double>> candidates;
+		for (auto island : islands)
+		{
+			candidates.push_back(island.location);
+		}
+		size_t islandCount = DetermineIslandCountForFeature(feature, islands.size());
 		while (islandCount > 0)
 		{
 			auto index = common::RNG::FromRange(0u, candidates.size());
+
 			auto candidate = candidates[index];
 			candidates[index] = candidates.back();
 			candidates.pop_back();
-			data::game::island::Feature::Write(candidate.location, (int)feature);
-			InitializeFeature(feature, candidate.location);
+
+			data::game::island::Feature::Write(candidate, (int)feature);
+			InitializeFeature(feature, candidate);
 			islandCount--;
 		}
 	}
