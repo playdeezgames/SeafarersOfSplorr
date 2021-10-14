@@ -1,7 +1,8 @@
 #pragma once
 #include <Common.XY.h>
 #include <optional>
-namespace data::game::island::dark_alley
+#include <map>
+namespace data::game::island::dark_alley//20211014
 {
 	struct FightCard
 	{
@@ -11,6 +12,7 @@ namespace data::game::island::dark_alley
 		bool shown;
 
 		static std::optional<FightCard> Read(const common::XY<double>&, size_t);
+		static std::map<size_t, FightCard> Read(const common::XY<double>&);
 		static void Write(const common::XY<double>&, size_t, const FightCard&);
 		static void Clear(const common::XY<double>&);
 	};

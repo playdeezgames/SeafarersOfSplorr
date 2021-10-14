@@ -7,7 +7,7 @@
 #include "Game.Islands.DarkAlley.FightCard.h"
 #include <list>
 #include <set>
-namespace game::islands::dark_alley
+namespace game::islands::dark_alley//20211014
 {
 	static const size_t CARD_ROWS = 3;
 	static const size_t CARD_COLUMNS = 4;
@@ -177,7 +177,7 @@ namespace game::islands::dark_alley
 			{
 				auto card = PlaceNonfaceCard(cards);
 
-				int count = CountAjacencies(fightCards, index);
+				int count = CountAjacencies(fightCards, (int)index);
 				fightCards[index] =
 				{
 					card,
@@ -222,10 +222,10 @@ namespace game::islands::dark_alley
 	std::map<size_t, FightCard> FightCard::Read(const common::XY<double>& location)
 	{
 		std::map<size_t, FightCard> result;
-		for (size_t index = 0; index < CARD_COUNT; ++index)
+		auto entries = data::game::island::dark_alley::FightCard::Read(location);
+		for (auto& entry : entries)
 		{
-			auto data = data::game::island::dark_alley::FightCard::Read(location, index);
-			result[index] = DataToFightCard(data.value());
+			result[entry.first] = DataToFightCard(entry.second);
 		}
 		return result;
 	}
