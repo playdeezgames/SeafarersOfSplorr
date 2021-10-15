@@ -1,7 +1,7 @@
 #include <Common.Utility.h>
 #include "Game.EquipSlots.h"
 #include <map>
-namespace game
+namespace game//20211015
 {
 	struct EquipSlotDescriptor
 	{
