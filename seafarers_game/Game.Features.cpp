@@ -1,7 +1,7 @@
 #include <Common.Utility.h>
 #include "Game.Features.h"
 #include <map>
-namespace game
+namespace game//20211015
 {
 	struct FeatureDescriptor
 	{
@@ -27,6 +27,7 @@ namespace game
 			}
 		}
 	};
+
 	static std::list<game::Feature> featureList;
 
 	static const game::FeatureDescriptor& Read(const game::Feature& feature)
