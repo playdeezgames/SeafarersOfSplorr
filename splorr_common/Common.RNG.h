@@ -27,7 +27,7 @@ namespace common
 			return std::nullopt;
 		}
 		template <typename TResult>
-		static TResult FromGenerator(const std::map<TResult, size_t>& table, TResult defaultValue)//TODO: the default value sucks!
+		static TResult FromGenerator(const std::map<TResult, size_t>& table)
 		{
 			size_t total = 0u;
 			for (auto& entry : table)
@@ -49,7 +49,7 @@ namespace common
 					}
 				}
 			}
-			return defaultValue;
+			throw "empty generator";
 		}
 	};
 }

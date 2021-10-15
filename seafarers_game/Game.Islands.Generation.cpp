@@ -89,18 +89,18 @@ namespace game//20211014
 
 	static std::string GenerateName()
 	{
-		auto length = common::RNG::FromGenerator(LENGTH_GENERATOR, (size_t)0);
-		auto isVowel = common::RNG::FromGenerator(IS_VOWEL_GENERATOR, false);
+		auto length = common::RNG::FromGenerator(LENGTH_GENERATOR);
+		auto isVowel = common::RNG::FromGenerator(IS_VOWEL_GENERATOR);
 		std::stringstream ss;
 		while (length > 0)
 		{
 			if (isVowel)
 			{
-				ss << common::RNG::FromGenerator(VOWEL_GENERATOR, (std::string)"");
+				ss << common::RNG::FromGenerator(VOWEL_GENERATOR);
 			}
 			else
 			{
-				ss << common::RNG::FromGenerator(CONSONANT_GENERATOR, (std::string)"");
+				ss << common::RNG::FromGenerator(CONSONANT_GENERATOR);
 			}
 			length--;
 			isVowel = !isVowel;
@@ -172,7 +172,7 @@ namespace game//20211014
 		{
 			table[demigod.name] = demigod.patronWeight;
 		}
-		return common::RNG::FromGenerator(table, std::string(""));
+		return common::RNG::FromGenerator(table);
 	}
 
 	void GenerateIslands()

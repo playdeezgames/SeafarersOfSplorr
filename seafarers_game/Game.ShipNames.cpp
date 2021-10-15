@@ -36,8 +36,8 @@ namespace game
 
 	std::string ShipNames::Generate()
 	{
-		auto adjective = common::RNG::FromGenerator(shipNameAdjectives, std::string());
-		auto noun = common::RNG::FromGenerator(shipNameNouns, std::string());
+		auto adjective = common::RNG::FromGenerator(shipNameAdjectives);
+		auto noun = common::RNG::FromGenerator(shipNameNouns);
 		return std::format("{} {}", adjective, noun);
 	}
 

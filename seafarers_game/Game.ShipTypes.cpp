@@ -149,7 +149,7 @@ namespace game
 				}
 			}
 		}
-		return common::RNG::FromGenerator(initialShipGenerator, game::ShipType::RAFT);
+		return common::RNG::FromGenerator(initialShipGenerator);
 	}
 
 	double ShipTypes::GetTotalTonnage(const game::ShipType& ship)

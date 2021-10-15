@@ -82,9 +82,9 @@ namespace game::islands
 	static std::string GenerateItemName()
 	{
 		return std::format("{} {} {}",
-			common::RNG::FromGenerator(itemAdverbs, std::string()),
-			common::RNG::FromGenerator(itemAdjectives, std::string()),
-			common::RNG::FromGenerator(itemNames, std::string()));
+			common::RNG::FromGenerator(itemAdverbs),
+			common::RNG::FromGenerator(itemAdjectives),
+			common::RNG::FromGenerator(itemNames));
 	}
 
 	static const std::map<std::string, size_t> peopleNames =
@@ -107,7 +107,7 @@ namespace game::islands
 
 	static std::string GeneratePersonName()
 	{
-		return common::RNG::FromGenerator(peopleNames, std::string());
+		return common::RNG::FromGenerator(peopleNames);
 	}
 
 	static const std::map<std::string, size_t> professionAdjectives =
@@ -184,15 +184,15 @@ namespace game::islands
 	static std::string GenerateProfessionName()
 	{
 		return std::format("{} {}",
-			common::RNG::FromGenerator(professionAdjectives, std::string()),
-			common::RNG::FromGenerator(professionNames, std::string()));
+			common::RNG::FromGenerator(professionAdjectives),
+			common::RNG::FromGenerator(professionNames));
 	}
 
 	static std::string GenerateReceiptEmotion()
 	{
 		return std::format("{} {}",
-			common::RNG::FromGenerator(receiptAdverbs, std::string()),
-			common::RNG::FromGenerator(receiptAdjectives, std::string()));
+			common::RNG::FromGenerator(receiptAdverbs),
+			common::RNG::FromGenerator(receiptAdjectives));
 	}
 
 	static common::XY<double> GenerateDestination(const common::XY<double>& location)

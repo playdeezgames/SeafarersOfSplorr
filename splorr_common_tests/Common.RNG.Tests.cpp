@@ -65,15 +65,6 @@ namespace common
 				Assert(std::find(inputList.begin(), inputList.end(), actual.value()) != inputList.end(), "Actual should have a value in the list");
 			}),
 		AddTest(
-			"common::RNG::FromGenerator should return the default result when the table is empty",
-			[]()
-			{
-				const int expected = 10;
-				std::map<int, size_t> inputTable;//empty!
-				auto actual = RNG::FromGenerator(inputTable, expected);
-				Assert(actual == expected, "Actual should have default value");
-			}),
-		AddTest(
 			"common::RNG::FromGenerator should return a result from the table when the table is not empty",
 			[]()
 			{
@@ -82,7 +73,7 @@ namespace common
 				{
 					{20, 1}
 				};
-				auto actual = RNG::FromGenerator(inputTable, defaultValue);
+				auto actual = RNG::FromGenerator(inputTable);
 				Assert(actual != defaultValue, "Actual should not have default value");
 			}),
 	};

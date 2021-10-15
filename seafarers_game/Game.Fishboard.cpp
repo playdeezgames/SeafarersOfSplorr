@@ -18,7 +18,6 @@ namespace game//20211013
 	const size_t Fishboard::ROWS = 5;//static members!
 
 	static const int INITIAL_GUESSES = 5;
-	static const Fish DEFAULT_FISH = Fish::COD;//TODO: FOR NOW!!
 	static const Item BAIT_ITEM = Item::BAIT;
 
 	static void ClearFishGame()
@@ -58,7 +57,7 @@ namespace game//20211013
 			{true, fishery.stock},
 			{false, fishery.depletion}
 		};
-		return (common::RNG::FromGenerator(inStock, false));
+		return (common::RNG::FromGenerator(inStock));
 	}
 
 	static void AddFishFromFishery(int fisheryId, const Fishery& fishery, std::map<Fish, size_t>& fishGenerator)
@@ -72,7 +71,7 @@ namespace game//20211013
 
 	static void AddFishFromFisheries(const std::map<int, size_t>& fisheryGenerator, std::map<Fish, size_t>& fishGenerator)
 	{
-		int fisheryId = common::RNG::FromGenerator(fisheryGenerator, 0);
+		int fisheryId = common::RNG::FromGenerator(fisheryGenerator);
 		auto fishery = Fisheries::Read(fisheryId);
 		if (fishery)
 		{
@@ -114,7 +113,7 @@ namespace game//20211013
 	static Fish GenerateFish()
 	{
 		std::map<Fish, size_t> fishGenerator = MakeFishGenerator(MakeFisheryGenerator());
-		return common::RNG::FromGenerator(fishGenerator, DEFAULT_FISH);
+		return common::RNG::FromGenerator(fishGenerator);
 	}
 	//^^^^  Fish/Junk Generator
 

@@ -29,8 +29,8 @@ namespace game
 		auto islands = data::game::Island::All();
 		size_t index = common::RNG::FromRange(0u, islands.size());
 		auto island = common::Utility::GetNth(islands, index);
-		auto item = common::RNG::FromGenerator(cargoTypeGenerator, Item::SACK_OF_WHEAT);
-		auto ship = common::RNG::FromGenerator(shipTypeGenerator, ShipType::RAFT);
+		auto item = common::RNG::FromGenerator(cargoTypeGenerator);
+		auto ship = common::RNG::FromGenerator(shipTypeGenerator);
 		auto tonnage = ShipTypes::GetTotalTonnage(ship);
 		auto cargoQuantity = (size_t)common::RNG::FromRange(0.0, tonnage / Items::GetUnitTonnage(item));
 		game::islands::Markets::BuyItems(location, item, cargoQuantity);

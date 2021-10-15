@@ -211,7 +211,7 @@ namespace game//20211014
 				}
 			}
 		}
-		return common::RNG::FromGenerator(rationsGenerator, rationsGenerator.begin()->first);
+		return common::RNG::FromGenerator(rationsGenerator);
 	}
 
 	const std::string& Items::GetName(const game::Item& item)

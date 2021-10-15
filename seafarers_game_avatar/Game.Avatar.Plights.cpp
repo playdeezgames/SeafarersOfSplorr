@@ -98,7 +98,7 @@ namespace game::avatar
 				generator[descriptor.first] = descriptor.second.generationWeight;
 			}
 		}
-		return common::RNG::FromGenerator(generator, Plight::AGING_IMMUNITY);
+		return common::RNG::FromGenerator(generator);
 	}
 
 	void Plights::Inflict(const Plight& plight)

@@ -49,18 +49,18 @@ namespace game
 
 	static std::string GenerateName()
 	{
-		size_t nameLength = common::RNG::FromGenerator(nameLengths,(size_t)0);
+		size_t nameLength = common::RNG::FromGenerator(nameLengths);
 		bool vowel = false;
 		std::string result = "";
 		while (nameLength > 0)
 		{
 			if (vowel)
 			{
-				result = result + common::RNG::FromGenerator(vowels, std::string(""));
+				result = result + common::RNG::FromGenerator(vowels);
 			}
 			else
 			{
-				result = result + common::RNG::FromGenerator(consonants, std::string(""));
+				result = result + common::RNG::FromGenerator(consonants);
 			}
 			vowel = !vowel;
 			nameLength--;
@@ -116,14 +116,14 @@ namespace game
 		data::game::Demigod::Clear();
 		data::game::DemigodItem::Clear();
 		data::game::avatar::DemigodFavor::Clear(Player::GetAvatarId());
-		auto demigodCount = common::RNG::FromGenerator(demigodCounts, 0);
+		auto demigodCount = common::RNG::FromGenerator(demigodCounts);
 		auto names = GenerateNames(demigodCount);
 		auto items = Items::All();
 		for (auto name : names)
 		{
 			data::game::Demigod demigod ={ 
 				name,
-				common::RNG::FromGenerator(patronWeights, (size_t)0),
+				common::RNG::FromGenerator(patronWeights),
 				BLESSING_THRESHOLD,
 				BLESSING_MULTIPLIER,
 				(int)avatar::Plights::Generate(avatar::PlightType::BLESSING),
