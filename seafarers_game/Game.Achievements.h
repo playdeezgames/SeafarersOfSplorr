@@ -12,12 +12,12 @@ namespace game//20211013
 		MOVES_MADE
 	};
 }
-namespace game::Statistics
+namespace game::Statistics//20211013
 {
 	void Increment(const game::Statistic&);
 	std::optional<int> Read(const game::Statistic&);
 }
-namespace game::Achievements
+namespace game::Achievements//20211013
 {
 	void Add(const game::Achievement&);
 	void Start();

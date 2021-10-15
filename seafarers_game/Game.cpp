@@ -18,7 +18,7 @@
 #include "Game.World.h"
 #include <list>
 #include <map>
-namespace game
+namespace game//20211015
 {
 	static std::list<std::function<void()>> resetters;
 	static void AddResetter(std::function<void()> resetter)
