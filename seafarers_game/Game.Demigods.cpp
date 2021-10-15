@@ -1,3 +1,4 @@
+#include <Common.NameGenerator.h>
 #include <Common.RNG.h>
 #include <Data.Game.Avatar.DemigodFavor.h>
 #include <Data.Game.Demigod.h>
@@ -9,7 +10,7 @@
 #include <map>
 #include <set>
 #include <string>
-namespace game
+namespace game//20211015
 {
 	static const std::map<std::string, size_t> consonants =
 	{
@@ -47,25 +48,17 @@ namespace game
 		{9,1}
 	};
 
+	static const common::NameGenerator nameGenerator = 
+	{
+		nameLengths,
+		{ {false, 1} },
+		vowels,
+		consonants
+	};
+
 	static std::string GenerateName()
 	{
-		size_t nameLength = common::RNG::FromGenerator(nameLengths);
-		bool vowel = false;
-		std::string result = "";
-		while (nameLength > 0)
-		{
-			if (vowel)
-			{
-				result = result + common::RNG::FromGenerator(vowels);
-			}
-			else
-			{
-				result = result + common::RNG::FromGenerator(consonants);
-			}
-			vowel = !vowel;
-			nameLength--;
-		}
-		return result;
+		return nameGenerator.Generate();
 	}
 
 	static std::set<std::string> GenerateNames(size_t nameCount)

@@ -1,4 +1,5 @@
 #include <Common.Heading.h>
+#include <Common.NameGenerator.h>
 #include <Common.RNG.h>
 #include <Data.Game.Avatar.Destination.h>
 #include <Data.Game.Avatar.DestinationName.h>
@@ -86,26 +87,17 @@ namespace game//20211014
 		{true, 1},
 		{false, 1}
 	};
+	const common::NameGenerator nameGenerator = 
+	{
+		LENGTH_GENERATOR,
+		IS_VOWEL_GENERATOR,
+		VOWEL_GENERATOR,
+		CONSONANT_GENERATOR
+	};
 
 	static std::string GenerateName()
 	{
-		auto length = common::RNG::FromGenerator(LENGTH_GENERATOR);
-		auto isVowel = common::RNG::FromGenerator(IS_VOWEL_GENERATOR);
-		std::stringstream ss;
-		while (length > 0)
-		{
-			if (isVowel)
-			{
-				ss << common::RNG::FromGenerator(VOWEL_GENERATOR);
-			}
-			else
-			{
-				ss << common::RNG::FromGenerator(CONSONANT_GENERATOR);
-			}
-			length--;
-			isVowel = !isVowel;
-		}
-		return ss.str();;
+		return nameGenerator.Generate();
 	}
 
 	const std::vector<std::string> permanentNames =
