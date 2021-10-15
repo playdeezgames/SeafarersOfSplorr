@@ -2,7 +2,7 @@
 #include <Common.Utility.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.h"
-namespace data::game
+namespace data::game//20211011
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Islands]([X] REAL NOT NULL,[Y] REAL NOT NULL,[Name] TEXT NOT NULL,[MerchantSpawnRate] REAL NOT NULL,[PatronDemigod] TEXT NOT NULL,UNIQUE([X],[Y]));";
 	static const std::string QUERY_ITEM = "SELECT [X],[Y],[Name],[MerchantSpawnRate],[PatronDemigod] FROM [Islands] WHERE [X] = {:.4f} AND [Y]={:.4f};";

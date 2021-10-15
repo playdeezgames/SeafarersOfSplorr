@@ -1,9 +1,9 @@
 #pragma once
 #include <Common.XY.h>
 #include <optional>
-namespace data::game::avatar
+namespace data::game::avatar//20211011
 {
-	struct Dock//20211011
+	struct Dock
 	{
 		static void Write(int, const common::XY<double>&);
 		static void Clear(int);

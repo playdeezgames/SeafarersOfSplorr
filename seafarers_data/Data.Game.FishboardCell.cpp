@@ -2,7 +2,7 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.FishboardCell.h"
 #include "Data.Game.Player.h"
-namespace data::game
+namespace data::game//20211015
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [FishboardCells]([AvatarId] INT NOT NULL, [X] INT NOT NULL, [Y] INT NOT NULL, [Revealed] INT NOT NULL, [FishType] INT NULL, UNIQUE([AvatarId],[X],[Y]));";
 	static const std::string DELETE_ALL = "DELETE FROM [FishboardCells] WHERE [AvatarId]={};";
