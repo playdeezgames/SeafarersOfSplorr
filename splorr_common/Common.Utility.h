@@ -147,6 +147,18 @@ namespace common
 			}
 			return std::nullopt;
 		}
+		template<typename TKey, typename TValue>
+		static const std::list<TKey>& ListFromTable(std::list<TKey>& list, const std::map<TKey, TValue>& table)
+		{
+			if (list.empty() && !table.empty())
+			{
+				for (auto& entry : table)
+				{
+					list.push_back(entry.first);
+				}
+			}
+			return list;
+		}
 	};
 }
 

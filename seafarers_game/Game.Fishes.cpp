@@ -1,3 +1,4 @@
+#include <Common.Utility.h>
 #include <Common.RNG.h>
 #include <functional>
 #include "Game.Fishes.h"
@@ -112,14 +113,7 @@ namespace game
 
 	std::list<Fish> Fishes::All()
 	{
-		if (fishes.empty())
-		{
-			for (auto& descriptor : descriptors)
-			{
-				fishes.push_back(descriptor.first);
-			}
-		}
-		return fishes;
+		return common::Utility::ListFromTable(fishes, descriptors);
 	}
 
 	std::list<Fish> Fishes::AllJunk()

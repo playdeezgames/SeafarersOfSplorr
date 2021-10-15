@@ -1,3 +1,4 @@
+#include <Common.Utility.h>
 #include "Game.Features.h"
 #include <map>
 namespace game
@@ -35,14 +36,7 @@ namespace game
 
 	const std::list<game::Feature>& Features::All()
 	{
-		if (featureList.empty())
-		{
-			for (auto entry : featureDescriptors)
-			{
-				featureList.push_back(entry.first);
-			}
-		}
-		return featureList;
+		return common::Utility::ListFromTable(featureList, featureDescriptors);
 	}
 
 	const std::string& Features::GetName(const game::Feature& feature)

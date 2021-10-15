@@ -1,3 +1,4 @@
+#include <Common.Utility.h>
 #include "Game.EquipSlots.h"
 #include <map>
 namespace game
@@ -33,14 +34,7 @@ namespace game
 
 	const std::list<EquipSlot>& EquipSlots::All()
 	{
-		if (equipSlots.empty())
-		{
-			for (auto& entry : equipSlotDescriptors)
-			{
-				equipSlots.push_back(entry.first);
-			}
-		}
-		return equipSlots;
+		return common::Utility::ListFromTable(equipSlots, equipSlotDescriptors);
 	}
 
 	static const EquipSlotDescriptor& Read(const EquipSlot& equipSlot)

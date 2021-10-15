@@ -1,4 +1,5 @@
 #include <Common.RNG.h>
+#include <Common.Utility.h>
 #include "Game.BerthType.h"
 #include "Game.ShipTypes.h"
 #include "Game.Ship.Property.h"
@@ -124,14 +125,7 @@ namespace game
 
 	const std::list<game::ShipType>& ShipTypes::All()
 	{
-		if (shipList.empty())
-		{
-			for (auto& ship : ships)
-			{
-				shipList.push_back(ship.first);
-			}
-		}
-		return shipList;
+		return common::Utility::ListFromTable(shipList, ships);
 	}
 
 	std::map<game::ShipType, size_t> initialShipGenerator;

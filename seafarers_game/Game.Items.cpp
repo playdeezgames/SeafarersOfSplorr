@@ -1,4 +1,5 @@
 #include <Common.RNG.h>
+#include <Common.Utility.h>
 #include "Game.Items.h"
 #include <map>
 namespace game//20211014
@@ -187,14 +188,7 @@ namespace game//20211014
 
 	const std::list<game::Item>& Items::All()
 	{
-		if (itemList.empty())
-		{
-			for (auto entry : itemTable)
-			{
-				itemList.push_back(entry.first);
-			}
-		}
-		return itemList;
+		return common::Utility::ListFromTable(itemList, itemTable);
 	}
 
 	static std::map<game::Item, size_t> rationsGenerator;

@@ -1,3 +1,4 @@
+#include <Common.Utility.h>
 #include "Game.Commodities.h"
 #include <map>
 #include <string>
@@ -34,14 +35,7 @@ namespace game
 
 	const std::list<game::Commodity>& Commodities::All()
 	{
-		if (commodityList.empty())
-		{
-			for (auto entry : commodityTable)
-			{
-				commodityList.push_back(entry.first);
-			}
-		}
-		return commodityList;
+		return common::Utility::ListFromTable(commodityList, commodityTable);
 	}
 
 	double Commodities::GetBasePrice(const game::Commodity& commodity)
