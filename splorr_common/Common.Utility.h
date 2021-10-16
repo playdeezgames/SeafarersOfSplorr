@@ -169,14 +169,23 @@ namespace common
 			return ListFromTable<TKey, TValue>(list, table, filter);
 		}
 		template<typename TInput, typename TOutput>
-		static std::list<TOutput> MapList(std::function<std::list<TInput>()> source, std::function<TOutput(const TInput&)> transform)
+		static std::list<TOutput> MapList(std::function<std::list<TInput>()> source, std::function<TOutput(const TInput&)> transform, std::function<bool(const TOutput&)> filter)
 		{
 			std::list<TOutput> result;
 			for (auto& entry : source())
 			{
-				result.push_back(transform(entry));
+				auto candidate = transform(entry);
+				if (filter(candidate))
+				{
+					result.push_back(candidate);
+				}
 			}
 			return result;
+		}
+		template<typename TInput, typename TOutput>
+		static std::list<TOutput> MapList(std::function<std::list<TInput>()> source, std::function<TOutput(const TInput&)> transform)
+		{
+			return MapList<TInput, TOutput>(source, transform, [](const TOutput&) { return true; });
 		}
 	};
 }

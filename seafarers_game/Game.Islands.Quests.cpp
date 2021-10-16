@@ -1,4 +1,5 @@
 #include <Common.RNG.h>
+#include <Common.Utility.h>
 #include <Data.Game.Island.h>
 #include <Data.Game.Island.Quest.h>
 #include <format>
@@ -10,14 +11,17 @@
 namespace game::islands
 {
 	static const double MAXIMUM_REWARD = 10.0;
+	static const double DEFAULT_MINIMUM_REWARD = 1.0;
+	static const double DEFAULT_MAXIMUM_REWARD = 1.0;
+	static const double NEGATIVE_REWARD_RADIX = 2.0;
 	static double GenerateReward()
 	{
 		double reputation = floor(game::avatar::Statistics::GetReputation());
-		double minimum = 1.0;
-		double maximum = 1.0;
+		double minimum = DEFAULT_MINIMUM_REWARD;
+		double maximum = DEFAULT_MAXIMUM_REWARD;
 		if (reputation <= 0.0)
 		{
-			minimum = std::pow(10.0, reputation);
+			minimum = std::pow(NEGATIVE_REWARD_RADIX, reputation);
 		}
 		else
 		{
@@ -197,43 +201,42 @@ namespace game::islands
 
 	static common::XY<double> GenerateDestination(const common::XY<double>& location)
 	{
-		auto allIslands = data::game::Island::All();
-		size_t index = common::RNG::FromRange(0u, allIslands.size() - 1);
-		for (auto& island : allIslands)
-		{
-			if (island.location != location)
-			{
-				if (index == 0)
-				{
-					return island.location;
-				}
-				index--;
-			}
-		}
-		throw "YOU SHOULD NOT GET HERE!";
+		auto allOtherIslands = data::game::Island::Filter([location](const data::game::Island& island) { return island.location != location; });
+		size_t index = common::RNG::FromRange(0u, allOtherIslands.size() - 1);
+		return common::Utility::GetNth(allOtherIslands, index)->location;
 	}
 
 	void Quests::Update(const common::XY<double>& location)
 	{
-		auto islandModel = game::Islands::Read(location);
-		if (islandModel)
+		if (game::Islands::Read(location).has_value())
 		{
-			auto quest = data::game::island::Quest::Read(location);
-			if (!quest)
+			if (!data::game::island::Quest::Read(location).has_value())
 			{
-				data::game::island::Quest data =
-				{
-					location,
-					GenerateDestination(location),
-					GenerateReward(),
-					GenerateItemName(),
-					GeneratePersonName(),
-					GenerateProfessionName(),
-					GenerateReceiptEmotion()
-				};
-				data::game::island::Quest::Write(data);
+				data::game::island::Quest::Write(
+					{
+						location,
+						GenerateDestination(location),
+						GenerateReward(),
+						GenerateItemName(),
+						GeneratePersonName(),
+						GenerateProfessionName(),
+						GenerateReceiptEmotion()
+					});
 			}
 		}
+	}
+
+	static Quest ToQuest(const data::game::island::Quest& quest)
+	{
+		return
+			{
+				quest.destination,
+				quest.reward,
+				quest.itemName,
+				quest.personName,
+				quest.professionName,
+				quest.receiptEmotion
+			};
 	}
 
 	std::optional<game::Quest> Quests::Read(const common::XY<double>& location)
@@ -241,13 +244,7 @@ namespace game::islands
 		auto quest = data::game::island::Quest::Read(location);
 		if (quest)
 		{
-			return std::optional<game::Quest>({
-				quest.value().destination,
-				quest.value().reward,
-				quest.value().itemName,
-				quest.value().personName,
-				quest.value().professionName,
-				quest.value().receiptEmotion});
+			return ToQuest(quest.value());
 		}
 		return std::nullopt;
 	}
