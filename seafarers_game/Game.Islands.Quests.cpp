@@ -8,7 +8,7 @@
 #include "Game.Islands.Quests.h"
 #include <map>
 #include <string>
-namespace game::islands
+namespace game::islands//20211016
 {
 	static const double MAXIMUM_REWARD = 10.0;
 	static const double DEFAULT_MINIMUM_REWARD = 1.0;
