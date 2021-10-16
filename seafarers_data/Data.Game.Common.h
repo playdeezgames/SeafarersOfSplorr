@@ -9,9 +9,11 @@ namespace data::game//20211011
 {
 	struct Common
 	{
-		static std::list<std::map<std::string, std::string>> Execute(const std::string&);
+		typedef std::map<std::string, std::string> Record;
+		static std::list<Record> Execute(const std::string&);
+		static std::function<std::list<Record>()> DoExecute(const std::string&);
 		template<typename ...Ts>
-		static std::list<std::map<std::string, std::string>> Execute(const std::string& query, Ts... args)
+		static std::list<Record> Execute(const std::string& query, Ts... args)
 		{
 			return Common::Execute(std::format(query, args...));
 		}

@@ -8,10 +8,19 @@ namespace data::game//20211011
 	static const std::string FIELD_X = "X";
 	static const std::string FIELD_Y = "Y";
 
-	std::list<std::map<std::string, std::string>> Common::Execute(const std::string& query)
+	std::list<Common::Record> Common::Execute(const std::string& query)
 	{
 		return data::sqlite::Stores::Execute(data::sqlite::Store::IN_MEMORY, query);
 	}
+
+	std::function<std::list<Common::Record>()> Common::DoExecute(const std::string& query)
+	{
+		return [query]() 
+		{
+			return Execute(query);
+		};
+	}
+
 
 	std::function<void()> Common::Run(const std::string& query)
 	{
@@ -20,7 +29,7 @@ namespace data::game//20211011
 			Execute(query);
 		};
 	}
-	common::XY<double> Common::ToXY(const std::map<std::string, std::string>& record)
+	common::XY<double> Common::ToXY(const Common::Record& record)
 	{
 		return
 		{

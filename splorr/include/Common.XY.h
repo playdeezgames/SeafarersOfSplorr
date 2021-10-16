@@ -36,6 +36,16 @@ namespace common
 		{
 			return XY<TOther>((TOther)GetX(), (TOther)GetY());
 		}
+		XY<TDimension>& ReflectX()
+		{
+			x = -x;
+			return *this;
+		}
+		XY<TDimension>& ReflectY()
+		{
+			y = -y;
+			return *this;
+		}
 	};
 	template<typename TDimension>
 	XY<TDimension> operator+(const XY<TDimension>& first, const XY<TDimension>& second)

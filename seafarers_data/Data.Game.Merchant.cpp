@@ -1,3 +1,4 @@
+#include <Common.Utility.h>
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Merchant.h"
@@ -35,7 +36,7 @@ namespace data::game//20211010
 			merchant.cargoQuantity);
 	}
 
-	static Merchant ToMerchant(const std::map<std::string, std::string> record)
+	static Merchant ToMerchant(const Common::Record& record)
 	{
 		return {
 			common::Data::ToInt(record.find(FIELD_MERCHANT_ID)->second),
@@ -57,12 +58,7 @@ namespace data::game//20211010
 	{
 		AutoCreateMerchantsTable();
 		std::list<Merchant> result;
-		auto records = Common::Execute(QUERY_ALL);
-		for (auto& record : records)
-		{
-			result.push_back(ToMerchant(record));
-		}
-		return result;
+		return common::Utility::MapList<Common::Record, Merchant>(Common::DoExecute(QUERY_ALL), ToMerchant);
 	}
 
 	void Merchant::Update(const Merchant& merchant)
@@ -93,5 +89,4 @@ namespace data::game//20211010
 		AutoCreateMerchantsTable();
 		Common::Execute(DELETE_ALL);
 	}
-
 }

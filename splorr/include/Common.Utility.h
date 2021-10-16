@@ -159,6 +159,16 @@ namespace common
 			}
 			return list;
 		}
+		template<typename TInput, typename TOutput>
+		static std::list<TOutput> MapList(std::function<std::list<TInput>()> source, std::function<TOutput(const TInput&)> transform)
+		{
+			std::list<TOutput> result;
+			for (auto& entry : source())
+			{
+				result.push_back(transform(entry));
+			}
+			return result;
+		}
 	};
 }
 
