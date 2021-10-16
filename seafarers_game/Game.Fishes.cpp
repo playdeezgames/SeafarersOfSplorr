@@ -3,7 +3,7 @@
 #include <functional>
 #include "Game.Fishes.h"
 #include <map>
-namespace game
+namespace game//20211016
 {
 	struct FishDescriptor
 	{
@@ -118,17 +118,11 @@ namespace game
 
 	std::list<Fish> Fishes::AllJunk()
 	{
-		if (junk.empty())
-		{
-			for (auto& descriptor : descriptors)
-			{
-				if (descriptor.second.junkWeight > 0)
-				{
-					junk.push_back(descriptor.first);
-				}
-			}
-		}
-		return junk;
+		return 
+			common::Utility::ListFromTable<Fish, FishDescriptor>(
+				fishes, 
+				descriptors, 
+				[](const FishDescriptor& descriptor) { return descriptor.junkWeight > 0; });
 	}
 
 	static const FishDescriptor& Read(const Fish& fish)
@@ -172,13 +166,11 @@ namespace game
 	const common::XY<size_t>& Fishes::GetSize(const Fish& fish)
 	{
 		return Read(fish).size;
-
 	}
 
 	Item Fishes::GetItem(const Fish& fish)
 	{
 		return Read(fish).item;
-
 	}
 
 	size_t Fishes::GetJunkWeight(const Fish& fish)
@@ -190,7 +182,5 @@ namespace game
 	const std::string& Fishes::GetSprite(const Fish& fish)
 	{
 		return Read(fish).sprite;
-
 	}
-
 }

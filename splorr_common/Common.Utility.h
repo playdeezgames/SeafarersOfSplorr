@@ -148,16 +148,25 @@ namespace common
 			return std::nullopt;
 		}
 		template<typename TKey, typename TValue>
-		static const std::list<TKey>& ListFromTable(std::list<TKey>& list, const std::map<TKey, TValue>& table)
+		static const std::list<TKey>& ListFromTable(std::list<TKey>& list, const std::map<TKey, TValue>& table, std::function<bool(const TValue&)> filter)
 		{
 			if (list.empty() && !table.empty())
 			{
 				for (auto& entry : table)
 				{
-					list.push_back(entry.first);
+					if (filter(entry.second))
+					{
+						list.push_back(entry.first);
+					}
 				}
 			}
 			return list;
+		}
+		template<typename TKey, typename TValue>
+		static const std::list<TKey>& ListFromTable(std::list<TKey>& list, const std::map<TKey, TValue>& table)
+		{
+			std::function<bool(const TValue&)> filter = [](const TValue&) { return true; };
+			return ListFromTable<TKey, TValue>(list, table, filter);
 		}
 		template<typename TInput, typename TOutput>
 		static std::list<TOutput> MapList(std::function<std::list<TInput>()> source, std::function<TOutput(const TInput&)> transform)
