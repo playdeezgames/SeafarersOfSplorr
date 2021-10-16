@@ -187,6 +187,15 @@ namespace common
 		{
 			return MapList<TInput, TOutput>(source, transform, [](const TOutput&) { return true; });
 		}
+		template<typename TInput, typename TOutput>
+		static std::optional<TOutput> MapOptional(const std::optional<TInput>& source, std::function<TOutput(const TInput&)> transform)
+		{
+			if (source)
+			{
+				return transform(source.value());
+			}
+			return std::nullopt;
+		}
 	};
 }
 
