@@ -13,6 +13,7 @@
 #include <Game.Avatar.Quest.h>
 #include <Game.Avatar.Plights.h>
 #include <Game.Avatar.Statistics.h>
+#include <Game.Avatar.StatisticFormats.h>
 #include <Game.Colors.h>
 #include <Game.Demigods.h>
 #include <Game.Islands.h>
@@ -55,14 +56,14 @@ namespace state::in_play
 
 	static void UpdateStatistics()
 	{
-		WriteTextToGridRight({ 39,0 }, std::format(game::avatar::Statistics::FORMAT_MONEY, game::avatar::Statistics::GetMoney()), game::Colors::YELLOW);
-		WriteTextToGridRight({ 39,1 }, std::format(game::avatar::Statistics::FORMAT_REPUTATION, game::avatar::Statistics::GetReputation()), game::Colors::BLUE);
-		WriteTextToGridRight({ 39,2 }, std::format(game::avatar::Statistics::FORMAT_BRAWLING, game::avatar::Statistics::GetBrawling()), game::Colors::BROWN);
-		WriteTextToGridRight({ 39,3 }, std::format(game::avatar::Statistics::FORMAT_HEALTH, game::avatar::Statistics::GetHealth()), game::Colors::RED);
-		WriteTextToGridRight({ 39,4 }, std::format(game::avatar::Statistics::FORMAT_SATIETY, game::avatar::Statistics::GetSatiety()), game::Colors::MAGENTA);
-		WriteTextToGridRight({ 39,5 }, std::format(game::avatar::Statistics::FORMAT_TURNS, game::avatar::Statistics::GetTurnsRemaining()), game::Colors::DARK_GRAY);
-		WriteTextToGridRight({ 39,6 }, std::format(game::avatar::Statistics::FORMAT_DIGNITY, game::avatar::Statistics::GetDignity()), game::Colors::GRAY);
-		WriteTextToGridRight({ 39,7 }, std::format(game::avatar::Statistics::FORMAT_POSHNESS, game::avatar::Statistics::GetPoshness()), game::Colors::CYAN);
+		WriteTextToGridRight({ 39,0 }, std::format(game::avatar::StatisticFormats::FORMAT_MONEY, game::avatar::Statistics::GetMoney()), game::Colors::YELLOW);
+		WriteTextToGridRight({ 39,1 }, std::format(game::avatar::StatisticFormats::FORMAT_REPUTATION, game::avatar::Statistics::GetReputation()), game::Colors::BLUE);
+		WriteTextToGridRight({ 39,2 }, std::format(game::avatar::StatisticFormats::FORMAT_BRAWLING, game::avatar::Statistics::GetBrawling()), game::Colors::BROWN);
+		WriteTextToGridRight({ 39,3 }, std::format(game::avatar::StatisticFormats::FORMAT_HEALTH, game::avatar::Statistics::GetHealth()), game::Colors::RED);
+		WriteTextToGridRight({ 39,4 }, std::format(game::avatar::StatisticFormats::FORMAT_SATIETY, game::avatar::Statistics::GetSatiety()), game::Colors::MAGENTA);
+		WriteTextToGridRight({ 39,5 }, std::format(game::avatar::StatisticFormats::FORMAT_TURNS, game::avatar::Statistics::GetTurnsRemaining()), game::Colors::DARK_GRAY);
+		WriteTextToGridRight({ 39,6 }, std::format(game::avatar::StatisticFormats::FORMAT_DIGNITY, game::avatar::Statistics::GetDignity()), game::Colors::GRAY);
+		WriteTextToGridRight({ 39,7 }, std::format(game::avatar::StatisticFormats::FORMAT_POSHNESS, game::avatar::Statistics::GetPoshness()), game::Colors::CYAN);
 	}
 
 	static void UpdatePlights()

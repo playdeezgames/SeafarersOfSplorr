@@ -5,6 +5,7 @@
 #include <Game.Avatar.Log.h>
 #include <Game.Avatar.Quest.h>
 #include <Game.Avatar.Statistics.h>
+#include <Game.Avatar.StatisticFormats.h>
 #include <Game.Islands.h>
 #include <Game.Ship.h>
 #include <Game.World.h>
@@ -34,27 +35,27 @@ namespace sublayout
 
 	static void RefreshAvatarSatiety()
 	{
-		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_SATIETY, game::avatar::Statistics::FORMAT_SATIETY, game::avatar::Statistics::GetSatiety());
+		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_SATIETY, game::avatar::StatisticFormats::FORMAT_SATIETY, game::avatar::Statistics::GetSatiety());
 	}
 
 	static void RefreshAvatarMoney()
 	{
-		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_MONEY, game::avatar::Statistics::FORMAT_MONEY, game::avatar::Statistics::GetMoney());
+		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_MONEY, game::avatar::StatisticFormats::FORMAT_MONEY, game::avatar::Statistics::GetMoney());
 	}
 
 	static void RefreshAvatarReputation()
 	{
-		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_REPUTATION, game::avatar::Statistics::FORMAT_REPUTATION, game::avatar::Statistics::GetReputation());
+		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_REPUTATION, game::avatar::StatisticFormats::FORMAT_REPUTATION, game::avatar::Statistics::GetReputation());
 	}
 
 	static void RefreshAvatarHealth()
 	{
-		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_HEALTH, game::avatar::Statistics::FORMAT_HEALTH, game::avatar::Statistics::GetHealth());
+		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_HEALTH, game::avatar::StatisticFormats::FORMAT_HEALTH, game::avatar::Statistics::GetHealth());
 	}
 
 	static void RefreshAvatarTurns()
 	{
-		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_TURNS, game::avatar::Statistics::FORMAT_TURNS, game::avatar::Statistics::GetTurnsRemaining());
+		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_TURNS, game::avatar::StatisticFormats::FORMAT_TURNS, game::avatar::Statistics::GetTurnsRemaining());
 	}
 
 	static void RefreshAvatarHeading()
@@ -63,7 +64,7 @@ namespace sublayout
 		visuals::Texts::SetText(
 			SUBLAYOUT_NAME,
 			TEXT_AVATAR_HEADING, 
-			game::avatar::Statistics::FORMAT_HEADING, 
+			game::avatar::StatisticFormats::FORMAT_HEADING,
 			common::Heading::ToCompassPoint(heading));
 	}
 
@@ -73,7 +74,7 @@ namespace sublayout
 		visuals::Texts::SetText(
 			SUBLAYOUT_NAME, 
 			TEXT_AVATAR_SPEED, 
-			game::avatar::Statistics::FORMAT_SPEED, 
+			game::avatar::StatisticFormats::FORMAT_SPEED,
 			speed);
 	}
 

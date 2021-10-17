@@ -74,6 +74,9 @@
     <ClInclude Include="Game.Avatar.Rations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Avatar.StatisticFormats.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Avatar.ActionDescriptors.cpp">
@@ -116,6 +119,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.Avatar.Rations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Avatar.StatisticFormats.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

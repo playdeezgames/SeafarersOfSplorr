@@ -10,6 +10,7 @@
 #include <Game.Avatar.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Statistics.h>
+#include <Game.Avatar.StatisticFormats.h>
 #include <Game.Colors.h>
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.DarkAlley.FightCard.h>
@@ -208,17 +209,17 @@ namespace state::in_play
 		visuals::Texts::SetText(
 			LAYOUT_NAME, 
 			TEXT_ENEMY_BRAWLING, 
-			game::avatar::Statistics::FORMAT_BRAWLING, 
+			game::avatar::StatisticFormats::FORMAT_BRAWLING, 
 			GetRuffianBrawling());
 		visuals::Texts::SetText(
 			LAYOUT_NAME, 
 			TEXT_BRAWLING, 
-			game::avatar::Statistics::FORMAT_BRAWLING, 
+			game::avatar::StatisticFormats::FORMAT_BRAWLING,
 			game::avatar::Statistics::GetBrawling());
 		visuals::Texts::SetText(
 			LAYOUT_NAME, 
 			TEXT_HEALTH, 
-			game::avatar::Statistics::FORMAT_HEALTH, 
+			game::avatar::StatisticFormats::FORMAT_HEALTH,
 			game::avatar::Statistics::GetHealth());
 	}
 
