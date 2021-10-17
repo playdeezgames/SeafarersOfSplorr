@@ -50,7 +50,7 @@ namespace game::avatar//20211011
 
 	std::optional<Docked::DockResult> Docked::Dock()
 	{
-		if (GetDockedLocation().has_value())
+		if (ReadLocation().has_value())
 		{
 			return DockResult::ALREADY_DOCKED;
 		}
@@ -62,7 +62,7 @@ namespace game::avatar//20211011
 		return std::nullopt;
 	}
 
-	std::optional<common::XY<double>> Docked::GetDockedLocation()
+	std::optional<common::XY<double>> Docked::ReadLocation()
 	{
 		return data::game::avatar::Dock::Read(Player::GetAvatarId());
 	}

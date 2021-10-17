@@ -43,7 +43,7 @@ namespace state::in_play
 
 	static void OnAccept()//TODO: make this more declarative
 	{
-		switch (game::avatar::Quest::AcceptQuest(game::avatar::Docked::GetDockedLocation().value()))
+		switch (game::avatar::Quest::AcceptQuest(game::avatar::Docked::ReadLocation().value()))
 		{
 		case game::avatar::Quest::AcceptQuestResult::ACCEPTED_QUEST:
 			game::avatar::Log::Write({
@@ -108,7 +108,7 @@ namespace state::in_play
 
 	static void UpdateText()
 	{
-		auto location = game::avatar::Docked::GetDockedLocation().value();
+		auto location = game::avatar::Docked::ReadLocation().value();
 		auto quest = game::islands::Quests::Read(location);
 		if (quest)
 		{

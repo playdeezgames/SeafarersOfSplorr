@@ -203,7 +203,7 @@ namespace state::in_play
 		auto item = common::Utility::GetNthKey(items, hiliteRow);
 		if (item)
 		{
-			auto location = game::avatar::Docked::GetDockedLocation().value();
+			auto location = game::avatar::Docked::ReadLocation().value();
 			auto island = game::Islands::Read(location).value();
 			game::avatar::Items::Remove(item.value(), 1);
 			OnOfferingResult(game::Demigods::MakeOffering(island.patronDemigod, item.value()));

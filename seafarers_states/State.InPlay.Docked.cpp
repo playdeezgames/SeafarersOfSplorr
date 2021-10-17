@@ -106,7 +106,7 @@ namespace state::in_play
 
 	static void RefreshIslandDetails()
 	{
-		auto location = game::avatar::Docked::GetDockedLocation().value();
+		auto location = game::avatar::Docked::ReadLocation().value();
 		auto island = game::Islands::Read(location).value();
 		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_TEMPLE, FORMAT_TEMPLE, island.patronDemigod);
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_ISLAND_NAME, FORMAT_NAME, island.name);

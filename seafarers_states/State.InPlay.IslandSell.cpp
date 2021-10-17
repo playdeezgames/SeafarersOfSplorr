@@ -82,7 +82,7 @@ namespace state::in_play
 
 	static void UpdateUnitPrices()
 	{
-		unitPrices = game::islands::Items::GetSalePrices(game::avatar::Docked::GetDockedLocation().value());
+		unitPrices = game::islands::Items::GetSalePrices(game::avatar::Docked::ReadLocation().value());
 	}
 
 	static const std::string FORMAT_LINE_ITEM = "{:15s} | {:7.3f} | {:4d}";
@@ -158,7 +158,7 @@ namespace state::in_play
 			if (owned > 0)
 			{
 				game::avatar::Statistics::ChangeMoney(totalPrice);
-				game::islands::Markets::SellItems(game::avatar::Docked::GetDockedLocation().value(), item.value(), quantity);
+				game::islands::Markets::SellItems(game::avatar::Docked::ReadLocation().value(), item.value(), quantity);
 				game::avatar::Items::Remove(item.value(), quantity);
 
 				UpdateUnitPrices();

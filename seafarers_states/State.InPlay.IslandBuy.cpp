@@ -78,7 +78,7 @@ namespace state::in_play
 
 	static void UpdateUnitPrices()
 	{
-		unitPrices = game::islands::Items::GetPurchasePrices(game::avatar::Docked::GetDockedLocation().value());
+		unitPrices = game::islands::Items::GetPurchasePrices(game::avatar::Docked::ReadLocation().value());
 	}
 
 	static const std::string LIST_ITEM_FORMAT = "{:14s} | {:7.3f} | {:4d} | {:5.3f}";
@@ -162,7 +162,7 @@ namespace state::in_play
 				if (game::avatar::Ship::AvailableTonnage() >= game::Items::GetUnitTonnage(item.value()) * quantity)
 				{
 					game::avatar::Statistics::ChangeMoney(-totalPrice);
-					game::islands::Markets::BuyItems(game::avatar::Docked::GetDockedLocation().value(), item.value(), quantity);
+					game::islands::Markets::BuyItems(game::avatar::Docked::ReadLocation().value(), item.value(), quantity);
 					game::avatar::Items::Add(item.value(), quantity);
 
 					UpdateUnitPrices();

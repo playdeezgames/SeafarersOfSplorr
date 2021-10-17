@@ -32,7 +32,7 @@ namespace state::in_play
 			game::Colors::RED,
 			"You replace yer job, and yer reputation suffers!" });
 		game::avatar::Quest::AbandonQuest();
-		game::avatar::Quest::AcceptQuest(game::avatar::Docked::GetDockedLocation().value());
+		game::avatar::Quest::AcceptQuest(game::avatar::Docked::ReadLocation().value());
 		game::Avatar::DoAction(game::avatar::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}

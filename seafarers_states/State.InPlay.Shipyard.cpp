@@ -47,7 +47,7 @@ namespace state::in_play
 
 	static void UpdateShipPrices()
 	{
-		auto location = game::avatar::Docked::GetDockedLocation().value();
+		auto location = game::avatar::Docked::ReadLocation().value();
 		auto prices = game::islands::Ships::GetPurchasePrices(location);
 		auto tradeIn = game::islands::Ships::GetSalePrice(location, game::Ship::GetShipType(game::avatar::Ship::Read().value().shipId).value());
 		shipPrices.clear();
@@ -124,7 +124,7 @@ namespace state::in_play
 	{
 		return [desiredShipType, price]()
 		{
-			auto location = game::avatar::Docked::GetDockedLocation().value();
+			auto location = game::avatar::Docked::ReadLocation().value();
 			auto currentShipId = game::avatar::Ship::Read().value().shipId;
 			auto currentShipType = game::Ship::GetShipType(currentShipId).value();
 			game::avatar::Statistics::ChangeMoney(-price);
@@ -206,7 +206,7 @@ namespace state::in_play
 		if (fouling > 0)
 		{
 			double labor = game::World::GetUnfoulingLaborMultiplier() * fouling;
-			double price = game::islands::Commodities::GetPurchasePrice(game::avatar::Docked::GetDockedLocation().value(),
+			double price = game::islands::Commodities::GetPurchasePrice(game::avatar::Docked::ReadLocation().value(),
 				{
 					{game::Commodity::LABOR, labor}
 				});

@@ -61,7 +61,7 @@ namespace state::in_play
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
-		auto location = game::avatar::Docked::GetDockedLocation().value();
+		auto location = game::avatar::Docked::ReadLocation().value();
 		auto island = game::Islands::Read(location).value();
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_CAPTION, FORMAT_TEMPLE, island.patronDemigod);
 	}

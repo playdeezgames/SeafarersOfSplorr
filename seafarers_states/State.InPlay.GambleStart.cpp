@@ -36,14 +36,14 @@ namespace state::in_play
 		return currentWager;
 	}
 
-	static common::XY<double> GetDockedLocation()
+	static common::XY<double> ReadLocation()
 	{
-		return game::avatar::Docked::GetDockedLocation().value();
+		return game::avatar::Docked::ReadLocation().value();
 	}
 
 	static void OnPayAnte(const std::string& message)
 	{
-		auto ante = game::islands::DarkAlley::GetAnte(GetDockedLocation()).value();
+		auto ante = game::islands::DarkAlley::GetAnte(ReadLocation()).value();
 		game::avatar::Statistics::ChangeMoney(-ante);
 		visuals::Messages::Write(
 			{
@@ -81,7 +81,7 @@ namespace state::in_play
 	static void OnNoBet()
 	{
 		OnPayAnte("and are dealt two new cards.");
-		bool canPlayAgain = game::avatar::Statistics::GetMoney() >= game::islands::DarkAlley::GetMinimumWager(GetDockedLocation());
+		bool canPlayAgain = game::avatar::Statistics::GetMoney() >= game::islands::DarkAlley::GetMinimumWager(ReadLocation());
 		if (!canPlayAgain)
 		{
 			game::Avatar::DoAction(game::avatar::Action::ENTER_DARK_ALLEY);
@@ -110,14 +110,14 @@ namespace state::in_play
 
 	static void RefreshCards()
 	{
-		auto hand = game::islands::dark_alley::GamblingHand::Read(GetDockedLocation());
+		auto hand = game::islands::dark_alley::GamblingHand::Read(ReadLocation());
 		visuals::Images::SetSprite(LAYOUT_NAME, IMAGE_FIRST_CARD, visuals::CardSprites::GetSpriteForCard(hand[FIRST_CARD_INDEX]));
 		visuals::Images::SetSprite(LAYOUT_NAME, IMAGE_SECOND_CARD, visuals::CardSprites::GetSpriteForCard(hand[SECOND_CARD_INDEX]));
 	}
 
 	static void RefreshBet()
 	{
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_WAGER, "Wager {:.4f}(ante={:.4f})", currentWager, game::islands::DarkAlley::GetAnte(GetDockedLocation()).value());
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_WAGER, "Wager {:.4f}(ante={:.4f})", currentWager, game::islands::DarkAlley::GetAnte(ReadLocation()).value());
 	}
 
 	static void Refresh()
@@ -129,8 +129,8 @@ namespace state::in_play
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
-		game::islands::dark_alley::GamblingHand::Deal(GetDockedLocation());
-		currentWager = game::islands::DarkAlley::GetMinimumWager(GetDockedLocation()).value();
+		game::islands::dark_alley::GamblingHand::Deal(ReadLocation());
+		currentWager = game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value();
 		Refresh();
 	}
 

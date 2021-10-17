@@ -20,7 +20,7 @@ namespace game::avatar
 
 	static StateTransition OnUndock()
 	{
-		auto location = game::avatar::Docked::GetDockedLocation();
+		auto location = game::avatar::Docked::ReadLocation();
 		auto island = game::Islands::Read(location.value()).value();
 		data::game::avatar::Dock::Clear(Player::GetAvatarId());
 		return {
@@ -34,7 +34,7 @@ namespace game::avatar
 
 	static StateTransition OnEnterDarkAlley()
 	{
-		auto location = game::avatar::Docked::GetDockedLocation().value();
+		auto location = game::avatar::Docked::ReadLocation().value();
 		auto data = data::game::island::DarkAlley::Read(location).value();
 		auto infamy = game::avatar::Statistics::GetInfamy();
 		if (infamy < data.infamyRequirement)

@@ -16,7 +16,7 @@ namespace game::avatar
 		};
 		static void Reset(const game::Difficulty&);
 		static std::optional<DockResult> Dock();
-		static std::optional<common::XY<double>> GetDockedLocation();
+		static std::optional<common::XY<double>> ReadLocation();
 	};
 
 }

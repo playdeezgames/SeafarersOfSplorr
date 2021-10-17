@@ -41,7 +41,7 @@ namespace state::in_play
 	static std::optional<FightResult> fightResult = std::nullopt;
 	static size_t hitsTaken = 0;
 
-	const auto GetDockedLocation = []() { return game::avatar::Docked::GetDockedLocation().value();	};
+	const auto ReadLocation = []() { return game::avatar::Docked::ReadLocation().value();	};
 
 	static void OnLeave()
 	{
@@ -186,7 +186,7 @@ namespace state::in_play
 
 	static void RefreshCards()
 	{
-		auto fightCards = game::islands::dark_alley::FightCard::Read(GetDockedLocation());
+		auto fightCards = game::islands::dark_alley::FightCard::Read(ReadLocation());
 		for (auto& fightCard : fightCards)
 		{
 			auto& cardImage = cardPositions.find(fightCard.first)->second.cardImage;
@@ -201,7 +201,7 @@ namespace state::in_play
 		}
 	}
 
-	static const auto GetRuffianBrawling = []() { return game::islands::DarkAlley::GetRuffianBrawling(GetDockedLocation()).value(); };
+	static const auto GetRuffianBrawling = []() { return game::islands::DarkAlley::GetRuffianBrawling(ReadLocation()).value(); };
 
 	static void RefreshStatistics()
 	{
@@ -366,7 +366,7 @@ namespace state::in_play
 	{
 		if (hoverCard && !fightResult.has_value())
 		{
-			auto fightCard = game::islands::dark_alley::FightCard::Pick(GetDockedLocation(), hoverCard.value());
+			auto fightCard = game::islands::dark_alley::FightCard::Pick(ReadLocation(), hoverCard.value());
 			if (fightCard)
 			{
 				HandleFightCard(fightCard.value());
@@ -393,7 +393,7 @@ namespace state::in_play
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
-		game::islands::dark_alley::FightCard::Generate(GetDockedLocation());
+		game::islands::dark_alley::FightCard::Generate(ReadLocation());
 		hoverCard = std::nullopt;
 		fightResult = std::nullopt;
 		hitsTaken = 0;

@@ -55,9 +55,9 @@ namespace state::in_play
 
 	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
-	static common::XY<double> GetDockedLocation()
+	static common::XY<double> ReadLocation()
 	{
-		return game::avatar::Docked::GetDockedLocation().value();
+		return game::avatar::Docked::ReadLocation().value();
 	}
 
 	static const size_t FIRST_CARD_INDEX = 0;
@@ -66,7 +66,7 @@ namespace state::in_play
 
 	static void RefreshCards()
 	{
-		auto hand = game::islands::dark_alley::GamblingHand::Read(GetDockedLocation());
+		auto hand = game::islands::dark_alley::GamblingHand::Read(ReadLocation());
 		visuals::Images::SetSprite(LAYOUT_NAME, IMAGE_FIRST_CARD, visuals::CardSprites::GetSpriteForCard(hand[FIRST_CARD_INDEX]));
 		visuals::Images::SetSprite(LAYOUT_NAME, IMAGE_SECOND_CARD, visuals::CardSprites::GetSpriteForCard(hand[SECOND_CARD_INDEX]));
 		visuals::Images::SetSprite(LAYOUT_NAME, IMAGE_THIRD_CARD, visuals::CardSprites::GetSpriteForCard(hand[THIRD_CARD_INDEX]));
@@ -80,7 +80,7 @@ namespace state::in_play
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
-		if (game::islands::dark_alley::GamblingHand::IsWinner(GetDockedLocation()))
+		if (game::islands::dark_alley::GamblingHand::IsWinner(ReadLocation()))
 		{
 			game::audio::Sfx::Play(game::audio::GameSfx::WOOHOO);
 			visuals::Texts::SetText(LAYOUT_NAME, TEXT_RESULT, "You win!");
@@ -94,7 +94,7 @@ namespace state::in_play
 		}
 		auto money = game::avatar::Statistics::GetMoney();
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_WIN_LOSE, "You now have {:.4f}", money);
-		bool canPlayAgain = money >= game::islands::DarkAlley::GetMinimumWager(GetDockedLocation());
+		bool canPlayAgain = money >= game::islands::DarkAlley::GetMinimumWager(ReadLocation());
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_PLAY_AGAIN, canPlayAgain);
 		Refresh();
 	}
