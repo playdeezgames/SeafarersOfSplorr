@@ -3,12 +3,12 @@
 #include "Game.Difficulty.h"
 #include "Game.ShipType.h"
 #include <optional>
-namespace game::avatar
+namespace game::avatar//20211017
 {
 	struct Ship
 	{
 		int shipId;
-		BerthType berthType;
+		BerthType berthType;//of the avatar
 
 		static void Reset(const game::Difficulty&);
 		static void Write(const Ship&);

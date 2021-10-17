@@ -1,5 +1,5 @@
 #pragma once
-namespace game::avatar
+namespace game::avatar//20211017
 {
 	enum class State
 	{

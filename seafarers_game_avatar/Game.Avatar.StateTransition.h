@@ -1,13 +1,13 @@
 #pragma once
 #include "Game.Avatar.State.h"
 #include <string>
-namespace game::avatar
+namespace game::avatar//20211017
 {
 	struct StateTransition
 	{
-		std::string logColor;
-		std::string logText;
-		State dockedState;
+		std::string color;
+		std::string text;
+		State state;
 	};
 }
 

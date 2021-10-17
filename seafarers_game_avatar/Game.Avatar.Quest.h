@@ -1,7 +1,7 @@
 #pragma once
 #include "Game.Quest.h"
 #include <optional>
-namespace game::avatar
+namespace game::avatar//20211017
 {
 	enum class AcceptQuestResult
 	{

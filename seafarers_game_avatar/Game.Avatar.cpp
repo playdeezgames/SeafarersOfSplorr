@@ -44,8 +44,8 @@ namespace game
 					if (transition != descriptor->second.end())
 					{
 						auto result = transition->second();
-						avatar::Log::Write({ result.logColor, result.logText });
-						SetState(result.dockedState);
+						avatar::Log::Write({ result.color, result.text });
+						SetState(result.state);
 					}
 				}
 			}
