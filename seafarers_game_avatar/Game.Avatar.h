@@ -5,16 +5,14 @@
 #include "Game.Item.h"
 #include <optional>
 #include <string>
-namespace game
+namespace game//20211017
 {
 	struct Avatar
 	{
 		static bool DoAction(const avatar::Action&);
-		static std::optional<game::avatar::State> GetState();
+		static std::optional<avatar::State> GetState();
 		static void ApplyTurnEffects();
-		static void Reset(const game::Difficulty&);
-		static std::optional<game::Item> GetRations();
-		static void SetRations(const std::optional<game::Item>&);
+		static void Reset(const Difficulty&);
 		static std::optional<std::string> GetName(int);
 	};
 }

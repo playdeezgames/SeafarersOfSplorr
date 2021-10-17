@@ -148,25 +148,6 @@ namespace game
 		game::avatar::Ship::Write({ shipId, BerthType::CAPTAIN });
 	}
 
-	std::optional<game::Item> Avatar::GetRations()
-	{
-		auto itemId = data::game::avatar::Rations::Read(Player::GetAvatarId());
-		if (itemId)
-		{
-			return (game::Item)itemId.value();
-		}
-		return std::nullopt;
-	}
-
-	void Avatar::SetRations(const std::optional<game::Item>& item)
-	{
-		data::game::avatar::Rations::Clear(Player::GetAvatarId());
-		if (item)
-		{
-			data::game::avatar::Rations::Write(Player::GetAvatarId(), (int)item.value());
-		}
-	}
-
 	std::optional<std::string> Avatar::GetName(int avatarId)
 	{
 		auto avatar = data::game::Avatar::Read(avatarId);
@@ -176,5 +157,4 @@ namespace game
 		}
 		return std::nullopt;
 	}
-
 }
