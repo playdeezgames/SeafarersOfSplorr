@@ -4,15 +4,15 @@ namespace game::avatar
 {
 	struct StatisticFormats
 	{
-		static const std::string FORMAT_HEALTH;
-		static const std::string FORMAT_BRAWLING;
-		static const std::string FORMAT_TURNS;
-		static const std::string FORMAT_MONEY;
-		static const std::string FORMAT_REPUTATION;
-		static const std::string FORMAT_SATIETY;
-		static const std::string FORMAT_HEADING;
-		static const std::string FORMAT_SPEED;
-		static const std::string FORMAT_POSHNESS;
-		static const std::string FORMAT_DIGNITY;
+		static const std::string HEALTH;
+		static const std::string BRAWLING;
+		static const std::string TURNS;
+		static const std::string MONEY;
+		static const std::string REPUTATION;
+		static const std::string SATIETY;
+		static const std::string HEADING;
+		static const std::string SPEED;
+		static const std::string POSHNESS;
+		static const std::string DIGNITY;
 	};
 }

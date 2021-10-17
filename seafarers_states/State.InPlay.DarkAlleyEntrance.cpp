@@ -209,17 +209,17 @@ namespace state::in_play
 		visuals::Texts::SetText(
 			LAYOUT_NAME, 
 			TEXT_ENEMY_BRAWLING, 
-			game::avatar::StatisticFormats::FORMAT_BRAWLING, 
+			game::avatar::StatisticFormats::BRAWLING, 
 			GetRuffianBrawling());
 		visuals::Texts::SetText(
 			LAYOUT_NAME, 
 			TEXT_BRAWLING, 
-			game::avatar::StatisticFormats::FORMAT_BRAWLING,
+			game::avatar::StatisticFormats::BRAWLING,
 			game::avatar::Statistics::GetBrawling());
 		visuals::Texts::SetText(
 			LAYOUT_NAME, 
 			TEXT_HEALTH, 
-			game::avatar::StatisticFormats::FORMAT_HEALTH,
+			game::avatar::StatisticFormats::HEALTH,
 			game::avatar::Statistics::GetHealth());
 	}
 
