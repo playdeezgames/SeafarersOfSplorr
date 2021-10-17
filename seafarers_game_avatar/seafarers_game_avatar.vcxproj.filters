@@ -68,6 +68,9 @@
     <ClInclude Include="Game.Ship.Crew.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Avatar.DockResult.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Avatar.ActionDescriptors.cpp">

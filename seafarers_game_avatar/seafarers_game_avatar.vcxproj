@@ -23,6 +23,7 @@
     <ClInclude Include="Game.Avatar.Destination.h" />
     <ClInclude Include="Game.Avatar.Destinations.h" />
     <ClInclude Include="Game.Avatar.Docked.h" />
+    <ClInclude Include="Game.Avatar.DockResult.h" />
     <ClInclude Include="Game.Avatar.Equipment.h" />
     <ClInclude Include="Game.Avatar.h" />
     <ClInclude Include="Game.Avatar.Items.h" />
