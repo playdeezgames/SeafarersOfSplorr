@@ -5,7 +5,7 @@
 #include "Game.Ship.Property.h"
 #include <map>
 #include <string>
-namespace game
+namespace game//20211017
 {
 	struct ShipStatisticDescriptor
 	{
@@ -128,70 +128,84 @@ namespace game
 		return common::Utility::ListFromTable(shipList, ships);
 	}
 
+
+	static const std::map<ShipType, ShipDescriptor>& AllDescriptors()
+	{
+		return ships;
+	}
+
 	std::map<game::ShipType, size_t> initialShipGenerator =
 		common::Utility::AccumulateTable<ShipType, ShipDescriptor, std::map<ShipType, size_t>>(
-			[]() { return ships; },
+			AllDescriptors,
 			[](std::map<ShipType, size_t>& result, const ShipType& shipType, const ShipDescriptor& descriptor)
 			{
 				result[shipType] = descriptor.initialShipGenerationWeight;
-			},
-			{});
+			});
 
 	game::ShipType ShipTypes::GenerateForAvatar()
 	{
 		return common::RNG::FromGenerator(initialShipGenerator);
 	}
 
-	double ShipTypes::GetTotalTonnage(const game::ShipType& ship)
+	static double ReadProperty(const ShipType& shipType, const ship::Property& property)
 	{
-		return Read(ship).properties.find(ship::Property::TONNAGE)->second;
+		return Read(shipType).properties.find(property)->second;
 	}
 
-	const std::string& ShipTypes::GetName(const game::ShipType& ship)
+	double ShipTypes::GetTotalTonnage(const game::ShipType& shipType)
 	{
-		return Read(ship).name;
+		return ReadProperty(shipType, ship::Property::TONNAGE);
 	}
 
-	double ShipTypes::GetSpeedFactor(const game::ShipType& ship)
+	const std::string& ShipTypes::GetName(const game::ShipType& shipType)
 	{
-		return Read(ship).properties.find(ship::Property::SPEED_FACTOR)->second;
+		return Read(shipType).name;
 	}
 
-	const std::map<game::Commodity, double> ShipTypes::GetCommodities(const game::ShipType& ship)
+	double ShipTypes::GetSpeedFactor(const game::ShipType& shipType)
 	{
-		return Read(ship).commodities;
+		return ReadProperty(shipType, ship::Property::SPEED_FACTOR);
+	}
+
+	const std::map<game::Commodity, double> ShipTypes::GetCommodities(const game::ShipType& shipType)
+	{
+		return Read(shipType).commodities;
 	}
 
 	static std::map<ShipType, std::list<ShipStatistic>> statisticLists;
 
-	const std::list<ShipStatistic>& ShipTypes::GetStatistics(const game::ShipType& ship)
+	static const std::list<ShipStatistic>& LoadDefaultStatistics(const ShipType& shipType)
 	{
-		if (statisticLists.contains(ship))
-		{
-			return statisticLists.find(ship)->second;
-		}
-		std::list<ShipStatistic> statistics;
-		for (auto entry : Read(ship).statistics)
-		{
-			statistics.push_back(entry.first);
-		}
-		statisticLists[ship] = statistics;
-		return statisticLists[ship];
+		return statisticLists[shipType] = common::Utility::AccumulateTable<ShipStatistic, ShipStatisticDescriptor, std::list<ShipStatistic>>(
+			[shipType]() { return Read(shipType).statistics;  },
+			[](std::list<ShipStatistic>& result, const ShipStatistic& statistic, const ShipStatisticDescriptor&) 
+			{ result.push_back(statistic); });
+	}
+
+	std::list<ShipStatistic> ShipTypes::GetStatistics(const game::ShipType& shipType)
+	{
+		return 
+			common::Utility::TryGetKey(statisticLists, shipType)
+				.value_or(LoadDefaultStatistics(shipType));
+	}
+
+	static const ShipStatisticDescriptor& ReadStatistic(const ShipType& shipType, const ShipStatistic& statistic)
+	{
+		return Read(shipType).statistics.find(statistic)->second;
 	}
 
 	std::optional<double> ShipTypes::GetMinimumStatistic(const game::ShipType& shipType, const game::ShipStatistic& statistic)
 	{
-		return Read(shipType).statistics.find(statistic)->second.minimum;
+		return ReadStatistic(shipType, statistic).minimum;
 	}
 
 	std::optional<double> ShipTypes::GetMaximumStatistic(const game::ShipType& shipType, const game::ShipStatistic& statistic)
 	{
-		return Read(shipType).statistics.find(statistic)->second.maximum;
-
+		return ReadStatistic(shipType, statistic).maximum;
 	}
 
 	double ShipTypes::GetInitialStatistic(const game::ShipType& shipType, const game::ShipStatistic& statistic)
 	{
-		return Read(shipType).statistics.find(statistic)->second.initial;
+		return ReadStatistic(shipType, statistic).initial;
 	}
 }
