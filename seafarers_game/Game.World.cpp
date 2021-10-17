@@ -7,30 +7,34 @@ namespace game
 {
 	static const int CURRENT_VERSION = 1;
 
+	static data::game::World Read()
+	{
+		return data::game::World::Read().value();
+	}
+
 	common::XY<double> World::GetSize()
 	{
-		return data::game::World::Read().value().size;
+		return Read().size;
 	}
 
 	int World::GetVersion()
 	{
-		return data::game::World::Read().value().version;
+		return Read().version;
 	}
 
 	double World::GetMinimumIslandDistance()
 	{
-		return data::game::World::Read().value().minimumIslandDistance;
-
+		return Read().minimumIslandDistance;
 	}
 
 	double World::GetViewDistance()
 	{
-		return data::game::World::Read().value().viewDistance;
+		return Read().viewDistance;
 	}
 
 	double World::GetDockDistance()
 	{
-		return data::game::World::Read().value().dockDistance;
+		return Read().dockDistance;
 	}
 
 	struct WorldProperties
@@ -39,14 +43,15 @@ namespace game
 		double minimumIslandDistance;
 		double viewDistance;
 		double dockDistance;
+		double unfoulingLaborMultiplier;
 	};
 
 	static const std::map<game::Difficulty, WorldProperties> worldProperties =
 	{
-		{game::Difficulty::EASY, {100.0, 10.0, 10.0, 1.0}},
-		{game::Difficulty::NORMAL, {150.0, 15.0, 10.0, 1.0}},
-		{game::Difficulty::HARD, {200.0, 20.0, 10.0, 1.0}},
-		{game::Difficulty::HARDCORE, {250.0, 25.0, 10.0, 1.0}}
+		{game::Difficulty::EASY, {100.0, 10.0, 10.0, 1.0, 100.0}},
+		{game::Difficulty::NORMAL, {150.0, 15.0, 10.0, 1.0, 100.0}},
+		{game::Difficulty::HARD, {200.0, 20.0, 10.0, 1.0, 100.0}},
+		{game::Difficulty::HARDCORE, {250.0, 25.0, 10.0, 1.0, 100.0}}
 	};
 
 	void World::Reset(const game::Difficulty& difficulty)
@@ -59,14 +64,15 @@ namespace game
 			properties.minimumIslandDistance,
 			properties.viewDistance,
 			properties.dockDistance,
-			common::RNG::FromRange(0.0, common::Heading::DEGREES)
+			common::RNG::FromRange(0.0, common::Heading::DEGREES),
+			properties.unfoulingLaborMultiplier
 		};
 		data::game::World::Write(data);
 	}
 
 	double World::GetWindHeading()
 	{
-		return data::game::World::Read().value().windHeading;
+		return Read().windHeading;
 	}
 
 	void World::SetWindHeading(double heading)
@@ -87,7 +93,7 @@ namespace game
 
 	double World::GetUnfoulingLaborMultiplier()
 	{
-		return 100.0;//TODO: put this in configuration somewhere!
+		return Read().unfoulingLaborMultiplier;
 	}
 
 	static void ApplyWindChange()

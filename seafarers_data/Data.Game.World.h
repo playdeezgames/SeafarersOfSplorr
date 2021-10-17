@@ -11,6 +11,7 @@ namespace data::game//20211014
 		double viewDistance;
 		double dockDistance;
 		double windHeading;
+		double unfoulingLaborMultiplier;
 
 		static void Write(const World&);
 		static std::optional<World> Read();

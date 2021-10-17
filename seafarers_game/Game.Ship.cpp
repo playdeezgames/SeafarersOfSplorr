@@ -1,5 +1,6 @@
 #include <Common.Data.h>
 #include <Common.Heading.h>
+#include <Common.Utility.h>
 #include <Data.Game.Avatar.Ship.h>
 #include <Data.Game.Ship.h>
 #include <Data.Game.Ship.Statistic.h>
@@ -9,31 +10,30 @@
 #include "Game.Avatar.ShipStatistics.h"
 #include "Game.ShipTypes.h"
 #include "Game.World.h"
-namespace game
+namespace game//20211017
 {
 	std::optional<ShipType> Ship::GetShipType(int shipId)
 	{
-		auto ship = data::game::Ship::Read(shipId);
-		if (ship)
-		{
-			return (ShipType)ship.value().shipType;
-		}
-		return std::nullopt;
+		return 
+			common::Utility::MapOptional<data::game::Ship, ShipType>(
+				data::game::Ship::Read(shipId), 
+				[](const data::game::Ship& ship) {return (ShipType)ship.shipType; });
 	}
 
 	static void AddShipStatistics(int shipId, ShipType shipType)
 	{
-		auto statistics = game::ShipTypes::GetStatistics(shipType);
-		for (auto statistic : statistics)
-		{
-			data::game::ship::Statistic::Write(shipId,
-				(int)statistic,
-				{
-					game::ShipTypes::GetMinimumStatistic(shipType, statistic),
-					game::ShipTypes::GetMaximumStatistic(shipType, statistic),
-					game::ShipTypes::GetInitialStatistic(shipType, statistic)
-				});
-		}
+		common::Utility::IterateList<ShipStatistic>(
+			ShipTypes::GetStatistics(shipType),
+			[shipId, shipType](const ShipStatistic& statistic) 
+			{
+				data::game::ship::Statistic::Write(shipId,
+					(int)statistic,
+					{
+						ShipTypes::GetMinimumStatistic(shipType, statistic),
+						ShipTypes::GetMaximumStatistic(shipType, statistic),
+						ShipTypes::GetInitialStatistic(shipType, statistic)
+					});
+			});
 	}
 
 	int Ship::Add(const Ship& ship)
@@ -51,10 +51,10 @@ namespace game
 		return shipId;
 	}
 
-	static data::game::Ship GetAvatarShip()
+	static data::game::Ship GetAvatarShip()//TODO: making a lot of assumptions about optionals!
 	{
-		auto shipId = game::avatar::Ship::Read().value().shipId;
-		return data::game::Ship::Read(shipId).value();
+		return data::game::Ship::Read(
+			game::avatar::Ship::Read().value().shipId).value();
 	}
 
 	std::string Ship::GetName()
@@ -94,7 +94,7 @@ namespace game
 		data::game::Ship::Write(ship);
 	}
 
-	static Ship::MoveResult ClampAvatarLocation(common::XY<double>& candidate)//TODO: swap result and location
+	static Ship::MoveResult ClampAvatarLocation(common::XY<double>& candidate)
 	{
 		return 
 			(game::World::ClampLocation(candidate)) ?
@@ -122,22 +122,19 @@ namespace game
 
 	Ship::MoveResult Ship::Move()
 	{
-		MoveResult result = MoveResult::MOVED;
-
 		auto ship = GetAvatarShip();
 
-		common::XY<double> delta =
+		ship.location += 
 			common::Heading::DegreesToXY(ship.heading) *
 			GetEffectiveSpeed(ship.shipId, ship.heading, ship.speed);
 
-		ship.location = ship.location + delta;
-
-		result = ClampAvatarLocation(ship.location);
+		MoveResult result = ClampAvatarLocation(ship.location);
 
 		HandleFouling(ship.speed);
 
-		game::ApplyTurnEffects();
 		data::game::Ship::Write(ship);
+
+		game::ApplyTurnEffects();
 		return result;
 	}
 }

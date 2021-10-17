@@ -188,11 +188,24 @@ namespace common
 			return MapList<TInput, TOutput>(source, transform, [](const TOutput&) { return true; });
 		}
 		template<typename TInput>
-		static void IterateList(std::function<std::list<TInput>()> source, std::function<void(const TInput&)> iterate)
+		static void IterateList(const std::list<TInput>& source, std::function<void(const TInput&)> iterate)
 		{
-			for (auto& entry : source())
+			for (auto& entry : source)
 			{
 				iterate(entry);
+			}
+		}
+		template<typename TInput>
+		static void IterateList(std::function<std::list<TInput>()> source, std::function<void(const TInput&)> iterate)
+		{
+			IterateList(source(), iterate);
+		}
+		template<typename TKey, typename TValue>
+		static void IterateTable(const std::map<TKey, TValue>& source, std::function<void(const TKey&, const TValue&)> iterate)
+		{
+			for (auto& entry : source)
+			{
+				iterate(entry.first, entry.second);
 			}
 		}
 		template<typename TInput, typename TAccumulator>

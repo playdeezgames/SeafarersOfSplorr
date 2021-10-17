@@ -1,6 +1,6 @@
 #include <Data.Game.Player.h>
 #include "Game.Player.h"
-namespace game
+namespace game//20211017
 {
 	int Player::GetAvatarId()
 	{

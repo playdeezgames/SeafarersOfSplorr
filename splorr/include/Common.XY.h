@@ -19,6 +19,11 @@ namespace common
 			y = other.y;
 			return *this;
 		}
+		XY<TDimension>& operator+=(const XY<TDimension>& other)
+		{
+			*this = *this + other;
+			return *this;
+		}
 		XY<TDimension>& operator=(const XY<TDimension>& other)
 		{
 			x = other.x;
