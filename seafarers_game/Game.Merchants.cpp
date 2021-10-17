@@ -10,7 +10,7 @@
 #include "Game.Merchants.h"
 #include "Game.ShipTypes.h"
 #include "Game.World.h"
-namespace game
+namespace game//20211017
 {
 	static const std::map<ShipType, size_t> shipTypeGenerator =
 	{
@@ -93,15 +93,13 @@ namespace game
 
 	std::list<Merchant> Merchants::All()
 	{
-		std::list<Merchant> result;
-		auto merchants = data::game::Merchant::All();
-		for (auto& merchant : merchants)
-		{
-			result.push_back({
-				merchant.location
-				});
-		}
-		return result;
+		return 
+			common::Utility::AccumulateList<data::game::Merchant, std::list<Merchant>>(
+				data::game::Merchant::All, 
+				[](std::list<Merchant>& result, const data::game::Merchant& merchant) 
+				{
+					result.push_back({ merchant.location });
+				}, 
+				std::list<Merchant>());
 	}
-
 }

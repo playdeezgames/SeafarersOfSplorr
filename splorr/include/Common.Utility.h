@@ -187,6 +187,24 @@ namespace common
 		{
 			return MapList<TInput, TOutput>(source, transform, [](const TOutput&) { return true; });
 		}
+		template<typename TInput>
+		static void IterateList(std::function<std::list<TInput>()> source, std::function<void(const TInput&)> iterate)
+		{
+			for (auto& entry : source())
+			{
+				iterate(entry);
+			}
+		}
+		template<typename TInput, typename TAccumulator>
+		static TAccumulator AccumulateList(std::function<std::list<TInput>()> source, std::function<void(TAccumulator&, const TInput&)> accumulate, const TAccumulator& initial)
+		{
+			TAccumulator accumulator = initial;
+			for (auto& entry : source())
+			{
+				accumulate(accumulator, entry);
+			}
+			return accumulator;
+		}
 		template<typename TInput, typename TOutput>
 		static std::optional<TOutput> MapOptional(const std::optional<TInput>& source, std::function<TOutput(const TInput&)> transform)
 		{

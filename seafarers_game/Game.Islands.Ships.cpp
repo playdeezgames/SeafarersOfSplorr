@@ -1,7 +1,8 @@
+#include <Common.Utility.h>
 #include "Game.Islands.Commodities.h"
 #include "Game.Islands.Ships.h"
 #include "Game.ShipTypes.h"
-namespace game::islands
+namespace game::islands//20211017
 {
 	static double GetPurchasePrice(
 		const common::XY<double>& location,
@@ -11,8 +12,6 @@ namespace game::islands
 		return Commodities::GetPurchasePrice(location, commodities);
 	}
 
-
-
 	double Ships::GetSalePrice(
 		const common::XY<double>& location,
 		const game::ShipType& ship)
@@ -21,27 +20,25 @@ namespace game::islands
 		return Commodities::GetSalePrice(location, commodities);
 	}
 
-	std::map<game::ShipType, double> Ships::GetPurchasePrices(const common::XY<double>& location)
+	static std::map<game::ShipType, double> GetPrices(
+		const common::XY<double>& location, 
+		std::function<double(const common::XY<double>&, const ShipType&)> pricer)
 	{
 		std::map<game::ShipType, double> result;
-		auto shipsAvailable = game::ShipTypes::All();
-		for (auto& ship : shipsAvailable)
-		{
-			double price = GetPurchasePrice(location, ship);
-			result[ship] = price;
-		}
+		common::Utility::IterateList<ShipType>(ShipTypes::All, [&result, location, pricer](const ShipType& ship)
+			{
+				result[ship] = pricer(location, ship);
+			});
 		return result;
+	}
+
+	std::map<game::ShipType, double> Ships::GetPurchasePrices(const common::XY<double>& location)
+	{
+		return GetPrices(location, GetPurchasePrice);
 	}
 
 	std::map<game::ShipType, double> Ships::GetSalePrices(const common::XY<double>& location)
 	{
-		std::map<game::ShipType, double> result;
-		auto shipsAvailable = game::ShipTypes::All();
-		for (auto& ship : shipsAvailable)
-		{
-			double price = GetSalePrice(location, ship);
-			result[ship] = price;
-		}
-		return result;
+		return GetPrices(location, GetSalePrice);
 	}
 }
