@@ -10,6 +10,7 @@
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
+#include <Game.Avatar.Actions.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Log.h>
 #include <Game.Avatar.Quest.h>
@@ -49,7 +50,7 @@ namespace state::in_play
 			game::avatar::Log::Write({
 				game::Colors::GRAY,
 				"You accept the job!" });
-			game::Avatar::DoAction(game::avatar::Action::ENTER_DOCK);
+			game::avatar::Actions::DoAction(game::avatar::Action::ENTER_DOCK);
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			break;
 		case game::avatar::AcceptQuestResult::ALREADY_HAS_QUEST:
@@ -60,7 +61,7 @@ namespace state::in_play
 
 	static void OnCancel()
 	{
-		game::Avatar::DoAction(game::avatar::Action::ENTER_DOCK);
+		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

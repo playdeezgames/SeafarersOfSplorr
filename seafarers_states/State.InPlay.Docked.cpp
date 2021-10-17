@@ -9,6 +9,7 @@
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
+#include <Game.Avatar.Actions.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Islands.h>
 #include <Game.Islands.Features.h>
@@ -43,37 +44,37 @@ namespace state::in_play
 
 	static void OnUndock()
 	{
-		game::Avatar::DoAction(game::avatar::Action::UNDOCK);
+		game::avatar::Actions::DoAction(game::avatar::Action::UNDOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnJob()
 	{
-		game::Avatar::DoAction(game::avatar::Action::ENTER_JOB_BOARD);
+		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_JOB_BOARD);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnTrade()
 	{
-		game::Avatar::DoAction(game::avatar::Action::ENTER_MARKET);
+		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_MARKET);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnShipyard()
 	{
-		game::Avatar::DoAction(game::avatar::Action::ENTER_SHIPYARD);
+		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_SHIPYARD);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnDarkAlley()
 	{
-		game::Avatar::DoAction(game::avatar::Action::ENTER_DARK_ALLEY);
+		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_DARK_ALLEY);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnTemple()
 	{
-		game::Avatar::DoAction(game::avatar::Action::ENTER_TEMPLE);
+		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_TEMPLE);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

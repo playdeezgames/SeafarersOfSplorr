@@ -9,6 +9,7 @@
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
+#include <Game.Avatar.Actions.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.ShipStatistics.h>
 #include <Game.Islands.h>
@@ -37,13 +38,13 @@ namespace state::in_play
 
 	static void OnStarboard()
 	{
-		game::Avatar::DoAction(game::avatar::Action::CAREEN_TO_STARBOARD);
+		game::avatar::Actions::DoAction(game::avatar::Action::CAREEN_TO_STARBOARD);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnPort()
 	{
-		game::Avatar::DoAction(game::avatar::Action::CAREEN_TO_PORT);
+		game::avatar::Actions::DoAction(game::avatar::Action::CAREEN_TO_PORT);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

@@ -8,6 +8,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Audio.Sfx.h>
 #include <Game.Avatar.h>
+#include <Game.Avatar.Actions.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Avatar.StatisticFormats.h>
@@ -46,7 +47,7 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		game::Avatar::DoAction(game::avatar::Action::ENTER_DOCK);
+		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_DOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -351,14 +352,14 @@ namespace state::in_play
 			case FightResult::WIN:
 				IncreaseInfamy();
 				IncreaseBrawling();
-				game::Avatar::DoAction(game::avatar::Action::DEFEAT_RUFFIAN);
+				game::avatar::Actions::DoAction(game::avatar::Action::DEFEAT_RUFFIAN);
 				application::UIState::Write(::UIState::IN_PLAY_NEXT);
 				break;
 			}
 			return true;
 		}
 		game::avatar::Statistics::ChangeMoney(-game::avatar::Statistics::ReadMoney()/2.0);
-		game::Avatar::DoAction(game::avatar::Action::ENTER_DOCK);
+		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_DOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		return true;
 	}

@@ -5,6 +5,7 @@
 #include <Common.Utility.h>
 #include <functional>
 #include <Game.Avatar.h>
+#include <Game.Avatar.Actions.h>
 #include <Game.Avatar.Items.h>
 #include "Sublayouts.h"
 #include "UIState.h"
@@ -82,7 +83,7 @@ namespace sublayout
 
 	static void OnFishing()
 	{
-		game::Avatar::DoAction(game::avatar::Action::START_FISHING);
+		game::avatar::Actions::DoAction(game::avatar::Action::START_FISHING);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

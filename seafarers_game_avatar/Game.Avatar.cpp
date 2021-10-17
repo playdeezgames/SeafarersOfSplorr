@@ -18,50 +18,8 @@
 #include <Game.ShipTypes.h>
 #include <Game.World.h>
 #include <map>
-namespace game::avatar
-{
-	const std::map<avatar::Action, std::map<avatar::State, std::function<StateTransition()>>>& GetActionDescriptors();
-}
 namespace game
 {
-	static void SetState(const game::avatar::State& state)
-	{
-		auto avatar = data::game::Avatar::Read(Player::GetAvatarId()).value();
-		avatar.state = (int)state;
-		data::game::Avatar::Write(Player::GetAvatarId(), avatar);
-	}
-
-	bool Avatar::DoAction(const avatar::Action& action)
-	{
-		auto state = GetState();
-		if (state)
-		{
-			auto descriptor = avatar::GetActionDescriptors().find(action);
-			if (descriptor != avatar::GetActionDescriptors().end())
-			{
-				auto transition = descriptor->second.find(state.value());
-				{
-					if (transition != descriptor->second.end())
-					{
-						auto result = transition->second();
-						avatar::Log::Write({ result.color, result.text });
-						SetState(result.state);
-					}
-				}
-			}
-		}
-		return false;
-	}
-
-	std::optional<game::avatar::State> Avatar::GetState()
-	{
-		auto avatar = data::game::Avatar::Read(Player::GetAvatarId());
-		if (avatar)
-		{
-			return (game::avatar::State)avatar.value().state;
-		}
-		return std::nullopt;
-	}
 	static void ApplyHunger()
 	{
 		double delta = -1.0;
@@ -124,11 +82,10 @@ namespace game
 	{
 		data::game::Avatar data =
 		{
-			0,
+			(int)game::avatar::State::AT_SEA,
 			"nada"//TODO: generate a name?
 		};
 		data::game::Avatar::Write(Player::GetAvatarId(), data);
-		SetState(game::avatar::State::AT_SEA);
 
 		data::game::avatar::Rations::Write(Player::GetAvatarId(), (int)game::Items::GenerateRationsForAvatar());
 

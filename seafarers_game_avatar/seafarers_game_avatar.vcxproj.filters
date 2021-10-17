@@ -77,9 +77,12 @@
     <ClInclude Include="Game.Avatar.StatisticFormats.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Avatar.Actions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.Avatar.ActionDescriptors.cpp">
+    <ClCompile Include="Game.Avatar.Actions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.Avatar.cpp">

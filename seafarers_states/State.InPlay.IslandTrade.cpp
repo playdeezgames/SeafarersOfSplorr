@@ -9,6 +9,7 @@
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
+#include <Game.Avatar.Actions.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Islands.h>
 #include "States.h"
@@ -30,19 +31,19 @@ namespace state::in_play
 
 	static void OnBuy()
 	{
-		game::Avatar::DoAction(game::avatar::Action::MARKET_BUY);
+		game::avatar::Actions::DoAction(game::avatar::Action::MARKET_BUY);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnSell()
 	{
-		game::Avatar::DoAction(game::avatar::Action::MARKET_SELL);
+		game::avatar::Actions::DoAction(game::avatar::Action::MARKET_SELL);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnLeave()
 	{
-		game::Avatar::DoAction(game::avatar::Action::ENTER_DOCK);
+		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

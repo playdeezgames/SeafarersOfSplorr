@@ -8,6 +8,7 @@
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
+#include <Game.Avatar.Actions.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Items.h>
 #include <Game.Avatar.Ship.h>
@@ -41,7 +42,7 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		game::Avatar::DoAction(game::avatar::Action::ENTER_MARKET);
+		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_MARKET);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

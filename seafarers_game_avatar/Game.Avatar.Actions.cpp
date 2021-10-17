@@ -1,8 +1,10 @@
-#include <Data.Game.Island.DarkAlley.h>
+#include <Data.Game.Avatar.h>
 #include <Data.Game.Avatar.Dock.h>
+#include <Data.Game.Island.DarkAlley.h>
 #include <format>
 #include <functional>
 #include "Game.Avatar.Action.h"
+#include "Game.Avatar.Actions.h"
 #include "Game.Avatar.Docked.h"
 #include "Game.Avatar.Items.h"
 #include "Game.Avatar.Log.h"
@@ -30,7 +32,7 @@ namespace game::avatar
 		};
 	}
 
-	void OnEnterDarkAlleyFailsInfamyRequirement();
+	void OnEnterDarkAlleyFailsInfamyRequirement();//this is outside of the game, and needs reference to visuals
 
 	static StateTransition OnEnterDarkAlley()
 	{
@@ -390,8 +392,49 @@ namespace game::avatar
 		}
 	};
 
-	const std::map<avatar::Action, std::map<avatar::State, std::function<StateTransition()>>>& GetActionDescriptors()
+	static const std::map<avatar::Action, std::map<avatar::State, std::function<StateTransition()>>>& GetActionDescriptors()
 	{
 		return actionDescriptors;
 	}
+
+	static void SetState(const game::avatar::State& state)
+	{
+		auto avatar = data::game::Avatar::Read(Player::GetAvatarId()).value();
+		avatar.state = (int)state;
+		data::game::Avatar::Write(Player::GetAvatarId(), avatar);
+	}
+
+	std::optional<game::avatar::State> Actions::GetState()
+	{
+		auto avatar = data::game::Avatar::Read(Player::GetAvatarId());
+		if (avatar)
+		{
+			return (game::avatar::State)avatar.value().state;
+		}
+		return std::nullopt;
+	}
+
+	bool Actions::DoAction(const avatar::Action& action)
+	{
+		auto state = GetState();
+		if (state)
+		{
+			auto descriptor = avatar::GetActionDescriptors().find(action);
+			if (descriptor != avatar::GetActionDescriptors().end())
+			{
+				auto transition = descriptor->second.find(state.value());
+				{
+					if (transition != descriptor->second.end())
+					{
+						auto result = transition->second();
+						avatar::Log::Write({ result.color, result.text });
+						SetState(result.state);
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+
 }

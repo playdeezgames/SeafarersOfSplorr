@@ -9,6 +9,7 @@
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
+#include <Game.Avatar.Actions.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.ShipStatistics.h>
 #include <Game.Islands.h>
@@ -51,7 +52,7 @@ namespace state::in_play
 
 	static void OnWeighAnchor()
 	{
-		game::Avatar::DoAction(game::avatar::Action::UNCAREEN);
+		game::avatar::Actions::DoAction(game::avatar::Action::UNCAREEN);
 		application::UIState::Write(::UIState::IN_PLAY_AT_SEA_CAREEN_SELECT);
 	}
 

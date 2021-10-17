@@ -3,6 +3,7 @@
 #include <Application.UIState.h>
 #include <Game.h>
 #include <Game.Avatar.h>
+#include <Game.Avatar.Actions.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Statistics.h>
 #include <Visuals.Confirmations.h>
@@ -63,7 +64,7 @@ namespace state::in_play
 			return;
 		}
 
-		auto avatarState = game::Avatar::GetState();
+		auto avatarState = game::avatar::Actions::GetState();
 		if (avatarState)
 		{
 			auto iter = avatarStateTable.find(avatarState.value());

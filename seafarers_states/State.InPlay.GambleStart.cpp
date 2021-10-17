@@ -8,6 +8,7 @@
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
+#include <Game.Avatar.Actions.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
@@ -74,7 +75,7 @@ namespace state::in_play
 	static void OnLeave()
 	{
 		OnPayAnte("and leave the area.");
-		game::Avatar::DoAction(game::avatar::Action::ENTER_DARK_ALLEY);
+		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_DARK_ALLEY);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -84,7 +85,7 @@ namespace state::in_play
 		bool canPlayAgain = game::avatar::Statistics::ReadMoney() >= game::islands::DarkAlley::GetMinimumWager(ReadLocation());
 		if (!canPlayAgain)
 		{
-			game::Avatar::DoAction(game::avatar::Action::ENTER_DARK_ALLEY);
+			game::avatar::Actions::DoAction(game::avatar::Action::ENTER_DARK_ALLEY);
 		}
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
