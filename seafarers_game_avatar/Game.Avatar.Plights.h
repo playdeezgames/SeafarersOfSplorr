@@ -5,7 +5,7 @@
 #include <optional>
 #include <set>
 #include <string>
-namespace game::avatar
+namespace game::avatar//20211017
 {
 	struct Plights
 	{

@@ -4,7 +4,7 @@
 #include <Game.Player.h>
 #include <map>
 #include <string>
-namespace game::avatar
+namespace game::avatar//20211017
 {
 	struct PlightDescriptor
 	{
