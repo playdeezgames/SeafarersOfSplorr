@@ -30,16 +30,16 @@ namespace game::avatar//20211011
 		data::game::Avatar::Write(Player::GetAvatarId(), avatar);
 	}
 
-	static std::optional<Docked::DockResult> DoDock(const common::XY<double>& location)
+	static std::optional<DockResult> DoDock(const common::XY<double>& location)
 	{
-		std::optional<Docked::DockResult> result = Docked::DockResult::DOCKED;
+		std::optional<DockResult> result = DockResult::DOCKED;
 		game::Islands::AddVisit(
 			location,
 			Statistics::GetTurnsRemaining());
 		game::islands::Quests::Update(location);
 		if (game::avatar::Quest::CompleteQuest(location))
 		{
-			result = Docked::DockResult::COMPLETED_QUEST;
+			result = DockResult::COMPLETED_QUEST;
 		}
 		data::game::avatar::Dock::Write(Player::GetAvatarId(), location);
 		SetAvatarStateToDocked();
@@ -48,7 +48,7 @@ namespace game::avatar//20211011
 		return result;
 	}
 
-	std::optional<Docked::DockResult> Docked::Dock()
+	std::optional<DockResult> Docked::Dock()
 	{
 		if (ReadLocation().has_value())
 		{

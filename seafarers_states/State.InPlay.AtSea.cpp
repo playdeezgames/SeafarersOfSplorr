@@ -80,7 +80,7 @@ namespace state::in_play
 	static void OnDock()
 	{
 		auto quest = game::avatar::Quest::Read();
-		if (game::avatar::Docked::Dock() == game::avatar::Docked::DockResult::COMPLETED_QUEST)
+		if (game::avatar::Docked::Dock() == game::avatar::DockResult::COMPLETED_QUEST)
 		{
 			game::avatar::Log::Write({
 				game::Colors::GREEN,

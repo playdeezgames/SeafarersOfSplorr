@@ -6,14 +6,14 @@
 #include <optional>
 namespace game::avatar
 {
+	enum class DockResult
+	{
+		DOCKED,
+		COMPLETED_QUEST,
+		ALREADY_DOCKED
+	};
 	struct Docked
 	{
-		enum class DockResult
-		{
-			DOCKED,
-			COMPLETED_QUEST,
-			ALREADY_DOCKED
-		};
 		static void Reset(const game::Difficulty&);
 		static std::optional<DockResult> Dock();
 		static std::optional<common::XY<double>> ReadLocation();
