@@ -2,42 +2,41 @@
 #include <Data.Game.Avatar.DestinationName.h>
 #include "Game.Avatar.Destinations.h"
 #include <Game.Player.h>
-namespace game::avatar
+namespace game::avatar//20211017
 {
-	std::optional<common::XY<double>> Destinations::GetDestination(const game::avatar::Destination& index)
+	std::optional<common::XY<double>> Destinations::ReadLocation(const Destination& index)
 	{
 		return data::game::avatar::Destination::Read(Player::GetAvatarId(), (int)index);
 	}
 
-	void Destinations::SetDestination(const game::avatar::Destination& index, const std::optional<common::XY<double>>& destination)
+	void Destinations::WriteLocation(const Destination& index, const std::optional<common::XY<double>>& destination)
 	{
+		data::game::avatar::Destination::Clear(Player::GetAvatarId(), (int)index);
 		if (destination)
 		{
 			data::game::avatar::Destination::Write(Player::GetAvatarId(), (int)index, destination.value());
-			return;
 		}
-		data::game::avatar::Destination::Clear(Player::GetAvatarId(), (int)index);
 	}
 
-	static std::list<game::avatar::Destination> allDestinations = 
+	static const std::list<Destination> allDestinations = 
 	{
-		game::avatar::Destination::ONE,
-		game::avatar::Destination::TWO,
-		game::avatar::Destination::THREE,
-		game::avatar::Destination::FOUR
+		Destination::ONE,
+		Destination::TWO,
+		Destination::THREE,
+		Destination::FOUR
 	};
 
-	const std::list<game::avatar::Destination>& Destinations::All()
+	const std::list<Destination>& Destinations::All()
 	{
 		return allDestinations;
 	}
 
-	std::optional<std::string> Destinations::GetDestinationName(const Destination& destination)
+	std::optional<std::string> Destinations::ReadName(const Destination& destination)
 	{
 		return data::game::avatar::DestinationName::Read(Player::GetAvatarId(), (int)destination);
 	}
 
-	void Destinations::SetDestinationName(const Destination& destination, const std::string& name)
+	void Destinations::WriteName(const Destination& destination, const std::string& name)
 	{
 		data::game::avatar::DestinationName::Write(Player::GetAvatarId(), (int)destination, name);
 	}

@@ -197,7 +197,7 @@ namespace visuals
 		const InternalNavigator& navigator,
 		const game::avatar::Destination& destinationId)
 	{
-		auto destination = game::avatar::Destinations::GetDestination(destinationId);
+		auto destination = game::avatar::Destinations::ReadLocation(destinationId);
 		if (destination)
 		{
 			auto difference = destination.value() - game::Ship::GetLocation();

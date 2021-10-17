@@ -103,13 +103,13 @@ namespace state::in_play
 			visuals::Texts::SetText(
 				LAYOUT_NAME, 
 				entry.second, 
-				game::avatar::Destinations::GetDestinationName(entry.first).value_or("(unnamed)"));
+				game::avatar::Destinations::ReadName(entry.first).value_or("(unnamed)"));
 		}
 	}
 
 	static void RefreshButtons()
 	{
-		visuals::Buttons::SetEnabled(LAYOUT_NAME, BUTTON_REMOVE_TARGET, game::avatar::Destinations::GetDestination(currentDestinationId).has_value());
+		visuals::Buttons::SetEnabled(LAYOUT_NAME, BUTTON_REMOVE_TARGET, game::avatar::Destinations::ReadLocation(currentDestinationId).has_value());
 	}
 
 	static void Refresh()
@@ -184,7 +184,7 @@ namespace state::in_play
 
 	static bool HandleWorldMapMouseButtonUp()
 	{
-		game::avatar::Destinations::SetDestination(currentDestinationId,visuals::WorldMap::GetDestination(LAYOUT_NAME, WORLD_MAP_ID));
+		game::avatar::Destinations::WriteLocation(currentDestinationId,visuals::WorldMap::GetDestination(LAYOUT_NAME, WORLD_MAP_ID));
 		Refresh();
 		return true;
 	}
@@ -200,7 +200,7 @@ namespace state::in_play
 
 	static void OnRemoveTarget()
 	{
-		game::avatar::Destinations::SetDestination(currentDestinationId, std::nullopt);
+		game::avatar::Destinations::WriteLocation(currentDestinationId, std::nullopt);
 		Refresh();
 	}
 
@@ -245,7 +245,7 @@ namespace state::in_play
 
 	static void ClearDestinationName()
 	{
-		game::avatar::Destinations::SetDestinationName(currentDestinationId, "");
+		game::avatar::Destinations::WriteName(currentDestinationId, "");
 	}
 
 	static bool OnKeyDown(const std::string& key)
@@ -261,8 +261,8 @@ namespace state::in_play
 
 	static void OnTextInput(const std::string& text)
 	{
-		auto name = game::avatar::Destinations::GetDestinationName(currentDestinationId).value_or("") + text;
-		game::avatar::Destinations::SetDestinationName(currentDestinationId, name);
+		auto name = game::avatar::Destinations::ReadName(currentDestinationId).value_or("") + text;
+		game::avatar::Destinations::WriteName(currentDestinationId, name);
 		Refresh();
 	}
 

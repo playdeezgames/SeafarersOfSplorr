@@ -74,7 +74,7 @@ namespace visuals
 
 	static void DrawCurrentDestination(const std::shared_ptr<application::Engine::Renderer>& renderer, const game::avatar::Destination& destinationId, const InternalWorldMap& worldMap, const common::XY<double> worldSize)
 	{
-		auto currentDestination = game::avatar::Destinations::GetDestination(destinationId);
+		auto currentDestination = game::avatar::Destinations::ReadLocation(destinationId);
 		if (currentDestination)
 		{
 			common::XY<int> plot = Plot(worldMap, worldSize, currentDestination.value());

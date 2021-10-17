@@ -4,16 +4,16 @@
 #include <list>
 #include <optional>
 #include <string>
-namespace game::avatar
+namespace game::avatar//20211017
 {
 	struct Destinations
 	{
 		static const std::list<Destination>& All();
 
-		static std::optional<common::XY<double>> GetDestination(const Destination&);
-		static void SetDestination(const Destination&, const std::optional<common::XY<double>>&);
+		static std::optional<common::XY<double>> ReadLocation(const Destination&);
+		static void WriteLocation(const Destination&, const std::optional<common::XY<double>>&);
 
-		static std::optional<std::string> GetDestinationName(const Destination&);
-		static void SetDestinationName(const Destination&, const std::string&);
+		static std::optional<std::string> ReadName(const Destination&);
+		static void WriteName(const Destination&, const std::string&);
 	};
 }
