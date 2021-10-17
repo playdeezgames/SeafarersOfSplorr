@@ -3,7 +3,7 @@
 #include <format>
 #include <list>
 #include <string>
-namespace game::avatar
+namespace game::avatar//20211017
 {
 	struct Log
 	{
