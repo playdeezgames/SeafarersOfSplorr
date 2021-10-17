@@ -205,6 +205,16 @@ namespace common
 			}
 			return accumulator;
 		}
+		template<typename TKey, typename TValue, typename TAccumulator>
+		static TAccumulator AccumulateTable(std::function<std::map<TKey, TValue>()> source, std::function<void(TAccumulator&, const TKey&, const TValue&)> accumulate, const TAccumulator& initial)
+		{
+			TAccumulator accumulator = initial;
+			for (auto& entry : source())
+			{
+				accumulate(accumulator, entry.first, entry.second);
+			}
+			return accumulator;
+		}
 		template<typename TInput, typename TOutput>
 		static std::optional<TOutput> MapOptional(const std::optional<TInput>& source, std::function<TOutput(const TInput&)> transform)
 		{

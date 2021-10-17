@@ -2,7 +2,7 @@
 #include <format>
 #include "Game.ShipNames.h"
 #include <map>
-namespace game
+namespace game//20211017
 {
 	static const std::map<std::string, size_t> shipNameAdjectives =
 	{
@@ -34,11 +34,14 @@ namespace game
 		{"Bishop",1}
 	};
 
+	static const std::string FORMAT_SHIP_NAME = "{} {}";
+
 	std::string ShipNames::Generate()
 	{
-		auto adjective = common::RNG::FromGenerator(shipNameAdjectives);
-		auto noun = common::RNG::FromGenerator(shipNameNouns);
-		return std::format("{} {}", adjective, noun);
+		return std::format(
+			FORMAT_SHIP_NAME,
+			common::RNG::FromGenerator(shipNameAdjectives),
+			common::RNG::FromGenerator(shipNameNouns));
 	}
 
 }

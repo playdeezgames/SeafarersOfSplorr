@@ -128,21 +128,17 @@ namespace game
 		return common::Utility::ListFromTable(shipList, ships);
 	}
 
-	std::map<game::ShipType, size_t> initialShipGenerator;
+	std::map<game::ShipType, size_t> initialShipGenerator =
+		common::Utility::AccumulateTable<ShipType, ShipDescriptor, std::map<ShipType, size_t>>(
+			[]() { return ships; },
+			[](std::map<ShipType, size_t>& result, const ShipType& shipType, const ShipDescriptor& descriptor)
+			{
+				result[shipType] = descriptor.initialShipGenerationWeight;
+			},
+			{});
 
 	game::ShipType ShipTypes::GenerateForAvatar()
 	{
-		if (initialShipGenerator.empty())
-		{
-			for (auto ship : All())
-			{
-				auto descriptor = Read(ship);
-				if (descriptor.initialShipGenerationWeight > 0)
-				{
-					initialShipGenerator[ship] = descriptor.initialShipGenerationWeight;
-				}
-			}
-		}
 		return common::RNG::FromGenerator(initialShipGenerator);
 	}
 
