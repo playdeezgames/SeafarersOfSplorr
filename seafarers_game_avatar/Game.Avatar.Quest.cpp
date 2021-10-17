@@ -10,7 +10,7 @@ namespace game::avatar
 	const double REPUTATION_REWARD = 1.0;
 	const double REPUTATION_PENALTY = -1.0;
 
-	Quest::AcceptQuestResult Quest::AcceptQuest(const common::XY<double>& location)
+	AcceptQuestResult Quest::AcceptQuest(const common::XY<double>& location)
 	{
 		if (data::game::avatar::Quest::Read(Player::GetAvatarId()))
 		{

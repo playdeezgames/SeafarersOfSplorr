@@ -45,14 +45,14 @@ namespace state::in_play
 	{
 		switch (game::avatar::Quest::AcceptQuest(game::avatar::Docked::ReadLocation().value()))
 		{
-		case game::avatar::Quest::AcceptQuestResult::ACCEPTED_QUEST:
+		case game::avatar::AcceptQuestResult::ACCEPTED_QUEST:
 			game::avatar::Log::Write({
 				game::Colors::GRAY,
 				"You accept the job!" });
 			game::Avatar::DoAction(game::avatar::Action::ENTER_DOCK);
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			break;
-		case game::avatar::Quest::AcceptQuestResult::ALREADY_HAS_QUEST:
+		case game::avatar::AcceptQuestResult::ALREADY_HAS_QUEST:
 			::application::UIState::Write(::UIState::IN_PLAY_CONFIRM_REPLACE_JOB);
 			break;
 		}
