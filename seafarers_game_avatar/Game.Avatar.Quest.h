@@ -12,8 +12,8 @@ namespace game::avatar
 	struct Quest
 	{
 		static std::optional<game::Quest> Read();
-		static AcceptQuestResult AcceptQuest(const common::XY<double>&);
-		static bool CompleteQuest(const common::XY<double>&);
-		static bool AbandonQuest();
+		static AcceptQuestResult Accept(const common::XY<double>&);
+		static bool Complete(const common::XY<double>&);
+		static bool Abandon();
 	};
 }

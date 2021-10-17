@@ -37,7 +37,7 @@ namespace game::avatar//20211011
 			location,
 			Statistics::GetTurnsRemaining());
 		game::islands::Quests::Update(location);
-		if (game::avatar::Quest::CompleteQuest(location))
+		if (game::avatar::Quest::Complete(location))
 		{
 			result = DockResult::COMPLETED_QUEST;
 		}

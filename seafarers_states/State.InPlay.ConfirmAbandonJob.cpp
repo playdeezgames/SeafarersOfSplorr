@@ -29,7 +29,7 @@ namespace state::in_play
 		game::avatar::Log::Write({
 			game::Colors::RED,
 			"You abandon yer job, and yer reputation suffers!"});
-		game::avatar::Quest::AbandonQuest();
+		game::avatar::Quest::Abandon();
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

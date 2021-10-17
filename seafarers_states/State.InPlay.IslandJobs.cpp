@@ -43,7 +43,7 @@ namespace state::in_play
 
 	static void OnAccept()//TODO: make this more declarative
 	{
-		switch (game::avatar::Quest::AcceptQuest(game::avatar::Docked::ReadLocation().value()))
+		switch (game::avatar::Quest::Accept(game::avatar::Docked::ReadLocation().value()))
 		{
 		case game::avatar::AcceptQuestResult::ACCEPTED_QUEST:
 			game::avatar::Log::Write({

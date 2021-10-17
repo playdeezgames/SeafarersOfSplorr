@@ -31,8 +31,8 @@ namespace state::in_play
 		game::avatar::Log::Write({
 			game::Colors::RED,
 			"You replace yer job, and yer reputation suffers!" });
-		game::avatar::Quest::AbandonQuest();
-		game::avatar::Quest::AcceptQuest(game::avatar::Docked::ReadLocation().value());
+		game::avatar::Quest::Abandon();
+		game::avatar::Quest::Accept(game::avatar::Docked::ReadLocation().value());
 		game::Avatar::DoAction(game::avatar::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}

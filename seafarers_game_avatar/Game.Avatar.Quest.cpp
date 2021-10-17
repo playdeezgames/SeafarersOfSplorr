@@ -10,7 +10,7 @@ namespace game::avatar
 	const double REPUTATION_REWARD = 1.0;
 	const double REPUTATION_PENALTY = -1.0;
 
-	AcceptQuestResult Quest::AcceptQuest(const common::XY<double>& location)
+	AcceptQuestResult Quest::Accept(const common::XY<double>& location)
 	{
 		if (data::game::avatar::Quest::Read(Player::GetAvatarId()))
 		{
@@ -36,7 +36,7 @@ namespace game::avatar
 		return AcceptQuestResult::NO_QUEST_TO_ACCEPT;
 	}
 
-	bool Quest::CompleteQuest(const common::XY<double>& location)
+	bool Quest::Complete(const common::XY<double>& location)
 	{
 		auto quest = data::game::avatar::Quest::Read(Player::GetAvatarId());
 		if (quest.has_value() && quest.value().destination == location)
@@ -49,7 +49,7 @@ namespace game::avatar
 		return false;
 	}
 
-	bool Quest::AbandonQuest()
+	bool Quest::Abandon()
 	{
 		if (data::game::avatar::Quest::Read(Player::GetAvatarId()))
 		{
