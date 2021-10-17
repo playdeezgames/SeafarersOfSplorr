@@ -117,7 +117,7 @@ namespace state::in_play
 			{ 0, 19 }, 
 			std::format(
 				FORMAT_MONEY,
-				game::avatar::Statistics::GetMoney()),
+				game::avatar::Statistics::ReadMoney()),
 			game::Colors::WHITE);
 	}
 
@@ -157,7 +157,7 @@ namespace state::in_play
 		{
 			auto quantity = quantities[quantityIndex];
 			double totalPrice = unitPrices[item.value()] * quantity;
-			if (game::avatar::Statistics::GetMoney() >= totalPrice)
+			if (game::avatar::Statistics::ReadMoney() >= totalPrice)
 			{
 				if (game::avatar::Ship::AvailableTonnage() >= game::Items::GetUnitTonnage(item.value()) * quantity)
 				{

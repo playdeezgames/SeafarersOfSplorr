@@ -56,7 +56,7 @@ namespace state::in_play
 
 	static void UpdateStatistics()
 	{
-		WriteTextToGridRight({ 39,0 }, std::format(game::avatar::StatisticFormats::MONEY, game::avatar::Statistics::GetMoney()), game::Colors::YELLOW);
+		WriteTextToGridRight({ 39,0 }, std::format(game::avatar::StatisticFormats::MONEY, game::avatar::Statistics::ReadMoney()), game::Colors::YELLOW);
 		WriteTextToGridRight({ 39,1 }, std::format(game::avatar::StatisticFormats::REPUTATION, game::avatar::Statistics::GetReputation()), game::Colors::BLUE);
 		WriteTextToGridRight({ 39,2 }, std::format(game::avatar::StatisticFormats::BRAWLING, game::avatar::Statistics::GetBrawling()), game::Colors::BROWN);
 		WriteTextToGridRight({ 39,3 }, std::format(game::avatar::StatisticFormats::HEALTH, game::avatar::Statistics::GetHealth()), game::Colors::RED);

@@ -63,7 +63,7 @@ namespace state::in_play
 					},
 					{
 						{19,13},
-						std::format("Current funds: {:.4f}", game::avatar::Statistics::GetMoney()),
+						std::format("Current funds: {:.4f}", game::avatar::Statistics::ReadMoney()),
 						game::Colors::GRAY,
 						visuals::HorizontalAlignment::CENTER
 					}
@@ -81,7 +81,7 @@ namespace state::in_play
 	static void OnNoBet()
 	{
 		OnPayAnte("and are dealt two new cards.");
-		bool canPlayAgain = game::avatar::Statistics::GetMoney() >= game::islands::DarkAlley::GetMinimumWager(ReadLocation());
+		bool canPlayAgain = game::avatar::Statistics::ReadMoney() >= game::islands::DarkAlley::GetMinimumWager(ReadLocation());
 		if (!canPlayAgain)
 		{
 			game::Avatar::DoAction(game::avatar::Action::ENTER_DARK_ALLEY);

@@ -38,11 +38,11 @@ namespace state::in_play
 		return game::islands::DarkAlley::GetMinimumWager(game::avatar::Docked::ReadLocation().value()).value();
 	}
 
-	static const auto GetMoney = game::avatar::Statistics::GetMoney;
+	static const auto ReadMoney = game::avatar::Statistics::ReadMoney;
 
 	static void OnGamble()
 	{
-		if (GetMoney() >= GetMinimumWager())
+		if (ReadMoney() >= GetMinimumWager())
 		{
 			game::Avatar::DoAction(game::avatar::Action::START_GAMBLING);
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);

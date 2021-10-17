@@ -2,7 +2,7 @@
 #include <Game.BerthType.h>
 #include <string>
 #include <vector>
-namespace game::ship
+namespace game::ship//20211017
 {
 	struct Crew
 	{

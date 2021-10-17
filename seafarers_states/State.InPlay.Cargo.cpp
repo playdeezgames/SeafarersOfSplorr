@@ -91,7 +91,7 @@ namespace state::in_play
 			{ 0, 19 },
 			std::format(
 				"Money: {:.3f}",
-				game::avatar::Statistics::GetMoney()),
+				game::avatar::Statistics::ReadMoney()),
 			game::Colors::GRAY);
 	}
 

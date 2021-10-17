@@ -71,7 +71,7 @@ namespace state::in_play
 			{ 0, 19 },
 			std::format(
 				"Money: {:.3f}",
-				game::avatar::Statistics::GetMoney()),
+				game::avatar::Statistics::ReadMoney()),
 			game::Colors::WHITE);
 		WriteTextToGrid(
 			{ 0, 18 },
@@ -85,7 +85,7 @@ namespace state::in_play
 	{
 		int row = 0;
 		int gridRow = 2;
-		auto money = game::avatar::Statistics::GetMoney();
+		auto money = game::avatar::Statistics::ReadMoney();
 		auto shipId = game::avatar::Ship::Read().value().shipId;
 		auto shipType = game::Ship::GetShipType(shipId).value();
 		for (auto& shipPrice : shipPrices)
@@ -161,7 +161,7 @@ namespace state::in_play
 	static void CheckAvailableFunds(game::ShipType desiredShip)
 	{
 		double price = shipPrices[desiredShip];
-		if (game::avatar::Statistics::GetMoney() >= price)
+		if (game::avatar::Statistics::ReadMoney() >= price)
 		{
 			CheckTonnage(desiredShip, price);
 		}
@@ -210,7 +210,7 @@ namespace state::in_play
 				{
 					{game::Commodity::LABOR, labor}
 				});
-			if (game::avatar::Statistics::GetMoney() >= price)
+			if (game::avatar::Statistics::ReadMoney() >= price)
 			{
 				visuals::Confirmations::Write(
 					{

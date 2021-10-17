@@ -40,7 +40,7 @@ namespace sublayout
 
 	static void RefreshAvatarMoney()
 	{
-		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_MONEY, game::avatar::StatisticFormats::MONEY, game::avatar::Statistics::GetMoney());
+		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_MONEY, game::avatar::StatisticFormats::MONEY, game::avatar::Statistics::ReadMoney());
 	}
 
 	static void RefreshAvatarReputation()

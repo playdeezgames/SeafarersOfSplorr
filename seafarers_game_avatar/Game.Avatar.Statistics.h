@@ -1,11 +1,11 @@
 #pragma once
 #include "Game.Difficulty.h"
-namespace game::avatar
+namespace game::avatar//20211017
 {
 	struct Statistics
 	{
 		static void Reset(const game::Difficulty&);
-		static double GetMoney();
+		static double ReadMoney();
 		static void ChangeMoney(double);
 		static double GetHealth();
 		static void ChangeHealth(double);

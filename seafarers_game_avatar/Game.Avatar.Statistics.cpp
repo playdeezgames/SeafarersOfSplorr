@@ -180,7 +180,7 @@ namespace game::avatar
 		return GetCurrent(statistic);
 	}
 
-	double Statistics::GetMoney()
+	double Statistics::ReadMoney()
 	{
 		return GetCurrent(game::avatar::Statistic::MONEY);
 	}

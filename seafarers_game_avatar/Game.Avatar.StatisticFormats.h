@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-namespace game::avatar
+namespace game::avatar//20211017
 {
 	struct StatisticFormats
 	{

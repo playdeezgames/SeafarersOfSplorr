@@ -92,7 +92,7 @@ namespace state::in_play
 			visuals::Texts::SetText(LAYOUT_NAME, TEXT_RESULT, "You lose!");
 			game::avatar::Statistics::ChangeMoney(-GambleStart::GetCurrentWager());
 		}
-		auto money = game::avatar::Statistics::GetMoney();
+		auto money = game::avatar::Statistics::ReadMoney();
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_WIN_LOSE, "You now have {:.4f}", money);
 		bool canPlayAgain = money >= game::islands::DarkAlley::GetMinimumWager(ReadLocation());
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_PLAY_AGAIN, canPlayAgain);
