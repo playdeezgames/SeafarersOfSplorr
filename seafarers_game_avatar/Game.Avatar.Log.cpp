@@ -2,7 +2,7 @@
 #include "Game.Avatar.Log.h"
 #include "Game.Colors.h"
 #include <Game.Player.h>
-namespace game::avatar
+namespace game::avatar//20211018
 {
 	static const std::string WELCOME_TEXT = "Adventure ahoy!";
 
