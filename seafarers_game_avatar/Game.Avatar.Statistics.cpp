@@ -43,11 +43,7 @@ namespace game::avatar
 				{game::avatar::Statistic::HEALTH, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
 				{game::avatar::Statistic::SATIETY, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
 				{game::avatar::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
-#ifdef _DEBUG
 				{game::avatar::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
-#else
-				{game::avatar::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
-#endif
 				{game::avatar::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::avatar::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{
@@ -142,23 +138,23 @@ namespace game::avatar
 		return data::game::avatar::Statistic::Read(Player::GetAvatarId(), (int)statistic).value().current;
 	}
 
+	static double CalculateBuffs(const std::map<game::Item, double> itemBuffs)
+	{
+		return common::Utility::AccumulateTable<game::Item, double, double>(
+			itemBuffs,
+			[](const double& result, const game::Item& item, const double& buff)
+			{
+				return result + (game::avatar::Equipment::IsEquipped(item)) ? (buff) : (0.0);
+			});
+	}
+
 	static double GetCurrentWithBuffs(const game::avatar::Statistic& statistic)
 	{
-
-		auto current = GetCurrent(statistic);
-		auto itemBuffs = common::Utility::TryGetKey(allBuffs, statistic);
-		if (itemBuffs)
-		{
-			for (auto& itemBuff : itemBuffs.value())
-			{
-				if (game::avatar::Equipment::IsEquipped(itemBuff.first))
-				{
-					current += itemBuff.second;
-				}
-			}
-		}
-		return current;
-
+		return 
+			GetCurrent(statistic) + 
+			common::Utility::MapOptional<std::map<game::Item, double>, double>(
+				common::Utility::TryGetKey(allBuffs, statistic),
+				CalculateBuffs).value_or(0.0);
 	}
 
 	static void SetCurrent(const game::avatar::Statistic& statistic, double value)
