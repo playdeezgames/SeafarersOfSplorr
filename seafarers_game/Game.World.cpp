@@ -3,7 +3,7 @@
 #include <Data.Game.World.h>
 #include "Game.World.h"
 #include <map>
-namespace game
+namespace game//20211018
 {
 	static const int CURRENT_VERSION = 1;
 
@@ -44,14 +44,16 @@ namespace game
 		double viewDistance;
 		double dockDistance;
 		double unfoulingLaborMultiplier;
+		double reputationReward;
+		double reputationPenalty;
 	};
 
 	static const std::map<game::Difficulty, WorldProperties> worldProperties =
 	{
-		{game::Difficulty::EASY, {100.0, 10.0, 10.0, 1.0, 100.0}},
-		{game::Difficulty::NORMAL, {150.0, 15.0, 10.0, 1.0, 100.0}},
-		{game::Difficulty::HARD, {200.0, 20.0, 10.0, 1.0, 100.0}},
-		{game::Difficulty::HARDCORE, {250.0, 25.0, 10.0, 1.0, 100.0}}
+		{game::Difficulty::EASY, {100.0, 10.0, 10.0, 1.0, 100.0, 1.0, -1.0}},
+		{game::Difficulty::NORMAL, {150.0, 15.0, 10.0, 1.0, 100.0, 1.0, -1.0}},
+		{game::Difficulty::HARD, {200.0, 20.0, 10.0, 1.0, 100.0, 1.0, -1.0}},
+		{game::Difficulty::HARDCORE, {250.0, 25.0, 10.0, 1.0, 100.0, 1.0, -1.0}}
 	};
 
 	void World::Reset(const game::Difficulty& difficulty)
@@ -65,7 +67,9 @@ namespace game
 			properties.viewDistance,
 			properties.dockDistance,
 			common::RNG::FromRange(0.0, common::Heading::DEGREES),
-			properties.unfoulingLaborMultiplier
+			properties.unfoulingLaborMultiplier,
+			properties.reputationReward,
+			properties.reputationPenalty
 		};
 		data::game::World::Write(data);
 	}
@@ -133,4 +137,15 @@ namespace game
 		}
 		return result;
 	}
+
+	double World::GetReputationReward()
+	{
+		return 1.0;
+	}
+
+	double World::GetReputationPenalty()
+	{
+		return -1.0;
+	}
+
 }

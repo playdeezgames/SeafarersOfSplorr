@@ -1,7 +1,7 @@
 #pragma once
 #include <Common.XY.h>
 #include "Game.Difficulty.h"
-namespace game//20211013
+namespace game//20211019
 {
 	struct World
 	{
@@ -13,6 +13,8 @@ namespace game//20211013
 		static double GetWindHeading();
 		static double GetWindSpeedMultiplier(double);
 		static double GetUnfoulingLaborMultiplier();
+		static double GetReputationReward();
+		static double GetReputationPenalty();
 		static void SetWindHeading(double);
 		static void Reset(const game::Difficulty&);
 		static void ApplyTurnEffects();

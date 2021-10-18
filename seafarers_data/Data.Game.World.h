@@ -12,6 +12,8 @@ namespace data::game//20211014
 		double dockDistance;
 		double windHeading;
 		double unfoulingLaborMultiplier;
+		double reputationReward;
+		double reputationPenalty;
 
 		static void Write(const World&);
 		static std::optional<World> Read();

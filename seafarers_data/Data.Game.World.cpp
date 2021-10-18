@@ -3,13 +3,13 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.World.h"
 #include <string>
-namespace data::game//20211010
+namespace data::game//20211018
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Worlds]([WorldId] INT NOT NULL UNIQUE,[Version] INT NOT NULL,[Width] REAL NOT NULL,[Height] REAL NOT NULL,[MinimumIslandDistance] REAL NOT NULL,[ViewDistance] REAL NOT NULL,[DockDistance] REAL NOT NULL,[WindHeading] REAL NOT NULL);";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Worlds]([WorldId] INT NOT NULL UNIQUE,[Version] INT NOT NULL,[Width] REAL NOT NULL,[Height] REAL NOT NULL,[MinimumIslandDistance] REAL NOT NULL,[ViewDistance] REAL NOT NULL,[DockDistance] REAL NOT NULL,[WindHeading] REAL NOT NULL,[UnfoulingLaborMultiplier] REAL NOT NULL,[ReputationReward] REAL NOT NULL,[ReputationPenalty] REAL NOT NULL);";
 	static const auto AutoCreateWorldsTable = data::game::Common::Run(CREATE_TABLE);
 	
-	static const std::string QUERY_ITEM = "SELECT [Version],[Width],[Height],[MinimumIslandDistance],[ViewDistance],[DockDistance],[WindHeading] FROM [Worlds] WHERE [WorldId] = {};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [Worlds]([WorldId],[Version],[Width],[Height],[MinimumIslandDistance],[ViewDistance],[DockDistance],[WindHeading]) VALUES ({},{},{},{},{},{},{},{});";
+	static const std::string QUERY_ITEM = "SELECT [Version],[Width],[Height],[MinimumIslandDistance],[ViewDistance],[DockDistance],[WindHeading],[UnfoulingLaborMultiplier],[ReputationReward],[ReputationPenalty] FROM [Worlds] WHERE [WorldId] = {};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [Worlds]([WorldId],[Version],[Width],[Height],[MinimumIslandDistance],[ViewDistance],[DockDistance],[WindHeading],[UnfoulingLaborMultiplier],[ReputationReward],[ReputationPenalty]) VALUES ({},{},{},{},{},{},{},{},{},{},{});";
 
 	static const std::string FIELD_VERSION = "Version";
 	static const std::string FIELD_WIDTH = "Width";
@@ -18,6 +18,9 @@ namespace data::game//20211010
 	static const std::string FIELD_VIEW_DISTANCE = "ViewDistance";
 	static const std::string FIELD_DOCK_DISTANCE = "DockDistance";
 	static const std::string FIELD_WIND_HEADING = "WindHeading";
+	static const std::string FIELD_UNFOULING_LABOR_MULTIPLIER = "UnfoulingLaborMultiplier";
+	static const std::string FIELD_REPUTATION_REWARD = "ReputationReward";
+	static const std::string FIELD_REPUTATION_PENALTY = "ReputationPenalty";
 
 	static const int WORLD_ID = 1;
 
@@ -33,7 +36,10 @@ namespace data::game//20211010
 			data.minimumIslandDistance,
 			data.viewDistance,
 			data.dockDistance,
-			data.windHeading);
+			data.windHeading,
+			data.unfoulingLaborMultiplier,
+			data.reputationReward,
+			data.reputationPenalty);
 	}
 
 	static World ToWorld(const std::map<std::string, std::string> record)
@@ -48,7 +54,10 @@ namespace data::game//20211010
 			common::Data::ToDouble(record.find(FIELD_MINIMUM_ISLAND_DISTANCE)->second),
 			common::Data::ToDouble(record.find(FIELD_VIEW_DISTANCE)->second),
 			common::Data::ToDouble(record.find(FIELD_DOCK_DISTANCE)->second),
-			common::Data::ToDouble(record.find(FIELD_WIND_HEADING)->second)
+			common::Data::ToDouble(record.find(FIELD_WIND_HEADING)->second),
+			common::Data::ToDouble(record.find(FIELD_UNFOULING_LABOR_MULTIPLIER)->second),
+			common::Data::ToDouble(record.find(FIELD_REPUTATION_REWARD)->second),
+			common::Data::ToDouble(record.find(FIELD_REPUTATION_PENALTY)->second)
 		};
 	}
 
