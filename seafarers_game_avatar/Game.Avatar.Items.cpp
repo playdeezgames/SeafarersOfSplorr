@@ -1,18 +1,17 @@
+#include <Common.Utility.h>
 #include <Data.Game.Avatar.Items.h>
 #include "Game.Avatar.Items.h"
 #include "Game.Items.h"
 #include <Game.Player.h>
-namespace game::avatar//20211014
+namespace game::avatar//20211017
 {
 	std::map<game::Item, size_t> Items::All()
 	{
-		std::map<game::Item, size_t> result;
-		auto inventory = data::game::avatar::Items::All(Player::GetAvatarId());
-		for (auto& item : inventory)
-		{
-			result[(game::Item)item.first] = item.second;
-		}
-		return result;
+		return
+			common::Utility::MapTable<int, size_t, Item, size_t>(
+				data::game::avatar::Items::All(Player::GetAvatarId()),
+				common::Utility::Cast<int, Item>,
+				common::Utility::Identity<size_t>);
 	}
 
 	size_t Items::Read(const game::Item& item)
@@ -28,8 +27,7 @@ namespace game::avatar//20211014
 
 	void Items::Add(const game::Item& item, const size_t& count)
 	{
-		auto previous = Read(item);
-		data::game::avatar::Items::Write(Player::GetAvatarId(), (int)item, previous + count);
+		data::game::avatar::Items::Write(Player::GetAvatarId(), (int)item, Read(item) + count);
 	}
 
 	void Items::Remove(const game::Item& item, const size_t& count)
@@ -40,13 +38,12 @@ namespace game::avatar//20211014
 
 	double Items::TotalTonnage()
 	{
-		double tonnage = 0.0;
-		for (auto& entry : All())
-		{
-			auto unitTonnage = game::Items::GetUnitTonnage(entry.first);
-			tonnage += unitTonnage * (double)entry.second;
-		}
-		return tonnage;
+		return common::Utility::AccumulateTable<Item, size_t, double>(
+			All(),
+			[](const double& result, const Item& item, const size_t count) 
+			{ 
+				return result + game::Items::GetUnitTonnage(item) * (double)count;
+			});
 	}
 
 	void Items::Reset(const game::Difficulty& difficulty)
@@ -54,12 +51,10 @@ namespace game::avatar//20211014
 		data::game::avatar::Items::Clear(Player::GetAvatarId());
 		for (auto& item : game::Items::All())
 		{
-			auto& initialInventories = game::Items::GetInitialInventoriesForAvatar(item);
-			auto iter = initialInventories.find(difficulty);
-			if (iter != initialInventories.end())
-			{
-				Add(item, iter->second);
-			}
+			common::Utility::IterateOptional<size_t>(
+				common::Utility::TryGetKey(game::Items::GetInitialInventoriesForAvatar(item), difficulty),
+				[item](const size_t& count) { Add(item, count); }
+			);
 		}
 	}
 }

@@ -168,6 +168,16 @@ namespace common
 			std::function<bool(const TValue&)> filter = [](const TValue&) { return true; };
 			return ListFromTable<TKey, TValue>(list, table, filter);
 		}
+		template <typename TKey1, typename TValue1, typename TKey2, typename TValue2> 
+		static std::map<TKey2, TValue2> MapTable(const std::map<TKey1, TValue1>& source, std::function<TKey2(const TKey1&)> transformKey, std::function<TValue2(const TValue1&)> transformValue)
+		{
+			std::map<TKey2, TValue2> result;
+			for (auto& entry : source)
+			{
+				result[transformKey(entry.first)] = transformValue(entry.second);
+			}
+			return result;
+		}
 		template<typename TInput, typename TOutput>
 		static std::list<TOutput> MapList(std::function<std::list<TInput>()> source, std::function<TOutput(const TInput&)> transform, std::function<bool(const TOutput&)> filter)
 		{
@@ -219,14 +229,24 @@ namespace common
 			return accumulator;
 		}
 		template<typename TKey, typename TValue, typename TAccumulator>
-		static TAccumulator AccumulateTable(std::function<std::map<TKey, TValue>()> source, std::function<void(TAccumulator&, const TKey&, const TValue&)> accumulate, const TAccumulator& initial)
+		static TAccumulator AccumulateTable(const std::map<TKey, TValue>& source, std::function<void(TAccumulator&, const TKey&, const TValue&)> accumulate, const TAccumulator& initial)
 		{
 			TAccumulator accumulator = initial;
-			for (auto& entry : source())
+			for (auto& entry : source)
 			{
 				accumulate(accumulator, entry.first, entry.second);
 			}
 			return accumulator;
+		}
+		template<typename TKey, typename TValue, typename TAccumulator>
+		static TAccumulator AccumulateTable(const std::map<TKey, TValue>& source, std::function<void(TAccumulator&, const TKey&, const TValue&)> accumulate)
+		{
+			return AccumulateTable(source, accumulate, TAccumulator());
+		}
+		template<typename TKey, typename TValue, typename TAccumulator>
+		static TAccumulator AccumulateTable(std::function<std::map<TKey, TValue>()> source, std::function<void(TAccumulator&, const TKey&, const TValue&)> accumulate, const TAccumulator& initial)
+		{
+			return AccumulateTable(source(), accumulate, initial);
 		}
 		template<typename TKey, typename TValue, typename TAccumulator>
 		static TAccumulator AccumulateTable(std::function<std::map<TKey, TValue>()> source, std::function<void(TAccumulator&, const TKey&, const TValue&)> accumulate)
@@ -241,6 +261,24 @@ namespace common
 				return transform(source.value());
 			}
 			return std::nullopt;
+		}
+		template<typename TValue>
+		static TValue Identity(const TValue& value)
+		{
+			return value;
+		}
+		template<typename TValue1, typename TValue2>
+		static TValue2 Cast(const TValue1& value)
+		{
+			return (TValue2)value;
+		}
+		template<typename TValue>
+		static void IterateOptional(const std::optional<TValue>& value, std::function<void(const TValue&)> iterate)
+		{
+			if (value)
+			{
+				iterate(value.value());
+			}
 		}
 	};
 }

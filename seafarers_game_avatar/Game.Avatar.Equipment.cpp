@@ -1,7 +1,8 @@
+#include <Common.Utility.h>
 #include <Data.Game.Avatar.Equipment.h>
 #include "Game.Avatar.Equipment.h"
 #include <Game.Player.h>
-namespace game::avatar
+namespace game::avatar//20211017
 {
 	void Equipment::Reset(const Difficulty& difficulty)
 	{
@@ -30,12 +31,11 @@ namespace game::avatar
 
 	std::map<EquipSlot, Item> Equipment::All()
 	{
-		std::map<EquipSlot, Item> result;
-		for (auto& entry : data::game::avatar::Equipment::All(Player::GetAvatarId()))
-		{
-			result[(EquipSlot)entry.first] = (Item)entry.second;
-		}
-		return result;
+		return 
+			common::Utility::MapTable<int, int, EquipSlot, Item>(
+				data::game::avatar::Equipment::All(Player::GetAvatarId()), 
+				common::Utility::Cast<int, EquipSlot>,
+				common::Utility::Cast<int, Item>);
 	}
 
 	bool Equipment::IsEquipped(const Item& item)
