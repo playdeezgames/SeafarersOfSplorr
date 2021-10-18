@@ -1,3 +1,4 @@
+#include <Common.Utility.h>
 #include <Data.Game.Avatar.Ship.h>
 #include <Data.Game.Ship.Statistic.h>
 #include <Data.Game.Player.h>
@@ -6,7 +7,7 @@
 #include "Game.Avatar.Items.h"
 #include <Game.Ship.h>
 #include <Game.ShipTypes.h>
-namespace game::avatar
+namespace game::avatar//20211018
 {
 	void Ship::Reset(const game::Difficulty&)
 	{
@@ -20,36 +21,41 @@ namespace game::avatar
 				ship.shipId,
 				(int)ship.berthType
 			});
-		
+	}
+
+	static Ship ToShip(const data::game::avatar::Ship& ship)
+	{
+		return 
+		{
+			ship.shipId,
+			(BerthType)ship.berthType
+		};
 	}
 
 	std::optional<Ship> Ship::Read()
 	{
-		auto data = data::game::avatar::Ship::Read(data::game::Player::GetAvatarId());
-		if (data)
-		{
-			Ship ship = {
-				data.value().shipId,
-				(BerthType)data.value().berthType
-				};
-			return ship;
-		}
-		return std::nullopt;
+		return common::Utility::MapOptional<data::game::avatar::Ship, Ship>(
+			data::game::avatar::Ship::Read(data::game::Player::GetAvatarId()),
+			ToShip
+			);
+	}
+
+	static double GetAvailableTonnage(const Ship& ship)
+	{
+		return common::Utility::MapOptional<ShipType, double>(
+			game::Ship::GetShipType(ship.shipId),
+			[](const ShipType& shipType)
+			{
+				return
+					game::ShipTypes::GetTotalTonnage(shipType) -
+					game::avatar::Items::TotalTonnage();
+			}).value_or(0.0);
 	}
 
 	std::optional<double> Ship::AvailableTonnage()
 	{
-		auto ship = Read();
-		if (ship)
-		{
-			auto shipType = game::Ship::GetShipType(ship.value().shipId);
-			if (shipType)
-			{
-				return
-					game::ShipTypes::GetTotalTonnage(shipType.value()) -
-					game::avatar::Items::TotalTonnage();
-			}
-		}
-		return std::nullopt;
+		return common::Utility::MapOptional<Ship, double>(
+			Read(),
+			GetAvailableTonnage);
 	}
 }
