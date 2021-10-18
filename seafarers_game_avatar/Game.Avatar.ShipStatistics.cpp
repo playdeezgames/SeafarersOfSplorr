@@ -6,59 +6,32 @@
 #include "Game.Colors.h"
 #include "Game.ShipStatistic.h"
 #include <map>
-namespace game::avatar
+namespace game::avatar//20211018
 {
+	static int GetShipId()
+	{
+		return game::avatar::Ship::Read().value().shipId;
+	}
+
+	static data::game::ship::Statistic GetStatistic(int shipId, const ShipStatistic& statistic)
+	{
+		return data::game::ship::Statistic::Read(shipId, (int)statistic).value();
+	}
+
 	static double GetMaximumFouling()
 	{
-		int shipId = game::avatar::Ship::Read().value().shipId;
-		double portFouling = data::game::ship::Statistic::Read(shipId, (int)ShipStatistic::PORT_FOULING).value().maximum.value();
-		double starboardFouling = data::game::ship::Statistic::Read(shipId, (int)ShipStatistic::STARBOARD_FOULING).value().maximum.value();
+		int shipId = GetShipId();
+		double portFouling = GetStatistic(shipId, ShipStatistic::PORT_FOULING).maximum.value();
+		double starboardFouling = GetStatistic(shipId, ShipStatistic::STARBOARD_FOULING).maximum.value();
 		return portFouling + starboardFouling;
 	}
 
 	double ShipStatistics::GetFouling()
 	{
-		int shipId = game::avatar::Ship::Read().value().shipId;
-		double portFouling = data::game::ship::Statistic::Read(shipId, (int)ShipStatistic::PORT_FOULING).value().current;
-		double starboardFouling = data::game::ship::Statistic::Read(shipId, (int)ShipStatistic::STARBOARD_FOULING).value().current;
+		int shipId = GetShipId();
+		double portFouling = GetStatistic(shipId, ShipStatistic::PORT_FOULING).current;
+		double starboardFouling = GetStatistic(shipId, ShipStatistic::STARBOARD_FOULING).current;
 		return portFouling + starboardFouling;
-	}
-
-	double ShipStatistics::GetFoulingPercentage(const game::Side& side)
-	{
-		int shipId = game::avatar::Ship::Read().value().shipId;
-		double maximum = data::game::ship::Statistic::Read(shipId, (int)side).value().maximum.value();
-		double current = data::game::ship::Statistic::Read(shipId, (int)side).value().current;
-		return common::Data::ToPercentage(current, maximum).value();
-	}
-
-
-	double ShipStatistics::GetFoulingPercentage()
-	{
-		return common::Data::ToPercentage(GetFouling(), GetMaximumFouling()).value();
-	}
-
-
-	void ShipStatistics::IncreaseFouling(double multiplier)
-	{
-		int shipId = game::avatar::Ship::Read().value().shipId;
-		auto portFouling = data::game::ship::Statistic::Read(shipId, (int)ShipStatistic::PORT_FOULING).value();
-		auto starboardFouling = data::game::ship::Statistic::Read(shipId, (int)ShipStatistic::STARBOARD_FOULING).value();
-		auto foulingRate = data::game::ship::Statistic::Read(shipId, (int)ShipStatistic::FOULING_RATE).value().current;
-
-		portFouling.current += (foulingRate * multiplier);
-		if (portFouling.maximum.has_value() && portFouling.current > portFouling.maximum.value())
-		{
-			portFouling.current = portFouling.maximum.value();
-		}
-		starboardFouling.current += (foulingRate * multiplier);
-		if (starboardFouling.maximum.has_value() && starboardFouling.current > starboardFouling.maximum.value())
-		{
-			starboardFouling.current = starboardFouling.maximum.value();
-		}
-
-		data::game::ship::Statistic::Write(shipId, (int)ShipStatistic::PORT_FOULING, portFouling);
-		data::game::ship::Statistic::Write(shipId, (int)ShipStatistic::STARBOARD_FOULING, starboardFouling);
 	}
 
 	struct SideDescriptor
@@ -73,11 +46,41 @@ namespace game::avatar
 		{ Side::STARBOARD, {ShipStatistic::STARBOARD_FOULING, "You clean the starboard hull."}},
 	};
 
+	double ShipStatistics::GetFoulingPercentage(const game::Side& side)
+	{
+		auto statistic = GetStatistic(GetShipId(), foulingTable.find(side)->second.statistic);
+		return common::Data::ToPercentage(statistic.current, statistic.maximum.value()).value();
+	}
+
+	double ShipStatistics::GetFoulingPercentage()
+	{
+		return common::Data::ToPercentage(GetFouling(), GetMaximumFouling()).value();
+	}
+
+	static void IncreaseFouling(int shipId, const ShipStatistic& statistic, double amount)
+	{
+		auto fouling = GetStatistic(shipId, statistic);
+		fouling.current += amount;
+		if (fouling.maximum.has_value() && fouling.current > fouling.maximum.value())
+		{
+			fouling.current = fouling.maximum.value();
+		}
+		data::game::ship::Statistic::Write(shipId, (int)statistic, fouling);
+	}
+
+	void ShipStatistics::IncreaseFouling(double multiplier)
+	{
+		int shipId = GetShipId();
+		auto foulingRate = GetStatistic(shipId, ShipStatistic::FOULING_RATE).current * multiplier;
+		game::avatar::IncreaseFouling(shipId, ShipStatistic::PORT_FOULING, foulingRate);
+		game::avatar::IncreaseFouling(shipId, ShipStatistic::STARBOARD_FOULING, foulingRate);
+	}
+
 	void ShipStatistics::CleanHull(const Side& side)
 	{
-		int shipId = game::avatar::Ship::Read().value().shipId;
+		int shipId = GetShipId();
 		auto descriptor = foulingTable.find(side)->second;
-		auto fouling = data::game::ship::Statistic::Read(shipId, (int)descriptor.statistic).value();
+		auto fouling = GetStatistic(shipId, descriptor.statistic);
 		fouling.current = fouling.minimum.value_or(0.0);
 		data::game::ship::Statistic::Write(shipId, (int)descriptor.statistic, fouling);
 		Log::Write({Colors::GRAY, descriptor.cleaningMessage});
