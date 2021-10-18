@@ -1,24 +1,8 @@
-#include <Common.Data.h>
-#include <Common.Heading.h>
-#include <Common.RNG.h>
-#include <Data.Game.Avatar.h>
 #include <Data.Game.Avatar.Rations.h>
-#include <functional>
-#include "Game.Avatar.Items.h"
-#include "Game.Avatar.Log.h"
-#include "Game.Avatar.Plights.h"
 #include "Game.Avatar.Rations.h"
-#include "Game.Avatar.Ship.h"
-#include "Game.Avatar.Statistics.h"
-#include "Game.Avatar.StateTransition.h"
 #include <Game.Items.h>
 #include <Game.Player.h>
-#include <Game.Ship.h>
-#include <Game.ShipNames.h>
-#include <Game.ShipTypes.h>
-#include <Game.World.h>
-#include <map>
-namespace game::avatar
+namespace game::avatar//20211018
 {
 	std::optional<game::Item> Rations::Read()
 	{
