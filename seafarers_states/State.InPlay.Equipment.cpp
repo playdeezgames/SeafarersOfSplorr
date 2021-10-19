@@ -18,8 +18,8 @@
 #include <Visuals.SpriteGrid.h>
 namespace state::in_play
 {
-	static const std::string LAYOUT_NAME = "State.InPlay.Equipment";
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_EQUIPMENT;
+	static const std::string LAYOUT_NAME = "State.InPlay.Equipment";
 	static const std::string SPRITE_GRID_ID = "Grid";
 	static const std::string AREA_EQUIP_SLOT = "EquipSlot";
 	static const std::string AREA_ITEM = "Item";
@@ -43,7 +43,7 @@ namespace state::in_play
 
 	static void RefreshEquipSlot(int& row, size_t index, const game::EquipSlot& equipSlot)
 	{
-		auto color = (index == equipSlotIndex) ? (game::Colors::WHITE) : (game::Colors::DARK_GRAY);//TODO: just pass in a bool
+		auto color = (index == equipSlotIndex) ? (game::Colors::WHITE) : (game::Colors::DARK_GRAY);
 		visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { EQUIP_SLOT_X, row }, FONT_DEFAULT, game::EquipSlots::GetName(equipSlot), color, visuals::HorizontalAlignment::LEFT);
 		++row;
 
@@ -56,8 +56,7 @@ namespace state::in_play
 		{
 			visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID_ID, { EQUIPPED_ITEM_X, row }, FONT_DEFAULT, EMPTY, color, visuals::HorizontalAlignment::LEFT);
 		}
-		++row;
-		++row;
+		row += 2;
 	}
 
 	static void RefreshEquipSlots()
@@ -311,10 +310,25 @@ namespace state::in_play
 
 	void Equipment::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea, OnMouseMotionOutsideArea));
-		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUp));
-		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(
+			CURRENT_STATE, 
+			OnEnter);
+		::application::MouseMotion::AddHandler(
+			CURRENT_STATE, 
+			visuals::Areas::HandleMouseMotion(
+				LAYOUT_NAME, 
+				OnMouseMotionInArea, 
+				OnMouseMotionOutsideArea));
+		::application::MouseButtonUp::AddHandler(
+			CURRENT_STATE, 
+			visuals::Areas::HandleMouseButtonUp(
+				LAYOUT_NAME, 
+				OnMouseButtonUp));
+		::application::Command::SetHandlers(
+			CURRENT_STATE, 
+			commandHandlers);
+		::application::Renderer::SetRenderLayout(
+			CURRENT_STATE, 
+			LAYOUT_NAME);
 	}
 }
