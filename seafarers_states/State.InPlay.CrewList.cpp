@@ -22,7 +22,7 @@
 #include <Visuals.Areas.h>
 #include <Visuals.Buttons.h>
 #include <Visuals.SpriteGrid.h>
-namespace state::in_play
+namespace state::in_play//20211019
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CREW_LIST;
 	static const std::string LAYOUT_NAME = "State.InPlay.CrewList";
@@ -32,12 +32,14 @@ namespace state::in_play
 	static const std::string AREA_GO_BACK = "GoBack";
 	static const std::string AREA_LIST = "List";
 
-	static const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
+	static const auto WriteTextToGrid = 
+		visuals::SpriteGrid::DoWriteToGrid(
+			LAYOUT_NAME, 
+			SPRITE_GRID_ID, 
+			FONT_DEFAULT, 
+			visuals::HorizontalAlignment::LEFT);
 
-	static void OnLeave()
-	{
-		::application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
-	}
+	static auto OnLeave = ::application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS);
 
 	struct RosterItem
 	{
@@ -129,7 +131,6 @@ namespace state::in_play
 		{
 			rosterIndex = std::nullopt;
 		}
-		Refresh();
 	}
 
 	static const std::map<std::string, std::function<void(const common::XY<int>&)>> motionAreas =
@@ -142,6 +143,7 @@ namespace state::in_play
 	{
 		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
 		common::utility::Dispatcher::DispatchParameter(motionAreas, areaName, location);
+		Refresh();
 	}
 
 	static void OnMouseMotionOutsideAreas(const common::XY<int>&)
@@ -166,17 +168,27 @@ namespace state::in_play
 		{AREA_LIST, OnCrewDetail}
 	};
 
-	static bool OnMouseButtonUpInArea(const std::string& areaName)
-	{
-		return common::utility::Dispatcher::Dispatch(buttonUpAreas, areaName, true, false);
-	}
-
 	void CrewList::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
-		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea, OnMouseMotionOutsideAreas));
-		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(
+			CURRENT_STATE, 
+			OnEnter);
+		::application::MouseButtonUp::AddHandler(
+			CURRENT_STATE, 
+			visuals::Areas::HandleMouseButtonUp(
+				LAYOUT_NAME, 
+				common::utility::Dispatcher::DoDispatch(buttonUpAreas, true, false)));
+		::application::MouseMotion::AddHandler(
+			CURRENT_STATE, 
+			visuals::Areas::HandleMouseMotion(
+				LAYOUT_NAME, 
+				OnMouseMotionInArea, 
+				OnMouseMotionOutsideAreas));
+		::application::Command::SetHandlers(
+			CURRENT_STATE, 
+			commandHandlers);
+		::application::Renderer::SetRenderLayout(
+			CURRENT_STATE, 
+			LAYOUT_NAME);
 	}
 }
