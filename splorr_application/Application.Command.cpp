@@ -10,7 +10,7 @@ namespace application
 		application::Handlers::WithCurrent(commandHandlers, 
 			[command](const std::map<::Command, std::function<void()>>& handlers) 
 			{
-				common::Utility::Dispatch(handlers, command);
+				common::utility::Dispatcher::Dispatch(handlers, command);
 			});
 	}
 

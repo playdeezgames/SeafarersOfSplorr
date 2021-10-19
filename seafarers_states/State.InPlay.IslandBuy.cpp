@@ -201,7 +201,7 @@ namespace state::in_play
 
 	static bool OnMouseButtonUpInArea(const std::string& areaName)
 	{
-		common::Utility::Dispatch(mouseButtonHandlers, areaName);
+		common::utility::Dispatcher::Dispatch(mouseButtonHandlers, areaName);
 		return true;
 	}
 
@@ -238,7 +238,7 @@ namespace state::in_play
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
 	{
 		hoverButton = std::nullopt;
-		common::Utility::DispatchParameter(mouseMotionHandlers, areaName, location);
+		common::utility::Dispatcher::DispatchParameter(mouseMotionHandlers, areaName, location);
 		Refresh();
 	}
 

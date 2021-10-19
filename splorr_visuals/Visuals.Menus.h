@@ -21,7 +21,7 @@ namespace visuals
 		{
 			return [actions, layoutName, menuId]()
 			{
-				common::Utility::Dispatch(actions, (TEnum)visuals::Menus::ReadIndex(layoutName, menuId).value());
+				common::utility::Dispatcher::Dispatch(actions, (TEnum)visuals::Menus::ReadIndex(layoutName, menuId).value());
 			};
 		}
 		static DrawerFunction Internalize(const std::string&, const nlohmann::json&);

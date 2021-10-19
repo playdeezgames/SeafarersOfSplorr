@@ -152,7 +152,7 @@ namespace state
 
 	static void OnCommand(const ::Command& command)
 	{
-		common::Utility::Dispatch(commandHandlers, command);
+		common::utility::Dispatcher::Dispatch(commandHandlers, command);
 	}
 
 	static const std::map<std::string, std::function<void()>> areaClickActions =

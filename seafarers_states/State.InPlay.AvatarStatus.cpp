@@ -122,7 +122,7 @@ namespace state::in_play
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>&)
 	{
 		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
-		common::Utility::Dispatch(areaButtons, areaName);
+		common::utility::Dispatcher::Dispatch(areaButtons, areaName);
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_TOOL_TIP, visuals::Areas::Get(LAYOUT_NAME, areaName).value().toolTip.value_or(""));
 	}
 
@@ -141,7 +141,7 @@ namespace state::in_play
 
 	static bool OnMouseButtonUpInArea(const std::string& areaName)
 	{
-		return common::Utility::Dispatch(areaActions, areaName, true, false);
+		return common::utility::Dispatcher::Dispatch(areaActions, areaName, true, false);
 	}
 
 	void AvatarStatus::Start()

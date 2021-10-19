@@ -238,7 +238,7 @@ namespace state::in_play
 
 	static bool OnMouseButtonUpInArea(const std::string& areaName)
 	{
-		return common::Utility::Dispatch(buttonUpHandlers, areaName, true, false);
+		return common::utility::Dispatcher::Dispatch(buttonUpHandlers, areaName, true, false);
 	}
 
 	static void OnMouseMotionGoBack(const common::XY<int>&)
@@ -271,7 +271,7 @@ namespace state::in_play
 	{
 		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
 		hiliteRow = std::nullopt;
-		common::Utility::DispatchParameter(mouseMotionHandlers, areaName, position);
+		common::utility::Dispatcher::DispatchParameter(mouseMotionHandlers, areaName, position);
 		RefreshGrid();
 	}
 

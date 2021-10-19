@@ -43,7 +43,7 @@ namespace sublayout
 
 	static bool OnMouseButtonUpInArea(const std::string& area)
 	{
-		return common::Utility::Dispatch(mouseUpHandlers, area, false);
+		return common::utility::Dispatcher::Dispatch(mouseUpHandlers, area, false);
 	}
 
 	void UIHamburger::Start()

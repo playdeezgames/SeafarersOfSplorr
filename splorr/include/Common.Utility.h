@@ -4,9 +4,9 @@
 #include <functional>
 #include <map>
 #include <optional>
-namespace common
+namespace common::utility
 {
-	struct Utility
+	struct Dispatcher
 	{
 		template<typename TEnum>
 		static void Dispatch(const std::map<TEnum, std::function<void()>>& handlers, const TEnum& key)
@@ -57,6 +57,12 @@ namespace common
 			}
 			return unhandledResult;
 		}
+	};
+}
+namespace common
+{
+	struct Utility
+	{
 
 		template<typename TKey, typename TValue>
 		static std::function<void()> DoNextItem(size_t& index, const std::map<TKey, TValue>& table, std::function<void()> refresh)

@@ -94,7 +94,7 @@ namespace sublayout
 
 	static bool OnMouseButtonUpInArea(const std::string& area)
 	{
-		common::Utility::Dispatch(buttonUpHandlers, hoverAreas.find(area)->second);
+		common::utility::Dispatcher::Dispatch(buttonUpHandlers, hoverAreas.find(area)->second);
 		return true;
 	}
 

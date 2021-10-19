@@ -141,7 +141,7 @@ namespace state::in_play
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
 	{
 		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
-		common::Utility::DispatchParameter(motionAreas, areaName, location);
+		common::utility::Dispatcher::DispatchParameter(motionAreas, areaName, location);
 	}
 
 	static void OnMouseMotionOutsideAreas(const common::XY<int>&)
@@ -168,7 +168,7 @@ namespace state::in_play
 
 	static bool OnMouseButtonUpInArea(const std::string& areaName)
 	{
-		return common::Utility::Dispatch(buttonUpAreas, areaName, true, false);
+		return common::utility::Dispatcher::Dispatch(buttonUpAreas, areaName, true, false);
 	}
 
 	void CrewList::Start()
