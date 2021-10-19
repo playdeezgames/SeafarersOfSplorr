@@ -8,7 +8,7 @@
 #include "States.h"
 #include "UIState.h"
 #include <Visuals.Messages.h>
-namespace state::in_play
+namespace state::in_play//20211019
 {
 	enum class AutoMoveState
 	{
