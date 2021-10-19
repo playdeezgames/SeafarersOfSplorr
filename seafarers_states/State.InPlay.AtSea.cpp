@@ -24,8 +24,9 @@
 #include <Visuals.MenuItems.h>
 #include <Visuals.Messages.h>
 #include <Visuals.SpriteGrid.h>
-namespace state::in_play
+namespace state::in_play//20211019
 {
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_AT_SEA;
 	static const std::string LAYOUT_NAME = "State.InPlay.AtSea";
 
 	static const std::string MENU_ID = "Order";
@@ -187,14 +188,15 @@ namespace state::in_play
 		visuals::Images::SetAngle(LAYOUT_NAME, IMAGE_NEW_HEADING, newHeading);
 	}
 
+	static const std::map<std::string, std::function<void(const common::XY<int>&)>> motionHandlers = 
+	{
+		{ AREA_CHANGE_HEADING, OnMouseMotionInHelm }
+	};
+
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
 	{
-		if (areaName == AREA_CHANGE_HEADING)
-		{
-			OnMouseMotionInHelm(location);
-			return;
-		}
 		visuals::Images::SetVisible(LAYOUT_NAME, IMAGE_NEW_HEADING, false);
+		common::utility::Dispatcher::DispatchParameter(motionHandlers, areaName, location);
 	}
 
 	static void OnMouseMotionOutsideArea(const common::XY<int>& location)
@@ -202,31 +204,55 @@ namespace state::in_play
 		visuals::Images::SetVisible(LAYOUT_NAME, IMAGE_NEW_HEADING, false);
 	}
 
-	static bool OnMouseButtonUp(const std::string& areaName)
+	static void OnChangeHeading()
 	{
-		if (areaName == AREA_CHANGE_HEADING)
-		{
-			game::avatar::Log::Write(
-				game::Colors::GRAY,
-				"Come about to {}!",
-				common::Heading::ToCompassPoint(newHeading));
-			game::Ship::SetHeading(newHeading);
-			sublayout::AtSeaAvatarStatus::Refresh();
-			RefreshLog();
-			return true;
-		}
-		return false;
+		game::avatar::Log::Write(
+			game::Colors::GRAY,
+			"Come about to {}!",
+			common::Heading::ToCompassPoint(newHeading));
+		game::Ship::SetHeading(newHeading);
+		sublayout::AtSeaAvatarStatus::Refresh();
+		RefreshLog();
 	}
+
+	static const std::map<std::string, std::function<void()>> buttonUpHandlers = 
+	{
+		{AREA_CHANGE_HEADING, OnChangeHeading}
+	};
 
 	void AtSea::Start()
 	{
-		::application::Update::AddHandler(::UIState::IN_PLAY_AT_SEA, OnUpdate);
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_AT_SEA, OnEnter);
-		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_AT_SEA, LAYOUT_NAME);
-		::application::Command::SetHandlers(::UIState::IN_PLAY_AT_SEA, commandHandlers);
-		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_AT_SEA, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea, OnMouseMotionOutsideArea));
-		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_AT_SEA, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_AT_SEA, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUp));
-		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_AT_SEA, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
+		::application::Update::AddHandler(
+			CURRENT_STATE, 
+			OnUpdate);
+		::application::OnEnter::AddHandler(
+			CURRENT_STATE, 
+			OnEnter);
+		::application::Renderer::SetRenderLayout(
+			CURRENT_STATE, 
+			LAYOUT_NAME);
+		::application::Command::SetHandlers(
+			CURRENT_STATE, 
+			commandHandlers);
+		::application::MouseMotion::AddHandler(
+			CURRENT_STATE, 
+			visuals::Areas::HandleMouseMotion(
+				LAYOUT_NAME, 
+				OnMouseMotionInArea, 
+				OnMouseMotionOutsideArea));
+		::application::MouseMotion::AddHandler(
+			CURRENT_STATE, 
+			visuals::Areas::HandleMenuMouseMotion(
+				LAYOUT_NAME));
+		::application::MouseButtonUp::AddHandler(
+			CURRENT_STATE, 
+			visuals::Areas::HandleMouseButtonUp(
+				LAYOUT_NAME, 
+				common::utility::Dispatcher::DoDispatch(buttonUpHandlers, true, false)));
+		::application::MouseButtonUp::AddHandler(
+			CURRENT_STATE, 
+			visuals::Areas::HandleMenuMouseButtonUp(
+				LAYOUT_NAME, 
+				ActivateItem));
 	}
 }
