@@ -41,8 +41,19 @@ namespace state::in_play
 	static const std::string BUTTON_GO_BACK = "GoBack";
 	static const std::string TEXT_TOOL_TIP = "ToolTip";
 
-	static const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
-	static const auto WriteTextToGridRight = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::RIGHT);
+	static const auto WriteTextToGrid = 
+		visuals::SpriteGrid::DoWriteToGrid(
+			LAYOUT_NAME, 
+			SPRITE_GRID_ID, 
+			FONT_DEFAULT, 
+			visuals::HorizontalAlignment::LEFT);
+
+	static const auto WriteTextToGridRight = 
+		visuals::SpriteGrid::DoWriteToGrid(
+			LAYOUT_NAME, 
+			SPRITE_GRID_ID, 
+			FONT_DEFAULT, 
+			visuals::HorizontalAlignment::RIGHT);
 
 	static void OnJob()
 	{
@@ -78,7 +89,7 @@ namespace state::in_play
 		}
 		for (auto& plight : inflicted)
 		{
-			WriteTextToGrid({ 0,row++ }, game::avatar::Plights::GetName(plight), (game::avatar::Plights::GetType(plight) == game::avatar::PlightType::CURSE) ? (game::Colors::RED) : (game::Colors::GREEN));
+			WriteTextToGrid({ 0, row++ }, game::avatar::Plights::GetName(plight), (game::avatar::Plights::GetType(plight) == game::avatar::PlightType::CURSE) ? (game::Colors::RED) : (game::Colors::GREEN));
 		}
 	}
 
@@ -91,7 +102,10 @@ namespace state::in_play
 
 	static void RefreshMenu()
 	{
-		visuals::Buttons::SetEnabled(LAYOUT_NAME, BUTTON_JOB, game::avatar::Quest::Read().has_value());
+		visuals::Buttons::SetEnabled(
+			LAYOUT_NAME, 
+			BUTTON_JOB, 
+			game::avatar::Quest::Read().has_value());
 	}
 
 	static void Refresh()
@@ -123,7 +137,7 @@ namespace state::in_play
 	{
 		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
 		common::utility::Dispatcher::Dispatch(areaButtons, areaName);
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_TOOL_TIP, visuals::Areas::Get(LAYOUT_NAME, areaName).value().toolTip.value_or(""));
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_TOOL_TIP, visuals::Areas::GetToolTip(LAYOUT_NAME, areaName));
 	}
 
 	static void OnMouseMotionOutsideAreas(const common::XY<int>&)
@@ -139,17 +153,30 @@ namespace state::in_play
 		{AREA_JOB, OnJob}
 	};
 
-	static bool OnMouseButtonUpInArea(const std::string& areaName)
-	{
-		return common::utility::Dispatcher::Dispatch(areaActions, areaName, true, false);
-	}
-
 	void AvatarStatus::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea, OnMouseMotionOutsideAreas));
-		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
-		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(
+			CURRENT_STATE, 
+			OnEnter);
+		::application::MouseMotion::AddHandler(
+			CURRENT_STATE, 
+			visuals::Areas::HandleMouseMotion(
+				LAYOUT_NAME, 
+				OnMouseMotionInArea, 
+				OnMouseMotionOutsideAreas));
+		::application::MouseButtonUp::AddHandler(
+			CURRENT_STATE, 
+			visuals::Areas::HandleMouseButtonUp(
+				LAYOUT_NAME, 
+				common::utility::Dispatcher::DoDispatch(
+					areaActions, 
+					true, 
+					false)));
+		::application::Command::SetHandlers(
+			CURRENT_STATE, 
+			commandHandlers);
+		::application::Renderer::SetRenderLayout(
+			CURRENT_STATE, 
+			LAYOUT_NAME);
 	}
 }

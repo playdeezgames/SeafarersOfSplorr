@@ -57,6 +57,20 @@ namespace common::utility
 			}
 			return unhandledResult;
 		}
+		template<typename TEnum, typename TResult>
+		static std::function<TResult(const TEnum&)> DoDispatch(const std::map<TEnum, std::function<void()>>& handlers, const TResult& handledResult, const TResult& unhandledResult)
+		{
+			return [handlers, handledResult, unhandledResult](const TEnum& key) 
+			{
+				auto iter = handlers.find(key);
+				if (iter != handlers.end())
+				{
+					iter->second();
+					return handledResult;
+				}
+				return unhandledResult;
+			};
+		}
 	};
 }
 namespace common

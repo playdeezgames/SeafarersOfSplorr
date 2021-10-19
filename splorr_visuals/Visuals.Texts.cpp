@@ -71,12 +71,11 @@ namespace visuals
 		};
 	}
 
-	void Texts::SetText(const std::string& layoutName, const std::string& textId, const std::string& text)
+	void Texts::SetText(const std::string& layoutName, const std::string& textId, const std::optional<std::string>& text)
 	{
 		auto textIndex = textTable[layoutName][textId];
-		internalTexts[textIndex].text = text;
+		internalTexts[textIndex].text = text.value_or("");
 	}
-
 	void Texts::SetColor(const std::string& layoutName, const std::string& textId, const std::string& color)
 	{
 		auto textIndex = textTable[layoutName][textId];
