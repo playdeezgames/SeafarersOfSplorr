@@ -4,6 +4,7 @@
 #include <Application.MouseMotion.h>
 #include <Application.OnEnter.h>
 #include <Application.UIState.h>
+#include <Common.Utility.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Equipment.h>
 #include <Game.Avatar.Items.h>
@@ -260,11 +261,7 @@ namespace state::in_play
 
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
 	{
-		auto iter = mouseMotionHandlers.find(areaName);
-		if (iter != mouseMotionHandlers.end())
-		{
-			iter->second(location);
-		}
+		common::utility::Dispatcher::DispatchParameter(mouseMotionHandlers, areaName, location);
 	}
 
 	static void OnMouseMotionOutsideArea(const common::XY<int>&)
@@ -309,12 +306,7 @@ namespace state::in_play
 
 	static bool OnMouseButtonUp(const std::string& areaName)
 	{
-		auto iter = mouseButtonHandlers.find(areaName);
-		if (iter != mouseButtonHandlers.end())
-		{
-			return iter->second();
-		}
-		return false;
+		return common::utility::Dispatcher::Dispatch(mouseButtonHandlers, areaName, false);
 	}
 
 	void Equipment::Start()
