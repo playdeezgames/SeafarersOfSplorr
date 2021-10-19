@@ -28,12 +28,14 @@ namespace state::in_play
 	static const std::string BUTTON_GO_BACK = "GoBack";
 	static const std::string AREA_GO_BACK = "GoBack";
 
-	static const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
+	static const auto WriteTextToGrid = 
+		visuals::SpriteGrid::DoWriteToGrid(
+			LAYOUT_NAME, 
+			SPRITE_GRID_ID, 
+			FONT_DEFAULT, 
+			visuals::HorizontalAlignment::LEFT);
 
-	static void OnLeave()
-	{
-		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
-	}
+	static auto OnLeave = ::application::UIState::GoTo(::UIState::IN_PLAY_NEXT);
 
 	static void RefreshHeader()
 	{
@@ -95,7 +97,7 @@ namespace state::in_play
 			game::Colors::GRAY);
 	}
 
-	static void RefreshGrid()
+	static void Refresh()
 	{
 		visuals::SpriteGrid::Clear(LAYOUT_NAME, SPRITE_GRID_ID);
 		RefreshHeader();
@@ -107,7 +109,7 @@ namespace state::in_play
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		UpdateManifest();
-		RefreshGrid();
+		Refresh();
 	}
 
 	static const std::map<::Command, std::function<void()>> commandHandlers =
@@ -118,13 +120,15 @@ namespace state::in_play
 		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) }
 	};
 
+	static const std::map<std::string, std::function<void()>> areaButtons =
+	{
+		{AREA_GO_BACK, visuals::Buttons::DoSetHoverButton(LAYOUT_NAME, BUTTON_GO_BACK)}
+	};
+
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>&)
 	{
 		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
-		if (areaName == AREA_GO_BACK)
-		{
-			visuals::Buttons::SetHoverButton(LAYOUT_NAME, BUTTON_GO_BACK);
-		}
+		common::utility::Dispatcher::Dispatch(areaButtons, areaName);
 	}
 
 	static void OnMouseMotionOutsideAreas(const common::XY<int>&)
@@ -132,15 +136,10 @@ namespace state::in_play
 		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
 	}
 
-	static bool OnMouseButtonUpInArea(const std::string& areaName)
+	static const std::map<std::string, std::function<void()>> areaActions =
 	{
-		if (areaName == AREA_GO_BACK)
-		{
-			OnLeave();
-			return true;
-		}
-		return false;
-	}
+		{AREA_GO_BACK, OnLeave}
+	};
 
 	void Cargo::Start()
 	{
@@ -151,7 +150,10 @@ namespace state::in_play
 			CURRENT_STATE, 
 			visuals::Areas::HandleMouseButtonUp(
 				LAYOUT_NAME, 
-				OnMouseButtonUpInArea));
+				common::utility::Dispatcher::DoDispatch(
+					areaActions,
+					true,
+					false)));
 		::application::MouseMotion::AddHandler(
 			CURRENT_STATE, 
 			visuals::Areas::HandleMouseMotion(
