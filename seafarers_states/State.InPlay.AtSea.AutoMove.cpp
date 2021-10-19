@@ -1,4 +1,5 @@
 #include <Application.UIState.h>
+#include <Common.Utility.h>
 #include <format>
 #include <Game.Avatar.Log.h>
 #include <Game.Colors.h>
@@ -9,35 +10,65 @@
 #include <Visuals.Messages.h>
 namespace state::in_play
 {
-	static const size_t TICKS_TOTAL = 250;
-	static size_t ticksLeft = TICKS_TOTAL;
 	enum class AutoMoveState
 	{
 		OFF,
 		ON,
 		STARTING
 	};
+
+	static const size_t TICKS_TOTAL = 250;
+	static size_t ticksLeft = TICKS_TOTAL;
 	static AutoMoveState autoMoveState = AutoMoveState::OFF;
+
 	bool AtSea::IsAutoMoveEngaged()
 	{
 		return autoMoveState != AutoMoveState::OFF;
 	}
-	void AtSea::ToggleAutoMove()
+
+	static void TurnAutoMoveOn()
 	{
-		if (autoMoveState == AutoMoveState::OFF)
-		{
-			game::avatar::Log::Write({
+			game::avatar::Log::Write(
 				game::Colors::GRAY,
-				"Steady as she goes!"});
+				"Steady as she goes!");
 			ticksLeft = TICKS_TOTAL;
 			autoMoveState = (game::Islands::CanDock()) ? (AutoMoveState::STARTING) : (AutoMoveState::ON);
+	}
+
+	static void TurnAutoMoveOff()
+	{
+
+		game::avatar::Log::Write({
+			game::Colors::GRAY,
+			"All stop!" });
+		autoMoveState = AutoMoveState::OFF;
+	}
+
+	static const std::map<bool, std::function<void()>> togglers =
+	{
+		{ true, TurnAutoMoveOn},
+		{ false, TurnAutoMoveOff}
+	};
+
+	void AtSea::ToggleAutoMove()
+	{
+		common::utility::Dispatcher::Dispatch(togglers, autoMoveState == AutoMoveState::OFF);
+	}
+
+	static void RunDownTimer(const unsigned int& ticks)
+	{
+		if (ticks >= ticksLeft)
+		{
+			ticksLeft = TICKS_TOTAL;
+			if (game::Ship::Move() == game::Ship::MoveResult::CLAMPED)
+			{
+				autoMoveState = AutoMoveState::OFF;
+			}
+			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		}
 		else
 		{
-			game::avatar::Log::Write({
-				game::Colors::GRAY,
-				"All stop!" });
-			autoMoveState = AutoMoveState::OFF;
+			ticksLeft -= ticks;
 		}
 	}
 
@@ -45,50 +76,24 @@ namespace state::in_play
 	{
 		if (autoMoveState != AutoMoveState::OFF)
 		{
-			if (ticks >= ticksLeft)
-			{
-				ticksLeft = TICKS_TOTAL;
-				if (game::Ship::Move() == game::Ship::MoveResult::CLAMPED)
-				{
-					autoMoveState = AutoMoveState::OFF;
-				}
-				application::UIState::Write(::UIState::IN_PLAY_NEXT);
-			}
-			else
-			{
-				ticksLeft -= ticks;
-			}
+			RunDownTimer(ticks);
 		}
 	}
 
 	static void AddArrivalMessage()
 	{
 		auto island = game::Islands::GetDockableIslands().front();
-		if (island.visits.has_value())
-		{
-			visuals::Messages::Write({
-					"==ARRIVAL!==",
-					{
-						{
-							{19,10},
-							std::format("You arrive at {}.", island.name),
-							game::Colors::GRAY,
-							visuals::HorizontalAlignment::CENTER
-						}
-					}
-				});
-			return;
-		}
+		std::string message = (island.visits.has_value()) ? (std::format("You arrive at {}.", island.name)) : ("You arrive at an unknown island.");
 		visuals::Messages::Write({
-				"==ARRIVAL!==",
+			"==ARRIVAL!==",
+			{
 				{
-					{
-						{19,10},
-						"You arrive at an unknown island.",
-						game::Colors::GRAY,
-						visuals::HorizontalAlignment::CENTER
-					}
+					{19,10},
+					message,
+					game::Colors::GRAY,
+					visuals::HorizontalAlignment::CENTER
 				}
+			}
 		});
 	}
 
@@ -98,9 +103,9 @@ namespace state::in_play
 		{
 			if (autoMoveState == AutoMoveState::ON)
 			{
-				game::avatar::Log::Write({
+				game::avatar::Log::Write(
 					game::Colors::GRAY,
-					"Land ho!" });
+					"Land ho!");
 				autoMoveState = AutoMoveState::OFF;
 				AddArrivalMessage();
 				application::UIState::Write(::UIState::IN_PLAY_NEXT);
