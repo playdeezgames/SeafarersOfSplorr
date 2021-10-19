@@ -16,7 +16,7 @@
 #include <Visuals.Areas.h>
 #include <Visuals.Buttons.h>
 #include <Visuals.SpriteGrid.h>
-namespace state::in_play
+namespace state::in_play//20211019
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_EQUIPMENT;
 	static const std::string LAYOUT_NAME = "State.InPlay.Equipment";
