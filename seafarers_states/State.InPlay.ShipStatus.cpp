@@ -45,35 +45,15 @@ namespace state::in_play
 		GO_BACK
 	};
 
-	static void OnGoBack()
-	{
-		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
-	}
-
-	static void OnCrew()
-	{
-		::application::UIState::Write(::UIState::IN_PLAY_CREW_LIST);
-	}
-
-	static void OnCareen()
-	{
-		::application::UIState::Write(::UIState::IN_PLAY_AT_SEA_CAREEN_SELECT);
-	}
-
-	static void OnCargo()
-	{
-		::application::UIState::Write(::UIState::IN_PLAY_CARGO);
-	}
-
-	static void OnChangeSpeed()
-	{
-		::application::UIState::Write(::UIState::IN_PLAY_CHANGE_SPEED);
-	}
+	static auto OnGoBack = ::application::UIState::GoTo(::UIState::IN_PLAY_NEXT);
 
 	static void UpdateShipProperties()
 	{
-		auto shipId = game::avatar::Ship::Read().value().shipId;
-		auto shipType = game::Ship::GetShipType(shipId).value();
+		auto shipType =
+			common::Utility::MapOptional<int, std::optional<game::ShipType>>(
+				game::avatar::Ship::ReadShipId(),
+				game::Ship::GetShipType).value().value();//i might have overdone it here....
+
 		visuals::Texts::SetText(
 			LAYOUT_NAME, 
 			TEXT_SHIP_TYPE, 
@@ -111,16 +91,19 @@ namespace state::in_play
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
-		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_ID, game::Islands::CanDock());
+		visuals::MenuItems::SetEnabled(
+			LAYOUT_NAME, 
+			MENU_ITEM_ID, 
+			game::Islands::CanDock());
 		UpdateShipProperties();
 	}
 
 	static const std::map<ShipStatusItem, std::function<void()>> activators =
 	{
-		{ ShipStatusItem::CREW, OnCrew }, 
-		{ ShipStatusItem::CAREEN, OnCareen },
-		{ ShipStatusItem::CARGO, OnCargo },
-		{ ShipStatusItem::CHANGE_SPEED, OnChangeSpeed },
+		{ ShipStatusItem::CREW, ::application::UIState::GoTo(::UIState::IN_PLAY_CREW_LIST) },
+		{ ShipStatusItem::CAREEN, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_CAREEN_SELECT) },
+		{ ShipStatusItem::CARGO, ::application::UIState::GoTo(::UIState::IN_PLAY_CARGO) },
+		{ ShipStatusItem::CHANGE_SPEED, ::application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_SPEED) },
 		{ ShipStatusItem::GO_BACK, OnGoBack }
 	};
 

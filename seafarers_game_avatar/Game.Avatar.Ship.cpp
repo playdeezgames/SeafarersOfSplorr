@@ -40,6 +40,14 @@ namespace game::avatar//20211018
 			);
 	}
 
+	std::optional<int> Ship::ReadShipId()
+	{
+		return common::Utility::MapOptional<Ship, int>(
+			Read(), 
+			[](const Ship& ship) { return ship.shipId;  });
+	}
+
+
 	static double GetAvailableTonnage(const Ship& ship)
 	{
 		return common::Utility::MapOptional<ShipType, double>(
