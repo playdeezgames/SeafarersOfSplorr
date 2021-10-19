@@ -8,7 +8,7 @@
 #include <Game.Player.h>
 #include <map>
 #include <list>
-namespace game::avatar
+namespace game::avatar//20211018
 {
 	struct StatisticDescriptor
 	{
@@ -160,10 +160,7 @@ namespace game::avatar
 	static void SetCurrent(const game::avatar::Statistic& statistic, double value)
 	{
 		auto data = data::game::avatar::Statistic::Read(Player::GetAvatarId(), (int)statistic).value();
-		data.current =
-			(data.maximum.has_value() && value > data.maximum.value()) ? (data.maximum.value()) :
-			(data.minimum.has_value() && value < data.minimum.value()) ? (data.minimum.value()) :
-			(value);
+		data.current = common::Utility::Clamp<double>(data.current, data.minimum, data.maximum);
 		data::game::avatar::Statistic::Write(
 			Player::GetAvatarId(),
 			(int)statistic, 
@@ -201,25 +198,30 @@ namespace game::avatar
 		return GetCurrent(game::avatar::Statistic::BRAWLING);
 	}
 
+	static double GetDownAmount(const Statistic& statistic)
+	{
+		return GetMaximum(statistic).value() - GetCurrent(statistic);
+	}
+
 	void Statistics::Eat(double amount)
 	{
-		double healthDown = GetMaximum(game::avatar::Statistic::HEALTH).value() - GetCurrent(game::avatar::Statistic::HEALTH);
+		double healthDown = GetDownAmount(Statistic::HEALTH);
 		if (healthDown > 0)
 		{
-			ChangeCurrent(game::avatar::Statistic::HEALTH, amount);
+			ChangeCurrent(Statistic::HEALTH, amount);
 			amount -= healthDown;
 		}
 		if (amount > 0)
 		{
-			ChangeCurrent(game::avatar::Statistic::SATIETY, amount);
+			ChangeCurrent(Statistic::SATIETY, amount);
 		}
 	}
 
 	bool Statistics::NeedToEat(double amount)
 	{
 		double totalDown =
-			GetMaximum(game::avatar::Statistic::HEALTH).value() - GetCurrent(game::avatar::Statistic::HEALTH) +
-			GetMaximum(game::avatar::Statistic::SATIETY).value() - GetCurrent(game::avatar::Statistic::SATIETY);
+			GetDownAmount(game::avatar::Statistic::HEALTH)+
+			GetDownAmount(game::avatar::Statistic::SATIETY);
 		return totalDown >= amount;
 	}
 

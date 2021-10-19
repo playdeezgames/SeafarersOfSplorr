@@ -168,7 +168,7 @@ namespace common
 			std::function<bool(const TValue&)> filter = [](const TValue&) { return true; };
 			return ListFromTable<TKey, TValue>(list, table, filter);
 		}
-		template <typename TKey1, typename TValue1, typename TKey2, typename TValue2> 
+		template <typename TKey1, typename TValue1, typename TKey2, typename TValue2>
 		static std::map<TKey2, TValue2> MapTable(const std::map<TKey1, TValue1>& source, std::function<TKey2(const TKey1&)> transformKey, std::function<TValue2(const TValue1&)> transformValue)
 		{
 			std::map<TKey2, TValue2> result;
@@ -177,6 +177,25 @@ namespace common
 				result[transformKey(entry.first)] = transformValue(entry.second);
 			}
 			return result;
+		}
+		template<typename TInput, typename TOutput>
+		static std::vector<TOutput> MapArray(const std::vector<TInput>& source, std::function<TOutput(const TInput&)> transform, std::function<bool(const TOutput&)> filter)
+		{
+			std::vector<TOutput> result;
+			for (auto& entry : source)
+			{
+				auto candidate = transform(entry);
+				if (filter(candidate))
+				{
+					result.push_back(candidate);
+				}
+			}
+			return result;
+		}
+		template<typename TInput, typename TOutput>
+		static std::vector<TOutput> MapArray(const std::vector<TInput>& source, std::function<TOutput(const TInput&)> transform)
+		{
+			return MapArray<TInput, TOutput>(source, transform, [](const TOutput&) { return true; });
 		}
 		template<typename TInput, typename TOutput>
 		static std::list<TOutput> MapList(std::function<std::list<TInput>()> source, std::function<TOutput(const TInput&)> transform, std::function<bool(const TOutput&)> filter)
@@ -279,6 +298,14 @@ namespace common
 			{
 				iterate(value.value());
 			}
+		}
+		template<typename TValue>
+		static TValue Clamp(const TValue& value, const std::optional<TValue>& minimum, const std::optional<TValue>& maximum)
+		{
+			return 
+				(maximum.has_value() && value > maximum.value()) ? (maximum.value()) :
+				(minimum.has_value() && value < minimum.value()) ? (minimum.value()) :
+				(value);
 		}
 	};
 }

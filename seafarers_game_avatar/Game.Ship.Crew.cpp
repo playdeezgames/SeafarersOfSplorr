@@ -1,21 +1,24 @@
+#include <Common.Utility.h>
+#include <Data.Game.Avatar.ShipCrew.h>
 #include "Game.Avatar.h"
 #include "Game.Avatar.Ship.h"
 #include "Game.Ship.Crew.h"
-#include <Data.Game.Avatar.ShipCrew.h>
-namespace game::ship
+namespace game::ship//20211018
 {
+	static Crew ToCrew(const data::game::avatar::ShipCrew& crew)
+	{
+		return
+		{
+			crew.avatarId,
+			(BerthType)crew.berthType,
+			Avatar::GetName(crew.avatarId).value_or("????")
+		};
+	}
+
 	std::vector<Crew> Crew::Read()
 	{
-		auto data = data::game::avatar::ShipCrew::Read(game::avatar::Ship::Read().value().shipId);
-		std::vector<Crew> result;
-		for (auto entry : data)
-		{
-			result.push_back({
-				entry.avatarId,
-				(BerthType)entry.berthType,
-				Avatar::GetName(entry.avatarId).value_or("????")
-				});
-		}
-		return result;
+		return common::Utility::MapArray<data::game::avatar::ShipCrew, Crew>(
+			data::game::avatar::ShipCrew::Read(game::avatar::Ship::Read().value().shipId),
+			ToCrew);
 	}
 }
