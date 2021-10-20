@@ -160,7 +160,7 @@ namespace game::avatar//20211018
 	static void SetCurrent(const game::avatar::Statistic& statistic, double value)
 	{
 		auto data = data::game::avatar::Statistic::Read(Player::GetAvatarId(), (int)statistic).value();
-		data.current = common::Utility::Clamp<double>(data.current, data.minimum, data.maximum);
+		data.current = common::Utility::Clamp<double>(value, data.minimum, data.maximum);
 		data::game::avatar::Statistic::Write(
 			Player::GetAvatarId(),
 			(int)statistic, 
