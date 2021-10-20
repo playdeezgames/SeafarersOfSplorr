@@ -31,9 +31,10 @@
 #include <Visuals.Messages.h>
 #include <Visuals.SpriteGrid.h>
 #include <Visuals.Texts.h>
-namespace state::in_play
+namespace state::in_play//20211020
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_FISHING;
+
 	static const std::string LAYOUT_NAME = "State.InPlay.Fishing";
 	static const std::string FONT_DEFAULT = "default";
 	static const std::string MENU_ID = "Fishing";
@@ -54,7 +55,7 @@ namespace state::in_play
 	static bool ShouldShowMoreBaitMenuItem()
 	{
 		return
-			game::FishGame::GetState() == game::FishGameState::OUT_OF_GUESSES &&
+			!game::FishGame::HasGuessesLeft() &&
 			game::avatar::Items::Has(game::Item::BAIT);
 	}
 
@@ -72,8 +73,13 @@ namespace state::in_play
 	}
 	static void RefreshMenu()
 	{
-		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_MORE_BAIT, ShouldShowMoreBaitMenuItem());
-		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_GO_BACK,
+		visuals::MenuItems::SetEnabled(
+			LAYOUT_NAME, 
+			MENU_ITEM_MORE_BAIT, 
+			ShouldShowMoreBaitMenuItem());
+		visuals::MenuItems::SetText(
+			LAYOUT_NAME, 
+			MENU_ITEM_GO_BACK,
 			GetGoBackMenuItemText());
 	}
 
@@ -118,7 +124,7 @@ namespace state::in_play
 		Refresh();
 	}
 
-	static void OnDoGoBack()
+	static void OnDoneGoBack()
 	{
 		game::avatar::Actions::DoAction(game::avatar::Action::STOP_FISHING);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
@@ -132,9 +138,9 @@ namespace state::in_play
 
 	static const std::map<game::FishGameState, std::function<void()>> handleGoBacks =
 	{
-		{game::FishGameState::DONE, OnDoGoBack},
+		{game::FishGameState::DONE, OnDoneGoBack},
 		{game::FishGameState::FISHING, OnGiveUp},
-		{game::FishGameState::GAVE_UP, OnDoGoBack},
+		{game::FishGameState::GAVE_UP, OnDoneGoBack},
 		{game::FishGameState::OUT_OF_GUESSES, OnGiveUp}
 	};
 
@@ -166,39 +172,65 @@ namespace state::in_play
 		{ ::Command::RED, OnGoBack }
 	};
 
-	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
+	static void HandleMotionInFishboard(const common::XY<int>& location)
 	{
-		if (areaName == AREA_FISHBOARD)
-		{
-			visuals::Fishboard::HandleMouseMotion(LAYOUT_NAME, FISHBOARD_ID, location);
-		}
+		visuals::Fishboard::HandleMouseMotion(LAYOUT_NAME, FISHBOARD_ID, location);
 	}
 
-	static bool OnMouseButtonUpInFishboard()
+	static std::map<std::string, std::function<void(const common::XY<int>&)>> motionHandlers =
+	{
+		{ AREA_FISHBOARD, HandleMotionInFishboard}
+	};
+
+	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
+	{
+		common::utility::Dispatcher::DispatchParameter(motionHandlers, areaName, location);
+	}
+
+	static void OnMouseButtonUpInFishboard()
 	{
 		auto cursor = visuals::Fishboard::ReadCursor(LAYOUT_NAME, FISHBOARD_ID);
 		game::Fishboard::Reveal(cursor);
 		Refresh();
-		return true;
 	}
 
-	static bool OnMouseButtonUp(const std::string& areaName)
+	static const std::map<std::string, std::function<void()>> buttonHandlers =
 	{
-		if (areaName == AREA_FISHBOARD)
-		{
-			return OnMouseButtonUpInFishboard();
-		}
-		return false;
-	}
+		{AREA_FISHBOARD, OnMouseButtonUpInFishboard}
+	};
 
 	void Fishing::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
-		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUp));
-		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea));
-		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(
+			CURRENT_STATE, 
+			OnEnter);
+		::application::MouseButtonUp::AddHandler(
+			CURRENT_STATE, 
+			visuals::Areas::HandleMenuMouseButtonUp(
+				LAYOUT_NAME, 
+				ActivateItem));
+		::application::MouseButtonUp::AddHandler(
+			CURRENT_STATE, 
+			visuals::Areas::HandleMouseButtonUp(
+				LAYOUT_NAME, 
+				common::utility::Dispatcher::DoDispatch(
+					buttonHandlers, 
+					true, 
+					false)));
+		::application::MouseMotion::AddHandler(
+			CURRENT_STATE, 
+			visuals::Areas::HandleMenuMouseMotion(
+				LAYOUT_NAME));
+		::application::MouseMotion::AddHandler(
+			CURRENT_STATE, 
+			visuals::Areas::HandleMouseMotion(
+				LAYOUT_NAME, 
+				OnMouseMotionInArea));
+		::application::Command::SetHandlers(
+			CURRENT_STATE, 
+			commandHandlers);
+		::application::Renderer::SetRenderLayout(
+			CURRENT_STATE, 
+			LAYOUT_NAME);
 	}
 }
