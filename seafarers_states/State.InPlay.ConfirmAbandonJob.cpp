@@ -13,8 +13,10 @@
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
-namespace state::in_play
+namespace state::in_play//20211020
 {
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CONFIRM_ABANDON_JOB;
+
 	static const std::string LAYOUT_NAME = "State.InPlay.ConfirmAbandonJob";
 	static const std::string MENU_ID = "ConfirmAbandon";
 
@@ -52,10 +54,24 @@ namespace state::in_play
 
 	void ConfirmAbandonJob::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_CONFIRM_ABANDON_JOB, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
-		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_CONFIRM_ABANDON_JOB, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
-		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_CONFIRM_ABANDON_JOB, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-		::application::Command::SetHandlers(::UIState::IN_PLAY_CONFIRM_ABANDON_JOB, commandHandlers);
-		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_CONFIRM_ABANDON_JOB, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(
+			CURRENT_STATE, 
+			game::audio::Mux::GoToTheme(
+				game::audio::Theme::MAIN));
+		::application::MouseButtonUp::AddHandler(
+			CURRENT_STATE, 
+			visuals::Areas::HandleMenuMouseButtonUp(
+				LAYOUT_NAME, 
+				ActivateItem));
+		::application::MouseMotion::AddHandler(
+			CURRENT_STATE, 
+			visuals::Areas::HandleMenuMouseMotion(
+				LAYOUT_NAME));
+		::application::Command::SetHandlers(
+			CURRENT_STATE, 
+			commandHandlers);
+		::application::Renderer::SetRenderLayout(
+			CURRENT_STATE, 
+			LAYOUT_NAME);
 	}
 }
