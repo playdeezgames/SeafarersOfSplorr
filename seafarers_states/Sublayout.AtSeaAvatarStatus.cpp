@@ -21,8 +21,8 @@
 #include <Visuals.Texts.h>
 namespace sublayout
 {
-	static const std::string SUBLAYOUT_NAME = "Sublayout.AtSeaStatistics";
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_AT_SEA;
+	static const std::string SUBLAYOUT_NAME = "Sublayout.AtSeaStatistics";
 
 	static const std::string TEXT_AVATAR_TURNS = "avatar-turns";
 	static const std::string TEXT_AVATAR_HEALTH = "avatar-health";
@@ -35,27 +35,46 @@ namespace sublayout
 
 	static void RefreshAvatarSatiety()
 	{
-		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_SATIETY, game::avatar::StatisticFormats::SATIETY, game::avatar::Statistics::GetSatiety());
+		visuals::Texts::SetText(
+			SUBLAYOUT_NAME, 
+			TEXT_AVATAR_SATIETY, 
+			game::avatar::StatisticFormats::SATIETY, 
+			game::avatar::Statistics::GetSatiety());
 	}
 
 	static void RefreshAvatarMoney()
 	{
-		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_MONEY, game::avatar::StatisticFormats::MONEY, game::avatar::Statistics::ReadMoney());
+		visuals::Texts::SetText(
+			SUBLAYOUT_NAME, 
+			TEXT_AVATAR_MONEY, 
+			game::avatar::StatisticFormats::MONEY, 
+			game::avatar::Statistics::ReadMoney());
 	}
 
 	static void RefreshAvatarReputation()
 	{
-		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_REPUTATION, game::avatar::StatisticFormats::REPUTATION, game::avatar::Statistics::GetReputation());
+		visuals::Texts::SetText(
+			SUBLAYOUT_NAME, TEXT_AVATAR_REPUTATION, 
+			game::avatar::StatisticFormats::REPUTATION, 
+			game::avatar::Statistics::GetReputation());
 	}
 
 	static void RefreshAvatarHealth()
 	{
-		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_HEALTH, game::avatar::StatisticFormats::HEALTH, game::avatar::Statistics::GetHealth());
+		visuals::Texts::SetText(
+			SUBLAYOUT_NAME, 
+			TEXT_AVATAR_HEALTH, 
+			game::avatar::StatisticFormats::HEALTH, 
+			game::avatar::Statistics::GetHealth());
 	}
 
 	static void RefreshAvatarTurns()
 	{
-		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_AVATAR_TURNS, game::avatar::StatisticFormats::TURNS, game::avatar::Statistics::GetTurnsRemaining());
+		visuals::Texts::SetText(
+			SUBLAYOUT_NAME, 
+			TEXT_AVATAR_TURNS, 
+			game::avatar::StatisticFormats::TURNS, 
+			game::avatar::Statistics::GetTurnsRemaining());
 	}
 
 	static void RefreshAvatarHeading()
@@ -91,17 +110,29 @@ namespace sublayout
 
 	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>&)
 	{
-		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_TOOL_TIP, visuals::Areas::GetToolTip(SUBLAYOUT_NAME, areaName).value_or(""));
+		visuals::Texts::SetText(
+			SUBLAYOUT_NAME, 
+			TEXT_TOOL_TIP, 
+			visuals::Areas::GetToolTip(
+				SUBLAYOUT_NAME, 
+				areaName));
 	}
 
 	static void OnMouseMotionOutsideAreas(const common::XY<int>&)
 	{
-		visuals::Texts::SetText(SUBLAYOUT_NAME, TEXT_TOOL_TIP, "");
+		visuals::Texts::SetText(
+			SUBLAYOUT_NAME, 
+			TEXT_TOOL_TIP, 
+			"");
 	}
 
 	void AtSeaAvatarStatus::Start()
 	{
-		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseMotion(SUBLAYOUT_NAME, OnMouseMotionInArea, OnMouseMotionOutsideAreas));
+		::application::MouseMotion::AddHandler(
+			CURRENT_STATE, 
+			visuals::Areas::HandleMouseMotion(
+				SUBLAYOUT_NAME, 
+				OnMouseMotionInArea, 
+				OnMouseMotionOutsideAreas));
 	}
-
 }
