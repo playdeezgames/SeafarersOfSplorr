@@ -69,15 +69,21 @@ namespace sublayout
 	{
 		for (auto& entry : actions)
 		{
-			visuals::Images::SetVisible(LAYOUT_NAME, entry.second.hoverImage, hoverButton.has_value() && hoverButton.value() == entry.first && entry.second.isEnabled());
-			if (entry.second.isEnabled())
-			{
-				visuals::Images::SetSprite(LAYOUT_NAME, entry.second.actionImage, entry.second.enabledSprite);
-			}
-			else
-			{
-				visuals::Images::SetSprite(LAYOUT_NAME, entry.second.actionImage, entry.second.disabledSprite);
-			}
+			auto& button = entry.first;
+			auto& action = entry.second;
+			visuals::Images::SetVisible(
+				LAYOUT_NAME, 
+				action.hoverImage, 
+				hoverButton.has_value() && 
+				hoverButton.value() == button && 
+				action.isEnabled());
+
+			visuals::Images::SetSprite(
+				LAYOUT_NAME, 
+				action.actionImage, 
+				(action.isEnabled()) ?
+				(action.enabledSprite) :
+				(action.disabledSprite));
 		}
 	}
 
@@ -94,18 +100,20 @@ namespace sublayout
 
 	static bool OnMouseButtonUpInArea(const std::string& area)
 	{
-		common::utility::Dispatcher::Dispatch(buttonUpHandlers, hoverAreas.find(area)->second);
-		return true;
+		return common::utility::Dispatcher::Dispatch(buttonUpHandlers, hoverAreas.find(area)->second, true, true);
+	}
+
+	static void OnSetHoverButton(const HoverButton& button)
+	{
+		hoverButton = button;
 	}
 
 	static void OnMouseMotionInArea(const std::string& area, const common::XY<int>&)
 	{
 		hoverButton = std::nullopt;
-		auto iter = hoverAreas.find(area);
-		if (iter != hoverAreas.end())
-		{
-			hoverButton = iter->second;
-		}
+		common::Utility::IterateOptional<HoverButton>(
+			common::Utility::TryGetKey(hoverAreas, area), 
+			OnSetHoverButton);
 		Refresh();
 	}
 
@@ -117,8 +125,19 @@ namespace sublayout
 
 	void AtSeaActions::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, Refresh);
-		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
-		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea, OnMouseMotionOutsideAreas));
+		::application::OnEnter::AddHandler(
+			CURRENT_STATE, 
+			Refresh);
+		::application::MouseButtonUp::AddHandler(
+			CURRENT_STATE, 
+			visuals::Areas::HandleMouseButtonUp(
+				LAYOUT_NAME, 
+				OnMouseButtonUpInArea));
+		::application::MouseMotion::AddHandler(
+			CURRENT_STATE, 
+			visuals::Areas::HandleMouseMotion(
+				LAYOUT_NAME, 
+				OnMouseMotionInArea, 
+				OnMouseMotionOutsideAreas));
 	}
 }
