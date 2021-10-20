@@ -84,7 +84,10 @@ namespace state::in_play
 	{
 		for (auto& entry : hoverTable)
 		{
-			visuals::Images::SetVisible(LAYOUT_NAME, entry.first, hoverDestinationId.has_value() && hoverDestinationId.value()==entry.second);
+			visuals::Images::SetVisible(
+				LAYOUT_NAME, 
+				entry.first, 
+				hoverDestinationId.has_value() && hoverDestinationId.value()==entry.second);
 		}
 	}
 
@@ -96,6 +99,8 @@ namespace state::in_play
 		{game::avatar::Destination::FOUR, "DestinationName4"},
 	};
 
+	static const std::string UNNAMED = "(unnamed)";
+
 	static void RefreshNames()
 	{
 		for (auto& entry : nameTexts)
@@ -103,13 +108,16 @@ namespace state::in_play
 			visuals::Texts::SetText(
 				LAYOUT_NAME, 
 				entry.second, 
-				game::avatar::Destinations::ReadName(entry.first).value_or("(unnamed)"));
+				game::avatar::Destinations::ReadName(entry.first).value_or(UNNAMED));
 		}
 	}
 
 	static void RefreshButtons()
 	{
-		visuals::Buttons::SetEnabled(LAYOUT_NAME, BUTTON_REMOVE_TARGET, game::avatar::Destinations::ReadLocation(currentDestinationId).has_value());
+		visuals::Buttons::SetEnabled(
+			LAYOUT_NAME, 
+			BUTTON_REMOVE_TARGET, 
+			game::avatar::Destinations::ReadLocation(currentDestinationId).has_value());
 	}
 
 	static void Refresh()
@@ -138,7 +146,8 @@ namespace state::in_play
 		HandleWorldMapMouseMotion(location);
 	}
 
-	static std::function<void(const common::XY<int>&)> HoverOnDestinationId(const game::avatar::Destination& destinationId)
+	static std::function<void(const common::XY<int>&)> HoverOnDestinationId(
+		const game::avatar::Destination& destinationId)
 	{
 		return [destinationId](const common::XY<int>&)
 		{
@@ -215,11 +224,6 @@ namespace state::in_play
 		{AREA_REMOVE_TARGET, OnRemoveTarget}
 	};
 
-	static bool OnMouseButtonUpInArea(const std::string& areaName)
-	{
-		return common::utility::Dispatcher::Dispatch(areaButtonHandlerTable, areaName, true, false);
-	}
-
 	static void OnUpdate(const unsigned int&)
 	{
 		auto hoverIsland = visuals::WorldMap::GetHoverIsland(LAYOUT_NAME, WORLD_MAP_ID);
@@ -248,16 +252,16 @@ namespace state::in_play
 		game::avatar::Destinations::WriteName(currentDestinationId, "");
 	}
 
-	static bool OnKeyDown(const std::string& key)
+	static void OnBackspace()
 	{
-		if (key == BACKSPACE)
-		{
-			ClearDestinationName();
-			Refresh();
-			return true;
-		}
-		return false;
+		ClearDestinationName();
+		Refresh();
 	}
+
+	static std::map<std::string, std::function<void()>> keyDownHandlers =
+	{
+		{ BACKSPACE, OnBackspace}
+	};
 
 	static void OnTextInput(const std::string& text)
 	{
@@ -268,13 +272,40 @@ namespace state::in_play
 
 	void WorldMap::Start()
 	{
-		::application::Keyboard::AddHandler(CURRENT_STATE, OnKeyDown);
-		::application::TextInput::AddHandler(CURRENT_STATE, OnTextInput);
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseMotion(LAYOUT_NAME,OnMouseMotionInArea,OnMouseMotionOutsideArea));
-		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
-		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
-		::application::Update::AddHandler(CURRENT_STATE, OnUpdate);
+		::application::Keyboard::AddHandler(
+			CURRENT_STATE, 
+			common::utility::Dispatcher::DoDispatch(
+				keyDownHandlers, 
+				true, 
+				false));
+		::application::TextInput::AddHandler(
+			CURRENT_STATE, 
+			OnTextInput);
+		::application::OnEnter::AddHandler(
+			CURRENT_STATE, 
+			OnEnter);
+		::application::MouseMotion::AddHandler(
+			CURRENT_STATE, 
+			visuals::Areas::HandleMouseMotion(
+				LAYOUT_NAME,
+				OnMouseMotionInArea,
+				OnMouseMotionOutsideArea));
+		::application::MouseButtonUp::AddHandler(
+			CURRENT_STATE, 
+			visuals::Areas::HandleMouseButtonUp(
+				LAYOUT_NAME, 
+				common::utility::Dispatcher::DoDispatch(
+					areaButtonHandlerTable, 
+					true, 
+					false)));
+		::application::Command::SetHandlers(
+			CURRENT_STATE, 
+			commandHandlers);
+		::application::Renderer::SetRenderLayout(
+			CURRENT_STATE, 
+			LAYOUT_NAME);
+		::application::Update::AddHandler(
+			CURRENT_STATE, 
+			OnUpdate);
 	}
 }
