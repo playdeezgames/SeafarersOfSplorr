@@ -7,6 +7,7 @@
 #include <Application.Update.h>
 #include <Common.Heading.h>
 #include <Common.Utility.h>
+#include <Common.Utility.Dispatcher.h>
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Docked.h>

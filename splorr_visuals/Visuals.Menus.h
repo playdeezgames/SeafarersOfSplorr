@@ -1,5 +1,6 @@
 #pragma once
 #include <Common.Utility.h>
+#include <Common.Utility.Dispatcher.h>
 #include <functional>
 #include <json.hpp>
 #include <optional>

@@ -8,6 +8,7 @@
 #include <Application.UIState.h>
 #include <Application.Update.h>
 #include <Common.Utility.h>
+#include <Common.Utility.Dispatcher.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Destinations.h>
 #include <Game.Colors.h>

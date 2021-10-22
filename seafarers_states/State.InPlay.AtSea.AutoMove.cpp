@@ -1,5 +1,6 @@
 #include <Application.UIState.h>
 #include <Common.Utility.h>
+#include <Common.Utility.Dispatcher.h>
 #include <format>
 #include <Game.Avatar.Log.h>
 #include <Game.Colors.h>

@@ -3,6 +3,7 @@
 #include <Application.MouseMotion.h>
 #include <Application.UIState.h>
 #include <Common.Utility.h>
+#include <Common.Utility.Dispatcher.h>
 #include <functional>
 #include <Game.Avatar.h>
 #include <Game.Avatar.Actions.h>

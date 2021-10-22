@@ -12,6 +12,7 @@
 #include <Application.Engine.h>
 #include <Common.Data.h>
 #include <Common.Utility.h>
+#include <Common.Utility.Dispatcher.h>
 #include <Game.Audio.Mux.h>
 #include <format>
 #include "States.h"

@@ -5,6 +5,7 @@
 #include <Application.OnEnter.h>
 #include <Application.UIState.h>
 #include <Common.Utility.h>
+#include <Common.Utility.Dispatcher.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Equipment.h>
 #include <Game.Avatar.Items.h>
