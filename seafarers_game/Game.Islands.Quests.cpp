@@ -1,5 +1,6 @@
 #include <Common.RNG.h>
 #include <Common.Utility.h>
+#include <Common.Utility.List.h>
 #include <Data.Game.Island.h>
 #include <Data.Game.Island.Quest.h>
 #include <format>
@@ -203,7 +204,7 @@ namespace game::islands//20211016
 	{
 		auto allOtherIslands = data::game::Island::Filter([location](const data::game::Island& island) { return island.location != location; });
 		size_t index = common::RNG::FromRange(0u, allOtherIslands.size() - 1);
-		return common::Utility::GetNth(allOtherIslands, index)->location;
+		return common::utility::List::GetNth(allOtherIslands, index)->location;
 	}
 
 	void Quests::Update(const common::XY<double>& location)

@@ -2,6 +2,7 @@
 #include <Common.Heading.h>
 #include <Common.RNG.h>
 #include <Common.Utility.h>
+#include <Common.Utility.List.h>
 #include <Common.XY.h>
 #include <Data.Game.Island.h>
 #include <Data.Game.Merchant.h>
@@ -28,7 +29,7 @@ namespace game//20211017
 	{
 		auto islands = data::game::Island::All();
 		size_t index = common::RNG::FromRange(0u, islands.size());
-		auto island = common::Utility::GetNth(islands, index);
+		auto island = common::utility::List::GetNth(islands, index);
 		auto item = common::RNG::FromGenerator(cargoTypeGenerator);
 		auto ship = common::RNG::FromGenerator(shipTypeGenerator);
 		auto tonnage = ShipTypes::GetTotalTonnage(ship);
@@ -94,7 +95,7 @@ namespace game//20211017
 	std::list<Merchant> Merchants::All()
 	{
 		return 
-			common::Utility::AccumulateList<data::game::Merchant, std::list<Merchant>>(
+			common::utility::List::AccumulateList<data::game::Merchant, std::list<Merchant>>(
 				data::game::Merchant::All, 
 				[](std::list<Merchant>& result, const data::game::Merchant& merchant) 
 				{

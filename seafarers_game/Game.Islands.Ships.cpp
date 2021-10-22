@@ -1,4 +1,5 @@
 #include <Common.Utility.h>
+#include <Common.Utility.List.h>
 #include "Game.Islands.Commodities.h"
 #include "Game.Islands.Ships.h"
 #include "Game.ShipTypes.h"
@@ -25,7 +26,7 @@ namespace game::islands//20211017
 		std::function<double(const common::XY<double>&, const ShipType&)> pricer)
 	{
 		std::map<game::ShipType, double> result;
-		common::Utility::IterateList<ShipType>(ShipTypes::All, [&result, location, pricer](const ShipType& ship)
+		common::utility::List::IterateList<ShipType>(ShipTypes::All, [&result, location, pricer](const ShipType& ship)
 			{
 				result[ship] = pricer(location, ship);
 			});

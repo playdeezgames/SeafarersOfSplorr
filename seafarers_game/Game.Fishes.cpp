@@ -1,4 +1,5 @@
 #include <Common.Utility.h>
+#include <Common.Utility.List.h>
 #include <Common.RNG.h>
 #include <functional>
 #include "Game.Fishes.h"
@@ -113,13 +114,13 @@ namespace game//20211016
 
 	std::list<Fish> Fishes::All()
 	{
-		return common::Utility::ListFromTable(fishes, descriptors);
+		return common::utility::List::ListFromTable(fishes, descriptors);
 	}
 
 	std::list<Fish> Fishes::AllJunk()
 	{
 		return 
-			common::Utility::ListFromTable<Fish, FishDescriptor>(
+			common::utility::List::ListFromTable<Fish, FishDescriptor>(
 				fishes, 
 				descriptors, 
 				[](const FishDescriptor& descriptor) { return descriptor.junkWeight > 0; });

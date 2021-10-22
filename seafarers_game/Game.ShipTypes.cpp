@@ -1,5 +1,6 @@
 #include <Common.RNG.h>
 #include <Common.Utility.h>
+#include <Common.Utility.List.h>
 #include <Common.Utility.Table.h>
 #include "Game.BerthType.h"
 #include "Game.ShipTypes.h"
@@ -126,7 +127,7 @@ namespace game//20211017
 
 	const std::list<game::ShipType>& ShipTypes::All()
 	{
-		return common::Utility::ListFromTable(shipList, ships);
+		return common::utility::List::ListFromTable(shipList, ships);
 	}
 
 

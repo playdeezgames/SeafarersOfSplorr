@@ -1,5 +1,6 @@
 #include <Common.Data.h>
 #include <Common.Utility.h>
+#include <Common.Utility.List.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.h"
 namespace data::game//20211011
@@ -62,14 +63,14 @@ namespace data::game//20211011
 	std::list<Island> Island::Filter(std::function<bool(const Island&)> filter)
 	{
 		AutoCreateIslandTable();
-		return common::Utility::MapList<Common::Record, Island>(Common::DoExecute(QUERY_ALL), ToIsland, filter);
+		return common::utility::List::MapList<Common::Record, Island>(Common::DoExecute(QUERY_ALL), ToIsland, filter);
 	}
 
 
 	std::list<Island> Island::All()
 	{
 		AutoCreateIslandTable();
-		return common::Utility::MapList<Common::Record, Island>(Common::DoExecute(QUERY_ALL), ToIsland);
+		return common::utility::List::MapList<Common::Record, Island>(Common::DoExecute(QUERY_ALL), ToIsland);
 	}
 
 	void Island::Clear()

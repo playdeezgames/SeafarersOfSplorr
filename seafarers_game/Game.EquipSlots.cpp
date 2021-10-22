@@ -1,4 +1,5 @@
 #include <Common.Utility.h>
+#include <Common.Utility.List.h>
 #include "Game.EquipSlots.h"
 #include <map>
 namespace game//20211015
@@ -34,7 +35,7 @@ namespace game//20211015
 
 	const std::list<EquipSlot>& EquipSlots::All()
 	{
-		return common::Utility::ListFromTable(equipSlots, equipSlotDescriptors);
+		return common::utility::List::ListFromTable(equipSlots, equipSlotDescriptors);
 	}
 
 	static const EquipSlotDescriptor& Read(const EquipSlot& equipSlot)

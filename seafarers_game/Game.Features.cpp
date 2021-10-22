@@ -1,4 +1,5 @@
 #include <Common.Utility.h>
+#include <Common.Utility.List.h>
 #include "Game.Features.h"
 #include <map>
 namespace game//20211015
@@ -37,7 +38,7 @@ namespace game//20211015
 
 	const std::list<game::Feature>& Features::All()
 	{
-		return common::Utility::ListFromTable(featureList, featureDescriptors);
+		return common::utility::List::ListFromTable(featureList, featureDescriptors);
 	}
 
 	const std::string& Features::GetName(const game::Feature& feature)

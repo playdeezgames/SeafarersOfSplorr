@@ -1,6 +1,7 @@
 #include <Common.Data.h>
 #include <Common.Heading.h>
 #include <Common.Utility.h>
+#include <Common.Utility.List.h>
 #include <Data.Game.Avatar.Ship.h>
 #include <Data.Game.Ship.h>
 #include <Data.Game.Ship.Statistic.h>
@@ -22,7 +23,7 @@ namespace game//20211017
 
 	static void AddShipStatistics(int shipId, ShipType shipType)
 	{
-		common::Utility::IterateList<ShipStatistic>(
+		common::utility::List::IterateList<ShipStatistic>(
 			ShipTypes::GetStatistics(shipType),
 			[shipId, shipType](const ShipStatistic& statistic) 
 			{

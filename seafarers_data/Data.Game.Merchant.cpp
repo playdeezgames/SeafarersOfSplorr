@@ -1,4 +1,5 @@
 #include <Common.Utility.h>
+#include <Common.Utility.List.h>
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Merchant.h"
@@ -58,7 +59,7 @@ namespace data::game//20211010
 	{
 		AutoCreateMerchantsTable();
 		std::list<Merchant> result;
-		return common::Utility::MapList<Common::Record, Merchant>(Common::DoExecute(QUERY_ALL), ToMerchant);
+		return common::utility::List::MapList<Common::Record, Merchant>(Common::DoExecute(QUERY_ALL), ToMerchant);
 	}
 
 	void Merchant::Update(const Merchant& merchant)
