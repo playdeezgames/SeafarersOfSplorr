@@ -1,4 +1,4 @@
-#include <Common.Utility.h>
+#include <Common.Utility.Array.h>
 #include <Data.Game.Avatar.ShipCrew.h>
 #include "Game.Avatar.h"
 #include "Game.Avatar.Ship.h"
@@ -17,7 +17,7 @@ namespace game::ship//20211018
 
 	std::vector<Crew> Crew::Read()
 	{
-		return common::Utility::MapArray<data::game::avatar::ShipCrew, Crew>(
+		return common::utility::Array::MapArray<data::game::avatar::ShipCrew, Crew>(
 			data::game::avatar::ShipCrew::Read(game::avatar::Ship::Read().value().shipId),
 			ToCrew);
 	}
