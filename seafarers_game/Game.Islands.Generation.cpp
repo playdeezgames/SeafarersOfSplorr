@@ -19,7 +19,7 @@
 #include <set>
 #include <sstream>
 #include <vector>
-namespace game//20211014
+namespace game//20211022
 {
 	const size_t RETRY_COUNT = 500;
 
@@ -87,7 +87,7 @@ namespace game//20211014
 		{true, 1},
 		{false, 1}
 	};
-	const common::NameGenerator nameGenerator = 
+	static const common::NameGenerator nameGenerator = 
 	{
 		LENGTH_GENERATOR,
 		IS_VOWEL_GENERATOR,
