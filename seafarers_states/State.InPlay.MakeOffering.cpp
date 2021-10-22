@@ -5,6 +5,7 @@
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Common.Utility.h>
+#include <Common.Utility.Navigator.h>
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
@@ -226,8 +227,8 @@ namespace state::in_play
 
 	static const std::map<::Command, std::function<void()>> commandHandlers =
 	{
-		{ ::Command::UP, common::Utility::DoPreviousItem(hiliteRow, items, Refresh) },
-		{ ::Command::DOWN, common::Utility::DoNextItem(hiliteRow, items, Refresh) },
+		{ ::Command::UP, common::utility::Navigator::DoPreviousItem(hiliteRow, items, Refresh) },
+		{ ::Command::DOWN, common::utility::Navigator::DoNextItem(hiliteRow, items, Refresh) },
 		{ ::Command::GREEN, OfferItem },
 		{ ::Command::BACK, OnLeave },
 		{ ::Command::RED, OnLeave }

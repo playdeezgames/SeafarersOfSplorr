@@ -32,6 +32,9 @@
     <ClInclude Include="Common.Utility.Dispatcher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Common.Utility.Navigator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Common.RNG.cpp">
