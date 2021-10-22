@@ -7,6 +7,7 @@
 #include <Common.Utility.h>
 #include <Common.Utility.Dispatcher.h>
 #include <Common.Utility.Navigator.h>
+#include <Common.Utility.Table.h>
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
@@ -155,7 +156,7 @@ namespace state::in_play
 
 	static void BuyItem()
 	{
-		auto item = common::Utility::GetNthKey(unitPrices, hiliteRow);
+		auto item = common::utility::Table::GetNthKey(unitPrices, hiliteRow);
 		if (item)
 		{
 			auto quantity = quantities[quantityIndex];

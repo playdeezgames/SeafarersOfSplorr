@@ -4,6 +4,7 @@
 #include <Application.UIState.h>
 #include <Common.Utility.h>
 #include <Common.Utility.Dispatcher.h>
+#include <Common.Utility.Table.h>
 #include <functional>
 #include <Game.Avatar.h>
 #include <Game.Avatar.Actions.h>
@@ -113,7 +114,7 @@ namespace sublayout
 	{
 		hoverButton = std::nullopt;
 		common::Utility::IterateOptional<HoverButton>(
-			common::Utility::TryGetKey(hoverAreas, area), 
+			common::utility::Table::TryGetKey(hoverAreas, area),
 			OnSetHoverButton);
 		Refresh();
 	}

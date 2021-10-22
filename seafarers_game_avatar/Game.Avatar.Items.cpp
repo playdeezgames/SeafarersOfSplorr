@@ -1,4 +1,5 @@
 #include <Common.Utility.h>
+#include <Common.Utility.Table.h>
 #include <Data.Game.Avatar.Items.h>
 #include "Game.Avatar.Items.h"
 #include "Game.Items.h"
@@ -8,7 +9,7 @@ namespace game::avatar//20211017
 	std::map<game::Item, size_t> Items::All()
 	{
 		return
-			common::Utility::MapTable<int, size_t, Item, size_t>(
+			common::utility::Table::MapTable<int, size_t, Item, size_t>(
 				data::game::avatar::Items::All(Player::GetAvatarId()),
 				common::Utility::Cast<int, Item>,
 				common::Utility::Identity<size_t>);
@@ -38,7 +39,7 @@ namespace game::avatar//20211017
 
 	double Items::TotalTonnage()
 	{
-		return common::Utility::AccumulateTable<Item, size_t, double>(
+		return common::utility::Table::AccumulateTable<Item, size_t, double>(
 			All(),
 			[](const double& result, const Item& item, const size_t count) 
 			{ 
@@ -52,7 +53,7 @@ namespace game::avatar//20211017
 		for (auto& item : game::Items::All())
 		{
 			common::Utility::IterateOptional<size_t>(
-				common::Utility::TryGetKey(game::Items::GetInitialInventoriesForAvatar(item), difficulty),
+				common::utility::Table::TryGetKey(game::Items::GetInitialInventoriesForAvatar(item), difficulty),
 				[item](const size_t& count) { Add(item, count); }
 			);
 		}

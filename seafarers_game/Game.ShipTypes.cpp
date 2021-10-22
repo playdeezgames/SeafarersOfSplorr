@@ -1,5 +1,6 @@
 #include <Common.RNG.h>
 #include <Common.Utility.h>
+#include <Common.Utility.Table.h>
 #include "Game.BerthType.h"
 #include "Game.ShipTypes.h"
 #include "Game.Ship.Property.h"
@@ -135,7 +136,7 @@ namespace game//20211017
 	}
 
 	std::map<game::ShipType, size_t> initialShipGenerator =
-		common::Utility::AccumulateTable<ShipType, ShipDescriptor, std::map<ShipType, size_t>>(
+		common::utility::Table::AccumulateTable<ShipType, ShipDescriptor, std::map<ShipType, size_t>>(
 			AllDescriptors,
 			[](std::map<ShipType, size_t>& result, const ShipType& shipType, const ShipDescriptor& descriptor)
 			{
@@ -176,7 +177,7 @@ namespace game//20211017
 
 	static const std::list<ShipStatistic>& LoadDefaultStatistics(const ShipType& shipType)
 	{
-		return statisticLists[shipType] = common::Utility::AccumulateTable<ShipStatistic, ShipStatisticDescriptor, std::list<ShipStatistic>>(
+		return statisticLists[shipType] = common::utility::Table::AccumulateTable<ShipStatistic, ShipStatisticDescriptor, std::list<ShipStatistic>>(
 			[shipType]() { return Read(shipType).statistics;  },
 			[](std::list<ShipStatistic>& result, const ShipStatistic& statistic, const ShipStatisticDescriptor&) 
 			{ result.push_back(statistic); });
@@ -185,7 +186,7 @@ namespace game//20211017
 	std::list<ShipStatistic> ShipTypes::GetStatistics(const game::ShipType& shipType)
 	{
 		return 
-			common::Utility::TryGetKey(statisticLists, shipType)
+			common::utility::Table::TryGetKey(statisticLists, shipType)
 				.value_or(LoadDefaultStatistics(shipType));
 	}
 

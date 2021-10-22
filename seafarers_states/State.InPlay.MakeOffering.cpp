@@ -6,6 +6,7 @@
 #include <Application.UIState.h>
 #include <Common.Utility.h>
 #include <Common.Utility.Navigator.h>
+#include <Common.Utility.Table.h>
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
@@ -201,7 +202,7 @@ namespace state::in_play
 
 	static void OfferItem()
 	{
-		auto item = common::Utility::GetNthKey(items, hiliteRow);
+		auto item = common::utility::Table::GetNthKey(items, hiliteRow);
 		if (item)
 		{
 			auto location = game::avatar::Docked::ReadLocation().value();

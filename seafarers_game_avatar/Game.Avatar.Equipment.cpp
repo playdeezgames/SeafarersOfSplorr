@@ -1,4 +1,5 @@
 #include <Common.Utility.h>
+#include <Common.Utility.Table.h>
 #include <Data.Game.Avatar.Equipment.h>
 #include "Game.Avatar.Equipment.h"
 #include <Game.Player.h>
@@ -32,7 +33,7 @@ namespace game::avatar//20211017
 	std::map<EquipSlot, Item> Equipment::All()
 	{
 		return 
-			common::Utility::MapTable<int, int, EquipSlot, Item>(
+			common::utility::Table::MapTable<int, int, EquipSlot, Item>(
 				data::game::avatar::Equipment::All(Player::GetAvatarId()), 
 				common::Utility::Cast<int, EquipSlot>,
 				common::Utility::Cast<int, Item>);

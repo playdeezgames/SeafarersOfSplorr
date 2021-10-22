@@ -1,4 +1,5 @@
 #include <Common.Utility.h>
+#include <Common.Utility.Table.h>
 #include <Data.Game.Avatar.Statistic.h>
 #include <Data.Game.Common.h>
 #include "Game.Avatar.Equipment.h"
@@ -140,7 +141,7 @@ namespace game::avatar//20211018
 
 	static double CalculateBuffs(const std::map<game::Item, double> itemBuffs)
 	{
-		return common::Utility::AccumulateTable<game::Item, double, double>(
+		return common::utility::Table::AccumulateTable<game::Item, double, double>(
 			itemBuffs,
 			[](const double& result, const game::Item& item, const double& buff)
 			{
@@ -153,7 +154,7 @@ namespace game::avatar//20211018
 		return 
 			GetCurrent(statistic) + 
 			common::Utility::MapOptional<std::map<game::Item, double>, double>(
-				common::Utility::TryGetKey(allBuffs, statistic),
+				common::utility::Table::TryGetKey(allBuffs, statistic),
 				CalculateBuffs).value_or(0.0);
 	}
 

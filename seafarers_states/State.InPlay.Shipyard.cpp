@@ -7,6 +7,7 @@
 #include <Common.Utility.h>
 #include <Common.Utility.Dispatcher.h>
 #include <Common.Utility.Navigator.h>
+#include <Common.Utility.Table.h>
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
@@ -177,7 +178,7 @@ namespace state::in_play
 
 	static void TryBuyShip()
 	{
-		std::optional<game::ShipType> desiredShip = common::Utility::GetNthKey(shipPrices, hiliteRow);
+		std::optional<game::ShipType> desiredShip = common::utility::Table::GetNthKey(shipPrices, hiliteRow);
 		if (desiredShip)
 		{
 			CheckAvailableFunds(desiredShip.value());
