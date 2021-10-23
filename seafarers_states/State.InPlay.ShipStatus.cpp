@@ -4,6 +4,7 @@
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
+#include <Common.Utility.Optional.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Avatar.ShipStatistics.h>
@@ -50,7 +51,7 @@ namespace state::in_play//20211019
 	static void UpdateShipProperties()
 	{
 		auto shipType =
-			common::Utility::MapOptional<int, std::optional<game::ShipType>>(
+			common::utility::Optional::MapOptional<int, std::optional<game::ShipType>>(
 				game::avatar::Ship::ReadShipId(),
 				game::Ship::GetShipType).value().value();//i might have overdone it here....
 

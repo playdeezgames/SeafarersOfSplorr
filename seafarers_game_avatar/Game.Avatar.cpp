@@ -3,6 +3,7 @@
 #include <Common.NameGenerator.h>
 #include <Common.RNG.h>
 #include <Common.Utility.h>
+#include <Common.Utility.Optional.h>
 #include <Data.Game.Avatar.h>
 #include <Data.Game.Avatar.Rations.h>
 #include <functional>
@@ -187,7 +188,7 @@ namespace game//20211022
 
 	std::optional<std::string> Avatar::GetName(int avatarId)
 	{
-		return common::Utility::MapOptional<data::game::Avatar, std::string>(
+		return common::utility::Optional::MapOptional<data::game::Avatar, std::string>(
 			data::game::Avatar::Read(avatarId), 
 			[](const data::game::Avatar& avatar) 
 			{ return avatar.name; });

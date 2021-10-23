@@ -4,6 +4,7 @@
 #include <Application.UIState.h>
 #include <Common.Utility.h>
 #include <Common.Utility.Dispatcher.h>
+#include <Common.Utility.Optional.h>
 #include <Common.Utility.Table.h>
 #include <functional>
 #include <Game.Avatar.h>
@@ -113,7 +114,7 @@ namespace sublayout
 	static void OnMouseMotionInArea(const std::string& area, const common::XY<int>&)
 	{
 		hoverButton = std::nullopt;
-		common::Utility::IterateOptional<HoverButton>(
+		common::utility::Optional::IterateOptional<HoverButton>(
 			common::utility::Table::TryGetKey(hoverAreas, area),
 			OnSetHoverButton);
 		Refresh();

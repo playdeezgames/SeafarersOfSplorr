@@ -1,4 +1,5 @@
 #include <Common.Utility.h>
+#include <Common.Utility.Optional.h>
 #include <Common.Utility.Table.h>
 #include <Data.Game.Avatar.Statistic.h>
 #include <Data.Game.Common.h>
@@ -153,7 +154,7 @@ namespace game::avatar//20211018
 	{
 		return 
 			GetCurrent(statistic) + 
-			common::Utility::MapOptional<std::map<game::Item, double>, double>(
+			common::utility::Optional::MapOptional<std::map<game::Item, double>, double>(
 				common::utility::Table::TryGetKey(allBuffs, statistic),
 				CalculateBuffs).value_or(0.0);
 	}

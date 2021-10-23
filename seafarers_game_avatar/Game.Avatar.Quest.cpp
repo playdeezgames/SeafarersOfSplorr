@@ -1,4 +1,5 @@
 #include <Common.Utility.h>
+#include <Common.Utility.Optional.h>
 #include <Data.Game.Avatar.Quest.h>
 #include <Data.Game.Island.Known.h>
 #include <Data.Game.Island.Quest.h>
@@ -90,7 +91,7 @@ namespace game::avatar//20211018
 	std::optional<game::Quest> Quest::Read()
 	{
 		return
-			common::Utility::MapOptional<data::game::avatar::Quest, game::Quest>(
+			common::utility::Optional::MapOptional<data::game::avatar::Quest, game::Quest>(
 				data::game::avatar::Quest::Read(Player::GetAvatarId()),
 				ToQuest);
 	}

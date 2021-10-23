@@ -2,6 +2,7 @@
 #include <Common.Heading.h>
 #include <Common.Utility.h>
 #include <Common.Utility.List.h>
+#include <Common.Utility.Optional.h>
 #include <Data.Game.Avatar.Ship.h>
 #include <Data.Game.Ship.h>
 #include <Data.Game.Ship.Statistic.h>
@@ -16,7 +17,7 @@ namespace game//20211017
 	std::optional<ShipType> Ship::GetShipType(int shipId)
 	{
 		return 
-			common::Utility::MapOptional<data::game::Ship, ShipType>(
+			common::utility::Optional::MapOptional<data::game::Ship, ShipType>(
 				data::game::Ship::Read(shipId), 
 				[](const data::game::Ship& ship) {return (ShipType)ship.shipType; });
 	}

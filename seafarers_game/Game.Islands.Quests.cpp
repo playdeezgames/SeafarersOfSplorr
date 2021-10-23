@@ -1,6 +1,7 @@
 #include <Common.RNG.h>
 #include <Common.Utility.h>
 #include <Common.Utility.List.h>
+#include <Common.Utility.Optional.h>
 #include <Data.Game.Island.h>
 #include <Data.Game.Island.Quest.h>
 #include <format>
@@ -243,7 +244,7 @@ namespace game::islands//20211016
 	std::optional<game::Quest> Quests::Read(const common::XY<double>& location)
 	{
 		return 
-			common::Utility::MapOptional<data::game::island::Quest, Quest>(
+			common::utility::Optional::MapOptional<data::game::island::Quest, Quest>(
 				data::game::island::Quest::Read(location), 
 				ToQuest);
 	}
