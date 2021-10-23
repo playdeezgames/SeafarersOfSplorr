@@ -17,7 +17,7 @@ namespace game::ship//20211018
 
 	std::vector<Crew> Crew::Read()
 	{
-		return common::utility::Array::MapArray<data::game::avatar::ShipCrew, Crew>(
+		return common::utility::Array::Map<data::game::avatar::ShipCrew, Crew>(
 			data::game::avatar::ShipCrew::Read(game::avatar::Ship::Read().value().shipId),
 			ToCrew);
 	}

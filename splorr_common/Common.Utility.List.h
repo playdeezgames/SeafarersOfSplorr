@@ -23,7 +23,7 @@ namespace common::utility
 			return std::nullopt;
 		}
 		template<typename TKey, typename TValue>
-		static const std::list<TKey>& ListFromTable(std::list<TKey>& list, const std::map<TKey, TValue>& table, std::function<bool(const TValue&)> filter)
+		static const std::list<TKey>& FromTable(std::list<TKey>& list, const std::map<TKey, TValue>& table, std::function<bool(const TValue&)> filter)
 		{
 			if (list.empty() && !table.empty())
 			{
@@ -38,13 +38,13 @@ namespace common::utility
 			return list;
 		}
 		template<typename TKey, typename TValue>
-		static const std::list<TKey>& ListFromTable(std::list<TKey>& list, const std::map<TKey, TValue>& table)
+		static const std::list<TKey>& FromTable(std::list<TKey>& list, const std::map<TKey, TValue>& table)
 		{
 			std::function<bool(const TValue&)> filter = [](const TValue&) { return true; };
-			return ListFromTable<TKey, TValue>(list, table, filter);
+			return FromTable<TKey, TValue>(list, table, filter);
 		}
 		template<typename TInput, typename TOutput>
-		static std::list<TOutput> MapList(std::function<std::list<TInput>()> source, std::function<TOutput(const TInput&)> transform, std::function<bool(const TOutput&)> filter)
+		static std::list<TOutput> Map(std::function<std::list<TInput>()> source, std::function<TOutput(const TInput&)> transform, std::function<bool(const TOutput&)> filter)
 		{
 			std::list<TOutput> result;
 			for (auto& entry : source())
@@ -58,12 +58,12 @@ namespace common::utility
 			return result;
 		}
 		template<typename TInput, typename TOutput>
-		static std::list<TOutput> MapList(std::function<std::list<TInput>()> source, std::function<TOutput(const TInput&)> transform)
+		static std::list<TOutput> Map(std::function<std::list<TInput>()> source, std::function<TOutput(const TInput&)> transform)
 		{
-			return MapList<TInput, TOutput>(source, transform, [](const TOutput&) { return true; });
+			return Map<TInput, TOutput>(source, transform, [](const TOutput&) { return true; });
 		}
 		template<typename TInput>
-		static void IterateList(const std::list<TInput>& source, std::function<void(const TInput&)> iterate)
+		static void Iterate(const std::list<TInput>& source, std::function<void(const TInput&)> iterate)
 		{
 			for (auto& entry : source)
 			{
@@ -71,12 +71,12 @@ namespace common::utility
 			}
 		}
 		template<typename TInput>
-		static void IterateList(std::function<std::list<TInput>()> source, std::function<void(const TInput&)> iterate)
+		static void Iterate(std::function<std::list<TInput>()> source, std::function<void(const TInput&)> iterate)
 		{
-			IterateList(source(), iterate);
+			Iterate(source(), iterate);
 		}
 		template<typename TInput, typename TAccumulator>
-		static TAccumulator AccumulateList(std::function<std::list<TInput>()> source, std::function<void(TAccumulator&, const TInput&)> accumulate, const TAccumulator& initial)
+		static TAccumulator Accumulate(std::function<std::list<TInput>()> source, std::function<void(TAccumulator&, const TInput&)> accumulate, const TAccumulator& initial)
 		{
 			TAccumulator accumulator = initial;
 			for (auto& entry : source())

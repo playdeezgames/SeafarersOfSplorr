@@ -127,7 +127,7 @@ namespace game//20211017
 
 	const std::list<game::ShipType>& ShipTypes::All()
 	{
-		return common::utility::List::ListFromTable(shipList, ships);
+		return common::utility::List::FromTable(shipList, ships);
 	}
 
 

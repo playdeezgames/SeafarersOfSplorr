@@ -59,7 +59,7 @@ namespace data::game//20211010
 	{
 		AutoCreateMerchantsTable();
 		std::list<Merchant> result;
-		return common::utility::List::MapList<Common::Record, Merchant>(Common::DoExecute(QUERY_ALL), ToMerchant);
+		return common::utility::List::Map<Common::Record, Merchant>(Common::DoExecute(QUERY_ALL), ToMerchant);
 	}
 
 	void Merchant::Update(const Merchant& merchant)

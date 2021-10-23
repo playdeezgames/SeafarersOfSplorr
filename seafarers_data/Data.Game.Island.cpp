@@ -63,14 +63,14 @@ namespace data::game//20211011
 	std::list<Island> Island::Filter(std::function<bool(const Island&)> filter)
 	{
 		AutoCreateIslandTable();
-		return common::utility::List::MapList<Common::Record, Island>(Common::DoExecute(QUERY_ALL), ToIsland, filter);
+		return common::utility::List::Map<Common::Record, Island>(Common::DoExecute(QUERY_ALL), ToIsland, filter);
 	}
 
 
 	std::list<Island> Island::All()
 	{
 		AutoCreateIslandTable();
-		return common::utility::List::MapList<Common::Record, Island>(Common::DoExecute(QUERY_ALL), ToIsland);
+		return common::utility::List::Map<Common::Record, Island>(Common::DoExecute(QUERY_ALL), ToIsland);
 	}
 
 	void Island::Clear()

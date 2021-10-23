@@ -35,7 +35,7 @@ namespace game//20211015
 
 	const std::list<EquipSlot>& EquipSlots::All()
 	{
-		return common::utility::List::ListFromTable(equipSlots, equipSlotDescriptors);
+		return common::utility::List::FromTable(equipSlots, equipSlotDescriptors);
 	}
 
 	static const EquipSlotDescriptor& Read(const EquipSlot& equipSlot)

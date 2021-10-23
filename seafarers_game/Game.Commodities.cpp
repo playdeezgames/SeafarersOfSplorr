@@ -117,7 +117,7 @@ namespace game//20211015
 
 	const std::list<game::Commodity>& Commodities::All()
 	{
-		return common::utility::List::ListFromTable(commodityList, commodityTable);
+		return common::utility::List::FromTable(commodityList, commodityTable);
 	}
 
 	double Commodities::GetBasePrice(const game::Commodity& commodity)

@@ -189,7 +189,7 @@ namespace game//20211014
 
 	const std::list<game::Item>& Items::All()
 	{
-		return common::utility::List::ListFromTable(itemList, itemTable);
+		return common::utility::List::FromTable(itemList, itemTable);
 	}
 
 	static std::map<game::Item, size_t> rationsGenerator;

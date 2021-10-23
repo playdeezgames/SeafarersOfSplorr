@@ -95,7 +95,7 @@ namespace game//20211017
 	std::list<Merchant> Merchants::All()
 	{
 		return 
-			common::utility::List::AccumulateList<data::game::Merchant, std::list<Merchant>>(
+			common::utility::List::Accumulate<data::game::Merchant, std::list<Merchant>>(
 				data::game::Merchant::All, 
 				[](std::list<Merchant>& result, const data::game::Merchant& merchant) 
 				{

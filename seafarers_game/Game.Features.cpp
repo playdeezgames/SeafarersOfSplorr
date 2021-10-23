@@ -38,7 +38,7 @@ namespace game//20211015
 
 	const std::list<game::Feature>& Features::All()
 	{
-		return common::utility::List::ListFromTable(featureList, featureDescriptors);
+		return common::utility::List::FromTable(featureList, featureDescriptors);
 	}
 
 	const std::string& Features::GetName(const game::Feature& feature)

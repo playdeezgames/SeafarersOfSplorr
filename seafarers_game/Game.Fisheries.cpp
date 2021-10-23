@@ -91,7 +91,7 @@ namespace game//20211015
 
 	std::list<Fishery> Fisheries::All()
 	{
-		return common::utility::List::MapList<data::game::Fishery, Fishery>(data::game::Fishery::All, ToFishery);
+		return common::utility::List::Map<data::game::Fishery, Fishery>(data::game::Fishery::All, ToFishery);
 	}
 
 	std::list<Fishery> Fisheries::Available()

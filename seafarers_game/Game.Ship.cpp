@@ -24,7 +24,7 @@ namespace game//20211017
 
 	static void AddShipStatistics(int shipId, ShipType shipType)
 	{
-		common::utility::List::IterateList<ShipStatistic>(
+		common::utility::List::Iterate<ShipStatistic>(
 			ShipTypes::GetStatistics(shipType),
 			[shipId, shipType](const ShipStatistic& statistic) 
 			{

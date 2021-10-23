@@ -6,7 +6,7 @@ namespace common::utility
 	struct Array
 	{
 		template<typename TInput, typename TOutput>
-		static std::vector<TOutput> MapArray(const std::vector<TInput>& source, std::function<TOutput(const TInput&)> transform, std::function<bool(const TOutput&)> filter)
+		static std::vector<TOutput> Map(const std::vector<TInput>& source, std::function<TOutput(const TInput&)> transform, std::function<bool(const TOutput&)> filter)
 		{
 			std::vector<TOutput> result;
 			for (auto& entry : source)
@@ -20,9 +20,9 @@ namespace common::utility
 			return result;
 		}
 		template<typename TInput, typename TOutput>
-		static std::vector<TOutput> MapArray(const std::vector<TInput>& source, std::function<TOutput(const TInput&)> transform)
+		static std::vector<TOutput> Map(const std::vector<TInput>& source, std::function<TOutput(const TInput&)> transform)
 		{
-			return MapArray<TInput, TOutput>(source, transform, [](const TOutput&) { return true; });
+			return Map<TInput, TOutput>(source, transform, [](const TOutput&) { return true; });
 		}
 	};
 }
