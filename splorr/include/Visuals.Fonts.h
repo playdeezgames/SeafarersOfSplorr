@@ -19,6 +19,7 @@ namespace visuals
 				SetStore((int)store);
 			};
 		}
+		static common::XY<int> WriteGlyph(const std::string&, const std::shared_ptr<application::Engine::Renderer>&, const common::XY<int>&, char, const std::string&);
 		static void WriteText(const std::string&, const std::shared_ptr<application::Engine::Renderer>&, const common::XY<int>&, const std::string& text, const std::string& color, const HorizontalAlignment& alignment);
 		static std::optional<std::string> GetGlyphSpriteName(const std::string&, char);
 	};

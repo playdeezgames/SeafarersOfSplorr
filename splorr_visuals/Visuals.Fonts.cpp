@@ -68,7 +68,7 @@ namespace visuals
 		return result;
 	}
 
-	static common::XY<int> WriteGlyph(const std::string& fontname, const std::shared_ptr<application::Engine::Renderer>& renderer, const common::XY<int>& xy, char ch, const std::string& color)
+	common::XY<int> Fonts::WriteGlyph(const std::string& fontname, const std::shared_ptr<application::Engine::Renderer>& renderer, const common::XY<int>& xy, char ch, const std::string& color)
 	{
 		auto sprite = Fonts::GetGlyphSpriteName(fontname, ch);
 		Sprites::Draw(sprite.value(), renderer, xy, ::visuals::Colors::Read(color));
@@ -80,7 +80,7 @@ namespace visuals
 		common::XY<int> temp = xy;
 		for (auto ch : text)
 		{
-			temp = WriteGlyph(fontname, renderer, temp, ch, color);
+			temp = Fonts::WriteGlyph(fontname, renderer, temp, ch, color);
 		}
 	}
 

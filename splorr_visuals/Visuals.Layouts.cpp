@@ -12,6 +12,7 @@
 #include "Visuals.Areas.h"
 #include "Visuals.SpriteGrid.h"
 #include "Visuals.Sublayout.h"
+#include "Visuals.Terminals.h"
 namespace visuals
 {
 	static std::optional<int> store;
@@ -37,7 +38,8 @@ namespace visuals
 		{"Layout", visuals::Sublayout::Internalize},
 		{"Area", visuals::Areas::Internalize},
 		{"SpriteGrid", visuals::SpriteGrid::Internalize},
-		{"Button", visuals::Buttons::Internalize}
+		{"Button", visuals::Buttons::Internalize},
+		{"Terminal", visuals::Terminals::Internalize}
 	};
 
 	void Layouts::RegisterType(const std::string& typeName, InternalizerFunction internalizer)

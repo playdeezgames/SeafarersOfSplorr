@@ -40,6 +40,7 @@
     <ClInclude Include="Visuals.SpriteGrid.h" />
     <ClInclude Include="Visuals.Sprites.h" />
     <ClInclude Include="Visuals.Sublayout.h" />
+    <ClInclude Include="Visuals.Terminals.h" />
     <ClInclude Include="Visuals.Texts.h" />
     <ClInclude Include="Visuals.Textures.h" />
   </ItemGroup>
@@ -57,6 +58,7 @@
     <ClCompile Include="Visuals.SpriteGrid.cpp" />
     <ClCompile Include="Visuals.Sprites.cpp" />
     <ClCompile Include="Visuals.Sublayout.cpp" />
+    <ClCompile Include="Visuals.Terminals.cpp" />
     <ClCompile Include="Visuals.Texts.cpp" />
     <ClCompile Include="Visuals.Textures.cpp" />
   </ItemGroup>

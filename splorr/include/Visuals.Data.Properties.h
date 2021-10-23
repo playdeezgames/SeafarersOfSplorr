@@ -40,6 +40,7 @@ namespace visuals::data::Properties
 	const std::string SPRITE = "sprite";
 	const std::string SPRITE_GRID_ID = "sprite-grid-id";
 	const std::string SOURCE = "source";
+	const std::string TERMINAL_ID = "terminal-id";
 	const std::string TEXT = "text";
 	const std::string TEXT_ID = "text-id";
 	const std::string TEXTURE = "texture";
