@@ -51,7 +51,7 @@ namespace state::in_play//20211019
 	static void UpdateShipProperties()
 	{
 		auto shipType =
-			common::utility::Optional::MapOptional<int, std::optional<game::ShipType>>(
+			common::utility::Optional::Map<int, std::optional<game::ShipType>>(
 				game::avatar::Ship::ReadShipId(),
 				game::Ship::GetShipType).value().value();//i might have overdone it here....
 

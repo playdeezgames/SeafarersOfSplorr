@@ -154,7 +154,7 @@ namespace game::avatar//20211018
 	{
 		return 
 			GetCurrent(statistic) + 
-			common::utility::Optional::MapOptional<std::map<game::Item, double>, double>(
+			common::utility::Optional::Map<std::map<game::Item, double>, double>(
 				common::utility::Table::TryGetKey(allBuffs, statistic),
 				CalculateBuffs).value_or(0.0);
 	}

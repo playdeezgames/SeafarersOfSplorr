@@ -17,7 +17,7 @@ namespace game//20211017
 	std::optional<ShipType> Ship::GetShipType(int shipId)
 	{
 		return 
-			common::utility::Optional::MapOptional<data::game::Ship, ShipType>(
+			common::utility::Optional::Map<data::game::Ship, ShipType>(
 				data::game::Ship::Read(shipId), 
 				[](const data::game::Ship& ship) {return (ShipType)ship.shipType; });
 	}

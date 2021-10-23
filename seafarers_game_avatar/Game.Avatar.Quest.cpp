@@ -91,7 +91,7 @@ namespace game::avatar//20211018
 	std::optional<game::Quest> Quest::Read()
 	{
 		return
-			common::utility::Optional::MapOptional<data::game::avatar::Quest, game::Quest>(
+			common::utility::Optional::Map<data::game::avatar::Quest, game::Quest>(
 				data::game::avatar::Quest::Read(Player::GetAvatarId()),
 				ToQuest);
 	}

@@ -35,7 +35,7 @@ namespace game::avatar//20211018
 
 	std::optional<Ship> Ship::Read()
 	{
-		return common::utility::Optional::MapOptional<data::game::avatar::Ship, Ship>(
+		return common::utility::Optional::Map<data::game::avatar::Ship, Ship>(
 			data::game::avatar::Ship::Read(data::game::Player::GetAvatarId()),
 			ToShip
 			);
@@ -43,7 +43,7 @@ namespace game::avatar//20211018
 
 	std::optional<int> Ship::ReadShipId()
 	{
-		return common::utility::Optional::MapOptional<Ship, int>(
+		return common::utility::Optional::Map<Ship, int>(
 			Read(), 
 			[](const Ship& ship) { return ship.shipId;  });
 	}
@@ -51,7 +51,7 @@ namespace game::avatar//20211018
 
 	static double GetAvailableTonnage(const Ship& ship)
 	{
-		return common::utility::Optional::MapOptional<ShipType, double>(
+		return common::utility::Optional::Map<ShipType, double>(
 			game::Ship::GetShipType(ship.shipId),
 			[](const ShipType& shipType)
 			{
@@ -63,7 +63,7 @@ namespace game::avatar//20211018
 
 	std::optional<double> Ship::AvailableTonnage()
 	{
-		return common::utility::Optional::MapOptional<Ship, double>(
+		return common::utility::Optional::Map<Ship, double>(
 			Read(),
 			GetAvailableTonnage);
 	}

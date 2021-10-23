@@ -114,7 +114,7 @@ namespace sublayout
 	static void OnMouseMotionInArea(const std::string& area, const common::XY<int>&)
 	{
 		hoverButton = std::nullopt;
-		common::utility::Optional::IterateOptional<HoverButton>(
+		common::utility::Optional::Iterate<HoverButton>(
 			common::utility::Table::TryGetKey(hoverAreas, area),
 			OnSetHoverButton);
 		Refresh();

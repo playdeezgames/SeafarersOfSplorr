@@ -53,7 +53,7 @@ namespace game::avatar//20211017
 		data::game::avatar::Items::Clear(Player::GetAvatarId());
 		for (auto& item : game::Items::All())
 		{
-			common::utility::Optional::IterateOptional<size_t>(
+			common::utility::Optional::Iterate<size_t>(
 				common::utility::Table::TryGetKey(game::Items::GetInitialInventoriesForAvatar(item), difficulty),
 				[item](const size_t& count) { Add(item, count); }
 			);

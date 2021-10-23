@@ -244,7 +244,7 @@ namespace game::islands//20211016
 	std::optional<game::Quest> Quests::Read(const common::XY<double>& location)
 	{
 		return 
-			common::utility::Optional::MapOptional<data::game::island::Quest, Quest>(
+			common::utility::Optional::Map<data::game::island::Quest, Quest>(
 				data::game::island::Quest::Read(location), 
 				ToQuest);
 	}

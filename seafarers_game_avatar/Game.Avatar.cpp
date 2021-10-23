@@ -188,7 +188,7 @@ namespace game//20211022
 
 	std::optional<std::string> Avatar::GetName(int avatarId)
 	{
-		return common::utility::Optional::MapOptional<data::game::Avatar, std::string>(
+		return common::utility::Optional::Map<data::game::Avatar, std::string>(
 			data::game::Avatar::Read(avatarId), 
 			[](const data::game::Avatar& avatar) 
 			{ return avatar.name; });
