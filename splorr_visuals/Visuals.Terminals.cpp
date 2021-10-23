@@ -3,6 +3,7 @@
 #include "Visuals.Data.Properties.h"
 #include "Visuals.Fonts.h"
 #include "Visuals.Layouts.h"
+#include "Visuals.Sprites.h"
 #include "Visuals.Terminals.h"
 namespace visuals
 {
@@ -19,7 +20,8 @@ namespace visuals
 		common::XY<int> xy;
 		common::XY<int> terminalSize;
 		common::XY<int> cellSize;
-		std::string emptySprite;
+		std::string backgroundColor;
+		std::string foregroundColor;
 		std::vector<InternalTerminalCell> cells;
 		size_t readIndex;
 		size_t writeIndex;
@@ -27,19 +29,36 @@ namespace visuals
 
 	static std::vector<InternalTerminal> internalTerminals;
 	static std::map<std::string, std::map<std::string, size_t>> terminalTable;
+	static const char SOLID_CHARACTER = (char)0xdb;
 
 	static void DrawInternalTerminal(
 		const std::shared_ptr<application::Engine::Renderer>& renderer, 
 		size_t terminalIndex)
 	{
 		auto& terminal = internalTerminals[terminalIndex];
+		auto cellIter = terminal.cells.begin() + terminal.readIndex;
+		for (size_t row = 0; row < terminal.terminalSize.GetY(); ++row)
+		{
+			for (size_t column = 0; column < terminal.terminalSize.GetX(); ++column)
+			{
+				common::XY<int> plot = { (int)column * terminal.cellSize.GetX(), (int)row * terminal.cellSize.GetY() };
+				Fonts::WriteGlyph(terminal.font, renderer, plot, SOLID_CHARACTER, cellIter->backgroundColor);
+				Fonts::WriteGlyph(terminal.font, renderer, plot, cellIter->character, cellIter->foregroundColor);
+				cellIter++;
+				if (cellIter == terminal.cells.end())
+				{
+					cellIter = terminal.cells.begin();
+				}
+			}
+		}
 	}
 
+	static const std::string PROPERTY_BACKGROUND_COLOR = "background-color";
+	static const std::string PROPERTY_FOREGROUND_COLOR = "foreground-color";
 	static const std::string PROPERTY_COLUMNS = "columns";
 	static const std::string PROPERTY_ROWS = "rows";
 	static const std::string PROPERTY_CELL_WIDTH = "cell-width";
 	static const std::string PROPERTY_CELL_HEIGHT = "cell-height";
-	static const std::string PROPERTY_CELL_BACKGROUND_SPRITE = "cell-background-sprite";
 
 	std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> Terminals::Internalize(
 		const std::string& layoutName, 
@@ -58,19 +77,20 @@ namespace visuals
 				common::XY<int>(
 					model[PROPERTY_CELL_WIDTH],
 					model[PROPERTY_CELL_HEIGHT]),
-				model[PROPERTY_CELL_BACKGROUND_SPRITE],
+				model[PROPERTY_BACKGROUND_COLOR],
+				model[PROPERTY_FOREGROUND_COLOR],
 				{},
 				0,
 				0
 			};
 		const size_t cellCount =
-			terminal.terminalSize.GetX() *
-			terminal.terminalSize.GetY();
+			(size_t)terminal.terminalSize.GetX() *
+			(size_t)terminal.terminalSize.GetY();
 		terminal.cells.reserve(cellCount);
 		while (terminal.cells.size() < cellCount)
 		{
 			terminal.cells.push_back(
-				InternalTerminalCell());
+				InternalTerminalCell({ terminal.backgroundColor, terminal.foregroundColor, ' '}));
 		}
 		internalTerminals.push_back(terminal);
 		if (model.count(visuals::data::Properties::TERMINAL_ID) > 0)
@@ -81,5 +101,41 @@ namespace visuals
 		{
 			DrawInternalTerminal(renderer, terminalIndex);
 		};
+	}
+
+	void Terminals::WriteText(const std::string& layoutName, const std::string& terminalName, const std::string& text)
+	{
+		auto& terminal = internalTerminals[terminalTable[layoutName][terminalName]];
+		auto writeIter = terminal.cells.begin() + terminal.writeIndex;
+		for (auto ch : text)
+		{
+			writeIter->character = ch;
+			writeIter->backgroundColor = terminal.backgroundColor;
+			writeIter->foregroundColor = terminal.foregroundColor;
+			writeIter++;
+			terminal.writeIndex++;
+			if (writeIter == terminal.cells.end())
+			{
+				writeIter = terminal.cells.begin();
+				terminal.writeIndex = 0;
+			}
+		}
+	}
+
+	void Terminals::WriteLine(const std::string& layoutName, const std::string& terminalName, const std::string& text)
+	{
+		auto& terminal = internalTerminals[terminalTable[layoutName][terminalName]];
+		size_t lines = text.size() / (size_t)terminal.terminalSize.GetX() + 1;
+		if (lines == 0)
+		{
+			lines = 1;
+		}
+		size_t spaceCount = lines * (size_t)terminal.terminalSize.GetY() - text.size();
+		WriteText(layoutName, terminalName, text);
+		while (spaceCount > 0)
+		{
+			WriteText(layoutName, terminalName, " ");
+			spaceCount--;
+		}
 	}
 }

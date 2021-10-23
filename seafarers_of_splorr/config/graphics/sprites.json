@@ -106,7 +106,7 @@
     },
     "RomFont0F": {
         "texture": "romfont8x8",
-        "x": 340,
+        "x": 240,
         "y": 0,
         "width": 16,
         "height": 16
@@ -218,7 +218,7 @@
     },
     "RomFont1F": {
         "texture": "romfont8x8",
-        "x": 340,
+        "x": 240,
         "y": 16,
         "width": 16,
         "height": 16
@@ -330,7 +330,7 @@
     },
     "RomFont2F": {
         "texture": "romfont8x8",
-        "x": 340,
+        "x": 240,
         "y": 32,
         "width": 16,
         "height": 16
@@ -442,7 +442,7 @@
     },
     "RomFont3F": {
         "texture": "romfont8x8",
-        "x": 340,
+        "x": 240,
         "y": 48,
         "width": 16,
         "height": 16
@@ -554,7 +554,7 @@
     },
     "RomFont4F": {
         "texture": "romfont8x8",
-        "x": 340,
+        "x": 240,
         "y": 64,
         "width": 16,
         "height": 16
@@ -666,7 +666,7 @@
     },
     "RomFont5F": {
         "texture": "romfont8x8",
-        "x": 340,
+        "x": 240,
         "y": 80,
         "width": 16,
         "height": 16
@@ -778,7 +778,7 @@
     },
     "RomFont6F": {
         "texture": "romfont8x8",
-        "x": 340,
+        "x": 240,
         "y": 96,
         "width": 16,
         "height": 16
@@ -890,7 +890,7 @@
     },
     "RomFont7F": {
         "texture": "romfont8x8",
-        "x": 340,
+        "x": 240,
         "y": 112,
         "width": 16,
         "height": 16
@@ -1002,7 +1002,7 @@
     },
     "RomFont8F": {
         "texture": "romfont8x8",
-        "x": 340,
+        "x": 240,
         "y": 128,
         "width": 16,
         "height": 16
@@ -1114,7 +1114,7 @@
     },
     "RomFont9F": {
         "texture": "romfont8x8",
-        "x": 340,
+        "x": 240,
         "y": 144,
         "width": 16,
         "height": 16
@@ -1226,7 +1226,7 @@
     },
     "RomFontAF": {
         "texture": "romfont8x8",
-        "x": 340,
+        "x": 240,
         "y": 160,
         "width": 16,
         "height": 16
@@ -1338,7 +1338,7 @@
     },
     "RomFontBF": {
         "texture": "romfont8x8",
-        "x": 340,
+        "x": 240,
         "y": 176,
         "width": 16,
         "height": 16
@@ -1450,7 +1450,7 @@
     },
     "RomFontCF": {
         "texture": "romfont8x8",
-        "x": 340,
+        "x": 240,
         "y": 192,
         "width": 16,
         "height": 16
@@ -1562,7 +1562,7 @@
     },
     "RomFontDF": {
         "texture": "romfont8x8",
-        "x": 340,
+        "x": 240,
         "y": 208,
         "width": 16,
         "height": 16
@@ -1674,7 +1674,7 @@
     },
     "RomFontEF": {
         "texture": "romfont8x8",
-        "x": 340,
+        "x": 240,
         "y": 224,
         "width": 16,
         "height": 16
@@ -1786,7 +1786,7 @@
     },
     "RomFontFF": {
         "texture": "romfont8x8",
-        "x": 340,
+        "x": 240,
         "y": 240,
         "width": 16,
         "height": 16

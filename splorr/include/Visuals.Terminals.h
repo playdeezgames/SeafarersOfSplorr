@@ -6,6 +6,8 @@ namespace visuals
 {
 	struct Terminals
 	{
+		static void WriteText(const std::string&, const std::string&, const std::string&);
+		static void WriteLine(const std::string&, const std::string&, const std::string&);
 		static DrawerFunction Internalize(const std::string&, const nlohmann::json&);
 	};
 }

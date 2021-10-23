@@ -42,7 +42,8 @@
         "rows":22,
         "cell-width":16,
         "cell-height":16,
-        "cell-background-sprite":"RomFontDB"
+        "background-color": "Black",
+        "foreground-color": "Gray"
     },
     {
         "type": "Layout",
