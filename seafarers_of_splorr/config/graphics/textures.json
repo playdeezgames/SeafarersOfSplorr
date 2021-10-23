@@ -16,5 +16,6 @@
     "world-map":"assets/images/world-map.png",
     "world-map-icons":"assets/images/world-map-icons.png",
     "fishboard":"assets/images/fishboard.png",
-    "fishboard-frame":"assets/images/fishboardframe.png"
+    "fishboard-frame":"assets/images/fishboardframe.png",
+    "romfont8x8":"assets/images/romfont8x8.png"
 }
