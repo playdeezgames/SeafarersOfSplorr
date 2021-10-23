@@ -10,7 +10,7 @@ namespace game::avatar//20211017
 	std::map<game::Item, size_t> Items::All()
 	{
 		return
-			common::utility::Table::MapTable<int, size_t, Item, size_t>(
+			common::utility::Table::Map<int, size_t, Item, size_t>(
 				data::game::avatar::Items::All(Player::GetAvatarId()),
 				common::Utility::Cast<int, Item>,
 				common::Utility::Identity<size_t>);
@@ -40,7 +40,7 @@ namespace game::avatar//20211017
 
 	double Items::TotalTonnage()
 	{
-		return common::utility::Table::AccumulateTable<Item, size_t, double>(
+		return common::utility::Table::Accumulate<Item, size_t, double>(
 			All(),
 			[](const double& result, const Item& item, const size_t count) 
 			{ 

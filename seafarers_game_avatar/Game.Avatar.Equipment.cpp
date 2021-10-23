@@ -33,7 +33,7 @@ namespace game::avatar//20211017
 	std::map<EquipSlot, Item> Equipment::All()
 	{
 		return 
-			common::utility::Table::MapTable<int, int, EquipSlot, Item>(
+			common::utility::Table::Map<int, int, EquipSlot, Item>(
 				data::game::avatar::Equipment::All(Player::GetAvatarId()), 
 				common::Utility::Cast<int, EquipSlot>,
 				common::Utility::Cast<int, Item>);

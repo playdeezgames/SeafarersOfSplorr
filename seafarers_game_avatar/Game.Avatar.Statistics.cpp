@@ -142,7 +142,7 @@ namespace game::avatar//20211018
 
 	static double CalculateBuffs(const std::map<game::Item, double> itemBuffs)
 	{
-		return common::utility::Table::AccumulateTable<game::Item, double, double>(
+		return common::utility::Table::Accumulate<game::Item, double, double>(
 			itemBuffs,
 			[](const double& result, const game::Item& item, const double& buff)
 			{
