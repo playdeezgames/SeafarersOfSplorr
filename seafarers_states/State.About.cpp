@@ -3,6 +3,8 @@
 #include <Application.MouseButtonUp.h>
 #include <Application.OnEnter.h>
 #include <Application.UIState.h>
+#include <Common.RNG.h>
+#include <format>
 #include <Game.Audio.Mux.h>
 #include "States.h"
 #include "UIState.h"
@@ -19,10 +21,17 @@ namespace state
 		return true;
 	}
 
+	static int counter = 0;
+
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
-		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "ohai!ohai!ohai!ohai!ohai!ohai!ohai!ohai!ohai!ohai!_");
+		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
+		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "About Seafarers of SPLORR!!");
+		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
+		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "A presentation of TheGrumpyGameDev");
+		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
+		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "0) Exit");
 	}
 
 	void About::Start()

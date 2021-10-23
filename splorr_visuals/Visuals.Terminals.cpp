@@ -103,34 +103,47 @@ namespace visuals
 		};
 	}
 
+	static void WriteGlyph(InternalTerminal& terminal, char glyph)
+	{
+		auto writeIter = terminal.cells.begin() + terminal.writeIndex;
+		writeIter->character = glyph;
+		writeIter->backgroundColor = terminal.backgroundColor;
+		writeIter->foregroundColor = terminal.foregroundColor;
+		writeIter++;
+		terminal.writeIndex++;
+		if (writeIter == terminal.cells.end())
+		{
+			writeIter = terminal.cells.begin();
+			terminal.writeIndex = 0;
+		}
+		if (terminal.writeIndex == terminal.readIndex)
+		{
+			writeIter = terminal.cells.begin() + terminal.readIndex;
+			for (size_t count = 0; count < terminal.terminalSize.GetX(); ++count)
+			{
+				writeIter->character = ' ';
+				writeIter->backgroundColor = terminal.backgroundColor;
+				writeIter->foregroundColor = terminal.foregroundColor;
+				writeIter++;
+			}
+			terminal.readIndex += terminal.terminalSize.GetX();
+			terminal.readIndex %= terminal.cells.size();
+		}
+	}
+
 	void Terminals::WriteText(const std::string& layoutName, const std::string& terminalName, const std::string& text)
 	{
 		auto& terminal = internalTerminals[terminalTable[layoutName][terminalName]];
-		auto writeIter = terminal.cells.begin() + terminal.writeIndex;
 		for (auto ch : text)
 		{
-			writeIter->character = ch;
-			writeIter->backgroundColor = terminal.backgroundColor;
-			writeIter->foregroundColor = terminal.foregroundColor;
-			writeIter++;
-			terminal.writeIndex++;
-			if (writeIter == terminal.cells.end())
-			{
-				writeIter = terminal.cells.begin();
-				terminal.writeIndex = 0;
-			}
+			WriteGlyph(terminal, ch);
 		}
 	}
 
 	void Terminals::WriteLine(const std::string& layoutName, const std::string& terminalName, const std::string& text)
 	{
 		auto& terminal = internalTerminals[terminalTable[layoutName][terminalName]];
-		size_t lines = text.size() / (size_t)terminal.terminalSize.GetX() + 1;
-		if (lines == 0)
-		{
-			lines = 1;
-		}
-		size_t spaceCount = lines * (size_t)terminal.terminalSize.GetY() - text.size();
+		size_t spaceCount = (size_t)terminal.terminalSize.GetX() - terminal.writeIndex % terminal.terminalSize.GetX();
 		WriteText(layoutName, terminalName, text);
 		while (spaceCount > 0)
 		{
