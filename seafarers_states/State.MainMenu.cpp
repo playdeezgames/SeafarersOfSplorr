@@ -1,10 +1,11 @@
 #include <Application.Command.h>
+#include <Application.Keyboard.h>
 #include <Application.MouseButtonUp.h>
 #include <Application.MouseMotion.h>
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
-#include <Common.Utility.h>
+#include <Common.Utility.Dispatcher.h>
 #include <Data.JSON.Stores.h>
 #include <Game.Audio.Mux.h>
 #include "States.h"
@@ -12,64 +13,82 @@
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
 #include <Visuals.Texts.h>
+#include <Visuals.Terminals.h>
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::MAIN_MENU;
-	static const std::string LAYOUT_NAME = "State.MainMenu";
-	static const std::string MENU_ID = "Main";
-	static const std::string SUBLAYOUT_MODDED = "Sublayout.Modded";
-	static const std::string TEXT_MODDED = "modded";
-	static const std::string MODDED = "Modded";
-
-	enum class MainMenuItem
-	{
-		START,
-		ABOUT,
-		STATISTICS,
-		OPTIONS,
-		QUIT
-	};
+	static const std::string LAYOUT_NAME = "State.Terminal";
+	static const std::string TERMINAL_ID = "terminal";
 
 	static void GoToAbout()
 	{
 		::application::UIState::Write(::UIState::ABOUT);
 	}
 
-	static const std::map<MainMenuItem, std::function<void()>> activators =
-	{
-		{ MainMenuItem::START, ::application::UIState::GoTo(::UIState::START_GAME) },
-		{ MainMenuItem::OPTIONS, ::application::UIState::PushTo(::UIState::OPTIONS)  },
-		{ MainMenuItem::STATISTICS, ::application::UIState::GoTo(::UIState::STATISTICS)  },
-		{ MainMenuItem::ABOUT, GoToAbout },
-		{ MainMenuItem::QUIT, ::application::UIState::GoTo(::UIState::CONFIRM_QUIT)  },
-	};
-
-	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
-
-	static const std::map<::Command, std::function<void()>> commandHandlers =
-	{
-		{::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
-		{::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
-		{::Command::GREEN, ActivateItem },
-		{::Command::BACK, ::application::UIState::GoTo(::UIState::CONFIRM_QUIT) },
-		{::Command::RED, ::application::UIState::GoTo(::UIState::CONFIRM_QUIT) }
-	};
+	static std::string inputBuffer = "";
 
 	static void OnEnter()
 	{
-		if (data::json::Stores::IsModded())
-		{
-			visuals::Texts::SetText(SUBLAYOUT_MODDED, TEXT_MODDED, MODDED);
-		}
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
+		inputBuffer = "";
+		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
+		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "Main Menu:");
+		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "1) Start");
+		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "2) About");
+		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "3) Stats");
+		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "4) Options");
+		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "5) Quit");
+		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
+		visuals::Terminals::WriteText(LAYOUT_NAME, TERMINAL_ID, ">");
+	}
+
+	static const std::string KEY_RETURN = "Return";
+	static const std::string KEY_1 = "1";
+	static const std::string KEY_2 = "2";
+	static const std::string KEY_3 = "3";
+	static const std::string KEY_4 = "4";
+	static const std::string KEY_5 = "5";
+
+	static const std::map<std::string, std::function<void()>> menuActions = 
+	{
+		{ KEY_1, application::UIState::GoTo(::UIState::START_GAME)},
+		{ KEY_2, application::UIState::GoTo(::UIState::ABOUT)},
+		{ KEY_3, application::UIState::GoTo(::UIState::STATISTICS)},
+		{ KEY_4, application::UIState::PushTo(::UIState::OPTIONS)},
+		{ KEY_5, application::UIState::GoTo(::UIState::CONFIRM_QUIT)}
+	};
+
+	static bool OnKeyDown(const std::string& key)
+	{
+		if (key == KEY_1 || key == KEY_2 || key == KEY_3 || key == KEY_4 || key == KEY_5)
+		{
+			inputBuffer += key;
+			visuals::Terminals::WriteText(LAYOUT_NAME, TERMINAL_ID, key);
+			return true;
+		}
+		else if (key == KEY_RETURN)
+		{
+			visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
+			bool result = common::utility::Dispatcher::Dispatch(menuActions, inputBuffer, true, false);
+			if (result)
+			{
+				inputBuffer = "";
+			}
+			else
+			{
+				visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "Please enter a number between 1 and 5.");
+				visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
+				OnEnter();
+			}
+			return true;
+		}
+		return false;
 	}
 
 	void MainMenu::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
-		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		::application::Keyboard::AddHandler(CURRENT_STATE, OnKeyDown);
 	}
 }

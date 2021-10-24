@@ -143,8 +143,8 @@ namespace visuals
 	void Terminals::WriteLine(const std::string& layoutName, const std::string& terminalName, const std::string& text)
 	{
 		auto& terminal = internalTerminals[terminalTable[layoutName][terminalName]];
-		size_t spaceCount = (size_t)terminal.terminalSize.GetX() - terminal.writeIndex % terminal.terminalSize.GetX();
 		WriteText(layoutName, terminalName, text);
+		size_t spaceCount = (size_t)terminal.terminalSize.GetX() - (terminal.writeIndex % terminal.terminalSize.GetX());
 		while (spaceCount > 0)
 		{
 			WriteText(layoutName, terminalName, " ");
