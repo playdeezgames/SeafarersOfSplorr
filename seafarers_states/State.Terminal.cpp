@@ -1,6 +1,6 @@
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Colors.h>
-#include "States.h"
+#include "State.Terminal.h"
 #include <Visuals.Terminals.h>
 namespace state
 {
@@ -55,7 +55,7 @@ namespace state
 	static const std::string KEY_BACKSPACE = "Backspace";
 
 
-	std::function<bool(const std::string&)> Terminal::DoOnKeyDown(const std::map<std::string, std::function<void()>>& table, const std::string& errorMessage, std::function<void()> refresh)
+	std::function<bool(const std::string&)> Terminal::DoIntegerInput(const std::map<std::string, std::function<void()>>& table, const std::string& errorMessage, std::function<void()> refresh)
 	{
 		return [errorMessage, table, refresh](const std::string& key)
 		{

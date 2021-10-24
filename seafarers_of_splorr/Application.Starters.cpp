@@ -10,6 +10,7 @@
 #include <functional>
 #include <Game.h>
 #include <Game.Achievements.h>
+#include <State.Terminal.h>
 #include <States.h>
 #include <Sublayouts.h>
 #include <UIState.h>

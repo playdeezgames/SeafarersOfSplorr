@@ -47,6 +47,9 @@
     <ClInclude Include="UIState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="State.Terminal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">

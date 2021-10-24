@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="State.Terminal.h" />
     <ClInclude Include="States.h" />
     <ClInclude Include="Sublayouts.h" />
     <ClInclude Include="UIState.h" />

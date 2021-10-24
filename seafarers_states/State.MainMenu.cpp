@@ -5,6 +5,7 @@
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
+#include "State.Terminal.h"
 #include "States.h"
 #include "UIState.h"
 #include <Visuals.Terminals.h>
@@ -60,6 +61,6 @@ namespace state
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
-		::application::Keyboard::AddHandler(CURRENT_STATE, Terminal::DoOnKeyDown(menuActions, "Please enter a number between 1 and 5.", OnEnter));
+		::application::Keyboard::AddHandler(CURRENT_STATE, Terminal::DoIntegerInput(menuActions, "Please enter a number between 1 and 5.", OnEnter));
 	}
 }
