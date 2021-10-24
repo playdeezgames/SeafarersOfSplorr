@@ -99,6 +99,7 @@ namespace application
 		state::SaveGame::Start,
 		state::ConfirmAbandon::Start,
 		state::ConfirmOverwrite::Start,
+		state::Terminal::Start,
 		state::in_play::AtSea::Start,
 		state::in_play::ChangeSpeed::Start,
 		state::in_play::Docked::Start,

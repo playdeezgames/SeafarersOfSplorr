@@ -164,4 +164,14 @@ namespace visuals
 		terminal.backgroundColor = color;
 	}
 
+	void Terminals::Backspace(const std::string& layoutName, const std::string& terminalName)
+	{
+		auto& terminal = internalTerminals[terminalTable[layoutName][terminalName]];
+		if (terminal.writeIndex > terminal.readIndex)
+		{
+			terminal.writeIndex--;
+			WriteGlyph(terminal, ' ');
+			terminal.writeIndex--;
+		}
+	}
 }

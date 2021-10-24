@@ -34,6 +34,7 @@
     <ClCompile Include="State.InPlay.CrewList.cpp" />
     <ClCompile Include="State.InPlay.Equipment.cpp" />
     <ClCompile Include="State.InPlay.Fishing.cpp" />
+    <ClCompile Include="State.Terminal.cpp" />
     <ClCompile Include="Sublayout.AtSeaActions.cpp" />
     <ClCompile Include="Sublayout.AtSeaAvatarStatus.cpp" />
     <ClCompile Include="State.InPlay.AtSeaCareenSelect.cpp" />
