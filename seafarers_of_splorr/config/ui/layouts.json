@@ -44,6 +44,7 @@
     "State.Start": "config/ui/layouts/boilerplate/State.Start.json",
     "State.Statistics":"config/ui/layouts/boilerplate/State.Statistics.json",
     "State.Tip":"config/ui/layouts/boilerplate/State.Tip.json",
+    "State.Terminal":"config/ui/layouts/utility/State.Terminal.json",
     "Sublayout.AtSeaActions":"config/ui/layouts/sublayout/Sublayout.AtSeaActions.json",
     "Sublayout.AtSeaStatistics":"config/ui/layouts/sublayout/Sublayout.AtSeaStatistics.json",
     "Sublayout.Modded":"config/ui/layouts/sublayout/Sublayout.Modded.json",
