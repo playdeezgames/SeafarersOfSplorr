@@ -2,6 +2,7 @@
 #include <Application.OnEnter.h>
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
+#include <Game.Colors.h>
 #include "States.h"
 #include "UIState.h"
 #include <Visuals.Terminals.h>
@@ -15,10 +16,13 @@ namespace state
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
-		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "About Seafarers of SPLORR!!");
+		visuals::Terminals::SetForeground(LAYOUT_NAME, TERMINAL_ID, game::Colors::LIGHT_CYAN);
+		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "About Seafarers of SPLORR!!:");
 		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
-		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "A presentation of TheGrumpyGameDev");
+		visuals::Terminals::SetForeground(LAYOUT_NAME, TERMINAL_ID, game::Colors::DARK_GRAY);
+		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "A Production of TheGrumpyGameDev");
 		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
+		visuals::Terminals::SetForeground(LAYOUT_NAME, TERMINAL_ID, game::Colors::GRAY);
 		application::UIState::Write(::UIState::MAIN_MENU);
 	}
 

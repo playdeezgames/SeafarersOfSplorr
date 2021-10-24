@@ -41,7 +41,7 @@ namespace visuals
 		{
 			for (size_t column = 0; column < terminal.terminalSize.GetX(); ++column)
 			{
-				common::XY<int> plot = { (int)column * terminal.cellSize.GetX(), (int)row * terminal.cellSize.GetY() };
+				common::XY<int> plot = { terminal.xy.GetX() + (int)column * terminal.cellSize.GetX(), terminal.xy.GetY() + (int)row * terminal.cellSize.GetY() };
 				Fonts::WriteGlyph(terminal.font, renderer, plot, SOLID_CHARACTER, cellIter->backgroundColor);
 				Fonts::WriteGlyph(terminal.font, renderer, plot, cellIter->character, cellIter->foregroundColor);
 				cellIter++;
@@ -151,4 +151,17 @@ namespace visuals
 			spaceCount--;
 		}
 	}
+
+	void Terminals::SetForeground(const std::string& layoutName, const std::string& terminalName, const std::string& color)
+	{
+		auto& terminal = internalTerminals[terminalTable[layoutName][terminalName]];
+		terminal.foregroundColor = color;
+	}
+
+	void Terminals::SetBackground(const std::string& layoutName, const std::string& terminalName, const std::string& color)
+	{
+		auto& terminal = internalTerminals[terminalTable[layoutName][terminalName]];
+		terminal.backgroundColor = color;
+	}
+
 }

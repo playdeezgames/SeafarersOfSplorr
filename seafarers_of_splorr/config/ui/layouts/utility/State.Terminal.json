@@ -1,10 +1,23 @@
 [
     {
         "type": "Terminal",
+        "terminal-id": "status",
+        "font": "font5x7",
+        "x":0,
+        "y":0,
+        "columns":107,
+        "rows":1,
+        "cell-width":6,
+        "cell-height":8,
+        "background-color": "Gray",
+        "foreground-color": "Black"
+    },
+    {
+        "type": "Terminal",
         "terminal-id": "terminal",
         "font": "font8x8",
         "x":0,
-        "y":0,
+        "y":8,
         "columns":40,
         "rows":22,
         "cell-width":16,
