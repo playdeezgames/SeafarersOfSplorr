@@ -23,6 +23,9 @@
     <ClInclude Include="State.ConfirmAbandon.h" />
     <ClInclude Include="State.ConfirmOverwrite.h" />
     <ClInclude Include="State.ConfirmQuit.h" />
+    <ClInclude Include="State.InPlay.AtSea.h" />
+    <ClInclude Include="State.InPlay.Lose.h" />
+    <ClInclude Include="State.InPlay.Win.h" />
     <ClInclude Include="State.LeavePlay.h" />
     <ClInclude Include="State.LoadGame.h" />
     <ClInclude Include="State.MainMenu.h" />

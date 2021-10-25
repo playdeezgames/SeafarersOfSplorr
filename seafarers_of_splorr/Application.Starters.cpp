@@ -14,6 +14,9 @@
 #include <State.ConfirmAbandon.h>
 #include <State.ConfirmOverwrite.h>
 #include <State.ConfirmQuit.h>
+#include <State.InPlay.AtSea.h>
+#include <State.InPlay.Lose.h>
+#include <State.InPlay.Win.h>
 #include <State.LeavePlay.h>
 #include <State.LoadGame.h>
 #include <State.MainMenu.h>

@@ -1,14 +1,6 @@
 #pragma once
 namespace state::in_play
 {
-	struct AtSea
-	{
-		static void DoAutomoveTimer(const unsigned int&);
-		static void ToggleAutoMove();
-		static bool IsAutoMoveEngaged();
-		static void UpdateAutoMoveState();
-		static void Start();
-	};
 	struct AtSeaOverview
 	{
 		static void Start();
@@ -107,10 +99,6 @@ namespace state::in_play
 	{
 		static void Start();
 	};
-	struct Lose
-	{
-		static void Start();
-	};
 	struct MakeOffering
 	{
 		static void Start();
@@ -132,10 +120,6 @@ namespace state::in_play
 		static void Start();
 	};
 	struct Temple
-	{
-		static void Start();
-	};
-	struct Win
 	{
 		static void Start();
 	};

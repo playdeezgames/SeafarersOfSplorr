@@ -5,7 +5,8 @@
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Audio.Sfx.h>
-#include "States.h"
+#include "State.InPlay.AtSea.h"
+#include "State.InPlay.Lose.h"
 #include "UIState.h"
 namespace state::in_play
 {

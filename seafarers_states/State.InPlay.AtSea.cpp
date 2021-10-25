@@ -16,7 +16,7 @@
 #include <Game.Colors.h>
 #include <Game.Islands.h>
 #include <Game.Ship.h>
-#include "States.h"
+#include "State.InPlay.AtSea.h"
 #include "Sublayouts.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>

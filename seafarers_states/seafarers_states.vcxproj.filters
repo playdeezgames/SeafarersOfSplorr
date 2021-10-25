@@ -89,6 +89,15 @@
     <ClInclude Include="State.Tip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="State.InPlay.AtSea.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.Lose.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.Win.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
