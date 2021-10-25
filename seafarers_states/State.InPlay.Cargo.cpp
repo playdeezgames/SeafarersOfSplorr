@@ -118,8 +118,8 @@ namespace state::in_play//20211019
 	{
 		{ ::Command::UP, common::utility::Navigator::DoPreviousItem(hiliteRow, manifest, RefreshManifest) },
 		{ ::Command::DOWN, common::utility::Navigator::DoNextItem(hiliteRow, manifest, RefreshManifest) },
-		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) },
-		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) }
+		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_DEPRECATED) },
+		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_DEPRECATED) }
 	};
 
 	static const std::map<std::string, std::function<void()>> areaButtons =

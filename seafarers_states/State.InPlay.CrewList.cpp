@@ -112,8 +112,8 @@ namespace state::in_play//20211019
 
 	static const std::map<::Command, std::function<void()>> commandHandlers =
 	{
-		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) },
-		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA) }
+		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_DEPRECATED) },
+		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_DEPRECATED) }
 	};
 
 	static void OnHoverGoBack(const common::XY<int>&)

@@ -221,7 +221,7 @@ namespace state::in_play
 		{AREA_SELECT_2, SelectDestinationId(game::avatar::Destination::TWO)},
 		{AREA_SELECT_3, SelectDestinationId(game::avatar::Destination::THREE)},
 		{AREA_SELECT_4, SelectDestinationId(game::avatar::Destination::FOUR)},
-		{AREA_GO_BACK, application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA)},
+		{AREA_GO_BACK, application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_DEPRECATED)},
 		{AREA_REMOVE_TARGET, OnRemoveTarget}
 	};
 

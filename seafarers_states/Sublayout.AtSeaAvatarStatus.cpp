@@ -21,7 +21,7 @@
 #include <Visuals.Texts.h>
 namespace sublayout
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_AT_SEA;
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_AT_SEA_DEPRECATED;
 	static const std::string SUBLAYOUT_NAME = "Sublayout.AtSeaStatistics";
 
 	static const std::string TEXT_AVATAR_TURNS = "avatar-turns";

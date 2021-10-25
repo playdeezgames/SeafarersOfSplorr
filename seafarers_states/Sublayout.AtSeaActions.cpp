@@ -16,7 +16,7 @@
 #include <Visuals.Images.h>
 namespace sublayout
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_AT_SEA;
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_AT_SEA_DEPRECATED;
 	static const std::string LAYOUT_NAME = "Sublayout.AtSeaActions";
 
 	static const std::string IMAGE_FISHING_HOVER = "hover-fishing";

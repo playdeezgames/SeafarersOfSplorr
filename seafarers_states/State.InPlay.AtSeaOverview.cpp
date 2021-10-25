@@ -42,7 +42,7 @@ namespace state::in_play
 
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
-		{"0", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA)}
+		{"0", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_DEPRECATED)}
 	};
 
 	void AtSeaOverview::Start()

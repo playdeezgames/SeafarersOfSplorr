@@ -27,7 +27,7 @@
 #include <Visuals.SpriteGrid.h>
 namespace state::in_play//20211019
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_AT_SEA;
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_AT_SEA_DEPRECATED;
 	static const std::string LAYOUT_NAME = "State.InPlay.AtSea";
 
 	static const std::string MENU_ID = "Order";
