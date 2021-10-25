@@ -12,5 +12,8 @@ namespace state
 		static const bool Backspace();
 		static std::function<bool(const std::string&)> DoIntegerInput(const std::map<std::string, std::function<void()>>& table, const std::string& errorMessage, std::function<void()>);
 		static void Start();
+		static const std::string LAYOUT_NAME;
+		static const std::string TERMINAL_ID;
+		static const std::string STATUS_ID;
 	};
 }

@@ -5,8 +5,9 @@
 namespace state
 {
 	static std::string inputBuffer = "";
-	static const std::string LAYOUT_NAME = "State.Terminal";
-	static const std::string TERMINAL_ID = "terminal";
+	const std::string Terminal::LAYOUT_NAME = "State.Terminal";
+	const std::string Terminal::TERMINAL_ID = "terminal";
+	const std::string Terminal::STATUS_ID = "status";
 
 	void Terminal::ClearInput()
 	{

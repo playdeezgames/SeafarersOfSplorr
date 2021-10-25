@@ -1,50 +1,52 @@
 #include <Application.Command.h>
-#include <Application.MouseButtonUp.h>
-#include <Application.MouseMotion.h>
+#include <Application.Keyboard.h>
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Common.Utility.h>
 #include <Game.Audio.Mux.h>
+#include <Game.Colors.h>
+#include "State.Terminal.h"
 #include "States.h"
 #include "UIState.h"
-#include <Visuals.Areas.h>
-#include <Visuals.Menus.h>
+#include <Visuals.Terminals.h>
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::CONFIRM_QUIT;
-	static const std::string LAYOUT_NAME = "State.ConfirmQuit";
-	static const std::string MENU_ID = "ConfirmQuit";
 
-	enum class ConfirmQuitItem
+	static void OnEnter()
 	{
-		NO,
-		YES
-	};
+		game::audio::Mux::Play(game::audio::Theme::MAIN);
 
-	static const std::map<ConfirmQuitItem, std::function<void()>> activators =
+		visuals::Terminals::WriteLine(Terminal::LAYOUT_NAME, Terminal::STATUS_ID, "");
+
+		Terminal::ClearInput();
+		visuals::Terminals::WriteLine(Terminal::LAYOUT_NAME, Terminal::TERMINAL_ID, "");
+
+		visuals::Terminals::SetForeground(Terminal::LAYOUT_NAME, Terminal::TERMINAL_ID, game::Colors::RED);
+		visuals::Terminals::WriteLine(Terminal::LAYOUT_NAME, Terminal::TERMINAL_ID, "Are you sure you want to quit?");
+		visuals::Terminals::WriteLine(Terminal::LAYOUT_NAME, Terminal::TERMINAL_ID, "");
+
+		visuals::Terminals::SetForeground(Terminal::LAYOUT_NAME, Terminal::TERMINAL_ID, game::Colors::YELLOW);
+		visuals::Terminals::WriteLine(Terminal::LAYOUT_NAME, Terminal::TERMINAL_ID, "1) No");
+		visuals::Terminals::WriteLine(Terminal::LAYOUT_NAME, Terminal::TERMINAL_ID, "2) Yes");
+		visuals::Terminals::SetForeground(Terminal::LAYOUT_NAME, Terminal::TERMINAL_ID, game::Colors::GRAY);
+
+		visuals::Terminals::WriteLine(Terminal::LAYOUT_NAME, Terminal::TERMINAL_ID, "");
+
+		visuals::Terminals::WriteText(Terminal::LAYOUT_NAME, Terminal::TERMINAL_ID, ">");
+	}
+
+	static const std::map<std::string, std::function<void()>> menuActions =
 	{
-		{ ConfirmQuitItem::NO, ::application::UIState::GoTo(::UIState::MAIN_MENU) },
-		{ ConfirmQuitItem::YES, ::application::UIState::GoTo(::UIState::QUIT) }
-	};
-
-	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
-
-	static const std::map<Command, std::function<void()>> commandHandlers =
-	{
-		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
-		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
-		{ ::Command::GREEN, ActivateItem },
-		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::MAIN_MENU) },
-		{ ::Command::RED, ::application::UIState::GoTo(::UIState::MAIN_MENU) }
+		{ "1", application::UIState::GoTo(::UIState::MAIN_MENU)},
+		{ "2", application::UIState::GoTo(::UIState::QUIT)}
 	};
 
 	void ConfirmQuit::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
-		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
-		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
+		::application::Keyboard::AddHandler(CURRENT_STATE, Terminal::DoIntegerInput(menuActions, "Please enter a number between 1 and 2.", OnEnter));
 	}
 }
