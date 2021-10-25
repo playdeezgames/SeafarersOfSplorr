@@ -1,30 +1,17 @@
-#include <Application.Command.h>
-#include <Application.Renderer.h>
-#include <Application.MouseButtonUp.h>
-#include <Application.MouseMotion.h>
+#include <Application.Keyboard.h>
 #include <Application.OnEnter.h>
+#include <Application.Renderer.h>
 #include <Application.UIState.h>
-#include <Common.Utility.h>
 #include <Game.h>
+#include <Game.Colors.h>
 #include <Game.Audio.Mux.h>
+#include "State.Terminal.h"
 #include "States.h"
 #include "UIState.h"
-#include <Visuals.Menus.h>
-#include <Visuals.Areas.h>
 namespace state
 {
-	static const std::string LAYOUT_NAME = "State.Start";
-	static const std::string MENU_ID = "Start";
-
-	enum class StartGameItem
-	{
-		CONTINUE_GAME,
-		NEW_GAME_EASY,
-		NEW_GAME_NORMAL,
-		NEW_GAME_HARD,
-		NEW_GAME_HARDCORE,
-		BACK
-	};
+	static const ::UIState CURRENT_STATE = ::UIState::START_GAME;
+	static const std::string LAYOUT_NAME = "State.Terminal";
 
 	static std::function<void()> NewGame(const game::Difficulty& difficulty)
 	{
@@ -35,33 +22,50 @@ namespace state
 		};
 	}
 
-	static const std::map<StartGameItem, std::function<void()>> activators =
+	static void Refresh()
 	{
-		{ StartGameItem::NEW_GAME_EASY, NewGame(game::Difficulty::EASY) },
-		{ StartGameItem::NEW_GAME_NORMAL, NewGame(game::Difficulty::NORMAL) },
-		{ StartGameItem::NEW_GAME_HARD, NewGame(game::Difficulty::HARD) },
-		{ StartGameItem::NEW_GAME_HARDCORE, NewGame(game::Difficulty::HARDCORE) },
-		{ StartGameItem::CONTINUE_GAME, ::application::UIState::GoTo(::UIState::LOAD_GAME) },
-		{ StartGameItem::BACK, ::application::UIState::GoTo(::UIState::MAIN_MENU) }
-	};
+		Terminal::ClearStatusLine();
+		Terminal::ClearInput();
 
-	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
+		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
+		Terminal::WriteLine();
+		Terminal::WriteLine("Start Game:");
 
-	static const std::map<::Command, std::function<void()>> commandHandlers =
+		Terminal::SetForeground(game::Colors::YELLOW);
+		Terminal::WriteLine();
+		Terminal::WriteLine("1) Continue");
+		Terminal::WriteLine("2) Easy");
+		Terminal::WriteLine("3) Normal");
+		Terminal::WriteLine("4) Hard");
+		Terminal::WriteLine("5) HARDCORE");
+		Terminal::WriteLine("6) Never mind");
+
+		Terminal::SetForeground(game::Colors::GRAY);
+		Terminal::WriteLine();
+		Terminal::Write(">");
+	}
+
+	static void OnEnter()
 	{
-		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
-		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
-		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::MAIN_MENU) },
-		{ ::Command::RED, ::application::UIState::GoTo(::UIState::MAIN_MENU) },
-		{ ::Command::GREEN, ActivateItem }
+		game::audio::Mux::Play(game::audio::Theme::MAIN);
+		Refresh();
+	}
+
+	static const std::map<std::string, std::function<void()>> menuActions =
+	{
+		{ "1", ::application::UIState::GoTo(::UIState::LOAD_GAME) },
+		{ "2", NewGame(game::Difficulty::EASY)},
+		{ "3", NewGame(game::Difficulty::NORMAL) },
+		{ "4", NewGame(game::Difficulty::HARD) },
+		{ "5", NewGame(game::Difficulty::HARDCORE) },
+		{ "6", ::application::UIState::GoTo(::UIState::MAIN_MENU) }
 	};
 
 	void StartGame::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::START_GAME, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
-		::application::MouseButtonUp::AddHandler(::UIState::START_GAME, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
-		::application::MouseMotion::AddHandler(::UIState::START_GAME, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-		::application::Command::SetHandlers(::UIState::START_GAME, commandHandlers);
-		::application::Renderer::SetRenderLayout(::UIState::START_GAME, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		::application::Keyboard::AddHandler(CURRENT_STATE, Terminal::DoIntegerInput(menuActions, "Please enter a number between 1 and 6", Refresh));
+
 	}
 }
