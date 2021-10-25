@@ -6,7 +6,7 @@
 #include <Game.Colors.h>
 #include <Game.Ship.h>
 #include "State.Terminal.h"
-#include "States.h"
+#include "State.InPlay.AtSeaOverview.h"
 #include "UIState.h"
 namespace state::in_play
 {

@@ -1,18 +1,6 @@
 #pragma once
 namespace state::in_play
 {
-	struct AtSeaOverview
-	{
-		static void Start();
-	};
-	struct AtSeaCareenSelect
-	{
-		static void Start();
-	};
-	struct AvatarStatus
-	{
-		static void Start();
-	};
 	struct Cargo
 	{
 		static void Start();

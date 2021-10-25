@@ -15,6 +15,9 @@
 #include <State.ConfirmOverwrite.h>
 #include <State.ConfirmQuit.h>
 #include <State.InPlay.AtSea.h>
+#include <State.InPlay.AtSeaOverview.h>
+#include <State.InPlay.AtSeaCareenSelect.h>
+#include <State.InPlay.AvatarStatus.h>
 #include <State.InPlay.Lose.h>
 #include <State.InPlay.Win.h>
 #include <State.LeavePlay.h>
