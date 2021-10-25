@@ -18,7 +18,7 @@
 #include <Game.Items.h>
 #include <Game.Player.h>
 #include <Game.Ship.Crew.h>
-#include "States.h"
+#include "State.InPlay.CrewList.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Buttons.h>

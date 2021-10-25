@@ -7,7 +7,7 @@
 #include <Common.Utility.h>
 #include <Game.Audio.Mux.h>
 #include <Visuals.Confirmations.h>
-#include "States.h"
+#include "State.InPlay.Confirm.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>

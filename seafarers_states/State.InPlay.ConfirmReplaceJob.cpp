@@ -12,7 +12,7 @@
 #include <Game.Avatar.Log.h>
 #include <Game.Avatar.Quest.h>
 #include <Game.Colors.h>
-#include "States.h"
+#include "State.InPlay.ConfirmReplaceJob.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>

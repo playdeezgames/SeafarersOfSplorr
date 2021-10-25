@@ -3,7 +3,7 @@
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
-#include "States.h"
+#include "State.InPlay.CrewDetail.h"
 #include <string>
 #include "UIState.h"
 namespace state::in_play//20211019

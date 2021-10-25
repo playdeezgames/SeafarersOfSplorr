@@ -9,7 +9,7 @@
 #include <Game.Avatar.Quest.h>
 #include <Game.Avatar.Log.h>
 #include <Game.Colors.h>
-#include "States.h"
+#include "State.InPlay.ConfirmAbandonJob.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>

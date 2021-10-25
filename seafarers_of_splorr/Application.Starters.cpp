@@ -22,6 +22,12 @@
 #include <State.InPlay.CareenedToStarboard.h>
 #include <State.InPlay.Cargo.h>
 #include <State.InPlay.ChangeSpeed.h>
+#include <State.InPlay.Confirm.h>
+#include <State.InPlay.ConfirmAbandonJob.h>
+#include <State.InPlay.ConfirmReplaceJob.h>
+#include <State.InPlay.CrewList.h>
+#include <State.InPlay.CrewDetail.h>
+#include <State.InPlay.CurrentJob.h>
 #include <State.InPlay.Lose.h>
 #include <State.InPlay.Win.h>
 #include <State.LeavePlay.h>

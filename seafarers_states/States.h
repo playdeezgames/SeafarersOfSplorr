@@ -1,31 +1,6 @@
 #pragma once
 namespace state::in_play
 {
-	struct Confirm
-	{
-		static void Start();
-	};
-	struct ConfirmAbandonJob
-	{
-		static void Start();
-	};
-	struct ConfirmReplaceJob
-	{
-		static void Start();
-	};
-	struct CrewDetail
-	{
-		static void SetAvatarId(int);
-		static void Start();
-	};
-	struct CrewList
-	{
-		static void Start();
-	};
-	struct CurrentJob
-	{
-		static void Start();
-	};
 	struct DarkAlley
 	{
 		static void Start();
