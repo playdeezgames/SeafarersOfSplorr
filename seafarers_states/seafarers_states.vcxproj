@@ -23,6 +23,10 @@
     <ClInclude Include="State.ConfirmAbandon.h" />
     <ClInclude Include="State.ConfirmOverwrite.h" />
     <ClInclude Include="State.ConfirmQuit.h" />
+    <ClInclude Include="State.LeavePlay.h" />
+    <ClInclude Include="State.LoadGame.h" />
+    <ClInclude Include="State.MainMenu.h" />
+    <ClInclude Include="State.Options.h" />
     <ClInclude Include="State.Terminal.h" />
     <ClInclude Include="States.h" />
     <ClInclude Include="Sublayouts.h" />

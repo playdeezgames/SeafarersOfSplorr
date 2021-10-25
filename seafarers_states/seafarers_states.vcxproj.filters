@@ -62,6 +62,18 @@
     <ClInclude Include="State.ConfirmQuit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="State.LeavePlay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.LoadGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.MainMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.Options.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">

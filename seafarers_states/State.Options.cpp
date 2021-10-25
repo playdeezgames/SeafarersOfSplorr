@@ -9,8 +9,8 @@
 #include <Audio.Sfx.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
+#include "State.Options.h"
 #include "State.Terminal.h"
-#include "States.h"
 #include "UIState.h"
 namespace state
 {

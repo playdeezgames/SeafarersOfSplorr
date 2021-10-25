@@ -1,22 +1,6 @@
 #pragma once
 namespace state
 { 
-	struct LeavePlay 
-	{ 
-		static void Start(); 
-	};
-	struct LoadGame 
-	{ 
-		static void Start(); 
-	};
-	struct MainMenu
-	{
-		static void Start();
-	};
-	struct Options 
-	{ 
-		static void Start(); 
-	};
 	struct SaveGame
 	{
 		static void Start();

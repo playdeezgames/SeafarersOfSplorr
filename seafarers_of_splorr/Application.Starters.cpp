@@ -14,6 +14,10 @@
 #include <State.ConfirmAbandon.h>
 #include <State.ConfirmOverwrite.h>
 #include <State.ConfirmQuit.h>
+#include <State.LeavePlay.h>
+#include <State.LoadGame.h>
+#include <State.MainMenu.h>
+#include <State.Options.h>
 #include <State.Terminal.h>
 #include <States.h>
 #include <Sublayouts.h>
