@@ -1,14 +1,6 @@
 #pragma once
 namespace state
 { 
-	struct ConfirmOverwrite 
-	{ 
-		static void Start(); 
-	};
-	struct ConfirmQuit
-	{
-		static void Start();
-	};
 	struct LeavePlay 
 	{ 
 		static void Start(); 

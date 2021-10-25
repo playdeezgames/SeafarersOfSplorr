@@ -12,6 +12,8 @@
 #include <Game.Achievements.h>
 #include <State.About.h>
 #include <State.ConfirmAbandon.h>
+#include <State.ConfirmOverwrite.h>
+#include <State.ConfirmQuit.h>
 #include <State.Terminal.h>
 #include <States.h>
 #include <Sublayouts.h>

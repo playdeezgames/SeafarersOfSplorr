@@ -56,6 +56,12 @@
     <ClInclude Include="State.ConfirmAbandon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="State.ConfirmOverwrite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.ConfirmQuit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">

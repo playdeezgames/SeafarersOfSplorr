@@ -6,8 +6,8 @@
 #include <Common.Utility.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
+#include "State.ConfirmQuit.h"
 #include "State.Terminal.h"
-#include "States.h"
 #include "UIState.h"
 namespace state
 {
