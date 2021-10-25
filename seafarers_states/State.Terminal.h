@@ -1,4 +1,5 @@
 #pragma once
+#include <format>
 #include <functional>
 #include <map>
 #include <string>
@@ -17,6 +18,11 @@ namespace state
 		static const std::string STATUS_ID;
 		static void WriteLine();
 		static void WriteLine(const std::string&);
+		template<typename... Ts>
+		static void WriteLine(const std::string& fmt, Ts... args)
+		{
+			WriteLine(std::format(fmt, args...));
+		}
 		static void Write(const std::string&);
 		static void SetForeground(const std::string&);
 		static void ClearStatusLine();

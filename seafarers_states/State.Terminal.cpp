@@ -80,7 +80,6 @@ namespace state
 	static const std::string KEY_0 = "0";
 	static const std::string KEY_BACKSPACE = "Backspace";
 
-
 	std::function<bool(const std::string&)> Terminal::DoIntegerInput(const std::map<std::string, std::function<void()>>& table, const std::string& errorMessage, std::function<void()> refresh)
 	{
 		return [errorMessage, table, refresh](const std::string& key)
