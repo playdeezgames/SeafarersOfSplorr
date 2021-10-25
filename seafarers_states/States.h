@@ -1,14 +1,6 @@
 #pragma once
 namespace state
 { 
-	struct About
-	{
-		static void Start(); 
-	};
-	struct ConfirmAbandon 
-	{ 
-		static void Start(); 
-	};
 	struct ConfirmOverwrite 
 	{ 
 		static void Start(); 

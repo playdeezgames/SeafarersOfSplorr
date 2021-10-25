@@ -50,6 +50,12 @@
     <ClInclude Include="State.Terminal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="State.About.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.ConfirmAbandon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">

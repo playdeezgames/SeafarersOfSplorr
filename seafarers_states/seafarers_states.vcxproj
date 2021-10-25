@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="State.About.h" />
+    <ClInclude Include="State.ConfirmAbandon.h" />
     <ClInclude Include="State.Terminal.h" />
     <ClInclude Include="States.h" />
     <ClInclude Include="Sublayouts.h" />

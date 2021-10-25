@@ -6,6 +6,7 @@
 #include <Application.UIState.h>
 #include <Common.Utility.h>
 #include <Game.Audio.Mux.h>
+#include "State.ConfirmAbandon.h"
 #include "States.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
