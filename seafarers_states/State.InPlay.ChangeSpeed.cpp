@@ -12,7 +12,7 @@
 #include <Game.Avatar.Log.h>
 #include <Game.Colors.h>
 #include <Game.Ship.h>
-#include "States.h"
+#include "State.InPlay.ChangeSpeed.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>

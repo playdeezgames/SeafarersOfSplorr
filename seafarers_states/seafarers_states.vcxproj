@@ -27,6 +27,10 @@
     <ClInclude Include="State.InPlay.AtSeaCareenSelect.h" />
     <ClInclude Include="State.InPlay.AtSeaOverview.h" />
     <ClInclude Include="State.InPlay.AvatarStatus.h" />
+    <ClInclude Include="State.InPlay.CareenedToPort.h" />
+    <ClInclude Include="State.InPlay.CareenedToStarboard.h" />
+    <ClInclude Include="State.InPlay.Cargo.h" />
+    <ClInclude Include="State.InPlay.ChangeSpeed.h" />
     <ClInclude Include="State.InPlay.Lose.h" />
     <ClInclude Include="State.InPlay.Win.h" />
     <ClInclude Include="State.LeavePlay.h" />

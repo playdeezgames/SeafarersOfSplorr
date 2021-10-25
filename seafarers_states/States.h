@@ -1,22 +1,6 @@
 #pragma once
 namespace state::in_play
 {
-	struct Cargo
-	{
-		static void Start();
-	};
-	struct CareenedToPort
-	{
-		static void Start();
-	};
-	struct CareenedToStarboard
-	{
-		static void Start();
-	};
-	struct ChangeSpeed
-	{
-		static void Start();
-	};
 	struct Confirm
 	{
 		static void Start();

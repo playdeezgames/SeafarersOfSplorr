@@ -107,6 +107,18 @@
     <ClInclude Include="State.InPlay.AvatarStatus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="State.InPlay.Cargo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.CareenedToPort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.CareenedToStarboard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.ChangeSpeed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">

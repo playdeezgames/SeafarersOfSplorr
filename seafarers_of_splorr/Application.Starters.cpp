@@ -18,6 +18,10 @@
 #include <State.InPlay.AtSeaOverview.h>
 #include <State.InPlay.AtSeaCareenSelect.h>
 #include <State.InPlay.AvatarStatus.h>
+#include <State.InPlay.CareenedToPort.h>
+#include <State.InPlay.CareenedToStarboard.h>
+#include <State.InPlay.Cargo.h>
+#include <State.InPlay.ChangeSpeed.h>
 #include <State.InPlay.Lose.h>
 #include <State.InPlay.Win.h>
 #include <State.LeavePlay.h>

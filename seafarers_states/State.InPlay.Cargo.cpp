@@ -16,7 +16,7 @@
 #include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
-#include "States.h"
+#include "State.InPlay.Cargo.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Buttons.h>
