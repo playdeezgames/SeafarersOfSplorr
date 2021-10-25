@@ -140,7 +140,10 @@ namespace visuals
 		const std::shared_ptr<application::Engine::Renderer>& renderer,
 		const InternalNavigator& navigator)
 	{
-		auto windHeading = common::Heading::ToRadians(game::World::GetWindHeading() + common::Heading::DEGREES / 2.0);
+		auto windHeading = 
+			common::Heading::ToRadians(
+				game::World::GetWindHeading() + 
+				common::Heading::DEGREES / 2.0);
 		common::XY<int> plot = 
 		{ 
 			(int)(navigator.xy.GetX() + std::cos(windHeading) * navigator.radius), 

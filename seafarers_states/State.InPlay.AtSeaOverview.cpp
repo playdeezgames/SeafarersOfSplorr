@@ -23,11 +23,11 @@ namespace state::in_play
 		Terminal::WriteLine("At Sea:");
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Heading: {:.2f}, Speed: {:.2f}", game::Ship::GetHeading(), game::Ship::GetSpeed());
+		//TODO: wind from
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Move");
-		Terminal::WriteLine("2) Change Heading");
-		Terminal::WriteLine("3) Change Speed");
+		Terminal::WriteLine("2) Change Heading/Speed");
 
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine();
