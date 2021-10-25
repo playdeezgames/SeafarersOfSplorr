@@ -15,5 +15,10 @@ namespace state
 		static const std::string LAYOUT_NAME;
 		static const std::string TERMINAL_ID;
 		static const std::string STATUS_ID;
+		static void WriteLine();
+		static void WriteLine(const std::string&);
+		static void Write(const std::string&);
+		static void SetForeground(const std::string&);
+		static void ClearStatusLine();
 	};
 }

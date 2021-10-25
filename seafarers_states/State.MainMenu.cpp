@@ -8,7 +8,6 @@
 #include "State.Terminal.h"
 #include "States.h"
 #include "UIState.h"
-#include <Visuals.Terminals.h>
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::MAIN_MENU;
@@ -25,27 +24,25 @@ namespace state
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 
-		visuals::Terminals::WriteLine(LAYOUT_NAME, STATUS_ID, "");
+		Terminal::ClearStatusLine();
 
 		Terminal::ClearInput();
-		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
+		Terminal::WriteLine();
 
-		visuals::Terminals::SetForeground(LAYOUT_NAME, TERMINAL_ID, game::Colors::LIGHT_CYAN);
-		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "Main Menu:");
-		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
+		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
+		Terminal::WriteLine("Main Menu:");
+		Terminal::WriteLine();
 
-		visuals::Terminals::SetForeground(LAYOUT_NAME, TERMINAL_ID, game::Colors::YELLOW);
-		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "1) Start");
-		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "2) About");
-		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "3) Stats");
-		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "4) Options");
-		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "5) Quit");
-		visuals::Terminals::SetForeground(LAYOUT_NAME, TERMINAL_ID, game::Colors::GRAY);
+		Terminal::SetForeground(game::Colors::YELLOW);
+		Terminal::WriteLine("1) Start");
+		Terminal::WriteLine("2) About");
+		Terminal::WriteLine("3) Stats");
+		Terminal::WriteLine("4) Options");
+		Terminal::WriteLine("5) Quit");
 
-		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
-
-
-		visuals::Terminals::WriteText(LAYOUT_NAME, TERMINAL_ID, ">");
+		Terminal::SetForeground(game::Colors::GRAY);
+		Terminal::WriteLine();
+		Terminal::Write(">");
 	}
 
 	static const std::map<std::string, std::function<void()>> menuActions = 

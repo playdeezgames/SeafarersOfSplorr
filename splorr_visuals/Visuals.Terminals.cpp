@@ -32,7 +32,7 @@ namespace visuals
 	static const char SOLID_CHARACTER = (char)0xdb;
 
 	static void DrawInternalTerminal(
-		const std::shared_ptr<application::Engine::Renderer>& renderer, 
+		const std::shared_ptr<application::Engine::Renderer>& renderer,
 		size_t terminalIndex)
 	{
 		auto& terminal = internalTerminals[terminalIndex];
@@ -61,28 +61,28 @@ namespace visuals
 	static const std::string PROPERTY_CELL_HEIGHT = "cell-height";
 
 	std::function<void(const std::shared_ptr<application::Engine::Renderer>&)> Terminals::Internalize(
-		const std::string& layoutName, 
+		const std::string& layoutName,
 		const nlohmann::json& model)
 	{
 		size_t terminalIndex = internalTerminals.size();
-		InternalTerminal terminal = 
-			{
-				model[visuals::data::Properties::FONT],
-				common::XY<int>(
-					model[visuals::data::Properties::X],
-					model[visuals::data::Properties::Y]),
-				common::XY<int>(
-					model[PROPERTY_COLUMNS],
-					model[PROPERTY_ROWS]),
-				common::XY<int>(
-					model[PROPERTY_CELL_WIDTH],
-					model[PROPERTY_CELL_HEIGHT]),
-				model[PROPERTY_BACKGROUND_COLOR],
-				model[PROPERTY_FOREGROUND_COLOR],
-				{},
-				0,
-				0
-			};
+		InternalTerminal terminal =
+		{
+			model[visuals::data::Properties::FONT],
+			common::XY<int>(
+				model[visuals::data::Properties::X],
+				model[visuals::data::Properties::Y]),
+			common::XY<int>(
+				model[PROPERTY_COLUMNS],
+				model[PROPERTY_ROWS]),
+			common::XY<int>(
+				model[PROPERTY_CELL_WIDTH],
+				model[PROPERTY_CELL_HEIGHT]),
+			model[PROPERTY_BACKGROUND_COLOR],
+			model[PROPERTY_FOREGROUND_COLOR],
+			{},
+			0,
+			0
+		};
 		const size_t cellCount =
 			(size_t)terminal.terminalSize.GetX() *
 			(size_t)terminal.terminalSize.GetY();
@@ -90,7 +90,7 @@ namespace visuals
 		while (terminal.cells.size() < cellCount)
 		{
 			terminal.cells.push_back(
-				InternalTerminalCell({ terminal.backgroundColor, terminal.foregroundColor, ' '}));
+				InternalTerminalCell({ terminal.backgroundColor, terminal.foregroundColor, ' ' }));
 		}
 		internalTerminals.push_back(terminal);
 		if (model.count(visuals::data::Properties::TERMINAL_ID) > 0)
@@ -167,11 +167,8 @@ namespace visuals
 	void Terminals::Backspace(const std::string& layoutName, const std::string& terminalName)
 	{
 		auto& terminal = internalTerminals[terminalTable[layoutName][terminalName]];
-		if (terminal.writeIndex > terminal.readIndex)
-		{
-			terminal.writeIndex--;
-			WriteGlyph(terminal, ' ');
-			terminal.writeIndex--;
-		}
+		terminal.writeIndex = (terminal.writeIndex + (terminal.cells.size() - 1)) % terminal.cells.size();
+		WriteGlyph(terminal, ' ');
+		terminal.writeIndex = (terminal.writeIndex + (terminal.cells.size() - 1)) % terminal.cells.size();
 	}
 }

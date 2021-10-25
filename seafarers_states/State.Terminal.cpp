@@ -42,6 +42,31 @@ namespace state
 		ClearInput();
 	}
 
+	void Terminal::SetForeground(const std::string& color)
+	{
+		visuals::Terminals::SetForeground(LAYOUT_NAME, TERMINAL_ID, color);
+	}
+
+	void Terminal::ClearStatusLine()
+	{
+		visuals::Terminals::WriteLine(LAYOUT_NAME, STATUS_ID, "");
+	}
+
+	void Terminal::Write(const std::string& text)
+	{
+		visuals::Terminals::WriteText(LAYOUT_NAME, TERMINAL_ID, text);
+	}
+
+	void Terminal::WriteLine(const std::string& text)
+	{
+		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, text);
+	}
+
+	void Terminal::WriteLine()
+	{
+		WriteLine("");
+	}
+
 	static const std::string KEY_RETURN = "Return";
 	static const std::string KEY_1 = "1";
 	static const std::string KEY_2 = "2";

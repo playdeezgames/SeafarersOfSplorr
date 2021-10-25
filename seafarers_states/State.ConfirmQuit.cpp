@@ -9,7 +9,6 @@
 #include "State.Terminal.h"
 #include "States.h"
 #include "UIState.h"
-#include <Visuals.Terminals.h>
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::CONFIRM_QUIT;
@@ -18,23 +17,22 @@ namespace state
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 
-		visuals::Terminals::WriteLine(Terminal::LAYOUT_NAME, Terminal::STATUS_ID, "");
+		Terminal::ClearStatusLine();
 
 		Terminal::ClearInput();
-		visuals::Terminals::WriteLine(Terminal::LAYOUT_NAME, Terminal::TERMINAL_ID, "");
+		Terminal::WriteLine();
 
-		visuals::Terminals::SetForeground(Terminal::LAYOUT_NAME, Terminal::TERMINAL_ID, game::Colors::RED);
-		visuals::Terminals::WriteLine(Terminal::LAYOUT_NAME, Terminal::TERMINAL_ID, "Are you sure you want to quit?");
-		visuals::Terminals::WriteLine(Terminal::LAYOUT_NAME, Terminal::TERMINAL_ID, "");
+		Terminal::SetForeground(game::Colors::RED);
+		Terminal::WriteLine("Are you sure you want to quit?");
+		Terminal::WriteLine();
 
-		visuals::Terminals::SetForeground(Terminal::LAYOUT_NAME, Terminal::TERMINAL_ID, game::Colors::YELLOW);
-		visuals::Terminals::WriteLine(Terminal::LAYOUT_NAME, Terminal::TERMINAL_ID, "1) No");
-		visuals::Terminals::WriteLine(Terminal::LAYOUT_NAME, Terminal::TERMINAL_ID, "2) Yes");
-		visuals::Terminals::SetForeground(Terminal::LAYOUT_NAME, Terminal::TERMINAL_ID, game::Colors::GRAY);
+		Terminal::SetForeground(game::Colors::YELLOW);
+		Terminal::WriteLine("1) No");
+		Terminal::WriteLine("2) Yes");
 
-		visuals::Terminals::WriteLine(Terminal::LAYOUT_NAME, Terminal::TERMINAL_ID, "");
-
-		visuals::Terminals::WriteText(Terminal::LAYOUT_NAME, Terminal::TERMINAL_ID, ">");
+		Terminal::SetForeground(game::Colors::GRAY);
+		Terminal::WriteLine();
+		Terminal::Write(">");
 	}
 
 	static const std::map<std::string, std::function<void()>> menuActions =
