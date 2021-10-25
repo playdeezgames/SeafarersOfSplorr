@@ -6,56 +6,39 @@
 #include <Common.Utility.h>
 #include <Game.Achievements.h>
 #include <Game.Audio.Mux.h>
+#include <Game.Colors.h>
 #include <format>
 #include <tuple>
+#include "State.Terminal.h"
 #include "States.h"
 #include "UIState.h"
 #include <Visuals.Texts.h>
 namespace state
 {
+	static const ::UIState CURRENT_STATE = ::UIState::STATISTICS;
 	static const std::string LAYOUT_NAME = "State.Statistics";
-	static const std::string TEXT_MOVES_MADE = "MovesMade";
-	static const std::string TEXT_GAMES_PLAYED = "GamesPlayed";
 
-	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
+	static void Refresh()
 	{
-		::application::UIState::Write(::UIState::MAIN_MENU);
-		return true;
+		Terminal::ClearStatusLine();
+		Terminal::WriteLine();
+		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
+		Terminal::WriteLine("Statistics:");
+		Terminal::WriteLine();
+		Terminal::SetForeground(game::Colors::DARK_GRAY);
+		Terminal::WriteLine("TODO: put statistics here!");
+		application::UIState::Write(::UIState::MAIN_MENU);
 	}
-
-	static void SetStatisticText(const std::string& textId, const std::string& caption, const game::Statistic& statistic)
-	{
-		auto value = game::Statistics::Read(statistic);
-		if (value)
-		{
-			visuals::Texts::SetText(LAYOUT_NAME, textId, "{}: {}", caption, value.value());
-		}
-		else
-		{
-			visuals::Texts::SetText(LAYOUT_NAME, textId, "{}: -", caption);
-		}
-	}
-
-	static const std::vector<std::tuple<std::string, std::string, game::Statistic>> statisticsList =
-	{
-		{ TEXT_MOVES_MADE, "Moves Made", game::Statistic::MOVES_MADE},
-		{ TEXT_GAMES_PLAYED, "Games Played", game::Statistic::GAMES_PLAYED}
-	};
 
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
-		for (auto& item : statisticsList)
-		{
-			SetStatisticText(std::get<0>(item), std::get<1>(item), std::get<2>(item));
-		}
+		Refresh();
 	}
 
 	void Statistics::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::STATISTICS, OnEnter);
-		::application::MouseButtonUp::AddHandler(::UIState::STATISTICS, OnMouseButtonUp);
-		::application::Command::SetHandler(::UIState::STATISTICS, ::application::UIState::GoTo(::UIState::MAIN_MENU));
-		::application::Renderer::SetRenderLayout(::UIState::STATISTICS, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
 	}
 }
