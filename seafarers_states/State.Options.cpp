@@ -129,7 +129,7 @@ namespace state
 	void Options::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(::UIState::OPTIONS, LAYOUT_NAME);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
 		::application::Keyboard::AddHandler(CURRENT_STATE, Terminal::DoIntegerInput(menuActions, "Please enter a number between 1 and 6", Refresh));
 	}
 }

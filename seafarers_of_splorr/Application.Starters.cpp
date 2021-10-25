@@ -102,6 +102,7 @@ namespace application
 		state::ConfirmOverwrite::Start,
 		state::Terminal::Start,
 		state::in_play::AtSea::Start,
+		state::in_play::AtSeaOverview::Start,
 		state::in_play::ChangeSpeed::Start,
 		state::in_play::Docked::Start,
 		state::in_play::Win::Start,

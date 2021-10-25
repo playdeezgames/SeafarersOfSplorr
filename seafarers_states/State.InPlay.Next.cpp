@@ -39,7 +39,7 @@ namespace state::in_play
 		{ game::avatar::State::MARKET, ::UIState::IN_PLAY_ISLAND_TRADE },
 		{ game::avatar::State::JOB_BOARD, ::UIState::IN_PLAY_ISLAND_JOBS },
 		{ game::avatar::State::GAMBLE_START, ::UIState::IN_PLAY_GAMBLE_START },
-		{ game::avatar::State::AT_SEA, ::UIState::IN_PLAY_AT_SEA },
+		{ game::avatar::State::AT_SEA, ::UIState::IN_PLAY_AT_SEA_OVERVIEW },
 		{ game::avatar::State::CAREENED_TO_PORT, ::UIState::IN_PLAY_CAREENED_TO_PORT },
 		{ game::avatar::State::CAREENED_TO_STARBOARD, ::UIState::IN_PLAY_CAREENED_TO_STARBOARD },
 		{ game::avatar::State::TEMPLE, ::UIState::IN_PLAY_TEMPLE },
@@ -76,7 +76,7 @@ namespace state::in_play
 			application::UIState::Write(::UIState::IN_PLAY_DOCKED);
 			return;
 		}
-		application::UIState::Write(::UIState::IN_PLAY_AT_SEA);
+		application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
 		return;
 	}
 

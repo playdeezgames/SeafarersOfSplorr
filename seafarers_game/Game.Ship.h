@@ -1,4 +1,5 @@
 #pragma once
+#include <Common.XY.h>
 #include "Game.ShipType.h"
 #include <optional>
 #include <vector>

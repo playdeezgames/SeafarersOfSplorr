@@ -205,5 +205,8 @@
     <ClCompile Include="State.Terminal.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.AtSeaOverview.cpp">
+      <Filter>Source Files\AtSea</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

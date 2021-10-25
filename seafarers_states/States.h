@@ -63,6 +63,10 @@ namespace state
 			static void UpdateAutoMoveState();
 			static void Start();
 		};
+		struct AtSeaOverview
+		{
+			static void Start();
+		};
 		struct AtSeaCareenSelect
 		{
 			static void Start();
