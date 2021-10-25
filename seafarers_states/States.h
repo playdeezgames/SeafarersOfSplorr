@@ -1,18 +1,6 @@
 #pragma once
 namespace state::in_play
 {
-	struct DarkAlley
-	{
-		static void Start();
-	};
-	struct DarkAlleyEntrance
-	{
-		static void Start();
-	};
-	struct Docked
-	{
-		static void Start();
-	};
 	struct Equipment
 	{
 		static void Start();

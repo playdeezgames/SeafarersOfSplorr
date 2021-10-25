@@ -28,6 +28,9 @@
 #include <State.InPlay.CrewList.h>
 #include <State.InPlay.CrewDetail.h>
 #include <State.InPlay.CurrentJob.h>
+#include <State.InPlay.DarkAlley.h>
+#include <State.InPlay.DarkAlleyEntrance.h>
+#include <State.InPlay.Docked.h>
 #include <State.InPlay.Lose.h>
 #include <State.InPlay.Win.h>
 #include <State.LeavePlay.h>

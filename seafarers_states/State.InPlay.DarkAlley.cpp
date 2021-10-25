@@ -12,7 +12,7 @@
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.DarkAlley.h>
-#include "States.h"
+#include "State.InPlay.DarkAlley.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Confirmations.h>

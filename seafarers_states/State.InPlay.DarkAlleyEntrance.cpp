@@ -15,7 +15,7 @@
 #include <Game.Colors.h>
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.DarkAlley.FightCard.h>
-#include "States.h"
+#include "State.InPlay.DarkAlleyEntrance.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.CardSprites.h>

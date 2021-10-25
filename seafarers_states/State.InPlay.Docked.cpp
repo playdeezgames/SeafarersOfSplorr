@@ -13,7 +13,7 @@
 #include <Game.Avatar.Docked.h>
 #include <Game.Islands.h>
 #include <Game.Islands.Features.h>
-#include "States.h"
+#include "State.InPlay.Docked.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
