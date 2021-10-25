@@ -27,7 +27,12 @@
     <ClInclude Include="State.LoadGame.h" />
     <ClInclude Include="State.MainMenu.h" />
     <ClInclude Include="State.Options.h" />
+    <ClInclude Include="State.SaveGame.h" />
+    <ClInclude Include="State.Splash.h" />
+    <ClInclude Include="State.StartGame.h" />
+    <ClInclude Include="State.Statistics.h" />
     <ClInclude Include="State.Terminal.h" />
+    <ClInclude Include="State.Tip.h" />
     <ClInclude Include="States.h" />
     <ClInclude Include="Sublayouts.h" />
     <ClInclude Include="UIState.h" />

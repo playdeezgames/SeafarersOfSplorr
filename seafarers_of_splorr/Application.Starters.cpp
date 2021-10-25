@@ -18,7 +18,12 @@
 #include <State.LoadGame.h>
 #include <State.MainMenu.h>
 #include <State.Options.h>
+#include <State.SaveGame.h>
+#include <State.Splash.h>
+#include <State.StartGame.h>
+#include <State.Statistics.h>
 #include <State.Terminal.h>
+#include <State.Tip.h>
 #include <States.h>
 #include <Sublayouts.h>
 #include <UIState.h>

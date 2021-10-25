@@ -8,7 +8,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
 #include "State.Terminal.h"
-#include "States.h"
+#include "State.Tip.h"
 #include "UIState.h"
 namespace state
 {
