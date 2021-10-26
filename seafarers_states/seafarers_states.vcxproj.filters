@@ -146,6 +146,18 @@
     <ClInclude Include="State.InPlay.Docked.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="State.InPlay.Equipment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.Fishing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.GambleFinish.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.GambleStart.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">

@@ -31,6 +31,10 @@
 #include <State.InPlay.DarkAlley.h>
 #include <State.InPlay.DarkAlleyEntrance.h>
 #include <State.InPlay.Docked.h>
+#include <State.InPlay.Equipment.h>
+#include <State.InPlay.Fishing.h>
+#include <State.InPlay.GambleFinish.h>
+#include <State.InPlay.GambleStart.h>
 #include <State.InPlay.Lose.h>
 #include <State.InPlay.Win.h>
 #include <State.LeavePlay.h>

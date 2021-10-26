@@ -40,6 +40,10 @@
     <ClInclude Include="State.InPlay.DarkAlley.h" />
     <ClInclude Include="State.InPlay.DarkAlleyEntrance.h" />
     <ClInclude Include="State.InPlay.Docked.h" />
+    <ClInclude Include="State.InPlay.Equipment.h" />
+    <ClInclude Include="State.InPlay.Fishing.h" />
+    <ClInclude Include="State.InPlay.GambleFinish.h" />
+    <ClInclude Include="State.InPlay.GambleStart.h" />
     <ClInclude Include="State.InPlay.Lose.h" />
     <ClInclude Include="State.InPlay.Win.h" />
     <ClInclude Include="State.LeavePlay.h" />

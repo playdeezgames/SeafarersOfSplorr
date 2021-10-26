@@ -1,23 +1,6 @@
 #pragma once
 namespace state::in_play
 {
-	struct Equipment
-	{
-		static void Start();
-	};
-	struct Fishing
-	{
-		static void Start();
-	};
-	struct GambleFinish
-	{
-		static void Start();
-	};
-	struct GambleStart
-	{
-		static double GetCurrentWager();//TODO: is this the best place for this?
-		static void Start();
-	};
 	struct IslandBuy
 	{
 		static void Start();
@@ -63,5 +46,3 @@ namespace state::in_play
 		static void Start();
 	};
 }
-
-

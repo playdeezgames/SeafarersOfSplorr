@@ -12,7 +12,7 @@
 #include <Game.Colors.h>
 #include <Game.EquipSlots.h>
 #include <Game.Items.h>
-#include "States.h"
+#include "State.InPlay.Equipment.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Buttons.h>
