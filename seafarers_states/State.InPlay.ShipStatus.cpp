@@ -104,7 +104,6 @@ namespace state::in_play//20211019
 		{ ShipStatusItem::CREW, ::application::UIState::GoTo(::UIState::IN_PLAY_CREW_LIST) },
 		{ ShipStatusItem::CAREEN, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_CAREEN_SELECT) },
 		{ ShipStatusItem::CARGO, ::application::UIState::GoTo(::UIState::IN_PLAY_CARGO) },
-		{ ShipStatusItem::CHANGE_SPEED, ::application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_SPEED_DEPRECATED) },
 		{ ShipStatusItem::GO_BACK, OnGoBack }
 	};
 
