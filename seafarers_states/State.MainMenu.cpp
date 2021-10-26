@@ -12,8 +12,6 @@ namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::MAIN_MENU;
 	static const std::string LAYOUT_NAME = "State.Terminal";
-	static const std::string TERMINAL_ID = "terminal";
-	static const std::string STATUS_ID = "status";
 
 	static void GoToAbout()
 	{

@@ -42,6 +42,7 @@
 #include <State.InPlay.IslandTrade.h>
 #include <State.InPlay.Lose.h>
 #include <State.InPlay.MakeOffering.h>
+#include <State.InPlay.ManualHeading.h>
 #include <State.InPlay.Message.h>
 #include <State.InPlay.Next.h>
 #include <State.InPlay.ShipStatus.h>
@@ -185,6 +186,7 @@ namespace application
 		state::in_play::SteerShip::Start,
 		state::in_play::ChangeSpeed::Start,
 		state::in_play::ChangeHeading::Start,
+		state::in_play::ManualHeading::Start,
 		sublayout::UIHamburger::Start,
 		sublayout::AtSeaActions::Start,
 		sublayout::AtSeaAvatarStatus::Start,

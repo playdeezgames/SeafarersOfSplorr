@@ -53,19 +53,11 @@ namespace state::in_play
 		Refresh();
 	}
 
-	static void OnSetManualHeading()
-	{
-		Terminal::WriteLine();
-		Terminal::SetForeground(game::Colors::RED);
-		Terminal::WriteLine("TODO: manually set heading");
-		Refresh();
-	}
-
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
 		{"1", OnHeadForKnownIsland},
 		{"2", OnHeadForNearbyIsland},
-		{"3", OnSetManualHeading},
+		{"3", application::UIState::GoTo(::UIState::IN_PLAY_MANUAL_HEADING)},
 		{"4", application::UIState::GoTo(::UIState::IN_PLAY_STEER_SHIP)}
 	};
 
