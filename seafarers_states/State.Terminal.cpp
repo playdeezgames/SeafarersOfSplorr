@@ -1,3 +1,4 @@
+#include <Common.Data.h>
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Colors.h>
 #include "State.Terminal.h"
@@ -79,6 +80,7 @@ namespace state
 	static const std::string KEY_9 = "9";
 	static const std::string KEY_0 = "0";
 	static const std::string KEY_BACKSPACE = "Backspace";
+	static const std::string KEY_DOT = ".";
 
 	std::function<bool(const std::string&)> Terminal::DoIntegerInput(const std::map<std::string, std::function<void()>>& table, const std::string& errorMessage, std::function<void()> refresh)
 	{
@@ -128,9 +130,65 @@ namespace state
 				return true;
 			}
 			return false;
-
 		};
 	}
+
+	std::function<bool(const std::string&)> Terminal::DoDoubleInput(
+		std::function<void()> processInvalidInput, 
+		std::function<void(double)> processValidInput)
+	{
+		return [processInvalidInput, processValidInput](const std::string& key)
+		{
+			if (
+				key == KEY_1 ||
+				key == KEY_2 ||
+				key == KEY_3 ||
+				key == KEY_4 ||
+				key == KEY_5 ||
+				key == KEY_6 ||
+				key == KEY_7 ||
+				key == KEY_8 ||
+				key == KEY_9 ||
+				key == KEY_0)
+			{
+				Terminal::AppendInput(key);
+				visuals::Terminals::WriteText(LAYOUT_NAME, TERMINAL_ID, key);
+				return true;
+			}
+			else if (key == KEY_DOT)
+			{
+				if (GetInput().size() > 0 && GetInput().find('.') == std::string::npos)
+				{
+					Terminal::AppendInput(key);
+					visuals::Terminals::WriteText(LAYOUT_NAME, TERMINAL_ID, key);
+					return true;
+				}
+			}
+			else if (key == KEY_RETURN)
+			{
+				visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
+				if (GetInput().empty())
+				{
+					processInvalidInput();
+				}
+				else
+				{
+					processValidInput(common::Data::ToDouble(GetInput()));
+				}
+				return true;
+			}
+			else if (key == KEY_BACKSPACE)
+			{
+				if (Terminal::Backspace())
+				{
+					visuals::Terminals::Backspace(LAYOUT_NAME, TERMINAL_ID);
+				}
+				return true;
+			}
+			return false;
+		};
+	}
+
 
 	void Terminal::ShowPrompt()
 	{
