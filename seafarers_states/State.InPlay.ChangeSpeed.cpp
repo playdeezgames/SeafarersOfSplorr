@@ -1,43 +1,35 @@
 #include <Application.Keyboard.h>
-#include <Application.Renderer.h>
 #include <Application.OnEnter.h>
+#include <Application.Renderer.h>
 #include <Application.UIState.h>
-#include <functional>
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
-#include <Game.Ship.h>
-#include <map>
-#include <string>
-#include "State.InPlay.SteerShip.h"
+#include "State.InPlay.ChangeSpeed.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 namespace state::in_play
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_STEER_SHIP;
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CHANGE_SPEED;
 	static const std::string LAYOUT_NAME = "State.Terminal";
-
-	static const std::map<std::string, std::function<void()>> menuActions =
-	{
-		{"2", application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_SPEED)},
-		{"3", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW)}
-	};
 
 	static void Refresh()
 	{
 		Terminal::ClearStatusLine();
+
 		Terminal::ClearInput();
+		Terminal::WriteLine();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
+		Terminal::WriteLine("Change Speed:");
 		Terminal::WriteLine();
-		Terminal::WriteLine("Change heading or speed:");
-		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Current Heading: {:.2f}", game::Ship::GetHeading());
-		Terminal::WriteLine("Current Speed: {:.2f}", game::Ship::GetSpeed());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine("1) Change Heading");
-		Terminal::WriteLine("2) Change Speed");
-		Terminal::WriteLine("3) Never mind");
+		Terminal::WriteLine("1) All stop");
+		Terminal::WriteLine("2) Ahead 1/3");
+		Terminal::WriteLine("3) Ahead 2/3");
+		Terminal::WriteLine("4) Ahead full");
+		Terminal::WriteLine("5) Ahead flank");
+		Terminal::WriteLine("6) Never mind");
 
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine();
@@ -50,7 +42,12 @@ namespace state::in_play
 		Refresh();
 	}
 
-	void SteerShip::Start()
+	static const std::map<std::string, std::function<void()>> menuActions =
+	{
+		{"6", application::UIState::GoTo(::UIState::IN_PLAY_STEER_SHIP)}
+	};
+
+	void ChangeSpeed::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
@@ -58,7 +55,7 @@ namespace state::in_play
 			CURRENT_STATE, 
 			Terminal::DoIntegerInput(
 				menuActions, 
-				"Please enter a number between 1 and 3.", 
+				"Please enter a number between 1 and 6.", 
 				Refresh));
 	}
 }

@@ -20,10 +20,8 @@ namespace state
 		::application::UIState::Write(::UIState::ABOUT);
 	}
 
-	static void OnEnter()
+	static void Refresh()
 	{
-		game::audio::Mux::Play(game::audio::Theme::MAIN);
-
 		Terminal::ClearStatusLine();
 
 		Terminal::ClearInput();
@@ -45,6 +43,12 @@ namespace state
 		Terminal::Write(">");
 	}
 
+	static void OnEnter()
+	{
+		game::audio::Mux::Play(game::audio::Theme::MAIN);
+		Refresh();
+	}
+
 	static const std::map<std::string, std::function<void()>> menuActions = 
 	{
 		{ "1", application::UIState::GoTo(::UIState::START_GAME)},
@@ -58,6 +62,11 @@ namespace state
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
-		::application::Keyboard::AddHandler(CURRENT_STATE, Terminal::DoIntegerInput(menuActions, "Please enter a number between 1 and 5.", OnEnter));
+		::application::Keyboard::AddHandler(
+			CURRENT_STATE, 
+			Terminal::DoIntegerInput(
+				menuActions, 
+				"Please enter a number between 1 and 5.", 
+				Refresh));
 	}
 }
