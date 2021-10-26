@@ -22,7 +22,6 @@
 #include <State.InPlay.CareenedToStarboard.h>
 #include <State.InPlay.Cargo.h>
 #include <State.InPlay.ChangeSpeed.h>
-#include <State.InPlay.ChangeSpeedDeprecated.h>
 #include <State.InPlay.Confirm.h>
 #include <State.InPlay.ConfirmAbandonJob.h>
 #include <State.InPlay.ConfirmReplaceJob.h>
