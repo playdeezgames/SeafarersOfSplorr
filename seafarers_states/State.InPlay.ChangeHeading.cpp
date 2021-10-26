@@ -37,8 +37,35 @@ namespace state::in_play
 		Refresh();
 	}
 
+	static void OnHeadForKnownIsland()
+	{
+		Terminal::WriteLine();
+		Terminal::SetForeground(game::Colors::RED);
+		Terminal::WriteLine("TODO: head for known island");
+		Refresh();
+	}
+
+	static void OnHeadForNearbyIsland()
+	{
+		Terminal::WriteLine();
+		Terminal::SetForeground(game::Colors::RED);
+		Terminal::WriteLine("TODO: head for nearby island");
+		Refresh();
+	}
+
+	static void OnSetManualHeading()
+	{
+		Terminal::WriteLine();
+		Terminal::SetForeground(game::Colors::RED);
+		Terminal::WriteLine("TODO: manually set heading");
+		Refresh();
+	}
+
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
+		{"1", OnHeadForKnownIsland},
+		{"2", OnHeadForNearbyIsland},
+		{"3", OnSetManualHeading},
 		{"4", application::UIState::GoTo(::UIState::IN_PLAY_STEER_SHIP)}
 	};
 
