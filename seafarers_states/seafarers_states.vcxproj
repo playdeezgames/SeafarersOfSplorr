@@ -32,7 +32,6 @@
     <ClInclude Include="State.InPlay.CareenedToPort.h" />
     <ClInclude Include="State.InPlay.CareenedToStarboard.h" />
     <ClInclude Include="State.InPlay.Cargo.h" />
-    <ClInclude Include="State.InPlay.ChangeSpeedDeprecated.h" />
     <ClInclude Include="State.InPlay.Confirm.h" />
     <ClInclude Include="State.InPlay.ConfirmAbandonJob.h" />
     <ClInclude Include="State.InPlay.ConfirmReplaceJob.h" />
@@ -94,7 +93,6 @@
     <ClCompile Include="State.InPlay.CareenedToPort.cpp" />
     <ClCompile Include="State.InPlay.CareenedToStarboard.cpp" />
     <ClCompile Include="State.InPlay.Cargo.cpp" />
-    <ClCompile Include="State.InPlay.ChangeSpeedDeprecated.cpp" />
     <ClCompile Include="State.InPlay.Confirm.cpp" />
     <ClCompile Include="State.InPlay.ConfirmAbandonJob.cpp" />
     <ClCompile Include="State.InPlay.ConfirmReplaceJob.cpp" />

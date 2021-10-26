@@ -203,9 +203,6 @@
     <ClInclude Include="State.Tip.h">
       <Filter>Header Files\Boilerplate</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.ChangeSpeedDeprecated.h">
-      <Filter>Header Files\Deprecated</Filter>
-    </ClInclude>
     <ClInclude Include="State.InPlay.AtSea.h">
       <Filter>Header Files\Deprecated</Filter>
     </ClInclude>
@@ -360,9 +357,6 @@
     </ClCompile>
     <ClCompile Include="State.InPlay.SteerShip.cpp">
       <Filter>Source Files\AtSea</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.ChangeSpeedDeprecated.cpp">
-      <Filter>Source Files\Deprecated</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.AtSea.AutoMove.cpp">
       <Filter>Source Files\Deprecated</Filter>
