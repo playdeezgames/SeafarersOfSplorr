@@ -4,6 +4,7 @@
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
+#include <Game.Ship.h>
 #include "State.InPlay.ChangeSpeed.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -14,14 +15,12 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		Terminal::ClearStatusLine();
-
-		Terminal::ClearInput();
-		Terminal::WriteLine();
+		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Change Speed:");
-		Terminal::WriteLine();
+		Terminal::SetForeground(game::Colors::GRAY);
+		Terminal::WriteLine("Current Speed: {:.2f}", game::Ship::GetSpeed());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) All stop");
@@ -31,9 +30,7 @@ namespace state::in_play
 		Terminal::WriteLine("5) Ahead flank");
 		Terminal::WriteLine("6) Never mind");
 
-		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine();
-		Terminal::Write(">");
+		Terminal::ShowPrompt();
 	}
 
 	static void OnEnter()
@@ -42,8 +39,22 @@ namespace state::in_play
 		Refresh();
 	}
 
+	static std::function<void()> DoSetSpeed(double speed)
+	{
+		return [speed]() 
+		{
+			game::Ship::SetSpeed(speed);
+			application::UIState::Write(::UIState::IN_PLAY_STEER_SHIP);
+		};
+	}
+
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
+		{"1", DoSetSpeed(0.0)},
+		{"2", DoSetSpeed(0.3)},
+		{"3", DoSetSpeed(0.6)},
+		{"4", DoSetSpeed(0.9)},
+		{"5", DoSetSpeed(1.0)},
 		{"6", application::UIState::GoTo(::UIState::IN_PLAY_STEER_SHIP)}
 	};
 

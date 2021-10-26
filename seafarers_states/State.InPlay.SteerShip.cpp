@@ -24,11 +24,9 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		Terminal::ClearStatusLine();
-		Terminal::ClearInput();
+		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
-		Terminal::WriteLine();
 		Terminal::WriteLine("Change heading or speed:");
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Current Heading: {:.2f}", game::Ship::GetHeading());
@@ -39,9 +37,7 @@ namespace state::in_play
 		Terminal::WriteLine("2) Change Speed");
 		Terminal::WriteLine("3) Never mind");
 
-		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine();
-		Terminal::Write(">");
+		Terminal::ShowPrompt();
 	}
 
 	static void OnEnter()

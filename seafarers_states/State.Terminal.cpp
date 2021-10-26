@@ -131,4 +131,18 @@ namespace state
 
 		};
 	}
+
+	void Terminal::ShowPrompt()
+	{
+		SetForeground(game::Colors::GRAY);
+		WriteLine();
+		Write(">");
+	}
+
+	void Terminal::Reinitialize()
+	{
+		ClearStatusLine();
+		ClearInput();
+		WriteLine();
+	}
 }

@@ -22,10 +22,7 @@ namespace state
 
 	static void Refresh()
 	{
-		Terminal::ClearStatusLine();
-
-		Terminal::ClearInput();
-		Terminal::WriteLine();
+		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Main Menu:");
@@ -38,9 +35,7 @@ namespace state
 		Terminal::WriteLine("4) Options");
 		Terminal::WriteLine("5) Quit");
 
-		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine();
-		Terminal::Write(">");
+		Terminal::ShowPrompt();
 	}
 
 	static void OnEnter()

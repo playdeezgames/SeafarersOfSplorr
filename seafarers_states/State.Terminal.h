@@ -26,5 +26,7 @@ namespace state
 		static void Write(const std::string&);
 		static void SetForeground(const std::string&);
 		static void ClearStatusLine();
+		static void ShowPrompt();
+		static void Reinitialize();
 	};
 }
