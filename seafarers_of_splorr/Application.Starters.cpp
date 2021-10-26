@@ -35,6 +35,10 @@
 #include <State.InPlay.Fishing.h>
 #include <State.InPlay.GambleFinish.h>
 #include <State.InPlay.GambleStart.h>
+#include <State.InPlay.IslandBuy.h>
+#include <State.InPlay.IslandJobs.h>
+#include <State.InPlay.IslandSell.h>
+#include <State.InPlay.IslandTrade.h>
 #include <State.InPlay.Lose.h>
 #include <State.InPlay.Win.h>
 #include <State.LeavePlay.h>

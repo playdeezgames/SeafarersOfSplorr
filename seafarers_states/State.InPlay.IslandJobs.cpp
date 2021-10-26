@@ -18,7 +18,7 @@
 #include <Game.Islands.h>
 #include <Game.Islands.Quests.h>
 #include "Game.Ship.h"
-#include "States.h"
+#include "State.InPlay.IslandJobs.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>

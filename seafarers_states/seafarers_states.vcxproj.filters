@@ -158,6 +158,18 @@
     <ClInclude Include="State.InPlay.GambleStart.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="State.InPlay.IslandBuy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.IslandJobs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.IslandSell.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.IslandTrade.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">

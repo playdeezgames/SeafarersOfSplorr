@@ -1,22 +1,6 @@
 #pragma once
 namespace state::in_play
 {
-	struct IslandBuy
-	{
-		static void Start();
-	};
-	struct IslandJobs
-	{
-		static void Start();
-	};
-	struct IslandSell
-	{
-		static void Start();
-	};
-	struct IslandTrade
-	{
-		static void Start();
-	};
 	struct MakeOffering
 	{
 		static void Start();

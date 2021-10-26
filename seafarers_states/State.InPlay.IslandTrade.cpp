@@ -12,7 +12,7 @@
 #include <Game.Avatar.Actions.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Islands.h>
-#include "States.h"
+#include "State.InPlay.IslandTrade.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
