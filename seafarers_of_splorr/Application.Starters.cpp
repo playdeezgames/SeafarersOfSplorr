@@ -40,7 +40,14 @@
 #include <State.InPlay.IslandSell.h>
 #include <State.InPlay.IslandTrade.h>
 #include <State.InPlay.Lose.h>
+#include <State.InPlay.MakeOffering.h>
+#include <State.InPlay.Message.h>
+#include <State.InPlay.Next.h>
+#include <State.InPlay.ShipStatus.h>
+#include <State.InPlay.Shipyard.h>
+#include <State.InPlay.Temple.h>
 #include <State.InPlay.Win.h>
+#include <State.InPlay.WorldMap.h>
 #include <State.LeavePlay.h>
 #include <State.LoadGame.h>
 #include <State.MainMenu.h>
@@ -51,7 +58,6 @@
 #include <State.Statistics.h>
 #include <State.Terminal.h>
 #include <State.Tip.h>
-#include <States.h>
 #include <Sublayouts.h>
 #include <UIState.h>
 #include <vector>

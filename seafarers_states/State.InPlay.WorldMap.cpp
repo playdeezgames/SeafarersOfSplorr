@@ -13,7 +13,7 @@
 #include <Game.Avatar.Destinations.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>
-#include "States.h"
+#include "State.InPlay.WorldMap.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Buttons.h>

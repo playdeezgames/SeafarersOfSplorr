@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="State.InPlay.ShipStatus.h" />
     <ClInclude Include="State.About.h" />
     <ClInclude Include="State.ConfirmAbandon.h" />
     <ClInclude Include="State.ConfirmOverwrite.h" />
@@ -49,6 +50,11 @@
     <ClInclude Include="State.InPlay.IslandSell.h" />
     <ClInclude Include="State.InPlay.IslandTrade.h" />
     <ClInclude Include="State.InPlay.Lose.h" />
+    <ClInclude Include="State.InPlay.MakeOffering.h" />
+    <ClInclude Include="State.InPlay.Message.h" />
+    <ClInclude Include="State.InPlay.Next.h" />
+    <ClInclude Include="State.InPlay.Shipyard.h" />
+    <ClInclude Include="State.InPlay.Temple.h" />
     <ClInclude Include="State.InPlay.Win.h" />
     <ClInclude Include="State.LeavePlay.h" />
     <ClInclude Include="State.LoadGame.h" />
@@ -60,7 +66,7 @@
     <ClInclude Include="State.Statistics.h" />
     <ClInclude Include="State.Terminal.h" />
     <ClInclude Include="State.Tip.h" />
-    <ClInclude Include="States.h" />
+    <ClInclude Include="State.InPlay.WorldMap.h" />
     <ClInclude Include="Sublayouts.h" />
     <ClInclude Include="UIState.h" />
   </ItemGroup>

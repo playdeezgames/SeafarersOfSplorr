@@ -38,7 +38,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="States.h">
+    <ClInclude Include="State.InPlay.WorldMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sublayouts.h">
@@ -168,6 +168,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="State.InPlay.IslandTrade.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.MakeOffering.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.Message.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.Next.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.ShipStatus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.Shipyard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.Temple.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

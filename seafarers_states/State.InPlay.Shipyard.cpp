@@ -25,7 +25,7 @@
 #include <Game.ShipNames.h>
 #include <Game.ShipTypes.h>
 #include <Game.World.h>
-#include "States.h"
+#include "State.InPlay.Shipyard.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Confirmations.h>

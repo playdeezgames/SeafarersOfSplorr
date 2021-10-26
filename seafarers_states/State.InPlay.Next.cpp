@@ -9,7 +9,7 @@
 #include <Visuals.Confirmations.h>
 #include <Visuals.Messages.h>
 #include <map>
-#include "States.h"
+#include "State.InPlay.Next.h"
 #include "UIState.h"
 namespace state::in_play
 {
