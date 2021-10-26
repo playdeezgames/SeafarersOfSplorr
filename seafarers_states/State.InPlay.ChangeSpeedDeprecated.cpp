@@ -12,7 +12,7 @@
 #include <Game.Avatar.Log.h>
 #include <Game.Colors.h>
 #include <Game.Ship.h>
-#include "State.InPlay.ChangeSpeed.h"
+#include "State.InPlay.ChangeSpeedDeprecated.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
@@ -75,7 +75,7 @@ namespace state::in_play//20211020
 		{ ::Command::GREEN, ActivateItem }
 	};
 
-	void ChangeSpeed::Start()
+	void ChangeSpeedDeprecated::Start()
 	{
 		::application::OnEnter::AddHandler(
 			CURRENT_STATE, 

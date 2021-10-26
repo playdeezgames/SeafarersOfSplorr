@@ -32,6 +32,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "seafarers", "seafarers", "{A46A500D-99E1-466D-8FDE-0908578338BE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "splorr", "splorr", "{10B67714-AAD9-4FBA-A669-2A22A2D05E24}"
+	ProjectSection(SolutionItems) = preProject
+		..\seafarers_states\State.InPlay.ChangeSpeedDeprecated.cpp = ..\seafarers_states\State.InPlay.ChangeSpeedDeprecated.cpp
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{659FD073-7313-4F4C-BB70-E0592D232336}"
 EndProject

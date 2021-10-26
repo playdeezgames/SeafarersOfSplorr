@@ -21,7 +21,7 @@
 #include <State.InPlay.CareenedToPort.h>
 #include <State.InPlay.CareenedToStarboard.h>
 #include <State.InPlay.Cargo.h>
-#include <State.InPlay.ChangeSpeed.h>
+#include <State.InPlay.ChangeSpeedDeprecated.h>
 #include <State.InPlay.Confirm.h>
 #include <State.InPlay.ConfirmAbandonJob.h>
 #include <State.InPlay.ConfirmReplaceJob.h>
@@ -45,6 +45,7 @@
 #include <State.InPlay.Next.h>
 #include <State.InPlay.ShipStatus.h>
 #include <State.InPlay.Shipyard.h>
+#include <State.InPlay.SteerShip.h>
 #include <State.InPlay.Temple.h>
 #include <State.InPlay.Win.h>
 #include <State.InPlay.WorldMap.h>
@@ -149,7 +150,7 @@ namespace application
 		state::Terminal::Start,
 		state::in_play::AtSea::Start,
 		state::in_play::AtSeaOverview::Start,
-		state::in_play::ChangeSpeed::Start,
+		state::in_play::ChangeSpeedDeprecated::Start,
 		state::in_play::Docked::Start,
 		state::in_play::Win::Start,
 		state::in_play::Lose::Start,
@@ -181,6 +182,7 @@ namespace application
 		state::in_play::Equipment::Start,
 		state::in_play::CrewList::Start,
 		state::in_play::CrewDetail::Start,
+		state::in_play::SteerShip::Start,
 		sublayout::UIHamburger::Start,
 		sublayout::AtSeaActions::Start,
 		sublayout::AtSeaAvatarStatus::Start,

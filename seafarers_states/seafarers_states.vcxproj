@@ -31,7 +31,7 @@
     <ClInclude Include="State.InPlay.CareenedToPort.h" />
     <ClInclude Include="State.InPlay.CareenedToStarboard.h" />
     <ClInclude Include="State.InPlay.Cargo.h" />
-    <ClInclude Include="State.InPlay.ChangeSpeed.h" />
+    <ClInclude Include="State.InPlay.ChangeSpeedDeprecated.h" />
     <ClInclude Include="State.InPlay.Confirm.h" />
     <ClInclude Include="State.InPlay.ConfirmAbandonJob.h" />
     <ClInclude Include="State.InPlay.ConfirmReplaceJob.h" />
@@ -54,6 +54,7 @@
     <ClInclude Include="State.InPlay.Message.h" />
     <ClInclude Include="State.InPlay.Next.h" />
     <ClInclude Include="State.InPlay.Shipyard.h" />
+    <ClInclude Include="State.InPlay.SteerShip.h" />
     <ClInclude Include="State.InPlay.Temple.h" />
     <ClInclude Include="State.InPlay.Win.h" />
     <ClInclude Include="State.LeavePlay.h" />
@@ -82,6 +83,7 @@
     <ClCompile Include="State.InPlay.CrewList.cpp" />
     <ClCompile Include="State.InPlay.Equipment.cpp" />
     <ClCompile Include="State.InPlay.Fishing.cpp" />
+    <ClCompile Include="State.InPlay.SteerShip.cpp" />
     <ClCompile Include="State.Terminal.cpp" />
     <ClCompile Include="Sublayout.AtSeaActions.cpp" />
     <ClCompile Include="Sublayout.AtSeaAvatarStatus.cpp" />
@@ -90,7 +92,7 @@
     <ClCompile Include="State.InPlay.CareenedToPort.cpp" />
     <ClCompile Include="State.InPlay.CareenedToStarboard.cpp" />
     <ClCompile Include="State.InPlay.Cargo.cpp" />
-    <ClCompile Include="State.InPlay.ChangeSpeed.cpp" />
+    <ClCompile Include="State.InPlay.ChangeSpeedDeprecated.cpp" />
     <ClCompile Include="State.InPlay.Confirm.cpp" />
     <ClCompile Include="State.InPlay.ConfirmAbandonJob.cpp" />
     <ClCompile Include="State.InPlay.ConfirmReplaceJob.cpp" />

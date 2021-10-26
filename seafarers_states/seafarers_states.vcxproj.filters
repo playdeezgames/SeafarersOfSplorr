@@ -36,157 +36,181 @@
     <Filter Include="Source Files\Docked\Trading">
       <UniqueIdentifier>{92350df5-07e8-48ad-ba08-feea747d60c6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Boilerplate">
+      <UniqueIdentifier>{61816559-1be1-403a-ba9b-cef652ddda63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AtSea">
+      <UniqueIdentifier>{cb2a2f10-3d36-48c4-a348-044b38b6ba2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Careening">
+      <UniqueIdentifier>{cdd503af-ec05-4893-8241-bd1929f84acd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Docked">
+      <UniqueIdentifier>{6b5b1717-bfe2-4369-bf91-e8e44e83dcef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utility">
+      <UniqueIdentifier>{19434232-c189-416a-a646-4c20f30f8802}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Deprecated">
+      <UniqueIdentifier>{e268361e-736e-4b6a-9f9a-133eea11fd90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Deprecated">
+      <UniqueIdentifier>{ddafc7a5-4f46-40f6-b9d2-14dc2d821147}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="State.InPlay.WorldMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Sublayouts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UIState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="State.Terminal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="State.About.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Boilerplate</Filter>
     </ClInclude>
     <ClInclude Include="State.ConfirmAbandon.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Boilerplate</Filter>
     </ClInclude>
     <ClInclude Include="State.ConfirmOverwrite.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Boilerplate</Filter>
     </ClInclude>
     <ClInclude Include="State.ConfirmQuit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.LeavePlay.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.LoadGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.MainMenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.Options.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.SaveGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.Splash.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.StartGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.Statistics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.Tip.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.AtSea.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.Lose.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.Win.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.AtSeaOverview.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.AtSeaCareenSelect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.AvatarStatus.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.Cargo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.CareenedToPort.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.CareenedToStarboard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.ChangeSpeed.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.Confirm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.ConfirmAbandonJob.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.ConfirmReplaceJob.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.CrewDetail.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.CrewList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.CurrentJob.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.DarkAlley.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.DarkAlleyEntrance.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.Docked.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.Equipment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.Fishing.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.GambleFinish.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.GambleStart.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.IslandBuy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.IslandJobs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.IslandSell.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.IslandTrade.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.MakeOffering.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.Message.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.Next.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Boilerplate</Filter>
     </ClInclude>
     <ClInclude Include="State.InPlay.ShipStatus.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\AtSea</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.AtSeaOverview.h">
+      <Filter>Header Files\AtSea</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.CareenedToPort.h">
+      <Filter>Header Files\Careening</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.CareenedToStarboard.h">
+      <Filter>Header Files\Careening</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.AvatarStatus.h">
+      <Filter>Header Files\AtSea</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.Cargo.h">
+      <Filter>Header Files\AtSea</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.Confirm.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.ConfirmAbandonJob.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.ConfirmReplaceJob.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.CrewDetail.h">
+      <Filter>Header Files\AtSea</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.CrewList.h">
+      <Filter>Header Files\AtSea</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.CurrentJob.h">
+      <Filter>Header Files\AtSea</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.DarkAlley.h">
+      <Filter>Header Files\Docked</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.DarkAlleyEntrance.h">
+      <Filter>Header Files\Docked</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.Docked.h">
+      <Filter>Header Files\Docked</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.GambleFinish.h">
+      <Filter>Header Files\Docked</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.GambleStart.h">
+      <Filter>Header Files\Docked</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.IslandBuy.h">
+      <Filter>Header Files\Docked</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.IslandJobs.h">
+      <Filter>Header Files\Docked</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.IslandSell.h">
+      <Filter>Header Files\Docked</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.IslandTrade.h">
+      <Filter>Header Files\Docked</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.MakeOffering.h">
+      <Filter>Header Files\Docked</Filter>
     </ClInclude>
     <ClInclude Include="State.InPlay.Shipyard.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Docked</Filter>
     </ClInclude>
     <ClInclude Include="State.InPlay.Temple.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Docked</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.Equipment.h">
+      <Filter>Header Files\AtSea</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.Fishing.h">
+      <Filter>Header Files\AtSea</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.Lose.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.Message.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.Next.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.Win.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.SteerShip.h">
+      <Filter>Header Files\AtSea</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.WorldMap.h">
+      <Filter>Header Files\AtSea</Filter>
+    </ClInclude>
+    <ClInclude Include="State.LeavePlay.h">
+      <Filter>Header Files\Boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="State.LoadGame.h">
+      <Filter>Header Files\Boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="State.MainMenu.h">
+      <Filter>Header Files\Boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="State.Options.h">
+      <Filter>Header Files\Boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="State.SaveGame.h">
+      <Filter>Header Files\Boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="State.Splash.h">
+      <Filter>Header Files\Boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="State.StartGame.h">
+      <Filter>Header Files\Boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="State.Statistics.h">
+      <Filter>Header Files\Boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="State.Terminal.h">
+      <Filter>Header Files\Boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="State.Tip.h">
+      <Filter>Header Files\Boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.ChangeSpeedDeprecated.h">
+      <Filter>Header Files\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.AtSea.h">
+      <Filter>Header Files\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.AtSeaCareenSelect.h">
+      <Filter>Header Files\Careening</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -231,18 +255,6 @@
     </ClCompile>
     <ClCompile Include="Sublayout.UIHamburger.cpp">
       <Filter>Source Files\Boilerplate</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.AtSea.AutoMove.cpp">
-      <Filter>Source Files\AtSea</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.AtSea.cpp">
-      <Filter>Source Files\AtSea</Filter>
-    </ClCompile>
-    <ClCompile Include="Sublayout.AtSeaAvatarStatus.cpp">
-      <Filter>Source Files\AtSea</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.ChangeSpeed.cpp">
-      <Filter>Source Files\AtSea</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.WorldMap.cpp">
       <Filter>Source Files\AtSea</Filter>
@@ -325,9 +337,6 @@
     <ClCompile Include="State.InPlay.AvatarStatus.cpp">
       <Filter>Source Files\AtSea\Status</Filter>
     </ClCompile>
-    <ClCompile Include="Sublayout.AtSeaActions.cpp">
-      <Filter>Source Files\AtSea</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.Fishing.cpp">
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
@@ -345,6 +354,24 @@
     </ClCompile>
     <ClCompile Include="State.InPlay.AtSeaOverview.cpp">
       <Filter>Source Files\AtSea</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.SteerShip.cpp">
+      <Filter>Source Files\AtSea</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.ChangeSpeedDeprecated.cpp">
+      <Filter>Source Files\Deprecated</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.AtSea.AutoMove.cpp">
+      <Filter>Source Files\Deprecated</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.AtSea.cpp">
+      <Filter>Source Files\Deprecated</Filter>
+    </ClCompile>
+    <ClCompile Include="Sublayout.AtSeaActions.cpp">
+      <Filter>Source Files\Deprecated</Filter>
+    </ClCompile>
+    <ClCompile Include="Sublayout.AtSeaAvatarStatus.cpp">
+      <Filter>Source Files\Deprecated</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
