@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="State.InPlay.ChangeHeading.h" />
     <ClInclude Include="State.InPlay.ChangeSpeed.h" />
     <ClInclude Include="State.InPlay.ShipStatus.h" />
     <ClInclude Include="State.About.h" />
@@ -79,6 +80,7 @@
     <ClCompile Include="State.InPlay.AtSea.AutoMove.cpp" />
     <ClCompile Include="State.InPlay.AtSea.cpp" />
     <ClCompile Include="State.InPlay.AtSeaOverview.cpp" />
+    <ClCompile Include="State.InPlay.ChangeHeading.cpp" />
     <ClCompile Include="State.InPlay.ChangeSpeed.cpp" />
     <ClCompile Include="State.InPlay.CrewDetail.cpp" />
     <ClCompile Include="State.InPlay.CrewList.cpp" />

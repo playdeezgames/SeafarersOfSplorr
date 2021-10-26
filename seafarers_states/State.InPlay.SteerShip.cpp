@@ -18,6 +18,7 @@ namespace state::in_play
 
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
+		{"1", application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_HEADING)},
 		{"2", application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_SPEED)},
 		{"3", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW)}
 	};

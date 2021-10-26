@@ -212,6 +212,9 @@
     <ClInclude Include="State.InPlay.ChangeSpeed.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
+    <ClInclude Include="State.InPlay.ChangeHeading.h">
+      <Filter>Header Files\AtSea</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -371,6 +374,9 @@
       <Filter>Source Files\Deprecated</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.ChangeSpeed.cpp">
+      <Filter>Source Files\AtSea</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.ChangeHeading.cpp">
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
   </ItemGroup>

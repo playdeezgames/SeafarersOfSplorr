@@ -21,6 +21,7 @@
 #include <State.InPlay.CareenedToPort.h>
 #include <State.InPlay.CareenedToStarboard.h>
 #include <State.InPlay.Cargo.h>
+#include <State.InPlay.ChangeHeading.h>
 #include <State.InPlay.ChangeSpeed.h>
 #include <State.InPlay.Confirm.h>
 #include <State.InPlay.ConfirmAbandonJob.h>
@@ -183,6 +184,7 @@ namespace application
 		state::in_play::CrewDetail::Start,
 		state::in_play::SteerShip::Start,
 		state::in_play::ChangeSpeed::Start,
+		state::in_play::ChangeHeading::Start,
 		sublayout::UIHamburger::Start,
 		sublayout::AtSeaActions::Start,
 		sublayout::AtSeaAvatarStatus::Start,
