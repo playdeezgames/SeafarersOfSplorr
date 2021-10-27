@@ -26,30 +26,34 @@ namespace state::in_play
 		Terminal::WriteLine();
 		Terminal::WriteLine("At Sea:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Heading: {:.2f}, Speed: {:.2f}", game::Ship::GetHeading(), game::Ship::GetSpeed());
-		//TODO: nearby islands
+		Terminal::WriteLine(
+			"Heading: {:.2f}, Speed: {:.2f}", 
+			game::Ship::GetHeading(), 
+			game::Ship::GetSpeed());
 		auto nearby = game::Islands::GetViewableIslands();
 		if (!nearby.empty())
 		{
 			Terminal::WriteLine("Nearby islands:");
 			for (auto& island : nearby)
 			{
-				Terminal::WriteLine(" {} ({:.2f} dist {:.1f})", 
-					island.GetDisplayName(), common::Heading::XYToDegrees(island.relativeLocation), island.relativeLocation.GetMagnitude());
+				Terminal::WriteLine(
+					" {} ({:.2f} dist {:.1f})", 
+					island.GetDisplayName(), 
+					common::Heading::XYToDegrees(island.relativeLocation), 
+					island.relativeLocation.GetMagnitude());
 			}
 		}
 		//TODO: wind from
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Move");
-		Terminal::WriteLine("2) Change Heading/Speed");
 		if (!game::Islands::GetDockableIslands().empty())
 		{
-			Terminal::WriteLine("3) Dock/careen");
+			Terminal::WriteLine("2) Dock/careen");
 		}
-		Terminal::WriteLine("4) Crew status");
-		Terminal::WriteLine("5) Ship status");
-		Terminal::WriteLine("6) Menu");
+		Terminal::WriteLine("3) Crew status");
+		Terminal::WriteLine("4) Ship status");
+		Terminal::WriteLine("5) Menu");
 
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine();
@@ -90,12 +94,6 @@ namespace state::in_play
 		Refresh();
 	}
 
-	static void OnShipStatus()
-	{
-		Terminal::ErrorMessage("TODO: ship status");
-		Refresh();
-	}
-
 	static void OnMenu()
 	{
 		Terminal::ErrorMessage("TODO: menu status");
@@ -105,11 +103,10 @@ namespace state::in_play
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
 		{"1", OnMove },
-		{"2", application::UIState::GoTo(::UIState::IN_PLAY_STEER_SHIP) },
-		{"3", OnDock },
-		{"4", OnCrewStatus },
-		{"5", OnShipStatus },
-		{"6", OnMenu }
+		{"2", OnDock },
+		{"3", OnCrewStatus },
+		{"4", application::UIState::GoTo(::UIState::IN_PLAY_STEER_SHIP) },
+		{"5", OnMenu }
 
 		//delete this later
 		, {"0", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_DEPRECATED)}

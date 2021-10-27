@@ -19,7 +19,7 @@
 #include <Visuals.Texts.h>
 namespace state::in_play//20211019
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_SHIP_STATUS;
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_SHIP_STATUS_DEPRECATED;
 	static const std::string LAYOUT_NAME = "State.InPlay.ShipStatus";
 
 	static const std::string TEXT_SHIP_NAME = "ShipName";
