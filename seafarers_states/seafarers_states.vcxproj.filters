@@ -218,6 +218,9 @@
     <ClInclude Include="State.InPlay.ManualHeading.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
+    <ClInclude Include="State.InPlay.DockOrCareen.h">
+      <Filter>Header Files\AtSea</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -383,6 +386,9 @@
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.ManualHeading.cpp">
+      <Filter>Source Files\AtSea</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.DockOrCareen.cpp">
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
   </ItemGroup>

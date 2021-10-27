@@ -32,6 +32,7 @@
 #include <State.InPlay.DarkAlley.h>
 #include <State.InPlay.DarkAlleyEntrance.h>
 #include <State.InPlay.Docked.h>
+#include <State.InPlay.DockOrCareen.h>
 #include <State.InPlay.Equipment.h>
 #include <State.InPlay.Fishing.h>
 #include <State.InPlay.GambleFinish.h>
@@ -187,6 +188,7 @@ namespace application
 		state::in_play::ChangeSpeed::Start,
 		state::in_play::ChangeHeading::Start,
 		state::in_play::ManualHeading::Start,
+		state::in_play::DockOrCareen::Start,
 		sublayout::UIHamburger::Start,
 		sublayout::AtSeaActions::Start,
 		sublayout::AtSeaAvatarStatus::Start,

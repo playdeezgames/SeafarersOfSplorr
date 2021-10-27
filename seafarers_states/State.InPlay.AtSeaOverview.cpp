@@ -76,9 +76,7 @@ namespace state::in_play
 	{
 		if (!game::Islands::GetDockableIslands().empty())
 		{
-			Terminal::SetForeground(game::Colors::RED);
-			Terminal::WriteLine();
-			Terminal::WriteLine("TODO: dock");
+			application::UIState::Write(::UIState::IN_PLAY_DOCK_OR_CAREEN);
 		}
 		else
 		{
