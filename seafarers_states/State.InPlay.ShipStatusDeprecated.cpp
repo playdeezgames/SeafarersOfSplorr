@@ -11,7 +11,7 @@
 #include <Game.Islands.h>
 #include <Game.Ship.h>
 #include <Game.ShipTypes.h>
-#include "State.InPlay.ShipStatus.h"
+#include "State.InPlay.ShipStatusDeprecated.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
@@ -117,7 +117,7 @@ namespace state::in_play//20211019
 		{ ::Command::RED, OnGoBack }
 	};
 
-	void ShipStatus::Start()
+	void ShipStatusDeprecated::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));

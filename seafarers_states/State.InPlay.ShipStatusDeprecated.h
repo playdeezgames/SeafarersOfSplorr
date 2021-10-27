@@ -1,7 +1,7 @@
 #pragma once
 namespace state::in_play
 {
-	struct ShipStatus
+	struct ShipStatusDeprecated
 	{
 		static void Start();
 	};
