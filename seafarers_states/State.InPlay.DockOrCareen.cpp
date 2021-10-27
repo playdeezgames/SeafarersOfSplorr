@@ -3,6 +3,7 @@
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
+#include <Game.Avatar.Actions.h>
 #include <Game.Avatar.ShipStatistics.h>
 #include <Game.Colors.h>
 #include <Game.Ship.h>
@@ -50,17 +51,19 @@ namespace state::in_play
 	static void OnCareenToPort()
 	{
 		Terminal::WriteLine();
-		Terminal::SetForeground(game::Colors::RED);
-		Terminal::WriteLine("TODO: careen to port");
-		Refresh();
+		Terminal::SetForeground(game::Colors::GREEN);
+		Terminal::WriteLine("You careen the vessel on its port side.");
+		game::avatar::Actions::DoAction(game::avatar::Action::CAREEN_TO_PORT);
+		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnCareenToStarboard()
 	{
 		Terminal::WriteLine();
-		Terminal::SetForeground(game::Colors::RED);
-		Terminal::WriteLine("TODO: careen to starboard");
-		Refresh();
+		Terminal::SetForeground(game::Colors::GREEN);
+		Terminal::WriteLine("You careen the vessel on its starboard side.");
+		game::avatar::Actions::DoAction(game::avatar::Action::CAREEN_TO_STARBOARD);
+		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static const std::map<std::string, std::function<void()>> menuActions =

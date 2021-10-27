@@ -1,6 +1,4 @@
-#include <Application.Command.h>
-#include <Application.MouseButtonUp.h>
-#include <Application.MouseMotion.h>
+#include <Application.Keyboard.h>
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
@@ -12,8 +10,10 @@
 #include <Game.Avatar.Actions.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.ShipStatistics.h>
+#include <Game.Colors.h>
 #include <Game.Islands.h>
 #include "State.InPlay.CareenedToPort.h"
+#include "State.Terminal.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.MenuItems.h>
@@ -22,55 +22,40 @@
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CAREENED_TO_PORT;
-	static const std::string LAYOUT_NAME = "State.InPlay.CareenedToPort";
-	static const std::string MENU_ID = "Careen";
-	static const std::string MENU_ITEM_CLEAN_HULL = "CleanHull";
-	static const std::string FORMAT_CLEAN_HULL = "Clean Starbord Hull({:.0f}% Fouled)";
-
-	enum class CareenMenuItem
-	{
-		CLEAN_HULL,
-		WEIGH_ANCHOR
-	};
-
+	static const std::string LAYOUT_NAME = "State.Terminal";
 	static void Refresh()
 	{
-		visuals::MenuItems::SetText(
-			LAYOUT_NAME, 
-			MENU_ITEM_CLEAN_HULL, 
-			FORMAT_CLEAN_HULL, 
-			game::avatar::ShipStatistics::GetFoulingPercentage(
-				game::Side::STARBOARD));
+		Terminal::Reinitialize();
+
+		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
+		Terminal::WriteLine("Careened to port:");
+		Terminal::SetForeground(game::Colors::GRAY);
+		Terminal::WriteLine("Starboard fouling {:.0f}%", game::avatar::ShipStatistics::GetFoulingPercentage(game::Side::STARBOARD));
+
+		Terminal::SetForeground(game::Colors::YELLOW);
+		Terminal::WriteLine("1) Clean hull");
+		Terminal::WriteLine("2) Belay");
+
+		Terminal::ShowPrompt();
 	}
 
 	static void OnCleanHull()
 	{
+		Terminal::WriteLine();
+		Terminal::SetForeground(game::Colors::GREEN);
+		Terminal::WriteLine("You clean the hull.");
 		game::avatar::ShipStatistics::CleanHull(game::Side::STARBOARD);
 		Refresh();
 	}
 
-	static void OnWeighAnchor()
+	static void OnBelay()
 	{
+		Terminal::WriteLine();
+		Terminal::SetForeground(game::Colors::GREEN);
+		Terminal::WriteLine("You right the vessel.");
 		game::avatar::Actions::DoAction(game::avatar::Action::UNCAREEN);
-		application::UIState::Write(::UIState::IN_PLAY_AT_SEA_CAREEN_SELECT);
+		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
-
-	const std::map<CareenMenuItem, std::function<void()>> activators =
-	{
-		{ CareenMenuItem::CLEAN_HULL, OnCleanHull },
-		{ CareenMenuItem::WEIGH_ANCHOR, OnWeighAnchor },
-	};
-
-	const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
-
-	const std::map<::Command, std::function<void()>> commandHandlers =
-	{
-		{::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
-		{::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
-		{::Command::GREEN, ActivateItem },
-		{::Command::BACK, OnWeighAnchor },
-		{::Command::RED, OnWeighAnchor }
-	};
 
 	static void OnEnter()
 	{
@@ -78,12 +63,26 @@ namespace state::in_play
 		Refresh();
 	}
 
+	static const std::map<std::string, std::function<void()>> menuActions =
+	{
+		{"1", OnCleanHull },
+		{"2", OnBelay }
+	};
+
 	void CareenedToPort::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
-		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(
+			CURRENT_STATE, 
+			OnEnter);
+		::application::Renderer::SetRenderLayout(
+			CURRENT_STATE, 
+			LAYOUT_NAME);
+		::application::Keyboard::AddHandler(
+			CURRENT_STATE,
+			Terminal::DoIntegerInput(
+				menuActions,
+				"Please enter a number between 1 and 2.",
+				Refresh));
+
 	}
 }
