@@ -23,11 +23,12 @@ namespace state::in_play
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Head for:");
-		Terminal::SetForeground(game::Colors::YELLOW);
 		auto nearby = game::Islands::GetViewableIslands();
 		if (!nearby.empty())
 		{
+			Terminal::SetForeground(game::Colors::GRAY);
 			Terminal::WriteLine("Nearby islands:");
+			Terminal::SetForeground(game::Colors::YELLOW);
 			int index = 1;
 			for (auto& island : nearby)
 			{

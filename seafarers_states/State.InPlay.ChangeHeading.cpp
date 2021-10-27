@@ -4,6 +4,7 @@
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
+#include <Game.Islands.h>
 #include <Game.Ship.h>
 #include "State.InPlay.ChangeHeading.h"
 #include "State.Terminal.h"
@@ -45,10 +46,22 @@ namespace state::in_play
 		Refresh();
 	}
 
+	static void OnHeadForNearbyIsland()
+	{
+		if (!game::Islands::GetViewableIslands().empty())
+		{
+			application::UIState::Write(::UIState::IN_PLAY_HEAD_FOR_NEAR_BY);
+		}
+		else
+		{
+			Terminal::ErrorMessage("Please make a valid selection.");
+		}
+	}
+
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
 		{"1", OnHeadForKnownIsland},
-		{"2", application::UIState::GoTo(::UIState::IN_PLAY_HEAD_FOR_NEAR_BY)},
+		{"2", OnHeadForNearbyIsland},
 		{"3", application::UIState::GoTo(::UIState::IN_PLAY_MANUAL_HEADING)},
 		{"4", application::UIState::GoTo(::UIState::IN_PLAY_STEER_SHIP)}
 	};

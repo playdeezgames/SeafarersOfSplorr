@@ -35,8 +35,7 @@ namespace state::in_play
 			for (auto& island : nearby)
 			{
 				Terminal::WriteLine(" {} ({:.2f} dist {:.1f})", 
-					island.visits.has_value() ?
-					island.name : "????", common::Heading::XYToDegrees(island.relativeLocation), island.relativeLocation.GetMagnitude());
+					island.GetDisplayName(), common::Heading::XYToDegrees(island.relativeLocation), island.relativeLocation.GetMagnitude());
 			}
 		}
 		//TODO: wind from
@@ -80,34 +79,26 @@ namespace state::in_play
 		}
 		else
 		{
-			Terminal::SetForeground(game::Colors::RED);
-			Terminal::WriteLine();
-			Terminal::WriteLine("There is no place to dock or careen!");
+			Terminal::ErrorMessage("There is no place to dock or careen!");
 		}
 		Refresh();
 	}
 
 	static void OnCrewStatus()
 	{
-		Terminal::SetForeground(game::Colors::RED);
-		Terminal::WriteLine();
-		Terminal::WriteLine("TODO: crew status");
+		Terminal::ErrorMessage("TODO: crew status");
 		Refresh();
 	}
 
 	static void OnShipStatus()
 	{
-		Terminal::SetForeground(game::Colors::RED);
-		Terminal::WriteLine();
-		Terminal::WriteLine("TODO: ship status");
+		Terminal::ErrorMessage("TODO: ship status");
 		Refresh();
 	}
 
 	static void OnMenu()
 	{
-		Terminal::SetForeground(game::Colors::RED);
-		Terminal::WriteLine();
-		Terminal::WriteLine("TODO: menu status");
+		Terminal::ErrorMessage("TODO: menu status");
 		Refresh();
 	}
 

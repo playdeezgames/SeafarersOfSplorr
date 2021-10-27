@@ -203,4 +203,12 @@ namespace state
 		ClearInput();
 		WriteLine();
 	}
+
+	void Terminal::ErrorMessage(const std::string& errorMessage)
+	{
+		Terminal::SetForeground(game::Colors::RED);
+		Terminal::WriteLine();
+		Terminal::WriteLine(errorMessage);
+	}
+
 }

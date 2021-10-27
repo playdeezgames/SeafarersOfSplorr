@@ -29,5 +29,6 @@ namespace state
 		static void ClearStatusLine();
 		static void ShowPrompt();
 		static void Reinitialize();
+		static void ErrorMessage(const std::string&);
 	};
 }
