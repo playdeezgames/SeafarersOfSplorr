@@ -16,7 +16,6 @@
 #include <State.ConfirmQuit.h>
 #include <State.InPlay.AtSea.h>
 #include <State.InPlay.AtSeaOverview.h>
-#include <State.InPlay.AtSeaCareenSelect.h>
 #include <State.InPlay.AvatarStatus.h>
 #include <State.InPlay.CareenedToPort.h>
 #include <State.InPlay.CareenedToStarboard.h>
@@ -174,7 +173,6 @@ namespace application
 		state::in_play::Confirm::Start,
 		state::in_play::GambleStart::Start,
 		state::in_play::GambleFinish::Start,
-		state::in_play::AtSeaCareenSelect::Start,
 		state::in_play::CareenedToPort::Start,
 		state::in_play::CareenedToStarboard::Start,
 		state::in_play::Temple::Start,

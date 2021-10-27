@@ -102,7 +102,6 @@ namespace state::in_play//20211019
 	static const std::map<ShipStatusItem, std::function<void()>> activators =
 	{
 		{ ShipStatusItem::CREW, ::application::UIState::GoTo(::UIState::IN_PLAY_CREW_LIST) },
-		{ ShipStatusItem::CAREEN, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_CAREEN_SELECT) },
 		{ ShipStatusItem::CARGO, ::application::UIState::GoTo(::UIState::IN_PLAY_CARGO) },
 		{ ShipStatusItem::GO_BACK, OnGoBack }
 	};

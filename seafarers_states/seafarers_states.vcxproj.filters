@@ -206,9 +206,6 @@
     <ClInclude Include="State.InPlay.AtSea.h">
       <Filter>Header Files\Deprecated</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.AtSeaCareenSelect.h">
-      <Filter>Header Files\Careening</Filter>
-    </ClInclude>
     <ClInclude Include="State.InPlay.ChangeSpeed.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
@@ -291,9 +288,6 @@
     </ClCompile>
     <ClCompile Include="State.InPlay.Win.cpp">
       <Filter>Source Files\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.AtSeaCareenSelect.cpp">
-      <Filter>Source Files\Careening</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.CareenedToPort.cpp">
       <Filter>Source Files\Careening</Filter>
