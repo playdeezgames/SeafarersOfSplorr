@@ -2,7 +2,7 @@
 #include <Common.XY.h>
 #include <optional>
 #include <string>
-namespace game//20211013
+namespace game//20211017
 {
 	struct Island
 	{
@@ -11,5 +11,16 @@ namespace game//20211013
 		std::string name;
 		std::optional<int> visits;
 		std::string patronDemigod;
+		std::string GetDisplayName()
+		{
+			if (visits.has_value())
+			{
+				return name;
+			}
+			else
+			{
+				return "(unknown)";
+			}
+		}
 	};
 }
