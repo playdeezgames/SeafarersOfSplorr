@@ -36,6 +36,7 @@
 #include <State.InPlay.Fishing.h>
 #include <State.InPlay.GambleFinish.h>
 #include <State.InPlay.GambleStart.h>
+#include <State.InPlay.HeadForNearBy.h>
 #include <State.InPlay.IslandBuy.h>
 #include <State.InPlay.IslandJobs.h>
 #include <State.InPlay.IslandSell.h>
@@ -187,6 +188,7 @@ namespace application
 		state::in_play::ChangeHeading::Start,
 		state::in_play::ManualHeading::Start,
 		state::in_play::DockOrCareen::Start,
+		state::in_play::HeadForNearBy::Start,
 		sublayout::UIHamburger::Start,
 		sublayout::AtSeaActions::Start,
 		sublayout::AtSeaAvatarStatus::Start,

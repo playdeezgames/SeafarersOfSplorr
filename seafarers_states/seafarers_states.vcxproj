@@ -22,6 +22,7 @@
     <ClInclude Include="State.InPlay.ChangeHeading.h" />
     <ClInclude Include="State.InPlay.ChangeSpeed.h" />
     <ClInclude Include="State.InPlay.DockOrCareen.h" />
+    <ClInclude Include="State.InPlay.HeadForNearBy.h" />
     <ClInclude Include="State.InPlay.ManualHeading.h" />
     <ClInclude Include="State.InPlay.ShipStatus.h" />
     <ClInclude Include="State.About.h" />
@@ -88,6 +89,7 @@
     <ClCompile Include="State.InPlay.DockOrCareen.cpp" />
     <ClCompile Include="State.InPlay.Equipment.cpp" />
     <ClCompile Include="State.InPlay.Fishing.cpp" />
+    <ClCompile Include="State.InPlay.HeadForNearBy.cpp" />
     <ClCompile Include="State.InPlay.ManualHeading.cpp" />
     <ClCompile Include="State.InPlay.SteerShip.cpp" />
     <ClCompile Include="State.Terminal.cpp" />

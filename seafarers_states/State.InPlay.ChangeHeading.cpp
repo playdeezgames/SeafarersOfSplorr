@@ -45,18 +45,10 @@ namespace state::in_play
 		Refresh();
 	}
 
-	static void OnHeadForNearbyIsland()
-	{
-		Terminal::WriteLine();
-		Terminal::SetForeground(game::Colors::RED);
-		Terminal::WriteLine("TODO: head for nearby island");
-		Refresh();
-	}
-
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
 		{"1", OnHeadForKnownIsland},
-		{"2", OnHeadForNearbyIsland},
+		{"2", application::UIState::GoTo(::UIState::IN_PLAY_HEAD_FOR_NEAR_BY)},
 		{"3", application::UIState::GoTo(::UIState::IN_PLAY_MANUAL_HEADING)},
 		{"4", application::UIState::GoTo(::UIState::IN_PLAY_STEER_SHIP)}
 	};
