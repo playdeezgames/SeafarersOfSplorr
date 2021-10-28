@@ -102,7 +102,8 @@ namespace state
 				visuals::Terminals::WriteText(LAYOUT_NAME, TERMINAL_ID, key);
 				return true;
 			}
-			else if (key == KEY_RETURN)
+			else if (
+				key == KEY_RETURN)
 			{
 				visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
 				bool result = common::utility::Dispatcher::Dispatch(table, Terminal::GetInput(), true, false);

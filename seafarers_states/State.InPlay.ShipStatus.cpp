@@ -16,11 +16,17 @@ namespace state::in_play
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_SHIP_STATUS;
 	static const std::string LAYOUT_NAME = "State.Terminal";
 
+	static void OnCargo()
+	{
+		Terminal::ErrorMessage("TODO: Cargo");
+	}
+
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
 		{"1", application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_HEADING)},
 		{"2", application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_SPEED)},
-		{"3", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW)}
+		{"3", OnCargo},
+		{"4", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW)}
 	};
 
 	static void Refresh()
@@ -28,15 +34,14 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
-		Terminal::WriteLine("Change heading or speed:");
+		Terminal::WriteLine("Ship status:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Current Heading: {:.2f}", game::Ship::GetHeading());
-		Terminal::WriteLine("Current Speed: {:.2f}", game::Ship::GetSpeed());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine("1) Change Heading");
-		Terminal::WriteLine("2) Change Speed");
-		Terminal::WriteLine("3) Never mind");
+		Terminal::WriteLine("1) Change Heading(Current: {:.2f})", game::Ship::GetHeading());
+		Terminal::WriteLine("2) Change Speed(Current: {:.1f})", game::Ship::GetSpeed());
+		Terminal::WriteLine("3) Cargo");
+		Terminal::WriteLine("4) Never mind");
 
 		Terminal::ShowPrompt();
 	}
@@ -55,7 +60,7 @@ namespace state::in_play
 			CURRENT_STATE, 
 			Terminal::DoIntegerInput(
 				menuActions, 
-				"Please enter a number between 1 and 3.", 
+				"Please enter a number between 1 and 4.", 
 				Refresh));
 	}
 }
