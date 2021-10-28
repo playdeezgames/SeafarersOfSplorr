@@ -1,28 +1,32 @@
-#include <Application.Command.h>
-#include <Application.MouseButtonUp.h>
-#include <Application.MouseMotion.h>
+#include <Application.Keyboard.h>
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Common.Utility.h>
 #include <Game.Audio.Mux.h>
+#include <Game.Colors.h>
 #include "State.LeavePlay.h"
+#include "State.Terminal.h"
 #include "UIState.h"
-#include <Visuals.Areas.h>
-#include <Visuals.Menus.h>
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::LEAVE_PLAY;
-	static const std::string LAYOUT_NAME = "State.LeavePlay";
-	static const std::string MENU_ID = "LeavePlay";
+	static const std::string LAYOUT_NAME = "State.Terminal";
 
-	enum class LeavePlayItem
+	static void Refresh()
 	{
-		CONTINUE,
-		SAVE,
-		OPTIONS,
-		ABANDON
-	};
+		Terminal::Reinitialize();
+
+		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
+		Terminal::WriteLine("Game Menu:");
+		Terminal::SetForeground(game::Colors::YELLOW);
+		Terminal::WriteLine("1) Continue Game");
+		Terminal::WriteLine("2) Save Game");
+		Terminal::WriteLine("3) Options");
+		Terminal::WriteLine("4) Abandon Game");
+
+		Terminal::ShowPrompt();
+	}
 
 	static void GoToConfirmAbandon()
 	{
@@ -39,36 +43,30 @@ namespace state
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	static const std::map<LeavePlayItem, std::function<void()>> activators =
+	static void OnEnter()
 	{
-		{ LeavePlayItem::ABANDON, GoToConfirmAbandon },
-		{ LeavePlayItem::SAVE, GoToSaveGame },
-		{ LeavePlayItem::CONTINUE, ContinueGame },
-		{ LeavePlayItem::OPTIONS, application::UIState::PushTo(::UIState::OPTIONS) }
-	};
-
-	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
-
-	static const std::map<::Command, std::function<void()>> commandHandlers =
-	{
-		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
-		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
-		{ ::Command::GREEN, ActivateItem },
-		{ ::Command::BACK, ContinueGame },
-		{ ::Command::RED, ContinueGame }
-	};
-
-	static void SetCurrentMenuItem(LeavePlayItem item)
-	{
-		visuals::Menus::WriteIndex(LAYOUT_NAME, MENU_ID, (int)item);
+		game::audio::Mux::Play(game::audio::Theme::MAIN);
+		Refresh();
 	}
+
+	static const std::map<std::string, std::function<void()>> menuActions =
+	{
+		{"1", ContinueGame},
+		{"2", GoToSaveGame},
+		{"3", application::UIState::PushTo(::UIState::OPTIONS)},
+		{"4", GoToConfirmAbandon}
+	};
 
 	void LeavePlay::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::LEAVE_PLAY, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
-		::application::MouseButtonUp::AddHandler(::UIState::LEAVE_PLAY, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
-		::application::MouseMotion::AddHandler(::UIState::LEAVE_PLAY, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-		::application::Command::SetHandlers(::UIState::LEAVE_PLAY, commandHandlers);
+		::application::OnEnter::AddHandler(::UIState::LEAVE_PLAY, OnEnter);
 		::application::Renderer::SetRenderLayout(::UIState::LEAVE_PLAY, LAYOUT_NAME);
+		::application::Keyboard::AddHandler(
+			CURRENT_STATE,
+			Terminal::DoIntegerInput(
+				menuActions,
+				"Please enter a number between 1 and 4.",
+				Refresh));
+
 	}
 }
