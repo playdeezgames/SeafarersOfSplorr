@@ -57,7 +57,7 @@
     <ClInclude Include="State.InPlay.Message.h" />
     <ClInclude Include="State.InPlay.Next.h" />
     <ClInclude Include="State.InPlay.Shipyard.h" />
-    <ClInclude Include="State.InPlay.SteerShip.h" />
+    <ClInclude Include="State.InPlay.ShipStatus.h" />
     <ClInclude Include="State.InPlay.Temple.h" />
     <ClInclude Include="State.InPlay.Win.h" />
     <ClInclude Include="State.LeavePlay.h" />
@@ -91,7 +91,7 @@
     <ClCompile Include="State.InPlay.Fishing.cpp" />
     <ClCompile Include="State.InPlay.HeadForNearBy.cpp" />
     <ClCompile Include="State.InPlay.ManualHeading.cpp" />
-    <ClCompile Include="State.InPlay.SteerShip.cpp" />
+    <ClCompile Include="State.InPlay.ShipStatus.cpp" />
     <ClCompile Include="State.Terminal.cpp" />
     <ClCompile Include="Sublayout.AtSeaActions.cpp" />
     <ClCompile Include="Sublayout.AtSeaAvatarStatus.cpp" />

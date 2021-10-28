@@ -44,7 +44,7 @@ namespace state::in_play
 		return [speed]() 
 		{
 			game::Ship::SetSpeed(speed);
-			application::UIState::Write(::UIState::IN_PLAY_STEER_SHIP);
+			application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 		};
 	}
 
@@ -55,7 +55,7 @@ namespace state::in_play
 		{"3", DoSetSpeed(0.6)},
 		{"4", DoSetSpeed(0.9)},
 		{"5", DoSetSpeed(1.0)},
-		{"6", application::UIState::GoTo(::UIState::IN_PLAY_STEER_SHIP)}
+		{"6", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS)}
 	};
 
 	void ChangeSpeed::Start()

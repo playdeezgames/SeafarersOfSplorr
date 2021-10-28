@@ -48,7 +48,7 @@
 #include <State.InPlay.Next.h>
 #include <State.InPlay.ShipStatusDeprecated.h>
 #include <State.InPlay.Shipyard.h>
-#include <State.InPlay.SteerShip.h>
+#include <State.InPlay.ShipStatus.h>
 #include <State.InPlay.Temple.h>
 #include <State.InPlay.Win.h>
 #include <State.InPlay.WorldMap.h>
@@ -183,7 +183,7 @@ namespace application
 		state::in_play::Equipment::Start,
 		state::in_play::CrewList::Start,
 		state::in_play::CrewDetail::Start,
-		state::in_play::SteerShip::Start,
+		state::in_play::ShipStatus::Start,
 		state::in_play::ChangeSpeed::Start,
 		state::in_play::ChangeHeading::Start,
 		state::in_play::ManualHeading::Start,

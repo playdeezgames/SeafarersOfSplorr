@@ -32,7 +32,7 @@ namespace state::in_play
 	static void OnValidInput(double value)
 	{
 		game::Ship::SetHeading(value);
-		application::UIState::Write(::UIState::IN_PLAY_STEER_SHIP);
+		application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 	}
 
 	void ManualHeading::Start()
@@ -42,7 +42,7 @@ namespace state::in_play
 		::application::Keyboard::AddHandler(
 			CURRENT_STATE,
 			Terminal::DoDoubleInput(
-				application::UIState::GoTo(::UIState::IN_PLAY_STEER_SHIP),
+				application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS),
 				OnValidInput));
 	}
 }

@@ -8,12 +8,12 @@
 #include <Game.Ship.h>
 #include <map>
 #include <string>
-#include "State.InPlay.SteerShip.h"
+#include "State.InPlay.ShipStatus.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 namespace state::in_play
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_STEER_SHIP;
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_SHIP_STATUS;
 	static const std::string LAYOUT_NAME = "State.Terminal";
 
 	static const std::map<std::string, std::function<void()>> menuActions =
@@ -47,7 +47,7 @@ namespace state::in_play
 		Refresh();
 	}
 
-	void SteerShip::Start()
+	void ShipStatus::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);

@@ -63,7 +63,7 @@ namespace state::in_play
 		{"1", OnHeadForKnownIsland},
 		{"2", OnHeadForNearbyIsland},
 		{"3", application::UIState::GoTo(::UIState::IN_PLAY_MANUAL_HEADING)},
-		{"4", application::UIState::GoTo(::UIState::IN_PLAY_STEER_SHIP)}
+		{"4", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS)}
 	};
 
 	void ChangeHeading::Start()

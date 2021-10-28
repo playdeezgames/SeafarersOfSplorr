@@ -37,7 +37,7 @@ namespace state::in_play
 			for (auto& island : nearby)
 			{
 				Terminal::WriteLine(
-					" {} ({:.2f} dist {:.1f})", 
+					"{} ({:.2f} dist {:.1f})", 
 					island.GetDisplayName(), 
 					common::Heading::XYToDegrees(island.relativeLocation), 
 					island.relativeLocation.GetMagnitude());
@@ -105,7 +105,7 @@ namespace state::in_play
 		{"1", OnMove },
 		{"2", OnDock },
 		{"3", OnCrewStatus },
-		{"4", application::UIState::GoTo(::UIState::IN_PLAY_STEER_SHIP) },
+		{"4", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS) },
 		{"5", OnMenu }
 
 		//delete this later
