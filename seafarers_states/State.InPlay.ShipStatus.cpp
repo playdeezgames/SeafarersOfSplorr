@@ -16,19 +16,6 @@ namespace state::in_play
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_SHIP_STATUS;
 	static const std::string LAYOUT_NAME = "State.Terminal";
 
-	static void OnCargo()
-	{
-		Terminal::ErrorMessage("TODO: Cargo");
-	}
-
-	static const std::map<std::string, std::function<void()>> menuActions =
-	{
-		{"1", application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_HEADING)},
-		{"2", application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_SPEED)},
-		{"3", OnCargo},
-		{"4", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW)}
-	};
-
 	static void Refresh()
 	{
 		Terminal::Reinitialize();
@@ -45,6 +32,20 @@ namespace state::in_play
 
 		Terminal::ShowPrompt();
 	}
+
+	static void OnCargo()
+	{
+		Terminal::ErrorMessage("TODO: Cargo");
+		Refresh();
+	}
+
+	static const std::map<std::string, std::function<void()>> menuActions =
+	{
+		{"1", application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_HEADING)},
+		{"2", application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_SPEED)},
+		{"3", OnCargo},
+		{"4", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW)}
+	};
 
 	static void OnEnter()
 	{

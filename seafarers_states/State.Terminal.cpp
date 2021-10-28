@@ -1,6 +1,7 @@
 #include <Common.Data.h>
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Colors.h>
+#include <set>
 #include "State.Terminal.h"
 #include <Visuals.Terminals.h>
 namespace state
@@ -69,6 +70,7 @@ namespace state
 	}
 
 	static const std::string KEY_RETURN = "Return";
+	static const std::string KEYPAD_ENTER = "Keypad Enter";
 	static const std::string KEY_1 = "1";
 	static const std::string KEY_2 = "2";
 	static const std::string KEY_3 = "3";
@@ -79,31 +81,93 @@ namespace state
 	static const std::string KEY_8 = "8";
 	static const std::string KEY_9 = "9";
 	static const std::string KEY_0 = "0";
+	static const std::string KEYPAD_1 = "Keypad 1";
+	static const std::string KEYPAD_2 = "Keypad 2";
+	static const std::string KEYPAD_3 = "Keypad 3";
+	static const std::string KEYPAD_4 = "Keypad 4";
+	static const std::string KEYPAD_5 = "Keypad 5";
+	static const std::string KEYPAD_6 = "Keypad 6";
+	static const std::string KEYPAD_7 = "Keypad 7";
+	static const std::string KEYPAD_8 = "Keypad 8";
+	static const std::string KEYPAD_9 = "Keypad 9";
+	static const std::string KEYPAD_0 = "Keypad 0";
 	static const std::string KEY_BACKSPACE = "Backspace";
 	static const std::string KEY_DOT = ".";
+	static const std::string KEYPAD_DOT = "Keypad .";
+
+	static const std::map<std::string, std::string> keyToInput =
+	{
+		{ KEYPAD_0, "0" },
+		{ KEYPAD_1, "1" },
+		{ KEYPAD_2, "2" },
+		{ KEYPAD_3, "3" },
+		{ KEYPAD_4, "4" },
+		{ KEYPAD_5, "5" },
+		{ KEYPAD_6, "6" },
+		{ KEYPAD_7, "7" },
+		{ KEYPAD_8, "8" },
+		{ KEYPAD_9, "9" },
+		{ KEY_0, "0" },
+		{ KEY_1, "1" },
+		{ KEY_2, "2" },
+		{ KEY_3, "3" },
+		{ KEY_4, "4" },
+		{ KEY_5, "5" },
+		{ KEY_6, "6" },
+		{ KEY_7, "7" },
+		{ KEY_8, "8" },
+		{ KEY_9, "9" },
+		{ KEY_DOT, "." },
+		{ KEYPAD_DOT, "." }
+	};
+
+	static const std::set<std::string> numericKeys =
+	{
+		KEY_0,
+		KEY_1,
+		KEY_2,
+		KEY_3,
+		KEY_4,
+		KEY_5,
+		KEY_6,
+		KEY_7,
+		KEY_8,
+		KEY_9,
+		KEYPAD_0,
+		KEYPAD_1,
+		KEYPAD_2,
+		KEYPAD_3,
+		KEYPAD_4,
+		KEYPAD_5,
+		KEYPAD_6,
+		KEYPAD_7,
+		KEYPAD_8,
+		KEYPAD_9
+	};
+
+	static const std::set<std::string> decimalKeys =
+	{
+		KEY_DOT,
+		KEYPAD_DOT
+	};
+
+	static const std::set<std::string> newLineKeys =
+	{
+		KEY_RETURN,
+		KEYPAD_ENTER
+	};
 
 	std::function<bool(const std::string&)> Terminal::DoIntegerInput(const std::map<std::string, std::function<void()>>& table, const std::string& errorMessage, std::function<void()> refresh)
 	{
 		return [errorMessage, table, refresh](const std::string& key)
 		{
-			if (
-				key == KEY_1 ||
-				key == KEY_2 ||
-				key == KEY_3 ||
-				key == KEY_4 ||
-				key == KEY_5 ||
-				key == KEY_6 ||
-				key == KEY_7 ||
-				key == KEY_8 ||
-				key == KEY_9 ||
-				key == KEY_0)
+			if (numericKeys.contains(key))
 			{
-				Terminal::AppendInput(key);
-				visuals::Terminals::WriteText(LAYOUT_NAME, TERMINAL_ID, key);
+				Terminal::AppendInput(keyToInput.find(key)->second);
+				visuals::Terminals::WriteText(LAYOUT_NAME, TERMINAL_ID, keyToInput.find(key)->second);
 				return true;
 			}
-			else if (
-				key == KEY_RETURN)
+			else if (newLineKeys.contains(key))
 			{
 				visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
 				bool result = common::utility::Dispatcher::Dispatch(table, Terminal::GetInput(), true, false);
@@ -140,32 +204,22 @@ namespace state
 	{
 		return [processInvalidInput, processValidInput](const std::string& key)
 		{
-			if (
-				key == KEY_1 ||
-				key == KEY_2 ||
-				key == KEY_3 ||
-				key == KEY_4 ||
-				key == KEY_5 ||
-				key == KEY_6 ||
-				key == KEY_7 ||
-				key == KEY_8 ||
-				key == KEY_9 ||
-				key == KEY_0)
+			if (numericKeys.contains(key))
 			{
-				Terminal::AppendInput(key);
-				visuals::Terminals::WriteText(LAYOUT_NAME, TERMINAL_ID, key);
+				Terminal::AppendInput(keyToInput.find(key)->second);
+				visuals::Terminals::WriteText(LAYOUT_NAME, TERMINAL_ID, keyToInput.find(key)->second);
 				return true;
 			}
-			else if (key == KEY_DOT)
+			else if (decimalKeys.contains(key))
 			{
 				if (GetInput().size() > 0 && GetInput().find('.') == std::string::npos)
 				{
-					Terminal::AppendInput(key);
-					visuals::Terminals::WriteText(LAYOUT_NAME, TERMINAL_ID, key);
+					Terminal::AppendInput(keyToInput.find(key)->second);
+					visuals::Terminals::WriteText(LAYOUT_NAME, TERMINAL_ID, keyToInput.find(key)->second);
 					return true;
 				}
 			}
-			else if (key == KEY_RETURN)
+			else if (newLineKeys.contains(key))
 			{
 				visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
 				if (GetInput().empty())

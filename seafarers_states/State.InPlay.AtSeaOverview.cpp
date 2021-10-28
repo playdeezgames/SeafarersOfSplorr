@@ -106,7 +106,7 @@ namespace state::in_play
 		{"2", OnDock },
 		{"3", OnCrewStatus },
 		{"4", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS) },
-		{"5", OnMenu }
+		{"5", application::UIState::GoTo(::UIState::LEAVE_PLAY) }
 
 		//delete this later
 		, {"0", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_DEPRECATED)}
