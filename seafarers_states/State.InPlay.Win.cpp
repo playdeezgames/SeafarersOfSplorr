@@ -4,7 +4,7 @@
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
-#include "State.InPlay.AtSea.h"
+#include "State.InPlay.AtSeaDeprecated.h"
 #include "State.InPlay.Win.h"
 #include "UIState.h"
 namespace state::in_play
@@ -21,9 +21,9 @@ namespace state::in_play
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
-		if (AtSea::IsAutoMoveEngaged())
+		if (AtSeaDeprecated::IsAutoMoveEngaged())
 		{
-			AtSea::ToggleAutoMove();
+			AtSeaDeprecated::ToggleAutoMove();
 		}
 	}
 

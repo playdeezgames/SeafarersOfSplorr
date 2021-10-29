@@ -28,7 +28,7 @@
     <ClInclude Include="State.ConfirmAbandon.h" />
     <ClInclude Include="State.ConfirmOverwrite.h" />
     <ClInclude Include="State.ConfirmQuit.h" />
-    <ClInclude Include="State.InPlay.AtSea.h" />
+    <ClInclude Include="State.InPlay.AtSeaDeprecated.h" />
     <ClInclude Include="State.InPlay.AtSeaOverview.h" />
     <ClInclude Include="State.InPlay.AvatarStatus.h" />
     <ClInclude Include="State.InPlay.CareenedToPort.h" />
@@ -79,7 +79,7 @@
     <ClCompile Include="State.ConfirmOverwrite.cpp" />
     <ClCompile Include="State.ConfirmQuit.cpp" />
     <ClCompile Include="State.InPlay.AtSea.AutoMove.cpp" />
-    <ClCompile Include="State.InPlay.AtSea.cpp" />
+    <ClCompile Include="State.InPlay.AtSeaDeprecated.cpp" />
     <ClCompile Include="State.InPlay.AtSeaOverview.cpp" />
     <ClCompile Include="State.InPlay.ChangeHeading.cpp" />
     <ClCompile Include="State.InPlay.ChangeSpeed.cpp" />

@@ -16,7 +16,7 @@
 #include <Game.Colors.h>
 #include <Game.Islands.h>
 #include <Game.Ship.h>
-#include "State.InPlay.AtSea.h"
+#include "State.InPlay.AtSeaDeprecated.h"
 #include "Sublayouts.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
@@ -68,14 +68,14 @@ namespace state::in_play//20211019
 		visuals::MenuItems::SetText(
 			LAYOUT_NAME,
 			MENU_ITEM_MOVE,
-			(AtSea::IsAutoMoveEngaged()) ?
+			(AtSeaDeprecated::IsAutoMoveEngaged()) ?
 			(STOP_MOVE) :
 			(START_MOVE));
 	}
 
 	static void OnUpdate(const unsigned int& ticks)
 	{
-		AtSea::DoAutomoveTimer(ticks);
+		AtSeaDeprecated::DoAutomoveTimer(ticks);
 		RefreshMoveMenuItem();
 	}
 
@@ -129,7 +129,7 @@ namespace state::in_play//20211019
 
 	static void OnMoveOnce()
 	{
-		if (!AtSea::IsAutoMoveEngaged())
+		if (!AtSeaDeprecated::IsAutoMoveEngaged())
 		{
 			game::avatar::Log::Write({
 				game::Colors::GRAY,
@@ -141,7 +141,7 @@ namespace state::in_play//20211019
 
 	static const std::map<OrderMenuItem, std::function<void()>> activators =
 	{
-		{OrderMenuItem::MOVE, AtSea::ToggleAutoMove},
+		{OrderMenuItem::MOVE, AtSeaDeprecated::ToggleAutoMove},
 		{OrderMenuItem::MOVE_ONCE, OnMoveOnce},
 		{OrderMenuItem::DOCK, OnDock},
 		{OrderMenuItem::WORLD_MAP, application::UIState::GoTo(::UIState::IN_PLAY_WORLD_MAP)},
@@ -178,7 +178,7 @@ namespace state::in_play//20211019
 		sublayout::AtSeaAvatarStatus::Refresh();
 		RefreshLog();
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_DOCK, game::Islands::CanDock());
-		AtSea::UpdateAutoMoveState();
+		AtSeaDeprecated::UpdateAutoMoveState();
 	}
 
 	static void OnMouseMotionInHelm(const common::XY<int>& location)
@@ -221,7 +221,7 @@ namespace state::in_play//20211019
 		{AREA_CHANGE_HEADING, OnChangeHeading}
 	};
 
-	void AtSea::Start()
+	void AtSeaDeprecated::Start()
 	{
 		::application::Update::AddHandler(
 			CURRENT_STATE, 

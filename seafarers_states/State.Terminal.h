@@ -11,7 +11,13 @@ namespace state
 		static const std::string& GetInput();
 		static const void AppendInput(const std::string&);
 		static const bool Backspace();
-		static std::function<bool(const std::string&)> DoIntegerInput(const std::map<std::string, std::function<void()>>& table, const std::string& errorMessage, std::function<void()>);
+		static std::function<bool(const std::string&)> DoIntegerInput(
+			const std::map<std::string, std::function<void()>>&,
+			std::function<void(const std::string&)>);
+		static std::function<bool(const std::string&)> DoIntegerInput(
+			const std::map<std::string, std::function<void()>>&, 
+			const std::string&, 
+			std::function<void()>);
 		static std::function<bool(const std::string&)> DoDoubleInput(std::function<void()>, std::function<void(double)>);
 		static void Start();
 		static const std::string LAYOUT_NAME;

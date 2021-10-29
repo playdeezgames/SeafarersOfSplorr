@@ -5,7 +5,7 @@
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Audio.Sfx.h>
-#include "State.InPlay.AtSea.h"
+#include "State.InPlay.AtSeaDeprecated.h"
 #include "State.InPlay.Lose.h"
 #include "UIState.h"
 namespace state::in_play
@@ -22,9 +22,9 @@ namespace state::in_play
 	{
 		game::audio::Sfx::Play(game::audio::GameSfx::DEATH);
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
-		if (AtSea::IsAutoMoveEngaged())
+		if (AtSeaDeprecated::IsAutoMoveEngaged())
 		{
-			AtSea::ToggleAutoMove();
+			AtSeaDeprecated::ToggleAutoMove();
 		}
 	}
 

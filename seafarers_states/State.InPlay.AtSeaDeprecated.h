@@ -1,7 +1,7 @@
 #pragma once
 namespace state::in_play
 {
-	struct AtSea
+	struct AtSeaDeprecated
 	{
 		static void DoAutomoveTimer(const unsigned int&);
 		static void ToggleAutoMove();

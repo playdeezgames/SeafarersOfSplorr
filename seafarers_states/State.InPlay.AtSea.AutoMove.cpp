@@ -6,7 +6,7 @@
 #include <Game.Colors.h>
 #include <Game.Islands.h>
 #include <Game.Ship.h>
-#include "State.InPlay.AtSea.h"
+#include "State.InPlay.AtSeaDeprecated.h"
 #include "UIState.h"
 #include <Visuals.Messages.h>
 namespace state::in_play//20211019
@@ -22,7 +22,7 @@ namespace state::in_play//20211019
 	static size_t ticksLeft = TICKS_TOTAL;
 	static AutoMoveState autoMoveState = AutoMoveState::OFF;
 
-	bool AtSea::IsAutoMoveEngaged()
+	bool AtSeaDeprecated::IsAutoMoveEngaged()
 	{
 		return autoMoveState != AutoMoveState::OFF;
 	}
@@ -51,7 +51,7 @@ namespace state::in_play//20211019
 		{ false, TurnAutoMoveOff}
 	};
 
-	void AtSea::ToggleAutoMove()
+	void AtSeaDeprecated::ToggleAutoMove()
 	{
 		common::utility::Dispatcher::Dispatch(togglers, autoMoveState == AutoMoveState::OFF);
 	}
@@ -73,7 +73,7 @@ namespace state::in_play//20211019
 		}
 	}
 
-	void AtSea::DoAutomoveTimer(const unsigned int& ticks)
+	void AtSeaDeprecated::DoAutomoveTimer(const unsigned int& ticks)
 	{
 		if (autoMoveState != AutoMoveState::OFF)
 		{
@@ -98,7 +98,7 @@ namespace state::in_play//20211019
 		});
 	}
 
-	void AtSea::UpdateAutoMoveState()
+	void AtSeaDeprecated::UpdateAutoMoveState()
 	{
 		if (game::Islands::CanDock())
 		{

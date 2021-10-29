@@ -14,7 +14,7 @@
 #include <State.ConfirmAbandon.h>
 #include <State.ConfirmOverwrite.h>
 #include <State.ConfirmQuit.h>
-#include <State.InPlay.AtSea.h>
+#include <State.InPlay.AtSeaDeprecated.h>
 #include <State.InPlay.AtSeaOverview.h>
 #include <State.InPlay.AvatarStatus.h>
 #include <State.InPlay.CareenedToPort.h>
@@ -150,7 +150,7 @@ namespace application
 		state::ConfirmAbandon::Start,
 		state::ConfirmOverwrite::Start,
 		state::Terminal::Start,
-		state::in_play::AtSea::Start,
+		state::in_play::AtSeaDeprecated::Start,
 		state::in_play::AtSeaOverview::Start,
 		state::in_play::Docked::Start,
 		state::in_play::Win::Start,

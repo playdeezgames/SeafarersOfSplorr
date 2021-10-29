@@ -157,9 +157,11 @@ namespace state
 		KEYPAD_ENTER
 	};
 
-	std::function<bool(const std::string&)> Terminal::DoIntegerInput(const std::map<std::string, std::function<void()>>& table, const std::string& errorMessage, std::function<void()> refresh)
+	std::function<bool(const std::string&)> Terminal::DoIntegerInput(
+		const std::map<std::string, std::function<void()>>& table,
+		std::function<void(const std::string&)> handleOther)
 	{
-		return [errorMessage, table, refresh](const std::string& key)
+		return [table, handleOther](const std::string& key)
 		{
 			if (numericKeys.contains(key))
 			{
@@ -177,12 +179,8 @@ namespace state
 				}
 				else
 				{
-					visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
-					visuals::Terminals::SetForeground(LAYOUT_NAME, TERMINAL_ID, game::Colors::RED);
-					visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, errorMessage);
-					visuals::Terminals::SetForeground(LAYOUT_NAME, TERMINAL_ID, game::Colors::GRAY);
-
-					refresh();
+					handleOther(Terminal::GetInput());
+					Terminal::ClearInput();
 				}
 				return true;
 			}
@@ -196,6 +194,26 @@ namespace state
 			}
 			return false;
 		};
+
+	}
+
+
+	std::function<bool(const std::string&)> Terminal::DoIntegerInput(
+		const std::map<std::string, std::function<void()>>& table, 
+		const std::string& errorMessage, 
+		std::function<void()> refresh)
+	{
+		return DoIntegerInput(
+			table, 
+			[errorMessage, refresh](const std::string&)
+			{
+				visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
+				visuals::Terminals::SetForeground(LAYOUT_NAME, TERMINAL_ID, game::Colors::RED);
+				visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, errorMessage);
+				visuals::Terminals::SetForeground(LAYOUT_NAME, TERMINAL_ID, game::Colors::GRAY);
+
+				refresh();
+			});
 	}
 
 	std::function<bool(const std::string&)> Terminal::DoDoubleInput(

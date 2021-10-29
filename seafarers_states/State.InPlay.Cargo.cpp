@@ -2,6 +2,7 @@
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
+#include <Common.Data.h>
 #include <Common.Utility.h>
 #include <Common.Utility.Dispatcher.h>
 #include <Common.Utility.Navigator.h>
@@ -81,6 +82,20 @@ namespace state::in_play
 		{"0", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS)}
 	};
 
+	static void OnHandleOther(const std::string& input)
+	{
+		auto index = common::Data::ToInt(input)-1;
+		if (index < manifest.size())
+		{
+			Terminal::ErrorMessage("TODO: whatever one does with cargo...");
+		}
+		else
+		{
+			Terminal::ErrorMessage("Please select a valid option.");
+		}
+		Refresh();
+	}
+
 	void Cargo::Start()
 	{
 		::application::OnEnter::AddHandler(
@@ -93,8 +108,7 @@ namespace state::in_play
 			CURRENT_STATE,
 			Terminal::DoIntegerInput(
 				menuActions,
-				"Please select a valid option.",
-				Refresh));
+				OnHandleOther));
 
 	}
 }
