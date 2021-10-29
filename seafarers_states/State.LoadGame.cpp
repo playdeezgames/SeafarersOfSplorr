@@ -1,45 +1,44 @@
-#include <Application.Command.h>
-#include <Application.MouseButtonUp.h>
-#include <Application.MouseMotion.h>
+#include <Application.Keyboard.h>
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Common.Utility.h>
 #include <Game.h>
 #include <Game.Audio.Mux.h>
+#include <Game.Colors.h>
 #include "State.LoadGame.h"
+#include "State.Terminal.h"
 #include "UIState.h"
-#include <Visuals.Areas.h>
-#include <Visuals.Menus.h>
-#include <Visuals.MenuItems.h>
 namespace state
 {
-	static const std::string LAYOUT_NAME = "State.LoadGame";
-	static const std::string MENU_ID = "LoadGame";
-	static const std::string MENU_ITEM_AUTOSAVE = "Autosave";
-	static const std::string MENU_ITEM_SLOT1 = "Slot1";
-	static const std::string MENU_ITEM_SLOT2 = "Slot2";
-	static const std::string MENU_ITEM_SLOT3 = "Slot3";
-	static const std::string MENU_ITEM_SLOT4 = "Slot4";
-	static const std::string MENU_ITEM_SLOT5 = "Slot5";
-	static const std::string AUTOSAVE_PRESENT = "(autosave)";
-	static const std::string NOT_PRESENT = "-";
-	static const std::string SLOT_PRESENT_1 = "Slot 1";
-	static const std::string SLOT_PRESENT_2 = "Slot 2";
-	static const std::string SLOT_PRESENT_3 = "Slot 3";
-	static const std::string SLOT_PRESENT_4 = "Slot 4";
-	static const std::string SLOT_PRESENT_5 = "Slot 5";
+	static const ::UIState CURRENT_STATE = ::UIState::LOAD_GAME;
+	static const std::string LAYOUT_NAME = "State.Terminal";
 
-	enum class LoadGameItem
+	static void Refresh()
 	{
-		AUTOSAVE,
-		SLOT_1,
-		SLOT_2,
-		SLOT_3,
-		SLOT_4,
-		SLOT_5,
-		BACK
-	};
+		Terminal::Reinitialize();
+
+		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
+		Terminal::WriteLine("Load Game:");
+		Terminal::WriteLine();
+
+		Terminal::SetForeground(game::Colors::YELLOW);
+		for (int slot = 1; slot <= 5; ++slot)
+		{
+			if (game::DoesSlotExist(slot))
+			{
+				Terminal::WriteLine("{}) Slot {}", slot, slot);
+			}
+		}
+		if (game::DoesAutosaveExist())
+		{
+			Terminal::WriteLine("6) Autosave Slot");
+		}
+		Terminal::WriteLine("7) Never mind");
+
+		Terminal::ShowPrompt();
+
+	}
 
 	static void GoBack()
 	{
@@ -53,6 +52,10 @@ namespace state
 			game::LoadFromAutosave();
 			application::UIState::Write(::UIState::TIP);
 		}
+		else
+		{
+			Terminal::ErrorMessage("Please select a valid option.");
+		}
 	}
 
 	static std::function<void()> SlotLoader(int slot)
@@ -64,60 +67,39 @@ namespace state
 				game::LoadFromSlot(slot);
 				application::UIState::Write(::UIState::TIP);
 			}
+			else
+			{
+				Terminal::ErrorMessage("Please select a valid option.");
+			}
 		};
-	}
-
-	static const std::map<LoadGameItem, std::function<void()>> activators =
-	{
-		{ LoadGameItem::AUTOSAVE, LoadFromAutosave },
-		{ LoadGameItem::SLOT_1, SlotLoader(1) },
-		{ LoadGameItem::SLOT_2, SlotLoader(2) },
-		{ LoadGameItem::SLOT_3, SlotLoader(3) },
-		{ LoadGameItem::SLOT_4, SlotLoader(4) },
-		{ LoadGameItem::SLOT_5, SlotLoader(5) },
-		{ LoadGameItem::BACK, GoBack }
-	};
-
-	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
-
-	static const std::map<::Command, std::function<void()>> commandHandlers =
-	{
-		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
-		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
-		{ ::Command::BACK, GoBack },
-		{ ::Command::RED, GoBack },
-		{ ::Command::GREEN, ActivateItem }
-	};
-
-	static void UpdateMenuItem(bool shown, const std::string& menuItem, const std::string& textWhenShown)
-	{
-		if (shown)
-		{
-			visuals::MenuItems::SetText(LAYOUT_NAME, menuItem, textWhenShown);
-		}
-		else
-		{
-			visuals::MenuItems::SetText(LAYOUT_NAME, menuItem, NOT_PRESENT);
-		}
 	}
 
 	static void OnEnter()
 	{
-		UpdateMenuItem(game::DoesAutosaveExist(), MENU_ITEM_AUTOSAVE, AUTOSAVE_PRESENT);
-		UpdateMenuItem(game::DoesSlotExist(1), MENU_ITEM_SLOT1, SLOT_PRESENT_1);
-		UpdateMenuItem(game::DoesSlotExist(2), MENU_ITEM_SLOT2, SLOT_PRESENT_2);
-		UpdateMenuItem(game::DoesSlotExist(3), MENU_ITEM_SLOT3, SLOT_PRESENT_3);
-		UpdateMenuItem(game::DoesSlotExist(4), MENU_ITEM_SLOT4, SLOT_PRESENT_4);
-		UpdateMenuItem(game::DoesSlotExist(5), MENU_ITEM_SLOT5, SLOT_PRESENT_5);
+		game::audio::Mux::Play(game::audio::Theme::MAIN);
+		Refresh();
 	}
+
+	static const std::map<std::string, std::function<void()>> menuActions =
+	{
+		{"1", SlotLoader(1)},
+		{"2", SlotLoader(2)},
+		{"3", SlotLoader(3)},
+		{"4", SlotLoader(4)},
+		{"5", SlotLoader(5)},
+		{"6", LoadFromAutosave},
+		{"7", GoBack}
+	};
 
 	void LoadGame::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::LOAD_GAME, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
-		::application::MouseButtonUp::AddHandler(::UIState::LOAD_GAME, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
-		::application::MouseMotion::AddHandler(::UIState::LOAD_GAME, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-		::application::Command::SetHandlers(::UIState::LOAD_GAME, commandHandlers);
 		::application::Renderer::SetRenderLayout(::UIState::LOAD_GAME, LAYOUT_NAME);
 		::application::OnEnter::AddHandler(::UIState::LOAD_GAME, OnEnter);
+		::application::Keyboard::AddHandler(
+			CURRENT_STATE,
+			Terminal::DoIntegerInput(
+				menuActions,
+				"Please enter a number between 1 and 5.",
+				Refresh));
 	}
 }

@@ -13,13 +13,6 @@ namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::SAVE_GAME;
 	static const std::string LAYOUT_NAME = "State.Terminal";
-	static const std::string AUTOSAVE_PRESENT = "(autosave)";
-	static const std::string NOT_PRESENT = "-";
-	static const std::string SLOT_PRESENT_1 = "Slot 1";
-	static const std::string SLOT_PRESENT_2 = "Slot 2";
-	static const std::string SLOT_PRESENT_3 = "Slot 3";
-	static const std::string SLOT_PRESENT_4 = "Slot 4";
-	static const std::string SLOT_PRESENT_5 = "Slot 5";
 
 	static void Refresh()
 	{
