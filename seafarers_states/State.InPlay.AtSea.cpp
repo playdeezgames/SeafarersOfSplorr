@@ -146,7 +146,7 @@ namespace state::in_play//20211019
 		{OrderMenuItem::DOCK, OnDock},
 		{OrderMenuItem::WORLD_MAP, application::UIState::GoTo(::UIState::IN_PLAY_WORLD_MAP)},
 		{OrderMenuItem::STATUS, application::UIState::GoTo(::UIState::IN_PLAY_AVATAR_STATUS)},
-		{OrderMenuItem::SHIP, application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS_DEPRECATED)}
+		{OrderMenuItem::SHIP, application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS)}
 	};
 
 	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);

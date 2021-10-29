@@ -77,9 +77,6 @@
     <ClInclude Include="State.ConfirmQuit.h">
       <Filter>Header Files\Boilerplate</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.ShipStatusDeprecated.h">
-      <Filter>Header Files\AtSea</Filter>
-    </ClInclude>
     <ClInclude Include="State.InPlay.AtSeaOverview.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
@@ -299,9 +296,6 @@
       <Filter>Source Files\Careening</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.Cargo.cpp">
-      <Filter>Source Files\AtSea\Status</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.ShipStatusDeprecated.cpp">
       <Filter>Source Files\AtSea\Status</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.CurrentJob.cpp">

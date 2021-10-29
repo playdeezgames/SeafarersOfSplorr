@@ -41,7 +41,7 @@ namespace state::in_play//20211019
 			FONT_DEFAULT, 
 			visuals::HorizontalAlignment::LEFT);
 
-	static auto OnLeave = ::application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS_DEPRECATED);
+	static auto OnLeave = ::application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS);
 
 	struct RosterItem
 	{

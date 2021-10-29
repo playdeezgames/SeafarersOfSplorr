@@ -33,17 +33,11 @@ namespace state::in_play
 		Terminal::ShowPrompt();
 	}
 
-	static void OnCargo()
-	{
-		Terminal::ErrorMessage("TODO: Cargo");
-		Refresh();
-	}
-
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
 		{"1", application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_HEADING)},
 		{"2", application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_SPEED)},
-		{"3", OnCargo},
+		{"3", application::UIState::GoTo(::UIState::IN_PLAY_CARGO)},
 		{"4", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW)}
 	};
 

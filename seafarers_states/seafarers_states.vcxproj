@@ -24,7 +24,6 @@
     <ClInclude Include="State.InPlay.DockOrCareen.h" />
     <ClInclude Include="State.InPlay.HeadForNearBy.h" />
     <ClInclude Include="State.InPlay.ManualHeading.h" />
-    <ClInclude Include="State.InPlay.ShipStatusDeprecated.h" />
     <ClInclude Include="State.About.h" />
     <ClInclude Include="State.ConfirmAbandon.h" />
     <ClInclude Include="State.ConfirmOverwrite.h" />
@@ -117,7 +116,6 @@
     <ClCompile Include="State.InPlay.MakeOffering.cpp" />
     <ClCompile Include="State.InPlay.Message.cpp" />
     <ClCompile Include="State.InPlay.Next.cpp" />
-    <ClCompile Include="State.InPlay.ShipStatusDeprecated.cpp" />
     <ClCompile Include="State.InPlay.Shipyard.cpp" />
     <ClCompile Include="State.InPlay.Temple.cpp" />
     <ClCompile Include="State.InPlay.Win.cpp" />
