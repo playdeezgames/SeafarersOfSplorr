@@ -1,6 +1,4 @@
-#include <Application.Command.h>
-#include <Application.MouseButtonUp.h>
-#include <Application.MouseMotion.h>
+#include <Application.Keyboard.h>
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
@@ -17,59 +15,20 @@
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
 #include "State.InPlay.Cargo.h"
+#include "State.Terminal.h"
 #include "UIState.h"
-#include <Visuals.Areas.h>
-#include <Visuals.Buttons.h>
-#include <Visuals.SpriteGrid.h>
-namespace state::in_play//20211019
+namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CARGO;
-	static const std::string LAYOUT_NAME = "State.InPlay.Cargo";
-	static const std::string SPRITE_GRID_ID = "Grid";
-	static const std::string FONT_DEFAULT = "default";
-	static const std::string BUTTON_GO_BACK = "GoBack";
-	static const std::string AREA_GO_BACK = "GoBack";
-
-	static const auto WriteTextToGrid = 
-		visuals::SpriteGrid::DoWriteToGrid(
-			LAYOUT_NAME, 
-			SPRITE_GRID_ID, 
-			FONT_DEFAULT, 
-			visuals::HorizontalAlignment::LEFT);
+	static const std::string LAYOUT_NAME = "State.Terminal";
 
 	static auto OnLeave = ::application::UIState::GoTo(::UIState::IN_PLAY_NEXT);
 
-	static void RefreshHeader()
-	{
-		WriteTextToGrid({ 0, 0 }, "<-", game::Colors::YELLOW);
-		WriteTextToGrid({ 37, 0 }, "->", game::Colors::YELLOW);
-		WriteTextToGrid({ 15, 0 }, "Page 1 of 1", game::Colors::YELLOW);
-		WriteTextToGrid({ 0,1 }, std::format("{:15s}   {:4s}", "Item", " Own"), game::Colors::YELLOW);
-	}
-
 	static std::map<game::Item, size_t> manifest;
-	static size_t hiliteRow = 0;
 
 	static void UpdateManifest()
 	{
 		manifest = game::avatar::Items::All();
-	}
-
-	static void RefreshManifest()
-	{
-		int row = 0;
-		int gridRow = 2;
-		for (auto& entry : manifest)
-		{
-			WriteTextToGrid(
-				{ 0, gridRow },
-				std::format("{:15s} | {:4d}",
-					game::Items::GetName(entry.first),
-					entry.second),
-				(row == hiliteRow) ? (game::Colors::CYAN) : (game::Colors::GRAY));
-			++gridRow;
-			++row;
-		}
 	}
 
 	static double GetTonnage()
@@ -82,29 +41,32 @@ namespace state::in_play//20211019
 		return game::avatar::Ship::AvailableTonnage().value();
 	}
 
-	static void RefreshStatistics()
-	{
-		WriteTextToGrid(
-			{ 0, 18 },
-			std::format(
-				"Tonnage: {:.3f} ({:d}%)",
-				GetTonnage(),
-				(int)(100.0 * GetTonnage() / GetAvailableTonnage())),
-			game::Colors::GRAY);
-		WriteTextToGrid(
-			{ 0, 19 },
-			std::format(
-				"Money: {:.3f}",
-				game::avatar::Statistics::ReadMoney()),
-			game::Colors::GRAY);
-	}
-
 	static void Refresh()
 	{
-		visuals::SpriteGrid::Clear(LAYOUT_NAME, SPRITE_GRID_ID);
-		RefreshHeader();
-		RefreshManifest();
-		RefreshStatistics();
+		Terminal::Reinitialize();
+
+		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
+		Terminal::WriteLine("Cargo:");
+		Terminal::SetForeground(game::Colors::GRAY);
+		Terminal::WriteLine(
+				"Tonnage: {:.3f} ({:d}%)",
+				GetTonnage(),
+				(int)(100.0 * GetTonnage() / GetAvailableTonnage()));
+		Terminal::WriteLine(
+			"Money: {:.3f}",
+			game::avatar::Statistics::ReadMoney());
+		Terminal::SetForeground(game::Colors::BROWN);
+		Terminal::WriteLine("Manifest:");
+		Terminal::SetForeground(game::Colors::YELLOW);
+		size_t index = 1;
+		for (auto entry : manifest)
+		{
+			Terminal::WriteLine("{}) {} (x{})", index++, game::Items::GetName(entry.first), entry.second);
+		}
+		Terminal::WriteLine("0) Never mind");
+
+		Terminal::ShowPrompt();
+
 	}
 
 	static void OnEnter()
@@ -114,33 +76,9 @@ namespace state::in_play//20211019
 		Refresh();
 	}
 
-	static const std::map<::Command, std::function<void()>> commandHandlers =
+	static const std::map<std::string, std::function<void()>> menuActions =
 	{
-		{ ::Command::UP, common::utility::Navigator::DoPreviousItem(hiliteRow, manifest, RefreshManifest) },
-		{ ::Command::DOWN, common::utility::Navigator::DoNextItem(hiliteRow, manifest, RefreshManifest) },
-		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_DEPRECATED) },
-		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_DEPRECATED) }
-	};
-
-	static const std::map<std::string, std::function<void()>> areaButtons =
-	{
-		{AREA_GO_BACK, visuals::Buttons::DoSetHoverButton(LAYOUT_NAME, BUTTON_GO_BACK)}
-	};
-
-	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>&)
-	{
-		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
-		common::utility::Dispatcher::Dispatch(areaButtons, areaName);
-	}
-
-	static void OnMouseMotionOutsideAreas(const common::XY<int>&)
-	{
-		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
-	}
-
-	static const std::map<std::string, std::function<void()>> areaActions =
-	{
-		{AREA_GO_BACK, OnLeave}
+		{"0", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS)}
 	};
 
 	void Cargo::Start()
@@ -148,25 +86,15 @@ namespace state::in_play//20211019
 		::application::OnEnter::AddHandler(
 			CURRENT_STATE, 
 			OnEnter);
-		::application::MouseButtonUp::AddHandler(
-			CURRENT_STATE, 
-			visuals::Areas::HandleMouseButtonUp(
-				LAYOUT_NAME, 
-				common::utility::Dispatcher::DoDispatch(
-					areaActions,
-					true,
-					false)));
-		::application::MouseMotion::AddHandler(
-			CURRENT_STATE, 
-			visuals::Areas::HandleMouseMotion(
-				LAYOUT_NAME, 
-				OnMouseMotionInArea, 
-				OnMouseMotionOutsideAreas));
-		::application::Command::SetHandlers(
-			CURRENT_STATE, 
-			commandHandlers);
 		::application::Renderer::SetRenderLayout(
 			CURRENT_STATE, 
 			LAYOUT_NAME);
+		::application::Keyboard::AddHandler(
+			CURRENT_STATE,
+			Terminal::DoIntegerInput(
+				menuActions,
+				"Please select a valid option.",
+				Refresh));
+
 	}
 }

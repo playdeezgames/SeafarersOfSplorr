@@ -42,9 +42,10 @@ namespace game::avatar//20211017
 	{
 		return common::utility::Table::Accumulate<Item, size_t, double>(
 			All(),
-			[](const double& result, const Item& item, const size_t count) 
+			[](double& result, const Item& item, const size_t count) 
 			{ 
-				return result + game::Items::GetUnitTonnage(item) * (double)count;
+				double delta = game::Items::GetUnitTonnage(item) * (double)count;
+				result += delta;
 			});
 	}
 
