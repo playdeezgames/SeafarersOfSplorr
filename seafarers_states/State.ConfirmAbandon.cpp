@@ -1,65 +1,50 @@
 #include <Application.Command.h>
-#include <Application.MouseButtonUp.h>
-#include <Application.MouseMotion.h>
+#include <Application.Keyboard.h>
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Common.Utility.h>
 #include <Game.Audio.Mux.h>
+#include <Game.Colors.h>
 #include "State.ConfirmAbandon.h"
-#include "State.InPlay.AtSea.h"
+#include "State.Terminal.h"
 #include "UIState.h"
-#include <Visuals.Areas.h>
-#include <Visuals.Menus.h>
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::CONFIRM_ABANDON;
-	static const std::string LAYOUT_NAME = "State.ConfirmAbandon";
-	static const std::string MENU_ID = "ConfirmAbandon";
 
-	enum class ConfirmAbandonItem
+	static void OnEnter()
 	{
-		NO,
-		YES
-	};
+		game::audio::Mux::Play(game::audio::Theme::MAIN);
 
-	static void CancelAbandon()
-	{
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		Terminal::ClearStatusLine();
+
+		Terminal::ClearInput();
+		Terminal::WriteLine();
+
+		Terminal::SetForeground(game::Colors::RED);
+		Terminal::WriteLine("Are you sure you want to abandon yer current session?");
+		Terminal::WriteLine();
+
+		Terminal::SetForeground(game::Colors::YELLOW);
+		Terminal::WriteLine("1) No");
+		Terminal::WriteLine("2) Yes");
+
+		Terminal::SetForeground(game::Colors::GRAY);
+		Terminal::WriteLine();
+		Terminal::Write(">");
 	}
 
-	static void ConfirmAbandon()
+	static const std::map<std::string, std::function<void()>> menuActions =
 	{
-		::application::UIState::Write(::UIState::MAIN_MENU);
-		if (in_play::AtSea::IsAutoMoveEngaged())
-		{
-			in_play::AtSea::ToggleAutoMove();
-		}
-	}
-
-	static const std::map<ConfirmAbandonItem, std::function<void()>> activators =
-	{
-		{ ConfirmAbandonItem::NO, CancelAbandon },
-		{ ConfirmAbandonItem::YES, ConfirmAbandon }
-	};
-
-	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
-
-	static const std::map<Command, std::function<void()>> commandHandlers =
-	{
-		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
-		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
-		{ ::Command::GREEN, ActivateItem },
-		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::MAIN_MENU) },
-		{ ::Command::RED, ::application::UIState::GoTo(::UIState::MAIN_MENU) }
+		{ "1", application::UIState::GoTo(::UIState::LEAVE_PLAY)},
+		{ "2", application::UIState::GoTo(::UIState::MAIN_MENU)}
 	};
 
 	void ConfirmAbandon::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
-		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
-		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
+		::application::Keyboard::AddHandler(CURRENT_STATE, Terminal::DoIntegerInput(menuActions, "Please enter a number between 1 and 2.", OnEnter));
 	}
 }
