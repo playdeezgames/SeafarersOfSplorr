@@ -27,7 +27,7 @@ namespace state::in_play
 		Terminal::WriteLine("At Sea:");
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine(
-			"Heading: {:.2f}, Speed: {:.2f}", 
+			"Heading: {:.2f}\xf8, Speed: {:.1f}", 
 			game::Ship::GetHeading(), 
 			game::Ship::GetSpeed());
 		auto nearby = game::Islands::GetViewableIslands();
@@ -37,7 +37,7 @@ namespace state::in_play
 			for (auto& island : nearby)
 			{
 				Terminal::WriteLine(
-					"{} ({:.2f} dist {:.1f})", 
+					"{} ({:.2f}\xf8 dist {:.1f})", 
 					island.GetDisplayName(), 
 					common::Heading::XYToDegrees(island.relativeLocation), 
 					island.relativeLocation.GetMagnitude());

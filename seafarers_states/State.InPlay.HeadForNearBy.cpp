@@ -32,7 +32,7 @@ namespace state::in_play
 			int index = 1;
 			for (auto& island : nearby)
 			{
-				Terminal::WriteLine("{}) {} ({:.2f} dist {:.1f})",
+				Terminal::WriteLine("{}) {} ({:.2f}\xf8 dist {:.1f})",
 					index++,
 					island.GetDisplayName(), 
 					common::Heading::XYToDegrees(island.relativeLocation), 

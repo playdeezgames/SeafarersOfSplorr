@@ -21,7 +21,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Change Heading:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Current Headomg: {:.2f}", game::Ship::GetHeading());
+		Terminal::WriteLine("Current: {:.2f}\xf8", game::Ship::GetHeading());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Head for a known island");
