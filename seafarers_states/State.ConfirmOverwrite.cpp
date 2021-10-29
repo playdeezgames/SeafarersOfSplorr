@@ -1,26 +1,19 @@
-#include <Application.Command.h>
-#include <Application.MouseButtonUp.h>
-#include <Application.MouseMotion.h>
+#include <Application.Keyboard.h>
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Common.Utility.h>
 #include <Game.h>
 #include <Game.Audio.Mux.h>
+#include <Game.Colors.h>
 #include "State.ConfirmOverwrite.h"
+#include "State.Terminal.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Menus.h>
 namespace state
 {
-	static const std::string LAYOUT_NAME = "State.ConfirmOverwrite";
-	static const std::string MENU_ID = "ConfirmOverwrite";
-
-	enum class ConfirmOverwriteItem
-	{
-		NO,
-		YES
-	};
+	static const std::string LAYOUT_NAME = "State.Terminal";
 
 	static const std::map<::UIState, int> slotTable =
 	{
@@ -31,6 +24,21 @@ namespace state
 		{::UIState::CONFIRM_OVERWRITE_SLOT5, 5},
 	};
 
+	static void Refresh()
+	{
+		Terminal::Reinitialize();
+
+		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
+		Terminal::WriteLine("Are you sure you want to overwrite that save slot?");
+		Terminal::WriteLine();
+
+		Terminal::SetForeground(game::Colors::YELLOW);
+		Terminal::WriteLine("1) No");
+		Terminal::WriteLine("2) Yes");
+
+		Terminal::ShowPrompt();
+	}
+
 	static void ConfirmOverwrite()
 	{
 		int slot = slotTable.find((::UIState)application::UIState::Read())->second;
@@ -38,27 +46,20 @@ namespace state
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	static const std::map<ConfirmOverwriteItem, std::function<void()>> activators =
-	{
-		{ ConfirmOverwriteItem::NO, application::UIState::GoTo(::UIState::SAVE_GAME) },
-		{ ConfirmOverwriteItem::YES, ConfirmOverwrite }
-	};
+	//static const std::map<ConfirmOverwriteItem, std::function<void()>> activators =
+	//{
+	//	{ ConfirmOverwriteItem::NO, application::UIState::GoTo(::UIState::SAVE_GAME) },
+	//	{ ConfirmOverwriteItem::YES, ConfirmOverwrite }
+	//};
 
-	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
-
-	static const std::map<Command, std::function<void()>> commandHandlers =
-	{
-		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
-		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
-		{ ::Command::GREEN, ActivateItem },
-		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::MAIN_MENU) },
-		{ ::Command::RED, ::application::UIState::GoTo(::UIState::MAIN_MENU) }
-	};
-
-	static void SetCurrentMenuItem(ConfirmOverwriteItem item)
-	{
-		visuals::Menus::WriteIndex(LAYOUT_NAME, MENU_ID, (int)item);
-	}
+	//static const std::map<Command, std::function<void()>> commandHandlers =
+	//{
+	//	{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
+	//	{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
+	//	{ ::Command::GREEN, ActivateItem },
+	//	{ ::Command::BACK, ::application::UIState::GoTo(::UIState::MAIN_MENU) },
+	//	{ ::Command::RED, ::application::UIState::GoTo(::UIState::MAIN_MENU) }
+	//};
 
 	static const std::vector<::UIState> states =
 	{
@@ -69,14 +70,23 @@ namespace state
 		::UIState::CONFIRM_OVERWRITE_SLOT5,
 	};
 
+	static void OnEnter()
+	{
+		game::audio::Mux::Play(game::audio::Theme::MAIN);
+		Refresh();
+	}
+
+	static const std::map<std::string, std::function<void()>> menuActions =
+	{
+		{ "1", application::UIState::GoTo(::UIState::SAVE_GAME)},
+		{ "2", ConfirmOverwrite}
+	};
+
 	static void ConfigureState(const ::UIState& state)
 	{
-		::application::OnEnter::AddHandler(state, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
-
-		::application::MouseButtonUp::AddHandler(state, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
-		::application::MouseMotion::AddHandler(state, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-		::application::Command::SetHandlers(state, commandHandlers);
+		::application::OnEnter::AddHandler(state, OnEnter);
 		::application::Renderer::SetRenderLayout(state, LAYOUT_NAME);
+		::application::Keyboard::AddHandler(state, Terminal::DoIntegerInput(menuActions, "Please enter a number between 1 and 2.", OnEnter));
 	}
 
 	void ConfirmOverwrite::Start()
