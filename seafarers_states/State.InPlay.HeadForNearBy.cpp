@@ -69,7 +69,7 @@ namespace state::in_play
 			{
 				Terminal::SetForeground(game::Colors::RED);
 				Terminal::WriteLine();
-				Terminal::WriteLine("Please make a valid selection.");
+				Terminal::WriteLine(Terminal::INVALID_INPUT);
 				Refresh();
 			}
 		};
@@ -97,7 +97,7 @@ namespace state::in_play
 			CURRENT_STATE,
 			Terminal::DoIntegerInput(
 				menuActions,
-				"Please make a valid selection.",
+				Terminal::INVALID_INPUT,
 				Refresh));
 	}
 }

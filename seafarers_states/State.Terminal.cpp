@@ -6,6 +6,8 @@
 #include <Visuals.Terminals.h>
 namespace state
 {
+	const std::string Terminal::INVALID_INPUT = "Please select a valid option.";
+
 	static std::string inputBuffer = "";
 	const std::string Terminal::LAYOUT_NAME = "State.Terminal";
 	const std::string Terminal::TERMINAL_ID = "terminal";

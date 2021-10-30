@@ -7,6 +7,7 @@ namespace state
 {
 	struct Terminal
 	{
+		static const std::string INVALID_INPUT;
 		static void ClearInput();
 		static const std::string& GetInput();
 		static const void AppendInput(const std::string&);

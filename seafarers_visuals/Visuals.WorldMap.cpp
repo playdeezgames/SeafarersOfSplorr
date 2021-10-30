@@ -122,7 +122,7 @@ namespace visuals
 	static void DrawKnownIslands(const std::shared_ptr<application::Engine::Renderer>& renderer, InternalWorldMap& worldMap, const common::XY<double> worldSize)
 	{
 		auto closest = common::Heading::Distance({(double)worldMap.size.GetX(), (double)worldMap.size.GetY()}, {0.0,0.0});
-		auto knownIslands = game::Islands::GetKnownIslands();
+		auto knownIslands = game::Islands::GetKnownIslands(game::Ship::GetLocation());
 		worldMap.hoverIsland = std::nullopt;
 		auto quest = game::avatar::Quest::Read();
 		for (auto& knownIsland : knownIslands)

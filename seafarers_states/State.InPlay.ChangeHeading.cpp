@@ -3,6 +3,7 @@
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
+#include <Game.Ship.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>
 #include <Game.Ship.h>
@@ -24,8 +25,14 @@ namespace state::in_play
 		Terminal::WriteLine("Current: {:.2f}\xf8", game::Ship::GetHeading());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine("1) Head for a known island");
-		Terminal::WriteLine("2) Head for a nearby island");
+		if (!game::Islands::GetKnownIslands(game::Ship::GetLocation()).empty())
+		{
+			Terminal::WriteLine("1) Head for a known island");
+		}
+		if (!game::Islands::GetViewableIslands().empty())
+		{
+			Terminal::WriteLine("2) Head for a nearby island");
+		}
 		Terminal::WriteLine("3) Set heading manually");
 		Terminal::WriteLine("4) Never mind");
 
@@ -40,10 +47,15 @@ namespace state::in_play
 
 	static void OnHeadForKnownIsland()
 	{
-		Terminal::WriteLine();
-		Terminal::SetForeground(game::Colors::RED);
-		Terminal::WriteLine("TODO: head for known island");
-		Refresh();
+		if (!game::Islands::GetKnownIslands(game::Ship::GetLocation()).empty())
+		{
+			application::UIState::Write(::UIState::IN_PLAY_HEAD_FOR_KNOWN);
+		}
+		else
+		{
+			Terminal::ErrorMessage("Please select a valid option.");
+			Refresh();
+		}
 	}
 
 	static void OnHeadForNearbyIsland()
@@ -54,7 +66,8 @@ namespace state::in_play
 		}
 		else
 		{
-			Terminal::ErrorMessage("Please make a valid selection.");
+			Terminal::ErrorMessage("Please select a valid option.");
+			Refresh();
 		}
 	}
 

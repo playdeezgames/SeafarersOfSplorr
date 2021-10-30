@@ -164,7 +164,7 @@ namespace game//20211014
 		}
 	}
 
-	std::list<Island> Islands::GetKnownIslands()
+	std::list<Island> Islands::GetKnownIslands(const common::XY<double>& avatarLocation)
 	{
 		auto knownLocations = data::game::island::Known::All();
 		std::list<Island> result;
@@ -173,6 +173,7 @@ namespace game//20211014
 			auto model = Read(knownLocation);
 			if (model)
 			{
+				model.value().relativeLocation = model.value().absoluteLocation - avatarLocation;
 				ObfuscateIfUnknown(model.value());
 				result.push_back(model.value());
 			}

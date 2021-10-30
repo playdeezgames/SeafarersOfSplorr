@@ -13,7 +13,7 @@ namespace game//20211011
 		static std::list<Island> GetViewableIslands();
 		static std::list<Island> GetDockableIslands();
 		static bool CanDock();
-		static std::list<Island> GetKnownIslands();
+		static std::list<Island> GetKnownIslands(const common::XY<double>&);
 		static void AddVisit(const common::XY<double>&, const int&);//location and turn
 		static void SetKnown(const common::XY<double>&, const int&);//location and turn
 		static std::optional<Island> Read(const common::XY<double>&);
