@@ -77,6 +77,7 @@ namespace state::in_play
 
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
+		{ "1", application::UIState::GoTo(::UIState::IN_PLAY_CONFIRM_ABANDON_JOB) },
 		{ "2", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW)},
 	};
 
