@@ -1,6 +1,4 @@
-#include <Application.Command.h>
-#include <Application.MouseButtonUp.h>
-#include <Application.MouseMotion.h>
+#include <Application.Keyboard.h>
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
@@ -19,37 +17,18 @@
 #include <Game.Islands.Quests.h>
 #include "Game.Ship.h"
 #include "State.InPlay.IslandJobs.h"
+#include "State.Terminal.h"
 #include "UIState.h"
-#include <Visuals.Areas.h>
-#include <Visuals.Menus.h>
-#include <Visuals.MenuItems.h>
-#include <Visuals.Texts.h>
 namespace state::in_play
 {
-	static const std::string LAYOUT_NAME = "State.InPlay.IslandJobs";
-	static const std::string MENU_ID = "AcceptJob";
-	static const std::string MENU_ITEM_ACCEPT_JOB = "Accept";
-	static const std::string TEXT_LINE1 = "Line1";
-	static const std::string TEXT_LINE2 = "Line2";
-	static const std::string TEXT_LINE3 = "Line3";
-	static const std::string TEXT_LINE4 = "Line4";
-	static const std::string TEXT_LINE5 = "Line5";
-	static const std::string TEXT_LINE6 = "Line6";
-
-	enum class AcceptJobMenuItem
-	{
-		ACCEPT,
-		CANCEL
-	};
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_ISLAND_JOBS;
+	static const std::string LAYOUT_NAME = "State.Terminal";
 
 	static void OnAccept()//TODO: make this more declarative
 	{
 		switch (game::avatar::Quest::Accept(game::avatar::Docked::ReadLocation().value()))
 		{
 		case game::avatar::AcceptQuestResult::ACCEPTED_QUEST:
-			game::avatar::Log::Write({
-				game::Colors::GRAY,
-				"You accept the job!" });
 			game::avatar::Actions::DoAction(game::avatar::Action::ENTER_DOCK);
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			break;
@@ -65,72 +44,73 @@ namespace state::in_play
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	const std::map<AcceptJobMenuItem, std::function<void()>> activators =
+	static void RefreshQuest(const game::Quest& questModel)
 	{
-		{ AcceptJobMenuItem::ACCEPT, OnAccept },
-		{ AcceptJobMenuItem::CANCEL, OnCancel }
-	};
-
-	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
-
-	static const std::map<::Command, std::function<void()>> commandHandlers =
-	{
-		{::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
-		{::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
-		{::Command::GREEN, ActivateItem },
-		{::Command::BACK, OnCancel },
-		{::Command::RED, OnCancel }
-	};
-
-	static void UpdateQuestText(const game::Quest& questModel)
-	{
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE1, "Please deliver this");//TODO: hardcoded
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE2, questModel.itemName);
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE3, "to {}", questModel.personName);
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE4, "the {}", questModel.professionName);
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE6, "Reward: {:.2f}", questModel.reward);
-
 		auto islandModel = game::Islands::Read(questModel.destination).value();
 		double distance = common::Heading::Distance(questModel.destination, game::Ship::GetLocation());
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE5, "at {} ({:.2f}).", islandModel.name, distance);
-		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_ACCEPT_JOB, true);
+
+		Terminal::Reinitialize();
+
+		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
+		Terminal::WriteLine("Job Board:");
+		Terminal::SetForeground(game::Colors::GRAY);
+		Terminal::WriteLine(
+			"Please deliver this {} to {} the {} at {} ({:.2f}). Reward: {:.2f}",
+			questModel.itemName,
+			questModel.personName,
+			questModel.professionName,
+			islandModel.name,
+			distance,
+			questModel.reward);
+
+		Terminal::SetForeground(game::Colors::YELLOW);
+		Terminal::WriteLine("1) Accept");
+		Terminal::WriteLine("2) Never mind");
+
+		Terminal::ShowPrompt();
 	}
 
-	static void UpdateNoQuestText()
+	static void RefreshNoQuest()
 	{
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE1, "No Jobs");
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE2, "");
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE3, "");
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE4, "");
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE5, "");
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE6, "");
-		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_ACCEPT_JOB, false);
+		Terminal::ErrorMessage("There are currently no jobs available. Try again later.");
 	}
 
-	static void UpdateText()
+	static void Refresh()
 	{
 		auto location = game::avatar::Docked::ReadLocation().value();
 		auto quest = game::islands::Quests::Read(location);
 		if (quest)
 		{
-			UpdateQuestText(quest.value());
-			return;
+			RefreshQuest(quest.value());
 		}
-		UpdateNoQuestText();
+		else
+		{
+			RefreshNoQuest();
+			OnCancel();
+		}
 	}
 
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
-		UpdateText();
+		Refresh();
 	}
+
+	static const std::map<std::string, std::function<void()>> menuActions =
+	{
+		{"1", OnAccept},
+		{"2", OnCancel}
+	};
 
 	void IslandJobs::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_ISLAND_JOBS, OnEnter);
-		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_ISLAND_JOBS, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_ISLAND_JOBS, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
-		::application::Command::SetHandlers(::UIState::IN_PLAY_ISLAND_JOBS, commandHandlers);
-		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_ISLAND_JOBS, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		::application::Keyboard::AddHandler(
+			CURRENT_STATE,
+			Terminal::DoIntegerInput(
+				menuActions,
+				"Please enter a number between 1 and 2.",
+				Refresh));
 	}
 }
