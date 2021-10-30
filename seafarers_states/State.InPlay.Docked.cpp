@@ -1,6 +1,4 @@
-#include <Application.Command.h>
-#include <Application.MouseButtonUp.h>
-#include <Application.MouseMotion.h>
+#include <Application.Keyboard.h>
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
@@ -11,36 +9,48 @@
 #include <Game.Avatar.h>
 #include <Game.Avatar.Actions.h>
 #include <Game.Avatar.Docked.h>
+#include <Game.Colors.h>
 #include <Game.Islands.h>
 #include <Game.Islands.Features.h>
 #include "State.InPlay.Docked.h"
+#include "State.Terminal.h"
 #include "UIState.h"
-#include <Visuals.Areas.h>
-#include <Visuals.Menus.h>
-#include <Visuals.MenuItems.h>
-#include <Visuals.Texts.h>
 namespace state::in_play
 {
-	static const std::string LAYOUT_NAME = "State.InPlay.Docked";
-	static const std::string MENU_ID = "Order";
-	static const std::string MENU_ITEM_SHIPYARD = "Shipyard";
-	static const std::string MENU_ITEM_DARK_ALLEY = "DarkAlley";
-	static const std::string MENU_ITEM_TEMPLE = "Temple";
-	static const std::string TEXT_ISLAND_NAME = "island-name";
-	static const std::string TEXT_ISLAND_VISITS = "island-visits";
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DOCKED;
+	static const std::string LAYOUT_NAME = "State.Terminal";
 	static const std::string FORMAT_NAME = "Island Name: {}";
 	static const std::string FORMAT_VISITS = "Visits: {}";
-	static const std::string FORMAT_TEMPLE = "Temple of {}";
+	static const std::string FORMAT_TEMPLE = "5) Temple of {}";
 
-	enum class OrderMenuItem
+	static void Refresh()
 	{
-		UNDOCK,
-		JOBS,
-		TRADE,
-		SHIPYARD,
-		DARK_ALLEY,
-		TEMPLE
-	};
+		auto location = game::avatar::Docked::ReadLocation().value();
+		auto island = game::Islands::Read(location).value();
+		Terminal::Reinitialize();
+
+		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
+		Terminal::WriteLine("Docked:");
+		Terminal::SetForeground(game::Colors::GRAY);
+		Terminal::WriteLine(FORMAT_NAME, island.name);
+		Terminal::WriteLine(FORMAT_VISITS, island.visits.value_or(0));
+
+		Terminal::SetForeground(game::Colors::YELLOW);
+		Terminal::WriteLine("1) Jobs");
+		Terminal::WriteLine("2) Trade");
+		if (game::islands::Features::Read(location, game::Feature::SHIPYARD))
+		{
+			Terminal::WriteLine("3) Shipyard");
+		}
+		if (game::islands::Features::Read(location, game::Feature::DARK_ALLEY))
+		{
+			Terminal::WriteLine("4) Dark Alley");
+		}
+		Terminal::WriteLine(FORMAT_TEMPLE, island.patronDemigod);
+		Terminal::WriteLine("6) Undock");
+
+		Terminal::ShowPrompt();
+	}
 
 	static void OnUndock()
 	{
@@ -62,14 +72,32 @@ namespace state::in_play
 
 	static void OnShipyard()
 	{
-		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_SHIPYARD);
-		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		auto location = game::avatar::Docked::ReadLocation().value();
+		if (game::islands::Features::Read(location, game::Feature::SHIPYARD))
+		{
+			game::avatar::Actions::DoAction(game::avatar::Action::ENTER_SHIPYARD);
+			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		}
+		else
+		{
+			Terminal::ErrorMessage("Please select a valid option.");
+			Refresh();
+		}
 	}
 
 	static void OnDarkAlley()
 	{
-		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_DARK_ALLEY);
-		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		auto location = game::avatar::Docked::ReadLocation().value();
+		if (game::islands::Features::Read(location, game::Feature::DARK_ALLEY))
+		{
+			game::avatar::Actions::DoAction(game::avatar::Action::ENTER_DARK_ALLEY);
+			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		}
+		else
+		{
+			Terminal::ErrorMessage("Please select a valid option.");
+			Refresh();
+		}
 	}
 
 	static void OnTemple()
@@ -78,61 +106,32 @@ namespace state::in_play
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	static const std::map<OrderMenuItem, std::function<void()>> activators =
-	{
-		{ OrderMenuItem::UNDOCK, OnUndock },
-		{ OrderMenuItem::JOBS, OnJob },
-		{ OrderMenuItem::TRADE, OnTrade },
-		{ OrderMenuItem::SHIPYARD, OnShipyard },
-		{ OrderMenuItem::DARK_ALLEY, OnDarkAlley },
-		{ OrderMenuItem::TEMPLE, OnTemple }
-	};
-
-	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
-
-	static const std::map<::Command, std::function<void()>> commandHandlers =
-	{
-		{::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
-		{::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
-		{::Command::GREEN, ActivateItem },
-		{::Command::BACK, OnUndock },
-		{::Command::RED, OnUndock }
-	};
-
-	static const std::map<std::string, game::Feature> featureMenuItems =
-	{
-		{MENU_ITEM_SHIPYARD, game::Feature::SHIPYARD},
-		{MENU_ITEM_DARK_ALLEY, game::Feature::DARK_ALLEY}
-	};
-
-	static void RefreshIslandDetails()
-	{
-		auto location = game::avatar::Docked::ReadLocation().value();
-		auto island = game::Islands::Read(location).value();
-		visuals::MenuItems::SetText(LAYOUT_NAME, MENU_ITEM_TEMPLE, FORMAT_TEMPLE, island.patronDemigod);
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_ISLAND_NAME, FORMAT_NAME, island.name);
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_ISLAND_VISITS, FORMAT_VISITS, island.visits.value_or(0));
-		for (auto featureMenuItem : featureMenuItems)
-		{
-			visuals::MenuItems::SetEnabled(
-				LAYOUT_NAME, 
-				featureMenuItem.first, 
-				game::islands::Features::Read(location, featureMenuItem.second));
-		}
-	}
 
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
-		RefreshIslandDetails();
+		Refresh();
 	}
+
+	static const std::map<std::string, std::function<void()>> menuActions =
+	{
+		{"1", OnJob},
+		{"2", OnTrade},
+		{"3", OnShipyard},
+		{"4", OnDarkAlley},
+		{"5", OnTemple},
+		{"6", OnUndock}
+	};
 
 	void Docked::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_DOCKED, OnEnter);
-		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_DOCKED, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_DOCKED, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
-		::application::Command::SetHandlers(::UIState::IN_PLAY_DOCKED, commandHandlers);
-		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_DOCKED, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		::application::Keyboard::AddHandler(
+			CURRENT_STATE,
+			Terminal::DoIntegerInput(
+				menuActions,
+				"Please enter a number between 1 and 6",
+				Refresh));
 	}
 }
