@@ -53,7 +53,8 @@ namespace state::in_play
 		}
 		Terminal::WriteLine("3) Crew status");
 		Terminal::WriteLine("4) Ship status");
-		Terminal::WriteLine("5) Menu");
+		Terminal::WriteLine("5) Job status");
+		Terminal::WriteLine("6) Menu");
 
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine();
@@ -106,7 +107,8 @@ namespace state::in_play
 		{"2", OnDock },
 		{"3", OnCrewStatus },
 		{"4", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS) },
-		{"5", application::UIState::GoTo(::UIState::LEAVE_PLAY) }
+		{"5", application::UIState::GoTo(::UIState::IN_PLAY_CURRENT_JOB) },
+		{"6", application::UIState::GoTo(::UIState::LEAVE_PLAY) }
 
 		//delete this later
 		, {"0", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_DEPRECATED)}

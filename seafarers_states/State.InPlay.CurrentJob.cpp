@@ -1,6 +1,4 @@
-#include <Application.Command.h>
-#include <Application.MouseButtonUp.h>
-#include <Application.MouseMotion.h>
+#include <Application.Keyboard.h>
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
@@ -10,112 +8,92 @@
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Quest.h>
+#include <Game.Colors.h>
 #include <Game.Islands.h>
 #include <Game.Islands.Quests.h>
 #include "Game.Ship.h"
 #include "State.InPlay.CurrentJob.h"
+#include "State.Terminal.h"
 #include "UIState.h"
-#include <Visuals.Areas.h>
-#include <Visuals.Menus.h>
-#include <Visuals.MenuItems.h>
-#include <Visuals.Texts.h>
-namespace state::in_play//20211019
+namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CURRENT_JOB;
-	static const std::string LAYOUT_NAME = "State.InPlay.AvatarJob";
-	static const std::string MENU_ID = "CurrentJob";
-	static const std::string MENU_ITEM_ABANDON_JOB = "Abandon";
-	static const std::string TEXT_LINE1 = "Line1";
-	static const std::string TEXT_LINE2 = "Line2";
-	static const std::string TEXT_LINE3 = "Line3";
-	static const std::string TEXT_LINE4 = "Line4";
-	static const std::string TEXT_LINE5 = "Line5";
-	static const std::string TEXT_LINE6 = "Line6";
+	static const std::string LAYOUT_NAME = "State.Terminal";
 
-	enum class CurrentJobMenuItem
+	//static const std::map<CurrentJobMenuItem, std::function<void()>> activators =
+	//{
+	//	{ CurrentJobMenuItem::ABANDON, ::application::UIState::GoTo(::UIState::IN_PLAY_CONFIRM_ABANDON_JOB) },
+	//	{ CurrentJobMenuItem::CANCEL, ::application::UIState::GoTo(::UIState::IN_PLAY_NEXT) }
+	//};
+
+	static void RefreshQuest(const game::Quest& questModel)
 	{
-		ABANDON,
-		CANCEL
-	};
+		Terminal::Reinitialize();
 
-	static const std::map<CurrentJobMenuItem, std::function<void()>> activators =
-	{
-		{ CurrentJobMenuItem::ABANDON, ::application::UIState::GoTo(::UIState::IN_PLAY_CONFIRM_ABANDON_JOB) },
-		{ CurrentJobMenuItem::CANCEL, ::application::UIState::GoTo(::UIState::IN_PLAY_NEXT) }
-	};
-
-	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
-
-	static const std::map<::Command, std::function<void()>> commandHandlers =
-	{
-		{::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
-		{::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
-		{::Command::GREEN, ActivateItem },
-		{::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_NEXT) },
-		{::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_NEXT) }
-	};
-
-	static void UpdateQuestText(const game::Quest& questModel)
-	{
+		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
+		Terminal::WriteLine("Current Job:");
+		Terminal::SetForeground(game::Colors::GRAY);
 		auto islandModel = game::Islands::Read(questModel.destination).value();
 		double distance = common::Heading::Distance(questModel.destination, game::Ship::GetLocation());
+		Terminal::WriteLine(
+			"Please deliver this {} to {} the {} at {} ({:.2f}). Reward: {:.2f}",
+			questModel.itemName,
+			questModel.personName,
+			questModel.professionName,
+			islandModel.name, 
+			distance,
+			questModel.reward);
+		Terminal::SetForeground(game::Colors::YELLOW);
+		Terminal::WriteLine("1) Abandon");
+		Terminal::WriteLine("2) Never mind");
 
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE1, "Please deliver this");
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE2, questModel.itemName);
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE3, "to {}", questModel.personName);
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE4, "the {}", questModel.professionName);
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE5, "at {} ({:.2f}).", islandModel.name, distance);
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE6, "Reward: {:.2f}", questModel.reward);
-
-		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_ABANDON_JOB, true);
+		Terminal::ShowPrompt();
 	}
 
-	static void UpdateNoQuestText()
+	static void RefreshNoQuest()
 	{
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE1, "No Jobs");
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE2, "");
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE3, "");
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE4, "");
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE5, "");
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_LINE6, "");
-
-		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_ABANDON_JOB, false);
+		Terminal::ErrorMessage("You currently have no job.");
 	}
 
-	static void UpdateText()
+	static void Refresh()
 	{
-		UpdateNoQuestText();
 		auto quest = game::avatar::Quest::Read();
 		if (quest)
 		{
-			UpdateQuestText(quest.value());
+			RefreshQuest(quest.value());
+		}
+		else
+		{
+			RefreshNoQuest();
+			application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
 		}
 	}
 
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
-		UpdateText();
+		Refresh();
 	}
+
+	static const std::map<std::string, std::function<void()>> menuActions =
+	{
+		{ "2", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW)},
+	};
+
 
 	void CurrentJob::Start()
 	{
 		::application::OnEnter::AddHandler(
 			CURRENT_STATE,
 			OnEnter);
-		::application::MouseMotion::AddHandler(
-			CURRENT_STATE,
-			visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-		::application::MouseButtonUp::AddHandler(
-			CURRENT_STATE,
-			visuals::Areas::HandleMenuMouseButtonUp(
-				LAYOUT_NAME, 
-				ActivateItem));
-		::application::Command::SetHandlers(
-			CURRENT_STATE,
-			commandHandlers);
 		::application::Renderer::SetRenderLayout(
 			CURRENT_STATE,
 			LAYOUT_NAME);
+		::application::Keyboard::AddHandler(
+			CURRENT_STATE,
+			Terminal::DoIntegerInput(
+				menuActions,
+				"Please enter a number between 1 and 2.",
+				Refresh));
 	}
 }

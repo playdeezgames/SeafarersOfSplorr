@@ -31,6 +31,11 @@ namespace state
 			WriteLine(std::format(fmt, args...));
 		}
 		static void Write(const std::string&);
+		template<typename... Ts>
+		static void Write(const std::string& fmt, Ts... args)
+		{
+			Write(std::format(fmt, args...));
+		}
 		static void SetForeground(const std::string&);
 		static void ClearStatusLine();
 		static void ShowPrompt();
