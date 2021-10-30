@@ -4,12 +4,15 @@
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Actions.h>
+#include <Game.Avatar.Docked.h>
+#include <Game.Avatar.Quest.h>
 #include <Game.Avatar.ShipStatistics.h>
 #include <Game.Colors.h>
 #include <Game.Ship.h>
 #include "State.InPlay.DockOrCareen.h"
 #include "State.Terminal.h"
 #include "UIState.h"
+#include <Visuals.Messages.h>
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DOCK_OR_CAREEN;
@@ -42,10 +45,47 @@ namespace state::in_play
 
 	static void OnDock()
 	{
-		Terminal::WriteLine();
-		Terminal::SetForeground(game::Colors::RED);
-		Terminal::WriteLine("TODO: dock");
-		Refresh();
+		auto quest = game::avatar::Quest::Read();
+		if (game::avatar::Docked::Dock() == game::avatar::DockResult::COMPLETED_QUEST)
+		{
+			visuals::Messages::Write(
+			{
+				"==DELIVERY COMPLETE==",
+				{
+					{
+						{19,5},
+						std::format("{} the {} ",quest.value().personName, quest.value().professionName),
+						game::Colors::GRAY,
+						visuals::HorizontalAlignment::CENTER
+					},
+					{
+						{19,7},
+						std::format("is {} ",quest.value().receiptEmotion),
+						game::Colors::GRAY,
+						visuals::HorizontalAlignment::CENTER
+					},
+					{
+						{19,9},
+						"when given the ",
+						game::Colors::GRAY,
+						visuals::HorizontalAlignment::CENTER
+					},
+					{
+						{19,11},
+						std::format("{}. ",quest.value().itemName),
+						game::Colors::GRAY,
+						visuals::HorizontalAlignment::CENTER
+					},
+					{
+						{19,14},
+						"Yer reputation increases!",
+						game::Colors::GRAY,
+						visuals::HorizontalAlignment::CENTER
+					}
+				}
+			});
+		}
+		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnCareenToPort()

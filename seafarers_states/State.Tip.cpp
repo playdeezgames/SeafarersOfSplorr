@@ -22,8 +22,7 @@ namespace state
 		auto index = common::RNG::FromRange(0u, store.size());
 		auto& tip = store[index];
 
-		Terminal::ClearStatusLine();
-		Terminal::ClearInput();
+		Terminal::Reinitialize();
 		Terminal::SetForeground(game::Colors::BROWN);
 		Terminal::WriteLine();
 		Terminal::WriteLine(tip[0]);

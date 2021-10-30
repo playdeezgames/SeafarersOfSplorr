@@ -1,50 +1,59 @@
-#include <Application.Renderer.h>
-#include <Application.Command.h>
-#include <Application.MouseButtonUp.h>
+#include <Application.Keyboard.h>
 #include <Application.OnEnter.h>
+#include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
+#include <Game.Colors.h>
 #include "State.InPlay.Message.h"
+#include "State.Terminal.h"
 #include "UIState.h"
 #include <Visuals.Messages.h>
-#include <Visuals.SpriteGrid.h>
-#include <Visuals.Texts.h>
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_MESSAGE;
-	static const std::string LAYOUT_NAME = "State.InPlay.Message";
-	static const std::string SPRITE_GRID = "Grid";
-	static const std::string TEXT_CAPTION = "Caption";
-	static const std::string FONT_DEFAULT = "default";
+	static const std::string LAYOUT_NAME = "State.Terminal";
 
-	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
+	static void Refresh()
 	{
-		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
-		return true;
-	}
-
-	static void OnEnter()
-	{
-		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		if (!visuals::Messages::HasMessage())
 		{
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			return;
 		}
-		visuals::SpriteGrid::Clear(LAYOUT_NAME, SPRITE_GRID);
+		Terminal::Reinitialize();
+
 		auto message = visuals::Messages::Read();
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_CAPTION, message.caption);
+		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
+		Terminal::WriteLine(message.caption);
 		for (auto& detail : message.details)
 		{
-			visuals::SpriteGrid::WriteText(LAYOUT_NAME, SPRITE_GRID, detail.position, FONT_DEFAULT, detail.text, detail.color, detail.alignment);
+			Terminal::SetForeground(detail.color);
+			Terminal::Write(detail.text);
 		}
+		Terminal::WriteLine();
+
+		Terminal::WriteLine();
+		Terminal::SetForeground(game::Colors::GRAY);
+		Terminal::WriteLine("Press any key . . .");
+
+	}
+
+	static void OnEnter()
+	{
+		game::audio::Mux::Play(game::audio::Theme::MAIN);
+		Refresh();
+	}
+
+	static bool OnKeyboard(const std::string&)
+	{
+		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		return true;
 	}
 
 	void Message::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::MouseButtonUp::AddHandler(CURRENT_STATE, OnMouseButtonUp);
-		::application::Command::SetHandler(CURRENT_STATE, ::application::UIState::GoTo(::UIState::IN_PLAY_NEXT));
+		::application::Keyboard::AddHandler(CURRENT_STATE, OnKeyboard);
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
 	}
 }
