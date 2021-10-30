@@ -194,9 +194,6 @@
     <ClInclude Include="State.Statistics.h">
       <Filter>Header Files\Boilerplate</Filter>
     </ClInclude>
-    <ClInclude Include="State.Terminal.h">
-      <Filter>Header Files\Boilerplate</Filter>
-    </ClInclude>
     <ClInclude Include="State.Tip.h">
       <Filter>Header Files\Boilerplate</Filter>
     </ClInclude>
@@ -220,6 +217,12 @@
     </ClInclude>
     <ClInclude Include="State.InPlay.HeadForKnown.h">
       <Filter>Header Files\AtSea</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.MultipleMove.h">
+      <Filter>Header Files\AtSea</Filter>
+    </ClInclude>
+    <ClInclude Include="State.Terminal.h">
+      <Filter>Header Files\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -389,6 +392,9 @@
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.HeadForKnown.cpp">
+      <Filter>Source Files\AtSea</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.MultipleMove.cpp">
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
   </ItemGroup>

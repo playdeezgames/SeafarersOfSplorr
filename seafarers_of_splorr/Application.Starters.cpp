@@ -46,6 +46,7 @@
 #include <State.InPlay.MakeOffering.h>
 #include <State.InPlay.ManualHeading.h>
 #include <State.InPlay.Message.h>
+#include <State.InPlay.MultipleMove.h>
 #include <State.InPlay.Next.h>
 #include <State.InPlay.Shipyard.h>
 #include <State.InPlay.ShipStatus.h>
@@ -189,6 +190,7 @@ namespace application
 		state::in_play::DockOrCareen::Start,
 		state::in_play::HeadForNearBy::Start,
 		state::in_play::HeadForKnown::Start,
+		state::in_play::MultipleMove::Start,
 		sublayout::UIHamburger::Start,
 		sublayout::AtSeaActions::Start,
 		sublayout::AtSeaAvatarStatus::Start,

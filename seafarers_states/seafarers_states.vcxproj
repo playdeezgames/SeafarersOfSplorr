@@ -55,6 +55,7 @@
     <ClInclude Include="State.InPlay.Lose.h" />
     <ClInclude Include="State.InPlay.MakeOffering.h" />
     <ClInclude Include="State.InPlay.Message.h" />
+    <ClInclude Include="State.InPlay.MultipleMove.h" />
     <ClInclude Include="State.InPlay.Next.h" />
     <ClInclude Include="State.InPlay.Shipyard.h" />
     <ClInclude Include="State.InPlay.ShipStatus.h" />
@@ -92,6 +93,7 @@
     <ClCompile Include="State.InPlay.HeadForKnown.cpp" />
     <ClCompile Include="State.InPlay.HeadForNearBy.cpp" />
     <ClCompile Include="State.InPlay.ManualHeading.cpp" />
+    <ClCompile Include="State.InPlay.MultipleMove.cpp" />
     <ClCompile Include="State.InPlay.ShipStatus.cpp" />
     <ClCompile Include="State.Terminal.cpp" />
     <ClCompile Include="Sublayout.AtSeaActions.cpp" />

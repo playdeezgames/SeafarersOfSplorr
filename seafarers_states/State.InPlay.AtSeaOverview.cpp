@@ -6,9 +6,11 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Quest.h>
+#include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>
 #include <Game.Ship.h>
+#include <Game.World.h>
 #include "State.Terminal.h"
 #include "State.InPlay.AtSeaOverview.h"
 #include "UIState.h"
@@ -22,14 +24,24 @@ namespace state::in_play
 		Terminal::ClearStatusLine();
 		Terminal::ClearInput();
 
-		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
+		Terminal::SetForeground(
+			game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine();
-		Terminal::WriteLine("At Sea:");
-		Terminal::SetForeground(game::Colors::GRAY);
+		Terminal::WriteLine(
+			"At Sea:");
+		Terminal::SetForeground(
+			game::Colors::GRAY);
+		Terminal::WriteLine(
+			"Turns remaining: {}", 
+			game::avatar::Statistics::GetTurnsRemaining());
 		Terminal::WriteLine(
 			"Heading: {:.2f}\xf8, Speed: {:.1f}", 
 			game::Ship::GetHeading(), 
 			game::Ship::GetSpeed());
+		Terminal::WriteLine(
+			"Wind: {:.2f}\xf8 (x{:.1f})", 
+			game::World::GetWindHeading(), 
+			game::World::GetWindSpeedMultiplier(game::Ship::GetHeading()));
 		auto nearby = game::Islands::GetViewableIslands();
 		if (!nearby.empty())
 		{
@@ -43,18 +55,17 @@ namespace state::in_play
 					island.relativeLocation.GetMagnitude());
 			}
 		}
-		//TODO: wind from
-
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Move");
+		Terminal::WriteLine("2) Multiple move");
 		if (!game::Islands::GetDockableIslands().empty())
 		{
-			Terminal::WriteLine("2) Dock/careen");
+			Terminal::WriteLine("3) Dock/careen");
 		}
-		Terminal::WriteLine("3) Crew status");
-		Terminal::WriteLine("4) Ship status");
-		Terminal::WriteLine("5) Job status");
-		Terminal::WriteLine("6) Menu");
+		Terminal::WriteLine("4) Crew status");
+		Terminal::WriteLine("5) Ship status");
+		Terminal::WriteLine("6) Job status");
+		Terminal::WriteLine("7) Menu");
 
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine();
@@ -95,20 +106,15 @@ namespace state::in_play
 		Refresh();
 	}
 
-	static void OnMenu()
-	{
-		Terminal::ErrorMessage("TODO: menu status");
-		Refresh();
-	}
-
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
 		{"1", OnMove },
-		{"2", OnDock },
-		{"3", OnCrewStatus },
-		{"4", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS) },
-		{"5", application::UIState::GoTo(::UIState::IN_PLAY_CURRENT_JOB) },
-		{"6", application::UIState::GoTo(::UIState::LEAVE_PLAY) }
+		{"2", application::UIState::GoTo(::UIState::IN_PLAY_MULTIPLE_MOVE) },
+		{"3", OnDock },
+		{"4", OnCrewStatus },
+		{"5", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS) },
+		{"6", application::UIState::GoTo(::UIState::IN_PLAY_CURRENT_JOB) },
+		{"7", application::UIState::GoTo(::UIState::LEAVE_PLAY) }
 
 		//delete this later
 		, {"0", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_DEPRECATED)}
@@ -126,7 +132,7 @@ namespace state::in_play
 			CURRENT_STATE, 
 			Terminal::DoIntegerInput(
 				menuActions, 
-				"Please enter a number between 1 and X", 
+				Terminal::INVALID_INPUT, 
 				Refresh));
 	}
 }
