@@ -13,7 +13,6 @@
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CONFIRM_ABANDON_JOB;
-	static const std::string LAYOUT_NAME = "State.Terminal";
 
 	static void AbandonJob()
 	{
@@ -56,7 +55,7 @@ namespace state::in_play
 			OnEnter);
 		::application::Renderer::SetRenderLayout(
 			CURRENT_STATE, 
-			LAYOUT_NAME);
+			Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(
 			CURRENT_STATE,
 			Terminal::DoIntegerInput(

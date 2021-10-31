@@ -11,7 +11,6 @@
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::LEAVE_PLAY;
-	static const std::string LAYOUT_NAME = "State.Terminal";
 
 	static void Refresh()
 	{
@@ -60,7 +59,7 @@ namespace state
 	void LeavePlay::Start()
 	{
 		::application::OnEnter::AddHandler(::UIState::LEAVE_PLAY, OnEnter);
-		::application::Renderer::SetRenderLayout(::UIState::LEAVE_PLAY, LAYOUT_NAME);
+		::application::Renderer::SetRenderLayout(::UIState::LEAVE_PLAY, Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(
 			CURRENT_STATE,
 			Terminal::DoIntegerInput(

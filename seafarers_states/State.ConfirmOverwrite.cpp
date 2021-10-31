@@ -13,8 +13,6 @@
 #include <Visuals.Menus.h>
 namespace state
 {
-	static const std::string LAYOUT_NAME = "State.Terminal";
-
 	static const std::map<::UIState, int> slotTable =
 	{
 		{::UIState::CONFIRM_OVERWRITE_SLOT1, 1},
@@ -46,21 +44,6 @@ namespace state
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	//static const std::map<ConfirmOverwriteItem, std::function<void()>> activators =
-	//{
-	//	{ ConfirmOverwriteItem::NO, application::UIState::GoTo(::UIState::SAVE_GAME) },
-	//	{ ConfirmOverwriteItem::YES, ConfirmOverwrite }
-	//};
-
-	//static const std::map<Command, std::function<void()>> commandHandlers =
-	//{
-	//	{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
-	//	{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
-	//	{ ::Command::GREEN, ActivateItem },
-	//	{ ::Command::BACK, ::application::UIState::GoTo(::UIState::MAIN_MENU) },
-	//	{ ::Command::RED, ::application::UIState::GoTo(::UIState::MAIN_MENU) }
-	//};
-
 	static const std::vector<::UIState> states =
 	{
 		::UIState::CONFIRM_OVERWRITE_SLOT1,
@@ -85,7 +68,7 @@ namespace state
 	static void ConfigureState(const ::UIState& state)
 	{
 		::application::OnEnter::AddHandler(state, OnEnter);
-		::application::Renderer::SetRenderLayout(state, LAYOUT_NAME);
+		::application::Renderer::SetRenderLayout(state, Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(state, Terminal::DoIntegerInput(menuActions, "Please enter a number between 1 and 2.", OnEnter));
 	}
 

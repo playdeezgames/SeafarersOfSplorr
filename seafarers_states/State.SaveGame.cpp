@@ -12,7 +12,6 @@
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::SAVE_GAME;
-	static const std::string LAYOUT_NAME = "State.Terminal";
 
 	static void Refresh()
 	{
@@ -86,7 +85,7 @@ namespace state
 
 	void SaveGame::Start()
 	{
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::Keyboard::AddHandler(
 			CURRENT_STATE,

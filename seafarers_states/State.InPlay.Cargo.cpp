@@ -21,7 +21,6 @@
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CARGO;
-	static const std::string LAYOUT_NAME = "State.Terminal";
 
 	static auto OnLeave = ::application::UIState::GoTo(::UIState::IN_PLAY_NEXT);
 
@@ -103,7 +102,7 @@ namespace state::in_play
 			OnEnter);
 		::application::Renderer::SetRenderLayout(
 			CURRENT_STATE, 
-			LAYOUT_NAME);
+			Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(
 			CURRENT_STATE,
 			Terminal::DoIntegerInput(

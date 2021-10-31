@@ -15,7 +15,6 @@
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::OPTIONS;
-	static const std::string LAYOUT_NAME = "State.Terminal";
 	static const std::string MUTE = "Mute";
 	static const std::string UNMUTE = "Unmute";
 	static const int VOLUME_DELTA = 8;
@@ -129,7 +128,7 @@ namespace state
 	void Options::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(CURRENT_STATE, Terminal::DoIntegerInput(menuActions, "Please enter a number between 1 and 6", Refresh));
 	}
 }

@@ -13,7 +13,6 @@
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_MULTIPLE_MOVE;
-	static const std::string LAYOUT_NAME = "State.Terminal";
 
 	static void Refresh()
 	{
@@ -53,7 +52,7 @@ namespace state::in_play
 	void MultipleMove::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(
 			CURRENT_STATE,
 			Terminal::DoIntegerInput(

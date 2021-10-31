@@ -9,7 +9,6 @@
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::STATISTICS;
-	static const std::string LAYOUT_NAME = "State.Statistics";
 
 	static void Refresh()
 	{
@@ -32,6 +31,6 @@ namespace state
 	void Statistics::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
 	}
 }

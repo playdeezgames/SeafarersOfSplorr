@@ -9,27 +9,25 @@
 #include <Visuals.Terminals.h>
 namespace state
 {
-	static const std::string LAYOUT_NAME = "State.Terminal";
 	static const ::UIState CURRENT_STATE = ::UIState::ABOUT;
-	static const std::string TERMINAL_ID = "terminal";
 
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
-		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
-		visuals::Terminals::SetForeground(LAYOUT_NAME, TERMINAL_ID, game::Colors::LIGHT_CYAN);
-		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "About Seafarers of SPLORR!!:");
-		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
-		visuals::Terminals::SetForeground(LAYOUT_NAME, TERMINAL_ID, game::Colors::DARK_GRAY);
-		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "A Production of TheGrumpyGameDev");
-		visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
-		visuals::Terminals::SetForeground(LAYOUT_NAME, TERMINAL_ID, game::Colors::GRAY);
+		Terminal::WriteLine();
+		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
+		Terminal::WriteLine("About Seafarers of SPLORR!!:");
+		Terminal::WriteLine();
+		Terminal::SetForeground(game::Colors::DARK_GRAY);
+		Terminal::WriteLine("A Production of TheGrumpyGameDev");
+		Terminal::WriteLine();
+		Terminal::SetForeground(game::Colors::GRAY);
 		application::UIState::Write(::UIState::MAIN_MENU);
 	}
 
 	void About::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
 	}
 }

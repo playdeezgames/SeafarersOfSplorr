@@ -12,7 +12,6 @@
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::LOAD_GAME;
-	static const std::string LAYOUT_NAME = "State.Terminal";
 
 	static void Refresh()
 	{
@@ -93,7 +92,7 @@ namespace state
 
 	void LoadGame::Start()
 	{
-		::application::Renderer::SetRenderLayout(::UIState::LOAD_GAME, LAYOUT_NAME);
+		::application::Renderer::SetRenderLayout(::UIState::LOAD_GAME, Terminal::LAYOUT_NAME);
 		::application::OnEnter::AddHandler(::UIState::LOAD_GAME, OnEnter);
 		::application::Keyboard::AddHandler(
 			CURRENT_STATE,

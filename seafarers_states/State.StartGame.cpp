@@ -11,7 +11,6 @@
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::START_GAME;
-	static const std::string LAYOUT_NAME = "State.Terminal";
 
 	static std::function<void()> NewGame(const game::Difficulty& difficulty)
 	{
@@ -64,7 +63,7 @@ namespace state
 	void StartGame::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(CURRENT_STATE, Terminal::DoIntegerInput(menuActions, "Please enter a number between 1 and 6", Refresh));
 
 	}

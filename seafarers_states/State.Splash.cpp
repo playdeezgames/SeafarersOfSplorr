@@ -5,12 +5,12 @@
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
 #include "State.Splash.h"
+#include "State.Terminal.h"
 #include "UIState.h"
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::SPLASH;
 	static const size_t TICKS_TOTAL = 3000;
-	static const std::string LAYOUT_NAME = "State.Splash";
 	static size_t ticksLeft = TICKS_TOTAL;
 
 	static void RunOutTimer()
@@ -38,7 +38,7 @@ namespace state
 	{
 		application::OnEnter::AddHandler(CURRENT_STATE, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
 		application::Keyboard::AddHandler(CURRENT_STATE, OnKeyboard);
-		application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
 		application::Update::AddHandler(CURRENT_STATE, OnUpdate);
 	}
 }

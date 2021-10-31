@@ -18,7 +18,6 @@
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DOCKED;
-	static const std::string LAYOUT_NAME = "State.Terminal";
 	static const std::string FORMAT_NAME = "Island Name: {}";
 	static const std::string FORMAT_VISITS = "Visits: {}";
 	static const std::string FORMAT_TEMPLE = "5) Temple of {}";
@@ -126,7 +125,7 @@ namespace state::in_play
 	void Docked::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(
 			CURRENT_STATE,
 			Terminal::DoIntegerInput(

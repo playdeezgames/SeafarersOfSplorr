@@ -11,7 +11,6 @@
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::MAIN_MENU;
-	static const std::string LAYOUT_NAME = "State.Terminal";
 
 	static void GoToAbout()
 	{
@@ -54,7 +53,7 @@ namespace state
 	void MainMenu::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(
 			CURRENT_STATE, 
 			Terminal::DoIntegerInput(

@@ -22,7 +22,6 @@
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_ISLAND_JOBS;
-	static const std::string LAYOUT_NAME = "State.Terminal";
 
 	static void OnAccept()//TODO: make this more declarative
 	{
@@ -105,7 +104,7 @@ namespace state::in_play
 	void IslandJobs::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(
 			CURRENT_STATE,
 			Terminal::DoIntegerInput(
