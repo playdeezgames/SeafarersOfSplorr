@@ -59,7 +59,7 @@ namespace state
 			CURRENT_STATE, 
 			Terminal::DoIntegerInput(
 				menuActions, 
-				"Please enter a number between 1 and 5.", 
+				Terminal::INVALID_INPUT,
 				Refresh));
 	}
 }
