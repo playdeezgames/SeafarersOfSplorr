@@ -39,6 +39,7 @@
 #include <State.InPlay.HeadForKnown.h>
 #include <State.InPlay.HeadForNearBy.h>
 #include <State.InPlay.IslandBuy.h>
+#include <State.InPlay.IslandBuyQuantity.h>
 #include <State.InPlay.IslandJobs.h>
 #include <State.InPlay.IslandSell.h>
 #include <State.InPlay.IslandTrade.h>
@@ -191,6 +192,7 @@ namespace application
 		state::in_play::HeadForNearBy::Start,
 		state::in_play::HeadForKnown::Start,
 		state::in_play::MultipleMove::Start,
+		state::in_play::IslandBuyQuantity::Start,
 		sublayout::UIHamburger::Start,
 		sublayout::AtSeaActions::Start,
 		sublayout::AtSeaAvatarStatus::Start,

@@ -20,6 +20,7 @@
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
 #include "State.InPlay.IslandBuy.h"
+#include "State.InPlay.IslandBuyQuantity.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 namespace state::in_play
@@ -93,8 +94,9 @@ namespace state::in_play
 		int index = common::Data::ToInt(line)-1;
 		if (index >= 0 && index < unitPrices.size())
 		{
-			Terminal::ErrorMessage("TODO: buy item quantity screen");
-			Refresh();
+			auto key = common::utility::Table::GetNthKey(unitPrices, index).value();
+			IslandBuyQuantity::SetItem(common::utility::Table::GetNthKey(unitPrices, index).value());
+			application::UIState::Write(::UIState::IN_PLAY_ISLAND_BUY_QUANTITY);
 		}
 		else
 		{
