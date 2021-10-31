@@ -2,7 +2,9 @@
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
+#include <Common.Heading.h>
 #include <Game.Audio.Mux.h>
+#include <Game.Avatar.Quest.h>
 #include <Game.Ship.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>
@@ -33,8 +35,12 @@ namespace state::in_play
 		{
 			Terminal::WriteLine("2) Head for a nearby island");
 		}
-		Terminal::WriteLine("3) Set heading manually");
-		Terminal::WriteLine("4) Never mind");
+		if (game::avatar::Quest::Read())
+		{
+			Terminal::WriteLine("3) Head for job destination");
+		}
+		Terminal::WriteLine("4) Set heading manually");
+		Terminal::WriteLine("5) Never mind");
 
 		Terminal::ShowPrompt();
 	}
@@ -71,12 +77,33 @@ namespace state::in_play
 		}
 	}
 
+	static void OnHeadForJobDestination()
+	{
+		auto quest = game::avatar::Quest::Read();
+		if (quest)
+		{
+			auto delta = quest.value().destination - game::Ship::GetLocation();
+			auto island = game::Islands::Read(quest.value().destination);
+			game::Ship::SetHeading(common::Heading::XYToDegrees(delta));
+			Terminal::SetForeground(game::Colors::GREEN);
+			Terminal::WriteLine();
+			Terminal::WriteLine("You head for {}.", island.value().name);
+			application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		}
+		else
+		{
+			Terminal::ErrorMessage("Please select a valid option.");
+			Refresh();
+		}
+	}
+
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
 		{"1", OnHeadForKnownIsland},
 		{"2", OnHeadForNearbyIsland},
-		{"3", application::UIState::GoTo(::UIState::IN_PLAY_MANUAL_HEADING)},
-		{"4", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS)}
+		{"3", OnHeadForJobDestination},
+		{"4", application::UIState::GoTo(::UIState::IN_PLAY_MANUAL_HEADING)},
+		{"5", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS)}
 	};
 
 	void ChangeHeading::Start()

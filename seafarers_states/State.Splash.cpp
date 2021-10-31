@@ -1,14 +1,14 @@
-#include <Application.Renderer.h>
-#include <Application.Command.h>
-#include <Application.Update.h>
-#include <Application.MouseButtonUp.h>
+#include <Application.Keyboard.h>
 #include <Application.OnEnter.h>
+#include <Application.Renderer.h>
+#include <Application.Update.h>
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
 #include "State.Splash.h"
 #include "UIState.h"
 namespace state
 {
+	static const ::UIState CURRENT_STATE = ::UIState::SPLASH;
 	static const size_t TICKS_TOTAL = 3000;
 	static const std::string LAYOUT_NAME = "State.Splash";
 	static size_t ticksLeft = TICKS_TOTAL;
@@ -28,7 +28,7 @@ namespace state
 		}
 	}
 
-	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
+	static bool OnKeyboard(const std::string&)
 	{
 		RunOutTimer();
 		return true;
@@ -36,10 +36,9 @@ namespace state
 
 	void Splash::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::SPLASH, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
-		::application::MouseButtonUp::AddHandler(::UIState::SPLASH, OnMouseButtonUp);
-		::application::Command::SetHandler(::UIState::SPLASH, RunOutTimer);
-		::application::Renderer::SetRenderLayout(::UIState::SPLASH, LAYOUT_NAME);
-		::application::Update::AddHandler(::UIState::SPLASH, OnUpdate);
+		application::OnEnter::AddHandler(CURRENT_STATE, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
+		application::Keyboard::AddHandler(CURRENT_STATE, OnKeyboard);
+		application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		application::Update::AddHandler(CURRENT_STATE, OnUpdate);
 	}
 }
