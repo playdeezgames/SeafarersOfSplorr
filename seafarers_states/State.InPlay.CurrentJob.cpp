@@ -20,12 +20,6 @@ namespace state::in_play
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CURRENT_JOB;
 	static const std::string LAYOUT_NAME = "State.Terminal";
 
-	//static const std::map<CurrentJobMenuItem, std::function<void()>> activators =
-	//{
-	//	{ CurrentJobMenuItem::ABANDON, ::application::UIState::GoTo(::UIState::IN_PLAY_CONFIRM_ABANDON_JOB) },
-	//	{ CurrentJobMenuItem::CANCEL, ::application::UIState::GoTo(::UIState::IN_PLAY_NEXT) }
-	//};
-
 	static void RefreshQuest(const game::Quest& questModel)
 	{
 		Terminal::Reinitialize();
@@ -34,14 +28,15 @@ namespace state::in_play
 		Terminal::WriteLine("Current Job:");
 		Terminal::SetForeground(game::Colors::GRAY);
 		auto islandModel = game::Islands::Read(questModel.destination).value();
-		double distance = common::Heading::Distance(questModel.destination, game::Ship::GetLocation());
+		auto delta = questModel.destination - game::Ship::GetLocation();
 		Terminal::WriteLine(
-			"Please deliver this {} to {} the {} at {} ({:.2f}). Reward: {:.2f}",
+			"Please deliver this {} to {} the {} at {} ({:.2f}\xf8 distance {:.1f}). Reward: {:.2f}",
 			questModel.itemName,
 			questModel.personName,
 			questModel.professionName,
 			islandModel.name, 
-			distance,
+			common::Heading::XYToDegrees(delta),
+			delta.GetMagnitude(),
 			questModel.reward);
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Abandon");
