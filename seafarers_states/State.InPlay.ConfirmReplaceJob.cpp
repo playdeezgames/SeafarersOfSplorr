@@ -1,6 +1,4 @@
-#include <Application.Command.h>
-#include <Application.MouseButtonUp.h>
-#include <Application.MouseMotion.h>
+#include <Application.Keyboard.h>
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
@@ -13,25 +11,29 @@
 #include <Game.Avatar.Quest.h>
 #include <Game.Colors.h>
 #include "State.InPlay.ConfirmReplaceJob.h"
+#include "State.Terminal.h"
 #include "UIState.h"
-#include <Visuals.Areas.h>
-#include <Visuals.Menus.h>
 namespace state::in_play
 {
-	static const std::string LAYOUT_NAME = "State.InPlay.ConfirmReplaceJob";
-	static const std::string MENU_ID = "ConfirmReplace";
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CONFIRM_REPLACE_JOB;
 
-	enum class ConfirmReplaceJobItem
+	static void Refresh()
 	{
-		NO,
-		YES
-	};
+		Terminal::Reinitialize();
+
+		Terminal::SetForeground(game::Colors::RED);
+		Terminal::WriteLine("Are you sure you want to replace yer current job? (You will suffer a reputation penalty!)");
+
+		Terminal::SetForeground(game::Colors::YELLOW);
+		Terminal::WriteLine("1) No");
+		Terminal::WriteLine("2) Yes");
+
+		Terminal::ShowPrompt();
+	}
 
 	static void ReplaceJob()
 	{
-		game::avatar::Log::Write({
-			game::Colors::RED,
-			"You replace yer job, and yer reputation suffers!" });
+		Terminal::ErrorMessage("You replace yer job, and yer reputation suffers!");
 		game::avatar::Quest::Abandon();
 		game::avatar::Quest::Accept(game::avatar::Docked::ReadLocation().value());
 		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_DOCK);
@@ -44,29 +46,26 @@ namespace state::in_play
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	static const std::map<ConfirmReplaceJobItem, std::function<void()>> activators =
+	static void OnEnter()
 	{
-		{ ConfirmReplaceJobItem::NO, OnNo },
-		{ ConfirmReplaceJobItem::YES, ReplaceJob }
-	};
+		Refresh();
+	}
 
-	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
-
-	static const std::map<Command, std::function<void()>> commandHandlers =
+	static const std::map<std::string, std::function<void()>> menuActions =
 	{
-		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
-		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
-		{ ::Command::GREEN, ActivateItem },
-		{ ::Command::BACK, OnNo },
-		{ ::Command::RED, OnNo }
+		{ "1", OnNo},
+		{ "2", ReplaceJob}
 	};
 
 	void ConfirmReplaceJob::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_CONFIRM_REPLACE_JOB, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
-		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_CONFIRM_REPLACE_JOB, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
-		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_CONFIRM_REPLACE_JOB, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-		::application::Command::SetHandlers(::UIState::IN_PLAY_CONFIRM_REPLACE_JOB, commandHandlers);
-		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_CONFIRM_REPLACE_JOB, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
+		::application::Keyboard::AddHandler(
+			CURRENT_STATE,
+			Terminal::DoIntegerInput(
+				menuActions,
+				Terminal::INVALID_INPUT,
+				Refresh));
 	}
 }
