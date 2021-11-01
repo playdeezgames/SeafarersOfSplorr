@@ -42,6 +42,7 @@
 #include <State.InPlay.IslandBuyQuantity.h>
 #include <State.InPlay.IslandJobs.h>
 #include <State.InPlay.IslandSell.h>
+#include <State.InPlay.IslandSellQuantity.h>
 #include <State.InPlay.IslandTrade.h>
 #include <State.InPlay.Lose.h>
 #include <State.InPlay.MakeOffering.h>
@@ -193,6 +194,7 @@ namespace application
 		state::in_play::HeadForKnown::Start,
 		state::in_play::MultipleMove::Start,
 		state::in_play::IslandBuyQuantity::Start,
+		state::in_play::IslandSellQuantity::Start,
 		sublayout::UIHamburger::Start,
 		sublayout::AtSeaActions::Start,
 		sublayout::AtSeaAvatarStatus::Start,

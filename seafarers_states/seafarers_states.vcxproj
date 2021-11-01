@@ -25,6 +25,7 @@
     <ClInclude Include="State.InPlay.HeadForKnown.h" />
     <ClInclude Include="State.InPlay.HeadForNearBy.h" />
     <ClInclude Include="State.InPlay.IslandBuyQuantity.h" />
+    <ClInclude Include="State.InPlay.IslandSellQuantity.h" />
     <ClInclude Include="State.InPlay.ManualHeading.h" />
     <ClInclude Include="State.About.h" />
     <ClInclude Include="State.ConfirmAbandon.h" />
@@ -94,6 +95,7 @@
     <ClCompile Include="State.InPlay.HeadForKnown.cpp" />
     <ClCompile Include="State.InPlay.HeadForNearBy.cpp" />
     <ClCompile Include="State.InPlay.IslandBuyQuantity.cpp" />
+    <ClCompile Include="State.InPlay.IslandSellQuantity.cpp" />
     <ClCompile Include="State.InPlay.ManualHeading.cpp" />
     <ClCompile Include="State.InPlay.MultipleMove.cpp" />
     <ClCompile Include="State.InPlay.ShipStatus.cpp" />
