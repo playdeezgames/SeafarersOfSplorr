@@ -38,7 +38,7 @@ namespace game::avatar
 	{
 		auto location = game::avatar::Docked::ReadLocation().value();
 		auto data = data::game::island::DarkAlley::Read(location).value();
-		auto infamy = game::avatar::Statistics::GetInfamy();
+		auto infamy = game::avatar::Statistics::GetInfamy(game::Player::GetAvatarId());
 		if (infamy < data.infamyRequirement)
 		{
 			OnEnterDarkAlleyFailsInfamyRequirement();

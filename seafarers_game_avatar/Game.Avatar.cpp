@@ -42,26 +42,26 @@ namespace game//20211022
 	static void ApplyHunger()
 	{
 		double delta = DetermineHungerRate();
-		if (game::avatar::Statistics::IsStarving())
+		if (game::avatar::Statistics::IsStarving(game::Player::GetAvatarId()))
 		{
 			game::avatar::Statistics::ChangeHealth(game::Player::GetAvatarId(), delta);
 		}
 		else
 		{
-			game::avatar::Statistics::ChangeSatiety(delta);
+			game::avatar::Statistics::ChangeSatiety(game::Player::GetAvatarId(), delta);
 		}
 	}
 
 	static void ApplyEating()
 	{
 		const double EAT_BENEFIT = 10.0;
-		if (game::avatar::Statistics::NeedToEat(EAT_BENEFIT))
+		if (game::avatar::Statistics::NeedToEat(game::Player::GetAvatarId(), EAT_BENEFIT))
 		{
 			const game::Item rationItem = game::Item::RATIONS;//TODO: when we can choose rations for an avatar, this will change
 			auto rations = game::avatar::Items::Read(rationItem);
 			if (rations > 0)
 			{
-				game::avatar::Statistics::Eat(EAT_BENEFIT);
+				game::avatar::Statistics::Eat(game::Player::GetAvatarId(), EAT_BENEFIT);
 				game::avatar::Items::Remove(rationItem, 1);
 			}
 		}
@@ -88,7 +88,7 @@ namespace game//20211022
 		auto turnsSpent = DetermineTurnsSpent();
 		while (turnsSpent)
 		{
-			game::avatar::Statistics::SpendTurn();
+			game::avatar::Statistics::SpendTurn(game::Player::GetAvatarId());
 			turnsSpent--;
 		}
 	}

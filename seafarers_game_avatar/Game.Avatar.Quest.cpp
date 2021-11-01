@@ -22,7 +22,7 @@ namespace game::avatar//20211018
 				quest.professionName ,
 				quest.receiptEmotion }));
 		data::game::island::Quest::Clear(location);
-		game::Islands::SetKnown(quest.destination, game::avatar::Statistics::GetTurnsRemaining());
+		game::Islands::SetKnown(quest.destination, game::avatar::Statistics::GetTurnsRemaining(game::Player::GetAvatarId()));
 		data::game::island::Known::Write(quest.destination);
 	}
 
@@ -44,7 +44,7 @@ namespace game::avatar//20211018
 	static void CompleteQuest(const data::game::avatar::Quest& quest)
 	{
 		game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), quest.reward);
-		game::avatar::Statistics::ChangeReputation(World::GetReputationReward());
+		game::avatar::Statistics::ChangeReputation(game::Player::GetAvatarId(), World::GetReputationReward());
 		data::game::avatar::Quest::Write(Player::GetAvatarId(), std::nullopt);
 	}
 
@@ -61,7 +61,7 @@ namespace game::avatar//20211018
 
 	static void AbandonQuest()
 	{
-		game::avatar::Statistics::ChangeReputation(World::GetReputationPenalty());
+		game::avatar::Statistics::ChangeReputation(game::Player::GetAvatarId(), World::GetReputationPenalty());
 		data::game::avatar::Quest::Write(Player::GetAvatarId(), std::nullopt);
 	}
 

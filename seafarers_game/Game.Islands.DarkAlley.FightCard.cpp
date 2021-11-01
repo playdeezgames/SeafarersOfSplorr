@@ -5,6 +5,7 @@
 #include <functional>
 #include "Game.Avatar.Statistics.h"
 #include "Game.Islands.DarkAlley.FightCard.h"
+#include "Game.Player.h"
 #include <list>
 #include <set>
 namespace game::islands::dark_alley//20211014
@@ -82,7 +83,7 @@ namespace game::islands::dark_alley//20211014
 
 	static size_t DetermineFaceCardCount(const data::game::island::DarkAlley& darkAlley)
 	{
-		auto brawling = game::avatar::Statistics::GetBrawling();
+		auto brawling = game::avatar::Statistics::GetBrawling(game::Player::GetAvatarId());
 		size_t faceCardCount =
 			(size_t)(brawling / (brawling + darkAlley.ruffianBrawlingStrength) * (double)CARD_COUNT);
 		return

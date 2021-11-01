@@ -35,7 +35,7 @@ namespace game::avatar//20211011
 		std::optional<DockResult> result = DockResult::DOCKED;
 		game::Islands::AddVisit(
 			location,
-			Statistics::GetTurnsRemaining());
+			Statistics::GetTurnsRemaining(game::Player::GetAvatarId()));
 		game::islands::Quests::Update(location);
 		if (game::avatar::Quest::Complete(location))
 		{

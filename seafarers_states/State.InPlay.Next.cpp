@@ -23,8 +23,8 @@ namespace state::in_play
 
 	static const std::list<StatusChecker> statusCheckers =
 	{
-		{game::avatar::Statistics::IsOutOfTurns, ::UIState::IN_PLAY_WIN},
-		{game::avatar::Statistics::IsDead, ::UIState::IN_PLAY_LOSE}, 
+		{game::avatar::Statistics::IsPlayerOutOfTurns, ::UIState::IN_PLAY_WIN},
+		{game::avatar::Statistics::IsPlayerDead, ::UIState::IN_PLAY_LOSE}, 
 		{visuals::Messages::HasMessage, ::UIState::IN_PLAY_MESSAGE},
 		{visuals::Confirmations::HasConfirmation, ::UIState::IN_PLAY_CONFIRM}
 	};

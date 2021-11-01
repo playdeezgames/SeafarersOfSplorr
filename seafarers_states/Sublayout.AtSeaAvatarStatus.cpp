@@ -40,7 +40,7 @@ namespace sublayout
 			SUBLAYOUT_NAME, 
 			TEXT_AVATAR_SATIETY, 
 			game::avatar::StatisticFormats::SATIETY, 
-			game::avatar::Statistics::GetSatiety());
+			game::avatar::Statistics::GetSatiety(game::Player::GetAvatarId()));
 	}
 
 	static void RefreshAvatarMoney()
@@ -57,7 +57,7 @@ namespace sublayout
 		visuals::Texts::SetText(
 			SUBLAYOUT_NAME, TEXT_AVATAR_REPUTATION, 
 			game::avatar::StatisticFormats::REPUTATION, 
-			game::avatar::Statistics::GetReputation());
+			game::avatar::Statistics::GetReputation(game::Player::GetAvatarId()));
 	}
 
 	static void RefreshAvatarHealth()
@@ -75,7 +75,7 @@ namespace sublayout
 			SUBLAYOUT_NAME, 
 			TEXT_AVATAR_TURNS, 
 			game::avatar::StatisticFormats::TURNS, 
-			game::avatar::Statistics::GetTurnsRemaining());
+			game::avatar::Statistics::GetTurnsRemaining(game::Player::GetAvatarId()));
 	}
 
 	static void RefreshAvatarHeading()

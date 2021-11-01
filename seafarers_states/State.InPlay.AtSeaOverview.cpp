@@ -9,6 +9,7 @@
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>
+#include <Game.Player.h>
 #include <Game.Ship.h>
 #include <Game.World.h>
 #include "State.Terminal.h"
@@ -32,7 +33,7 @@ namespace state::in_play
 			game::Colors::GRAY);
 		Terminal::WriteLine(
 			"Turns remaining: {}", 
-			game::avatar::Statistics::GetTurnsRemaining());
+			game::avatar::Statistics::GetTurnsRemaining(game::Player::GetAvatarId()));
 		Terminal::WriteLine(
 			"Heading: {:.2f}\xf8, Speed: {:.1f}", 
 			game::Ship::GetHeading(), 

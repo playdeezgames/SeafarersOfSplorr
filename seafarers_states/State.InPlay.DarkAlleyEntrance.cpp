@@ -217,7 +217,7 @@ namespace state::in_play
 			LAYOUT_NAME, 
 			TEXT_BRAWLING, 
 			game::avatar::StatisticFormats::BRAWLING,
-			game::avatar::Statistics::GetBrawling());
+			game::avatar::Statistics::GetBrawling(game::Player::GetAvatarId()));
 		visuals::Texts::SetText(
 			LAYOUT_NAME, 
 			TEXT_HEALTH, 
@@ -311,7 +311,7 @@ namespace state::in_play
 	static void HandleTakeDamage()
 	{
 		game::avatar::Statistics::ChangeHealth(game::Player::GetAvatarId(), -GetRuffianBrawling());
-		if (game::avatar::Statistics::IsDead())
+		if (game::avatar::Statistics::IsDead(game::Player::GetAvatarId()))
 		{
 			fightResult = FightResult::LOSE;
 		}
@@ -332,13 +332,13 @@ namespace state::in_play
 	static void IncreaseInfamy()
 	{
 		const double INFAMY_DELTA = 0.1;
-		game::avatar::Statistics::ChangeInfamy((hitsTaken==0) ? (INFAMY_DELTA) : (INFAMY_DELTA/2.0));
+		game::avatar::Statistics::ChangeInfamy(game::Player::GetAvatarId(), (hitsTaken==0) ? (INFAMY_DELTA) : (INFAMY_DELTA/2.0));
 	}
 
 	static void IncreaseBrawling()
 	{
 		const double BRAWLING_DELTA = 0.1;
-		game::avatar::Statistics::ChangeBrawling((hitsTaken > 0) ? (BRAWLING_DELTA) : (BRAWLING_DELTA / 2.0));
+		game::avatar::Statistics::ChangeBrawling(game::Player::GetAvatarId(), (hitsTaken > 0) ? (BRAWLING_DELTA) : (BRAWLING_DELTA / 2.0));
 	}
 
 	static bool HandleButton()
