@@ -18,7 +18,6 @@
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CURRENT_JOB;
-	static const std::string LAYOUT_NAME = "State.Terminal";
 
 	static void RefreshQuest(const game::Quest& questModel)
 	{
@@ -84,7 +83,7 @@ namespace state::in_play
 			OnEnter);
 		::application::Renderer::SetRenderLayout(
 			CURRENT_STATE,
-			LAYOUT_NAME);
+			Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(
 			CURRENT_STATE,
 			Terminal::DoIntegerInput(
