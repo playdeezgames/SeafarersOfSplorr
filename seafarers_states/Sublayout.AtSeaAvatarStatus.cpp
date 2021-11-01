@@ -66,7 +66,7 @@ namespace sublayout
 			SUBLAYOUT_NAME, 
 			TEXT_AVATAR_HEALTH, 
 			game::avatar::StatisticFormats::HEALTH, 
-			game::avatar::Statistics::GetHealth());
+			game::avatar::Statistics::GetHealth(game::Player::GetAvatarId()));
 	}
 
 	static void RefreshAvatarTurns()

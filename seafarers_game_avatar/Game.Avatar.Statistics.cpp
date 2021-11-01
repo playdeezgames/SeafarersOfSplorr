@@ -180,9 +180,9 @@ namespace game::avatar//20211018
 		return GetCurrent(avatarId, game::avatar::Statistic::MONEY);
 	}
 
-	double Statistics::GetHealth()
+	double Statistics::GetHealth(int avatarId)
 	{
-		return GetCurrent(Player::GetAvatarId(), game::avatar::Statistic::HEALTH);
+		return GetCurrent(avatarId, game::avatar::Statistic::HEALTH);
 	}
 
 	double Statistics::GetSatiety()

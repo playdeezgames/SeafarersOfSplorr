@@ -35,7 +35,7 @@ namespace state::in_play
 		Terminal::WriteLine("Money: {}", game::avatar::Statistics::ReadMoney(CrewDetail::GetAvatarId()));
 		Terminal::WriteLine("Reputation: {}", game::avatar::Statistics::GetReputation());
 		Terminal::WriteLine("Brawling: {}", game::avatar::Statistics::GetBrawling());
-		Terminal::WriteLine("Health: {}", game::avatar::Statistics::GetHealth());
+		Terminal::WriteLine("Health: {}", game::avatar::Statistics::GetHealth(CrewDetail::GetAvatarId()));
 		Terminal::WriteLine("Satiety: {}", game::avatar::Statistics::GetSatiety());
 		Terminal::WriteLine("Turns: {}", game::avatar::Statistics::GetTurnsRemaining());
 		Terminal::WriteLine("Dignity: {}", game::avatar::Statistics::GetDignity());

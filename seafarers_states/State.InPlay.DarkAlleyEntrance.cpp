@@ -222,7 +222,7 @@ namespace state::in_play
 			LAYOUT_NAME, 
 			TEXT_HEALTH, 
 			game::avatar::StatisticFormats::HEALTH,
-			game::avatar::Statistics::GetHealth());
+			game::avatar::Statistics::GetHealth(game::Player::GetAvatarId()));
 	}
 
 	static std::string GetButtonText()
