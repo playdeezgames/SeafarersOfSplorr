@@ -169,10 +169,10 @@ namespace game::avatar//20211018
 			data);
 	}
 
-	static double ChangeCurrent(const game::avatar::Statistic& statistic, double delta)
+	static double ChangeCurrent(int avatarId, const game::avatar::Statistic& statistic, double delta)
 	{
-		SetCurrent(statistic, GetCurrent(Player::GetAvatarId(), statistic) + delta);
-		return GetCurrent(Player::GetAvatarId(), statistic);
+		SetCurrent(statistic, GetCurrent(avatarId, statistic) + delta);
+		return GetCurrent(avatarId, statistic);
 	}
 
 	double Statistics::ReadMoney(int avatarId)
@@ -210,12 +210,12 @@ namespace game::avatar//20211018
 		double healthDown = GetDownAmount(Statistic::HEALTH);
 		if (healthDown > 0)
 		{
-			ChangeCurrent(Statistic::HEALTH, amount);
+			ChangeCurrent(Player::GetAvatarId(), Statistic::HEALTH, amount);
 			amount -= healthDown;
 		}
 		if (amount > 0)
 		{
-			ChangeCurrent(Statistic::SATIETY, amount);
+			ChangeCurrent(Player::GetAvatarId(), Statistic::SATIETY, amount);
 		}
 	}
 
@@ -234,7 +234,7 @@ namespace game::avatar//20211018
 
 	void Statistics::ChangeReputation(double delta)
 	{
-		ChangeCurrent(game::avatar::Statistic::REPUTATION, delta);
+		ChangeCurrent(Player::GetAvatarId(), game::avatar::Statistic::REPUTATION, delta);
 	}
 
 	int Statistics::GetTurnsRemaining()
@@ -245,7 +245,7 @@ namespace game::avatar//20211018
 	void Statistics::SpendTurn()
 	{
 		const double TURN_DELTA = -1.0;
-		ChangeCurrent(game::avatar::Statistic::TURNS_REMAINING, TURN_DELTA);
+		ChangeCurrent(Player::GetAvatarId(), game::avatar::Statistic::TURNS_REMAINING, TURN_DELTA);
 	}
 
 	bool Statistics::IsOutOfTurns()
@@ -268,29 +268,29 @@ namespace game::avatar//20211018
 		return IsMinimal(Statistic::SATIETY);
 	}
 
-	void Statistics::ChangeMoney(double delta)
+	void Statistics::ChangeMoney(int avatarId, double delta)
 	{
-		ChangeCurrent(Statistic::MONEY, delta);
+		ChangeCurrent(avatarId, Statistic::MONEY, delta);
 	}
 
-	void Statistics::ChangeHealth(double delta)
+	void Statistics::ChangeHealth(int avatarId, double delta)
 	{
-		ChangeCurrent(Statistic::HEALTH, delta);
+		ChangeCurrent(avatarId, Statistic::HEALTH, delta);
 	}
 
 	void Statistics::ChangeSatiety(double delta)
 	{
-		ChangeCurrent(Statistic::SATIETY, delta);
+		ChangeCurrent(Player::GetAvatarId(), Statistic::SATIETY, delta);
 	}
 
 	void Statistics::ChangeInfamy(double delta)
 	{
-		ChangeCurrent(Statistic::INFAMY, delta);
+		ChangeCurrent(Player::GetAvatarId(), Statistic::INFAMY, delta);
 	}
 
 	void Statistics::ChangeBrawling(double delta)
 	{
-		ChangeCurrent(Statistic::BRAWLING, delta);
+		ChangeCurrent(Player::GetAvatarId(), Statistic::BRAWLING, delta);
 	}
 
 	double Statistics::GetDignity()

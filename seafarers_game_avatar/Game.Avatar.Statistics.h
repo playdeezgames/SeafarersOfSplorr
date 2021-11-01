@@ -6,9 +6,9 @@ namespace game::avatar//20211017
 	{
 		static void Reset(const game::Difficulty&);
 		static double ReadMoney(int);
-		static void ChangeMoney(double);
+		static void ChangeMoney(int, double);
 		static double GetHealth(int);
-		static void ChangeHealth(double);
+		static void ChangeHealth(int, double);
 		static bool IsDead();
 		static double GetSatiety();
 		static void ChangeSatiety(double);

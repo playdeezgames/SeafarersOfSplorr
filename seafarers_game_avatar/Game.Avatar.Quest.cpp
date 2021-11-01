@@ -43,7 +43,7 @@ namespace game::avatar//20211018
 
 	static void CompleteQuest(const data::game::avatar::Quest& quest)
 	{
-		game::avatar::Statistics::ChangeMoney(quest.reward);
+		game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), quest.reward);
 		game::avatar::Statistics::ChangeReputation(World::GetReputationReward());
 		data::game::avatar::Quest::Write(Player::GetAvatarId(), std::nullopt);
 	}

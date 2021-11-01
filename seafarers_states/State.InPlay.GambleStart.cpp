@@ -46,7 +46,7 @@ namespace state::in_play
 	static void OnPayAnte(const std::string& message)
 	{
 		auto ante = game::islands::DarkAlley::GetAnte(ReadLocation()).value();
-		game::avatar::Statistics::ChangeMoney(-ante);
+		game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), -ante);
 		visuals::Messages::Write(
 			{
 				"==NO BET!==",

@@ -87,13 +87,13 @@ namespace state::in_play
 		{
 			game::audio::Sfx::Play(game::audio::GameSfx::WOOHOO);
 			visuals::Texts::SetText(LAYOUT_NAME, TEXT_RESULT, "You win!");
-			game::avatar::Statistics::ChangeMoney(GambleStart::GetCurrentWager());
+			game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), GambleStart::GetCurrentWager());
 		}
 		else
 		{
 			game::audio::Sfx::Play(game::audio::GameSfx::SHUCKS);
 			visuals::Texts::SetText(LAYOUT_NAME, TEXT_RESULT, "You lose!");
-			game::avatar::Statistics::ChangeMoney(-GambleStart::GetCurrentWager());
+			game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), -GambleStart::GetCurrentWager());
 		}
 		auto money = game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId());
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_WIN_LOSE, "You now have {:.4f}", money);

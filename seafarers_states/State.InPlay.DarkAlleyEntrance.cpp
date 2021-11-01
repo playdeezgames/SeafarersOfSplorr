@@ -310,7 +310,7 @@ namespace state::in_play
 
 	static void HandleTakeDamage()
 	{
-		game::avatar::Statistics::ChangeHealth(-GetRuffianBrawling());
+		game::avatar::Statistics::ChangeHealth(game::Player::GetAvatarId(), -GetRuffianBrawling());
 		if (game::avatar::Statistics::IsDead())
 		{
 			fightResult = FightResult::LOSE;
@@ -359,7 +359,7 @@ namespace state::in_play
 			}
 			return true;
 		}
-		game::avatar::Statistics::ChangeMoney(-game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId())/2.0);
+		game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), -game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId())/2.0);
 		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_DOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		return true;

@@ -132,7 +132,7 @@ namespace state::in_play
 			auto location = game::avatar::Docked::ReadLocation().value();
 			auto currentShipId = game::avatar::Ship::Read().value().shipId;
 			auto currentShipType = game::Ship::GetShipType(currentShipId).value();
-			game::avatar::Statistics::ChangeMoney(-price);
+			game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), -price);
 			auto desiredShipId = game::Ship::Add({ desiredShipType,game::ShipNames::Generate(), location, 0.0, 1.0 });
 			//TODO: transfer crew/passengers/captives?
 			game::avatar::Ship::Write({ desiredShipId, game::BerthType::CAPTAIN });
@@ -199,7 +199,7 @@ namespace state::in_play
 	{
 		return [price]() 
 		{
-			game::avatar::Statistics::ChangeMoney(-price);
+			game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), -price);
 			game::avatar::ShipStatistics::CleanHull(game::Side::STARBOARD);
 			game::avatar::ShipStatistics::CleanHull(game::Side::PORT);
 		};

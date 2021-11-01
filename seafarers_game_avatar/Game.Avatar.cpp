@@ -44,7 +44,7 @@ namespace game//20211022
 		double delta = DetermineHungerRate();
 		if (game::avatar::Statistics::IsStarving())
 		{
-			game::avatar::Statistics::ChangeHealth(delta);
+			game::avatar::Statistics::ChangeHealth(game::Player::GetAvatarId(), delta);
 		}
 		else
 		{
