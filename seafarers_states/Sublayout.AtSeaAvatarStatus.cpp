@@ -7,6 +7,7 @@
 #include <Game.Avatar.Statistics.h>
 #include <Game.Avatar.StatisticFormats.h>
 #include <Game.Islands.h>
+#include <Game.Player.h>
 #include <Game.Ship.h>
 #include <Game.World.h>
 #include <map>
@@ -48,7 +49,7 @@ namespace sublayout
 			SUBLAYOUT_NAME, 
 			TEXT_AVATAR_MONEY, 
 			game::avatar::StatisticFormats::MONEY, 
-			game::avatar::Statistics::ReadMoney());
+			game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId()));
 	}
 
 	static void RefreshAvatarReputation()

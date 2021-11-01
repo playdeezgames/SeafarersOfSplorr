@@ -15,6 +15,7 @@
 #include <Game.Colors.h>
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.DarkAlley.FightCard.h>
+#include <Game.Player.h>
 #include "State.InPlay.DarkAlleyEntrance.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
@@ -358,7 +359,7 @@ namespace state::in_play
 			}
 			return true;
 		}
-		game::avatar::Statistics::ChangeMoney(-game::avatar::Statistics::ReadMoney()/2.0);
+		game::avatar::Statistics::ChangeMoney(-game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId())/2.0);
 		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_DOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		return true;

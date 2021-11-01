@@ -15,6 +15,7 @@
 #include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
+#include <Game.Player.h>
 #include "State.InPlay.Cargo.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -54,7 +55,7 @@ namespace state::in_play
 				(int)(100.0 * GetTonnage() / GetAvailableTonnage()));
 		Terminal::WriteLine(
 			"Money: {:.3f}",
-			game::avatar::Statistics::ReadMoney());
+			game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId()));
 		Terminal::SetForeground(game::Colors::BROWN);
 		Terminal::WriteLine("Manifest:");
 		Terminal::SetForeground(game::Colors::YELLOW);

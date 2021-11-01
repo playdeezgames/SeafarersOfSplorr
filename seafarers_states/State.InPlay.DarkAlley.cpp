@@ -12,6 +12,7 @@
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.DarkAlley.h>
+#include <Game.Player.h>
 #include "State.InPlay.DarkAlley.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
@@ -43,7 +44,7 @@ namespace state::in_play
 
 	static void OnGamble()
 	{
-		if (ReadMoney() >= GetMinimumWager())
+		if (ReadMoney(game::Player::GetAvatarId()) >= GetMinimumWager())
 		{
 			game::avatar::Actions::DoAction(game::avatar::Action::START_GAMBLING);
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);

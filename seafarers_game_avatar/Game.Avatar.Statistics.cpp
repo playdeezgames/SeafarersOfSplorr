@@ -135,9 +135,9 @@ namespace game::avatar//20211018
 		return data::game::avatar::Statistic::Read(Player::GetAvatarId(), (int)statistic).value().minimum;
 	}
 
-	static double GetCurrent(const game::avatar::Statistic& statistic)
+	static double GetCurrent(int avatarId, const game::avatar::Statistic& statistic)
 	{
-		return data::game::avatar::Statistic::Read(Player::GetAvatarId(), (int)statistic).value().current;
+		return data::game::avatar::Statistic::Read(avatarId, (int)statistic).value().current;
 	}
 
 	static double CalculateBuffs(const std::map<game::Item, double> itemBuffs)
@@ -153,7 +153,7 @@ namespace game::avatar//20211018
 	static double GetCurrentWithBuffs(const game::avatar::Statistic& statistic)
 	{
 		return 
-			GetCurrent(statistic) + 
+			GetCurrent(Player::GetAvatarId(), statistic) +
 			common::utility::Optional::Map<std::map<game::Item, double>, double>(
 				common::utility::Table::TryGetKey(allBuffs, statistic),
 				CalculateBuffs).value_or(0.0);
@@ -171,38 +171,38 @@ namespace game::avatar//20211018
 
 	static double ChangeCurrent(const game::avatar::Statistic& statistic, double delta)
 	{
-		SetCurrent(statistic, GetCurrent(statistic) + delta);
-		return GetCurrent(statistic);
+		SetCurrent(statistic, GetCurrent(Player::GetAvatarId(), statistic) + delta);
+		return GetCurrent(Player::GetAvatarId(), statistic);
 	}
 
-	double Statistics::ReadMoney()
+	double Statistics::ReadMoney(int avatarId)
 	{
-		return GetCurrent(game::avatar::Statistic::MONEY);
+		return GetCurrent(avatarId, game::avatar::Statistic::MONEY);
 	}
 
 	double Statistics::GetHealth()
 	{
-		return GetCurrent(game::avatar::Statistic::HEALTH);
+		return GetCurrent(Player::GetAvatarId(), game::avatar::Statistic::HEALTH);
 	}
 
 	double Statistics::GetSatiety()
 	{
-		return GetCurrent(game::avatar::Statistic::SATIETY);
+		return GetCurrent(Player::GetAvatarId(), game::avatar::Statistic::SATIETY);
 	}
 
 	double Statistics::GetInfamy()
 	{
-		return GetCurrent(game::avatar::Statistic::INFAMY);
+		return GetCurrent(Player::GetAvatarId(), game::avatar::Statistic::INFAMY);
 	}
 
 	double Statistics::GetBrawling()
 	{
-		return GetCurrent(game::avatar::Statistic::BRAWLING);
+		return GetCurrent(Player::GetAvatarId(), game::avatar::Statistic::BRAWLING);
 	}
 
 	static double GetDownAmount(const Statistic& statistic)
 	{
-		return GetMaximum(statistic).value() - GetCurrent(statistic);
+		return GetMaximum(statistic).value() - GetCurrent(Player::GetAvatarId(), statistic);
 	}
 
 	void Statistics::Eat(double amount)
@@ -229,7 +229,7 @@ namespace game::avatar//20211018
 
 	double Statistics::GetReputation()
 	{
-		return GetCurrent(game::avatar::Statistic::REPUTATION);
+		return GetCurrent(Player::GetAvatarId(), game::avatar::Statistic::REPUTATION);
 	}
 
 	void Statistics::ChangeReputation(double delta)
@@ -239,7 +239,7 @@ namespace game::avatar//20211018
 
 	int Statistics::GetTurnsRemaining()
 	{
-		return (int)GetCurrent(game::avatar::Statistic::TURNS_REMAINING);
+		return (int)GetCurrent(Player::GetAvatarId(), game::avatar::Statistic::TURNS_REMAINING);
 	}
 
 	void Statistics::SpendTurn()
@@ -250,12 +250,12 @@ namespace game::avatar//20211018
 
 	bool Statistics::IsOutOfTurns()
 	{
-		return GetCurrent(game::avatar::Statistic::TURNS_REMAINING) <= GetMinimum(game::avatar::Statistic::TURNS_REMAINING);
+		return GetCurrent(Player::GetAvatarId(), game::avatar::Statistic::TURNS_REMAINING) <= GetMinimum(game::avatar::Statistic::TURNS_REMAINING);
 	}
 
 	static bool IsMinimal(const Statistic& statistic)
 	{
-		return GetCurrent(statistic) <= GetMinimum(statistic);
+		return GetCurrent(Player::GetAvatarId(), statistic) <= GetMinimum(statistic);
 	}
 
 	bool Statistics::IsDead()

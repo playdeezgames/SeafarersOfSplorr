@@ -15,6 +15,7 @@
 #include <Game.Colors.h>
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.DarkAlley.GamblingHand.h>
+#include <Game.Player.h>
 #include "State.InPlay.GambleFinish.h"
 #include "State.InPlay.GambleStart.h"
 #include "UIState.h"
@@ -94,7 +95,7 @@ namespace state::in_play
 			visuals::Texts::SetText(LAYOUT_NAME, TEXT_RESULT, "You lose!");
 			game::avatar::Statistics::ChangeMoney(-GambleStart::GetCurrentWager());
 		}
-		auto money = game::avatar::Statistics::ReadMoney();
+		auto money = game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId());
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_WIN_LOSE, "You now have {:.4f}", money);
 		bool canPlayAgain = money >= game::islands::DarkAlley::GetMinimumWager(ReadLocation());
 		visuals::MenuItems::SetEnabled(LAYOUT_NAME, MENU_ITEM_PLAY_AGAIN, canPlayAgain);

@@ -32,7 +32,7 @@ namespace state::in_play
 	static void RefreshStatistics()
 	{
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Money: {}", game::avatar::Statistics::ReadMoney());
+		Terminal::WriteLine("Money: {}", game::avatar::Statistics::ReadMoney(CrewDetail::GetAvatarId()));
 		Terminal::WriteLine("Reputation: {}", game::avatar::Statistics::GetReputation());
 		Terminal::WriteLine("Brawling: {}", game::avatar::Statistics::GetBrawling());
 		Terminal::WriteLine("Health: {}", game::avatar::Statistics::GetHealth());

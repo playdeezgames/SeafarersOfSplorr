@@ -13,6 +13,7 @@
 #include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
+#include <Game.Player.h>
 #include "State.InPlay.IslandBuyQuantity.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -26,7 +27,7 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		auto unitPrice = game::islands::Items::GetPurchasePrices(game::avatar::Docked::ReadLocation().value())[currentItem];
-		auto money = game::avatar::Statistics::ReadMoney();
+		auto money = game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId());
 		double availableTonnage = game::avatar::Ship::AvailableTonnage().value();
 		double unitTonnage = game::Items::GetUnitTonnage(currentItem);
 		int affordableQuantity = (int)(money / unitPrice);
@@ -52,7 +53,7 @@ namespace state::in_play
 	static void OnOtherInput(const std::string& line)
 	{
 		auto unitPrice = game::islands::Items::GetPurchasePrices(game::avatar::Docked::ReadLocation().value())[currentItem];
-		auto money = game::avatar::Statistics::ReadMoney();
+		auto money = game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId());
 		double availableTonnage = game::avatar::Ship::AvailableTonnage().value();
 		double unitTonnage = game::Items::GetUnitTonnage(currentItem);
 		int affordableQuantity = (int)(money / unitPrice);

@@ -19,6 +19,7 @@
 #include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
+#include <Game.Player.h>
 #include "State.InPlay.MakeOffering.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
@@ -87,7 +88,7 @@ namespace state::in_play
 			{ 0, 19 },
 			std::format(
 				"Money: {:.3f}",
-				game::avatar::Statistics::ReadMoney()),
+				game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId())),
 			game::Colors::GRAY);
 	}
 

@@ -18,6 +18,7 @@
 #include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
+#include <Game.Player.h>
 #include "State.InPlay.IslandSell.h"
 #include "State.InPlay.IslandSellQuantity.h"
 #include "State.Terminal.h"
@@ -56,7 +57,7 @@ namespace state::in_play
 
 	static void RefreshStatistics()
 	{
-		Terminal::WriteLine(FORMAT_MONEY, game::avatar::Statistics::ReadMoney());
+		Terminal::WriteLine(FORMAT_MONEY, game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId()));
 	}
 
 	static void Refresh()

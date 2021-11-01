@@ -5,7 +5,7 @@ namespace game::avatar//20211017
 	struct Statistics
 	{
 		static void Reset(const game::Difficulty&);
-		static double ReadMoney();
+		static double ReadMoney(int);
 		static void ChangeMoney(double);
 		static double GetHealth();
 		static void ChangeHealth(double);
