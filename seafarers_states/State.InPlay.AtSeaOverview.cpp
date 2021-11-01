@@ -99,18 +99,12 @@ namespace state::in_play
 		Refresh();
 	}
 
-	static void OnCrewStatus()
-	{
-		Terminal::ErrorMessage("TODO: crew status");
-		Refresh();
-	}
-
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
 		{"1", OnMove },
 		{"2", application::UIState::GoTo(::UIState::IN_PLAY_MULTIPLE_MOVE) },
 		{"3", OnDock },
-		{"4", OnCrewStatus },
+		{"4", application::UIState::GoTo(::UIState::IN_PLAY_CREW_LIST) },
 		{"5", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS) },
 		{"6", application::UIState::GoTo(::UIState::IN_PLAY_CURRENT_JOB) },
 		{"7", application::UIState::GoTo(::UIState::LEAVE_PLAY) }

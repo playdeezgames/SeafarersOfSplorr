@@ -1,9 +1,8 @@
-#include <Application.Command.h>
-#include <Application.MouseButtonUp.h>
-#include <Application.MouseMotion.h>
+#include <Application.Keyboard.h>
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
+#include <Common.Data.h>
 #include <Common.Utility.h>
 #include <Common.Utility.Dispatcher.h>
 #include <format>
@@ -20,28 +19,13 @@
 #include <Game.Ship.Crew.h>
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.CrewList.h"
+#include "State.Terminal.h"
 #include "UIState.h"
-#include <Visuals.Areas.h>
-#include <Visuals.Buttons.h>
-#include <Visuals.SpriteGrid.h>
-namespace state::in_play//20211019
+namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CREW_LIST;
-	static const std::string LAYOUT_NAME = "State.InPlay.CrewList";
-	static const std::string SPRITE_GRID_ID = "Grid";
-	static const std::string FONT_DEFAULT = "default";
-	static const std::string BUTTON_GO_BACK = "GoBack";
-	static const std::string AREA_GO_BACK = "GoBack";
-	static const std::string AREA_LIST = "List";
 
-	static const auto WriteTextToGrid = 
-		visuals::SpriteGrid::DoWriteToGrid(
-			LAYOUT_NAME, 
-			SPRITE_GRID_ID, 
-			FONT_DEFAULT, 
-			visuals::HorizontalAlignment::LEFT);
-
-	static auto OnLeave = ::application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS);
+	static auto OnLeave = ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
 
 	struct RosterItem
 	{
@@ -52,32 +36,25 @@ namespace state::in_play//20211019
 	};
 
 	static std::vector<RosterItem> rosterItems;
-	static std::optional<size_t> rosterIndex = std::nullopt;
-
-	static void RefreshHeader()
-	{
-		WriteTextToGrid({ 0, 0 }, "<-", game::Colors::YELLOW);
-		WriteTextToGrid({ 37, 0 }, "->", game::Colors::YELLOW);
-		WriteTextToGrid({ 15, 0 }, "Page 1 of 1", game::Colors::YELLOW);
-		WriteTextToGrid({ 0,1 }, std::format(" {:15s}   {:15s}", "Name", "Berth"), game::Colors::YELLOW);
-	}
-
-	static void RefreshRoster()
-	{
-		size_t index = 0;
-		for (auto& rosterItem : rosterItems)
-		{
-			auto color = (rosterIndex.has_value() && rosterIndex.value() == index) ? (game::Colors::CYAN) : (game::Colors::GRAY);
-			WriteTextToGrid({ 0,2+(int)index }, std::format("{:1s}{:15s}   {:15s}",rosterItem.mark, rosterItem.name, rosterItem.berth), color);
-			index++;
-		}
-	}
 
 	static void Refresh()
 	{
-		visuals::SpriteGrid::Clear(LAYOUT_NAME, SPRITE_GRID_ID);
-		RefreshHeader();
-		RefreshRoster();
+		Terminal::Reinitialize();
+
+		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
+		Terminal::WriteLine("Crew List:");
+		Terminal::WriteLine();
+
+		Terminal::SetForeground(game::Colors::YELLOW);
+		size_t index = 1;
+		for (auto& rosterItem : rosterItems)
+		{
+			Terminal::WriteLine("{}) {}{} - {}", index++, rosterItem.name, rosterItem.mark, rosterItem.berth);
+		}
+		Terminal::WriteLine("0) Never mind");
+
+		Terminal::ShowPrompt();
+
 	}
 
 	static const std::map<game::BerthType, std::string> berthNames =
@@ -98,7 +75,7 @@ namespace state::in_play//20211019
 			rosterItems.push_back({
 				entry.name,
 				berthNames.find(entry.berthType)->second,
-				(entry.avatarId==game::Player::GetAvatarId()) ? ("*") : (" "),
+				(entry.avatarId==game::Player::GetAvatarId()) ? ("(you)") : (""),
 				entry.avatarId
 				});
 		}
@@ -111,86 +88,38 @@ namespace state::in_play//20211019
 		Refresh();
 	}
 
-	static const std::map<::Command, std::function<void()>> commandHandlers =
+	static const std::map<std::string, std::function<void()>> menuActions =
 	{
-		{ ::Command::BACK, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_DEPRECATED) },
-		{ ::Command::RED, ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_DEPRECATED) }
+		{ "0", OnLeave}
 	};
 
-	static void OnHoverGoBack(const common::XY<int>&)
+	static const void OnOtherInput(const std::string& line)
 	{
-		visuals::Buttons::SetHoverButton(LAYOUT_NAME, BUTTON_GO_BACK);
-	}
-
-	static void OnHoverList(const common::XY<int>& location)
-	{
-		size_t row = (size_t)(location.GetY() / visuals::SpriteGrid::GetCellHeight(LAYOUT_NAME, SPRITE_GRID_ID));
-		if (row < rosterItems.size())
+		int index = common::Data::ToInt(line) - 1;
+		if (index >= 0 && index < rosterItems.size())
 		{
-			rosterIndex = row;
+			CrewDetail::SetAvatarId(rosterItems[index].avatarId);
+			application::UIState::Write(::UIState::IN_PLAY_CREW_DETAIL);
 		}
 		else
 		{
-			rosterIndex = std::nullopt;
+			Terminal::ErrorMessage(Terminal::INVALID_INPUT);
+			Refresh();
 		}
 	}
-
-	static const std::map<std::string, std::function<void(const common::XY<int>&)>> motionAreas =
-	{
-		{AREA_GO_BACK, OnHoverGoBack},
-		{AREA_LIST, OnHoverList}
-	};
-
-	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
-	{
-		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
-		common::utility::Dispatcher::DispatchParameter(motionAreas, areaName, location);
-		Refresh();
-	}
-
-	static void OnMouseMotionOutsideAreas(const common::XY<int>&)
-	{
-		visuals::Buttons::ClearHoverButton(LAYOUT_NAME);
-		rosterIndex = std::nullopt;
-		Refresh();
-	}
-
-	static void OnCrewDetail()
-	{
-		if (rosterIndex)
-		{
-			CrewDetail::SetAvatarId(rosterItems[rosterIndex.value()].avatarId);
-			application::UIState::Write(::UIState::IN_PLAY_CREW_DETAIL);
-		}
-	}
-
-	static const std::map<std::string, std::function<void()>> buttonUpAreas =
-	{
-		{AREA_GO_BACK, OnLeave},
-		{AREA_LIST, OnCrewDetail}
-	};
 
 	void CrewList::Start()
 	{
 		::application::OnEnter::AddHandler(
 			CURRENT_STATE, 
 			OnEnter);
-		::application::MouseButtonUp::AddHandler(
-			CURRENT_STATE, 
-			visuals::Areas::HandleMouseButtonUp(
-				LAYOUT_NAME, 
-				common::utility::Dispatcher::DoDispatch(buttonUpAreas, true, false)));
-		::application::MouseMotion::AddHandler(
-			CURRENT_STATE, 
-			visuals::Areas::HandleMouseMotion(
-				LAYOUT_NAME, 
-				OnMouseMotionInArea, 
-				OnMouseMotionOutsideAreas));
-		::application::Command::SetHandlers(
-			CURRENT_STATE, 
-			commandHandlers);
 		::application::Renderer::SetRenderLayout(
 			CURRENT_STATE, 
-			LAYOUT_NAME);
+			Terminal::LAYOUT_NAME);
+		::application::Keyboard::AddHandler(
+			CURRENT_STATE,
+			Terminal::DoIntegerInput(
+				menuActions,
+				OnOtherInput));
 	}
 }
