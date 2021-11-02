@@ -2,6 +2,7 @@
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
+#include <Common.Data.h>
 #include <Common.Utility.h>
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Audio.Mux.h>
@@ -13,6 +14,7 @@
 #include <Game.Items.h>
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.Equipment.h"
+#include "State.InPlay.EquipmentSlot.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 namespace state::in_play
@@ -160,8 +162,17 @@ namespace state::in_play
 
 	static const void OnOtherInput(const std::string& line)
 	{
-		Terminal::ErrorMessage(Terminal::INVALID_INPUT);
-		Refresh();
+		int index = common::Data::ToInt(line) - 1;
+		if (index >= 0 && index < equipSlots.size())
+		{
+			EquipmentSlot::SetSlot(equipSlots[index]);
+			application::UIState::Write(::UIState::IN_PLAY_EQUIPMENT_SLOT);
+		}
+		else
+		{
+			Terminal::ErrorMessage(Terminal::INVALID_INPUT);
+			Refresh();
+		}
 	}
 
 	void Equipment::Start()

@@ -33,6 +33,7 @@
 #include <State.InPlay.Docked.h>
 #include <State.InPlay.DockOrCareen.h>
 #include <State.InPlay.Equipment.h>
+#include <State.InPlay.EquipmentSlot.h>
 #include <State.InPlay.Fishing.h>
 #include <State.InPlay.GambleFinish.h>
 #include <State.InPlay.GambleStart.h>
@@ -195,6 +196,7 @@ namespace application
 		state::in_play::MultipleMove::Start,
 		state::in_play::IslandBuyQuantity::Start,
 		state::in_play::IslandSellQuantity::Start,
+		state::in_play::EquipmentSlot::Start,
 		sublayout::UIHamburger::Start,
 		sublayout::AtSeaActions::Start,
 		sublayout::AtSeaAvatarStatus::Start,
