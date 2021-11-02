@@ -4,15 +4,15 @@
 #include "Game.Item.h"
 #include <map>
 #include <optional>
-namespace game::avatar//20211017
+namespace game::avatar
 {
 	struct Equipment
 	{
 		static void Reset(const Difficulty&);
-		static std::optional<Item> Read(const EquipSlot&);
-		static void Equip(const EquipSlot&, const Item&);
-		static void Unequip(const EquipSlot&);
-		static std::map<EquipSlot, Item> All();
-		static bool IsEquipped(const Item&);
+		static std::optional<Item> Read(int, const EquipSlot&);
+		static void Equip(int, const EquipSlot&, const Item&);
+		static void Unequip(int, const EquipSlot&);
+		static std::map<EquipSlot, Item> All(int);
+		static bool IsEquipped(int, const Item&);
 	};
 }

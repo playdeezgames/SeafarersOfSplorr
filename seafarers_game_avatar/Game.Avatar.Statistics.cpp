@@ -140,23 +140,25 @@ namespace game::avatar
 		return data::game::avatar::Statistic::Read(avatarId, (int)statistic).value().current;
 	}
 
-	static double CalculateBuffs(const std::map<game::Item, double> itemBuffs)
+	static double CalculateBuffs(int avatarId, const std::map<game::Item, double> itemBuffs)
 	{
 		return common::utility::Table::Accumulate<game::Item, double, double>(
 			itemBuffs,
-			[](const double& result, const game::Item& item, const double& buff)
+			[avatarId](const double& result, const game::Item& item, const double& buff)
 			{
-				return result + (game::avatar::Equipment::IsEquipped(item)) ? (buff) : (0.0);
+				return result + (game::avatar::Equipment::IsEquipped(avatarId, item)) ? (buff) : (0.0);
 			});
 	}
 
 	static double GetCurrentWithBuffs(int avatarId, const game::avatar::Statistic& statistic)
 	{
-		return 
-			GetCurrent(avatarId, statistic) +
-			common::utility::Optional::Map<std::map<game::Item, double>, double>(
-				common::utility::Table::TryGetKey(allBuffs, statistic),
-				CalculateBuffs).value_or(0.0);
+		auto result = GetCurrent(avatarId, statistic);
+		auto blah = common::utility::Table::TryGetKey(allBuffs, statistic);
+		if (blah)
+		{
+			result += CalculateBuffs(avatarId, blah.value());
+		}
+		return result;
 	}
 
 	static void SetCurrent(int avatarId, const game::avatar::Statistic& statistic, double value)

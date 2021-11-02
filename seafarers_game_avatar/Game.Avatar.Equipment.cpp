@@ -3,16 +3,16 @@
 #include <Data.Game.Avatar.Equipment.h>
 #include "Game.Avatar.Equipment.h"
 #include <Game.Player.h>
-namespace game::avatar//20211017
+namespace game::avatar
 {
 	void Equipment::Reset(const Difficulty& difficulty)
 	{
 		data::game::avatar::Equipment::Clear(Player::GetAvatarId());
 	}
 
-	std::optional<Item> Equipment::Read(const EquipSlot& equipSlot)
+	std::optional<Item> Equipment::Read(int avatarId, const EquipSlot& equipSlot)
 	{
-		auto item = data::game::avatar::Equipment::Read(Player::GetAvatarId(), (int)equipSlot);
+		auto item = data::game::avatar::Equipment::Read(avatarId, (int)equipSlot);
 		if (item)
 		{
 			return (Item)item.value();
@@ -20,28 +20,28 @@ namespace game::avatar//20211017
 		return std::nullopt;
 	}
 
-	void Equipment::Equip(const EquipSlot& equipSlot, const Item& item)
+	void Equipment::Equip(int avatarId, const EquipSlot& equipSlot, const Item& item)
 	{
-		data::game::avatar::Equipment::Write(Player::GetAvatarId(), (int)equipSlot, (int)item);
+		data::game::avatar::Equipment::Write(avatarId, (int)equipSlot, (int)item);
 	}
 
-	void Equipment::Unequip(const EquipSlot& equipSlot)
+	void Equipment::Unequip(int avatarId, const EquipSlot& equipSlot)
 	{
-		data::game::avatar::Equipment::Write(Player::GetAvatarId(), (int)equipSlot, std::nullopt);
+		data::game::avatar::Equipment::Write(avatarId, (int)equipSlot, std::nullopt);
 	}
 
-	std::map<EquipSlot, Item> Equipment::All()
+	std::map<EquipSlot, Item> Equipment::All(int avatarId)
 	{
 		return 
 			common::utility::Table::Map<int, int, EquipSlot, Item>(
-				data::game::avatar::Equipment::All(Player::GetAvatarId()), 
+				data::game::avatar::Equipment::All(avatarId),
 				common::Utility::Cast<int, EquipSlot>,
 				common::Utility::Cast<int, Item>);
 	}
 
-	bool Equipment::IsEquipped(const Item& item)
+	bool Equipment::IsEquipped(int avatarId, const Item& item)
 	{
-		for (auto& entry : All())
+		for (auto& entry : All(avatarId))
 		{
 			if (entry.second == item)
 			{

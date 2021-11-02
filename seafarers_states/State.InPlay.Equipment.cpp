@@ -32,7 +32,7 @@ namespace state::in_play
 	{
 		auto slotName = game::EquipSlots::GetName(equipSlot);
 
-		auto item = game::avatar::Equipment::Read(equipSlot);
+		auto item = game::avatar::Equipment::Read(CrewDetail::GetAvatarId(), equipSlot);
 		std::string itemName = item.has_value() ? (game::Items::GetName(item.value())) : EMPTY;
 		Terminal::WriteLine("{}) {} - {}", index, slotName, itemName);
 	}
@@ -47,38 +47,6 @@ namespace state::in_play
 		}
 	}
 
-	//static std::string GetEquippableItemName(const std::optional<game::Item>& item)
-	//{
-	//	return 
-	//		(item.has_value()) ? 
-	//		(game::Items::GetName(item.value())) : 
-	//		(EMPTY);
-	//}
-
-	//static void RefreshItem(int& row, bool hilite, const std::optional<game::Item>& item)
-	//{
-	//	auto color = (hilite) ? (game::Colors::WHITE) : (game::Colors::DARK_GRAY);
-	//	visuals::SpriteGrid::WriteText(
-	//		LAYOUT_NAME, 
-	//		SPRITE_GRID_ID, 
-	//		{ EQUIPPABLE_ITEM_X, row }, 
-	//		FONT_DEFAULT, 
-	//		GetEquippableItemName(item), 
-	//		color, 
-	//		visuals::HorizontalAlignment::RIGHT);
-	//	++row;
-	//}
-
-	//static void RefreshItems()
-	//{
-	//	int row = 0;
-	//	size_t index=0;
-	//	for (auto& item : items)
-	//	{
-	//		RefreshItem(row, index == itemIndex, item);
-	//		index++;
-	//	}
-	//}
 
 	static void Refresh()
 	{
@@ -95,65 +63,11 @@ namespace state::in_play
 
 	}
 
-	//static std::set<game::Item> DetermineCandidates(const game::EquipSlot& equipSlot)
-	//{
-	//	std::set<game::Item> candidates;
-	//	auto current = game::avatar::Equipment::Read(equipSlot);//add current item
-	//	if (current)
-	//	{
-	//		candidates.insert(current.value());
-	//	}
-	//	auto equippableItems = game::EquipSlots::GetItems(equipSlot);//add other possible items
-	//	for (auto equippableItem : equippableItems)
-	//	{
-	//		if (game::avatar::Items::Has(equippableItem))
-	//		{
-	//			candidates.insert(equippableItem);
-	//		}
-	//	}
-	//	return candidates;
-	//}
-
-	//static void DoUpdateItems(const std::set<game::Item>& candidates)
-	//{
-	//	items.clear();
-	//	items.push_back(std::nullopt);//you can always equip nothing... thats called UNequipping!
-	//	for (auto candidate : candidates)
-	//	{
-	//		items.push_back(candidate);
-	//	}
-	//}
-
-	//static void UpdateItems()
-	//{
-	//	auto equipSlot = equipSlots[equipSlotIndex];
-	//	DoUpdateItems(DetermineCandidates(equipSlot));
-	//	UpdateItemIndex(equipSlot);
-	//}
-
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		Refresh();
 	}
-
-	//static void UnequipItem(const std::optional<game::Item>& item)
-	//{
-	//	if (item)
-	//	{
-	//		game::avatar::Items::Add(item.value(), 1);
-	//		game::avatar::Equipment::Unequip(equipSlots[equipSlotIndex]);
-	//	}
-	//}
-
-	//static void EquipItem(const std::optional<game::Item>& item)
-	//{
-	//	if (item)
-	//	{
-	//		game::avatar::Items::Remove(item.value(), 1);
-	//		game::avatar::Equipment::Equip(equipSlots[equipSlotIndex], item.value());
-	//	}
-	//}
 
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
