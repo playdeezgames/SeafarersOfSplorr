@@ -1,28 +1,17 @@
-#include <Application.Command.h>
-#include <Application.MouseButtonUp.h>
-#include <Application.MouseMotion.h>
+#include <Application.Keyboard.h>
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Common.Utility.h>
 #include <Game.Audio.Mux.h>
-#include <Visuals.Confirmations.h>
+#include <Game.Colors.h>
 #include "State.InPlay.Confirm.h"
+#include "State.Terminal.h"
 #include "UIState.h"
-#include <Visuals.Areas.h>
-#include <Visuals.Menus.h>
-#include <Visuals.Texts.h>
+#include <Visuals.Confirmations.h>
 namespace state::in_play
 {
-	static const std::string LAYOUT_NAME = "State.InPlay.Confirm";
-	static const std::string MENU_ID = "Confirm";
-	static const std::string TEXT_PROMPT = "Prompt";
-
-	enum class ConfirmItem
-	{
-		NO,
-		YES
-	};
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CONFIRM;
 
 	static visuals::Confirmation confirmation;
 
@@ -38,26 +27,19 @@ namespace state::in_play
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	static const std::map<ConfirmItem, std::function<void()>> activators =
-	{
-		{ ConfirmItem::NO, OnNo },
-		{ ConfirmItem::YES, OnYes }
-	};
-
-	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
-
-	static const std::map<Command, std::function<void()>> commandHandlers =
-	{
-		{ ::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
-		{ ::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
-		{ ::Command::GREEN, ActivateItem },
-		{ ::Command::BACK, OnNo },
-		{ ::Command::RED, OnNo }
-	};
-
 	static void Refresh()
 	{
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_PROMPT, confirmation.prompt);
+		Terminal::Reinitialize();
+
+		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
+		Terminal::WriteLine(confirmation.prompt);
+		Terminal::WriteLine();
+
+		Terminal::SetForeground(game::Colors::YELLOW);
+		Terminal::WriteLine("1) No");
+		Terminal::WriteLine("2) Yes");
+
+		Terminal::ShowPrompt();
 	}
 
 	static void OnEnter()
@@ -72,12 +54,21 @@ namespace state::in_play
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
+	static const std::map<std::string, std::function<void()>> menuActions =
+	{
+		{ "1", OnNo},
+		{ "2", OnYes}
+	};
+
 	void Confirm::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_CONFIRM, OnEnter);
-		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_CONFIRM, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
-		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_CONFIRM, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-		::application::Command::SetHandlers(::UIState::IN_PLAY_CONFIRM, commandHandlers);
-		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_CONFIRM, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
+		::application::Keyboard::AddHandler(
+			CURRENT_STATE,
+			Terminal::DoIntegerInput(
+				menuActions,
+				Terminal::INVALID_INPUT,
+				Refresh));
 	}
 }
