@@ -58,11 +58,11 @@ namespace game//20211022
 		if (game::avatar::Statistics::NeedToEat(game::Player::GetAvatarId(), EAT_BENEFIT))
 		{
 			const game::Item rationItem = game::Item::RATIONS;//TODO: when we can choose rations for an avatar, this will change
-			auto rations = game::avatar::Items::Read(rationItem);
+			auto rations = game::avatar::Items::Read(game::Player::GetAvatarId(), rationItem);
 			if (rations > 0)
 			{
 				game::avatar::Statistics::Eat(game::Player::GetAvatarId(), EAT_BENEFIT);
-				game::avatar::Items::Remove(rationItem, 1);
+				game::avatar::Items::Remove(game::Player::GetAvatarId(), rationItem, 1);
 			}
 		}
 	}

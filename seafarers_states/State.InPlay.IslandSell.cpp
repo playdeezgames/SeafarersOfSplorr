@@ -48,7 +48,7 @@ namespace state::in_play
 			Terminal::WriteLine("{}) {} ({} @ {:.4f})",
 				index++,
 				game::Items::GetName(unitPrice.first),
-				game::avatar::Items::Read(unitPrice.first),
+				game::avatar::Items::Read(game::Player::GetAvatarId(), unitPrice.first),
 				unitPrice.second);
 		}
 	}

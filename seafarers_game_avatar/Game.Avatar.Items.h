@@ -6,12 +6,12 @@ namespace game::avatar//20211017
 {
 	struct Items
 	{
-		static std::map<game::Item, size_t> All();
-		static size_t Read(const game::Item&);
-		static bool Has(const Item&);
-		static void Add(const game::Item&, const size_t&);
-		static void Remove(const game::Item&, const size_t&);
+		static std::map<game::Item, size_t> All(int);
+		static size_t Read(int, const game::Item&);
+		static bool Has(int, const Item&);
+		static void Add(int, const game::Item&, const size_t&);
+		static void Remove(int, const game::Item&, const size_t&);
 		static void Reset(const game::Difficulty&);
-		static double TotalTonnage();
+		static double TotalTonnage(int);
 	};
 }

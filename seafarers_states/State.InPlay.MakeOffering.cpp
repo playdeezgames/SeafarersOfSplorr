@@ -63,7 +63,7 @@ namespace state::in_play
 
 	static void UpdateItems()
 	{
-		items = game::avatar::Items::All();
+		items = game::avatar::Items::All(game::Player::GetAvatarId());
 	}
 
 	static void RefreshItems()
@@ -208,7 +208,7 @@ namespace state::in_play
 		{
 			auto location = game::avatar::Docked::ReadLocation().value();
 			auto island = game::Islands::Read(location).value();
-			game::avatar::Items::Remove(item.value(), 1);
+			game::avatar::Items::Remove(game::Player::GetAvatarId(), item.value(), 1);
 			OnOfferingResult(game::Demigods::MakeOffering(island.patronDemigod, item.value()));
 			OnLeave();
 		}

@@ -67,7 +67,7 @@ namespace state::in_play
 			Terminal::WriteLine("You purchase {} {} for {:.4f}.", units, game::Items::GetName(currentItem), totalPrice);
 			game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), -totalPrice);
 			game::islands::Markets::BuyItems(game::avatar::Docked::ReadLocation().value(), currentItem, units);
-			game::avatar::Items::Add(currentItem, units);
+			game::avatar::Items::Add(game::Player::GetAvatarId(), currentItem, units);
 			application::UIState::Write(::UIState::IN_PLAY_ISLAND_BUY);
 		}
 		else

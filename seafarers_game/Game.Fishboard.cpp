@@ -10,6 +10,7 @@
 #include "Game.Fishes.h"
 #include "Game.FishGame.h"
 #include "Game.Items.h"
+#include "Game.Player.h"
 #include <format>
 #include <map>
 namespace game//20211013
@@ -140,7 +141,7 @@ namespace game//20211013
 	{
 		ClearFishGame();
 		ClearFishboard();
-		avatar::Items::Remove(BAIT_ITEM, 1);
+		avatar::Items::Remove(game::Player::GetAvatarId(), BAIT_ITEM, 1);
 		PlaceFish(GenerateFish());
 	}
 
@@ -155,7 +156,7 @@ namespace game//20211013
 	static void ReelInFish(Fish fish)
 	{
 		auto item = Fishes::GetItem(fish);
-		game::avatar::Items::Add(item, 1);
+		game::avatar::Items::Add(game::Player::GetAvatarId(), item, 1);
 		avatar::Log::Write({
 			game::Colors::GREEN,
 			std::format("You reel in a {}!", Items::GetName(item)) });

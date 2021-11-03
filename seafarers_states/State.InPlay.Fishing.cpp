@@ -23,6 +23,7 @@
 #include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
+#include <Game.Player.h>
 #include "State.InPlay.Fishing.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
@@ -57,7 +58,7 @@ namespace state::in_play//20211020
 	{
 		return
 			!game::FishGame::HasGuessesLeft() &&
-			game::avatar::Items::Has(game::Item::BAIT);
+			game::avatar::Items::Has(game::Player::GetAvatarId(), game::Item::BAIT);
 	}
 
 	static const std::map<game::FishGameState, std::string> goBackMenuItemTexts =
@@ -108,7 +109,7 @@ namespace state::in_play//20211020
 			LAYOUT_NAME,
 			TEXT_BAIT,
 			"{}",
-			(int)game::avatar::Items::Read(game::Item::BAIT));
+			(int)game::avatar::Items::Read(game::Player::GetAvatarId(), game::Item::BAIT));
 	}
 
 	static void Refresh()

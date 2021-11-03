@@ -10,6 +10,7 @@
 #include "Game.FishGame.h"
 #include "Game.Fishes.h"
 #include "Game.Items.h"
+#include "Game.Player.h"
 #include <format>
 #include <map>
 namespace game//20211013
@@ -48,7 +49,7 @@ namespace game//20211013
 
 	void FishGame::AddBait()
 	{
-		avatar::Items::Remove(Item::BAIT, 1);
+		avatar::Items::Remove(game::Player::GetAvatarId(), Item::BAIT, 1);
 		data::game::FishGame::WriteGuesses(data::game::FishGame::ReadGuesses() + ADDITIONAL_GUESSES);
 	}
 }

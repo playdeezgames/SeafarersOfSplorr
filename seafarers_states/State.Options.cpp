@@ -44,26 +44,25 @@ namespace state
 		Terminal::WriteLine("Options:");
 
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine();
-		Terminal::WriteLine("Sfx Volume {}",::audio::Sfx::GetVolume());
-		Terminal::WriteLine("Mux Volume {}",::audio::Mux::GetVolume());
-
-		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine();
 		if (Audio::IsMuted())
 		{
-			Terminal::WriteLine("1) Unmute");
+			Terminal::WriteLine("==MUTED==");
 		}
 		else
 		{
-			Terminal::WriteLine("1) Mute");
+			Terminal::WriteLine("Sfx Volume {}",::audio::Sfx::GetVolume());
+			Terminal::WriteLine("Mux Volume {}",::audio::Mux::GetVolume());
 		}
+
+		Terminal::SetForeground(game::Colors::YELLOW);
+		Terminal::WriteLine();
+		Terminal::WriteLine("1) Toggle mute");
 		Terminal::WriteLine("2) Increase SFX");
 		Terminal::WriteLine("3) Decrease SFX");
 		Terminal::WriteLine("4) Increase MUX");
 		Terminal::WriteLine("5) Descease MUX");
-		Terminal::WriteLine("6) Toggle Fullscreen");
-		Terminal::WriteLine("7) Exit");
+		Terminal::WriteLine("6) Toggle fullscreen");
+		Terminal::WriteLine("0) Never mind");
 
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine();
@@ -122,7 +121,7 @@ namespace state
 		{"4", IncraseMux},
 		{"5", DecreaseMux},
 		{"6", ToggleFullscreen},
-		{"7", application::UIState::Pop }
+		{"0", application::UIState::Pop }
 	};
 
 	void Options::Start()

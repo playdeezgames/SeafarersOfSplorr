@@ -81,9 +81,9 @@ namespace game::avatar
 
 	static StateTransition OnStartFishing()
 	{
-		if (game::avatar::Items::Has(Item::FISHING_POLE))
+		if (game::avatar::Items::Has(game::Player::GetAvatarId(), Item::FISHING_POLE))
 		{
-			if (game::avatar::Items::Has(Item::BAIT))
+			if (game::avatar::Items::Has(game::Player::GetAvatarId(), Item::BAIT))
 			{
 				Fishboard::Generate();
 				return

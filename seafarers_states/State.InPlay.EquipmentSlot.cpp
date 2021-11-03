@@ -72,7 +72,7 @@ namespace state::in_play
 		auto equippableItems = game::EquipSlots::GetItems(equipmentSlot);//add other possible items
 		for (auto equippableItem : equippableItems)
 		{
-			if (game::avatar::Items::Has(equippableItem))
+			if (game::avatar::Items::Has(CrewDetail::GetAvatarId(), equippableItem))
 			{
 				candidates.insert(equippableItem);
 			}
@@ -96,7 +96,8 @@ namespace state::in_play
 	{
 		if (item)
 		{
-			game::avatar::Items::Add(item.value(), 1);
+			//TODO: write to terminal that item was unequipped
+			game::avatar::Items::Add(CrewDetail::GetAvatarId(), item.value(), 1);
 			game::avatar::Equipment::Unequip(CrewDetail::GetAvatarId(), equipmentSlot);
 		}
 	}
@@ -105,7 +106,8 @@ namespace state::in_play
 	{
 		if (item)
 		{
-			game::avatar::Items::Remove(item.value(), 1);
+			//TODO: write to terminal that item was equipped
+			game::avatar::Items::Remove(CrewDetail::GetAvatarId(), item.value(), 1);
 			game::avatar::Equipment::Equip(CrewDetail::GetAvatarId(), equipmentSlot, item.value());
 		}
 	}
@@ -129,16 +131,9 @@ namespace state::in_play
 		{
 			auto newItem = items[index];
 			auto oldItem = game::avatar::Equipment::Read(CrewDetail::GetAvatarId(), equipmentSlot);
-			if (oldItem)
-			{
-				UnequipItem(oldItem.value());
-				//TODO: write to terminal that item was unequipped
-			}
-			if (newItem)
-			{
-				EquipItem(newItem.value());
-				//TODO: write to terminal that item was equipped
-			}
+			UnequipItem(oldItem);
+			EquipItem(newItem);
+			application::UIState::Write(::UIState::IN_PLAY_EQUIPMENT);
 		}
 		else
 		{

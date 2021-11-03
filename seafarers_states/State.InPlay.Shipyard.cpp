@@ -145,7 +145,7 @@ namespace state::in_play
 
 	static void CheckTonnage(game::ShipType desiredShip, double price)
 	{
-		if (game::avatar::Items::TotalTonnage() <= game::ShipTypes::GetTotalTonnage(desiredShip))
+		if (game::avatar::Items::TotalTonnage(game::Player::GetAvatarId()) <= game::ShipTypes::GetTotalTonnage(desiredShip))
 		{
 			//TODO: check crew capacity!
 			visuals::Confirmations::Write(

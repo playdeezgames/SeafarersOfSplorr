@@ -37,7 +37,7 @@ namespace state
 		Terminal::WriteLine("3) Normal");
 		Terminal::WriteLine("4) Hard");
 		Terminal::WriteLine("5) HARDCORE");
-		Terminal::WriteLine("6) Never mind");
+		Terminal::WriteLine("0) Never mind");
 
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine();
@@ -57,7 +57,7 @@ namespace state
 		{ "3", NewGame(game::Difficulty::NORMAL) },
 		{ "4", NewGame(game::Difficulty::HARD) },
 		{ "5", NewGame(game::Difficulty::HARDCORE) },
-		{ "6", ::application::UIState::GoTo(::UIState::MAIN_MENU) }
+		{ "0", ::application::UIState::GoTo(::UIState::MAIN_MENU) }
 	};
 
 	void StartGame::Start()

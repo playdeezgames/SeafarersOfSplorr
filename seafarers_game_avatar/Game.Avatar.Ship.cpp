@@ -6,6 +6,7 @@
 #include <Data.Game.Ship.h>
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Items.h"
+#include <Game.Player.h>
 #include <Game.Ship.h>
 #include <Game.ShipTypes.h>
 namespace game::avatar//20211018
@@ -57,7 +58,7 @@ namespace game::avatar//20211018
 			{
 				return
 					game::ShipTypes::GetTotalTonnage(shipType) -
-					game::avatar::Items::TotalTonnage();
+					game::avatar::Items::TotalTonnage(game::Player::GetAvatarId());
 			}).value_or(0.0);
 	}
 

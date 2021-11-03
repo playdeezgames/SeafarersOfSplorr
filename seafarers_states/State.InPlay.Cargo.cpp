@@ -29,12 +29,12 @@ namespace state::in_play
 
 	static void UpdateManifest()
 	{
-		manifest = game::avatar::Items::All();
+		manifest = game::avatar::Items::All(game::Player::GetAvatarId());
 	}
 
 	static double GetTonnage()
 	{
-		return game::avatar::Items::TotalTonnage();
+		return game::avatar::Items::TotalTonnage(game::Player::GetAvatarId());
 	}
 
 	static double GetAvailableTonnage()

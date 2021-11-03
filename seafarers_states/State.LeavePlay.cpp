@@ -19,10 +19,10 @@ namespace state
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Game Menu:");
 		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine("1) Continue Game");
+		Terminal::WriteLine("1) Abandon Game");
 		Terminal::WriteLine("2) Save Game");
 		Terminal::WriteLine("3) Options");
-		Terminal::WriteLine("4) Abandon Game");
+		Terminal::WriteLine("0) Continue Game");
 
 		Terminal::ShowPrompt();
 	}
@@ -50,10 +50,10 @@ namespace state
 
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
-		{"1", ContinueGame},
+		{"1", GoToConfirmAbandon},
 		{"2", GoToSaveGame},
 		{"3", application::UIState::PushTo(::UIState::OPTIONS)},
-		{"4", GoToConfirmAbandon}
+		{"0", ContinueGame}
 	};
 
 	void LeavePlay::Start()

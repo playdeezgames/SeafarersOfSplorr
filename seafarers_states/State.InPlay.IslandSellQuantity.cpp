@@ -32,7 +32,7 @@ namespace state::in_play
 		Terminal::WriteLine("Selling {}:", game::Items::GetName(currentItem));
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Unit price: {:.4f}.", unitPrice);
-		Terminal::WriteLine("You have {} units.", game::avatar::Items::Read(currentItem));
+		Terminal::WriteLine("You have {} units.", game::avatar::Items::Read(game::Player::GetAvatarId(), currentItem));
 
 		Terminal::ShowPrompt();
 	}
@@ -47,14 +47,14 @@ namespace state::in_play
 	{
 		auto unitPrice = game::islands::Items::GetSalePrices(game::avatar::Docked::ReadLocation().value())[currentItem];
 		int units = common::Data::ToInt(line);
-		if (units <= game::avatar::Items::Read(currentItem))
+		if (units <= game::avatar::Items::Read(game::Player::GetAvatarId(), currentItem))
 		{
 			double totalPrice = unitPrice * units;
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine("You sell {} {} for {:.4f}.", units, game::Items::GetName(currentItem), totalPrice);
 			game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), totalPrice);
 			game::islands::Markets::SellItems(game::avatar::Docked::ReadLocation().value(), currentItem, units);
-			game::avatar::Items::Remove(currentItem, units);
+			game::avatar::Items::Remove(game::Player::GetAvatarId(), currentItem, units);
 			application::UIState::Write(::UIState::IN_PLAY_ISLAND_SELL);
 		}
 		else

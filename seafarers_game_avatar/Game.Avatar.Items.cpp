@@ -5,43 +5,43 @@
 #include "Game.Avatar.Items.h"
 #include "Game.Items.h"
 #include <Game.Player.h>
-namespace game::avatar//20211017
+namespace game::avatar
 {
-	std::map<game::Item, size_t> Items::All()
+	std::map<game::Item, size_t> Items::All(int avatarId)
 	{
 		return
 			common::utility::Table::Map<int, size_t, Item, size_t>(
-				data::game::avatar::Items::All(Player::GetAvatarId()),
+				data::game::avatar::Items::All(avatarId),
 				common::Utility::Cast<int, Item>,
 				common::Utility::Identity<size_t>);
 	}
 
-	size_t Items::Read(const game::Item& item)
+	size_t Items::Read(int avatarId, const game::Item& item)
 	{
-		return data::game::avatar::Items::Read(Player::GetAvatarId(), (int)item);
+		return data::game::avatar::Items::Read(avatarId, (int)item);
 	}
 
-	bool Items::Has(const Item& item)
+	bool Items::Has(int avatarId, const Item& item)
 	{
-		return Read(item) > 0;
+		return Read(avatarId, item) > 0;
 	}
 
 
-	void Items::Add(const game::Item& item, const size_t& count)
+	void Items::Add(int avatarId, const game::Item& item, const size_t& count)
 	{
-		data::game::avatar::Items::Write(Player::GetAvatarId(), (int)item, Read(item) + count);
+		data::game::avatar::Items::Write(avatarId, (int)item, Read(avatarId, item) + count);
 	}
 
-	void Items::Remove(const game::Item& item, const size_t& count)
+	void Items::Remove(int avatarId, const game::Item& item, const size_t& count)
 	{
-		auto previous = Read(item);
-		data::game::avatar::Items::Write(Player::GetAvatarId(), (int)item, (previous>=count) ? (previous - count) : (0));
+		auto previous = Read(avatarId, item);
+		data::game::avatar::Items::Write(avatarId, (int)item, (previous>=count) ? (previous - count) : (0));
 	}
 
-	double Items::TotalTonnage()
+	double Items::TotalTonnage(int avatarId)
 	{
 		return common::utility::Table::Accumulate<Item, size_t, double>(
-			All(),
+			All(avatarId),
 			[](double& result, const Item& item, const size_t count) 
 			{ 
 				double delta = game::Items::GetUnitTonnage(item) * (double)count;
@@ -56,7 +56,7 @@ namespace game::avatar//20211017
 		{
 			common::utility::Optional::Iterate<size_t>(
 				common::utility::Table::TryGetKey(game::Items::GetInitialInventoriesForAvatar(item), difficulty),
-				[item](const size_t& count) { Add(item, count); }
+				[item](const size_t& count) { Add(Player::GetAvatarId(), item, count); }
 			);
 		}
 	}

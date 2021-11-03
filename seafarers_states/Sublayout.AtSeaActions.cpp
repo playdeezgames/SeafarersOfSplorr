@@ -10,6 +10,7 @@
 #include <Game.Avatar.h>
 #include <Game.Avatar.Actions.h>
 #include <Game.Avatar.Items.h>
+#include <Game.Player.h>
 #include "Sublayouts.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
@@ -44,8 +45,8 @@ namespace sublayout
 	static bool IsFishingEnabled()
 	{
 		return 
-				game::avatar::Items::Has(game::Item::FISHING_POLE) && 
-				game::avatar::Items::Has(game::Item::BAIT);
+				game::avatar::Items::Has(game::Player::GetAvatarId(), game::Item::FISHING_POLE) &&
+				game::avatar::Items::Has(game::Player::GetAvatarId(), game::Item::BAIT);
 	}
 
 	static const std::map<HoverButton, ActionDescriptor> actions =

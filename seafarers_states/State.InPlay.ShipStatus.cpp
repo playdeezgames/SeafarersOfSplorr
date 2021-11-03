@@ -27,7 +27,7 @@ namespace state::in_play
 		Terminal::WriteLine("1) Change Heading(Current: {:.2f}\xf8)", game::Ship::GetHeading());
 		Terminal::WriteLine("2) Change Speed(Current: {:.1f})", game::Ship::GetSpeed());
 		Terminal::WriteLine("3) Cargo");
-		Terminal::WriteLine("4) Never mind");
+		Terminal::WriteLine("0) Never mind");
 
 		Terminal::ShowPrompt();
 	}
@@ -37,7 +37,7 @@ namespace state::in_play
 		{"1", application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_HEADING)},
 		{"2", application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_SPEED)},
 		{"3", application::UIState::GoTo(::UIState::IN_PLAY_CARGO)},
-		{"4", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW)}
+		{"0", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW)}
 	};
 
 	static void OnEnter()
