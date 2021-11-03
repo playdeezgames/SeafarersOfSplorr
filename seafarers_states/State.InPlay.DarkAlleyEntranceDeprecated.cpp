@@ -16,7 +16,7 @@
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.DarkAlley.FightCard.h>
 #include <Game.Player.h>
-#include "State.InPlay.DarkAlleyEntrance.h"
+#include "State.InPlay.DarkAlleyEntranceDeprecated.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.CardSprites.h>
@@ -404,12 +404,12 @@ namespace state::in_play
 		Refresh();
 	}
 
-	void DarkAlleyEntrance::Start()
+	void DarkAlleyEntranceDeprecated::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE, OnEnter);
-		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea, OnMouseMotionOutsideArea));
-		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
-		::application::Command::SetHandler(::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE, OnLeave);
-		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE_DEPRECATED, OnEnter);
+		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE_DEPRECATED, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea, OnMouseMotionOutsideArea));
+		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE_DEPRECATED, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
+		::application::Command::SetHandler(::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE_DEPRECATED, OnLeave);
+		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE_DEPRECATED, LAYOUT_NAME);
 	}
 }
