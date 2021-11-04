@@ -51,7 +51,7 @@
 #include <State.InPlay.Message.h>
 #include <State.InPlay.MultipleMove.h>
 #include <State.InPlay.Next.h>
-#include <State.InPlay.Shipyard.h>
+#include <State.InPlay.ShipyardDeprecated.h>
 #include <State.InPlay.ShipStatus.h>
 #include <State.InPlay.Temple.h>
 #include <State.InPlay.Win.h>
@@ -170,7 +170,7 @@ namespace application
 		state::in_play::IslandSell::Start,
 		state::in_play::Cargo::Start,
 		state::in_play::Next::Start,
-		state::in_play::Shipyard::Start,
+		state::in_play::ShipyardDeprecated::Start,
 		state::in_play::DarkAlley::Start,
 		state::in_play::Message::Start,
 		state::in_play::Confirm::Start,

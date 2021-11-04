@@ -26,7 +26,7 @@
 #include <Game.ShipNames.h>
 #include <Game.ShipTypes.h>
 #include <Game.World.h>
-#include "State.InPlay.Shipyard.h"
+#include "State.InPlay.ShipyardDeprecated.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Confirmations.h>
@@ -35,7 +35,7 @@
 #include <Visuals.SpriteGrid.h>
 namespace state::in_play
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_SHIPYARD;
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_SHIPYARD_DEPRECATED;
 	static const std::string LAYOUT_NAME = "State.InPlay.Shipyard";
 	static const std::string SPRITE_GRID_ID = "Grid";
 	static const std::string FONT_DEFAULT = "default";
@@ -286,7 +286,7 @@ namespace state::in_play
 		RefreshGrid();
 	}
 
-	void Shipyard::Start()
+	void ShipyardDeprecated::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
