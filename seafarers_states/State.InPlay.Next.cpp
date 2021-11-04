@@ -32,7 +32,7 @@ namespace state::in_play
 	static const std::map<game::avatar::State, ::UIState> avatarStateTable =
 	{
 		{ game::avatar::State::DARK_ALLEY, ::UIState::IN_PLAY_DARK_ALLEY },
-		{ game::avatar::State::DARK_ALLEY_ENTRANCE, ::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE_DEPRECATED },
+		{ game::avatar::State::DARK_ALLEY_ENTRANCE, ::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE },
 		{ game::avatar::State::SHIPYARD, ::UIState::IN_PLAY_SHIPYARD },
 		{ game::avatar::State::MARKET_BUY,::UIState::IN_PLAY_ISLAND_BUY },
 		{ game::avatar::State::MARKET_SELL, ::UIState::IN_PLAY_ISLAND_SELL },

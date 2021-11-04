@@ -30,6 +30,7 @@
 #include <State.InPlay.CurrentJob.h>
 #include <State.InPlay.DarkAlley.h>
 #include <State.InPlay.DarkAlleyEntranceDeprecated.h>
+#include <State.InPlay.DarkAlleyEntrance.h>
 #include <State.InPlay.Docked.h>
 #include <State.InPlay.DockOrCareen.h>
 #include <State.InPlay.Equipment.h>
@@ -197,6 +198,7 @@ namespace application
 		state::in_play::IslandBuyQuantity::Start,
 		state::in_play::IslandSellQuantity::Start,
 		state::in_play::EquipmentSlot::Start,
+		state::in_play::DarkAlleyEntrance::Start,
 		sublayout::UIHamburger::Start,
 		sublayout::AtSeaActions::Start,
 		sublayout::AtSeaAvatarStatus::Start,

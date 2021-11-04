@@ -233,6 +233,9 @@
     <ClInclude Include="State.InPlay.EquipmentSlot.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
+    <ClInclude Include="State.InPlay.DarkAlleyEntrance.h">
+      <Filter>Header Files\Docked</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -414,6 +417,9 @@
     </ClCompile>
     <ClCompile Include="State.InPlay.EquipmentSlot.cpp">
       <Filter>Source Files\AtSea\Status</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.DarkAlleyEntrance.cpp">
+      <Filter>Source Files\Docked\DarkAlley</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
