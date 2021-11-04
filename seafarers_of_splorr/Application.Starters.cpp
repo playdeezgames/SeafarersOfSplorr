@@ -29,7 +29,6 @@
 #include <State.InPlay.CrewDetail.h>
 #include <State.InPlay.CurrentJob.h>
 #include <State.InPlay.DarkAlley.h>
-#include <State.InPlay.DarkAlleyEntranceDeprecated.h>
 #include <State.InPlay.DarkAlleyEntrance.h>
 #include <State.InPlay.Docked.h>
 #include <State.InPlay.DockOrCareen.h>
@@ -172,7 +171,6 @@ namespace application
 		state::in_play::Cargo::Start,
 		state::in_play::Next::Start,
 		state::in_play::Shipyard::Start,
-		state::in_play::DarkAlleyEntranceDeprecated::Start,
 		state::in_play::DarkAlley::Start,
 		state::in_play::Message::Start,
 		state::in_play::Confirm::Start,

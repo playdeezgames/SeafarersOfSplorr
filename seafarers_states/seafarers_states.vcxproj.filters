@@ -113,9 +113,6 @@
     <ClInclude Include="State.InPlay.DarkAlley.h">
       <Filter>Header Files\Docked</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.DarkAlleyEntranceDeprecated.h">
-      <Filter>Header Files\Docked</Filter>
-    </ClInclude>
     <ClInclude Include="State.InPlay.Docked.h">
       <Filter>Header Files\Docked</Filter>
     </ClInclude>
@@ -326,9 +323,6 @@
       <Filter>Source Files\Docked\Jobs</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.DarkAlley.cpp">
-      <Filter>Source Files\Docked\DarkAlley</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.DarkAlleyEntranceDeprecated.cpp">
       <Filter>Source Files\Docked\DarkAlley</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.GambleFinish.cpp">

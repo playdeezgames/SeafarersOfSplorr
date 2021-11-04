@@ -46,7 +46,6 @@
     <ClInclude Include="State.InPlay.CrewList.h" />
     <ClInclude Include="State.InPlay.CurrentJob.h" />
     <ClInclude Include="State.InPlay.DarkAlley.h" />
-    <ClInclude Include="State.InPlay.DarkAlleyEntranceDeprecated.h" />
     <ClInclude Include="State.InPlay.Docked.h" />
     <ClInclude Include="State.InPlay.Equipment.h" />
     <ClInclude Include="State.InPlay.Fishing.h" />
@@ -115,7 +114,6 @@
     <ClCompile Include="State.InPlay.ConfirmReplaceJob.cpp" />
     <ClCompile Include="State.InPlay.CurrentJob.cpp" />
     <ClCompile Include="State.InPlay.DarkAlley.cpp" />
-    <ClCompile Include="State.InPlay.DarkAlleyEntranceDeprecated.cpp" />
     <ClCompile Include="State.InPlay.Docked.cpp" />
     <ClCompile Include="State.InPlay.GambleFinish.cpp" />
     <ClCompile Include="State.InPlay.GambleStart.cpp" />
