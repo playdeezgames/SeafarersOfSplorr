@@ -46,7 +46,7 @@ namespace state::in_play
 			Terminal::WriteLine("4) Dark Alley");
 		}
 		Terminal::WriteLine(FORMAT_TEMPLE, island.patronDemigod);
-		Terminal::WriteLine("6) Undock");
+		Terminal::WriteLine("0) Undock");
 
 		Terminal::ShowPrompt();
 	}
@@ -119,7 +119,7 @@ namespace state::in_play
 		{"3", OnShipyard},
 		{"4", OnDarkAlley},
 		{"5", OnTemple},
-		{"6", OnUndock}
+		{"0", OnUndock}
 	};
 
 	void Docked::Start()

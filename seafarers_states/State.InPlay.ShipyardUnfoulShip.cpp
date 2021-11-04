@@ -3,13 +3,31 @@
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
+#include <Game.Avatar.Docked.h>
+#include <Game.Avatar.Statistics.h>
+#include <Game.Avatar.ShipStatistics.h>
 #include <Game.Colors.h>
+#include <Game.Islands.Commodities.h>
+#include <Game.Player.h>
+#include <Game.World.h>
 #include "State.InPlay.ShipyardUnfoulShip.h"
 #include "State.Terminal.h"
 #include "UIState.h"
+#include <Visuals.Messages.h>
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_SHIPYARD_UNFOUL_SHIP;
+
+	static double GetUnfoulingPrice()
+	{
+		return game::islands::Commodities::GetPurchasePrice(
+			game::avatar::Docked::ReadLocation().value(),
+			{
+					{game::Commodity::LABOR, 
+						game::World::GetUnfoulingLaborMultiplier() * 
+						game::avatar::ShipStatistics::GetFouling()}
+			});
+	}
 
 	static void Refresh()
 	{
@@ -17,7 +35,23 @@ namespace state::in_play
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Unfoul Ship:");
-		Terminal::WriteLine();
+
+		auto price = GetUnfoulingPrice();
+		if (price > 0)
+		{
+			Terminal::SetForeground(game::Colors::GRAY);
+			Terminal::WriteLine("The price is {:.4f}.", price);
+			if (game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId()) >= price)
+			{
+				Terminal::SetForeground(game::Colors::YELLOW);
+				Terminal::WriteLine("1) Clean hull");
+			}
+		}
+		else
+		{
+			Terminal::SetForeground(game::Colors::GRAY);
+			Terminal::WriteLine("Yer ship has no fouling.");
+		}
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("0) Never mind");
@@ -31,6 +65,24 @@ namespace state::in_play
 		Refresh();
 	}
 
+	static void OnCleanHull()
+	{
+		double price = GetUnfoulingPrice();
+		if (price>0 && game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId()) >= price)
+		{
+			game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), -price);
+			game::avatar::ShipStatistics::CleanHull(game::Side::STARBOARD);
+			game::avatar::ShipStatistics::CleanHull(game::Side::PORT);
+			visuals::Messages::Write({ "You unfoul yer ship!" ,{}});
+			application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		}
+		else
+		{
+			Terminal::ErrorMessage(Terminal::INVALID_INPUT);
+			Refresh();
+		}
+	}
+
 	static void OnLeave()
 	{
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
@@ -38,6 +90,7 @@ namespace state::in_play
 
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
+		{ "1", OnCleanHull },
 		{ "0", OnLeave }
 	};
 
