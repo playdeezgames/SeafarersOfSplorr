@@ -1,8 +1,6 @@
-#include <Application.Renderer.h>
-#include <Application.Command.h>
-#include <Application.MouseButtonUp.h>
-#include <Application.MouseMotion.h>
+#include <Application.Keyboard.h>
 #include <Application.OnEnter.h>
+#include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <format>
 #include <Game.Audio.Mux.h>
@@ -14,15 +12,13 @@
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Player.h>
 #include "State.InPlay.DarkAlley.h"
+#include "State.Terminal.h"
 #include "UIState.h"
-#include <Visuals.Areas.h>
 #include <Visuals.Confirmations.h>
-#include <Visuals.Menus.h>
 #include <Visuals.Messages.h>
 namespace state::in_play
 {
-	static const std::string LAYOUT_NAME = "State.InPlay.DarkAlley";
-	static const std::string MENU_ID = "DarkAlley";
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DARK_ALLEY;
 
 	static void OnLeave()
 	{
@@ -71,26 +67,42 @@ namespace state::in_play
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	enum class DarkAlleyMenuItem
+	static void Refresh()
 	{
-		LEAVE,
-		GAMBLE
-	};
+		Terminal::Reinitialize();
 
-	static const std::map<DarkAlleyMenuItem, std::function<void()>> activators =
+		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
+		Terminal::WriteLine("Dark Alley:");
+		Terminal::WriteLine();
+
+		Terminal::SetForeground(game::Colors::YELLOW);
+		Terminal::WriteLine("1) Gamble");
+		Terminal::WriteLine("0) Leave");
+
+		Terminal::ShowPrompt();
+	}
+
+	static void OnEnter()
 	{
-		{ DarkAlleyMenuItem::GAMBLE, OnGamble },
-		{ DarkAlleyMenuItem::LEAVE, OnLeave }
+		game::audio::Mux::Play(game::audio::Theme::MAIN);
+		Refresh();
+	}
+	
+	static const std::map<std::string, std::function<void()>> menuActions =
+	{
+		{ "1", OnGamble},
+		{ "0", OnLeave}
 	};
-
-	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
 
 	void DarkAlley::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::IN_PLAY_DARK_ALLEY, game::audio::Mux::GoToTheme(game::audio::Theme::MAIN));
-		::application::MouseMotion::AddHandler(::UIState::IN_PLAY_DARK_ALLEY, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-		::application::MouseButtonUp::AddHandler(::UIState::IN_PLAY_DARK_ALLEY, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
-		::application::Command::SetHandler(::UIState::IN_PLAY_DARK_ALLEY, OnLeave);
-		::application::Renderer::SetRenderLayout(::UIState::IN_PLAY_DARK_ALLEY, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
+		::application::Keyboard::AddHandler(
+			CURRENT_STATE,
+			Terminal::DoIntegerInput(
+				menuActions,
+				Terminal::INVALID_INPUT,
+				Refresh));
 	}
 }
