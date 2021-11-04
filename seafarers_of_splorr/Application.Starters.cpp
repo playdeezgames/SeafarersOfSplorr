@@ -51,7 +51,10 @@
 #include <State.InPlay.Message.h>
 #include <State.InPlay.MultipleMove.h>
 #include <State.InPlay.Next.h>
+#include <State.InPlay.Shipyard.h>
 #include <State.InPlay.ShipyardDeprecated.h>
+#include <State.InPlay.ShipyardPurchaseShip.h>
+#include <State.InPlay.ShipyardUnfoulShip.h>
 #include <State.InPlay.ShipStatus.h>
 #include <State.InPlay.Temple.h>
 #include <State.InPlay.Win.h>
@@ -197,6 +200,9 @@ namespace application
 		state::in_play::IslandSellQuantity::Start,
 		state::in_play::EquipmentSlot::Start,
 		state::in_play::DarkAlleyEntrance::Start,
+		state::in_play::Shipyard::Start,
+		state::in_play::ShipyardPurchaseShip::Start,
+		state::in_play::ShipyardUnfoulShip::Start,
 		sublayout::UIHamburger::Start,
 		sublayout::AtSeaActions::Start,
 		sublayout::AtSeaAvatarStatus::Start,

@@ -233,6 +233,15 @@
     <ClInclude Include="State.InPlay.DarkAlleyEntrance.h">
       <Filter>Header Files\Docked</Filter>
     </ClInclude>
+    <ClInclude Include="State.InPlay.Shipyard.h">
+      <Filter>Header Files\Docked</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.ShipyardPurchaseShip.h">
+      <Filter>Header Files\Docked</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.ShipyardUnfoulShip.h">
+      <Filter>Header Files\Docked</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -414,6 +423,15 @@
     </ClCompile>
     <ClCompile Include="State.InPlay.DarkAlleyEntrance.cpp">
       <Filter>Source Files\Docked\DarkAlley</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.Shipyard.cpp">
+      <Filter>Source Files\Docked</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.ShipyardPurchaseShip.cpp">
+      <Filter>Source Files\Docked</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.ShipyardUnfoulShip.cpp">
+      <Filter>Source Files\Docked</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
