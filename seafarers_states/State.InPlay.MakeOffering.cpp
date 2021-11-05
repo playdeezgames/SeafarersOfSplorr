@@ -1,9 +1,8 @@
-#include <Application.Command.h>
-#include <Application.MouseButtonUp.h>
-#include <Application.MouseMotion.h>
+#include <Application.Keyboard.h>
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
+#include <Common.Data.h>
 #include <Common.Utility.h>
 #include <Common.Utility.Navigator.h>
 #include <Common.Utility.Table.h>
@@ -21,45 +20,19 @@
 #include <Game.Items.h>
 #include <Game.Player.h>
 #include "State.InPlay.MakeOffering.h"
+#include "State.Terminal.h"
 #include "UIState.h"
-#include <Visuals.Areas.h>
 #include <Visuals.Messages.h>
-#include <Visuals.SpriteGrid.h>
-#include <Visuals.Texts.h>
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_MAKE_OFFERING;
-	static const std::string LAYOUT_NAME = "State.InPlay.MakeOffering";
-	static const std::string SPRITE_GRID_ID = "Grid";
-	static const std::string FONT_DEFAULT = "default";
-	static const std::string AREA_LIST = "List";
-	static const std::string AREA_GO_BACK = "GoBack";
-	static const std::string TEXT_GO_BACK = "GoBack";
-
-	static const auto WriteTextToGrid = visuals::SpriteGrid::DoWriteToGrid(LAYOUT_NAME, SPRITE_GRID_ID, FONT_DEFAULT, visuals::HorizontalAlignment::LEFT);
 
 	static void OnLeave()
 	{
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	static bool OnMouseButtonUp(const common::XY<int>& xy, MouseButton)
-	{
-		OnLeave();
-		return true;
-	}
-
-	static void RefreshHeader()
-	{
-		WriteTextToGrid({ 0, 0 }, "<-", game::Colors::YELLOW);
-		WriteTextToGrid({ 37, 0 }, "->", game::Colors::YELLOW);
-		WriteTextToGrid({ 15, 0 }, "Page 1 of 1", game::Colors::YELLOW);
-		WriteTextToGrid({ 0,1 }, std::format("{:15s}", "Item"), game::Colors::YELLOW);
-	}
-
 	static std::map<game::Item, size_t> items;
-	static size_t hiliteRow = 0;
-	static bool hoverGoBack = false;
 
 	static void UpdateItems()
 	{
@@ -68,50 +41,28 @@ namespace state::in_play
 
 	static void RefreshItems()
 	{
-		int row = 0;
-		int gridRow = 2;
+		int index = 1;
 		for (auto& item : items)
 		{
-			WriteTextToGrid(
-				{ 0, gridRow },
-				std::format("{:15s}",
-					game::Items::GetName(item.first)),
-				(row == hiliteRow) ? (game::Colors::CYAN) : (game::Colors::GRAY));
-			++gridRow;
-			++row;
+			Terminal::WriteLine("{}) {}", index++, game::Items::GetName(item.first));
 		}
-	}
-
-	static void RefreshStatistics()
-	{
-		WriteTextToGrid(
-			{ 0, 19 },
-			std::format(
-				"Money: {:.3f}",
-				game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId())),
-			game::Colors::GRAY);
-	}
-
-	static void RefreshGrid()
-	{
-		visuals::SpriteGrid::Clear(LAYOUT_NAME, SPRITE_GRID_ID);
-		RefreshHeader();
-		RefreshItems();
-		RefreshStatistics();
-	}
-
-	static void RefreshButton()
-	{
-		visuals::Texts::SetColor(LAYOUT_NAME, TEXT_GO_BACK, (hoverGoBack) ? (game::Colors::CYAN) : (game::Colors::GRAY));
 	}
 
 	static void Refresh()
 	{
-		RefreshGrid();
-		RefreshButton();
+		Terminal::Reinitialize();
+
+		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
+		Terminal::WriteLine("Make Offering:");
+		Terminal::WriteLine();
+
+		Terminal::SetForeground(game::Colors::YELLOW);
+		RefreshItems();
+		Terminal::WriteLine("0) Never mind");
+
+		Terminal::ShowPrompt();
+
 	}
-
-
 
 	static void OnEnter()
 	{
@@ -122,147 +73,65 @@ namespace state::in_play
 
 	static void OnOfferingResult(game::OfferingResult result)
 	{
+		Terminal::WriteLine();
 		switch (result)
 		{
 		case game::OfferingResult::BLESSING:
-			visuals::Messages::Write(
-				{
-				"==BLESSING RECEIVED==",
-					{
-						{
-							{19,9},
-							"The demigod is sufficiently please with you",
-							game::Colors::GRAY,
-							visuals::HorizontalAlignment::CENTER
-						},
-						{
-							{19,11},
-							"and decides to bless you!",
-							game::Colors::GRAY,
-							visuals::HorizontalAlignment::CENTER
-						}
-					}
-				});
+			Terminal::WriteLine("Blessing Received!");
+			Terminal::WriteLine("The demigod is sufficiently pleased with you and decides to bless you!");
 			break;
 		case game::OfferingResult::CURSE:
-			visuals::Messages::Write(
-				{
-				"==CURSE RECEIVED==",
-					{
-						{
-							{19,9},
-							"The demigod is sufficiently displeased with you",
-							game::Colors::RED,
-							visuals::HorizontalAlignment::CENTER
-						},
-						{
-							{19,11},
-							"and decides to curse you!",
-							game::Colors::RED,
-							visuals::HorizontalAlignment::CENTER
-						}
-					}
-				});
+			Terminal::WriteLine("Curse Received!");
+			Terminal::WriteLine("The demigod is sufficiently displeased with you and decides to curse you!");
 			break;
 		case game::OfferingResult::COOLING_DOWN:
-			visuals::Messages::Write(
-				{
-				"",
-					{
-						{
-							{19,9},
-							"You have given enough for now...",
-							game::Colors::GRAY,
-							visuals::HorizontalAlignment::CENTER
-						},
-						{
-							{19,11},
-							"...try again later.",
-							game::Colors::GRAY,
-							visuals::HorizontalAlignment::CENTER
-						}
-					}
-				});
+			Terminal::WriteLine("You have given enough for now...");
+			Terminal::WriteLine("...try again later.");
 			break;
 		case game::OfferingResult::SUCCESS:
-			visuals::Messages::Write(
-				{
-				"==OFFERING ACCEPTED==",
-					{
-						{
-							{19,10},
-							"Yer offering has been accepted.",
-							game::Colors::GRAY,
-							visuals::HorizontalAlignment::CENTER
-						}
-					}
-				});
+			Terminal::WriteLine("Offering Accepted!");
+			Terminal::WriteLine("Yer offering has been accepted.");
 			break;
 		}
 	}
 
-	static void OfferItem()
+	static void OfferItem(int hiliteRow)
 	{
-		auto item = common::utility::Table::GetNthKey(items, hiliteRow);
-		if (item)
-		{
-			auto location = game::avatar::Docked::ReadLocation().value();
-			auto island = game::Islands::Read(location).value();
-			game::avatar::Items::Remove(game::Player::GetAvatarId(), item.value(), 1);
-			OnOfferingResult(game::Demigods::MakeOffering(island.patronDemigod, item.value()));
-			OnLeave();
-		}
+		auto item = common::utility::Table::GetNthKey(items, hiliteRow).value();
+		auto location = game::avatar::Docked::ReadLocation().value();
+		auto island = game::Islands::Read(location).value();
+		game::avatar::Items::Remove(game::Player::GetAvatarId(), item, 1);
+		OnOfferingResult(game::Demigods::MakeOffering(island.patronDemigod, item));
+		OnLeave();
 	}
 
-	static bool OnMouseButtonUpInArea(const std::string& areaName)
+	static const std::map<std::string, std::function<void()>> menuActions =
 	{
-		if (areaName == AREA_GO_BACK)
-		{
-			OnLeave();
-		}
-		else if (areaName == AREA_LIST)
-		{
-			OfferItem();
-		}
-		return true;
-	}
-
-	static const std::map<::Command, std::function<void()>> commandHandlers =
-	{
-		{ ::Command::UP, common::utility::Navigator::DoPreviousItem(hiliteRow, items, Refresh) },
-		{ ::Command::DOWN, common::utility::Navigator::DoNextItem(hiliteRow, items, Refresh) },
-		{ ::Command::GREEN, OfferItem },
-		{ ::Command::BACK, OnLeave },
-		{ ::Command::RED, OnLeave }
+		{ "0", OnLeave }
 	};
 
-	static void OnMouseMotionInArea(const std::string& areaName, const common::XY<int>& location)
+	static void OnOtherInput(const std::string& line)
 	{
-		hoverGoBack = false;
-		if (areaName == AREA_LIST)
+		int index = common::Data::ToInt(line) - 1;
+		if (index >= 0 && index < items.size())
 		{
-			auto cellHeight = visuals::SpriteGrid::GetCellHeight(LAYOUT_NAME, SPRITE_GRID_ID);
-			hiliteRow = location.GetY() / cellHeight;
+			OfferItem(index);
 		}
-		else if (areaName == AREA_GO_BACK)
+		else
 		{
-			hoverGoBack = true;
+			Terminal::ErrorMessage(Terminal::INVALID_INPUT);
+			Refresh();
 		}
-		Refresh();
-	}
-
-	static void OnMouseMotionOutsideArea(const common::XY<int>&)
-	{
-		hoverGoBack = false;
-		Refresh();
 	}
 
 	void MakeOffering::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::MouseButtonUp::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseButtonUp(LAYOUT_NAME, OnMouseButtonUpInArea));
-		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMouseMotion(LAYOUT_NAME, OnMouseMotionInArea, OnMouseMotionOutsideArea));
-		::application::Command::SetHandlers(CURRENT_STATE, commandHandlers);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, LAYOUT_NAME);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
+		::application::Keyboard::AddHandler(
+			CURRENT_STATE,
+			Terminal::DoIntegerInput(
+				menuActions,
+				OnOtherInput));
 	}
 }
