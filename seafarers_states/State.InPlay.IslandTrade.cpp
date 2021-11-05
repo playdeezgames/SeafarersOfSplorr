@@ -29,7 +29,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Buy");
 		Terminal::WriteLine("2) Sell");
-		Terminal::WriteLine("3) Never mind");
+		Terminal::WriteLine("0) Never mind");
 
 		Terminal::ShowPrompt();
 	}
@@ -62,7 +62,7 @@ namespace state::in_play
 	{
 		{"1", OnBuy},
 		{"2", OnSell},
-		{"3", OnLeave}
+		{"0", OnLeave}
 	};
 
 	void IslandTrade::Start()

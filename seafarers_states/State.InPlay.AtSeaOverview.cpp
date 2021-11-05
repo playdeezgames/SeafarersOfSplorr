@@ -4,7 +4,9 @@
 #include <Application.UIState.h>
 #include <Common.Heading.h>
 #include <Game.Audio.Mux.h>
+#include <Game.Avatar.Actions.h>
 #include <Game.Avatar.Docked.h>
+#include <Game.Avatar.Items.h>
 #include <Game.Avatar.Quest.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
@@ -18,6 +20,13 @@
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_AT_SEA_OVERVIEW;
+
+	static bool IsFishingEnabled()
+	{
+		return
+			game::avatar::Items::Has(game::Player::GetAvatarId(), game::Item::FISHING_POLE) &&
+			game::avatar::Items::Has(game::Player::GetAvatarId(), game::Item::BAIT);
+	}
 
 	static void Refresh()
 	{
@@ -65,6 +74,10 @@ namespace state::in_play
 		Terminal::WriteLine("4) Crew status");
 		Terminal::WriteLine("5) Ship status");
 		Terminal::WriteLine("6) Job status");
+		if (IsFishingEnabled())
+		{
+			Terminal::WriteLine("7) Fish");
+		}
 		Terminal::WriteLine("0) Menu");
 
 		Terminal::SetForeground(game::Colors::GRAY);
@@ -100,6 +113,20 @@ namespace state::in_play
 		Refresh();
 	}
 
+	static void OnFishing()
+	{
+		if (IsFishingEnabled())
+		{
+			game::avatar::Actions::DoAction(game::avatar::Action::START_FISHING);
+			application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		}
+		else
+		{
+			Terminal::ErrorMessage(Terminal::INVALID_INPUT);
+			Refresh();
+		}
+	}
+
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
 		{"1", OnMove },
@@ -108,6 +135,7 @@ namespace state::in_play
 		{"4", application::UIState::GoTo(::UIState::IN_PLAY_CREW_LIST) },
 		{"5", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS) },
 		{"6", application::UIState::GoTo(::UIState::IN_PLAY_CURRENT_JOB) },
+		{"7", OnFishing},
 		{"0", application::UIState::GoTo(::UIState::LEAVE_PLAY) }
 
 	};
