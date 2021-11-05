@@ -48,7 +48,7 @@
     <ClInclude Include="State.InPlay.DarkAlley.h" />
     <ClInclude Include="State.InPlay.Docked.h" />
     <ClInclude Include="State.InPlay.Equipment.h" />
-    <ClInclude Include="State.InPlay.Fishing.h" />
+    <ClInclude Include="State.InPlay.FishingDeprecated.h" />
     <ClInclude Include="State.InPlay.GambleFinish.h" />
     <ClInclude Include="State.InPlay.GambleStart.h" />
     <ClInclude Include="State.InPlay.IslandBuy.h" />
@@ -96,7 +96,7 @@
     <ClCompile Include="State.InPlay.DockOrCareen.cpp" />
     <ClCompile Include="State.InPlay.Equipment.cpp" />
     <ClCompile Include="State.InPlay.EquipmentSlot.cpp" />
-    <ClCompile Include="State.InPlay.Fishing.cpp" />
+    <ClCompile Include="State.InPlay.FishingDeprecated.cpp" />
     <ClCompile Include="State.InPlay.HeadForKnown.cpp" />
     <ClCompile Include="State.InPlay.HeadForNearBy.cpp" />
     <ClCompile Include="State.InPlay.IslandBuyQuantity.cpp" />

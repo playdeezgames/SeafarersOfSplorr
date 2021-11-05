@@ -34,7 +34,7 @@
 #include <State.InPlay.DockOrCareen.h>
 #include <State.InPlay.Equipment.h>
 #include <State.InPlay.EquipmentSlot.h>
-#include <State.InPlay.Fishing.h>
+#include <State.InPlay.FishingDeprecated.h>
 #include <State.InPlay.GambleFinish.h>
 #include <State.InPlay.GambleStart.h>
 #include <State.InPlay.HeadForKnown.h>
@@ -182,7 +182,7 @@ namespace application
 		state::in_play::Temple::Start,
 		state::in_play::MakeOffering::Start,
 		state::in_play::AvatarStatus::Start,
-		state::in_play::Fishing::Start,
+		state::in_play::FishingDeprecated::Start,
 		state::in_play::Equipment::Start,
 		state::in_play::CrewList::Start,
 		state::in_play::CrewDetail::Start,

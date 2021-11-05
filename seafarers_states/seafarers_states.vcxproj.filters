@@ -143,7 +143,7 @@
     <ClInclude Include="State.InPlay.Equipment.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.Fishing.h">
+    <ClInclude Include="State.InPlay.FishingDeprecated.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
     <ClInclude Include="State.InPlay.Lose.h">
@@ -352,7 +352,7 @@
     <ClCompile Include="State.InPlay.AvatarStatus.cpp">
       <Filter>Source Files\AtSea\Status</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.Fishing.cpp">
+    <ClCompile Include="State.InPlay.FishingDeprecated.cpp">
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.Equipment.cpp">

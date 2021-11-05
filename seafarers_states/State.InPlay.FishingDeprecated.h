@@ -1,7 +1,7 @@
 #pragma once
 namespace state::in_play
 {
-	struct Fishing
+	struct FishingDeprecated
 	{
 		static void Start();
 	};

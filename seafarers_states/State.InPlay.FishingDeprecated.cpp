@@ -24,7 +24,7 @@
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
 #include <Game.Player.h>
-#include "State.InPlay.Fishing.h"
+#include "State.InPlay.FishingDeprecated.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Fishboard.h>
@@ -35,7 +35,7 @@
 #include <Visuals.Texts.h>
 namespace state::in_play//20211020
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_FISHING;
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_FISHING_DEPRECATED;
 
 	static const std::string LAYOUT_NAME = "State.InPlay.Fishing";
 	static const std::string FONT_DEFAULT = "default";
@@ -201,7 +201,7 @@ namespace state::in_play//20211020
 		{AREA_FISHBOARD, OnMouseButtonUpInFishboard}
 	};
 
-	void Fishing::Start()
+	void FishingDeprecated::Start()
 	{
 		::application::OnEnter::AddHandler(
 			CURRENT_STATE, 
