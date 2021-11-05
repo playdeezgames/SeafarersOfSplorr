@@ -61,7 +61,6 @@
     <ClInclude Include="State.InPlay.MultipleMove.h" />
     <ClInclude Include="State.InPlay.Next.h" />
     <ClInclude Include="State.InPlay.Shipyard.h" />
-    <ClInclude Include="State.InPlay.ShipyardDeprecated.h" />
     <ClInclude Include="State.InPlay.ShipStatus.h" />
     <ClInclude Include="State.InPlay.ShipyardPurchaseShip.h" />
     <ClInclude Include="State.InPlay.ShipyardUnfoulShip.h" />
@@ -132,7 +131,6 @@
     <ClCompile Include="State.InPlay.MakeOffering.cpp" />
     <ClCompile Include="State.InPlay.Message.cpp" />
     <ClCompile Include="State.InPlay.Next.cpp" />
-    <ClCompile Include="State.InPlay.ShipyardDeprecated.cpp" />
     <ClCompile Include="State.InPlay.Temple.cpp" />
     <ClCompile Include="State.InPlay.Win.cpp" />
     <ClCompile Include="State.LeavePlay.cpp" />

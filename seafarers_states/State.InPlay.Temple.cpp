@@ -1,6 +1,4 @@
-#include <Application.Command.h>
-#include <Application.MouseButtonUp.h>
-#include <Application.MouseMotion.h>
+#include <Application.Keyboard.h>
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
@@ -11,25 +9,33 @@
 #include <Game.Avatar.h>
 #include <Game.Avatar.Actions.h>
 #include <Game.Avatar.Docked.h>
+#include <Game.Colors.h>
 #include <Game.Islands.h>
 #include "State.InPlay.Temple.h"
+#include "State.Terminal.h"
 #include "UIState.h"
-#include <Visuals.Areas.h>
-#include <Visuals.Menus.h>
-#include <Visuals.Texts.h>
 namespace state::in_play
 {
-	static const ::UIState CURRENT_LAYOUT = ::UIState::IN_PLAY_TEMPLE;
-	static const std::string LAYOUT_NAME = "State.InPlay.Temple";
-	static const std::string MENU_ID = "Temple";
-	static const std::string FORMAT_TEMPLE = "==Temple of {}==";
-	static const std::string TEXT_CAPTION = "Caption";
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_TEMPLE;
+	static const std::string FORMAT_TEMPLE = "Temple of {}";
 
-	enum class TempleMenuItem
+	static void Refresh()
 	{
-		MAKE_OFFERING,
-		LEAVE
-	};
+		auto location = game::avatar::Docked::ReadLocation().value();
+		auto island = game::Islands::Read(location).value();
+		Terminal::Reinitialize();
+
+		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
+		Terminal::WriteLine(FORMAT_TEMPLE, island.patronDemigod);
+		Terminal::WriteLine();
+
+		Terminal::SetForeground(game::Colors::YELLOW);
+		Terminal::WriteLine("1) Make offering");
+		Terminal::WriteLine("0) Leave");
+
+		Terminal::ShowPrompt();
+
+	}
 
 	static void OnMakeOffering()
 	{
@@ -42,37 +48,27 @@ namespace state::in_play
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	static const std::map<TempleMenuItem, std::function<void()>> activators =
-	{
-		{ TempleMenuItem::MAKE_OFFERING, OnMakeOffering },
-		{ TempleMenuItem::LEAVE, OnLeave }
-	};
-
-	static const auto ActivateItem = visuals::Menus::DoActivateItem(LAYOUT_NAME, MENU_ID, activators);
-
-	static const std::map<::Command, std::function<void()>> commandHandlers =
-	{
-		{::Command::UP, visuals::Menus::NavigatePrevious(LAYOUT_NAME, MENU_ID) },
-		{::Command::DOWN, visuals::Menus::NavigateNext(LAYOUT_NAME, MENU_ID) },
-		{::Command::GREEN, ActivateItem },
-		{::Command::BACK, OnLeave },
-		{::Command::RED, OnLeave }
-	};
-
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
-		auto location = game::avatar::Docked::ReadLocation().value();
-		auto island = game::Islands::Read(location).value();
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_CAPTION, FORMAT_TEMPLE, island.patronDemigod);
+		Refresh();
 	}
+
+	static const std::map<std::string, std::function<void()>> menuActions =
+	{
+		{ "1", OnMakeOffering },
+		{ "0", OnLeave }
+	};
 
 	void Temple::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_LAYOUT, OnEnter);
-		::application::MouseMotion::AddHandler(CURRENT_LAYOUT, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
-		::application::MouseButtonUp::AddHandler(CURRENT_LAYOUT, visuals::Areas::HandleMenuMouseButtonUp(LAYOUT_NAME, ActivateItem));
-		::application::Command::SetHandlers(CURRENT_LAYOUT, commandHandlers);
-		::application::Renderer::SetRenderLayout(CURRENT_LAYOUT, LAYOUT_NAME);
+		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
+		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
+		::application::Keyboard::AddHandler(
+			CURRENT_STATE,
+			Terminal::DoIntegerInput(
+				menuActions,
+				Terminal::INVALID_INPUT,
+				Refresh));
 	}
 }

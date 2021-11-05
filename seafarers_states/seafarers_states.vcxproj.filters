@@ -137,9 +137,6 @@
     <ClInclude Include="State.InPlay.MakeOffering.h">
       <Filter>Header Files\Docked</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.ShipyardDeprecated.h">
-      <Filter>Header Files\Docked</Filter>
-    </ClInclude>
     <ClInclude Include="State.InPlay.Temple.h">
       <Filter>Header Files\Docked</Filter>
     </ClInclude>
@@ -293,9 +290,6 @@
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.Docked.cpp">
-      <Filter>Source Files\Docked</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.ShipyardDeprecated.cpp">
       <Filter>Source Files\Docked</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.Confirm.cpp">
