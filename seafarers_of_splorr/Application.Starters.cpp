@@ -34,6 +34,7 @@
 #include <State.InPlay.DockOrCareen.h>
 #include <State.InPlay.Equipment.h>
 #include <State.InPlay.EquipmentSlot.h>
+#include <State.InPlay.Fishing.h>
 #include <State.InPlay.FishingDeprecated.h>
 #include <State.InPlay.GambleFinish.h>
 #include <State.InPlay.GambleStart.h>
@@ -201,6 +202,7 @@ namespace application
 		state::in_play::Shipyard::Start,
 		state::in_play::ShipyardPurchaseShip::Start,
 		state::in_play::ShipyardUnfoulShip::Start,
+		state::in_play::Fishing::Start,
 		sublayout::UIHamburger::Start,
 		sublayout::AtSeaActions::Start,
 		sublayout::AtSeaAvatarStatus::Start,

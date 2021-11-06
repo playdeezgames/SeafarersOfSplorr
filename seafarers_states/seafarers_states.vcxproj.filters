@@ -239,6 +239,9 @@
     <ClInclude Include="State.InPlay.ShipyardUnfoulShip.h">
       <Filter>Header Files\Docked</Filter>
     </ClInclude>
+    <ClInclude Include="State.InPlay.Fishing.h">
+      <Filter>Header Files\AtSea</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -426,6 +429,9 @@
     </ClCompile>
     <ClCompile Include="State.InPlay.ShipyardUnfoulShip.cpp">
       <Filter>Source Files\Docked</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.Fishing.cpp">
+      <Filter>Source Files\AtSea</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
