@@ -38,7 +38,7 @@ namespace state::in_play
 		{ game::avatar::State::MARKET_SELL, ::UIState::IN_PLAY_ISLAND_SELL },
 		{ game::avatar::State::MARKET, ::UIState::IN_PLAY_ISLAND_TRADE },
 		{ game::avatar::State::JOB_BOARD, ::UIState::IN_PLAY_ISLAND_JOBS },
-		{ game::avatar::State::GAMBLE_START, ::UIState::IN_PLAY_GAMBLE_START_DEPRECATED },
+		{ game::avatar::State::GAMBLE_START, ::UIState::IN_PLAY_GAMBLE_INTRO },
 		{ game::avatar::State::AT_SEA, ::UIState::IN_PLAY_AT_SEA_OVERVIEW },
 		{ game::avatar::State::CAREENED_TO_PORT, ::UIState::IN_PLAY_CAREENED_TO_PORT },
 		{ game::avatar::State::CAREENED_TO_STARBOARD, ::UIState::IN_PLAY_CAREENED_TO_STARBOARD },
