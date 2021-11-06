@@ -49,8 +49,8 @@
     <ClInclude Include="State.InPlay.DarkAlley.h" />
     <ClInclude Include="State.InPlay.Docked.h" />
     <ClInclude Include="State.InPlay.Equipment.h" />
-    <ClInclude Include="State.InPlay.GambleFinish.h" />
-    <ClInclude Include="State.InPlay.GambleStart.h" />
+    <ClInclude Include="State.InPlay.GambleFinishDeprecated.h" />
+    <ClInclude Include="State.InPlay.GambleStartDeprecated.h" />
     <ClInclude Include="State.InPlay.IslandBuy.h" />
     <ClInclude Include="State.InPlay.IslandJobs.h" />
     <ClInclude Include="State.InPlay.IslandSell.h" />
@@ -120,8 +120,8 @@
     <ClCompile Include="State.InPlay.CurrentJob.cpp" />
     <ClCompile Include="State.InPlay.DarkAlley.cpp" />
     <ClCompile Include="State.InPlay.Docked.cpp" />
-    <ClCompile Include="State.InPlay.GambleFinish.cpp" />
-    <ClCompile Include="State.InPlay.GambleStart.cpp" />
+    <ClCompile Include="State.InPlay.GambleFinishDeprecated.cpp" />
+    <ClCompile Include="State.InPlay.GambleStartDeprecated.cpp" />
     <ClCompile Include="State.InPlay.WorldMap.cpp" />
     <ClCompile Include="State.InPlay.IslandBuy.cpp" />
     <ClCompile Include="State.InPlay.IslandJobs.cpp" />

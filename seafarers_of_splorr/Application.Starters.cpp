@@ -35,8 +35,8 @@
 #include <State.InPlay.Equipment.h>
 #include <State.InPlay.EquipmentSlot.h>
 #include <State.InPlay.Fishing.h>
-#include <State.InPlay.GambleFinish.h>
-#include <State.InPlay.GambleStart.h>
+#include <State.InPlay.GambleFinishDeprecated.h>
+#include <State.InPlay.GambleStartDeprecated.h>
 #include <State.InPlay.HeadForKnown.h>
 #include <State.InPlay.HeadForNearBy.h>
 #include <State.InPlay.IslandBuy.h>
@@ -175,8 +175,8 @@ namespace application
 		state::in_play::DarkAlley::Start,
 		state::in_play::Message::Start,
 		state::in_play::Confirm::Start,
-		state::in_play::GambleStart::Start,
-		state::in_play::GambleFinish::Start,
+		state::in_play::GambleStartDeprecated::Start,
+		state::in_play::GambleFinishDeprecated::Start,
 		state::in_play::CareenedToPort::Start,
 		state::in_play::CareenedToStarboard::Start,
 		state::in_play::Temple::Start,

@@ -15,7 +15,7 @@
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.DarkAlley.GamblingHand.h>
 #include <Game.Player.h>
-#include "State.InPlay.GambleStart.h"
+#include "State.InPlay.GambleStartDeprecated.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Images.h>
@@ -25,7 +25,7 @@
 #include <Visuals.Texts.h>
 namespace state::in_play
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_GAMBLE_START;
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_GAMBLE_START_DEPRECATED;
 	static const std::string LAYOUT_NAME = "State.InPlay.GambleStart";
 	static const std::string MENU_ID = "Wager";
 	static const std::string IMAGE_FIRST_CARD = "FirstCard";
@@ -33,7 +33,7 @@ namespace state::in_play
 	static const std::string TEXT_WAGER = "Wager";
 
 	static double currentWager = 0;
-	double GambleStart::GetCurrentWager()
+	double GambleStartDeprecated::GetCurrentWager()
 	{
 		return currentWager;
 	}
@@ -100,7 +100,7 @@ namespace state::in_play
 
 	const std::map<WagerItem, std::function<void()>> activators =
 	{
-		{ WagerItem::BET, application::UIState::GoTo(::UIState::IN_PLAY_GAMBLE_FINISH) },
+		{ WagerItem::BET, application::UIState::GoTo(::UIState::IN_PLAY_GAMBLE_FINISH_DEPRECATED) },
 		{ WagerItem::NO_BET, OnNoBet },
 		{ WagerItem::LEAVE, OnLeave }
 	};
@@ -145,7 +145,7 @@ namespace state::in_play
 		{::Command::RED, OnLeave }
 	};
 
-	void GambleStart::Start()
+	void GambleStartDeprecated::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));

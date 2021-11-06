@@ -16,8 +16,8 @@
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.DarkAlley.GamblingHand.h>
 #include <Game.Player.h>
-#include "State.InPlay.GambleFinish.h"
-#include "State.InPlay.GambleStart.h"
+#include "State.InPlay.GambleFinishDeprecated.h"
+#include "State.InPlay.GambleStartDeprecated.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
 #include <Visuals.Images.h>
@@ -28,7 +28,7 @@
 #include <Visuals.Texts.h>
 namespace state::in_play
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_GAMBLE_FINISH;
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_GAMBLE_FINISH_DEPRECATED;
 	static const std::string LAYOUT_NAME = "State.InPlay.GambleFinish";
 	static const std::string MENU_ID = "Proceed";
 	static const std::string IMAGE_FIRST_CARD = "FirstCard";
@@ -87,13 +87,13 @@ namespace state::in_play
 		{
 			game::audio::Sfx::Play(game::audio::GameSfx::WOOHOO);
 			visuals::Texts::SetText(LAYOUT_NAME, TEXT_RESULT, "You win!");
-			game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), GambleStart::GetCurrentWager());
+			game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), GambleStartDeprecated::GetCurrentWager());
 		}
 		else
 		{
 			game::audio::Sfx::Play(game::audio::GameSfx::SHUCKS);
 			visuals::Texts::SetText(LAYOUT_NAME, TEXT_RESULT, "You lose!");
-			game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), -GambleStart::GetCurrentWager());
+			game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), -GambleStartDeprecated::GetCurrentWager());
 		}
 		auto money = game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId());
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_WIN_LOSE, "You now have {:.4f}", money);
@@ -111,7 +111,7 @@ namespace state::in_play
 		{::Command::RED, ::application::UIState::GoTo(::UIState::CONFIRM_QUIT) }
 	};
 
-	void GambleFinish::Start()
+	void GambleFinishDeprecated::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::MouseMotion::AddHandler(CURRENT_STATE, visuals::Areas::HandleMenuMouseMotion(LAYOUT_NAME));
