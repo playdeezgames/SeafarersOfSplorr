@@ -242,6 +242,9 @@
     <ClInclude Include="State.InPlay.GambleIntro.h">
       <Filter>Header Files\Docked</Filter>
     </ClInclude>
+    <ClInclude Include="State.InPlay.GamblePlay.h">
+      <Filter>Header Files\Docked</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -431,6 +434,9 @@
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.GambleIntro.cpp">
+      <Filter>Source Files\Docked\DarkAlley</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.GamblePlay.cpp">
       <Filter>Source Files\Docked\DarkAlley</Filter>
     </ClCompile>
   </ItemGroup>

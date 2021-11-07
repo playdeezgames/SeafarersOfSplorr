@@ -5,20 +5,31 @@
 #include "Game.Islands.Features.h"
 namespace game::islands::dark_alley//20211014
 {
+	static data::game::island::dark_alley::GamblingHand DealBettableHand()
+	{
+		data::game::island::dark_alley::GamblingHand hand;
+		do
+		{
+			cards::Deck<cards::Card> deck(cards::All());
+			deck.Shuffle();
+			hand =
+				{
+					cards::ToInt(deck.Draw().value()),
+					cards::ToInt(deck.Draw().value()),
+					cards::ToInt(deck.Draw().value())
+				};
+		} while (std::abs((int)std::get<0>(cards::OfInt(hand.secondCard)) - (int)std::get<0>(cards::OfInt(hand.firstCard))) < 2);
+		return hand;
+	}
+
 	bool GamblingHand::Deal(const common::XY<double>& location)
 	{
 		if (!game::islands::Features::Read(location, game::Feature::DARK_ALLEY))
 		{
 			return false;
 		}
-		cards::Deck<cards::Card> deck(cards::All());
-		deck.Shuffle();
 		data::game::island::dark_alley::GamblingHand data =
-		{
-			cards::ToInt(deck.Draw().value()),
-			cards::ToInt(deck.Draw().value()),
-			cards::ToInt(deck.Draw().value())
-		};
+			DealBettableHand();
 		data::game::island::dark_alley::GamblingHand::Write(location, data);
 		return true;
 	}

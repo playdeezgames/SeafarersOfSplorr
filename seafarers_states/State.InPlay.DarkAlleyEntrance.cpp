@@ -49,7 +49,7 @@ namespace state::in_play
 		Terminal::WriteLine();
 	}
 
-	static const std::map<cards::Rank, std::string> ranks =
+	const std::map<cards::Rank, std::string> DarkAlleyEntrance::Ranks =
 	{
 		{cards::Rank::ACE, "A "},
 		{cards::Rank::DEUCE, "2 "},
@@ -66,7 +66,7 @@ namespace state::in_play
 		{cards::Rank::KING, "K "}
 	};
 
-	static const std::map<cards::Suit, std::string> suitColors =
+	const std::map<cards::Suit, std::string> DarkAlleyEntrance::SuitColors =
 	{
 		{cards::Suit::CLUB, game::Colors::DARK_GRAY},
 		{cards::Suit::DIAMOND, game::Colors::RED},
@@ -74,7 +74,7 @@ namespace state::in_play
 		{cards::Suit::SPADE, game::Colors::DARK_GRAY}
 	};
 
-	static const std::map<cards::Suit, std::string> suits =
+	const std::map<cards::Suit, std::string> DarkAlleyEntrance::Suits =
 	{
 		{cards::Suit::CLUB, "\x05"},
 		{cards::Suit::DIAMOND, "\x04"},
@@ -90,10 +90,10 @@ namespace state::in_play
 			Terminal::SetForeground(game::Colors::GRAY);
 			Terminal::Write("   \xb3");
 			auto suit = std::get<1>(card.card);
-			Terminal::SetForeground(suitColors.find(suit)->second);
+			Terminal::SetForeground(DarkAlleyEntrance::SuitColors.find(suit)->second);
 			auto rank = std::get<0>(card.card);
-			Terminal::Write(ranks.find(rank)->second);
-			Terminal::Write(suits.find(suit)->second);
+			Terminal::Write(DarkAlleyEntrance::Ranks.find(rank)->second);
+			Terminal::Write(DarkAlleyEntrance::Suits.find(suit)->second);
 			Terminal::SetForeground(game::Colors::GRAY);
 			Terminal::Write("\xb3");
 		}

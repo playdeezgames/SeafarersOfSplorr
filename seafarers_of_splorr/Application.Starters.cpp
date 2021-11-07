@@ -37,6 +37,7 @@
 #include <State.InPlay.Fishing.h>
 #include <State.InPlay.GambleFinishDeprecated.h>
 #include <State.InPlay.GambleIntro.h>
+#include <State.InPlay.GamblePlay.h>
 #include <State.InPlay.GambleStartDeprecated.h>
 #include <State.InPlay.HeadForKnown.h>
 #include <State.InPlay.HeadForNearBy.h>
@@ -202,6 +203,7 @@ namespace application
 		state::in_play::ShipyardPurchaseShip::Start,
 		state::in_play::ShipyardUnfoulShip::Start,
 		state::in_play::GambleIntro::Start,
+		state::in_play::GamblePlay::Start,
 		state::in_play::Fishing::Start,
 		sublayout::UIHamburger::Start,
 		sublayout::AtSeaActions::Start,
