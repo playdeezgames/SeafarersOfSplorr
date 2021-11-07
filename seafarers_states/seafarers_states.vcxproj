@@ -36,7 +36,6 @@
     <ClInclude Include="State.ConfirmAbandon.h" />
     <ClInclude Include="State.ConfirmOverwrite.h" />
     <ClInclude Include="State.ConfirmQuit.h" />
-    <ClInclude Include="State.InPlay.AtSeaDeprecated.h" />
     <ClInclude Include="State.InPlay.AtSeaOverview.h" />
     <ClInclude Include="State.InPlay.AvatarStatus.h" />
     <ClInclude Include="State.InPlay.CareenedToPort.h" />
@@ -76,8 +75,6 @@
     <ClInclude Include="State.Statistics.h" />
     <ClInclude Include="State.Terminal.h" />
     <ClInclude Include="State.Tip.h" />
-    <ClInclude Include="State.InPlay.WorldMap.h" />
-    <ClInclude Include="Sublayouts.h" />
     <ClInclude Include="UIState.h" />
   </ItemGroup>
   <ItemGroup>
@@ -85,8 +82,6 @@
     <ClCompile Include="State.ConfirmAbandon.cpp" />
     <ClCompile Include="State.ConfirmOverwrite.cpp" />
     <ClCompile Include="State.ConfirmQuit.cpp" />
-    <ClCompile Include="State.InPlay.AtSea.AutoMove.cpp" />
-    <ClCompile Include="State.InPlay.AtSeaDeprecated.cpp" />
     <ClCompile Include="State.InPlay.AtSeaOverview.cpp" />
     <ClCompile Include="State.InPlay.ChangeHeading.cpp" />
     <ClCompile Include="State.InPlay.ChangeSpeed.cpp" />
@@ -110,8 +105,6 @@
     <ClCompile Include="State.InPlay.ShipyardPurchaseShip.cpp" />
     <ClCompile Include="State.InPlay.ShipyardUnfoulShip.cpp" />
     <ClCompile Include="State.Terminal.cpp" />
-    <ClCompile Include="Sublayout.AtSeaActions.cpp" />
-    <ClCompile Include="Sublayout.AtSeaAvatarStatus.cpp" />
     <ClCompile Include="State.InPlay.AvatarStatus.cpp" />
     <ClCompile Include="State.InPlay.CareenedToPort.cpp" />
     <ClCompile Include="State.InPlay.CareenedToStarboard.cpp" />
@@ -122,7 +115,6 @@
     <ClCompile Include="State.InPlay.CurrentJob.cpp" />
     <ClCompile Include="State.InPlay.DarkAlley.cpp" />
     <ClCompile Include="State.InPlay.Docked.cpp" />
-    <ClCompile Include="State.InPlay.WorldMap.cpp" />
     <ClCompile Include="State.InPlay.IslandBuy.cpp" />
     <ClCompile Include="State.InPlay.IslandJobs.cpp" />
     <ClCompile Include="State.InPlay.IslandSell.cpp" />
@@ -142,7 +134,6 @@
     <ClCompile Include="State.StartGame.cpp" />
     <ClCompile Include="State.Statistics.cpp" />
     <ClCompile Include="State.Tip.cpp" />
-    <ClCompile Include="Sublayout.UIHamburger.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

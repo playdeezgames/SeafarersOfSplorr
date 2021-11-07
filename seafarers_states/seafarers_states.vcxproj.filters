@@ -51,17 +51,8 @@
     <Filter Include="Header Files\Utility">
       <UniqueIdentifier>{19434232-c189-416a-a646-4c20f30f8802}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Deprecated">
-      <UniqueIdentifier>{e268361e-736e-4b6a-9f9a-133eea11fd90}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Deprecated">
-      <UniqueIdentifier>{ddafc7a5-4f46-40f6-b9d2-14dc2d821147}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sublayouts.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UIState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -152,9 +143,6 @@
     <ClInclude Include="State.InPlay.ShipStatus.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.WorldMap.h">
-      <Filter>Header Files\AtSea</Filter>
-    </ClInclude>
     <ClInclude Include="State.LeavePlay.h">
       <Filter>Header Files\Boilerplate</Filter>
     </ClInclude>
@@ -181,9 +169,6 @@
     </ClInclude>
     <ClInclude Include="State.Tip.h">
       <Filter>Header Files\Boilerplate</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.AtSeaDeprecated.h">
-      <Filter>Header Files\Deprecated</Filter>
     </ClInclude>
     <ClInclude Include="State.InPlay.ChangeSpeed.h">
       <Filter>Header Files\AtSea</Filter>
@@ -280,12 +265,6 @@
     <ClCompile Include="State.Tip.cpp">
       <Filter>Source Files\Boilerplate</Filter>
     </ClCompile>
-    <ClCompile Include="Sublayout.UIHamburger.cpp">
-      <Filter>Source Files\Boilerplate</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.WorldMap.cpp">
-      <Filter>Source Files\AtSea</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.ConfirmAbandonJob.cpp">
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
@@ -363,18 +342,6 @@
     </ClCompile>
     <ClCompile Include="State.InPlay.ShipStatus.cpp">
       <Filter>Source Files\AtSea</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.AtSea.AutoMove.cpp">
-      <Filter>Source Files\Deprecated</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.AtSeaDeprecated.cpp">
-      <Filter>Source Files\Deprecated</Filter>
-    </ClCompile>
-    <ClCompile Include="Sublayout.AtSeaActions.cpp">
-      <Filter>Source Files\Deprecated</Filter>
-    </ClCompile>
-    <ClCompile Include="Sublayout.AtSeaAvatarStatus.cpp">
-      <Filter>Source Files\Deprecated</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.ChangeSpeed.cpp">
       <Filter>Source Files\AtSea</Filter>

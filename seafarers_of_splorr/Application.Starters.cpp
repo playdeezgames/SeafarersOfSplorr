@@ -14,7 +14,6 @@
 #include <State.ConfirmAbandon.h>
 #include <State.ConfirmOverwrite.h>
 #include <State.ConfirmQuit.h>
-#include <State.InPlay.AtSeaDeprecated.h>
 #include <State.InPlay.AtSeaOverview.h>
 #include <State.InPlay.AvatarStatus.h>
 #include <State.InPlay.CareenedToPort.h>
@@ -57,7 +56,6 @@
 #include <State.InPlay.ShipStatus.h>
 #include <State.InPlay.Temple.h>
 #include <State.InPlay.Win.h>
-#include <State.InPlay.WorldMap.h>
 #include <State.LeavePlay.h>
 #include <State.LoadGame.h>
 #include <State.MainMenu.h>
@@ -68,7 +66,6 @@
 #include <State.Statistics.h>
 #include <State.Terminal.h>
 #include <State.Tip.h>
-#include <Sublayouts.h>
 #include <UIState.h>
 #include <vector>
 #include <Visuals.Colors.h>
@@ -157,12 +154,10 @@ namespace application
 		state::ConfirmAbandon::Start,
 		state::ConfirmOverwrite::Start,
 		state::Terminal::Start,
-		state::in_play::AtSeaDeprecated::Start,
 		state::in_play::AtSeaOverview::Start,
 		state::in_play::Docked::Start,
 		state::in_play::Win::Start,
 		state::in_play::Lose::Start,
-		state::in_play::WorldMap::Start,
 		state::in_play::IslandJobs::Start,
 		state::in_play::ConfirmReplaceJob::Start,
 		state::in_play::ConfirmAbandonJob::Start,
@@ -201,9 +196,6 @@ namespace application
 		state::in_play::GambleIntro::Start,
 		state::in_play::GamblePlay::Start,
 		state::in_play::Fishing::Start,
-		sublayout::UIHamburger::Start,
-		sublayout::AtSeaActions::Start,
-		sublayout::AtSeaAvatarStatus::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};
