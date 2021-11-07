@@ -116,12 +116,6 @@
     <ClInclude Include="State.InPlay.Docked.h">
       <Filter>Header Files\Docked</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.GambleFinishDeprecated.h">
-      <Filter>Header Files\Docked</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.GambleStartDeprecated.h">
-      <Filter>Header Files\Docked</Filter>
-    </ClInclude>
     <ClInclude Include="State.InPlay.IslandBuy.h">
       <Filter>Header Files\Docked</Filter>
     </ClInclude>
@@ -332,12 +326,6 @@
       <Filter>Source Files\Docked\Jobs</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.DarkAlley.cpp">
-      <Filter>Source Files\Docked\DarkAlley</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.GambleFinishDeprecated.cpp">
-      <Filter>Source Files\Docked\DarkAlley</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.GambleStartDeprecated.cpp">
       <Filter>Source Files\Docked\DarkAlley</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.IslandBuy.cpp">
