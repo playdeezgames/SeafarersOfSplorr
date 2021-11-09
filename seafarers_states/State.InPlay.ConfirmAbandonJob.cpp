@@ -5,7 +5,6 @@
 #include <Common.Utility.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Quest.h>
-#include <Game.Avatar.Log.h>
 #include <Game.Colors.h>
 #include "State.InPlay.ConfirmAbandonJob.h"
 #include "State.Terminal.h"

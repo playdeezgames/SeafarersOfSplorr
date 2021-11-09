@@ -6,7 +6,6 @@
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Equipment.h>
 #include <Game.Avatar.Items.h>
-#include <Game.Avatar.Log.h>
 #include <Game.Avatar.Plights.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Avatar.Statistics.h>
@@ -44,7 +43,6 @@ namespace game//20211015
 		avatar::Docked::Reset(difficulty);
 		avatar::Equipment::Reset(difficulty);
 		avatar::Items::Reset(difficulty);
-		avatar::Log::Reset(difficulty);
 		avatar::Plights::Reset(difficulty);
 		avatar::Statistics::Reset(difficulty);
 		Demigods::Reset(difficulty);

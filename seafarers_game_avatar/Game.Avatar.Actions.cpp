@@ -7,7 +7,6 @@
 #include "Game.Avatar.Actions.h"
 #include "Game.Avatar.Docked.h"
 #include "Game.Avatar.Items.h"
-#include "Game.Avatar.Log.h"
 #include "Game.Avatar.State.h"
 #include "Game.Avatar.StateTransition.h"
 #include "Game.Avatar.Statistics.h"
@@ -427,7 +426,6 @@ namespace game::avatar
 					if (transition != descriptor->second.end())
 					{
 						auto result = transition->second();
-						avatar::Log::Write({ result.color, result.text });
 						SetState(result.state);
 					}
 				}

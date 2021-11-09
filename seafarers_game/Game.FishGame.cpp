@@ -3,7 +3,6 @@
 #include <Data.Game.Fishery.h>
 #include <Data.Game.FishGame.h>
 #include "Game.Avatar.Items.h"
-#include "Game.Avatar.Log.h"
 #include "Game.Colors.h"
 #include "Game.Fishboard.h"
 #include "Game.Fisheries.h"
@@ -13,7 +12,7 @@
 #include "Game.Player.h"
 #include <format>
 #include <map>
-namespace game//20211013
+namespace game
 {
 	static const int ADDITIONAL_GUESSES = 5;
 

@@ -1,6 +1,5 @@
 #include <Common.Data.h>
 #include <Data.Game.Ship.Statistic.h>
-#include "Game.Avatar.Log.h"
 #include "Game.Avatar.ShipStatistics.h"
 #include "Game.Avatar.Ship.h"
 #include "Game.Colors.h"
@@ -83,6 +82,5 @@ namespace game::avatar//20211018
 		auto fouling = GetStatistic(shipId, descriptor.statistic);
 		fouling.current = fouling.minimum.value_or(0.0);
 		data::game::ship::Statistic::Write(shipId, (int)descriptor.statistic, fouling);
-		Log::Write({Colors::GRAY, descriptor.cleaningMessage});
 	}
 }

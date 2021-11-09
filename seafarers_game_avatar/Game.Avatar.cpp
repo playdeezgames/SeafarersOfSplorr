@@ -9,7 +9,6 @@
 #include <functional>
 #include "Game.Avatar.h"
 #include "Game.Avatar.Items.h"
-#include "Game.Avatar.Log.h"
 #include "Game.Avatar.Plights.h"
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Statistics.h"

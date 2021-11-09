@@ -6,7 +6,6 @@
 #include "Game.Avatar.h"
 #include "Game.Avatar.Docked.h"
 #include "Game.Avatar.StateTransition.h"
-#include "Game.Avatar.Log.h"
 #include "Game.Avatar.Quest.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Colors.h"
@@ -14,7 +13,7 @@
 #include "Game.Islands.h"
 #include <Game.Player.h>
 #include <map>
-namespace game::avatar//20211011
+namespace game::avatar
 {
 	void Docked::Reset(const game::Difficulty&)
 	{
@@ -44,7 +43,6 @@ namespace game::avatar//20211011
 		data::game::avatar::Dock::Write(Player::GetAvatarId(), location);
 		SetAvatarStateToDocked();
 		auto island = game::Islands::Read(location).value();
-		Log::Write({ game::Colors::GREEN, std::format(FORMAT_DOCK, island.name) });
 		return result;
 	}
 

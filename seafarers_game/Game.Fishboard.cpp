@@ -3,7 +3,6 @@
 #include <Data.Game.Fishery.h>
 #include <Data.Game.FishGame.h>
 #include "Game.Avatar.Items.h"
-#include "Game.Avatar.Log.h"
 #include "Game.Colors.h"
 #include "Game.Fishboard.h"
 #include "Game.Fisheries.h"
@@ -157,9 +156,6 @@ namespace game//20211013
 	{
 		auto item = Fishes::GetItem(fish);
 		game::avatar::Items::Add(game::Player::GetAvatarId(), item, 1);
-		avatar::Log::Write({
-			game::Colors::GREEN,
-			std::format("You reel in a {}!", Items::GetName(item)) });
 	}
 
 	static void DepleteFishery()

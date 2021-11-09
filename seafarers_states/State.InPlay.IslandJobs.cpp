@@ -10,7 +10,6 @@
 #include <Game.Avatar.h>
 #include <Game.Avatar.Actions.h>
 #include <Game.Avatar.Docked.h>
-#include <Game.Avatar.Log.h>
 #include <Game.Avatar.Quest.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>
