@@ -50,12 +50,11 @@ namespace state
 		}
 		else
 		{
-			Terminal::WriteLine("Sfx Volume {}",::audio::Sfx::GetVolume());
-			Terminal::WriteLine("Mux Volume {}",::audio::Mux::GetVolume());
+			Terminal::WriteLine("Sfx Volume {}%",::audio::Sfx::GetVolumePercentage());
+			Terminal::WriteLine("Mux Volume {}%",::audio::Mux::GetVolumePercentage());
 		}
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine();
 		Terminal::WriteLine("1) Toggle mute");
 		Terminal::WriteLine("2) Increase SFX");
 		Terminal::WriteLine("3) Decrease SFX");

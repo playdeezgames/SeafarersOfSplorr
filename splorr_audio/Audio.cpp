@@ -10,6 +10,12 @@ int Audio::ClampVolume(int volume)
 		(volume);
 }
 
+int Audio::GetMaximum()
+{
+	return audio::Platform::VOLUME_MAXIMUM;
+}
+
+
 static bool muted = false;
 
 static void Initialize()

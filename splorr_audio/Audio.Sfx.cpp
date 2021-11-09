@@ -1,6 +1,7 @@
 #include "Audio.h"
 #include "Audio.Platform.h"
 #include "Audio.Sfx.h"
+#include <Common.Data.h>
 #include <Data.JSON.Stores.h>
 #include <memory>
 #include <json.hpp>
@@ -75,5 +76,10 @@ namespace audio
 	int Sfx::GetVolume()
 	{
 		return sfxVolume;
+	}
+
+	int Sfx::GetVolumePercentage()
+	{
+		return common::Data::ToPercentage(GetVolume(), Audio::GetMaximum()).value();
 	}
 }

@@ -18,6 +18,7 @@ namespace audio
 		static void Play(const std::optional<std::string>&);
 		static void SetVolume(int);
 		static int GetVolume();
+		static int GetVolumePercentage();
 		static void Initialize();
 	};
 }

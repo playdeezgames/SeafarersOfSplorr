@@ -1,6 +1,7 @@
 #include "Audio.h"
 #include "Audio.Mux.h"
 #include "Audio.Platform.h"
+#include <Common.Data.h>
 #include <Data.JSON.Stores.h>
 #include <json.hpp>
 #include <map>
@@ -74,5 +75,11 @@ namespace audio
 		return Platform::GetMusicVolume();
 	}
 
+	int Mux::GetVolumePercentage()
+	{
+		return common::Data::ToPercentage(
+			GetVolume(), 
+			Audio::GetMaximum()).value();
+	}
 }
 
