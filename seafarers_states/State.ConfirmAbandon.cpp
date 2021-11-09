@@ -27,8 +27,8 @@ namespace state
 		Terminal::WriteLine();
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine("1) No");
-		Terminal::WriteLine("2) Yes");
+		Terminal::WriteLine("1) Yes");
+		Terminal::WriteLine("0) No");
 
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine();
@@ -37,8 +37,8 @@ namespace state
 
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
-		{ "1", application::UIState::GoTo(::UIState::LEAVE_PLAY)},
-		{ "2", application::UIState::GoTo(::UIState::MAIN_MENU)}
+		{ "0", application::UIState::GoTo(::UIState::LEAVE_PLAY)},
+		{ "1", application::UIState::GoTo(::UIState::MAIN_MENU)}
 	};
 
 	void ConfirmAbandon::Start()

@@ -39,7 +39,7 @@ namespace state::in_play
 			Terminal::WriteLine("3) Head for job destination");
 		}
 		Terminal::WriteLine("4) Set heading manually");
-		Terminal::WriteLine("5) Never mind");
+		Terminal::WriteLine("0) Never mind");
 
 		Terminal::ShowPrompt();
 	}
@@ -58,7 +58,7 @@ namespace state::in_play
 		}
 		else
 		{
-			Terminal::ErrorMessage("Please select a valid option.");
+			Terminal::ErrorMessage(Terminal::INVALID_INPUT);
 			Refresh();
 		}
 	}
@@ -71,7 +71,7 @@ namespace state::in_play
 		}
 		else
 		{
-			Terminal::ErrorMessage("Please select a valid option.");
+			Terminal::ErrorMessage(Terminal::INVALID_INPUT);
 			Refresh();
 		}
 	}
@@ -102,7 +102,7 @@ namespace state::in_play
 		{"2", OnHeadForNearbyIsland},
 		{"3", OnHeadForJobDestination},
 		{"4", application::UIState::GoTo(::UIState::IN_PLAY_MANUAL_HEADING)},
-		{"5", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS)}
+		{"0", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS)}
 	};
 
 	void ChangeHeading::Start()
@@ -113,7 +113,7 @@ namespace state::in_play
 			CURRENT_STATE,
 			Terminal::DoIntegerInput(
 				menuActions,
-				"Please enter a number between 1 and 4.",
+				Terminal::INVALID_INPUT,
 				Refresh));
 	}
 }
