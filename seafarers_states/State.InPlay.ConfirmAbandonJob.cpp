@@ -28,8 +28,8 @@ namespace state::in_play
 		Terminal::WriteLine("Are you sure you want to abandon yer current job? (You will suffer a reputation penalty!)");
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine("1) No");
-		Terminal::WriteLine("2) Yes");
+		Terminal::WriteLine("1) Yes");
+		Terminal::WriteLine("0) No");
 
 		Terminal::ShowPrompt();
 	}
@@ -43,8 +43,8 @@ namespace state::in_play
 
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
-		{ "1", application::UIState::GoTo(::UIState::IN_PLAY_NEXT)},
-		{ "2", AbandonJob},
+		{ "0", application::UIState::GoTo(::UIState::IN_PLAY_NEXT)},
+		{ "1", AbandonJob},
 	};
 
 	void ConfirmAbandonJob::Start()
@@ -59,7 +59,7 @@ namespace state::in_play
 			CURRENT_STATE,
 			Terminal::DoIntegerInput(
 				menuActions,
-				"Please enter a number between 1 and 2.",
+				Terminal::INVALID_INPUT,
 				Refresh));
 	}
 }

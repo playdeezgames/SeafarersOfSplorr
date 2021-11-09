@@ -24,8 +24,8 @@ namespace state::in_play
 		Terminal::WriteLine("Are you sure you want to replace yer current job? (You will suffer a reputation penalty!)");
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine("1) No");
-		Terminal::WriteLine("2) Yes");
+		Terminal::WriteLine("1) Yes");
+		Terminal::WriteLine("0) No");
 
 		Terminal::ShowPrompt();
 	}
@@ -52,8 +52,8 @@ namespace state::in_play
 
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
-		{ "1", OnNo},
-		{ "2", ReplaceJob}
+		{ "0", OnNo},
+		{ "1", ReplaceJob}
 	};
 
 	void ConfirmReplaceJob::Start()

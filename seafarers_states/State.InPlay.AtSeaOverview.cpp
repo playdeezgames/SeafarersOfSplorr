@@ -108,7 +108,7 @@ namespace state::in_play
 		}
 		else
 		{
-			Terminal::ErrorMessage("There is no place to dock or careen!");
+			Terminal::ErrorMessage(Terminal::INVALID_INPUT);
 		}
 		Refresh();
 	}

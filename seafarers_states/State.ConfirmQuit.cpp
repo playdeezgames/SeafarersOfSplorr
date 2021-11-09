@@ -27,8 +27,8 @@ namespace state
 		Terminal::WriteLine();
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine("1) No");
-		Terminal::WriteLine("2) Yes");
+		Terminal::WriteLine("1) Yes");
+		Terminal::WriteLine("0) No");
 
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine();
@@ -37,14 +37,19 @@ namespace state
 
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
-		{ "1", application::UIState::GoTo(::UIState::MAIN_MENU)},
-		{ "2", application::UIState::GoTo(::UIState::QUIT)}
+		{ "0", application::UIState::GoTo(::UIState::MAIN_MENU)},
+		{ "1", application::UIState::GoTo(::UIState::QUIT)}
 	};
 
 	void ConfirmQuit::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(CURRENT_STATE, Terminal::DoIntegerInput(menuActions, "Please enter a number between 1 and 2.", OnEnter));
+		::application::Keyboard::AddHandler(
+			CURRENT_STATE, 
+			Terminal::DoIntegerInput(
+				menuActions, 
+				Terminal::INVALID_INPUT, 
+				OnEnter));
 	}
 }

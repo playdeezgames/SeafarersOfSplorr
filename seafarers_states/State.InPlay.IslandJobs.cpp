@@ -63,7 +63,7 @@ namespace state::in_play
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Accept");
-		Terminal::WriteLine("2) Never mind");
+		Terminal::WriteLine("0) Never mind");
 
 		Terminal::ShowPrompt();
 	}
@@ -97,7 +97,7 @@ namespace state::in_play
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
 		{"1", OnAccept},
-		{"2", OnCancel}
+		{"0", OnCancel}
 	};
 
 	void IslandJobs::Start()
@@ -108,7 +108,7 @@ namespace state::in_play
 			CURRENT_STATE,
 			Terminal::DoIntegerInput(
 				menuActions,
-				"Please enter a number between 1 and 2.",
+				Terminal::INVALID_INPUT,
 				Refresh));
 	}
 }

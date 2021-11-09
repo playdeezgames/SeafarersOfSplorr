@@ -31,7 +31,7 @@ namespace state::in_play
 		Terminal::WriteLine("1) Dock");
 		Terminal::WriteLine("2) Careen to port");
 		Terminal::WriteLine("3) Careen to starboard");
-		Terminal::WriteLine("4) Never mind");
+		Terminal::WriteLine("0) Never mind");
 
 		Terminal::ShowPrompt();
 	}
@@ -110,7 +110,7 @@ namespace state::in_play
 		{"1", OnDock},
 		{"2", OnCareenToPort},
 		{"3", OnCareenToStarboard},
-		{"4", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW)}
+		{"0", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW)}
 	};
 
 	void DockOrCareen::Start()

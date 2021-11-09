@@ -66,7 +66,7 @@ namespace game//20211017
 
 	static void SellGoods(data::game::Merchant& merchant)
 	{
-		game::islands::Markets::SellItems(merchant.location, (game::Item)merchant.cargoType, merchant.cargoQuantity);
+		game::islands::Markets::SellItems(merchant.destination, (game::Item)merchant.cargoType, merchant.cargoQuantity);
 		data::game::Merchant::Remove(merchant.merchantId);
 	}
 

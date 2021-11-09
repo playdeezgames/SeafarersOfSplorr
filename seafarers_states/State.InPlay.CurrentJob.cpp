@@ -39,7 +39,7 @@ namespace state::in_play
 			questModel.reward);
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Abandon");
-		Terminal::WriteLine("2) Never mind");
+		Terminal::WriteLine("0) Never mind");
 
 		Terminal::ShowPrompt();
 	}
@@ -72,7 +72,7 @@ namespace state::in_play
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
 		{ "1", application::UIState::GoTo(::UIState::IN_PLAY_CONFIRM_ABANDON_JOB) },
-		{ "2", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW)},
+		{ "0", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW)},
 	};
 
 
@@ -88,7 +88,7 @@ namespace state::in_play
 			CURRENT_STATE,
 			Terminal::DoIntegerInput(
 				menuActions,
-				"Please enter a number between 1 and 2.",
+				Terminal::INVALID_INPUT,
 				Refresh));
 	}
 }
