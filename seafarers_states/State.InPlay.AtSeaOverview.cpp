@@ -10,6 +10,7 @@
 #include <Game.Avatar.Quest.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
+#include <Game.Fisheries.h>
 #include <Game.Islands.h>
 #include <Game.Player.h>
 #include <Game.Ship.h>
@@ -94,6 +95,14 @@ namespace state::in_play
 		return false;
 	}
 
+	static void RefreshFisheries()
+	{
+		if (!game::Fisheries::Available().empty())
+		{
+			Terminal::WriteLine("This looks like a good place to fish.");
+		}
+	}
+
 	static void Refresh()
 	{
 		Terminal::ClearStatusLine();
@@ -114,6 +123,7 @@ namespace state::in_play
 			"Wind: {:.2f}\xf8 (x{:.1f})",
 			game::World::GetWindHeading(),
 			game::World::GetWindSpeedMultiplier(game::Ship::GetHeading()));
+		RefreshFisheries();
 		bool canDock = RefreshDockableIslands();
 		RefreshNearbyIslands();
 		bool hasJob = RefreshJobDestination();

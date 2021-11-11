@@ -33,7 +33,7 @@ namespace state::in_play
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Clean port side");
-		Terminal::WriteLine("0) Never mind");
+		Terminal::WriteLine("0) Right the vessel");
 
 		Terminal::ShowPrompt();
 	}
@@ -42,7 +42,7 @@ namespace state::in_play
 	{
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::GREEN);
-		Terminal::WriteLine("You clean the port side of the hull.");
+		Terminal::WriteLine("You clean the port side.");
 		game::avatar::ShipStatistics::CleanHull(game::Side::PORT);
 		Refresh();
 	}
@@ -53,7 +53,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::GREEN);
 		Terminal::WriteLine("You right the vessel.");
 		game::avatar::Actions::DoAction(game::avatar::Action::UNCAREEN);
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		application::UIState::Write(::UIState::IN_PLAY_DOCK_OR_CAREEN);
 	}
 
 	static void OnEnter()
