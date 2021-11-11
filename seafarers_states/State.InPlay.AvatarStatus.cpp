@@ -32,14 +32,14 @@ namespace state::in_play
 	static void RefreshStatistics()
 	{
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Money: {}", game::avatar::Statistics::ReadMoney(CrewDetail::GetAvatarId()));
-		Terminal::WriteLine("Reputation: {}", game::avatar::Statistics::GetReputation(CrewDetail::GetAvatarId()));
-		Terminal::WriteLine("Brawling: {}", game::avatar::Statistics::GetBrawling(CrewDetail::GetAvatarId()));
-		Terminal::WriteLine("Health: {}", game::avatar::Statistics::GetHealth(CrewDetail::GetAvatarId()));
-		Terminal::WriteLine("Satiety: {}", game::avatar::Statistics::GetSatiety(CrewDetail::GetAvatarId()));
+		Terminal::WriteLine("Money: {:.4f}", game::avatar::Statistics::ReadMoney(CrewDetail::GetAvatarId()));
+		Terminal::WriteLine("Reputation: {:.1f}", game::avatar::Statistics::GetReputation(CrewDetail::GetAvatarId()));
+		Terminal::WriteLine("Brawling: {:.1f}", game::avatar::Statistics::GetBrawling(CrewDetail::GetAvatarId()));
+		Terminal::WriteLine("Health: {:.0f}", game::avatar::Statistics::GetHealth(CrewDetail::GetAvatarId()));
+		Terminal::WriteLine("Satiety: {:.0f}", game::avatar::Statistics::GetSatiety(CrewDetail::GetAvatarId()));
 		Terminal::WriteLine("Turns: {}", game::avatar::Statistics::GetTurnsRemaining(CrewDetail::GetAvatarId()));
-		Terminal::WriteLine("Dignity: {}", game::avatar::Statistics::GetDignity(CrewDetail::GetAvatarId()));
-		Terminal::WriteLine("Poshness: {}", game::avatar::Statistics::GetPoshness(CrewDetail::GetAvatarId()));
+		Terminal::WriteLine("Dignity: {:.0f}", game::avatar::Statistics::GetDignity(CrewDetail::GetAvatarId()));
+		Terminal::WriteLine("Poshness: {:.0f}", game::avatar::Statistics::GetPoshness(CrewDetail::GetAvatarId()));
 	}
 
 	static void RefreshPlights()
