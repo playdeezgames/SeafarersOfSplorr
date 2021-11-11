@@ -32,8 +32,8 @@ namespace state::in_play
 		Terminal::WriteLine("Port fouling {:.0f}%", game::avatar::ShipStatistics::GetFoulingPercentage(game::Side::PORT));
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine("1) Clean hull");
-		Terminal::WriteLine("2) Belay");
+		Terminal::WriteLine("1) Clean port side");
+		Terminal::WriteLine("0) Never mind");
 
 		Terminal::ShowPrompt();
 	}
@@ -42,7 +42,7 @@ namespace state::in_play
 	{
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::GREEN);
-		Terminal::WriteLine("You clean the hull.");
+		Terminal::WriteLine("You clean the port side of the hull.");
 		game::avatar::ShipStatistics::CleanHull(game::Side::PORT);
 		Refresh();
 	}
@@ -65,7 +65,7 @@ namespace state::in_play
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
 		{"1", OnCleanHull },
-		{"2", OnBelay }
+		{"0", OnBelay }
 	};
 
 	void CareenedToStarboard::Start()
