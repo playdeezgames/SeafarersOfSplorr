@@ -1,3 +1,4 @@
+#include <Common.Data.h>
 #include <Common.Heading.h>
 #include <Common.RNG.h>
 #include <Data.Game.World.h>
@@ -84,7 +85,7 @@ namespace game//20211018
 		auto data = data::game::World::Read();
 		if (data)
 		{
-			data.value().windHeading = heading;
+			data.value().windHeading = common::Data::ModuloDouble(heading, common::Heading::DEGREES).value();
 			data::game::World::Write(data.value());
 		}
 	}

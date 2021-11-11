@@ -28,6 +28,62 @@ namespace state::in_play
 			game::avatar::Items::Has(game::Player::GetAvatarId(), game::Item::BAIT);
 	}
 
+	static bool RefreshDockableIslands()
+	{
+		auto dockable = game::Islands::GetDockableIslands();
+		if (!dockable.empty())
+		{
+			auto island = dockable.front();
+			if (island.visits.has_value())
+			{
+				Terminal::Write("You can dock at {}", island.GetDisplayName());
+			}
+			else
+			{
+				Terminal::Write("You can dock");
+			}
+			Terminal::WriteLine();
+			return true;
+		}
+		return false;
+	}
+
+	static void RefreshNearbyIslands()
+	{
+		auto nearby = game::Islands::GetViewableIslands();
+		if (!nearby.empty())
+		{
+			Terminal::Write("You see {} islands nearby", nearby.size());
+			Terminal::WriteLine();
+			//for (auto& island : nearby)
+			//{
+			//	Terminal::WriteLine(
+			//		"{} ({:.2f}\xf8 dist {:.1f})", 
+			//		island.GetDisplayName(), 
+			//		common::Heading::XYToDegrees(island.relativeLocation), 
+			//		island.relativeLocation.GetMagnitude());
+			//}
+		}
+		else
+		{
+			Terminal::WriteLine("No islands are visible.");
+		}
+	}
+
+	static bool RefreshJobDestination()
+	{
+		auto quest = game::avatar::Quest::Read();
+		if (quest)
+		{
+			auto delta = quest.value().destination - game::Ship::GetLocation();
+			Terminal::WriteLine(
+				"Delivery distance: {:.1f}", 
+				delta.GetMagnitude());			
+			return true;
+		}
+		return false;
+	}
+
 	static void Refresh()
 	{
 		Terminal::ClearStatusLine();
@@ -41,39 +97,29 @@ namespace state::in_play
 		Terminal::SetForeground(
 			game::Colors::GRAY);
 		Terminal::WriteLine(
-			"Turns remaining: {}", 
-			game::avatar::Statistics::GetTurnsRemaining(game::Player::GetAvatarId()));
-		Terminal::WriteLine(
-			"Heading: {:.2f}\xf8, Speed: {:.1f}", 
-			game::Ship::GetHeading(), 
+			"Heading: {:.2f}\xf8, Speed: {:.1f}",
+			game::Ship::GetHeading(),
 			game::Ship::GetSpeed());
 		Terminal::WriteLine(
-			"Wind: {:.2f}\xf8 (x{:.1f})", 
-			game::World::GetWindHeading(), 
+			"Wind: {:.2f}\xf8 (x{:.1f})",
+			game::World::GetWindHeading(),
 			game::World::GetWindSpeedMultiplier(game::Ship::GetHeading()));
-		auto nearby = game::Islands::GetViewableIslands();
-		if (!nearby.empty())
-		{
-			Terminal::WriteLine("Nearby islands:");
-			for (auto& island : nearby)
-			{
-				Terminal::WriteLine(
-					"{} ({:.2f}\xf8 dist {:.1f})", 
-					island.GetDisplayName(), 
-					common::Heading::XYToDegrees(island.relativeLocation), 
-					island.relativeLocation.GetMagnitude());
-			}
-		}
+		bool canDock = RefreshDockableIslands();
+		RefreshNearbyIslands();
+		bool hasJob = RefreshJobDestination();
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Move");
 		Terminal::WriteLine("2) Multiple move");
-		if (!game::Islands::GetDockableIslands().empty())
+		if (canDock)
 		{
 			Terminal::WriteLine("3) Dock/careen");
 		}
 		Terminal::WriteLine("4) Crew status");
 		Terminal::WriteLine("5) Ship status");
-		Terminal::WriteLine("6) Job status");
+		if (hasJob)
+		{
+			Terminal::WriteLine("6) Job status");
+		}
 		if (IsFishingEnabled())
 		{
 			Terminal::WriteLine("7) Fish");
@@ -127,6 +173,19 @@ namespace state::in_play
 		}
 	}
 
+	static void OnJob()
+	{
+		if (game::avatar::Quest::Read().has_value())
+		{
+			application::UIState::Write(::UIState::IN_PLAY_CURRENT_JOB);
+		}
+		else
+		{
+			Terminal::ErrorMessage(Terminal::INVALID_INPUT);
+			Refresh();
+		}
+	}
+
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
 		{"1", OnMove },
@@ -134,7 +193,7 @@ namespace state::in_play
 		{"3", OnDock },
 		{"4", application::UIState::GoTo(::UIState::IN_PLAY_CREW_LIST) },
 		{"5", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS) },
-		{"6", application::UIState::GoTo(::UIState::IN_PLAY_CURRENT_JOB) },
+		{"6", OnJob },
 		{"7", OnFishing},
 		{"0", application::UIState::GoTo(::UIState::LEAVE_PLAY) }
 
