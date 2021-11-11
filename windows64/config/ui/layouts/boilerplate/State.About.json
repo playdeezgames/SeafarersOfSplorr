@@ -33,6 +33,19 @@
         "drop-shadow-y": 2
     },
     {
+        "type": "Terminal",
+        "terminal-id": "terminal",
+        "font": "font8x8",
+        "x":0,
+        "y":0,
+        "columns":40,
+        "rows":22,
+        "cell-width":16,
+        "cell-height":16,
+        "background-color": "Black",
+        "foreground-color": "Gray"
+    },
+    {
         "type": "Layout",
         "name": "Sublayout.Modded"
     }
