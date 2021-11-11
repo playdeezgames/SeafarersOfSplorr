@@ -22,5 +22,9 @@ namespace game//20211017
 				return "(unknown)";
 			}
 		}
+		bool IsKnown()
+		{
+			return visits.has_value();
+		}
 	};
 }

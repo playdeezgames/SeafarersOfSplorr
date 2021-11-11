@@ -54,15 +54,25 @@ namespace state::in_play
 		if (!nearby.empty())
 		{
 			Terminal::Write("You see {} islands nearby", nearby.size());
+			bool first = true;
+			for (auto& island : nearby)
+			{
+				if (island.IsKnown())
+				{
+					if (first)
+					{
+						Terminal::Write(" including ");
+						first = false;
+					}
+					else
+					{
+						Terminal::Write(", ");
+					}
+					Terminal::Write(island.GetDisplayName());
+				}
+			}
 			Terminal::WriteLine();
-			//for (auto& island : nearby)
-			//{
-			//	Terminal::WriteLine(
-			//		"{} ({:.2f}\xf8 dist {:.1f})", 
-			//		island.GetDisplayName(), 
-			//		common::Heading::XYToDegrees(island.relativeLocation), 
-			//		island.relativeLocation.GetMagnitude());
-			//}
+
 		}
 		else
 		{
