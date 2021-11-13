@@ -4,6 +4,7 @@
 #include <Application.UIState.h>
 #include <Common.Data.h>
 #include <Common.Utility.Dispatcher.h>
+#include <Game.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Colors.h>
@@ -38,7 +39,7 @@ namespace state::in_play
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine();
 			Terminal::WriteLine("Steady as she goes!");
-			game::Ship::Move(game::avatar::Ship::ReadShipId().value());
+			game::ApplyTurnEffects();
 			moves--;
 		}
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);

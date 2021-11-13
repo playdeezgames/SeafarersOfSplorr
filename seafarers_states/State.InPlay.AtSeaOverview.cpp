@@ -3,6 +3,7 @@
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Common.Heading.h>
+#include <Game.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Actions.h>
 #include <Game.Avatar.Docked.h>
@@ -168,7 +169,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::GREEN);
 		Terminal::WriteLine();
 		Terminal::WriteLine("Steady as she goes!");
-		game::Ship::Move(GetAvatarShipId());
+		game::ApplyTurnEffects();
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

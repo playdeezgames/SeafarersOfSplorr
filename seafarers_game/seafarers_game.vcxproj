@@ -60,6 +60,7 @@
     <ClInclude Include="Game.Quest.h" />
     <ClInclude Include="Game.Ship.h" />
     <ClInclude Include="Game.ShipNames.h" />
+    <ClInclude Include="Game.Ships.h" />
     <ClInclude Include="Game.ShipType.h" />
     <ClInclude Include="Game.Ship.Property.h" />
     <ClInclude Include="Game.ShipTypes.h" />
@@ -93,6 +94,7 @@
     <ClCompile Include="Game.Player.cpp" />
     <ClCompile Include="Game.Ship.cpp" />
     <ClCompile Include="Game.ShipNames.cpp" />
+    <ClCompile Include="Game.Ships.cpp" />
     <ClCompile Include="Game.ShipTypes.cpp" />
     <ClCompile Include="Game.World.cpp" />
   </ItemGroup>

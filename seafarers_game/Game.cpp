@@ -13,6 +13,7 @@
 #include "Game.Fisheries.h"
 #include "Game.Islands.h"
 #include "Game.Islands.Features.h"
+#include "Game.Ships.h"
 #include "Game.World.h"
 #include <list>
 #include <map>
@@ -37,6 +38,7 @@ namespace game//20211015
 		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);
 
 		World::Reset(difficulty);//must be done first to establish world size
+		Ships::Reset(difficulty);
 		avatar::Ship::Reset(difficulty);
 		Avatar::Reset(difficulty);
 		avatar::Docked::Reset(difficulty);
@@ -118,6 +120,7 @@ namespace game//20211015
 
 	static const std::list<std::function<void()>> turnEffects = 
 	{
+		Ships::ApplyTurnEffects,
 		Avatar::ApplyTurnEffects,
 		Islands::ApplyTurnEffects,
 		avatar::Plights::ApplyTurnEffects,

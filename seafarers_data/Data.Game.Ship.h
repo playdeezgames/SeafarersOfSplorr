@@ -3,7 +3,8 @@
 #include <optional>
 #include <string>
 #include <vector>
-namespace data::game//20211014
+#include <list>
+namespace data::game
 {
 	struct Ship
 	{
@@ -19,5 +20,6 @@ namespace data::game//20211014
 		static void Clear();
 
 		static int NextId();
+		static std::list<int> All();
 	};
 }

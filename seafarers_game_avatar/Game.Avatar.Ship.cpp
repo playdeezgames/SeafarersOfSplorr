@@ -13,7 +13,6 @@ namespace game::avatar//20211018
 {
 	void Ship::Reset(const game::Difficulty&)
 	{
-		data::game::Ship::Clear();
 	}
 
 	void Ship::Write(const Ship& ship)

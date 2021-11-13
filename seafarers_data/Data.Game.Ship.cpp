@@ -8,6 +8,7 @@ namespace data::game//20211010
 	static const std::string REPLACE_ITEM = "REPLACE INTO [Ships] ([ShipId],[ShipType],[Name],[X],[Y],[Heading],[Speed]) VALUES({},{},{},{:.4f},{:.4f},{:.4f},{:.4f});";
 	static const std::string QUERY_MAX_ID = "SELECT COALESCE(MAX([ShipId]),0) MaxShipId FROM [Ships];";
 	static const std::string DELETE_ALL = "DELETE FROM [Ships];";
+	static const std::string QUERY_ALL = "SELECT [ShipId] FROM [Ships];";
 
 	static const std::string FIELD_SHIP_ID = "ShipId";
 	static const std::string FIELD_MAX_SHIP_ID = "MaxShipId";
@@ -36,7 +37,7 @@ namespace data::game//20211010
 
 	static Ship ToShip(const std::map<std::string, std::string> table)
 	{
-		return 
+		return
 		{
 			common::Data::ToInt(table.find(FIELD_SHIP_ID)->second),
 			common::Data::ToInt(table.find(FIELD_SHIP_TYPE)->second),
@@ -73,5 +74,17 @@ namespace data::game//20211010
 	{
 		AutoCreateShipTable();
 		Common::Execute(DELETE_ALL);
+	}
+
+	std::list<int> Ship::All()
+	{
+		AutoCreateShipTable();
+		std::list<int> result;
+		auto records = Common::Execute(QUERY_ALL);
+		for (auto& record : records)
+		{
+			result.push_back(common::Data::ToInt(record[FIELD_SHIP_ID]));
+		}
+		return result;
 	}
 }

@@ -134,7 +134,7 @@ namespace game//20211017
 		return effectiveSpeed;
 	}
 
-	void Ship::Move(int shipId)
+	void Ship::ApplyTurnEffects(int shipId)
 	{
 		auto ship = data::game::Ship::Read(shipId);
 		if (ship)
@@ -148,8 +148,6 @@ namespace game//20211017
 			HandleFouling(ship.value().speed);
 
 			data::game::Ship::Write(ship.value());
-
-			game::ApplyTurnEffects();//TODO: game::ApplyTurnEffects needs to call a Ships::ApplyTurnEffects which calls the ship's Move function
 		}
 	}
 }

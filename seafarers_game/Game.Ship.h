@@ -20,7 +20,7 @@ namespace game//20211013
 		static std::optional<double> GetHeading(int);
 		static std::optional<double> GetSpeed(int);
 		static std::optional<common::XY<double>> GetLocation(int);
-		static void Move(int);
+		static void ApplyTurnEffects(int);
 
 		static void SetHeading(double);
 		static void SetSpeed(double);
