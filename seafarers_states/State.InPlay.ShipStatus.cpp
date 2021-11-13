@@ -31,7 +31,7 @@ namespace state::in_play
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Change Heading(Current: {:.2f}\xf8)", game::Ship::GetHeading(GetAvatarShipId()).value());
-		Terminal::WriteLine("2) Change Speed(Current: {:.1f})", game::Ship::GetSpeed());
+		Terminal::WriteLine("2) Change Speed(Current: {:.1f})", game::Ship::GetSpeed(GetAvatarShipId()).value());
 		Terminal::WriteLine("3) Cargo");
 		Terminal::WriteLine("0) Never mind");
 

@@ -3,6 +3,7 @@
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
+#include <Game.Avatar.Ship.h>
 #include <Game.Colors.h>
 #include <Game.Ship.h>
 #include "State.InPlay.ChangeSpeed.h"
@@ -19,7 +20,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Change Speed:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Current Speed: {:.2f}", game::Ship::GetSpeed());
+		Terminal::WriteLine("Current Speed: {:.2f}", game::Ship::GetSpeed(game::avatar::Ship::Read().value().shipId).value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) All stop");

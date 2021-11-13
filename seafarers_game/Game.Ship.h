@@ -13,12 +13,14 @@ namespace game//20211013
 		double heading;
 		double speed;
 
-		static std::optional<ShipType> GetShipType(int);
 		static int Add(const Ship&);
+
+		static std::optional<ShipType> GetShipType(int);
 		static std::optional<std::string> GetName(int);
 		static std::optional<double> GetHeading(int);
+		static std::optional<double> GetSpeed(int);
+
 		static void SetHeading(double);
-		static double GetSpeed();
 		static void SetSpeed(double);
 		static common::XY<double> GetLocation();
 		enum class MoveResult

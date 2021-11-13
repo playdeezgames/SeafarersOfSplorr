@@ -94,9 +94,14 @@ namespace game//20211017
 		return GetAvatarShip().location;
 	}
 
-	double Ship::GetSpeed()
+	std::optional<double> Ship::GetSpeed(int shipId)
 	{
-		return GetAvatarShip().speed;
+		auto ship = data::game::Ship::Read(shipId);
+		if (ship)
+		{
+			return ship.value().speed;
+		}
+		return std::nullopt;
 	}
 
 	void Ship::SetSpeed(double speed)

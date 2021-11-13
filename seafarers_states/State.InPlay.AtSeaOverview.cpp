@@ -124,7 +124,7 @@ namespace state::in_play
 		Terminal::WriteLine(
 			"Heading: {:.2f}\xf8, Speed: {:.1f}",
 			game::Ship::GetHeading(GetAvatarShipId()).value(),
-			game::Ship::GetSpeed());
+			game::Ship::GetSpeed(GetAvatarShipId()).value());
 		Terminal::WriteLine(
 			"Wind: {:.2f}\xf8 (x{:.1f})",
 			game::World::GetWindHeading(),
