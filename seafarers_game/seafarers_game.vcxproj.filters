@@ -33,9 +33,6 @@
     <Filter Include="Source Files\Islands">
       <UniqueIdentifier>{03628875-d3ae-4e27-a48d-0f8623f28eab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Merchants">
-      <UniqueIdentifier>{ad0e1ec1-04f5-41a3-a410-b5d294a173a9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Demigods">
       <UniqueIdentifier>{4fd9f52c-415b-4c9a-ad1d-2ba03b180a46}</UniqueIdentifier>
     </Filter>
@@ -143,12 +140,6 @@
     <ClInclude Include="Game.Side.h">
       <Filter>Header Files\Ships</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Merchants.h">
-      <Filter>Header Files\Merchants</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Merchant.h">
-      <Filter>Header Files\Merchants</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Demigods.h">
       <Filter>Header Files\Demigods</Filter>
     </ClInclude>
@@ -251,9 +242,6 @@
       <Filter>Source Files\Trade</Filter>
     </ClCompile>
     <ClCompile Include="Game.Items.cpp">
-      <Filter>Source Files\Trade</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Merchants.cpp">
       <Filter>Source Files\Trade</Filter>
     </ClCompile>
     <ClCompile Include="Game.Islands.DarkAlley.cpp">

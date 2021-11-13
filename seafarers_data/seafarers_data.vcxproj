@@ -48,7 +48,6 @@
     <ClInclude Include="Data.Game.Island.Market.h" />
     <ClInclude Include="Data.Game.Island.Quest.h" />
     <ClInclude Include="Data.Game.Island.Visit.h" />
-    <ClInclude Include="Data.Game.Merchant.h" />
     <ClInclude Include="Data.Game.Player.h" />
     <ClInclude Include="Data.Game.Ship.h" />
     <ClInclude Include="Data.Game.Ship.Statistic.h" />
@@ -86,7 +85,6 @@
     <ClCompile Include="Data.Game.Island.Market.cpp" />
     <ClCompile Include="Data.Game.Island.Quest.cpp" />
     <ClCompile Include="Data.Game.Island.Visit.cpp" />
-    <ClCompile Include="Data.Game.Merchant.cpp" />
     <ClCompile Include="Data.Game.Player.cpp" />
     <ClCompile Include="Data.Game.Ship.cpp" />
     <ClCompile Include="Data.Game.Ship.Statistic.cpp" />

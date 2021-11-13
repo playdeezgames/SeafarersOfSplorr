@@ -13,7 +13,6 @@
 #include "Game.Fisheries.h"
 #include "Game.Islands.h"
 #include "Game.Islands.Features.h"
-#include "Game.Merchants.h"
 #include "Game.World.h"
 #include <list>
 #include <map>
@@ -49,7 +48,6 @@ namespace game//20211015
 		Fisheries::Reset(difficulty);
 		Islands::Reset(difficulty);
 		islands::Features::Reset(difficulty);
-		Merchants::Reset(difficulty);
 		for (auto& resetter : resetters)
 		{
 			resetter();
@@ -122,7 +120,6 @@ namespace game//20211015
 	{
 		Avatar::ApplyTurnEffects,
 		Islands::ApplyTurnEffects,
-		Merchants::ApplyTurnEffects,
 		avatar::Plights::ApplyTurnEffects,
 		Demigods::ApplyTurnEffects,
 		Fisheries::ApplyTurnEffects,

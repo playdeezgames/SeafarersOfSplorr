@@ -11,7 +11,6 @@
 #include "Game.Commodities.h"
 #include "Game.Islands.h"
 #include "Game.Items.h"
-#include "Game.Merchants.h"
 #include "Game.Ship.h"
 #include "Game.World.h"
 #include <map>
@@ -181,19 +180,7 @@ namespace game//20211014
 		return result;
 	}
 
-	static void SpawnMerchant(const data::game::Island& island)
-	{
-		if (common::RNG::FromRange(0.0, 1.0) < island.merchantSpawnRate)
-		{
-			Merchants::Spawn(island.location);
-		}
-	}
-
 	void Islands::ApplyTurnEffects()
 	{
-		for (auto& island : data::game::Island::All())
-		{
-			SpawnMerchant(island);
-		}
 	}
 }
