@@ -142,21 +142,25 @@ namespace game//20211017
 		return effectiveSpeed;
 	}
 
-	Ship::MoveResult Ship::Move()
+	std::optional<Ship::MoveResult> Ship::Move(int shipId)
 	{
-		auto ship = GetAvatarShip();
+		auto ship = data::game::Ship::Read(shipId);
+		if (ship)
+		{
+			ship.value().location += 
+				common::Heading::DegreesToXY(ship.value().heading) *
+				GetEffectiveSpeed(ship.value().shipId, ship.value().heading, ship.value().speed);
 
-		ship.location += 
-			common::Heading::DegreesToXY(ship.heading) *
-			GetEffectiveSpeed(ship.shipId, ship.heading, ship.speed);
+			MoveResult result = ClampAvatarLocation(ship.value().location);
 
-		MoveResult result = ClampAvatarLocation(ship.location);
+			HandleFouling(ship.value().speed);
 
-		HandleFouling(ship.speed);
+			data::game::Ship::Write(ship.value());
 
-		data::game::Ship::Write(ship);
+			game::ApplyTurnEffects();//TODO: game::ApplyTurnEffects needs to call a Ships::ApplyTurnEffects which calls the ship's Move function
+			return result;
+		}
+		return std::nullopt;
 
-		game::ApplyTurnEffects();
-		return result;
 	}
 }
