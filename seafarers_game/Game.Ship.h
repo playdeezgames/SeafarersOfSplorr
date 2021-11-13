@@ -20,12 +20,7 @@ namespace game//20211013
 		static std::optional<double> GetHeading(int);
 		static std::optional<double> GetSpeed(int);
 		static std::optional<common::XY<double>> GetLocation(int);
-		enum class MoveResult
-		{
-			MOVED,
-			CLAMPED
-		};
-		static std::optional<MoveResult> Move(int);
+		static void Move(int);
 
 		static void SetHeading(double);
 		static void SetSpeed(double);

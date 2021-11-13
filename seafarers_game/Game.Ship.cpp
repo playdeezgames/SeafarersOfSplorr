@@ -116,14 +116,6 @@ namespace game//20211017
 		data::game::Ship::Write(ship);
 	}
 
-	static Ship::MoveResult ClampAvatarLocation(common::XY<double>& candidate)
-	{
-		return 
-			(game::World::ClampLocation(candidate)) ?
-			(Ship::MoveResult::CLAMPED) : 
-			(Ship::MoveResult::MOVED);
-	}
-
 	static void HandleFouling(double speed)
 	{
 		avatar::ShipStatistics::IncreaseFouling(speed);
@@ -142,7 +134,7 @@ namespace game//20211017
 		return effectiveSpeed;
 	}
 
-	std::optional<Ship::MoveResult> Ship::Move(int shipId)
+	void Ship::Move(int shipId)
 	{
 		auto ship = data::game::Ship::Read(shipId);
 		if (ship)
@@ -151,16 +143,13 @@ namespace game//20211017
 				common::Heading::DegreesToXY(ship.value().heading) *
 				GetEffectiveSpeed(ship.value().shipId, ship.value().heading, ship.value().speed);
 
-			MoveResult result = ClampAvatarLocation(ship.value().location);
+			game::World::ClampLocation(ship.value().location);
 
 			HandleFouling(ship.value().speed);
 
 			data::game::Ship::Write(ship.value());
 
 			game::ApplyTurnEffects();//TODO: game::ApplyTurnEffects needs to call a Ships::ApplyTurnEffects which calls the ship's Move function
-			return result;
 		}
-		return std::nullopt;
-
 	}
 }
