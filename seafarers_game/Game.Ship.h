@@ -3,7 +3,7 @@
 #include "Game.ShipType.h"
 #include <optional>
 #include <vector>
-namespace game//20211013
+namespace game
 {
 	struct Ship
 	{
@@ -22,7 +22,7 @@ namespace game//20211013
 		static std::optional<common::XY<double>> GetLocation(int);
 		static void ApplyTurnEffects(int);
 
-		static void SetHeading(double);
-		static void SetSpeed(double);
+		static void SetHeading(int, double);
+		static void SetSpeed(int, double);
 	};
 }

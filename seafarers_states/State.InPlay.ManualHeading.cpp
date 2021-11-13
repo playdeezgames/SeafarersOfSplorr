@@ -4,6 +4,7 @@
 #include <Application.UIState.h>
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Audio.Mux.h>
+#include <Game.Avatar.Ship.h>
 #include <Game.Colors.h>
 #include <Game.Ship.h>
 #include "State.InPlay.ManualHeading.h"
@@ -30,7 +31,7 @@ namespace state::in_play
 
 	static void OnValidInput(double value)
 	{
-		game::Ship::SetHeading(value);
+		game::Ship::SetHeading(game::avatar::Ship::ReadShipId().value(), value);
 		application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 	}
 

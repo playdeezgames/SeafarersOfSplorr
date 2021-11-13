@@ -43,7 +43,7 @@ namespace state::in_play
 	{
 		return [speed]() 
 		{
-			game::Ship::SetSpeed(speed);
+			game::Ship::SetSpeed(game::avatar::Ship::ReadShipId().value(), speed);
 			application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 		};
 	}

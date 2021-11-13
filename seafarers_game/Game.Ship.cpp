@@ -12,7 +12,7 @@
 #include "Game.Avatar.ShipStatistics.h"
 #include "Game.ShipTypes.h"
 #include "Game.World.h"
-namespace game//20211017
+namespace game
 {
 	std::optional<ShipType> Ship::GetShipType(int shipId)
 	{
@@ -53,12 +53,6 @@ namespace game//20211017
 		return shipId;
 	}
 
-	static data::game::Ship GetAvatarShip()//TODO: making a lot of assumptions about optionals!
-	{
-		return data::game::Ship::Read(
-			game::avatar::Ship::Read().value().shipId).value();
-	}
-
 	std::optional<std::string> Ship::GetName(int shipId)
 	{
 		auto ship = data::game::Ship::Read(shipId);
@@ -79,11 +73,14 @@ namespace game//20211017
 		return std::nullopt;
 	}
 
-	void Ship::SetHeading(double heading)
+	void Ship::SetHeading(int shipId, double heading)
 	{
-		auto ship = GetAvatarShip();
-		ship.heading = common::Data::ModuloDouble(heading, common::Heading::DEGREES).value();
-		data::game::Ship::Write(ship);
+		auto ship = data::game::Ship::Read(shipId);
+		if (ship)
+		{
+			ship.value().heading = common::Data::ModuloDouble(heading, common::Heading::DEGREES).value();
+			data::game::Ship::Write(ship.value());
+		}
 	}
 
 	const double SPEED_MINIMUM = 0.0;
@@ -109,11 +106,14 @@ namespace game//20211017
 		return std::nullopt;
 	}
 
-	void Ship::SetSpeed(double speed)
+	void Ship::SetSpeed(int shipId, double speed)
 	{
-		auto ship = GetAvatarShip();
-		ship.speed = common::Data::ClampDouble(speed, SPEED_MINIMUM, SPEED_MAXIMUM);
-		data::game::Ship::Write(ship);
+		auto ship = data::game::Ship::Read(shipId);
+		if (ship)
+		{
+			ship.value().speed = common::Data::ClampDouble(speed, SPEED_MINIMUM, SPEED_MAXIMUM);
+			data::game::Ship::Write(ship.value());
+		}
 	}
 
 	static void HandleFouling(double speed)

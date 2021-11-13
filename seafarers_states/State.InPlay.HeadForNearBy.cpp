@@ -5,6 +5,7 @@
 #include <Common.Heading.h>
 #include <Common.Utility.List.h>
 #include <Game.Audio.Mux.h>
+#include <Game.Avatar.Ship.h>
 #include <Game.Avatar.Actions.h>
 #include <Game.Ship.h>
 #include <Game.Islands.h>
@@ -60,7 +61,7 @@ namespace state::in_play
 			{
 				Terminal::SetForeground(game::Colors::GREEN);
 				Terminal::WriteLine();
-				game::Ship::SetHeading(common::Heading::XYToDegrees(chosen.value().relativeLocation));
+				game::Ship::SetHeading(game::avatar::Ship::ReadShipId().value(), common::Heading::XYToDegrees(chosen.value().relativeLocation));
 				Terminal::WriteLine("You head for {}.", chosen.value().GetDisplayName());
 				application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
 			}
