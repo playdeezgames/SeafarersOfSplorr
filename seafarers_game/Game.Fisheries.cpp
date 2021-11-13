@@ -4,9 +4,10 @@
 #include <Common.Utility.List.h>
 #include <Data.Game.Fishery.h>
 #include <functional>
-#include "Game.Ship.h"
-#include "Game.Fishes.h"
+#include <Game.Avatar.Ship.h>
 #include "Game.Fisheries.h"
+#include "Game.Fishes.h"
+#include "Game.Ship.h"
 #include "Game.World.h"
 namespace game//20211015
 {
@@ -96,7 +97,7 @@ namespace game//20211015
 
 	std::list<Fishery> Fisheries::Available()
 	{
-		auto avatarLocation = Ship::GetLocation();
+		auto avatarLocation = Ship::GetLocation(game::avatar::Ship::ReadShipId().value()).value();
 		std::list<Fishery> result;
 		for (auto& fishery : All())
 		{

@@ -89,9 +89,14 @@ namespace game//20211017
 	const double SPEED_MINIMUM = 0.0;
 	const double SPEED_MAXIMUM = 1.0;
 
-	common::XY<double> Ship::GetLocation()
+	std::optional<common::XY<double>> Ship::GetLocation(int shipId)
 	{
-		return GetAvatarShip().location;
+		auto ship = data::game::Ship::Read(shipId);
+		if (ship)
+		{
+			return ship.value().location;
+		}
+		return std::nullopt;
 	}
 
 	std::optional<double> Ship::GetSpeed(int shipId)

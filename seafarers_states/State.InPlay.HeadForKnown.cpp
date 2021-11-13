@@ -7,6 +7,7 @@
 #include <Common.Utility.List.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Actions.h>
+#include <Game.Avatar.Ship.h>
 #include <Game.Ship.h>
 #include <Game.Islands.h>
 #include <Game.Colors.h>
@@ -23,7 +24,7 @@ namespace state::in_play
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Head for:");
-		auto known = game::Islands::GetKnownIslands(game::Ship::GetLocation());
+		auto known = game::Islands::GetKnownIslands(game::Ship::GetLocation(game::avatar::Ship::ReadShipId().value()).value());
 		if (!known.empty())
 		{
 			Terminal::SetForeground(game::Colors::GRAY);
@@ -53,7 +54,7 @@ namespace state::in_play
 
 	static void DoHeadForKnownIndex(size_t index)
 	{
-		auto nearby = game::Islands::GetKnownIslands(game::Ship::GetLocation());
+		auto nearby = game::Islands::GetKnownIslands(game::Ship::GetLocation(game::avatar::Ship::ReadShipId().value()).value());
 		auto chosen = common::utility::List::GetNth(nearby, index);
 		if (chosen)
 		{

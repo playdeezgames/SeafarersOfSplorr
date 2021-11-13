@@ -11,6 +11,7 @@
 #include <Game.Avatar.Actions.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Quest.h>
+#include <Game.Avatar.Ship.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>
 #include <Game.Islands.Quests.h>
@@ -45,7 +46,7 @@ namespace state::in_play
 	static void RefreshQuest(const game::Quest& questModel)
 	{
 		auto islandModel = game::Islands::Read(questModel.destination).value();
-		double distance = common::Heading::Distance(questModel.destination, game::Ship::GetLocation());
+		double distance = common::Heading::Distance(questModel.destination, game::Ship::GetLocation(game::avatar::Ship::ReadShipId().value()).value());
 
 		Terminal::Reinitialize();
 

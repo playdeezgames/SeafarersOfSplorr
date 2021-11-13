@@ -32,7 +32,7 @@ namespace state::in_play
 		Terminal::WriteLine("Current: {:.2f}\xf8", game::Ship::GetHeading(GetAvatarShipId()).value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		if (!game::Islands::GetKnownIslands(game::Ship::GetLocation()).empty())
+		if (!game::Islands::GetKnownIslands(game::Ship::GetLocation(game::avatar::Ship::ReadShipId().value()).value()).empty())
 		{
 			Terminal::WriteLine("1) Head for a known island");
 		}
@@ -58,7 +58,7 @@ namespace state::in_play
 
 	static void OnHeadForKnownIsland()
 	{
-		if (!game::Islands::GetKnownIslands(game::Ship::GetLocation()).empty())
+		if (!game::Islands::GetKnownIslands(game::Ship::GetLocation(game::avatar::Ship::ReadShipId().value()).value()).empty())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_HEAD_FOR_KNOWN);
 		}
@@ -87,7 +87,7 @@ namespace state::in_play
 		auto quest = game::avatar::Quest::Read();
 		if (quest)
 		{
-			auto delta = quest.value().destination - game::Ship::GetLocation();
+			auto delta = quest.value().destination - game::Ship::GetLocation(game::avatar::Ship::ReadShipId().value()).value();
 			auto island = game::Islands::Read(quest.value().destination);
 			game::Ship::SetHeading(common::Heading::XYToDegrees(delta));
 			Terminal::SetForeground(game::Colors::GREEN);

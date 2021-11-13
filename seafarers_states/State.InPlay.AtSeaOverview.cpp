@@ -92,7 +92,7 @@ namespace state::in_play
 		auto quest = game::avatar::Quest::Read();
 		if (quest)
 		{
-			auto delta = quest.value().destination - game::Ship::GetLocation();
+			auto delta = quest.value().destination - game::Ship::GetLocation(GetAvatarShipId()).value();
 			Terminal::WriteLine(
 				"Delivery distance: {:.1f}", 
 				delta.GetMagnitude());			
