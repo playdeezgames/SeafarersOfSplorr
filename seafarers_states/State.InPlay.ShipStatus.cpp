@@ -4,6 +4,7 @@
 #include <Application.UIState.h>
 #include <functional>
 #include <Game.Audio.Mux.h>
+#include <Game.Avatar.Ship.h>
 #include <Game.Colors.h>
 #include <Game.Ship.h>
 #include <map>
@@ -15,6 +16,11 @@ namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_SHIP_STATUS;
 
+	static int GetAvatarShipId()
+	{
+		return game::avatar::Ship::Read().value().shipId;
+	}
+
 	static void Refresh()
 	{
 		Terminal::Reinitialize();
@@ -24,7 +30,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::GRAY);
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine("1) Change Heading(Current: {:.2f}\xf8)", game::Ship::GetHeading());
+		Terminal::WriteLine("1) Change Heading(Current: {:.2f}\xf8)", game::Ship::GetHeading(GetAvatarShipId()).value());
 		Terminal::WriteLine("2) Change Speed(Current: {:.1f})", game::Ship::GetSpeed());
 		Terminal::WriteLine("3) Cargo");
 		Terminal::WriteLine("0) Never mind");

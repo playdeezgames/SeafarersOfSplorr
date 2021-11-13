@@ -74,7 +74,6 @@
 #include <Visuals.Fonts.h>
 #include <Visuals.Layouts.h>
 #include <Visuals.Messages.h>
-#include <Visuals.Navigator.h>
 #include <Visuals.Sprites.h>
 #include <Visuals.Textures.h>
 #include <Visuals.WorldMap.h>
@@ -121,7 +120,6 @@ namespace application
 		visuals::Fonts::DoSetStore(data::json::Store::FONTS),
 		visuals::Layouts::DoSetStore(data::json::Store::LAYOUTS),
 		visuals::Layouts::DoRegisterType(VISUAL_TYPE_WORLD_MAP, visuals::WorldMap::Internalize),
-		visuals::Layouts::DoRegisterType(VISUAL_TYPE_NAVIGATOR, visuals::Navigator::Internalize),
 		visuals::Layouts::DoRegisterType(VISUAL_TYPE_FISHBOARD, visuals::Fishboard::Internalize),
 		visuals::Messages::Reset,
 		application::Keyboard::DoSetStore(data::json::Store::KEYS),

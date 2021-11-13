@@ -15,8 +15,8 @@ namespace game//20211013
 
 		static std::optional<ShipType> GetShipType(int);
 		static int Add(const Ship&);
-		static std::string GetName();
-		static double GetHeading();
+		static std::optional<std::string> GetName(int);
+		static std::optional<double> GetHeading(int);
 		static void SetHeading(double);
 		static double GetSpeed();
 		static void SetSpeed(double);

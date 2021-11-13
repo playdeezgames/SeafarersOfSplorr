@@ -59,14 +59,24 @@ namespace game//20211017
 			game::avatar::Ship::Read().value().shipId).value();
 	}
 
-	std::string Ship::GetName()
+	std::optional<std::string> Ship::GetName(int shipId)
 	{
-		return GetAvatarShip().name;
+		auto ship = data::game::Ship::Read(shipId);
+		if (ship)
+		{
+			return ship.value().name;
+		}
+		return std::nullopt;
 	}
 
-	double Ship::GetHeading()
+	std::optional<double> Ship::GetHeading(int shipId)
 	{
-		return GetAvatarShip().heading;
+		auto ship = data::game::Ship::Read(shipId);
+		if (ship)
+		{
+			return ship.value().heading;
+		}
+		return std::nullopt;
 	}
 
 	void Ship::SetHeading(double heading)

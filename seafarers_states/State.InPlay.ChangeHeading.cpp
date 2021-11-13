@@ -5,6 +5,7 @@
 #include <Common.Heading.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Quest.h>
+#include <Game.Avatar.Ship.h>
 #include <Game.Ship.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>
@@ -16,6 +17,11 @@ namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CHANGE_HEADING;
 
+	static int GetAvatarShipId()
+	{
+		return game::avatar::Ship::Read().value().shipId;
+	}
+
 	static void Refresh()
 	{
 		Terminal::Reinitialize();
@@ -23,7 +29,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Change Heading:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Current: {:.2f}\xf8", game::Ship::GetHeading());
+		Terminal::WriteLine("Current: {:.2f}\xf8", game::Ship::GetHeading(GetAvatarShipId()).value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		if (!game::Islands::GetKnownIslands(game::Ship::GetLocation()).empty())

@@ -1,8 +1,8 @@
 {
     "width": 1280,
     "height": 720,
-    "logicalWidth": 640,
-    "logicalHeight": 360,
+    "logicalWidth": 1280,
+    "logicalHeight": 720,
     "title": "Seafarers of SPLORR!! (a saline exfoliant)",
     "icon": "assets/images/icon.png",
     "mixerFrequency": 44100,

@@ -8,6 +8,7 @@
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Items.h>
 #include <Game.Avatar.Quest.h>
+#include <Game.Avatar.Ship.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Fisheries.h>
@@ -21,6 +22,11 @@
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_AT_SEA_OVERVIEW;
+
+	static int GetAvatarShipId()
+	{
+		return game::avatar::Ship::Read().value().shipId;
+	}
 
 	static bool IsFishingEnabled()
 	{
@@ -117,12 +123,12 @@ namespace state::in_play
 			game::Colors::GRAY);
 		Terminal::WriteLine(
 			"Heading: {:.2f}\xf8, Speed: {:.1f}",
-			game::Ship::GetHeading(),
+			game::Ship::GetHeading(GetAvatarShipId()).value(),
 			game::Ship::GetSpeed());
 		Terminal::WriteLine(
 			"Wind: {:.2f}\xf8 (x{:.1f})",
 			game::World::GetWindHeading(),
-			game::World::GetWindSpeedMultiplier(game::Ship::GetHeading()));
+			game::World::GetWindSpeedMultiplier(game::Ship::GetHeading(GetAvatarShipId()).value()));
 		RefreshFisheries();
 		bool canDock = RefreshDockableIslands();
 		RefreshNearbyIslands();

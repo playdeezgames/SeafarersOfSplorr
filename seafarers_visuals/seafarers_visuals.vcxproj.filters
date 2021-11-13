@@ -17,9 +17,6 @@
     <ClInclude Include="Visuals.WorldMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Visuals.Navigator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Visuals.Fishboard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -29,9 +26,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Visuals.WorldMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Visuals.Navigator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Visuals.Fishboard.cpp">
