@@ -33,7 +33,7 @@ namespace state
 		{
 			Terminal::WriteLine("6) Autosave Slot");
 		}
-		Terminal::WriteLine("7) Never mind");
+		Terminal::WriteLine("0) Never mind");
 
 		Terminal::ShowPrompt();
 
@@ -53,7 +53,7 @@ namespace state
 		}
 		else
 		{
-			Terminal::ErrorMessage("Please select a valid option.");
+			Terminal::ErrorMessage(Terminal::INVALID_INPUT);
 		}
 	}
 
@@ -68,7 +68,7 @@ namespace state
 			}
 			else
 			{
-				Terminal::ErrorMessage("Please select a valid option.");
+				Terminal::ErrorMessage(Terminal::INVALID_INPUT);
 			}
 		};
 	}
@@ -87,7 +87,7 @@ namespace state
 		{"4", SlotLoader(4)},
 		{"5", SlotLoader(5)},
 		{"6", LoadFromAutosave},
-		{"7", GoBack}
+		{"0", GoBack}
 	};
 
 	void LoadGame::Start()
@@ -98,7 +98,7 @@ namespace state
 			CURRENT_STATE,
 			Terminal::DoIntegerInput(
 				menuActions,
-				"Please enter a number between 1 and 5.",
+				Terminal::INVALID_INPUT,
 				Refresh));
 	}
 }
