@@ -29,6 +29,7 @@
     <ClInclude Include="Common.Utility.List.h" />
     <ClInclude Include="Common.Utility.Navigator.h" />
     <ClInclude Include="Common.Utility.Optional.h" />
+    <ClInclude Include="Common.Utility.Set.h" />
     <ClInclude Include="Common.Utility.Table.h" />
     <ClInclude Include="Common.XY.h" />
   </ItemGroup>

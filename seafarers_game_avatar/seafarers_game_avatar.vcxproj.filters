@@ -77,6 +77,12 @@
     <ClInclude Include="Game.Avatar.Actions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Avatar.Flag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Avatar.Flags.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Avatar.Actions.cpp">
@@ -119,6 +125,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.Avatar.StatisticFormats.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Avatar.Flags.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
