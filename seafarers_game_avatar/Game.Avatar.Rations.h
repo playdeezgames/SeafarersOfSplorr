@@ -5,7 +5,7 @@ namespace game::avatar//20211017
 {
 	struct Rations
 	{
-		static std::optional<Item> Read();
-		static void Write(const std::optional<Item>&);
+		static std::optional<Item> Read(int);
+		static void Write(int, const std::optional<Item>&);
 	};
 }

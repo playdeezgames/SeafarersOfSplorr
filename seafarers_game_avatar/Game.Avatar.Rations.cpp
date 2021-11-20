@@ -1,12 +1,11 @@
 #include <Data.Game.Avatar.Rations.h>
 #include "Game.Avatar.Rations.h"
 #include <Game.Items.h>
-#include <Game.Player.h>
-namespace game::avatar//20211018
+namespace game::avatar
 {
-	std::optional<game::Item> Rations::Read()
+	std::optional<game::Item> Rations::Read(int avatarId)
 	{
-		auto itemId = data::game::avatar::Rations::Read(Player::GetAvatarId());
+		auto itemId = data::game::avatar::Rations::Read(avatarId);
 		if (itemId)
 		{
 			return (game::Item)itemId.value();
@@ -14,12 +13,12 @@ namespace game::avatar//20211018
 		return std::nullopt;
 	}
 
-	void Rations::Write(const std::optional<game::Item>& item)
+	void Rations::Write(int avatarId, const std::optional<game::Item>& item)
 	{
-		data::game::avatar::Rations::Clear(Player::GetAvatarId());
+		data::game::avatar::Rations::Clear(avatarId);
 		if (item)
 		{
-			data::game::avatar::Rations::Write(Player::GetAvatarId(), (int)item.value());
+			data::game::avatar::Rations::Write(avatarId, (int)item.value());
 		}
 	}
 }

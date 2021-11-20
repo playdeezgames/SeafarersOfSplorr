@@ -3,7 +3,7 @@
 #include "Data.Game.Common.h"
 namespace data::game::avatar//20211010
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarRations]([AvatarId] INT NOT NULL UNIQUE,[ItemId] INT NULL);";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarRations]([AvatarId] INT NOT NULL UNIQUE,[ItemId] INT NOT NULL);";
 
 	static const std::string REPLACE_ITEM = "REPLACE INTO [AvatarRations]([AvatarId],[ItemId]) VALUES({},{});";
 	static const std::string QUERY_ITEM = "SELECT [ItemId] FROM [AvatarRations] WHERE [AvatarId]={};";
@@ -14,13 +14,13 @@ namespace data::game::avatar//20211010
 
 	static auto AutoCreateAvatarRationsTable = Common::Run(CREATE_TABLE);
 
-	void Rations::Write(int avatarId, std::optional<int> itemId)
+	void Rations::Write(int avatarId, int itemId)
 	{
 		AutoCreateAvatarRationsTable();
 		Common::Execute(
 			REPLACE_ITEM, 
 			avatarId, 
-			common::Data::OfOptional(itemId));
+			itemId);
 	}
 
 	std::optional<int> Rations::Read(int avatarId)

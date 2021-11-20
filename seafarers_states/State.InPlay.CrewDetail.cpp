@@ -4,7 +4,9 @@
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
+#include <Game.Avatar.Rations.h>
 #include <Game.Colors.h>
+#include <Game.Items.h>
 #include "State.InPlay.CrewDetail.h"
 #include "State.Terminal.h"
 #include <string>
@@ -27,6 +29,19 @@ namespace state::in_play
 
 	static auto OnLeave = application::UIState::GoTo(::UIState::IN_PLAY_CREW_LIST);
 
+	static void RefreshRations()
+	{
+		auto rations = game::avatar::Rations::Read(currentAvatarId);
+		if (rations)
+		{
+			Terminal::WriteLine("Rations: {}", game::Items::GetName(rations.value()));
+		}
+		else
+		{
+			Terminal::WriteLine("Rations: (nothing)");
+		}
+	}
+
 	static void Refresh()
 	{
 		Terminal::Reinitialize();
@@ -35,10 +50,12 @@ namespace state::in_play
 		Terminal::WriteLine("Crew Details:");
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Name: {}", game::Avatar::GetName(currentAvatarId).value());
+		RefreshRations();
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Statistics");
 		Terminal::WriteLine("2) Equipment");
+		Terminal::WriteLine("3) Change Rations");
 		Terminal::WriteLine("0) Never mind");
 
 		Terminal::ShowPrompt();
