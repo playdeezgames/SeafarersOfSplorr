@@ -155,6 +155,9 @@
     <ClInclude Include="Data.Game.Avatar.ShipCrew.h">
       <Filter>Header Files\Avatar</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.Avatar.Flags.h">
+      <Filter>Header Files\Avatar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">
@@ -254,6 +257,9 @@
       <Filter>Source Files\Avatar</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Avatar.ShipCrew.cpp">
+      <Filter>Source Files\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Avatar.Flags.cpp">
       <Filter>Source Files\Avatar</Filter>
     </ClCompile>
   </ItemGroup>

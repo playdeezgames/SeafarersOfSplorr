@@ -24,6 +24,7 @@
     <ClInclude Include="Data.Game.Avatar.DestinationName.h" />
     <ClInclude Include="Data.Game.Avatar.Dock.h" />
     <ClInclude Include="Data.Game.Avatar.Equipment.h" />
+    <ClInclude Include="Data.Game.Avatar.Flags.h" />
     <ClInclude Include="Data.Game.Avatar.h" />
     <ClInclude Include="Data.Game.Avatar.Items.h" />
     <ClInclude Include="Data.Game.Avatar.Plight.h" />
@@ -62,6 +63,7 @@
     <ClCompile Include="Data.Game.Avatar.DestinationNames.cpp" />
     <ClCompile Include="Data.Game.Avatar.Dock.cpp" />
     <ClCompile Include="Data.Game.Avatar.Equipment.cpp" />
+    <ClCompile Include="Data.Game.Avatar.Flags.cpp" />
     <ClCompile Include="Data.Game.Avatar.Items.cpp" />
     <ClCompile Include="Data.Game.Avatar.Plight.cpp" />
     <ClCompile Include="Data.Game.Avatar.Quest.cpp" />

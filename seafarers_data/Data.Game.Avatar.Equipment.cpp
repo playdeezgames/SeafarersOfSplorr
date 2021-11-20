@@ -2,7 +2,7 @@
 #include "Data.Game.Avatar.Equipment.h"
 #include "Data.Game.Common.h"
 #include "Data.Game.Player.h"
-namespace data::game::avatar//20211010
+namespace data::game::avatar
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarEquipment]([AvatarId] INT NOT NULL,[EquipSlotId] INT NOT NULL,[ItemId] INT NOT NULL,UNIQUE([AvatarId],[EquipSlotId]));";
 	static const std::string QUERY_ITEM = "SELECT [ItemId] FROM [AvatarEquipment] WHERE [AvatarId]={} AND [EquipSlotId]={};";
