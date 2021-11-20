@@ -27,7 +27,7 @@ namespace game//20211016
 			{
 				"marlin",
 				[]() { return common::RNG::FromRange(1,3); },
-				[]() { return common::RNG::FromRange(2.5,5.0); },
+				[]() { return common::RNG::FromRange(5.0,10.0); },
 				[]() { return common::RNG::FromRange(0.1,0.2); },
 				[]() { return 100; },
 				{
@@ -44,7 +44,7 @@ namespace game//20211016
 			{
 				"cod",
 				[]() { return common::RNG::FromRange(5,11); },
-				[]() { return common::RNG::FromRange(5.0,10.0); },
+				[]() { return common::RNG::FromRange(10.0,20.0); },
 				[]() { return common::RNG::FromRange(0.1,0.2); },
 				[]() { return 100; },
 				{
@@ -61,7 +61,7 @@ namespace game//20211016
 			{
 				"tuna",
 				[]() { return common::RNG::FromRange(2,5); },
-				[]() { return common::RNG::FromRange(3.0,6.0); },
+				[]() { return common::RNG::FromRange(6.0,12.0); },
 				[]() { return common::RNG::FromRange(0.1,0.2); },
 				[]() { return 100; },
 				{
