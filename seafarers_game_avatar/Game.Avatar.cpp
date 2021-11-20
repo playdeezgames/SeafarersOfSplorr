@@ -14,13 +14,12 @@
 #include "Game.Avatar.Statistics.h"
 #include "Game.Avatar.StateTransition.h"
 #include <Game.Items.h>
-#include <Game.Player.h>
 #include <Game.Ship.h>
 #include <Game.ShipNames.h>
 #include <Game.ShipTypes.h>
 #include <Game.World.h>
 #include <map>
-namespace game//20211022
+namespace game
 {
 	static double DetermineHungerRate()
 	{
@@ -38,30 +37,30 @@ namespace game//20211022
 		return delta;
 	}
 
-	static void ApplyHunger()
+	static void ApplyHunger(int avatarId)
 	{
 		double delta = DetermineHungerRate();
-		if (game::avatar::Statistics::IsStarving(game::Player::GetAvatarId()))
+		if (game::avatar::Statistics::IsStarving(avatarId))
 		{
-			game::avatar::Statistics::ChangeHealth(game::Player::GetAvatarId(), delta);
+			game::avatar::Statistics::ChangeHealth(avatarId, delta);
 		}
 		else
 		{
-			game::avatar::Statistics::ChangeSatiety(game::Player::GetAvatarId(), delta);
+			game::avatar::Statistics::ChangeSatiety(avatarId, delta);
 		}
 	}
 
-	static void ApplyEating()
+	static void ApplyEating(int avatarId)
 	{
 		const double EAT_BENEFIT = 10.0;
-		if (game::avatar::Statistics::NeedToEat(game::Player::GetAvatarId(), EAT_BENEFIT))
+		if (game::avatar::Statistics::NeedToEat(avatarId, EAT_BENEFIT))
 		{
 			const game::Item rationItem = game::Item::RATIONS;//TODO: when we can choose rations for an avatar, this will change
-			auto rations = game::avatar::Items::Read(game::Player::GetAvatarId(), rationItem);
+			auto rations = game::avatar::Items::Read(avatarId, rationItem);
 			if (rations > 0)
 			{
-				game::avatar::Statistics::Eat(game::Player::GetAvatarId(), EAT_BENEFIT);
-				game::avatar::Items::Remove(game::Player::GetAvatarId(), rationItem, 1);
+				game::avatar::Statistics::Eat(avatarId, EAT_BENEFIT);
+				game::avatar::Items::Remove(avatarId, rationItem, 1);
 			}
 		}
 	}
@@ -82,21 +81,25 @@ namespace game//20211022
 		return agingRate;
 	}
 
-	static void ApplyTurn()
+	static void ApplyTurn(int avatarId)
 	{
 		auto turnsSpent = DetermineTurnsSpent();
 		while (turnsSpent)
 		{
-			game::avatar::Statistics::SpendTurn(game::Player::GetAvatarId());
+			game::avatar::Statistics::SpendTurn(avatarId);
 			turnsSpent--;
 		}
 	}
 
 	void Avatar::ApplyTurnEffects()
 	{
-		ApplyTurn();
-		ApplyHunger();
-		ApplyEating();
+		auto avatarIds = data::game::Avatar::All();
+		for (auto avatarId : avatarIds)
+		{
+			ApplyTurn(avatarId);
+			ApplyHunger(avatarId);
+			ApplyEating(avatarId);
+		}
 	}
 
 	const std::map<std::string, size_t> CONSONANT_GENERATOR =
@@ -143,20 +146,20 @@ namespace game//20211022
 		return nameGenerator.Generate();
 	}
 
-	static void CreateAvatar()
+	static void CreateAvatar(int avatarId)
 	{
 		data::game::Avatar data =
 		{
 			(int)game::avatar::State::AT_SEA,
 			GenerateName()
 		};
-		data::game::Avatar::Write(Player::GetAvatarId(), data);
+		data::game::Avatar::Write(avatarId, data);
 	}
 
-	static void GenerateAvatarRations()
+	static void GenerateAvatarRations(int avatarId)
 	{
 		data::game::avatar::Rations::Write(
-			Player::GetAvatarId(), 
+			avatarId, 
 			(int)game::Items::GenerateRationsForAvatar());
 	}
 
@@ -178,10 +181,10 @@ namespace game//20211022
 		game::avatar::Ship::Write({ shipId, BerthType::CAPTAIN });
 	}
 
-	void Avatar::Reset(const game::Difficulty&)
+	void Avatar::Reset(const game::Difficulty&, int avatarId)
 	{
-		CreateAvatar();
-		GenerateAvatarRations();
+		CreateAvatar(avatarId);
+		GenerateAvatarRations(avatarId);
 		GenerateAvatarShip();
 	}
 

@@ -13,11 +13,12 @@
 #include "Game.Fisheries.h"
 #include "Game.Islands.h"
 #include "Game.Islands.Features.h"
+#include "Game.Player.h"
 #include "Game.Ships.h"
 #include "Game.World.h"
 #include <list>
 #include <map>
-namespace game//20211015
+namespace game
 {
 	static std::list<std::function<void()>> resetters;
 	static void AddResetter(std::function<void()> resetter)
@@ -40,7 +41,7 @@ namespace game//20211015
 		World::Reset(difficulty);//must be done first to establish world size
 		Ships::Reset(difficulty);
 		avatar::Ship::Reset(difficulty);
-		Avatar::Reset(difficulty);
+		Avatar::Reset(difficulty, Player::GetAvatarId());
 		avatar::Docked::Reset(difficulty);
 		avatar::Equipment::Reset(difficulty);
 		avatar::Items::Reset(difficulty);

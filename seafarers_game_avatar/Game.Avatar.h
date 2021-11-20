@@ -4,12 +4,12 @@
 #include "Game.Item.h"
 #include <optional>
 #include <string>
-namespace game//20211017
+namespace game
 {
 	struct Avatar
 	{
 		static void ApplyTurnEffects();
-		static void Reset(const Difficulty&);
+		static void Reset(const Difficulty&, int);
 		static std::optional<std::string> GetName(int);
 	};
 }

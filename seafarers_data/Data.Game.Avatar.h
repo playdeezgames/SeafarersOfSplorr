@@ -1,8 +1,9 @@
 #pragma once
 #include <Common.XY.h>
+#include <list>
 #include <optional>
 #include <string>
-namespace data::game//20211011
+namespace data::game
 {
 	struct Avatar 
 	{
@@ -13,5 +14,6 @@ namespace data::game//20211011
 		static std::optional<Avatar> Read(int);
 
 		static int NextId();
+		static std::list<int> All();
 	};
 }
