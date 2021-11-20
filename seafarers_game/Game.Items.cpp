@@ -194,7 +194,7 @@ namespace game
 
 	static std::map<game::Item, size_t> rationsGenerator;
 
-	Item Items::GenerateRationsForAvatar()
+	static void InitializeRationsGenerator()
 	{
 		if (rationsGenerator.empty())
 		{
@@ -206,8 +206,25 @@ namespace game
 				}
 			}
 		}
+	}
+
+	Item Items::GenerateRationsForAvatar()
+	{
+		InitializeRationsGenerator();
 		return common::RNG::FromGenerator(rationsGenerator);
 	}
+
+	std::list<game::Item> Items::AllRations()
+	{
+		InitializeRationsGenerator();
+		std::list<game::Item> result;
+		for (auto& entry : rationsGenerator)
+		{
+			result.push_back(entry.first);
+		}
+		return result;
+	}
+
 
 	const std::string& Items::GetName(const game::Item& item)
 	{

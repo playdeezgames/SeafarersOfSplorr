@@ -2,7 +2,7 @@
 #include "Game.Difficulty.h"
 #include "Game.Item.h"
 #include <map>
-namespace game::avatar//20211017
+namespace game::avatar
 {
 	struct Items
 	{

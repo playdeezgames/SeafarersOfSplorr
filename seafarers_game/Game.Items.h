@@ -5,11 +5,12 @@
 #include <list>
 #include <map>
 #include <string>
-namespace game//20211014
+namespace game
 {
 	struct Items
 	{
 		static const std::list<game::Item>& All();
+		static std::list<game::Item> AllRations();
 		static game::Item GenerateRationsForAvatar();
 		static const std::string& GetName(const game::Item&);
 		static bool GeneratePresenceForIsland(const game::Item&);

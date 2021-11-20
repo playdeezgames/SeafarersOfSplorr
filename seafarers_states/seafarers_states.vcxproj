@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="State.InPlay.ChangeHeading.h" />
     <ClInclude Include="State.InPlay.ChangeSpeed.h" />
+    <ClInclude Include="State.InPlay.ChooseRations.h" />
     <ClInclude Include="State.InPlay.DarkAlleyEntrance.h" />
     <ClInclude Include="State.InPlay.DockOrCareen.h" />
     <ClInclude Include="State.InPlay.EquipmentSlot.h" />
@@ -85,6 +86,7 @@
     <ClCompile Include="State.InPlay.AtSeaOverview.cpp" />
     <ClCompile Include="State.InPlay.ChangeHeading.cpp" />
     <ClCompile Include="State.InPlay.ChangeSpeed.cpp" />
+    <ClCompile Include="State.InPlay.ChooseRations.cpp" />
     <ClCompile Include="State.InPlay.CrewDetail.cpp" />
     <ClCompile Include="State.InPlay.CrewList.cpp" />
     <ClCompile Include="State.InPlay.DarkAlleyEntrance.cpp" />

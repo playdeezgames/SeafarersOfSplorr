@@ -71,6 +71,7 @@ namespace state::in_play
 	{
 		{ "1", application::UIState::GoTo(::UIState::IN_PLAY_AVATAR_STATUS) },
 		{ "2", application::UIState::GoTo(::UIState::IN_PLAY_EQUIPMENT)},
+		{ "3", application::UIState::GoTo(::UIState::IN_PLAY_CHOOSE_RATIONS)},
 		{ "0", OnLeave}
 	};
 

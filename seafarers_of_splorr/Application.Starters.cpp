@@ -21,6 +21,7 @@
 #include <State.InPlay.Cargo.h>
 #include <State.InPlay.ChangeHeading.h>
 #include <State.InPlay.ChangeSpeed.h>
+#include <State.InPlay.ChooseRations.h>
 #include <State.InPlay.Confirm.h>
 #include <State.InPlay.ConfirmAbandonJob.h>
 #include <State.InPlay.ConfirmReplaceJob.h>
@@ -192,6 +193,7 @@ namespace application
 		state::in_play::GambleIntro::Start,
 		state::in_play::GamblePlay::Start,
 		state::in_play::Fishing::Start,
+		state::in_play::ChooseRations::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};
