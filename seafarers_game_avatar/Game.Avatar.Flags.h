@@ -1,6 +1,7 @@
 #pragma once
 #include "Game.Avatar.Flag.h"
 #include <set>
+#include <string>
 namespace game::avatar
 {
 	struct Flags
@@ -9,5 +10,6 @@ namespace game::avatar
 		static void Write(int, const Flag&);
 		static void Clear(int, const Flag&);
 		static std::set<Flag> All(int);
+		//static const std::string& GetName(const Flag&);
 	};
 }

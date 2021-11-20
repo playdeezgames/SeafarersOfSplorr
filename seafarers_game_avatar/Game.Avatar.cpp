@@ -8,6 +8,7 @@
 #include <Data.Game.Avatar.Rations.h>
 #include <functional>
 #include "Game.Avatar.h"
+#include "Game.Avatar.Flags.h"
 #include "Game.Avatar.Items.h"
 #include "Game.Avatar.Plights.h"
 #include "Game.Avatar.Ship.h"
@@ -61,6 +62,25 @@ namespace game
 			{
 				game::avatar::Statistics::Eat(avatarId, EAT_BENEFIT);
 				game::avatar::Items::Remove(avatarId, rationItem, 1);
+				if (game::avatar::Flags::Has(avatarId, game::avatar::Flag::UNFED))
+				{
+					game::avatar::Flags::Clear(avatarId, game::avatar::Flag::UNFED);
+				}
+				else
+				{
+					game::avatar::Flags::Write(avatarId, game::avatar::Flag::FED);
+				}
+			}
+			else
+			{
+				if (game::avatar::Flags::Has(avatarId, game::avatar::Flag::FED))
+				{
+					game::avatar::Flags::Clear(avatarId, game::avatar::Flag::FED);
+				}
+				else
+				{
+					game::avatar::Flags::Write(avatarId, game::avatar::Flag::UNFED);
+				}
 			}
 		}
 	}
