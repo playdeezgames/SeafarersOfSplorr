@@ -3,7 +3,7 @@
 #include <Common.Utility.List.h>
 #include "Game.Items.h"
 #include <map>
-namespace game//20211014
+namespace game
 {
 	struct ItemDescriptor
 	{
