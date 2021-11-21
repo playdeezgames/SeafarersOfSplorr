@@ -143,9 +143,6 @@
     <ClInclude Include="Data.Game.Avatar.ShipCrew.h">
       <Filter>Header Files\Avatar</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Avatar.Flags.h">
-      <Filter>Header Files\Avatar</Filter>
-    </ClInclude>
     <ClInclude Include="Data.Game.Character.DemigodFavor.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
@@ -162,6 +159,9 @@
       <Filter>Header Files\Character</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.Character.Equipment.h">
+      <Filter>Header Files\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Character.Flags.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
   </ItemGroup>
@@ -247,9 +247,6 @@
     <ClCompile Include="Data.Game.Avatar.ShipCrew.cpp">
       <Filter>Source Files\Avatar</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Avatar.Flags.cpp">
-      <Filter>Source Files\Avatar</Filter>
-    </ClCompile>
     <ClCompile Include="Data.Game.Character.DemigodFavor.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
@@ -266,6 +263,9 @@
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Character.Equipment.cpp">
+      <Filter>Source Files\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Character.Flags.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
   </ItemGroup>

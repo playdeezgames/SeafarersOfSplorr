@@ -1,6 +1,6 @@
 #pragma once
 #include <set>
-namespace data::game::avatar
+namespace data::game::character
 {
 	struct Flags
 	{
@@ -8,7 +8,5 @@ namespace data::game::avatar
 		static void Write(int, int);
 		static void Clear(int, int);
 		static std::set<int> All(int);
-		//ClearAll(int)
-		//ClearAll()
 	};
 }
