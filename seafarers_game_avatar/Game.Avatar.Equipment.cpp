@@ -1,18 +1,18 @@
 #include <Common.Utility.h>
 #include <Common.Utility.Table.h>
-#include <Data.Game.Avatar.Equipment.h>
+#include <Data.Game.Character.Equipment.h>
 #include "Game.Avatar.Equipment.h"
 #include <Game.Player.h>
 namespace game::avatar
 {
 	void Equipment::Reset(const Difficulty& difficulty)
 	{
-		data::game::avatar::Equipment::Clear(Player::GetAvatarId());
+		data::game::character::Equipment::Clear(Player::GetAvatarId());
 	}
 
 	std::optional<Item> Equipment::Read(int avatarId, const EquipSlot& equipSlot)
 	{
-		auto item = data::game::avatar::Equipment::Read(avatarId, (int)equipSlot);
+		auto item = data::game::character::Equipment::Read(avatarId, (int)equipSlot);
 		if (item)
 		{
 			return (Item)item.value();
@@ -22,19 +22,19 @@ namespace game::avatar
 
 	void Equipment::Equip(int avatarId, const EquipSlot& equipSlot, const Item& item)
 	{
-		data::game::avatar::Equipment::Write(avatarId, (int)equipSlot, (int)item);
+		data::game::character::Equipment::Write(avatarId, (int)equipSlot, (int)item);
 	}
 
 	void Equipment::Unequip(int avatarId, const EquipSlot& equipSlot)
 	{
-		data::game::avatar::Equipment::Write(avatarId, (int)equipSlot, std::nullopt);
+		data::game::character::Equipment::Write(avatarId, (int)equipSlot, std::nullopt);
 	}
 
 	std::map<EquipSlot, Item> Equipment::All(int avatarId)
 	{
 		return 
 			common::utility::Table::Map<int, int, EquipSlot, Item>(
-				data::game::avatar::Equipment::All(avatarId),
+				data::game::character::Equipment::All(avatarId),
 				common::Utility::Cast<int, EquipSlot>,
 				common::Utility::Cast<int, Item>);
 	}

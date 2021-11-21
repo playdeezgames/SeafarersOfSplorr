@@ -128,9 +128,6 @@
     <ClInclude Include="Data.Game.FishGame.h">
       <Filter>Header Files\Fishing</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Avatar.Equipment.h">
-      <Filter>Header Files\Avatar</Filter>
-    </ClInclude>
     <ClInclude Include="Data.Game.Player.h">
       <Filter>Header Files\Player</Filter>
     </ClInclude>
@@ -162,6 +159,9 @@
       <Filter>Header Files\Character</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.Character.h">
+      <Filter>Header Files\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Character.Equipment.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
   </ItemGroup>
@@ -232,9 +232,6 @@
     <ClCompile Include="Data.Game.FishGame.cpp">
       <Filter>Source Files\Fishing</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Avatar.Equipment.cpp">
-      <Filter>Source Files\Avatar</Filter>
-    </ClCompile>
     <ClCompile Include="Data.Game.Player.cpp">
       <Filter>Source Files\Player</Filter>
     </ClCompile>
@@ -266,6 +263,9 @@
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Character.cpp">
+      <Filter>Source Files\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Character.Equipment.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
   </ItemGroup>
