@@ -1,7 +1,7 @@
 #pragma once
 #include <optional>
 #include <string>
-namespace data::game::avatar//20211011
+namespace data::game::character
 {
 	struct DestinationName
 	{

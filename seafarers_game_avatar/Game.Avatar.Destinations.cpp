@@ -1,5 +1,5 @@
 #include <Data.Game.Character.Destination.h>
-#include <Data.Game.Avatar.DestinationName.h>
+#include <Data.Game.Character.DestinationName.h>
 #include "Game.Avatar.Destinations.h"
 #include <Game.Player.h>
 namespace game::avatar
@@ -33,11 +33,11 @@ namespace game::avatar
 
 	std::optional<std::string> Destinations::ReadName(const Destination& destination)
 	{
-		return data::game::avatar::DestinationName::Read(Player::GetAvatarId(), (int)destination);
+		return data::game::character::DestinationName::Read(Player::GetAvatarId(), (int)destination);
 	}
 
 	void Destinations::WriteName(const Destination& destination, const std::string& name)
 	{
-		data::game::avatar::DestinationName::Write(Player::GetAvatarId(), (int)destination, name);
+		data::game::character::DestinationName::Write(Player::GetAvatarId(), (int)destination, name);
 	}
 }
