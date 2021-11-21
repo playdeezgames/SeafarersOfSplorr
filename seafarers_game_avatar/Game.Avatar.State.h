@@ -3,8 +3,8 @@ namespace game::avatar//20211017
 {
 	enum class State
 	{
-		AT_SEA,
-		DOCK,
+		AT_SEA, //TODO: make into ship state
+		DOCK, //TODO: make into ship state
 		JOB_BOARD,
 		MARKET,
 		MARKET_BUY,
@@ -13,9 +13,11 @@ namespace game::avatar//20211017
 		DARK_ALLEY_ENTRANCE,
 		DARK_ALLEY,
 		GAMBLE_START,
-		CAREENED_TO_PORT,
-		CAREENED_TO_STARBOARD,
+		CAREENED_TO_PORT,//TODO: make into ship state
+		CAREENED_TO_STARBOARD,//TODO: make into ship state
 		TEMPLE,
 		FISHING
+		//TODO: ABOARD_SHIP (replaces AT_SEA)
+		//TODO: ON_DOCK (replaced DOCK)
 	};
 }

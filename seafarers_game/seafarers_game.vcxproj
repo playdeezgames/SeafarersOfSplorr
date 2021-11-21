@@ -59,6 +59,7 @@
     <ClInclude Include="Game.Player.h" />
     <ClInclude Include="Game.Quest.h" />
     <ClInclude Include="Game.Ship.h" />
+    <ClInclude Include="Game.Ship.State.h" />
     <ClInclude Include="Game.ShipNames.h" />
     <ClInclude Include="Game.Ships.h" />
     <ClInclude Include="Game.ShipType.h" />

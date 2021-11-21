@@ -1,5 +1,5 @@
 #pragma once
-namespace game::ship//20211013
+namespace game::ship
 {
 	enum class Property
 	{
