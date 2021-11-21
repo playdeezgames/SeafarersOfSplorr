@@ -1,6 +1,6 @@
 #include <Common.Utility.h>
 #include <Common.Utility.Optional.h>
-#include <Data.Game.Avatar.Quest.h>
+#include <Data.Game.Character.Quest.h>
 #include <Data.Game.Island.Known.h>
 #include <Data.Game.Island.Quest.h>
 #include "Game.Avatar.Quest.h"
@@ -8,13 +8,13 @@
 #include "Game.Islands.h"
 #include <Game.Player.h>
 #include <Game.World.h>
-namespace game::avatar//20211018
+namespace game::avatar
 {
 	static void AcceptQuest(const data::game::island::Quest& quest, const common::XY<double>& location)
 	{
-		data::game::avatar::Quest::Write(
+		data::game::character::Quest::Write(
 			Player::GetAvatarId(),
-			std::optional<data::game::avatar::Quest>({
+			std::optional<data::game::character::Quest>({
 				quest.destination,
 				quest.reward,
 				quest.itemName,
@@ -28,7 +28,7 @@ namespace game::avatar//20211018
 
 	AcceptQuestResult Quest::Accept(const common::XY<double>& location)
 	{
-		if (data::game::avatar::Quest::Read(Player::GetAvatarId()))
+		if (data::game::character::Quest::Read(Player::GetAvatarId()))
 		{
 			return AcceptQuestResult::ALREADY_HAS_QUEST;
 		}
@@ -41,16 +41,16 @@ namespace game::avatar//20211018
 		return AcceptQuestResult::NO_QUEST_TO_ACCEPT;
 	}
 
-	static void CompleteQuest(const data::game::avatar::Quest& quest)
+	static void CompleteQuest(const data::game::character::Quest& quest)
 	{
 		game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), quest.reward);
 		game::avatar::Statistics::ChangeReputation(game::Player::GetAvatarId(), World::GetReputationReward());
-		data::game::avatar::Quest::Write(Player::GetAvatarId(), std::nullopt);
+		data::game::character::Quest::Write(Player::GetAvatarId(), std::nullopt);
 	}
 
 	bool Quest::Complete(const common::XY<double>& location)
 	{
-		auto quest = data::game::avatar::Quest::Read(Player::GetAvatarId());
+		auto quest = data::game::character::Quest::Read(Player::GetAvatarId());
 		if (quest.has_value() && quest.value().destination == location)
 		{
 			CompleteQuest(quest.value());
@@ -62,12 +62,12 @@ namespace game::avatar//20211018
 	static void AbandonQuest()
 	{
 		game::avatar::Statistics::ChangeReputation(game::Player::GetAvatarId(), World::GetReputationPenalty());
-		data::game::avatar::Quest::Write(Player::GetAvatarId(), std::nullopt);
+		data::game::character::Quest::Write(Player::GetAvatarId(), std::nullopt);
 	}
 
 	bool Quest::Abandon()
 	{
-		if (data::game::avatar::Quest::Read(Player::GetAvatarId()))
+		if (data::game::character::Quest::Read(Player::GetAvatarId()))
 		{
 			AbandonQuest();
 			return true;
@@ -75,7 +75,7 @@ namespace game::avatar//20211018
 		return false;
 	}
 
-	static game::Quest ToQuest(const data::game::avatar::Quest& quest)
+	static game::Quest ToQuest(const data::game::character::Quest& quest)
 	{
 		return 
 			{
@@ -91,8 +91,8 @@ namespace game::avatar//20211018
 	std::optional<game::Quest> Quest::Read()
 	{
 		return
-			common::utility::Optional::Map<data::game::avatar::Quest, game::Quest>(
-				data::game::avatar::Quest::Read(Player::GetAvatarId()),
+			common::utility::Optional::Map<data::game::character::Quest, game::Quest>(
+				data::game::character::Quest::Read(Player::GetAvatarId()),
 				ToQuest);
 	}
 }

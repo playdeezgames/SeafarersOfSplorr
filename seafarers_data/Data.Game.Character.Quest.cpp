@@ -1,13 +1,13 @@
 #include <Common.Data.h>
-#include "Data.Game.Avatar.Quest.h"
+#include "Data.Game.Character.Quest.h"
 #include "Data.Game.Common.h"
 #include "Data.Game.Player.h"
-namespace data::game::avatar//20211010
+namespace data::game::character
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarQuests]([AvatarId] INT NOT NULL UNIQUE,[DestinationX] REAL NOT NULL, [DestinationY] REAL NOT NULL, [ItemName] TEXT NOT NULL, [PersonName] TEXT NOT NULL, [ProfessionName] TEXT NOT NULL, [ReceiptEmotion] TEXT NOT NULL, [Reward] REAL NOT NULL);";
-	static const std::string QUERY_ITEM = "SELECT [DestinationX],[DestinationY],[Reward],[ItemName],[PersonName],[ProfessionName],[ReceiptEmotion] FROM [AvatarQuests] WHERE [AvatarId]={};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [AvatarQuests]([AvatarId],[DestinationX],[DestinationY],[Reward],[ItemName],[PersonName],[ProfessionName],[ReceiptEmotion]) VALUES({},{:.4f},{:.4f},{:.4f},{},{},{},{});";
-	static const std::string DELETE_ITEM = "DELETE FROM [AvatarQuests] WHERE [AvatarId]={};";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [CharacterQuests]([CharacterId] INT NOT NULL UNIQUE,[DestinationX] REAL NOT NULL, [DestinationY] REAL NOT NULL, [ItemName] TEXT NOT NULL, [PersonName] TEXT NOT NULL, [ProfessionName] TEXT NOT NULL, [ReceiptEmotion] TEXT NOT NULL, [Reward] REAL NOT NULL);";
+	static const std::string QUERY_ITEM = "SELECT [DestinationX],[DestinationY],[Reward],[ItemName],[PersonName],[ProfessionName],[ReceiptEmotion] FROM [CharacterQuests] WHERE [CharacterId]={};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [CharacterQuests]([CharacterId],[DestinationX],[DestinationY],[Reward],[ItemName],[PersonName],[ProfessionName],[ReceiptEmotion]) VALUES({},{:.4f},{:.4f},{:.4f},{},{},{},{});";
+	static const std::string DELETE_ITEM = "DELETE FROM [CharacterQuests] WHERE [CharacterId]={};";
 
 	static const std::string FIELD_DESTINATION_X = "DestinationX";
 	static const std::string FIELD_DESTINATION_Y = "DestinationY";
@@ -17,12 +17,12 @@ namespace data::game::avatar//20211010
 	static const std::string FIELD_PROFESSION_NAME = "ProfessionName";
 	static const std::string FIELD_RECEIPT_EMOTION = "ReceiptEmotion";
 
-	static const auto AutoCreateAvatarQuestTable = data::game::Common::Run(CREATE_TABLE);
+	static const auto AutoCreateTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Quest::Write(int avatarId, const std::optional<Quest>& data)
+	void Quest::Write(int characterId, const std::optional<Quest>& data)
 	{
-		AutoCreateAvatarQuestTable();
-		data::game::Common::Execute(DELETE_ITEM, avatarId);
+		AutoCreateTable();
+		data::game::Common::Execute(DELETE_ITEM, characterId);
 		if (data)
 		{
 			data::game::Common::Execute(
@@ -54,11 +54,11 @@ namespace data::game::avatar//20211010
 		};
 	}
 
-	std::optional<Quest> Quest::Read(int avatarId)
+	std::optional<Quest> Quest::Read(int characterId)
 	{
-		AutoCreateAvatarQuestTable();
+		AutoCreateTable();
 		auto records = data::game::Common::Execute(
-			QUERY_ITEM, avatarId);
+			QUERY_ITEM, characterId);
 		if (!records.empty())
 		{
 			return ToQuest(records.front());
