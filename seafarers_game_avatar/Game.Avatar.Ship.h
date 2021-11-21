@@ -10,7 +10,7 @@ namespace game::avatar
 		int shipId;
 		BerthType berthType;//of the avatar
 
-		static void Write(int, const Ship&);
+		static void Write(int, int, const BerthType&);
 		static std::optional<Ship> Read(int);
 		static std::optional<int> ReadShipId(int);
 		static std::optional<double> AvailableTonnage(int);

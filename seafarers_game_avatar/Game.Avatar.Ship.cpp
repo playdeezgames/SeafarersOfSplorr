@@ -9,12 +9,12 @@
 #include <Game.ShipTypes.h>
 namespace game::avatar
 {
-	void Ship::Write(int avatarId, const Ship& ship)
+	void Ship::Write(int avatarId, int shipId, const BerthType& berthType)
 	{
 		data::game::avatar::Ship::Write(avatarId, 
 			{ 
-				ship.shipId,
-				(int)ship.berthType
+				shipId,
+				(int)berthType
 			});
 	}
 
