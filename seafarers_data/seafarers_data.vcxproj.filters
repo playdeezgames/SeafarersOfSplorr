@@ -119,12 +119,6 @@
     <ClInclude Include="Data.Game.Character.DemigodFavor.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Character.Destination.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Character.DestinationName.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Data.Game.Character.Dock.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
@@ -221,12 +215,6 @@
       <Filter>Source Files\Ship</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Character.DemigodFavor.cpp">
-      <Filter>Source Files\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Character.Destination.cpp">
-      <Filter>Source Files\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Character.DestinationNames.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Character.Dock.cpp">

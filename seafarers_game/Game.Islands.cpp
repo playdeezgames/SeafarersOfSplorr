@@ -1,6 +1,5 @@
 #include <Common.Heading.h>
 #include <Common.RNG.h>
-#include <Data.Game.Character.Destination.h>
 #include <Data.Game.Island.Item.h>
 #include <Data.Game.Island.h>
 #include <Data.Game.Island.Known.h>
@@ -19,7 +18,7 @@
 #include <set>
 #include <sstream>
 #include <vector>
-namespace game//20211014
+namespace game
 {
 	const std::string Islands::UNKNOWN = "????";
 
