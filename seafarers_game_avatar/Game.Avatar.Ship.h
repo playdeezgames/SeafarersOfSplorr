@@ -3,17 +3,16 @@
 #include "Game.Difficulty.h"
 #include "Game.ShipType.h"
 #include <optional>
-namespace game::avatar//20211019
+namespace game::avatar
 {
 	struct Ship
 	{
 		int shipId;
 		BerthType berthType;//of the avatar
 
-		static void Reset(const game::Difficulty&);
-		static void Write(const Ship&);
-		static std::optional<Ship> Read();
-		static std::optional<int> ReadShipId();
-		static std::optional<double> AvailableTonnage();
+		static void Write(int, const Ship&);
+		static std::optional<Ship> Read(int);
+		static std::optional<int> ReadShipId(int);
+		static std::optional<double> AvailableTonnage(int);
 	};
 }

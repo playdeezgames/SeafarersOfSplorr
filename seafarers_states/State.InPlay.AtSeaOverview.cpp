@@ -26,7 +26,7 @@ namespace state::in_play
 
 	static int GetAvatarShipId()
 	{
-		return game::avatar::Ship::Read().value().shipId;
+		return game::avatar::Ship::Read(game::Player::GetAvatarId()).value().shipId;
 	}
 
 	static bool IsFishingEnabled()

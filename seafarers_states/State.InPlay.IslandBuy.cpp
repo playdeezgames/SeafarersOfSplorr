@@ -59,7 +59,7 @@ namespace state::in_play
 	static void RefreshStatistics()
 	{
 		Terminal::WriteLine(FORMAT_MONEY, game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId()));
-		Terminal::WriteLine(FORMAT_TONNAGE, game::avatar::Ship::AvailableTonnage().value());
+		Terminal::WriteLine(FORMAT_TONNAGE, game::avatar::Ship::AvailableTonnage(game::Player::GetAvatarId()).value());
 	}
 
 	static void Refresh()

@@ -3,13 +3,14 @@
 #include "Game.Avatar.ShipStatistics.h"
 #include "Game.Avatar.Ship.h"
 #include "Game.Colors.h"
+#include <Game.Player.h>
 #include "Game.ShipStatistic.h"
 #include <map>
 namespace game::avatar//20211018
 {
 	static int GetShipId()
 	{
-		return game::avatar::Ship::Read().value().shipId;
+		return game::avatar::Ship::Read(game::Player::GetAvatarId()).value().shipId;
 	}
 
 	static data::game::ship::Statistic GetStatistic(int shipId, const ShipStatistic& statistic)

@@ -2,22 +2,16 @@
 #include <Common.Utility.Optional.h>
 #include <Data.Game.Avatar.Ship.h>
 #include <Data.Game.Ship.Statistic.h>
-#include <Data.Game.Player.h>
 #include <Data.Game.Ship.h>
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Items.h"
-#include <Game.Player.h>
 #include <Game.Ship.h>
 #include <Game.ShipTypes.h>
-namespace game::avatar//20211018
+namespace game::avatar
 {
-	void Ship::Reset(const game::Difficulty&)
+	void Ship::Write(int avatarId, const Ship& ship)
 	{
-	}
-
-	void Ship::Write(const Ship& ship)
-	{
-		data::game::avatar::Ship::Write(data::game::Player::GetAvatarId(), 
+		data::game::avatar::Ship::Write(avatarId, 
 			{ 
 				ship.shipId,
 				(int)ship.berthType
@@ -33,38 +27,38 @@ namespace game::avatar//20211018
 		};
 	}
 
-	std::optional<Ship> Ship::Read()
+	std::optional<Ship> Ship::Read(int avatarId)
 	{
 		return common::utility::Optional::Map<data::game::avatar::Ship, Ship>(
-			data::game::avatar::Ship::Read(data::game::Player::GetAvatarId()),
+			data::game::avatar::Ship::Read(avatarId),
 			ToShip
 			);
 	}
 
-	std::optional<int> Ship::ReadShipId()
+	std::optional<int> Ship::ReadShipId(int avatarId)
 	{
 		return common::utility::Optional::Map<Ship, int>(
-			Read(), 
+			Read(avatarId), 
 			[](const Ship& ship) { return ship.shipId;  });
 	}
 
 
-	static double GetAvailableTonnage(const Ship& ship)
+	static double GetAvailableTonnage(int avatarId, const Ship& ship)
 	{
 		return common::utility::Optional::Map<ShipType, double>(
 			game::Ship::GetShipType(ship.shipId),
-			[](const ShipType& shipType)
+			[avatarId](const ShipType& shipType)
 			{
 				return
 					game::ShipTypes::GetTotalTonnage(shipType) -
-					game::avatar::Items::TotalTonnage(game::Player::GetAvatarId());
+					game::avatar::Items::TotalTonnage(avatarId);
 			}).value_or(0.0);
 	}
 
-	std::optional<double> Ship::AvailableTonnage()
+	std::optional<double> Ship::AvailableTonnage(int avatarId)
 	{
 		return common::utility::Optional::Map<Ship, double>(
-			Read(),
-			GetAvailableTonnage);
+			Read(avatarId),
+			[avatarId](const Ship& ship) { return GetAvailableTonnage(avatarId, ship); });
 	}
 }

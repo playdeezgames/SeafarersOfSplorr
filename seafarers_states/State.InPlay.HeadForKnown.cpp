@@ -11,6 +11,7 @@
 #include <Game.Ship.h>
 #include <Game.Islands.h>
 #include <Game.Colors.h>
+#include <Game.Player.h>
 #include "State.InPlay.HeadForKnown.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -24,7 +25,7 @@ namespace state::in_play
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Head for:");
-		auto known = game::Islands::GetKnownIslands(game::Ship::GetLocation(game::avatar::Ship::ReadShipId().value()).value());
+		auto known = game::Islands::GetKnownIslands(game::Ship::GetLocation(game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value()).value());
 		if (!known.empty())
 		{
 			Terminal::SetForeground(game::Colors::GRAY);
@@ -54,13 +55,13 @@ namespace state::in_play
 
 	static void DoHeadForKnownIndex(size_t index)
 	{
-		auto nearby = game::Islands::GetKnownIslands(game::Ship::GetLocation(game::avatar::Ship::ReadShipId().value()).value());
+		auto nearby = game::Islands::GetKnownIslands(game::Ship::GetLocation(game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value()).value());
 		auto chosen = common::utility::List::GetNth(nearby, index);
 		if (chosen)
 		{
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine();
-			game::Ship::SetHeading(game::avatar::Ship::ReadShipId().value(), common::Heading::XYToDegrees(chosen.value().relativeLocation));
+			game::Ship::SetHeading(game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value(), common::Heading::XYToDegrees(chosen.value().relativeLocation));
 			Terminal::WriteLine("You head for {}.", chosen.value().GetDisplayName());
 			application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
 		}

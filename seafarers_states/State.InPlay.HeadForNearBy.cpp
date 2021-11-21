@@ -10,6 +10,7 @@
 #include <Game.Ship.h>
 #include <Game.Islands.h>
 #include <Game.Colors.h>
+#include <Game.Player.h>
 #include "State.InPlay.HeadForNearBy.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -61,7 +62,7 @@ namespace state::in_play
 			{
 				Terminal::SetForeground(game::Colors::GREEN);
 				Terminal::WriteLine();
-				game::Ship::SetHeading(game::avatar::Ship::ReadShipId().value(), common::Heading::XYToDegrees(chosen.value().relativeLocation));
+				game::Ship::SetHeading(game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value(), common::Heading::XYToDegrees(chosen.value().relativeLocation));
 				Terminal::WriteLine("You head for {}.", chosen.value().GetDisplayName());
 				application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
 			}

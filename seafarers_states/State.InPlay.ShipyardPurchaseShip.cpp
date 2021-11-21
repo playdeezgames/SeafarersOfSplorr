@@ -31,7 +31,7 @@ namespace state::in_play
 	{
 		auto location = game::avatar::Docked::ReadLocation().value();
 		auto prices = game::islands::Ships::GetPurchasePrices(location);
-		auto tradeIn = game::islands::Ships::GetSalePrice(location, game::Ship::GetShipType(game::avatar::Ship::Read().value().shipId).value());
+		auto tradeIn = game::islands::Ships::GetSalePrice(location, game::Ship::GetShipType(game::avatar::Ship::Read(game::Player::GetAvatarId()).value().shipId).value());
 		shipPrices.clear();
 		for (auto price : prices)
 		{
@@ -59,7 +59,7 @@ namespace state::in_play
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Purchase Ship:");
-		int shipId = game::avatar::Ship::ReadShipId().value();
+		int shipId = game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value();
 		auto shipType = game::Ship::GetShipType(shipId).value();
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("You currently have a {}.", game::ShipTypes::GetName(shipType));
@@ -94,12 +94,12 @@ namespace state::in_play
 	static void BuyShip(game::ShipType desiredShipType, double price)
 	{
 		auto location = game::avatar::Docked::ReadLocation().value();
-		auto currentShipId = game::avatar::Ship::Read().value().shipId;
+		auto currentShipId = game::avatar::Ship::Read(game::Player::GetAvatarId()).value().shipId;
 		auto currentShipType = game::Ship::GetShipType(currentShipId).value();
 		game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), -price);
 		auto desiredShipId = game::Ship::Add({ desiredShipType,game::ShipNames::Generate(), location, 0.0, 1.0 });
 		//TODO: transfer crew/passengers/captives?
-		game::avatar::Ship::Write({ desiredShipId, game::BerthType::CAPTAIN });
+		game::avatar::Ship::Write(game::Player::GetAvatarId() , { desiredShipId, game::BerthType::CAPTAIN });
 		game::islands::Markets::BuyShipType(location, desiredShipType);
 		game::islands::Markets::SellShipType(location, currentShipType);
 		UpdateShipPrices();

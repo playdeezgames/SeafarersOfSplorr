@@ -39,7 +39,7 @@ namespace state::in_play
 
 	static double GetAvailableTonnage()
 	{
-		return game::avatar::Ship::AvailableTonnage().value();
+		return game::avatar::Ship::AvailableTonnage(game::Player::GetAvatarId()).value();
 	}
 
 	static void Refresh()

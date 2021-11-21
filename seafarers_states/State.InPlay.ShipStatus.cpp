@@ -6,6 +6,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Colors.h>
+#include <Game.Player.h>
 #include <Game.Ship.h>
 #include <map>
 #include <string>
@@ -18,7 +19,7 @@ namespace state::in_play
 
 	static int GetAvatarShipId()
 	{
-		return game::avatar::Ship::Read().value().shipId;
+		return game::avatar::Ship::Read(game::Player::GetAvatarId()).value().shipId;
 	}
 
 	static void Refresh()

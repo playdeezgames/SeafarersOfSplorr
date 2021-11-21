@@ -40,7 +40,6 @@ namespace game
 
 		World::Reset(difficulty);//must be done first to establish world size
 		Ships::Reset(difficulty);
-		avatar::Ship::Reset(difficulty);
 		Avatar::Reset(difficulty, Player::GetAvatarId());
 		avatar::Docked::Reset(difficulty);
 		avatar::Equipment::Reset(difficulty);

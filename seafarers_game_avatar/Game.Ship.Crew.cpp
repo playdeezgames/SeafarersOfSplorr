@@ -2,8 +2,9 @@
 #include <Data.Game.Avatar.ShipCrew.h>
 #include "Game.Avatar.h"
 #include "Game.Avatar.Ship.h"
+#include <Game.Player.h>
 #include "Game.Ship.Crew.h"
-namespace game::ship//20211018
+namespace game::ship
 {
 	static Crew ToCrew(const data::game::avatar::ShipCrew& crew)
 	{
@@ -18,7 +19,7 @@ namespace game::ship//20211018
 	std::vector<Crew> Crew::Read()
 	{
 		return common::utility::Array::Map<data::game::avatar::ShipCrew, Crew>(
-			data::game::avatar::ShipCrew::Read(game::avatar::Ship::Read().value().shipId),
+			data::game::avatar::ShipCrew::Read(game::avatar::Ship::Read(game::Player::GetAvatarId()).value().shipId),
 			ToCrew);
 	}
 }
