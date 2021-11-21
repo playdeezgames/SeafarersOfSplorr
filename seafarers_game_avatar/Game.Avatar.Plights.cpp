@@ -1,5 +1,5 @@
 #include <Common.RNG.h>
-#include <Data.Game.Avatar.Plight.h>
+#include <Data.Game.Character.Plight.h>
 #include "Game.Avatar.Plights.h"
 #include <Game.Player.h>
 #include <map>
@@ -67,12 +67,12 @@ namespace game::avatar//20211017
 
 	bool Plights::Has(const Plight& plightId)
 	{
-		return data::game::avatar::Plight::Read(Player::GetAvatarId(), (int)plightId).has_value();
+		return data::game::character::Plight::Read(Player::GetAvatarId(), (int)plightId).has_value();
 	}
 
 	void Plights::ApplyTurnEffects()
 	{
-		auto plights = data::game::avatar::Plight::All(Player::GetAvatarId());
+		auto plights = data::game::character::Plight::All(Player::GetAvatarId());
 		for (auto& plight : plights)
 		{
 			if (plight.duration.has_value())
@@ -80,10 +80,10 @@ namespace game::avatar//20211017
 				plight.duration = plight.duration.value() - 1;
 				if (plight.duration.value() <= 0)
 				{
-					data::game::avatar::Plight::Clear(plight.plightId);
+					data::game::character::Plight::Clear(plight.plightId);
 					continue;
 				}
-				data::game::avatar::Plight::Write(Player::GetAvatarId(), plight);
+				data::game::character::Plight::Write(Player::GetAvatarId(), plight);
 			}
 		}
 	}
@@ -114,13 +114,13 @@ namespace game::avatar//20211017
 			}
 		}
 
-		data::game::avatar::Plight::Write(Player::GetAvatarId(), {(int)plight, (duration)?(std::optional<int>((int)duration.value())):(std::nullopt) });
+		data::game::character::Plight::Write(Player::GetAvatarId(), {(int)plight, (duration)?(std::optional<int>((int)duration.value())):(std::nullopt) });
 	}
 
 	std::set<Plight> Plights::InflictedWith()
 	{
 		std::set<Plight> result;
-		auto plights = data::game::avatar::Plight::All(Player::GetAvatarId());
+		auto plights = data::game::character::Plight::All(Player::GetAvatarId());
 		for (auto& plight : plights)
 		{
 			result.insert((Plight)plight.plightId);
@@ -130,7 +130,7 @@ namespace game::avatar//20211017
 
 	void Plights::Reset(const Difficulty&)
 	{
-		data::game::avatar::Plight::ClearAll();
+		data::game::character::Plight::ClearAll();
 	}
 
 	const std::string& Plights::GetName(const Plight& plight)

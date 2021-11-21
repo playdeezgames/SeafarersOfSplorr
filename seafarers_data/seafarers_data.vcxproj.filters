@@ -107,9 +107,6 @@
     <ClInclude Include="Data.Game.Island.DarkAlley.GamblingHand.h">
       <Filter>Header Files\Island</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Avatar.Plight.h">
-      <Filter>Header Files\Avatar</Filter>
-    </ClInclude>
     <ClInclude Include="Data.Game.Demigod.h">
       <Filter>Header Files\Demigod</Filter>
     </ClInclude>
@@ -164,6 +161,9 @@
     <ClInclude Include="Data.Game.Character.Items.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.Character.Plight.h">
+      <Filter>Header Files\Character</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">
@@ -210,9 +210,6 @@
     </ClCompile>
     <ClCompile Include="Data.Game.Island.DarkAlley.GamblingHand.cpp">
       <Filter>Source Files\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Avatar.Plight.cpp">
-      <Filter>Source Files\Avatar</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Demigod.cpp">
       <Filter>Source Files\Demigod</Filter>
@@ -266,6 +263,9 @@
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Character.Items.cpp">
+      <Filter>Source Files\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Character.Plight.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
   </ItemGroup>

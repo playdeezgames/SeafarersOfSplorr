@@ -1,8 +1,8 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
-#include "Data.Game.Avatar.Plight.h"
+#include "Data.Game.Character.Plight.h"
 #include "Data.Game.Player.h"
-namespace data::game::avatar//20211010
+namespace data::game::character
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Plights]([AvatarId] INT NOT NULL,[PlightId] INT NOT NULL, [Duration] INT NULL, UNIQUE([AvatarId],[PlightId]));";
 	static const std::string DELETE_ALL = "DELETE FROM [Plights] WHERE [AvatarId]={};";
@@ -15,7 +15,7 @@ namespace data::game::avatar//20211010
 	static const std::string FIELD_PLIGHT_ID = "PlightId";
 	static const std::string FIELD_DURATION = "Duration";
 
-	static const auto AutoCreatePlightTable = Common::Run(CREATE_TABLE);
+	static const auto AutoCreateTable = Common::Run(CREATE_TABLE);
 
 	static Plight ToPlight(const std::map<std::string, std::string>& record)
 	{
@@ -26,10 +26,10 @@ namespace data::game::avatar//20211010
 		};
 	}
 
-	std::optional<Plight> Plight::Read(int avatarId, int plightId)
+	std::optional<Plight> Plight::Read(int characterId, int plightId)
 	{
-		AutoCreatePlightTable();
-		auto records = Common::Execute(QUERY_ITEM, plightId, avatarId);
+		AutoCreateTable();
+		auto records = Common::Execute(QUERY_ITEM, plightId, characterId);
 		if (!records.empty())
 		{
 			return ToPlight(records.front());
@@ -37,29 +37,29 @@ namespace data::game::avatar//20211010
 		return std::nullopt;
 	}
 
-	void Plight::Write(int avatarId, const Plight& plight)
+	void Plight::Write(int characterId, const Plight& plight)
 	{
-		AutoCreatePlightTable();
-		Common::Execute(REPLACE_ITEM, avatarId, plight.plightId, common::Data::OfOptional(plight.duration));
+		AutoCreateTable();
+		Common::Execute(REPLACE_ITEM, characterId, plight.plightId, common::Data::OfOptional(plight.duration));
 	}
 
-	void Plight::ClearPlight(int avatarId, int plightId)
+	void Plight::ClearPlight(int characterId, int plightId)
 	{
-		AutoCreatePlightTable();
-		Common::Execute(DELETE_ITEM, plightId, avatarId);
+		AutoCreateTable();
+		Common::Execute(DELETE_ITEM, plightId, characterId);
 
 	}
-	void Plight::Clear(int avatarId)
+	void Plight::Clear(int characterId)
 	{
-		AutoCreatePlightTable();
-		Common::Execute(DELETE_ALL,avatarId);
+		AutoCreateTable();
+		Common::Execute(DELETE_ALL,characterId);
 	}
 
-	std::list<Plight> Plight::All(int avatarId)
+	std::list<Plight> Plight::All(int characterId)
 	{
-		AutoCreatePlightTable();
+		AutoCreateTable();
 		std::list<Plight> result;
-		auto records = Common::Execute(QUERY_ALL, avatarId);
+		auto records = Common::Execute(QUERY_ALL, characterId);
 		for (auto& record : records)
 		{
 			result.push_back(ToPlight(record));
@@ -69,7 +69,7 @@ namespace data::game::avatar//20211010
 
 	void Plight::ClearAll()
 	{
-		AutoCreatePlightTable();
+		AutoCreateTable();
 		Common::Execute(DELETE_ALL_PLIGHTS);
 	}
 }
