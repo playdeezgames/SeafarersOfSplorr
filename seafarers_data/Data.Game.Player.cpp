@@ -1,8 +1,8 @@
 #include <Common.Data.h>
-#include "Data.Game.Avatar.h"
+#include "Data.Game.Character.h"
 #include "Data.Game.Common.h"
 #include "Data.Game.Player.h"
-namespace data::game//20211010
+namespace data::game
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Players]([PlayerId] INT NOT NULL UNIQUE CHECK([PlayerId]=1),[AvatarId] INT NOT NULL UNIQUE);";
 	static const std::string QUERY_ITEM = "SELECT [AvatarId] FROM [Players] WHERE [PlayerId]={};";
@@ -17,7 +17,7 @@ namespace data::game//20211010
 	static int CreatePlayer()
 	{
 		AutoCreatePlayerTable();
-		int avatarId = Avatar::NextId();
+		int avatarId = Character::NextId();
 		Common::Execute(REPLACE_ITEM, PLAYER_ID, avatarId);
 		return avatarId;
 	}

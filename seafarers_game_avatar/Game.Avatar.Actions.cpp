@@ -1,4 +1,4 @@
-#include <Data.Game.Avatar.h>
+#include <Data.Game.Character.h>
 #include <Data.Game.Character.Dock.h>
 #include <Data.Game.Island.DarkAlley.h>
 #include <format>
@@ -397,14 +397,14 @@ namespace game::avatar
 
 	static void SetState(int avatarId, const game::avatar::State& state)
 	{
-		auto avatar = data::game::Avatar::Read(avatarId).value();
+		auto avatar = data::game::Character::Read(avatarId).value();
 		avatar.state = (int)state;
-		data::game::Avatar::Write(avatarId, avatar);
+		data::game::Character::Write(avatarId, avatar);
 	}
 
 	std::optional<game::avatar::State> Actions::GetState(int avatarId)
 	{
-		auto avatar = data::game::Avatar::Read(avatarId);
+		auto avatar = data::game::Character::Read(avatarId);
 		if (avatar)
 		{
 			return (game::avatar::State)avatar.value().state;

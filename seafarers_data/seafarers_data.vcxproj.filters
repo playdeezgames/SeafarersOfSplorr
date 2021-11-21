@@ -62,9 +62,6 @@
     <ClInclude Include="Data.Game.World.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Avatar.h">
-      <Filter>Header Files\Avatar</Filter>
-    </ClInclude>
     <ClInclude Include="Data.Game.Avatar.Items.h">
       <Filter>Header Files\Avatar</Filter>
     </ClInclude>
@@ -164,6 +161,9 @@
     <ClInclude Include="Data.Game.Character.Dock.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.Character.h">
+      <Filter>Header Files\Character</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">
@@ -171,9 +171,6 @@
     </ClCompile>
     <ClCompile Include="Data.Game.World.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Avatar.cpp">
-      <Filter>Source Files\Avatar</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Avatar.Items.cpp">
       <Filter>Source Files\Avatar</Filter>
@@ -266,6 +263,9 @@
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Character.Dock.cpp">
+      <Filter>Source Files\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Character.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
   </ItemGroup>

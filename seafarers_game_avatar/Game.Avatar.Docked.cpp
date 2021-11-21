@@ -1,4 +1,4 @@
-#include <Data.Game.Avatar.h>
+#include <Data.Game.Character.h>
 #include <Data.Game.Character.Dock.h>
 #include <Data.Game.Island.DarkAlley.h>
 #include <format>
@@ -24,9 +24,9 @@ namespace game::avatar
 
 	static void SetAvatarStateToDocked()
 	{
-		auto avatar = data::game::Avatar::Read(Player::GetAvatarId()).value();
+		auto avatar = data::game::Character::Read(Player::GetAvatarId()).value();
 		avatar.state = (int)game::avatar::State::DOCK;
-		data::game::Avatar::Write(Player::GetAvatarId(), avatar);
+		data::game::Character::Write(Player::GetAvatarId(), avatar);
 	}
 
 	static std::optional<DockResult> DoDock(const common::XY<double>& location)

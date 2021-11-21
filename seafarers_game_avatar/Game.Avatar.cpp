@@ -4,7 +4,7 @@
 #include <Common.RNG.h>
 #include <Common.Utility.h>
 #include <Common.Utility.Optional.h>
-#include <Data.Game.Avatar.h>
+#include <Data.Game.Character.h>
 #include <Data.Game.Avatar.Rations.h>
 #include <functional>
 #include "Game.Avatar.h"
@@ -114,7 +114,7 @@ namespace game
 
 	void Avatar::ApplyTurnEffects()
 	{
-		auto avatarIds = data::game::Avatar::All();
+		auto avatarIds = data::game::Character::All();
 		for (auto avatarId : avatarIds)
 		{
 			ApplyTurn(avatarId);
@@ -169,12 +169,12 @@ namespace game
 
 	static void CreateAvatar(int avatarId)
 	{
-		data::game::Avatar data =
+		data::game::Character data =
 		{
 			(int)game::avatar::State::AT_SEA,
 			GenerateName()
 		};
-		data::game::Avatar::Write(avatarId, data);
+		data::game::Character::Write(avatarId, data);
 	}
 
 	static void GenerateAvatarRations(int avatarId)
@@ -211,9 +211,9 @@ namespace game
 
 	std::optional<std::string> Avatar::GetName(int avatarId)
 	{
-		return common::utility::Optional::Map<data::game::Avatar, std::string>(
-			data::game::Avatar::Read(avatarId), 
-			[](const data::game::Avatar& avatar) 
+		return common::utility::Optional::Map<data::game::Character, std::string>(
+			data::game::Character::Read(avatarId),
+			[](const data::game::Character& avatar)
 			{ return avatar.name; });
 	}
 }

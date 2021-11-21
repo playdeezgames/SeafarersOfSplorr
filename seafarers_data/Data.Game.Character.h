@@ -5,13 +5,13 @@
 #include <string>
 namespace data::game
 {
-	struct Avatar 
+	struct Character 
 	{
 		int state;
 		std::string name;
 
-		static void Write(int, const Avatar&);
-		static std::optional<Avatar> Read(int);
+		static void Write(int, const Character&);
+		static std::optional<Character> Read(int);
 
 		static int NextId();
 		static std::list<int> All();

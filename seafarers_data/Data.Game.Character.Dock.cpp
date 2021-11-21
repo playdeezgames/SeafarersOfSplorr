@@ -13,11 +13,11 @@ namespace data::game::character
 	static const std::string FIELD_X = "X";
 	static const std::string FIELD_Y = "Y";
 
-	static const auto AutoCreateAvatarDockTable = data::game::Common::Run(CREATE_TABLE);
+	static const auto AutoCreateTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Dock::Clear(int characterId)
 	{
-		AutoCreateAvatarDockTable();
+		AutoCreateTable();
 		data::game::Common::Execute(
 			DELETE_ITEM, 
 			characterId);
@@ -26,7 +26,7 @@ namespace data::game::character
 
 	void Dock::Write(int characterId, const common::XY<double>& location)
 	{
-		AutoCreateAvatarDockTable();
+		AutoCreateTable();
 		data::game::Common::Execute(
 			REPLACE_ITEM, 
 			characterId, 
@@ -36,7 +36,7 @@ namespace data::game::character
 
 	std::optional<common::XY<double>> Dock::Read(int characterId)
 	{
-		AutoCreateAvatarDockTable();
+		AutoCreateTable();
 		auto records = data::game::Common::Execute(QUERY_ITEM, characterId);
 		if (!records.empty())
 		{

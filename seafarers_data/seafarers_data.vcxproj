@@ -25,7 +25,7 @@
     <ClInclude Include="Data.Game.Character.Dock.h" />
     <ClInclude Include="Data.Game.Avatar.Equipment.h" />
     <ClInclude Include="Data.Game.Avatar.Flags.h" />
-    <ClInclude Include="Data.Game.Avatar.h" />
+    <ClInclude Include="Data.Game.Character.h" />
     <ClInclude Include="Data.Game.Avatar.Items.h" />
     <ClInclude Include="Data.Game.Avatar.Plight.h" />
     <ClInclude Include="Data.Game.Avatar.Quest.h" />
@@ -57,7 +57,7 @@
     <ClInclude Include="Data.SQLite.Store.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Data.Game.Avatar.cpp" />
+    <ClCompile Include="Data.Game.Character.cpp" />
     <ClCompile Include="Data.Game.Character.DemigodFavor.cpp" />
     <ClCompile Include="Data.Game.Character.Destination.cpp" />
     <ClCompile Include="Data.Game.Character.DestinationNames.cpp" />
