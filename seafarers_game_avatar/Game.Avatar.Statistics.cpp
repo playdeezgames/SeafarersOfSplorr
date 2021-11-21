@@ -1,7 +1,7 @@
 #include <Common.Utility.h>
 #include <Common.Utility.Optional.h>
 #include <Common.Utility.Table.h>
-#include <Data.Game.Avatar.Statistic.h>
+#include <Data.Game.Character.Statistic.h>
 #include <Data.Game.Common.h>
 #include "Game.Avatar.Equipment.h"
 #include "Game.Avatar.Statistic.h"
@@ -114,7 +114,7 @@ namespace game::avatar
 		auto values = initialValues.find(difficulty)->second;
 		for (auto& value : values)
 		{
-			data::game::avatar::Statistic::Write(
+			data::game::character::Statistic::Write(
 				Player::GetAvatarId(),
 				(int)value.statistic,
 				{
@@ -125,184 +125,184 @@ namespace game::avatar
 		}
 	}
 
-	static std::optional<double> GetMaximum(int avatarId, const game::avatar::Statistic& statistic)
+	static std::optional<double> GetMaximum(int characterId, const game::avatar::Statistic& statistic)
 	{
-		return data::game::avatar::Statistic::Read(avatarId, (int)statistic).value().maximum;
+		return data::game::character::Statistic::Read(characterId, (int)statistic).value().maximum;
 	}
 
-	static std::optional<double> GetMinimum(int avatarId, const game::avatar::Statistic& statistic)
+	static std::optional<double> GetMinimum(int characterId, const game::avatar::Statistic& statistic)
 	{
-		return data::game::avatar::Statistic::Read(avatarId, (int)statistic).value().minimum;
+		return data::game::character::Statistic::Read(characterId, (int)statistic).value().minimum;
 	}
 
-	static double GetCurrent(int avatarId, const game::avatar::Statistic& statistic)
+	static double GetCurrent(int characterId, const game::avatar::Statistic& statistic)
 	{
-		return data::game::avatar::Statistic::Read(avatarId, (int)statistic).value().current;
+		return data::game::character::Statistic::Read(characterId, (int)statistic).value().current;
 	}
 
-	static double CalculateBuffs(int avatarId, const std::map<game::Item, double> itemBuffs)
+	static double CalculateBuffs(int characterId, const std::map<game::Item, double> itemBuffs)
 	{
 		return common::utility::Table::Accumulate<game::Item, double, double>(
 			itemBuffs,
-			[avatarId](const double& result, const game::Item& item, const double& buff)
+			[characterId](const double& result, const game::Item& item, const double& buff)
 			{
-				return result + (game::avatar::Equipment::IsEquipped(avatarId, item)) ? (buff) : (0.0);
+				return result + (game::avatar::Equipment::IsEquipped(characterId, item)) ? (buff) : (0.0);
 			});
 	}
 
-	static double GetCurrentWithBuffs(int avatarId, const game::avatar::Statistic& statistic)
+	static double GetCurrentWithBuffs(int characterId, const game::avatar::Statistic& statistic)
 	{
-		auto result = GetCurrent(avatarId, statistic);
+		auto result = GetCurrent(characterId, statistic);
 		auto blah = common::utility::Table::TryGetKey(allBuffs, statistic);
 		if (blah)
 		{
-			result += CalculateBuffs(avatarId, blah.value());
+			result += CalculateBuffs(characterId, blah.value());
 		}
 		return result;
 	}
 
-	static void SetCurrent(int avatarId, const game::avatar::Statistic& statistic, double value)
+	static void SetCurrent(int characterId, const game::avatar::Statistic& statistic, double value)
 	{
-		auto data = data::game::avatar::Statistic::Read(avatarId, (int)statistic).value();
+		auto data = data::game::character::Statistic::Read(characterId, (int)statistic).value();
 		data.current = common::Utility::Clamp<double>(value, data.minimum, data.maximum);
-		data::game::avatar::Statistic::Write(
-			avatarId,
+		data::game::character::Statistic::Write(
+			characterId,
 			(int)statistic, 
 			data);
 	}
 
-	static double ChangeCurrent(int avatarId, const game::avatar::Statistic& statistic, double delta)
+	static double ChangeCurrent(int characterId, const game::avatar::Statistic& statistic, double delta)
 	{
-		SetCurrent(avatarId, statistic, GetCurrent(avatarId, statistic) + delta);
-		return GetCurrent(avatarId, statistic);
+		SetCurrent(characterId, statistic, GetCurrent(characterId, statistic) + delta);
+		return GetCurrent(characterId, statistic);
 	}
 
-	double Statistics::ReadMoney(int avatarId)
+	double Statistics::ReadMoney(int characterId)
 	{
-		return GetCurrent(avatarId, game::avatar::Statistic::MONEY);
+		return GetCurrent(characterId, game::avatar::Statistic::MONEY);
 	}
 
-	double Statistics::GetHealth(int avatarId)
+	double Statistics::GetHealth(int characterId)
 	{
-		return GetCurrent(avatarId, game::avatar::Statistic::HEALTH);
+		return GetCurrent(characterId, game::avatar::Statistic::HEALTH);
 	}
 
-	double Statistics::GetSatiety(int avatarId)
+	double Statistics::GetSatiety(int characterId)
 	{
-		return GetCurrent(avatarId, game::avatar::Statistic::SATIETY);
+		return GetCurrent(characterId, game::avatar::Statistic::SATIETY);
 	}
 
-	double Statistics::GetInfamy(int avatarId)
+	double Statistics::GetInfamy(int characterId)
 	{
-		return GetCurrent(avatarId, game::avatar::Statistic::INFAMY);
+		return GetCurrent(characterId, game::avatar::Statistic::INFAMY);
 	}
 
-	double Statistics::GetBrawling(int avatarId)
+	double Statistics::GetBrawling(int characterId)
 	{
-		return GetCurrent(avatarId, game::avatar::Statistic::BRAWLING);
+		return GetCurrent(characterId, game::avatar::Statistic::BRAWLING);
 	}
 
-	static double GetDownAmount(int avatarId, const Statistic& statistic)
+	static double GetDownAmount(int characterId, const Statistic& statistic)
 	{
-		return GetMaximum(avatarId, statistic).value() - GetCurrent(avatarId, statistic);
+		return GetMaximum(characterId, statistic).value() - GetCurrent(characterId, statistic);
 	}
 
-	void Statistics::Eat(int avatarId, double amount)
+	void Statistics::Eat(int characterId, double amount)
 	{
-		double healthDown = GetDownAmount(avatarId, Statistic::HEALTH);
+		double healthDown = GetDownAmount(characterId, Statistic::HEALTH);
 		if (healthDown > 0)
 		{
-			ChangeCurrent(avatarId, Statistic::HEALTH, amount);
+			ChangeCurrent(characterId, Statistic::HEALTH, amount);
 			amount -= healthDown;
 		}
 		if (amount > 0)
 		{
-			ChangeCurrent(avatarId, Statistic::SATIETY, amount);
+			ChangeCurrent(characterId, Statistic::SATIETY, amount);
 		}
 	}
 
-	bool Statistics::NeedToEat(int avatarId, double amount)
+	bool Statistics::NeedToEat(int characterId, double amount)
 	{
 		double totalDown =
-			GetDownAmount(avatarId, game::avatar::Statistic::HEALTH)+
-			GetDownAmount(avatarId, game::avatar::Statistic::SATIETY);
+			GetDownAmount(characterId, game::avatar::Statistic::HEALTH)+
+			GetDownAmount(characterId, game::avatar::Statistic::SATIETY);
 		return totalDown >= amount;
 	}
 
-	double Statistics::GetReputation(int avatarId)
+	double Statistics::GetReputation(int characterId)
 	{
-		return GetCurrent(avatarId, game::avatar::Statistic::REPUTATION);
+		return GetCurrent(characterId, game::avatar::Statistic::REPUTATION);
 	}
 
-	void Statistics::ChangeReputation(int avatarId, double delta)
+	void Statistics::ChangeReputation(int characterId, double delta)
 	{
-		ChangeCurrent(avatarId, game::avatar::Statistic::REPUTATION, delta);
+		ChangeCurrent(characterId, game::avatar::Statistic::REPUTATION, delta);
 	}
 
-	int Statistics::GetTurnsRemaining(int avatarId)
+	int Statistics::GetTurnsRemaining(int characterId)
 	{
-		return (int)GetCurrent(avatarId, game::avatar::Statistic::TURNS_REMAINING);
+		return (int)GetCurrent(characterId, game::avatar::Statistic::TURNS_REMAINING);
 	}
 
-	void Statistics::SpendTurn(int avatarId)
+	void Statistics::SpendTurn(int characterId)
 	{
 		const double TURN_DELTA = -1.0;
-		ChangeCurrent(avatarId, game::avatar::Statistic::TURNS_REMAINING, TURN_DELTA);
+		ChangeCurrent(characterId, game::avatar::Statistic::TURNS_REMAINING, TURN_DELTA);
 	}
 
-	bool Statistics::IsOutOfTurns(int avatarId)
+	bool Statistics::IsOutOfTurns(int characterId)
 	{
-		return GetCurrent(avatarId, game::avatar::Statistic::TURNS_REMAINING) <= GetMinimum(avatarId, game::avatar::Statistic::TURNS_REMAINING);
+		return GetCurrent(characterId, game::avatar::Statistic::TURNS_REMAINING) <= GetMinimum(characterId, game::avatar::Statistic::TURNS_REMAINING);
 	}
 
-	static bool IsMinimal(int avatarId, const Statistic& statistic)
+	static bool IsMinimal(int characterId, const Statistic& statistic)
 	{
-		return GetCurrent(avatarId, statistic) <= GetMinimum(avatarId, statistic);
+		return GetCurrent(characterId, statistic) <= GetMinimum(characterId, statistic);
 	}
 
-	bool Statistics::IsDead(int avatarId)
+	bool Statistics::IsDead(int characterId)
 	{
-		return IsMinimal(avatarId, Statistic::HEALTH);
+		return IsMinimal(characterId, Statistic::HEALTH);
 	}
 
-	bool Statistics::IsStarving(int avatarId)
+	bool Statistics::IsStarving(int characterId)
 	{
-		return IsMinimal(avatarId, Statistic::SATIETY);
+		return IsMinimal(characterId, Statistic::SATIETY);
 	}
 
-	void Statistics::ChangeMoney(int avatarId, double delta)
+	void Statistics::ChangeMoney(int characterId, double delta)
 	{
-		ChangeCurrent(avatarId, Statistic::MONEY, delta);
+		ChangeCurrent(characterId, Statistic::MONEY, delta);
 	}
 
-	void Statistics::ChangeHealth(int avatarId, double delta)
+	void Statistics::ChangeHealth(int characterId, double delta)
 	{
-		ChangeCurrent(avatarId, Statistic::HEALTH, delta);
+		ChangeCurrent(characterId, Statistic::HEALTH, delta);
 	}
 
-	void Statistics::ChangeSatiety(int avatarId, double delta)
+	void Statistics::ChangeSatiety(int characterId, double delta)
 	{
-		ChangeCurrent(avatarId, Statistic::SATIETY, delta);
+		ChangeCurrent(characterId, Statistic::SATIETY, delta);
 	}
 
-	void Statistics::ChangeInfamy(int avatarId, double delta)
+	void Statistics::ChangeInfamy(int characterId, double delta)
 	{
-		ChangeCurrent(avatarId, Statistic::INFAMY, delta);
+		ChangeCurrent(characterId, Statistic::INFAMY, delta);
 	}
 
-	void Statistics::ChangeBrawling(int avatarId, double delta)
+	void Statistics::ChangeBrawling(int characterId, double delta)
 	{
-		ChangeCurrent(avatarId, Statistic::BRAWLING, delta);
+		ChangeCurrent(characterId, Statistic::BRAWLING, delta);
 	}
 
-	double Statistics::GetDignity(int avatarId)
+	double Statistics::GetDignity(int characterId)
 	{
-		return GetCurrentWithBuffs(avatarId, avatar::Statistic::DIGNITY);
+		return GetCurrentWithBuffs(characterId, avatar::Statistic::DIGNITY);
 	}
 
-	double Statistics::GetPoshness(int avatarId)
+	double Statistics::GetPoshness(int characterId)
 	{
-		return GetCurrentWithBuffs(avatarId, avatar::Statistic::POSHNESS);
+		return GetCurrentWithBuffs(characterId, avatar::Statistic::POSHNESS);
 	}
 
 	bool Statistics::IsPlayerDead()

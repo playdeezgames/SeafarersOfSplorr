@@ -1,6 +1,6 @@
 #pragma once
 #include <optional>
-namespace data::game::avatar//20211014
+namespace data::game::character
 {
 	struct Statistic
 	{
