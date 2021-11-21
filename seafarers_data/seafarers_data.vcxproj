@@ -22,7 +22,7 @@
     <ClInclude Include="Data.Game.Character.DemigodFavor.h" />
     <ClInclude Include="Data.Game.Character.Destination.h" />
     <ClInclude Include="Data.Game.Character.DestinationName.h" />
-    <ClInclude Include="Data.Game.Avatar.Dock.h" />
+    <ClInclude Include="Data.Game.Character.Dock.h" />
     <ClInclude Include="Data.Game.Avatar.Equipment.h" />
     <ClInclude Include="Data.Game.Avatar.Flags.h" />
     <ClInclude Include="Data.Game.Avatar.h" />
@@ -61,7 +61,7 @@
     <ClCompile Include="Data.Game.Character.DemigodFavor.cpp" />
     <ClCompile Include="Data.Game.Character.Destination.cpp" />
     <ClCompile Include="Data.Game.Character.DestinationNames.cpp" />
-    <ClCompile Include="Data.Game.Avatar.Dock.cpp" />
+    <ClCompile Include="Data.Game.Character.Dock.cpp" />
     <ClCompile Include="Data.Game.Avatar.Equipment.cpp" />
     <ClCompile Include="Data.Game.Avatar.Flags.cpp" />
     <ClCompile Include="Data.Game.Avatar.Items.cpp" />

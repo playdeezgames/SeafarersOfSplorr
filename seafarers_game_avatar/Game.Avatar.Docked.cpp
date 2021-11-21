@@ -1,5 +1,5 @@
 #include <Data.Game.Avatar.h>
-#include <Data.Game.Avatar.Dock.h>
+#include <Data.Game.Character.Dock.h>
 #include <Data.Game.Island.DarkAlley.h>
 #include <format>
 #include <functional>
@@ -40,7 +40,7 @@ namespace game::avatar
 		{
 			result = DockResult::COMPLETED_QUEST;
 		}
-		data::game::avatar::Dock::Write(Player::GetAvatarId(), location);
+		data::game::character::Dock::Write(Player::GetAvatarId(), location);
 		SetAvatarStateToDocked();
 		auto island = game::Islands::Read(location).value();
 		return result;
@@ -62,6 +62,6 @@ namespace game::avatar
 
 	std::optional<common::XY<double>> Docked::ReadLocation()
 	{
-		return data::game::avatar::Dock::Read(Player::GetAvatarId());
+		return data::game::character::Dock::Read(Player::GetAvatarId());
 	}
 }

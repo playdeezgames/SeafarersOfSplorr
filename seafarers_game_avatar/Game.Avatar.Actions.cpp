@@ -1,5 +1,5 @@
 #include <Data.Game.Avatar.h>
-#include <Data.Game.Avatar.Dock.h>
+#include <Data.Game.Character.Dock.h>
 #include <Data.Game.Island.DarkAlley.h>
 #include <format>
 #include <functional>
@@ -22,7 +22,7 @@ namespace game::avatar
 	{
 		auto location = game::avatar::Docked::ReadLocation();
 		auto island = game::Islands::Read(location.value()).value();
-		data::game::avatar::Dock::Clear(avatarId);
+		data::game::character::Dock::Clear(avatarId);
 		return {
 			game::Colors::GREEN,
 			std::format(FORMAT_UNDOCK, island.name),
