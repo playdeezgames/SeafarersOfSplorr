@@ -1,6 +1,6 @@
 #include <Common.NameGenerator.h>
 #include <Common.RNG.h>
-#include <Data.Game.Avatar.DemigodFavor.h>
+#include <Data.Game.Character.DemigodFavor.h>
 #include <Data.Game.Demigod.h>
 #include <Data.Game.DemigodItem.h>
 #include "Game.Player.h"
@@ -10,7 +10,7 @@
 #include <map>
 #include <set>
 #include <string>
-namespace game//20211015
+namespace game
 {
 	static const std::map<std::string, size_t> consonants =
 	{
@@ -108,7 +108,7 @@ namespace game//20211015
 		const double OFFERING_FAVOR_MAXIMUM = 1.0;
 		data::game::Demigod::Clear();
 		data::game::DemigodItem::Clear();
-		data::game::avatar::DemigodFavor::Clear(Player::GetAvatarId());
+		data::game::character::DemigodFavor::Clear(Player::GetAvatarId());
 		auto demigodCount = common::RNG::FromGenerator(demigodCounts);
 		auto names = GenerateNames(demigodCount);
 		auto items = Items::All();
@@ -138,7 +138,7 @@ namespace game//20211015
 		{
 			game::avatar::Plights::Inflict((game::avatar::Plight)demigod.blessingPlightId);
 			favor -= demigod.blessingThreshold;
-			data::game::avatar::DemigodFavor::Write(Player::GetAvatarId(), demigod.name, favor);
+			data::game::character::DemigodFavor::Write(Player::GetAvatarId(), demigod.name, favor);
 			demigod.blessingThreshold *= demigod.blessingMultiplier;
 			data::game::Demigod::Write(demigod);
 			return true;
@@ -152,7 +152,7 @@ namespace game//20211015
 		{
 			game::avatar::Plights::Inflict((game::avatar::Plight)demigod.cursePlightId);
 			favor -= demigod.curseThreshold;
-			data::game::avatar::DemigodFavor::Write(Player::GetAvatarId(), demigod.name, favor);
+			data::game::character::DemigodFavor::Write(Player::GetAvatarId(), demigod.name, favor);
 			demigod.curseThreshold *= demigod.curseMultiplier;
 			data::game::Demigod::Write(demigod);
 			return true;
@@ -162,9 +162,9 @@ namespace game//20211015
 
 	static OfferingResult ApplyFavor(data::game::Demigod& demigod, const Item& item, double delta)
 	{
-		auto favor = data::game::avatar::DemigodFavor::Read(Player::GetAvatarId(), demigod.name).value_or(0.0);
+		auto favor = data::game::character::DemigodFavor::Read(Player::GetAvatarId(), demigod.name).value_or(0.0);
 		favor += delta;
-		data::game::avatar::DemigodFavor::Write(Player::GetAvatarId(), demigod.name, favor);
+		data::game::character::DemigodFavor::Write(Player::GetAvatarId(), demigod.name, favor);
 		if (ApplyBlessing(demigod, item, favor))
 		{
 			return OfferingResult::BLESSING;

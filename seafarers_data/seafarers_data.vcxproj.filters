@@ -15,9 +15,6 @@
     <Filter Include="Source Files\Island">
       <UniqueIdentifier>{972b31bc-16e2-4396-9f08-6765053eacfc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Avatar">
-      <UniqueIdentifier>{21946f9c-ad5c-4396-a9e0-15b9a25d5b32}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Island">
       <UniqueIdentifier>{15d0a0c4-bd55-42e2-b4ea-e652c58f7a6d}</UniqueIdentifier>
     </Filter>
@@ -47,6 +44,15 @@
     </Filter>
     <Filter Include="Source Files\Ship">
       <UniqueIdentifier>{e76df9de-9f65-4ada-b91a-135187c0b7ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Avatar">
+      <UniqueIdentifier>{21946f9c-ad5c-4396-a9e0-15b9a25d5b32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Character">
+      <UniqueIdentifier>{3a261b1a-3d83-41d0-9fcf-3fb553c81dd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Character">
+      <UniqueIdentifier>{0b40a556-1eab-4a39-a222-6284d0cd1819}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -122,9 +128,6 @@
     <ClInclude Include="Data.Game.DemigodItem.h">
       <Filter>Header Files\Demigod</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Avatar.DemigodFavor.h">
-      <Filter>Header Files\Avatar</Filter>
-    </ClInclude>
     <ClInclude Include="Data.Game.Avatar.DestinationName.h">
       <Filter>Header Files\Avatar</Filter>
     </ClInclude>
@@ -157,6 +160,9 @@
     </ClInclude>
     <ClInclude Include="Data.Game.Avatar.Flags.h">
       <Filter>Header Files\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Character.DemigodFavor.h">
+      <Filter>Header Files\Character</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -226,9 +232,6 @@
     <ClCompile Include="Data.Game.DemigodItem.cpp">
       <Filter>Source Files\Demigod</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Avatar.DemigodFavor.cpp">
-      <Filter>Source Files\Avatar</Filter>
-    </ClCompile>
     <ClCompile Include="Data.Game.Avatar.DestinationNames.cpp">
       <Filter>Source Files\Avatar</Filter>
     </ClCompile>
@@ -261,6 +264,9 @@
     </ClCompile>
     <ClCompile Include="Data.Game.Avatar.Flags.cpp">
       <Filter>Source Files\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Character.DemigodFavor.cpp">
+      <Filter>Source Files\Character</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
