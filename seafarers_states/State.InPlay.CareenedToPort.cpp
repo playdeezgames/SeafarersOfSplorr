@@ -12,6 +12,7 @@
 #include <Game.Avatar.ShipStatistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>
+#include <Game.Player.h>
 #include "State.InPlay.CareenedToPort.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -52,7 +53,7 @@ namespace state::in_play
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::GREEN);
 		Terminal::WriteLine("You right the vessel.");
-		game::avatar::Actions::DoAction(game::avatar::Action::UNCAREEN);
+		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::UNCAREEN);
 		application::UIState::Write(::UIState::IN_PLAY_DOCK_OR_CAREEN);
 	}
 

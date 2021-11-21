@@ -9,6 +9,7 @@
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Quest.h>
 #include <Game.Colors.h>
+#include <Game.Player.h>
 #include "State.InPlay.ConfirmReplaceJob.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -35,13 +36,13 @@ namespace state::in_play
 		Terminal::ErrorMessage("You replace yer job, and yer reputation suffers!");
 		game::avatar::Quest::Abandon();
 		game::avatar::Quest::Accept(game::avatar::Docked::ReadLocation().value());
-		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_DOCK);
+		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnNo()
 	{
-		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_DOCK);
+		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

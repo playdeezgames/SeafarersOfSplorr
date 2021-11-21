@@ -30,7 +30,7 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_MARKET);
+		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::ENTER_MARKET);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

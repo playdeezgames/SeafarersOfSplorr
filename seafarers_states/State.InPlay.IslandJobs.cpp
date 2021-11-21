@@ -29,7 +29,7 @@ namespace state::in_play
 		switch (game::avatar::Quest::Accept(game::avatar::Docked::ReadLocation().value()))
 		{
 		case game::avatar::AcceptQuestResult::ACCEPTED_QUEST:
-			game::avatar::Actions::DoAction(game::avatar::Action::ENTER_DOCK);
+			game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::ENTER_DOCK);
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			break;
 		case game::avatar::AcceptQuestResult::ALREADY_HAS_QUEST:
@@ -40,7 +40,7 @@ namespace state::in_play
 
 	static void OnCancel()
 	{
-		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_DOCK);
+		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

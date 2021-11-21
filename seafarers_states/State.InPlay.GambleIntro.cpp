@@ -53,7 +53,7 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_DARK_ALLEY);
+		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::ENTER_DARK_ALLEY);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

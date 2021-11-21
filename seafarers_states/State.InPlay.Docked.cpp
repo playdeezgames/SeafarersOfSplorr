@@ -12,6 +12,7 @@
 #include <Game.Colors.h>
 #include <Game.Islands.h>
 #include <Game.Islands.Features.h>
+#include <Game.Player.h>
 #include "State.InPlay.Docked.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -53,19 +54,19 @@ namespace state::in_play
 
 	static void OnUndock()
 	{
-		game::avatar::Actions::DoAction(game::avatar::Action::UNDOCK);
+		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::UNDOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnJob()
 	{
-		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_JOB_BOARD);
+		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::ENTER_JOB_BOARD);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnTrade()
 	{
-		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_MARKET);
+		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::ENTER_MARKET);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -74,7 +75,7 @@ namespace state::in_play
 		auto location = game::avatar::Docked::ReadLocation().value();
 		if (game::islands::Features::Read(location, game::Feature::SHIPYARD))
 		{
-			game::avatar::Actions::DoAction(game::avatar::Action::ENTER_SHIPYARD);
+			game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::ENTER_SHIPYARD);
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		}
 		else
@@ -89,7 +90,7 @@ namespace state::in_play
 		auto location = game::avatar::Docked::ReadLocation().value();
 		if (game::islands::Features::Read(location, game::Feature::DARK_ALLEY))
 		{
-			game::avatar::Actions::DoAction(game::avatar::Action::ENTER_DARK_ALLEY);
+			game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::ENTER_DARK_ALLEY);
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		}
 		else
@@ -101,7 +102,7 @@ namespace state::in_play
 
 	static void OnTemple()
 	{
-		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_TEMPLE);
+		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::ENTER_TEMPLE);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

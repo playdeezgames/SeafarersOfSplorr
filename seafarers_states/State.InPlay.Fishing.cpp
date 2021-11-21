@@ -148,7 +148,7 @@ namespace state::in_play
 
 	static void LeaveFishing()
 	{
-		game::avatar::Actions::DoAction(game::avatar::Action::STOP_FISHING);
+		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::STOP_FISHING);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

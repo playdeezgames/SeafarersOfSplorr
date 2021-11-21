@@ -1,11 +1,11 @@
 #pragma once
 #include "Game.Avatar.Action.h"
 #include "Game.Avatar.State.h"
-namespace game::avatar//20211017
+namespace game::avatar
 {
 	struct Actions
 	{
-		static std::optional<avatar::State> GetState();
-		static bool DoAction(const avatar::Action&);
+		static std::optional<avatar::State> GetState(int);
+		static bool DoAction(int,const avatar::Action&);
 	};
 }

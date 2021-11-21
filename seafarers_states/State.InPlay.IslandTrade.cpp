@@ -11,6 +11,7 @@
 #include <Game.Avatar.Docked.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>
+#include <Game.Player.h>
 #include "State.InPlay.IslandTrade.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -36,19 +37,19 @@ namespace state::in_play
 
 	static void OnBuy()
 	{
-		game::avatar::Actions::DoAction(game::avatar::Action::MARKET_BUY);
+		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::MARKET_BUY);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnSell()
 	{
-		game::avatar::Actions::DoAction(game::avatar::Action::MARKET_SELL);
+		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::MARKET_SELL);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnLeave()
 	{
-		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_DOCK);
+		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

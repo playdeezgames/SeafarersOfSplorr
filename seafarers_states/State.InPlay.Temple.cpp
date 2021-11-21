@@ -11,6 +11,7 @@
 #include <Game.Avatar.Docked.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>
+#include <Game.Player.h>
 #include "State.InPlay.Temple.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -44,7 +45,7 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		game::avatar::Actions::DoAction(game::avatar::Action::ENTER_DOCK);
+		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

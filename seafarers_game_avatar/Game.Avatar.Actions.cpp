@@ -13,17 +13,16 @@
 #include "Game.Colors.h"
 #include "Game.Fishboard.h"
 #include "Game.Islands.h"
-#include <Game.Player.h>
 #include <map>
 namespace game::avatar
 {
 	const std::string FORMAT_UNDOCK = "You undock from {}.";
 
-	static StateTransition OnUndock()
+	static StateTransition OnUndock(int avatarId)
 	{
 		auto location = game::avatar::Docked::ReadLocation();
 		auto island = game::Islands::Read(location.value()).value();
-		data::game::avatar::Dock::Clear(Player::GetAvatarId());
+		data::game::avatar::Dock::Clear(avatarId);
 		return {
 			game::Colors::GREEN,
 			std::format(FORMAT_UNDOCK, island.name),
@@ -33,11 +32,11 @@ namespace game::avatar
 
 	void OnEnterDarkAlleyFailsInfamyRequirement();//this is outside of the game, and needs reference to visuals
 
-	static StateTransition OnEnterDarkAlley()
+	static StateTransition OnEnterDarkAlley(int avatarId)
 	{
 		auto location = game::avatar::Docked::ReadLocation().value();
 		auto data = data::game::island::DarkAlley::Read(location).value();
-		auto infamy = game::avatar::Statistics::GetInfamy(game::Player::GetAvatarId());
+		auto infamy = game::avatar::Statistics::GetInfamy(avatarId);
 		if (infamy < data.infamyRequirement)
 		{
 			OnEnterDarkAlleyFailsInfamyRequirement();
@@ -56,7 +55,7 @@ namespace game::avatar
 		};
 	}
 
-	static StateTransition OnDefeatRuffian()
+	static StateTransition OnDefeatRuffian(int)
 	{
 		//TODO: add a message
 		return
@@ -67,7 +66,7 @@ namespace game::avatar
 		};
 	}
 
-	static StateTransition OnStartGambling()
+	static StateTransition OnStartGambling(int)
 	{
 		//TODO: add a message
 		return
@@ -78,11 +77,11 @@ namespace game::avatar
 		};
 	}
 
-	static StateTransition OnStartFishing()
+	static StateTransition OnStartFishing(int avatarId)
 	{
-		if (game::avatar::Items::Has(game::Player::GetAvatarId(), Item::FISHING_POLE))
+		if (game::avatar::Items::Has(avatarId, Item::FISHING_POLE))
 		{
-			if (game::avatar::Items::Has(game::Player::GetAvatarId(), Item::BAIT))
+			if (game::avatar::Items::Has(avatarId, Item::BAIT))
 			{
 				Fishboard::Generate();
 				return
@@ -101,7 +100,7 @@ namespace game::avatar
 		};
 	}
 
-	static StateTransition OnStopFishing()
+	static StateTransition OnStopFishing(int)
 	{
 		return
 		{
@@ -111,12 +110,12 @@ namespace game::avatar
 		};
 	}
 
-	static std::function<StateTransition()> DoTransition(const StateTransition& transition)
+	static std::function<StateTransition(int)> DoTransition(const StateTransition& transition)
 	{
-		return [transition]() { return transition; };
+		return [transition](int) { return transition; };
 	}
 
-	const std::map<avatar::Action, std::map<avatar::State, std::function<StateTransition()>>> actionDescriptors =
+	const std::map<avatar::Action, std::map<avatar::State, std::function<StateTransition(int)>>> actionDescriptors =
 	{
 		{
 			avatar::Action::UNDOCK,
@@ -391,21 +390,21 @@ namespace game::avatar
 		}
 	};
 
-	static const std::map<avatar::Action, std::map<avatar::State, std::function<StateTransition()>>>& GetActionDescriptors()
+	static const std::map<avatar::Action, std::map<avatar::State, std::function<StateTransition(int)>>>& GetActionDescriptors()
 	{
 		return actionDescriptors;
 	}
 
-	static void SetState(const game::avatar::State& state)
+	static void SetState(int avatarId, const game::avatar::State& state)
 	{
-		auto avatar = data::game::Avatar::Read(Player::GetAvatarId()).value();
+		auto avatar = data::game::Avatar::Read(avatarId).value();
 		avatar.state = (int)state;
-		data::game::Avatar::Write(Player::GetAvatarId(), avatar);
+		data::game::Avatar::Write(avatarId, avatar);
 	}
 
-	std::optional<game::avatar::State> Actions::GetState()
+	std::optional<game::avatar::State> Actions::GetState(int avatarId)
 	{
-		auto avatar = data::game::Avatar::Read(Player::GetAvatarId());
+		auto avatar = data::game::Avatar::Read(avatarId);
 		if (avatar)
 		{
 			return (game::avatar::State)avatar.value().state;
@@ -413,9 +412,9 @@ namespace game::avatar
 		return std::nullopt;
 	}
 
-	bool Actions::DoAction(const avatar::Action& action)
+	bool Actions::DoAction(int avatarId, const avatar::Action& action)
 	{
-		auto state = GetState();
+		auto state = GetState(avatarId);
 		if (state)
 		{
 			auto descriptor = avatar::GetActionDescriptors().find(action);
@@ -425,8 +424,8 @@ namespace game::avatar
 				{
 					if (transition != descriptor->second.end())
 					{
-						auto result = transition->second();
-						SetState(result.state);
+						auto result = transition->second(avatarId);
+						SetState(avatarId, result.state);
 					}
 				}
 			}
