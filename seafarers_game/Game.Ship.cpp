@@ -3,7 +3,7 @@
 #include <Common.Utility.h>
 #include <Common.Utility.List.h>
 #include <Common.Utility.Optional.h>
-#include <Data.Game.Avatar.Ship.h>
+#include <Data.Game.Character.Ship.h>
 #include <Data.Game.Ship.h>
 #include <Data.Game.Ship.Statistic.h>
 #include "Game.h"

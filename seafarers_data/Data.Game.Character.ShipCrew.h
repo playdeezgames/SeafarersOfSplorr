@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-namespace data::game::avatar//20211011
+namespace data::game::character
 {
 	struct ShipCrew
 	{
