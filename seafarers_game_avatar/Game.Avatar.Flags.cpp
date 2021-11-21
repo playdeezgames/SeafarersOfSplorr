@@ -1,8 +1,26 @@
 #include <Common.Utility.Set.h>
 #include <Data.Game.Avatar.Flags.h>
 #include "Game.Avatar.Flags.h"
+#include <map>
 namespace game::avatar
 {
+	struct FlagDescriptor
+	{
+		std::string name;
+	};
+
+	static const std::map<Flag, FlagDescriptor> descriptors =
+	{
+		{ Flag::FED, { "fed" }},
+		{ Flag::UNFED, { "unfed" }}
+	};
+
+
+	const std::string& Flags::GetName(const Flag& flag)
+	{
+		return descriptors.find(flag)->second.name;
+	}
+
 	bool Flags::Has(int avatarId, const Flag& flag)
 	{
 		return data::game::avatar::Flags::Has(avatarId, (int)flag);

@@ -4,6 +4,7 @@
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
+#include <Game.Avatar.Flags.h>
 #include <Game.Avatar.Rations.h>
 #include <Game.Colors.h>
 #include <Game.Items.h>
@@ -42,6 +43,29 @@ namespace state::in_play
 		}
 	}
 
+	static void RefreshFlags()
+	{
+		auto flags = game::avatar::Flags::All(currentAvatarId);
+		if (!flags.empty())
+		{
+			bool first = true;
+			for (auto flag : flags)
+			{
+				auto& name = game::avatar::Flags::GetName(flag);
+				if (first)
+				{
+					Terminal::Write("Status: {}", name);
+				}
+				else
+				{
+					Terminal::Write(", {}", name);
+				}
+				first = false;
+			}
+			Terminal::WriteLine();
+		}
+	}
+
 	static void Refresh()
 	{
 		Terminal::Reinitialize();
@@ -51,6 +75,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Name: {}", game::Avatar::GetName(currentAvatarId).value());
 		RefreshRations();
+		RefreshFlags();
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Statistics");

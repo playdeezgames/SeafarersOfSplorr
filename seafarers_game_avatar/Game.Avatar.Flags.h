@@ -10,6 +10,6 @@ namespace game::avatar
 		static void Write(int, const Flag&);
 		static void Clear(int, const Flag&);
 		static std::set<Flag> All(int);
-		//static const std::string& GetName(const Flag&);
+		static const std::string& GetName(const Flag&);
 	};
 }
