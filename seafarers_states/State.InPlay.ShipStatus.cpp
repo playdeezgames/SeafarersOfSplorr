@@ -29,6 +29,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Ship status:");
 		Terminal::SetForeground(game::Colors::GRAY);
+		Terminal::WriteLine("Name: {}", game::Ship::GetName(GetAvatarShipId()).value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Change Heading(Current: {:.2f}\xf8)", game::Ship::GetHeading(GetAvatarShipId()).value());
