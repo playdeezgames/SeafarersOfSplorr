@@ -4567,8 +4567,8 @@
         "texture": "splash",
         "x": 0,
         "y": 0,
-        "width": 640,
-        "height": 360
+        "width": 1280,
+        "height": 720
     },
     "Background": {
         "texture": "background",
