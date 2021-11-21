@@ -5,7 +5,7 @@
 #include <Common.Utility.h>
 #include <Common.Utility.Optional.h>
 #include <Data.Game.Character.h>
-#include <Data.Game.Avatar.Rations.h>
+#include <Data.Game.Character.Rations.h>
 #include <functional>
 #include "Game.Avatar.h"
 #include "Game.Avatar.Flags.h"
@@ -179,7 +179,7 @@ namespace game
 
 	static void GenerateAvatarRations(int avatarId)
 	{
-		data::game::avatar::Rations::Write(
+		data::game::character::Rations::Write(
 			avatarId, 
 			(int)game::Items::GenerateRationsForAvatar());
 	}

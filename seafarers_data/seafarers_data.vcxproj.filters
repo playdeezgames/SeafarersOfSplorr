@@ -128,7 +128,7 @@
     <ClInclude Include="Data.Game.Ship.Statistic.h">
       <Filter>Header Files\Ship</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Avatar.Rations.h">
+    <ClInclude Include="Data.Game.Character.Rations.h">
       <Filter>Header Files\Avatar</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.Avatar.ShipCrew.h">
@@ -232,7 +232,7 @@
     <ClCompile Include="Data.Game.Ship.Statistic.cpp">
       <Filter>Source Files\Ship</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Avatar.Rations.cpp">
+    <ClCompile Include="Data.Game.Character.Rations.cpp">
       <Filter>Source Files\Avatar</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Avatar.ShipCrew.cpp">
