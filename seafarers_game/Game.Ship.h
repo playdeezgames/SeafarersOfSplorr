@@ -17,6 +17,7 @@ namespace game
 
 		static std::optional<ShipType> GetShipType(int);
 		static std::optional<std::string> GetName(int);
+		static void SetName(int, const std::string&);
 		static std::optional<double> GetHeading(int);
 		static std::optional<double> GetSpeed(int);
 		static std::optional<common::XY<double>> GetLocation(int);

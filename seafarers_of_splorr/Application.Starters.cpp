@@ -51,6 +51,8 @@
 #include <State.InPlay.Message.h>
 #include <State.InPlay.MultipleMove.h>
 #include <State.InPlay.Next.h>
+#include <State.InPlay.RenameShipAdjective.h>
+#include <State.InPlay.RenameShipNoun.h>
 #include <State.InPlay.Shipyard.h>
 #include <State.InPlay.ShipyardPurchaseShip.h>
 #include <State.InPlay.ShipyardUnfoulShip.h>
@@ -194,6 +196,8 @@ namespace application
 		state::in_play::GamblePlay::Start,
 		state::in_play::Fishing::Start,
 		state::in_play::ChooseRations::Start,
+		state::in_play::RenameShipAdjective::Start,
+		state::in_play::RenameShipNoun::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};

@@ -227,6 +227,12 @@
     <ClInclude Include="State.InPlay.ChooseRations.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
+    <ClInclude Include="State.InPlay.RenameShipAdjective.h">
+      <Filter>Header Files\AtSea</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.RenameShipNoun.h">
+      <Filter>Header Files\AtSea</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -399,6 +405,12 @@
     </ClCompile>
     <ClCompile Include="State.InPlay.ChooseRations.cpp">
       <Filter>Source Files\AtSea\Status</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.RenameShipAdjective.cpp">
+      <Filter>Source Files\AtSea</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.RenameShipNoun.cpp">
+      <Filter>Source Files\AtSea</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

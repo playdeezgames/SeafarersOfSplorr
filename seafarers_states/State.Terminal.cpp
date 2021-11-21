@@ -199,7 +199,6 @@ namespace state
 
 	}
 
-
 	std::function<bool(const std::string&)> Terminal::DoIntegerInput(
 		const std::map<std::string, std::function<void()>>& table, 
 		const std::string& errorMessage, 

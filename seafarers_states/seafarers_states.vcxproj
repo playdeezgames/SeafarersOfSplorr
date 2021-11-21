@@ -60,6 +60,8 @@
     <ClInclude Include="State.InPlay.Message.h" />
     <ClInclude Include="State.InPlay.MultipleMove.h" />
     <ClInclude Include="State.InPlay.Next.h" />
+    <ClInclude Include="State.InPlay.RenameShipAdjective.h" />
+    <ClInclude Include="State.InPlay.RenameShipNoun.h" />
     <ClInclude Include="State.InPlay.Shipyard.h" />
     <ClInclude Include="State.InPlay.ShipStatus.h" />
     <ClInclude Include="State.InPlay.ShipyardPurchaseShip.h" />
@@ -102,6 +104,8 @@
     <ClCompile Include="State.InPlay.IslandSellQuantity.cpp" />
     <ClCompile Include="State.InPlay.ManualHeading.cpp" />
     <ClCompile Include="State.InPlay.MultipleMove.cpp" />
+    <ClCompile Include="State.InPlay.RenameShipAdjective.cpp" />
+    <ClCompile Include="State.InPlay.RenameShipNoun.cpp" />
     <ClCompile Include="State.InPlay.ShipStatus.cpp" />
     <ClCompile Include="State.InPlay.Shipyard.cpp" />
     <ClCompile Include="State.InPlay.ShipyardPurchaseShip.cpp" />

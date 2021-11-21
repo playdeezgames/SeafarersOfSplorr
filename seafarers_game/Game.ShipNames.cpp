@@ -2,7 +2,7 @@
 #include <format>
 #include "Game.ShipNames.h"
 #include <map>
-namespace game//20211017
+namespace game
 {
 	static const std::map<std::string, size_t> shipNameAdjectives =
 	{
@@ -35,6 +35,33 @@ namespace game//20211017
 	};
 
 	static const std::string FORMAT_SHIP_NAME = "{} {}";
+
+	static std::vector<std::string> adjectives;
+	static std::vector<std::string> nouns;
+
+	const std::vector<std::string>& ShipNames::GetAdjectives()
+	{
+		if (adjectives.empty())
+		{
+			for (auto entry : shipNameAdjectives)
+			{
+				adjectives.push_back(entry.first);
+			}
+		}
+		return adjectives;
+	}
+
+	const std::vector<std::string>& ShipNames::GetNouns()
+	{
+		if (nouns.empty())
+		{
+			for (auto entry : shipNameNouns)
+			{
+				nouns.push_back(entry.first);
+			}
+		}
+		return nouns;
+	}
 
 	std::string ShipNames::Generate()
 	{

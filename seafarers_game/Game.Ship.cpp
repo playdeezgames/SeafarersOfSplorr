@@ -63,6 +63,17 @@ namespace game
 		return std::nullopt;
 	}
 
+	void Ship::SetName(int shipId, const std::string& name)
+	{
+		auto ship = data::game::Ship::Read(shipId);
+		if (ship)
+		{
+			ship.value().name = name;
+			data::game::Ship::Write(ship.value());
+		}
+	}
+
+
 	std::optional<double> Ship::GetHeading(int shipId)
 	{
 		auto ship = data::game::Ship::Read(shipId);
