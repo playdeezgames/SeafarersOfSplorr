@@ -7,12 +7,9 @@ namespace game::avatar
 {
 	struct Ship
 	{
-		int shipId;
-		BerthType berthType;//of the avatar
-
 		static void Write(int, int, const BerthType&);
-		static std::optional<Ship> Read(int);
 		static std::optional<int> ReadShipId(int);
+		static std::optional<BerthType> ReadBerthType(int);
 		static std::optional<double> AvailableTonnage(int);
 	};
 }

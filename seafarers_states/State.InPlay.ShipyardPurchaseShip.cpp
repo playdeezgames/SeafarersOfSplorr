@@ -31,7 +31,7 @@ namespace state::in_play
 	{
 		auto location = game::avatar::Docked::ReadLocation().value();
 		auto prices = game::islands::Ships::GetPurchasePrices(location);
-		auto tradeIn = game::islands::Ships::GetSalePrice(location, game::Ship::GetShipType(game::avatar::Ship::Read(game::Player::GetAvatarId()).value().shipId).value());
+		auto tradeIn = game::islands::Ships::GetSalePrice(location, game::Ship::GetShipType(game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value()).value());
 		shipPrices.clear();
 		for (auto price : prices)
 		{
@@ -94,7 +94,7 @@ namespace state::in_play
 	static void BuyShip(game::ShipType desiredShipType, double price)
 	{
 		auto location = game::avatar::Docked::ReadLocation().value();
-		auto currentShipId = game::avatar::Ship::Read(game::Player::GetAvatarId()).value().shipId;
+		auto currentShipId = game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value();
 		auto currentShipType = game::Ship::GetShipType(currentShipId).value();
 		game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), -price);
 		auto desiredShipId = game::Ship::Add({ desiredShipType,game::ShipNames::Generate(), location, 0.0, 1.0 });

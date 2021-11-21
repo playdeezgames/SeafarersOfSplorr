@@ -21,7 +21,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Change Speed:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Current Speed: {:.2f}", game::Ship::GetSpeed(game::avatar::Ship::Read(game::Player::GetAvatarId()).value().shipId).value());
+		Terminal::WriteLine("Current Speed: {:.2f}", game::Ship::GetSpeed(game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value()).value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) All stop");

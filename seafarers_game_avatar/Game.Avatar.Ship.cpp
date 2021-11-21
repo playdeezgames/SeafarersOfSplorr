@@ -18,35 +18,28 @@ namespace game::avatar
 			});
 	}
 
-	static Ship ToShip(const data::game::avatar::Ship& ship)
+	static int ToShipId(const data::game::avatar::Ship& ship)
 	{
-		return 
-		{
-			ship.shipId,
-			(BerthType)ship.berthType
-		};
+		return ship.shipId;
 	}
 
-	std::optional<Ship> Ship::Read(int avatarId)
+	static BerthType ToBerthType(const data::game::avatar::Ship& ship)
 	{
-		return common::utility::Optional::Map<data::game::avatar::Ship, Ship>(
-			data::game::avatar::Ship::Read(avatarId),
-			ToShip
-			);
+		return (BerthType)ship.berthType;
 	}
 
 	std::optional<int> Ship::ReadShipId(int avatarId)
 	{
-		return common::utility::Optional::Map<Ship, int>(
-			Read(avatarId), 
-			[](const Ship& ship) { return ship.shipId;  });
+		return common::utility::Optional::Map<data::game::avatar::Ship, int>(
+			data::game::avatar::Ship::Read(avatarId),
+			ToShipId);
 	}
 
 
-	static double GetAvailableTonnage(int avatarId, const Ship& ship)
+	static double GetAvailableTonnage(int avatarId, int shipId)
 	{
 		return common::utility::Optional::Map<ShipType, double>(
-			game::Ship::GetShipType(ship.shipId),
+			game::Ship::GetShipType(shipId),
 			[avatarId](const ShipType& shipType)
 			{
 				return
@@ -57,8 +50,16 @@ namespace game::avatar
 
 	std::optional<double> Ship::AvailableTonnage(int avatarId)
 	{
-		return common::utility::Optional::Map<Ship, double>(
-			Read(avatarId),
-			[avatarId](const Ship& ship) { return GetAvailableTonnage(avatarId, ship); });
+		return common::utility::Optional::Map<int, double>(
+			ReadShipId(avatarId),
+			[avatarId](int shipId) { return GetAvailableTonnage(avatarId, shipId); });
 	}
+
+	std::optional<BerthType> Ship::ReadBerthType(int avatarId)
+	{
+		return common::utility::Optional::Map<data::game::avatar::Ship, BerthType>(
+			data::game::avatar::Ship::Read(avatarId),
+			ToBerthType);
+	}
+
 }

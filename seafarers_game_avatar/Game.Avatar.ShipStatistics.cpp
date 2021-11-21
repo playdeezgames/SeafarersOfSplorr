@@ -10,7 +10,7 @@ namespace game::avatar//20211018
 {
 	static int GetShipId()
 	{
-		return game::avatar::Ship::Read(game::Player::GetAvatarId()).value().shipId;
+		return game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value();
 	}
 
 	static data::game::ship::Statistic GetStatistic(int shipId, const ShipStatistic& statistic)
