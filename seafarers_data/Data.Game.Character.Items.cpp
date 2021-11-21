@@ -1,25 +1,25 @@
 #include <Common.Data.h>
-#include "Data.Game.Avatar.Items.h"
+#include "Data.Game.Character.Items.h"
 #include "Data.Game.Common.h"
 #include "Data.Game.Player.h"
-namespace data::game::avatar//20211010
+namespace data::game::character
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [AvatarItems]([AvatarId] INT NOT NULL,[ItemId] INT NOT NULL, [ItemCount] INT NOT NULL, UNIQUE([AvatarId],[ItemId]))";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [AvatarItems]([AvatarId],[ItemId],[ItemCount]) VALUES({},{},{});";
-	static const std::string QUERY_ITEM = "SELECT [ItemCount] FROM [AvatarItems] WHERE [AvatarId]={} AND [ItemId]={};";
-	static const std::string QUERY_ALL = "SELECT [ItemId],[ItemCount] FROM [AvatarItems] WHERE [AvatarId]={};";
-	static const std::string DELETE_ALL = "DELETE FROM [AvatarItems] WHERE [AvatarId]={};";
-	static const std::string DELETE_ALL_ITEMS = "DELETE FROM [AvatarItems];";
-	static const std::string DELETE_ITEM = "DELETE FROM [AvatarItems] WHERE [AvatarId]={} AND [ItemId]={};";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [CharacterItems]([CharacterId] INT NOT NULL,[ItemId] INT NOT NULL, [ItemCount] INT NOT NULL, UNIQUE([CharacterId],[ItemId]))";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [CharacterItems]([CharacterId],[ItemId],[ItemCount]) VALUES({},{},{});";
+	static const std::string QUERY_ITEM = "SELECT [ItemCount] FROM [CharacterItems] WHERE [CharacterId]={} AND [ItemId]={};";
+	static const std::string QUERY_ALL = "SELECT [ItemId],[ItemCount] FROM [CharacterItems] WHERE [CharacterId]={};";
+	static const std::string DELETE_ALL = "DELETE FROM [CharacterItems] WHERE [CharacterId]={};";
+	static const std::string DELETE_ALL_ITEMS = "DELETE FROM [CharacterItems];";
+	static const std::string DELETE_ITEM = "DELETE FROM [CharacterItems] WHERE [CharacterId]={} AND [ItemId]={};";
 
 	static const std::string FIELD_ITEM_ID = "ItemId";
 	static const std::string FIELD_ITEM_COUNT = "ItemCount";
 
-	static const auto AutoCreateAvatarItemsTable = data::game::Common::Run(CREATE_TABLE);
+	static const auto AutoCreateTable = data::game::Common::Run(CREATE_TABLE);
 
 	size_t Items::Read(int avatarId, const int& itemId)
 	{
-		AutoCreateAvatarItemsTable();
+		AutoCreateTable();
 		auto records =
 			data::game::Common::Execute(QUERY_ITEM, avatarId, itemId);
 		if (!records.empty())
@@ -31,7 +31,7 @@ namespace data::game::avatar//20211010
 
 	void Items::Write(int avatarId, const int& itemId, const size_t& count)
 	{
-		AutoCreateAvatarItemsTable();
+		AutoCreateTable();
 		data::game::Common::Execute(
 			DELETE_ITEM, 
 			avatarId, 
@@ -48,7 +48,7 @@ namespace data::game::avatar//20211010
 
 	void Items::Clear(int avatarId)
 	{
-		AutoCreateAvatarItemsTable();
+		AutoCreateTable();
 		data::game::Common::Execute(
 			DELETE_ALL, 
 			avatarId);
@@ -56,7 +56,7 @@ namespace data::game::avatar//20211010
 
 	void Items::ClearAll()
 	{
-		AutoCreateAvatarItemsTable();
+		AutoCreateTable();
 		data::game::Common::Execute(DELETE_ALL_ITEMS);
 	}
 

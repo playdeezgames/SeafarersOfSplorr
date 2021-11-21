@@ -1,6 +1,6 @@
 #pragma once
 #include <map>
-namespace data::game::avatar//20211011
+namespace data::game::character
 {
 	struct Items
 	{
