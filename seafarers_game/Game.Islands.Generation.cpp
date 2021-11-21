@@ -1,7 +1,7 @@
 #include <Common.Heading.h>
 #include <Common.NameGenerator.h>
 #include <Common.RNG.h>
-#include <Data.Game.Avatar.Destination.h>
+#include <Data.Game.Character.Destination.h>
 #include <Data.Game.Avatar.DestinationName.h>
 #include <Data.Game.Demigod.h>
 #include <Data.Game.Island.Item.h>
@@ -124,7 +124,7 @@ namespace game//20211022
 		data::game::Island::Clear();
 		data::game::island::Visit::Clear();
 		data::game::island::Known::Clear();
-		data::game::avatar::Destination::ClearAll(Player::GetAvatarId());
+		data::game::character::Destination::ClearAll(Player::GetAvatarId());
 		data::game::avatar::DestinationName::Clear(Player::GetAvatarId());
 		data::game::island::Market::Clear();
 		data::game::island::Item::ClearAll();

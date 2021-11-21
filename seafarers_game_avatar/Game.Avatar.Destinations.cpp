@@ -1,20 +1,20 @@
-#include <Data.Game.Avatar.Destination.h>
+#include <Data.Game.Character.Destination.h>
 #include <Data.Game.Avatar.DestinationName.h>
 #include "Game.Avatar.Destinations.h"
 #include <Game.Player.h>
-namespace game::avatar//20211017
+namespace game::avatar
 {
 	std::optional<common::XY<double>> Destinations::ReadLocation(const Destination& index)
 	{
-		return data::game::avatar::Destination::Read(Player::GetAvatarId(), (int)index);
+		return data::game::character::Destination::Read(Player::GetAvatarId(), (int)index);
 	}
 
 	void Destinations::WriteLocation(const Destination& index, const std::optional<common::XY<double>>& destination)
 	{
-		data::game::avatar::Destination::Clear(Player::GetAvatarId(), (int)index);
+		data::game::character::Destination::Clear(Player::GetAvatarId(), (int)index);
 		if (destination)
 		{
-			data::game::avatar::Destination::Write(Player::GetAvatarId(), (int)index, destination.value());
+			data::game::character::Destination::Write(Player::GetAvatarId(), (int)index, destination.value());
 		}
 	}
 

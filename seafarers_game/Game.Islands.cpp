@@ -1,6 +1,6 @@
 #include <Common.Heading.h>
 #include <Common.RNG.h>
-#include <Data.Game.Avatar.Destination.h>
+#include <Data.Game.Character.Destination.h>
 #include <Data.Game.Island.Item.h>
 #include <Data.Game.Island.h>
 #include <Data.Game.Island.Known.h>

@@ -1,7 +1,7 @@
 #pragma once
 #include <Common.XY.h>
 #include <optional>
-namespace data::game::avatar//20211011
+namespace data::game::character
 {
 	struct Destination
 	{
