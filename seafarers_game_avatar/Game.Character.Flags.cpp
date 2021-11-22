@@ -1,8 +1,8 @@
 #include <Common.Utility.Set.h>
 #include <Data.Game.Character.Flags.h>
-#include "Game.Avatar.Flags.h"
+#include "Game.Character.Flags.h"
 #include <map>
-namespace game::avatar
+namespace game::character
 {
 	struct FlagDescriptor
 	{

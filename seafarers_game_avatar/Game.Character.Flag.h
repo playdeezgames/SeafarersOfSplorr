@@ -1,5 +1,5 @@
 #pragma once
-namespace game::avatar
+namespace game::character
 {
 	enum class Flag
 	{

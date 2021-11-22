@@ -4,7 +4,7 @@
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
-#include <Game.Avatar.Flags.h>
+#include <Game.Character.Flags.h>
 #include <Game.Avatar.Rations.h>
 #include <Game.Colors.h>
 #include <Game.Items.h>
@@ -45,13 +45,13 @@ namespace state::in_play
 
 	static void RefreshFlags()
 	{
-		auto flags = game::avatar::Flags::All(currentAvatarId);
+		auto flags = game::character::Flags::All(currentAvatarId);
 		if (!flags.empty())
 		{
 			bool first = true;
 			for (auto flag : flags)
 			{
-				auto& name = game::avatar::Flags::GetName(flag);
+				auto& name = game::character::Flags::GetName(flag);
 				if (first)
 				{
 					Terminal::Write("Status: {}", name);

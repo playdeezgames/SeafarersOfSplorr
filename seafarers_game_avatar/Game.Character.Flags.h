@@ -1,8 +1,8 @@
 #pragma once
-#include "Game.Avatar.Flag.h"
+#include "Game.Character.Flag.h"
 #include <set>
 #include <string>
-namespace game::avatar
+namespace game::character
 {
 	struct Flags
 	{
