@@ -1,5 +1,5 @@
 #pragma once
-#include "Game.Avatar.State.h"
+#include "Game.Character.State.h"
 #include "Game.Difficulty.h"
 #include "Game.Item.h"
 #include <optional>

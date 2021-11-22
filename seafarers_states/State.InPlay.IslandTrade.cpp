@@ -7,7 +7,7 @@
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
-#include <Game.Avatar.Actions.h>
+#include <Game.Character.Actions.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>
@@ -37,19 +37,19 @@ namespace state::in_play
 
 	static void OnBuy()
 	{
-		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::MARKET_BUY);
+		game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::MARKET_BUY);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnSell()
 	{
-		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::MARKET_SELL);
+		game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::MARKET_SELL);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnLeave()
 	{
-		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::ENTER_DOCK);
+		game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

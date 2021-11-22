@@ -6,7 +6,7 @@
 #include <Common.Utility.List.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.Ship.h>
-#include <Game.Avatar.Actions.h>
+#include <Game.Character.Actions.h>
 #include <Game.Ship.h>
 #include <Game.Islands.h>
 #include <Game.Colors.h>

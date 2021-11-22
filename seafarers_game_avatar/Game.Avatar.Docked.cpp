@@ -5,7 +5,7 @@
 #include <functional>
 #include "Game.Avatar.h"
 #include "Game.Avatar.Docked.h"
-#include "Game.Avatar.StateTransition.h"
+#include "Game.Character.StateTransition.h"
 #include "Game.Avatar.Quest.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Colors.h"
@@ -25,7 +25,7 @@ namespace game::avatar
 	static void SetAvatarStateToDocked()
 	{
 		auto avatar = data::game::Character::Read(Player::GetAvatarId()).value();
-		avatar.state = (int)game::avatar::State::DOCK;
+		avatar.state = (int)game::character::State::DOCK;
 		data::game::Character::Write(Player::GetAvatarId(), avatar);
 	}
 

@@ -3,7 +3,7 @@
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
-#include <Game.Avatar.Actions.h>
+#include <Game.Character.Actions.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Quest.h>
 #include <Game.Avatar.ShipStatistics.h>
@@ -93,7 +93,7 @@ namespace state::in_play
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::GREEN);
 		Terminal::WriteLine("You careen the vessel on its port side.");
-		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::CAREEN_TO_PORT);
+		game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::CAREEN_TO_PORT);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -102,7 +102,7 @@ namespace state::in_play
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::GREEN);
 		Terminal::WriteLine("You careen the vessel on its starboard side.");
-		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::CAREEN_TO_STARBOARD);
+		game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::CAREEN_TO_STARBOARD);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

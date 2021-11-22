@@ -3,7 +3,7 @@
 #include <Application.UIState.h>
 #include <Game.h>
 #include <Game.Avatar.h>
-#include <Game.Avatar.Actions.h>
+#include <Game.Character.Actions.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Player.h>
@@ -30,21 +30,21 @@ namespace state::in_play
 		{visuals::Confirmations::HasConfirmation, ::UIState::IN_PLAY_CONFIRM}
 	};
 
-	static const std::map<game::avatar::State, ::UIState> avatarStateTable =
+	static const std::map<game::character::State, ::UIState> avatarStateTable =
 	{
-		{ game::avatar::State::DARK_ALLEY, ::UIState::IN_PLAY_DARK_ALLEY },
-		{ game::avatar::State::DARK_ALLEY_ENTRANCE, ::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE },
-		{ game::avatar::State::SHIPYARD, ::UIState::IN_PLAY_SHIPYARD },
-		{ game::avatar::State::MARKET_BUY,::UIState::IN_PLAY_ISLAND_BUY },
-		{ game::avatar::State::MARKET_SELL, ::UIState::IN_PLAY_ISLAND_SELL },
-		{ game::avatar::State::MARKET, ::UIState::IN_PLAY_ISLAND_TRADE },
-		{ game::avatar::State::JOB_BOARD, ::UIState::IN_PLAY_ISLAND_JOBS },
-		{ game::avatar::State::GAMBLE_START, ::UIState::IN_PLAY_GAMBLE_INTRO },
-		{ game::avatar::State::AT_SEA, ::UIState::IN_PLAY_AT_SEA_OVERVIEW },
-		{ game::avatar::State::CAREENED_TO_PORT, ::UIState::IN_PLAY_CAREENED_TO_PORT },
-		{ game::avatar::State::CAREENED_TO_STARBOARD, ::UIState::IN_PLAY_CAREENED_TO_STARBOARD },
-		{ game::avatar::State::TEMPLE, ::UIState::IN_PLAY_TEMPLE },
-		{ game::avatar::State::FISHING, ::UIState::IN_PLAY_FISHING }
+		{ game::character::State::DARK_ALLEY, ::UIState::IN_PLAY_DARK_ALLEY },
+		{ game::character::State::DARK_ALLEY_ENTRANCE, ::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE },
+		{ game::character::State::SHIPYARD, ::UIState::IN_PLAY_SHIPYARD },
+		{ game::character::State::MARKET_BUY,::UIState::IN_PLAY_ISLAND_BUY },
+		{ game::character::State::MARKET_SELL, ::UIState::IN_PLAY_ISLAND_SELL },
+		{ game::character::State::MARKET, ::UIState::IN_PLAY_ISLAND_TRADE },
+		{ game::character::State::JOB_BOARD, ::UIState::IN_PLAY_ISLAND_JOBS },
+		{ game::character::State::GAMBLE_START, ::UIState::IN_PLAY_GAMBLE_INTRO },
+		{ game::character::State::AT_SEA, ::UIState::IN_PLAY_AT_SEA_OVERVIEW },
+		{ game::character::State::CAREENED_TO_PORT, ::UIState::IN_PLAY_CAREENED_TO_PORT },
+		{ game::character::State::CAREENED_TO_STARBOARD, ::UIState::IN_PLAY_CAREENED_TO_STARBOARD },
+		{ game::character::State::TEMPLE, ::UIState::IN_PLAY_TEMPLE },
+		{ game::character::State::FISHING, ::UIState::IN_PLAY_FISHING }
 	};
 
 	static void OnEnter()
@@ -65,7 +65,7 @@ namespace state::in_play
 			return;
 		}
 
-		auto avatarState = game::avatar::Actions::GetState(game::Player::GetAvatarId());
+		auto avatarState = game::character::Actions::GetState(game::Player::GetAvatarId());
 		if (avatarState)
 		{
 			auto iter = avatarStateTable.find(avatarState.value());

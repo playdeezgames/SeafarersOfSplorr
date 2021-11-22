@@ -41,10 +41,10 @@
     <ClInclude Include="Game.Avatar.ShipStatistics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Avatar.State.h">
+    <ClInclude Include="Game.Character.State.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Avatar.StateTransition.h">
+    <ClInclude Include="Game.Character.StateTransition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game.Avatar.Statistic.h">
@@ -53,7 +53,7 @@
     <ClInclude Include="Game.Avatar.Statistics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Avatar.Action.h">
+    <ClInclude Include="Game.Character.Action.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game.Ship.Crew.h">
@@ -68,7 +68,7 @@
     <ClInclude Include="Game.Avatar.StatisticFormats.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Avatar.Actions.h">
+    <ClInclude Include="Game.Character.Actions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game.Avatar.Flag.h">
@@ -79,7 +79,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.Avatar.Actions.cpp">
+    <ClCompile Include="Game.Character.Actions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.Avatar.cpp">

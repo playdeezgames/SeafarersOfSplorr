@@ -4,7 +4,7 @@
 #include <Application.UIState.h>
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Audio.Mux.h>
-#include <Game.Avatar.Actions.h>
+#include <Game.Character.Actions.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
@@ -53,7 +53,7 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::ENTER_DARK_ALLEY);
+		game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::ENTER_DARK_ALLEY);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

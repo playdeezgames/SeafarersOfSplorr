@@ -3,18 +3,18 @@
 #include <Data.Game.Island.DarkAlley.h>
 #include <format>
 #include <functional>
-#include "Game.Avatar.Action.h"
-#include "Game.Avatar.Actions.h"
+#include "Game.Character.Action.h"
+#include "Game.Character.Actions.h"
 #include "Game.Avatar.Docked.h"
 #include "Game.Avatar.Items.h"
-#include "Game.Avatar.State.h"
-#include "Game.Avatar.StateTransition.h"
+#include "Game.Character.State.h"
+#include "Game.Character.StateTransition.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Colors.h"
 #include "Game.Fishboard.h"
 #include "Game.Islands.h"
 #include <map>
-namespace game::avatar
+namespace game::character
 {
 	const std::string FORMAT_UNDOCK = "You undock from {}.";
 
@@ -26,7 +26,7 @@ namespace game::avatar
 		return {
 			game::Colors::GREEN,
 			std::format(FORMAT_UNDOCK, island.name),
-			avatar::State::AT_SEA
+			State::AT_SEA
 		};
 	}
 
@@ -44,14 +44,14 @@ namespace game::avatar
 			{
 				game::Colors::GREEN,
 				"You enter dark alley.",
-				avatar::State::DARK_ALLEY_ENTRANCE
+				State::DARK_ALLEY_ENTRANCE
 			};
 		}
 		return
 		{
 			game::Colors::GREEN,
 			"You enter dark alley.",
-			avatar::State::DARK_ALLEY
+			State::DARK_ALLEY
 		};
 	}
 
@@ -62,7 +62,7 @@ namespace game::avatar
 		{
 			game::Colors::GREEN,
 			"You enter the dark alley.",
-			avatar::State::DARK_ALLEY
+			State::DARK_ALLEY
 		};
 	}
 
@@ -73,7 +73,7 @@ namespace game::avatar
 		{
 			game::Colors::GREEN,
 			"You approach some shady characters playing a card game.",
-			avatar::State::GAMBLE_START
+			State::GAMBLE_START
 		};
 	}
 
@@ -88,7 +88,7 @@ namespace game::avatar
 				{
 					game::Colors::GRAY,
 					"Nice day for fishin', innit? Huh-ha!",
-					avatar::State::FISHING
+					State::FISHING
 				};
 			}
 		}
@@ -96,7 +96,7 @@ namespace game::avatar
 		{
 			game::Colors::RED,
 			"You cannot fish right now.",
-			avatar::State::AT_SEA
+			State::AT_SEA
 		};
 	}
 
@@ -106,7 +106,7 @@ namespace game::avatar
 		{
 			game::Colors::GRAY,
 			"You wake from yer nap.",
-			avatar::State::AT_SEA
+			State::AT_SEA
 		};
 	}
 
@@ -115,310 +115,310 @@ namespace game::avatar
 		return [transition](int) { return transition; };
 	}
 
-	const std::map<avatar::Action, std::map<avatar::State, std::function<StateTransition(int)>>> actionDescriptors =
+	const std::map<Action, std::map<State, std::function<StateTransition(int)>>> actionDescriptors =
 	{
 		{
-			avatar::Action::UNDOCK,
+			Action::UNDOCK,
 			{
 				{
-					avatar::State::DOCK,
+					State::DOCK,
 					OnUndock
 				}
 			}
 		},
 		{
-			avatar::Action::ENTER_MARKET,
+			Action::ENTER_MARKET,
 			{
 				{
-					avatar::State::MARKET_BUY,
+					State::MARKET_BUY,
 					DoTransition(
 						{
 							game::Colors::GREEN,
 							"You enter the market.",
-							avatar::State::MARKET
+							State::MARKET
 						})
 				},
 				{
-					avatar::State::MARKET_SELL,
+					State::MARKET_SELL,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You enter the market.",
-						avatar::State::MARKET
+						State::MARKET
 					})
 				},
 				{
-					avatar::State::DOCK,
+					State::DOCK,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You enter the market.",
-						avatar::State::MARKET
+						State::MARKET
 					})
 				}
 			}
 		},
 		{
-			avatar::Action::ENTER_DOCK,
+			Action::ENTER_DOCK,
 			{
 				{
-					avatar::State::MARKET,
+					State::MARKET,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You leave the market.",
-						avatar::State::DOCK
+						State::DOCK
 					})
 				},
 				{
-					avatar::State::SHIPYARD,
+					State::SHIPYARD,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You leave the shipyard.",
-						avatar::State::DOCK
+						State::DOCK
 					})
 				},
 				{
-					avatar::State::JOB_BOARD,
+					State::JOB_BOARD,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You leave the job board.",
-						avatar::State::DOCK
+						State::DOCK
 					})
 				},
 				{
-					avatar::State::DARK_ALLEY_ENTRANCE,
+					State::DARK_ALLEY_ENTRANCE,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You leave the dark alley.",
-						avatar::State::DOCK
+						State::DOCK
 					})
 				},
 				{
-					avatar::State::DARK_ALLEY,
+					State::DARK_ALLEY,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You leave the dark alley.",
-						avatar::State::DOCK
+						State::DOCK
 					})
 				},
 				{
-					avatar::State::TEMPLE,
+					State::TEMPLE,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You leave the temple.",
-						avatar::State::DOCK
+						State::DOCK
 					})
 				},
 			}
 		},
 		{
-			avatar::Action::MARKET_BUY,
+			Action::MARKET_BUY,
 			{
 				{
-					avatar::State::MARKET,
+					State::MARKET,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You browse for items to buy.",
-						avatar::State::MARKET_BUY
+						State::MARKET_BUY
 					})
 				}
 			}
 		},
 		{
-			avatar::Action::MARKET_SELL,
+			Action::MARKET_SELL,
 			{
 				{
-					avatar::State::MARKET,
+					State::MARKET,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You look to sell yer items.",
-						avatar::State::MARKET_SELL
+						State::MARKET_SELL
 					})
 				}
 			}
 		},
 		{
-			avatar::Action::ENTER_JOB_BOARD,
+			Action::ENTER_JOB_BOARD,
 			{
 				{
-					avatar::State::DOCK,
+					State::DOCK,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You check for posted jobs.",
-						avatar::State::JOB_BOARD
+						State::JOB_BOARD
 					})
 				}
 			}
 		},
 		{
-			avatar::Action::ENTER_TEMPLE,
+			Action::ENTER_TEMPLE,
 			{
 				{
-					avatar::State::DOCK,
+					State::DOCK,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You enter the temple.",
-						avatar::State::TEMPLE
+						State::TEMPLE
 					})
 				}
 			}
 		},
 		{
-			avatar::Action::ENTER_SHIPYARD,
+			Action::ENTER_SHIPYARD,
 			{
 				{
-					avatar::State::DOCK,
+					State::DOCK,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You enter the shipyard.",
-						avatar::State::SHIPYARD
+						State::SHIPYARD
 					})
 				}
 			}
 		},
 		{
-			avatar::Action::ENTER_DARK_ALLEY,
+			Action::ENTER_DARK_ALLEY,
 			{
 				{
-					avatar::State::DOCK,
+					State::DOCK,
 					OnEnterDarkAlley
 				},
 				{
-					avatar::State::GAMBLE_START,
+					State::GAMBLE_START,
 					DoTransition(
 					{
 						game::Colors::GREEN,
 						"You leave the game.",
-						avatar::State::DARK_ALLEY
+						State::DARK_ALLEY
 					})
 				}
 			}
 		},
 		{
-			avatar::Action::DEFEAT_RUFFIAN,
+			Action::DEFEAT_RUFFIAN,
 			{
 				{
-					avatar::State::DARK_ALLEY_ENTRANCE,
+					State::DARK_ALLEY_ENTRANCE,
 					OnDefeatRuffian
 				}
 			}
 		},
 		{
-			avatar::Action::START_GAMBLING,
+			Action::START_GAMBLING,
 			{
 				{
-					avatar::State::DARK_ALLEY,
+					State::DARK_ALLEY,
 					OnStartGambling
 				}
 			}
 		},
 		{
-			avatar::Action::CAREEN_TO_PORT,
+			Action::CAREEN_TO_PORT,
 			{
 				{
-					avatar::State::AT_SEA,
+					State::AT_SEA,
 					DoTransition({
 						game::Colors::GREEN,
 						"You heave down to port.",
-						avatar::State::CAREENED_TO_PORT
+						State::CAREENED_TO_PORT
 					})
 				}
 			}
 		},
 		{
-			avatar::Action::CAREEN_TO_STARBOARD,
+			Action::CAREEN_TO_STARBOARD,
 			{
 				{
-					avatar::State::AT_SEA,
+					State::AT_SEA,
 					DoTransition({
 						game::Colors::GREEN,
 						"You heave down to starboard.",
-						avatar::State::CAREENED_TO_STARBOARD
+						State::CAREENED_TO_STARBOARD
 					})
 				}
 			}
 		},
 		{
-			avatar::Action::UNCAREEN,
+			Action::UNCAREEN,
 			{
 				{
-					avatar::State::CAREENED_TO_PORT,
+					State::CAREENED_TO_PORT,
 					DoTransition({
 						game::Colors::GREEN,
 						"You right the vessel.",
-						avatar::State::AT_SEA
+						State::AT_SEA
 					})
 				},
 				{
-					avatar::State::CAREENED_TO_STARBOARD,
+					State::CAREENED_TO_STARBOARD,
 					DoTransition({
 						game::Colors::GREEN,
 						"You right the vessel.",
-						avatar::State::AT_SEA
+						State::AT_SEA
 					})
 				}
 			}
 		},
 		{
-			avatar::Action::START_FISHING,
+			Action::START_FISHING,
 			{
 				{
-					avatar::State::AT_SEA,
+					State::AT_SEA,
 					OnStartFishing
 				}
 			}
 		},
 		{
-			avatar::Action::STOP_FISHING,
+			Action::STOP_FISHING,
 			{
 				{
-					avatar::State::FISHING,
+					State::FISHING,
 					OnStopFishing
 				}
 			}
 		}
 	};
 
-	static const std::map<avatar::Action, std::map<avatar::State, std::function<StateTransition(int)>>>& GetActionDescriptors()
+	static const std::map<Action, std::map<State, std::function<StateTransition(int)>>>& GetActionDescriptors()
 	{
 		return actionDescriptors;
 	}
 
-	static void SetState(int avatarId, const game::avatar::State& state)
+	static void SetState(int avatarId, const State& state)
 	{
 		auto avatar = data::game::Character::Read(avatarId).value();
 		avatar.state = (int)state;
 		data::game::Character::Write(avatarId, avatar);
 	}
 
-	std::optional<game::avatar::State> Actions::GetState(int avatarId)
+	std::optional<State> Actions::GetState(int avatarId)
 	{
 		auto avatar = data::game::Character::Read(avatarId);
 		if (avatar)
 		{
-			return (game::avatar::State)avatar.value().state;
+			return (State)avatar.value().state;
 		}
 		return std::nullopt;
 	}
 
-	bool Actions::DoAction(int avatarId, const avatar::Action& action)
+	bool Actions::DoAction(int avatarId, const Action& action)
 	{
 		auto state = GetState(avatarId);
 		if (state)
 		{
-			auto descriptor = avatar::GetActionDescriptors().find(action);
-			if (descriptor != avatar::GetActionDescriptors().end())
+			auto descriptor = GetActionDescriptors().find(action);
+			if (descriptor != GetActionDescriptors().end())
 			{
 				auto transition = descriptor->second.find(state.value());
 				{

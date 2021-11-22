@@ -7,7 +7,7 @@
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
-#include <Game.Avatar.Actions.h>
+#include <Game.Character.Actions.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.ShipStatistics.h>
 #include <Game.Colors.h>
@@ -53,7 +53,7 @@ namespace state::in_play
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::GREEN);
 		Terminal::WriteLine("You right the vessel.");
-		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::UNCAREEN);
+		game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::UNCAREEN);
 		application::UIState::Write(::UIState::IN_PLAY_DOCK_OR_CAREEN);
 	}
 

@@ -13,7 +13,7 @@
 #include "Game.Avatar.Plights.h"
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Statistics.h"
-#include "Game.Avatar.StateTransition.h"
+#include "Game.Character.StateTransition.h"
 #include <Game.Items.h>
 #include <Game.Player.h>
 #include <Game.Ship.h>
@@ -171,7 +171,7 @@ namespace game
 	{
 		data::game::Character data =
 		{
-			(int)game::avatar::State::AT_SEA,
+			(int)game::character::State::AT_SEA,
 			GenerateName()
 		};
 		data::game::Character::Write(avatarId, data);

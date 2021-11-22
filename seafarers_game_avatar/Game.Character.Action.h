@@ -1,5 +1,5 @@
 #pragma once
-namespace game::avatar//20211017
+namespace game::character
 {
 	enum class Action
 	{

@@ -5,7 +5,7 @@
 #include <Common.Data.h>
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Audio.Mux.h>
-#include <Game.Avatar.Actions.h>
+#include <Game.Character.Actions.h>
 #include <Game.Avatar.Items.h>
 #include <Game.Colors.h>
 #include <Game.Fishboard.h>
@@ -148,7 +148,7 @@ namespace state::in_play
 
 	static void LeaveFishing()
 	{
-		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::STOP_FISHING);
+		game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::STOP_FISHING);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

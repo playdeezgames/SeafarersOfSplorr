@@ -5,7 +5,7 @@
 #include <Common.Heading.h>
 #include <Game.h>
 #include <Game.Audio.Mux.h>
-#include <Game.Avatar.Actions.h>
+#include <Game.Character.Actions.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Items.h>
 #include <Game.Avatar.Quest.h>
@@ -190,7 +190,7 @@ namespace state::in_play
 	{
 		if (IsFishingEnabled())
 		{
-			game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::START_FISHING);
+			game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::START_FISHING);
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		}
 		else

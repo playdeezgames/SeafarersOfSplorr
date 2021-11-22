@@ -4,7 +4,7 @@
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Audio.Sfx.h>
-#include <Game.Avatar.Actions.h>
+#include <Game.Character.Actions.h>
 #include <Game.Avatar.Docked.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
@@ -186,7 +186,7 @@ namespace state::in_play
 	static void OnRetreat()
 	{
 		game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), -game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId()) / 2.0);
-		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::ENTER_DOCK);
+		game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::ENTER_DOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -209,7 +209,7 @@ namespace state::in_play
 		visuals::Messages::Write({ "VICTORY!",{} });
 		IncreaseInfamy();
 		IncreaseBrawling();
-		game::avatar::Actions::DoAction(game::Player::GetAvatarId(), game::avatar::Action::DEFEAT_RUFFIAN);
+		game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::DEFEAT_RUFFIAN);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 
 	}

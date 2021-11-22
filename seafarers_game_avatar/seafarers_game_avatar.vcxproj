@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.Avatar.Action.h" />
-    <ClInclude Include="Game.Avatar.Actions.h" />
+    <ClInclude Include="Game.Character.Action.h" />
+    <ClInclude Include="Game.Character.Actions.h" />
     <ClInclude Include="Game.Avatar.Docked.h" />
     <ClInclude Include="Game.Avatar.DockResult.h" />
     <ClInclude Include="Game.Avatar.Equipment.h" />
@@ -35,15 +35,15 @@
     <ClInclude Include="Game.Avatar.Rations.h" />
     <ClInclude Include="Game.Avatar.Ship.h" />
     <ClInclude Include="Game.Avatar.ShipStatistics.h" />
-    <ClInclude Include="Game.Avatar.State.h" />
-    <ClInclude Include="Game.Avatar.StateTransition.h" />
+    <ClInclude Include="Game.Character.State.h" />
+    <ClInclude Include="Game.Character.StateTransition.h" />
     <ClInclude Include="Game.Avatar.Statistic.h" />
     <ClInclude Include="Game.Avatar.StatisticFormats.h" />
     <ClInclude Include="Game.Avatar.Statistics.h" />
     <ClInclude Include="Game.Ship.Crew.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.Avatar.Actions.cpp" />
+    <ClCompile Include="Game.Character.Actions.cpp" />
     <ClCompile Include="Game.Avatar.cpp" />
     <ClCompile Include="Game.Avatar.Docked.cpp" />
     <ClCompile Include="Game.Avatar.Equipment.cpp" />
