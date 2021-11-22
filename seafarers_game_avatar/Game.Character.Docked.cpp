@@ -6,7 +6,7 @@
 #include "Game.Character.h"
 #include "Game.Character.Docked.h"
 #include "Game.Character.StateTransition.h"
-#include "Game.Avatar.Quest.h"
+#include "Game.Character.Quest.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Colors.h"
 #include "Game.Islands.Quests.h"
@@ -36,7 +36,7 @@ namespace game::character
 			location,
 			game::avatar::Statistics::GetTurnsRemaining(game::Player::GetAvatarId()));
 		game::islands::Quests::Update(location);
-		if (game::avatar::Quest::Complete(location))
+		if (game::character::Quest::Complete(location))
 		{
 			result = DockResult::COMPLETED_QUEST;
 		}

@@ -8,7 +8,7 @@
 #include <Game.Character.Actions.h>
 #include <Game.Character.Docked.h>
 #include <Game.Character.Items.h>
-#include <Game.Avatar.Quest.h>
+#include <Game.Character.Quest.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
@@ -90,7 +90,7 @@ namespace state::in_play
 
 	static bool RefreshJobDestination()
 	{
-		auto quest = game::avatar::Quest::Read();
+		auto quest = game::character::Quest::Read();
 		if (quest)
 		{
 			auto delta = quest.value().destination - game::Ship::GetLocation(GetAvatarShipId()).value();
@@ -202,7 +202,7 @@ namespace state::in_play
 
 	static void OnJob()
 	{
-		if (game::avatar::Quest::Read().has_value())
+		if (game::character::Quest::Read().has_value())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_CURRENT_JOB);
 		}

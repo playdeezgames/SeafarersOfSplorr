@@ -9,7 +9,7 @@
 #include <Game.Character.h>
 #include <Game.Character.Docked.h>
 #include <Game.Character.Items.h>
-#include <Game.Avatar.Quest.h>
+#include <Game.Character.Quest.h>
 #include <Game.Character.Plights.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Avatar.StatisticFormats.h>

@@ -32,7 +32,7 @@
     <ClInclude Include="Game.Character.PlightType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Avatar.Quest.h">
+    <ClInclude Include="Game.Character.Quest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game.Avatar.Ship.h">
@@ -97,7 +97,7 @@
     <ClCompile Include="Game.Character.Plights.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Avatar.Quest.cpp">
+    <ClCompile Include="Game.Character.Quest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.Avatar.Ship.cpp">

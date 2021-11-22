@@ -7,7 +7,7 @@
 #include <Data.JSON.Stores.h>
 #include <format>
 #include <Game.Audio.Mux.h>
-#include <Game.Avatar.Quest.h>
+#include <Game.Character.Quest.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>
@@ -53,7 +53,7 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		auto quest = game::avatar::Quest::Read();
+		auto quest = game::character::Quest::Read();
 		if (quest)
 		{
 			RefreshQuest(quest.value());

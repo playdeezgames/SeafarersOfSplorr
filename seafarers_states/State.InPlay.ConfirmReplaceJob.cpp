@@ -7,7 +7,7 @@
 #include <Game.Character.h>
 #include <Game.Character.Actions.h>
 #include <Game.Character.Docked.h>
-#include <Game.Avatar.Quest.h>
+#include <Game.Character.Quest.h>
 #include <Game.Colors.h>
 #include <Game.Player.h>
 #include "State.InPlay.ConfirmReplaceJob.h"
@@ -34,8 +34,8 @@ namespace state::in_play
 	static void ReplaceJob()
 	{
 		Terminal::ErrorMessage("You replace yer job, and yer reputation suffers!");
-		game::avatar::Quest::Abandon();
-		game::avatar::Quest::Accept(game::character::Docked::ReadLocation().value());
+		game::character::Quest::Abandon();
+		game::character::Quest::Accept(game::character::Docked::ReadLocation().value());
 		game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}

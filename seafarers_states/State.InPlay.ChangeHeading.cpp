@@ -4,7 +4,7 @@
 #include <Application.UIState.h>
 #include <Common.Heading.h>
 #include <Game.Audio.Mux.h>
-#include <Game.Avatar.Quest.h>
+#include <Game.Character.Quest.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Ship.h>
 #include <Game.Colors.h>
@@ -41,7 +41,7 @@ namespace state::in_play
 		{
 			Terminal::WriteLine("2) Head for a nearby island");
 		}
-		if (game::avatar::Quest::Read())
+		if (game::character::Quest::Read())
 		{
 			Terminal::WriteLine("3) Head for job destination");
 		}
@@ -85,7 +85,7 @@ namespace state::in_play
 
 	static void OnHeadForJobDestination()
 	{
-		auto quest = game::avatar::Quest::Read();
+		auto quest = game::character::Quest::Read();
 		if (quest)
 		{
 			auto delta = quest.value().destination - game::Ship::GetLocation(game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value()).value();

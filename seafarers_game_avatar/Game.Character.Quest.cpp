@@ -3,12 +3,12 @@
 #include <Data.Game.Character.Quest.h>
 #include <Data.Game.Island.Known.h>
 #include <Data.Game.Island.Quest.h>
-#include "Game.Avatar.Quest.h"
+#include "Game.Character.Quest.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Islands.h"
 #include <Game.Player.h>
 #include <Game.World.h>
-namespace game::avatar
+namespace game::character
 {
 	static void AcceptQuest(const data::game::island::Quest& quest, const common::XY<double>& location)
 	{

@@ -10,7 +10,7 @@
 #include <Game.Character.h>
 #include <Game.Character.Actions.h>
 #include <Game.Character.Docked.h>
-#include <Game.Avatar.Quest.h>
+#include <Game.Character.Quest.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>
@@ -26,13 +26,13 @@ namespace state::in_play
 
 	static void OnAccept()//TODO: make this more declarative
 	{
-		switch (game::avatar::Quest::Accept(game::character::Docked::ReadLocation().value()))
+		switch (game::character::Quest::Accept(game::character::Docked::ReadLocation().value()))
 		{
-		case game::avatar::AcceptQuestResult::ACCEPTED_QUEST:
+		case game::character::AcceptQuestResult::ACCEPTED_QUEST:
 			game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::ENTER_DOCK);
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			break;
-		case game::avatar::AcceptQuestResult::ALREADY_HAS_QUEST:
+		case game::character::AcceptQuestResult::ALREADY_HAS_QUEST:
 			::application::UIState::Write(::UIState::IN_PLAY_CONFIRM_REPLACE_JOB);
 			break;
 		}
