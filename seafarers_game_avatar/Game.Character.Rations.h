@@ -1,7 +1,7 @@
 #pragma once
 #include "Game.Item.h"
 #include <optional>
-namespace game::avatar//20211017
+namespace game::character
 {
 	struct Rations
 	{

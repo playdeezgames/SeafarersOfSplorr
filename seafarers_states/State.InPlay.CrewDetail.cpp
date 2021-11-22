@@ -5,7 +5,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Character.h>
 #include <Game.Character.Flags.h>
-#include <Game.Avatar.Rations.h>
+#include <Game.Character.Rations.h>
 #include <Game.Colors.h>
 #include <Game.Items.h>
 #include "State.InPlay.CrewDetail.h"
@@ -32,7 +32,7 @@ namespace state::in_play
 
 	static void RefreshRations()
 	{
-		auto rations = game::avatar::Rations::Read(currentAvatarId);
+		auto rations = game::character::Rations::Read(currentAvatarId);
 		if (rations)
 		{
 			Terminal::WriteLine("Rations: {}", game::Items::GetName(rations.value()));

@@ -6,7 +6,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Character.h>
 #include <Game.Character.Items.h>
-#include <Game.Avatar.Rations.h>
+#include <Game.Character.Rations.h>
 #include <Game.Colors.h>
 #include <Game.Items.h>
 #include "State.InPlay.ChooseRations.h"
@@ -43,7 +43,7 @@ namespace state::in_play
 		Terminal::WriteLine("Rations for {}:", game::Character::GetName(avatarId).value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		auto current = game::avatar::Rations::Read(avatarId);
+		auto current = game::character::Rations::Read(avatarId);
 
 		int index = 1;
 		for (auto& entry : rationsMenu)
@@ -84,7 +84,7 @@ namespace state::in_play
 		int index = common::Data::ToInt(line) - 1;
 		if (index >= 0 && index < rationsMenu.size())
 		{
-			game::avatar::Rations::Write(CrewDetail::GetAvatarId(), rationsMenu[index]);
+			game::character::Rations::Write(CrewDetail::GetAvatarId(), rationsMenu[index]);
 			OnLeave();
 		}
 		else
