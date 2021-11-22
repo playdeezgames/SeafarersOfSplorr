@@ -7,7 +7,7 @@
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
-#include <Game.Avatar.Equipment.h>
+#include <Game.Character.Equipment.h>
 #include <Game.Avatar.Items.h>
 #include <Game.Colors.h>
 #include <Game.EquipSlots.h>
@@ -32,7 +32,7 @@ namespace state::in_play
 	{
 		auto slotName = game::EquipSlots::GetName(equipSlot);
 
-		auto item = game::avatar::Equipment::Read(CrewDetail::GetAvatarId(), equipSlot);
+		auto item = game::character::Equipment::Read(CrewDetail::GetAvatarId(), equipSlot);
 		std::string itemName = item.has_value() ? (game::Items::GetName(item.value())) : EMPTY;
 		Terminal::WriteLine("{}) {} - {}", index, slotName, itemName);
 	}

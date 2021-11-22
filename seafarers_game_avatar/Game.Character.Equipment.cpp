@@ -1,9 +1,9 @@
 #include <Common.Utility.h>
 #include <Common.Utility.Table.h>
 #include <Data.Game.Character.Equipment.h>
-#include "Game.Avatar.Equipment.h"
+#include "Game.Character.Equipment.h"
 #include <Game.Player.h>
-namespace game::avatar
+namespace game::character
 {
 	void Equipment::Reset(const Difficulty& difficulty)
 	{

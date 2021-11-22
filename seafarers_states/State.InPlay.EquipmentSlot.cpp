@@ -5,7 +5,7 @@
 #include <Common.Data.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
-#include <Game.Avatar.Equipment.h>
+#include <Game.Character.Equipment.h>
 #include <Game.Avatar.Items.h>
 #include <Game.Colors.h>
 #include <Game.EquipSlots.h>
@@ -40,7 +40,7 @@ namespace state::in_play
 		auto equipSlotName = game::EquipSlots::GetName(EquipmentSlot::GetSlot());
 		Terminal::WriteLine("Equipping {}'s {}:", avatarName, equipSlotName);
 		Terminal::SetForeground(game::Colors::GRAY);
-		auto item = game::avatar::Equipment::Read(CrewDetail::GetAvatarId(), equipmentSlot);
+		auto item = game::character::Equipment::Read(CrewDetail::GetAvatarId(), equipmentSlot);
 		std::string itemName = item.has_value() ? (game::Items::GetName(item.value())) : NOTHING;
 		Terminal::WriteLine("Currently Equipped: {}", itemName);
 		Terminal::SetForeground(game::Colors::YELLOW);
@@ -64,7 +64,7 @@ namespace state::in_play
 	static std::set<game::Item> DetermineCandidates()
 	{
 		std::set<game::Item> candidates;
-		auto current = game::avatar::Equipment::Read(CrewDetail::GetAvatarId(), equipmentSlot);//add current item
+		auto current = game::character::Equipment::Read(CrewDetail::GetAvatarId(), equipmentSlot);//add current item
 		if (current)
 		{
 			candidates.insert(current.value());
@@ -98,7 +98,7 @@ namespace state::in_play
 		{
 			//TODO: write to terminal that item was unequipped
 			game::avatar::Items::Add(CrewDetail::GetAvatarId(), item.value(), 1);
-			game::avatar::Equipment::Unequip(CrewDetail::GetAvatarId(), equipmentSlot);
+			game::character::Equipment::Unequip(CrewDetail::GetAvatarId(), equipmentSlot);
 		}
 	}
 
@@ -108,7 +108,7 @@ namespace state::in_play
 		{
 			//TODO: write to terminal that item was equipped
 			game::avatar::Items::Remove(CrewDetail::GetAvatarId(), item.value(), 1);
-			game::avatar::Equipment::Equip(CrewDetail::GetAvatarId(), equipmentSlot, item.value());
+			game::character::Equipment::Equip(CrewDetail::GetAvatarId(), equipmentSlot, item.value());
 		}
 	}
 
@@ -130,7 +130,7 @@ namespace state::in_play
 		if (index >= 0 && index < items.size())
 		{
 			auto newItem = items[index];
-			auto oldItem = game::avatar::Equipment::Read(CrewDetail::GetAvatarId(), equipmentSlot);
+			auto oldItem = game::character::Equipment::Read(CrewDetail::GetAvatarId(), equipmentSlot);
 			UnequipItem(oldItem);
 			EquipItem(newItem);
 			application::UIState::Write(::UIState::IN_PLAY_EQUIPMENT);

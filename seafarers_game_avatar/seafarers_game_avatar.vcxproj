@@ -23,7 +23,7 @@
     <ClInclude Include="Game.Character.Actions.h" />
     <ClInclude Include="Game.Character.Docked.h" />
     <ClInclude Include="Game.Character.DockResult.h" />
-    <ClInclude Include="Game.Avatar.Equipment.h" />
+    <ClInclude Include="Game.Character.Equipment.h" />
     <ClInclude Include="Game.Character.Flag.h" />
     <ClInclude Include="Game.Character.Flags.h" />
     <ClInclude Include="Game.Avatar.h" />
@@ -46,7 +46,7 @@
     <ClCompile Include="Game.Character.Actions.cpp" />
     <ClCompile Include="Game.Avatar.cpp" />
     <ClCompile Include="Game.Character.Docked.cpp" />
-    <ClCompile Include="Game.Avatar.Equipment.cpp" />
+    <ClCompile Include="Game.Character.Equipment.cpp" />
     <ClCompile Include="Game.Character.Flags.cpp" />
     <ClCompile Include="Game.Avatar.Items.cpp" />
     <ClCompile Include="Game.Avatar.Plights.cpp" />

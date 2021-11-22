@@ -4,7 +4,7 @@
 #include "Game.h"
 #include <Game.Avatar.h>
 #include <Game.Character.Docked.h>
-#include <Game.Avatar.Equipment.h>
+#include <Game.Character.Equipment.h>
 #include <Game.Avatar.Items.h>
 #include <Game.Avatar.Plights.h>
 #include <Game.Avatar.Ship.h>
@@ -42,7 +42,7 @@ namespace game
 		Ships::Reset(difficulty);
 		Avatar::Reset(difficulty, Player::GetAvatarId());
 		character::Docked::Reset(difficulty);
-		avatar::Equipment::Reset(difficulty);
+		character::Equipment::Reset(difficulty);
 		avatar::Items::Reset(difficulty);
 		avatar::Plights::Reset(difficulty);
 		avatar::Statistics::Reset(difficulty);

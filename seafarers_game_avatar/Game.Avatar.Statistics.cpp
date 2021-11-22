@@ -3,7 +3,7 @@
 #include <Common.Utility.Table.h>
 #include <Data.Game.Character.Statistic.h>
 #include <Data.Game.Common.h>
-#include "Game.Avatar.Equipment.h"
+#include "Game.Character.Equipment.h"
 #include "Game.Avatar.Statistic.h"
 #include "Game.Avatar.Statistics.h"
 #include <Game.Item.h>
@@ -146,7 +146,7 @@ namespace game::avatar
 			itemBuffs,
 			[characterId](const double& result, const game::Item& item, const double& buff)
 			{
-				return result + (game::avatar::Equipment::IsEquipped(characterId, item)) ? (buff) : (0.0);
+				return result + (game::character::Equipment::IsEquipped(characterId, item)) ? (buff) : (0.0);
 			});
 	}
 
