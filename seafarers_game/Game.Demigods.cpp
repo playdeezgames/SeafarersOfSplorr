@@ -4,7 +4,7 @@
 #include <Data.Game.Demigod.h>
 #include <Data.Game.DemigodItem.h>
 #include "Game.Player.h"
-#include "Game.Avatar.Plights.h"
+#include "Game.Character.Plights.h"
 #include "Game.Items.h"
 #include "Game.Demigods.h"
 #include <map>
@@ -119,10 +119,10 @@ namespace game
 				common::RNG::FromGenerator(patronWeights),
 				BLESSING_THRESHOLD,
 				BLESSING_MULTIPLIER,
-				(int)avatar::Plights::Generate(avatar::PlightType::BLESSING),
+				(int)character::Plights::Generate(character::PlightType::BLESSING),
 				CURSE_THRESHOLD,
 				CURSE_MULTIPLIER,
-				(int)avatar::Plights::Generate(avatar::PlightType::CURSE),
+				(int)character::Plights::Generate(character::PlightType::CURSE),
 				(size_t)0};
 			data::game::Demigod::Write(demigod);
 			for (auto item : items)
@@ -136,7 +136,7 @@ namespace game
 	{
 		if (favor >= demigod.blessingThreshold)
 		{
-			game::avatar::Plights::Inflict((game::avatar::Plight)demigod.blessingPlightId);
+			game::character::Plights::Inflict((game::character::Plight)demigod.blessingPlightId);
 			favor -= demigod.blessingThreshold;
 			data::game::character::DemigodFavor::Write(Player::GetAvatarId(), demigod.name, favor);
 			demigod.blessingThreshold *= demigod.blessingMultiplier;
@@ -150,7 +150,7 @@ namespace game
 	{
 		if (favor <= demigod.curseThreshold)
 		{
-			game::avatar::Plights::Inflict((game::avatar::Plight)demigod.cursePlightId);
+			game::character::Plights::Inflict((game::character::Plight)demigod.cursePlightId);
 			favor -= demigod.curseThreshold;
 			data::game::character::DemigodFavor::Write(Player::GetAvatarId(), demigod.name, favor);
 			demigod.curseThreshold *= demigod.curseMultiplier;

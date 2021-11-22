@@ -1,11 +1,11 @@
 #pragma once
-#include "Game.Avatar.Plight.h"
-#include "Game.Avatar.PlightType.h"
+#include "Game.Character.Plight.h"
+#include "Game.Character.PlightType.h"
 #include "Game.Difficulty.h"
 #include <optional>
 #include <set>
 #include <string>
-namespace game::avatar//20211017
+namespace game::character
 {
 	struct Plights
 	{

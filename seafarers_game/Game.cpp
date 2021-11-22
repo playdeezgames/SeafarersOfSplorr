@@ -6,7 +6,7 @@
 #include <Game.Character.Docked.h>
 #include <Game.Character.Equipment.h>
 #include <Game.Character.Items.h>
-#include <Game.Avatar.Plights.h>
+#include <Game.Character.Plights.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Avatar.Statistics.h>
 #include "Game.Demigods.h"
@@ -44,7 +44,7 @@ namespace game
 		character::Docked::Reset(difficulty);
 		character::Equipment::Reset(difficulty);
 		character::Items::Reset(difficulty);
-		avatar::Plights::Reset(difficulty);
+		character::Plights::Reset(difficulty);
 		avatar::Statistics::Reset(difficulty);
 		Demigods::Reset(difficulty);
 		Fisheries::Reset(difficulty);
@@ -123,7 +123,7 @@ namespace game
 		Ships::ApplyTurnEffects,
 		Character::ApplyTurnEffects,
 		Islands::ApplyTurnEffects,
-		avatar::Plights::ApplyTurnEffects,
+		character::Plights::ApplyTurnEffects,
 		Demigods::ApplyTurnEffects,
 		Fisheries::ApplyTurnEffects,
 		World::ApplyTurnEffects,

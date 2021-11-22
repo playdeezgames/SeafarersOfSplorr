@@ -23,13 +23,13 @@
     <ClInclude Include="Game.Character.Items.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Avatar.Plight.h">
+    <ClInclude Include="Game.Character.Plight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Avatar.Plights.h">
+    <ClInclude Include="Game.Character.Plights.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Avatar.PlightType.h">
+    <ClInclude Include="Game.Character.PlightType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game.Avatar.Quest.h">
@@ -94,7 +94,7 @@
     <ClCompile Include="Game.Character.Items.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Avatar.Plights.cpp">
+    <ClCompile Include="Game.Character.Plights.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.Avatar.Quest.cpp">

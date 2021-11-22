@@ -28,9 +28,9 @@
     <ClInclude Include="Game.Character.Flags.h" />
     <ClInclude Include="Game.Character.h" />
     <ClInclude Include="Game.Character.Items.h" />
-    <ClInclude Include="Game.Avatar.Plight.h" />
-    <ClInclude Include="Game.Avatar.Plights.h" />
-    <ClInclude Include="Game.Avatar.PlightType.h" />
+    <ClInclude Include="Game.Character.Plight.h" />
+    <ClInclude Include="Game.Character.Plights.h" />
+    <ClInclude Include="Game.Character.PlightType.h" />
     <ClInclude Include="Game.Avatar.Quest.h" />
     <ClInclude Include="Game.Avatar.Rations.h" />
     <ClInclude Include="Game.Avatar.Ship.h" />
@@ -49,7 +49,7 @@
     <ClCompile Include="Game.Character.Equipment.cpp" />
     <ClCompile Include="Game.Character.Flags.cpp" />
     <ClCompile Include="Game.Character.Items.cpp" />
-    <ClCompile Include="Game.Avatar.Plights.cpp" />
+    <ClCompile Include="Game.Character.Plights.cpp" />
     <ClCompile Include="Game.Avatar.Quest.cpp" />
     <ClCompile Include="Game.Avatar.Rations.cpp" />
     <ClCompile Include="Game.Avatar.Ship.cpp" />

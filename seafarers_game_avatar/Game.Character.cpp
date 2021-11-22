@@ -10,7 +10,7 @@
 #include "Game.Character.h"
 #include "Game.Character.Flags.h"
 #include "Game.Character.Items.h"
-#include "Game.Avatar.Plights.h"
+#include "Game.Character.Plights.h"
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Character.StateTransition.h"
@@ -26,13 +26,13 @@ namespace game
 	static double DetermineHungerRate()
 	{
 		double delta = -1.0;
-		if (avatar::Plights::Has(avatar::Plight::DOUBLE_HUNGER) && 
-			!avatar::Plights::Has(avatar::Plight::HUNGER_IMMUNITY))
+		if (character::Plights::Has(character::Plight::DOUBLE_HUNGER) &&
+			!character::Plights::Has(character::Plight::HUNGER_IMMUNITY))
 		{
 			delta *= 2.0;
 		}
-		if (avatar::Plights::Has(avatar::Plight::HUNGER_IMMUNITY) && 
-			!avatar::Plights::Has(avatar::Plight::DOUBLE_HUNGER))
+		if (character::Plights::Has(character::Plight::HUNGER_IMMUNITY) &&
+			!character::Plights::Has(character::Plight::DOUBLE_HUNGER))
 		{
 			delta = 0.0;
 		}
@@ -89,13 +89,13 @@ namespace game
 	static size_t DetermineTurnsSpent()
 	{
 		size_t agingRate = 1;
-		if (avatar::Plights::Has(avatar::Plight::DOUBLE_AGING) &&
-			!avatar::Plights::Has(avatar::Plight::AGING_IMMUNITY))
+		if (character::Plights::Has(character::Plight::DOUBLE_AGING) &&
+			!character::Plights::Has(character::Plight::AGING_IMMUNITY))
 		{
 			agingRate = 2;
 		}
-		if (avatar::Plights::Has(avatar::Plight::AGING_IMMUNITY) &&
-			!avatar::Plights::Has(avatar::Plight::DOUBLE_AGING))
+		if (character::Plights::Has(character::Plight::AGING_IMMUNITY) &&
+			!character::Plights::Has(character::Plight::DOUBLE_AGING))
 		{
 			agingRate = 0;
 		}

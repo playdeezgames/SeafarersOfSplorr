@@ -10,7 +10,7 @@
 #include <Game.Character.Docked.h>
 #include <Game.Character.Items.h>
 #include <Game.Avatar.Quest.h>
-#include <Game.Avatar.Plights.h>
+#include <Game.Character.Plights.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Avatar.StatisticFormats.h>
 #include <Game.Colors.h>
@@ -44,15 +44,15 @@ namespace state::in_play
 
 	static void RefreshPlights()
 	{
-		auto inflicted = game::avatar::Plights::InflictedWith();
+		auto inflicted = game::character::Plights::InflictedWith();
 		if (!inflicted.empty())
 		{
 			Terminal::SetForeground(game::Colors::GRAY);
 			Terminal::WriteLine("Plights:");
 			for (auto& plight : inflicted)
 			{
-				Terminal::SetForeground((game::avatar::Plights::GetType(plight) == game::avatar::PlightType::CURSE) ? (game::Colors::RED) : (game::Colors::GREEN));
-				Terminal::WriteLine("{}", game::avatar::Plights::GetName(plight));
+				Terminal::SetForeground((game::character::Plights::GetType(plight) == game::character::PlightType::CURSE) ? (game::Colors::RED) : (game::Colors::GREEN));
+				Terminal::WriteLine("{}", game::character::Plights::GetName(plight));
 			}
 			Terminal::SetForeground(game::Colors::GRAY);
 		}

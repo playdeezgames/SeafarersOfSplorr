@@ -1,10 +1,10 @@
 #include <Common.RNG.h>
 #include <Data.Game.Character.Plight.h>
-#include "Game.Avatar.Plights.h"
+#include "Game.Character.Plights.h"
 #include <Game.Player.h>
 #include <map>
 #include <string>
-namespace game::avatar//20211017
+namespace game::character
 {
 	struct PlightDescriptor
 	{
