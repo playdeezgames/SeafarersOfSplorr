@@ -6,7 +6,7 @@
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Character.Docked.h>
-#include <Game.Avatar.Items.h>
+#include <Game.Character.Items.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
@@ -67,7 +67,7 @@ namespace state::in_play
 			Terminal::WriteLine("You purchase {} {} for {:.4f}.", units, game::Items::GetName(currentItem), totalPrice);
 			game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), -totalPrice);
 			game::islands::Markets::BuyItems(game::character::Docked::ReadLocation().value(), currentItem, units);
-			game::avatar::Items::Add(game::Player::GetAvatarId(), currentItem, units);
+			game::character::Items::Add(game::Player::GetAvatarId(), currentItem, units);
 			application::UIState::Write(::UIState::IN_PLAY_ISLAND_BUY);
 		}
 		else

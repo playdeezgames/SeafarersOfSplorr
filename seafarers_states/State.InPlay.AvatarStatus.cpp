@@ -8,7 +8,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Character.h>
 #include <Game.Character.Docked.h>
-#include <Game.Avatar.Items.h>
+#include <Game.Character.Items.h>
 #include <Game.Avatar.Quest.h>
 #include <Game.Avatar.Plights.h>
 #include <Game.Avatar.Statistics.h>

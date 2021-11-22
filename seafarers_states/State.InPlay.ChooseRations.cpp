@@ -5,7 +5,7 @@
 #include <Common.Data.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Character.h>
-#include <Game.Avatar.Items.h>
+#include <Game.Character.Items.h>
 #include <Game.Avatar.Rations.h>
 #include <Game.Colors.h>
 #include <Game.Items.h>
@@ -56,7 +56,7 @@ namespace state::in_play
 			}
 			if (entry.has_value())
 			{
-				Terminal::Write("(cargo: {})", game::avatar::Items::Read(avatarId, entry.value()));
+				Terminal::Write("(cargo: {})", game::character::Items::Read(avatarId, entry.value()));
 			}
 			Terminal::WriteLine();
 		}

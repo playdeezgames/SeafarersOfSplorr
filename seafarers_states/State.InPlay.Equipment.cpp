@@ -8,7 +8,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Character.h>
 #include <Game.Character.Equipment.h>
-#include <Game.Avatar.Items.h>
+#include <Game.Character.Items.h>
 #include <Game.Colors.h>
 #include <Game.EquipSlots.h>
 #include <Game.Items.h>

@@ -9,7 +9,7 @@
 #include <functional>
 #include "Game.Character.h"
 #include "Game.Character.Flags.h"
-#include "Game.Avatar.Items.h"
+#include "Game.Character.Items.h"
 #include "Game.Avatar.Plights.h"
 #include "Game.Avatar.Ship.h"
 #include "Game.Avatar.Statistics.h"
@@ -58,11 +58,11 @@ namespace game
 		if (game::avatar::Statistics::NeedToEat(avatarId, EAT_BENEFIT))
 		{
 			const game::Item rationItem = game::Item::RATIONS;//TODO: when we can choose rations for an avatar, this will change
-			auto rations = game::avatar::Items::Read(avatarId, rationItem);
+			auto rations = game::character::Items::Read(avatarId, rationItem);
 			if (rations > 0)
 			{
 				game::avatar::Statistics::Eat(avatarId, EAT_BENEFIT);
-				game::avatar::Items::Remove(avatarId, rationItem, 1);
+				game::character::Items::Remove(avatarId, rationItem, 1);
 				if (game::character::Flags::Has(avatarId, game::character::Flag::UNFED))
 				{
 					game::character::Flags::Clear(avatarId, game::character::Flag::UNFED);

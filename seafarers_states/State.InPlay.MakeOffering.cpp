@@ -10,7 +10,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Character.h>
 #include <Game.Character.Docked.h>
-#include <Game.Avatar.Items.h>
+#include <Game.Character.Items.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Demigods.h>
@@ -36,7 +36,7 @@ namespace state::in_play
 
 	static void UpdateItems()
 	{
-		items = game::avatar::Items::All(game::Player::GetAvatarId());
+		items = game::character::Items::All(game::Player::GetAvatarId());
 	}
 
 	static void RefreshItems()
@@ -100,7 +100,7 @@ namespace state::in_play
 		auto item = common::utility::Table::GetNthKey(items, hiliteRow).value();
 		auto location = game::character::Docked::ReadLocation().value();
 		auto island = game::Islands::Read(location).value();
-		game::avatar::Items::Remove(game::Player::GetAvatarId(), item, 1);
+		game::character::Items::Remove(game::Player::GetAvatarId(), item, 1);
 		OnOfferingResult(game::Demigods::MakeOffering(island.patronDemigod, item));
 		OnLeave();
 	}

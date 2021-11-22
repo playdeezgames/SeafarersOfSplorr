@@ -2,7 +2,7 @@
 #include <Data.Game.FishboardCell.h>
 #include <Data.Game.Fishery.h>
 #include <Data.Game.FishGame.h>
-#include "Game.Avatar.Items.h"
+#include "Game.Character.Items.h"
 #include "Game.Colors.h"
 #include "Game.Fishboard.h"
 #include "Game.Fisheries.h"
@@ -48,7 +48,7 @@ namespace game
 
 	void FishGame::AddBait()
 	{
-		avatar::Items::Remove(game::Player::GetAvatarId(), Item::BAIT, 1);
+		character::Items::Remove(game::Player::GetAvatarId(), Item::BAIT, 1);
 		data::game::FishGame::WriteGuesses(data::game::FishGame::ReadGuesses() + ADDITIONAL_GUESSES);
 	}
 }

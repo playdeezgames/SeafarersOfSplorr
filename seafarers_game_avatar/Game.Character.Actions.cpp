@@ -6,7 +6,7 @@
 #include "Game.Character.Action.h"
 #include "Game.Character.Actions.h"
 #include "Game.Character.Docked.h"
-#include "Game.Avatar.Items.h"
+#include "Game.Character.Items.h"
 #include "Game.Character.State.h"
 #include "Game.Character.StateTransition.h"
 #include "Game.Avatar.Statistics.h"
@@ -79,9 +79,9 @@ namespace game::character
 
 	static StateTransition OnStartFishing(int avatarId)
 	{
-		if (game::avatar::Items::Has(avatarId, Item::FISHING_POLE))
+		if (game::character::Items::Has(avatarId, Item::FISHING_POLE))
 		{
-			if (game::avatar::Items::Has(avatarId, Item::BAIT))
+			if (game::character::Items::Has(avatarId, Item::BAIT))
 			{
 				Fishboard::Generate();
 				return

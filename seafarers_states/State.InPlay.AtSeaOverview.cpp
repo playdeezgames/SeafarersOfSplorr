@@ -7,7 +7,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Character.Actions.h>
 #include <Game.Character.Docked.h>
-#include <Game.Avatar.Items.h>
+#include <Game.Character.Items.h>
 #include <Game.Avatar.Quest.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Avatar.Statistics.h>
@@ -32,8 +32,8 @@ namespace state::in_play
 	static bool IsFishingEnabled()
 	{
 		return
-			game::avatar::Items::Has(game::Player::GetAvatarId(), game::Item::FISHING_POLE) &&
-			game::avatar::Items::Has(game::Player::GetAvatarId(), game::Item::BAIT);
+			game::character::Items::Has(game::Player::GetAvatarId(), game::Item::FISHING_POLE) &&
+			game::character::Items::Has(game::Player::GetAvatarId(), game::Item::BAIT);
 	}
 
 	static bool RefreshDockableIslands()

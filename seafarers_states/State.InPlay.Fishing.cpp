@@ -6,7 +6,7 @@
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Character.Actions.h>
-#include <Game.Avatar.Items.h>
+#include <Game.Character.Items.h>
 #include <Game.Colors.h>
 #include <Game.Fishboard.h>
 #include <Game.FishGame.h>
@@ -124,7 +124,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::YELLOW);
 		if (game::FishGame::GetState() == 
 			game::FishGameState::OUT_OF_GUESSES && 
-			game::avatar::Items::Has(
+			game::character::Items::Has(
 				game::Player::GetAvatarId(), 
 				game::Item::BAIT))
 		{
@@ -190,7 +190,7 @@ namespace state::in_play
 
 	static bool OutOfGuessesInputHandler(const std::string& line)
 	{
-		if (line == "1" && game::avatar::Items::Has(game::Player::GetAvatarId(), game::Item::BAIT))
+		if (line == "1" && game::character::Items::Has(game::Player::GetAvatarId(), game::Item::BAIT))
 		{
 			game::FishGame::AddBait();
 			Refresh();

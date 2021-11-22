@@ -6,7 +6,7 @@
 #include <Common.Utility.Table.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Character.Docked.h>
-#include <Game.Avatar.Items.h>
+#include <Game.Character.Items.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
@@ -108,7 +108,7 @@ namespace state::in_play
 
 	static void CheckTonnage(game::ShipType desiredShip, double price)
 	{
-		if (game::avatar::Items::TotalTonnage(game::Player::GetAvatarId()) <= game::ShipTypes::GetTotalTonnage(desiredShip))
+		if (game::character::Items::TotalTonnage(game::Player::GetAvatarId()) <= game::ShipTypes::GetTotalTonnage(desiredShip))
 		{
 			Terminal::WriteLine();
 			Terminal::SetForeground(game::Colors::GREEN);

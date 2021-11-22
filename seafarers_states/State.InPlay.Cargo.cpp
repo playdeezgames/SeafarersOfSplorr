@@ -8,7 +8,7 @@
 #include <Common.Utility.Navigator.h>
 #include <format>
 #include <Game.Audio.Mux.h>
-#include <Game.Avatar.Items.h>
+#include <Game.Character.Items.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
@@ -29,12 +29,12 @@ namespace state::in_play
 
 	static void UpdateManifest()
 	{
-		manifest = game::avatar::Items::All(game::Player::GetAvatarId());
+		manifest = game::character::Items::All(game::Player::GetAvatarId());
 	}
 
 	static double GetTonnage()
 	{
-		return game::avatar::Items::TotalTonnage(game::Player::GetAvatarId());
+		return game::character::Items::TotalTonnage(game::Player::GetAvatarId());
 	}
 
 	static double GetAvailableTonnage()

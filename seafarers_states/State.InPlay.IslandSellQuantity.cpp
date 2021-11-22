@@ -6,7 +6,7 @@
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Character.Docked.h>
-#include <Game.Avatar.Items.h>
+#include <Game.Character.Items.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
@@ -32,7 +32,7 @@ namespace state::in_play
 		Terminal::WriteLine("Selling {}:", game::Items::GetName(currentItem));
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Unit price: {:.4f}.", unitPrice);
-		Terminal::WriteLine("You have {} units.", game::avatar::Items::Read(game::Player::GetAvatarId(), currentItem));
+		Terminal::WriteLine("You have {} units.", game::character::Items::Read(game::Player::GetAvatarId(), currentItem));
 
 		Terminal::ShowPrompt();
 	}
@@ -47,14 +47,14 @@ namespace state::in_play
 	{
 		auto unitPrice = game::islands::Items::GetSalePrices(game::character::Docked::ReadLocation().value())[currentItem];
 		int units = common::Data::ToInt(line);
-		if (units <= game::avatar::Items::Read(game::Player::GetAvatarId(), currentItem))
+		if (units <= game::character::Items::Read(game::Player::GetAvatarId(), currentItem))
 		{
 			double totalPrice = unitPrice * units;
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine("You sell {} {} for {:.4f}.", units, game::Items::GetName(currentItem), totalPrice);
 			game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), totalPrice);
 			game::islands::Markets::SellItems(game::character::Docked::ReadLocation().value(), currentItem, units);
-			game::avatar::Items::Remove(game::Player::GetAvatarId(), currentItem, units);
+			game::character::Items::Remove(game::Player::GetAvatarId(), currentItem, units);
 			application::UIState::Write(::UIState::IN_PLAY_ISLAND_SELL);
 		}
 		else

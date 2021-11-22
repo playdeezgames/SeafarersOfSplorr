@@ -7,7 +7,7 @@
 #include <Common.Utility.Dispatcher.h>
 #include <format>
 #include <Game.Audio.Mux.h>
-#include <Game.Avatar.Items.h>
+#include <Game.Character.Items.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.BerthType.h>

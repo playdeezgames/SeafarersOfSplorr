@@ -2,10 +2,10 @@
 #include <Common.Utility.Optional.h>
 #include <Common.Utility.Table.h>
 #include <Data.Game.Character.Items.h>
-#include "Game.Avatar.Items.h"
+#include "Game.Character.Items.h"
 #include "Game.Items.h"
 #include <Game.Player.h>
-namespace game::avatar
+namespace game::character
 {
 	std::map<game::Item, size_t> Items::All(int avatarId)
 	{

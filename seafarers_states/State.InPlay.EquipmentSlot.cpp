@@ -6,7 +6,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Character.h>
 #include <Game.Character.Equipment.h>
-#include <Game.Avatar.Items.h>
+#include <Game.Character.Items.h>
 #include <Game.Colors.h>
 #include <Game.EquipSlots.h>
 #include <Game.Items.h>
@@ -71,7 +71,7 @@ namespace state::in_play
 		auto equippableItems = game::EquipSlots::GetItems(equipmentSlot);//add other possible items
 		for (auto equippableItem : equippableItems)
 		{
-			if (game::avatar::Items::Has(CrewDetail::GetAvatarId(), equippableItem))
+			if (game::character::Items::Has(CrewDetail::GetAvatarId(), equippableItem))
 			{
 				candidates.insert(equippableItem);
 			}
@@ -96,7 +96,7 @@ namespace state::in_play
 		if (item)
 		{
 			//TODO: write to terminal that item was unequipped
-			game::avatar::Items::Add(CrewDetail::GetAvatarId(), item.value(), 1);
+			game::character::Items::Add(CrewDetail::GetAvatarId(), item.value(), 1);
 			game::character::Equipment::Unequip(CrewDetail::GetAvatarId(), equipmentSlot);
 		}
 	}
@@ -106,7 +106,7 @@ namespace state::in_play
 		if (item)
 		{
 			//TODO: write to terminal that item was equipped
-			game::avatar::Items::Remove(CrewDetail::GetAvatarId(), item.value(), 1);
+			game::character::Items::Remove(CrewDetail::GetAvatarId(), item.value(), 1);
 			game::character::Equipment::Equip(CrewDetail::GetAvatarId(), equipmentSlot, item.value());
 		}
 	}

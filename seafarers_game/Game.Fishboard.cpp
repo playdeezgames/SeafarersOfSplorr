@@ -2,7 +2,7 @@
 #include <Data.Game.FishboardCell.h>
 #include <Data.Game.Fishery.h>
 #include <Data.Game.FishGame.h>
-#include "Game.Avatar.Items.h"
+#include "Game.Character.Items.h"
 #include "Game.Colors.h"
 #include "Game.Fishboard.h"
 #include "Game.Fisheries.h"
@@ -140,7 +140,7 @@ namespace game//20211013
 	{
 		ClearFishGame();
 		ClearFishboard();
-		avatar::Items::Remove(game::Player::GetAvatarId(), BAIT_ITEM, 1);
+		character::Items::Remove(game::Player::GetAvatarId(), BAIT_ITEM, 1);
 		PlaceFish(GenerateFish());
 	}
 
@@ -155,7 +155,7 @@ namespace game//20211013
 	static void ReelInFish(Fish fish)
 	{
 		auto item = Fishes::GetItem(fish);
-		game::avatar::Items::Add(game::Player::GetAvatarId(), item, 1);
+		game::character::Items::Add(game::Player::GetAvatarId(), item, 1);
 	}
 
 	static void DepleteFishery()

@@ -4,7 +4,7 @@
 #include <Data.Game.Ship.Statistic.h>
 #include <Data.Game.Ship.h>
 #include "Game.Avatar.Ship.h"
-#include "Game.Avatar.Items.h"
+#include "Game.Character.Items.h"
 #include <Game.Ship.h>
 #include <Game.ShipTypes.h>
 namespace game::avatar
@@ -44,7 +44,7 @@ namespace game::avatar
 			{
 				return
 					game::ShipTypes::GetTotalTonnage(shipType) -
-					game::avatar::Items::TotalTonnage(avatarId);
+					game::character::Items::TotalTonnage(avatarId);
 			}).value_or(0.0);
 	}
 
