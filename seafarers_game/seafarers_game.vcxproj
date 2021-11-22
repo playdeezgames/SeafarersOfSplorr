@@ -20,6 +20,27 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.BerthType.h" />
+    <ClInclude Include="Game.Character.Action.h" />
+    <ClInclude Include="Game.Character.Actions.h" />
+    <ClInclude Include="Game.Character.Docked.h" />
+    <ClInclude Include="Game.Character.DockResult.h" />
+    <ClInclude Include="Game.Character.Equipment.h" />
+    <ClInclude Include="Game.Character.Flag.h" />
+    <ClInclude Include="Game.Character.Flags.h" />
+    <ClInclude Include="Game.Character.h" />
+    <ClInclude Include="Game.Character.Items.h" />
+    <ClInclude Include="Game.Character.Plight.h" />
+    <ClInclude Include="Game.Character.Plights.h" />
+    <ClInclude Include="Game.Character.PlightType.h" />
+    <ClInclude Include="Game.Character.Quest.h" />
+    <ClInclude Include="Game.Character.Rations.h" />
+    <ClInclude Include="Game.Character.Ship.h" />
+    <ClInclude Include="Game.Character.ShipStatistics.h" />
+    <ClInclude Include="Game.Character.State.h" />
+    <ClInclude Include="Game.Character.StateTransition.h" />
+    <ClInclude Include="Game.Character.Statistic.h" />
+    <ClInclude Include="Game.Character.StatisticFormats.h" />
+    <ClInclude Include="Game.Character.Statistics.h" />
     <ClInclude Include="Game.EquipSlot.h" />
     <ClInclude Include="Game.EquipSlots.h" />
     <ClInclude Include="Game.Fishboard.h" />
@@ -58,6 +79,7 @@
     <ClInclude Include="Game.OfferingResult.h" />
     <ClInclude Include="Game.Player.h" />
     <ClInclude Include="Game.Quest.h" />
+    <ClInclude Include="Game.Ship.Crew.h" />
     <ClInclude Include="Game.Ship.h" />
     <ClInclude Include="Game.Ship.State.h" />
     <ClInclude Include="Game.ShipNames.h" />
@@ -71,6 +93,19 @@
     <ClInclude Include="Game.Colors.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Game.Character.Actions.cpp" />
+    <ClCompile Include="Game.Character.cpp" />
+    <ClCompile Include="Game.Character.Docked.cpp" />
+    <ClCompile Include="Game.Character.Equipment.cpp" />
+    <ClCompile Include="Game.Character.Flags.cpp" />
+    <ClCompile Include="Game.Character.Items.cpp" />
+    <ClCompile Include="Game.Character.Plights.cpp" />
+    <ClCompile Include="Game.Character.Quest.cpp" />
+    <ClCompile Include="Game.Character.Rations.cpp" />
+    <ClCompile Include="Game.Character.Ship.cpp" />
+    <ClCompile Include="Game.Character.ShipStatistics.cpp" />
+    <ClCompile Include="Game.Character.StatisticFormats.cpp" />
+    <ClCompile Include="Game.Character.Statistics.cpp" />
     <ClCompile Include="Game.Commodities.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game.Demigods.cpp" />
@@ -94,6 +129,7 @@
     <ClCompile Include="Game.Items.cpp" />
     <ClCompile Include="Game.Player.cpp" />
     <ClCompile Include="Game.Ship.cpp" />
+    <ClCompile Include="Game.Ship.Crew.cpp" />
     <ClCompile Include="Game.ShipNames.cpp" />
     <ClCompile Include="Game.Ships.cpp" />
     <ClCompile Include="Game.ShipTypes.cpp" />

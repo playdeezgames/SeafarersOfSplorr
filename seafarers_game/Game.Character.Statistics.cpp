@@ -6,8 +6,8 @@
 #include "Game.Character.Equipment.h"
 #include "Game.Character.Statistic.h"
 #include "Game.Character.Statistics.h"
-#include <Game.Item.h>
-#include <Game.Player.h>
+#include "Game.Item.h"
+#include "Game.Player.h"
 #include <map>
 #include <list>
 namespace game::character

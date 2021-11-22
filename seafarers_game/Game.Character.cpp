@@ -14,12 +14,12 @@
 #include "Game.Character.Ship.h"
 #include "Game.Character.Statistics.h"
 #include "Game.Character.StateTransition.h"
-#include <Game.Items.h>
-#include <Game.Player.h>
-#include <Game.Ship.h>
-#include <Game.ShipNames.h>
-#include <Game.ShipTypes.h>
-#include <Game.World.h>
+#include "Game.Items.h"
+#include "Game.Player.h"
+#include "Game.Ship.h"
+#include "Game.ShipNames.h"
+#include "Game.ShipTypes.h"
+#include "Game.World.h"
 #include <map>
 namespace game
 {

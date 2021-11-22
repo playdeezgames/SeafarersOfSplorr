@@ -1,6 +1,6 @@
 #include <Data.Game.Character.Rations.h>
 #include "Game.Character.Rations.h"
-#include <Game.Items.h>
+#include "Game.Items.h"
 namespace game::character
 {
 	std::optional<game::Item> Rations::Read(int avatarId)

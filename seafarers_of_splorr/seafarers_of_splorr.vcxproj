@@ -172,9 +172,6 @@
     <ProjectReference Include="..\seafarers_game\seafarers_game.vcxproj">
       <Project>{6e53f361-de75-4341-b9ae-016854c64749}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\seafarers_game_avatar\seafarers_game_avatar.vcxproj">
-      <Project>{ae14f309-e23c-4041-ace5-59c0b6f1ddc8}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\seafarers_states\seafarers_states.vcxproj">
       <Project>{27d2bb30-00fa-4268-a380-6a378d3b5b44}</Project>
     </ProjectReference>

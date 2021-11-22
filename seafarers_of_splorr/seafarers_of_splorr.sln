@@ -38,8 +38,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Stuff", "Stuff", "{F360E389
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "seafarers_game_avatar", "..\seafarers_game_avatar\seafarers_game_avatar.vcxproj", "{AE14F309-E23C-4041-ACE5-59C0B6F1DDC8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -152,14 +150,6 @@ Global
 		{B07E388A-92F4-4AC2-85F8-64A9334A8B98}.Release|x64.Build.0 = Release|x64
 		{B07E388A-92F4-4AC2-85F8-64A9334A8B98}.Release|x86.ActiveCfg = Release|Win32
 		{B07E388A-92F4-4AC2-85F8-64A9334A8B98}.Release|x86.Build.0 = Release|Win32
-		{AE14F309-E23C-4041-ACE5-59C0B6F1DDC8}.Debug|x64.ActiveCfg = Debug|x64
-		{AE14F309-E23C-4041-ACE5-59C0B6F1DDC8}.Debug|x64.Build.0 = Debug|x64
-		{AE14F309-E23C-4041-ACE5-59C0B6F1DDC8}.Debug|x86.ActiveCfg = Debug|Win32
-		{AE14F309-E23C-4041-ACE5-59C0B6F1DDC8}.Debug|x86.Build.0 = Debug|Win32
-		{AE14F309-E23C-4041-ACE5-59C0B6F1DDC8}.Release|x64.ActiveCfg = Release|x64
-		{AE14F309-E23C-4041-ACE5-59C0B6F1DDC8}.Release|x64.Build.0 = Release|x64
-		{AE14F309-E23C-4041-ACE5-59C0B6F1DDC8}.Release|x86.ActiveCfg = Release|Win32
-		{AE14F309-E23C-4041-ACE5-59C0B6F1DDC8}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -178,7 +168,6 @@ Global
 		{B4B0AA1C-4879-4763-BE82-D1BDC254EA8B} = {A46A500D-99E1-466D-8FDE-0908578338BE}
 		{27D2BB30-00FA-4268-A380-6A378D3B5B44} = {A46A500D-99E1-466D-8FDE-0908578338BE}
 		{B07E388A-92F4-4AC2-85F8-64A9334A8B98} = {10B67714-AAD9-4FBA-A669-2A22A2D05E24}
-		{AE14F309-E23C-4041-ACE5-59C0B6F1DDC8} = {A46A500D-99E1-466D-8FDE-0908578338BE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0CFCE817-B5F1-46A7-AA91-70964EF1F042}

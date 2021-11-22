@@ -18,46 +18,6 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Game.Character.Action.h" />
-    <ClInclude Include="Game.Character.Actions.h" />
-    <ClInclude Include="Game.Character.Docked.h" />
-    <ClInclude Include="Game.Character.DockResult.h" />
-    <ClInclude Include="Game.Character.Equipment.h" />
-    <ClInclude Include="Game.Character.Flag.h" />
-    <ClInclude Include="Game.Character.Flags.h" />
-    <ClInclude Include="Game.Character.h" />
-    <ClInclude Include="Game.Character.Items.h" />
-    <ClInclude Include="Game.Character.Plight.h" />
-    <ClInclude Include="Game.Character.Plights.h" />
-    <ClInclude Include="Game.Character.PlightType.h" />
-    <ClInclude Include="Game.Character.Quest.h" />
-    <ClInclude Include="Game.Character.Rations.h" />
-    <ClInclude Include="Game.Character.Ship.h" />
-    <ClInclude Include="Game.Character.ShipStatistics.h" />
-    <ClInclude Include="Game.Character.State.h" />
-    <ClInclude Include="Game.Character.StateTransition.h" />
-    <ClInclude Include="Game.Character.Statistic.h" />
-    <ClInclude Include="Game.Character.StatisticFormats.h" />
-    <ClInclude Include="Game.Character.Statistics.h" />
-    <ClInclude Include="Game.Ship.Crew.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Game.Character.Actions.cpp" />
-    <ClCompile Include="Game.Character.cpp" />
-    <ClCompile Include="Game.Character.Docked.cpp" />
-    <ClCompile Include="Game.Character.Equipment.cpp" />
-    <ClCompile Include="Game.Character.Flags.cpp" />
-    <ClCompile Include="Game.Character.Items.cpp" />
-    <ClCompile Include="Game.Character.Plights.cpp" />
-    <ClCompile Include="Game.Character.Quest.cpp" />
-    <ClCompile Include="Game.Character.Rations.cpp" />
-    <ClCompile Include="Game.Character.Ship.cpp" />
-    <ClCompile Include="Game.Character.ShipStatistics.cpp" />
-    <ClCompile Include="Game.Character.StatisticFormats.cpp" />
-    <ClCompile Include="Game.Avatar.Statistics.cpp" />
-    <ClCompile Include="Game.Ship.Crew.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

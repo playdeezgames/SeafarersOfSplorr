@@ -6,8 +6,8 @@
 #include "Game.Character.Quest.h"
 #include "Game.Character.Statistics.h"
 #include "Game.Islands.h"
-#include <Game.Player.h>
-#include <Game.World.h>
+#include "Game.Player.h"
+#include "Game.World.h"
 namespace game::character
 {
 	static void AcceptQuest(const data::game::island::Quest& quest, const common::XY<double>& location)
