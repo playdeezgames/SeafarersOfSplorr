@@ -9,7 +9,7 @@
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
-#include <Game.Avatar.Docked.h>
+#include <Game.Character.Docked.h>
 #include <Game.Avatar.Items.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
@@ -98,7 +98,7 @@ namespace state::in_play
 	static void OfferItem(int hiliteRow)
 	{
 		auto item = common::utility::Table::GetNthKey(items, hiliteRow).value();
-		auto location = game::avatar::Docked::ReadLocation().value();
+		auto location = game::character::Docked::ReadLocation().value();
 		auto island = game::Islands::Read(location).value();
 		game::avatar::Items::Remove(game::Player::GetAvatarId(), item, 1);
 		OnOfferingResult(game::Demigods::MakeOffering(island.patronDemigod, item));

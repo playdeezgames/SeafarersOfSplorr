@@ -4,7 +4,7 @@
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Character.Actions.h>
-#include <Game.Avatar.Docked.h>
+#include <Game.Character.Docked.h>
 #include <Game.Avatar.Quest.h>
 #include <Game.Avatar.ShipStatistics.h>
 #include <Game.Colors.h>
@@ -46,7 +46,7 @@ namespace state::in_play
 	static void OnDock()
 	{
 		auto quest = game::avatar::Quest::Read();
-		if (game::avatar::Docked::Dock() == game::avatar::DockResult::COMPLETED_QUEST)
+		if (game::character::Docked::Dock() == game::character::DockResult::COMPLETED_QUEST)
 		{
 			visuals::Messages::Write(
 			{

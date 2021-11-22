@@ -3,7 +3,7 @@
 #include <Data.SQLite.Stores.h>
 #include "Game.h"
 #include <Game.Avatar.h>
-#include <Game.Avatar.Docked.h>
+#include <Game.Character.Docked.h>
 #include <Game.Avatar.Equipment.h>
 #include <Game.Avatar.Items.h>
 #include <Game.Avatar.Plights.h>
@@ -41,7 +41,7 @@ namespace game
 		World::Reset(difficulty);//must be done first to establish world size
 		Ships::Reset(difficulty);
 		Avatar::Reset(difficulty, Player::GetAvatarId());
-		avatar::Docked::Reset(difficulty);
+		character::Docked::Reset(difficulty);
 		avatar::Equipment::Reset(difficulty);
 		avatar::Items::Reset(difficulty);
 		avatar::Plights::Reset(difficulty);

@@ -5,7 +5,7 @@
 #include <Common.Data.h>
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Audio.Mux.h>
-#include <Game.Avatar.Docked.h>
+#include <Game.Character.Docked.h>
 #include <Game.Avatar.Items.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Avatar.Statistics.h>
@@ -26,7 +26,7 @@ namespace state::in_play
 	{
 		Terminal::Reinitialize();
 
-		auto unitPrice = game::islands::Items::GetPurchasePrices(game::avatar::Docked::ReadLocation().value())[currentItem];
+		auto unitPrice = game::islands::Items::GetPurchasePrices(game::character::Docked::ReadLocation().value())[currentItem];
 		auto money = game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId());
 		double availableTonnage = game::avatar::Ship::AvailableTonnage(game::Player::GetAvatarId()).value();
 		double unitTonnage = game::Items::GetUnitTonnage(currentItem);
@@ -52,7 +52,7 @@ namespace state::in_play
 
 	static void OnOtherInput(const std::string& line)
 	{
-		auto unitPrice = game::islands::Items::GetPurchasePrices(game::avatar::Docked::ReadLocation().value())[currentItem];
+		auto unitPrice = game::islands::Items::GetPurchasePrices(game::character::Docked::ReadLocation().value())[currentItem];
 		auto money = game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId());
 		double availableTonnage = game::avatar::Ship::AvailableTonnage(game::Player::GetAvatarId()).value();
 		double unitTonnage = game::Items::GetUnitTonnage(currentItem);
@@ -66,7 +66,7 @@ namespace state::in_play
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine("You purchase {} {} for {:.4f}.", units, game::Items::GetName(currentItem), totalPrice);
 			game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), -totalPrice);
-			game::islands::Markets::BuyItems(game::avatar::Docked::ReadLocation().value(), currentItem, units);
+			game::islands::Markets::BuyItems(game::character::Docked::ReadLocation().value(), currentItem, units);
 			game::avatar::Items::Add(game::Player::GetAvatarId(), currentItem, units);
 			application::UIState::Write(::UIState::IN_PLAY_ISLAND_BUY);
 		}

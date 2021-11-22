@@ -11,7 +11,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
 #include <Game.Character.Actions.h>
-#include <Game.Avatar.Docked.h>
+#include <Game.Character.Docked.h>
 #include <Game.Avatar.Items.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Avatar.Statistics.h>
@@ -38,7 +38,7 @@ namespace state::in_play
 
 	static void UpdateUnitPrices()
 	{
-		unitPrices = game::islands::Items::GetPurchasePrices(game::avatar::Docked::ReadLocation().value());
+		unitPrices = game::islands::Items::GetPurchasePrices(game::character::Docked::ReadLocation().value());
 	}
 
 	static void RefreshUnitPrices()

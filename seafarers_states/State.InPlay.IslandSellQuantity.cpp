@@ -5,7 +5,7 @@
 #include <Common.Data.h>
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Audio.Mux.h>
-#include <Game.Avatar.Docked.h>
+#include <Game.Character.Docked.h>
 #include <Game.Avatar.Items.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Avatar.Statistics.h>
@@ -26,7 +26,7 @@ namespace state::in_play
 	{
 		Terminal::Reinitialize();
 
-		auto unitPrice = game::islands::Items::GetSalePrices(game::avatar::Docked::ReadLocation().value())[currentItem];
+		auto unitPrice = game::islands::Items::GetSalePrices(game::character::Docked::ReadLocation().value())[currentItem];
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Selling {}:", game::Items::GetName(currentItem));
@@ -45,7 +45,7 @@ namespace state::in_play
 
 	static void OnOtherInput(const std::string& line)
 	{
-		auto unitPrice = game::islands::Items::GetSalePrices(game::avatar::Docked::ReadLocation().value())[currentItem];
+		auto unitPrice = game::islands::Items::GetSalePrices(game::character::Docked::ReadLocation().value())[currentItem];
 		int units = common::Data::ToInt(line);
 		if (units <= game::avatar::Items::Read(game::Player::GetAvatarId(), currentItem))
 		{
@@ -53,7 +53,7 @@ namespace state::in_play
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine("You sell {} {} for {:.4f}.", units, game::Items::GetName(currentItem), totalPrice);
 			game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), totalPrice);
-			game::islands::Markets::SellItems(game::avatar::Docked::ReadLocation().value(), currentItem, units);
+			game::islands::Markets::SellItems(game::character::Docked::ReadLocation().value(), currentItem, units);
 			game::avatar::Items::Remove(game::Player::GetAvatarId(), currentItem, units);
 			application::UIState::Write(::UIState::IN_PLAY_ISLAND_SELL);
 		}

@@ -5,7 +5,7 @@
 #include <functional>
 #include "Game.Character.Action.h"
 #include "Game.Character.Actions.h"
-#include "Game.Avatar.Docked.h"
+#include "Game.Character.Docked.h"
 #include "Game.Avatar.Items.h"
 #include "Game.Character.State.h"
 #include "Game.Character.StateTransition.h"
@@ -20,7 +20,7 @@ namespace game::character
 
 	static StateTransition OnUndock(int avatarId)
 	{
-		auto location = game::avatar::Docked::ReadLocation();
+		auto location = game::character::Docked::ReadLocation();
 		auto island = game::Islands::Read(location.value()).value();
 		data::game::character::Dock::Clear(avatarId);
 		return {
@@ -34,7 +34,7 @@ namespace game::character
 
 	static StateTransition OnEnterDarkAlley(int avatarId)
 	{
-		auto location = game::avatar::Docked::ReadLocation().value();
+		auto location = game::character::Docked::ReadLocation().value();
 		auto data = data::game::island::DarkAlley::Read(location).value();
 		auto infamy = game::avatar::Statistics::GetInfamy(avatarId);
 		if (infamy < data.infamyRequirement)

@@ -21,8 +21,8 @@
   <ItemGroup>
     <ClInclude Include="Game.Character.Action.h" />
     <ClInclude Include="Game.Character.Actions.h" />
-    <ClInclude Include="Game.Avatar.Docked.h" />
-    <ClInclude Include="Game.Avatar.DockResult.h" />
+    <ClInclude Include="Game.Character.Docked.h" />
+    <ClInclude Include="Game.Character.DockResult.h" />
     <ClInclude Include="Game.Avatar.Equipment.h" />
     <ClInclude Include="Game.Avatar.Flag.h" />
     <ClInclude Include="Game.Avatar.Flags.h" />
@@ -45,7 +45,7 @@
   <ItemGroup>
     <ClCompile Include="Game.Character.Actions.cpp" />
     <ClCompile Include="Game.Avatar.cpp" />
-    <ClCompile Include="Game.Avatar.Docked.cpp" />
+    <ClCompile Include="Game.Character.Docked.cpp" />
     <ClCompile Include="Game.Avatar.Equipment.cpp" />
     <ClCompile Include="Game.Avatar.Flags.cpp" />
     <ClCompile Include="Game.Avatar.Items.cpp" />

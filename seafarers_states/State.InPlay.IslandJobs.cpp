@@ -9,7 +9,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
 #include <Game.Character.Actions.h>
-#include <Game.Avatar.Docked.h>
+#include <Game.Character.Docked.h>
 #include <Game.Avatar.Quest.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Colors.h>
@@ -26,7 +26,7 @@ namespace state::in_play
 
 	static void OnAccept()//TODO: make this more declarative
 	{
-		switch (game::avatar::Quest::Accept(game::avatar::Docked::ReadLocation().value()))
+		switch (game::avatar::Quest::Accept(game::character::Docked::ReadLocation().value()))
 		{
 		case game::avatar::AcceptQuestResult::ACCEPTED_QUEST:
 			game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::ENTER_DOCK);
@@ -77,7 +77,7 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		auto location = game::avatar::Docked::ReadLocation().value();
+		auto location = game::character::Docked::ReadLocation().value();
 		auto quest = game::islands::Quests::Read(location);
 		if (quest)
 		{

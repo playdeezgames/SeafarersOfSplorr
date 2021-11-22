@@ -5,7 +5,7 @@
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Character.Actions.h>
-#include <Game.Avatar.Docked.h>
+#include <Game.Character.Docked.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.DarkAlley.h>
@@ -19,7 +19,7 @@ namespace state::in_play
 
 	static common::XY<double> ReadLocation()
 	{
-		return game::avatar::Docked::ReadLocation().value();
+		return game::character::Docked::ReadLocation().value();
 	}
 
 	static void Refresh()

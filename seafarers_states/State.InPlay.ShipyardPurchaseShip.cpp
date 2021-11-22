@@ -5,7 +5,7 @@
 #include <Common.Data.h>
 #include <Common.Utility.Table.h>
 #include <Game.Audio.Mux.h>
-#include <Game.Avatar.Docked.h>
+#include <Game.Character.Docked.h>
 #include <Game.Avatar.Items.h>
 #include <Game.Avatar.Ship.h>
 #include <Game.Avatar.Statistics.h>
@@ -29,7 +29,7 @@ namespace state::in_play
 
 	static void UpdateShipPrices()
 	{
-		auto location = game::avatar::Docked::ReadLocation().value();
+		auto location = game::character::Docked::ReadLocation().value();
 		auto prices = game::islands::Ships::GetPurchasePrices(location);
 		auto tradeIn = game::islands::Ships::GetSalePrice(location, game::Ship::GetShipType(game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value()).value());
 		shipPrices.clear();
@@ -93,7 +93,7 @@ namespace state::in_play
 
 	static void BuyShip(game::ShipType desiredShipType, double price)
 	{
-		auto location = game::avatar::Docked::ReadLocation().value();
+		auto location = game::character::Docked::ReadLocation().value();
 		auto currentShipId = game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value();
 		auto currentShipType = game::Ship::GetShipType(currentShipId).value();
 		game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), -price);

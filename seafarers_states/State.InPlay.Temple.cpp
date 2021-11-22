@@ -8,7 +8,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
 #include <Game.Character.Actions.h>
-#include <Game.Avatar.Docked.h>
+#include <Game.Character.Docked.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>
 #include <Game.Player.h>
@@ -22,7 +22,7 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		auto location = game::avatar::Docked::ReadLocation().value();
+		auto location = game::character::Docked::ReadLocation().value();
 		auto island = game::Islands::Read(location).value();
 		Terminal::Reinitialize();
 

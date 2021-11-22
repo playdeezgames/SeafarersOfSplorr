@@ -4,7 +4,7 @@
 #include <Game.h>
 #include <Game.Avatar.h>
 #include <Game.Character.Actions.h>
-#include <Game.Avatar.Docked.h>
+#include <Game.Character.Docked.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Player.h>
 #include <Visuals.Confirmations.h>

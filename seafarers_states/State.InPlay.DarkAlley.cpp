@@ -6,7 +6,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
 #include <Game.Character.Actions.h>
-#include <Game.Avatar.Docked.h>
+#include <Game.Character.Docked.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.DarkAlley.h>
@@ -33,7 +33,7 @@ namespace state::in_play
 
 	static double GetMinimumWager()
 	{
-		return game::islands::DarkAlley::GetMinimumWager(game::avatar::Docked::ReadLocation().value()).value();
+		return game::islands::DarkAlley::GetMinimumWager(game::character::Docked::ReadLocation().value()).value();
 	}
 
 	static const auto ReadMoney = game::avatar::Statistics::ReadMoney;

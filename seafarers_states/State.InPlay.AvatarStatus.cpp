@@ -7,7 +7,7 @@
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Avatar.h>
-#include <Game.Avatar.Docked.h>
+#include <Game.Character.Docked.h>
 #include <Game.Avatar.Items.h>
 #include <Game.Avatar.Quest.h>
 #include <Game.Avatar.Plights.h>

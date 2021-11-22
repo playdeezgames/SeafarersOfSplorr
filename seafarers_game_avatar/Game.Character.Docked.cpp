@@ -4,7 +4,7 @@
 #include <format>
 #include <functional>
 #include "Game.Avatar.h"
-#include "Game.Avatar.Docked.h"
+#include "Game.Character.Docked.h"
 #include "Game.Character.StateTransition.h"
 #include "Game.Avatar.Quest.h"
 #include "Game.Avatar.Statistics.h"
@@ -13,7 +13,7 @@
 #include "Game.Islands.h"
 #include <Game.Player.h>
 #include <map>
-namespace game::avatar
+namespace game::character
 {
 	void Docked::Reset(const game::Difficulty&)
 	{
@@ -34,7 +34,7 @@ namespace game::avatar
 		std::optional<DockResult> result = DockResult::DOCKED;
 		game::Islands::AddVisit(
 			location,
-			Statistics::GetTurnsRemaining(game::Player::GetAvatarId()));
+			game::avatar::Statistics::GetTurnsRemaining(game::Player::GetAvatarId()));
 		game::islands::Quests::Update(location);
 		if (game::avatar::Quest::Complete(location))
 		{

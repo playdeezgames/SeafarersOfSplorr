@@ -6,7 +6,7 @@
 #include <Game.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Character.Actions.h>
-#include <Game.Avatar.Docked.h>
+#include <Game.Character.Docked.h>
 #include <Game.Avatar.Items.h>
 #include <Game.Avatar.Quest.h>
 #include <Game.Avatar.Ship.h>
