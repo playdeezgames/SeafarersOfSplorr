@@ -1,5 +1,5 @@
-#include "Game.Avatar.StatisticFormats.h"
-namespace game::avatar//20211017
+#include "Game.Character.StatisticFormats.h"
+namespace game::character
 {
 	const std::string StatisticFormats::HEALTH = "\x83 {:.0f}";
 	const std::string StatisticFormats::BRAWLING = "\x88 {:.1f}";

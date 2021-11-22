@@ -4,8 +4,8 @@
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Character.Docked.h>
-#include <Game.Avatar.Statistics.h>
-#include <Game.Avatar.ShipStatistics.h>
+#include <Game.Character.Statistics.h>
+#include <Game.Character.ShipStatistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.Commodities.h>
 #include <Game.Player.h>
@@ -25,7 +25,7 @@ namespace state::in_play
 			{
 					{game::Commodity::LABOR, 
 						game::World::GetUnfoulingLaborMultiplier() * 
-						game::avatar::ShipStatistics::GetFouling()}
+						game::character::ShipStatistics::GetFouling()}
 			});
 	}
 
@@ -41,7 +41,7 @@ namespace state::in_play
 		{
 			Terminal::SetForeground(game::Colors::GRAY);
 			Terminal::WriteLine("The price is {:.4f}.", price);
-			if (game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId()) >= price)
+			if (game::character::Statistics::ReadMoney(game::Player::GetAvatarId()) >= price)
 			{
 				Terminal::SetForeground(game::Colors::YELLOW);
 				Terminal::WriteLine("1) Clean hull");
@@ -68,11 +68,11 @@ namespace state::in_play
 	static void OnCleanHull()
 	{
 		double price = GetUnfoulingPrice();
-		if (price>0 && game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId()) >= price)
+		if (price>0 && game::character::Statistics::ReadMoney(game::Player::GetAvatarId()) >= price)
 		{
-			game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), -price);
-			game::avatar::ShipStatistics::CleanHull(game::Side::STARBOARD);
-			game::avatar::ShipStatistics::CleanHull(game::Side::PORT);
+			game::character::Statistics::ChangeMoney(game::Player::GetAvatarId(), -price);
+			game::character::ShipStatistics::CleanHull(game::Side::STARBOARD);
+			game::character::ShipStatistics::CleanHull(game::Side::PORT);
 			visuals::Messages::Write({ "You unfoul yer ship!" ,{}});
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		}

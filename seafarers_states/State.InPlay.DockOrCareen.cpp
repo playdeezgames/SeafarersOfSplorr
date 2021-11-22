@@ -6,7 +6,7 @@
 #include <Game.Character.Actions.h>
 #include <Game.Character.Docked.h>
 #include <Game.Character.Quest.h>
-#include <Game.Avatar.ShipStatistics.h>
+#include <Game.Character.ShipStatistics.h>
 #include <Game.Colors.h>
 #include <Game.Player.h>
 #include <Game.Ship.h>
@@ -25,8 +25,8 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Dock or Careen:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Port fouling {:.0f}%", game::avatar::ShipStatistics::GetFoulingPercentage(game::Side::PORT));
-		Terminal::WriteLine("Starboard fouling {:.0f}%", game::avatar::ShipStatistics::GetFoulingPercentage(game::Side::STARBOARD));
+		Terminal::WriteLine("Port fouling {:.0f}%", game::character::ShipStatistics::GetFoulingPercentage(game::Side::PORT));
+		Terminal::WriteLine("Starboard fouling {:.0f}%", game::character::ShipStatistics::GetFoulingPercentage(game::Side::STARBOARD));
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Dock");

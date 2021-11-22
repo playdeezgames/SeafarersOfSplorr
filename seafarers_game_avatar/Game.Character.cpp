@@ -12,7 +12,7 @@
 #include "Game.Character.Items.h"
 #include "Game.Character.Plights.h"
 #include "Game.Character.Ship.h"
-#include "Game.Avatar.Statistics.h"
+#include "Game.Character.Statistics.h"
 #include "Game.Character.StateTransition.h"
 #include <Game.Items.h>
 #include <Game.Player.h>
@@ -42,26 +42,26 @@ namespace game
 	static void ApplyHunger(int avatarId)
 	{
 		double delta = DetermineHungerRate();
-		if (game::avatar::Statistics::IsStarving(avatarId))
+		if (game::character::Statistics::IsStarving(avatarId))
 		{
-			game::avatar::Statistics::ChangeHealth(avatarId, delta);
+			game::character::Statistics::ChangeHealth(avatarId, delta);
 		}
 		else
 		{
-			game::avatar::Statistics::ChangeSatiety(avatarId, delta);
+			game::character::Statistics::ChangeSatiety(avatarId, delta);
 		}
 	}
 
 	static void ApplyEating(int avatarId)
 	{
 		const double EAT_BENEFIT = 10.0;
-		if (game::avatar::Statistics::NeedToEat(avatarId, EAT_BENEFIT))
+		if (game::character::Statistics::NeedToEat(avatarId, EAT_BENEFIT))
 		{
 			const game::Item rationItem = game::Item::RATIONS;//TODO: when we can choose rations for an avatar, this will change
 			auto rations = game::character::Items::Read(avatarId, rationItem);
 			if (rations > 0)
 			{
-				game::avatar::Statistics::Eat(avatarId, EAT_BENEFIT);
+				game::character::Statistics::Eat(avatarId, EAT_BENEFIT);
 				game::character::Items::Remove(avatarId, rationItem, 1);
 				if (game::character::Flags::Has(avatarId, game::character::Flag::UNFED))
 				{
@@ -107,7 +107,7 @@ namespace game
 		auto turnsSpent = DetermineTurnsSpent();
 		while (turnsSpent)
 		{
-			game::avatar::Statistics::SpendTurn(avatarId);
+			game::character::Statistics::SpendTurn(avatarId);
 			turnsSpent--;
 		}
 	}

@@ -9,7 +9,7 @@
 #include "Game.Character.Items.h"
 #include "Game.Character.State.h"
 #include "Game.Character.StateTransition.h"
-#include "Game.Avatar.Statistics.h"
+#include "Game.Character.Statistics.h"
 #include "Game.Colors.h"
 #include "Game.Fishboard.h"
 #include "Game.Islands.h"
@@ -36,7 +36,7 @@ namespace game::character
 	{
 		auto location = game::character::Docked::ReadLocation().value();
 		auto data = data::game::island::DarkAlley::Read(location).value();
-		auto infamy = game::avatar::Statistics::GetInfamy(avatarId);
+		auto infamy = game::character::Statistics::GetInfamy(avatarId);
 		if (infamy < data.infamyRequirement)
 		{
 			OnEnterDarkAlleyFailsInfamyRequirement();

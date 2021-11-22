@@ -6,7 +6,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Character.Actions.h>
 #include <Game.Character.Docked.h>
-#include <Game.Avatar.Statistics.h>
+#include <Game.Character.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Player.h>
@@ -31,12 +31,12 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::GRAY);
 		auto ante = game::islands::DarkAlley::GetAnte(ReadLocation()).value();
 		auto minimum = game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value();
-		Terminal::WriteLine("Yer money: {:.4f}", game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId()));
+		Terminal::WriteLine("Yer money: {:.4f}", game::character::Statistics::ReadMoney(game::Player::GetAvatarId()));
 		Terminal::WriteLine("Minimum bet: {:.4f}", minimum);
 		Terminal::WriteLine("Ante: {:.4f}", ante);
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		if (game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId()) >= minimum)
+		if (game::character::Statistics::ReadMoney(game::Player::GetAvatarId()) >= minimum)
 		{
 			Terminal::WriteLine("1) Play a hand");
 		}
@@ -59,9 +59,9 @@ namespace state::in_play
 
 	static void DealHand()
 	{
-		if (game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId()) >= game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value())
+		if (game::character::Statistics::ReadMoney(game::Player::GetAvatarId()) >= game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value())
 		{
-			game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), -game::islands::DarkAlley::GetAnte(ReadLocation()).value());
+			game::character::Statistics::ChangeMoney(game::Player::GetAvatarId(), -game::islands::DarkAlley::GetAnte(ReadLocation()).value());
 			application::UIState::Write(::UIState::IN_PLAY_GAMBLE_PLAY);
 		}
 		else

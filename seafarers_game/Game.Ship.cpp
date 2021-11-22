@@ -9,7 +9,7 @@
 #include "Game.h"
 #include <Game.Character.Ship.h>
 #include "Game.Ship.h"
-#include "Game.Avatar.ShipStatistics.h"
+#include "Game.Character.ShipStatistics.h"
 #include "Game.ShipTypes.h"
 #include "Game.World.h"
 namespace game
@@ -129,12 +129,12 @@ namespace game
 
 	static void HandleFouling(double speed)
 	{
-		avatar::ShipStatistics::IncreaseFouling(speed);
+		character::ShipStatistics::IncreaseFouling(speed);
 	}
 
 	static double GetEffectiveSpeed(int shipId, double heading, double speed)
 	{
-		auto fouling = avatar::ShipStatistics::GetFouling();
+		auto fouling = character::ShipStatistics::GetFouling();
 		auto effectiveSpeed = speed * (1.0 - fouling);
 
 		effectiveSpeed *= World::GetWindSpeedMultiplier(heading);

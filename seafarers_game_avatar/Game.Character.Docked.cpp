@@ -7,7 +7,7 @@
 #include "Game.Character.Docked.h"
 #include "Game.Character.StateTransition.h"
 #include "Game.Character.Quest.h"
-#include "Game.Avatar.Statistics.h"
+#include "Game.Character.Statistics.h"
 #include "Game.Colors.h"
 #include "Game.Islands.Quests.h"
 #include "Game.Islands.h"
@@ -34,7 +34,7 @@ namespace game::character
 		std::optional<DockResult> result = DockResult::DOCKED;
 		game::Islands::AddVisit(
 			location,
-			game::avatar::Statistics::GetTurnsRemaining(game::Player::GetAvatarId()));
+			game::character::Statistics::GetTurnsRemaining(game::Player::GetAvatarId()));
 		game::islands::Quests::Update(location);
 		if (game::character::Quest::Complete(location))
 		{

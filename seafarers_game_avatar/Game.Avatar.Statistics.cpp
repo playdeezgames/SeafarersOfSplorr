@@ -4,17 +4,17 @@
 #include <Data.Game.Character.Statistic.h>
 #include <Data.Game.Common.h>
 #include "Game.Character.Equipment.h"
-#include "Game.Avatar.Statistic.h"
-#include "Game.Avatar.Statistics.h"
+#include "Game.Character.Statistic.h"
+#include "Game.Character.Statistics.h"
 #include <Game.Item.h>
 #include <Game.Player.h>
 #include <map>
 #include <list>
-namespace game::avatar
+namespace game::character
 {
 	struct StatisticDescriptor
 	{
-		game::avatar::Statistic statistic;
+		game::character::Statistic statistic;
 		std::optional<double> minimum;
 		std::optional<double> maximum;
 		double initial;
@@ -31,7 +31,7 @@ namespace game::avatar
 		{ Item::POSH_TROUSERS, 100.0 }
 	};
 
-	static const std::map<game::avatar::Statistic, std::map<Item, double>> allBuffs =
+	static const std::map<game::character::Statistic, std::map<Item, double>> allBuffs =
 	{
 		{Statistic::DIGNITY, dignityBuffs},
 		{Statistic::POSHNESS, poshBuffs}
@@ -41,71 +41,71 @@ namespace game::avatar
 	{
 		{game::Difficulty::EASY,
 			{
-				{game::avatar::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
-				{game::avatar::Statistic::HEALTH, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
-				{game::avatar::Statistic::SATIETY, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
-				{game::avatar::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
-				{game::avatar::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::avatar::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::avatar::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0},
+				{game::character::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
+				{game::character::Statistic::HEALTH, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
+				{game::character::Statistic::SATIETY, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
+				{game::character::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
+				{game::character::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
+				{game::character::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
+				{game::character::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{
-					game::avatar::Statistic::DIGNITY, 
+					game::character::Statistic::DIGNITY,
 					std::optional<double>(0.0), 
 					std::optional<double>(100.0), 
 					0.0
 				},
-				{game::avatar::Statistic::POSHNESS, std::optional<double>(0.0), std::nullopt, 0.0}
+				{game::character::Statistic::POSHNESS, std::optional<double>(0.0), std::nullopt, 0.0}
 			}},
 		{game::Difficulty::NORMAL,
 			{
-				{game::avatar::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
-				{game::avatar::Statistic::HEALTH, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
-				{game::avatar::Statistic::SATIETY, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
-				{game::avatar::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
-				{game::avatar::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::avatar::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::avatar::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0},
+				{game::character::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
+				{game::character::Statistic::HEALTH, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
+				{game::character::Statistic::SATIETY, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
+				{game::character::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
+				{game::character::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
+				{game::character::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
+				{game::character::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{
-					game::avatar::Statistic::DIGNITY,
+					game::character::Statistic::DIGNITY,
 					std::optional<double>(0.0),
 					std::optional<double>(100.0),
 					0.0
 				},
-				{game::avatar::Statistic::POSHNESS, std::optional<double>(0.0), std::nullopt, 0.0}
+				{game::character::Statistic::POSHNESS, std::optional<double>(0.0), std::nullopt, 0.0}
 			}},
 		{game::Difficulty::HARD,
 			{
-				{game::avatar::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
-				{game::avatar::Statistic::HEALTH, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
-				{game::avatar::Statistic::SATIETY, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
-				{game::avatar::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
-				{game::avatar::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::avatar::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::avatar::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0},
+				{game::character::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
+				{game::character::Statistic::HEALTH, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
+				{game::character::Statistic::SATIETY, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
+				{game::character::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
+				{game::character::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
+				{game::character::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
+				{game::character::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{
-					game::avatar::Statistic::DIGNITY,
+					game::character::Statistic::DIGNITY,
 					std::optional<double>(0.0),
 					std::optional<double>(100.0),
 					0.0
 				},
-				{game::avatar::Statistic::POSHNESS, std::optional<double>(0.0), std::nullopt, 0.0}
+				{game::character::Statistic::POSHNESS, std::optional<double>(0.0), std::nullopt, 0.0}
 			}},
 		{game::Difficulty::HARDCORE,
 			{
-				{game::avatar::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
-				{game::avatar::Statistic::HEALTH, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
-				{game::avatar::Statistic::SATIETY, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
-				{game::avatar::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
-				{game::avatar::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::avatar::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::avatar::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0},
+				{game::character::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
+				{game::character::Statistic::HEALTH, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
+				{game::character::Statistic::SATIETY, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
+				{game::character::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
+				{game::character::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
+				{game::character::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
+				{game::character::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{
-					game::avatar::Statistic::DIGNITY,
+					game::character::Statistic::DIGNITY,
 					std::optional<double>(0.0),
 					std::optional<double>(100.0),
 					0.0
 				},
-				{game::avatar::Statistic::POSHNESS, std::optional<double>(0.0), std::nullopt, 0.0}
+				{game::character::Statistic::POSHNESS, std::optional<double>(0.0), std::nullopt, 0.0}
 			}}
 	};
 
@@ -125,17 +125,17 @@ namespace game::avatar
 		}
 	}
 
-	static std::optional<double> GetMaximum(int characterId, const game::avatar::Statistic& statistic)
+	static std::optional<double> GetMaximum(int characterId, const game::character::Statistic& statistic)
 	{
 		return data::game::character::Statistic::Read(characterId, (int)statistic).value().maximum;
 	}
 
-	static std::optional<double> GetMinimum(int characterId, const game::avatar::Statistic& statistic)
+	static std::optional<double> GetMinimum(int characterId, const game::character::Statistic& statistic)
 	{
 		return data::game::character::Statistic::Read(characterId, (int)statistic).value().minimum;
 	}
 
-	static double GetCurrent(int characterId, const game::avatar::Statistic& statistic)
+	static double GetCurrent(int characterId, const game::character::Statistic& statistic)
 	{
 		return data::game::character::Statistic::Read(characterId, (int)statistic).value().current;
 	}
@@ -150,7 +150,7 @@ namespace game::avatar
 			});
 	}
 
-	static double GetCurrentWithBuffs(int characterId, const game::avatar::Statistic& statistic)
+	static double GetCurrentWithBuffs(int characterId, const game::character::Statistic& statistic)
 	{
 		auto result = GetCurrent(characterId, statistic);
 		auto blah = common::utility::Table::TryGetKey(allBuffs, statistic);
@@ -161,7 +161,7 @@ namespace game::avatar
 		return result;
 	}
 
-	static void SetCurrent(int characterId, const game::avatar::Statistic& statistic, double value)
+	static void SetCurrent(int characterId, const game::character::Statistic& statistic, double value)
 	{
 		auto data = data::game::character::Statistic::Read(characterId, (int)statistic).value();
 		data.current = common::Utility::Clamp<double>(value, data.minimum, data.maximum);
@@ -171,7 +171,7 @@ namespace game::avatar
 			data);
 	}
 
-	static double ChangeCurrent(int characterId, const game::avatar::Statistic& statistic, double delta)
+	static double ChangeCurrent(int characterId, const game::character::Statistic& statistic, double delta)
 	{
 		SetCurrent(characterId, statistic, GetCurrent(characterId, statistic) + delta);
 		return GetCurrent(characterId, statistic);
@@ -179,27 +179,27 @@ namespace game::avatar
 
 	double Statistics::ReadMoney(int characterId)
 	{
-		return GetCurrent(characterId, game::avatar::Statistic::MONEY);
+		return GetCurrent(characterId, game::character::Statistic::MONEY);
 	}
 
 	double Statistics::GetHealth(int characterId)
 	{
-		return GetCurrent(characterId, game::avatar::Statistic::HEALTH);
+		return GetCurrent(characterId, game::character::Statistic::HEALTH);
 	}
 
 	double Statistics::GetSatiety(int characterId)
 	{
-		return GetCurrent(characterId, game::avatar::Statistic::SATIETY);
+		return GetCurrent(characterId, game::character::Statistic::SATIETY);
 	}
 
 	double Statistics::GetInfamy(int characterId)
 	{
-		return GetCurrent(characterId, game::avatar::Statistic::INFAMY);
+		return GetCurrent(characterId, game::character::Statistic::INFAMY);
 	}
 
 	double Statistics::GetBrawling(int characterId)
 	{
-		return GetCurrent(characterId, game::avatar::Statistic::BRAWLING);
+		return GetCurrent(characterId, game::character::Statistic::BRAWLING);
 	}
 
 	static double GetDownAmount(int characterId, const Statistic& statistic)
@@ -224,35 +224,35 @@ namespace game::avatar
 	bool Statistics::NeedToEat(int characterId, double amount)
 	{
 		double totalDown =
-			GetDownAmount(characterId, game::avatar::Statistic::HEALTH)+
-			GetDownAmount(characterId, game::avatar::Statistic::SATIETY);
+			GetDownAmount(characterId, game::character::Statistic::HEALTH)+
+			GetDownAmount(characterId, game::character::Statistic::SATIETY);
 		return totalDown >= amount;
 	}
 
 	double Statistics::GetReputation(int characterId)
 	{
-		return GetCurrent(characterId, game::avatar::Statistic::REPUTATION);
+		return GetCurrent(characterId, game::character::Statistic::REPUTATION);
 	}
 
 	void Statistics::ChangeReputation(int characterId, double delta)
 	{
-		ChangeCurrent(characterId, game::avatar::Statistic::REPUTATION, delta);
+		ChangeCurrent(characterId, game::character::Statistic::REPUTATION, delta);
 	}
 
 	int Statistics::GetTurnsRemaining(int characterId)
 	{
-		return (int)GetCurrent(characterId, game::avatar::Statistic::TURNS_REMAINING);
+		return (int)GetCurrent(characterId, game::character::Statistic::TURNS_REMAINING);
 	}
 
 	void Statistics::SpendTurn(int characterId)
 	{
 		const double TURN_DELTA = -1.0;
-		ChangeCurrent(characterId, game::avatar::Statistic::TURNS_REMAINING, TURN_DELTA);
+		ChangeCurrent(characterId, game::character::Statistic::TURNS_REMAINING, TURN_DELTA);
 	}
 
 	bool Statistics::IsOutOfTurns(int characterId)
 	{
-		return GetCurrent(characterId, game::avatar::Statistic::TURNS_REMAINING) <= GetMinimum(characterId, game::avatar::Statistic::TURNS_REMAINING);
+		return GetCurrent(characterId, game::character::Statistic::TURNS_REMAINING) <= GetMinimum(characterId, game::character::Statistic::TURNS_REMAINING);
 	}
 
 	static bool IsMinimal(int characterId, const Statistic& statistic)
@@ -297,12 +297,12 @@ namespace game::avatar
 
 	double Statistics::GetDignity(int characterId)
 	{
-		return GetCurrentWithBuffs(characterId, avatar::Statistic::DIGNITY);
+		return GetCurrentWithBuffs(characterId, character::Statistic::DIGNITY);
 	}
 
 	double Statistics::GetPoshness(int characterId)
 	{
-		return GetCurrentWithBuffs(characterId, avatar::Statistic::POSHNESS);
+		return GetCurrentWithBuffs(characterId, character::Statistic::POSHNESS);
 	}
 
 	bool Statistics::IsPlayerDead()

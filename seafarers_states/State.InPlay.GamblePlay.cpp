@@ -6,7 +6,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Audio.Sfx.h>
 #include <Game.Character.Docked.h>
-#include <Game.Avatar.Statistics.h>
+#include <Game.Character.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.DarkAlley.GamblingHand.h>
@@ -31,7 +31,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Play Hand:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Yer money: {:.4f}", game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId()));
+		Terminal::WriteLine("Yer money: {:.4f}", game::character::Statistics::ReadMoney(game::Player::GetAvatarId()));
 		Terminal::WriteLine("Minimum wager(less ante): {:.4f}", 
 			game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value() - 
 			game::islands::DarkAlley::GetAnte(ReadLocation()).value());
@@ -83,14 +83,14 @@ namespace state::in_play
 			game::audio::Sfx::Play(game::audio::GameSfx::WOOHOO);
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine("You win!");
-			game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value() + game::islands::DarkAlley::GetAnte(ReadLocation()).value());
+			game::character::Statistics::ChangeMoney(game::Player::GetAvatarId(), game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value() + game::islands::DarkAlley::GetAnte(ReadLocation()).value());
 		}
 		else
 		{
 			game::audio::Sfx::Play(game::audio::GameSfx::SHUCKS);
 			Terminal::SetForeground(game::Colors::RED);
 			Terminal::WriteLine("You lose!");
-			game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), -game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value() + game::islands::DarkAlley::GetAnte(ReadLocation()).value());
+			game::character::Statistics::ChangeMoney(game::Player::GetAvatarId(), -game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value() + game::islands::DarkAlley::GetAnte(ReadLocation()).value());
 		}
 		Terminal::SetForeground(game::Colors::GRAY);
 		application::UIState::Write(::UIState::IN_PLAY_GAMBLE_INTRO);//TODO: play again y/n?

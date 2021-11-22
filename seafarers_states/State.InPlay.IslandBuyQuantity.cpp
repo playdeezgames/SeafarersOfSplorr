@@ -8,7 +8,7 @@
 #include <Game.Character.Docked.h>
 #include <Game.Character.Items.h>
 #include <Game.Character.Ship.h>
-#include <Game.Avatar.Statistics.h>
+#include <Game.Character.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>
@@ -27,7 +27,7 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		auto unitPrice = game::islands::Items::GetPurchasePrices(game::character::Docked::ReadLocation().value())[currentItem];
-		auto money = game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId());
+		auto money = game::character::Statistics::ReadMoney(game::Player::GetAvatarId());
 		double availableTonnage = game::character::Ship::AvailableTonnage(game::Player::GetAvatarId()).value();
 		double unitTonnage = game::Items::GetUnitTonnage(currentItem);
 		int affordableQuantity = (int)(money / unitPrice);
@@ -53,7 +53,7 @@ namespace state::in_play
 	static void OnOtherInput(const std::string& line)
 	{
 		auto unitPrice = game::islands::Items::GetPurchasePrices(game::character::Docked::ReadLocation().value())[currentItem];
-		auto money = game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId());
+		auto money = game::character::Statistics::ReadMoney(game::Player::GetAvatarId());
 		double availableTonnage = game::character::Ship::AvailableTonnage(game::Player::GetAvatarId()).value();
 		double unitTonnage = game::Items::GetUnitTonnage(currentItem);
 		int affordableQuantity = (int)(money / unitPrice);
@@ -65,7 +65,7 @@ namespace state::in_play
 			double totalPrice = unitPrice * units;
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine("You purchase {} {} for {:.4f}.", units, game::Items::GetName(currentItem), totalPrice);
-			game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), -totalPrice);
+			game::character::Statistics::ChangeMoney(game::Player::GetAvatarId(), -totalPrice);
 			game::islands::Markets::BuyItems(game::character::Docked::ReadLocation().value(), currentItem, units);
 			game::character::Items::Add(game::Player::GetAvatarId(), currentItem, units);
 			application::UIState::Write(::UIState::IN_PLAY_ISLAND_BUY);

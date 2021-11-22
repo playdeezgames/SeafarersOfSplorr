@@ -1,12 +1,12 @@
 #include <Common.Data.h>
 #include <Data.Game.Ship.Statistic.h>
-#include "Game.Avatar.ShipStatistics.h"
+#include "Game.Character.ShipStatistics.h"
 #include "Game.Character.Ship.h"
 #include "Game.Colors.h"
 #include <Game.Player.h>
 #include "Game.ShipStatistic.h"
 #include <map>
-namespace game::avatar
+namespace game::character
 {
 	static int GetShipId()
 	{
@@ -72,8 +72,8 @@ namespace game::avatar
 	{
 		int shipId = GetShipId();
 		auto foulingRate = GetStatistic(shipId, ShipStatistic::FOULING_RATE).current * multiplier;
-		game::avatar::IncreaseFouling(shipId, ShipStatistic::PORT_FOULING, foulingRate);
-		game::avatar::IncreaseFouling(shipId, ShipStatistic::STARBOARD_FOULING, foulingRate);
+		game::character::IncreaseFouling(shipId, ShipStatistic::PORT_FOULING, foulingRate);
+		game::character::IncreaseFouling(shipId, ShipStatistic::STARBOARD_FOULING, foulingRate);
 	}
 
 	void ShipStatistics::CleanHull(const Side& side)

@@ -5,7 +5,7 @@
 #include <Data.Game.Island.h>
 #include <Data.Game.Island.Quest.h>
 #include <format>
-#include "Game.Avatar.Statistics.h"
+#include "Game.Character.Statistics.h"
 #include "Game.Islands.h"
 #include "Game.Islands.Quests.h"
 #include "Game.Player.h"
@@ -19,7 +19,7 @@ namespace game::islands//20211016
 	static const double NEGATIVE_REWARD_RADIX = 2.0;
 	static double GenerateReward()
 	{
-		double reputation = floor(game::avatar::Statistics::GetReputation(game::Player::GetAvatarId()));
+		double reputation = floor(game::character::Statistics::GetReputation(game::Player::GetAvatarId()));
 		double minimum = DEFAULT_MINIMUM_REWARD;
 		double maximum = DEFAULT_MAXIMUM_REWARD;
 		if (reputation <= 0.0)

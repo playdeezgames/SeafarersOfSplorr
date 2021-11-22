@@ -7,7 +7,7 @@
 #include <Game.Character.h>
 #include <Game.Character.Actions.h>
 #include <Game.Character.Docked.h>
-#include <Game.Avatar.Statistics.h>
+#include <Game.Character.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Player.h>
@@ -36,7 +36,7 @@ namespace state::in_play
 		return game::islands::DarkAlley::GetMinimumWager(game::character::Docked::ReadLocation().value()).value();
 	}
 
-	static const auto ReadMoney = game::avatar::Statistics::ReadMoney;
+	static const auto ReadMoney = game::character::Statistics::ReadMoney;
 
 	static void OnGamble()
 	{

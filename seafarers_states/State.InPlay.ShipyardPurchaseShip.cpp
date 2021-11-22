@@ -8,7 +8,7 @@
 #include <Game.Character.Docked.h>
 #include <Game.Character.Items.h>
 #include <Game.Character.Ship.h>
-#include <Game.Avatar.Statistics.h>
+#include <Game.Character.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Islands.Ships.h>
@@ -63,7 +63,7 @@ namespace state::in_play
 		auto shipType = game::Ship::GetShipType(shipId).value();
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("You currently have a {}.", game::ShipTypes::GetName(shipType));
-		Terminal::WriteLine("You have {:.4f}.", game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId()));
+		Terminal::WriteLine("You have {:.4f}.", game::character::Statistics::ReadMoney(game::Player::GetAvatarId()));
 		Terminal::WriteLine("Prices shown after trade-in value.");
 		RefreshShipPrices();
 
@@ -96,7 +96,7 @@ namespace state::in_play
 		auto location = game::character::Docked::ReadLocation().value();
 		auto currentShipId = game::character::Ship::ReadShipId(game::Player::GetAvatarId()).value();
 		auto currentShipType = game::Ship::GetShipType(currentShipId).value();
-		game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), -price);
+		game::character::Statistics::ChangeMoney(game::Player::GetAvatarId(), -price);
 		auto desiredShipId = game::Ship::Add({ desiredShipType,game::ShipNames::Generate(), location, 0.0, 1.0 });
 		//TODO: transfer crew/passengers/captives?
 		game::character::Ship::Write(game::Player::GetAvatarId() , desiredShipId, game::BerthType::CAPTAIN);
@@ -126,7 +126,7 @@ namespace state::in_play
 	static void CheckAvailableFunds(game::ShipType desiredShip)
 	{
 		double price = shipPrices[desiredShip];
-		if (game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId()) >= price)
+		if (game::character::Statistics::ReadMoney(game::Player::GetAvatarId()) >= price)
 		{
 			CheckTonnage(desiredShip, price);
 		}

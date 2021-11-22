@@ -8,7 +8,7 @@
 #include <Game.Character.Docked.h>
 #include <Game.Character.Items.h>
 #include <Game.Character.Ship.h>
-#include <Game.Avatar.Statistics.h>
+#include <Game.Character.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>
@@ -52,7 +52,7 @@ namespace state::in_play
 			double totalPrice = unitPrice * units;
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine("You sell {} {} for {:.4f}.", units, game::Items::GetName(currentItem), totalPrice);
-			game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), totalPrice);
+			game::character::Statistics::ChangeMoney(game::Player::GetAvatarId(), totalPrice);
 			game::islands::Markets::SellItems(game::character::Docked::ReadLocation().value(), currentItem, units);
 			game::character::Items::Remove(game::Player::GetAvatarId(), currentItem, units);
 			application::UIState::Write(::UIState::IN_PLAY_ISLAND_SELL);

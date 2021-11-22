@@ -11,7 +11,7 @@
 #include <Game.Character.h>
 #include <Game.Character.Docked.h>
 #include <Game.Character.Items.h>
-#include <Game.Avatar.Statistics.h>
+#include <Game.Character.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Demigods.h>
 #include <Game.Islands.h>

@@ -4,7 +4,7 @@
 #include <Data.Game.Island.Known.h>
 #include <Data.Game.Island.Quest.h>
 #include "Game.Character.Quest.h"
-#include "Game.Avatar.Statistics.h"
+#include "Game.Character.Statistics.h"
 #include "Game.Islands.h"
 #include <Game.Player.h>
 #include <Game.World.h>
@@ -22,7 +22,7 @@ namespace game::character
 				quest.professionName ,
 				quest.receiptEmotion }));
 		data::game::island::Quest::Clear(location);
-		game::Islands::SetKnown(quest.destination, game::avatar::Statistics::GetTurnsRemaining(game::Player::GetAvatarId()));
+		game::Islands::SetKnown(quest.destination, game::character::Statistics::GetTurnsRemaining(game::Player::GetAvatarId()));
 		data::game::island::Known::Write(quest.destination);
 	}
 
@@ -43,8 +43,8 @@ namespace game::character
 
 	static void CompleteQuest(const data::game::character::Quest& quest)
 	{
-		game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), quest.reward);
-		game::avatar::Statistics::ChangeReputation(game::Player::GetAvatarId(), World::GetReputationReward());
+		game::character::Statistics::ChangeMoney(game::Player::GetAvatarId(), quest.reward);
+		game::character::Statistics::ChangeReputation(game::Player::GetAvatarId(), World::GetReputationReward());
 		data::game::character::Quest::Write(Player::GetAvatarId(), std::nullopt);
 	}
 
@@ -61,7 +61,7 @@ namespace game::character
 
 	static void AbandonQuest()
 	{
-		game::avatar::Statistics::ChangeReputation(game::Player::GetAvatarId(), World::GetReputationPenalty());
+		game::character::Statistics::ChangeReputation(game::Player::GetAvatarId(), World::GetReputationPenalty());
 		data::game::character::Quest::Write(Player::GetAvatarId(), std::nullopt);
 	}
 

@@ -10,7 +10,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Character.Items.h>
 #include <Game.Character.Ship.h>
-#include <Game.Avatar.Statistics.h>
+#include <Game.Character.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>
@@ -55,7 +55,7 @@ namespace state::in_play
 				(int)(100.0 * GetTonnage() / GetAvailableTonnage()));
 		Terminal::WriteLine(
 			"Money: {:.3f}",
-			game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId()));
+			game::character::Statistics::ReadMoney(game::Player::GetAvatarId()));
 		Terminal::SetForeground(game::Colors::BROWN);
 		Terminal::WriteLine("Manifest:");
 		Terminal::SetForeground(game::Colors::YELLOW);

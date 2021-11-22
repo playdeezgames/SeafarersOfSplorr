@@ -1,6 +1,6 @@
 #pragma once
 #include "Game.Difficulty.h"
-namespace game::avatar//20211017
+namespace game::character
 {
 	struct Statistics
 	{

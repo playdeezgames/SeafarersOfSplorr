@@ -8,7 +8,7 @@
 #include <Game.Character.Items.h>
 #include <Game.Character.Plights.h>
 #include <Game.Character.Ship.h>
-#include <Game.Avatar.Statistics.h>
+#include <Game.Character.Statistics.h>
 #include "Game.Demigods.h"
 #include "Game.Fisheries.h"
 #include "Game.Islands.h"
@@ -45,7 +45,7 @@ namespace game
 		character::Equipment::Reset(difficulty);
 		character::Items::Reset(difficulty);
 		character::Plights::Reset(difficulty);
-		avatar::Statistics::Reset(difficulty);
+		character::Statistics::Reset(difficulty);
 		Demigods::Reset(difficulty);
 		Fisheries::Reset(difficulty);
 		Islands::Reset(difficulty);

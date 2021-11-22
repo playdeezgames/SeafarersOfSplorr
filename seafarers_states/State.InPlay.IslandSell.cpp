@@ -13,7 +13,7 @@
 #include <Game.Character.Actions.h>
 #include <Game.Character.Docked.h>
 #include <Game.Character.Items.h>
-#include <Game.Avatar.Statistics.h>
+#include <Game.Character.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>
@@ -57,7 +57,7 @@ namespace state::in_play
 
 	static void RefreshStatistics()
 	{
-		Terminal::WriteLine(FORMAT_MONEY, game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId()));
+		Terminal::WriteLine(FORMAT_MONEY, game::character::Statistics::ReadMoney(game::Player::GetAvatarId()));
 	}
 
 	static void Refresh()

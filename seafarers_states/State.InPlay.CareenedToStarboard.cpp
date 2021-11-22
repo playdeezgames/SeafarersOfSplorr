@@ -9,7 +9,7 @@
 #include <Game.Character.h>
 #include <Game.Character.Actions.h>
 #include <Game.Character.Docked.h>
-#include <Game.Avatar.ShipStatistics.h>
+#include <Game.Character.ShipStatistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>
 #include <Game.Player.h>
@@ -30,7 +30,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Careened to starboard:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Port fouling {:.0f}%", game::avatar::ShipStatistics::GetFoulingPercentage(game::Side::PORT));
+		Terminal::WriteLine("Port fouling {:.0f}%", game::character::ShipStatistics::GetFoulingPercentage(game::Side::PORT));
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Clean port side");
@@ -44,7 +44,7 @@ namespace state::in_play
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::GREEN);
 		Terminal::WriteLine("You clean the port side.");
-		game::avatar::ShipStatistics::CleanHull(game::Side::PORT);
+		game::character::ShipStatistics::CleanHull(game::Side::PORT);
 		Refresh();
 	}
 
