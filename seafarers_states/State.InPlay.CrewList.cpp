@@ -8,7 +8,7 @@
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Character.Items.h>
-#include <Game.Avatar.Ship.h>
+#include <Game.Character.Ship.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.BerthType.h>
 #include <Game.Colors.h>

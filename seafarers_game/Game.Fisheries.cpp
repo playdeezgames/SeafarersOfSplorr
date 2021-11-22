@@ -4,7 +4,7 @@
 #include <Common.Utility.List.h>
 #include <Data.Game.Fishery.h>
 #include <functional>
-#include <Game.Avatar.Ship.h>
+#include <Game.Character.Ship.h>
 #include "Game.Fisheries.h"
 #include "Game.Fishes.h"
 #include "Game.Player.h"
@@ -98,7 +98,7 @@ namespace game//20211015
 
 	std::list<Fishery> Fisheries::Available()
 	{
-		auto avatarLocation = Ship::GetLocation(game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value()).value();
+		auto avatarLocation = Ship::GetLocation(game::character::Ship::ReadShipId(game::Player::GetAvatarId()).value()).value();
 		std::list<Fishery> result;
 		for (auto& fishery : All())
 		{

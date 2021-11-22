@@ -11,7 +11,7 @@
 #include "Game.Character.Flags.h"
 #include "Game.Character.Items.h"
 #include "Game.Character.Plights.h"
-#include "Game.Avatar.Ship.h"
+#include "Game.Character.Ship.h"
 #include "Game.Avatar.Statistics.h"
 #include "Game.Character.StateTransition.h"
 #include <Game.Items.h>
@@ -199,7 +199,7 @@ namespace game
 				common::RNG::FromRange(0.0, common::Heading::DEGREES),
 				common::Heading::DEGREES).value(),
 			1.0 });
-		game::avatar::Ship::Write(game::Player::GetAvatarId(), shipId, BerthType::CAPTAIN);
+		game::character::Ship::Write(game::Player::GetAvatarId(), shipId, BerthType::CAPTAIN);
 	}
 
 	void Character::Reset(const game::Difficulty&, int avatarId)

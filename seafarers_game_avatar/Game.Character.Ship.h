@@ -3,7 +3,7 @@
 #include "Game.Difficulty.h"
 #include "Game.ShipType.h"
 #include <optional>
-namespace game::avatar
+namespace game::character
 {
 	struct Ship
 	{

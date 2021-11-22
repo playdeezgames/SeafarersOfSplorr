@@ -9,7 +9,7 @@
 #include <Game.Character.Docked.h>
 #include <Game.Character.Items.h>
 #include <Game.Character.Quest.h>
-#include <Game.Avatar.Ship.h>
+#include <Game.Character.Ship.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Fisheries.h>
@@ -26,7 +26,7 @@ namespace state::in_play
 
 	static int GetAvatarShipId()
 	{
-		return game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value();
+		return game::character::Ship::ReadShipId(game::Player::GetAvatarId()).value();
 	}
 
 	static bool IsFishingEnabled()

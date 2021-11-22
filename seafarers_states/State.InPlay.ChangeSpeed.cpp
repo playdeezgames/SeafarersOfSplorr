@@ -3,7 +3,7 @@
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
-#include <Game.Avatar.Ship.h>
+#include <Game.Character.Ship.h>
 #include <Game.Colors.h>
 #include <Game.Player.h>
 #include <Game.Ship.h>
@@ -21,7 +21,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Change Speed:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Current Speed: {:.2f}", game::Ship::GetSpeed(game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value()).value());
+		Terminal::WriteLine("Current Speed: {:.2f}", game::Ship::GetSpeed(game::character::Ship::ReadShipId(game::Player::GetAvatarId()).value()).value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) All stop");
@@ -44,7 +44,7 @@ namespace state::in_play
 	{
 		return [speed]() 
 		{
-			game::Ship::SetSpeed(game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value(), speed);
+			game::Ship::SetSpeed(game::character::Ship::ReadShipId(game::Player::GetAvatarId()).value(), speed);
 			application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 		};
 	}

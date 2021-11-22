@@ -7,7 +7,7 @@
 #include <Data.Game.Island.Quest.h>
 #include <Data.Game.Island.Visit.h>
 #include <functional>
-#include <Game.Avatar.Ship.h>
+#include <Game.Character.Ship.h>
 #include "Game.Commodities.h"
 #include "Game.Islands.h"
 #include "Game.Items.h"
@@ -58,7 +58,7 @@ namespace game
 	static std::list<Island> GetIslandsInRange(std::function<bool(const data::game::Island&, double)> filter)
 	{
 		std::list<Island> accumulator;
-		auto avatarLocation = game::Ship::GetLocation(game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value()).value();;
+		auto avatarLocation = game::Ship::GetLocation(game::character::Ship::ReadShipId(game::Player::GetAvatarId()).value()).value();;
 		auto islands = data::game::Island::All();
 		for (auto& island : islands)
 		{

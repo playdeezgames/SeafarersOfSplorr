@@ -13,7 +13,7 @@
 #include <Game.Character.Actions.h>
 #include <Game.Character.Docked.h>
 #include <Game.Character.Items.h>
-#include <Game.Avatar.Ship.h>
+#include <Game.Character.Ship.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.Items.h>
@@ -59,7 +59,7 @@ namespace state::in_play
 	static void RefreshStatistics()
 	{
 		Terminal::WriteLine(FORMAT_MONEY, game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId()));
-		Terminal::WriteLine(FORMAT_TONNAGE, game::avatar::Ship::AvailableTonnage(game::Player::GetAvatarId()).value());
+		Terminal::WriteLine(FORMAT_TONNAGE, game::character::Ship::AvailableTonnage(game::Player::GetAvatarId()).value());
 	}
 
 	static void Refresh()

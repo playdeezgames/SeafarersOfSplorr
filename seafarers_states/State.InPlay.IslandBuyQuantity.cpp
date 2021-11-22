@@ -7,7 +7,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Character.Docked.h>
 #include <Game.Character.Items.h>
-#include <Game.Avatar.Ship.h>
+#include <Game.Character.Ship.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.Items.h>
@@ -28,7 +28,7 @@ namespace state::in_play
 
 		auto unitPrice = game::islands::Items::GetPurchasePrices(game::character::Docked::ReadLocation().value())[currentItem];
 		auto money = game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId());
-		double availableTonnage = game::avatar::Ship::AvailableTonnage(game::Player::GetAvatarId()).value();
+		double availableTonnage = game::character::Ship::AvailableTonnage(game::Player::GetAvatarId()).value();
 		double unitTonnage = game::Items::GetUnitTonnage(currentItem);
 		int affordableQuantity = (int)(money / unitPrice);
 		int storableQuantity = (int)(availableTonnage / unitTonnage);
@@ -54,7 +54,7 @@ namespace state::in_play
 	{
 		auto unitPrice = game::islands::Items::GetPurchasePrices(game::character::Docked::ReadLocation().value())[currentItem];
 		auto money = game::avatar::Statistics::ReadMoney(game::Player::GetAvatarId());
-		double availableTonnage = game::avatar::Ship::AvailableTonnage(game::Player::GetAvatarId()).value();
+		double availableTonnage = game::character::Ship::AvailableTonnage(game::Player::GetAvatarId()).value();
 		double unitTonnage = game::Items::GetUnitTonnage(currentItem);
 		int affordableQuantity = (int)(money / unitPrice);
 		int storableQuantity = (int)(availableTonnage / unitTonnage);

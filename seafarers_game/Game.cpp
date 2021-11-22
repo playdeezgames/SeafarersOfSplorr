@@ -7,7 +7,7 @@
 #include <Game.Character.Equipment.h>
 #include <Game.Character.Items.h>
 #include <Game.Character.Plights.h>
-#include <Game.Avatar.Ship.h>
+#include <Game.Character.Ship.h>
 #include <Game.Avatar.Statistics.h>
 #include "Game.Demigods.h"
 #include "Game.Fisheries.h"

@@ -7,7 +7,7 @@
 #include <Data.Game.Ship.h>
 #include <Data.Game.Ship.Statistic.h>
 #include "Game.h"
-#include <Game.Avatar.Ship.h>
+#include <Game.Character.Ship.h>
 #include "Game.Ship.h"
 #include "Game.Avatar.ShipStatistics.h"
 #include "Game.ShipTypes.h"

@@ -6,7 +6,7 @@
 #include <Common.Utility.Dispatcher.h>
 #include <Game.h>
 #include <Game.Audio.Mux.h>
-#include <Game.Avatar.Ship.h>
+#include <Game.Character.Ship.h>
 #include <Game.Colors.h>
 #include <Game.Ship.h>
 #include "State.InPlay.MultipleMove.h"

@@ -4,7 +4,7 @@
 #include <Application.UIState.h>
 #include <Common.Data.h>
 #include <Game.Audio.Mux.h>
-#include <Game.Avatar.Ship.h>
+#include <Game.Character.Ship.h>
 #include <Game.Colors.h>
 #include <Game.Player.h>
 #include <Game.Ship.h>
@@ -67,7 +67,7 @@ namespace state::in_play
 			if (nouns.contains(index.value()))
 			{
 				auto noun = nouns[index.value()];
-				auto shipId = game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value();
+				auto shipId = game::character::Ship::ReadShipId(game::Player::GetAvatarId()).value();
 				game::Ship::SetName(shipId, std::format("{} {}", RenameShipAdjective::Read(), noun));
 				application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 				return;

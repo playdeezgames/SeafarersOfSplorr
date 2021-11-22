@@ -1,16 +1,16 @@
 #include <Common.Data.h>
 #include <Data.Game.Ship.Statistic.h>
 #include "Game.Avatar.ShipStatistics.h"
-#include "Game.Avatar.Ship.h"
+#include "Game.Character.Ship.h"
 #include "Game.Colors.h"
 #include <Game.Player.h>
 #include "Game.ShipStatistic.h"
 #include <map>
-namespace game::avatar//20211018
+namespace game::avatar
 {
 	static int GetShipId()
 	{
-		return game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value();
+		return game::character::Ship::ReadShipId(game::Player::GetAvatarId()).value();
 	}
 
 	static data::game::ship::Statistic GetStatistic(int shipId, const ShipStatistic& statistic)

@@ -7,7 +7,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Character.Docked.h>
 #include <Game.Character.Items.h>
-#include <Game.Avatar.Ship.h>
+#include <Game.Character.Ship.h>
 #include <Game.Avatar.Statistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.Markets.h>
@@ -31,7 +31,7 @@ namespace state::in_play
 	{
 		auto location = game::character::Docked::ReadLocation().value();
 		auto prices = game::islands::Ships::GetPurchasePrices(location);
-		auto tradeIn = game::islands::Ships::GetSalePrice(location, game::Ship::GetShipType(game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value()).value());
+		auto tradeIn = game::islands::Ships::GetSalePrice(location, game::Ship::GetShipType(game::character::Ship::ReadShipId(game::Player::GetAvatarId()).value()).value());
 		shipPrices.clear();
 		for (auto price : prices)
 		{
@@ -59,7 +59,7 @@ namespace state::in_play
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Purchase Ship:");
-		int shipId = game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value();
+		int shipId = game::character::Ship::ReadShipId(game::Player::GetAvatarId()).value();
 		auto shipType = game::Ship::GetShipType(shipId).value();
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("You currently have a {}.", game::ShipTypes::GetName(shipType));
@@ -94,12 +94,12 @@ namespace state::in_play
 	static void BuyShip(game::ShipType desiredShipType, double price)
 	{
 		auto location = game::character::Docked::ReadLocation().value();
-		auto currentShipId = game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value();
+		auto currentShipId = game::character::Ship::ReadShipId(game::Player::GetAvatarId()).value();
 		auto currentShipType = game::Ship::GetShipType(currentShipId).value();
 		game::avatar::Statistics::ChangeMoney(game::Player::GetAvatarId(), -price);
 		auto desiredShipId = game::Ship::Add({ desiredShipType,game::ShipNames::Generate(), location, 0.0, 1.0 });
 		//TODO: transfer crew/passengers/captives?
-		game::avatar::Ship::Write(game::Player::GetAvatarId() , desiredShipId, game::BerthType::CAPTAIN);
+		game::character::Ship::Write(game::Player::GetAvatarId() , desiredShipId, game::BerthType::CAPTAIN);
 		game::islands::Markets::BuyShipType(location, desiredShipType);
 		game::islands::Markets::SellShipType(location, currentShipType);
 		UpdateShipPrices();

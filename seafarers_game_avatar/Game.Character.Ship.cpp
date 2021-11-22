@@ -3,11 +3,11 @@
 #include <Data.Game.Character.Ship.h>
 #include <Data.Game.Ship.Statistic.h>
 #include <Data.Game.Ship.h>
-#include "Game.Avatar.Ship.h"
+#include "Game.Character.Ship.h"
 #include "Game.Character.Items.h"
 #include <Game.Ship.h>
 #include <Game.ShipTypes.h>
-namespace game::avatar
+namespace game::character
 {
 	void Ship::Write(int avatarId, int shipId, const BerthType& berthType)
 	{

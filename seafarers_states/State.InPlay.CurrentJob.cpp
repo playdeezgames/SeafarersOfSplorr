@@ -8,7 +8,7 @@
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Character.Quest.h>
-#include <Game.Avatar.Ship.h>
+#include <Game.Character.Ship.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>
 #include <Game.Islands.Quests.h>
@@ -29,7 +29,7 @@ namespace state::in_play
 		Terminal::WriteLine("Current Job:");
 		Terminal::SetForeground(game::Colors::GRAY);
 		auto islandModel = game::Islands::Read(questModel.destination).value();
-		auto delta = questModel.destination - game::Ship::GetLocation(game::avatar::Ship::ReadShipId(game::Player::GetAvatarId()).value()).value();
+		auto delta = questModel.destination - game::Ship::GetLocation(game::character::Ship::ReadShipId(game::Player::GetAvatarId()).value()).value();
 		Terminal::WriteLine(
 			"Please deliver this {} to {} the {} at {} ({:.2f}\xf8 distance {:.1f}). Reward: {:.2f}",
 			questModel.itemName,
