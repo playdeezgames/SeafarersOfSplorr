@@ -3,7 +3,7 @@
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
-#include <Game.Avatar.h>
+#include <Game.Character.h>
 #include <Game.Character.Flags.h>
 #include <Game.Avatar.Rations.h>
 #include <Game.Colors.h>
@@ -73,7 +73,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Crew Details:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Name: {}", game::Avatar::GetName(currentAvatarId).value());
+		Terminal::WriteLine("Name: {}", game::Character::GetName(currentAvatarId).value());
 		RefreshRations();
 		RefreshFlags();
 

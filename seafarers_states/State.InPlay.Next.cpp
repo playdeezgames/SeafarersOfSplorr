@@ -2,7 +2,7 @@
 #include <Application.Update.h>
 #include <Application.UIState.h>
 #include <Game.h>
-#include <Game.Avatar.h>
+#include <Game.Character.h>
 #include <Game.Character.Actions.h>
 #include <Game.Character.Docked.h>
 #include <Game.Avatar.Statistics.h>

@@ -1,6 +1,6 @@
 #include <Common.Utility.Array.h>
 #include <Data.Game.Character.ShipCrew.h>
-#include "Game.Avatar.h"
+#include "Game.Character.h"
 #include "Game.Avatar.Ship.h"
 #include <Game.Player.h>
 #include "Game.Ship.Crew.h"
@@ -12,7 +12,7 @@ namespace game::ship
 		{
 			crew.avatarId,
 			(BerthType)crew.berthType,
-			Avatar::GetName(crew.avatarId).value_or("????")
+			Character::GetName(crew.avatarId).value_or("????")
 		};
 	}
 

@@ -2,7 +2,7 @@
 #include <Data.SQLite.Store.h>
 #include <Data.SQLite.Stores.h>
 #include "Game.h"
-#include <Game.Avatar.h>
+#include <Game.Character.h>
 #include <Game.Character.Docked.h>
 #include <Game.Character.Equipment.h>
 #include <Game.Avatar.Items.h>
@@ -40,7 +40,7 @@ namespace game
 
 		World::Reset(difficulty);//must be done first to establish world size
 		Ships::Reset(difficulty);
-		Avatar::Reset(difficulty, Player::GetAvatarId());
+		Character::Reset(difficulty, Player::GetAvatarId());
 		character::Docked::Reset(difficulty);
 		character::Equipment::Reset(difficulty);
 		avatar::Items::Reset(difficulty);
@@ -121,7 +121,7 @@ namespace game
 	static const std::list<std::function<void()>> turnEffects = 
 	{
 		Ships::ApplyTurnEffects,
-		Avatar::ApplyTurnEffects,
+		Character::ApplyTurnEffects,
 		Islands::ApplyTurnEffects,
 		avatar::Plights::ApplyTurnEffects,
 		Demigods::ApplyTurnEffects,

@@ -4,7 +4,7 @@
 #include <Application.UIState.h>
 #include <Common.Data.h>
 #include <Game.Audio.Mux.h>
-#include <Game.Avatar.h>
+#include <Game.Character.h>
 #include <Game.Avatar.Items.h>
 #include <Game.Avatar.Rations.h>
 #include <Game.Colors.h>
@@ -40,7 +40,7 @@ namespace state::in_play
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		auto avatarId = CrewDetail::GetAvatarId();
-		Terminal::WriteLine("Rations for {}:", game::Avatar::GetName(avatarId).value());
+		Terminal::WriteLine("Rations for {}:", game::Character::GetName(avatarId).value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		auto current = game::avatar::Rations::Read(avatarId);

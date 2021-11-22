@@ -9,7 +9,7 @@
 #include <Common.Utility.Table.h>
 #include <format>
 #include <Game.Audio.Mux.h>
-#include <Game.Avatar.h>
+#include <Game.Character.h>
 #include <Game.Character.Actions.h>
 #include <Game.Character.Docked.h>
 #include <Game.Avatar.Items.h>

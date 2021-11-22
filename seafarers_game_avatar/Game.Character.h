@@ -6,7 +6,7 @@
 #include <string>
 namespace game
 {
-	struct Avatar
+	struct Character
 	{
 		static void ApplyTurnEffects();
 		static void Reset(const Difficulty&, int);

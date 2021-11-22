@@ -3,7 +3,7 @@
 #include <Data.Game.Island.DarkAlley.h>
 #include <format>
 #include <functional>
-#include "Game.Avatar.h"
+#include "Game.Character.h"
 #include "Game.Character.Docked.h"
 #include "Game.Character.StateTransition.h"
 #include "Game.Avatar.Quest.h"

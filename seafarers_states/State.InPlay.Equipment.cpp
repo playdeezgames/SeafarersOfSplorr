@@ -6,7 +6,7 @@
 #include <Common.Utility.h>
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Audio.Mux.h>
-#include <Game.Avatar.h>
+#include <Game.Character.h>
 #include <Game.Character.Equipment.h>
 #include <Game.Avatar.Items.h>
 #include <Game.Colors.h>
@@ -53,7 +53,7 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
-		Terminal::WriteLine("Equipment for {}:", game::Avatar::GetName(CrewDetail::GetAvatarId()).value());
+		Terminal::WriteLine("Equipment for {}:", game::Character::GetName(CrewDetail::GetAvatarId()).value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		RefreshEquipSlots();

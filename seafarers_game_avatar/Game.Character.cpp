@@ -7,7 +7,7 @@
 #include <Data.Game.Character.h>
 #include <Data.Game.Character.Rations.h>
 #include <functional>
-#include "Game.Avatar.h"
+#include "Game.Character.h"
 #include "Game.Character.Flags.h"
 #include "Game.Avatar.Items.h"
 #include "Game.Avatar.Plights.h"
@@ -112,7 +112,7 @@ namespace game
 		}
 	}
 
-	void Avatar::ApplyTurnEffects()
+	void Character::ApplyTurnEffects()
 	{
 		auto avatarIds = data::game::Character::All();
 		for (auto avatarId : avatarIds)
@@ -202,14 +202,14 @@ namespace game
 		game::avatar::Ship::Write(game::Player::GetAvatarId(), shipId, BerthType::CAPTAIN);
 	}
 
-	void Avatar::Reset(const game::Difficulty&, int avatarId)
+	void Character::Reset(const game::Difficulty&, int avatarId)
 	{
 		CreateAvatar(avatarId);
 		GenerateAvatarRations(avatarId);
 		GenerateAvatarShip();
 	}
 
-	std::optional<std::string> Avatar::GetName(int avatarId)
+	std::optional<std::string> Character::GetName(int avatarId)
 	{
 		return common::utility::Optional::Map<data::game::Character, std::string>(
 			data::game::Character::Read(avatarId),

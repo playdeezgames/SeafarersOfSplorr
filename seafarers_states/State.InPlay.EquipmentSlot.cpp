@@ -4,7 +4,7 @@
 #include <Application.UIState.h>
 #include <Common.Data.h>
 #include <Game.Audio.Mux.h>
-#include <Game.Avatar.h>
+#include <Game.Character.h>
 #include <Game.Character.Equipment.h>
 #include <Game.Avatar.Items.h>
 #include <Game.Colors.h>
@@ -36,7 +36,7 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
-		auto avatarName = game::Avatar::GetName(CrewDetail::GetAvatarId()).value();
+		auto avatarName = game::Character::GetName(CrewDetail::GetAvatarId()).value();
 		auto equipSlotName = game::EquipSlots::GetName(EquipmentSlot::GetSlot());
 		Terminal::WriteLine("Equipping {}'s {}:", avatarName, equipSlotName);
 		Terminal::SetForeground(game::Colors::GRAY);
@@ -48,7 +48,6 @@ namespace state::in_play
 		Terminal::WriteLine("0) Never mind");
 
 		Terminal::ShowPrompt();
-
 	}
 
 	void EquipmentSlot::SetSlot(const game::EquipSlot& slot)
