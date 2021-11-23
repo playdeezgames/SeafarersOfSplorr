@@ -1,7 +1,7 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.DemigodItem.h"
-namespace data::game//20211015
+namespace data::game
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [DemigodItems]([Name] TEXT NOT NULL,[ItemId] INT NOT NULL,[Favor] REAL NOT NULL,UNIQUE([Name],[ItemId]));";
 	static const std::string DELETE_ALL = "DELETE FROM [DemigodItems];";

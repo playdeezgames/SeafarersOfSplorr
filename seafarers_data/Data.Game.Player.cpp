@@ -4,11 +4,11 @@
 #include "Data.Game.Player.h"
 namespace data::game
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Players]([PlayerId] INT NOT NULL UNIQUE CHECK([PlayerId]=1),[AvatarId] INT NOT NULL UNIQUE);";
-	static const std::string QUERY_ITEM = "SELECT [AvatarId] FROM [Players] WHERE [PlayerId]={};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [Players]([PlayerId],[AvatarId]) VALUES ({},{});";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Players]([PlayerId] INT NOT NULL UNIQUE CHECK([PlayerId]=1),[CharacterId] INT NOT NULL UNIQUE);";
+	static const std::string QUERY_ITEM = "SELECT [CharacterId] FROM [Players] WHERE [PlayerId]={};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [Players]([PlayerId],[CharacterId]) VALUES ({},{});";
 
-	static const std::string FIELD_AVATAR_ID = "AvatarId";
+	static const std::string FIELD_AVATAR_ID = "CharacterId";
 
 	static const auto AutoCreatePlayerTable = Common::Run(CREATE_TABLE);
 

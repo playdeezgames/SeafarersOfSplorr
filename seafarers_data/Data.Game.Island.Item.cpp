@@ -3,7 +3,7 @@
 #include "Data.Game.Common.h"
 namespace data::game::island//20211014
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandItems]([X],[Y],[ItemId], UNIQUE([X],[Y],[ItemId]));";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandItems]([X] REAL NOT NULL,[Y] REAL NOT NULL,[ItemId] INT NOT NULL, UNIQUE([X],[Y],[ItemId]));";
 	static const std::string REPLACE_ITEM = "REPLACE INTO [IslandItems]([X],[Y],[ItemId]) VALUES({:.4f},{:.4f},{});";
 	static const std::string DELETE_ITEM = "DELETE FROM [IslandItems] WHERE [X]={:.4f} AND [Y]={:.4f} AND [ItemId]={};";
 	static const std::string DELETE_ALL = "DELETE FROM [IslandItems];";

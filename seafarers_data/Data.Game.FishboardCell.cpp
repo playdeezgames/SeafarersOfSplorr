@@ -2,16 +2,16 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.FishboardCell.h"
 #include "Data.Game.Player.h"
-namespace data::game//20211015
+namespace data::game
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [FishboardCells]([AvatarId] INT NOT NULL, [X] INT NOT NULL, [Y] INT NOT NULL, [Revealed] INT NOT NULL, [FishType] INT NULL, UNIQUE([AvatarId],[X],[Y]));";
-	static const std::string DELETE_ALL = "DELETE FROM [FishboardCells] WHERE [AvatarId]={};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [FishboardCells] ([AvatarId],[X],[Y],[Revealed],[FishType]) VALUES ({},{},{},{},{});";
-	static const std::string QUERY_ALL = "SELECT [X],[Y],[Revealed],[FishType] FROM [FishboardCells] WHERE [AvatarId]={};";
-	static const std::string QUERY_ITEM = "SELECT [X],[Y],[Revealed],[FishType] FROM [FishboardCells] WHERE [AvatarId]={} AND [X]={} AND [Y]={};";
-	static const std::string QUERY_FISH_COUNT = "SELECT COUNT([FishType]) AS [FishCount] FROM [FishboardCells] WHERE [AvatarId]={} AND [FishType] IS NOT NULL;";
-	static const std::string QUERY_REVEALED_FISH_COUNT = "SELECT COUNT([FishType]) AS [FishCount] FROM [FishboardCells] WHERE [AvatarId]={} AND [FishType] IS NOT NULL AND [Revealed]<>0;";
-	static const std::string QUERY_FISHES = "SELECT DISTINCT [FishType] FROM [FishboardCells] WHERE [AvatarId]={} AND [FishType] IS NOT NULL;";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [FishboardCells]([CharacterId] INT NOT NULL, [X] INT NOT NULL, [Y] INT NOT NULL, [Revealed] INT NOT NULL, [FishType] INT NULL, UNIQUE([CharacterId],[X],[Y]));";
+	static const std::string DELETE_ALL = "DELETE FROM [FishboardCells] WHERE [CharacterId]={};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [FishboardCells] ([CharacterId],[X],[Y],[Revealed],[FishType]) VALUES ({},{},{},{},{});";
+	static const std::string QUERY_ALL = "SELECT [X],[Y],[Revealed],[FishType] FROM [FishboardCells] WHERE [CharacterId]={};";
+	static const std::string QUERY_ITEM = "SELECT [X],[Y],[Revealed],[FishType] FROM [FishboardCells] WHERE [CharacterId]={} AND [X]={} AND [Y]={};";
+	static const std::string QUERY_FISH_COUNT = "SELECT COUNT([FishType]) AS [FishCount] FROM [FishboardCells] WHERE [CharacterId]={} AND [FishType] IS NOT NULL;";
+	static const std::string QUERY_REVEALED_FISH_COUNT = "SELECT COUNT([FishType]) AS [FishCount] FROM [FishboardCells] WHERE [CharacterId]={} AND [FishType] IS NOT NULL AND [Revealed]<>0;";
+	static const std::string QUERY_FISHES = "SELECT DISTINCT [FishType] FROM [FishboardCells] WHERE [CharacterId]={} AND [FishType] IS NOT NULL;";
 
 	static const std::string FIELD_X = "X";
 	static const std::string FIELD_Y = "Y";
