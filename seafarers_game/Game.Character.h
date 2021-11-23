@@ -9,7 +9,7 @@ namespace game
 	struct Character
 	{
 		static void ApplyTurnEffects();
-		static void Reset(const Difficulty&, int);
+		static void Reset(const Difficulty&);
 		static std::optional<std::string> GetName(int);
 	};
 }

@@ -14,22 +14,16 @@ namespace data::game
 
 	static const int PLAYER_ID = 1;
 
-	static int CreatePlayer()
+	void Player::Create(int avatarId)
 	{
 		AutoCreatePlayerTable();
-		int avatarId = Character::NextId();
 		Common::Execute(REPLACE_ITEM, PLAYER_ID, avatarId);
-		return avatarId;
 	}
 
 	int Player::GetAvatarId()
 	{
 		AutoCreatePlayerTable();
 		auto records = Common::Execute(QUERY_ITEM, PLAYER_ID);
-		if (!records.empty())
-		{
-			return common::Data::ToInt(records.front()[FIELD_AVATAR_ID]);
-		}
-		return CreatePlayer();
+		return common::Data::ToInt(records.front()[FIELD_AVATAR_ID]);
 	}
 }

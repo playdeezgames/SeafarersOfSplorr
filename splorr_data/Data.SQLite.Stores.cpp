@@ -74,4 +74,11 @@ namespace data::sqlite
 	{
 		connections.erase(store);
 	}
+
+	int64_t Stores::LastInsertedIndex(int store)
+	{
+		auto connection = GetConnection(store);
+		return sqlite3_last_insert_rowid(connection.get());
+	}
+
 }

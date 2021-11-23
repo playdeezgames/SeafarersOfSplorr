@@ -19,6 +19,7 @@ namespace data::game//20211011
 		}
 		static std::function<void()> Run(const std::string&);
 		static common::XY<double> ToXY(const std::map<std::string, std::string>&);
+		static int LastInsertedIndex();
 	};
 
 }

@@ -5,9 +5,10 @@
 #include <optional>
 namespace data::game
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Characters]([CharacterId] INT NOT NULL UNIQUE,[State] INT NOT NULL, [Name] TEXT NOT NULL);";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Characters]([CharacterId] INTEGER PRIMARY KEY AUTOINCREMENT,[State] INT NOT NULL, [Name] TEXT NOT NULL);";
 	static const std::string QUERY_ITEM= "SELECT [State],[Name] FROM [Characters] WHERE [CharacterId] = {};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [Characters]([CharacterId],[State],[Name]) VALUES ({},{},{});";
+	static const std::string CREATE_ITEM = "INSERT INTO [Characters]([State],[Name]) VALUES({}, {});";
+	static const std::string UPDATE_ITEM = "UPDATE [Characters] SET [State]={}, [Name]={} WHERE CharacterId={};";
 	static const std::string QUERY_MAX_AVATAR_ID = "SELECT COALESCE(MAX([CharacterId]),0) [MaxCharacterId] FROM [Characters];";
 	static const std::string QUERY_ALL = "SELECT [CharacterId] FROM [Characters];";
 
@@ -40,14 +41,25 @@ namespace data::game
 		return std::nullopt;
 	}
 
+	int Character::Create(const Character& character)
+	{
+		AutoCreateTable();
+		Common::Execute(
+			CREATE_ITEM,
+			character.state,
+			common::Data::QuoteString(character.name));
+		return Common::LastInsertedIndex();
+	}
+
+
 	void Character::Write(int characterId, const Character& avatar)
 	{
 		AutoCreateTable();
 		Common::Execute(
-			REPLACE_ITEM,
-			characterId,
+			UPDATE_ITEM,
 			avatar.state,
-			common::Data::QuoteString(avatar.name));
+			common::Data::QuoteString(avatar.name),
+			characterId);
 	}
 
 	int Character::NextId()

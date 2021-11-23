@@ -167,14 +167,14 @@ namespace game
 		return nameGenerator.Generate();
 	}
 
-	static void CreateAvatar(int avatarId)
+	static int CreateAvatar()
 	{
 		data::game::Character data =
 		{
 			(int)game::character::State::AT_SEA,
 			GenerateName()
 		};
-		data::game::Character::Write(avatarId, data);
+		return data::game::Character::Create(data);
 	}
 
 	static void GenerateAvatarRations(int avatarId)
@@ -202,9 +202,10 @@ namespace game
 		game::character::Ship::Write(game::Player::GetAvatarId(), shipId, BerthType::CAPTAIN);
 	}
 
-	void Character::Reset(const game::Difficulty&, int avatarId)
+	void Character::Reset(const game::Difficulty&)
 	{
-		CreateAvatar(avatarId);
+		auto avatarId = CreateAvatar();
+		Player::Create(avatarId);
 		GenerateAvatarRations(avatarId);
 		GenerateAvatarShip();
 	}

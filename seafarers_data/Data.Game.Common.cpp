@@ -36,7 +36,12 @@ namespace data::game//20211011
 			common::Data::ToDouble(record.find(FIELD_X)->second),
 			common::Data::ToDouble(record.find(FIELD_Y)->second)
 		};
-
 	}
+
+	int Common::LastInsertedIndex()
+	{
+		return (int)data::sqlite::Stores::LastInsertedIndex(data::sqlite::Store::IN_MEMORY);
+	}
+
 
 }

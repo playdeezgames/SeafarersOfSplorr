@@ -37,5 +37,12 @@ namespace data::sqlite
 		{
 			Bounce((int)store);
 		}
+
+		static int64_t LastInsertedIndex(int);
+		template<typename TStore>
+		static int64_t LastInsertedIndex(const TStore& store)
+		{
+			return LastInsertedIndex((int)store);
+		}
 	};
 }
