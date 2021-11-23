@@ -5,7 +5,7 @@
 #include "Data.Game.Ship.h"
 namespace data::game::character
 {
-	static const std::string QUERY_CREW_FOR_SHIP = "SELECT [CharacterId], [BerthType] FROM [AvatarShips] WHERE [ShipId]={};";
+	static const std::string QUERY_CREW_FOR_SHIP = "SELECT [CharacterId], [BerthType] FROM [CharacterShips] WHERE [ShipId]={};";
 
 	static const std::string FIELD_BERTH_TYPE = "BerthType";
 	static const std::string FIELD_CHARACTER_ID = "CharacterId";
