@@ -3,7 +3,7 @@
 #include "Data.Game.Demigod.h"
 namespace data::game
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Demigods]([Name] TEXT NOT NULL UNIQUE, [PatronWeight] INT NOT NULL,[BlessingThreshold] REAL NOT NULL,[BlessingMultiplier] REAL NOT NULL,[BlessingPlightId] INT NOT NULL,[CurseThreshold] REAL NOT NULL,[CurseMultiplier] REAL NOT NULL,[CursePlightId] INT NOT NULL,[OfferingCooldown] INT NOT NULL);";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Demigods]([DemigodId] INTEGER PRIMARY KEY AUTOINCREMENT,[Name] TEXT NOT NULL UNIQUE, [PatronWeight] INT NOT NULL,[BlessingThreshold] REAL NOT NULL,[BlessingMultiplier] REAL NOT NULL,[BlessingPlightId] INT NOT NULL,[CurseThreshold] REAL NOT NULL,[CurseMultiplier] REAL NOT NULL,[CursePlightId] INT NOT NULL,[OfferingCooldown] INT NOT NULL);";
 	static const std::string REPLACE_ITEM = "REPLACE INTO [Demigods]([Name],[PatronWeight],[BlessingThreshold],[BlessingMultiplier],[BlessingPlightId],[CurseThreshold],[CurseMultiplier],[CursePlightId],[OfferingCooldown]) VALUES({},{},{},{},{},{},{},{},{});";
 	static const std::string DELETE_ALL = "DELETE FROM [Demigods];";
 	static const std::string QUERY_ALL = "SELECT [Name],[PatronWeight],[BlessingThreshold],[BlessingMultiplier],[BlessingPlightId],[CurseThreshold],[CurseMultiplier],[CursePlightId],[OfferingCooldown] FROM [Demigods];";
