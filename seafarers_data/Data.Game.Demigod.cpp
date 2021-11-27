@@ -29,7 +29,7 @@ namespace data::game
 		data::game::Common::Execute(DELETE_ALL);
 	}
 
-	void Demigod::Write(const Demigod& demigod)
+	int Demigod::Write(const Demigod& demigod)
 	{
 		AutoCreateDemigodTable();
 		if (demigod.id == 0)
@@ -45,6 +45,7 @@ namespace data::game
 				demigod.curseMultiplier,
 				demigod.cursePlightId,
 				demigod.offeringCooldown);
+			return Common::LastInsertedIndex();
 		}
 		else
 		{
@@ -60,6 +61,7 @@ namespace data::game
 				demigod.cursePlightId,
 				demigod.offeringCooldown,
 				demigod.id);
+			return demigod.id;
 		}
 	}
 

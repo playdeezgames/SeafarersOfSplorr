@@ -5,8 +5,8 @@ namespace data::game//20211014
 {
 	struct DemigodItem
 	{
-		static std::optional<double> Read(const std::string&, int);
-		static void Write(const std::string&, int, double);
+		static std::optional<double> Read(int, int);
+		static void Write(int, int, double);
 		static void Clear();
 	};
 }

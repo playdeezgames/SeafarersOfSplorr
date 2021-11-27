@@ -125,10 +125,10 @@ namespace game
 				CURSE_MULTIPLIER,
 				(int)character::Plights::Generate(character::PlightType::CURSE),
 				(size_t)0};
-			data::game::Demigod::Write(demigod);
+			auto demigodId = data::game::Demigod::Write(demigod);
 			for (auto item : items)
 			{
-				data::game::DemigodItem::Write(name, (int)item, common::RNG::FromRange(OFFERING_FAVOR_MINIMUM, OFFERING_FAVOR_MAXIMUM));
+				data::game::DemigodItem::Write(demigodId, (int)item, common::RNG::FromRange(OFFERING_FAVOR_MINIMUM, OFFERING_FAVOR_MAXIMUM));
 			}
 		}
 	}
@@ -185,7 +185,7 @@ namespace game
 
 	static OfferingResult DoMakeOffering(data::game::Demigod& demigod, const Item& item)
 	{
-		auto delta = data::game::DemigodItem::Read(demigod.name, (int)item);
+		auto delta = data::game::DemigodItem::Read(demigod.id, (int)item);
 		if (delta)
 		{
 			UpdateCooldown(demigod);
