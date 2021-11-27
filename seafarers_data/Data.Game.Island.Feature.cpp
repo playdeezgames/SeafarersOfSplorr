@@ -1,13 +1,13 @@
 #include <Common.Data.h>
 #include "Data.Game.Island.Feature.h"
 #include "Data.Game.Common.h"
-namespace data::game::island//20211010
+namespace data::game::island
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandFeatures]([X] REAL NOT NULL,[Y] REAL NOT NULL,[FeatureId] INT NOT NULL,UNIQUE([X],[Y],[FeatureId]));";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandFeatures]([IslandId] INT NOT NULL,[FeatureId] INT NOT NULL,UNIQUE([Island],[FeatureId]));";
 	static const std::string DELETE_ALL = "DELETE FROM [IslandFeatures];";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [IslandFeatures]([X],[Y],[FeatureId]) VALUES({:.4f},{:.4f},{});";
-	static const std::string QUERY_ITEM = "SELECT [FeatureId] FROM [IslandFeatures] WHERE [X]={:.4f} AND [Y]={:.4f} AND [FeatureId]={};";
-	static const std::string DELETE_ITEM = "DELETE FROM [IslandFeatures] WHERE [X]={:.4f} AND [Y]={:.4f} AND [FeatureId]={};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [IslandFeatures]([IslandId],[FeatureId]) VALUES({},{});";
+	static const std::string QUERY_ITEM = "SELECT [FeatureId] FROM [IslandFeatures] WHERE [IslandId]={} AND [FeatureId]={};";
+	static const std::string DELETE_ITEM = "DELETE FROM [IslandFeatures] WHERE [IslandId]={} AND [FeatureId]={};";
 
 	static const auto AutoCreateIslandFeaturesTable = data::game::Common::Run(CREATE_TABLE);
 
@@ -17,33 +17,30 @@ namespace data::game::island//20211010
 		data::game::Common::Execute(DELETE_ALL);
 	}
 
-	void Feature::Write(const common::XY<double>& xy, int featureId)
+	void Feature::Write(int islandId, int featureId)
 	{
 		AutoCreateIslandFeaturesTable();
 		data::game::Common::Execute(
 			REPLACE_ITEM, 
-			xy.GetX(), 
-			xy.GetY(), 
+			islandId, 
 			featureId);
 	}
 
-	void Feature::Clear(const common::XY<double>& xy, int featureId)
+	void Feature::Clear(int islandId, int featureId)
 	{
 		AutoCreateIslandFeaturesTable();
 		data::game::Common::Execute(
 			DELETE_ITEM, 
-			xy.GetX(), 
-			xy.GetY(), 
+			islandId, 
 			featureId);
 	}
 
-	bool Feature::Read(const common::XY<double>& xy, int featureId)
+	bool Feature::Read(int islandId, int featureId)
 	{
 		AutoCreateIslandFeaturesTable();
 		return !data::game::Common::Execute(
 			QUERY_ITEM, 
-			xy.GetX(), 
-			xy.GetY(), 
+			islandId, 
 			featureId).empty();
 	}
 }

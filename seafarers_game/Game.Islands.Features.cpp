@@ -6,22 +6,22 @@
 #include "Game.Features.h"
 #include "Game.Islands.Features.h"
 #include <vector>
-namespace game::islands//20211014
+namespace game::islands
 {
 	bool Features::Read(const common::XY<double>& xy, const game::Feature& feature)
 	{
-		return data::game::island::Feature::Read(xy, (int)feature);
+		return data::game::island::Feature::Read(data::game::Island::Find(xy).value(), (int)feature);
 	}
 
 	void Features::Write(const common::XY<double>& xy, const game::Feature& feature, bool value)
 	{
 		if (value)
 		{
-			data::game::island::Feature::Write(xy, (int)feature);
+			data::game::island::Feature::Write(data::game::Island::Find(xy).value(), (int)feature);
 		}
 		else
 		{
-			data::game::island::Feature::Clear(xy, (int)feature);
+			data::game::island::Feature::Clear(data::game::Island::Find(xy).value(), (int)feature);
 		}
 	}
 
@@ -93,7 +93,7 @@ namespace game::islands//20211014
 			candidates[index] = candidates.back();
 			candidates.pop_back();
 
-			data::game::island::Feature::Write(candidate, (int)feature);
+			data::game::island::Feature::Write(data::game::Island::Find(candidate).value(), (int)feature);
 			InitializeFeature(feature, candidate);
 			islandCount--;
 		}
