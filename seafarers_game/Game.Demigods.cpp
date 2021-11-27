@@ -115,6 +115,7 @@ namespace game
 		for (auto name : names)
 		{
 			data::game::Demigod demigod ={ 
+				0,
 				name,
 				common::RNG::FromGenerator(patronWeights),
 				BLESSING_THRESHOLD,

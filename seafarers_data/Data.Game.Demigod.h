@@ -6,6 +6,7 @@ namespace data::game//20211015
 {
 	struct Demigod
 	{
+		int id;
 		std::string name;
 		size_t patronWeight;
 		double blessingThreshold;
