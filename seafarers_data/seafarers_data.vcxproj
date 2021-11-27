@@ -48,6 +48,7 @@
     <ClInclude Include="Data.Game.Island.Quest.h" />
     <ClInclude Include="Data.Game.Island.Visit.h" />
     <ClInclude Include="Data.Game.Player.h" />
+    <ClInclude Include="Data.Game.Ship.Docks.h" />
     <ClInclude Include="Data.Game.Ship.h" />
     <ClInclude Include="Data.Game.Ship.Statistic.h" />
     <ClInclude Include="Data.Game.World.h" />
@@ -85,6 +86,7 @@
     <ClCompile Include="Data.Game.Island.Visit.cpp" />
     <ClCompile Include="Data.Game.Player.cpp" />
     <ClCompile Include="Data.Game.Ship.cpp" />
+    <ClCompile Include="Data.Game.Ship.Docks.cpp" />
     <ClCompile Include="Data.Game.Ship.Statistic.cpp" />
     <ClCompile Include="Data.Game.World.cpp" />
   </ItemGroup>

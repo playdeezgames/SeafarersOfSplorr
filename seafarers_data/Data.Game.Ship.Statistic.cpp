@@ -3,7 +3,7 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Player.h"
 #include <string>
-namespace data::game::ship//20211010
+namespace data::game::ship
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [ShipStatistics]([ShipId] INT NOT NULL, [StatisticId] INT NOT NULL,[Minimum] REAL NULL,[Maximum] REAL NULL,[Current] REAL NOT NULL, UNIQUE([ShipId],[StatisticId]));";
 	static const std::string QUERY_ITEM = "SELECT [Minimum], [Maximum], [Current] FROM [ShipStatistics] WHERE [StatisticId] = {} AND [ShipId]={};";
@@ -14,11 +14,11 @@ namespace data::game::ship//20211010
 	static const std::string FIELD_MAXIMUM = "Maximum";
 	static const std::string FIELD_CURRENT = "Current";
 
-	static const auto AutoCreateShipStatisticsTable = data::game::Common::Run(CREATE_TABLE);
+	static const auto AutoCreateTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Statistic::Write(int shipId, int statisticId, const Statistic& data)
 	{
-		AutoCreateShipStatisticsTable();
+		AutoCreateTable();
 		data::game::Common::Execute(
 			REPLACE_ITEM, 
 			shipId, 
@@ -40,7 +40,7 @@ namespace data::game::ship//20211010
 
 	std::optional<Statistic> Statistic::Read(int shipId, int statisticId)
 	{
-		AutoCreateShipStatisticsTable();
+		AutoCreateTable();
 		auto result = data::game::Common::Execute(QUERY_ITEM, statisticId, shipId);
 		if (!result.empty())
 		{
@@ -51,7 +51,7 @@ namespace data::game::ship//20211010
 
 	void Statistic::Clear(int shipId)
 	{
-		AutoCreateShipStatisticsTable();
+		AutoCreateTable();
 		data::game::Common::Execute(
 			DELETE_ALL, 
 			shipId);
