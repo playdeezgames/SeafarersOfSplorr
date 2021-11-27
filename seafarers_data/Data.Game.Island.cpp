@@ -7,6 +7,7 @@ namespace data::game
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Islands]([IslandId] INTEGER PRIMARY KEY AUTOINCREMENT, [X] REAL NOT NULL,[Y] REAL NOT NULL,[Name] TEXT NOT NULL,[PatronDemigodId] INT NOT NULL,UNIQUE([X],[Y]));";
 	static const std::string QUERY_ITEM = "SELECT [IslandId],[X],[Y],[Name],[PatronDemigodId] FROM [Islands] WHERE [IslandId]={};";
+	static const std::string QUERY_ID_FOR_LOCATION = "SELECT [IslandId] FROM [Islands] WHERE [X]={:.4f} AND [Y]={:.4f};";
 	static const std::string INSERT_ITEM = "INSERT INTO [Islands]([X],[Y],[Name],[PatronDemigodId]) VALUES ({:.4f},{:.4f},{},{});";
 	static const std::string UPDATE_ITEM = "UPDATE [Islands] SET [X]={:.4f},[Y]={:.4f},[Name]={},[PatronDemigodId]={}) WHERE [IslandId]={};";
 	static const std::string QUERY_ALL = "SELECT [IslandId],[X],[Y],[Name],[PatronDemigodId] FROM [Islands];";
@@ -61,16 +62,29 @@ namespace data::game
 		return data;
 	}
 
-	std::optional<Island> Island::Read(const common::XY<double>& location)
+	std::optional<Island> Island::Read(int islandId)
 	{
 		AutoCreateIslandTable();
 		auto result = data::game::Common::Execute(
 			QUERY_ITEM,
+			islandId);
+		if (!result.empty())
+		{
+			return ToIsland(result.front());
+		}
+		return std::nullopt;
+	}
+
+	std::optional<int> Island::Find(const common::XY<double>& location)
+	{
+		AutoCreateIslandTable();
+		auto result = data::game::Common::Execute(
+			QUERY_ID_FOR_LOCATION,
 			location.GetX(),
 			location.GetY());
 		if (!result.empty())
 		{
-			return ToIsland(result.front());
+			return common::Data::ToInt(result.front()[FIELD_ISLAND_ID]);
 		}
 		return std::nullopt;
 	}

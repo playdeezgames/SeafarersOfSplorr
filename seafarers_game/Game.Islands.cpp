@@ -112,7 +112,7 @@ namespace game
 
 	void Islands::AddVisit(const common::XY<double>& location, const int& currentTurn)
 	{
-		auto islandId = data::game::Island::Read(location).value().id;
+		auto islandId = data::game::Island::Find(location).value();
 		auto previousVisits = data::game::island::Visit::Read(islandId);
 		if (previousVisits)
 		{
@@ -126,7 +126,7 @@ namespace game
 
 	void Islands::SetKnown(const common::XY<double>& location, const int& turn)
 	{
-		auto islandId = data::game::Island::Read(location).value().id;
+		auto islandId = data::game::Island::Find(location).value();
 		if (!data::game::island::Visit::Read(islandId))
 		{
 			data::game::island::Visit::Write({
@@ -150,7 +150,8 @@ namespace game
 
 	std::optional<Island> Islands::Read(const common::XY<double>& location)
 	{
-		auto island = data::game::Island::Read(location);
+		auto islandId = data::game::Island::Find(location).value();
+		auto island = data::game::Island::Read(islandId);
 		if (island)
 		{
 			return ToIsland(island.value());
@@ -160,7 +161,7 @@ namespace game
 
 	static void ObfuscateIfUnknown(game::Island& island)
 	{
-		auto islandId = data::game::Island::Read(island.absoluteLocation).value().id;
+		auto islandId = data::game::Island::Find(island.absoluteLocation).value();
 		if (!data::game::island::Visit::Read(islandId))
 		{
 			island.name = Islands::UNKNOWN;
