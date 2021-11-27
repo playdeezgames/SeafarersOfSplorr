@@ -1,3 +1,4 @@
+#include <Data.Game.Island.h>
 #include <Data.Game.Island.Item.h>
 #include <functional>
 #include "Game.Islands.Commodities.h"
@@ -22,7 +23,7 @@ namespace game::islands//20211014
 	static std::map<game::Item, double> GetPrices(const common::XY<double>& location, std::function<double(const common::XY<double>&, const Item&)> unitPricer)
 	{
 		std::map<game::Item, double> result;
-		auto itemsAvailable = data::game::island::Item::GetAll(location);
+		auto itemsAvailable = data::game::island::Item::GetAll(data::game::Island::Find(location).value());
 		for (auto& item : itemsAvailable)
 		{
 			double price = unitPricer(location, (game::Item)item);

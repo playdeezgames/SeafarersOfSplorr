@@ -147,7 +147,7 @@ namespace game
 		{
 			if (Items::GeneratePresenceForIsland(item))
 			{
-				data::game::island::Item::Write(location, (int)item);
+				data::game::island::Item::Write(data::game::Island::Find(location).value(), (int)item);
 			}
 		}
 	}

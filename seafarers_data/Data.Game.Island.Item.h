@@ -1,14 +1,14 @@
 #pragma once
 #include <Common.XY.h>
 #include <set>
-namespace data::game::island//20211014
+namespace data::game::island
 {
 	struct Item
 	{
-		static void Write(const common::XY<double>&, int);
-		static void Clear(const common::XY<double>&, int);
-		static bool Read(const common::XY<double>&, int);
-		static std::set<int> GetAll(const common::XY<double>&);
+		static void Write(int, int);
+		static void Clear(int, int);
+		static bool Read(int, int);
+		static std::set<int> GetAll(int);
 		static void ClearAll();
 	};
 }

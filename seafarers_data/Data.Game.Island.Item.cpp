@@ -1,45 +1,42 @@
 #include <Common.Data.h>
 #include "Data.Game.Island.Item.h"
 #include "Data.Game.Common.h"
-namespace data::game::island//20211014
+namespace data::game::island
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandItems]([X] REAL NOT NULL,[Y] REAL NOT NULL,[ItemId] INT NOT NULL, UNIQUE([X],[Y],[ItemId]));";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [IslandItems]([X],[Y],[ItemId]) VALUES({:.4f},{:.4f},{});";
-	static const std::string DELETE_ITEM = "DELETE FROM [IslandItems] WHERE [X]={:.4f} AND [Y]={:.4f} AND [ItemId]={};";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandItems]([IslandId] INT NOT NULL,[ItemId] INT NOT NULL, UNIQUE([IslandId],[ItemId]));";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [IslandItems]([IslandId],[ItemId]) VALUES({},{});";
+	static const std::string DELETE_ITEM = "DELETE FROM [IslandItems] WHERE [IslandId]={} AND [ItemId]={};";
 	static const std::string DELETE_ALL = "DELETE FROM [IslandItems];";
-	static const std::string QUERY_ITEM = "SELECT [ItemId] FROM [IslandItems] WHERE [X]={:.4f} AND [Y]={:.4f} AND [ItemId]={};";
-	static const std::string QUERY_ALL = "SELECT [ItemId] FROM [IslandItems] WHERE [X]={:.4f} AND [Y]={:.4f}";
+	static const std::string QUERY_ITEM = "SELECT [ItemId] FROM [IslandItems] WHERE [IslandId]={} AND [ItemId]={};";
+	static const std::string QUERY_ALL = "SELECT [ItemId] FROM [IslandItems] WHERE [IslandId]={}";
 
-	static const std::string FIELD_X = "X";
-	static const std::string FIELD_Y = "Y";
+	static const std::string FIELD_ISLAND_ID = "IslandId";
 	static const std::string FIELD_ITEM_ID = "ItemId";
 
 	static const auto AutoCreateIslandItemTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Item::Write(const common::XY<double>& location, int item)
+	void Item::Write(int islandId, int item)
 	{
 		AutoCreateIslandItemTable();
 		data::game::Common::Execute(
 			REPLACE_ITEM, 
-			location.GetX(), 
-			location.GetY(), 
+			islandId, 
 			item);
 	}
 
-	void Item::Clear(const common::XY<double>& location, int item)
+	void Item::Clear(int islandId, int item)
 	{
 		AutoCreateIslandItemTable();
 		data::game::Common::Execute(
 			DELETE_ITEM, 
-			location.GetX(), 
-			location.GetY(), 
+			islandId, 
 			item);
 	}
 
-	bool Item::Read(const common::XY<double>& location, int item)
+	bool Item::Read(int islandId, int item)
 	{
 		AutoCreateIslandItemTable();
-		return !data::game::Common::Execute(QUERY_ITEM, location.GetX(), location.GetY(), item).empty();
+		return !data::game::Common::Execute(QUERY_ITEM, islandId, item).empty();
 	}
 
 	void Item::ClearAll()
@@ -48,11 +45,11 @@ namespace data::game::island//20211014
 		data::game::Common::Execute(DELETE_ALL);
 	}
 
-	std::set<int> Item::GetAll(const common::XY<double>& location)
+	std::set<int> Item::GetAll(int islandId)
 	{
 		std::set<int> result;
 		AutoCreateIslandItemTable();
-		auto records = data::game::Common::Execute(QUERY_ALL, location.GetX(), location.GetY());
+		auto records = data::game::Common::Execute(QUERY_ALL, islandId);
 		for (auto& record : records)
 		{
 			result.insert(common::Data::ToInt(record[FIELD_ITEM_ID]));
