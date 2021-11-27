@@ -1,7 +1,7 @@
 #pragma once
 #include <Common.XY.h>
 #include <optional>
-namespace data::game::island//20211014
+namespace data::game::island
 {
 	struct DarkAlley
 	{
@@ -10,8 +10,8 @@ namespace data::game::island//20211014
 		double minimumWager;
 
 		static void Clear();
-		static void Write(const common::XY<double>&, const DarkAlley&);
-		static std::optional<DarkAlley> Read(const common::XY<double>&);
+		static void Write(int, const DarkAlley&);
+		static std::optional<DarkAlley> Read(int);
 	};
 
 }

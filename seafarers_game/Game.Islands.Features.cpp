@@ -42,7 +42,7 @@ namespace game::islands
 
 	static void InitializeDarkAlley(const common::XY<double>& location)
 	{
-		data::game::island::DarkAlley::Write(location, {
+		data::game::island::DarkAlley::Write(data::game::Island::Find(location).value(), {
 			GenerateInfamyRequirement(),
 			GenerateRuffianBrawlingStrength(),
 			GenerateMinimumWager()

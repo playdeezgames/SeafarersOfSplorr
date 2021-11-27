@@ -1,11 +1,12 @@
+#include <Data.Game.Island.h>
 #include <Data.Game.Island.DarkAlley.h>
 #include <functional>
 #include "Game.Islands.DarkAlley.h"
-namespace game::islands//20211013
+namespace game::islands
 {
 	static std::optional<double> ExtractDarkAlleyValue(const common::XY<double>& location, std::function<double(const data::game::island::DarkAlley&)> extractor)
 	{
-		auto result = data::game::island::DarkAlley::Read(location);
+		auto result = data::game::island::DarkAlley::Read(data::game::Island::Find(location).value());
 		if (result)
 		{
 			return extractor(result.value());

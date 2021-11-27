@@ -1,5 +1,6 @@
 #include <Cards.Card.h>
 #include <Common.RNG.h>
+#include <Data.Game.Island.h>
 #include <Data.Game.Island.DarkAlley.h>
 #include <Data.Game.Island.DarkAlley.FightCard.h>
 #include <functional>
@@ -201,7 +202,7 @@ namespace game::islands::dark_alley//20211014
 	void FightCard::Generate(const common::XY<double>& location)
 	{
 		data::game::island::dark_alley::FightCard::Clear(location);
-		auto darkAlley = data::game::island::DarkAlley::Read(location);
+		auto darkAlley = data::game::island::DarkAlley::Read(data::game::Island::Find(location).value());
 		if (darkAlley)
 		{
 			DoGenerate(location, darkAlley.value());

@@ -1,5 +1,6 @@
 #include <Data.Game.Character.h>
 #include <Data.Game.Character.Dock.h>
+#include <Data.Game.Island.h>
 #include <Data.Game.Island.DarkAlley.h>
 #include <format>
 #include <functional>
@@ -18,11 +19,11 @@ namespace game::character
 {
 	const std::string FORMAT_UNDOCK = "You undock from {}.";
 
-	static StateTransition OnUndock(int avatarId)
+	static StateTransition OnUndock(int characterId)
 	{
 		auto location = game::character::Docked::ReadLocation();
 		auto island = game::Islands::Read(location.value()).value();
-		data::game::character::Dock::Clear(avatarId);
+		data::game::character::Dock::Clear(characterId);
 		return {
 			game::Colors::GREEN,
 			std::format(FORMAT_UNDOCK, island.name),
@@ -32,11 +33,11 @@ namespace game::character
 
 	void OnEnterDarkAlleyFailsInfamyRequirement();//this is outside of the game, and needs reference to visuals
 
-	static StateTransition OnEnterDarkAlley(int avatarId)
+	static StateTransition OnEnterDarkAlley(int characterId)
 	{
 		auto location = game::character::Docked::ReadLocation().value();
-		auto data = data::game::island::DarkAlley::Read(location).value();
-		auto infamy = game::character::Statistics::GetInfamy(avatarId);
+		auto data = data::game::island::DarkAlley::Read(data::game::Island::Find(location).value()).value();
+		auto infamy = game::character::Statistics::GetInfamy(characterId);
 		if (infamy < data.infamyRequirement)
 		{
 			OnEnterDarkAlleyFailsInfamyRequirement();
@@ -77,11 +78,11 @@ namespace game::character
 		};
 	}
 
-	static StateTransition OnStartFishing(int avatarId)
+	static StateTransition OnStartFishing(int characterId)
 	{
-		if (game::character::Items::Has(avatarId, Item::FISHING_POLE))
+		if (game::character::Items::Has(characterId, Item::FISHING_POLE))
 		{
-			if (game::character::Items::Has(avatarId, Item::BAIT))
+			if (game::character::Items::Has(characterId, Item::BAIT))
 			{
 				Fishboard::Generate();
 				return
@@ -395,16 +396,16 @@ namespace game::character
 		return actionDescriptors;
 	}
 
-	static void SetState(int avatarId, const State& state)
+	static void SetState(int characterId, const State& state)
 	{
-		auto avatar = data::game::Character::Read(avatarId).value();
+		auto avatar = data::game::Character::Read(characterId).value();
 		avatar.state = (int)state;
-		data::game::Character::Write(avatarId, avatar);
+		data::game::Character::Write(characterId, avatar);
 	}
 
-	std::optional<State> Actions::GetState(int avatarId)
+	std::optional<State> Actions::GetState(int characterId)
 	{
-		auto avatar = data::game::Character::Read(avatarId);
+		auto avatar = data::game::Character::Read(characterId);
 		if (avatar)
 		{
 			return (State)avatar.value().state;
@@ -412,9 +413,9 @@ namespace game::character
 		return std::nullopt;
 	}
 
-	bool Actions::DoAction(int avatarId, const Action& action)
+	bool Actions::DoAction(int characterId, const Action& action)
 	{
-		auto state = GetState(avatarId);
+		auto state = GetState(characterId);
 		if (state)
 		{
 			auto descriptor = GetActionDescriptors().find(action);
@@ -424,8 +425,8 @@ namespace game::character
 				{
 					if (transition != descriptor->second.end())
 					{
-						auto result = transition->second(avatarId);
-						SetState(avatarId, result.state);
+						auto result = transition->second(characterId);
+						SetState(characterId, result.state);
 					}
 				}
 			}

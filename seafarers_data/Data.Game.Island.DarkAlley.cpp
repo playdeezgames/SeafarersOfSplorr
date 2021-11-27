@@ -1,12 +1,12 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.DarkAlley.h"
-namespace data::game::island//20211010
+namespace data::game::island
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [DarkAlleys]([X] REAL NOT NULL,[Y] REAL NOT NULL,[InfamyRequirement] REAL NOT NULL,[RuffianBrawlingStrength] REAL NOT NULL, [MinimumWager] REAL NOT NULL, UNIQUE([X],[Y]));";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [DarkAlleys]([IslandId] INT NOT NULL,[InfamyRequirement] REAL NOT NULL,[RuffianBrawlingStrength] REAL NOT NULL, [MinimumWager] REAL NOT NULL, UNIQUE([IslandId]));";
 	static const std::string DELETE_ALL = "DELETE FROM [DarkAlleys];";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [DarkAlleys]([X],[Y],[InfamyRequirement],[RuffianBrawlingStrength],[MinimumWager]) VALUES({:.4f},{:.4f},{},{},{});";
-	static const std::string QUERY_ITEM = "SELECT [InfamyRequirement],[RuffianBrawlingStrength],[MinimumWager] FROM [DarkAlleys] WHERE [X]={:.4f} AND [Y]={:.4f};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [DarkAlleys]([IslandId],[InfamyRequirement],[RuffianBrawlingStrength],[MinimumWager]) VALUES({},{},{},{});";
+	static const std::string QUERY_ITEM = "SELECT [InfamyRequirement],[RuffianBrawlingStrength],[MinimumWager] FROM [DarkAlleys] WHERE [IslandId]={};";
 
 	static const std::string FIELD_INFAMY_REQUIREMENT = "InfamyRequirement";
 	static const std::string FIELD_RUFFIAN_BRAWLING_STRENGTH = "RuffianBrawlingStrength";
@@ -20,13 +20,12 @@ namespace data::game::island//20211010
 		data::game::Common::Execute(DELETE_ALL);
 	}
 
-	void DarkAlley::Write(const common::XY<double>& location, const DarkAlley& data)
+	void DarkAlley::Write(int islandId, const DarkAlley& data)
 	{
 		AutoCreateDarkAlleysTable();
 		data::game::Common::Execute(
 				REPLACE_ITEM, 
-				location.GetX(), 
-				location.GetY(), 
+				islandId, 
 				data.infamyRequirement, 
 				data.ruffianBrawlingStrength,
 				data.minimumWager);
@@ -42,10 +41,10 @@ namespace data::game::island//20211010
 		};
 	}
 
-	std::optional<DarkAlley> DarkAlley::Read(const common::XY<double>& location)
+	std::optional<DarkAlley> DarkAlley::Read(int islandId)
 	{
 		AutoCreateDarkAlleysTable();
-		auto records = data::game::Common::Execute(QUERY_ITEM, location.GetX(), location.GetY());
+		auto records = data::game::Common::Execute(QUERY_ITEM, islandId);
 		if (!records.empty())
 		{
 			return ToDarkAlley(records.front());
