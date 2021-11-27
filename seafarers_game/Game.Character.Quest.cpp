@@ -26,7 +26,7 @@ namespace game::character
 				quest.receiptEmotion }));
 		data::game::island::Quest::Clear(fromIslandId);
 		game::Islands::SetKnown(toIsland.location, game::character::Statistics::GetTurnsRemaining(game::Player::GetAvatarId()));
-		data::game::island::Known::Write(toIsland.location);
+		data::game::island::Known::Write(toIsland.id);
 	}
 
 	AcceptQuestResult Quest::Accept(const common::XY<double>& location)

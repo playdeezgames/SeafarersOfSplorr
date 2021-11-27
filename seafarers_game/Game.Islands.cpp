@@ -35,7 +35,7 @@ namespace game
 		const common::XY<double>& avatarLocation)
 	{
 		auto visitData = data::game::island::Visit::Read(island.id);
-		data::game::island::Known::Write(island.location);
+		data::game::island::Known::Write(island.id);
 		accumulator.push_back(
 			{
 				(island.location - avatarLocation),
