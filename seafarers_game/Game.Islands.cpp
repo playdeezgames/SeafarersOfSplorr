@@ -174,7 +174,7 @@ namespace game
 		std::list<Island> result;
 		for (auto& knownLocation : knownLocations)
 		{
-			auto model = Read(knownLocation);
+			auto model = Read(data::game::Island::Read(knownLocation).value().location);
 			if (model)
 			{
 				model.value().relativeLocation = model.value().absoluteLocation - avatarLocation;

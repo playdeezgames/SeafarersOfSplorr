@@ -9,6 +9,6 @@ namespace data::game::island
 		static void Write(int);
 		static bool Read(int);
 		static void Clear();
-		static std::list<common::XY<double>> All();
+		static std::list<int> All();
 	};
 }

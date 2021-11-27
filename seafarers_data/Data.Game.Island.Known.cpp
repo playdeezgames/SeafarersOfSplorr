@@ -32,14 +32,14 @@ namespace data::game::island
 		data::game::Common::Execute(DELETE_ALL);
 	}
 
-	std::list<common::XY<double>> Known::All()
+	std::list<int> Known::All()
 	{
 		AutoCreateKnownIslandsTable();
 		auto records = data::game::Common::Execute(QUERY_ALL);
-		std::list<common::XY<double>> result;
+		std::list<int> result;
 		for (auto& record : records)
 		{
-			result.push_back(Common::ToXY(record));
+			result.push_back(common::Data::ToInt(record[FIELD_ISLAND_ID]));
 		}
 		return result;
 	}
