@@ -40,9 +40,8 @@ namespace game
 
 	int Ship::Add(const Ship& ship)
 	{
-		int shipId = data::game::Ship::NextId();
-		data::game::Ship::Write({
-			shipId,
+		int shipId = data::game::Ship::Write({
+			0,
 			(int)ship.shipType,
 			ship.name,
 			ship.location,

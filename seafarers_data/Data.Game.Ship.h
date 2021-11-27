@@ -15,11 +15,10 @@ namespace data::game
 		double heading;
 		double speed;
 
-		static void Write(const Ship&);
+		static int Write(const Ship&);
 		static std::optional<Ship> Read(int);
 		static void Clear();
 
-		static int NextId();
 		static std::list<int> All();
 	};
 }
