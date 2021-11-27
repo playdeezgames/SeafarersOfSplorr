@@ -3,14 +3,16 @@
 #include <Common.Utility.List.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.h"
-namespace data::game//20211011
+namespace data::game
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Islands]([X] REAL NOT NULL,[Y] REAL NOT NULL,[Name] TEXT NOT NULL,[PatronDemigodId] INT NOT NULL,UNIQUE([X],[Y]));";
-	static const std::string QUERY_ITEM = "SELECT [X],[Y],[Name],[PatronDemigodId] FROM [Islands] WHERE [X] = {:.4f} AND [Y]={:.4f};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [Islands]([X],[Y],[Name],[PatronDemigodId]) VALUES ({:.4f},{:.4f},{},{});";
-	static const std::string QUERY_ALL = "SELECT [X],[Y],[Name],[PatronDemigodId] FROM [Islands];";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Islands]([IslandId] INTEGER PRIMARY KEY AUTOINCREMENT, [X] REAL NOT NULL,[Y] REAL NOT NULL,[Name] TEXT NOT NULL,[PatronDemigodId] INT NOT NULL,UNIQUE([X],[Y]));";
+	static const std::string QUERY_ITEM = "SELECT [IslandId],[X],[Y],[Name],[PatronDemigodId] FROM [Islands] WHERE [IslandId]={};";
+	static const std::string INSERT_ITEM = "INSERT INTO [Islands]([X],[Y],[Name],[PatronDemigodId]) VALUES ({:.4f},{:.4f},{},{});";
+	static const std::string UPDATE_ITEM = "UPDATE [Islands] SET [X]={:.4f},[Y]={:.4f},[Name]={},[PatronDemigodId]={}) WHERE [IslandId]={};";
+	static const std::string QUERY_ALL = "SELECT [IslandId],[X],[Y],[Name],[PatronDemigodId] FROM [Islands];";
 	static const std::string CLEAR_ALL = "DELETE FROM [Islands];";
 
+	static const std::string FIELD_ISLAND_ID = "IslandId";
 	static const std::string FIELD_X = "X";
 	static const std::string FIELD_Y = "Y";
 	static const std::string FIELD_NAME = "Name";
@@ -18,21 +20,37 @@ namespace data::game//20211011
 
 	static const auto AutoCreateIslandTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Island::Write(const Island& data)
+	int Island::Write(const Island& data)
 	{
 		AutoCreateIslandTable();
-		data::game::Common::Execute(
-			REPLACE_ITEM,
-			data.location.GetX(),
-			data.location.GetY(),
-			common::Data::QuoteString(data.name),
-			data.patronDemigodId);
+		if (data.id == 0)
+		{
+			data::game::Common::Execute(
+				INSERT_ITEM,
+				data.location.GetX(),
+				data.location.GetY(),
+				common::Data::QuoteString(data.name),
+				data.patronDemigodId);
+			return Common::LastInsertedIndex();
+		}
+		else
+		{
+			data::game::Common::Execute(
+				UPDATE_ITEM,
+				data.location.GetX(),
+				data.location.GetY(),
+				common::Data::QuoteString(data.name),
+				data.patronDemigodId,
+				data.id);
+			return data.id;
+		}
 	}
 
 	static Island ToIsland(const std::map<std::string, std::string> record)
 	{
 		Island data =
 		{
+			common::Data::ToInt(record.find(FIELD_ISLAND_ID)->second),
 			{
 				common::Data::ToDouble(record.find(FIELD_X)->second),
 				common::Data::ToDouble(record.find(FIELD_Y)->second)

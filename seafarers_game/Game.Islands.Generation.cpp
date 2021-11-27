@@ -172,6 +172,7 @@ namespace game
 		{
 			data::game::Island data =
 			{
+				0,
 				locations.front(),
 				*names.begin(),
 				GeneratePatronDemigod()
