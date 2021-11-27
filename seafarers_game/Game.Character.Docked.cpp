@@ -1,5 +1,7 @@
 #include <Data.Game.Character.h>
-#include <Data.Game.Character.Dock.h>
+#include <Data.Game.Character.Ship.h>
+#include <Data.Game.Ship.Docks.h>
+#include <Data.Game.Island.h>
 #include <Data.Game.Island.DarkAlley.h>
 #include <format>
 #include <functional>
@@ -40,7 +42,9 @@ namespace game::character
 		{
 			result = DockResult::COMPLETED_QUEST;
 		}
-		data::game::character::Dock::Write(Player::GetAvatarId(), location);
+		int islandId = data::game::Island::Find(location).value();
+		int shipId = data::game::character::Ship::Read(game::Player::GetAvatarId()).value().shipId;
+		data::game::ship::Docks::Write(shipId, islandId);
 		SetAvatarStateToDocked();
 		auto island = game::Islands::Read(location).value();
 		return result;
@@ -62,6 +66,19 @@ namespace game::character
 
 	std::optional<common::XY<double>> Docked::ReadLocation()
 	{
-		return data::game::character::Dock::Read(Player::GetAvatarId());
+		auto ship = data::game::character::Ship::Read(Player::GetAvatarId());
+		if (ship)
+		{
+			auto islandId = data::game::ship::Docks::Read(ship.value().shipId);
+			if (islandId)
+			{
+				auto island = data::game::Island::Read(islandId.value());
+				if (island)
+				{
+					return island.value().location;
+				}
+			}
+		}
+		return std::nullopt;
 	}
 }

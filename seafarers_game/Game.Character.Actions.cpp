@@ -1,7 +1,8 @@
 #include <Data.Game.Character.h>
-#include <Data.Game.Character.Dock.h>
+#include <Data.Game.Character.Ship.h>
 #include <Data.Game.Island.h>
 #include <Data.Game.Island.DarkAlley.h>
+#include <Data.Game.Ship.Docks.h>
 #include <format>
 #include <functional>
 #include "Game.Character.Action.h"
@@ -23,7 +24,7 @@ namespace game::character
 	{
 		auto location = game::character::Docked::ReadLocation();
 		auto island = game::Islands::Read(location.value()).value();
-		data::game::character::Dock::Clear(characterId);
+		data::game::ship::Docks::Clear(data::game::character::Ship::Read(characterId).value().shipId);
 		return {
 			game::Colors::GREEN,
 			std::format(FORMAT_UNDOCK, island.name),
