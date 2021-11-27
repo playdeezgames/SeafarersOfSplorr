@@ -2,7 +2,7 @@
 #include <Common.XY.h>
 #include <optional>
 #include <map>
-namespace data::game::island::dark_alley//20211014
+namespace data::game::island::dark_alley
 {
 	struct FightCard
 	{
@@ -11,9 +11,9 @@ namespace data::game::island::dark_alley//20211014
 		int adjacent;
 		bool shown;
 
-		static std::optional<FightCard> Read(const common::XY<double>&, size_t);
-		static std::map<size_t, FightCard> Read(const common::XY<double>&);
-		static void Write(const common::XY<double>&, size_t, const FightCard&);
-		static void Clear(const common::XY<double>&);
+		static std::optional<FightCard> Read(int, size_t);
+		static std::map<size_t, FightCard> Read(int);
+		static void Write(int, size_t, const FightCard&);
+		static void Clear(int);
 	};
 }

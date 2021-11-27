@@ -72,7 +72,7 @@ namespace game::islands::dark_alley//20211014
 	{
 		for (auto& fightCard : fightCards)
 		{
-			data::game::island::dark_alley::FightCard::Write(location, fightCard.first,
+			data::game::island::dark_alley::FightCard::Write(data::game::Island::Find(location).value(), fightCard.first,
 				{
 					(int)std::get<0>(fightCard.second.card),
 					(int)std::get<1>(fightCard.second.card),
@@ -201,7 +201,7 @@ namespace game::islands::dark_alley//20211014
 
 	void FightCard::Generate(const common::XY<double>& location)
 	{
-		data::game::island::dark_alley::FightCard::Clear(location);
+		data::game::island::dark_alley::FightCard::Clear(data::game::Island::Find(location).value());
 		auto darkAlley = data::game::island::DarkAlley::Read(data::game::Island::Find(location).value());
 		if (darkAlley)
 		{
@@ -224,7 +224,7 @@ namespace game::islands::dark_alley//20211014
 	std::map<size_t, FightCard> FightCard::Read(const common::XY<double>& location)
 	{
 		std::map<size_t, FightCard> result;
-		auto entries = data::game::island::dark_alley::FightCard::Read(location);
+		auto entries = data::game::island::dark_alley::FightCard::Read(data::game::Island::Find(location).value());
 		for (auto& entry : entries)
 		{
 			result[entry.first] = DataToFightCard(entry.second);
@@ -234,7 +234,7 @@ namespace game::islands::dark_alley//20211014
 
 	std::optional<FightCard> FightCard::Pick(const common::XY<double>& location, size_t index)
 	{
-		auto data = data::game::island::dark_alley::FightCard::Read(location, index);
+		auto data = data::game::island::dark_alley::FightCard::Read(data::game::Island::Find(location).value(), index);
 		if (data)
 		{
 			auto cardData = data.value();
@@ -243,7 +243,7 @@ namespace game::islands::dark_alley//20211014
 				return std::nullopt;
 			}
 			cardData.shown = true;
-			data::game::island::dark_alley::FightCard::Write(location, index, cardData);
+			data::game::island::dark_alley::FightCard::Write(data::game::Island::Find(location).value(), index, cardData);
 			return DataToFightCard(cardData);
 		}
 		return std::nullopt;
