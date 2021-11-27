@@ -174,7 +174,6 @@ namespace game
 			{
 				locations.front(),
 				*names.begin(),
-				common::RNG::FromRange(0.001,0.005),//TODO: should be a world setting?
 				GeneratePatronDemigod()
 			};
 			data::game::Island::Write(data);

@@ -10,7 +10,6 @@ namespace data::game
 	{
 		common::XY<double> location;
 		std::string name;
-		double merchantSpawnRate;
 		int patronDemigodId;
 
 		static void Write(const Island&);
