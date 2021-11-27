@@ -4,14 +4,14 @@
 #include <list>
 #include <optional>
 #include <string>
-namespace data::game//20211016
+namespace data::game
 {
 	struct Island
 	{
 		common::XY<double> location;
 		std::string name;
 		double merchantSpawnRate;
-		std::string patronDemigod;
+		int patronDemigodId;
 
 		static void Write(const Island&);
 		static std::optional<Island> Read(const common::XY<double>&);

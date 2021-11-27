@@ -19,7 +19,7 @@ namespace data::game//20211015
 
 		static void Clear();
 		static std::list<Demigod> All();
-		static std::optional<Demigod> Read(const std::string&);
+		static std::optional<Demigod> Read(int);
 		static int Write(const Demigod&);
 	};
 }

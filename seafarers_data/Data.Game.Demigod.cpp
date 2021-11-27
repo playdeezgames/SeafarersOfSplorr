@@ -8,7 +8,7 @@ namespace data::game
 	static const std::string UPDATE_ITEM = "UPDATE [Demigods] SET [Name]={}, [PatronWeight]={}, [BlessingThreshold]={}, [BlessingMultiplier]={}, [BlessingPlightId]={}, [CurseThreshold]={}, [CurseMultiplier]={}, [CursePlightId]={}, [OfferingCooldown]={} WHERE [DemigodId]={};";
 	static const std::string DELETE_ALL = "DELETE FROM [Demigods];";
 	static const std::string QUERY_ALL = "SELECT [DemigodId],[Name],[PatronWeight],[BlessingThreshold],[BlessingMultiplier],[BlessingPlightId],[CurseThreshold],[CurseMultiplier],[CursePlightId],[OfferingCooldown] FROM [Demigods];";
-	static const std::string QUERY_ITEM = "SELECT [DemigodId],[Name],[PatronWeight],[BlessingThreshold],[BlessingMultiplier],[BlessingPlightId],[CurseThreshold],[CurseMultiplier],[CursePlightId],[OfferingCooldown] FROM [Demigods] WHERE [Name]={};";
+	static const std::string QUERY_ITEM = "SELECT [DemigodId],[Name],[PatronWeight],[BlessingThreshold],[BlessingMultiplier],[BlessingPlightId],[CurseThreshold],[CurseMultiplier],[CursePlightId],[OfferingCooldown] FROM [Demigods] WHERE [DemigodId]={};";
 
 	static const std::string FIELD_ID = "DemigodId";
 	static const std::string FIELD_NAME = "Name";
@@ -93,10 +93,10 @@ namespace data::game
 		return result;
 	}
 
-	std::optional<Demigod> Demigod::Read(const std::string& name)
+	std::optional<Demigod> Demigod::Read(int demigodId)
 	{
 		AutoCreateDemigodTable();
-		auto records = Common::Execute(QUERY_ITEM, common::Data::QuoteString(name));
+		auto records = Common::Execute(QUERY_ITEM, demigodId);
 		if (!records.empty())
 		{
 			return ToDemigod(records.front());

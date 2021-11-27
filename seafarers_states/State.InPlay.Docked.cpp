@@ -10,6 +10,7 @@
 #include <Game.Character.Actions.h>
 #include <Game.Character.Docked.h>
 #include <Game.Colors.h>
+#include <Game.Demigods.h>
 #include <Game.Islands.h>
 #include <Game.Islands.Features.h>
 #include <Game.Player.h>
@@ -46,7 +47,7 @@ namespace state::in_play
 		{
 			Terminal::WriteLine("4) Dark Alley");
 		}
-		Terminal::WriteLine(FORMAT_TEMPLE, island.patronDemigod);
+		Terminal::WriteLine(FORMAT_TEMPLE, game::Demigods::ReadName(island.patronDemigodId));
 		Terminal::WriteLine("0) Undock");
 
 		Terminal::ShowPrompt();

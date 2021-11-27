@@ -8,7 +8,8 @@ namespace game//20211013
 	struct Demigods
 	{
 		static void Reset(const Difficulty&);
-		static OfferingResult MakeOffering(const std::string&, const Item&);
+		static OfferingResult MakeOffering(int, const Item&);
 		static void ApplyTurnEffects();
+		static std::string ReadName(int);
 	};
 }

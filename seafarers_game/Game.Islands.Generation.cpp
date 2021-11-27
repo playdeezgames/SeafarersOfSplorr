@@ -152,13 +152,13 @@ namespace game
 		}
 	}
 
-	static std::string GeneratePatronDemigod()
+	static int GeneratePatronDemigod()
 	{
 		auto demigods = data::game::Demigod::All();
-		std::map<std::string, size_t> table;
+		std::map<int, size_t> table;
 		for (auto& demigod : demigods)
 		{
-			table[demigod.name] = demigod.patronWeight;
+			table[demigod.id] = demigod.patronWeight;
 		}
 		return common::RNG::FromGenerator(table);
 	}

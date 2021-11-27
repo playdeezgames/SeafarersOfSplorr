@@ -101,7 +101,7 @@ namespace state::in_play
 		auto location = game::character::Docked::ReadLocation().value();
 		auto island = game::Islands::Read(location).value();
 		game::character::Items::Remove(game::Player::GetAvatarId(), item, 1);
-		OnOfferingResult(game::Demigods::MakeOffering(island.patronDemigod, item));
+		OnOfferingResult(game::Demigods::MakeOffering(island.patronDemigodId, item));
 		OnLeave();
 	}
 

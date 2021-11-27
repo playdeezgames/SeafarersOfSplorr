@@ -10,6 +10,7 @@
 #include <Game.Character.Actions.h>
 #include <Game.Character.Docked.h>
 #include <Game.Colors.h>
+#include <Game.Demigods.h>
 #include <Game.Islands.h>
 #include <Game.Player.h>
 #include "State.InPlay.Temple.h"
@@ -27,7 +28,7 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
-		Terminal::WriteLine(FORMAT_TEMPLE, island.patronDemigod);
+		Terminal::WriteLine(FORMAT_TEMPLE, game::Demigods::ReadName(island.patronDemigodId));
 		Terminal::WriteLine();
 
 		Terminal::SetForeground(game::Colors::YELLOW);

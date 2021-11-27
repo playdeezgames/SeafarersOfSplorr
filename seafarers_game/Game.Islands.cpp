@@ -7,7 +7,7 @@
 #include <Data.Game.Island.Quest.h>
 #include <Data.Game.Island.Visit.h>
 #include <functional>
-#include <Game.Character.Ship.h>
+#include "Game.Character.Ship.h"
 #include "Game.Commodities.h"
 #include "Game.Islands.h"
 #include "Game.Items.h"
@@ -42,7 +42,7 @@ namespace game
 				island.location,
 				island.name,
 				(visitData.has_value()) ? (std::optional<int>(visitData.value().visits)) : (std::nullopt),
-				island.patronDemigod
+				island.patronDemigodId
 			});
 	}
 
@@ -142,7 +142,7 @@ namespace game
 				island.location,
 				island.name,
 				(previousVisits.has_value()) ? (std::optional<int>(previousVisits.value().visits)) : (std::nullopt),
-				island.patronDemigod
+				island.patronDemigodId
 			};
 	}
 

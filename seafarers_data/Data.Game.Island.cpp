@@ -5,17 +5,17 @@
 #include "Data.Game.Island.h"
 namespace data::game//20211011
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Islands]([X] REAL NOT NULL,[Y] REAL NOT NULL,[Name] TEXT NOT NULL,[MerchantSpawnRate] REAL NOT NULL,[PatronDemigod] TEXT NOT NULL,UNIQUE([X],[Y]));";
-	static const std::string QUERY_ITEM = "SELECT [X],[Y],[Name],[MerchantSpawnRate],[PatronDemigod] FROM [Islands] WHERE [X] = {:.4f} AND [Y]={:.4f};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [Islands]([X],[Y],[Name],[MerchantSpawnRate],[PatronDemigod]) VALUES ({:.4f},{:.4f},{},{},{});";
-	static const std::string QUERY_ALL = "SELECT [X],[Y],[Name],[MerchantSpawnRate],[PatronDemigod] FROM [Islands];";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Islands]([X] REAL NOT NULL,[Y] REAL NOT NULL,[Name] TEXT NOT NULL,[MerchantSpawnRate] REAL NOT NULL,[PatronDemigodId] INT NOT NULL,UNIQUE([X],[Y]));";
+	static const std::string QUERY_ITEM = "SELECT [X],[Y],[Name],[MerchantSpawnRate],[PatronDemigodId] FROM [Islands] WHERE [X] = {:.4f} AND [Y]={:.4f};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [Islands]([X],[Y],[Name],[MerchantSpawnRate],[PatronDemigodId]) VALUES ({:.4f},{:.4f},{},{},{});";
+	static const std::string QUERY_ALL = "SELECT [X],[Y],[Name],[MerchantSpawnRate],[PatronDemigodId] FROM [Islands];";
 	static const std::string CLEAR_ALL = "DELETE FROM [Islands];";
 
 	static const std::string FIELD_X = "X";
 	static const std::string FIELD_Y = "Y";
 	static const std::string FIELD_NAME = "Name";
 	static const std::string FIELD_MERCHANT_SPAWN_RATE = "MerchantSpawnRate";
-	static const std::string FIELD_PATRON_DEMIGOD = "PatronDemigod";
+	static const std::string FIELD_PATRON_DEMIGOD_ID = "PatronDemigodId";
 
 	static const auto AutoCreateIslandTable = data::game::Common::Run(CREATE_TABLE);
 
@@ -28,7 +28,7 @@ namespace data::game//20211011
 			data.location.GetY(),
 			common::Data::QuoteString(data.name),
 			data.merchantSpawnRate,
-			common::Data::QuoteString(data.patronDemigod));
+			data.patronDemigodId);
 	}
 
 	static Island ToIsland(const std::map<std::string, std::string> record)
@@ -41,7 +41,7 @@ namespace data::game//20211011
 			},
 			record.find(FIELD_NAME)->second,
 			common::Data::ToDouble(record.find(FIELD_MERCHANT_SPAWN_RATE)->second),
-			record.find(FIELD_PATRON_DEMIGOD)->second
+			common::Data::ToInt(record.find(FIELD_PATRON_DEMIGOD_ID)->second)
 		};
 		return data;
 	}

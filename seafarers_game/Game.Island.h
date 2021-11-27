@@ -10,7 +10,7 @@ namespace game//20211017
 		common::XY<double> absoluteLocation;
 		std::string name;
 		std::optional<int> visits;
-		std::string patronDemigod;
+		int patronDemigodId;
 		std::string GetDisplayName()
 		{
 			if (visits.has_value())
