@@ -34,7 +34,7 @@ namespace game
 		const data::game::Island& island, 
 		const common::XY<double>& avatarLocation)
 	{
-		auto visitData = data::game::island::Visit::Read(island.location);
+		auto visitData = data::game::island::Visit::Read(island.id);
 		data::game::island::Known::Write(island.location);
 		accumulator.push_back(
 			{
@@ -102,33 +102,35 @@ namespace game
 		}
 	}
 
-	static void AddInitialVisit(const common::XY<double>& location, const int& currentTurn)
+	static void AddInitialVisit(int islandId, const int& currentTurn)
 	{
 		data::game::island::Visit::Write({
-			location,
+			islandId,
 			1,
 			currentTurn });
 	}
 
 	void Islands::AddVisit(const common::XY<double>& location, const int& currentTurn)
 	{
-		auto previousVisits = data::game::island::Visit::Read(location);
+		auto islandId = data::game::Island::Read(location).value().id;
+		auto previousVisits = data::game::island::Visit::Read(islandId);
 		if (previousVisits)
 		{
 			AddSubsequentVisit(previousVisits.value(), currentTurn);
 		}
 		else
 		{
-			AddInitialVisit(location, currentTurn);
+			AddInitialVisit(islandId, currentTurn);
 		}
 	}
 
 	void Islands::SetKnown(const common::XY<double>& location, const int& turn)
 	{
-		if (!data::game::island::Visit::Read(location))
+		auto islandId = data::game::Island::Read(location).value().id;
+		if (!data::game::island::Visit::Read(islandId))
 		{
 			data::game::island::Visit::Write({
-				location,
+				islandId,
 				0,
 				turn });
 		}
@@ -136,7 +138,7 @@ namespace game
 
 	static Island ToIsland(const data::game::Island& island)
 	{
-		auto previousVisits = data::game::island::Visit::Read(island.location);
+		auto previousVisits = data::game::island::Visit::Read(island.id);
 		return {
 				{0.0, 0.0},
 				island.location,
@@ -158,7 +160,8 @@ namespace game
 
 	static void ObfuscateIfUnknown(game::Island& island)
 	{
-		if (!data::game::island::Visit::Read(island.absoluteLocation))
+		auto islandId = data::game::Island::Read(island.absoluteLocation).value().id;
+		if (!data::game::island::Visit::Read(islandId))
 		{
 			island.name = Islands::UNKNOWN;
 		}

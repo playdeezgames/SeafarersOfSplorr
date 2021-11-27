@@ -1,16 +1,16 @@
 #pragma once
 #include <Common.XY.h>
 #include <optional>
-namespace data::game::island//20211014
+namespace data::game::island
 {
 	struct Visit
 	{
-		common::XY<double> location;
+		int islandId;
 		int visits;
 		std::optional<int> lastVisit;
 
 		static void Write(const Visit&);
-		static std::optional<Visit> Read(const common::XY<double>&);
+		static std::optional<Visit> Read(int);
 		static void Clear();
 	};
 

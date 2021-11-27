@@ -2,15 +2,14 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.Visit.h"
 #include <string>
-namespace data::game::island//20211010
+namespace data::game::island
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandVisits]([X] REAL NOT NULL, [Y] REAL NOT NULL, [Visits] INT NOT NULL, [Turn] INT NULL, UNIQUE([X],[Y]));";
-	static const std::string QUERY_ITEM = "SELECT [X],[Y],[Visits],[Turn] FROM [IslandVisits] WHERE [X]={:.4f} AND  [Y]={:.4f};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [IslandVisits]([X],[Y],[Visits],[Turn]) VALUES({:.4f},{:.4f},{},{});";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandVisits]([IslandId] INT NOT NULL UNIQUE, [Visits] INT NOT NULL, [Turn] INT NULL);";
+	static const std::string QUERY_ITEM = "SELECT [IslandId],[Visits],[Turn] FROM [IslandVisits] WHERE [IslandId]={};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [IslandVisits]([IslandId],[Visits],[Turn]) VALUES({},{},{});";
 	static const std::string DELETE_ALL = "DELETE FROM [IslandVisits];";
 
-	static const std::string FIELD_X = "X";
-	static const std::string FIELD_Y = "Y";
+	static const std::string FIELD_ISLAND_ID = "IslandId";
 	static const std::string FIELD_VISITS = "Visits";
 	static const std::string FIELD_TURN = "Turn";
 
@@ -21,8 +20,7 @@ namespace data::game::island//20211010
 		AutoCreateIslandVisitsTable();
 		data::game::Common::Execute(
 			REPLACE_ITEM,
-			data.location.GetX(),
-			data.location.GetY(),
+			data.islandId,
 			data.visits,
 			common::Data::OfOptional(data.lastVisit));
 	}
@@ -31,22 +29,18 @@ namespace data::game::island//20211010
 	{
 		return
 		{
-			{
-				common::Data::ToDouble(record.find(FIELD_X)->second),
-				common::Data::ToDouble(record.find(FIELD_Y)->second)
-			},
+			common::Data::ToInt(record.find(FIELD_ISLAND_ID)->second),
 			common::Data::ToInt(record.find(FIELD_VISITS)->second),
 			common::Data::ToOptionalInt(record.find(FIELD_TURN)->second)
 		};
 	}
 
-	std::optional<Visit> Visit::Read(const common::XY<double>& location)
+	std::optional<Visit> Visit::Read(int islandId)
 	{
 		AutoCreateIslandVisitsTable();
 		auto records = data::game::Common::Execute(
 			QUERY_ITEM,
-			location.GetX(),
-			location.GetY());
+			islandId);
 		if (!records.empty())
 		{
 			return ToVisit(records.front());
