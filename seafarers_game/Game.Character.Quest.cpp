@@ -1,6 +1,7 @@
 #include <Common.Utility.h>
 #include <Common.Utility.Optional.h>
 #include <Data.Game.Character.Quest.h>
+#include <Data.Game.Island.h>
 #include <Data.Game.Island.Known.h>
 #include <Data.Game.Island.Quest.h>
 #include "Game.Character.Quest.h"
@@ -12,18 +13,20 @@ namespace game::character
 {
 	static void AcceptQuest(const data::game::island::Quest& quest, const common::XY<double>& location)
 	{
+		auto fromIslandId = data::game::Island::Find(location).value();
+		auto toIsland = data::game::Island::Read(quest.toIslandId).value();
 		data::game::character::Quest::Write(
 			Player::GetAvatarId(),
 			std::optional<data::game::character::Quest>({
-				quest.destination,
+				toIsland.location,
 				quest.reward,
 				quest.itemName,
 				quest.personName,
 				quest.professionName ,
 				quest.receiptEmotion }));
-		data::game::island::Quest::Clear(location);
-		game::Islands::SetKnown(quest.destination, game::character::Statistics::GetTurnsRemaining(game::Player::GetAvatarId()));
-		data::game::island::Known::Write(quest.destination);
+		data::game::island::Quest::Clear(fromIslandId);
+		game::Islands::SetKnown(toIsland.location, game::character::Statistics::GetTurnsRemaining(game::Player::GetAvatarId()));
+		data::game::island::Known::Write(toIsland.location);
 	}
 
 	AcceptQuestResult Quest::Accept(const common::XY<double>& location)
@@ -32,7 +35,8 @@ namespace game::character
 		{
 			return AcceptQuestResult::ALREADY_HAS_QUEST;
 		}
-		auto quest = data::game::island::Quest::Read(location);
+		auto fromIslandId = data::game::Island::Find(location).value();
+		auto quest = data::game::island::Quest::Read(fromIslandId);
 		if (quest)
 		{
 			AcceptQuest(quest.value(), location);

@@ -1,17 +1,15 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.Quest.h"
-namespace data::game::island//20211010
+namespace data::game::island
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandQuests]([X] REAL NOT NULL, [Y] REAL NOT NULL, [DestinationX] REAL NOT NULL, [DestinationY] REAL NOT NULL, [ItemName] TEXT NOT NULL, [PersonName] TEXT NOT NULL, [ProfessionName] TEXT NOT NULL, [ReceiptEmotion] TEXT NOT NULL , [Reward] REAL NOT NULL, UNIQUE([X],[Y]));";
-	static const std::string QUERY_ITEM = "SELECT [X],[Y],[DestinationX],[DestinationY],[Reward],[ItemName],[PersonName],[ProfessionName],[ReceiptEmotion] FROM [IslandQuests] WHERE [X]={:.4f} AND  [Y]={:.4f};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [IslandQuests]([X],[Y],[DestinationX],[DestinationY],[Reward],[ItemName],[PersonName],[ProfessionName],[ReceiptEmotion]) VALUES({:.4f},{:.4f},{:.4f},{:.4f},{:.4f},{},{},{},{});";
-	static const std::string DELETE_ITEM = "DELETE FROM [IslandQuests] WHERE [X]={:.4f} AND  [Y]={:.4f};";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandQuests]([FromIslandId] INT NOT NULL, [ToIslandId] INT NOT NULL, [ItemName] TEXT NOT NULL, [PersonName] TEXT NOT NULL, [ProfessionName] TEXT NOT NULL, [ReceiptEmotion] TEXT NOT NULL , [Reward] REAL NOT NULL, UNIQUE([FromIslandId]));";
+	static const std::string QUERY_ITEM = "SELECT [FromIslandId],[ToIslandId],[Reward],[ItemName],[PersonName],[ProfessionName],[ReceiptEmotion] FROM [IslandQuests] WHERE [FromIslandId]={};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [IslandQuests]([FromIslandId],[ToIslandId],[Reward],[ItemName],[PersonName],[ProfessionName],[ReceiptEmotion]) VALUES({},{},{:.4f},{},{},{},{});";
+	static const std::string DELETE_ITEM = "DELETE FROM [IslandQuests] WHERE [FromIslandId]={};";
 
-	static const std::string FIELD_X = "X";
-	static const std::string FIELD_Y = "Y";
-	static const std::string FIELD_DESTINATION_X = "DestinationX";
-	static const std::string FIELD_DESTINATION_Y = "DestinationY";
+	static const std::string FIELD_FROM_ISLAND_ID = "FromIslandId";
+	static const std::string FIELD_TO_ISLAND_ID = "ToIslandId";
 	static const std::string FIELD_REWARD = "Reward";
 	static const std::string FIELD_PERSON_NAME = "PersonName";
 	static const std::string FIELD_ITEM_NAME = "ItemName";
@@ -25,10 +23,8 @@ namespace data::game::island//20211010
 		AutoCreateIslandQuestsTable();
 		data::game::Common::Execute(
 			REPLACE_ITEM,
-			data.location.GetX(),
-			data.location.GetY(),
-			data.destination.GetX(),
-			data.destination.GetY(),
+			data.fromIslandId,
+			data.toIslandId,
 			data.reward,
 			common::Data::QuoteString(data.itemName),
 			common::Data::QuoteString(data.personName),
@@ -40,14 +36,8 @@ namespace data::game::island//20211010
 	{
 		return 
 		{
-			{
-				common::Data::ToDouble(record.find(FIELD_X)->second),
-				common::Data::ToDouble(record.find(FIELD_Y)->second)
-			},
-			{
-				common::Data::ToDouble(record.find(FIELD_DESTINATION_X)->second),
-				common::Data::ToDouble(record.find(FIELD_DESTINATION_Y)->second)
-			},
+			common::Data::ToInt(record.find(FIELD_FROM_ISLAND_ID)->second),
+			common::Data::ToInt(record.find(FIELD_TO_ISLAND_ID)->second),
 			common::Data::ToDouble(record.find(FIELD_REWARD)->second),
 			record.find(FIELD_ITEM_NAME)->second,
 			record.find(FIELD_PERSON_NAME)->second,
@@ -56,10 +46,10 @@ namespace data::game::island//20211010
 		};
 	}
 
-	std::optional<Quest> Quest::Read(const common::XY<double>& location)
+	std::optional<Quest> Quest::Read(int islandId)
 	{
 		AutoCreateIslandQuestsTable();
-		auto records = data::game::Common::Execute(QUERY_ITEM, location.GetX(), location.GetY());
+		auto records = data::game::Common::Execute(QUERY_ITEM, islandId);
 		if (!records.empty())
 		{
 			return ToQuest(records.front());
@@ -67,9 +57,9 @@ namespace data::game::island//20211010
 		return std::nullopt;
 	}
 
-	void Quest::Clear(const common::XY<double>& location)
+	void Quest::Clear(int islandId)
 	{
 		AutoCreateIslandQuestsTable();
-		data::game::Common::Execute(DELETE_ITEM, location.GetX(), location.GetY());
+		data::game::Common::Execute(DELETE_ITEM, islandId);
 	}
 }

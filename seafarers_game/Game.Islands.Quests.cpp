@@ -202,22 +202,23 @@ namespace game::islands//20211016
 			common::RNG::FromGenerator(receiptAdjectives));
 	}
 
-	static common::XY<double> GenerateDestination(const common::XY<double>& location)
+	static int GenerateDestination(const common::XY<double>& location)
 	{
 		auto allOtherIslands = data::game::Island::Filter([location](const data::game::Island& island) { return island.location != location; });
 		size_t index = common::RNG::FromRange(0u, allOtherIslands.size() - 1);
-		return common::utility::List::GetNth(allOtherIslands, index)->location;
+		return common::utility::List::GetNth(allOtherIslands, index)->id;
 	}
 
 	void Quests::Update(const common::XY<double>& location)
 	{
+		auto fromIslandId = data::game::Island::Find(location).value();
 		if (game::Islands::Read(location).has_value())
 		{
-			if (!data::game::island::Quest::Read(location).has_value())
+			if (!data::game::island::Quest::Read(fromIslandId).has_value())
 			{
 				data::game::island::Quest::Write(
 					{
-						location,
+						fromIslandId,
 						GenerateDestination(location),
 						GenerateReward(),
 						GenerateItemName(),
@@ -231,9 +232,10 @@ namespace game::islands//20211016
 
 	static Quest ToQuest(const data::game::island::Quest& quest)
 	{
+		auto toIsland = data::game::Island::Read(quest.toIslandId).value();
 		return
 			{
-				quest.destination,
+				toIsland.location,
 				quest.reward,
 				quest.itemName,
 				quest.personName,
@@ -244,9 +246,10 @@ namespace game::islands//20211016
 
 	std::optional<game::Quest> Quests::Read(const common::XY<double>& location)
 	{
+		auto fromIslandId = data::game::Island::Find(location).value();
 		return 
 			common::utility::Optional::Map<data::game::island::Quest, Quest>(
-				data::game::island::Quest::Read(location), 
+				data::game::island::Quest::Read(fromIslandId),
 				ToQuest);
 	}
 }
