@@ -1,14 +1,16 @@
+#include <Data.Game.Island.h>
 #include <Data.Game.Island.Market.h>
 #include <functional>
 #include "Game.Commodities.h"
 #include "Game.Islands.Commodities.h"
-namespace game::islands//20211014
+namespace game::islands
 {
 	static double GetCommodityUnitPurchasePrice(
 		const common::XY<double>& location, 
 		const game::Commodity& commodity)
 	{
-		auto market = data::game::island::Market::Read(location, (int)commodity).value();
+		auto islandId = data::game::Island::Find(location).value();
+		auto market = data::game::island::Market::Read(islandId, (int)commodity).value();
 		return 
 			game::Commodities::GetBasePrice(commodity) *
 			(market.demand + (double)market.purchases * game::Commodities::GetDemandFactor(commodity)) /

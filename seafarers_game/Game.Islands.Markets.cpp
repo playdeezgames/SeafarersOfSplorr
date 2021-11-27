@@ -1,3 +1,4 @@
+#include <Data.Game.Island.h>
 #include <Data.Game.Island.Market.h>
 #include <functional>
 #include "Game.Islands.Markets.h"
@@ -19,14 +20,15 @@ namespace game::islands//20211014
 	
 	static void ExchangeQuantities(const common::XY<double>& location, const std::map<Commodity, double> commodities, size_t quantity, std::function<double&(data::game::island::Market&)> quantifier)
 	{
+		auto islandId = data::game::Island::Find(location).value();
 		for (auto entry : commodities)
 		{
-			auto data = data::game::island::Market::Read(location, (int)entry.first);
+			auto data = data::game::island::Market::Read(islandId, (int)entry.first);
 			if (data)
 			{
 				auto market = data.value();
 				quantifier(market) += (double)quantity * entry.second;
-				data::game::island::Market::Write(location, (int)entry.first, market);
+				data::game::island::Market::Write(islandId, (int)entry.first, market);
 			}
 		}
 	}

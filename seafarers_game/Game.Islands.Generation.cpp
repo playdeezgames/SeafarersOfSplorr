@@ -126,7 +126,7 @@ namespace game
 		data::game::island::Item::ClearAll();
 	}
 
-	static void GenerateMarkets(const common::XY<double>& location)
+	static void GenerateMarkets(int islandId)
 	{
 		for (auto& commodity : game::Commodities::All())
 		{
@@ -137,7 +137,7 @@ namespace game
 				0,
 				0
 			};
-			data::game::island::Market::Write(location, (int)commodity, data);
+			data::game::island::Market::Write(islandId, (int)commodity, data);
 		}
 	}
 
@@ -177,10 +177,10 @@ namespace game
 				*names.begin(),
 				GeneratePatronDemigod()
 			};
-			data::game::Island::Write(data);
+			auto islandId = data::game::Island::Write(data);
 			locations.pop_front();
 			names.erase(names.begin());
-			GenerateMarkets(data.location);
+			GenerateMarkets(islandId);
 			GenerateItems(data.location);
 		}
 	}

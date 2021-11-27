@@ -2,7 +2,7 @@
 #include <Common.XY.h>
 #include <map>
 #include <optional>
-namespace data::game::island//20211014
+namespace data::game::island
 {
 	struct Market
 	{
@@ -11,9 +11,9 @@ namespace data::game::island//20211014
 		double purchases;
 		double sales;
 
-		static void Write(const common::XY<double>&, int, const Market&);
-		static std::optional<Market> Read(const common::XY<double>&, int);
-		static std::map<int, Market> All(const common::XY<double>&);
+		static void Write(int, int, const Market&);
+		static std::optional<Market> Read(int, int);
+		static std::map<int, Market> All(int);
 		static void Clear();
 	};
 
