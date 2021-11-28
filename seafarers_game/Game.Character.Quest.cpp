@@ -14,11 +14,10 @@ namespace game::character
 	static void AcceptQuest(const data::game::island::Quest& quest, const common::XY<double>& location)
 	{
 		auto fromIslandId = data::game::Island::Find(location).value();
-		auto toIsland = data::game::Island::Read(quest.toIslandId).value();
 		data::game::character::Quest::Write(
 			Player::GetCharacterId(),
 			std::optional<data::game::character::Quest>({
-				toIsland.location,
+				quest.toIslandId,
 				quest.reward,
 				quest.itemName,
 				quest.personName,
@@ -26,7 +25,7 @@ namespace game::character
 				quest.receiptEmotion }));
 		data::game::island::Quest::Clear(fromIslandId);
 		game::Islands::SetKnown(quest.toIslandId, game::character::Statistics::GetTurnsRemaining(game::Player::GetCharacterId()));
-		data::game::island::Known::Write(toIsland.id);
+		data::game::island::Known::Write(quest.toIslandId);
 	}
 
 	AcceptQuestResult Quest::Accept(const common::XY<double>& location)
@@ -55,7 +54,8 @@ namespace game::character
 	bool Quest::Complete(const common::XY<double>& location)
 	{
 		auto quest = data::game::character::Quest::Read(Player::GetCharacterId());
-		if (quest.has_value() && quest.value().destination == location)
+		auto destination = data::game::Island::Read(quest.value().toIslandId).value().location;
+		if (quest.has_value() && destination == location)
 		{
 			CompleteQuest(quest.value());
 			return true;
@@ -83,7 +83,7 @@ namespace game::character
 	{
 		return 
 			{
-				quest.destination,
+				data::game::Island::Read(quest.toIslandId).value().location,
 				quest.reward,
 				quest.itemName,
 				quest.personName,

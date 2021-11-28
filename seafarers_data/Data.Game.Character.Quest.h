@@ -6,7 +6,7 @@ namespace data::game::character
 {
 	struct Quest
 	{
-		common::XY<double> destination;
+		int toIslandId;
 		double reward;
 		std::string itemName;
 		std::string personName;

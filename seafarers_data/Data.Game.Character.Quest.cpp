@@ -4,13 +4,12 @@
 #include "Data.Game.Player.h"
 namespace data::game::character
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [CharacterQuests]([CharacterId] INT NOT NULL UNIQUE,[DestinationX] REAL NOT NULL, [DestinationY] REAL NOT NULL, [ItemName] TEXT NOT NULL, [PersonName] TEXT NOT NULL, [ProfessionName] TEXT NOT NULL, [ReceiptEmotion] TEXT NOT NULL, [Reward] REAL NOT NULL);";
-	static const std::string QUERY_ITEM = "SELECT [DestinationX],[DestinationY],[Reward],[ItemName],[PersonName],[ProfessionName],[ReceiptEmotion] FROM [CharacterQuests] WHERE [CharacterId]={};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [CharacterQuests]([CharacterId],[DestinationX],[DestinationY],[Reward],[ItemName],[PersonName],[ProfessionName],[ReceiptEmotion]) VALUES({},{:.4f},{:.4f},{:.4f},{},{},{},{});";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [CharacterQuests]([CharacterId] INT NOT NULL UNIQUE,[ToIslandId] INT NOT NULL, [ItemName] TEXT NOT NULL, [PersonName] TEXT NOT NULL, [ProfessionName] TEXT NOT NULL, [ReceiptEmotion] TEXT NOT NULL, [Reward] REAL NOT NULL);";
+	static const std::string QUERY_ITEM = "SELECT [ToIslandId],[Reward],[ItemName],[PersonName],[ProfessionName],[ReceiptEmotion] FROM [CharacterQuests] WHERE [CharacterId]={};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [CharacterQuests]([CharacterId],[IslandId],[Reward],[ItemName],[PersonName],[ProfessionName],[ReceiptEmotion]) VALUES({},{},{:.4f},{},{},{},{});";
 	static const std::string DELETE_ITEM = "DELETE FROM [CharacterQuests] WHERE [CharacterId]={};";
 
-	static const std::string FIELD_DESTINATION_X = "DestinationX";
-	static const std::string FIELD_DESTINATION_Y = "DestinationY";
+	static const std::string FIELD_TO_ISLAND_ID = "ToIslandId";
 	static const std::string FIELD_REWARD = "Reward";
 	static const std::string FIELD_PERSON_NAME = "PersonName";
 	static const std::string FIELD_ITEM_NAME = "ItemName";
@@ -28,8 +27,7 @@ namespace data::game::character
 			data::game::Common::Execute(
 				REPLACE_ITEM,
 				data::game::Player::GetCharacterId(),
-				data.value().destination.GetX(),
-				data.value().destination.GetY(),
+				data.value().toIslandId,
 				data.value().reward,
 				common::Data::QuoteString(data.value().itemName),
 				common::Data::QuoteString(data.value().personName),
@@ -42,10 +40,7 @@ namespace data::game::character
 	{
 		return
 		{
-			{
-				common::Data::ToDouble(record.find(FIELD_DESTINATION_X)->second),
-				common::Data::ToDouble(record.find(FIELD_DESTINATION_Y)->second)
-			},
+			common::Data::ToInt(record.find(FIELD_TO_ISLAND_ID)->second),
 			common::Data::ToDouble(record.find(FIELD_REWARD)->second),
 			record.find(FIELD_ITEM_NAME)->second,
 			record.find(FIELD_PERSON_NAME)->second,
