@@ -11,9 +11,9 @@
 #include "Game.World.h"
 namespace game::character
 {
-	static void AcceptQuest(const data::game::island::Quest& quest, const common::XY<double>& location)
+	static void AcceptQuest(const data::game::island::Quest& quest)
 	{
-		auto fromIslandId = data::game::Island::Find(location).value();
+		auto fromIslandId = quest.fromIslandId;
 		data::game::character::Quest::Write(
 			Player::GetCharacterId(),
 			std::optional<data::game::character::Quest>({
@@ -28,17 +28,16 @@ namespace game::character
 		data::game::island::Known::Write(quest.toIslandId);
 	}
 
-	AcceptQuestResult Quest::Accept(const common::XY<double>& location)
+	AcceptQuestResult Quest::Accept(int fromIslandId)
 	{
 		if (data::game::character::Quest::Read(Player::GetCharacterId()))
 		{
 			return AcceptQuestResult::ALREADY_HAS_QUEST;
 		}
-		auto fromIslandId = data::game::Island::Find(location).value();
 		auto quest = data::game::island::Quest::Read(fromIslandId);
 		if (quest)
 		{
-			AcceptQuest(quest.value(), location);
+			AcceptQuest(quest.value());
 			return AcceptQuestResult::ACCEPTED_QUEST;
 		}
 		return AcceptQuestResult::NO_QUEST_TO_ACCEPT;
@@ -83,6 +82,7 @@ namespace game::character
 	{
 		return 
 			{
+				quest.toIslandId,
 				data::game::Island::Read(quest.toIslandId).value().location,
 				quest.reward,
 				quest.itemName,

@@ -4,6 +4,7 @@
 #include <Application.UIState.h>
 #include <Common.Heading.h>
 #include <Common.Utility.h>
+#include <Data.Game.Island.h>
 #include <Data.JSON.Stores.h>
 #include <format>
 #include <Game.Audio.Mux.h>
@@ -26,7 +27,7 @@ namespace state::in_play
 
 	static void OnAccept()//TODO: make this more declarative
 	{
-		switch (game::character::Quest::Accept(game::character::Docked::ReadLocation().value()))
+		switch (game::character::Quest::Accept(data::game::Island::Find(game::character::Docked::ReadLocation().value()).value()))
 		{
 		case game::character::AcceptQuestResult::ACCEPTED_QUEST:
 			game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_DOCK);

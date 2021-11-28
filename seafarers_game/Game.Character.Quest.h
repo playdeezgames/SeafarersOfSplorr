@@ -12,7 +12,7 @@ namespace game::character
 	struct Quest
 	{
 		static std::optional<game::Quest> Read();
-		static AcceptQuestResult Accept(const common::XY<double>&);
+		static AcceptQuestResult Accept(int);
 		static bool Complete(const common::XY<double>&);
 		static bool Abandon();
 	};

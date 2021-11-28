@@ -2,6 +2,7 @@
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
+#include <Data.Game.Island.h>
 #include <Common.Utility.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Character.h>
@@ -35,7 +36,7 @@ namespace state::in_play
 	{
 		Terminal::ErrorMessage("You replace yer job, and yer reputation suffers!");
 		game::character::Quest::Abandon();
-		game::character::Quest::Accept(game::character::Docked::ReadLocation().value());
+		game::character::Quest::Accept(data::game::Island::Find(game::character::Docked::ReadLocation().value()).value());
 		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}

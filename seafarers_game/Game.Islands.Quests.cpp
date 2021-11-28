@@ -235,6 +235,7 @@ namespace game::islands//20211016
 		auto toIsland = data::game::Island::Read(quest.toIslandId).value();
 		return
 			{
+				quest.toIslandId,
 				toIsland.location,
 				quest.reward,
 				quest.itemName,
