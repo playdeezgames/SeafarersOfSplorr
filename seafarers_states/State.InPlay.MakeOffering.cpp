@@ -6,6 +6,7 @@
 #include <Common.Utility.h>
 #include <Common.Utility.Navigator.h>
 #include <Common.Utility.Table.h>
+#include <Data.Game.Island.h>
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Character.h>
@@ -99,7 +100,8 @@ namespace state::in_play
 	{
 		auto item = common::utility::Table::GetNthKey(items, hiliteRow).value();
 		auto location = game::character::Docked::ReadLocation().value();
-		auto island = game::Islands::Read(location).value();
+		auto islandId = data::game::Island::Find(location).value();
+		auto island = game::Islands::Read(islandId).value();
 		game::character::Items::Remove(game::Player::GetCharacterId(), item, 1);
 		OnOfferingResult(game::Demigods::MakeOffering(island.patronDemigodId, item));
 		OnLeave();

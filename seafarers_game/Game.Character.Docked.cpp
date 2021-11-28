@@ -47,7 +47,7 @@ namespace game::character
 		int shipId = data::game::character::Ship::Read(game::Player::GetCharacterId()).value().shipId;
 		data::game::ship::Docks::Write(shipId, islandId);
 		SetAvatarStateToDocked();
-		auto island = game::Islands::Read(location).value();
+		auto island = game::Islands::Read(islandId).value();
 		return result;
 	}
 

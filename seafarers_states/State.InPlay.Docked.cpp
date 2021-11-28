@@ -3,6 +3,7 @@
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Common.Utility.h>
+#include <Data.Game.Island.h>
 #include <Data.JSON.Stores.h>
 #include <format>
 #include <Game.Audio.Mux.h>
@@ -27,7 +28,8 @@ namespace state::in_play
 	static void Refresh()
 	{
 		auto location = game::character::Docked::ReadLocation().value();
-		auto island = game::Islands::Read(location).value();
+		auto islandId = data::game::Island::Find(location).value();
+		auto island = game::Islands::Read(islandId).value();
 		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);

@@ -149,9 +149,8 @@ namespace game
 		};
 	}
 
-	std::optional<Island> Islands::Read(const common::XY<double>& location)
+	std::optional<Island> Islands::Read(int islandId)
 	{
-		auto islandId = data::game::Island::Find(location).value();
 		auto island = data::game::Island::Read(islandId);
 		if (island)
 		{
@@ -175,7 +174,7 @@ namespace game
 		std::list<Island> result;
 		for (auto& knownLocation : knownLocations)
 		{
-			auto model = Read(data::game::Island::Read(knownLocation).value().location);
+			auto model = Read(knownLocation);
 			if (model)
 			{
 				model.value().relativeLocation = model.value().absoluteLocation - avatarLocation;

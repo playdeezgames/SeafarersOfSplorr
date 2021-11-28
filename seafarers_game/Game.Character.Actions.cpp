@@ -22,8 +22,9 @@ namespace game::character
 
 	static StateTransition OnUndock(int characterId)
 	{
-		auto location = game::character::Docked::ReadLocation();
-		auto island = game::Islands::Read(location.value()).value();
+		auto location = game::character::Docked::ReadLocation().value();
+		auto islandId = data::game::Island::Find(location).value();
+		auto island = game::Islands::Read(islandId).value();
 		data::game::ship::Docks::Clear(data::game::character::Ship::Read(characterId).value().shipId);
 		return {
 			game::Colors::GREEN,

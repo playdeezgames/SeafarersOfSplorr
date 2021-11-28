@@ -212,7 +212,7 @@ namespace game::islands//20211016
 	void Quests::Update(const common::XY<double>& location)
 	{
 		auto fromIslandId = data::game::Island::Find(location).value();
-		if (game::Islands::Read(location).has_value())
+		if (game::Islands::Read(fromIslandId).has_value())
 		{
 			if (!data::game::island::Quest::Read(fromIslandId).has_value())
 			{

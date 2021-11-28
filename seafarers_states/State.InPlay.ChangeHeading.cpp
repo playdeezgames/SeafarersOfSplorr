@@ -89,7 +89,7 @@ namespace state::in_play
 		if (quest)
 		{
 			auto delta = quest.value().destination - game::Ship::GetLocation(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).value();
-			auto island = game::Islands::Read(quest.value().destination);
+			auto island = game::Islands::Read(quest.value().toIslandId);
 			game::Ship::SetHeading(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value(), common::Heading::XYToDegrees(delta));
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine();

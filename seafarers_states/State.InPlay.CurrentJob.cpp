@@ -28,7 +28,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Current Job:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		auto islandModel = game::Islands::Read(questModel.destination).value();
+		auto islandModel = game::Islands::Read(questModel.toIslandId).value();
 		auto delta = questModel.destination - game::Ship::GetLocation(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).value();
 		Terminal::WriteLine(
 			"Please deliver this {} to {} the {} at {} ({:.2f}\xf8 distance {:.1f}). Reward: {:.2f}",
