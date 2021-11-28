@@ -1,9 +1,7 @@
 #include <Common.Data.h>
-#include <Common.Utility.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.World.h"
-#include <string>
-namespace data::game//20211018
+namespace data::game
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Worlds]([WorldId] INT NOT NULL UNIQUE,[Version] INT NOT NULL,[Width] REAL NOT NULL,[Height] REAL NOT NULL,[MinimumIslandDistance] REAL NOT NULL,[ViewDistance] REAL NOT NULL,[DockDistance] REAL NOT NULL,[WindHeading] REAL NOT NULL,[UnfoulingLaborMultiplier] REAL NOT NULL,[ReputationReward] REAL NOT NULL,[ReputationPenalty] REAL NOT NULL);";
 	static const auto AutoCreateWorldsTable = data::game::Common::Run(CREATE_TABLE);

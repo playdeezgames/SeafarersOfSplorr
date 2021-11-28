@@ -1,7 +1,6 @@
 #include <Common.Data.h>
 #include "Data.Game.Character.Quest.h"
 #include "Data.Game.Common.h"
-#include "Data.Game.Player.h"
 namespace data::game::character
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [CharacterQuests]([CharacterId] INT NOT NULL UNIQUE,[ToIslandId] INT NOT NULL, [ItemName] TEXT NOT NULL, [PersonName] TEXT NOT NULL, [ProfessionName] TEXT NOT NULL, [ReceiptEmotion] TEXT NOT NULL, [Reward] REAL NOT NULL);";
@@ -26,7 +25,7 @@ namespace data::game::character
 		{
 			data::game::Common::Execute(
 				REPLACE_ITEM,
-				data::game::Player::GetCharacterId(),
+				characterId,
 				data.value().toIslandId,
 				data.value().reward,
 				common::Data::QuoteString(data.value().itemName),

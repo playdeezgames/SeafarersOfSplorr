@@ -27,18 +27,18 @@ namespace game
 
 	int FishGame::ReadGuesses()
 	{
-		return data::game::FishGame::ReadGuesses();
+		return data::game::FishGame::ReadGuesses(Player::GetCharacterId());
 	}
 
 	bool FishGame::HasGivenUp()
 	{
-		return data::game::FishGame::ReadGivenUp();
+		return data::game::FishGame::ReadGivenUp(Player::GetCharacterId());
 	}
 
 	void FishGame::GiveUp()
 	{
-		data::game::FishGame::WriteGuesses(0);
-		data::game::FishGame::WriteGivenUp(true);
+		data::game::FishGame::WriteGuesses(Player::GetCharacterId(), 0);
+		data::game::FishGame::WriteGivenUp(Player::GetCharacterId(), true);
 	}
 
 	bool FishGame::HasGuessesLeft()
@@ -49,6 +49,6 @@ namespace game
 	void FishGame::AddBait()
 	{
 		character::Items::Remove(game::Player::GetCharacterId(), Item::BAIT, 1);
-		data::game::FishGame::WriteGuesses(data::game::FishGame::ReadGuesses() + ADDITIONAL_GUESSES);
+		data::game::FishGame::WriteGuesses(Player::GetCharacterId(), data::game::FishGame::ReadGuesses(Player::GetCharacterId()) + ADDITIONAL_GUESSES);
 	}
 }

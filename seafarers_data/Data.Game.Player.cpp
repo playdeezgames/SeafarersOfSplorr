@@ -1,5 +1,4 @@
 #include <Common.Data.h>
-#include "Data.Game.Character.h"
 #include "Data.Game.Common.h"
 #include "Data.Game.Player.h"
 namespace data::game

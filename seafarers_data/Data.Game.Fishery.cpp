@@ -1,7 +1,7 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Fishery.h"
-namespace data::game//20211010
+namespace data::game
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Fisheries]([FisheryId] INTEGER PRIMARY KEY AUTOINCREMENT,[FishType] INT NOT NULL,[X] REAL NOT NULL,[Y] REAL NOT NULL,[MoveX] REAL NOT NULL,[MoveY] REAL NOT NULL,[Radius] REAL NOT NULL,[Stock] INT NOT NULL,[Depletion] INT NOT NULL);";
 	static const std::string INSERT_ITEM = "INSERT INTO [Fisheries]([FishType],[X],[Y],[MoveX],[MoveY],[Radius],[Stock],[Depletion]) VALUES({},{},{},{},{},{},{},{});";

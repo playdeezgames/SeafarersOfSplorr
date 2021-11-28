@@ -1,7 +1,6 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.Visit.h"
-#include <string>
 namespace data::game::island
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandVisits]([IslandId] INT NOT NULL UNIQUE, [Visits] INT NOT NULL, [Turn] INT NULL);";

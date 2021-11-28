@@ -12,7 +12,7 @@
 #include "Game.Player.h"
 #include <format>
 #include <map>
-namespace game//20211013
+namespace game
 {
 	const size_t Fishboard::COLUMNS = 5;//static members!
 	const size_t Fishboard::ROWS = 5;//static members!
@@ -22,19 +22,20 @@ namespace game//20211013
 
 	static void ClearFishGame()
 	{
-		data::game::FishGame::Clear();
-		data::game::FishGame::Start(INITIAL_GUESSES);
+		data::game::FishGame::Clear(Player::GetCharacterId());
+		data::game::FishGame::Start(Player::GetCharacterId(), INITIAL_GUESSES);
 	}
 
 	static void ClearFishboard()
 	{
-		data::game::FishboardCell::Clear();
+		data::game::FishboardCell::Clear(Player::GetCharacterId());
 		for (size_t column = 0; column < Fishboard::COLUMNS; ++column)
 		{
 			for (size_t row = 0; row < Fishboard::ROWS; ++row)
 			{
-				data::game::FishboardCell::Write({
-					{(int)column,(int)row},
+				data::game::FishboardCell::Write(
+					Player::GetCharacterId() ,
+					{{(int)column,(int)row},
 					false,
 					std::nullopt });
 			}
@@ -64,7 +65,7 @@ namespace game//20211013
 	{
 		if (GenerateFisheryHasStock(fishery))
 		{
-			data::game::FishGame::WriteFisheryId(fisheryId);
+			data::game::FishGame::WriteFisheryId(Player::GetCharacterId(), fisheryId);
 			fishGenerator[(Fish)fishery.fish] = 1;
 		}
 	}
@@ -129,7 +130,7 @@ namespace game//20211013
 		common::XY<int> origin = GeneratePosition(Fishes::GetSize(fish));
 		for (auto& location : Fishes::GetShape(fish))
 		{
-			data::game::FishboardCell::Write({
+			data::game::FishboardCell::Write(Player::GetCharacterId(), {
 				(location + origin),
 				false,
 				(int)fish });
@@ -146,10 +147,10 @@ namespace game//20211013
 
 	static void MakeGuess(const common::XY<int>& location, int guesses)
 	{
-		auto boardCell = data::game::FishboardCell::Read(location).value();
+		auto boardCell = data::game::FishboardCell::Read(Player::GetCharacterId(), location).value();
 		boardCell.revealed = true;
-		data::game::FishboardCell::Write(boardCell);
-		data::game::FishGame::WriteGuesses(guesses - 1);
+		data::game::FishboardCell::Write(Player::GetCharacterId(), boardCell);
+		data::game::FishGame::WriteGuesses(Player::GetCharacterId(), guesses - 1);
 	}
 
 	static void ReelInFish(Fish fish)
@@ -160,7 +161,7 @@ namespace game//20211013
 
 	static void DepleteFishery()
 	{
-		auto fisheryId = data::game::FishGame::ReadFisheryId();
+		auto fisheryId = data::game::FishGame::ReadFisheryId(Player::GetCharacterId());
 		if (fisheryId)
 		{
 			auto fishery = data::game::Fishery::Read(fisheryId.value()).value();
@@ -171,7 +172,7 @@ namespace game//20211013
 
 	static void ReelInAllFish()
 	{
-		auto allFish = data::game::FishboardCell::ReadFish();
+		auto allFish = data::game::FishboardCell::ReadFish(Player::GetCharacterId());
 		for (auto fish : allFish)
 		{
 			ReelInFish((Fish)fish);
@@ -202,7 +203,7 @@ namespace game//20211013
 
 	FishboardCell Fishboard::Read(const common::XY<int>& location)
 	{
-		auto boardCell = data::game::FishboardCell::Read(location).value();
+		auto boardCell = data::game::FishboardCell::Read(Player::GetCharacterId(), location).value();
 		std::optional<Fish> fish =
 			(boardCell.fishType.has_value()) ?
 			(std::optional<Fish>((Fish)boardCell.fishType.value())) :
@@ -216,11 +217,11 @@ namespace game//20211013
 
 	bool Fishboard::IsFullyRevealed()
 	{
-		return data::game::FishboardCell::ReadRevealedFishCount() == data::game::FishboardCell::ReadFishCount();
+		return data::game::FishboardCell::ReadRevealedFishCount(Player::GetCharacterId()) == data::game::FishboardCell::ReadFishCount(Player::GetCharacterId());
 	}
 
 	double Fishboard::ReadProgressPercentage()
 	{
-		return 100.0 * data::game::FishboardCell::ReadRevealedFishCount() / data::game::FishboardCell::ReadFishCount();
+		return 100.0 * data::game::FishboardCell::ReadRevealedFishCount(Player::GetCharacterId()) / data::game::FishboardCell::ReadFishCount(Player::GetCharacterId());
 	}
 }

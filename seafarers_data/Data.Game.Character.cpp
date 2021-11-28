@@ -1,8 +1,6 @@
 #include <Common.Data.h>
-#include <Common.Utility.h>
 #include "Data.Game.Character.h"
 #include "Data.Game.Common.h"
-#include <optional>
 namespace data::game
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Characters]([CharacterId] INTEGER PRIMARY KEY AUTOINCREMENT,[State] INT NOT NULL, [Name] TEXT NOT NULL);";

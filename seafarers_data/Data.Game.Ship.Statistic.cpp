@@ -1,8 +1,6 @@
 #include <Common.Data.h>
-#include "Data.Game.Ship.Statistic.h"
 #include "Data.Game.Common.h"
-#include "Data.Game.Player.h"
-#include <string>
+#include "Data.Game.Ship.Statistic.h"
 namespace data::game::ship
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [ShipStatistics]([ShipId] INT NOT NULL, [StatisticId] INT NOT NULL,[Minimum] REAL NULL,[Maximum] REAL NULL,[Current] REAL NOT NULL, UNIQUE([ShipId],[StatisticId]));";

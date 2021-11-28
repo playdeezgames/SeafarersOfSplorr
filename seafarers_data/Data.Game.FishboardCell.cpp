@@ -1,7 +1,6 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.FishboardCell.h"
-#include "Data.Game.Player.h"
 namespace data::game
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [FishboardCells]([CharacterId] INT NOT NULL, [X] INT NOT NULL, [Y] INT NOT NULL, [Revealed] INT NOT NULL, [FishType] INT NULL, UNIQUE([CharacterId],[X],[Y]));";
@@ -21,18 +20,18 @@ namespace data::game
 
 	static const auto AutoCreateFishboardCellsTable = Common::Run(CREATE_TABLE);
 
-	void FishboardCell::Clear()
+	void FishboardCell::Clear(int characterId)
 	{
 		AutoCreateFishboardCellsTable();
-		Common::Execute(DELETE_ALL, Player::GetCharacterId());
+		Common::Execute(DELETE_ALL, characterId);
 	}
 
-	void FishboardCell::Write(const FishboardCell& cell)
+	void FishboardCell::Write(int characterId, const FishboardCell& cell)
 	{
 		AutoCreateFishboardCellsTable();
 		Common::Execute(
 			REPLACE_ITEM,
-			Player::GetCharacterId(),
+			characterId,
 			cell.location.GetX(),
 			cell.location.GetY(),
 			(cell.revealed) ? (1) : (0),
@@ -51,10 +50,10 @@ namespace data::game
 		};
 	}
 
-	std::list<FishboardCell> FishboardCell::All()
+	std::list<FishboardCell> FishboardCell::All(int characterId)
 	{
 		AutoCreateFishboardCellsTable();
-		auto records = Common::Execute(QUERY_ALL, Player::GetCharacterId());
+		auto records = Common::Execute(QUERY_ALL, characterId);
 		std::list<FishboardCell> results;
 		for (auto& record : records)
 		{
@@ -63,10 +62,10 @@ namespace data::game
 		return results;
 	}
 
-	std::optional<FishboardCell> FishboardCell::Read(const common::XY<int>& location)
+	std::optional<FishboardCell> FishboardCell::Read(int characterId, const common::XY<int>& location)
 	{
 		AutoCreateFishboardCellsTable();
-		auto records = Common::Execute(QUERY_ITEM, Player::GetCharacterId(), location.GetX(), location.GetY());
+		auto records = Common::Execute(QUERY_ITEM, characterId, location.GetX(), location.GetY());
 		if (!records.empty())
 		{
 			return ToFishBoard(records.front());
@@ -74,10 +73,10 @@ namespace data::game
 		return std::nullopt;
 	}
 
-	size_t FishboardCell::ReadFishCount()
+	size_t FishboardCell::ReadFishCount(int characterId)
 	{
 		AutoCreateFishboardCellsTable();
-		auto records = Common::Execute(QUERY_FISH_COUNT, Player::GetCharacterId());
+		auto records = Common::Execute(QUERY_FISH_COUNT, characterId);
 		if (!records.empty())
 		{
 			return common::Data::ToInt(records.front().find(FIELD_FISH_COUNT)->second);
@@ -85,10 +84,10 @@ namespace data::game
 		return 0;
 	}
 
-	size_t FishboardCell::ReadRevealedFishCount()
+	size_t FishboardCell::ReadRevealedFishCount(int characterId)
 	{
 		AutoCreateFishboardCellsTable();
-		auto records = Common::Execute(QUERY_REVEALED_FISH_COUNT, Player::GetCharacterId());
+		auto records = Common::Execute(QUERY_REVEALED_FISH_COUNT, characterId);
 		if (!records.empty())
 		{
 			return common::Data::ToInt(records.front().find(FIELD_FISH_COUNT)->second);
@@ -96,11 +95,11 @@ namespace data::game
 		return 0;
 	}
 
-	std::set<int> FishboardCell::ReadFish()
+	std::set<int> FishboardCell::ReadFish(int characterId)
 	{
 		std::set<int> result;
 		AutoCreateFishboardCellsTable();
-		auto records = Common::Execute(QUERY_FISHES, Player::GetCharacterId());
+		auto records = Common::Execute(QUERY_FISHES, characterId);
 		for (auto cell : records)
 		{
 			result.insert(common::Data::ToInt(cell.find(FIELD_FISH_TYPE)->second));

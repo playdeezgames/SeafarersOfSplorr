@@ -2,8 +2,7 @@
 #include "Data.Game.Common.h"
 #include "Data.SQLite.Store.h"
 #include "Data.SQLite.Stores.h"
-#include <sstream>
-namespace data::game//20211011
+namespace data::game
 {
 	static const std::string FIELD_X = "X";
 	static const std::string FIELD_Y = "Y";
