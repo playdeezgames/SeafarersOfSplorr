@@ -10,9 +10,9 @@ namespace game::ship
 	{
 		return
 		{
-			crew.avatarId,
+			crew.characterId,
 			(BerthType)crew.berthType,
-			Character::GetName(crew.avatarId).value_or("????")
+			Character::GetName(crew.characterId).value_or("????")
 		};
 	}
 

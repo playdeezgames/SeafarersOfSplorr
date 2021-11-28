@@ -4,7 +4,7 @@ namespace data::game::character
 {
 	struct ShipCrew
 	{
-		int avatarId;
+		int characterId;
 		int berthType;
 		static std::vector<ShipCrew> Read(int);
 	};
