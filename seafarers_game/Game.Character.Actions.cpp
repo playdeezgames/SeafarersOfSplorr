@@ -24,7 +24,7 @@ namespace game::character
 	{
 		auto islandId = game::character::Docked::ReadLocation(characterId).value();
 		auto island = game::Islands::Read(islandId).value();
-		data::game::ship::Docks::Clear(data::game::character::Ship::Read(characterId).value().shipId);
+		data::game::ship::Docks::Clear(data::game::character::Ship::ReadForCharacter(characterId).value().shipId);
 		return {
 			game::Colors::GREEN,
 			std::format(FORMAT_UNDOCK, island.name),

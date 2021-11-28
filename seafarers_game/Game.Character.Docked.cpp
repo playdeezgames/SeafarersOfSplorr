@@ -43,7 +43,7 @@ namespace game::character
 		{
 			result = DockResult::COMPLETED_QUEST;
 		}
-		int shipId = data::game::character::Ship::Read(characterId).value().shipId;
+		int shipId = data::game::character::Ship::ReadForCharacter(characterId).value().shipId;
 		data::game::ship::Docks::Write(shipId, islandId);
 		SetAvatarStateToDocked(characterId);
 		auto island = game::Islands::Read(islandId).value();
@@ -66,7 +66,7 @@ namespace game::character
 
 	std::optional<int> Docked::ReadLocation(int characterId)
 	{
-		auto ship = data::game::character::Ship::Read(characterId);
+		auto ship = data::game::character::Ship::ReadForCharacter(characterId);
 		if (ship)
 		{
 			return data::game::ship::Docks::Read(ship.value().shipId);

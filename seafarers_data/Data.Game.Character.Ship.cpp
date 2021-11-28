@@ -35,7 +35,7 @@ namespace data::game::character
 		};
 	}
 
-	std::optional<Ship> Ship::Read(int characterId)
+	std::optional<Ship> Ship::ReadForCharacter(int characterId)
 	{
 		AutoCreateTable();
 		auto records = data::game::Common::Execute(QUERY_ITEM, characterId);

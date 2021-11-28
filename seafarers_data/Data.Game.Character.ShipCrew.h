@@ -6,6 +6,8 @@ namespace data::game::character
 	{
 		int characterId;
 		int berthType;
-		static std::vector<ShipCrew> Read(int);
+		//TODO: add shipId
+		//TODO: merge with Ship
+		static std::vector<ShipCrew> ReadForShip(int);
 	};
 }

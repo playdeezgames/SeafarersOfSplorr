@@ -24,7 +24,7 @@ namespace data::game::character
 		};
 	}
 
-	std::vector<ShipCrew> ShipCrew::Read(int shipId)
+	std::vector<ShipCrew> ShipCrew::ReadForShip(int shipId)
 	{
 		AutoCreateTable();
 		std::vector<ShipCrew> result;

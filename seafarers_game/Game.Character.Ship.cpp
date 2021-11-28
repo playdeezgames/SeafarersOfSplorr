@@ -9,9 +9,9 @@
 #include "Game.ShipTypes.h"
 namespace game::character
 {
-	void Ship::Write(int avatarId, int shipId, const BerthType& berthType)
+	void Ship::Write(int characterId, int shipId, const BerthType& berthType)
 	{
-		data::game::character::Ship::Write(avatarId, 
+		data::game::character::Ship::Write(characterId, 
 			{ 
 				shipId,
 				(int)berthType
@@ -28,37 +28,37 @@ namespace game::character
 		return (BerthType)ship.berthType;
 	}
 
-	std::optional<int> Ship::ReadShipId(int avatarId)
+	std::optional<int> Ship::ReadShipId(int characterId)
 	{
 		return common::utility::Optional::Map<data::game::character::Ship, int>(
-			data::game::character::Ship::Read(avatarId),
+			data::game::character::Ship::ReadForCharacter(characterId),
 			ToShipId);
 	}
 
 
-	static double GetAvailableTonnage(int avatarId, int shipId)
+	static double GetAvailableTonnage(int characterId, int shipId)
 	{
 		return common::utility::Optional::Map<ShipType, double>(
 			game::Ship::GetShipType(shipId),
-			[avatarId](const ShipType& shipType)
+			[characterId](const ShipType& shipType)
 			{
 				return
 					game::ShipTypes::GetTotalTonnage(shipType) -
-					game::character::Items::TotalTonnage(avatarId);
+					game::character::Items::TotalTonnage(characterId);
 			}).value_or(0.0);
 	}
 
-	std::optional<double> Ship::AvailableTonnage(int avatarId)
+	std::optional<double> Ship::AvailableTonnage(int characterId)
 	{
 		return common::utility::Optional::Map<int, double>(
-			ReadShipId(avatarId),
-			[avatarId](int shipId) { return GetAvailableTonnage(avatarId, shipId); });
+			ReadShipId(characterId),
+			[characterId](int shipId) { return GetAvailableTonnage(characterId, shipId); });
 	}
 
-	std::optional<BerthType> Ship::ReadBerthType(int avatarId)
+	std::optional<BerthType> Ship::ReadBerthType(int characterId)
 	{
 		return common::utility::Optional::Map<data::game::character::Ship, BerthType>(
-			data::game::character::Ship::Read(avatarId),
+			data::game::character::Ship::ReadForCharacter(characterId),
 			ToBerthType);
 	}
 
