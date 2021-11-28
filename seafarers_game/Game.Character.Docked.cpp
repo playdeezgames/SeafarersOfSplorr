@@ -39,11 +39,11 @@ namespace game::character
 			data::game::Island::Find(location).value(),
 			game::character::Statistics::GetTurnsRemaining(game::Player::GetCharacterId()));
 		game::islands::Quests::Update(location);
-		if (game::character::Quest::Complete(location))
+		int islandId = data::game::Island::Find(location).value();
+		if (game::character::Quest::Complete(islandId))
 		{
 			result = DockResult::COMPLETED_QUEST;
 		}
-		int islandId = data::game::Island::Find(location).value();
 		int shipId = data::game::character::Ship::Read(game::Player::GetCharacterId()).value().shipId;
 		data::game::ship::Docks::Write(shipId, islandId);
 		SetAvatarStateToDocked();

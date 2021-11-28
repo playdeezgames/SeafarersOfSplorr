@@ -13,7 +13,7 @@ namespace game::character
 	{
 		static std::optional<game::Quest> Read();
 		static AcceptQuestResult Accept(int);
-		static bool Complete(const common::XY<double>&);
+		static bool Complete(int);
 		static bool Abandon();
 	};
 }

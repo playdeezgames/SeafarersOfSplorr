@@ -50,11 +50,10 @@ namespace game::character
 		data::game::character::Quest::Write(Player::GetCharacterId(), std::nullopt);
 	}
 
-	bool Quest::Complete(const common::XY<double>& location)
+	bool Quest::Complete(int islandId)
 	{
 		auto quest = data::game::character::Quest::Read(Player::GetCharacterId());
-		auto destination = data::game::Island::Read(quest.value().toIslandId).value().location;
-		if (quest.has_value() && destination == location)
+		if (quest.has_value() && quest.value().toIslandId == islandId)
 		{
 			CompleteQuest(quest.value());
 			return true;
