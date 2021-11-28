@@ -38,6 +38,7 @@ namespace game
 		data::game::island::Known::Write(island.id);
 		accumulator.push_back(
 			{
+				island.id,
 				(island.location - avatarLocation),
 				island.location,
 				island.name,
@@ -139,13 +140,15 @@ namespace game
 	static Island ToIsland(const data::game::Island& island)
 	{
 		auto previousVisits = data::game::island::Visit::Read(island.id);
-		return {
-				{0.0, 0.0},
-				island.location,
-				island.name,
-				(previousVisits.has_value()) ? (std::optional<int>(previousVisits.value().visits)) : (std::nullopt),
-				island.patronDemigodId
-			};
+		return 
+		{
+			island.id,
+			{0.0, 0.0},
+			island.location,
+			island.name,
+			(previousVisits.has_value()) ? (std::optional<int>(previousVisits.value().visits)) : (std::nullopt),
+			island.patronDemigodId
+		};
 	}
 
 	std::optional<Island> Islands::Read(const common::XY<double>& location)

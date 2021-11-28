@@ -2,10 +2,11 @@
 #include <Common.XY.h>
 #include <optional>
 #include <string>
-namespace game//20211017
+namespace game
 {
 	struct Island
 	{
+		int id;
 		common::XY<double> relativeLocation;
 		common::XY<double> absoluteLocation;
 		std::string name;
