@@ -29,7 +29,7 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::ENTER_MARKET);
+		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_MARKET);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -48,7 +48,7 @@ namespace state::in_play
 			Terminal::WriteLine("{}) {} ({} @ {:.4f})",
 				index++,
 				game::Items::GetName(unitPrice.first),
-				game::character::Items::Read(game::Player::GetAvatarId(), unitPrice.first),
+				game::character::Items::Read(game::Player::GetCharacterId(), unitPrice.first),
 				unitPrice.second);
 		}
 	}
@@ -57,7 +57,7 @@ namespace state::in_play
 
 	static void RefreshStatistics()
 	{
-		Terminal::WriteLine(FORMAT_MONEY, game::character::Statistics::ReadMoney(game::Player::GetAvatarId()));
+		Terminal::WriteLine(FORMAT_MONEY, game::character::Statistics::ReadMoney(game::Player::GetCharacterId()));
 	}
 
 	static void Refresh()

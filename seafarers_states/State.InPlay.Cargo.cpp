@@ -29,17 +29,17 @@ namespace state::in_play
 
 	static void UpdateManifest()
 	{
-		manifest = game::character::Items::All(game::Player::GetAvatarId());
+		manifest = game::character::Items::All(game::Player::GetCharacterId());
 	}
 
 	static double GetTonnage()
 	{
-		return game::character::Items::TotalTonnage(game::Player::GetAvatarId());
+		return game::character::Items::TotalTonnage(game::Player::GetCharacterId());
 	}
 
 	static double GetAvailableTonnage()
 	{
-		return game::character::Ship::AvailableTonnage(game::Player::GetAvatarId()).value();
+		return game::character::Ship::AvailableTonnage(game::Player::GetCharacterId()).value();
 	}
 
 	static void Refresh()
@@ -55,7 +55,7 @@ namespace state::in_play
 				(int)(100.0 * GetTonnage() / GetAvailableTonnage()));
 		Terminal::WriteLine(
 			"Money: {:.3f}",
-			game::character::Statistics::ReadMoney(game::Player::GetAvatarId()));
+			game::character::Statistics::ReadMoney(game::Player::GetCharacterId()));
 		Terminal::SetForeground(game::Colors::BROWN);
 		Terminal::WriteLine("Manifest:");
 		Terminal::SetForeground(game::Colors::YELLOW);

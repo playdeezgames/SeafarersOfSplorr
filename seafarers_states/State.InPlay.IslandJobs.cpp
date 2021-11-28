@@ -29,7 +29,7 @@ namespace state::in_play
 		switch (game::character::Quest::Accept(game::character::Docked::ReadLocation().value()))
 		{
 		case game::character::AcceptQuestResult::ACCEPTED_QUEST:
-			game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::ENTER_DOCK);
+			game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_DOCK);
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			break;
 		case game::character::AcceptQuestResult::ALREADY_HAS_QUEST:
@@ -40,14 +40,14 @@ namespace state::in_play
 
 	static void OnCancel()
 	{
-		game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::ENTER_DOCK);
+		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void RefreshQuest(const game::Quest& questModel)
 	{
 		auto islandModel = game::Islands::Read(questModel.destination).value();
-		double distance = common::Heading::Distance(questModel.destination, game::Ship::GetLocation(game::character::Ship::ReadShipId(game::Player::GetAvatarId()).value()).value());
+		double distance = common::Heading::Distance(questModel.destination, game::Ship::GetLocation(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).value());
 
 		Terminal::Reinitialize();
 

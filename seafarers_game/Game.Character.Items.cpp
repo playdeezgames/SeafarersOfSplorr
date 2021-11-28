@@ -51,12 +51,12 @@ namespace game::character
 
 	void Items::Reset(const game::Difficulty& difficulty)
 	{
-		data::game::character::Items::Clear(Player::GetAvatarId());
+		data::game::character::Items::Clear(Player::GetCharacterId());
 		for (auto& item : game::Items::All())
 		{
 			common::utility::Optional::Iterate<size_t>(
 				common::utility::Table::TryGetKey(game::Items::GetInitialInventoriesForAvatar(item), difficulty),
-				[item](const size_t& count) { Add(Player::GetAvatarId(), item, count); }
+				[item](const size_t& count) { Add(Player::GetCharacterId(), item, count); }
 			);
 		}
 	}

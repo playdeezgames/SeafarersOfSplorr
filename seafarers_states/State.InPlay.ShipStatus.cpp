@@ -19,7 +19,7 @@ namespace state::in_play
 
 	static int GetAvatarShipId()
 	{
-		return game::character::Ship::ReadShipId(game::Player::GetAvatarId()).value();
+		return game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value();
 	}
 
 	static void Refresh()

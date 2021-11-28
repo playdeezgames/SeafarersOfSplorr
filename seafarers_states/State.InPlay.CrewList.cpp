@@ -75,7 +75,7 @@ namespace state::in_play
 			rosterItems.push_back({
 				entry.name,
 				berthNames.find(entry.berthType)->second,
-				(entry.avatarId==game::Player::GetAvatarId()) ? ("(you)") : (""),
+				(entry.avatarId==game::Player::GetCharacterId()) ? ("(you)") : (""),
 				entry.avatarId
 				});
 		}

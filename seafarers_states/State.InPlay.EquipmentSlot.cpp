@@ -36,11 +36,11 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
-		auto avatarName = game::Character::GetName(CrewDetail::GetAvatarId()).value();
+		auto avatarName = game::Character::GetName(CrewDetail::GetCharacterId()).value();
 		auto equipSlotName = game::EquipSlots::GetName(EquipmentSlot::GetSlot());
 		Terminal::WriteLine("Equipping {}'s {}:", avatarName, equipSlotName);
 		Terminal::SetForeground(game::Colors::GRAY);
-		auto item = game::character::Equipment::Read(CrewDetail::GetAvatarId(), equipmentSlot);
+		auto item = game::character::Equipment::Read(CrewDetail::GetCharacterId(), equipmentSlot);
 		std::string itemName = item.has_value() ? (game::Items::GetName(item.value())) : NOTHING;
 		Terminal::WriteLine("Currently Equipped: {}", itemName);
 		Terminal::SetForeground(game::Colors::YELLOW);
@@ -63,7 +63,7 @@ namespace state::in_play
 	static std::set<game::Item> DetermineCandidates()
 	{
 		std::set<game::Item> candidates;
-		auto current = game::character::Equipment::Read(CrewDetail::GetAvatarId(), equipmentSlot);//add current item
+		auto current = game::character::Equipment::Read(CrewDetail::GetCharacterId(), equipmentSlot);//add current item
 		if (current)
 		{
 			candidates.insert(current.value());
@@ -71,7 +71,7 @@ namespace state::in_play
 		auto equippableItems = game::EquipSlots::GetItems(equipmentSlot);//add other possible items
 		for (auto equippableItem : equippableItems)
 		{
-			if (game::character::Items::Has(CrewDetail::GetAvatarId(), equippableItem))
+			if (game::character::Items::Has(CrewDetail::GetCharacterId(), equippableItem))
 			{
 				candidates.insert(equippableItem);
 			}
@@ -96,8 +96,8 @@ namespace state::in_play
 		if (item)
 		{
 			//TODO: write to terminal that item was unequipped
-			game::character::Items::Add(CrewDetail::GetAvatarId(), item.value(), 1);
-			game::character::Equipment::Unequip(CrewDetail::GetAvatarId(), equipmentSlot);
+			game::character::Items::Add(CrewDetail::GetCharacterId(), item.value(), 1);
+			game::character::Equipment::Unequip(CrewDetail::GetCharacterId(), equipmentSlot);
 		}
 	}
 
@@ -106,8 +106,8 @@ namespace state::in_play
 		if (item)
 		{
 			//TODO: write to terminal that item was equipped
-			game::character::Items::Remove(CrewDetail::GetAvatarId(), item.value(), 1);
-			game::character::Equipment::Equip(CrewDetail::GetAvatarId(), equipmentSlot, item.value());
+			game::character::Items::Remove(CrewDetail::GetCharacterId(), item.value(), 1);
+			game::character::Equipment::Equip(CrewDetail::GetCharacterId(), equipmentSlot, item.value());
 		}
 	}
 
@@ -129,7 +129,7 @@ namespace state::in_play
 		if (index >= 0 && index < items.size())
 		{
 			auto newItem = items[index];
-			auto oldItem = game::character::Equipment::Read(CrewDetail::GetAvatarId(), equipmentSlot);
+			auto oldItem = game::character::Equipment::Read(CrewDetail::GetCharacterId(), equipmentSlot);
 			UnequipItem(oldItem);
 			EquipItem(newItem);
 			application::UIState::Write(::UIState::IN_PLAY_EQUIPMENT);

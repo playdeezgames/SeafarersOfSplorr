@@ -24,7 +24,7 @@ namespace data::game
 	void FishboardCell::Clear()
 	{
 		AutoCreateFishboardCellsTable();
-		Common::Execute(DELETE_ALL, Player::GetAvatarId());
+		Common::Execute(DELETE_ALL, Player::GetCharacterId());
 	}
 
 	void FishboardCell::Write(const FishboardCell& cell)
@@ -32,7 +32,7 @@ namespace data::game
 		AutoCreateFishboardCellsTable();
 		Common::Execute(
 			REPLACE_ITEM,
-			Player::GetAvatarId(),
+			Player::GetCharacterId(),
 			cell.location.GetX(),
 			cell.location.GetY(),
 			(cell.revealed) ? (1) : (0),
@@ -54,7 +54,7 @@ namespace data::game
 	std::list<FishboardCell> FishboardCell::All()
 	{
 		AutoCreateFishboardCellsTable();
-		auto records = Common::Execute(QUERY_ALL, Player::GetAvatarId());
+		auto records = Common::Execute(QUERY_ALL, Player::GetCharacterId());
 		std::list<FishboardCell> results;
 		for (auto& record : records)
 		{
@@ -66,7 +66,7 @@ namespace data::game
 	std::optional<FishboardCell> FishboardCell::Read(const common::XY<int>& location)
 	{
 		AutoCreateFishboardCellsTable();
-		auto records = Common::Execute(QUERY_ITEM, Player::GetAvatarId(), location.GetX(), location.GetY());
+		auto records = Common::Execute(QUERY_ITEM, Player::GetCharacterId(), location.GetX(), location.GetY());
 		if (!records.empty())
 		{
 			return ToFishBoard(records.front());
@@ -77,7 +77,7 @@ namespace data::game
 	size_t FishboardCell::ReadFishCount()
 	{
 		AutoCreateFishboardCellsTable();
-		auto records = Common::Execute(QUERY_FISH_COUNT, Player::GetAvatarId());
+		auto records = Common::Execute(QUERY_FISH_COUNT, Player::GetCharacterId());
 		if (!records.empty())
 		{
 			return common::Data::ToInt(records.front().find(FIELD_FISH_COUNT)->second);
@@ -88,7 +88,7 @@ namespace data::game
 	size_t FishboardCell::ReadRevealedFishCount()
 	{
 		AutoCreateFishboardCellsTable();
-		auto records = Common::Execute(QUERY_REVEALED_FISH_COUNT, Player::GetAvatarId());
+		auto records = Common::Execute(QUERY_REVEALED_FISH_COUNT, Player::GetCharacterId());
 		if (!records.empty())
 		{
 			return common::Data::ToInt(records.front().find(FIELD_FISH_COUNT)->second);
@@ -100,7 +100,7 @@ namespace data::game
 	{
 		std::set<int> result;
 		AutoCreateFishboardCellsTable();
-		auto records = Common::Execute(QUERY_FISHES, Player::GetAvatarId());
+		auto records = Common::Execute(QUERY_FISHES, Player::GetCharacterId());
 		for (auto cell : records)
 		{
 			result.insert(common::Data::ToInt(cell.find(FIELD_FISH_TYPE)->second));

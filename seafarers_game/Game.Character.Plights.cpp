@@ -67,12 +67,12 @@ namespace game::character
 
 	bool Plights::Has(const Plight& plightId)
 	{
-		return data::game::character::Plight::Read(Player::GetAvatarId(), (int)plightId).has_value();
+		return data::game::character::Plight::Read(Player::GetCharacterId(), (int)plightId).has_value();
 	}
 
 	void Plights::ApplyTurnEffects()
 	{
-		auto plights = data::game::character::Plight::All(Player::GetAvatarId());
+		auto plights = data::game::character::Plight::All(Player::GetCharacterId());
 		for (auto& plight : plights)
 		{
 			if (plight.duration.has_value())
@@ -83,7 +83,7 @@ namespace game::character
 					data::game::character::Plight::Clear(plight.plightId);
 					continue;
 				}
-				data::game::character::Plight::Write(Player::GetAvatarId(), plight);
+				data::game::character::Plight::Write(Player::GetCharacterId(), plight);
 			}
 		}
 	}
@@ -114,13 +114,13 @@ namespace game::character
 			}
 		}
 
-		data::game::character::Plight::Write(Player::GetAvatarId(), {(int)plight, (duration)?(std::optional<int>((int)duration.value())):(std::nullopt) });
+		data::game::character::Plight::Write(Player::GetCharacterId(), {(int)plight, (duration)?(std::optional<int>((int)duration.value())):(std::nullopt) });
 	}
 
 	std::set<Plight> Plights::InflictedWith()
 	{
 		std::set<Plight> result;
-		auto plights = data::game::character::Plight::All(Player::GetAvatarId());
+		auto plights = data::game::character::Plight::All(Player::GetCharacterId());
 		for (auto& plight : plights)
 		{
 			result.insert((Plight)plight.plightId);

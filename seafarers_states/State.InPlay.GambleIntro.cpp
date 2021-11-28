@@ -31,12 +31,12 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::GRAY);
 		auto ante = game::islands::DarkAlley::GetAnte(ReadLocation()).value();
 		auto minimum = game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value();
-		Terminal::WriteLine("Yer money: {:.4f}", game::character::Statistics::ReadMoney(game::Player::GetAvatarId()));
+		Terminal::WriteLine("Yer money: {:.4f}", game::character::Statistics::ReadMoney(game::Player::GetCharacterId()));
 		Terminal::WriteLine("Minimum bet: {:.4f}", minimum);
 		Terminal::WriteLine("Ante: {:.4f}", ante);
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		if (game::character::Statistics::ReadMoney(game::Player::GetAvatarId()) >= minimum)
+		if (game::character::Statistics::ReadMoney(game::Player::GetCharacterId()) >= minimum)
 		{
 			Terminal::WriteLine("1) Play a hand");
 		}
@@ -53,15 +53,15 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::ENTER_DARK_ALLEY);
+		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_DARK_ALLEY);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void DealHand()
 	{
-		if (game::character::Statistics::ReadMoney(game::Player::GetAvatarId()) >= game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value())
+		if (game::character::Statistics::ReadMoney(game::Player::GetCharacterId()) >= game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value())
 		{
-			game::character::Statistics::ChangeMoney(game::Player::GetAvatarId(), -game::islands::DarkAlley::GetAnte(ReadLocation()).value());
+			game::character::Statistics::ChangeMoney(game::Player::GetCharacterId(), -game::islands::DarkAlley::GetAnte(ReadLocation()).value());
 			application::UIState::Write(::UIState::IN_PLAY_GAMBLE_PLAY);
 		}
 		else

@@ -164,8 +164,8 @@ namespace state::in_play
 		Terminal::WriteLine("Enemy Brawling: {:.1f}", GetRuffianBrawling());
 		Terminal::WriteLine(
 			"Yer Brawling: {:.1f} Yer Health: {:.0f}", 
-			game::character::Statistics::GetBrawling(game::Player::GetAvatarId()),
-			game::character::Statistics::GetHealth(game::Player::GetAvatarId()));
+			game::character::Statistics::GetBrawling(game::Player::GetCharacterId()),
+			game::character::Statistics::GetHealth(game::Player::GetCharacterId()));
 
 		RefreshBoard();
 
@@ -185,21 +185,21 @@ namespace state::in_play
 
 	static void OnRetreat()
 	{
-		game::character::Statistics::ChangeMoney(game::Player::GetAvatarId(), -game::character::Statistics::ReadMoney(game::Player::GetAvatarId()) / 2.0);
-		game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::ENTER_DOCK);
+		game::character::Statistics::ChangeMoney(game::Player::GetCharacterId(), -game::character::Statistics::ReadMoney(game::Player::GetCharacterId()) / 2.0);
+		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_DOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void IncreaseInfamy()
 	{
 		const double INFAMY_DELTA = 0.1;
-		game::character::Statistics::ChangeInfamy(game::Player::GetAvatarId(), (hitsTaken == 0) ? (INFAMY_DELTA) : (INFAMY_DELTA / 2.0));
+		game::character::Statistics::ChangeInfamy(game::Player::GetCharacterId(), (hitsTaken == 0) ? (INFAMY_DELTA) : (INFAMY_DELTA / 2.0));
 	}
 
 	static void IncreaseBrawling()
 	{
 		const double BRAWLING_DELTA = 0.1;
-		game::character::Statistics::ChangeBrawling(game::Player::GetAvatarId(), (hitsTaken > 0) ? (BRAWLING_DELTA) : (BRAWLING_DELTA / 2.0));
+		game::character::Statistics::ChangeBrawling(game::Player::GetCharacterId(), (hitsTaken > 0) ? (BRAWLING_DELTA) : (BRAWLING_DELTA / 2.0));
 	}
 
 	static void HandleRuffianDefeated()
@@ -209,15 +209,15 @@ namespace state::in_play
 		visuals::Messages::Write({ "VICTORY!",{} });
 		IncreaseInfamy();
 		IncreaseBrawling();
-		game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::DEFEAT_RUFFIAN);
+		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::DEFEAT_RUFFIAN);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 
 	}
 
 	static void HandleTakeDamage()
 	{
-		game::character::Statistics::ChangeHealth(game::Player::GetAvatarId(), -GetRuffianBrawling());
-		if (game::character::Statistics::IsDead(game::Player::GetAvatarId()))
+		game::character::Statistics::ChangeHealth(game::Player::GetCharacterId(), -GetRuffianBrawling());
+		if (game::character::Statistics::IsDead(game::Player::GetCharacterId()))
 		{
 			visuals::Messages::Write({ "DEFEAT!",{} });
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);

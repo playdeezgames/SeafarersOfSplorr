@@ -26,9 +26,9 @@ namespace game::character
 
 	static void SetAvatarStateToDocked()
 	{
-		auto avatar = data::game::Character::Read(Player::GetAvatarId()).value();
+		auto avatar = data::game::Character::Read(Player::GetCharacterId()).value();
 		avatar.state = (int)game::character::State::DOCK;
-		data::game::Character::Write(Player::GetAvatarId(), avatar);
+		data::game::Character::Write(Player::GetCharacterId(), avatar);
 	}
 
 	static std::optional<DockResult> DoDock(const common::XY<double>& location)
@@ -36,14 +36,14 @@ namespace game::character
 		std::optional<DockResult> result = DockResult::DOCKED;
 		game::Islands::AddVisit(
 			location,
-			game::character::Statistics::GetTurnsRemaining(game::Player::GetAvatarId()));
+			game::character::Statistics::GetTurnsRemaining(game::Player::GetCharacterId()));
 		game::islands::Quests::Update(location);
 		if (game::character::Quest::Complete(location))
 		{
 			result = DockResult::COMPLETED_QUEST;
 		}
 		int islandId = data::game::Island::Find(location).value();
-		int shipId = data::game::character::Ship::Read(game::Player::GetAvatarId()).value().shipId;
+		int shipId = data::game::character::Ship::Read(game::Player::GetCharacterId()).value().shipId;
 		data::game::ship::Docks::Write(shipId, islandId);
 		SetAvatarStateToDocked();
 		auto island = game::Islands::Read(location).value();
@@ -66,7 +66,7 @@ namespace game::character
 
 	std::optional<common::XY<double>> Docked::ReadLocation()
 	{
-		auto ship = data::game::character::Ship::Read(Player::GetAvatarId());
+		auto ship = data::game::character::Ship::Read(Player::GetCharacterId());
 		if (ship)
 		{
 			auto islandId = data::game::ship::Docks::Read(ship.value().shipId);

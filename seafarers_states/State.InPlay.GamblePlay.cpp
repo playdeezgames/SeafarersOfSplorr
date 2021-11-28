@@ -31,7 +31,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Play Hand:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Yer money: {:.4f}", game::character::Statistics::ReadMoney(game::Player::GetAvatarId()));
+		Terminal::WriteLine("Yer money: {:.4f}", game::character::Statistics::ReadMoney(game::Player::GetCharacterId()));
 		Terminal::WriteLine("Minimum wager(less ante): {:.4f}", 
 			game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value() - 
 			game::islands::DarkAlley::GetAnte(ReadLocation()).value());
@@ -83,14 +83,14 @@ namespace state::in_play
 			game::audio::Sfx::Play(game::audio::GameSfx::WOOHOO);
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine("You win!");
-			game::character::Statistics::ChangeMoney(game::Player::GetAvatarId(), game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value() + game::islands::DarkAlley::GetAnte(ReadLocation()).value());
+			game::character::Statistics::ChangeMoney(game::Player::GetCharacterId(), game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value() + game::islands::DarkAlley::GetAnte(ReadLocation()).value());
 		}
 		else
 		{
 			game::audio::Sfx::Play(game::audio::GameSfx::SHUCKS);
 			Terminal::SetForeground(game::Colors::RED);
 			Terminal::WriteLine("You lose!");
-			game::character::Statistics::ChangeMoney(game::Player::GetAvatarId(), -game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value() + game::islands::DarkAlley::GetAnte(ReadLocation()).value());
+			game::character::Statistics::ChangeMoney(game::Player::GetCharacterId(), -game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value() + game::islands::DarkAlley::GetAnte(ReadLocation()).value());
 		}
 		Terminal::SetForeground(game::Colors::GRAY);
 		application::UIState::Write(::UIState::IN_PLAY_GAMBLE_INTRO);//TODO: play again y/n?

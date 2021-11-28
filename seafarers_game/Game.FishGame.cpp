@@ -48,7 +48,7 @@ namespace game
 
 	void FishGame::AddBait()
 	{
-		character::Items::Remove(game::Player::GetAvatarId(), Item::BAIT, 1);
+		character::Items::Remove(game::Player::GetCharacterId(), Item::BAIT, 1);
 		data::game::FishGame::WriteGuesses(data::game::FishGame::ReadGuesses() + ADDITIONAL_GUESSES);
 	}
 }

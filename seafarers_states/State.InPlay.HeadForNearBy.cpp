@@ -62,7 +62,7 @@ namespace state::in_play
 			{
 				Terminal::SetForeground(game::Colors::GREEN);
 				Terminal::WriteLine();
-				game::Ship::SetHeading(game::character::Ship::ReadShipId(game::Player::GetAvatarId()).value(), common::Heading::XYToDegrees(chosen.value().relativeLocation));
+				game::Ship::SetHeading(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value(), common::Heading::XYToDegrees(chosen.value().relativeLocation));
 				Terminal::WriteLine("You head for {}.", chosen.value().GetDisplayName());
 				application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
 			}

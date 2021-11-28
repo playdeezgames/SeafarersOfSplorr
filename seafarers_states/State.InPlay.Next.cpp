@@ -65,7 +65,7 @@ namespace state::in_play
 			return;
 		}
 
-		auto avatarState = game::character::Actions::GetState(game::Player::GetAvatarId());
+		auto avatarState = game::character::Actions::GetState(game::Player::GetCharacterId());
 		if (avatarState)
 		{
 			auto iter = avatarStateTable.find(avatarState.value());

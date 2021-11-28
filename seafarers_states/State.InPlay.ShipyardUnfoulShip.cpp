@@ -41,7 +41,7 @@ namespace state::in_play
 		{
 			Terminal::SetForeground(game::Colors::GRAY);
 			Terminal::WriteLine("The price is {:.4f}.", price);
-			if (game::character::Statistics::ReadMoney(game::Player::GetAvatarId()) >= price)
+			if (game::character::Statistics::ReadMoney(game::Player::GetCharacterId()) >= price)
 			{
 				Terminal::SetForeground(game::Colors::YELLOW);
 				Terminal::WriteLine("1) Clean hull");
@@ -68,9 +68,9 @@ namespace state::in_play
 	static void OnCleanHull()
 	{
 		double price = GetUnfoulingPrice();
-		if (price>0 && game::character::Statistics::ReadMoney(game::Player::GetAvatarId()) >= price)
+		if (price>0 && game::character::Statistics::ReadMoney(game::Player::GetCharacterId()) >= price)
 		{
-			game::character::Statistics::ChangeMoney(game::Player::GetAvatarId(), -price);
+			game::character::Statistics::ChangeMoney(game::Player::GetCharacterId(), -price);
 			game::character::ShipStatistics::CleanHull(game::Side::STARBOARD);
 			game::character::ShipStatistics::CleanHull(game::Side::PORT);
 			visuals::Messages::Write({ "You unfoul yer ship!" ,{}});

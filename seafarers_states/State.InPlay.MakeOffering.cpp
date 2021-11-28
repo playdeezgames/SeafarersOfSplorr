@@ -36,7 +36,7 @@ namespace state::in_play
 
 	static void UpdateItems()
 	{
-		items = game::character::Items::All(game::Player::GetAvatarId());
+		items = game::character::Items::All(game::Player::GetCharacterId());
 	}
 
 	static void RefreshItems()
@@ -100,7 +100,7 @@ namespace state::in_play
 		auto item = common::utility::Table::GetNthKey(items, hiliteRow).value();
 		auto location = game::character::Docked::ReadLocation().value();
 		auto island = game::Islands::Read(location).value();
-		game::character::Items::Remove(game::Player::GetAvatarId(), item, 1);
+		game::character::Items::Remove(game::Player::GetCharacterId(), item, 1);
 		OnOfferingResult(game::Demigods::MakeOffering(island.patronDemigodId, item));
 		OnLeave();
 	}

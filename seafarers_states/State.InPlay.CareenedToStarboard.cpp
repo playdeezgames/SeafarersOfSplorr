@@ -53,7 +53,7 @@ namespace state::in_play
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::GREEN);
 		Terminal::WriteLine("You right the vessel.");
-		game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::UNCAREEN);
+		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::UNCAREEN);
 		application::UIState::Write(::UIState::IN_PLAY_DOCK_OR_CAREEN);
 	}
 

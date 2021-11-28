@@ -10,7 +10,7 @@ namespace game::character
 {
 	static int GetShipId()
 	{
-		return game::character::Ship::ReadShipId(game::Player::GetAvatarId()).value();
+		return game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value();
 	}
 
 	static data::game::ship::Statistic GetStatistic(int shipId, const ShipStatistic& statistic)

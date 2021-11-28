@@ -23,7 +23,7 @@ namespace state::in_play
 		currentAvatarId = avatarId;
 	}
 
-	int CrewDetail::GetAvatarId()
+	int CrewDetail::GetCharacterId()
 	{
 		return currentAvatarId;
 	}

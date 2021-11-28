@@ -8,8 +8,8 @@ namespace game
 	}
 
 
-	int Player::GetAvatarId()
+	int Player::GetCharacterId()
 	{
-		return data::game::Player::GetAvatarId();
+		return data::game::Player::GetCharacterId();
 	}
 }

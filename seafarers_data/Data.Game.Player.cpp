@@ -20,7 +20,7 @@ namespace data::game
 		Common::Execute(REPLACE_ITEM, PLAYER_ID, avatarId);
 	}
 
-	int Player::GetAvatarId()
+	int Player::GetCharacterId()
 	{
 		AutoCreatePlayerTable();
 		auto records = Common::Execute(QUERY_ITEM, PLAYER_ID);

@@ -27,7 +27,7 @@ namespace data::game::character
 		{
 			data::game::Common::Execute(
 				REPLACE_ITEM,
-				data::game::Player::GetAvatarId(),
+				data::game::Player::GetCharacterId(),
 				data.value().destination.GetX(),
 				data.value().destination.GetY(),
 				data.value().reward,

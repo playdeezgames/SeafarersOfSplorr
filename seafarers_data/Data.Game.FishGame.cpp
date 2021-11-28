@@ -21,7 +21,7 @@ namespace data::game//20211010
 	int FishGame::ReadGuesses()
 	{
 		AutoCreateFishGameTable();
-		auto records = Common::Execute(QUERY_ITEM, Player::GetAvatarId());
+		auto records = Common::Execute(QUERY_ITEM, Player::GetCharacterId());
 		if (!records.empty())
 		{
 			return common::Data::ToInt(records.front()[FIELD_GUESSES]);
@@ -32,25 +32,25 @@ namespace data::game//20211010
 	void FishGame::WriteGuesses(int guesses)
 	{
 		AutoCreateFishGameTable();
-		Common::Execute(UPDATE_GUESSES, guesses, Player::GetAvatarId());
+		Common::Execute(UPDATE_GUESSES, guesses, Player::GetCharacterId());
 	}
 
 	void FishGame::Clear()
 	{
 		AutoCreateFishGameTable();
-		Common::Execute(DELETE_ITEM, Player::GetAvatarId());
+		Common::Execute(DELETE_ITEM, Player::GetCharacterId());
 	}
 
 	void FishGame::Start(int guesses)
 	{
 		AutoCreateFishGameTable();
-		Common::Execute(REPLACE_ITEM, Player::GetAvatarId(), guesses, 0, "NULL");
+		Common::Execute(REPLACE_ITEM, Player::GetCharacterId(), guesses, 0, "NULL");
 	}
 
 	bool FishGame::ReadGivenUp()
 	{
 		AutoCreateFishGameTable();
-		auto records = Common::Execute(QUERY_ITEM, Player::GetAvatarId());
+		auto records = Common::Execute(QUERY_ITEM, Player::GetCharacterId());
 		if (!records.empty())
 		{
 			return common::Data::ToInt(records.front()[FIELD_GIVEN_UP])!=0;
@@ -61,19 +61,19 @@ namespace data::game//20211010
 	void FishGame::WriteGivenUp(bool flag)
 	{
 		AutoCreateFishGameTable();
-		Common::Execute(UPDATE_GIVEN_UP, (flag) ? (1) : (0), Player::GetAvatarId());
+		Common::Execute(UPDATE_GIVEN_UP, (flag) ? (1) : (0), Player::GetCharacterId());
 	}
 
 	void FishGame::WriteFisheryId(std::optional<int> fisheryId)
 	{
 		AutoCreateFishGameTable();
-		Common::Execute(UPDATE_FISHERY_ID, common::Data::OfOptional(fisheryId), Player::GetAvatarId());
+		Common::Execute(UPDATE_FISHERY_ID, common::Data::OfOptional(fisheryId), Player::GetCharacterId());
 	}
 
 	std::optional<int> FishGame::ReadFisheryId()
 	{
 		AutoCreateFishGameTable();
-		auto records = Common::Execute(QUERY_ITEM, Player::GetAvatarId());
+		auto records = Common::Execute(QUERY_ITEM, Player::GetCharacterId());
 		if (!records.empty())
 		{
 			return common::Data::ToOptionalInt(records.front()[FIELD_FISHERY_ID]);

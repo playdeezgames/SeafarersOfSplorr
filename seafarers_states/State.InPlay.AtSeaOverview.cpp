@@ -26,14 +26,14 @@ namespace state::in_play
 
 	static int GetAvatarShipId()
 	{
-		return game::character::Ship::ReadShipId(game::Player::GetAvatarId()).value();
+		return game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value();
 	}
 
 	static bool IsFishingEnabled()
 	{
 		return
-			game::character::Items::Has(game::Player::GetAvatarId(), game::Item::FISHING_POLE) &&
-			game::character::Items::Has(game::Player::GetAvatarId(), game::Item::BAIT);
+			game::character::Items::Has(game::Player::GetCharacterId(), game::Item::FISHING_POLE) &&
+			game::character::Items::Has(game::Player::GetCharacterId(), game::Item::BAIT);
 	}
 
 	static bool RefreshDockableIslands()
@@ -190,7 +190,7 @@ namespace state::in_play
 	{
 		if (IsFishingEnabled())
 		{
-			game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::START_FISHING);
+			game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::START_FISHING);
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		}
 		else

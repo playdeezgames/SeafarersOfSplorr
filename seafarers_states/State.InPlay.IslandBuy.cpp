@@ -30,7 +30,7 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::ENTER_MARKET);
+		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_MARKET);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -58,8 +58,8 @@ namespace state::in_play
 
 	static void RefreshStatistics()
 	{
-		Terminal::WriteLine(FORMAT_MONEY, game::character::Statistics::ReadMoney(game::Player::GetAvatarId()));
-		Terminal::WriteLine(FORMAT_TONNAGE, game::character::Ship::AvailableTonnage(game::Player::GetAvatarId()).value());
+		Terminal::WriteLine(FORMAT_MONEY, game::character::Statistics::ReadMoney(game::Player::GetCharacterId()));
+		Terminal::WriteLine(FORMAT_TONNAGE, game::character::Ship::AvailableTonnage(game::Player::GetCharacterId()).value());
 	}
 
 	static void Refresh()

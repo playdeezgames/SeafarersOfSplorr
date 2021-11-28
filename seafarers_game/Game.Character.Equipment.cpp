@@ -7,7 +7,7 @@ namespace game::character
 {
 	void Equipment::Reset(const Difficulty& difficulty)
 	{
-		data::game::character::Equipment::Clear(Player::GetAvatarId());
+		data::game::character::Equipment::Clear(Player::GetCharacterId());
 	}
 
 	std::optional<Item> Equipment::Read(int avatarId, const EquipSlot& equipSlot)

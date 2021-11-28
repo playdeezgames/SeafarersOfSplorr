@@ -115,7 +115,7 @@ namespace game::character
 		for (auto& value : values)
 		{
 			data::game::character::Statistic::Write(
-				Player::GetAvatarId(),
+				Player::GetCharacterId(),
 				(int)value.statistic,
 				{
 					value.minimum,
@@ -307,11 +307,11 @@ namespace game::character
 
 	bool Statistics::IsPlayerDead()
 	{
-		return IsDead(Player::GetAvatarId());
+		return IsDead(Player::GetCharacterId());
 	}
 
 	bool Statistics::IsPlayerOutOfTurns()
 	{
-		return IsOutOfTurns(Player::GetAvatarId());
+		return IsOutOfTurns(Player::GetCharacterId());
 	}
 }

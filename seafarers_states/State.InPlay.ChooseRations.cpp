@@ -39,7 +39,7 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
-		auto avatarId = CrewDetail::GetAvatarId();
+		auto avatarId = CrewDetail::GetCharacterId();
 		Terminal::WriteLine("Rations for {}:", game::Character::GetName(avatarId).value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
@@ -84,7 +84,7 @@ namespace state::in_play
 		int index = common::Data::ToInt(line) - 1;
 		if (index >= 0 && index < rationsMenu.size())
 		{
-			game::character::Rations::Write(CrewDetail::GetAvatarId(), rationsMenu[index]);
+			game::character::Rations::Write(CrewDetail::GetCharacterId(), rationsMenu[index]);
 			OnLeave();
 		}
 		else

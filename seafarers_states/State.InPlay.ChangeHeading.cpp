@@ -20,7 +20,7 @@ namespace state::in_play
 
 	static int GetAvatarShipId()
 	{
-		return game::character::Ship::ReadShipId(game::Player::GetAvatarId()).value();
+		return game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value();
 	}
 
 	static void Refresh()
@@ -33,7 +33,7 @@ namespace state::in_play
 		Terminal::WriteLine("Current: {:.2f}\xf8", game::Ship::GetHeading(GetAvatarShipId()).value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		if (!game::Islands::GetKnownIslands(game::Ship::GetLocation(game::character::Ship::ReadShipId(game::Player::GetAvatarId()).value()).value()).empty())
+		if (!game::Islands::GetKnownIslands(game::Ship::GetLocation(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).value()).empty())
 		{
 			Terminal::WriteLine("1) Head for a known island");
 		}
@@ -59,7 +59,7 @@ namespace state::in_play
 
 	static void OnHeadForKnownIsland()
 	{
-		if (!game::Islands::GetKnownIslands(game::Ship::GetLocation(game::character::Ship::ReadShipId(game::Player::GetAvatarId()).value()).value()).empty())
+		if (!game::Islands::GetKnownIslands(game::Ship::GetLocation(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).value()).empty())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_HEAD_FOR_KNOWN);
 		}
@@ -88,9 +88,9 @@ namespace state::in_play
 		auto quest = game::character::Quest::Read();
 		if (quest)
 		{
-			auto delta = quest.value().destination - game::Ship::GetLocation(game::character::Ship::ReadShipId(game::Player::GetAvatarId()).value()).value();
+			auto delta = quest.value().destination - game::Ship::GetLocation(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).value();
 			auto island = game::Islands::Read(quest.value().destination);
-			game::Ship::SetHeading(game::character::Ship::ReadShipId(game::Player::GetAvatarId()).value(), common::Heading::XYToDegrees(delta));
+			game::Ship::SetHeading(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value(), common::Heading::XYToDegrees(delta));
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine();
 			Terminal::WriteLine("You head for {}.", island.value().name);

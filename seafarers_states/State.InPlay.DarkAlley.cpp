@@ -25,7 +25,7 @@ namespace state::in_play
 		visuals::Confirmations::Write(
 			{
 				"Leave Dark Alley?",
-				[]() { game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::ENTER_DOCK); },
+				[]() { game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_DOCK); },
 				[]() {}
 			});
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
@@ -40,9 +40,9 @@ namespace state::in_play
 
 	static void OnGamble()
 	{
-		if (ReadMoney(game::Player::GetAvatarId()) >= GetMinimumWager())
+		if (ReadMoney(game::Player::GetCharacterId()) >= GetMinimumWager())
 		{
-			game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::START_GAMBLING);
+			game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::START_GAMBLING);
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			return;
 		}

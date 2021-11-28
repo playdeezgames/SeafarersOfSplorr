@@ -16,7 +16,7 @@ namespace game::character
 		auto fromIslandId = data::game::Island::Find(location).value();
 		auto toIsland = data::game::Island::Read(quest.toIslandId).value();
 		data::game::character::Quest::Write(
-			Player::GetAvatarId(),
+			Player::GetCharacterId(),
 			std::optional<data::game::character::Quest>({
 				toIsland.location,
 				quest.reward,
@@ -25,13 +25,13 @@ namespace game::character
 				quest.professionName ,
 				quest.receiptEmotion }));
 		data::game::island::Quest::Clear(fromIslandId);
-		game::Islands::SetKnown(toIsland.location, game::character::Statistics::GetTurnsRemaining(game::Player::GetAvatarId()));
+		game::Islands::SetKnown(toIsland.location, game::character::Statistics::GetTurnsRemaining(game::Player::GetCharacterId()));
 		data::game::island::Known::Write(toIsland.id);
 	}
 
 	AcceptQuestResult Quest::Accept(const common::XY<double>& location)
 	{
-		if (data::game::character::Quest::Read(Player::GetAvatarId()))
+		if (data::game::character::Quest::Read(Player::GetCharacterId()))
 		{
 			return AcceptQuestResult::ALREADY_HAS_QUEST;
 		}
@@ -47,14 +47,14 @@ namespace game::character
 
 	static void CompleteQuest(const data::game::character::Quest& quest)
 	{
-		game::character::Statistics::ChangeMoney(game::Player::GetAvatarId(), quest.reward);
-		game::character::Statistics::ChangeReputation(game::Player::GetAvatarId(), World::GetReputationReward());
-		data::game::character::Quest::Write(Player::GetAvatarId(), std::nullopt);
+		game::character::Statistics::ChangeMoney(game::Player::GetCharacterId(), quest.reward);
+		game::character::Statistics::ChangeReputation(game::Player::GetCharacterId(), World::GetReputationReward());
+		data::game::character::Quest::Write(Player::GetCharacterId(), std::nullopt);
 	}
 
 	bool Quest::Complete(const common::XY<double>& location)
 	{
-		auto quest = data::game::character::Quest::Read(Player::GetAvatarId());
+		auto quest = data::game::character::Quest::Read(Player::GetCharacterId());
 		if (quest.has_value() && quest.value().destination == location)
 		{
 			CompleteQuest(quest.value());
@@ -65,13 +65,13 @@ namespace game::character
 
 	static void AbandonQuest()
 	{
-		game::character::Statistics::ChangeReputation(game::Player::GetAvatarId(), World::GetReputationPenalty());
-		data::game::character::Quest::Write(Player::GetAvatarId(), std::nullopt);
+		game::character::Statistics::ChangeReputation(game::Player::GetCharacterId(), World::GetReputationPenalty());
+		data::game::character::Quest::Write(Player::GetCharacterId(), std::nullopt);
 	}
 
 	bool Quest::Abandon()
 	{
-		if (data::game::character::Quest::Read(Player::GetAvatarId()))
+		if (data::game::character::Quest::Read(Player::GetCharacterId()))
 		{
 			AbandonQuest();
 			return true;
@@ -96,7 +96,7 @@ namespace game::character
 	{
 		return
 			common::utility::Optional::Map<data::game::character::Quest, game::Quest>(
-				data::game::character::Quest::Read(Player::GetAvatarId()),
+				data::game::character::Quest::Read(Player::GetCharacterId()),
 				ToQuest);
 	}
 }

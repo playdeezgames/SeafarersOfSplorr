@@ -125,7 +125,7 @@ namespace state::in_play
 		if (game::FishGame::GetState() == 
 			game::FishGameState::OUT_OF_GUESSES && 
 			game::character::Items::Has(
-				game::Player::GetAvatarId(), 
+				game::Player::GetCharacterId(), 
 				game::Item::BAIT))
 		{
 			Terminal::WriteLine("1) Use more bait");
@@ -148,7 +148,7 @@ namespace state::in_play
 
 	static void LeaveFishing()
 	{
-		game::character::Actions::DoAction(game::Player::GetAvatarId(), game::character::Action::STOP_FISHING);
+		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::STOP_FISHING);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -190,7 +190,7 @@ namespace state::in_play
 
 	static bool OutOfGuessesInputHandler(const std::string& line)
 	{
-		if (line == "1" && game::character::Items::Has(game::Player::GetAvatarId(), game::Item::BAIT))
+		if (line == "1" && game::character::Items::Has(game::Player::GetCharacterId(), game::Item::BAIT))
 		{
 			game::FishGame::AddBait();
 			Refresh();
