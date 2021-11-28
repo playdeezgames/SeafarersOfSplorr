@@ -2,7 +2,7 @@
 #include <list>
 #include <optional>
 #include <string>
-namespace data::game//20211015
+namespace data::game
 {
 	struct Demigod
 	{

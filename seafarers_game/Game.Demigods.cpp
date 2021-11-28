@@ -139,7 +139,7 @@ namespace game
 		{
 			game::character::Plights::Inflict((game::character::Plight)demigod.blessingPlightId);
 			favor -= demigod.blessingThreshold;
-			data::game::character::DemigodFavor::Write(Player::GetCharacterId(), demigod.name, favor);
+			data::game::character::DemigodFavor::Write(Player::GetCharacterId(), demigod.id, favor);
 			demigod.blessingThreshold *= demigod.blessingMultiplier;
 			data::game::Demigod::Write(demigod);
 			return true;
@@ -153,7 +153,7 @@ namespace game
 		{
 			game::character::Plights::Inflict((game::character::Plight)demigod.cursePlightId);
 			favor -= demigod.curseThreshold;
-			data::game::character::DemigodFavor::Write(Player::GetCharacterId(), demigod.name, favor);
+			data::game::character::DemigodFavor::Write(Player::GetCharacterId(), demigod.id, favor);
 			demigod.curseThreshold *= demigod.curseMultiplier;
 			data::game::Demigod::Write(demigod);
 			return true;
@@ -163,9 +163,9 @@ namespace game
 
 	static OfferingResult ApplyFavor(data::game::Demigod& demigod, const Item& item, double delta)
 	{
-		auto favor = data::game::character::DemigodFavor::Read(Player::GetCharacterId(), demigod.name).value_or(0.0);
+		auto favor = data::game::character::DemigodFavor::Read(Player::GetCharacterId(), demigod.id).value_or(0.0);
 		favor += delta;
-		data::game::character::DemigodFavor::Write(Player::GetCharacterId(), demigod.name, favor);
+		data::game::character::DemigodFavor::Write(Player::GetCharacterId(), demigod.id, favor);
 		if (ApplyBlessing(demigod, item, favor))
 		{
 			return OfferingResult::BLESSING;
