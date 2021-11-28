@@ -25,7 +25,7 @@ namespace game::character
 				quest.professionName ,
 				quest.receiptEmotion }));
 		data::game::island::Quest::Clear(fromIslandId);
-		game::Islands::SetKnown(toIsland.location, game::character::Statistics::GetTurnsRemaining(game::Player::GetCharacterId()));
+		game::Islands::SetKnown(quest.toIslandId, game::character::Statistics::GetTurnsRemaining(game::Player::GetCharacterId()));
 		data::game::island::Known::Write(toIsland.id);
 	}
 

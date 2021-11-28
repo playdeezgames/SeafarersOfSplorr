@@ -124,9 +124,8 @@ namespace game
 		}
 	}
 
-	void Islands::SetKnown(const common::XY<double>& location, const int& turn)
+	void Islands::SetKnown(int islandId, int turn)
 	{
-		auto islandId = data::game::Island::Find(location).value();
 		if (!data::game::island::Visit::Read(islandId))
 		{
 			data::game::island::Visit::Write({

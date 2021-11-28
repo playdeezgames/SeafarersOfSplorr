@@ -15,7 +15,7 @@ namespace game
 		static bool CanDock(int);
 		static std::list<Island> GetKnownIslands(const common::XY<double>&);
 		static void AddVisit(int, int);//location and turn
-		static void SetKnown(const common::XY<double>&, const int&);//location and turn
+		static void SetKnown(int, int);//location and turn
 		static std::optional<Island> Read(const common::XY<double>&);
 		static const std::string UNKNOWN;
 		static void ApplyTurnEffects();
