@@ -2,7 +2,6 @@
 #include "Game.Character.Plight.h"
 #include "Game.Character.PlightType.h"
 #include "Game.Difficulty.h"
-#include <optional>
 #include <set>
 #include <string>
 namespace game::character

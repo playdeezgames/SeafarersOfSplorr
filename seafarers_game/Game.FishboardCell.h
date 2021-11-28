@@ -1,7 +1,7 @@
 #pragma once
 #include "Game.Fish.h"
 #include <optional>
-namespace game//20211011
+namespace game
 {
 	struct FishboardCell
 	{

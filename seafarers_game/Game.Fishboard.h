@@ -1,10 +1,7 @@
 #pragma once
 #include <Common.XY.h>
-#include "Game.Fish.h"
 #include "Game.FishboardCell.h"
-#include "Game.FishGameState.h"
-#include <optional>
-namespace game//20211013
+namespace game
 {
 	struct Fishboard
 	{

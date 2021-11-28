@@ -4,7 +4,7 @@
 #include "Game.Item.h"
 #include <list>
 #include <string>
-namespace game//20211011
+namespace game
 {
 	struct Fishes
 	{

@@ -284,6 +284,18 @@
     <ClInclude Include="Game.Character.Statistic.h">
       <Filter>Header Files\Character\Enums</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Character.AcceptQuestResult.h">
+      <Filter>Header Files\Character\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Achievement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Statistic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Statistics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">

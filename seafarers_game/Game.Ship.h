@@ -2,7 +2,6 @@
 #include <Common.XY.h>
 #include "Game.ShipType.h"
 #include <optional>
-#include <vector>
 namespace game
 {
 	struct Ship

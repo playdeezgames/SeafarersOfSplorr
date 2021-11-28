@@ -2,7 +2,7 @@
 #include <Common.XY.h>
 #include "Game.Item.h"
 #include "Game.ShipType.h"
-namespace game::islands//20211011
+namespace game::islands
 {
 	struct Markets
 	{

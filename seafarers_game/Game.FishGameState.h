@@ -1,5 +1,5 @@
 #pragma once
-namespace game//20211013
+namespace game
 {
 	enum class FishGameState
 	{

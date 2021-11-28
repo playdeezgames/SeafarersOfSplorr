@@ -2,7 +2,7 @@
 #include <Common.XY.h>
 #include "Game.ShipType.h"
 #include <map>
-namespace game::islands//20211011
+namespace game::islands
 {
 	struct Ships
 	{

@@ -1,7 +1,5 @@
 #pragma once
 #include "Game.BerthType.h"
-#include "Game.Difficulty.h"
-#include "Game.ShipType.h"
 #include <optional>
 namespace game::character
 {

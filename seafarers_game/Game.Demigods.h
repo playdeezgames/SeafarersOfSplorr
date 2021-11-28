@@ -3,7 +3,7 @@
 #include "Game.Item.h"
 #include "Game.OfferingResult.h"
 #include <string>
-namespace game//20211013
+namespace game
 {
 	struct Demigods
 	{

@@ -1,6 +1,7 @@
 #define AINT_PAID_STEAM_FEE
 #define _CRT_SECURE_NO_WARNINGS
 #include <Game.Achievements.h>
+#include <Game.Statistics.h>
 #include <map>
 #include <string>
 #ifndef AINT_PAID_STEAM_FEE

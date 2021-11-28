@@ -1,7 +1,7 @@
 #pragma once
 #include "Game.Commodity.h"
 #include <list>
-namespace game//20211011
+namespace game
 {
 	struct Commodities
 	{

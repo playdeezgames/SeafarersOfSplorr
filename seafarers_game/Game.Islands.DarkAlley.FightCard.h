@@ -3,7 +3,7 @@
 #include <Common.XY.h>
 #include <map>
 #include <optional>
-namespace game::islands::dark_alley//20211011
+namespace game::islands::dark_alley
 {
 	struct FightCard
 	{

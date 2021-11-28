@@ -1,7 +1,7 @@
 #pragma once
 #include "Game.Quest.h"
 #include <optional>
-namespace game::islands//20211011
+namespace game::islands
 {
 	struct Quests
 	{
