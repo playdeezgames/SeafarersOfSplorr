@@ -143,9 +143,6 @@
     <ClInclude Include="Data.Game.Character.Ship.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Character.ShipCrew.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Data.Game.Character.Statistic.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
@@ -239,9 +236,6 @@
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Character.Ship.cpp">
-      <Filter>Source Files\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Character.ShipCrew.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Character.Statistic.cpp">

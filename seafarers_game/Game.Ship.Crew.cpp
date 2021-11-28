@@ -1,12 +1,12 @@
 #include <Common.Utility.Array.h>
-#include <Data.Game.Character.ShipCrew.h>
+#include <Data.Game.Character.Ship.h>
 #include "Game.Character.h"
 #include "Game.Character.Ship.h"
 #include "Game.Player.h"
 #include "Game.Ship.Crew.h"
 namespace game::ship
 {
-	static Crew ToCrew(const data::game::character::ShipCrew& crew)
+	static Crew ToCrew(const data::game::character::Ship& crew)
 	{
 		return
 		{
@@ -18,8 +18,8 @@ namespace game::ship
 
 	std::vector<Crew> Crew::Read()
 	{
-		return common::utility::Array::Map<data::game::character::ShipCrew, Crew>(
-			data::game::character::ShipCrew::ReadForShip(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()),
+		return common::utility::Array::Map<data::game::character::Ship, Crew>(
+			data::game::character::Ship::ReadForShip(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()),
 			ToCrew);
 	}
 }

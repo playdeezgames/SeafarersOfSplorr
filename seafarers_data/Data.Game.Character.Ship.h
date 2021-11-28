@@ -1,15 +1,16 @@
 #pragma once
 #include <optional>
+#include <vector>
 namespace data::game::character
 {
 	struct Ship
 	{
 		int shipId;
+		int characterId;
 		int berthType;
-		//TODO: add characterid
-		//TODO: merge with ShipCrew
 
 		static void Write(int, const Ship&);
 		static std::optional<Ship> ReadForCharacter(int);
+		static std::vector<Ship> ReadForShip(int);
 	};
 }

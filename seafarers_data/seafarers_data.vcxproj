@@ -28,7 +28,6 @@
     <ClInclude Include="Data.Game.Character.Quest.h" />
     <ClInclude Include="Data.Game.Character.Rations.h" />
     <ClInclude Include="Data.Game.Character.Ship.h" />
-    <ClInclude Include="Data.Game.Character.ShipCrew.h" />
     <ClInclude Include="Data.Game.Character.Statistic.h" />
     <ClInclude Include="Data.Game.Common.h" />
     <ClInclude Include="Data.Game.Demigod.h" />
@@ -64,7 +63,6 @@
     <ClCompile Include="Data.Game.Character.Quest.cpp" />
     <ClCompile Include="Data.Game.Character.Rations.cpp" />
     <ClCompile Include="Data.Game.Character.Ship.cpp" />
-    <ClCompile Include="Data.Game.Character.ShipCrew.cpp" />
     <ClCompile Include="Data.Game.Character.Statistic.cpp" />
     <ClCompile Include="Data.Game.Common.cpp" />
     <ClCompile Include="Data.Game.Demigod.cpp" />
