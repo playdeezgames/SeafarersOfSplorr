@@ -2,6 +2,7 @@
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
+#include <Data.Game.Island.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Character.Docked.h>
 #include <Game.Character.Statistics.h>
@@ -21,7 +22,9 @@ namespace state::in_play
 	static double GetUnfoulingPrice()
 	{
 		return game::islands::Commodities::GetPurchasePrice(
-			game::character::Docked::ReadLocation().value(),
+			data::game::Island::Read(
+				game::character::Docked::ReadLocation().value()
+			).value().location,
 			{
 					{game::Commodity::LABOR, 
 						game::World::GetUnfoulingLaborMultiplier() * 

@@ -4,6 +4,7 @@
 #include <Application.UIState.h>
 #include <Common.Data.h>
 #include <Common.Utility.Table.h>
+#include <Data.Game.Island.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Character.Docked.h>
 #include <Game.Character.Items.h>
@@ -29,7 +30,10 @@ namespace state::in_play
 
 	static void UpdateShipPrices()
 	{
-		auto location = game::character::Docked::ReadLocation().value();
+		auto location =
+			data::game::Island::Read(
+				game::character::Docked::ReadLocation().value()
+			).value().location;
 		auto prices = game::islands::Ships::GetPurchasePrices(location);
 		auto tradeIn = game::islands::Ships::GetSalePrice(location, game::Ship::GetShipType(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).value());
 		shipPrices.clear();
@@ -93,7 +97,11 @@ namespace state::in_play
 
 	static void BuyShip(game::ShipType desiredShipType, double price)
 	{
-		auto location = game::character::Docked::ReadLocation().value();
+		auto location =
+			data::game::Island::Read(
+				game::character::Docked::ReadLocation().value()
+			).value().location;
+
 		auto currentShipId = game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value();
 		auto currentShipType = game::Ship::GetShipType(currentShipId).value();
 		game::character::Statistics::ChangeMoney(game::Player::GetCharacterId(), -price);

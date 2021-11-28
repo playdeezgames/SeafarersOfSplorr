@@ -2,6 +2,7 @@
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
+#include <Data.Game.Island.h>
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Character.h>
@@ -33,7 +34,8 @@ namespace state::in_play
 
 	static double GetMinimumWager()
 	{
-		return game::islands::DarkAlley::GetMinimumWager(game::character::Docked::ReadLocation().value()).value();
+		
+		return game::islands::DarkAlley::GetMinimumWager(data::game::Island::Read(game::character::Docked::ReadLocation().value()).value().location).value();
 	}
 
 	static const auto ReadMoney = game::character::Statistics::ReadMoney;

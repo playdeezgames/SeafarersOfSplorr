@@ -10,8 +10,8 @@ namespace game::character
 	struct Docked
 	{
 		static void Reset(const game::Difficulty&);
-		static std::optional<DockResult> Dock();
-		static std::optional<common::XY<double>> ReadLocation();
+		static std::optional<DockResult> Dock();//TODO: add characterid
+		static std::optional<int> ReadLocation();//TODO: add characterid
 	};
 
 }

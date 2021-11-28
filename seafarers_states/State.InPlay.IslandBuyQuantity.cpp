@@ -4,6 +4,7 @@
 #include <Application.UIState.h>
 #include <Common.Data.h>
 #include <Common.Utility.Dispatcher.h>
+#include <Data.Game.Island.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Character.Docked.h>
 #include <Game.Character.Items.h>
@@ -26,7 +27,11 @@ namespace state::in_play
 	{
 		Terminal::Reinitialize();
 
-		auto unitPrice = game::islands::Items::GetPurchasePrices(game::character::Docked::ReadLocation().value())[currentItem];
+		auto unitPrice = game::islands::Items::GetPurchasePrices(
+			data::game::Island::Read(
+			game::character::Docked::ReadLocation().value()
+			).value().location
+		)[currentItem];
 		auto money = game::character::Statistics::ReadMoney(game::Player::GetCharacterId());
 		double availableTonnage = game::character::Ship::AvailableTonnage(game::Player::GetCharacterId()).value();
 		double unitTonnage = game::Items::GetUnitTonnage(currentItem);
@@ -52,7 +57,11 @@ namespace state::in_play
 
 	static void OnOtherInput(const std::string& line)
 	{
-		auto unitPrice = game::islands::Items::GetPurchasePrices(game::character::Docked::ReadLocation().value())[currentItem];
+		auto unitPrice = game::islands::Items::GetPurchasePrices(
+			data::game::Island::Read(
+				game::character::Docked::ReadLocation().value()
+			).value().location
+		)[currentItem];
 		auto money = game::character::Statistics::ReadMoney(game::Player::GetCharacterId());
 		double availableTonnage = game::character::Ship::AvailableTonnage(game::Player::GetCharacterId()).value();
 		double unitTonnage = game::Items::GetUnitTonnage(currentItem);
@@ -66,7 +75,11 @@ namespace state::in_play
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine("You purchase {} {} for {:.4f}.", units, game::Items::GetName(currentItem), totalPrice);
 			game::character::Statistics::ChangeMoney(game::Player::GetCharacterId(), -totalPrice);
-			game::islands::Markets::BuyItems(game::character::Docked::ReadLocation().value(), currentItem, units);
+			game::islands::Markets::BuyItems(
+				data::game::Island::Read(
+					game::character::Docked::ReadLocation().value()
+				).value().location
+				, currentItem, units);
 			game::character::Items::Add(game::Player::GetCharacterId(), currentItem, units);
 			application::UIState::Write(::UIState::IN_PLAY_ISLAND_BUY);
 		}

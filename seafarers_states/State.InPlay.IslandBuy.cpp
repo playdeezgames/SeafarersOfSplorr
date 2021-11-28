@@ -7,6 +7,7 @@
 #include <Common.Utility.Dispatcher.h>
 #include <Common.Utility.Navigator.h>
 #include <Common.Utility.Table.h>
+#include <Data.Game.Island.h>
 #include <format>
 #include <Game.Audio.Mux.h>
 #include <Game.Character.h>
@@ -38,7 +39,11 @@ namespace state::in_play
 
 	static void UpdateUnitPrices()
 	{
-		unitPrices = game::islands::Items::GetPurchasePrices(game::character::Docked::ReadLocation().value());
+		unitPrices = game::islands::Items::GetPurchasePrices(
+			data::game::Island::Read(
+			game::character::Docked::ReadLocation().value()
+			).value().location
+		);
 	}
 
 	static void RefreshUnitPrices()

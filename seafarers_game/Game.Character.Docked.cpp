@@ -65,20 +65,12 @@ namespace game::character
 		return std::nullopt;
 	}
 
-	std::optional<common::XY<double>> Docked::ReadLocation()
+	std::optional<int> Docked::ReadLocation()
 	{
 		auto ship = data::game::character::Ship::Read(Player::GetCharacterId());
 		if (ship)
 		{
-			auto islandId = data::game::ship::Docks::Read(ship.value().shipId);
-			if (islandId)
-			{
-				auto island = data::game::Island::Read(islandId.value());
-				if (island)
-				{
-					return island.value().location;
-				}
-			}
+			return data::game::ship::Docks::Read(ship.value().shipId);
 		}
 		return std::nullopt;
 	}

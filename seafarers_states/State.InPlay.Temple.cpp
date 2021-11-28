@@ -24,7 +24,10 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		auto location = game::character::Docked::ReadLocation().value();
+		auto location =
+			data::game::Island::Read(
+				game::character::Docked::ReadLocation().value()
+			).value().location;
 		auto islandId = data::game::Island::Find(location).value();
 		auto island = game::Islands::Read(islandId).value();
 		Terminal::Reinitialize();

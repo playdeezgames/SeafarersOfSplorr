@@ -2,6 +2,7 @@
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
+#include <Data.Game.Island.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Audio.Sfx.h>
 #include <Game.Character.Actions.h>
@@ -18,7 +19,7 @@
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE;
-	static const auto ReadLocation = []() { return game::character::Docked::ReadLocation().value();	};
+	static const auto ReadLocation = []() { return data::game::Island::Read(game::character::Docked::ReadLocation().value()).value().location; };
 	static const auto GetRuffianBrawling = []() { return game::islands::DarkAlley::GetRuffianBrawling(ReadLocation()).value(); };
 	static const size_t ROWS = 3;
 	static const size_t COLUMNS = 4;

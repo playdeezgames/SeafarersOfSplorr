@@ -99,8 +99,7 @@ namespace state::in_play
 	static void OfferItem(int hiliteRow)
 	{
 		auto item = common::utility::Table::GetNthKey(items, hiliteRow).value();
-		auto location = game::character::Docked::ReadLocation().value();
-		auto islandId = data::game::Island::Find(location).value();
+		auto islandId = game::character::Docked::ReadLocation().value();
 		auto island = game::Islands::Read(islandId).value();
 		game::character::Items::Remove(game::Player::GetCharacterId(), item, 1);
 		OnOfferingResult(game::Demigods::MakeOffering(island.patronDemigodId, item));

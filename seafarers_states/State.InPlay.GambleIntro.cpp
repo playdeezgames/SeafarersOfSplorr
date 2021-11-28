@@ -3,6 +3,7 @@
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Common.Utility.Dispatcher.h>
+#include <Data.Game.Island.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Character.Actions.h>
 #include <Game.Character.Docked.h>
@@ -19,7 +20,7 @@ namespace state::in_play
 
 	static common::XY<double> ReadLocation()
 	{
-		return game::character::Docked::ReadLocation().value();
+		return data::game::Island::Read(game::character::Docked::ReadLocation().value()).value().location;
 	}
 
 	static void Refresh()
