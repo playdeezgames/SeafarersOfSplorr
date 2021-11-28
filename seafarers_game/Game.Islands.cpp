@@ -56,10 +56,10 @@ namespace game
 		}
 	}
 
-	static std::list<Island> GetIslandsInRange(std::function<bool(const data::game::Island&, double)> filter)
+	static std::list<Island> GetIslandsInRange(int shipId, std::function<bool(const data::game::Island&, double)> filter)
 	{
 		std::list<Island> accumulator;
-		auto avatarLocation = game::Ship::GetLocation(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).value();;
+		auto avatarLocation = game::Ship::GetLocation(shipId).value();;
 		auto islands = data::game::Island::All();
 		for (auto& island : islands)
 		{
@@ -76,19 +76,19 @@ namespace game
 		};
 	}
 
-	std::list<Island> Islands::GetViewableIslands()
+	std::list<Island> Islands::GetViewableIslands(int shipId)
 	{
-		return GetIslandsInRange(FixedDistance(game::World::GetViewDistance()));
+		return GetIslandsInRange(shipId, FixedDistance(game::World::GetViewDistance()));
 	}
 
-	std::list<Island> Islands::GetDockableIslands()
+	std::list<Island> Islands::GetDockableIslands(int shipId)
 	{
-		return GetIslandsInRange(FixedDistance(game::World::GetDockDistance()));
+		return GetIslandsInRange(shipId, FixedDistance(game::World::GetDockDistance()));
 	}
 
-	bool Islands::CanDock()
+	bool Islands::CanDock(int shipId)
 	{
-		return !GetDockableIslands().empty();
+		return !GetDockableIslands(shipId).empty();
 	}
 
 	static void AddSubsequentVisit(

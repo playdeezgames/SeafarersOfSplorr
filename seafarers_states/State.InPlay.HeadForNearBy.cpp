@@ -24,7 +24,7 @@ namespace state::in_play
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Head for:");
-		auto nearby = game::Islands::GetViewableIslands();
+		auto nearby = game::Islands::GetViewableIslands(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value());
 		if (!nearby.empty())
 		{
 			Terminal::SetForeground(game::Colors::GRAY);
@@ -56,7 +56,7 @@ namespace state::in_play
 	{
 		return [index]() 
 		{
-			auto nearby = game::Islands::GetViewableIslands();
+			auto nearby = game::Islands::GetViewableIslands(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value());
 			auto chosen = common::utility::List::GetNth(nearby, index);
 			if (chosen)
 			{

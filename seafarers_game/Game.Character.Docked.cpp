@@ -9,6 +9,7 @@
 #include "Game.Character.Docked.h"
 #include "Game.Character.StateTransition.h"
 #include "Game.Character.Quest.h"
+#include "Game.Character.Ship.h"
 #include "Game.Character.Statistics.h"
 #include "Game.Colors.h"
 #include "Game.Islands.Quests.h"
@@ -56,7 +57,7 @@ namespace game::character
 		{
 			return DockResult::ALREADY_DOCKED;
 		}
-		auto dockables = game::Islands::GetDockableIslands();
+		auto dockables = game::Islands::GetDockableIslands(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value());
 		if (!dockables.empty())
 		{
 			return DoDock(dockables.front().absoluteLocation);

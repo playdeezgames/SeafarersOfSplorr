@@ -38,7 +38,7 @@ namespace state::in_play
 
 	static bool RefreshDockableIslands()
 	{
-		auto dockable = game::Islands::GetDockableIslands();
+		auto dockable = game::Islands::GetDockableIslands(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value());
 		if (!dockable.empty())
 		{
 			auto island = dockable.front();
@@ -58,7 +58,7 @@ namespace state::in_play
 
 	static void RefreshNearbyIslands()
 	{
-		auto nearby = game::Islands::GetViewableIslands();
+		auto nearby = game::Islands::GetViewableIslands(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value());
 		if (!nearby.empty())
 		{
 			Terminal::Write("You see {} islands nearby", nearby.size());
@@ -175,7 +175,7 @@ namespace state::in_play
 
 	static void OnDock()
 	{
-		if (!game::Islands::GetDockableIslands().empty())
+		if (!game::Islands::GetDockableIslands(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).empty())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_DOCK_OR_CAREEN);
 		}

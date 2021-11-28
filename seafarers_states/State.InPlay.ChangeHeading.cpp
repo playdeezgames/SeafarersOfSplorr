@@ -37,7 +37,7 @@ namespace state::in_play
 		{
 			Terminal::WriteLine("1) Head for a known island");
 		}
-		if (!game::Islands::GetViewableIslands().empty())
+		if (!game::Islands::GetViewableIslands(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).empty())
 		{
 			Terminal::WriteLine("2) Head for a nearby island");
 		}
@@ -72,7 +72,7 @@ namespace state::in_play
 
 	static void OnHeadForNearbyIsland()
 	{
-		if (!game::Islands::GetViewableIslands().empty())
+		if (!game::Islands::GetViewableIslands(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).empty())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_HEAD_FOR_NEAR_BY);
 		}
