@@ -46,7 +46,7 @@ namespace state::in_play
 	static void OnDock()
 	{
 		auto quest = game::character::Quest::Read(game::Player::GetCharacterId());
-		if (game::character::Docked::Dock() == game::character::DockResult::COMPLETED_QUEST)
+		if (game::character::Docked::Dock(game::Player::GetCharacterId()) == game::character::DockResult::COMPLETED_QUEST)
 		{
 			visuals::Messages::Write(
 			{

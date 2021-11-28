@@ -23,7 +23,7 @@ namespace state::in_play
 	{
 		return game::islands::Commodities::GetPurchasePrice(
 			data::game::Island::Read(
-				game::character::Docked::ReadLocation().value()
+				game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()
 			).value().location,
 			{
 					{game::Commodity::LABOR, 

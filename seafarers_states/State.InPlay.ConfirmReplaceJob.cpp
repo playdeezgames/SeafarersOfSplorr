@@ -36,7 +36,7 @@ namespace state::in_play
 	{
 		Terminal::ErrorMessage("You replace yer job, and yer reputation suffers!");
 		game::character::Quest::Abandon(game::Player::GetCharacterId());
-		game::character::Quest::Accept(game::Player::GetCharacterId(), game::character::Docked::ReadLocation().value());
+		game::character::Quest::Accept(game::Player::GetCharacterId(), game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value());
 		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}

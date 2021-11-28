@@ -29,7 +29,7 @@ namespace state::in_play
 
 		auto unitPrice = game::islands::Items::GetSalePrices(
 			data::game::Island::Read(
-				game::character::Docked::ReadLocation().value()
+				game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()
 			).value().location
 		)[currentItem];
 
@@ -52,7 +52,7 @@ namespace state::in_play
 	{
 		auto unitPrice = game::islands::Items::GetSalePrices(
 			data::game::Island::Read(
-				game::character::Docked::ReadLocation().value()
+				game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()
 			).value().location
 		)[currentItem];
 		int units = common::Data::ToInt(line);
@@ -64,7 +64,7 @@ namespace state::in_play
 			game::character::Statistics::ChangeMoney(game::Player::GetCharacterId(), totalPrice);
 			game::islands::Markets::SellItems(
 				data::game::Island::Read(
-					game::character::Docked::ReadLocation().value()
+					game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()
 				).value().location
 				, currentItem, units);
 			game::character::Items::Remove(game::Player::GetCharacterId(), currentItem, units);

@@ -26,7 +26,7 @@ namespace state::in_play
 	{
 		auto location =
 			data::game::Island::Read(
-				game::character::Docked::ReadLocation().value()
+				game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()
 			).value().location;
 		auto islandId = data::game::Island::Find(location).value();
 		auto island = game::Islands::Read(islandId).value();

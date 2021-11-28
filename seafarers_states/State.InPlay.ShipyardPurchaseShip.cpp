@@ -32,7 +32,7 @@ namespace state::in_play
 	{
 		auto location =
 			data::game::Island::Read(
-				game::character::Docked::ReadLocation().value()
+				game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()
 			).value().location;
 		auto prices = game::islands::Ships::GetPurchasePrices(location);
 		auto tradeIn = game::islands::Ships::GetSalePrice(location, game::Ship::GetShipType(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).value());
@@ -99,7 +99,7 @@ namespace state::in_play
 	{
 		auto location =
 			data::game::Island::Read(
-				game::character::Docked::ReadLocation().value()
+				game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()
 			).value().location;
 
 		auto currentShipId = game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value();

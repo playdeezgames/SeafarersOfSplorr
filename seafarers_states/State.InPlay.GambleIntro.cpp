@@ -20,7 +20,7 @@ namespace state::in_play
 
 	static common::XY<double> ReadLocation()
 	{
-		return data::game::Island::Read(game::character::Docked::ReadLocation().value()).value().location;
+		return data::game::Island::Read(game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()).value().location;
 	}
 
 	static void Refresh()

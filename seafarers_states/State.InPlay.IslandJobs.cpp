@@ -29,7 +29,7 @@ namespace state::in_play
 	{
 		switch (game::character::Quest::Accept(game::Player::GetCharacterId(), data::game::Island::Find(
 			data::game::Island::Read(
-				game::character::Docked::ReadLocation().value()
+				game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()
 			).value().location
 		).value()))
 		{
@@ -84,7 +84,7 @@ namespace state::in_play
 	{
 		auto location =
 			data::game::Island::Read(
-				game::character::Docked::ReadLocation().value()
+				game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()
 			).value().location;
 		auto quest = game::islands::Quests::Read(location);
 		if (quest)

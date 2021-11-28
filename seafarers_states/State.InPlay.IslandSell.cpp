@@ -40,7 +40,7 @@ namespace state::in_play
 	{
 		unitPrices = game::islands::Items::GetSalePrices(
 			data::game::Island::Read(
-				game::character::Docked::ReadLocation().value()
+				game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()
 			).value().location
 		);
 	}
