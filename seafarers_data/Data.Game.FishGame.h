@@ -1,6 +1,6 @@
 #pragma once
 #include <optional>
-namespace data::game//20211014
+namespace data::game
 {
 	struct FishGame
 	{

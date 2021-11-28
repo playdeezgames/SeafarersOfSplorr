@@ -3,7 +3,7 @@
 #include <list>
 #include <optional>
 #include <set>
-namespace data::game//20211014
+namespace data::game
 {
 	struct FishboardCell
 	{

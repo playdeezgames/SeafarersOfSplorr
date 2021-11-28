@@ -1,5 +1,4 @@
 #pragma once
-#include <Common.XY.h>
 #include <optional>
 #include <string>
 namespace data::game::character

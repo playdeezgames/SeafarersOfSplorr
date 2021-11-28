@@ -9,12 +9,10 @@ namespace data::game
 	static const std::string QUERY_ITEM= "SELECT [State],[Name] FROM [Characters] WHERE [CharacterId] = {};";
 	static const std::string CREATE_ITEM = "INSERT INTO [Characters]([State],[Name]) VALUES({}, {});";
 	static const std::string UPDATE_ITEM = "UPDATE [Characters] SET [State]={}, [Name]={} WHERE CharacterId={};";
-	static const std::string QUERY_MAX_AVATAR_ID = "SELECT COALESCE(MAX([CharacterId]),0) [MaxCharacterId] FROM [Characters];";
 	static const std::string QUERY_ALL = "SELECT [CharacterId] FROM [Characters];";
 
 	static const std::string FIELD_STATE = "State";
 	static const std::string FIELD_NAME = "Name";
-	static const std::string FIELD_MAX_CHARACTER_ID = "MaxCharacterId";
 	static const std::string FIELD_CHARACTER_ID = "CharacterId";
 
 	static const auto AutoCreateTable = data::game::Common::Run(CREATE_TABLE);
@@ -60,12 +58,6 @@ namespace data::game
 			avatar.state,
 			common::Data::QuoteString(avatar.name),
 			characterId);
-	}
-
-	int Character::NextId()
-	{
-		AutoCreateTable();
-		return common::Data::ToInt(Common::Execute(QUERY_MAX_AVATAR_ID).front()[FIELD_MAX_CHARACTER_ID])+1;
 	}
 
 	std::list<int> Character::All()

@@ -1,7 +1,7 @@
 #pragma once
 #include <Common.XY.h>
 #include <optional>
-namespace data::game//20211014
+namespace data::game
 {
 	struct World
 	{

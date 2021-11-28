@@ -1,5 +1,4 @@
 #pragma once
-#include <Common.XY.h>
 #include <map>
 #include <optional>
 namespace data::game::island

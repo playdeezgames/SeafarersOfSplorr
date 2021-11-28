@@ -1,5 +1,4 @@
 #pragma once
-#include <Common.XY.h>
 namespace data::game::island
 {
 	struct Feature

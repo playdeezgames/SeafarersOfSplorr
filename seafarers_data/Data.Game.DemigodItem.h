@@ -1,7 +1,6 @@
 #pragma once
 #include <optional>
-#include <string>
-namespace data::game//20211014
+namespace data::game
 {
 	struct DemigodItem
 	{

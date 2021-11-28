@@ -1,6 +1,5 @@
 #pragma once
 #include <optional>
-#include <string>
 namespace data::game::character
 {
 	struct DemigodFavor

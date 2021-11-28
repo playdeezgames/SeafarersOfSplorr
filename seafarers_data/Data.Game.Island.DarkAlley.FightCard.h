@@ -1,5 +1,4 @@
 #pragma once
-#include <Common.XY.h>
 #include <optional>
 #include <map>
 namespace data::game::island::dark_alley

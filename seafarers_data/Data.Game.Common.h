@@ -5,7 +5,7 @@
 #include <list>
 #include <map>
 #include <string>
-namespace data::game//20211011
+namespace data::game
 {
 	struct Common
 	{

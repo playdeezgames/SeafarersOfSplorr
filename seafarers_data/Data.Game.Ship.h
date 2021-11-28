@@ -2,7 +2,6 @@
 #include <Common.XY.h>
 #include <optional>
 #include <string>
-#include <vector>
 #include <list>
 namespace data::game
 {
