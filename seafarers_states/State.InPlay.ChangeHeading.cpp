@@ -41,7 +41,7 @@ namespace state::in_play
 		{
 			Terminal::WriteLine("2) Head for a nearby island");
 		}
-		if (game::character::Quest::Read())
+		if (game::character::Quest::Read(game::Player::GetCharacterId()))
 		{
 			Terminal::WriteLine("3) Head for job destination");
 		}
@@ -85,7 +85,7 @@ namespace state::in_play
 
 	static void OnHeadForJobDestination()
 	{
-		auto quest = game::character::Quest::Read();
+		auto quest = game::character::Quest::Read(game::Player::GetCharacterId());
 		if (quest)
 		{
 			auto delta = quest.value().destination - game::Ship::GetLocation(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).value();

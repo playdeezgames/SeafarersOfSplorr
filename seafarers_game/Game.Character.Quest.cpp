@@ -7,15 +7,14 @@
 #include "Game.Character.Quest.h"
 #include "Game.Character.Statistics.h"
 #include "Game.Islands.h"
-#include "Game.Player.h"
 #include "Game.World.h"
 namespace game::character
 {
-	static void AcceptQuest(const data::game::island::Quest& quest)
+	static void AcceptQuest(int characterId, const data::game::island::Quest& quest)
 	{
 		auto fromIslandId = quest.fromIslandId;
 		data::game::character::Quest::Write(
-			Player::GetCharacterId(),
+			characterId,
 			std::optional<data::game::character::Quest>({
 				quest.toIslandId,
 				quest.reward,
@@ -24,54 +23,54 @@ namespace game::character
 				quest.professionName ,
 				quest.receiptEmotion }));
 		data::game::island::Quest::Clear(fromIslandId);
-		game::Islands::SetKnown(quest.toIslandId, game::character::Statistics::GetTurnsRemaining(game::Player::GetCharacterId()));
+		game::Islands::SetKnown(quest.toIslandId, game::character::Statistics::GetTurnsRemaining(characterId));
 		data::game::island::Known::Write(quest.toIslandId);
 	}
 
-	AcceptQuestResult Quest::Accept(int fromIslandId)
+	AcceptQuestResult Quest::Accept(int characterId, int fromIslandId)
 	{
-		if (data::game::character::Quest::Read(Player::GetCharacterId()))
+		if (data::game::character::Quest::Read(characterId))
 		{
 			return AcceptQuestResult::ALREADY_HAS_QUEST;
 		}
 		auto quest = data::game::island::Quest::Read(fromIslandId);
 		if (quest)
 		{
-			AcceptQuest(quest.value());
+			AcceptQuest(characterId, quest.value());
 			return AcceptQuestResult::ACCEPTED_QUEST;
 		}
 		return AcceptQuestResult::NO_QUEST_TO_ACCEPT;
 	}
 
-	static void CompleteQuest(const data::game::character::Quest& quest)
+	static void CompleteQuest(int characterId, const data::game::character::Quest& quest)
 	{
-		game::character::Statistics::ChangeMoney(game::Player::GetCharacterId(), quest.reward);
-		game::character::Statistics::ChangeReputation(game::Player::GetCharacterId(), World::GetReputationReward());
-		data::game::character::Quest::Write(Player::GetCharacterId(), std::nullopt);
+		game::character::Statistics::ChangeMoney(characterId, quest.reward);
+		game::character::Statistics::ChangeReputation(characterId, World::GetReputationReward());
+		data::game::character::Quest::Write(characterId, std::nullopt);
 	}
 
-	bool Quest::Complete(int islandId)
+	bool Quest::Complete(int characterId, int islandId)
 	{
-		auto quest = data::game::character::Quest::Read(Player::GetCharacterId());
+		auto quest = data::game::character::Quest::Read(characterId);
 		if (quest.has_value() && quest.value().toIslandId == islandId)
 		{
-			CompleteQuest(quest.value());
+			CompleteQuest(characterId, quest.value());
 			return true;
 		}
 		return false;
 	}
 
-	static void AbandonQuest()
+	static void AbandonQuest(int characterId)
 	{
-		game::character::Statistics::ChangeReputation(game::Player::GetCharacterId(), World::GetReputationPenalty());
-		data::game::character::Quest::Write(Player::GetCharacterId(), std::nullopt);
+		game::character::Statistics::ChangeReputation(characterId, World::GetReputationPenalty());
+		data::game::character::Quest::Write(characterId, std::nullopt);
 	}
 
-	bool Quest::Abandon()
+	bool Quest::Abandon(int characterId)
 	{
-		if (data::game::character::Quest::Read(Player::GetCharacterId()))
+		if (data::game::character::Quest::Read(characterId))
 		{
-			AbandonQuest();
+			AbandonQuest(characterId);
 			return true;
 		}
 		return false;
@@ -91,11 +90,11 @@ namespace game::character
 			};
 	}
 
-	std::optional<game::Quest> Quest::Read()
+	std::optional<game::Quest> Quest::Read(int characterId)
 	{
 		return
 			common::utility::Optional::Map<data::game::character::Quest, game::Quest>(
-				data::game::character::Quest::Read(Player::GetCharacterId()),
+				data::game::character::Quest::Read(characterId),
 				ToQuest);
 	}
 }

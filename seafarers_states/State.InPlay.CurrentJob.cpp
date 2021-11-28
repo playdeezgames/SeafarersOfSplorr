@@ -53,7 +53,7 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		auto quest = game::character::Quest::Read();
+		auto quest = game::character::Quest::Read(game::Player::GetCharacterId());
 		if (quest)
 		{
 			RefreshQuest(quest.value());

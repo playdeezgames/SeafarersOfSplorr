@@ -35,8 +35,8 @@ namespace state::in_play
 	static void ReplaceJob()
 	{
 		Terminal::ErrorMessage("You replace yer job, and yer reputation suffers!");
-		game::character::Quest::Abandon();
-		game::character::Quest::Accept(data::game::Island::Find(game::character::Docked::ReadLocation().value()).value());
+		game::character::Quest::Abandon(game::Player::GetCharacterId());
+		game::character::Quest::Accept(game::Player::GetCharacterId(), data::game::Island::Find(game::character::Docked::ReadLocation().value()).value());
 		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}

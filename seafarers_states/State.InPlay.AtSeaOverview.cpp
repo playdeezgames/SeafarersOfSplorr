@@ -90,7 +90,7 @@ namespace state::in_play
 
 	static bool RefreshJobDestination()
 	{
-		auto quest = game::character::Quest::Read();
+		auto quest = game::character::Quest::Read(game::Player::GetCharacterId());
 		if (quest)
 		{
 			auto delta = quest.value().destination - game::Ship::GetLocation(GetAvatarShipId()).value();
@@ -202,7 +202,7 @@ namespace state::in_play
 
 	static void OnJob()
 	{
-		if (game::character::Quest::Read().has_value())
+		if (game::character::Quest::Read(game::Player::GetCharacterId()).has_value())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_CURRENT_JOB);
 		}

@@ -27,7 +27,7 @@ namespace state::in_play
 
 	static void OnAccept()//TODO: make this more declarative
 	{
-		switch (game::character::Quest::Accept(data::game::Island::Find(game::character::Docked::ReadLocation().value()).value()))
+		switch (game::character::Quest::Accept(game::Player::GetCharacterId(), data::game::Island::Find(game::character::Docked::ReadLocation().value()).value()))
 		{
 		case game::character::AcceptQuestResult::ACCEPTED_QUEST:
 			game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_DOCK);

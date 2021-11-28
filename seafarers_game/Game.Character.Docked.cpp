@@ -40,7 +40,7 @@ namespace game::character
 			game::character::Statistics::GetTurnsRemaining(game::Player::GetCharacterId()));
 		game::islands::Quests::Update(location);
 		int islandId = data::game::Island::Find(location).value();
-		if (game::character::Quest::Complete(islandId))
+		if (game::character::Quest::Complete(game::Player::GetCharacterId(), islandId))
 		{
 			result = DockResult::COMPLETED_QUEST;
 		}

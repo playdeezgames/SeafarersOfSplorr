@@ -11,9 +11,9 @@ namespace game::character
 	};
 	struct Quest
 	{
-		static std::optional<game::Quest> Read();
-		static AcceptQuestResult Accept(int);
-		static bool Complete(int);
-		static bool Abandon();
+		static std::optional<game::Quest> Read(int);
+		static AcceptQuestResult Accept(int,int);
+		static bool Complete(int,int);
+		static bool Abandon(int);
 	};
 }
