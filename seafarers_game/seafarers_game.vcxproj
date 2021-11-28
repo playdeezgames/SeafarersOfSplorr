@@ -39,7 +39,6 @@
     <ClInclude Include="Game.Character.State.h" />
     <ClInclude Include="Game.Character.StateTransition.h" />
     <ClInclude Include="Game.Character.Statistic.h" />
-    <ClInclude Include="Game.Character.StatisticFormats.h" />
     <ClInclude Include="Game.Character.Statistics.h" />
     <ClInclude Include="Game.EquipSlot.h" />
     <ClInclude Include="Game.EquipSlots.h" />
@@ -104,7 +103,6 @@
     <ClCompile Include="Game.Character.Rations.cpp" />
     <ClCompile Include="Game.Character.Ship.cpp" />
     <ClCompile Include="Game.Character.ShipStatistics.cpp" />
-    <ClCompile Include="Game.Character.StatisticFormats.cpp" />
     <ClCompile Include="Game.Character.Statistics.cpp" />
     <ClCompile Include="Game.Commodities.cpp" />
     <ClCompile Include="Game.cpp" />

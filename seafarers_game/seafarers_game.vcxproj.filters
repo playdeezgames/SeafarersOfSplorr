@@ -66,6 +66,9 @@
     <Filter Include="Source Files\Character">
       <UniqueIdentifier>{d044c1fb-ed2a-48f6-b646-8749f8a84020}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Character\Enums">
+      <UniqueIdentifier>{09054692-e838-4b7c-8996-178649602939}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -218,22 +221,13 @@
     <ClInclude Include="Game.Ship.State.h">
       <Filter>Header Files\Ships</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Character.Action.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Character.Actions.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
     <ClInclude Include="Game.Character.Docked.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Character.DockResult.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Character.Equipment.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Character.Flag.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
     <ClInclude Include="Game.Character.Flags.h">
@@ -245,13 +239,7 @@
     <ClInclude Include="Game.Character.Items.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Character.Plight.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Character.Plights.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Character.PlightType.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
     <ClInclude Include="Game.Character.Quest.h">
@@ -272,17 +260,29 @@
     <ClInclude Include="Game.Character.StateTransition.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Character.Statistic.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Character.StatisticFormats.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Character.Statistics.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
     <ClInclude Include="Game.Ship.Crew.h">
       <Filter>Header Files\Ships</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Character.Action.h">
+      <Filter>Header Files\Character\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Character.DockResult.h">
+      <Filter>Header Files\Character\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Character.Flag.h">
+      <Filter>Header Files\Character\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Character.Plight.h">
+      <Filter>Header Files\Character\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Character.PlightType.h">
+      <Filter>Header Files\Character\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Character.Statistic.h">
+      <Filter>Header Files\Character\Enums</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -398,9 +398,6 @@
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Game.Character.ShipStatistics.cpp">
-      <Filter>Source Files\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Character.StatisticFormats.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Game.Character.Statistics.cpp">

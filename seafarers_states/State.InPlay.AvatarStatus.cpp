@@ -12,7 +12,6 @@
 #include <Game.Character.Quest.h>
 #include <Game.Character.Plights.h>
 #include <Game.Character.Statistics.h>
-#include <Game.Character.StatisticFormats.h>
 #include <Game.Colors.h>
 #include <Game.Demigods.h>
 #include <Game.Islands.h>
