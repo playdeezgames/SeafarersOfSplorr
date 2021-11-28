@@ -111,9 +111,8 @@ namespace game
 			currentTurn });
 	}
 
-	void Islands::AddVisit(const common::XY<double>& location, const int& currentTurn)
+	void Islands::AddVisit(int islandId, int currentTurn)
 	{
-		auto islandId = data::game::Island::Find(location).value();
 		auto previousVisits = data::game::island::Visit::Read(islandId);
 		if (previousVisits)
 		{

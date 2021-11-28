@@ -36,7 +36,7 @@ namespace game::character
 	{
 		std::optional<DockResult> result = DockResult::DOCKED;
 		game::Islands::AddVisit(
-			location,
+			data::game::Island::Find(location).value(),
 			game::character::Statistics::GetTurnsRemaining(game::Player::GetCharacterId()));
 		game::islands::Quests::Update(location);
 		if (game::character::Quest::Complete(location))
