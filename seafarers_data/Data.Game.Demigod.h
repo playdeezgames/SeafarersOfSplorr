@@ -15,7 +15,6 @@ namespace data::game
 		double curseThreshold;
 		double curseMultiplier;
 		int cursePlightId;
-		size_t offeringCooldown;
 
 		static void Clear();
 		static std::list<Demigod> All();

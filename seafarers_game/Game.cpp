@@ -124,7 +124,7 @@ namespace game
 		Character::ApplyTurnEffects,
 		Islands::ApplyTurnEffects,
 		[]() { character::Plights::ApplyTurnEffects(game::Player::GetCharacterId()); },
-		Demigods::ApplyTurnEffects,
+		[]() { Demigods::ApplyTurnEffects(game::Player::GetCharacterId()); },
 		Fisheries::ApplyTurnEffects,
 		World::ApplyTurnEffects,
 	};

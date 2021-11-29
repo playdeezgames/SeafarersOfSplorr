@@ -121,8 +121,7 @@ namespace game
 				(int)character::Plights::Generate(character::PlightType::BLESSING),
 				CURSE_THRESHOLD,
 				CURSE_MULTIPLIER,
-				(int)character::Plights::Generate(character::PlightType::CURSE),
-				(size_t)0};
+				(int)character::Plights::Generate(character::PlightType::CURSE)};
 			auto demigodId = data::game::Demigod::Write(demigod);
 			for (auto item : items)
 			{
@@ -137,7 +136,7 @@ namespace game
 		{
 			game::character::Plights::Inflict(characterId, (game::character::Plight)demigod.blessingPlightId);
 			favor -= demigod.blessingThreshold;
-			data::game::character::DemigodFavor::Write(characterId, demigod.id, favor);
+			data::game::character::DemigodFavor::Write(characterId, demigod.id, favor, data::game::character::DemigodFavor::ReadOfferingCooldown(characterId, demigod.id).value_or(0));
 			demigod.blessingThreshold *= demigod.blessingMultiplier;
 			data::game::Demigod::Write(demigod);
 			return true;
@@ -151,7 +150,7 @@ namespace game
 		{
 			game::character::Plights::Inflict(characterId, (game::character::Plight)demigod.cursePlightId);
 			favor -= demigod.curseThreshold;
-			data::game::character::DemigodFavor::Write(characterId, demigod.id, favor);
+			data::game::character::DemigodFavor::Write(characterId, demigod.id, favor, data::game::character::DemigodFavor::ReadOfferingCooldown(characterId, demigod.id).value_or(0));
 			demigod.curseThreshold *= demigod.curseMultiplier;
 			data::game::Demigod::Write(demigod);
 			return true;
@@ -161,9 +160,9 @@ namespace game
 
 	static OfferingResult ApplyFavor(int characterId, data::game::Demigod& demigod, const Item& item, double delta)
 	{
-		auto favor = data::game::character::DemigodFavor::Read(characterId, demigod.id).value_or(0.0);
+		auto favor = data::game::character::DemigodFavor::ReadFavor(characterId, demigod.id).value_or(0.0);
 		favor += delta;
-		data::game::character::DemigodFavor::Write(characterId, demigod.id, favor);
+		data::game::character::DemigodFavor::Write(characterId, demigod.id, favor, data::game::character::DemigodFavor::ReadOfferingCooldown(characterId, demigod.id).value_or(0));
 		if (ApplyBlessing(characterId, demigod, item, favor))
 		{
 			return OfferingResult::BLESSING;
@@ -175,10 +174,11 @@ namespace game
 		return OfferingResult::SUCCESS;
 	}
 
-	static void UpdateCooldown(data::game::Demigod& demigod)
+	static void UpdateCooldown(int characterId, data::game::Demigod& demigod)
 	{
-		demigod.offeringCooldown++;
-		data::game::Demigod::Write(demigod);
+		size_t coolDown = data::game::character::DemigodFavor::ReadOfferingCooldown(characterId, demigod.id).value_or(0);
+		coolDown++;
+		data::game::character::DemigodFavor::Write(characterId, demigod.id, data::game::character::DemigodFavor::ReadFavor(characterId, demigod.id).value_or(0.0) , coolDown);
 	}
 
 	static OfferingResult DoMakeOffering(int characterId, data::game::Demigod& demigod, const Item& item)
@@ -186,7 +186,7 @@ namespace game
 		auto delta = data::game::DemigodItem::Read(demigod.id, (int)item);
 		if (delta)
 		{
-			UpdateCooldown(demigod);
+			UpdateCooldown(characterId, demigod);
 			return ApplyFavor(characterId, demigod, item, delta.value());
 		}
 		return OfferingResult::SUCCESS;
@@ -194,7 +194,7 @@ namespace game
 
 	static OfferingResult CheckOfferingCooldown(int characterId, data::game::Demigod& demigod, const Item& item)
 	{
-		if (demigod.offeringCooldown > 0)
+		if (data::game::character::DemigodFavor::ReadOfferingCooldown(characterId, demigod.id).value_or(0) > 0)
 		{
 			return OfferingResult::COOLING_DOWN;
 		}
@@ -211,15 +211,16 @@ namespace game
 		return OfferingResult::FAILURE;
 	}
 
-	void Demigods::ApplyTurnEffects()
+	void Demigods::ApplyTurnEffects(int characterId)
 	{
 		auto demigods = data::game::Demigod::All();
 		for (auto& demigod : demigods)
 		{
-			if (demigod.offeringCooldown > 0)
+			int coolDown = data::game::character::DemigodFavor::ReadOfferingCooldown(characterId, demigod.id).value_or(0);
+			if (coolDown > 0)
 			{
-				demigod.offeringCooldown--;
-				data::game::Demigod::Write(demigod);
+				coolDown--;
+				data::game::character::DemigodFavor::Write(characterId, demigod.id, data::game::character::DemigodFavor::ReadFavor(characterId, demigod.id).value_or(0.0), coolDown);
 			}
 		}
 	}

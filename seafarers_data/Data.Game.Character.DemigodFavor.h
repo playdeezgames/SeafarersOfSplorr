@@ -4,8 +4,9 @@ namespace data::game::character
 {
 	struct DemigodFavor
 	{
-		static void Write(int, int, double);
-		static std::optional<double> Read(int, int);
+		static void Write(int, int, double, int);
+		static std::optional<double> ReadFavor(int, int);
+		static std::optional<int> ReadOfferingCooldown(int, int);
 		static void Clear(int);
 	};
 }

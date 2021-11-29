@@ -9,7 +9,7 @@ namespace game
 	{
 		static void Reset(int, const Difficulty&);
 		static OfferingResult MakeOffering(int, int, const Item&);
-		static void ApplyTurnEffects();
+		static void ApplyTurnEffects(int);
 		static std::string ReadName(int);
 	};
 }
