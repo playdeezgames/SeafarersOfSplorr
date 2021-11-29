@@ -7,7 +7,6 @@ namespace game
 		data::game::Player::Create(characterId);
 	}
 
-
 	int Player::GetCharacterId()
 	{
 		return data::game::Player::GetCharacterId();
