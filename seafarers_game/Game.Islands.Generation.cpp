@@ -2,20 +2,15 @@
 #include <Common.NameGenerator.h>
 #include <Common.RNG.h>
 #include <Data.Game.Demigod.h>
-#include <Data.Game.Island.Item.h>
 #include <Data.Game.Island.h>
+#include <Data.Game.Island.Item.h>
 #include <Data.Game.Island.Known.h>
 #include <Data.Game.Island.Market.h>
-#include <Data.Game.Island.Quest.h>
 #include <Data.Game.Island.Visit.h>
 #include "Game.Commodities.h"
-#include "Game.Islands.h"
 #include "Game.Items.h"
-#include "Game.Player.h"
 #include "Game.World.h"
-#include <map>
 #include <set>
-#include <sstream>
 #include <vector>
 namespace game
 {
@@ -141,13 +136,13 @@ namespace game
 		}
 	}
 
-	static void GenerateItems(const common::XY<double>& location)
+	static void GenerateItems(int islandId)
 	{
 		for (auto& item : game::Items::All())
 		{
 			if (Items::GeneratePresenceForIsland(item))
 			{
-				data::game::island::Item::Write(data::game::Island::Find(location).value(), (int)item);
+				data::game::island::Item::Write(islandId, (int)item);
 			}
 		}
 	}
@@ -181,7 +176,7 @@ namespace game
 			locations.pop_front();
 			names.erase(names.begin());
 			GenerateMarkets(islandId);
-			GenerateItems(data.location);
+			GenerateItems(islandId);
 		}
 	}
 }
