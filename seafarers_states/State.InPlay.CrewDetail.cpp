@@ -16,23 +16,23 @@ namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CREW_DETAIL;
 
-	static int currentAvatarId;
+	static int currentCharacterId;
 
-	void CrewDetail::SetAvatarId(int avatarId)
+	void CrewDetail::SetCharacterId(int characterId)
 	{
-		currentAvatarId = avatarId;
+		currentCharacterId = characterId;
 	}
 
 	int CrewDetail::GetCharacterId()
 	{
-		return currentAvatarId;
+		return currentCharacterId;
 	}
 
 	static auto OnLeave = application::UIState::GoTo(::UIState::IN_PLAY_CREW_LIST);
 
 	static void RefreshRations()
 	{
-		auto rations = game::character::Rations::Read(currentAvatarId);
+		auto rations = game::character::Rations::Read(currentCharacterId);
 		if (rations)
 		{
 			Terminal::WriteLine("Rations: {}", game::Items::GetName(rations.value()));
@@ -45,7 +45,7 @@ namespace state::in_play
 
 	static void RefreshFlags()
 	{
-		auto flags = game::character::Flags::All(currentAvatarId);
+		auto flags = game::character::Flags::All(currentCharacterId);
 		if (!flags.empty())
 		{
 			bool first = true;
@@ -73,7 +73,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Crew Details:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Name: {}", game::Character::GetName(currentAvatarId).value());
+		Terminal::WriteLine("Name: {}", game::Character::GetName(currentCharacterId).value());
 		RefreshRations();
 		RefreshFlags();
 
