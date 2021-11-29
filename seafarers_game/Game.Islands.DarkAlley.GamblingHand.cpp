@@ -25,7 +25,7 @@ namespace game::islands::dark_alley//20211014
 
 	bool GamblingHand::Deal(const common::XY<double>& location)
 	{
-		if (!game::islands::Features::Read(location, game::Feature::DARK_ALLEY))
+		if (!game::islands::Features::Read(data::game::Island::Find(location).value(), game::Feature::DARK_ALLEY))
 		{
 			return false;
 		}

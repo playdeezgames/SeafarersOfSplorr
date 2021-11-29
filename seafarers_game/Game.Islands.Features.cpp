@@ -2,26 +2,24 @@
 #include <Data.Game.Island.h>
 #include <Data.Game.Island.DarkAlley.h>
 #include <Data.Game.Island.Feature.h>
-#include <functional>
 #include "Game.Features.h"
 #include "Game.Islands.Features.h"
-#include <vector>
 namespace game::islands
 {
-	bool Features::Read(const common::XY<double>& xy, const game::Feature& feature)
+	bool Features::Read(int islandId, const game::Feature& feature)
 	{
-		return data::game::island::Feature::Read(data::game::Island::Find(xy).value(), (int)feature);
+		return data::game::island::Feature::Read(islandId, (int)feature);
 	}
 
-	void Features::Write(const common::XY<double>& xy, const game::Feature& feature, bool value)
+	void Features::Write(int islandId, const game::Feature& feature, bool value)
 	{
 		if (value)
 		{
-			data::game::island::Feature::Write(data::game::Island::Find(xy).value(), (int)feature);
+			data::game::island::Feature::Write(islandId, (int)feature);
 		}
 		else
 		{
-			data::game::island::Feature::Clear(data::game::Island::Find(xy).value(), (int)feature);
+			data::game::island::Feature::Clear(islandId, (int)feature);
 		}
 	}
 

@@ -40,11 +40,11 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Jobs");
 		Terminal::WriteLine("2) Trade");
-		if (game::islands::Features::Read(island.absoluteLocation, game::Feature::SHIPYARD))
+		if (game::islands::Features::Read(island.id, game::Feature::SHIPYARD))
 		{
 			Terminal::WriteLine("3) Shipyard");
 		}
-		if (game::islands::Features::Read(island.absoluteLocation, game::Feature::DARK_ALLEY))
+		if (game::islands::Features::Read(island.id, game::Feature::DARK_ALLEY))
 		{
 			Terminal::WriteLine("4) Dark Alley");
 		}
@@ -76,7 +76,7 @@ namespace state::in_play
 	{
 		auto islandId = game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value();
 		auto island = game::Islands::Read(islandId).value();
-		if (game::islands::Features::Read(island.absoluteLocation, game::Feature::SHIPYARD))
+		if (game::islands::Features::Read(island.id, game::Feature::SHIPYARD))
 		{
 			game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_SHIPYARD);
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
@@ -92,7 +92,7 @@ namespace state::in_play
 	{
 		auto islandId = game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value();
 		auto island = game::Islands::Read(islandId).value();
-		if (game::islands::Features::Read(island.absoluteLocation, game::Feature::DARK_ALLEY))
+		if (game::islands::Features::Read(island.id, game::Feature::DARK_ALLEY))
 		{
 			game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_DARK_ALLEY);
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
