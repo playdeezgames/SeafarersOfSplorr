@@ -2,7 +2,6 @@
 #include <Data.Game.Character.Ship.h>
 #include "Game.Character.h"
 #include "Game.Character.Ship.h"
-#include "Game.Player.h"
 #include "Game.Ship.Crew.h"
 namespace game::ship
 {
@@ -16,12 +15,12 @@ namespace game::ship
 		};
 	}
 
-	std::vector<Crew> Crew::Read()
+	std::vector<Crew> Crew::Read(int characterId)
 	{
 		return common::utility::Array::Map<data::game::character::Ship, Crew>(
 			data::game::character::Ship::ReadForShip(
 				game::character::Ship::ReadShipId(
-					game::Player::GetCharacterId())
+					characterId)
 				.value()),
 			ToCrew);
 	}

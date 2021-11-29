@@ -10,6 +10,6 @@ namespace game::ship
 		BerthType berthType;
 		std::string name;
 
-		static std::vector<Crew> Read();
+		static std::vector<Crew> Read(int);
 	};
 }

@@ -69,7 +69,7 @@ namespace state::in_play
 	static void UpdateRoster()
 	{
 		rosterItems.clear();
-		auto crew = game::ship::Crew::Read();
+		auto crew = game::ship::Crew::Read(game::Player::GetCharacterId());
 		for (auto& entry : crew)
 		{
 			rosterItems.push_back({
