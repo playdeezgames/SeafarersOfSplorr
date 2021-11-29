@@ -1,22 +1,12 @@
-#include <Application.Keyboard.h>
-#include <Application.OnEnter.h>
-#include <Application.Renderer.h>
-#include <Application.UIState.h>
 #include <Common.Data.h>
-#include <Common.Utility.h>
-#include <Common.Utility.Dispatcher.h>
-#include <Game.Audio.Mux.h>
 #include <Game.Character.h>
 #include <Game.Character.Equipment.h>
-#include <Game.Character.Items.h>
-#include <Game.Colors.h>
 #include <Game.EquipSlots.h>
 #include <Game.Items.h>
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.Equipment.h"
 #include "State.InPlay.EquipmentSlot.h"
-#include "State.Terminal.h"
-#include "UIState.h"
+#include "State.InPlay.Globals.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_EQUIPMENT;

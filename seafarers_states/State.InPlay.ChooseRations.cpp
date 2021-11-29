@@ -1,19 +1,11 @@
-#include <Application.Keyboard.h>
-#include <Application.OnEnter.h>
-#include <Application.Renderer.h>
-#include <Application.UIState.h>
 #include <Common.Data.h>
-#include <Game.Audio.Mux.h>
 #include <Game.Character.h>
 #include <Game.Character.Items.h>
 #include <Game.Character.Rations.h>
-#include <Game.Colors.h>
 #include <Game.Items.h>
 #include "State.InPlay.ChooseRations.h"
 #include "State.InPlay.CrewDetail.h"
-#include "State.Terminal.h"
-#include "UIState.h"
-#include <vector>
+#include "State.InPlay.Globals.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CHOOSE_RATIONS;
