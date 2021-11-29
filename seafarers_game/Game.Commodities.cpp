@@ -1,9 +1,8 @@
-#include <Common.Utility.h>
 #include <Common.Utility.List.h>
 #include "Game.Commodities.h"
 #include <map>
 #include <string>
-namespace game//20211015
+namespace game
 {
 	struct CommodityDescriptor
 	{
