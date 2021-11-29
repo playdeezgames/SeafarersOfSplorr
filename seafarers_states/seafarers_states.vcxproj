@@ -28,6 +28,7 @@
     <ClInclude Include="State.InPlay.Fishing.h" />
     <ClInclude Include="State.InPlay.GambleIntro.h" />
     <ClInclude Include="State.InPlay.GamblePlay.h" />
+    <ClInclude Include="State.InPlay.Globals.h" />
     <ClInclude Include="State.InPlay.HeadForKnown.h" />
     <ClInclude Include="State.InPlay.HeadForNearBy.h" />
     <ClInclude Include="State.InPlay.IslandBuyQuantity.h" />
@@ -98,6 +99,7 @@
     <ClCompile Include="State.InPlay.Fishing.cpp" />
     <ClCompile Include="State.InPlay.GambleIntro.cpp" />
     <ClCompile Include="State.InPlay.GamblePlay.cpp" />
+    <ClCompile Include="State.InPlay.Globals.cpp" />
     <ClCompile Include="State.InPlay.HeadForKnown.cpp" />
     <ClCompile Include="State.InPlay.HeadForNearBy.cpp" />
     <ClCompile Include="State.InPlay.IslandBuyQuantity.cpp" />

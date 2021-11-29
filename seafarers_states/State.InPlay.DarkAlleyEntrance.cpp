@@ -13,13 +13,14 @@
 #include <Game.Islands.DarkAlley.FightCard.h>
 #include <Game.Player.h>
 #include "State.InPlay.DarkAlleyEntrance.h"
+#include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 #include <Visuals.Messages.h>
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE;
-	static const auto GetRuffianBrawling = []() { return game::islands::DarkAlley::GetRuffianBrawling(game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()).value(); };
+	static const auto GetRuffianBrawling = []() { return game::islands::DarkAlley::GetRuffianBrawling(game::character::Docked::ReadLocation(GetPlayerCharacterId()).value()).value(); };
 	static const size_t ROWS = 3;
 	static const size_t COLUMNS = 4;
 	static size_t hitsTaken = 0;
@@ -147,7 +148,7 @@ namespace state::in_play
 
 	static void RefreshBoard()
 	{
-		auto fightCards = game::islands::dark_alley::FightCard::Read(game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value());
+		auto fightCards = game::islands::dark_alley::FightCard::Read(game::character::Docked::ReadLocation(GetPlayerCharacterId()).value());
 		for (size_t row = 0; row < ROWS; ++row)
 		{
 			RefreshRow(fightCards, row);
@@ -164,8 +165,8 @@ namespace state::in_play
 		Terminal::WriteLine("Enemy Brawling: {:.1f}", GetRuffianBrawling());
 		Terminal::WriteLine(
 			"Yer Brawling: {:.1f} Yer Health: {:.0f}", 
-			game::character::Statistics::GetBrawling(game::Player::GetCharacterId()),
-			game::character::Statistics::GetHealth(game::Player::GetCharacterId()));
+			game::character::Statistics::GetBrawling(GetPlayerCharacterId()),
+			game::character::Statistics::GetHealth(GetPlayerCharacterId()));
 
 		RefreshBoard();
 
@@ -179,27 +180,27 @@ namespace state::in_play
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		hitsTaken = 0;
-		game::islands::dark_alley::FightCard::Generate(game::Player::GetCharacterId(), game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value());
+		game::islands::dark_alley::FightCard::Generate(GetPlayerCharacterId(), game::character::Docked::ReadLocation(GetPlayerCharacterId()).value());
 		Refresh();
 	}
 
 	static void OnRetreat()
 	{
-		game::character::Statistics::ChangeMoney(game::Player::GetCharacterId(), -game::character::Statistics::ReadMoney(game::Player::GetCharacterId()) / 2.0);
-		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_DOCK);
+		game::character::Statistics::ChangeMoney(GetPlayerCharacterId(), -game::character::Statistics::ReadMoney(GetPlayerCharacterId()) / 2.0);
+		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_DOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void IncreaseInfamy()
 	{
 		const double INFAMY_DELTA = 0.1;
-		game::character::Statistics::ChangeInfamy(game::Player::GetCharacterId(), (hitsTaken == 0) ? (INFAMY_DELTA) : (INFAMY_DELTA / 2.0));
+		game::character::Statistics::ChangeInfamy(GetPlayerCharacterId(), (hitsTaken == 0) ? (INFAMY_DELTA) : (INFAMY_DELTA / 2.0));
 	}
 
 	static void IncreaseBrawling()
 	{
 		const double BRAWLING_DELTA = 0.1;
-		game::character::Statistics::ChangeBrawling(game::Player::GetCharacterId(), (hitsTaken > 0) ? (BRAWLING_DELTA) : (BRAWLING_DELTA / 2.0));
+		game::character::Statistics::ChangeBrawling(GetPlayerCharacterId(), (hitsTaken > 0) ? (BRAWLING_DELTA) : (BRAWLING_DELTA / 2.0));
 	}
 
 	static void HandleRuffianDefeated()
@@ -209,15 +210,15 @@ namespace state::in_play
 		visuals::Messages::Write({ "VICTORY!",{} });
 		IncreaseInfamy();
 		IncreaseBrawling();
-		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::DEFEAT_RUFFIAN);
+		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::DEFEAT_RUFFIAN);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 
 	}
 
 	static void HandleTakeDamage()
 	{
-		game::character::Statistics::ChangeHealth(game::Player::GetCharacterId(), -GetRuffianBrawling());
-		if (game::character::Statistics::IsDead(game::Player::GetCharacterId()))
+		game::character::Statistics::ChangeHealth(GetPlayerCharacterId(), -GetRuffianBrawling());
+		if (game::character::Statistics::IsDead(GetPlayerCharacterId()))
 		{
 			visuals::Messages::Write({ "DEFEAT!",{} });
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
@@ -238,7 +239,7 @@ namespace state::in_play
 
 	static void PickCard(size_t cardIndex)
 	{
-		auto fightCards = game::islands::dark_alley::FightCard::Read(game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value());
+		auto fightCards = game::islands::dark_alley::FightCard::Read(game::character::Docked::ReadLocation(GetPlayerCharacterId()).value());
 		auto card = fightCards.find(cardIndex)->second;
 		if (card.revealed)
 		{
@@ -247,7 +248,7 @@ namespace state::in_play
 		}
 		else
 		{
-			auto card = game::islands::dark_alley::FightCard::Pick(game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value(), cardIndex);
+			auto card = game::islands::dark_alley::FightCard::Pick(game::character::Docked::ReadLocation(GetPlayerCharacterId()).value(), cardIndex);
 			if (card)
 			{
 				HandleFightCard(card.value());

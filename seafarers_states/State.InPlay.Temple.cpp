@@ -14,6 +14,7 @@
 #include <Game.Demigods.h>
 #include <Game.Islands.h>
 #include <Game.Player.h>
+#include "State.InPlay.Globals.h"
 #include "State.InPlay.Temple.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -26,7 +27,7 @@ namespace state::in_play
 	{
 		auto location =
 			data::game::Island::Read(
-				game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()
+				game::character::Docked::ReadLocation(GetPlayerCharacterId()).value()
 			).value().location;
 		auto islandId = data::game::Island::Find(location).value();
 		auto island = game::Islands::Read(islandId).value();
@@ -51,7 +52,7 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_DOCK);
+		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

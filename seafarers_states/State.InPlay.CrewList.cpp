@@ -19,6 +19,7 @@
 #include <Game.Ship.Crew.h>
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.CrewList.h"
+#include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 namespace state::in_play
@@ -69,13 +70,13 @@ namespace state::in_play
 	static void UpdateRoster()
 	{
 		rosterItems.clear();
-		auto crew = game::ship::Crew::Read(game::Player::GetCharacterId());
+		auto crew = game::ship::Crew::Read(GetPlayerCharacterId());
 		for (auto& entry : crew)
 		{
 			rosterItems.push_back({
 				entry.name,
 				berthNames.find(entry.berthType)->second,
-				(entry.avatarId==game::Player::GetCharacterId()) ? ("(you)") : (""),
+				(entry.avatarId==GetPlayerCharacterId()) ? ("(you)") : (""),
 				entry.avatarId
 				});
 		}

@@ -17,6 +17,7 @@
 #include <Game.Player.h>
 #include <Game.Ship.h>
 #include <Game.World.h>
+#include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "State.InPlay.AtSeaOverview.h"
 #include "UIState.h"
@@ -26,19 +27,19 @@ namespace state::in_play
 
 	static int GetAvatarShipId()
 	{
-		return game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value();
+		return game::character::Ship::ReadShipId(GetPlayerCharacterId()).value();
 	}
 
 	static bool IsFishingEnabled()
 	{
 		return
-			game::character::Items::Has(game::Player::GetCharacterId(), game::Item::FISHING_POLE) &&
-			game::character::Items::Has(game::Player::GetCharacterId(), game::Item::BAIT);
+			game::character::Items::Has(GetPlayerCharacterId(), game::Item::FISHING_POLE) &&
+			game::character::Items::Has(GetPlayerCharacterId(), game::Item::BAIT);
 	}
 
 	static bool RefreshDockableIslands()
 	{
-		auto dockable = game::Islands::GetDockableIslands(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value());
+		auto dockable = game::Islands::GetDockableIslands(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value());
 		if (!dockable.empty())
 		{
 			auto island = dockable.front();
@@ -58,7 +59,7 @@ namespace state::in_play
 
 	static void RefreshNearbyIslands()
 	{
-		auto nearby = game::Islands::GetViewableIslands(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value());
+		auto nearby = game::Islands::GetViewableIslands(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value());
 		if (!nearby.empty())
 		{
 			Terminal::Write("You see {} islands nearby", nearby.size());
@@ -90,7 +91,7 @@ namespace state::in_play
 
 	static bool RefreshJobDestination()
 	{
-		auto quest = game::character::Quest::Read(game::Player::GetCharacterId());
+		auto quest = game::character::Quest::Read(GetPlayerCharacterId());
 		if (quest)
 		{
 			auto delta = quest.value().destination - game::Ship::GetLocation(GetAvatarShipId()).value();
@@ -104,7 +105,7 @@ namespace state::in_play
 
 	static void RefreshFisheries()
 	{
-		if (!game::Fisheries::Available(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).empty())
+		if (!game::Fisheries::Available(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value()).empty())
 		{
 			Terminal::WriteLine("This looks like a good place to fish.");
 		}
@@ -175,7 +176,7 @@ namespace state::in_play
 
 	static void OnDock()
 	{
-		if (!game::Islands::GetDockableIslands(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).empty())
+		if (!game::Islands::GetDockableIslands(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value()).empty())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_DOCK_OR_CAREEN);
 		}
@@ -190,7 +191,7 @@ namespace state::in_play
 	{
 		if (IsFishingEnabled())
 		{
-			game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::START_FISHING);
+			game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::START_FISHING);
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		}
 		else
@@ -202,7 +203,7 @@ namespace state::in_play
 
 	static void OnJob()
 	{
-		if (game::character::Quest::Read(game::Player::GetCharacterId()).has_value())
+		if (game::character::Quest::Read(GetPlayerCharacterId()).has_value())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_CURRENT_JOB);
 		}

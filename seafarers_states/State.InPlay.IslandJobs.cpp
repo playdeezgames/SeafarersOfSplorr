@@ -18,6 +18,7 @@
 #include <Game.Islands.Quests.h>
 #include <Game.Player.h>
 #include "Game.Ship.h"
+#include "State.InPlay.Globals.h"
 #include "State.InPlay.IslandJobs.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -27,14 +28,14 @@ namespace state::in_play
 
 	static void OnAccept()//TODO: make this more declarative
 	{
-		switch (game::character::Quest::Accept(game::Player::GetCharacterId(), data::game::Island::Find(
+		switch (game::character::Quest::Accept(GetPlayerCharacterId(), data::game::Island::Find(
 			data::game::Island::Read(
-				game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()
+				game::character::Docked::ReadLocation(GetPlayerCharacterId()).value()
 			).value().location
 		).value()))
 		{
 		case game::character::AcceptQuestResult::ACCEPTED_QUEST:
-			game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_DOCK);
+			game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_DOCK);
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			break;
 		case game::character::AcceptQuestResult::ALREADY_HAS_QUEST:
@@ -45,14 +46,14 @@ namespace state::in_play
 
 	static void OnCancel()
 	{
-		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_DOCK);
+		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void RefreshQuest(const game::Quest& questModel)
 	{
 		auto islandModel = game::Islands::Read(questModel.toIslandId).value();
-		double distance = common::Heading::Distance(questModel.destination, game::Ship::GetLocation(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).value());
+		double distance = common::Heading::Distance(questModel.destination, game::Ship::GetLocation(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value()).value());
 
 		Terminal::Reinitialize();
 
@@ -83,7 +84,7 @@ namespace state::in_play
 	static void Refresh()
 	{
 		auto islandId =
-			game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value();
+			game::character::Docked::ReadLocation(GetPlayerCharacterId()).value();
 		auto quest = game::islands::Quests::Read(islandId);
 		if (quest)
 		{

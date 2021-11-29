@@ -12,6 +12,7 @@
 #include <Game.Player.h>
 #include <Game.Ship.h>
 #include "State.InPlay.ChangeHeading.h"
+#include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 namespace state::in_play
@@ -20,7 +21,7 @@ namespace state::in_play
 
 	static int GetAvatarShipId()
 	{
-		return game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value();
+		return game::character::Ship::ReadShipId(GetPlayerCharacterId()).value();
 	}
 
 	static void Refresh()
@@ -33,15 +34,15 @@ namespace state::in_play
 		Terminal::WriteLine("Current: {:.2f}\xf8", game::Ship::GetHeading(GetAvatarShipId()).value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		if (!game::Islands::GetKnownIslands(game::Player::GetCharacterId()).empty())
+		if (!game::Islands::GetKnownIslands(GetPlayerCharacterId()).empty())
 		{
 			Terminal::WriteLine("1) Head for a known island");
 		}
-		if (!game::Islands::GetViewableIslands(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).empty())
+		if (!game::Islands::GetViewableIslands(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value()).empty())
 		{
 			Terminal::WriteLine("2) Head for a nearby island");
 		}
-		if (game::character::Quest::Read(game::Player::GetCharacterId()))
+		if (game::character::Quest::Read(GetPlayerCharacterId()))
 		{
 			Terminal::WriteLine("3) Head for job destination");
 		}
@@ -59,7 +60,7 @@ namespace state::in_play
 
 	static void OnHeadForKnownIsland()
 	{
-		if (!game::Islands::GetKnownIslands(game::Player::GetCharacterId()).empty())
+		if (!game::Islands::GetKnownIslands(GetPlayerCharacterId()).empty())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_HEAD_FOR_KNOWN);
 		}
@@ -72,7 +73,7 @@ namespace state::in_play
 
 	static void OnHeadForNearbyIsland()
 	{
-		if (!game::Islands::GetViewableIslands(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).empty())
+		if (!game::Islands::GetViewableIslands(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value()).empty())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_HEAD_FOR_NEAR_BY);
 		}
@@ -85,12 +86,12 @@ namespace state::in_play
 
 	static void OnHeadForJobDestination()
 	{
-		auto quest = game::character::Quest::Read(game::Player::GetCharacterId());
+		auto quest = game::character::Quest::Read(GetPlayerCharacterId());
 		if (quest)
 		{
-			auto delta = quest.value().destination - game::Ship::GetLocation(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).value();
+			auto delta = quest.value().destination - game::Ship::GetLocation(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value()).value();
 			auto island = game::Islands::Read(quest.value().toIslandId);
-			game::Ship::SetHeading(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value(), common::Heading::XYToDegrees(delta));
+			game::Ship::SetHeading(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value(), common::Heading::XYToDegrees(delta));
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine();
 			Terminal::WriteLine("You head for {}.", island.value().name);

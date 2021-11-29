@@ -8,6 +8,7 @@
 #include <Game.Colors.h>
 #include <Game.Player.h>
 #include <Game.Ship.h>
+#include "State.InPlay.Globals.h"
 #include "State.InPlay.ManualHeading.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -32,7 +33,7 @@ namespace state::in_play
 
 	static void OnValidInput(double value)
 	{
-		game::Ship::SetHeading(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value(), value);
+		game::Ship::SetHeading(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value(), value);
 		application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 	}
 

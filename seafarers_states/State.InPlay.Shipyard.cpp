@@ -6,6 +6,7 @@
 #include <Game.Character.Actions.h>
 #include <Game.Colors.h>
 #include <Game.Player.h>
+#include "State.InPlay.Globals.h"
 #include "State.InPlay.Shipyard.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -36,7 +37,7 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_DOCK);
+		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

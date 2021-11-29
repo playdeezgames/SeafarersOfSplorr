@@ -8,6 +8,7 @@
 #include <Game.Player.h>
 #include <Game.Ship.h>
 #include "State.InPlay.ChangeSpeed.h"
+#include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 namespace state::in_play
@@ -21,7 +22,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Change Speed:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Current Speed: {:.2f}", game::Ship::GetSpeed(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).value());
+		Terminal::WriteLine("Current Speed: {:.2f}", game::Ship::GetSpeed(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value()).value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) All stop");
@@ -44,7 +45,7 @@ namespace state::in_play
 	{
 		return [speed]() 
 		{
-			game::Ship::SetSpeed(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value(), speed);
+			game::Ship::SetSpeed(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value(), speed);
 			application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 		};
 	}

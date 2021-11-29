@@ -12,6 +12,7 @@
 #include <Game.FishGame.h>
 #include <Game.Player.h>
 #include "State.InPlay.Fishing.h"
+#include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 namespace state::in_play
@@ -50,11 +51,11 @@ namespace state::in_play
 
 	static void RefreshCellMiddle(int row, int column)
 	{
-		auto cell = game::Fishboard::Read(game::Player::GetCharacterId(), { column, row });
+		auto cell = game::Fishboard::Read(GetPlayerCharacterId(), { column, row });
 		if (
 			cell.revealed || 
-			game::FishGame::HasGivenUp(game::Player::GetCharacterId()) || 
-			game::FishGame::GetState(game::Player::GetCharacterId()) == game::FishGameState::DONE)
+			game::FishGame::HasGivenUp(GetPlayerCharacterId()) || 
+			game::FishGame::GetState(GetPlayerCharacterId()) == game::FishGameState::DONE)
 		{
 			Terminal::Write(CELL_MIDDLE, cellContents.find(cell.fish)->second);
 		}
@@ -118,19 +119,19 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Fishing:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Guesses Left: {} Completion: {:.0f}%", game::FishGame::ReadGuesses(game::Player::GetCharacterId()), game::Fishboard::ReadProgressPercentage(game::Player::GetCharacterId()));
+		Terminal::WriteLine("Guesses Left: {} Completion: {:.0f}%", game::FishGame::ReadGuesses(GetPlayerCharacterId()), game::Fishboard::ReadProgressPercentage(GetPlayerCharacterId()));
 		RefreshBoard();
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		if (game::FishGame::GetState(game::Player::GetCharacterId()) ==
+		if (game::FishGame::GetState(GetPlayerCharacterId()) ==
 			game::FishGameState::OUT_OF_GUESSES && 
 			game::character::Items::Has(
-				game::Player::GetCharacterId(), 
+				GetPlayerCharacterId(), 
 				game::Item::BAIT))
 		{
 			Terminal::WriteLine("1) Use more bait");
 		}
-		Terminal::WriteLine("0) {}", goBackMenuItemTexts.find(game::FishGame::GetState(game::Player::GetCharacterId()))->second);
+		Terminal::WriteLine("0) {}", goBackMenuItemTexts.find(game::FishGame::GetState(GetPlayerCharacterId()))->second);
 
 		Terminal::ShowPrompt();
 	}
@@ -142,13 +143,13 @@ namespace state::in_play
 
 	static void GiveUp()
 	{
-		game::FishGame::GiveUp(game::Player::GetCharacterId());
+		game::FishGame::GiveUp(GetPlayerCharacterId());
 		Refresh();
 	}
 
 	static void LeaveFishing()
 	{
-		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::STOP_FISHING);
+		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::STOP_FISHING);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -162,7 +163,7 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		common::utility::Dispatcher::Dispatch(leaveHandlers, game::FishGame::GetState(game::Player::GetCharacterId()));
+		common::utility::Dispatcher::Dispatch(leaveHandlers, game::FishGame::GetState(GetPlayerCharacterId()));
 	}
 
 	static const std::map<std::string, std::function<void()>> menuActions =
@@ -177,10 +178,10 @@ namespace state::in_play
 		{
 			int column = index % COLUMNS;
 			int row = index / COLUMNS;
-			auto cell = game::Fishboard::Read(game::Player::GetCharacterId(), { column, row });
+			auto cell = game::Fishboard::Read(GetPlayerCharacterId(), { column, row });
 			if (!cell.revealed)
 			{
-				game::Fishboard::Reveal(game::Player::GetCharacterId(), {column, row});
+				game::Fishboard::Reveal(GetPlayerCharacterId(), {column, row});
 				Refresh();
 				return true;
 			}
@@ -190,9 +191,9 @@ namespace state::in_play
 
 	static bool OutOfGuessesInputHandler(const std::string& line)
 	{
-		if (line == "1" && game::character::Items::Has(game::Player::GetCharacterId(), game::Item::BAIT))
+		if (line == "1" && game::character::Items::Has(GetPlayerCharacterId(), game::Item::BAIT))
 		{
-			game::FishGame::AddBait(game::Player::GetCharacterId());
+			game::FishGame::AddBait(GetPlayerCharacterId());
 			Refresh();
 			return true;
 		}
@@ -211,7 +212,7 @@ namespace state::in_play
 	{
 		if (!common::utility::Dispatcher::DispatchParameter(
 			otherInputHandlers, 
-			game::FishGame::GetState(game::Player::GetCharacterId()),
+			game::FishGame::GetState(GetPlayerCharacterId()),
 			line, 
 			false))
 		{

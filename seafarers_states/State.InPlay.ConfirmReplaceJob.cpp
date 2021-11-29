@@ -12,6 +12,7 @@
 #include <Game.Colors.h>
 #include <Game.Player.h>
 #include "State.InPlay.ConfirmReplaceJob.h"
+#include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 namespace state::in_play
@@ -35,15 +36,15 @@ namespace state::in_play
 	static void ReplaceJob()
 	{
 		Terminal::ErrorMessage("You replace yer job, and yer reputation suffers!");
-		game::character::Quest::Abandon(game::Player::GetCharacterId());
-		game::character::Quest::Accept(game::Player::GetCharacterId(), game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value());
-		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_DOCK);
+		game::character::Quest::Abandon(GetPlayerCharacterId());
+		game::character::Quest::Accept(GetPlayerCharacterId(), game::character::Docked::ReadLocation(GetPlayerCharacterId()).value());
+		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnNo()
 	{
-		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_DOCK);
+		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

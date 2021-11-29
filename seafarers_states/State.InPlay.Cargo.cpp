@@ -17,6 +17,7 @@
 #include <Game.Items.h>
 #include <Game.Player.h>
 #include "State.InPlay.Cargo.h"
+#include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 namespace state::in_play
@@ -29,17 +30,17 @@ namespace state::in_play
 
 	static void UpdateManifest()
 	{
-		manifest = game::character::Items::All(game::Player::GetCharacterId());
+		manifest = game::character::Items::All(GetPlayerCharacterId());
 	}
 
 	static double GetTonnage()
 	{
-		return game::character::Items::TotalTonnage(game::Player::GetCharacterId());
+		return game::character::Items::TotalTonnage(GetPlayerCharacterId());
 	}
 
 	static double GetAvailableTonnage()
 	{
-		return game::character::Ship::AvailableTonnage(game::Player::GetCharacterId()).value();
+		return game::character::Ship::AvailableTonnage(GetPlayerCharacterId()).value();
 	}
 
 	static void Refresh()
@@ -55,7 +56,7 @@ namespace state::in_play
 				(int)(100.0 * GetTonnage() / GetAvailableTonnage()));
 		Terminal::WriteLine(
 			"Money: {:.3f}",
-			game::character::Statistics::ReadMoney(game::Player::GetCharacterId()));
+			game::character::Statistics::ReadMoney(GetPlayerCharacterId()));
 		Terminal::SetForeground(game::Colors::BROWN);
 		Terminal::WriteLine("Manifest:");
 		Terminal::SetForeground(game::Colors::YELLOW);

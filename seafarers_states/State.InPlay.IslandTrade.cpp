@@ -12,6 +12,7 @@
 #include <Game.Colors.h>
 #include <Game.Islands.h>
 #include <Game.Player.h>
+#include "State.InPlay.Globals.h"
 #include "State.InPlay.IslandTrade.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -37,19 +38,19 @@ namespace state::in_play
 
 	static void OnBuy()
 	{
-		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::MARKET_BUY);
+		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::MARKET_BUY);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnSell()
 	{
-		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::MARKET_SELL);
+		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::MARKET_SELL);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnLeave()
 	{
-		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_DOCK);
+		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

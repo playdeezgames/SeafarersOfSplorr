@@ -233,6 +233,9 @@
     <ClInclude Include="State.InPlay.RenameShipNoun.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
+    <ClInclude Include="State.InPlay.Globals.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -411,6 +414,9 @@
     </ClCompile>
     <ClCompile Include="State.InPlay.RenameShipNoun.cpp">
       <Filter>Source Files\AtSea</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.Globals.cpp">
+      <Filter>Source Files\Utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

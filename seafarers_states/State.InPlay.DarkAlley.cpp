@@ -13,6 +13,7 @@
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Player.h>
 #include "State.InPlay.DarkAlley.h"
+#include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 #include <Visuals.Confirmations.h>
@@ -26,7 +27,7 @@ namespace state::in_play
 		visuals::Confirmations::Write(
 			{
 				"Leave Dark Alley?",
-				[]() { game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_DOCK); },
+				[]() { game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_DOCK); },
 				[]() {}
 			});
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
@@ -35,16 +36,16 @@ namespace state::in_play
 	static double GetMinimumWager()
 	{
 		
-		return game::islands::DarkAlley::GetMinimumWager(game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()).value();
+		return game::islands::DarkAlley::GetMinimumWager(game::character::Docked::ReadLocation(GetPlayerCharacterId()).value()).value();
 	}
 
 	static const auto ReadMoney = game::character::Statistics::ReadMoney;
 
 	static void OnGamble()
 	{
-		if (ReadMoney(game::Player::GetCharacterId()) >= GetMinimumWager())
+		if (ReadMoney(GetPlayerCharacterId()) >= GetMinimumWager())
 		{
-			game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::START_GAMBLING);
+			game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::START_GAMBLING);
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			return;
 		}

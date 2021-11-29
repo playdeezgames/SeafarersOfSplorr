@@ -15,6 +15,7 @@
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
 #include <Game.Player.h>
+#include "State.InPlay.Globals.h"
 #include "State.InPlay.IslandSellQuantity.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -28,14 +29,14 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		auto unitPrice = game::islands::Items::GetSalePrices(
-				game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()
+				game::character::Docked::ReadLocation(GetPlayerCharacterId()).value()
 		)[currentItem];
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Selling {}:", game::Items::GetName(currentItem));
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Unit price: {:.4f}.", unitPrice);
-		Terminal::WriteLine("You have {} units.", game::character::Items::Read(game::Player::GetCharacterId(), currentItem));
+		Terminal::WriteLine("You have {} units.", game::character::Items::Read(GetPlayerCharacterId(), currentItem));
 
 		Terminal::ShowPrompt();
 	}
@@ -49,19 +50,19 @@ namespace state::in_play
 	static void OnOtherInput(const std::string& line)
 	{
 		auto unitPrice = game::islands::Items::GetSalePrices(
-				game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()
+				game::character::Docked::ReadLocation(GetPlayerCharacterId()).value()
 		)[currentItem];
 		int units = common::Data::ToInt(line);
-		if (units <= game::character::Items::Read(game::Player::GetCharacterId(), currentItem))
+		if (units <= game::character::Items::Read(GetPlayerCharacterId(), currentItem))
 		{
 			double totalPrice = unitPrice * units;
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine("You sell {} {} for {:.4f}.", units, game::Items::GetName(currentItem), totalPrice);
-			game::character::Statistics::ChangeMoney(game::Player::GetCharacterId(), totalPrice);
+			game::character::Statistics::ChangeMoney(GetPlayerCharacterId(), totalPrice);
 			game::islands::Markets::SellItems(
-					game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()
+					game::character::Docked::ReadLocation(GetPlayerCharacterId()).value()
 				, currentItem, units);
-			game::character::Items::Remove(game::Player::GetCharacterId(), currentItem, units);
+			game::character::Items::Remove(GetPlayerCharacterId(), currentItem, units);
 			application::UIState::Write(::UIState::IN_PLAY_ISLAND_SELL);
 		}
 		else

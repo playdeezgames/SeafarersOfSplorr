@@ -12,6 +12,7 @@
 #include <Game.Islands.Commodities.h>
 #include <Game.Player.h>
 #include <Game.World.h>
+#include "State.InPlay.Globals.h"
 #include "State.InPlay.ShipyardUnfoulShip.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -23,11 +24,11 @@ namespace state::in_play
 	static double GetUnfoulingPrice()
 	{
 		return game::islands::Commodities::GetPurchasePrice(
-			game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value(),
+			game::character::Docked::ReadLocation(GetPlayerCharacterId()).value(),
 			{
 					{game::Commodity::LABOR, 
 						game::World::GetUnfoulingLaborMultiplier() * 
-						game::character::ShipStatistics::GetFouling(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value())}
+						game::character::ShipStatistics::GetFouling(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value())}
 			});
 	}
 
@@ -43,7 +44,7 @@ namespace state::in_play
 		{
 			Terminal::SetForeground(game::Colors::GRAY);
 			Terminal::WriteLine("The price is {:.4f}.", price);
-			if (game::character::Statistics::ReadMoney(game::Player::GetCharacterId()) >= price)
+			if (game::character::Statistics::ReadMoney(GetPlayerCharacterId()) >= price)
 			{
 				Terminal::SetForeground(game::Colors::YELLOW);
 				Terminal::WriteLine("1) Clean hull");
@@ -70,11 +71,11 @@ namespace state::in_play
 	static void OnCleanHull()
 	{
 		double price = GetUnfoulingPrice();
-		if (price>0 && game::character::Statistics::ReadMoney(game::Player::GetCharacterId()) >= price)
+		if (price>0 && game::character::Statistics::ReadMoney(GetPlayerCharacterId()) >= price)
 		{
-			game::character::Statistics::ChangeMoney(game::Player::GetCharacterId(), -price);
-			game::character::ShipStatistics::CleanHull(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value(), game::Side::STARBOARD);
-			game::character::ShipStatistics::CleanHull(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value(), game::Side::PORT);
+			game::character::Statistics::ChangeMoney(GetPlayerCharacterId(), -price);
+			game::character::ShipStatistics::CleanHull(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value(), game::Side::STARBOARD);
+			game::character::ShipStatistics::CleanHull(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value(), game::Side::PORT);
 			visuals::Messages::Write({ "You unfoul yer ship!" ,{}});
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		}

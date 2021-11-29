@@ -16,6 +16,7 @@
 #include <Game.Islands.Features.h>
 #include <Game.Player.h>
 #include "State.InPlay.Docked.h"
+#include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 namespace state::in_play
@@ -27,7 +28,7 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		auto islandId = game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value();
+		auto islandId = game::character::Docked::ReadLocation(GetPlayerCharacterId()).value();
 		auto island = game::Islands::Read(islandId).value();
 		Terminal::Reinitialize();
 
@@ -56,29 +57,29 @@ namespace state::in_play
 
 	static void OnUndock()
 	{
-		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::UNDOCK);
+		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::UNDOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnJob()
 	{
-		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_JOB_BOARD);
+		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_JOB_BOARD);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnTrade()
 	{
-		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_MARKET);
+		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_MARKET);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnShipyard()
 	{
-		auto islandId = game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value();
+		auto islandId = game::character::Docked::ReadLocation(GetPlayerCharacterId()).value();
 		auto island = game::Islands::Read(islandId).value();
 		if (game::islands::Features::Read(island.id, game::Feature::SHIPYARD))
 		{
-			game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_SHIPYARD);
+			game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_SHIPYARD);
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		}
 		else
@@ -90,11 +91,11 @@ namespace state::in_play
 
 	static void OnDarkAlley()
 	{
-		auto islandId = game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value();
+		auto islandId = game::character::Docked::ReadLocation(GetPlayerCharacterId()).value();
 		auto island = game::Islands::Read(islandId).value();
 		if (game::islands::Features::Read(island.id, game::Feature::DARK_ALLEY))
 		{
-			game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_DARK_ALLEY);
+			game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_DARK_ALLEY);
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		}
 		else
@@ -106,7 +107,7 @@ namespace state::in_play
 
 	static void OnTemple()
 	{
-		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_TEMPLE);
+		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_TEMPLE);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

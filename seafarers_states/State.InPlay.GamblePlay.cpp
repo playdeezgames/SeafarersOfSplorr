@@ -14,6 +14,7 @@
 #include <Game.Player.h>
 #include "State.InPlay.DarkAlleyEntrance.h"
 #include "State.InPlay.GamblePlay.h"
+#include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 namespace state::in_play
@@ -22,7 +23,7 @@ namespace state::in_play
 
 	static int ReadLocation()
 	{
-		return game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value();
+		return game::character::Docked::ReadLocation(GetPlayerCharacterId()).value();
 	}
 
 	static void Refresh()
@@ -32,7 +33,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Play Hand:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Yer money: {:.4f}", game::character::Statistics::ReadMoney(game::Player::GetCharacterId()));
+		Terminal::WriteLine("Yer money: {:.4f}", game::character::Statistics::ReadMoney(GetPlayerCharacterId()));
 		Terminal::WriteLine("Minimum wager(less ante): {:.4f}", 
 			game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value() - 
 			game::islands::DarkAlley::GetAnte(ReadLocation()).value());
@@ -84,14 +85,14 @@ namespace state::in_play
 			game::audio::Sfx::Play(game::audio::GameSfx::WOOHOO);
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine("You win!");
-			game::character::Statistics::ChangeMoney(game::Player::GetCharacterId(), game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value() + game::islands::DarkAlley::GetAnte(ReadLocation()).value());
+			game::character::Statistics::ChangeMoney(GetPlayerCharacterId(), game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value() + game::islands::DarkAlley::GetAnte(ReadLocation()).value());
 		}
 		else
 		{
 			game::audio::Sfx::Play(game::audio::GameSfx::SHUCKS);
 			Terminal::SetForeground(game::Colors::RED);
 			Terminal::WriteLine("You lose!");
-			game::character::Statistics::ChangeMoney(game::Player::GetCharacterId(), -game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value() + game::islands::DarkAlley::GetAnte(ReadLocation()).value());
+			game::character::Statistics::ChangeMoney(GetPlayerCharacterId(), -game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value() + game::islands::DarkAlley::GetAnte(ReadLocation()).value());
 		}
 		Terminal::SetForeground(game::Colors::GRAY);
 		application::UIState::Write(::UIState::IN_PLAY_GAMBLE_INTRO);//TODO: play again y/n?

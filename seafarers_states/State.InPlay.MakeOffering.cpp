@@ -20,6 +20,7 @@
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
 #include <Game.Player.h>
+#include "State.InPlay.Globals.h"
 #include "State.InPlay.MakeOffering.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -37,7 +38,7 @@ namespace state::in_play
 
 	static void UpdateItems()
 	{
-		items = game::character::Items::All(game::Player::GetCharacterId());
+		items = game::character::Items::All(GetPlayerCharacterId());
 	}
 
 	static void RefreshItems()
@@ -99,10 +100,10 @@ namespace state::in_play
 	static void OfferItem(int hiliteRow)
 	{
 		auto item = common::utility::Table::GetNthKey(items, hiliteRow).value();
-		auto islandId = game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value();
+		auto islandId = game::character::Docked::ReadLocation(GetPlayerCharacterId()).value();
 		auto island = game::Islands::Read(islandId).value();
-		game::character::Items::Remove(game::Player::GetCharacterId(), item, 1);
-		OnOfferingResult(game::Demigods::MakeOffering(game::Player::GetCharacterId(), island.patronDemigodId, item));
+		game::character::Items::Remove(GetPlayerCharacterId(), item, 1);
+		OnOfferingResult(game::Demigods::MakeOffering(GetPlayerCharacterId(), island.patronDemigodId, item));
 		OnLeave();
 	}
 

@@ -10,6 +10,7 @@
 #include <Game.Ship.h>
 #include <map>
 #include <string>
+#include "State.InPlay.Globals.h"
 #include "State.InPlay.ShipStatus.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -19,7 +20,7 @@ namespace state::in_play
 
 	static int GetAvatarShipId()
 	{
-		return game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value();
+		return game::character::Ship::ReadShipId(GetPlayerCharacterId()).value();
 	}
 
 	static void Refresh()

@@ -15,6 +15,7 @@
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
 #include <Game.Player.h>
+#include "State.InPlay.Globals.h"
 #include "State.InPlay.IslandBuyQuantity.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -28,10 +29,10 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		auto unitPrice = game::islands::Items::GetPurchasePrices(
-			game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()
+			game::character::Docked::ReadLocation(GetPlayerCharacterId()).value()
 		)[currentItem];
-		auto money = game::character::Statistics::ReadMoney(game::Player::GetCharacterId());
-		double availableTonnage = game::character::Ship::AvailableTonnage(game::Player::GetCharacterId()).value();
+		auto money = game::character::Statistics::ReadMoney(GetPlayerCharacterId());
+		double availableTonnage = game::character::Ship::AvailableTonnage(GetPlayerCharacterId()).value();
 		double unitTonnage = game::Items::GetUnitTonnage(currentItem);
 		int affordableQuantity = (int)(money / unitPrice);
 		int storableQuantity = (int)(availableTonnage / unitTonnage);
@@ -56,10 +57,10 @@ namespace state::in_play
 	static void OnOtherInput(const std::string& line)
 	{
 		auto unitPrice = game::islands::Items::GetPurchasePrices(
-				game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()
+				game::character::Docked::ReadLocation(GetPlayerCharacterId()).value()
 		)[currentItem];
-		auto money = game::character::Statistics::ReadMoney(game::Player::GetCharacterId());
-		double availableTonnage = game::character::Ship::AvailableTonnage(game::Player::GetCharacterId()).value();
+		auto money = game::character::Statistics::ReadMoney(GetPlayerCharacterId());
+		double availableTonnage = game::character::Ship::AvailableTonnage(GetPlayerCharacterId()).value();
 		double unitTonnage = game::Items::GetUnitTonnage(currentItem);
 		int affordableQuantity = (int)(money / unitPrice);
 		int storableQuantity = (int)(availableTonnage / unitTonnage);
@@ -70,11 +71,11 @@ namespace state::in_play
 			double totalPrice = unitPrice * units;
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine("You purchase {} {} for {:.4f}.", units, game::Items::GetName(currentItem), totalPrice);
-			game::character::Statistics::ChangeMoney(game::Player::GetCharacterId(), -totalPrice);
+			game::character::Statistics::ChangeMoney(GetPlayerCharacterId(), -totalPrice);
 			game::islands::Markets::BuyItems(
-					game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()
+					game::character::Docked::ReadLocation(GetPlayerCharacterId()).value()
 				, currentItem, units);
-			game::character::Items::Add(game::Player::GetCharacterId(), currentItem, units);
+			game::character::Items::Add(GetPlayerCharacterId(), currentItem, units);
 			application::UIState::Write(::UIState::IN_PLAY_ISLAND_BUY);
 		}
 		else

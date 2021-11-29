@@ -10,6 +10,7 @@
 #include <Visuals.Confirmations.h>
 #include <Visuals.Messages.h>
 #include <map>
+#include "State.InPlay.Globals.h"
 #include "State.InPlay.Next.h"
 #include "UIState.h"
 namespace state::in_play
@@ -24,12 +25,12 @@ namespace state::in_play
 
 	static bool IsPlayerOutOfTurns()
 	{
-		return game::character::Statistics::IsPlayerOutOfTurns(game::Player::GetCharacterId());
+		return game::character::Statistics::IsPlayerOutOfTurns(GetPlayerCharacterId());
 	}
 
 	static bool IsPlayerDead()
 	{
-		return game::character::Statistics::IsPlayerDead(game::Player::GetCharacterId());
+		return game::character::Statistics::IsPlayerDead(GetPlayerCharacterId());
 	}
 
 	static const std::list<StatusChecker> statusCheckers =
@@ -75,7 +76,7 @@ namespace state::in_play
 			return;
 		}
 
-		auto avatarState = game::character::Actions::GetState(game::Player::GetCharacterId());
+		auto avatarState = game::character::Actions::GetState(GetPlayerCharacterId());
 		if (avatarState)
 		{
 			auto iter = avatarStateTable.find(avatarState.value());

@@ -12,6 +12,7 @@
 #include <Game.Player.h>
 #include <Game.Ship.h>
 #include "State.InPlay.DockOrCareen.h"
+#include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 #include <Visuals.Messages.h>
@@ -26,8 +27,8 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Dock or Careen:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Port fouling {:.0f}%", game::character::ShipStatistics::GetFoulingPercentage(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value(), game::Side::PORT));
-		Terminal::WriteLine("Starboard fouling {:.0f}%", game::character::ShipStatistics::GetFoulingPercentage(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value(), game::Side::STARBOARD));
+		Terminal::WriteLine("Port fouling {:.0f}%", game::character::ShipStatistics::GetFoulingPercentage(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value(), game::Side::PORT));
+		Terminal::WriteLine("Starboard fouling {:.0f}%", game::character::ShipStatistics::GetFoulingPercentage(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value(), game::Side::STARBOARD));
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Dock");
@@ -46,8 +47,8 @@ namespace state::in_play
 
 	static void OnDock()
 	{
-		auto quest = game::character::Quest::Read(game::Player::GetCharacterId());
-		if (game::character::Docked::Dock(game::Player::GetCharacterId()) == game::character::DockResult::COMPLETED_QUEST)
+		auto quest = game::character::Quest::Read(GetPlayerCharacterId());
+		if (game::character::Docked::Dock(GetPlayerCharacterId()) == game::character::DockResult::COMPLETED_QUEST)
 		{
 			visuals::Messages::Write(
 			{
@@ -94,7 +95,7 @@ namespace state::in_play
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::GREEN);
 		Terminal::WriteLine("You careen the vessel on its port side.");
-		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::CAREEN_TO_PORT);
+		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::CAREEN_TO_PORT);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -103,7 +104,7 @@ namespace state::in_play
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::GREEN);
 		Terminal::WriteLine("You careen the vessel on its starboard side.");
-		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::CAREEN_TO_STARBOARD);
+		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::CAREEN_TO_STARBOARD);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

@@ -9,6 +9,7 @@
 #include <Game.Player.h>
 #include <Game.Ship.h>
 #include <Game.ShipNames.h>
+#include "State.InPlay.Globals.h"
 #include "State.InPlay.RenameShipAdjective.h"
 #include "State.InPlay.RenameShipNoun.h"
 #include "State.Terminal.h"
@@ -67,7 +68,7 @@ namespace state::in_play
 			if (nouns.contains(index.value()))
 			{
 				auto noun = nouns[index.value()];
-				auto shipId = game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value();
+				auto shipId = game::character::Ship::ReadShipId(GetPlayerCharacterId()).value();
 				game::Ship::SetName(shipId, std::format("{} {}", RenameShipAdjective::Read(), noun));
 				application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 				return;

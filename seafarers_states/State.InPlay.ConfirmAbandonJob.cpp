@@ -8,6 +8,7 @@
 #include <Game.Colors.h>
 #include <Game.Player.h>
 #include "State.InPlay.ConfirmAbandonJob.h"
+#include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 namespace state::in_play
@@ -17,7 +18,7 @@ namespace state::in_play
 	static void AbandonJob()
 	{
 		Terminal::ErrorMessage("You abandon yer job, and yer reputation suffers!");
-		game::character::Quest::Abandon(game::Player::GetCharacterId());
+		game::character::Quest::Abandon(GetPlayerCharacterId());
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

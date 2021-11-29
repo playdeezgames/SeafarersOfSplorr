@@ -20,6 +20,7 @@
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
 #include <Game.Player.h>
+#include "State.InPlay.Globals.h"
 #include "State.InPlay.IslandSell.h"
 #include "State.InPlay.IslandSellQuantity.h"
 #include "State.Terminal.h"
@@ -30,7 +31,7 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::ENTER_MARKET);
+		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_MARKET);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -39,7 +40,7 @@ namespace state::in_play
 	static void UpdateUnitPrices()
 	{
 		unitPrices = game::islands::Items::GetSalePrices(
-				game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()
+				game::character::Docked::ReadLocation(GetPlayerCharacterId()).value()
 		);
 	}
 
@@ -51,7 +52,7 @@ namespace state::in_play
 			Terminal::WriteLine("{}) {} ({} @ {:.4f})",
 				index++,
 				game::Items::GetName(unitPrice.first),
-				game::character::Items::Read(game::Player::GetCharacterId(), unitPrice.first),
+				game::character::Items::Read(GetPlayerCharacterId(), unitPrice.first),
 				unitPrice.second);
 		}
 	}
@@ -60,7 +61,7 @@ namespace state::in_play
 
 	static void RefreshStatistics()
 	{
-		Terminal::WriteLine(FORMAT_MONEY, game::character::Statistics::ReadMoney(game::Player::GetCharacterId()));
+		Terminal::WriteLine(FORMAT_MONEY, game::character::Statistics::ReadMoney(GetPlayerCharacterId()));
 	}
 
 	static void Refresh()

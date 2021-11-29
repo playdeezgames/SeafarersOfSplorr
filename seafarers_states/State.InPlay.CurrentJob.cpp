@@ -15,6 +15,7 @@
 #include <Game.Player.h>
 #include "Game.Ship.h"
 #include "State.InPlay.CurrentJob.h"
+#include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 namespace state::in_play
@@ -29,7 +30,7 @@ namespace state::in_play
 		Terminal::WriteLine("Current Job:");
 		Terminal::SetForeground(game::Colors::GRAY);
 		auto islandModel = game::Islands::Read(questModel.toIslandId).value();
-		auto delta = questModel.destination - game::Ship::GetLocation(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).value();
+		auto delta = questModel.destination - game::Ship::GetLocation(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value()).value();
 		Terminal::WriteLine(
 			"Please deliver this {} to {} the {} at {} ({:.2f}\xf8 distance {:.1f}). Reward: {:.2f}",
 			questModel.itemName,
@@ -53,7 +54,7 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		auto quest = game::character::Quest::Read(game::Player::GetCharacterId());
+		auto quest = game::character::Quest::Read(GetPlayerCharacterId());
 		if (quest)
 		{
 			RefreshQuest(quest.value());

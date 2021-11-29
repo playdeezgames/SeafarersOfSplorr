@@ -15,6 +15,7 @@
 #include <Game.Islands.h>
 #include <Game.Player.h>
 #include "State.InPlay.CareenedToPort.h"
+#include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
@@ -33,7 +34,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Starboard fouling {:.0f}%", 
 			game::character::ShipStatistics::GetFoulingPercentage(
-				game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value(),
+				game::character::Ship::ReadShipId(GetPlayerCharacterId()).value(),
 				game::Side::STARBOARD));
 
 		Terminal::SetForeground(game::Colors::YELLOW);
@@ -49,7 +50,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::GREEN);
 		Terminal::WriteLine("You clean the starboard side.");
 		game::character::ShipStatistics::CleanHull(
-			game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value(),
+			game::character::Ship::ReadShipId(GetPlayerCharacterId()).value(),
 			game::Side::STARBOARD);
 		Refresh();
 	}
@@ -59,7 +60,7 @@ namespace state::in_play
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::GREEN);
 		Terminal::WriteLine("You right the vessel.");
-		game::character::Actions::DoAction(game::Player::GetCharacterId(), game::character::Action::UNCAREEN);
+		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::UNCAREEN);
 		application::UIState::Write(::UIState::IN_PLAY_DOCK_OR_CAREEN);
 	}
 
