@@ -16,6 +16,6 @@ namespace game
 		static bool GeneratePresenceForIsland(const game::Item&);
 		static const std::map<Commodity, double>& GetCommodities(const game::Item&);
 		static double GetUnitTonnage(const game::Item&);
-		static const std::map<Difficulty, size_t>& GetInitialInventoriesForAvatar(const game::Item&);
+		static const std::map<Difficulty, size_t>& GetInitialInventoriesForCharacter(const game::Item&);
 	};
 }

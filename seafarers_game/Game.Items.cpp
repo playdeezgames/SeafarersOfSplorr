@@ -1,5 +1,4 @@
 #include <Common.RNG.h>
-#include <Common.Utility.h>
 #include <Common.Utility.List.h>
 #include "Game.Items.h"
 #include <map>
@@ -247,7 +246,7 @@ namespace game
 		return Read(item).tonnage;
 	}
 
-	const std::map<Difficulty, size_t>& Items::GetInitialInventoriesForAvatar(const game::Item& item)
+	const std::map<Difficulty, size_t>& Items::GetInitialInventoriesForCharacter(const game::Item& item)
 	{
 		return Read(item).initialInventories;
 	}

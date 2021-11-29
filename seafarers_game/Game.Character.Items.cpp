@@ -54,7 +54,7 @@ namespace game::character
 		for (auto& item : game::Items::All())
 		{
 			common::utility::Optional::Iterate<size_t>(
-				common::utility::Table::TryGetKey(game::Items::GetInitialInventoriesForAvatar(item), difficulty),
+				common::utility::Table::TryGetKey(game::Items::GetInitialInventoriesForCharacter(item), difficulty),
 				[item, characterId](const size_t& count) { Add(characterId, item, count); }
 			);
 		}
