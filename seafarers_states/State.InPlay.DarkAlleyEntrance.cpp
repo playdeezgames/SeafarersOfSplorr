@@ -1,22 +1,10 @@
-#include <Application.Keyboard.h>
-#include <Application.OnEnter.h>
-#include <Application.Renderer.h>
-#include <Application.UIState.h>
-#include <Data.Game.Island.h>
-#include <Game.Audio.Mux.h>
-#include <Game.Audio.Sfx.h>
 #include <Game.Character.Actions.h>
 #include <Game.Character.Docked.h>
 #include <Game.Character.Statistics.h>
-#include <Game.Colors.h>
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.DarkAlley.FightCard.h>
-#include <Game.Player.h>
 #include "State.InPlay.DarkAlleyEntrance.h"
 #include "State.InPlay.Globals.h"
-#include "State.Terminal.h"
-#include "UIState.h"
-#include <Visuals.Messages.h>
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE;
@@ -207,7 +195,7 @@ namespace state::in_play
 	{
 		game::audio::Sfx::Play(game::audio::GameSfx::ENEMY_HIT);
 		RefreshBoard();
-		visuals::Messages::Write({ "VICTORY!",{} });
+		Terminal::WriteLine("VICTORY!");
 		IncreaseInfamy();
 		IncreaseBrawling();
 		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::DEFEAT_RUFFIAN);
@@ -220,7 +208,7 @@ namespace state::in_play
 		game::character::Statistics::ChangeHealth(GetPlayerCharacterId(), -GetRuffianBrawling());
 		if (game::character::Statistics::IsDead(GetPlayerCharacterId()))
 		{
-			visuals::Messages::Write({ "DEFEAT!",{} });
+			Terminal::WriteLine("DEFEAT!");
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		}
 		game::audio::Sfx::Play(game::audio::GameSfx::HIT);

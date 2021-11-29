@@ -1,23 +1,13 @@
-#include <Application.Keyboard.h>
-#include <Application.OnEnter.h>
-#include <Application.Renderer.h>
-#include <Application.UIState.h>
 #include <Data.Game.Island.h>
 #include <format>
-#include <Game.Audio.Mux.h>
 #include <Game.Character.h>
 #include <Game.Character.Actions.h>
 #include <Game.Character.Docked.h>
 #include <Game.Character.Statistics.h>
-#include <Game.Colors.h>
 #include <Game.Islands.DarkAlley.h>
-#include <Game.Player.h>
 #include "State.InPlay.DarkAlley.h"
 #include "State.InPlay.Globals.h"
-#include "State.Terminal.h"
-#include "UIState.h"
 #include <Visuals.Confirmations.h>
-#include <Visuals.Messages.h>
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DARK_ALLEY;
@@ -49,24 +39,9 @@ namespace state::in_play
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			return;
 		}
-		visuals::Messages::Write(
-			{
-				"Come Back When Yer Serious!",
-				{
-					{
-						{19,9},
-						"You don't have enough money!",
-						game::Colors::GRAY,
-						visuals::HorizontalAlignment::CENTER
-					},
-					{
-						{19,11},
-						std::format("Minimum bet: {:.4f}", GetMinimumWager()),
-						game::Colors::GRAY,
-						visuals::HorizontalAlignment::CENTER
-					}
-				}
-			});
+		Terminal::WriteLine("Come Back When Yer Serious!");
+		Terminal::WriteLine("You don't have enough money!");
+		Terminal::WriteLine("Minimum bet: {:.4f}", GetMinimumWager());
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

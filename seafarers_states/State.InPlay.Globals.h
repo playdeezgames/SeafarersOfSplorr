@@ -5,6 +5,7 @@
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
+#include <Game.Audio.Sfx.h>
 #include "State.Terminal.h"
 #include "UIState.h"
 namespace state::in_play

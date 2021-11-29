@@ -1,22 +1,10 @@
-#include <Application.Keyboard.h>
-#include <Application.OnEnter.h>
-#include <Application.Renderer.h>
-#include <Application.UIState.h>
-#include <Common.Utility.Dispatcher.h>
-#include <Data.Game.Island.h>
-#include <Game.Audio.Mux.h>
-#include <Game.Audio.Sfx.h>
 #include <Game.Character.Docked.h>
 #include <Game.Character.Statistics.h>
-#include <Game.Colors.h>
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.DarkAlley.GamblingHand.h>
-#include <Game.Player.h>
 #include "State.InPlay.DarkAlleyEntrance.h"
 #include "State.InPlay.GamblePlay.h"
 #include "State.InPlay.Globals.h"
-#include "State.Terminal.h"
-#include "UIState.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_GAMBLE_PLAY;
