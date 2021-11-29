@@ -46,7 +46,7 @@ namespace game
 		character::Items::Reset(Player::GetCharacterId(), difficulty);
 		character::Plights::Reset(difficulty);
 		character::Statistics::Reset(Player::GetCharacterId(), difficulty);
-		Demigods::Reset(difficulty);
+		Demigods::Reset(game::Player::GetCharacterId(), difficulty);
 		Fisheries::Reset(difficulty);
 		Islands::Reset(difficulty);
 		islands::Features::Reset(difficulty);

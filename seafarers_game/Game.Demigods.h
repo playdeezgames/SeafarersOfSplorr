@@ -7,8 +7,8 @@ namespace game
 {
 	struct Demigods
 	{
-		static void Reset(const Difficulty&);
-		static OfferingResult MakeOffering(int, const Item&);
+		static void Reset(int, const Difficulty&);
+		static OfferingResult MakeOffering(int, int, const Item&);
 		static void ApplyTurnEffects();
 		static std::string ReadName(int);
 	};
