@@ -1,13 +1,9 @@
 #include <Common.Data.h>
 #include <Common.Heading.h>
-#include <Common.Utility.h>
 #include <Common.Utility.List.h>
 #include <Common.Utility.Optional.h>
-#include <Data.Game.Character.Ship.h>
 #include <Data.Game.Ship.h>
 #include <Data.Game.Ship.Statistic.h>
-#include "Game.h"
-#include "Game.Character.Ship.h"
 #include "Game.Ship.h"
 #include "Game.Character.ShipStatistics.h"
 #include "Game.ShipTypes.h"
