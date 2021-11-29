@@ -4,7 +4,7 @@
 #include <Data.Game.Island.DarkAlley.GamblingHand.h>
 #include "Game.Islands.DarkAlley.GamblingHand.h"
 #include "Game.Islands.Features.h"
-namespace game::islands::dark_alley//20211014
+namespace game::islands::dark_alley
 {
 	static data::game::island::dark_alley::GamblingHand DealBettableHand()
 	{
@@ -23,22 +23,22 @@ namespace game::islands::dark_alley//20211014
 		return hand;
 	}
 
-	bool GamblingHand::Deal(const common::XY<double>& location)
+	bool GamblingHand::Deal(int islandId)
 	{
-		if (!game::islands::Features::Read(data::game::Island::Find(location).value(), game::Feature::DARK_ALLEY))
+		if (!game::islands::Features::Read(islandId, game::Feature::DARK_ALLEY))
 		{
 			return false;
 		}
 		data::game::island::dark_alley::GamblingHand data =
 			DealBettableHand();
-		data::game::island::dark_alley::GamblingHand::Write(data::game::Island::Find(location).value(), data);
+		data::game::island::dark_alley::GamblingHand::Write(islandId, data);
 		return true;
 	}
 
-	std::vector<cards::Card> GamblingHand::Read(const common::XY<double>& location)
+	std::vector<cards::Card> GamblingHand::Read(int islandId)
 	{
 		std::vector<cards::Card> result;
-		auto hand = data::game::island::dark_alley::GamblingHand::Read(data::game::Island::Find(location).value());
+		auto hand = data::game::island::dark_alley::GamblingHand::Read(islandId);
 		if (hand)
 		{
 			result.push_back(cards::OfInt(hand.value().firstCard));
@@ -48,9 +48,9 @@ namespace game::islands::dark_alley//20211014
 		return result;
 	}
 
-	bool GamblingHand::IsWinner(const common::XY<double>& location)
+	bool GamblingHand::IsWinner(int islandId)
 	{
-		auto hand = Read(location);
+		auto hand = Read(islandId);
 		if(!hand.empty())
 		{
 			auto first = std::get<0>(hand[0]);

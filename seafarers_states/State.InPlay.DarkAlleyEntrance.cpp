@@ -20,7 +20,7 @@ namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE;
 	static const auto ReadLocation = []() { return data::game::Island::Read(game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()).value().location; };
-	static const auto GetRuffianBrawling = []() { return game::islands::DarkAlley::GetRuffianBrawling(ReadLocation()).value(); };
+	static const auto GetRuffianBrawling = []() { return game::islands::DarkAlley::GetRuffianBrawling(game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()).value(); };
 	static const size_t ROWS = 3;
 	static const size_t COLUMNS = 4;
 	static size_t hitsTaken = 0;

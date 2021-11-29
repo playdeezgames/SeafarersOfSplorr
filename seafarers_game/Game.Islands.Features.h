@@ -1,5 +1,4 @@
 #pragma once
-#include <Common.XY.h>
 #include "Game.Difficulty.h"
 #include "Game.Feature.h"
 namespace game::islands

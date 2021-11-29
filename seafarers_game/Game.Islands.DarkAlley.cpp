@@ -4,9 +4,9 @@
 #include "Game.Islands.DarkAlley.h"
 namespace game::islands
 {
-	static std::optional<double> ExtractDarkAlleyValue(const common::XY<double>& location, std::function<double(const data::game::island::DarkAlley&)> extractor)
+	static std::optional<double> ExtractDarkAlleyValue(int islandId, std::function<double(const data::game::island::DarkAlley&)> extractor)
 	{
-		auto result = data::game::island::DarkAlley::Read(data::game::Island::Find(location).value());
+		auto result = data::game::island::DarkAlley::Read(islandId);
 		if (result)
 		{
 			return extractor(result.value());
@@ -14,20 +14,20 @@ namespace game::islands
 		return std::nullopt;
 	}
 
-	std::optional<double> DarkAlley::GetRuffianBrawling(const common::XY<double>& location)
+	std::optional<double> DarkAlley::GetRuffianBrawling(int islandId)
 	{
 		return ExtractDarkAlleyValue(
-			location,
+			islandId,
 			[](const data::game::island::DarkAlley& data)
 			{
 				return data.ruffianBrawlingStrength;
 			});
 	}
 
-	std::optional<double> DarkAlley::GetMinimumWager(const common::XY<double>& location)
+	std::optional<double> DarkAlley::GetMinimumWager(int islandId)
 	{
 		return ExtractDarkAlleyValue(
-			location,
+			islandId,
 			[](const data::game::island::DarkAlley& data)
 			{
 				return data.minimumWager;
@@ -36,9 +36,9 @@ namespace game::islands
 
 	static const double ANTE_MULTIPLIER = 0.1;
 
-	std::optional<double> DarkAlley::GetAnte(const common::XY<double>& location)
+	std::optional<double> DarkAlley::GetAnte(int islandId)
 	{
-		auto minimum = GetMinimumWager(location);
+		auto minimum = GetMinimumWager(islandId);
 		if (minimum)
 		{
 			return minimum.value() * ANTE_MULTIPLIER;

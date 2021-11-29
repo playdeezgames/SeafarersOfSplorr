@@ -18,9 +18,9 @@ namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_GAMBLE_INTRO;
 
-	static common::XY<double> ReadLocation()
+	static int ReadLocation()
 	{
-		return data::game::Island::Read(game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()).value().location;
+		return game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value();
 	}
 
 	static void Refresh()
