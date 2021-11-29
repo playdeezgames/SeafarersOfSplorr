@@ -22,7 +22,6 @@
 #include "State.Terminal.h"
 #include "UIState.h"
 #include <Visuals.Confirmations.h>
-#include <Visuals.Messages.h>
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_SHIPYARD_PURCHASE_SHIP;

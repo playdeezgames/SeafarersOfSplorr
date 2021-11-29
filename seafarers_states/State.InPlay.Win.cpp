@@ -1,12 +1,5 @@
-#include <Application.Keyboard.h>
-#include <Application.OnEnter.h>
-#include <Application.Renderer.h>
-#include <Application.UIState.h>
-#include <Game.Audio.Mux.h>
-#include <Game.Colors.h>
 #include "State.InPlay.Win.h"
-#include "State.Terminal.h"
-#include "UIState.h"
+#include "State.InPlay.Globals.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_WIN;

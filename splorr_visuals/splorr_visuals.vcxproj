@@ -34,9 +34,6 @@
     <ClInclude Include="Visuals.Layouts.h" />
     <ClInclude Include="Visuals.MenuItems.h" />
     <ClInclude Include="Visuals.Menus.h" />
-    <ClInclude Include="Visuals.Message.h" />
-    <ClInclude Include="Visuals.MessageDetail.h" />
-    <ClInclude Include="Visuals.Messages.h" />
     <ClInclude Include="Visuals.SpriteGrid.h" />
     <ClInclude Include="Visuals.Sprites.h" />
     <ClInclude Include="Visuals.Sublayout.h" />
@@ -54,7 +51,6 @@
     <ClCompile Include="Visuals.Images.cpp" />
     <ClCompile Include="Visuals.Layouts.cpp" />
     <ClCompile Include="Visuals.Menus.cpp" />
-    <ClCompile Include="Visuals.Messages.cpp" />
     <ClCompile Include="Visuals.SpriteGrid.cpp" />
     <ClCompile Include="Visuals.Sprites.cpp" />
     <ClCompile Include="Visuals.Sublayout.cpp" />

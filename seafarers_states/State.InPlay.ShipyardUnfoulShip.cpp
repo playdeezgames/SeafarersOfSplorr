@@ -16,7 +16,6 @@
 #include "State.InPlay.ShipyardUnfoulShip.h"
 #include "State.Terminal.h"
 #include "UIState.h"
-#include <Visuals.Messages.h>
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_SHIPYARD_UNFOUL_SHIP;
@@ -76,7 +75,7 @@ namespace state::in_play
 			game::character::Statistics::ChangeMoney(GetPlayerCharacterId(), -price);
 			game::character::ShipStatistics::CleanHull(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value(), game::Side::STARBOARD);
 			game::character::ShipStatistics::CleanHull(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value(), game::Side::PORT);
-			visuals::Messages::Write({ "You unfoul yer ship!" ,{}});
+			Terminal::WriteLine("You unfoul yer ship!");
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		}
 		else

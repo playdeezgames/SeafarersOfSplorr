@@ -17,16 +17,7 @@
     <ClInclude Include="Visuals.Confirmations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Visuals.Message.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Visuals.MessageDetail.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Visuals.HorizontalAlignment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Visuals.Messages.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Visuals.Colors.h">
@@ -86,9 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Visuals.Confirmations.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Visuals.Messages.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Visuals.Colors.cpp">

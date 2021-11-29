@@ -1,18 +1,10 @@
-#include <Application.OnEnter.h>
 #include <Application.Update.h>
-#include <Application.UIState.h>
 #include <Game.h>
-#include <Game.Character.h>
 #include <Game.Character.Actions.h>
-#include <Game.Character.Docked.h>
 #include <Game.Character.Statistics.h>
-#include <Game.Player.h>
 #include <Visuals.Confirmations.h>
-#include <Visuals.Messages.h>
-#include <map>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.Next.h"
-#include "UIState.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_NEXT;
@@ -37,7 +29,6 @@ namespace state::in_play
 	{
 		{IsPlayerOutOfTurns, ::UIState::IN_PLAY_WIN},
 		{IsPlayerDead, ::UIState::IN_PLAY_LOSE},
-		{visuals::Messages::HasMessage, ::UIState::IN_PLAY_MESSAGE},
 		{visuals::Confirmations::HasConfirmation, ::UIState::IN_PLAY_CONFIRM}
 	};
 

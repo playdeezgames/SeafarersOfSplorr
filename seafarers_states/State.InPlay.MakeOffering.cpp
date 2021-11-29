@@ -24,7 +24,6 @@
 #include "State.InPlay.MakeOffering.h"
 #include "State.Terminal.h"
 #include "UIState.h"
-#include <Visuals.Messages.h>
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_MAKE_OFFERING;

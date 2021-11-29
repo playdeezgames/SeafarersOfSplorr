@@ -48,7 +48,6 @@
 #include <State.InPlay.Lose.h>
 #include <State.InPlay.MakeOffering.h>
 #include <State.InPlay.ManualHeading.h>
-#include <State.InPlay.Message.h>
 #include <State.InPlay.MultipleMove.h>
 #include <State.InPlay.Next.h>
 #include <State.InPlay.RenameShipAdjective.h>
@@ -75,7 +74,6 @@
 #include <Visuals.Confirmations.h>
 #include <Visuals.Fonts.h>
 #include <Visuals.Layouts.h>
-#include <Visuals.Messages.h>
 #include <Visuals.Sprites.h>
 #include <Visuals.Textures.h>
 namespace application
@@ -120,7 +118,6 @@ namespace application
 		visuals::Sprites::DoSetStore(data::json::Store::SPRITES),
 		visuals::Fonts::DoSetStore(data::json::Store::FONTS),
 		visuals::Layouts::DoSetStore(data::json::Store::LAYOUTS),
-		visuals::Messages::Reset,
 		application::Keyboard::DoSetStore(data::json::Store::KEYS),
 		Options::DoSetStore(data::json::Store::OPTIONS),
 		visuals::Confirmations::Reset,
@@ -143,7 +140,6 @@ namespace application
 		state::StartGame::Start,
 		state::LeavePlay::Start,
 		game::DoAddResetter(visuals::Confirmations::Reset),
-		game::DoAddResetter(visuals::Messages::Reset),
 		game::Start,
 		state::Statistics::Start,
 		state::LoadGame::Start,
@@ -165,7 +161,6 @@ namespace application
 		state::in_play::Cargo::Start,
 		state::in_play::Next::Start,
 		state::in_play::DarkAlley::Start,
-		state::in_play::Message::Start,
 		state::in_play::Confirm::Start,
 		state::in_play::CareenedToPort::Start,
 		state::in_play::CareenedToStarboard::Start,

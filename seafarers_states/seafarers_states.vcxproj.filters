@@ -131,9 +131,6 @@
     <ClInclude Include="State.InPlay.Lose.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.Message.h">
-      <Filter>Header Files\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="State.InPlay.Next.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
@@ -287,9 +284,6 @@
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.Lose.cpp">
-      <Filter>Source Files\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.Message.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.Next.cpp">
