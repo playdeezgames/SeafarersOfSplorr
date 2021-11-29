@@ -1,6 +1,5 @@
 #include <Cards.Card.h>
 #include <Cards.Deck.h>
-#include <Data.Game.Island.h>
 #include <Data.Game.Island.DarkAlley.GamblingHand.h>
 #include "Game.Islands.DarkAlley.GamblingHand.h"
 #include "Game.Islands.Features.h"
@@ -67,5 +66,4 @@ namespace game::islands::dark_alley
 		}
 		return false;
 	}
-
 }
