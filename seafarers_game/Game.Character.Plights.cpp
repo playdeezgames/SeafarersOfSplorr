@@ -1,9 +1,7 @@
 #include <Common.RNG.h>
 #include <Data.Game.Character.Plight.h>
 #include "Game.Character.Plights.h"
-#include "Game.Player.h"
 #include <map>
-#include <string>
 namespace game::character
 {
 	struct PlightDescriptor
@@ -65,14 +63,14 @@ namespace game::character
 	}
 
 
-	bool Plights::Has(const Plight& plightId)
+	bool Plights::Has(int characterId, const Plight& plightId)
 	{
-		return data::game::character::Plight::Read(Player::GetCharacterId(), (int)plightId).has_value();
+		return data::game::character::Plight::Read(characterId, (int)plightId).has_value();
 	}
 
-	void Plights::ApplyTurnEffects()
+	void Plights::ApplyTurnEffects(int characterId)
 	{
-		auto plights = data::game::character::Plight::All(Player::GetCharacterId());
+		auto plights = data::game::character::Plight::All(characterId);
 		for (auto& plight : plights)
 		{
 			if (plight.duration.has_value())
@@ -83,7 +81,7 @@ namespace game::character
 					data::game::character::Plight::Clear(plight.plightId);
 					continue;
 				}
-				data::game::character::Plight::Write(Player::GetCharacterId(), plight);
+				data::game::character::Plight::Write(characterId, plight);
 			}
 		}
 	}
@@ -101,7 +99,7 @@ namespace game::character
 		return common::RNG::FromGenerator(generator);
 	}
 
-	void Plights::Inflict(const Plight& plight)
+	void Plights::Inflict(int characterId, const Plight& plight)
 	{
 		auto& descriptor = Read(plight);
 		std::optional<size_t> duration = std::nullopt;
@@ -114,13 +112,13 @@ namespace game::character
 			}
 		}
 
-		data::game::character::Plight::Write(Player::GetCharacterId(), {(int)plight, (duration)?(std::optional<int>((int)duration.value())):(std::nullopt) });
+		data::game::character::Plight::Write(characterId, {(int)plight, (duration)?(std::optional<int>((int)duration.value())):(std::nullopt) });
 	}
 
-	std::set<Plight> Plights::InflictedWith()
+	std::set<Plight> Plights::InflictedWith(int characterId)
 	{
 		std::set<Plight> result;
-		auto plights = data::game::character::Plight::All(Player::GetCharacterId());
+		auto plights = data::game::character::Plight::All(characterId);
 		for (auto& plight : plights)
 		{
 			result.insert((Plight)plight.plightId);

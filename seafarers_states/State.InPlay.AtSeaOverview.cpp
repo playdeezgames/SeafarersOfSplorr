@@ -104,7 +104,7 @@ namespace state::in_play
 
 	static void RefreshFisheries()
 	{
-		if (!game::Fisheries::Available().empty())
+		if (!game::Fisheries::Available(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).empty())
 		{
 			Terminal::WriteLine("This looks like a good place to fish.");
 		}

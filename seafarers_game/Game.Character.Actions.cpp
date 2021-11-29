@@ -1,6 +1,5 @@
 #include <Data.Game.Character.h>
 #include <Data.Game.Character.Ship.h>
-#include <Data.Game.Island.h>
 #include <Data.Game.Island.DarkAlley.h>
 #include <Data.Game.Ship.Docks.h>
 #include <format>
@@ -15,7 +14,7 @@
 #include "Game.Colors.h"
 #include "Game.Fishboard.h"
 #include "Game.Islands.h"
-#include <map>
+#include "Game.Player.h"
 namespace game::character
 {
 	const std::string FORMAT_UNDOCK = "You undock from {}.";
@@ -84,7 +83,7 @@ namespace game::character
 		{
 			if (game::character::Items::Has(characterId, Item::BAIT))
 			{
-				Fishboard::Generate();
+				Fishboard::Generate(game::Player::GetCharacterId());
 				return
 				{
 					game::Colors::GRAY,
@@ -433,6 +432,4 @@ namespace game::character
 		}
 		return false;
 	}
-
-
 }

@@ -1,10 +1,9 @@
-#include <Common.Utility.h>
 #include <Common.Utility.List.h>
 #include <Common.RNG.h>
 #include <functional>
 #include "Game.Fishes.h"
 #include <map>
-namespace game//20211016
+namespace game
 {
 	struct FishDescriptor
 	{

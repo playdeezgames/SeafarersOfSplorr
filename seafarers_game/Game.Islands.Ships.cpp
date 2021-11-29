@@ -3,7 +3,7 @@
 #include "Game.Islands.Commodities.h"
 #include "Game.Islands.Ships.h"
 #include "Game.ShipTypes.h"
-namespace game::islands//20211017
+namespace game::islands
 {
 	static double GetPurchasePrice(
 		const common::XY<double>& location,

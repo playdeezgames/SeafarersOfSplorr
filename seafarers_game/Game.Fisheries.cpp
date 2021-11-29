@@ -1,13 +1,9 @@
 #include <Common.Heading.h>
 #include <Common.RNG.h>
-#include <Common.Utility.h>
 #include <Common.Utility.List.h>
 #include <Data.Game.Fishery.h>
-#include <functional>
-#include "Game.Character.Ship.h"
 #include "Game.Fisheries.h"
 #include "Game.Fishes.h"
-#include "Game.Player.h"
 #include "Game.Ship.h"
 #include "Game.World.h"
 namespace game
@@ -96,9 +92,9 @@ namespace game
 		return common::utility::List::Map<data::game::Fishery, Fishery>(data::game::Fishery::All, ToFishery);
 	}
 
-	std::list<Fishery> Fisheries::Available()
+	std::list<Fishery> Fisheries::Available(int shipId)
 	{
-		auto avatarLocation = Ship::GetLocation(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).value();
+		auto avatarLocation = Ship::GetLocation(shipId).value();
 		std::list<Fishery> result;
 		for (auto& fishery : All())
 		{

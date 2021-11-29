@@ -137,7 +137,7 @@ namespace game
 	{
 		if (favor >= demigod.blessingThreshold)
 		{
-			game::character::Plights::Inflict((game::character::Plight)demigod.blessingPlightId);
+			game::character::Plights::Inflict(game::Player::GetCharacterId(), (game::character::Plight)demigod.blessingPlightId);
 			favor -= demigod.blessingThreshold;
 			data::game::character::DemigodFavor::Write(Player::GetCharacterId(), demigod.id, favor);
 			demigod.blessingThreshold *= demigod.blessingMultiplier;
@@ -151,7 +151,7 @@ namespace game
 	{
 		if (favor <= demigod.curseThreshold)
 		{
-			game::character::Plights::Inflict((game::character::Plight)demigod.cursePlightId);
+			game::character::Plights::Inflict(game::Player::GetCharacterId(), (game::character::Plight)demigod.cursePlightId);
 			favor -= demigod.curseThreshold;
 			data::game::character::DemigodFavor::Write(Player::GetCharacterId(), demigod.id, favor);
 			demigod.curseThreshold *= demigod.curseMultiplier;

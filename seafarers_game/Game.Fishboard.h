@@ -8,13 +8,13 @@ namespace game
 		static const size_t COLUMNS;
 		static const size_t ROWS;
 
-		static void Generate();
+		static void Generate(int);
 
-		static void Reveal(const common::XY<int>&);
+		static void Reveal(int, const common::XY<int>&);
 
-		static FishboardCell Read(const common::XY<int>&);
+		static FishboardCell Read(int, const common::XY<int>&);
 
-		static bool IsFullyRevealed();
-		static double ReadProgressPercentage();
+		static bool IsFullyRevealed(int);
+		static double ReadProgressPercentage(int);
 	};
 }

@@ -3,6 +3,7 @@
 #include <Game.Fishboard.h>
 #include <Game.Fishes.h>
 #include <Game.FishGame.h>
+#include <Game.Player.h>
 #include <Visuals.Colors.h>
 #include <Visuals.Data.Properties.h>
 #include <Visuals.Sprites.h>
@@ -45,12 +46,12 @@ namespace visuals
 
 	static void DrawCells(const std::shared_ptr<application::Engine::Renderer>& renderer, const InternalFishboard& fishboard)
 	{
-		auto hasGivenUp = game::FishGame::HasGivenUp();
+		auto hasGivenUp = game::FishGame::HasGivenUp(game::Player::GetCharacterId());
 		for (int column = 0; column < CELL_COLUMNS; ++column)
 		{
 			for (int row = 0; row < CELL_ROWS; ++row)
 			{
-				auto cell = game::Fishboard::Read({ column, row });
+				auto cell = game::Fishboard::Read(game::Player::GetCharacterId(), { column, row });
 				if (hasGivenUp)
 				{
 					if (cell.fish)

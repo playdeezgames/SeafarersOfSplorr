@@ -9,6 +9,7 @@
 #include <Game.Character.h>
 #include <Game.Character.Actions.h>
 #include <Game.Character.Docked.h>
+#include <Game.Character.Ship.h>
 #include <Game.Character.ShipStatistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.h>
@@ -30,7 +31,10 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Careened to port:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Starboard fouling {:.0f}%", game::character::ShipStatistics::GetFoulingPercentage(game::Side::STARBOARD));
+		Terminal::WriteLine("Starboard fouling {:.0f}%", 
+			game::character::ShipStatistics::GetFoulingPercentage(
+				game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value(),
+				game::Side::STARBOARD));
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Clean starboard side");
@@ -44,7 +48,9 @@ namespace state::in_play
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::GREEN);
 		Terminal::WriteLine("You clean the starboard side.");
-		game::character::ShipStatistics::CleanHull(game::Side::STARBOARD);
+		game::character::ShipStatistics::CleanHull(
+			game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value(),
+			game::Side::STARBOARD);
 		Refresh();
 	}
 

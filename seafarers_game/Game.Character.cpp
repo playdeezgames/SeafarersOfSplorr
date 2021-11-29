@@ -2,85 +2,83 @@
 #include <Common.Heading.h>
 #include <Common.NameGenerator.h>
 #include <Common.RNG.h>
-#include <Common.Utility.h>
 #include <Common.Utility.Optional.h>
 #include <Data.Game.Character.h>
 #include <Data.Game.Character.Rations.h>
-#include <functional>
 #include "Game.Character.h"
 #include "Game.Character.Flags.h"
 #include "Game.Character.Items.h"
 #include "Game.Character.Plights.h"
 #include "Game.Character.Ship.h"
 #include "Game.Character.Statistics.h"
-#include "Game.Character.StateTransition.h"
+#include "Game.Character.State.h"
 #include "Game.Items.h"
 #include "Game.Player.h"
 #include "Game.Ship.h"
 #include "Game.ShipNames.h"
 #include "Game.ShipTypes.h"
 #include "Game.World.h"
-#include <map>
+//#include <map>
 namespace game
 {
 	static double DetermineHungerRate()
 	{
 		double delta = -1.0;
-		if (character::Plights::Has(character::Plight::DOUBLE_HUNGER) &&
-			!character::Plights::Has(character::Plight::HUNGER_IMMUNITY))
+		if (character::Plights::Has(game::Player::GetCharacterId(), character::Plight::DOUBLE_HUNGER) &&
+			!character::Plights::Has(game::Player::GetCharacterId(), character::Plight::HUNGER_IMMUNITY))
 		{
 			delta *= 2.0;
 		}
-		if (character::Plights::Has(character::Plight::HUNGER_IMMUNITY) &&
-			!character::Plights::Has(character::Plight::DOUBLE_HUNGER))
+		if (character::Plights::Has(game::Player::GetCharacterId(), character::Plight::HUNGER_IMMUNITY) &&
+			!character::Plights::Has(game::Player::GetCharacterId(), character::Plight::DOUBLE_HUNGER))
 		{
 			delta = 0.0;
 		}
 		return delta;
 	}
 
-	static void ApplyHunger(int avatarId)
+	static void ApplyHunger(int characterId)
 	{
 		double delta = DetermineHungerRate();
-		if (game::character::Statistics::IsStarving(avatarId))
+		if (game::character::Statistics::IsStarving(characterId))
 		{
-			game::character::Statistics::ChangeHealth(avatarId, delta);
+			game::character::Statistics::ChangeHealth(characterId, delta);
 		}
 		else
 		{
-			game::character::Statistics::ChangeSatiety(avatarId, delta);
+			game::character::Statistics::ChangeSatiety(characterId, delta);
 		}
 	}
 
-	static void ApplyEating(int avatarId)
+	static void ApplyEating(int characterId)
 	{
 		const double EAT_BENEFIT = 10.0;
-		if (game::character::Statistics::NeedToEat(avatarId, EAT_BENEFIT))
+		if (game::character::Statistics::NeedToEat(characterId, EAT_BENEFIT))
 		{
 			const game::Item rationItem = game::Item::RATIONS;//TODO: when we can choose rations for an avatar, this will change
-			auto rations = game::character::Items::Read(avatarId, rationItem);
+			auto rations = game::character::Items::Read(characterId, rationItem);
 			if (rations > 0)
 			{
-				game::character::Statistics::Eat(avatarId, EAT_BENEFIT);
-				game::character::Items::Remove(avatarId, rationItem, 1);
-				if (game::character::Flags::Has(avatarId, game::character::Flag::UNFED))
+				game::character::Statistics::Eat(characterId, EAT_BENEFIT);
+				game::character::Items::Remove(characterId, rationItem, 1);
+				if (game::character::Flags::Has(characterId, game::character::Flag::UNFED))
 				{
-					game::character::Flags::Clear(avatarId, game::character::Flag::UNFED);
+					game::character::Flags::Clear(characterId, game::character::Flag::UNFED);
 				}
 				else
 				{
-					game::character::Flags::Write(avatarId, game::character::Flag::FED);
+					game::character::Flags::Write(characterId, game::character::Flag::FED);
 				}
 			}
 			else
 			{
-				if (game::character::Flags::Has(avatarId, game::character::Flag::FED))
+				if (game::character::Flags::Has(characterId, game::character::Flag::FED))
 				{
-					game::character::Flags::Clear(avatarId, game::character::Flag::FED);
+					game::character::Flags::Clear(characterId, game::character::Flag::FED);
 				}
 				else
 				{
-					game::character::Flags::Write(avatarId, game::character::Flag::UNFED);
+					game::character::Flags::Write(characterId, game::character::Flag::UNFED);
 				}
 			}
 		}
@@ -89,25 +87,25 @@ namespace game
 	static size_t DetermineTurnsSpent()
 	{
 		size_t agingRate = 1;
-		if (character::Plights::Has(character::Plight::DOUBLE_AGING) &&
-			!character::Plights::Has(character::Plight::AGING_IMMUNITY))
+		if (character::Plights::Has(game::Player::GetCharacterId(), character::Plight::DOUBLE_AGING) &&
+			!character::Plights::Has(game::Player::GetCharacterId(), character::Plight::AGING_IMMUNITY))
 		{
 			agingRate = 2;
 		}
-		if (character::Plights::Has(character::Plight::AGING_IMMUNITY) &&
-			!character::Plights::Has(character::Plight::DOUBLE_AGING))
+		if (character::Plights::Has(game::Player::GetCharacterId(), character::Plight::AGING_IMMUNITY) &&
+			!character::Plights::Has(game::Player::GetCharacterId(), character::Plight::DOUBLE_AGING))
 		{
 			agingRate = 0;
 		}
 		return agingRate;
 	}
 
-	static void ApplyTurn(int avatarId)
+	static void ApplyTurn(int characterId)
 	{
 		auto turnsSpent = DetermineTurnsSpent();
 		while (turnsSpent)
 		{
-			game::character::Statistics::SpendTurn(avatarId);
+			game::character::Statistics::SpendTurn(characterId);
 			turnsSpent--;
 		}
 	}
@@ -115,11 +113,11 @@ namespace game
 	void Character::ApplyTurnEffects()
 	{
 		auto avatarIds = data::game::Character::All();
-		for (auto avatarId : avatarIds)
+		for (auto characterId : avatarIds)
 		{
-			ApplyTurn(avatarId);
-			ApplyHunger(avatarId);
-			ApplyEating(avatarId);
+			ApplyTurn(characterId);
+			ApplyHunger(characterId);
+			ApplyEating(characterId);
 		}
 	}
 
@@ -177,10 +175,10 @@ namespace game
 		return data::game::Character::Create(data);
 	}
 
-	static void GenerateAvatarRations(int avatarId)
+	static void GenerateAvatarRations(int characterId)
 	{
 		data::game::character::Rations::Write(
-			avatarId, 
+			characterId, 
 			(int)game::Items::GenerateRationsForAvatar());
 	}
 
@@ -204,16 +202,16 @@ namespace game
 
 	void Character::Reset(const game::Difficulty&)
 	{
-		auto avatarId = CreateAvatar();
-		Player::Create(avatarId);
-		GenerateAvatarRations(avatarId);
+		auto characterId = CreateAvatar();
+		Player::Create(characterId);
+		GenerateAvatarRations(characterId);
 		GenerateAvatarShip();
 	}
 
-	std::optional<std::string> Character::GetName(int avatarId)
+	std::optional<std::string> Character::GetName(int characterId)
 	{
 		return common::utility::Optional::Map<data::game::Character, std::string>(
-			data::game::Character::Read(avatarId),
+			data::game::Character::Read(characterId),
 			[](const data::game::Character& avatar)
 			{ return avatar.name; });
 	}

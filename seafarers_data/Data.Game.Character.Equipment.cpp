@@ -7,7 +7,8 @@ namespace data::game::character
 	static const std::string QUERY_ITEM = "SELECT [ItemId] FROM [CharacterEquipment] WHERE [CharacterId]={} AND [EquipSlotId]={};";
 	static const std::string QUERY_ALL = "SELECT [EquipSlotId],[ItemId] FROM [CharacterEquipment] WHERE [CharacterId]={};";
 	static const std::string DELETE_ITEM = "DELETE FROM [CharacterEquipment] WHERE [CharacterId]={} AND [EquipSlotId]={};";
-	static const std::string DELETE_ALL = "DELETE FROM [CharacterEquipment] WHERE [CharacterId]={};";
+	static const std::string DELETE_ALL_FOR_CHARACTER = "DELETE FROM [CharacterEquipment] WHERE [CharacterId]={};";
+	static const std::string DELETE_ALL = "DELETE FROM [CharacterEquipment];";
 	static const std::string REPLACE_ITEM = "REPLACE INTO [CharacterEquipment] ([CharacterId],[EquipSlotId],[ItemId]) VALUES({},{},{});";
 
 	static const std::string FIELD_ITEM_ID = "ItemId";
@@ -47,7 +48,7 @@ namespace data::game::character
 	{
 		AutoCreateTable();
 		Common::Execute(
-			DELETE_ALL, 
+			DELETE_ALL_FOR_CHARACTER,
 			characterId);
 	}
 
@@ -62,4 +63,12 @@ namespace data::game::character
 		}
 		return result;
 	}
+
+	void Equipment::Clear()
+	{
+		AutoCreateTable();
+		Common::Execute(
+			DELETE_ALL);
+	}
+
 }

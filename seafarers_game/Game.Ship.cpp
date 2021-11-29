@@ -126,14 +126,14 @@ namespace game
 		}
 	}
 
-	static void HandleFouling(double speed)
+	static void HandleFouling(int shipId, double speed)
 	{
-		character::ShipStatistics::IncreaseFouling(speed);
+		character::ShipStatistics::IncreaseFouling(shipId, speed);
 	}
 
 	static double GetEffectiveSpeed(int shipId, double heading, double speed)
 	{
-		auto fouling = character::ShipStatistics::GetFouling();
+		auto fouling = character::ShipStatistics::GetFouling(shipId);
 		auto effectiveSpeed = speed * (1.0 - fouling);
 
 		effectiveSpeed *= World::GetWindSpeedMultiplier(heading);
@@ -155,7 +155,7 @@ namespace game
 
 			game::World::ClampLocation(ship.value().location);
 
-			HandleFouling(ship.value().speed);
+			HandleFouling(shipId, ship.value().speed);
 
 			data::game::Ship::Write(ship.value());
 		}

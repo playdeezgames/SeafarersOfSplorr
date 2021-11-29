@@ -1,54 +1,44 @@
-#include <Common.RNG.h>
-#include <Data.Game.FishboardCell.h>
-#include <Data.Game.Fishery.h>
 #include <Data.Game.FishGame.h>
 #include "Game.Character.Items.h"
-#include "Game.Colors.h"
 #include "Game.Fishboard.h"
-#include "Game.Fisheries.h"
 #include "Game.FishGame.h"
-#include "Game.Fishes.h"
-#include "Game.Items.h"
-#include "Game.Player.h"
-#include <format>
-#include <map>
 namespace game
 {
 	static const int ADDITIONAL_GUESSES = 5;
 
-	FishGameState FishGame::GetState()
+	FishGameState FishGame::GetState(int characterId)
 	{
 		return
-			(Fishboard::IsFullyRevealed()) ? (FishGameState::DONE) :
-			(HasGivenUp()) ? (FishGameState::GAVE_UP) :
-			(ReadGuesses() > 0) ? (FishGameState::FISHING) :
+			(Fishboard::IsFullyRevealed(characterId)) ? (FishGameState::DONE) :
+			(HasGivenUp(characterId)) ? (FishGameState::GAVE_UP) :
+			(ReadGuesses(characterId) > 0) ? (FishGameState::FISHING) :
 			(FishGameState::OUT_OF_GUESSES);
 	}
 
-	int FishGame::ReadGuesses()
+	int FishGame::ReadGuesses(int characterId)
 	{
-		return data::game::FishGame::ReadGuesses(Player::GetCharacterId());
+		return data::game::FishGame::ReadGuesses(characterId);
 	}
 
-	bool FishGame::HasGivenUp()
+	bool FishGame::HasGivenUp(int characterId)
 	{
-		return data::game::FishGame::ReadGivenUp(Player::GetCharacterId());
+		return data::game::FishGame::ReadGivenUp(characterId);
 	}
 
-	void FishGame::GiveUp()
+	void FishGame::GiveUp(int characterId)
 	{
-		data::game::FishGame::WriteGuesses(Player::GetCharacterId(), 0);
-		data::game::FishGame::WriteGivenUp(Player::GetCharacterId(), true);
+		data::game::FishGame::WriteGuesses(characterId, 0);
+		data::game::FishGame::WriteGivenUp(characterId, true);
 	}
 
-	bool FishGame::HasGuessesLeft()
+	bool FishGame::HasGuessesLeft(int characterId)
 	{
-		return ReadGuesses() > 0;
+		return ReadGuesses(characterId) > 0;
 	}
 
-	void FishGame::AddBait()
+	void FishGame::AddBait(int characterId)
 	{
-		character::Items::Remove(game::Player::GetCharacterId(), Item::BAIT, 1);
-		data::game::FishGame::WriteGuesses(Player::GetCharacterId(), data::game::FishGame::ReadGuesses(Player::GetCharacterId()) + ADDITIONAL_GUESSES);
+		character::Items::Remove(characterId, Item::BAIT, 1);
+		data::game::FishGame::WriteGuesses(characterId, data::game::FishGame::ReadGuesses(characterId) + ADDITIONAL_GUESSES);
 	}
 }

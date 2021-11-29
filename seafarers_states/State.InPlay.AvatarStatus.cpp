@@ -18,6 +18,7 @@
 #include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
+#include <Game.Player.h>
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.AvatarStatus.h"
 #include "State.Terminal.h"
@@ -43,7 +44,7 @@ namespace state::in_play
 
 	static void RefreshPlights()
 	{
-		auto inflicted = game::character::Plights::InflictedWith();
+		auto inflicted = game::character::Plights::InflictedWith(game::Player::GetCharacterId());
 		if (!inflicted.empty())
 		{
 			Terminal::SetForeground(game::Colors::GRAY);

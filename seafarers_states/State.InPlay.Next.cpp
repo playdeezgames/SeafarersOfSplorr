@@ -22,10 +22,20 @@ namespace state::in_play
 		::UIState destination;
 	};
 
+	static bool IsPlayerOutOfTurns()
+	{
+		return game::character::Statistics::IsPlayerOutOfTurns(game::Player::GetCharacterId());
+	}
+
+	static bool IsPlayerDead()
+	{
+		return game::character::Statistics::IsPlayerDead(game::Player::GetCharacterId());
+	}
+
 	static const std::list<StatusChecker> statusCheckers =
 	{
-		{game::character::Statistics::IsPlayerOutOfTurns, ::UIState::IN_PLAY_WIN},
-		{game::character::Statistics::IsPlayerDead, ::UIState::IN_PLAY_LOSE},
+		{IsPlayerOutOfTurns, ::UIState::IN_PLAY_WIN},
+		{IsPlayerDead, ::UIState::IN_PLAY_LOSE},
 		{visuals::Messages::HasMessage, ::UIState::IN_PLAY_MESSAGE},
 		{visuals::Confirmations::HasConfirmation, ::UIState::IN_PLAY_CONFIRM}
 	};

@@ -3,9 +3,9 @@
 #include "Game.Items.h"
 namespace game::character
 {
-	std::optional<game::Item> Rations::Read(int avatarId)
+	std::optional<game::Item> Rations::Read(int characterId)
 	{
-		auto itemId = data::game::character::Rations::Read(avatarId);
+		auto itemId = data::game::character::Rations::Read(characterId);
 		if (itemId)
 		{
 			return (game::Item)itemId.value();
@@ -13,12 +13,12 @@ namespace game::character
 		return std::nullopt;
 	}
 
-	void Rations::Write(int avatarId, const std::optional<game::Item>& item)
+	void Rations::Write(int characterId, const std::optional<game::Item>& item)
 	{
-		data::game::character::Rations::Clear(avatarId);
+		data::game::character::Rations::Clear(characterId);
 		if (item)
 		{
-			data::game::character::Rations::Write(avatarId, (int)item.value());
+			data::game::character::Rations::Write(characterId, (int)item.value());
 		}
 	}
 }

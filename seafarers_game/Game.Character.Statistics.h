@@ -4,7 +4,7 @@ namespace game::character
 {
 	struct Statistics
 	{
-		static void Reset(const game::Difficulty&);
+		static void Reset(int, const game::Difficulty&);
 		static double ReadMoney(int);
 		static void ChangeMoney(int, double);
 		static double GetHealth(int);
@@ -26,7 +26,7 @@ namespace game::character
 		static void ChangeBrawling(int, double);
 		static double GetDignity(int);
 		static double GetPoshness(int);
-		static bool IsPlayerDead();
-		static bool IsPlayerOutOfTurns();
+		static bool IsPlayerDead(int);
+		static bool IsPlayerOutOfTurns(int);
 	};
 }

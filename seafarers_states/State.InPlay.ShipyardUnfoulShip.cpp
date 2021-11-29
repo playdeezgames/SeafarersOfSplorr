@@ -6,6 +6,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Character.Docked.h>
 #include <Game.Character.Statistics.h>
+#include <Game.Character.Ship.h>
 #include <Game.Character.ShipStatistics.h>
 #include <Game.Colors.h>
 #include <Game.Islands.Commodities.h>
@@ -28,7 +29,7 @@ namespace state::in_play
 			{
 					{game::Commodity::LABOR, 
 						game::World::GetUnfoulingLaborMultiplier() * 
-						game::character::ShipStatistics::GetFouling()}
+						game::character::ShipStatistics::GetFouling(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value())}
 			});
 	}
 
@@ -74,8 +75,8 @@ namespace state::in_play
 		if (price>0 && game::character::Statistics::ReadMoney(game::Player::GetCharacterId()) >= price)
 		{
 			game::character::Statistics::ChangeMoney(game::Player::GetCharacterId(), -price);
-			game::character::ShipStatistics::CleanHull(game::Side::STARBOARD);
-			game::character::ShipStatistics::CleanHull(game::Side::PORT);
+			game::character::ShipStatistics::CleanHull(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value(), game::Side::STARBOARD);
+			game::character::ShipStatistics::CleanHull(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value(), game::Side::PORT);
 			visuals::Messages::Write({ "You unfoul yer ship!" ,{}});
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		}

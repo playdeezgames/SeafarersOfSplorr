@@ -2,19 +2,13 @@
 #include <Data.Game.Character.Ship.h>
 #include <Data.Game.Ship.Docks.h>
 #include <Data.Game.Island.h>
-#include <Data.Game.Island.DarkAlley.h>
-#include <format>
-#include <functional>
-#include "Game.Character.h"
 #include "Game.Character.Docked.h"
-#include "Game.Character.StateTransition.h"
+#include "Game.Character.State.h"
 #include "Game.Character.Quest.h"
 #include "Game.Character.Ship.h"
 #include "Game.Character.Statistics.h"
-#include "Game.Colors.h"
 #include "Game.Islands.Quests.h"
 #include "Game.Islands.h"
-#include <map>
 namespace game::character
 {
 	void Docked::Reset(const game::Difficulty&)

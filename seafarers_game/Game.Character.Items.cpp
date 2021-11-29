@@ -4,7 +4,6 @@
 #include <Data.Game.Character.Items.h>
 #include "Game.Character.Items.h"
 #include "Game.Items.h"
-#include "Game.Player.h"
 namespace game::character
 {
 	std::map<game::Item, size_t> Items::All(int avatarId)
@@ -49,14 +48,14 @@ namespace game::character
 			});
 	}
 
-	void Items::Reset(const game::Difficulty& difficulty)
+	void Items::Reset(int characterId, const game::Difficulty& difficulty)
 	{
-		data::game::character::Items::Clear(Player::GetCharacterId());
+		data::game::character::Items::Clear(characterId);
 		for (auto& item : game::Items::All())
 		{
 			common::utility::Optional::Iterate<size_t>(
 				common::utility::Table::TryGetKey(game::Items::GetInitialInventoriesForAvatar(item), difficulty),
-				[item](const size_t& count) { Add(Player::GetCharacterId(), item, count); }
+				[item, characterId](const size_t& count) { Add(characterId, item, count); }
 			);
 		}
 	}

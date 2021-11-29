@@ -43,9 +43,9 @@ namespace game
 		Character::Reset(difficulty);
 		character::Docked::Reset(difficulty);
 		character::Equipment::Reset(difficulty);
-		character::Items::Reset(difficulty);
+		character::Items::Reset(Player::GetCharacterId(), difficulty);
 		character::Plights::Reset(difficulty);
-		character::Statistics::Reset(difficulty);
+		character::Statistics::Reset(Player::GetCharacterId(), difficulty);
 		Demigods::Reset(difficulty);
 		Fisheries::Reset(difficulty);
 		Islands::Reset(difficulty);
@@ -123,7 +123,7 @@ namespace game
 		Ships::ApplyTurnEffects,
 		Character::ApplyTurnEffects,
 		Islands::ApplyTurnEffects,
-		character::Plights::ApplyTurnEffects,
+		[]() { character::Plights::ApplyTurnEffects(game::Player::GetCharacterId()); },
 		Demigods::ApplyTurnEffects,
 		Fisheries::ApplyTurnEffects,
 		World::ApplyTurnEffects,

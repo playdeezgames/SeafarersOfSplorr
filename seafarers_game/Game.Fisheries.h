@@ -10,7 +10,7 @@ namespace game
 		static void Reset(const Difficulty&);
 		static void ApplyTurnEffects();
 		static std::list<Fishery> All();
-		static std::list<Fishery> Available();
+		static std::list<Fishery> Available(int);
 		static std::optional<Fishery> Read(int);
 	};
 }

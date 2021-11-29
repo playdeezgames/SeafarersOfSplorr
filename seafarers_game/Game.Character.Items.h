@@ -11,7 +11,7 @@ namespace game::character
 		static bool Has(int, const Item&);
 		static void Add(int, const game::Item&, const size_t&);
 		static void Remove(int, const game::Item&, const size_t&);
-		static void Reset(const game::Difficulty&);
+		static void Reset(int, const game::Difficulty&);
 		static double TotalTonnage(int);
 	};
 }

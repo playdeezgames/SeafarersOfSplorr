@@ -2,16 +2,13 @@
 #include <Data.Game.FishboardCell.h>
 #include <Data.Game.Fishery.h>
 #include <Data.Game.FishGame.h>
+#include <Data.Game.Character.Ship.h>
 #include "Game.Character.Items.h"
-#include "Game.Colors.h"
 #include "Game.Fishboard.h"
 #include "Game.Fisheries.h"
 #include "Game.Fishes.h"
 #include "Game.FishGame.h"
 #include "Game.Items.h"
-#include "Game.Player.h"
-#include <format>
-#include <map>
 namespace game
 {
 	const size_t Fishboard::COLUMNS = 5;//static members!
@@ -20,21 +17,21 @@ namespace game
 	static const int INITIAL_GUESSES = 5;
 	static const Item BAIT_ITEM = Item::BAIT;
 
-	static void ClearFishGame()
+	static void ClearFishGame(int characterId)
 	{
-		data::game::FishGame::Clear(Player::GetCharacterId());
-		data::game::FishGame::Start(Player::GetCharacterId(), INITIAL_GUESSES);
+		data::game::FishGame::Clear(characterId);
+		data::game::FishGame::Start(characterId, INITIAL_GUESSES);
 	}
 
-	static void ClearFishboard()
+	static void ClearFishboard(int characterId)
 	{
-		data::game::FishboardCell::Clear(Player::GetCharacterId());
+		data::game::FishboardCell::Clear(characterId);
 		for (size_t column = 0; column < Fishboard::COLUMNS; ++column)
 		{
 			for (size_t row = 0; row < Fishboard::ROWS; ++row)
 			{
 				data::game::FishboardCell::Write(
-					Player::GetCharacterId() ,
+					characterId,
 					{{(int)column,(int)row},
 					false,
 					std::nullopt });
@@ -61,38 +58,38 @@ namespace game
 		return (common::RNG::FromGenerator(inStock));
 	}
 
-	static void AddFishFromFishery(int fisheryId, const Fishery& fishery, std::map<Fish, size_t>& fishGenerator)
+	static void AddFishFromFishery(int characterId, int fisheryId, const Fishery& fishery, std::map<Fish, size_t>& fishGenerator)
 	{
 		if (GenerateFisheryHasStock(fishery))
 		{
-			data::game::FishGame::WriteFisheryId(Player::GetCharacterId(), fisheryId);
+			data::game::FishGame::WriteFisheryId(characterId, fisheryId);
 			fishGenerator[(Fish)fishery.fish] = 1;
 		}
 	}
 
-	static void AddFishFromFisheries(const std::map<int, size_t>& fisheryGenerator, std::map<Fish, size_t>& fishGenerator)
+	static void AddFishFromFisheries(int characterId, const std::map<int, size_t>& fisheryGenerator, std::map<Fish, size_t>& fishGenerator)
 	{
 		int fisheryId = common::RNG::FromGenerator(fisheryGenerator);
 		auto fishery = Fisheries::Read(fisheryId);
 		if (fishery)
 		{
-			AddFishFromFishery(fisheryId, fishery.value(), fishGenerator);
+			AddFishFromFishery(characterId, fisheryId, fishery.value(), fishGenerator);
 		}
 	}
 
-	static std::map<Fish, size_t> AddFisheries(const std::map<int, size_t>& fisheryGenerator)
+	static std::map<Fish, size_t> AddFisheries(int characterId, const std::map<int, size_t>& fisheryGenerator)
 	{
 		std::map<Fish, size_t> fishGenerator;
 		if (!fisheryGenerator.empty())
 		{
-			AddFishFromFisheries(fisheryGenerator, fishGenerator);
+			AddFishFromFisheries(characterId, fisheryGenerator, fishGenerator);
 		}
 		return fishGenerator;
 	}
 
-	static std::map<Fish, size_t> MakeFishGenerator(const std::map<int, size_t>& fisheryGenerator)
+	static std::map<Fish, size_t> MakeFishGenerator(int characterId, const std::map<int, size_t>& fisheryGenerator)
 	{
-		std::map<Fish, size_t> fishGenerator = AddFisheries(fisheryGenerator);
+		std::map<Fish, size_t> fishGenerator = AddFisheries(characterId, fisheryGenerator);
 		if (fishGenerator.empty())
 		{
 			AddJunk(fishGenerator);
@@ -100,10 +97,10 @@ namespace game
 		return fishGenerator;
 	}
 
-	static std::map<int, size_t> MakeFisheryGenerator()
+	static std::map<int, size_t> MakeFisheryGenerator(int shipId)
 	{
 		std::map<int, size_t> generator;
-		auto fisheries = Fisheries::Available();
+		auto fisheries = Fisheries::Available(shipId);
 		for (auto fishery : fisheries)
 		{
 			generator[fishery.fisheryId] = fishery.stock + fishery.depletion;
@@ -111,9 +108,10 @@ namespace game
 		return generator;
 	}
 
-	static Fish GenerateFish()
+	static Fish GenerateFish(int characterId)
 	{
-		std::map<Fish, size_t> fishGenerator = MakeFishGenerator(MakeFisheryGenerator());
+		int shipId = data::game::character::Ship::ReadForCharacter(characterId).value().shipId;
+		std::map<Fish, size_t> fishGenerator = MakeFishGenerator(characterId, MakeFisheryGenerator(shipId));
 		return common::RNG::FromGenerator(fishGenerator);
 	}
 	//^^^^  Fish/Junk Generator
@@ -125,43 +123,43 @@ namespace game
 		return { x,y };
 	}
 
-	static void PlaceFish(Fish fish)
+	static void PlaceFish(int characterId, Fish fish)
 	{
 		common::XY<int> origin = GeneratePosition(Fishes::GetSize(fish));
 		for (auto& location : Fishes::GetShape(fish))
 		{
-			data::game::FishboardCell::Write(Player::GetCharacterId(), {
+			data::game::FishboardCell::Write(characterId, {
 				(location + origin),
 				false,
 				(int)fish });
 		}
 	}
 
-	void Fishboard::Generate()
+	void Fishboard::Generate(int characterId)
 	{
-		ClearFishGame();
-		ClearFishboard();
-		character::Items::Remove(game::Player::GetCharacterId(), BAIT_ITEM, 1);
-		PlaceFish(GenerateFish());
+		ClearFishGame(characterId);
+		ClearFishboard(characterId);
+		character::Items::Remove(characterId, BAIT_ITEM, 1);
+		PlaceFish(characterId, GenerateFish(characterId));
 	}
 
-	static void MakeGuess(const common::XY<int>& location, int guesses)
+	static void MakeGuess(int characterId, const common::XY<int>& location, int guesses)
 	{
-		auto boardCell = data::game::FishboardCell::Read(Player::GetCharacterId(), location).value();
+		auto boardCell = data::game::FishboardCell::Read(characterId, location).value();
 		boardCell.revealed = true;
-		data::game::FishboardCell::Write(Player::GetCharacterId(), boardCell);
-		data::game::FishGame::WriteGuesses(Player::GetCharacterId(), guesses - 1);
+		data::game::FishboardCell::Write(characterId, boardCell);
+		data::game::FishGame::WriteGuesses(characterId, guesses - 1);
 	}
 
-	static void ReelInFish(Fish fish)
+	static void ReelInFish(int characterId, Fish fish)
 	{
 		auto item = Fishes::GetItem(fish);
-		game::character::Items::Add(game::Player::GetCharacterId(), item, 1);
+		game::character::Items::Add(characterId, item, 1);
 	}
 
-	static void DepleteFishery()
+	static void DepleteFishery(int characterId)
 	{
-		auto fisheryId = data::game::FishGame::ReadFisheryId(Player::GetCharacterId());
+		auto fisheryId = data::game::FishGame::ReadFisheryId(characterId);
 		if (fisheryId)
 		{
 			auto fishery = data::game::Fishery::Read(fisheryId.value()).value();
@@ -170,40 +168,40 @@ namespace game
 		}
 	}
 
-	static void ReelInAllFish()
+	static void ReelInAllFish(int characterId)
 	{
-		auto allFish = data::game::FishboardCell::ReadFish(Player::GetCharacterId());
+		auto allFish = data::game::FishboardCell::ReadFish(characterId);
 		for (auto fish : allFish)
 		{
-			ReelInFish((Fish)fish);
+			ReelInFish(characterId, (Fish)fish);
 		}
-		DepleteFishery();
+		DepleteFishery(characterId);
 	}
 
-	static void DoReveal(const common::XY<int>& location)
+	static void DoReveal(int characterId, const common::XY<int>& location)
 	{
-		auto guesses = FishGame::ReadGuesses();
+		auto guesses = FishGame::ReadGuesses(characterId);
 		if (guesses > 0)
 		{
-			MakeGuess(location, guesses);
+			MakeGuess(characterId, location, guesses);
 		}
-		if (Fishboard::IsFullyRevealed())
+		if (Fishboard::IsFullyRevealed(characterId))
 		{
-			ReelInAllFish();
+			ReelInAllFish(characterId);
 		}
 	}
 
-	void Fishboard::Reveal(const common::XY<int>& location)
+	void Fishboard::Reveal(int characterId, const common::XY<int>& location)
 	{
-		if (!IsFullyRevealed())
+		if (!IsFullyRevealed(characterId))
 		{
-			DoReveal(location);
+			DoReveal(characterId, location);
 		}
 	}
 
-	FishboardCell Fishboard::Read(const common::XY<int>& location)
+	FishboardCell Fishboard::Read(int characterId, const common::XY<int>& location)
 	{
-		auto boardCell = data::game::FishboardCell::Read(Player::GetCharacterId(), location).value();
+		auto boardCell = data::game::FishboardCell::Read(characterId, location).value();
 		std::optional<Fish> fish =
 			(boardCell.fishType.has_value()) ?
 			(std::optional<Fish>((Fish)boardCell.fishType.value())) :
@@ -215,13 +213,13 @@ namespace game
 		};
 	}
 
-	bool Fishboard::IsFullyRevealed()
+	bool Fishboard::IsFullyRevealed(int characterId)
 	{
-		return data::game::FishboardCell::ReadRevealedFishCount(Player::GetCharacterId()) == data::game::FishboardCell::ReadFishCount(Player::GetCharacterId());
+		return data::game::FishboardCell::ReadRevealedFishCount(characterId) == data::game::FishboardCell::ReadFishCount(characterId);
 	}
 
-	double Fishboard::ReadProgressPercentage()
+	double Fishboard::ReadProgressPercentage(int characterId)
 	{
-		return 100.0 * data::game::FishboardCell::ReadRevealedFishCount(Player::GetCharacterId()) / data::game::FishboardCell::ReadFishCount(Player::GetCharacterId());
+		return 100.0 * data::game::FishboardCell::ReadRevealedFishCount(characterId) / data::game::FishboardCell::ReadFishCount(characterId);
 	}
 }

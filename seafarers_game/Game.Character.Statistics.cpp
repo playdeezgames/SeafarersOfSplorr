@@ -1,15 +1,10 @@
 #include <Common.Utility.h>
-#include <Common.Utility.Optional.h>
 #include <Common.Utility.Table.h>
 #include <Data.Game.Character.Statistic.h>
-#include <Data.Game.Common.h>
 #include "Game.Character.Equipment.h"
 #include "Game.Character.Statistic.h"
 #include "Game.Character.Statistics.h"
 #include "Game.Item.h"
-#include "Game.Player.h"
-#include <map>
-#include <list>
 namespace game::character
 {
 	struct StatisticDescriptor
@@ -109,13 +104,13 @@ namespace game::character
 			}}
 	};
 
-	void Statistics::Reset(const game::Difficulty& difficulty)
+	void Statistics::Reset(int characterId, const game::Difficulty& difficulty)
 	{
 		auto values = initialValues.find(difficulty)->second;
 		for (auto& value : values)
 		{
 			data::game::character::Statistic::Write(
-				Player::GetCharacterId(),
+				characterId,
 				(int)value.statistic,
 				{
 					value.minimum,
@@ -305,13 +300,13 @@ namespace game::character
 		return GetCurrentWithBuffs(characterId, character::Statistic::POSHNESS);
 	}
 
-	bool Statistics::IsPlayerDead()
+	bool Statistics::IsPlayerDead(int characterId)
 	{
-		return IsDead(Player::GetCharacterId());
+		return IsDead(characterId);
 	}
 
-	bool Statistics::IsPlayerOutOfTurns()
+	bool Statistics::IsPlayerOutOfTurns(int characterId)
 	{
-		return IsOutOfTurns(Player::GetCharacterId());
+		return IsOutOfTurns(characterId);
 	}
 }

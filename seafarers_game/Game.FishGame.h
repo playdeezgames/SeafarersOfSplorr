@@ -4,14 +4,14 @@ namespace game
 {
 	struct FishGame
 	{
-		static int ReadGuesses();
-		static bool HasGuessesLeft();
+		static int ReadGuesses(int);
+		static bool HasGuessesLeft(int);
 
-		static bool HasGivenUp();
-		static void GiveUp();
+		static bool HasGivenUp(int);
+		static void GiveUp(int);
 
-		static void AddBait();
+		static void AddBait(int);
 
-		static FishGameState GetState();
+		static FishGameState GetState(int);
 	};
 }
