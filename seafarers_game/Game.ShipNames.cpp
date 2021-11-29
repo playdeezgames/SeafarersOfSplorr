@@ -70,5 +70,4 @@ namespace game
 			common::RNG::FromGenerator(shipNameAdjectives),
 			common::RNG::FromGenerator(shipNameNouns));
 	}
-
 }
