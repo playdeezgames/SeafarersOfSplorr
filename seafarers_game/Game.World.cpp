@@ -4,7 +4,7 @@
 #include <Data.Game.World.h>
 #include "Game.World.h"
 #include <map>
-namespace game//20211018
+namespace game
 {
 	static const int CURRENT_VERSION = 1;
 
