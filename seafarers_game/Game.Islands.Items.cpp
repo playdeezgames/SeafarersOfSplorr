@@ -4,41 +4,43 @@
 #include "Game.Islands.Commodities.h"
 #include "Game.Islands.Items.h"
 #include "Game.Items.h"
-namespace game::islands//20211014
+namespace game::islands
 {
 	static double GetItemPurchasePrice(
-		const common::XY<double>& location,
+		int islandId,
 		const game::Item& item)
 	{
-		return Commodities::GetPurchasePrice(data::game::Island::Find(location).value(), game::Items::GetCommodities(item));
+		return Commodities::GetPurchasePrice(islandId, game::Items::GetCommodities(item));
 	}
 
 	static double GetItemSellPrice(
-		const common::XY<double>& location,
+		int islandId,
 		const game::Item& item)
 	{
-		return Commodities::GetSalePrice(data::game::Island::Find(location).value(), game::Items::GetCommodities(item));
+		return Commodities::GetSalePrice(islandId, game::Items::GetCommodities(item));
 	}
 
-	static std::map<game::Item, double> GetPrices(const common::XY<double>& location, std::function<double(const common::XY<double>&, const Item&)> unitPricer)
+	static std::map<game::Item, double> GetPrices(
+		int islandId, 
+		std::function<double(int, const Item&)> unitPricer)
 	{
 		std::map<game::Item, double> result;
-		auto itemsAvailable = data::game::island::Item::GetAll(data::game::Island::Find(location).value());
+		auto itemsAvailable = data::game::island::Item::GetAll(islandId);
 		for (auto& item : itemsAvailable)
 		{
-			double price = unitPricer(location, (game::Item)item);
+			double price = unitPricer(islandId, (game::Item)item);
 			result[(game::Item)item] = price;
 		}
 		return result;
 	}
 
-	std::map<game::Item, double> Items::GetPurchasePrices(const common::XY<double>& location)
+	std::map<game::Item, double> Items::GetPurchasePrices(int islandId)
 	{
-		return GetPrices(location, GetItemPurchasePrice);
+		return GetPrices(islandId, GetItemPurchasePrice);
 	}
 
-	std::map<game::Item, double> Items::GetSalePrices(const common::XY<double>& location)
+	std::map<game::Item, double> Items::GetSalePrices(int islandId)
 	{
-		return GetPrices(location, GetItemSellPrice);
+		return GetPrices(islandId, GetItemSellPrice);
 	}
 }
