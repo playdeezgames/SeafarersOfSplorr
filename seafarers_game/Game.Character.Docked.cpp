@@ -31,7 +31,7 @@ namespace game::character
 		game::Islands::AddVisit(
 			data::game::Island::Find(location).value(),
 			game::character::Statistics::GetTurnsRemaining(characterId));
-		game::islands::Quests::Update(location);
+		game::islands::Quests::Update(characterId, data::game::Island::Find(location).value());
 		int islandId = data::game::Island::Find(location).value();
 		if (game::character::Quest::Complete(characterId, islandId))
 		{

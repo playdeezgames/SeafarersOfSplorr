@@ -82,11 +82,9 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		auto location =
-			data::game::Island::Read(
-				game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()
-			).value().location;
-		auto quest = game::islands::Quests::Read(location);
+		auto islandId =
+			game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value();
+		auto quest = game::islands::Quests::Read(islandId);
 		if (quest)
 		{
 			RefreshQuest(quest.value());

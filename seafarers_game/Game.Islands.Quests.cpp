@@ -1,5 +1,4 @@
 #include <Common.RNG.h>
-#include <Common.Utility.h>
 #include <Common.Utility.List.h>
 #include <Common.Utility.Optional.h>
 #include <Data.Game.Island.h>
@@ -8,18 +7,15 @@
 #include "Game.Character.Statistics.h"
 #include "Game.Islands.h"
 #include "Game.Islands.Quests.h"
-#include "Game.Player.h"
-#include <map>
-#include <string>
-namespace game::islands//20211016
+namespace game::islands
 {
 	static const double MAXIMUM_REWARD = 10.0;
 	static const double DEFAULT_MINIMUM_REWARD = 1.0;
 	static const double DEFAULT_MAXIMUM_REWARD = 1.0;
 	static const double NEGATIVE_REWARD_RADIX = 2.0;
-	static double GenerateReward()
+	static double GenerateReward(int characterId)
 	{
-		double reputation = floor(game::character::Statistics::GetReputation(game::Player::GetCharacterId()));
+		double reputation = floor(game::character::Statistics::GetReputation(characterId));
 		double minimum = DEFAULT_MINIMUM_REWARD;
 		double maximum = DEFAULT_MAXIMUM_REWARD;
 		if (reputation <= 0.0)
@@ -202,16 +198,15 @@ namespace game::islands//20211016
 			common::RNG::FromGenerator(receiptAdjectives));
 	}
 
-	static int GenerateDestination(const common::XY<double>& location)
+	static int GenerateDestination(int islandId)
 	{
-		auto allOtherIslands = data::game::Island::Filter([location](const data::game::Island& island) { return island.location != location; });
+		auto allOtherIslands = data::game::Island::Filter([islandId](const data::game::Island& island) { return island.id != islandId; });
 		size_t index = common::RNG::FromRange(0u, allOtherIslands.size() - 1);
 		return common::utility::List::GetNth(allOtherIslands, index)->id;
 	}
 
-	void Quests::Update(const common::XY<double>& location)
+	void Quests::Update(int characterId, int fromIslandId)
 	{
-		auto fromIslandId = data::game::Island::Find(location).value();
 		if (game::Islands::Read(fromIslandId).has_value())
 		{
 			if (!data::game::island::Quest::Read(fromIslandId).has_value())
@@ -219,8 +214,8 @@ namespace game::islands//20211016
 				data::game::island::Quest::Write(
 					{
 						fromIslandId,
-						GenerateDestination(location),
-						GenerateReward(),
+						GenerateDestination(fromIslandId),
+						GenerateReward(characterId),
 						GenerateItemName(),
 						GeneratePersonName(),
 						GenerateProfessionName(),
@@ -245,9 +240,8 @@ namespace game::islands//20211016
 			};
 	}
 
-	std::optional<game::Quest> Quests::Read(const common::XY<double>& location)
+	std::optional<game::Quest> Quests::Read(int fromIslandId)
 	{
-		auto fromIslandId = data::game::Island::Find(location).value();
 		return 
 			common::utility::Optional::Map<data::game::island::Quest, Quest>(
 				data::game::island::Quest::Read(fromIslandId),
