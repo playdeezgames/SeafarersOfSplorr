@@ -73,7 +73,6 @@
 #include <vector>
 #include <Visuals.Colors.h>
 #include <Visuals.Confirmations.h>
-#include <Visuals.Fishboard.h>
 #include <Visuals.Fonts.h>
 #include <Visuals.Layouts.h>
 #include <Visuals.Messages.h>
@@ -121,7 +120,6 @@ namespace application
 		visuals::Sprites::DoSetStore(data::json::Store::SPRITES),
 		visuals::Fonts::DoSetStore(data::json::Store::FONTS),
 		visuals::Layouts::DoSetStore(data::json::Store::LAYOUTS),
-		visuals::Layouts::DoRegisterType(VISUAL_TYPE_FISHBOARD, visuals::Fishboard::Internalize),
 		visuals::Messages::Reset,
 		application::Keyboard::DoSetStore(data::json::Store::KEYS),
 		Options::DoSetStore(data::json::Store::OPTIONS),
