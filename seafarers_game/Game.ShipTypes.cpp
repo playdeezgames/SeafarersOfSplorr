@@ -1,13 +1,10 @@
 #include <Common.RNG.h>
-#include <Common.Utility.h>
 #include <Common.Utility.List.h>
 #include <Common.Utility.Table.h>
 #include "Game.BerthType.h"
 #include "Game.ShipTypes.h"
 #include "Game.Ship.Property.h"
-#include <map>
-#include <string>
-namespace game//20211017
+namespace game
 {
 	struct ShipStatisticDescriptor
 	{
@@ -26,7 +23,7 @@ namespace game//20211017
 		std::map<BerthType, size_t> berths;
 	};
 
-	static const std::map<game::ShipType, game::ShipDescriptor> ships =
+	static const std::map<game::ShipType, ShipDescriptor> ships =
 	{
 		{
 			game::ShipType::RAFT,
@@ -120,7 +117,7 @@ namespace game//20211017
 
 	static std::list<game::ShipType> shipList;
 
-	static const game::ShipDescriptor& Read(const game::ShipType& ship)
+	static const ShipDescriptor& Read(const game::ShipType& ship)
 	{
 		return ships.find(ship)->second;
 	}
