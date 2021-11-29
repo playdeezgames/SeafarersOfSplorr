@@ -1,8 +1,7 @@
-#include <Common.Utility.h>
 #include <Common.Utility.List.h>
 #include "Game.Features.h"
 #include <map>
-namespace game//20211015
+namespace game
 {
 	struct FeatureDescriptor
 	{
