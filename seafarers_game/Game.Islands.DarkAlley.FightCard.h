@@ -1,6 +1,5 @@
 #pragma once
 #include <Cards.Card.h>
-#include <Common.XY.h>
 #include <map>
 #include <optional>
 namespace game::islands::dark_alley
@@ -12,8 +11,8 @@ namespace game::islands::dark_alley
 		bool revealed;
 		bool success;
 
-		static void Generate(const common::XY<double>&);
-		static std::map<size_t, FightCard> Read(const common::XY<double>&);
-		static std::optional<FightCard> Pick(const common::XY<double>&, size_t);
+		static void Generate(int, int);
+		static std::map<size_t, FightCard> Read(int);
+		static std::optional<FightCard> Pick(int, size_t);
 	};
 }

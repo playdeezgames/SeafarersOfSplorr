@@ -1,15 +1,11 @@
-#include <Cards.Card.h>
 #include <Common.RNG.h>
-#include <Data.Game.Island.h>
 #include <Data.Game.Island.DarkAlley.h>
 #include <Data.Game.Island.DarkAlley.FightCard.h>
-#include <functional>
 #include "Game.Character.Statistics.h"
 #include "Game.Islands.DarkAlley.FightCard.h"
-#include "Game.Player.h"
 #include <list>
 #include <set>
-namespace game::islands::dark_alley//20211014
+namespace game::islands::dark_alley
 {
 	static const size_t CARD_ROWS = 3;
 	static const size_t CARD_COLUMNS = 4;
@@ -67,12 +63,12 @@ namespace game::islands::dark_alley//20211014
 	};
 
 	static void WriteCards(
-		const common::XY<double>& location, 
+		int islandId, 
 		const std::map<size_t, FightCard>& fightCards)
 	{
 		for (auto& fightCard : fightCards)
 		{
-			data::game::island::dark_alley::FightCard::Write(data::game::Island::Find(location).value(), fightCard.first,
+			data::game::island::dark_alley::FightCard::Write(islandId, fightCard.first,
 				{
 					(int)std::get<0>(fightCard.second.card),
 					(int)std::get<1>(fightCard.second.card),
@@ -82,9 +78,9 @@ namespace game::islands::dark_alley//20211014
 		}
 	}
 
-	static size_t DetermineFaceCardCount(const data::game::island::DarkAlley& darkAlley)
+	static size_t DetermineFaceCardCount(int characterId, const data::game::island::DarkAlley& darkAlley)
 	{
-		auto brawling = game::character::Statistics::GetBrawling(game::Player::GetCharacterId());
+		auto brawling = game::character::Statistics::GetBrawling(characterId);
 		size_t faceCardCount =
 			(size_t)(brawling / (brawling + darkAlley.ruffianBrawlingStrength) * (double)CARD_COUNT);
 		return
@@ -123,11 +119,12 @@ namespace game::islands::dark_alley//20211014
 	}
 
 	static void PlaceFaceCards(
+		int characterId,
 		std::map<size_t, FightCard>& fightCards, 
 		std::set<cards::Card>& cards, 
 		const data::game::island::DarkAlley& darkAlley)
 	{
-		size_t faceCardCount = DetermineFaceCardCount(darkAlley);
+		size_t faceCardCount = DetermineFaceCardCount(characterId, darkAlley);
 		while (faceCardCount > 0)
 		{
 			auto card = GenerateFaceCard();
@@ -190,22 +187,22 @@ namespace game::islands::dark_alley//20211014
 		}
 	}
 
-	static void DoGenerate(const common::XY<double>& location, const data::game::island::DarkAlley& darkAlley)
+	static void DoGenerate(int characterId, int islandId, const data::game::island::DarkAlley& darkAlley)
 	{
 		std::map<size_t, FightCard> fightCards;
 		std::set<cards::Card> cards;
-		PlaceFaceCards(fightCards, cards, darkAlley);
+		PlaceFaceCards(characterId, fightCards, cards, darkAlley);
 		PlaceNonfaceCards(fightCards, cards);
-		WriteCards(location, fightCards);
+		WriteCards(islandId, fightCards);
 	}
 
-	void FightCard::Generate(const common::XY<double>& location)
+	void FightCard::Generate(int characterId, int islandId)
 	{
-		data::game::island::dark_alley::FightCard::Clear(data::game::Island::Find(location).value());
-		auto darkAlley = data::game::island::DarkAlley::Read(data::game::Island::Find(location).value());
+		data::game::island::dark_alley::FightCard::Clear(islandId);
+		auto darkAlley = data::game::island::DarkAlley::Read(islandId);
 		if (darkAlley)
 		{
-			DoGenerate(location, darkAlley.value());
+			DoGenerate(characterId, islandId, darkAlley.value());
 		}
 	}
 
@@ -221,10 +218,10 @@ namespace game::islands::dark_alley//20211014
 		};
 	}
 
-	std::map<size_t, FightCard> FightCard::Read(const common::XY<double>& location)
+	std::map<size_t, FightCard> FightCard::Read(int islandId)
 	{
 		std::map<size_t, FightCard> result;
-		auto entries = data::game::island::dark_alley::FightCard::Read(data::game::Island::Find(location).value());
+		auto entries = data::game::island::dark_alley::FightCard::Read(islandId);
 		for (auto& entry : entries)
 		{
 			result[entry.first] = DataToFightCard(entry.second);
@@ -232,9 +229,9 @@ namespace game::islands::dark_alley//20211014
 		return result;
 	}
 
-	std::optional<FightCard> FightCard::Pick(const common::XY<double>& location, size_t index)
+	std::optional<FightCard> FightCard::Pick(int islandId, size_t index)
 	{
-		auto data = data::game::island::dark_alley::FightCard::Read(data::game::Island::Find(location).value(), index);
+		auto data = data::game::island::dark_alley::FightCard::Read(islandId, index);
 		if (data)
 		{
 			auto cardData = data.value();
@@ -243,7 +240,7 @@ namespace game::islands::dark_alley//20211014
 				return std::nullopt;
 			}
 			cardData.shown = true;
-			data::game::island::dark_alley::FightCard::Write(data::game::Island::Find(location).value(), index, cardData);
+			data::game::island::dark_alley::FightCard::Write(islandId, index, cardData);
 			return DataToFightCard(cardData);
 		}
 		return std::nullopt;
