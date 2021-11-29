@@ -10,14 +10,14 @@ namespace game::islands//20211014
 		const common::XY<double>& location,
 		const game::Item& item)
 	{
-		return Commodities::GetPurchasePrice(location, game::Items::GetCommodities(item));
+		return Commodities::GetPurchasePrice(data::game::Island::Find(location).value(), game::Items::GetCommodities(item));
 	}
 
 	static double GetItemSellPrice(
 		const common::XY<double>& location,
 		const game::Item& item)
 	{
-		return Commodities::GetSalePrice(location, game::Items::GetCommodities(item));
+		return Commodities::GetSalePrice(data::game::Island::Find(location).value(), game::Items::GetCommodities(item));
 	}
 
 	static std::map<game::Item, double> GetPrices(const common::XY<double>& location, std::function<double(const common::XY<double>&, const Item&)> unitPricer)

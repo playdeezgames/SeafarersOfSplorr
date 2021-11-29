@@ -1,5 +1,6 @@
 #include <Common.Utility.h>
 #include <Common.Utility.List.h>
+#include <Data.Game.Island.h>
 #include "Game.Islands.Commodities.h"
 #include "Game.Islands.Ships.h"
 #include "Game.ShipTypes.h"
@@ -10,7 +11,7 @@ namespace game::islands
 		const game::ShipType& ship)
 	{
 		auto& commodities = game::ShipTypes::GetCommodities(ship);
-		return Commodities::GetPurchasePrice(location, commodities);
+		return Commodities::GetPurchasePrice(data::game::Island::Find(location).value(), commodities);
 	}
 
 	double Ships::GetSalePrice(
@@ -18,7 +19,7 @@ namespace game::islands
 		const game::ShipType& ship)
 	{
 		auto& commodities = game::ShipTypes::GetCommodities(ship);
-		return Commodities::GetSalePrice(location, commodities);
+		return Commodities::GetSalePrice(data::game::Island::Find(location).value(), commodities);
 	}
 
 	static std::map<game::ShipType, double> GetPrices(

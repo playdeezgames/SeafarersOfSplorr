@@ -1,4 +1,3 @@
-#include <Data.Game.Island.h>
 #include <Data.Game.Island.Market.h>
 #include <functional>
 #include "Game.Commodities.h"
@@ -6,10 +5,9 @@
 namespace game::islands
 {
 	static double GetCommodityUnitPurchasePrice(
-		const common::XY<double>& location, 
+		int islandId, 
 		const game::Commodity& commodity)
 	{
-		auto islandId = data::game::Island::Find(location).value();
 		auto market = data::game::island::Market::Read(islandId, (int)commodity).value();
 		return 
 			game::Commodities::GetBasePrice(commodity) *
@@ -18,11 +16,11 @@ namespace game::islands
 	}
 
 	static double GetCommodityUnitSalePrice(
-		const common::XY<double>& location, 
+		int islandId, 
 		const game::Commodity& commodity)
 	{
 		return 
-			GetCommodityUnitPurchasePrice(location, commodity) *
+			GetCommodityUnitPurchasePrice(islandId, commodity) *
 			(1.0 - game::Commodities::GetDiscount(commodity));
 	}
 
@@ -38,22 +36,22 @@ namespace game::islands
 	}
 
 	static std::function<double(const Commodity&)> ToPricer(
-		const common::XY<double>& location, 
-		std::function<double(const common::XY<double>&,const game::Commodity&)> unitPricer)
+		int islandId, 
+		std::function<double(int,const game::Commodity&)> unitPricer)
 	{
-		return [location, unitPricer](const Commodity& commodity)
+		return [islandId, unitPricer](const Commodity& commodity)
 		{
-			return unitPricer(location, commodity);
+			return unitPricer(islandId, commodity);
 		};
 	}
 
-	double Commodities::GetPurchasePrice(const common::XY<double>& location, const std::map<Commodity, double>& table)
+	double Commodities::GetPurchasePrice(int islandId, const std::map<Commodity, double>& table)
 	{
-		return DeterminePrice(table, ToPricer(location, GetCommodityUnitPurchasePrice));
+		return DeterminePrice(table, ToPricer(islandId, GetCommodityUnitPurchasePrice));
 	}
 
-	double Commodities::GetSalePrice(const common::XY<double>& location, const std::map<Commodity, double>& table)
+	double Commodities::GetSalePrice(int islandId, const std::map<Commodity, double>& table)
 	{
-		return DeterminePrice(table, ToPricer(location, GetCommodityUnitSalePrice));
+		return DeterminePrice(table, ToPricer(islandId, GetCommodityUnitSalePrice));
 	}
 }
