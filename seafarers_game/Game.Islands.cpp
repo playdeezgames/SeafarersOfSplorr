@@ -1,23 +1,11 @@
 #include <Common.Heading.h>
-#include <Common.RNG.h>
-#include <Data.Game.Island.Item.h>
 #include <Data.Game.Island.h>
 #include <Data.Game.Island.Known.h>
-#include <Data.Game.Island.Market.h>
-#include <Data.Game.Island.Quest.h>
 #include <Data.Game.Island.Visit.h>
-#include <functional>
 #include "Game.Character.Ship.h"
-#include "Game.Commodities.h"
 #include "Game.Islands.h"
-#include "Game.Items.h"
 #include "Game.Ship.h"
-#include "Game.Player.h"
 #include "Game.World.h"
-#include <map>
-#include <set>
-#include <sstream>
-#include <vector>
 namespace game
 {
 	const std::string Islands::UNKNOWN = "????";
@@ -32,14 +20,14 @@ namespace game
 	static void KnowIsland(
 		std::list<Island>& accumulator, 
 		const data::game::Island& island, 
-		const common::XY<double>& avatarLocation)
+		const common::XY<double>& shipLocation)
 	{
 		auto visitData = data::game::island::Visit::Read(island.id);
 		data::game::island::Known::Write(island.id);
 		accumulator.push_back(
 			{
 				island.id,
-				(island.location - avatarLocation),
+				(island.location - shipLocation),
 				island.location,
 				island.name,
 				(visitData.has_value()) ? (std::optional<int>(visitData.value().visits)) : (std::nullopt),
@@ -47,23 +35,23 @@ namespace game
 			});
 	}
 
-	static void KnowIslandWhenCloseEnough(std::list<Island>& accumulator, const data::game::Island& island, const common::XY<double>& avatarLocation, std::function<bool(const data::game::Island&, double)> filter)
+	static void KnowIslandWhenCloseEnough(std::list<Island>& accumulator, const data::game::Island& island, const common::XY<double>& shipLocation, std::function<bool(const data::game::Island&, double)> filter)
 	{
-		auto distance = common::Heading::Distance(avatarLocation, island.location);
+		auto distance = common::Heading::Distance(shipLocation, island.location);
 		if (filter(island, distance))
 		{
-			KnowIsland(accumulator, island, avatarLocation);
+			KnowIsland(accumulator, island, shipLocation);
 		}
 	}
 
 	static std::list<Island> GetIslandsInRange(int shipId, std::function<bool(const data::game::Island&, double)> filter)
 	{
 		std::list<Island> accumulator;
-		auto avatarLocation = game::Ship::GetLocation(shipId).value();;
+		auto shipLocation = game::Ship::GetLocation(shipId).value();;
 		auto islands = data::game::Island::All();
 		for (auto& island : islands)
 		{
-			KnowIslandWhenCloseEnough(accumulator, island, avatarLocation, filter);
+			KnowIslandWhenCloseEnough(accumulator, island, shipLocation, filter);
 		}
 		return accumulator;
 	}
@@ -168,8 +156,10 @@ namespace game
 		}
 	}
 
-	std::list<Island> Islands::GetKnownIslands(const common::XY<double>& avatarLocation)
+	std::list<Island> Islands::GetKnownIslands(int characterId)
 	{
+		int shipId = game::character::Ship::ReadShipId(characterId).value();
+		auto shipLocation = game::Ship::GetLocation(shipId).value();
 		auto knownLocations = data::game::island::Known::All();
 		std::list<Island> result;
 		for (auto& knownLocation : knownLocations)
@@ -177,7 +167,7 @@ namespace game
 			auto model = Read(knownLocation);
 			if (model)
 			{
-				model.value().relativeLocation = model.value().absoluteLocation - avatarLocation;
+				model.value().relativeLocation = model.value().absoluteLocation - shipLocation;
 				ObfuscateIfUnknown(model.value());
 				result.push_back(model.value());
 			}

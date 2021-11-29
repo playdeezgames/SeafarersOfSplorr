@@ -1,5 +1,4 @@
 #pragma once
-#include <Common.XY.h>
 #include "Game.Difficulty.h"
 #include "Game.Island.h"
 #include <list>
@@ -13,7 +12,7 @@ namespace game
 		static std::list<Island> GetViewableIslands(int);
 		static std::list<Island> GetDockableIslands(int);
 		static bool CanDock(int);
-		static std::list<Island> GetKnownIslands(const common::XY<double>&);//TODO: transition from XY to CharacterId
+		static std::list<Island> GetKnownIslands(int);
 		static void AddVisit(int, int);//location and turn
 		static void SetKnown(int, int);//location and turn
 		static std::optional<Island> Read(int);

@@ -25,7 +25,7 @@ namespace state::in_play
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Head for:");
-		auto known = game::Islands::GetKnownIslands(game::Ship::GetLocation(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).value());
+		auto known = game::Islands::GetKnownIslands(game::Player::GetCharacterId());
 		if (!known.empty())
 		{
 			Terminal::SetForeground(game::Colors::GRAY);
@@ -55,7 +55,7 @@ namespace state::in_play
 
 	static void DoHeadForKnownIndex(size_t index)
 	{
-		auto nearby = game::Islands::GetKnownIslands(game::Ship::GetLocation(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).value());
+		auto nearby = game::Islands::GetKnownIslands(game::Player::GetCharacterId());
 		auto chosen = common::utility::List::GetNth(nearby, index);
 		if (chosen)
 		{
