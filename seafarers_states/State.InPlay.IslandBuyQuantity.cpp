@@ -72,9 +72,7 @@ namespace state::in_play
 			Terminal::WriteLine("You purchase {} {} for {:.4f}.", units, game::Items::GetName(currentItem), totalPrice);
 			game::character::Statistics::ChangeMoney(game::Player::GetCharacterId(), -totalPrice);
 			game::islands::Markets::BuyItems(
-				data::game::Island::Read(
 					game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()
-				).value().location
 				, currentItem, units);
 			game::character::Items::Add(game::Player::GetCharacterId(), currentItem, units);
 			application::UIState::Write(::UIState::IN_PLAY_ISLAND_BUY);
