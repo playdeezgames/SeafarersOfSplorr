@@ -34,8 +34,8 @@ namespace state::in_play
 			data::game::Island::Read(
 				game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value()
 			).value().location;
-		auto prices = game::islands::Ships::GetPurchasePrices(location);
-		auto tradeIn = game::islands::Ships::GetSalePrice(location, game::Ship::GetShipType(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).value());
+		auto prices = game::islands::Ships::GetPurchasePrices(game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value());
+		auto tradeIn = game::islands::Ships::GetSalePrice(game::character::Docked::ReadLocation(game::Player::GetCharacterId()).value(), game::Ship::GetShipType(game::character::Ship::ReadShipId(game::Player::GetCharacterId()).value()).value());
 		shipPrices.clear();
 		for (auto price : prices)
 		{
