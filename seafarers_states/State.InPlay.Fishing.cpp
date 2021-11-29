@@ -1,20 +1,11 @@
-#include <Application.Keyboard.h>
-#include <Application.OnEnter.h>
-#include <Application.Renderer.h>
-#include <Application.UIState.h>
 #include <Common.Data.h>
 #include <Common.Utility.Dispatcher.h>
-#include <Game.Audio.Mux.h>
 #include <Game.Character.Actions.h>
 #include <Game.Character.Items.h>
-#include <Game.Colors.h>
 #include <Game.Fishboard.h>
 #include <Game.FishGame.h>
-#include <Game.Player.h>
 #include "State.InPlay.Fishing.h"
 #include "State.InPlay.Globals.h"
-#include "State.Terminal.h"
-#include "UIState.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_FISHING;

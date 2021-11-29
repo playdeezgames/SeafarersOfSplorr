@@ -1,18 +1,10 @@
-#include <Application.Keyboard.h>
-#include <Application.OnEnter.h>
-#include <Application.Renderer.h>
-#include <Application.UIState.h>
 #include <Common.Heading.h>
-#include <Game.Audio.Mux.h>
 #include <Game.Character.Quest.h>
 #include <Game.Character.Ship.h>
-#include <Game.Colors.h>
 #include <Game.Islands.h>
 #include <Game.Ship.h>
 #include "State.InPlay.ChangeHeading.h"
 #include "State.InPlay.Globals.h"
-#include "State.Terminal.h"
-#include "UIState.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CHANGE_HEADING;

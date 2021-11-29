@@ -1,21 +1,11 @@
-#include <Application.Keyboard.h>
-#include <Application.OnEnter.h>
-#include <Application.Renderer.h>
-#include <Application.UIState.h>
 #include <Common.Data.h>
 #include <Common.Heading.h>
 #include <Common.Utility.List.h>
-#include <Game.Audio.Mux.h>
-#include <Game.Character.Actions.h>
 #include <Game.Character.Ship.h>
 #include <Game.Ship.h>
 #include <Game.Islands.h>
-#include <Game.Colors.h>
-#include <Game.Player.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.HeadForKnown.h"
-#include "State.Terminal.h"
-#include "UIState.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_HEAD_FOR_KNOWN;
@@ -82,7 +72,7 @@ namespace state::in_play
 
 	static void OnOtherInput(const std::string& line)
 	{
-		DoHeadForKnownIndex(common::Data::ToInt(line)-1);
+		DoHeadForKnownIndex((size_t)common::Data::ToInt(line)- (size_t)1);
 	}
 
 	void HeadForKnown::Start()

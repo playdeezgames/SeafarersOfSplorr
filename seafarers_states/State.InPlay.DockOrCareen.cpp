@@ -1,21 +1,10 @@
-#include <Application.Keyboard.h>
-#include <Application.OnEnter.h>
-#include <Application.Renderer.h>
-#include <Application.UIState.h>
-#include <Game.Audio.Mux.h>
 #include <Game.Character.Actions.h>
 #include <Game.Character.Docked.h>
 #include <Game.Character.Quest.h>
 #include <Game.Character.Ship.h>
 #include <Game.Character.ShipStatistics.h>
-#include <Game.Colors.h>
-#include <Game.Player.h>
-#include <Game.Ship.h>
 #include "State.InPlay.DockOrCareen.h"
 #include "State.InPlay.Globals.h"
-#include "State.Terminal.h"
-#include "UIState.h"
-#include <Visuals.Messages.h>
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DOCK_OR_CAREEN;
@@ -50,42 +39,12 @@ namespace state::in_play
 		auto quest = game::character::Quest::Read(GetPlayerCharacterId());
 		if (game::character::Docked::Dock(GetPlayerCharacterId()) == game::character::DockResult::COMPLETED_QUEST)
 		{
-			visuals::Messages::Write(
-			{
-				"==DELIVERY COMPLETE==",
-				{
-					{
-						{19,5},
-						std::format("{} the {} ",quest.value().personName, quest.value().professionName),
-						game::Colors::GRAY,
-						visuals::HorizontalAlignment::CENTER
-					},
-					{
-						{19,7},
-						std::format("is {} ",quest.value().receiptEmotion),
-						game::Colors::GRAY,
-						visuals::HorizontalAlignment::CENTER
-					},
-					{
-						{19,9},
-						"when given the ",
-						game::Colors::GRAY,
-						visuals::HorizontalAlignment::CENTER
-					},
-					{
-						{19,11},
-						std::format("{}. ",quest.value().itemName),
-						game::Colors::GRAY,
-						visuals::HorizontalAlignment::CENTER
-					},
-					{
-						{19,14},
-						"Yer reputation increases!",
-						game::Colors::GRAY,
-						visuals::HorizontalAlignment::CENTER
-					}
-				}
-			});
+			Terminal::WriteLine("==DELIVERY COMPLETE==");
+			Terminal::Write("{} the {} ", quest.value().personName, quest.value().professionName);
+			Terminal::Write("is {} ", quest.value().receiptEmotion);
+			Terminal::Write("when given the ");
+			Terminal::Write("{}. ", quest.value().itemName);
+			Terminal::WriteLine("Yer reputation increases!");
 		}
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
