@@ -175,9 +175,6 @@
     <ProjectReference Include="..\seafarers_states\seafarers_states.vcxproj">
       <Project>{27d2bb30-00fa-4268-a380-6a378d3b5b44}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\seafarers_visuals\seafarers_visuals.vcxproj">
-      <Project>{b4b0aa1c-4879-4763-be82-d1bdc254ea8b}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\splorr_application\splorr_application.vcxproj">
       <Project>{d324e44e-369b-4237-99a8-1a508c5afcc4}</Project>
     </ProjectReference>
