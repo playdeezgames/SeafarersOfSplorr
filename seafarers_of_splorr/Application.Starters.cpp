@@ -15,12 +15,12 @@
 #include <State.ConfirmOverwrite.h>
 #include <State.ConfirmQuit.h>
 #include <State.InPlay.AtSeaOverview.h>
-#include <State.InPlay.AvatarStatus.h>
 #include <State.InPlay.CareenedToPort.h>
 #include <State.InPlay.CareenedToStarboard.h>
 #include <State.InPlay.Cargo.h>
 #include <State.InPlay.ChangeHeading.h>
 #include <State.InPlay.ChangeSpeed.h>
+#include <State.InPlay.CharacterStatus.h>
 #include <State.InPlay.ChooseRations.h>
 #include <State.InPlay.Confirm.h>
 #include <State.InPlay.ConfirmAbandonJob.h>
@@ -171,7 +171,7 @@ namespace application
 		state::in_play::CareenedToStarboard::Start,
 		state::in_play::Temple::Start,
 		state::in_play::MakeOffering::Start,
-		state::in_play::AvatarStatus::Start,
+		state::in_play::CharacterStatus::Start,
 		state::in_play::Equipment::Start,
 		state::in_play::CrewList::Start,
 		state::in_play::CrewDetail::Start,

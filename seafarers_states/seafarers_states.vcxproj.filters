@@ -77,7 +77,7 @@
     <ClInclude Include="State.InPlay.CareenedToStarboard.h">
       <Filter>Header Files\Careening</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.AvatarStatus.h">
+    <ClInclude Include="State.InPlay.CharacterStatus.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
     <ClInclude Include="State.InPlay.Cargo.h">
@@ -334,7 +334,7 @@
     <ClCompile Include="State.InPlay.MakeOffering.cpp">
       <Filter>Source Files\Docked</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.AvatarStatus.cpp">
+    <ClCompile Include="State.InPlay.CharacterStatus.cpp">
       <Filter>Source Files\AtSea\Status</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.Equipment.cpp">

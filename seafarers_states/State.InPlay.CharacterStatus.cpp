@@ -2,24 +2,11 @@
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
-#include <Common.Utility.h>
-#include <Common.Utility.Dispatcher.h>
-#include <format>
 #include <Game.Audio.Mux.h>
-#include <Game.Character.h>
-#include <Game.Character.Docked.h>
-#include <Game.Character.Items.h>
-#include <Game.Character.Quest.h>
 #include <Game.Character.Plights.h>
 #include <Game.Character.Statistics.h>
 #include <Game.Colors.h>
-#include <Game.Demigods.h>
-#include <Game.Islands.h>
-#include <Game.Islands.Items.h>
-#include <Game.Islands.Markets.h>
-#include <Game.Items.h>
-#include <Game.Player.h>
-#include "State.InPlay.AvatarStatus.h"
+#include "State.InPlay.CharacterStatus.h"
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
@@ -85,7 +72,7 @@ namespace state::in_play
 		{ "0", OnLeave}
 	};
 
-	void AvatarStatus::Start()
+	void CharacterStatus::Start()
 	{
 		::application::OnEnter::AddHandler(
 			CURRENT_STATE, 

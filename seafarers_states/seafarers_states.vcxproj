@@ -39,7 +39,7 @@
     <ClInclude Include="State.ConfirmOverwrite.h" />
     <ClInclude Include="State.ConfirmQuit.h" />
     <ClInclude Include="State.InPlay.AtSeaOverview.h" />
-    <ClInclude Include="State.InPlay.AvatarStatus.h" />
+    <ClInclude Include="State.InPlay.CharacterStatus.h" />
     <ClInclude Include="State.InPlay.CareenedToPort.h" />
     <ClInclude Include="State.InPlay.CareenedToStarboard.h" />
     <ClInclude Include="State.InPlay.Cargo.h" />
@@ -113,7 +113,7 @@
     <ClCompile Include="State.InPlay.ShipyardPurchaseShip.cpp" />
     <ClCompile Include="State.InPlay.ShipyardUnfoulShip.cpp" />
     <ClCompile Include="State.Terminal.cpp" />
-    <ClCompile Include="State.InPlay.AvatarStatus.cpp" />
+    <ClCompile Include="State.InPlay.CharacterStatus.cpp" />
     <ClCompile Include="State.InPlay.CareenedToPort.cpp" />
     <ClCompile Include="State.InPlay.CareenedToStarboard.cpp" />
     <ClCompile Include="State.InPlay.Cargo.cpp" />

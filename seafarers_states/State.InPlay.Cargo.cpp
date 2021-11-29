@@ -46,7 +46,6 @@ namespace state::in_play
 	static void Refresh()
 	{
 		Terminal::Reinitialize();
-
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Cargo:");
 		Terminal::SetForeground(game::Colors::GRAY);
@@ -66,9 +65,7 @@ namespace state::in_play
 			Terminal::WriteLine("{}) {} (x{})", index++, game::Items::GetName(entry.first), entry.second);
 		}
 		Terminal::WriteLine("0) Never mind");
-
 		Terminal::ShowPrompt();
-
 	}
 
 	static void OnEnter()
@@ -110,6 +107,5 @@ namespace state::in_play
 			Terminal::DoIntegerInput(
 				menuActions,
 				OnHandleOther));
-
 	}
 }
