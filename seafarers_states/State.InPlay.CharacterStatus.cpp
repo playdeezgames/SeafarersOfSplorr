@@ -8,7 +8,6 @@
 #include <Game.Colors.h>
 #include "State.InPlay.CharacterStatus.h"
 #include "State.InPlay.CrewDetail.h"
-#include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 namespace state::in_play
@@ -32,7 +31,7 @@ namespace state::in_play
 
 	static void RefreshPlights()
 	{
-		auto inflicted = game::character::Plights::InflictedWith(GetPlayerCharacterId());
+		auto inflicted = game::character::Plights::InflictedWith(CrewDetail::GetCharacterId());
 		if (!inflicted.empty())
 		{
 			Terminal::SetForeground(game::Colors::GRAY);
