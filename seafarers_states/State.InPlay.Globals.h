@@ -23,4 +23,18 @@ namespace state::in_play
 	std::optional<std::list<game::Island>> GetPlayerCharacterViewableIslands();
 	std::optional<double> GetPlayerCharacterShipHeading();
 	std::optional<double> GetPlayerCharacterShipSpeed();
+	//game::Islands::GetKnownIslands(GetPlayerCharacterId())
+	//game::Ship::SetHeading(GetPlayerCharacterShipId().value(),
+	//game::audio::Mux::Play(game::audio::Theme::MAIN)
+	//game::character::Actions::DoAction(GetPlayerCharacterId(),
+	//game::character::Statistics::ChangeMoney(GetPlayerCharacterId()
+	//game::character::Statistics::ReadMoney(GetPlayerCharacterId())
+	//game::islands::DarkAlley::GetAnte(GetPlayerCharacterIslandId().value())
+	//game::islands::DarkAlley::GetMinimumWager(GetPlayerCharacterIslandId().value())
+	//data::game::Island::Read(GetPlayerCharacterIslandId().value()).value().location
+	//game::character::Ship::AvailableTonnage(GetPlayerCharacterId()).value()
+	//game::character::Ship::AvailableTonnage(GetPlayerCharacterId()).value()
+	//game::islands::Items::GetPurchasePrices(GetPlayerCharacterIslandId().value())
+	//game::character::Items::All(GetPlayerCharacterId())
+	//game::character::ShipStatistics::CleanHull(GetPlayerCharacterShipId().value(),
 }

@@ -24,7 +24,6 @@ namespace state::in_play
 
 	static double GetMinimumWager()
 	{
-		
 		return game::islands::DarkAlley::GetMinimumWager(GetPlayerCharacterIslandId().value()).value();
 	}
 

@@ -29,9 +29,7 @@ namespace state::in_play
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::GREEN);
 		Terminal::WriteLine("You clean the starboard side.");
-		game::character::ShipStatistics::CleanHull(
-			GetPlayerCharacterShipId().value(),
-			game::Side::STARBOARD);
+		game::character::ShipStatistics::CleanHull(GetPlayerCharacterShipId().value(), game::Side::STARBOARD);
 		Refresh();
 	}
 
@@ -68,7 +66,7 @@ namespace state::in_play
 			CURRENT_STATE,
 			Terminal::DoIntegerInput(
 				menuActions,
-				"Please enter a number between 1 and 2.",
+				Terminal::INVALID_INPUT,
 				Refresh));
 
 	}

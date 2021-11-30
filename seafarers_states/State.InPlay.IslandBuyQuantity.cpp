@@ -16,9 +16,7 @@ namespace state::in_play
 	{
 		Terminal::Reinitialize();
 
-		auto unitPrice = game::islands::Items::GetPurchasePrices(
-			GetPlayerCharacterIslandId().value()
-		)[currentItem];
+		auto unitPrice = game::islands::Items::GetPurchasePrices(GetPlayerCharacterIslandId().value())[currentItem];
 		auto money = game::character::Statistics::ReadMoney(GetPlayerCharacterId());
 		double availableTonnage = game::character::Ship::AvailableTonnage(GetPlayerCharacterId()).value();
 		double unitTonnage = game::Items::GetUnitTonnage(currentItem);
@@ -44,9 +42,7 @@ namespace state::in_play
 
 	static void OnOtherInput(const std::string& line)
 	{
-		auto unitPrice = game::islands::Items::GetPurchasePrices(
-				GetPlayerCharacterIslandId().value()
-		)[currentItem];
+		auto unitPrice = game::islands::Items::GetPurchasePrices(GetPlayerCharacterIslandId().value())[currentItem];
 		auto money = game::character::Statistics::ReadMoney(GetPlayerCharacterId());
 		double availableTonnage = game::character::Ship::AvailableTonnage(GetPlayerCharacterId()).value();
 		double unitTonnage = game::Items::GetUnitTonnage(currentItem);
@@ -93,5 +89,4 @@ namespace state::in_play
 	{
 		currentItem = item;
 	}
-
 }

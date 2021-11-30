@@ -22,9 +22,7 @@ namespace state::in_play
 
 	static void UpdateUnitPrices()
 	{
-		unitPrices = game::islands::Items::GetPurchasePrices(
-			GetPlayerCharacterIslandId().value()
-		);
+		unitPrices = game::islands::Items::GetPurchasePrices(GetPlayerCharacterIslandId().value());
 	}
 
 	static void RefreshUnitPrices()

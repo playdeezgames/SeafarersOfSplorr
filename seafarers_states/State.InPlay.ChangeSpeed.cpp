@@ -20,7 +20,7 @@ namespace state::in_play
 		Terminal::WriteLine("3) Ahead 2/3");
 		Terminal::WriteLine("4) Ahead full");
 		Terminal::WriteLine("5) Ahead flank");
-		Terminal::WriteLine("6) Never mind");
+		Terminal::WriteLine("0) Never mind");
 
 		Terminal::ShowPrompt();
 	}
@@ -47,7 +47,7 @@ namespace state::in_play
 		{"3", DoSetSpeed(0.6)},
 		{"4", DoSetSpeed(0.9)},
 		{"5", DoSetSpeed(1.0)},
-		{"6", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS)}
+		{"0", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS)}
 	};
 
 	void ChangeSpeed::Start()
@@ -58,7 +58,7 @@ namespace state::in_play
 			CURRENT_STATE, 
 			Terminal::DoIntegerInput(
 				menuActions, 
-				"Please enter a number between 1 and 6.", 
+				Terminal::INVALID_INPUT, 
 				Refresh));
 	}
 }

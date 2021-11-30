@@ -15,9 +15,7 @@ namespace state::in_play
 	{
 		Terminal::Reinitialize();
 
-		auto unitPrice = game::islands::Items::GetSalePrices(
-			GetPlayerCharacterIslandId().value()
-		)[currentItem];
+		auto unitPrice = game::islands::Items::GetSalePrices(GetPlayerCharacterIslandId().value())[currentItem];
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Selling {}:", game::Items::GetName(currentItem));
@@ -36,9 +34,7 @@ namespace state::in_play
 
 	static void OnOtherInput(const std::string& line)
 	{
-		auto unitPrice = game::islands::Items::GetSalePrices(
-			GetPlayerCharacterIslandId().value()
-		)[currentItem];
+		auto unitPrice = game::islands::Items::GetSalePrices(GetPlayerCharacterIslandId().value())[currentItem];
 		int units = common::Data::ToInt(line);
 		if (units <= game::character::Items::Read(GetPlayerCharacterId(), currentItem))
 		{

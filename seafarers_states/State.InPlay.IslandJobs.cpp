@@ -14,9 +14,7 @@ namespace state::in_play
 	static void OnAccept()//TODO: make this more declarative
 	{
 		switch (game::character::Quest::Accept(GetPlayerCharacterId(), data::game::Island::Find(
-			data::game::Island::Read(
-				GetPlayerCharacterIslandId().value()
-			).value().location
+			data::game::Island::Read(GetPlayerCharacterIslandId().value()).value().location
 		).value()))
 		{
 		case game::character::AcceptQuestResult::ACCEPTED_QUEST:

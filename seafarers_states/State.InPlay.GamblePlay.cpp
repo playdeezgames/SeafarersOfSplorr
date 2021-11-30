@@ -8,6 +8,11 @@ namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_GAMBLE_PLAY;
 
+	static std::vector<cards::Card> GetHand()
+	{
+		return game::islands::dark_alley::GamblingHand::Read(GetPlayerCharacterIslandId().value());
+	}
+
 	static void Refresh()
 	{
 		Terminal::Reinitialize();
@@ -19,7 +24,7 @@ namespace state::in_play
 		Terminal::WriteLine("Minimum wager(less ante): {:.4f}", 
 			game::islands::DarkAlley::GetMinimumWager(GetPlayerCharacterIslandId().value()).value() -
 			game::islands::DarkAlley::GetAnte(GetPlayerCharacterIslandId().value()).value());
-		auto hand = game::islands::dark_alley::GamblingHand::Read(GetPlayerCharacterIslandId().value());
+		auto hand = GetHand();
 
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::Write("First Card: ");
@@ -54,7 +59,7 @@ namespace state::in_play
 
 	static void OnPlaceMinimumWager()
 	{
-		auto hand = game::islands::dark_alley::GamblingHand::Read(GetPlayerCharacterIslandId().value());
+		auto hand = GetHand();
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::Write("Final Card: ");
 		Terminal::SetForeground(DarkAlleyEntrance::SuitColors.find(std::get<1>(hand[2]))->second);
