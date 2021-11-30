@@ -1,23 +1,9 @@
-#include <Application.Keyboard.h>
-#include <Application.OnEnter.h>
-#include <Application.Renderer.h>
-#include <Application.UIState.h>
-#include <Common.Utility.h>
-#include <Data.Game.Island.h>
-#include <Data.JSON.Stores.h>
-#include <format>
-#include <Game.Audio.Mux.h>
-#include <Game.Character.h>
 #include <Game.Character.Actions.h>
 #include <Game.Character.Docked.h>
-#include <Game.Colors.h>
 #include <Game.Demigods.h>
 #include <Game.Islands.h>
-#include <Game.Player.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.Temple.h"
-#include "State.Terminal.h"
-#include "UIState.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_TEMPLE;
@@ -25,11 +11,7 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		auto location =
-			data::game::Island::Read(
-				game::character::Docked::ReadLocation(GetPlayerCharacterId()).value()
-			).value().location;
-		auto islandId = data::game::Island::Find(location).value();
+		auto islandId = game::character::Docked::ReadLocation(GetPlayerCharacterId()).value();
 		auto island = game::Islands::Read(islandId).value();
 		Terminal::Reinitialize();
 

@@ -1,30 +1,14 @@
-#include <Application.Keyboard.h>
-#include <Application.OnEnter.h>
-#include <Application.Renderer.h>
-#include <Application.UIState.h>
 #include <Common.Data.h>
-#include <Common.Utility.h>
-#include <Common.Utility.Dispatcher.h>
-#include <Common.Utility.Navigator.h>
 #include <Common.Utility.Table.h>
-#include <Data.Game.Island.h>
-#include <format>
-#include <Game.Audio.Mux.h>
-#include <Game.Character.h>
 #include <Game.Character.Actions.h>
 #include <Game.Character.Docked.h>
 #include <Game.Character.Items.h>
 #include <Game.Character.Statistics.h>
-#include <Game.Colors.h>
 #include <Game.Islands.Items.h>
-#include <Game.Islands.Markets.h>
 #include <Game.Items.h>
-#include <Game.Player.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.IslandSell.h"
 #include "State.InPlay.IslandSellQuantity.h"
-#include "State.Terminal.h"
-#include "UIState.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_ISLAND_SELL;

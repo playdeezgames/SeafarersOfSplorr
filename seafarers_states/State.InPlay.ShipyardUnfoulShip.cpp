@@ -1,21 +1,11 @@
-#include <Application.Keyboard.h>
-#include <Application.OnEnter.h>
-#include <Application.Renderer.h>
-#include <Application.UIState.h>
-#include <Data.Game.Island.h>
-#include <Game.Audio.Mux.h>
 #include <Game.Character.Docked.h>
 #include <Game.Character.Statistics.h>
 #include <Game.Character.Ship.h>
 #include <Game.Character.ShipStatistics.h>
-#include <Game.Colors.h>
 #include <Game.Islands.Commodities.h>
-#include <Game.Player.h>
 #include <Game.World.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.ShipyardUnfoulShip.h"
-#include "State.Terminal.h"
-#include "UIState.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_SHIPYARD_UNFOUL_SHIP;

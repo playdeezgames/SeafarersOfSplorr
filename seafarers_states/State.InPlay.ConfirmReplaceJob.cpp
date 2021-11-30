@@ -1,20 +1,8 @@
-#include <Application.Keyboard.h>
-#include <Application.OnEnter.h>
-#include <Application.Renderer.h>
-#include <Application.UIState.h>
-#include <Data.Game.Island.h>
-#include <Common.Utility.h>
-#include <Game.Audio.Mux.h>
-#include <Game.Character.h>
 #include <Game.Character.Actions.h>
 #include <Game.Character.Docked.h>
 #include <Game.Character.Quest.h>
-#include <Game.Colors.h>
-#include <Game.Player.h>
 #include "State.InPlay.ConfirmReplaceJob.h"
 #include "State.InPlay.Globals.h"
-#include "State.Terminal.h"
-#include "UIState.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CONFIRM_REPLACE_JOB;
