@@ -1,6 +1,5 @@
 #include <Common.Data.h>
 #include <Common.Utility.Table.h>
-#include <Game.Character.Docked.h>
 #include <Game.Character.Items.h>
 #include <Game.Demigods.h>
 #include <Game.Islands.h>

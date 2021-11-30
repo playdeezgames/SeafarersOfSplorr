@@ -1,7 +1,6 @@
 #include <Common.Data.h>
 #include <Common.Utility.Table.h>
 #include <Data.Game.Island.h>
-#include <Game.Character.Docked.h>
 #include <Game.Character.Items.h>
 #include <Game.Character.Ship.h>
 #include <Game.Character.Statistics.h>

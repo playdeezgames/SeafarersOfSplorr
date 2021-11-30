@@ -24,7 +24,7 @@
     <ClInclude Include="Game.Character.AcceptQuestResult.h" />
     <ClInclude Include="Game.Character.Action.h" />
     <ClInclude Include="Game.Character.Actions.h" />
-    <ClInclude Include="Game.Character.Docked.h" />
+    <ClInclude Include="Game.Ship.Docked.h" />
     <ClInclude Include="Game.Character.DockResult.h" />
     <ClInclude Include="Game.Character.Equipment.h" />
     <ClInclude Include="Game.Character.Flag.h" />
@@ -98,7 +98,7 @@
   <ItemGroup>
     <ClCompile Include="Game.Character.Actions.cpp" />
     <ClCompile Include="Game.Character.cpp" />
-    <ClCompile Include="Game.Character.Docked.cpp" />
+    <ClCompile Include="Game.Ship.Docked.cpp" />
     <ClCompile Include="Game.Character.Equipment.cpp" />
     <ClCompile Include="Game.Character.Flags.cpp" />
     <ClCompile Include="Game.Character.Items.cpp" />

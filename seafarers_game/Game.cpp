@@ -3,7 +3,6 @@
 #include <Data.SQLite.Stores.h>
 #include "Game.h"
 #include "Game.Character.h"
-#include "Game.Character.Docked.h"
 #include "Game.Character.Equipment.h"
 #include "Game.Character.Items.h"
 #include "Game.Character.Plights.h"
@@ -15,6 +14,7 @@
 #include "Game.Islands.Features.h"
 #include "Game.Player.h"
 #include "Game.Ships.h"
+#include "Game.Ship.Docked.h"
 #include "Game.World.h"
 #include <list>
 #include <map>

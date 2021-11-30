@@ -1,5 +1,4 @@
 #include <Common.Data.h>
-#include <Game.Character.Docked.h>
 #include <Game.Character.Items.h>
 #include <Game.Character.Ship.h>
 #include <Game.Character.Statistics.h>

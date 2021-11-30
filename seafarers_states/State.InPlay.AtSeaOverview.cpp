@@ -1,7 +1,6 @@
 #include <Common.Heading.h>
 #include <Game.h>
 #include <Game.Character.Actions.h>
-#include <Game.Character.Docked.h>
 #include <Game.Character.Items.h>
 #include <Game.Character.Quest.h>
 #include <Game.Character.Ship.h>

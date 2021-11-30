@@ -6,7 +6,6 @@
 #include <functional>
 #include "Game.Character.Action.h"
 #include "Game.Character.Actions.h"
-#include "Game.Character.Docked.h"
 #include "Game.Character.Items.h"
 #include "Game.Character.State.h"
 #include "Game.Character.StateTransition.h"
@@ -15,6 +14,7 @@
 #include "Game.Fishboard.h"
 #include "Game.Islands.h"
 #include "Game.Player.h"
+#include "Game.Ship.Docked.h"
 namespace game::character
 {
 	const std::string FORMAT_UNDOCK = "You undock from {}.";

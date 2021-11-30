@@ -1,5 +1,5 @@
-#include <Game.Character.Docked.h>
 #include <Game.Player.h>
+#include <Game.Ship.Docked.h>
 #include "State.InPlay.Globals.h"
 namespace state::in_play
 {
@@ -12,4 +12,10 @@ namespace state::in_play
 	{
 		return game::character::Docked::GetIsland(GetPlayerCharacterId());
 	}
+
+	std::optional<game::character::DockResult> Dock()
+	{
+		return game::character::Docked::Dock(GetPlayerCharacterId());
+	}
+
 }

@@ -1,5 +1,4 @@
 #include <Game.Character.Actions.h>
-#include <Game.Character.Docked.h>
 #include <Game.Character.Quest.h>
 #include "State.InPlay.ConfirmReplaceJob.h"
 #include "State.InPlay.Globals.h"

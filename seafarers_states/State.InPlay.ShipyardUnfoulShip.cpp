@@ -1,4 +1,3 @@
-#include <Game.Character.Docked.h>
 #include <Game.Character.Statistics.h>
 #include <Game.Character.Ship.h>
 #include <Game.Character.ShipStatistics.h>

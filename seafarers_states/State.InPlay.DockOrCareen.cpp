@@ -1,5 +1,4 @@
 #include <Game.Character.Actions.h>
-#include <Game.Character.Docked.h>
 #include <Game.Character.Quest.h>
 #include <Game.Character.Ship.h>
 #include <Game.Character.ShipStatistics.h>
@@ -34,17 +33,22 @@ namespace state::in_play
 		Refresh();
 	}
 
+	static void CompleteQuest(const game::Quest& quest)
+	{
+		Terminal::WriteLine("==DELIVERY COMPLETE==");
+		Terminal::Write("{} the {} ", quest.personName, quest.professionName);
+		Terminal::Write("is {} ", quest.receiptEmotion);
+		Terminal::Write("when given the ");
+		Terminal::Write("{}. ", quest.itemName);
+		Terminal::WriteLine("Yer reputation increases!");
+	}
+
 	static void OnDock()
 	{
-		auto quest = game::character::Quest::Read(GetPlayerCharacterId());
-		if (game::character::Docked::Dock(GetPlayerCharacterId()) == game::character::DockResult::COMPLETED_QUEST)
+		auto quest = game::character::Quest::Read(GetPlayerCharacterId());//after the call to Dock(), this will be nullopt if completed!
+		if (Dock() == game::character::DockResult::COMPLETED_QUEST)
 		{
-			Terminal::WriteLine("==DELIVERY COMPLETE==");
-			Terminal::Write("{} the {} ", quest.value().personName, quest.value().professionName);
-			Terminal::Write("is {} ", quest.value().receiptEmotion);
-			Terminal::Write("when given the ");
-			Terminal::Write("{}. ", quest.value().itemName);
-			Terminal::WriteLine("Yer reputation increases!");
+			CompleteQuest(quest.value());
 		}
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
