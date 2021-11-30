@@ -13,7 +13,8 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Careened to starboard:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Port fouling {:.0f}%", game::character::ShipStatistics::GetFoulingPercentage(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value(), game::Side::PORT));
+		Terminal::WriteLine("Port fouling {:.0f}%", 
+			game::character::ShipStatistics::GetFoulingPercentage(GetPlayerCharacterShipId().value(), game::Side::PORT));
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Clean port side");
@@ -27,7 +28,7 @@ namespace state::in_play
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::GREEN);
 		Terminal::WriteLine("You clean the port side.");
-		game::character::ShipStatistics::CleanHull(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value(), game::Side::PORT);
+		game::character::ShipStatistics::CleanHull(GetPlayerCharacterShipId().value(), game::Side::PORT);
 		Refresh();
 	}
 

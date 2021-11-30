@@ -15,7 +15,7 @@ namespace state::in_play
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Head for:");
-		auto nearby = game::Islands::GetViewableIslands(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value());
+		auto nearby = game::Islands::GetViewableIslands(GetPlayerCharacterShipId().value());
 		if (!nearby.empty())
 		{
 			Terminal::SetForeground(game::Colors::GRAY);
@@ -47,13 +47,13 @@ namespace state::in_play
 	{
 		return [index]() 
 		{
-			auto nearby = game::Islands::GetViewableIslands(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value());
+			auto nearby = game::Islands::GetViewableIslands(GetPlayerCharacterShipId().value());
 			auto chosen = common::utility::List::GetNth(nearby, index);
 			if (chosen)
 			{
 				Terminal::SetForeground(game::Colors::GREEN);
 				Terminal::WriteLine();
-				game::Ship::SetHeading(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value(), common::Heading::XYToDegrees(chosen.value().relativeLocation));
+				game::Ship::SetHeading(GetPlayerCharacterShipId().value(), common::Heading::XYToDegrees(chosen.value().relativeLocation));
 				Terminal::WriteLine("You head for {}.", chosen.value().GetDisplayName());
 				application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
 			}

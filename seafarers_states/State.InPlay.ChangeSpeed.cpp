@@ -13,7 +13,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Change Speed:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Current Speed: {:.2f}", game::Ship::GetSpeed(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value()).value());
+		Terminal::WriteLine("Current Speed: {:.2f}", game::Ship::GetSpeed(GetPlayerCharacterShipId().value()).value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) All stop");
@@ -36,7 +36,7 @@ namespace state::in_play
 	{
 		return [speed]() 
 		{
-			game::Ship::SetSpeed(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value(), speed);
+			game::Ship::SetSpeed(GetPlayerCharacterShipId().value(), speed);
 			application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 		};
 	}

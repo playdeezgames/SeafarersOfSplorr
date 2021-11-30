@@ -10,7 +10,7 @@ namespace state::in_play
 		return game::Player::GetCharacterId();
 	}
 
-	static std::optional<int> GetPlayerCharacterShipId()
+	std::optional<int> GetPlayerCharacterShipId()
 	{
 		return game::character::Ship::ReadShipId(GetPlayerCharacterId());
 	}

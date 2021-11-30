@@ -6,11 +6,6 @@ namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_SHIP_STATUS;
 
-	static int GetAvatarShipId()
-	{
-		return game::character::Ship::ReadShipId(GetPlayerCharacterId()).value();
-	}
-
 	static void Refresh()
 	{
 		Terminal::Reinitialize();
@@ -18,11 +13,11 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Ship status:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Name: {}", game::Ship::GetName(GetAvatarShipId()).value());
+		Terminal::WriteLine("Name: {}", game::Ship::GetName(GetPlayerCharacterShipId().value()).value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine("1) Change Heading(Current: {:.2f}\xf8)", game::Ship::GetHeading(GetAvatarShipId()).value());
-		Terminal::WriteLine("2) Change Speed(Current: {:.1f})", game::Ship::GetSpeed(GetAvatarShipId()).value());
+		Terminal::WriteLine("1) Change Heading(Current: {:.2f}\xf8)", game::Ship::GetHeading(GetPlayerCharacterShipId().value()).value());
+		Terminal::WriteLine("2) Change Speed(Current: {:.1f})", game::Ship::GetSpeed(GetPlayerCharacterShipId().value()).value());
 		Terminal::WriteLine("3) Cargo");
 		Terminal::WriteLine("4) Rename ship");
 		Terminal::WriteLine("0) Never mind");

@@ -14,4 +14,5 @@ namespace state::in_play
 	int GetPlayerCharacterId();
 	std::optional<game::ship::DockResult> Dock();
 	std::optional<int> GetPlayerCharacterIslandId();
+	std::optional<int> GetPlayerCharacterShipId();
 }

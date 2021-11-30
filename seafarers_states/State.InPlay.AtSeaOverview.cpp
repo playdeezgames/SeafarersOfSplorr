@@ -16,11 +16,6 @@ namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_AT_SEA_OVERVIEW;
 
-	static int GetAvatarShipId()
-	{
-		return game::character::Ship::ReadShipId(GetPlayerCharacterId()).value();
-	}
-
 	static bool IsFishingEnabled()
 	{
 		return
@@ -30,7 +25,7 @@ namespace state::in_play
 
 	static bool RefreshDockableIslands()
 	{
-		auto dockable = game::Islands::GetDockableIslands(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value());
+		auto dockable = game::Islands::GetDockableIslands(GetPlayerCharacterShipId().value());
 		if (!dockable.empty())
 		{
 			auto island = dockable.front();
@@ -50,7 +45,7 @@ namespace state::in_play
 
 	static void RefreshNearbyIslands()
 	{
-		auto nearby = game::Islands::GetViewableIslands(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value());
+		auto nearby = game::Islands::GetViewableIslands(GetPlayerCharacterShipId().value());
 		if (!nearby.empty())
 		{
 			Terminal::Write("You see {} islands nearby", nearby.size());
@@ -85,7 +80,7 @@ namespace state::in_play
 		auto quest = game::character::Quest::Read(GetPlayerCharacterId());
 		if (quest)
 		{
-			auto delta = quest.value().destination - game::Ship::GetLocation(GetAvatarShipId()).value();
+			auto delta = quest.value().destination - game::Ship::GetLocation(GetPlayerCharacterShipId().value()).value();
 			Terminal::WriteLine(
 				"Delivery distance: {:.1f}", 
 				delta.GetMagnitude());			
@@ -96,7 +91,7 @@ namespace state::in_play
 
 	static void RefreshFisheries()
 	{
-		if (!game::Fisheries::Available(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value()).empty())
+		if (!game::Fisheries::Available(GetPlayerCharacterShipId().value()).empty())
 		{
 			Terminal::WriteLine("This looks like a good place to fish.");
 		}
@@ -116,12 +111,12 @@ namespace state::in_play
 			game::Colors::GRAY);
 		Terminal::WriteLine(
 			"Heading: {:.2f}\xf8, Speed: {:.1f}",
-			game::Ship::GetHeading(GetAvatarShipId()).value(),
-			game::Ship::GetSpeed(GetAvatarShipId()).value());
+			game::Ship::GetHeading(GetPlayerCharacterShipId().value()).value(),
+			game::Ship::GetSpeed(GetPlayerCharacterShipId().value()).value());
 		Terminal::WriteLine(
 			"Wind: {:.2f}\xf8 (x{:.1f})",
 			game::World::GetWindHeading(),
-			game::World::GetWindSpeedMultiplier(game::Ship::GetHeading(GetAvatarShipId()).value()));
+			game::World::GetWindSpeedMultiplier(game::Ship::GetHeading(GetPlayerCharacterShipId().value()).value()));
 		RefreshFisheries();
 		bool canDock = RefreshDockableIslands();
 		RefreshNearbyIslands();
@@ -167,7 +162,7 @@ namespace state::in_play
 
 	static void OnDock()
 	{
-		if (!game::Islands::GetDockableIslands(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value()).empty())
+		if (!game::Islands::GetDockableIslands(GetPlayerCharacterShipId().value()).empty())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_DOCK_OR_CAREEN);
 		}

@@ -16,7 +16,7 @@ namespace state::in_play
 			{
 					{game::Commodity::LABOR, 
 						game::World::GetUnfoulingLaborMultiplier() * 
-						game::character::ShipStatistics::GetFouling(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value())}
+						game::character::ShipStatistics::GetFouling(GetPlayerCharacterShipId().value())}
 			});
 	}
 
@@ -62,8 +62,8 @@ namespace state::in_play
 		if (price>0 && game::character::Statistics::ReadMoney(GetPlayerCharacterId()) >= price)
 		{
 			game::character::Statistics::ChangeMoney(GetPlayerCharacterId(), -price);
-			game::character::ShipStatistics::CleanHull(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value(), game::Side::STARBOARD);
-			game::character::ShipStatistics::CleanHull(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value(), game::Side::PORT);
+			game::character::ShipStatistics::CleanHull(GetPlayerCharacterShipId().value(), game::Side::STARBOARD);
+			game::character::ShipStatistics::CleanHull(GetPlayerCharacterShipId().value(), game::Side::PORT);
 			Terminal::WriteLine("You unfoul yer ship!");
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		}

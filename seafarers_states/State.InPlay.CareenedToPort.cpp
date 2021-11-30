@@ -15,7 +15,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Starboard fouling {:.0f}%", 
 			game::character::ShipStatistics::GetFoulingPercentage(
-				game::character::Ship::ReadShipId(GetPlayerCharacterId()).value(),
+				GetPlayerCharacterShipId().value(),
 				game::Side::STARBOARD));
 
 		Terminal::SetForeground(game::Colors::YELLOW);
@@ -31,7 +31,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::GREEN);
 		Terminal::WriteLine("You clean the starboard side.");
 		game::character::ShipStatistics::CleanHull(
-			game::character::Ship::ReadShipId(GetPlayerCharacterId()).value(),
+			GetPlayerCharacterShipId().value(),
 			game::Side::STARBOARD);
 		Refresh();
 	}
