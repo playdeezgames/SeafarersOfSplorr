@@ -21,7 +21,7 @@ namespace game::character
 
 	static StateTransition OnUndock(int characterId)
 	{
-		auto islandId = game::ship::Docked::GetIslandOld(characterId).value();
+		auto islandId = game::ship::Docked::GetIsland(data::game::character::Ship::ReadForCharacter(characterId).value().shipId).value();
 		auto island = game::Islands::Read(islandId).value();
 		data::game::ship::Docks::Clear(data::game::character::Ship::ReadForCharacter(characterId).value().shipId);
 		return {
@@ -35,7 +35,7 @@ namespace game::character
 
 	static StateTransition OnEnterDarkAlley(int characterId)
 	{
-		auto data = data::game::island::DarkAlley::Read(game::ship::Docked::GetIslandOld(characterId).value()).value();
+		auto data = data::game::island::DarkAlley::Read(game::ship::Docked::GetIsland(data::game::character::Ship::ReadForCharacter(characterId).value().shipId).value()).value();
 		auto infamy = game::character::Statistics::GetInfamy(characterId);
 		if (infamy < data.infamyRequirement)
 		{

@@ -66,33 +66,10 @@ namespace game::ship
 		return std::nullopt;
 	}
 
-	std::optional<DockResult> Docked::DockOld(int characterId)
-	{
-		if (GetIslandOld(characterId).has_value())
-		{
-			return DockResult::ALREADY_DOCKED;
-		}
-		auto dockables = game::Islands::GetDockableIslands(game::character::Ship::ReadShipId(characterId).value());
-		if (!dockables.empty())
-		{
-			return DoDock(characterId, dockables.front().absoluteLocation);
-		}
-		return std::nullopt;
-	}
-
 	std::optional<int> Docked::GetIsland(int shipId)
 	{
 		return data::game::ship::Docks::Read(shipId);
 	}
 
 
-	std::optional<int> Docked::GetIslandOld(int characterId)
-	{
-		auto ship = data::game::character::Ship::ReadForCharacter(characterId);
-		if (ship)
-		{
-			return data::game::ship::Docks::Read(ship.value().shipId);
-		}
-		return std::nullopt;
-	}
 }
