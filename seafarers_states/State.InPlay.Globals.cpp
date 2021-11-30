@@ -1,4 +1,5 @@
 #include <Common.Utility.Optional.h>
+#include <Game.Character.Quest.h>
 #include <Game.Character.Ship.h>
 #include <Game.Player.h>
 #include <Game.Ship.Docked.h>
@@ -29,5 +30,10 @@ namespace state::in_play
 			common::utility::Optional::Bind<int, game::ship::DockResult>(
 				GetPlayerCharacterShipId(), 
 				game::ship::Docked::Dock);
+	}
+
+	std::optional<game::Quest> GetPlayerCharacterQuest()
+	{
+		return game::character::Quest::Read(GetPlayerCharacterId());
 	}
 }

@@ -40,16 +40,14 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		auto quest = game::character::Quest::Read(GetPlayerCharacterId());
+		auto quest = GetPlayerCharacterQuest();
 		if (quest)
 		{
 			RefreshQuest(quest.value());
+			return;
 		}
-		else
-		{
-			RefreshNoQuest();
-			application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
-		}
+		RefreshNoQuest();
+		application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
 	}
 
 	static void OnEnter()

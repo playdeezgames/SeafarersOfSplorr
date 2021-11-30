@@ -44,7 +44,7 @@ namespace state::in_play
 
 	static void OnDock()
 	{
-		auto quest = game::character::Quest::Read(GetPlayerCharacterId());//after the call to Dock(), this will be nullopt if completed!
+		auto quest = GetPlayerCharacterQuest();//after the call to Dock(), this will be nullopt if completed!
 		if (Dock() == game::ship::DockResult::COMPLETED_QUEST)
 		{
 			CompleteQuest(quest.value());

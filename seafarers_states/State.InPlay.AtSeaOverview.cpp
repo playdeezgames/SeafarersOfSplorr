@@ -76,7 +76,7 @@ namespace state::in_play
 
 	static bool RefreshJobDestination()
 	{
-		auto quest = game::character::Quest::Read(GetPlayerCharacterId());
+		auto quest = GetPlayerCharacterQuest();
 		if (quest)
 		{
 			auto delta = quest.value().destination - game::Ship::GetLocation(GetPlayerCharacterShipId().value()).value();
@@ -178,25 +178,21 @@ namespace state::in_play
 		{
 			game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::START_FISHING);
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
+			return;
 		}
-		else
-		{
-			Terminal::ErrorMessage(Terminal::INVALID_INPUT);
-			Refresh();
-		}
+		Terminal::ErrorMessage(Terminal::INVALID_INPUT);
+		Refresh();
 	}
 
 	static void OnJob()
 	{
-		if (game::character::Quest::Read(GetPlayerCharacterId()).has_value())
+		if (GetPlayerCharacterQuest())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_CURRENT_JOB);
+			return;
 		}
-		else
-		{
-			Terminal::ErrorMessage(Terminal::INVALID_INPUT);
-			Refresh();
-		}
+		Terminal::ErrorMessage(Terminal::INVALID_INPUT);
+		Refresh();
 	}
 
 	static const std::map<std::string, std::function<void()>> menuActions =
