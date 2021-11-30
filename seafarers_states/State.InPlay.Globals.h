@@ -17,4 +17,8 @@ namespace state::in_play
 	std::optional<int> GetPlayerCharacterIslandId();
 	std::optional<int> GetPlayerCharacterShipId();
 	std::optional<game::Quest> GetPlayerCharacterQuest();
+	//GetViewableIslands (5 places in 3 files)
+	//game::Ship::GetLocation(GetPlayerCharacterShipId().value()) (4 places in 4 files)
+	//game::Ship::GetLocation(GetPlayerCharacterShipId().value()) (4 places in 3 files)
+	//game::Ship::GetSpeed(GetPlayerCharacterShipId().value()) (3 places in 3 files)
 }
