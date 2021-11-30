@@ -41,7 +41,6 @@ namespace game
 		World::Reset(difficulty);//must be done first to establish world size
 		Ships::Reset(difficulty);
 		Character::Reset(difficulty);
-		ship::Docked::Reset(difficulty);
 		character::Equipment::Reset(difficulty);
 		character::Items::Reset(Player::GetCharacterId(), difficulty);
 		character::Plights::Reset(difficulty);

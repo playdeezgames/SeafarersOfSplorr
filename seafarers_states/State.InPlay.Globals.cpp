@@ -10,12 +10,12 @@ namespace state::in_play
 
 	std::optional<int> GetPlayerCharacterIslandId()
 	{
-		return game::ship::Docked::GetIsland(GetPlayerCharacterId());
+		return game::ship::Docked::GetIslandOld(GetPlayerCharacterId());
 	}
 
 	std::optional<game::ship::DockResult> Dock()
 	{
-		return game::ship::Docked::Dock(GetPlayerCharacterId());
+		return game::ship::Docked::DockOld(GetPlayerCharacterId());
 	}
 
 }

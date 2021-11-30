@@ -9,15 +9,9 @@
 #include "Game.Islands.Quests.h"
 #include "Game.Islands.h"
 #include "Game.Ship.Docked.h"
+#include <set>
 namespace game::ship
 {
-	void Docked::Reset(const game::Difficulty&)
-	{
-
-	}
-
-	static const std::string FORMAT_DOCK = "You dock at {}!";
-
 	static void SetAvatarStateToDocked(int characterId)
 	{
 		auto avatar = data::game::Character::Read(characterId).value();
@@ -44,9 +38,37 @@ namespace game::ship
 		return result;
 	}
 
-	std::optional<DockResult> Docked::Dock(int characterId)
+	std::optional<DockResult> Docked::Dock(int shipId)
 	{
-		if (GetIsland(characterId).has_value())
+		if (GetIsland(shipId))
+		{
+			return DockResult::ALREADY_DOCKED;
+		}
+		auto dockables = game::Islands::GetDockableIslands(shipId);
+		if (!dockables.empty())
+		{
+			auto billets = data::game::character::Ship::ReadForShip(shipId);
+			std::set<DockResult> dockResults;
+			for (auto billet : billets)
+			{
+				auto dockResult = DoDock(billet.characterId, dockables.front().absoluteLocation);
+				if (dockResult)
+				{
+					dockResults.insert(dockResult.value());
+				}
+			}
+			if (dockResults.contains(DockResult::COMPLETED_QUEST))
+			{
+				return DockResult::COMPLETED_QUEST;
+			}
+			return DockResult::DOCKED;
+		}
+		return std::nullopt;
+	}
+
+	std::optional<DockResult> Docked::DockOld(int characterId)
+	{
+		if (GetIslandOld(characterId).has_value())
 		{
 			return DockResult::ALREADY_DOCKED;
 		}
@@ -58,7 +80,13 @@ namespace game::ship
 		return std::nullopt;
 	}
 
-	std::optional<int> Docked::GetIsland(int characterId)
+	std::optional<int> Docked::GetIsland(int shipId)
+	{
+		return data::game::ship::Docks::Read(shipId);
+	}
+
+
+	std::optional<int> Docked::GetIslandOld(int characterId)
 	{
 		auto ship = data::game::character::Ship::ReadForCharacter(characterId);
 		if (ship)

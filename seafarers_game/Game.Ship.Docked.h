@@ -6,8 +6,9 @@ namespace game::ship
 {
 	struct Docked
 	{
-		static void Reset(const game::Difficulty&);
 		static std::optional<DockResult> Dock(int);
+		static std::optional<DockResult> DockOld(int);
 		static std::optional<int> GetIsland(int);
+		static std::optional<int> GetIslandOld(int);
 	};
 }
