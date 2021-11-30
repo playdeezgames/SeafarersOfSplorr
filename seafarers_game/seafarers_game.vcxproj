@@ -25,7 +25,7 @@
     <ClInclude Include="Game.Character.Action.h" />
     <ClInclude Include="Game.Character.Actions.h" />
     <ClInclude Include="Game.Ship.Docked.h" />
-    <ClInclude Include="Game.Character.DockResult.h" />
+    <ClInclude Include="Game.Ship.DockResult.h" />
     <ClInclude Include="Game.Character.Equipment.h" />
     <ClInclude Include="Game.Character.Flag.h" />
     <ClInclude Include="Game.Character.Flags.h" />

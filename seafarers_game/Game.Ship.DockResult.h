@@ -1,5 +1,5 @@
 #pragma once
-namespace game::character
+namespace game::ship
 {
 	enum class DockResult
 	{

@@ -269,9 +269,6 @@
     <ClInclude Include="Game.Character.Action.h">
       <Filter>Header Files\Character\Enums</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Character.DockResult.h">
-      <Filter>Header Files\Character\Enums</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Character.Flag.h">
       <Filter>Header Files\Character\Enums</Filter>
     </ClInclude>
@@ -297,6 +294,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game.Ship.Docked.h">
+      <Filter>Header Files\Ships</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Ship.DockResult.h">
       <Filter>Header Files\Ships</Filter>
     </ClInclude>
   </ItemGroup>

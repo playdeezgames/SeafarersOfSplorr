@@ -9,7 +9,7 @@
 #include "Game.Islands.Quests.h"
 #include "Game.Islands.h"
 #include "Game.Ship.Docked.h"
-namespace game::character
+namespace game::ship
 {
 	void Docked::Reset(const game::Difficulty&)
 	{

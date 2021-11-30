@@ -4,7 +4,7 @@
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
-#include <Game.Character.DockResult.h>
+#include <Game.Ship.DockResult.h>
 #include <Game.Colors.h>
 #include <Game.Audio.Sfx.h>
 #include "State.Terminal.h"
@@ -12,6 +12,6 @@
 namespace state::in_play
 {
 	int GetPlayerCharacterId();
-	std::optional<game::character::DockResult> Dock();
+	std::optional<game::ship::DockResult> Dock();
 	std::optional<int> GetPlayerCharacterIslandId();
 }

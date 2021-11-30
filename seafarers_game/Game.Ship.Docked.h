@@ -1,8 +1,8 @@
 #pragma once
-#include "Game.Character.DockResult.h"
+#include "Game.Ship.DockResult.h"
 #include "Game.Difficulty.h"
 #include <optional>
-namespace game::character
+namespace game::ship
 {
 	struct Docked
 	{
