@@ -38,7 +38,7 @@ namespace state::in_play
 	static void RefreshQuest(const game::Quest& questModel)
 	{
 		auto islandModel = game::Islands::Read(questModel.toIslandId).value();
-		double distance = common::Heading::Distance(questModel.destination, game::Ship::GetLocation(GetPlayerCharacterShipId().value()).value());
+		double distance = common::Heading::Distance(questModel.destination, GetPlayerCharacterShipLocation().value());
 
 		Terminal::Reinitialize();
 

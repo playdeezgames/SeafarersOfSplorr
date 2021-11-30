@@ -14,14 +14,15 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Change Heading:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Current: {:.2f}\xf8", game::Ship::GetHeading(GetPlayerCharacterShipId().value()).value());
+		Terminal::WriteLine("Current: {:.2f}\xf8", GetPlayerCharacterShipHeading().value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		if (!game::Islands::GetKnownIslands(GetPlayerCharacterId()).empty())
 		{
 			Terminal::WriteLine("1) Head for a known island");
 		}
-		if (!game::Islands::GetViewableIslands(GetPlayerCharacterShipId().value()).empty())
+		auto viewable = GetPlayerCharacterViewableIslands();
+		if (viewable && !viewable.value().empty())
 		{
 			Terminal::WriteLine("2) Head for a nearby island");
 		}
@@ -56,7 +57,8 @@ namespace state::in_play
 
 	static void OnHeadForNearbyIsland()
 	{
-		if (!game::Islands::GetViewableIslands(GetPlayerCharacterShipId().value()).empty())
+		auto viewable = GetPlayerCharacterViewableIslands();
+		if (viewable && !viewable.value().empty())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_HEAD_FOR_NEAR_BY);
 		}
@@ -72,7 +74,7 @@ namespace state::in_play
 		auto quest = GetPlayerCharacterQuest();
 		if (quest)
 		{
-			auto delta = quest.value().destination - game::Ship::GetLocation(GetPlayerCharacterShipId().value()).value();
+			auto delta = quest.value().destination - GetPlayerCharacterShipLocation().value();
 			auto island = game::Islands::Read(quest.value().toIslandId);
 			game::Ship::SetHeading(GetPlayerCharacterShipId().value(), common::Heading::XYToDegrees(delta));
 			Terminal::SetForeground(game::Colors::GREEN);

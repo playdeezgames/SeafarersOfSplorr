@@ -43,12 +43,12 @@ namespace state::in_play
 
 	static void RefreshNearbyIslands()
 	{
-		auto nearby = game::Islands::GetViewableIslands(GetPlayerCharacterShipId().value());
-		if (!nearby.empty())
+		auto nearby = GetPlayerCharacterViewableIslands();
+		if (nearby && !nearby.value().empty())
 		{
-			Terminal::Write("You see {} islands nearby", nearby.size());
+			Terminal::Write("You see {} islands nearby", nearby.value().size());
 			bool first = true;
-			for (auto& island : nearby)
+			for (auto& island : nearby.value())
 			{
 				if (island.IsKnown())
 				{
@@ -78,7 +78,7 @@ namespace state::in_play
 		auto quest = GetPlayerCharacterQuest();
 		if (quest)
 		{
-			auto delta = quest.value().destination - game::Ship::GetLocation(GetPlayerCharacterShipId().value()).value();
+			auto delta = quest.value().destination - GetPlayerCharacterShipLocation().value();
 			Terminal::WriteLine(
 				"Delivery distance: {:.1f}", 
 				delta.GetMagnitude());			
@@ -109,12 +109,12 @@ namespace state::in_play
 			game::Colors::GRAY);
 		Terminal::WriteLine(
 			"Heading: {:.2f}\xf8, Speed: {:.1f}",
-			game::Ship::GetHeading(GetPlayerCharacterShipId().value()).value(),
-			game::Ship::GetSpeed(GetPlayerCharacterShipId().value()).value());
+			GetPlayerCharacterShipHeading().value(),
+			GetPlayerCharacterShipSpeed().value());
 		Terminal::WriteLine(
 			"Wind: {:.2f}\xf8 (x{:.1f})",
 			game::World::GetWindHeading(),
-			game::World::GetWindSpeedMultiplier(game::Ship::GetHeading(GetPlayerCharacterShipId().value()).value()));
+			game::World::GetWindSpeedMultiplier(GetPlayerCharacterShipHeading().value()));
 		RefreshFisheries();
 		bool canDock = RefreshDockableIslands();
 		RefreshNearbyIslands();

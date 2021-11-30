@@ -1,15 +1,17 @@
 #pragma once
-#include <Application.Keyboard.h>
-#include <Application.OnEnter.h>
-#include <Application.Renderer.h>
-#include <Application.UIState.h>
-#include <Game.Audio.Mux.h>
-#include <Game.Audio.Sfx.h>
-#include <Game.Colors.h>
+#include <Application.Keyboard.h> //common include
+#include <Application.OnEnter.h> //common include
+#include <Application.Renderer.h> //common include
+#include <Application.UIState.h> //common include
+#include <Game.Audio.Mux.h> //common include
+#include <Game.Audio.Sfx.h> //common include
+#include <Game.Colors.h> //common include
+#include "State.Terminal.h" //common include
+#include "UIState.h" //common include
+
+#include <Game.Island.h>
 #include <Game.Quest.h>
 #include <Game.Ship.DockResult.h>
-#include "State.Terminal.h"
-#include "UIState.h"
 namespace state::in_play
 {
 	int GetPlayerCharacterId();
@@ -17,8 +19,8 @@ namespace state::in_play
 	std::optional<int> GetPlayerCharacterIslandId();
 	std::optional<int> GetPlayerCharacterShipId();
 	std::optional<game::Quest> GetPlayerCharacterQuest();
-	//GetViewableIslands (5 places in 3 files)
-	//game::Ship::GetLocation(GetPlayerCharacterShipId().value()) (4 places in 4 files)
-	//game::Ship::GetLocation(GetPlayerCharacterShipId().value()) (4 places in 3 files)
-	//game::Ship::GetSpeed(GetPlayerCharacterShipId().value()) (3 places in 3 files)
+	std::optional<common::XY<double>> GetPlayerCharacterShipLocation();
+	std::optional<std::list<game::Island>> GetPlayerCharacterViewableIslands();
+	std::optional<double> GetPlayerCharacterShipHeading();
+	std::optional<double> GetPlayerCharacterShipSpeed();
 }
