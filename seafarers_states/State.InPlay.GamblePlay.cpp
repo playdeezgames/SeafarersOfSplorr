@@ -9,11 +9,6 @@ namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_GAMBLE_PLAY;
 
-	static int ReadLocation()
-	{
-		return game::character::Docked::GetIsland(GetPlayerCharacterId()).value();
-	}
-
 	static void Refresh()
 	{
 		Terminal::Reinitialize();
@@ -23,9 +18,9 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Yer money: {:.4f}", game::character::Statistics::ReadMoney(GetPlayerCharacterId()));
 		Terminal::WriteLine("Minimum wager(less ante): {:.4f}", 
-			game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value() - 
-			game::islands::DarkAlley::GetAnte(ReadLocation()).value());
-		auto hand = game::islands::dark_alley::GamblingHand::Read(ReadLocation());
+			game::islands::DarkAlley::GetMinimumWager(GetPlayerCharacterIslandId().value()).value() -
+			game::islands::DarkAlley::GetAnte(GetPlayerCharacterIslandId().value()).value());
+		auto hand = game::islands::dark_alley::GamblingHand::Read(GetPlayerCharacterIslandId().value());
 
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::Write("First Card: ");
@@ -54,13 +49,13 @@ namespace state::in_play
 	static void OnEnter()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
-		game::islands::dark_alley::GamblingHand::Deal(ReadLocation());
+		game::islands::dark_alley::GamblingHand::Deal(GetPlayerCharacterIslandId().value());
 		Refresh();
 	}
 
 	static void OnPlaceMinimumWager()
 	{
-		auto hand = game::islands::dark_alley::GamblingHand::Read(ReadLocation());
+		auto hand = game::islands::dark_alley::GamblingHand::Read(GetPlayerCharacterIslandId().value());
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::Write("Final Card: ");
 		Terminal::SetForeground(DarkAlleyEntrance::SuitColors.find(std::get<1>(hand[2]))->second);
@@ -68,19 +63,19 @@ namespace state::in_play
 		Terminal::Write(DarkAlleyEntrance::Suits.find(std::get<1>(hand[2]))->second);
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::GRAY);
-		if (game::islands::dark_alley::GamblingHand::IsWinner(ReadLocation()))
+		if (game::islands::dark_alley::GamblingHand::IsWinner(GetPlayerCharacterIslandId().value()))
 		{
 			game::audio::Sfx::Play(game::audio::GameSfx::WOOHOO);
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine("You win!");
-			game::character::Statistics::ChangeMoney(GetPlayerCharacterId(), game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value() + game::islands::DarkAlley::GetAnte(ReadLocation()).value());
+			game::character::Statistics::ChangeMoney(GetPlayerCharacterId(), game::islands::DarkAlley::GetMinimumWager(GetPlayerCharacterIslandId().value()).value() + game::islands::DarkAlley::GetAnte(GetPlayerCharacterIslandId().value()).value());
 		}
 		else
 		{
 			game::audio::Sfx::Play(game::audio::GameSfx::SHUCKS);
 			Terminal::SetForeground(game::Colors::RED);
 			Terminal::WriteLine("You lose!");
-			game::character::Statistics::ChangeMoney(GetPlayerCharacterId(), -game::islands::DarkAlley::GetMinimumWager(ReadLocation()).value() + game::islands::DarkAlley::GetAnte(ReadLocation()).value());
+			game::character::Statistics::ChangeMoney(GetPlayerCharacterId(), -game::islands::DarkAlley::GetMinimumWager(GetPlayerCharacterIslandId().value()).value() + game::islands::DarkAlley::GetAnte(GetPlayerCharacterIslandId().value()).value());
 		}
 		Terminal::SetForeground(game::Colors::GRAY);
 		application::UIState::Write(::UIState::IN_PLAY_GAMBLE_INTRO);//TODO: play again y/n?

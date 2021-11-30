@@ -17,7 +17,7 @@ namespace state::in_play
 	{
 		switch (game::character::Quest::Accept(GetPlayerCharacterId(), data::game::Island::Find(
 			data::game::Island::Read(
-				game::character::Docked::GetIsland(GetPlayerCharacterId()).value()
+				GetPlayerCharacterIslandId().value()
 			).value().location
 		).value()))
 		{
@@ -71,7 +71,7 @@ namespace state::in_play
 	static void Refresh()
 	{
 		auto islandId =
-			game::character::Docked::GetIsland(GetPlayerCharacterId()).value();
+			GetPlayerCharacterIslandId().value();
 		auto quest = game::islands::Quests::Read(islandId);
 		if (quest)
 		{

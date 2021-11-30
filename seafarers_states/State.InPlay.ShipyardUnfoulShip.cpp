@@ -13,7 +13,7 @@ namespace state::in_play
 	static double GetUnfoulingPrice()
 	{
 		return game::islands::Commodities::GetPurchasePrice(
-			game::character::Docked::GetIsland(GetPlayerCharacterId()).value(),
+			GetPlayerCharacterIslandId().value(),
 			{
 					{game::Commodity::LABOR, 
 						game::World::GetUnfoulingLaborMultiplier() * 

@@ -8,7 +8,7 @@
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE;
-	static const auto GetRuffianBrawling = []() { return game::islands::DarkAlley::GetRuffianBrawling(game::character::Docked::GetIsland(GetPlayerCharacterId()).value()).value(); };
+	static const auto GetRuffianBrawling = []() { return game::islands::DarkAlley::GetRuffianBrawling(GetPlayerCharacterIslandId().value()).value(); };
 	static const size_t ROWS = 3;
 	static const size_t COLUMNS = 4;
 	static size_t hitsTaken = 0;
@@ -136,7 +136,7 @@ namespace state::in_play
 
 	static void RefreshBoard()
 	{
-		auto fightCards = game::islands::dark_alley::FightCard::Read(game::character::Docked::GetIsland(GetPlayerCharacterId()).value());
+		auto fightCards = game::islands::dark_alley::FightCard::Read(GetPlayerCharacterIslandId().value());
 		for (size_t row = 0; row < ROWS; ++row)
 		{
 			RefreshRow(fightCards, row);
@@ -168,7 +168,7 @@ namespace state::in_play
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 		hitsTaken = 0;
-		game::islands::dark_alley::FightCard::Generate(GetPlayerCharacterId(), game::character::Docked::GetIsland(GetPlayerCharacterId()).value());
+		game::islands::dark_alley::FightCard::Generate(GetPlayerCharacterId(), GetPlayerCharacterIslandId().value());
 		Refresh();
 	}
 
@@ -227,7 +227,7 @@ namespace state::in_play
 
 	static void PickCard(size_t cardIndex)
 	{
-		auto fightCards = game::islands::dark_alley::FightCard::Read(game::character::Docked::GetIsland(GetPlayerCharacterId()).value());
+		auto fightCards = game::islands::dark_alley::FightCard::Read(GetPlayerCharacterIslandId().value());
 		auto card = fightCards.find(cardIndex)->second;
 		if (card.revealed)
 		{
@@ -236,7 +236,7 @@ namespace state::in_play
 		}
 		else
 		{
-			auto card = game::islands::dark_alley::FightCard::Pick(game::character::Docked::GetIsland(GetPlayerCharacterId()).value(), cardIndex);
+			auto card = game::islands::dark_alley::FightCard::Pick(GetPlayerCharacterIslandId().value(), cardIndex);
 			if (card)
 			{
 				HandleFightCard(card.value());

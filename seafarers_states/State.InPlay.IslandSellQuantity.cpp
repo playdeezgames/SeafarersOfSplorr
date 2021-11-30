@@ -17,7 +17,7 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		auto unitPrice = game::islands::Items::GetSalePrices(
-				game::character::Docked::GetIsland(GetPlayerCharacterId()).value()
+			GetPlayerCharacterIslandId().value()
 		)[currentItem];
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
@@ -38,7 +38,7 @@ namespace state::in_play
 	static void OnOtherInput(const std::string& line)
 	{
 		auto unitPrice = game::islands::Items::GetSalePrices(
-				game::character::Docked::GetIsland(GetPlayerCharacterId()).value()
+			GetPlayerCharacterIslandId().value()
 		)[currentItem];
 		int units = common::Data::ToInt(line);
 		if (units <= game::character::Items::Read(GetPlayerCharacterId(), currentItem))
@@ -48,7 +48,7 @@ namespace state::in_play
 			Terminal::WriteLine("You sell {} {} for {:.4f}.", units, game::Items::GetName(currentItem), totalPrice);
 			game::character::Statistics::ChangeMoney(GetPlayerCharacterId(), totalPrice);
 			game::islands::Markets::SellItems(
-					game::character::Docked::GetIsland(GetPlayerCharacterId()).value()
+				GetPlayerCharacterIslandId().value()
 				, currentItem, units);
 			game::character::Items::Remove(GetPlayerCharacterId(), currentItem, units);
 			application::UIState::Write(::UIState::IN_PLAY_ISLAND_SELL);

@@ -18,7 +18,7 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		auto unitPrice = game::islands::Items::GetPurchasePrices(
-			game::character::Docked::GetIsland(GetPlayerCharacterId()).value()
+			GetPlayerCharacterIslandId().value()
 		)[currentItem];
 		auto money = game::character::Statistics::ReadMoney(GetPlayerCharacterId());
 		double availableTonnage = game::character::Ship::AvailableTonnage(GetPlayerCharacterId()).value();
@@ -46,7 +46,7 @@ namespace state::in_play
 	static void OnOtherInput(const std::string& line)
 	{
 		auto unitPrice = game::islands::Items::GetPurchasePrices(
-				game::character::Docked::GetIsland(GetPlayerCharacterId()).value()
+				GetPlayerCharacterIslandId().value()
 		)[currentItem];
 		auto money = game::character::Statistics::ReadMoney(GetPlayerCharacterId());
 		double availableTonnage = game::character::Ship::AvailableTonnage(GetPlayerCharacterId()).value();
@@ -62,7 +62,7 @@ namespace state::in_play
 			Terminal::WriteLine("You purchase {} {} for {:.4f}.", units, game::Items::GetName(currentItem), totalPrice);
 			game::character::Statistics::ChangeMoney(GetPlayerCharacterId(), -totalPrice);
 			game::islands::Markets::BuyItems(
-					game::character::Docked::GetIsland(GetPlayerCharacterId()).value()
+					GetPlayerCharacterIslandId().value()
 				, currentItem, units);
 			game::character::Items::Add(GetPlayerCharacterId(), currentItem, units);
 			application::UIState::Write(::UIState::IN_PLAY_ISLAND_BUY);
