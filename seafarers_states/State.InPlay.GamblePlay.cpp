@@ -11,7 +11,7 @@ namespace state::in_play
 
 	static int ReadLocation()
 	{
-		return game::character::Docked::ReadLocation(GetPlayerCharacterId()).value();
+		return game::character::Docked::GetIsland(GetPlayerCharacterId()).value();
 	}
 
 	static void Refresh()

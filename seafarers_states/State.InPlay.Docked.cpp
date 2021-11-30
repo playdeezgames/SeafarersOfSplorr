@@ -14,7 +14,7 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		auto islandId = game::character::Docked::ReadLocation(GetPlayerCharacterId()).value();
+		auto islandId = game::character::Docked::GetIsland(GetPlayerCharacterId()).value();
 		auto island = game::Islands::Read(islandId).value();
 		Terminal::Reinitialize();
 
@@ -61,7 +61,7 @@ namespace state::in_play
 
 	static void OnShipyard()
 	{
-		auto islandId = game::character::Docked::ReadLocation(GetPlayerCharacterId()).value();
+		auto islandId = game::character::Docked::GetIsland(GetPlayerCharacterId()).value();
 		auto island = game::Islands::Read(islandId).value();
 		if (game::islands::Features::Read(island.id, game::Feature::SHIPYARD))
 		{
@@ -77,7 +77,7 @@ namespace state::in_play
 
 	static void OnDarkAlley()
 	{
-		auto islandId = game::character::Docked::ReadLocation(GetPlayerCharacterId()).value();
+		auto islandId = game::character::Docked::GetIsland(GetPlayerCharacterId()).value();
 		auto island = game::Islands::Read(islandId).value();
 		if (game::islands::Features::Read(island.id, game::Feature::DARK_ALLEY))
 		{

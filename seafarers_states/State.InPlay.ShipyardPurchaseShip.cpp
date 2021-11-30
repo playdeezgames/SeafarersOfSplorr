@@ -23,10 +23,10 @@ namespace state::in_play
 	{
 		auto location =
 			data::game::Island::Read(
-				game::character::Docked::ReadLocation(GetPlayerCharacterId()).value()
+				game::character::Docked::GetIsland(GetPlayerCharacterId()).value()
 			).value().location;
-		auto prices = game::islands::Ships::GetPurchasePrices(game::character::Docked::ReadLocation(GetPlayerCharacterId()).value());
-		auto tradeIn = game::islands::Ships::GetSalePrice(game::character::Docked::ReadLocation(GetPlayerCharacterId()).value(), game::Ship::GetShipType(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value()).value());
+		auto prices = game::islands::Ships::GetPurchasePrices(game::character::Docked::GetIsland(GetPlayerCharacterId()).value());
+		auto tradeIn = game::islands::Ships::GetSalePrice(game::character::Docked::GetIsland(GetPlayerCharacterId()).value(), game::Ship::GetShipType(game::character::Ship::ReadShipId(GetPlayerCharacterId()).value()).value());
 		shipPrices.clear();
 		for (auto price : prices)
 		{
@@ -90,7 +90,7 @@ namespace state::in_play
 	{
 		auto location =
 			data::game::Island::Read(
-				game::character::Docked::ReadLocation(GetPlayerCharacterId()).value()
+				game::character::Docked::GetIsland(GetPlayerCharacterId()).value()
 			).value().location;
 
 		auto currentShipId = game::character::Ship::ReadShipId(GetPlayerCharacterId()).value();
@@ -99,8 +99,8 @@ namespace state::in_play
 		auto desiredShipId = game::Ship::Add({ desiredShipType,game::ShipNames::Generate(), location, 0.0, 1.0 });
 		//TODO: transfer crew/passengers/captives?
 		game::character::Ship::Write(GetPlayerCharacterId() , desiredShipId, game::BerthType::CAPTAIN);
-		game::islands::Markets::BuyShipType(game::character::Docked::ReadLocation(GetPlayerCharacterId()).value(), desiredShipType);
-		game::islands::Markets::SellShipType(game::character::Docked::ReadLocation(GetPlayerCharacterId()).value(), currentShipType);
+		game::islands::Markets::BuyShipType(game::character::Docked::GetIsland(GetPlayerCharacterId()).value(), desiredShipType);
+		game::islands::Markets::SellShipType(game::character::Docked::GetIsland(GetPlayerCharacterId()).value(), currentShipType);
 		UpdateShipPrices();
 		Refresh();
 	}

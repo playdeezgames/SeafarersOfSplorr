@@ -212,7 +212,6 @@ namespace state
 				visuals::Terminals::SetForeground(LAYOUT_NAME, TERMINAL_ID, game::Colors::RED);
 				visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, errorMessage);
 				visuals::Terminals::SetForeground(LAYOUT_NAME, TERMINAL_ID, game::Colors::GRAY);
-
 				refresh();
 			});
 	}

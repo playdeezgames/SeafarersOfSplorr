@@ -11,7 +11,7 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		auto islandId = game::character::Docked::ReadLocation(GetPlayerCharacterId()).value();
+		auto islandId = game::character::Docked::GetIsland(GetPlayerCharacterId()).value();
 		auto island = game::Islands::Read(islandId).value();
 		Terminal::Reinitialize();
 

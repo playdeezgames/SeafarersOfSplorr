@@ -46,7 +46,7 @@ namespace game::character
 
 	std::optional<DockResult> Docked::Dock(int characterId)
 	{
-		if (ReadLocation(characterId).has_value())
+		if (GetIsland(characterId).has_value())
 		{
 			return DockResult::ALREADY_DOCKED;
 		}
@@ -58,7 +58,7 @@ namespace game::character
 		return std::nullopt;
 	}
 
-	std::optional<int> Docked::ReadLocation(int characterId)
+	std::optional<int> Docked::GetIsland(int characterId)
 	{
 		auto ship = data::game::character::Ship::ReadForCharacter(characterId);
 		if (ship)

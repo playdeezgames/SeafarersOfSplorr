@@ -1,13 +1,6 @@
-#include <Application.Keyboard.h>
-#include <Application.OnEnter.h>
-#include <Application.Renderer.h>
-#include <Application.UIState.h>
 #include <Common.Utility.h>
-#include <Game.Audio.Mux.h>
-#include <Game.Colors.h>
 #include "State.InPlay.Confirm.h"
-#include "State.Terminal.h"
-#include "UIState.h"
+#include "State.InPlay.Globals.h"
 #include <Visuals.Confirmations.h>
 namespace state::in_play
 {

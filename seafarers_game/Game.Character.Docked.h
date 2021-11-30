@@ -8,6 +8,6 @@ namespace game::character
 	{
 		static void Reset(const game::Difficulty&);
 		static std::optional<DockResult> Dock(int);
-		static std::optional<int> ReadLocation(int);
+		static std::optional<int> GetIsland(int);
 	};
 }

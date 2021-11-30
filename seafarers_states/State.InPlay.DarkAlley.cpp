@@ -26,7 +26,7 @@ namespace state::in_play
 	static double GetMinimumWager()
 	{
 		
-		return game::islands::DarkAlley::GetMinimumWager(game::character::Docked::ReadLocation(GetPlayerCharacterId()).value()).value();
+		return game::islands::DarkAlley::GetMinimumWager(game::character::Docked::GetIsland(GetPlayerCharacterId()).value()).value();
 	}
 
 	static const auto ReadMoney = game::character::Statistics::ReadMoney;
