@@ -1,4 +1,5 @@
-#include <Data.Game.Character.Ship.h>
+#include <Common.Utility.Optional.h>
+#include <Game.Character.Ship.h>
 #include <Game.Player.h>
 #include <Game.Ship.Docked.h>
 #include "State.InPlay.Globals.h"
@@ -9,18 +10,24 @@ namespace state::in_play
 		return game::Player::GetCharacterId();
 	}
 
-	static int GetPlayerCharacterShipId()
+	static std::optional<int> GetPlayerCharacterShipId()
 	{
-		return data::game::character::Ship::ReadForCharacter(GetPlayerCharacterId()).value().shipId;
+		return game::character::Ship::ReadShipId(GetPlayerCharacterId());
 	}
 
 	std::optional<int> GetPlayerCharacterIslandId()
 	{
-		return game::ship::Docked::GetIsland(GetPlayerCharacterShipId());
+		return
+			common::utility::Optional::Bind<int, int>(
+				GetPlayerCharacterShipId(),
+				game::ship::Docked::GetIsland);
 	}
 
 	std::optional<game::ship::DockResult> Dock()
 	{
-		return game::ship::Docked::Dock(GetPlayerCharacterShipId());
+		return 
+			common::utility::Optional::Bind<int, game::ship::DockResult>(
+				GetPlayerCharacterShipId(), 
+				game::ship::Docked::Dock);
 	}
 }

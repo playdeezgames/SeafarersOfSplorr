@@ -6,6 +6,15 @@ namespace common::utility
 	struct Optional
 	{
 		template<typename TInput, typename TOutput>
+		static std::optional<TOutput> Bind(const std::optional<TInput>& source, std::function<std::optional<TOutput>(const TInput&)> transform)
+		{
+			if (source)
+			{
+				return transform(source.value());
+			}
+			return std::nullopt;
+		}
+		template<typename TInput, typename TOutput>
 		static std::optional<TOutput> Map(const std::optional<TInput>& source, std::function<TOutput(const TInput&)> transform)
 		{
 			if (source)
