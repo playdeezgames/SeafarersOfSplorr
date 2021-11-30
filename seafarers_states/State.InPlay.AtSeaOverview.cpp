@@ -3,7 +3,6 @@
 #include <Game.Character.Actions.h>
 #include <Game.Character.Items.h>
 #include <Game.Character.Quest.h>
-#include <Game.Character.Ship.h>
 #include <Game.Character.Statistics.h>
 #include <Game.Fisheries.h>
 #include <Game.Islands.h>

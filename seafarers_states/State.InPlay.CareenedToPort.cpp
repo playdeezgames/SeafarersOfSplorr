@@ -1,5 +1,4 @@
 #include <Game.Character.Actions.h>
-#include <Game.Character.Ship.h>
 #include <Game.Character.ShipStatistics.h>
 #include "State.InPlay.CareenedToPort.h"
 #include "State.InPlay.Globals.h"

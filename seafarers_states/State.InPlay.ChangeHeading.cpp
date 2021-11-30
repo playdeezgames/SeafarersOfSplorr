@@ -1,6 +1,5 @@
 #include <Common.Heading.h>
 #include <Game.Character.Quest.h>
-#include <Game.Character.Ship.h>
 #include <Game.Islands.h>
 #include <Game.Ship.h>
 #include "State.InPlay.ChangeHeading.h"

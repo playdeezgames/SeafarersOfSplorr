@@ -1,5 +1,4 @@
 #include <Game.Character.Statistics.h>
-#include <Game.Character.Ship.h>
 #include <Game.Character.ShipStatistics.h>
 #include <Game.Islands.Commodities.h>
 #include <Game.World.h>

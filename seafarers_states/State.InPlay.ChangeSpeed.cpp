@@ -1,4 +1,3 @@
-#include <Game.Character.Ship.h>
 #include <Game.Ship.h>
 #include "State.InPlay.ChangeSpeed.h"
 #include "State.InPlay.Globals.h"

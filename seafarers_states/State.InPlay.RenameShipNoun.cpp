@@ -1,5 +1,4 @@
 #include <Common.Data.h>
-#include <Game.Character.Ship.h>
 #include <Game.Ship.h>
 #include <Game.ShipNames.h>
 #include "State.InPlay.Globals.h"

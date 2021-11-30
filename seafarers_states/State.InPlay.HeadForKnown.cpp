@@ -1,7 +1,6 @@
 #include <Common.Data.h>
 #include <Common.Heading.h>
 #include <Common.Utility.List.h>
-#include <Game.Character.Ship.h>
 #include <Game.Ship.h>
 #include <Game.Islands.h>
 #include "State.InPlay.Globals.h"
