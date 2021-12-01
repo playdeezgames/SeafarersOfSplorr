@@ -70,7 +70,6 @@
 #include <UIState.h>
 #include <vector>
 #include <Visuals.Colors.h>
-#include <Visuals.Confirmations.h>
 #include <Visuals.Fonts.h>
 #include <Visuals.Layouts.h>
 #include <Visuals.Sprites.h>
@@ -119,7 +118,6 @@ namespace application
 		visuals::Layouts::DoSetStore(data::json::Store::LAYOUTS),
 		application::Keyboard::DoSetStore(data::json::Store::KEYS),
 		Options::DoSetStore(data::json::Store::OPTIONS),
-		visuals::Confirmations::Reset,
 		data::json::Stores::Start,
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::IN_MEMORY, CONNECTION_MEMORY),
 		data::sqlite::Stores::DoSetConnection(data::sqlite::Store::AUTOSAVE, CONNECTION_AUTOSAVE),
@@ -138,7 +136,6 @@ namespace application
 		state::Options::Start,
 		state::StartGame::Start,
 		state::LeavePlay::Start,
-		game::DoAddResetter(visuals::Confirmations::Reset),
 		game::Start,
 		state::Statistics::Start,
 		state::LoadGame::Start,

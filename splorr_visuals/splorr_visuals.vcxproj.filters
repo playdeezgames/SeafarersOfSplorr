@@ -11,12 +11,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Visuals.Confirmation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Visuals.Confirmations.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Visuals.HorizontalAlignment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -76,9 +70,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Visuals.Confirmations.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Visuals.Colors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
