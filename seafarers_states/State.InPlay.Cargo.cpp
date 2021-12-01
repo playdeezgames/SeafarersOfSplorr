@@ -32,7 +32,7 @@ namespace state::in_play
 				(int)(100.0 * tonnage / availableTonnage));
 		Terminal::WriteLine(
 			"Money: {:.3f}",
-			GetPlayerCharacterMoney());
+			GetPlayerCharacterMoney().value());
 		Terminal::SetForeground(game::Colors::BROWN);
 		Terminal::WriteLine("Manifest:");
 		Terminal::SetForeground(game::Colors::YELLOW);

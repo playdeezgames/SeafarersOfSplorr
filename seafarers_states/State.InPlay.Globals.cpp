@@ -97,9 +97,9 @@ namespace state::in_play
 		game::Character::DoAction(GetPlayerCharacterId(), action);
 	}
 
-	void ChangePlayerCharacterMoney(double delta)
+	std::optional<double> ChangePlayerCharacterMoney(double delta)
 	{
-		game::character::Statistics::ChangeMoney(GetPlayerCharacterId(), delta);
+		return game::character::statistics::Money::Change(GetPlayerCharacterId(), delta);
 	}
 
 	std::optional<common::XY<double>> GetPlayerCharacterIslandLocation()
@@ -116,9 +116,9 @@ namespace state::in_play
 		return std::nullopt;
 	}
 
-	double GetPlayerCharacterMoney()
+	std::optional<double> GetPlayerCharacterMoney()
 	{
-		return game::character::Statistics::ReadMoney(GetPlayerCharacterId());
+		return game::character::statistics::Money::Current(GetPlayerCharacterId());
 	}
 
 	std::optional<double> GetPlayerCharacterDarkAlleyAnte()

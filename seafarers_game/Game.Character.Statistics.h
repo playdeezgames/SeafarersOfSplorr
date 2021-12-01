@@ -14,8 +14,6 @@ namespace game::character
 	struct Statistics
 	{
 		static void Reset(int, const game::Difficulty&);
-		static double ReadMoney(int);
-		static void ChangeMoney(int, double);
 		static double GetHealth(int);
 		static void ChangeHealth(int, double);
 		static bool IsDead(int);

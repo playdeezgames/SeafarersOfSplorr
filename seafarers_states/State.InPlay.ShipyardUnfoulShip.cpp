@@ -31,7 +31,7 @@ namespace state::in_play
 		{
 			Terminal::SetForeground(game::Colors::GRAY);
 			Terminal::WriteLine("The price is {:.4f}.", price);
-			if (GetPlayerCharacterMoney() >= price)
+			if (GetPlayerCharacterMoney().value() >= price)
 			{
 				Terminal::SetForeground(game::Colors::YELLOW);
 				Terminal::WriteLine("1) Clean hull");
@@ -58,7 +58,7 @@ namespace state::in_play
 	static void OnCleanHull()
 	{
 		double price = GetUnfoulingPrice();
-		if (price>0 && GetPlayerCharacterMoney() >= price)
+		if (price>0 && GetPlayerCharacterMoney().value() >= price)
 		{
 			ChangePlayerCharacterMoney(-price);
 			PlayerCharacterCleanHull(game::Side::STARBOARD);

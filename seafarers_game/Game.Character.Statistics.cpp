@@ -204,11 +204,6 @@ namespace game::character
 		}
 	}
 
-	double Statistics::ReadMoney(int characterId)
-	{
-		return GetCurrent(characterId, game::character::Statistic::MONEY).value();
-	}
-
 	double Statistics::GetHealth(int characterId)
 	{
 		return GetCurrent(characterId, game::character::Statistic::HEALTH).value();
@@ -295,11 +290,6 @@ namespace game::character
 	bool Statistics::IsStarving(int characterId)
 	{
 		return IsMinimal(characterId, Statistic::SATIETY);
-	}
-
-	void Statistics::ChangeMoney(int characterId, double delta)
-	{
-		ChangeCurrent(characterId, Statistic::MONEY, delta);
 	}
 
 	void Statistics::ChangeHealth(int characterId, double delta)

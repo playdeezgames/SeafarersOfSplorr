@@ -15,12 +15,12 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::GRAY);
 		auto ante = GetPlayerCharacterDarkAlleyAnte().value();
 		auto minimum = GetPlayerCharacterDarkAlleyMinimumWager().value();
-		Terminal::WriteLine("Yer money: {:.4f}", GetPlayerCharacterMoney());
+		Terminal::WriteLine("Yer money: {:.4f}", GetPlayerCharacterMoney().value());
 		Terminal::WriteLine("Minimum bet: {:.4f}", minimum);
 		Terminal::WriteLine("Ante: {:.4f}", ante);
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		if (GetPlayerCharacterMoney() >= minimum)
+		if (GetPlayerCharacterMoney().value() >= minimum)
 		{
 			Terminal::WriteLine("1) Play a hand");
 		}
@@ -43,7 +43,7 @@ namespace state::in_play
 
 	static void DealHand()
 	{
-		if (GetPlayerCharacterMoney() >= GetPlayerCharacterDarkAlleyMinimumWager().value())
+		if (GetPlayerCharacterMoney().value() >= GetPlayerCharacterDarkAlleyMinimumWager().value())
 		{
 			ChangePlayerCharacterMoney(-GetPlayerCharacterDarkAlleyAnte().value());
 			application::UIState::Write(::UIState::IN_PLAY_GAMBLE_PLAY);

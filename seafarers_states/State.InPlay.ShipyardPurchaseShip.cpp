@@ -52,7 +52,7 @@ namespace state::in_play
 		auto shipType = game::Ship::GetShipType(shipId).value();
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("You currently have a {}.", game::ShipTypes::GetName(shipType));
-		Terminal::WriteLine("You have {:.4f}.", GetPlayerCharacterMoney());
+		Terminal::WriteLine("You have {:.4f}.", GetPlayerCharacterMoney().value());
 		Terminal::WriteLine("Prices shown after trade-in value.");
 		RefreshShipPrices();
 
@@ -116,7 +116,7 @@ namespace state::in_play
 	static void CheckAvailableFunds(game::ShipType desiredShip)
 	{
 		double price = shipPrices[desiredShip];
-		if (GetPlayerCharacterMoney() >= price)
+		if (GetPlayerCharacterMoney().value() >= price)
 		{
 			CheckTonnage(desiredShip, price);
 		}

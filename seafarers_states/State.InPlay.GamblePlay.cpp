@@ -20,7 +20,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Play Hand:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Yer money: {:.4f}", GetPlayerCharacterMoney());
+		Terminal::WriteLine("Yer money: {:.4f}", GetPlayerCharacterMoney().value());
 		Terminal::WriteLine("Minimum wager(less ante): {:.4f}", 
 			GetPlayerCharacterDarkAlleyMinimumWager().value() -
 			GetPlayerCharacterDarkAlleyAnte().value());

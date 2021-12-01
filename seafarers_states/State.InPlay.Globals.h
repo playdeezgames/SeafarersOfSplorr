@@ -33,9 +33,9 @@ namespace state::in_play
 	std::list<game::Island> GetPlayerCharacterKnownIslands();
 	void SetPlayerCharacterShipHeading(double);
 	void DoPlayerCharacterAction(const game::character::Action&);
-	void ChangePlayerCharacterMoney(double);
+	std::optional<double> ChangePlayerCharacterMoney(double);
 	std::optional<common::XY<double>> GetPlayerCharacterIslandLocation();
-	double GetPlayerCharacterMoney();
+	std::optional<double> GetPlayerCharacterMoney();
 	std::optional<double> GetPlayerCharacterDarkAlleyAnte();
 	std::optional<double> GetPlayerCharacterDarkAlleyMinimumWager();
 	std::optional<double> GetPlayerCharacterAvailableTonnage();

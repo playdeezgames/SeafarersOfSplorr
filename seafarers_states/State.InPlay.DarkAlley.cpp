@@ -19,11 +19,11 @@ namespace state::in_play
 		return GetPlayerCharacterDarkAlleyMinimumWager().value();
 	}
 
-	static const auto ReadMoney = game::character::Statistics::ReadMoney;
+	static const auto ReadMoney = game::character::statistics::Money::Current;
 
 	static void OnGamble()
 	{
-		if (ReadMoney(GetPlayerCharacterId()) >= GetMinimumWager())
+		if (ReadMoney(GetPlayerCharacterId()).value() >= GetMinimumWager())
 		{
 			DoPlayerCharacterAction(game::character::Action::START_GAMBLING);
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);

@@ -12,7 +12,7 @@ namespace state::in_play
 	static void RefreshStatistics()
 	{
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Money: {:.4f}", game::character::Statistics::ReadMoney(GetCrewDetailCharacterId()));
+		Terminal::WriteLine("Money: {:.4f}", game::character::statistics::Money::Current(GetCrewDetailCharacterId()).value());
 		Terminal::WriteLine("Reputation: {:.1f}", game::character::Statistics::GetReputation(GetCrewDetailCharacterId()));
 		Terminal::WriteLine("Brawling: {:.1f}", game::character::Statistics::GetBrawling(GetCrewDetailCharacterId()));
 		Terminal::WriteLine("Health: {:.0f}", game::character::Statistics::GetHealth(GetCrewDetailCharacterId()));
