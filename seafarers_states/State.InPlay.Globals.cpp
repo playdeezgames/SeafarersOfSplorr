@@ -98,4 +98,18 @@ namespace state::in_play
 	{
 		game::character::Statistics::ChangeMoney(GetPlayerCharacterId(), delta);
 	}
+
+	std::optional<common::XY<double>> GetPlayerCharacterIslandLocation()
+	{
+		auto islandId = GetPlayerCharacterIslandId();
+		if (islandId)
+		{
+			auto island = game::Islands::Read(islandId.value());
+			if (island)
+			{
+				return island.value().absoluteLocation;
+			}
+		}
+		return std::nullopt;
+	}
 }

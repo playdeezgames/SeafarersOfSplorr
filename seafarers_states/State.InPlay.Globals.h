@@ -29,10 +29,10 @@ namespace state::in_play
 	void SetPlayerCharacterShipHeading(double);
 	void DoPlayerCharacterAction(const game::character::Action&);
 	void ChangePlayerCharacterMoney(double);
+	std::optional<common::XY<double>> GetPlayerCharacterIslandLocation();
 	//game::character::Statistics::ReadMoney(GetPlayerCharacterId())
 	//game::islands::DarkAlley::GetAnte(GetPlayerCharacterIslandId().value())
 	//game::islands::DarkAlley::GetMinimumWager(GetPlayerCharacterIslandId().value())
-	//data::game::Island::Read(GetPlayerCharacterIslandId().value()).value().location
 	//game::character::Ship::AvailableTonnage(GetPlayerCharacterId()).value()
 	//game::character::Ship::AvailableTonnage(GetPlayerCharacterId()).value()
 	//game::islands::Items::GetPurchasePrices(GetPlayerCharacterIslandId().value())

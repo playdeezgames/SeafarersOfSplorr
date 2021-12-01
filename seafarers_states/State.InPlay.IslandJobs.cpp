@@ -1,5 +1,4 @@
 #include <Common.Heading.h>
-#include <Data.Game.Island.h>
 #include <Game.Character.Quest.h>
 #include <Game.Islands.h>
 #include <Game.Islands.Quests.h>
@@ -12,9 +11,7 @@ namespace state::in_play
 
 	static void OnAccept()//TODO: make this more declarative
 	{
-		switch (game::character::Quest::Accept(GetPlayerCharacterId(), data::game::Island::Find(
-			data::game::Island::Read(GetPlayerCharacterIslandId().value()).value().location
-		).value()))
+		switch (game::character::Quest::Accept(GetPlayerCharacterId(), GetPlayerCharacterIslandId().value()))
 		{
 		case game::character::AcceptQuestResult::ACCEPTED_QUEST:
 			DoPlayerCharacterAction(game::character::Action::ENTER_DOCK);

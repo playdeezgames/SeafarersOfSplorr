@@ -1,6 +1,5 @@
 #include <Common.Data.h>
 #include <Common.Utility.Table.h>
-#include <Data.Game.Island.h>
 #include <Game.Character.Items.h>
 #include <Game.Character.Ship.h>
 #include <Game.Character.Statistics.h>
@@ -20,10 +19,7 @@ namespace state::in_play
 
 	static void UpdateShipPrices()
 	{
-		auto location =
-			data::game::Island::Read(
-				GetPlayerCharacterIslandId().value()
-			).value().location;
+		auto location =	GetPlayerCharacterIslandLocation();
 		auto prices = game::islands::Ships::GetPurchasePrices(GetPlayerCharacterIslandId().value());
 		auto tradeIn = game::islands::Ships::GetSalePrice(GetPlayerCharacterIslandId().value(), game::Ship::GetShipType(GetPlayerCharacterShipId().value()).value());
 		shipPrices.clear();
@@ -87,10 +83,7 @@ namespace state::in_play
 
 	static void BuyShip(game::ShipType desiredShipType, double price)
 	{
-		auto location =
-			data::game::Island::Read(
-				GetPlayerCharacterIslandId().value()
-			).value().location;
+		auto location = GetPlayerCharacterIslandLocation().value();
 
 		auto currentShipId = GetPlayerCharacterShipId().value();
 		auto currentShipType = game::Ship::GetShipType(currentShipId).value();
