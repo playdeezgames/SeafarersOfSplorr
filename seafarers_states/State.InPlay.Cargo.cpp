@@ -18,26 +18,18 @@ namespace state::in_play
 		manifest = GetPlayerCharacterItems();
 	}
 
-	static double GetTonnage()
-	{
-		return game::character::Items::TotalTonnage(GetPlayerCharacterId());
-	}
-
-	static double GetAvailableTonnage()
-	{
-		return GetPlayerCharacterAvailableTonnage().value();
-	}
-
 	static void Refresh()
 	{
 		Terminal::Reinitialize();
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Cargo:");
 		Terminal::SetForeground(game::Colors::GRAY);
+		auto tonnage = game::character::Items::TotalTonnage(GetPlayerCharacterId());
+		auto availableTonnage = GetPlayerCharacterAvailableTonnage().value();
 		Terminal::WriteLine(
 				"Tonnage: {:.3f} ({:d}%)",
-				GetTonnage(),
-				(int)(100.0 * GetTonnage() / GetAvailableTonnage()));
+				tonnage,
+				(int)(100.0 * tonnage / availableTonnage));
 		Terminal::WriteLine(
 			"Money: {:.3f}",
 			GetPlayerCharacterMoney());
