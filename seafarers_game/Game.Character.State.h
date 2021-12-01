@@ -17,7 +17,5 @@ namespace game::character
 		CAREENED_TO_STARBOARD,//TODO: make into ship state
 		TEMPLE,
 		FISHING
-		//TODO: ABOARD_SHIP (replaces AT_SEA)
-		//TODO: ON_DOCK (replaced DOCK)
 	};
 }

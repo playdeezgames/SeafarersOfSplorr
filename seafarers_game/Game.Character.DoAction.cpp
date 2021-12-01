@@ -8,7 +8,6 @@
 #include "Game.Character.Action.h"
 #include "Game.Character.Items.h"
 #include "Game.Character.State.h"
-#include "Game.Character.StateTransition.h"
 #include "Game.Character.Statistics.h"
 #include "Game.Colors.h"
 #include "Game.Fishboard.h"
@@ -17,86 +16,44 @@
 #include "Game.Ship.Docked.h"
 namespace game
 {
-	static const std::string FORMAT_UNDOCK = "You undock from {}.";
-
-	static character::StateTransition OnUndock(int characterId)
+	static character::State OnUndock(int characterId)
 	{
 		auto islandId = game::ship::Docked::GetIsland(data::game::character::Ship::ReadForCharacter(characterId).value().shipId).value();
 		auto island = game::Islands::Read(islandId).value();
 		data::game::ship::Docks::Clear(data::game::character::Ship::ReadForCharacter(characterId).value().shipId);
-		return {
-			character::State::AT_SEA
-		};
+		return character::State::AT_SEA;
 	}
 
-	static character::StateTransition OnEnterDarkAlley(int characterId)
+	static character::State OnEnterDarkAlley(int characterId)
 	{
 		auto data = data::game::island::DarkAlley::Read(game::ship::Docked::GetIsland(data::game::character::Ship::ReadForCharacter(characterId).value().shipId).value()).value();
 		auto infamy = game::character::Statistics::GetInfamy(characterId);
 		if (infamy < data.infamyRequirement)
 		{
-			return
-			{
-				character::State::DARK_ALLEY_ENTRANCE
-			};
+			return character::State::DARK_ALLEY_ENTRANCE;
 		}
-		return
-		{
-			character::State::DARK_ALLEY
-		};
+		return character::State::DARK_ALLEY;
 	}
 
-	static character::StateTransition OnDefeatRuffian(int)
-	{
-		//TODO: add a message
-		return
-		{
-			character::State::DARK_ALLEY
-		};
-	}
-
-	static character::StateTransition OnStartGambling(int)
-	{
-		//TODO: add a message
-		return
-		{
-			character::State::GAMBLE_START
-		};
-	}
-
-	static character::StateTransition OnStartFishing(int characterId)
+	static character::State OnStartFishing(int characterId)
 	{
 		if (game::character::Items::Has(characterId, Item::FISHING_POLE))
 		{
 			if (game::character::Items::Has(characterId, Item::BAIT))
 			{
 				Fishboard::Generate(game::Player::GetCharacterId());
-				return
-				{
-					character::State::FISHING
-				};
+				return character::State::FISHING;
 			}
 		}
-		return
-		{
-			character::State::AT_SEA
-		};
+		return character::State::AT_SEA;
 	}
 
-	static character::StateTransition OnStopFishing(int)
-	{
-		return
-		{
-			character::State::AT_SEA
-		};
-	}
-
-	static std::function<character::StateTransition(int)> DoTransition(const character::StateTransition& transition)
+	static std::function<character::State(int)> DoTransition(const character::State& transition)
 	{
 		return [transition](int) { return transition; };
 	}
 
-	typedef std::function<character::StateTransition(int)> Transitioner;
+	typedef std::function<character::State(int)> Transitioner;
 	typedef std::map<character::State, Transitioner> ActionDescriptor;
 	typedef std::map<character::Action, ActionDescriptor> ActionDescriptorTable;
 
@@ -116,24 +73,15 @@ namespace game
 			{
 				{
 					character::State::MARKET_BUY,
-					DoTransition(
-						{
-							character::State::MARKET
-						})
+					DoTransition(character::State::MARKET)
 				},
 				{
 					character::State::MARKET_SELL,
-					DoTransition(
-					{
-						character::State::MARKET
-					})
+					DoTransition(character::State::MARKET)
 				},
 				{
 					character::State::DOCK,
-					DoTransition(
-					{
-						character::State::MARKET
-					})
+					DoTransition(character::State::MARKET)
 				}
 			}
 		},
@@ -142,45 +90,27 @@ namespace game
 			{
 				{
 					character::State::MARKET,
-					DoTransition(
-					{
-						character::State::DOCK
-					})
+					DoTransition(character::State::DOCK)
 				},
 				{
 					character::State::SHIPYARD,
-					DoTransition(
-					{
-						character::State::DOCK
-					})
+					DoTransition(character::State::DOCK)
 				},
 				{
 					character::State::JOB_BOARD,
-					DoTransition(
-					{
-						character::State::DOCK
-					})
+					DoTransition(character::State::DOCK)
 				},
 				{
 					character::State::DARK_ALLEY_ENTRANCE,
-					DoTransition(
-					{
-						character::State::DOCK
-					})
+					DoTransition(character::State::DOCK)
 				},
 				{
 					character::State::DARK_ALLEY,
-					DoTransition(
-					{
-						character::State::DOCK
-					})
+					DoTransition(character::State::DOCK)
 				},
 				{
 					character::State::TEMPLE,
-					DoTransition(
-					{
-						character::State::DOCK
-					})
+					DoTransition(character::State::DOCK)
 				},
 			}
 		},
@@ -189,10 +119,7 @@ namespace game
 			{
 				{
 					character::State::MARKET,
-					DoTransition(
-					{
-						character::State::MARKET_BUY
-					})
+					DoTransition(character::State::MARKET_BUY)
 				}
 			}
 		},
@@ -201,10 +128,7 @@ namespace game
 			{
 				{
 					character::State::MARKET,
-					DoTransition(
-					{
-						character::State::MARKET_SELL
-					})
+					DoTransition(character::State::MARKET_SELL)
 				}
 			}
 		},
@@ -213,10 +137,7 @@ namespace game
 			{
 				{
 					character::State::DOCK,
-					DoTransition(
-					{
-						character::State::JOB_BOARD
-					})
+					DoTransition(character::State::JOB_BOARD)
 				}
 			}
 		},
@@ -225,10 +146,7 @@ namespace game
 			{
 				{
 					character::State::DOCK,
-					DoTransition(
-					{
-						character::State::TEMPLE
-					})
+					DoTransition(character::State::TEMPLE)
 				}
 			}
 		},
@@ -237,10 +155,7 @@ namespace game
 			{
 				{
 					character::State::DOCK,
-					DoTransition(
-					{
-						character::State::SHIPYARD
-					})
+					DoTransition(character::State::SHIPYARD)
 				}
 			}
 		},
@@ -253,10 +168,7 @@ namespace game
 				},
 				{
 					character::State::GAMBLE_START,
-					DoTransition(
-					{
-						character::State::DARK_ALLEY
-					})
+					DoTransition(character::State::DARK_ALLEY)
 				}
 			}
 		},
@@ -265,7 +177,7 @@ namespace game
 			{
 				{
 					character::State::DARK_ALLEY_ENTRANCE,
-					OnDefeatRuffian
+					DoTransition(character::State::DARK_ALLEY)
 				}
 			}
 		},
@@ -274,7 +186,7 @@ namespace game
 			{
 				{
 					character::State::DARK_ALLEY,
-					OnStartGambling
+					DoTransition(character::State::GAMBLE_START)
 				}
 			}
 		},
@@ -283,9 +195,7 @@ namespace game
 			{
 				{
 					character::State::AT_SEA,
-					DoTransition({
-						character::State::CAREENED_TO_PORT
-					})
+					DoTransition(character::State::CAREENED_TO_PORT)
 				}
 			}
 		},
@@ -294,9 +204,7 @@ namespace game
 			{
 				{
 					character::State::AT_SEA,
-					DoTransition({
-						character::State::CAREENED_TO_STARBOARD
-					})
+					DoTransition(character::State::CAREENED_TO_STARBOARD)
 				}
 			}
 		},
@@ -305,15 +213,11 @@ namespace game
 			{
 				{
 					character::State::CAREENED_TO_PORT,
-					DoTransition({
-						character::State::AT_SEA
-					})
+					DoTransition(character::State::AT_SEA)
 				},
 				{
 					character::State::CAREENED_TO_STARBOARD,
-					DoTransition({
-						character::State::AT_SEA
-					})
+					DoTransition(character::State::AT_SEA)
 				}
 			}
 		},
@@ -331,7 +235,7 @@ namespace game
 			{
 				{
 					character::State::FISHING,
-					OnStopFishing
+					DoTransition(character::State::AT_SEA)
 				}
 			}
 		}
@@ -373,7 +277,7 @@ namespace game
 				auto transitioner = FindTransitioner(descriptor.value(), state.value());
 				if (transitioner)
 				{
-					Character::SetState(characterId, transitioner.value()(characterId).state);
+					Character::SetState(characterId, transitioner.value()(characterId));
 				}
 			}
 		}

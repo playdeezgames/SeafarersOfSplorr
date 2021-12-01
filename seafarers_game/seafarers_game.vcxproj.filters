@@ -251,9 +251,6 @@
     <ClInclude Include="Game.Character.State.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Character.StateTransition.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Character.Statistics.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>

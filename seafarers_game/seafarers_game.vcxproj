@@ -38,7 +38,6 @@
     <ClInclude Include="Game.Character.Ship.h" />
     <ClInclude Include="Game.Ship.Statistics.h" />
     <ClInclude Include="Game.Character.State.h" />
-    <ClInclude Include="Game.Character.StateTransition.h" />
     <ClInclude Include="Game.Character.Statistic.h" />
     <ClInclude Include="Game.Character.Statistics.h" />
     <ClInclude Include="Game.EquipSlot.h" />
