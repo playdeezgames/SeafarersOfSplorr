@@ -18,7 +18,6 @@
 #include "Game.ShipNames.h"
 #include "Game.ShipTypes.h"
 #include "Game.World.h"
-//#include <map>
 namespace game
 {
 	static double DetermineHungerRate()
@@ -55,7 +54,7 @@ namespace game
 		const double EAT_BENEFIT = 10.0;
 		if (game::character::Statistics::NeedToEat(characterId, EAT_BENEFIT))
 		{
-			const game::Item rationItem = game::Item::RATIONS;//TODO: when we can choose rations for an avatar, this will change
+			const game::Item rationItem = game::Item::RATIONS;//TODO: when we can choose rations for an character, this will change
 			auto rations = game::character::Items::Read(characterId, rationItem);
 			if (rations > 0)
 			{
@@ -178,7 +177,7 @@ namespace game
 	static void GenerateAvatarRations(int characterId)
 	{
 		data::game::character::Rations::Write(
-			characterId, 
+			characterId,
 			(int)game::Items::GenerateRationsForAvatar());
 	}
 
@@ -212,7 +211,14 @@ namespace game
 	{
 		return common::utility::Optional::Map<data::game::Character, std::string>(
 			data::game::Character::Read(characterId),
-			[](const data::game::Character& avatar)
-			{ return avatar.name; });
+			[](const data::game::Character& character)
+			{ return character.name; });
+	}
+
+	std::optional<character::State> Character::GetState(int characterId)
+	{
+		return common::utility::Optional::Bind<data::game::Character, character::State>(
+			data::game::Character::Read(characterId),
+			[](const data::game::Character& character) { return (character::State)character.state; });
 	}
 }
