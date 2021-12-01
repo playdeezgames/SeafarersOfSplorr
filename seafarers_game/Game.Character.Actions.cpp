@@ -116,7 +116,11 @@ namespace game::character
 		return [transition](int) { return transition; };
 	}
 
-	const std::map<Action, std::map<State, std::function<StateTransition(int)>>> actionDescriptors =
+	typedef std::function<StateTransition(int)> Transitioner;
+	typedef std::map<State, Transitioner> ActionDescriptor;
+	typedef std::map<Action, ActionDescriptor> ActionDescriptorTable;
+
+	const ActionDescriptorTable actionDescriptors =
 	{
 		{
 			Action::UNDOCK,
@@ -391,16 +395,29 @@ namespace game::character
 		}
 	};
 
-	static const std::map<Action, std::map<State, std::function<StateTransition(int)>>>& GetActionDescriptors()
+	static const ActionDescriptorTable& GetActionDescriptors()
 	{
 		return actionDescriptors;
 	}
 
-	static void SetState(int characterId, const State& state)
+	static std::optional<ActionDescriptor> FindActionDescriptor(const Action& action)
 	{
-		auto avatar = data::game::Character::Read(characterId).value();
-		avatar.state = (int)state;
-		data::game::Character::Write(characterId, avatar);
+		auto descriptor = GetActionDescriptors().find(action);
+		if (descriptor != GetActionDescriptors().end())
+		{
+			return descriptor->second;
+		}
+		return std::nullopt;
+	}
+
+	static std::optional<Transitioner> FindTransitioner(const ActionDescriptor& descriptor, const State& state)
+	{
+		auto transition = descriptor.find(state);
+		if (transition != descriptor.end())
+		{
+			return transition->second;
+		}
+		return std::nullopt;
 	}
 
 	void Actions::DoAction(int characterId, const Action& action)
@@ -408,16 +425,13 @@ namespace game::character
 		auto state = Character::GetState(characterId);
 		if (state)
 		{
-			auto descriptor = GetActionDescriptors().find(action);
-			if (descriptor != GetActionDescriptors().end())
+			auto descriptor = FindActionDescriptor(action);
+			if (descriptor)
 			{
-				auto transition = descriptor->second.find(state.value());
+				auto transitioner = FindTransitioner(descriptor.value(), state.value());
+				if (transitioner)
 				{
-					if (transition != descriptor->second.end())
-					{
-						auto result = transition->second(characterId);
-						SetState(characterId, result.state);
-					}
+					Character::SetState(characterId, transitioner.value()(characterId).state);
 				}
 			}
 		}
