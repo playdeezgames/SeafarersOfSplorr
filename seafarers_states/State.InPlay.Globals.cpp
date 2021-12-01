@@ -1,10 +1,13 @@
 #include <Common.Utility.Optional.h>
 #include <Game.Character.Actions.h>
+#include <Game.Character.Items.h>
 #include <Game.Character.Quest.h>
 #include <Game.Character.Statistics.h>
 #include <Game.Character.Ship.h>
+#include <Game.Character.ShipStatistics.h>
 #include <Game.Islands.h>
 #include <Game.Islands.DarkAlley.h>
+#include <Game.Islands.Items.h>
 #include <Game.Player.h>
 #include <Game.Ship.h>
 #include <Game.Ship.Docked.h>
@@ -144,7 +147,22 @@ namespace state::in_play
 		return game::character::Ship::AvailableTonnage(GetPlayerCharacterId());
 	}
 
-	//std::optional<std::map<game::Item, double>> GetPlayerCharacterPurchasePrices();//game::islands::Items::GetPurchasePrices(GetPlayerCharacterIslandId().value())
-	//std::map<game::Item, size_t> GetPlayerCharacterItems();//game::character::Items::All(GetPlayerCharacterId())
-	//void PlayerCharacterCleanHull(const game::Side&);//game::character::ShipStatistics::CleanHull(GetPlayerCharacterShipId().value(),
+	std::optional<std::map<game::Item, double>> GetPlayerCharacterPurchasePrices()
+	{
+		auto islandId = GetPlayerCharacterIslandId();
+		if (islandId)
+		{
+			return game::islands::Items::GetPurchasePrices(islandId.value());
+		}
+		return std::nullopt;
+	}
+	std::map<game::Item, size_t> GetPlayerCharacterItems()
+	{
+		return game::character::Items::All(GetPlayerCharacterId());
+	}
+
+	void PlayerCharacterCleanHull(const game::Side& side)
+	{
+		game::character::ShipStatistics::CleanHull(GetPlayerCharacterShipId().value(), side);
+	}
 }

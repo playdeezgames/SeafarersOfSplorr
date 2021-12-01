@@ -19,7 +19,7 @@ namespace state::in_play
 
 	static void UpdateItems()
 	{
-		items = game::character::Items::All(GetPlayerCharacterId());
+		items = GetPlayerCharacterItems();
 	}
 
 	static void RefreshItems()

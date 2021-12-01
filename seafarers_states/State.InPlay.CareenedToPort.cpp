@@ -28,7 +28,7 @@ namespace state::in_play
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::GREEN);
 		Terminal::WriteLine("You clean the starboard side.");
-		game::character::ShipStatistics::CleanHull(GetPlayerCharacterShipId().value(), game::Side::STARBOARD);
+		PlayerCharacterCleanHull(game::Side::STARBOARD);
 		Refresh();
 	}
 

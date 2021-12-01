@@ -15,7 +15,7 @@ namespace state::in_play
 
 	static void UpdateManifest()
 	{
-		manifest = game::character::Items::All(GetPlayerCharacterId());
+		manifest = GetPlayerCharacterItems();
 	}
 
 	static double GetTonnage()

@@ -61,8 +61,8 @@ namespace state::in_play
 		if (price>0 && GetPlayerCharacterMoney() >= price)
 		{
 			ChangePlayerCharacterMoney(-price);
-			game::character::ShipStatistics::CleanHull(GetPlayerCharacterShipId().value(), game::Side::STARBOARD);
-			game::character::ShipStatistics::CleanHull(GetPlayerCharacterShipId().value(), game::Side::PORT);
+			PlayerCharacterCleanHull(game::Side::STARBOARD);
+			PlayerCharacterCleanHull(game::Side::PORT);
 			Terminal::WriteLine("You unfoul yer ship!");
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		}
