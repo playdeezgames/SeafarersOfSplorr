@@ -81,7 +81,7 @@ namespace state::in_play
 		int index = common::Data::ToInt(line) - 1;
 		if (index >= 0 && index < rosterItems.size())
 		{
-			CrewDetail::SetCharacterId(rosterItems[index].avatarId);
+			SetCrewDetailCharacterId(rosterItems[index].avatarId);
 			application::UIState::Write(::UIState::IN_PLAY_CREW_DETAIL);
 		}
 		else

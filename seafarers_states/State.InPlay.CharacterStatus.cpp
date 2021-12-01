@@ -12,19 +12,19 @@ namespace state::in_play
 	static void RefreshStatistics()
 	{
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Money: {:.4f}", game::character::Statistics::ReadMoney(CrewDetail::GetCharacterId()));
-		Terminal::WriteLine("Reputation: {:.1f}", game::character::Statistics::GetReputation(CrewDetail::GetCharacterId()));
-		Terminal::WriteLine("Brawling: {:.1f}", game::character::Statistics::GetBrawling(CrewDetail::GetCharacterId()));
-		Terminal::WriteLine("Health: {:.0f}", game::character::Statistics::GetHealth(CrewDetail::GetCharacterId()));
-		Terminal::WriteLine("Satiety: {:.0f}", game::character::Statistics::GetSatiety(CrewDetail::GetCharacterId()));
-		Terminal::WriteLine("Turns: {}", game::character::Statistics::GetTurnsRemaining(CrewDetail::GetCharacterId()));
-		Terminal::WriteLine("Dignity: {:.0f}", game::character::Statistics::GetDignity(CrewDetail::GetCharacterId()));
-		Terminal::WriteLine("Poshness: {:.0f}", game::character::Statistics::GetPoshness(CrewDetail::GetCharacterId()));
+		Terminal::WriteLine("Money: {:.4f}", game::character::Statistics::ReadMoney(GetCrewDetailCharacterId()));
+		Terminal::WriteLine("Reputation: {:.1f}", game::character::Statistics::GetReputation(GetCrewDetailCharacterId()));
+		Terminal::WriteLine("Brawling: {:.1f}", game::character::Statistics::GetBrawling(GetCrewDetailCharacterId()));
+		Terminal::WriteLine("Health: {:.0f}", game::character::Statistics::GetHealth(GetCrewDetailCharacterId()));
+		Terminal::WriteLine("Satiety: {:.0f}", game::character::Statistics::GetSatiety(GetCrewDetailCharacterId()));
+		Terminal::WriteLine("Turns: {}", game::character::Statistics::GetTurnsRemaining(GetCrewDetailCharacterId()));
+		Terminal::WriteLine("Dignity: {:.0f}", game::character::Statistics::GetDignity(GetCrewDetailCharacterId()));
+		Terminal::WriteLine("Poshness: {:.0f}", game::character::Statistics::GetPoshness(GetCrewDetailCharacterId()));
 	}
 
 	static void RefreshPlights()
 	{
-		auto inflicted = game::character::Plights::InflictedWith(CrewDetail::GetCharacterId());
+		auto inflicted = game::character::Plights::InflictedWith(GetCrewDetailCharacterId());
 		if (!inflicted.empty())
 		{
 			Terminal::SetForeground(game::Colors::GRAY);

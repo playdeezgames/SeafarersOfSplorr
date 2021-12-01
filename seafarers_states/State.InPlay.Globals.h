@@ -10,6 +10,7 @@
 #include "UIState.h" //common include
 
 #include <Game.Character.Action.h>
+#include <Game.EquipSlot.h>
 #include <Game.Island.h>
 #include <Game.Item.h>
 #include <Game.Quest.h>
@@ -41,12 +42,13 @@ namespace state::in_play
 	void PlayerCharacterCleanHull(const game::Side&);
 	void SetIslandTradeItem(const game::Item&);
 	const game::Item& GetIslandTradeItem();
-	//EquipmentSlot::SetSlot(
-	//EquipmentSlot::GetSlot()
-	//CrewDetail::SetCharacterId(
-	//CrewDetail::GetCharacterId()
+	void SetEquipmentSlot(const game::EquipSlot&);
+	const game::EquipSlot& GetEquipmentSlot();
+	void SetCrewDetailCharacterId(int);
+	int GetCrewDetailCharacterId();
 	//DarkAlleyEntrance::Ranks
 	//DarkAlleyEntrance::SuitColors
 	//DarkAlleyEntrance::Suits
 	//RenameShipAdjective::Read()
+	//RenameShipAdjective::Write()
 }

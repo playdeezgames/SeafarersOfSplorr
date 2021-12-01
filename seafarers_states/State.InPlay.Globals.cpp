@@ -168,4 +168,29 @@ namespace state::in_play
 		return islandTradeItem;
 	}
 
+	static game::EquipSlot equipmentSlot = game::EquipSlot::PRISON_WALLET;
+
+	void SetEquipmentSlot(const game::EquipSlot& equipSlot)
+	{
+		equipmentSlot = equipmentSlot;
+	}
+
+	const game::EquipSlot& GetEquipmentSlot()
+	{
+		return equipmentSlot;
+	}
+
+	static int crewDetailCharacterId = 0;
+
+	void SetCrewDetailCharacterId(int characterId)
+	{
+		crewDetailCharacterId = characterId;
+	}
+
+	int GetCrewDetailCharacterId()
+	{
+		return crewDetailCharacterId;
+	}
+	//CrewDetail::SetCharacterId(
+	//CrewDetail::GetCharacterId()
 }
