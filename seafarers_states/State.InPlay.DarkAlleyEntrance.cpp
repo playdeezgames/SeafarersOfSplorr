@@ -119,7 +119,7 @@ namespace state::in_play
 		Terminal::WriteLine(
 			"Yer Brawling: {:.1f} Yer Health: {:.0f}", 
 			game::character::Statistics::GetBrawling(GetPlayerCharacterId()),
-			game::character::Statistics::GetHealth(GetPlayerCharacterId()));
+			game::character::statistics::Health::Current(GetPlayerCharacterId()).value());
 
 		RefreshBoard();
 
@@ -170,8 +170,8 @@ namespace state::in_play
 
 	static void HandleTakeDamage()
 	{
-		game::character::Statistics::ChangeHealth(GetPlayerCharacterId(), -GetRuffianBrawling());
-		if (game::character::Statistics::IsDead(GetPlayerCharacterId()))
+		game::character::statistics::Health::Change(GetPlayerCharacterId(), -GetRuffianBrawling());
+		if (game::character::statistics::Health::IsDead(GetPlayerCharacterId()).value())
 		{
 			Terminal::WriteLine("DEFEAT!");
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);

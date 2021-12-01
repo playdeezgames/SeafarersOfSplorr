@@ -20,9 +20,6 @@ namespace game::character
 	struct Statistics
 	{
 		static void Reset(int, const game::Difficulty&);
-		static double GetHealth(int);
-		static void ChangeHealth(int, double);
-		static std::optional<bool> IsDead(int);
 		static double GetSatiety(int);
 		static void ChangeSatiety(int, double);
 		static std::optional<bool> IsStarving(int);
@@ -39,7 +36,6 @@ namespace game::character
 		static void ChangeBrawling(int, double);
 		static double GetDignity(int);
 		static double GetPoshness(int);
-		static std::optional<bool> IsPlayerDead(int);
 		static bool IsPlayerOutOfTurns(int);
 	};
 }

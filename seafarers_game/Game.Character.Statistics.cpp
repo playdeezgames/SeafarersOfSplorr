@@ -235,11 +235,6 @@ namespace game::character
 
 	}
 
-	double Statistics::GetHealth(int characterId)
-	{
-		return GetCurrent(characterId, game::character::Statistic::HEALTH).value();
-	}
-
 	double Statistics::GetSatiety(int characterId)
 	{
 		return GetCurrent(characterId, game::character::Statistic::SATIETY).value();
@@ -308,19 +303,9 @@ namespace game::character
 		return GetCurrent(characterId, game::character::Statistic::TURNS_REMAINING) <= GetMinimum(characterId, game::character::Statistic::TURNS_REMAINING);
 	}
 
-	std::optional<bool> Statistics::IsDead(int characterId)
-	{
-		return IsMinimal(characterId, Statistic::HEALTH);
-	}
-
 	std::optional<bool> Statistics::IsStarving(int characterId)
 	{
 		return IsMinimal(characterId, Statistic::SATIETY);
-	}
-
-	void Statistics::ChangeHealth(int characterId, double delta)
-	{
-		ChangeCurrent(characterId, Statistic::HEALTH, delta);
 	}
 
 	void Statistics::ChangeSatiety(int characterId, double delta)
@@ -346,11 +331,6 @@ namespace game::character
 	double Statistics::GetPoshness(int characterId)
 	{
 		return GetCurrentWithBuffs(characterId, character::Statistic::POSHNESS);
-	}
-
-	std::optional<bool> Statistics::IsPlayerDead(int characterId)
-	{
-		return IsDead(characterId);
 	}
 
 	bool Statistics::IsPlayerOutOfTurns(int characterId)

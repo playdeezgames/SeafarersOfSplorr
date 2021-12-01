@@ -41,7 +41,7 @@ namespace game
 		double delta = DetermineHungerRate();
 		if (game::character::Statistics::IsStarving(characterId))
 		{
-			game::character::Statistics::ChangeHealth(characterId, delta);
+			game::character::statistics::Health::Change(characterId, delta);
 		}
 		else
 		{
