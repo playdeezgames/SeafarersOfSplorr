@@ -21,7 +21,7 @@
 namespace state::in_play
 {
 	int GetPlayerCharacterId();
-	std::optional<game::ship::DockResult> Dock();
+	std::optional<game::ship::DockResult> Dock();//TODO: PlayerCharacterDock?
 	std::optional<int> GetPlayerCharacterIslandId();
 	std::optional<int> GetPlayerCharacterShipId();
 	std::optional<game::Quest> GetPlayerCharacterQuest();
@@ -42,6 +42,7 @@ namespace state::in_play
 	std::optional<std::map<game::Item, double>> GetPlayerCharacterPurchasePrices();
 	std::map<game::Item, size_t> GetPlayerCharacterItems();
 	void PlayerCharacterCleanHull(const game::Side&);
+
 	void SetIslandTradeItem(const game::Item&);
 	const game::Item& GetIslandTradeItem();
 	void SetEquipmentSlot(const game::EquipSlot&);
