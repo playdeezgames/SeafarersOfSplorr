@@ -191,6 +191,21 @@ namespace game::character
 		return GetCurrent(characterId, statistic);
 	}
 
+	static std::optional<bool> IsMinimal(int characterId, const Statistic& statistic)
+	{
+		auto current = GetCurrent(characterId, statistic);
+		if (current)
+		{
+			auto minimum = GetMinimum(characterId, statistic);
+			if (minimum)
+			{
+				return current.value() <= minimum.value();
+			}
+			return false;
+		}
+		return std::nullopt;
+	}
+
 	namespace statistics
 	{
 		std::optional<double> Money::Current(int characterId)
@@ -200,8 +215,24 @@ namespace game::character
 
 		std::optional<double> Money::Change(int characterId, double delta)
 		{
-			return Current(characterId);
+			return ChangeCurrent(characterId, game::character::Statistic::MONEY, delta);
 		}
+
+		std::optional<double> Health::Current(int characterId)
+		{
+			return GetCurrent(characterId, game::character::Statistic::HEALTH);
+		}
+
+		std::optional<double> Health::Change(int characterId, double delta)
+		{
+			return ChangeCurrent(characterId, game::character::Statistic::HEALTH, delta);
+		}
+
+		std::optional<bool> Health::IsDead(int characterId)
+		{
+			return IsMinimal(characterId, Statistic::HEALTH);
+		}
+
 	}
 
 	double Statistics::GetHealth(int characterId)
@@ -277,17 +308,12 @@ namespace game::character
 		return GetCurrent(characterId, game::character::Statistic::TURNS_REMAINING) <= GetMinimum(characterId, game::character::Statistic::TURNS_REMAINING);
 	}
 
-	static bool IsMinimal(int characterId, const Statistic& statistic)
-	{
-		return GetCurrent(characterId, statistic) <= GetMinimum(characterId, statistic);
-	}
-
-	bool Statistics::IsDead(int characterId)
+	std::optional<bool> Statistics::IsDead(int characterId)
 	{
 		return IsMinimal(characterId, Statistic::HEALTH);
 	}
 
-	bool Statistics::IsStarving(int characterId)
+	std::optional<bool> Statistics::IsStarving(int characterId)
 	{
 		return IsMinimal(characterId, Statistic::SATIETY);
 	}
@@ -322,7 +348,7 @@ namespace game::character
 		return GetCurrentWithBuffs(characterId, character::Statistic::POSHNESS);
 	}
 
-	bool Statistics::IsPlayerDead(int characterId)
+	std::optional<bool> Statistics::IsPlayerDead(int characterId)
 	{
 		return IsDead(characterId);
 	}
