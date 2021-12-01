@@ -4,7 +4,7 @@
 #include <Game.Character.Quest.h>
 #include <Game.Character.Statistics.h>
 #include <Game.Character.Ship.h>
-#include <Game.Character.ShipStatistics.h>
+#include <Game.Ship.Statistics.h>
 #include <Game.Islands.h>
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.Items.h>
@@ -153,7 +153,7 @@ namespace state::in_play
 
 	void PlayerCharacterCleanHull(const game::Side& side)
 	{
-		game::character::ShipStatistics::CleanHull(GetPlayerCharacterShipId().value(), side);
+		game::ship::Statistics::CleanHull(GetPlayerCharacterShipId().value(), side);
 	}
 
 	static game::Item islandTradeItem = game::Item::RATIONS;

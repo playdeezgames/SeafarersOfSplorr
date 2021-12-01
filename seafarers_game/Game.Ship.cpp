@@ -5,7 +5,7 @@
 #include <Data.Game.Ship.h>
 #include <Data.Game.Ship.Statistic.h>
 #include "Game.Ship.h"
-#include "Game.Character.ShipStatistics.h"
+#include "Game.Ship.Statistics.h"
 #include "Game.ShipTypes.h"
 #include "Game.World.h"
 namespace game
@@ -124,12 +124,12 @@ namespace game
 
 	static void HandleFouling(int shipId, double speed)
 	{
-		character::ShipStatistics::IncreaseFouling(shipId, speed);
+		ship::Statistics::IncreaseFouling(shipId, speed);
 	}
 
 	static double GetEffectiveSpeed(int shipId, double heading, double speed)
 	{
-		auto fouling = character::ShipStatistics::GetFouling(shipId);
+		auto fouling = ship::Statistics::GetFouling(shipId);
 		auto effectiveSpeed = speed * (1.0 - fouling);
 
 		effectiveSpeed *= World::GetWindSpeedMultiplier(heading);

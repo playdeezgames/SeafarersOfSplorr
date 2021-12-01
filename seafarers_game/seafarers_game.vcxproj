@@ -37,7 +37,7 @@
     <ClInclude Include="Game.Character.Quest.h" />
     <ClInclude Include="Game.Character.Rations.h" />
     <ClInclude Include="Game.Character.Ship.h" />
-    <ClInclude Include="Game.Character.ShipStatistics.h" />
+    <ClInclude Include="Game.Ship.Statistics.h" />
     <ClInclude Include="Game.Character.State.h" />
     <ClInclude Include="Game.Character.StateTransition.h" />
     <ClInclude Include="Game.Character.Statistic.h" />
@@ -106,7 +106,7 @@
     <ClCompile Include="Game.Character.Quest.cpp" />
     <ClCompile Include="Game.Character.Rations.cpp" />
     <ClCompile Include="Game.Character.Ship.cpp" />
-    <ClCompile Include="Game.Character.ShipStatistics.cpp" />
+    <ClCompile Include="Game.Ship.Statistics.cpp" />
     <ClCompile Include="Game.Character.Statistics.cpp" />
     <ClCompile Include="Game.Commodities.cpp" />
     <ClCompile Include="Game.cpp" />

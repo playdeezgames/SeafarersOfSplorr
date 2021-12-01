@@ -1,4 +1,4 @@
-#include <Game.Character.ShipStatistics.h>
+#include <Game.Ship.Statistics.h>
 #include "State.InPlay.CareenedToPort.h"
 #include "State.InPlay.Globals.h"
 namespace state::in_play
@@ -12,7 +12,7 @@ namespace state::in_play
 		Terminal::WriteLine("Careened to port:");
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Starboard fouling {:.0f}%", 
-			game::character::ShipStatistics::GetFoulingPercentage(
+			game::ship::Statistics::GetFoulingPercentage(
 				GetPlayerCharacterShipId().value(),
 				game::Side::STARBOARD));
 

@@ -1,5 +1,5 @@
 #include <Game.Character.Statistics.h>
-#include <Game.Character.ShipStatistics.h>
+#include <Game.Ship.Statistics.h>
 #include <Game.Islands.Commodities.h>
 #include <Game.World.h>
 #include "State.InPlay.Globals.h"
@@ -15,7 +15,7 @@ namespace state::in_play
 			{
 					{game::Commodity::LABOR, 
 						game::World::GetUnfoulingLaborMultiplier() * 
-						game::character::ShipStatistics::GetFouling(GetPlayerCharacterShipId().value())}
+						game::ship::Statistics::GetFouling(GetPlayerCharacterShipId().value())}
 			});
 	}
 

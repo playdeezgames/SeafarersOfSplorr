@@ -1,8 +1,8 @@
 #pragma once
 #include "Game.Side.h"
-namespace game::character
+namespace game::ship
 {
-	struct ShipStatistics
+	struct Statistics
 	{
 		static double GetFouling(int);
 		static double GetFoulingPercentage(int);

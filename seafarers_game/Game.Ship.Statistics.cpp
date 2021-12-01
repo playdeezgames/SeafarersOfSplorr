@@ -1,11 +1,11 @@
 #include <Common.Data.h>
 #include <Data.Game.Ship.Statistic.h>
-#include "Game.Character.ShipStatistics.h"
+#include "Game.Ship.Statistics.h"
 #include "Game.Character.Ship.h"
 #include "Game.Colors.h"
 #include "Game.ShipStatistic.h"
 #include <map>
-namespace game::character
+namespace game::ship
 {
 	static data::game::ship::Statistic GetStatistic(int shipId, const ShipStatistic& statistic)
 	{
@@ -19,7 +19,7 @@ namespace game::character
 		return portFouling + starboardFouling;
 	}
 
-	double ShipStatistics::GetFouling(int shipId)
+	double Statistics::GetFouling(int shipId)
 	{
 		double portFouling = GetStatistic(shipId, ShipStatistic::PORT_FOULING).current;
 		double starboardFouling = GetStatistic(shipId, ShipStatistic::STARBOARD_FOULING).current;
@@ -38,13 +38,13 @@ namespace game::character
 		{ Side::STARBOARD, {ShipStatistic::STARBOARD_FOULING, "You clean the starboard hull."}},
 	};
 
-	double ShipStatistics::GetFoulingPercentage(int shipId, const game::Side& side)
+	double Statistics::GetFoulingPercentage(int shipId, const game::Side& side)
 	{
 		auto statistic = GetStatistic(shipId, foulingTable.find(side)->second.statistic);
 		return common::Data::ToPercentage(statistic.current, statistic.maximum.value()).value();
 	}
 
-	double ShipStatistics::GetFoulingPercentage(int shipId)
+	double Statistics::GetFoulingPercentage(int shipId)
 	{
 		return common::Data::ToPercentage(GetFouling(shipId), GetMaximumFouling(shipId)).value();
 	}
@@ -60,14 +60,14 @@ namespace game::character
 		data::game::ship::Statistic::Write(shipId, (int)statistic, fouling);
 	}
 
-	void ShipStatistics::IncreaseFouling(int shipId, double multiplier)
+	void Statistics::IncreaseFouling(int shipId, double multiplier)
 	{
 		auto foulingRate = GetStatistic(shipId, ShipStatistic::FOULING_RATE).current * multiplier;
-		game::character::IncreaseFouling(shipId, ShipStatistic::PORT_FOULING, foulingRate);
-		game::character::IncreaseFouling(shipId, ShipStatistic::STARBOARD_FOULING, foulingRate);
+		game::ship::IncreaseFouling(shipId, ShipStatistic::PORT_FOULING, foulingRate);
+		game::ship::IncreaseFouling(shipId, ShipStatistic::STARBOARD_FOULING, foulingRate);
 	}
 
-	void ShipStatistics::CleanHull(int shipId, const Side& side)
+	void Statistics::CleanHull(int shipId, const Side& side)
 	{
 		auto descriptor = foulingTable.find(side)->second;
 		auto fouling = GetStatistic(shipId, descriptor.statistic);
