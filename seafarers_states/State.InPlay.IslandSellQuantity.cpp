@@ -28,7 +28,7 @@ namespace state::in_play
 
 	static void OnEnter()
 	{
-		game::audio::Mux::Play(game::audio::Theme::MAIN);
+		PlayMainTheme();
 		Refresh();
 	}
 

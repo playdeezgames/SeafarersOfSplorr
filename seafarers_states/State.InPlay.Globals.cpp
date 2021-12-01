@@ -67,4 +67,10 @@ namespace state::in_play
 			GetPlayerCharacterShipId(),
 			game::Ship::GetSpeed);
 	}
+
+	void PlayMainTheme()
+	{
+		game::audio::Mux::Play(game::audio::Theme::MAIN);
+	}
+
 }

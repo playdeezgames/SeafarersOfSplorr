@@ -41,7 +41,7 @@ namespace state::in_play
 		{
 			confirmation = visuals::Confirmations::Read();
 			Refresh();
-			game::audio::Mux::Play(game::audio::Theme::MAIN);//TODO: have this come from the confirmation object?
+			PlayMainTheme();//TODO: have this come from the confirmation object?
 			return;
 		}
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);

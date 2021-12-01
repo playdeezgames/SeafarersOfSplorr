@@ -52,7 +52,7 @@ namespace state::in_play
 
 	static void OnEnter()
 	{
-		game::audio::Mux::Play(game::audio::Theme::MAIN);
+		PlayMainTheme();
 		game::islands::dark_alley::GamblingHand::Deal(GetPlayerCharacterIslandId().value());
 		Refresh();
 	}

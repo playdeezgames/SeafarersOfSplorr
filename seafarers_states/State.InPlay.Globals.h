@@ -23,9 +23,9 @@ namespace state::in_play
 	std::optional<std::list<game::Island>> GetPlayerCharacterViewableIslands();
 	std::optional<double> GetPlayerCharacterShipHeading();
 	std::optional<double> GetPlayerCharacterShipSpeed();
+	void PlayMainTheme();
 	//game::Islands::GetKnownIslands(GetPlayerCharacterId())
 	//game::Ship::SetHeading(GetPlayerCharacterShipId().value(),
-	//game::audio::Mux::Play(game::audio::Theme::MAIN)
 	//game::character::Actions::DoAction(GetPlayerCharacterId(),
 	//game::character::Statistics::ChangeMoney(GetPlayerCharacterId()
 	//game::character::Statistics::ReadMoney(GetPlayerCharacterId())
