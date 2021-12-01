@@ -9,6 +9,8 @@
 #include "State.Terminal.h" //common include
 #include "UIState.h" //common include
 
+#include <Cards.Rank.h>
+#include <Cards.Suit.h>
 #include <Game.Character.Action.h>
 #include <Game.EquipSlot.h>
 #include <Game.Island.h>
@@ -46,6 +48,9 @@ namespace state::in_play
 	const game::EquipSlot& GetEquipmentSlot();
 	void SetCrewDetailCharacterId(int);
 	int GetCrewDetailCharacterId();
+	const std::map<cards::Rank, std::string>& GetRanks();
+	const std::map<cards::Suit, std::string>& GetSuitColors();
+	const std::map<cards::Suit, std::string>& GetSuits();
 	//DarkAlleyEntrance::Ranks
 	//DarkAlleyEntrance::SuitColors
 	//DarkAlleyEntrance::Suits

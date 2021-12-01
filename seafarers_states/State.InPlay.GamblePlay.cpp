@@ -28,16 +28,16 @@ namespace state::in_play
 
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::Write("First Card: ");
-		Terminal::SetForeground(DarkAlleyEntrance::SuitColors.find(std::get<1>(hand[0]))->second);
-		Terminal::Write(DarkAlleyEntrance::Ranks.find(std::get<0>(hand[0]))->second);
-		Terminal::Write(DarkAlleyEntrance::Suits.find(std::get<1>(hand[0]))->second);
+		Terminal::SetForeground(GetSuitColors().find(std::get<1>(hand[0]))->second);
+		Terminal::Write(GetRanks().find(std::get<0>(hand[0]))->second);
+		Terminal::Write(GetSuits().find(std::get<1>(hand[0]))->second);
 		Terminal::WriteLine();
 
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::Write("Second Card: ");
-		Terminal::SetForeground(DarkAlleyEntrance::SuitColors.find(std::get<1>(hand[1]))->second);
-		Terminal::Write(DarkAlleyEntrance::Ranks.find(std::get<0>(hand[1]))->second);
-		Terminal::Write(DarkAlleyEntrance::Suits.find(std::get<1>(hand[1]))->second);
+		Terminal::SetForeground(GetSuitColors().find(std::get<1>(hand[1]))->second);
+		Terminal::Write(GetRanks().find(std::get<0>(hand[1]))->second);
+		Terminal::Write(GetSuits().find(std::get<1>(hand[1]))->second);
 		Terminal::WriteLine();
 
 		Terminal::SetForeground(game::Colors::GRAY);
@@ -62,9 +62,9 @@ namespace state::in_play
 		auto hand = GetHand();
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::Write("Final Card: ");
-		Terminal::SetForeground(DarkAlleyEntrance::SuitColors.find(std::get<1>(hand[2]))->second);
-		Terminal::Write(DarkAlleyEntrance::Ranks.find(std::get<0>(hand[2]))->second);
-		Terminal::Write(DarkAlleyEntrance::Suits.find(std::get<1>(hand[2]))->second);
+		Terminal::SetForeground(GetSuitColors().find(std::get<1>(hand[2]))->second);
+		Terminal::Write(GetRanks().find(std::get<0>(hand[2]))->second);
+		Terminal::Write(GetSuits().find(std::get<1>(hand[2]))->second);
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::GRAY);
 		if (game::islands::dark_alley::GamblingHand::IsWinner(GetPlayerCharacterIslandId().value()))

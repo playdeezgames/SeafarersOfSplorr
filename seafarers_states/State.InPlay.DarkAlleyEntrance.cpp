@@ -36,39 +36,6 @@ namespace state::in_play
 		Terminal::WriteLine();
 	}
 
-	const std::map<cards::Rank, std::string> DarkAlleyEntrance::Ranks =
-	{
-		{cards::Rank::ACE, "A "},
-		{cards::Rank::DEUCE, "2 "},
-		{cards::Rank::THREE, "3 "},
-		{cards::Rank::FOUR, "4 "},
-		{cards::Rank::FIVE, "5 "},
-		{cards::Rank::SIX, "6 "},
-		{cards::Rank::SEVEN, "7 "},
-		{cards::Rank::EIGHT, "8 "},
-		{cards::Rank::NINE, "9 "},
-		{cards::Rank::TEN, "10"},
-		{cards::Rank::JACK, "J "},
-		{cards::Rank::QUEEN, "Q "},
-		{cards::Rank::KING, "K "}
-	};
-
-	const std::map<cards::Suit, std::string> DarkAlleyEntrance::SuitColors =
-	{
-		{cards::Suit::CLUB, game::Colors::DARK_GRAY},
-		{cards::Suit::DIAMOND, game::Colors::RED},
-		{cards::Suit::HEART, game::Colors::RED},
-		{cards::Suit::SPADE, game::Colors::DARK_GRAY}
-	};
-
-	const std::map<cards::Suit, std::string> DarkAlleyEntrance::Suits =
-	{
-		{cards::Suit::CLUB, "\x05"},
-		{cards::Suit::DIAMOND, "\x04"},
-		{cards::Suit::HEART, "\x03"},
-		{cards::Suit::SPADE, "\x06"}
-	};
-
 	static void RefreshCardLine1(const std::map<size_t, game::islands::dark_alley::FightCard>& cards, size_t row, size_t column)
 	{
 		auto card = cards.find(row * COLUMNS + column)->second;
@@ -77,10 +44,10 @@ namespace state::in_play
 			Terminal::SetForeground(game::Colors::GRAY);
 			Terminal::Write("   \xb3");
 			auto suit = std::get<1>(card.card);
-			Terminal::SetForeground(DarkAlleyEntrance::SuitColors.find(suit)->second);
+			Terminal::SetForeground(GetSuitColors().find(suit)->second);
 			auto rank = std::get<0>(card.card);
-			Terminal::Write(DarkAlleyEntrance::Ranks.find(rank)->second);
-			Terminal::Write(DarkAlleyEntrance::Suits.find(suit)->second);
+			Terminal::Write(GetRanks().find(rank)->second);
+			Terminal::Write(GetSuits().find(suit)->second);
 			Terminal::SetForeground(game::Colors::GRAY);
 			Terminal::Write("\xb3");
 		}
