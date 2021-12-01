@@ -122,17 +122,32 @@ namespace game::character
 
 	static std::optional<double> GetMaximum(int characterId, const game::character::Statistic& statistic)
 	{
-		return data::game::character::Statistic::Read(characterId, (int)statistic).value().maximum;
+		auto stat = data::game::character::Statistic::Read(characterId, (int)statistic);
+		if (stat)
+		{
+			return stat.value().maximum;
+		}
+		return std::nullopt;
 	}
 
 	static std::optional<double> GetMinimum(int characterId, const game::character::Statistic& statistic)
 	{
-		return data::game::character::Statistic::Read(characterId, (int)statistic).value().minimum;
+		auto stat = data::game::character::Statistic::Read(characterId, (int)statistic);
+		if (stat)
+		{
+			return stat.value().minimum;
+		}
+		return std::nullopt;
 	}
 
-	static double GetCurrent(int characterId, const game::character::Statistic& statistic)
+	static std::optional<double> GetCurrent(int characterId, const game::character::Statistic& statistic)
 	{
-		return data::game::character::Statistic::Read(characterId, (int)statistic).value().current;
+		auto stat = data::game::character::Statistic::Read(characterId, (int)statistic);
+		if (stat)
+		{
+			return stat.value().current;
+		}
+		return std::nullopt;
 	}
 
 	static double CalculateBuffs(int characterId, const std::map<game::Item, double> itemBuffs)
@@ -147,7 +162,7 @@ namespace game::character
 
 	static double GetCurrentWithBuffs(int characterId, const game::character::Statistic& statistic)
 	{
-		auto result = GetCurrent(characterId, statistic);
+		auto result = GetCurrent(characterId, statistic).value();
 		auto blah = common::utility::Table::TryGetKey(allBuffs, statistic);
 		if (blah)
 		{
@@ -166,40 +181,57 @@ namespace game::character
 			data);
 	}
 
-	static double ChangeCurrent(int characterId, const game::character::Statistic& statistic, double delta)
+	static std::optional<double> ChangeCurrent(int characterId, const game::character::Statistic& statistic, double delta)
 	{
-		SetCurrent(characterId, statistic, GetCurrent(characterId, statistic) + delta);
+		auto current = GetCurrent(characterId, statistic);
+		if (current)
+		{
+			SetCurrent(characterId, statistic, current.value() + delta);
+		}
 		return GetCurrent(characterId, statistic);
+	}
+
+	namespace statistics
+	{
+		std::optional<double> Money::Current(int characterId)
+		{
+			return GetCurrent(characterId, game::character::Statistic::MONEY);
+		}
+
+		std::optional<double> Money::Change(int characterId, double delta)
+		{
+			return Current(characterId);
+		}
 	}
 
 	double Statistics::ReadMoney(int characterId)
 	{
-		return GetCurrent(characterId, game::character::Statistic::MONEY);
+		return GetCurrent(characterId, game::character::Statistic::MONEY).value();
 	}
 
 	double Statistics::GetHealth(int characterId)
 	{
-		return GetCurrent(characterId, game::character::Statistic::HEALTH);
+		return GetCurrent(characterId, game::character::Statistic::HEALTH).value();
 	}
 
 	double Statistics::GetSatiety(int characterId)
 	{
-		return GetCurrent(characterId, game::character::Statistic::SATIETY);
+		return GetCurrent(characterId, game::character::Statistic::SATIETY).value();
 	}
 
 	double Statistics::GetInfamy(int characterId)
 	{
-		return GetCurrent(characterId, game::character::Statistic::INFAMY);
+		return GetCurrent(characterId, game::character::Statistic::INFAMY).value();
 	}
 
 	double Statistics::GetBrawling(int characterId)
 	{
-		return GetCurrent(characterId, game::character::Statistic::BRAWLING);
+		return GetCurrent(characterId, game::character::Statistic::BRAWLING).value();
 	}
 
 	static double GetDownAmount(int characterId, const Statistic& statistic)
 	{
-		return GetMaximum(characterId, statistic).value() - GetCurrent(characterId, statistic);
+		return GetMaximum(characterId, statistic).value() - GetCurrent(characterId, statistic).value();
 	}
 
 	void Statistics::Eat(int characterId, double amount)
@@ -226,7 +258,7 @@ namespace game::character
 
 	double Statistics::GetReputation(int characterId)
 	{
-		return GetCurrent(characterId, game::character::Statistic::REPUTATION);
+		return GetCurrent(characterId, game::character::Statistic::REPUTATION).value();
 	}
 
 	void Statistics::ChangeReputation(int characterId, double delta)
@@ -236,7 +268,7 @@ namespace game::character
 
 	int Statistics::GetTurnsRemaining(int characterId)
 	{
-		return (int)GetCurrent(characterId, game::character::Statistic::TURNS_REMAINING);
+		return (int)GetCurrent(characterId, game::character::Statistic::TURNS_REMAINING).value();
 	}
 
 	void Statistics::SpendTurn(int characterId)
