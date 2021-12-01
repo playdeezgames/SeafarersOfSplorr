@@ -12,7 +12,9 @@ namespace state::in_play
 		Terminal::WriteLine("Careened to starboard:");
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Port fouling {:.0f}%", 
-			game::ship::Statistics::GetFoulingPercentage(GetPlayerCharacterShipId().value(), game::Side::PORT));
+			game::ship::Statistics::GetFoulingPercentage(
+				GetPlayerCharacterShipId().value(), 
+				game::Side::PORT));
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Clean port side");

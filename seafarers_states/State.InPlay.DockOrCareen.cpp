@@ -12,8 +12,14 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Dock or Careen:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Port fouling {:.0f}%", game::ship::Statistics::GetFoulingPercentage(GetPlayerCharacterShipId().value(), game::Side::PORT));
-		Terminal::WriteLine("Starboard fouling {:.0f}%", game::ship::Statistics::GetFoulingPercentage(GetPlayerCharacterShipId().value(), game::Side::STARBOARD));
+		Terminal::WriteLine("Port fouling {:.0f}%", 
+			game::ship::Statistics::GetFoulingPercentage(
+				GetPlayerCharacterShipId().value(), 
+				game::Side::PORT));
+		Terminal::WriteLine("Starboard fouling {:.0f}%", 
+			game::ship::Statistics::GetFoulingPercentage(
+				GetPlayerCharacterShipId().value(), 
+				game::Side::STARBOARD));
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Dock");
