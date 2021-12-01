@@ -41,7 +41,7 @@ namespace state::in_play
 			double totalPrice = unitPrice * units;
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine("You sell {} {} for {:.4f}.", units, game::Items::GetName(currentItem), totalPrice);
-			game::character::Statistics::ChangeMoney(GetPlayerCharacterId(), totalPrice);
+			ChangePlayerCharacterMoney(totalPrice);
 			game::islands::Markets::SellItems(
 				GetPlayerCharacterIslandId().value()
 				, currentItem, units);

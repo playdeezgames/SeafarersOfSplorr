@@ -45,7 +45,7 @@ namespace state::in_play
 	{
 		if (game::character::Statistics::ReadMoney(GetPlayerCharacterId()) >= game::islands::DarkAlley::GetMinimumWager(GetPlayerCharacterIslandId().value()).value())
 		{
-			game::character::Statistics::ChangeMoney(GetPlayerCharacterId(), -game::islands::DarkAlley::GetAnte(GetPlayerCharacterIslandId().value()).value());
+			ChangePlayerCharacterMoney(-game::islands::DarkAlley::GetAnte(GetPlayerCharacterIslandId().value()).value());
 			application::UIState::Write(::UIState::IN_PLAY_GAMBLE_PLAY);
 		}
 		else

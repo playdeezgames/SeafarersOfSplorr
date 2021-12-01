@@ -27,8 +27,8 @@ namespace state::in_play
 	void PlayMainTheme();
 	std::list<game::Island> GetPlayerCharacterKnownIslands();
 	void SetPlayerCharacterShipHeading(double);
-	void DoPlayerCharacterAction(const game::character::Action&);//game::character::Actions::DoAction(GetPlayerCharacterId(),
-	//game::character::Statistics::ChangeMoney(GetPlayerCharacterId()
+	void DoPlayerCharacterAction(const game::character::Action&);
+	void ChangePlayerCharacterMoney(double);
 	//game::character::Statistics::ReadMoney(GetPlayerCharacterId())
 	//game::islands::DarkAlley::GetAnte(GetPlayerCharacterIslandId().value())
 	//game::islands::DarkAlley::GetMinimumWager(GetPlayerCharacterIslandId().value())
