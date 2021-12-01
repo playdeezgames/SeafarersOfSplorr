@@ -59,7 +59,7 @@ namespace state::in_play
 			{
 				auto noun = nouns[index.value()];
 				auto shipId = GetPlayerCharacterShipId().value();
-				game::Ship::SetName(shipId, std::format("{} {}", RenameShipAdjective::Read(), noun));
+				game::Ship::SetName(shipId, std::format("{} {}", GetRenameShipAdjective(), noun));
 				application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 				return;
 			}

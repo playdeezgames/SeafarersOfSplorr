@@ -51,9 +51,6 @@ namespace state::in_play
 	const std::map<cards::Rank, std::string>& GetRanks();
 	const std::map<cards::Suit, std::string>& GetSuitColors();
 	const std::map<cards::Suit, std::string>& GetSuits();
-	//DarkAlleyEntrance::Ranks
-	//DarkAlleyEntrance::SuitColors
-	//DarkAlleyEntrance::Suits
-	//RenameShipAdjective::Read()
-	//RenameShipAdjective::Write()
+	void SetRenameShipAdjective(const std::string&);
+	const std::string& GetRenameShipAdjective();
 }

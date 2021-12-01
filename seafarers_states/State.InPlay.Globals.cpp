@@ -239,4 +239,16 @@ namespace state::in_play
 	{
 		return suits;
 	}
+
+	static std::string renameShipAdjective = "";
+
+	void SetRenameShipAdjective(const std::string& adjective)
+	{
+		renameShipAdjective = adjective;
+	}
+
+	const std::string& GetRenameShipAdjective()
+	{
+		return renameShipAdjective;
+	}
 }

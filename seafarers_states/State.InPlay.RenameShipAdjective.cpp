@@ -7,12 +7,6 @@ namespace state::in_play
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_RENAME_SHIP_ADJECTIVE;
 
 	static std::map<int, std::string> adjectives;
-	static std::string adjective;
-
-	const std::string& RenameShipAdjective::Read()
-	{
-		return adjective;
-	}
 
 	static void UpdateAdjectives()
 	{
@@ -61,7 +55,7 @@ namespace state::in_play
 		{
 			if (adjectives.contains(index.value()))
 			{
-				adjective = adjectives[index.value()];
+				SetRenameShipAdjective(adjectives[index.value()]);
 				application::UIState::Write(::UIState::IN_PLAY_RENAME_SHIP_NOUN);
 				return;
 			}
