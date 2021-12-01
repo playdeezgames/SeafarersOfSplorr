@@ -4,19 +4,13 @@
 #include <Game.Islands.DarkAlley.h>
 #include "State.InPlay.DarkAlley.h"
 #include "State.InPlay.Globals.h"
-#include <Visuals.Confirmations.h>
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DARK_ALLEY;
 
 	static void OnLeave()
 	{
-		visuals::Confirmations::Write(
-			{
-				"Leave Dark Alley?",
-				[]() { DoPlayerCharacterAction(game::character::Action::ENTER_DOCK); },
-				[]() {}
-			});
+		DoPlayerCharacterAction(game::character::Action::ENTER_DOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

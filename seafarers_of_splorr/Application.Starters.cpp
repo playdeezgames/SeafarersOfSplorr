@@ -22,7 +22,6 @@
 #include <State.InPlay.ChangeSpeed.h>
 #include <State.InPlay.CharacterStatus.h>
 #include <State.InPlay.ChooseRations.h>
-#include <State.InPlay.Confirm.h>
 #include <State.InPlay.ConfirmAbandonJob.h>
 #include <State.InPlay.ConfirmReplaceJob.h>
 #include <State.InPlay.CrewList.h>
@@ -161,7 +160,6 @@ namespace application
 		state::in_play::Cargo::Start,
 		state::in_play::Next::Start,
 		state::in_play::DarkAlley::Start,
-		state::in_play::Confirm::Start,
 		state::in_play::CareenedToPort::Start,
 		state::in_play::CareenedToStarboard::Start,
 		state::in_play::Temple::Start,

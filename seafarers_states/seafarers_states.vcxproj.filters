@@ -83,9 +83,6 @@
     <ClInclude Include="State.InPlay.Cargo.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.Confirm.h">
-      <Filter>Header Files\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="State.InPlay.ConfirmAbandonJob.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
@@ -279,9 +276,6 @@
     </ClCompile>
     <ClCompile Include="State.InPlay.Docked.cpp">
       <Filter>Source Files\Docked</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.Confirm.cpp">
-      <Filter>Source Files\Utility</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.Lose.cpp">
       <Filter>Source Files\Utility</Filter>

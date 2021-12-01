@@ -10,7 +10,6 @@
 #include <Game.ShipTypes.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.ShipyardPurchaseShip.h"
-#include <Visuals.Confirmations.h>
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_SHIPYARD_PURCHASE_SHIP;
