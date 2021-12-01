@@ -155,4 +155,17 @@ namespace state::in_play
 	{
 		game::character::ShipStatistics::CleanHull(GetPlayerCharacterShipId().value(), side);
 	}
+
+	static game::Item islandTradeItem = game::Item::RATIONS;
+
+	void SetIslandTradeItem(const game::Item& item)
+	{
+		islandTradeItem = item;
+	}
+
+	const game::Item& GetIslandTradeItem()
+	{
+		return islandTradeItem;
+	}
+
 }

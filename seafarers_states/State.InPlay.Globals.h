@@ -39,4 +39,14 @@ namespace state::in_play
 	std::optional<std::map<game::Item, double>> GetPlayerCharacterPurchasePrices();
 	std::map<game::Item, size_t> GetPlayerCharacterItems();
 	void PlayerCharacterCleanHull(const game::Side&);
+	void SetIslandTradeItem(const game::Item&);
+	const game::Item& GetIslandTradeItem();
+	//EquipmentSlot::SetSlot(
+	//EquipmentSlot::GetSlot()
+	//CrewDetail::SetCharacterId(
+	//CrewDetail::GetCharacterId()
+	//DarkAlleyEntrance::Ranks
+	//DarkAlleyEntrance::SuitColors
+	//DarkAlleyEntrance::Suits
+	//RenameShipAdjective::Read()
 }

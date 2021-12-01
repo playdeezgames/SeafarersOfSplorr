@@ -77,7 +77,7 @@ namespace state::in_play
 		if (index >= 0 && index < unitPrices.size())
 		{
 			auto key = common::utility::Table::GetNthKey(unitPrices, index).value();
-			IslandSellQuantity::SetItem(common::utility::Table::GetNthKey(unitPrices, index).value());
+			SetIslandTradeItem(common::utility::Table::GetNthKey(unitPrices, index).value());
 			application::UIState::Write(::UIState::IN_PLAY_ISLAND_SELL_QUANTITY);
 		}
 		else

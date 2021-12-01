@@ -9,19 +9,18 @@
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_ISLAND_SELL_QUANTITY;
-	static game::Item currentItem;
 
 	static void Refresh()
 	{
 		Terminal::Reinitialize();
 
-		auto unitPrice = game::islands::Items::GetSalePrices(GetPlayerCharacterIslandId().value())[currentItem];
+		auto unitPrice = game::islands::Items::GetSalePrices(GetPlayerCharacterIslandId().value())[GetIslandTradeItem()];
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
-		Terminal::WriteLine("Selling {}:", game::Items::GetName(currentItem));
+		Terminal::WriteLine("Selling {}:", game::Items::GetName(GetIslandTradeItem()));
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Unit price: {:.4f}.", unitPrice);
-		Terminal::WriteLine("You have {} units.", game::character::Items::Read(GetPlayerCharacterId(), currentItem));
+		Terminal::WriteLine("You have {} units.", game::character::Items::Read(GetPlayerCharacterId(), GetIslandTradeItem()));
 
 		Terminal::ShowPrompt();
 	}
@@ -34,18 +33,18 @@ namespace state::in_play
 
 	static void OnOtherInput(const std::string& line)
 	{
-		auto unitPrice = game::islands::Items::GetSalePrices(GetPlayerCharacterIslandId().value())[currentItem];
+		auto unitPrice = game::islands::Items::GetSalePrices(GetPlayerCharacterIslandId().value())[GetIslandTradeItem()];
 		int units = common::Data::ToInt(line);
-		if (units <= game::character::Items::Read(GetPlayerCharacterId(), currentItem))
+		if (units <= game::character::Items::Read(GetPlayerCharacterId(), GetIslandTradeItem()))
 		{
 			double totalPrice = unitPrice * units;
 			Terminal::SetForeground(game::Colors::GREEN);
-			Terminal::WriteLine("You sell {} {} for {:.4f}.", units, game::Items::GetName(currentItem), totalPrice);
+			Terminal::WriteLine("You sell {} {} for {:.4f}.", units, game::Items::GetName(GetIslandTradeItem()), totalPrice);
 			ChangePlayerCharacterMoney(totalPrice);
 			game::islands::Markets::SellItems(
 				GetPlayerCharacterIslandId().value()
-				, currentItem, units);
-			game::character::Items::Remove(GetPlayerCharacterId(), currentItem, units);
+				, GetIslandTradeItem(), units);
+			game::character::Items::Remove(GetPlayerCharacterId(), GetIslandTradeItem(), units);
 			application::UIState::Write(::UIState::IN_PLAY_ISLAND_SELL);
 		}
 		else
@@ -70,10 +69,4 @@ namespace state::in_play
 				menuActions,
 				OnOtherInput));
 	}
-
-	void IslandSellQuantity::SetItem(const game::Item& item)
-	{
-		currentItem = item;
-	}
-
 }
