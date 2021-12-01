@@ -56,7 +56,7 @@ namespace state::in_play
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::GREEN);
 		Terminal::WriteLine("You careen the vessel on its port side.");
-		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::CAREEN_TO_PORT);
+		DoPlayerCharacterAction(game::character::Action::CAREEN_TO_PORT);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -65,7 +65,7 @@ namespace state::in_play
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::GREEN);
 		Terminal::WriteLine("You careen the vessel on its starboard side.");
-		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::CAREEN_TO_STARBOARD);
+		DoPlayerCharacterAction(game::character::Action::CAREEN_TO_STARBOARD);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

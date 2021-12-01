@@ -9,6 +9,7 @@
 #include "State.Terminal.h" //common include
 #include "UIState.h" //common include
 
+#include <Game.Character.Action.h>
 #include <Game.Island.h>
 #include <Game.Quest.h>
 #include <Game.Ship.DockResult.h>
@@ -26,7 +27,7 @@ namespace state::in_play
 	void PlayMainTheme();
 	std::list<game::Island> GetPlayerCharacterKnownIslands();
 	void SetPlayerCharacterShipHeading(double);
-	//game::character::Actions::DoAction(GetPlayerCharacterId(),
+	void DoPlayerCharacterAction(const game::character::Action&);//game::character::Actions::DoAction(GetPlayerCharacterId(),
 	//game::character::Statistics::ChangeMoney(GetPlayerCharacterId()
 	//game::character::Statistics::ReadMoney(GetPlayerCharacterId())
 	//game::islands::DarkAlley::GetAnte(GetPlayerCharacterIslandId().value())

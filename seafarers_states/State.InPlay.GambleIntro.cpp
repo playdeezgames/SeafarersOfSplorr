@@ -38,7 +38,7 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_DARK_ALLEY);
+		DoPlayerCharacterAction(game::character::Action::ENTER_DARK_ALLEY);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

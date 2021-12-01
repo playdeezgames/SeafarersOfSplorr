@@ -18,7 +18,7 @@ namespace state::in_play
 		).value()))
 		{
 		case game::character::AcceptQuestResult::ACCEPTED_QUEST:
-			game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_DOCK);
+			DoPlayerCharacterAction(game::character::Action::ENTER_DOCK);
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			break;
 		case game::character::AcceptQuestResult::ALREADY_HAS_QUEST:
@@ -29,7 +29,7 @@ namespace state::in_play
 
 	static void OnCancel()
 	{
-		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_DOCK);
+		DoPlayerCharacterAction(game::character::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

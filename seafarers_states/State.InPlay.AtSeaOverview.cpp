@@ -175,7 +175,7 @@ namespace state::in_play
 	{
 		if (IsFishingEnabled())
 		{
-			game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::START_FISHING);
+			DoPlayerCharacterAction(game::character::Action::START_FISHING);
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			return;
 		}

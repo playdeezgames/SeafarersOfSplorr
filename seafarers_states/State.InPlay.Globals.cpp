@@ -1,4 +1,5 @@
 #include <Common.Utility.Optional.h>
+#include <Game.Character.Actions.h>
 #include <Game.Character.Quest.h>
 #include <Game.Character.Ship.h>
 #include <Game.Islands.h>
@@ -85,5 +86,10 @@ namespace state::in_play
 		{
 			game::Ship::SetHeading(shipId.value(), heading);
 		}
+	}
+
+	void DoPlayerCharacterAction(const game::character::Action& action)
+	{
+		game::character::Actions::DoAction(GetPlayerCharacterId(), action);
 	}
 }

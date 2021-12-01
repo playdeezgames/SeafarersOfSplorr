@@ -42,19 +42,19 @@ namespace state::in_play
 
 	static void OnUndock()
 	{
-		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::UNDOCK);
+		DoPlayerCharacterAction(game::character::Action::UNDOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnJob()
 	{
-		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_JOB_BOARD);
+		DoPlayerCharacterAction(game::character::Action::ENTER_JOB_BOARD);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnTrade()
 	{
-		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_MARKET);
+		DoPlayerCharacterAction(game::character::Action::ENTER_MARKET);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -64,7 +64,7 @@ namespace state::in_play
 		auto island = game::Islands::Read(islandId).value();
 		if (game::islands::Features::Read(island.id, game::Feature::SHIPYARD))
 		{
-			game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_SHIPYARD);
+			DoPlayerCharacterAction(game::character::Action::ENTER_SHIPYARD);
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		}
 		else
@@ -80,7 +80,7 @@ namespace state::in_play
 		auto island = game::Islands::Read(islandId).value();
 		if (game::islands::Features::Read(island.id, game::Feature::DARK_ALLEY))
 		{
-			game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_DARK_ALLEY);
+			DoPlayerCharacterAction(game::character::Action::ENTER_DARK_ALLEY);
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		}
 		else
@@ -92,7 +92,7 @@ namespace state::in_play
 
 	static void OnTemple()
 	{
-		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_TEMPLE);
+		DoPlayerCharacterAction(game::character::Action::ENTER_TEMPLE);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

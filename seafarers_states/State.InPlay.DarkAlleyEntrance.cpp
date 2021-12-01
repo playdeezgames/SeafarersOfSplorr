@@ -174,7 +174,7 @@ namespace state::in_play
 	static void OnRetreat()
 	{
 		game::character::Statistics::ChangeMoney(GetPlayerCharacterId(), -game::character::Statistics::ReadMoney(GetPlayerCharacterId()) / 2.0);
-		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_DOCK);
+		DoPlayerCharacterAction(game::character::Action::ENTER_DOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -197,7 +197,7 @@ namespace state::in_play
 		Terminal::WriteLine("VICTORY!");
 		IncreaseInfamy();
 		IncreaseBrawling();
-		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::DEFEAT_RUFFIAN);
+		DoPlayerCharacterAction(game::character::Action::DEFEAT_RUFFIAN);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 
 	}

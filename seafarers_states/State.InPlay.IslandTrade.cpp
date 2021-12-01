@@ -23,19 +23,19 @@ namespace state::in_play
 
 	static void OnBuy()
 	{
-		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::MARKET_BUY);
+		DoPlayerCharacterAction(game::character::Action::MARKET_BUY);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnSell()
 	{
-		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::MARKET_SELL);
+		DoPlayerCharacterAction(game::character::Action::MARKET_SELL);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnLeave()
 	{
-		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_DOCK);
+		DoPlayerCharacterAction(game::character::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

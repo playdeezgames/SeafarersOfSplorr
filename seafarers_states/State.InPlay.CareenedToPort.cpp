@@ -38,7 +38,7 @@ namespace state::in_play
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::GREEN);
 		Terminal::WriteLine("You right the vessel.");
-		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::UNCAREEN);
+		DoPlayerCharacterAction(game::character::Action::UNCAREEN);
 		application::UIState::Write(::UIState::IN_PLAY_DOCK_OR_CAREEN);
 	}
 

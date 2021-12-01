@@ -140,7 +140,7 @@ namespace state::in_play
 
 	static void LeaveFishing()
 	{
-		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::STOP_FISHING);
+		DoPlayerCharacterAction(game::character::Action::STOP_FISHING);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

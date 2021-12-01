@@ -25,13 +25,13 @@ namespace state::in_play
 		Terminal::ErrorMessage("You replace yer job, and yer reputation suffers!");
 		game::character::Quest::Abandon(GetPlayerCharacterId());
 		game::character::Quest::Accept(GetPlayerCharacterId(), GetPlayerCharacterIslandId().value());
-		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_DOCK);
+		DoPlayerCharacterAction(game::character::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnNo()
 	{
-		game::character::Actions::DoAction(GetPlayerCharacterId(), game::character::Action::ENTER_DOCK);
+		DoPlayerCharacterAction(game::character::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
