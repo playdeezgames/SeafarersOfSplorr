@@ -5,8 +5,6 @@ namespace game::character
 {
 	struct StateTransition
 	{
-		std::string color;
-		std::string text;
 		character::State state;
 	};
 }

@@ -1,5 +1,5 @@
 #include <Common.Utility.Optional.h>
-#include <Game.Character.Actions.h>
+#include <Game.Character.h>
 #include <Game.Character.Items.h>
 #include <Game.Character.Quest.h>
 #include <Game.Character.Statistics.h>
@@ -94,7 +94,7 @@ namespace state::in_play
 
 	void DoPlayerCharacterAction(const game::character::Action& action)
 	{
-		game::character::Actions::DoAction(GetPlayerCharacterId(), action);
+		game::Character::DoAction(GetPlayerCharacterId(), action);
 	}
 
 	void ChangePlayerCharacterMoney(double delta)
