@@ -33,10 +33,10 @@ namespace state::in_play
 	void ChangePlayerCharacterMoney(double);
 	std::optional<common::XY<double>> GetPlayerCharacterIslandLocation();
 	double GetPlayerCharacterMoney();
-	std::optional<double> GetPlayerCharacterDarkAlleyAnte();//game::islands::DarkAlley::GetAnte(GetPlayerCharacterIslandId().value())
-	std::optional<double> GetPlayerCharacterDarkAlleyMinimumWager();//game::islands::DarkAlley::GetMinimumWager(GetPlayerCharacterIslandId().value())
-	std::optional<double> GetPlayerCharacterAvailableTonnage();////game::character::Ship::AvailableTonnage(GetPlayerCharacterId()).value()
-	std::optional<std::map<game::Item, double>> GetPlayerCharacterPurchasePrices();//game::islands::Items::GetPurchasePrices(GetPlayerCharacterIslandId().value())
-	std::map<game::Item, size_t> GetPlayerCharacterItems();//game::character::Items::All(GetPlayerCharacterId())
-	void PlayerCharacterCleanHull(const game::Side&);//game::character::ShipStatistics::CleanHull(GetPlayerCharacterShipId().value(),
+	std::optional<double> GetPlayerCharacterDarkAlleyAnte();
+	std::optional<double> GetPlayerCharacterDarkAlleyMinimumWager();
+	std::optional<double> GetPlayerCharacterAvailableTonnage();
+	std::optional<std::map<game::Item, double>> GetPlayerCharacterPurchasePrices();
+	std::map<game::Item, size_t> GetPlayerCharacterItems();
+	void PlayerCharacterCleanHull(const game::Side&);
 }

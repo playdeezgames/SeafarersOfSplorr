@@ -86,11 +86,10 @@ namespace state::in_play
 
 	void SetPlayerCharacterShipHeading(double heading)
 	{
-		auto shipId = GetPlayerCharacterShipId();
-		if (shipId)
-		{
-			game::Ship::SetHeading(shipId.value(), heading);
-		}
+		common::utility::Optional::Iterate<int>(
+			GetPlayerCharacterShipId(),
+			[heading](int shipId) {game::Ship::SetHeading(shipId, heading); }
+			);
 	}
 
 	void DoPlayerCharacterAction(const game::character::Action& action)
@@ -124,22 +123,16 @@ namespace state::in_play
 
 	std::optional<double> GetPlayerCharacterDarkAlleyAnte()
 	{
-		auto islandId = GetPlayerCharacterIslandId();
-		if (islandId)
-		{
-			return game::islands::DarkAlley::GetAnte(islandId.value());
-		}
-		return std::nullopt;
+		return common::utility::Optional::Bind<int, double>(
+			GetPlayerCharacterIslandId(),
+			game::islands::DarkAlley::GetAnte);
 	}
 
 	std::optional<double> GetPlayerCharacterDarkAlleyMinimumWager()
 	{
-		auto islandId = GetPlayerCharacterIslandId();
-		if (islandId)
-		{
-			return game::islands::DarkAlley::GetMinimumWager(islandId.value());
-		}
-		return std::nullopt;
+		return common::utility::Optional::Bind<int, double>(
+			GetPlayerCharacterIslandId(),
+			game::islands::DarkAlley::GetMinimumWager);
 	}
 
 	std::optional<double> GetPlayerCharacterAvailableTonnage()
@@ -149,12 +142,9 @@ namespace state::in_play
 
 	std::optional<std::map<game::Item, double>> GetPlayerCharacterPurchasePrices()
 	{
-		auto islandId = GetPlayerCharacterIslandId();
-		if (islandId)
-		{
-			return game::islands::Items::GetPurchasePrices(islandId.value());
-		}
-		return std::nullopt;
+		return common::utility::Optional::Bind<int, std::map<game::Item, double>>(
+			GetPlayerCharacterIslandId(),
+			game::islands::Items::GetPurchasePrices);
 	}
 	std::map<game::Item, size_t> GetPlayerCharacterItems()
 	{
