@@ -26,6 +26,7 @@ namespace state::in_play
 		if (!dockable.empty())
 		{
 			auto island = dockable.front();
+			Terminal::SetForeground(game::Colors::LIGHT_BLUE);
 			if (island.visits.has_value())
 			{
 				Terminal::Write("You can dock at {}", island.GetDisplayName());
@@ -34,6 +35,7 @@ namespace state::in_play
 			{
 				Terminal::Write("You can dock");
 			}
+			Terminal::SetForeground(game::Colors::GRAY);
 			Terminal::WriteLine();
 			return true;
 		}
