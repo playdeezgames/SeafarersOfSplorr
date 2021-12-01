@@ -18,7 +18,7 @@ namespace state::in_play
 
 		auto unitPrice = game::islands::Items::GetPurchasePrices(GetPlayerCharacterIslandId().value())[currentItem];
 		auto money = GetPlayerCharacterMoney();
-		double availableTonnage = game::character::Ship::AvailableTonnage(GetPlayerCharacterId()).value();
+		double availableTonnage = GetPlayerCharacterAvailableTonnage().value();
 		double unitTonnage = game::Items::GetUnitTonnage(currentItem);
 		int affordableQuantity = (int)(money / unitPrice);
 		int storableQuantity = (int)(availableTonnage / unitTonnage);
@@ -44,7 +44,7 @@ namespace state::in_play
 	{
 		auto unitPrice = game::islands::Items::GetPurchasePrices(GetPlayerCharacterIslandId().value())[currentItem];
 		auto money = GetPlayerCharacterMoney();
-		double availableTonnage = game::character::Ship::AvailableTonnage(GetPlayerCharacterId()).value();
+		double availableTonnage = GetPlayerCharacterAvailableTonnage().value();
 		double unitTonnage = game::Items::GetUnitTonnage(currentItem);
 		int affordableQuantity = (int)(money / unitPrice);
 		int storableQuantity = (int)(availableTonnage / unitTonnage);

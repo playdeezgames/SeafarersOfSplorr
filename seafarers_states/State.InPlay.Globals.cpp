@@ -139,7 +139,11 @@ namespace state::in_play
 		return std::nullopt;
 	}
 
-	//std::optional<double> GetPlayerCharacterAvailableTonnage();////game::character::Ship::AvailableTonnage(GetPlayerCharacterId()).value()
+	std::optional<double> GetPlayerCharacterAvailableTonnage()
+	{
+		return game::character::Ship::AvailableTonnage(GetPlayerCharacterId());
+	}
+
 	//std::optional<std::map<game::Item, double>> GetPlayerCharacterPurchasePrices();//game::islands::Items::GetPurchasePrices(GetPlayerCharacterIslandId().value())
 	//std::map<game::Item, size_t> GetPlayerCharacterItems();//game::character::Items::All(GetPlayerCharacterId())
 	//void PlayerCharacterCleanHull(const game::Side&);//game::character::ShipStatistics::CleanHull(GetPlayerCharacterShipId().value(),

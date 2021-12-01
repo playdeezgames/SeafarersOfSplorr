@@ -25,7 +25,7 @@ namespace state::in_play
 
 	static double GetAvailableTonnage()
 	{
-		return game::character::Ship::AvailableTonnage(GetPlayerCharacterId()).value();
+		return GetPlayerCharacterAvailableTonnage().value();
 	}
 
 	static void Refresh()
