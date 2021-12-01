@@ -22,7 +22,7 @@ namespace state::in_play
 
 	static double GetMinimumWager()
 	{
-		return game::islands::DarkAlley::GetMinimumWager(GetPlayerCharacterIslandId().value()).value();
+		return GetPlayerCharacterDarkAlleyMinimumWager().value();
 	}
 
 	static const auto ReadMoney = game::character::Statistics::ReadMoney;

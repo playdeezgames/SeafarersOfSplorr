@@ -4,6 +4,7 @@
 #include <Game.Character.Statistics.h>
 #include <Game.Character.Ship.h>
 #include <Game.Islands.h>
+#include <Game.Islands.DarkAlley.h>
 #include <Game.Player.h>
 #include <Game.Ship.h>
 #include <Game.Ship.Docked.h>
@@ -112,4 +113,34 @@ namespace state::in_play
 		}
 		return std::nullopt;
 	}
+
+	double GetPlayerCharacterMoney()
+	{
+		return game::character::Statistics::ReadMoney(GetPlayerCharacterId());
+	}
+
+	std::optional<double> GetPlayerCharacterDarkAlleyAnte()
+	{
+		auto islandId = GetPlayerCharacterIslandId();
+		if (islandId)
+		{
+			return game::islands::DarkAlley::GetAnte(islandId.value());
+		}
+		return std::nullopt;
+	}
+
+	std::optional<double> GetPlayerCharacterDarkAlleyMinimumWager()
+	{
+		auto islandId = GetPlayerCharacterIslandId();
+		if (islandId)
+		{
+			return game::islands::DarkAlley::GetMinimumWager(islandId.value());
+		}
+		return std::nullopt;
+	}
+
+	//std::optional<double> GetPlayerCharacterAvailableTonnage();////game::character::Ship::AvailableTonnage(GetPlayerCharacterId()).value()
+	//std::optional<std::map<game::Item, double>> GetPlayerCharacterPurchasePrices();//game::islands::Items::GetPurchasePrices(GetPlayerCharacterIslandId().value())
+	//std::map<game::Item, size_t> GetPlayerCharacterItems();//game::character::Items::All(GetPlayerCharacterId())
+	//void PlayerCharacterCleanHull(const game::Side&);//game::character::ShipStatistics::CleanHull(GetPlayerCharacterShipId().value(),
 }

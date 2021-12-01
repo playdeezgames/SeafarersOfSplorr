@@ -172,7 +172,7 @@ namespace state::in_play
 
 	static void OnRetreat()
 	{
-		ChangePlayerCharacterMoney(-game::character::Statistics::ReadMoney(GetPlayerCharacterId()) / 2.0);
+		ChangePlayerCharacterMoney(-GetPlayerCharacterMoney() / 2.0);
 		DoPlayerCharacterAction(game::character::Action::ENTER_DOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}

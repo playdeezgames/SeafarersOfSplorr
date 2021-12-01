@@ -40,7 +40,7 @@ namespace state::in_play
 				(int)(100.0 * GetTonnage() / GetAvailableTonnage()));
 		Terminal::WriteLine(
 			"Money: {:.3f}",
-			game::character::Statistics::ReadMoney(GetPlayerCharacterId()));
+			GetPlayerCharacterMoney());
 		Terminal::SetForeground(game::Colors::BROWN);
 		Terminal::WriteLine("Manifest:");
 		Terminal::SetForeground(game::Colors::YELLOW);

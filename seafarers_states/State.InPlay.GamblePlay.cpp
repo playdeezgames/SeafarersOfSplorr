@@ -20,10 +20,10 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Play Hand:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Yer money: {:.4f}", game::character::Statistics::ReadMoney(GetPlayerCharacterId()));
+		Terminal::WriteLine("Yer money: {:.4f}", GetPlayerCharacterMoney());
 		Terminal::WriteLine("Minimum wager(less ante): {:.4f}", 
-			game::islands::DarkAlley::GetMinimumWager(GetPlayerCharacterIslandId().value()).value() -
-			game::islands::DarkAlley::GetAnte(GetPlayerCharacterIslandId().value()).value());
+			GetPlayerCharacterDarkAlleyMinimumWager().value() -
+			GetPlayerCharacterDarkAlleyAnte().value());
 		auto hand = GetHand();
 
 		Terminal::SetForeground(game::Colors::GRAY);
@@ -72,14 +72,14 @@ namespace state::in_play
 			game::audio::Sfx::Play(game::audio::GameSfx::WOOHOO);
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine("You win!");
-			ChangePlayerCharacterMoney(game::islands::DarkAlley::GetMinimumWager(GetPlayerCharacterIslandId().value()).value() + game::islands::DarkAlley::GetAnte(GetPlayerCharacterIslandId().value()).value());
+			ChangePlayerCharacterMoney(GetPlayerCharacterDarkAlleyMinimumWager().value() + GetPlayerCharacterDarkAlleyAnte().value());
 		}
 		else
 		{
 			game::audio::Sfx::Play(game::audio::GameSfx::SHUCKS);
 			Terminal::SetForeground(game::Colors::RED);
 			Terminal::WriteLine("You lose!");
-			ChangePlayerCharacterMoney(-game::islands::DarkAlley::GetMinimumWager(GetPlayerCharacterIslandId().value()).value() + game::islands::DarkAlley::GetAnte(GetPlayerCharacterIslandId().value()).value());
+			ChangePlayerCharacterMoney(-GetPlayerCharacterDarkAlleyMinimumWager().value() + GetPlayerCharacterDarkAlleyAnte().value());
 		}
 		Terminal::SetForeground(game::Colors::GRAY);
 		application::UIState::Write(::UIState::IN_PLAY_GAMBLE_INTRO);//TODO: play again y/n?

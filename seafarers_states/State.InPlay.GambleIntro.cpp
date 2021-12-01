@@ -13,14 +13,14 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Gambling:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		auto ante = game::islands::DarkAlley::GetAnte(GetPlayerCharacterIslandId().value()).value();
-		auto minimum = game::islands::DarkAlley::GetMinimumWager(GetPlayerCharacterIslandId().value()).value();
-		Terminal::WriteLine("Yer money: {:.4f}", game::character::Statistics::ReadMoney(GetPlayerCharacterId()));
+		auto ante = GetPlayerCharacterDarkAlleyAnte().value();
+		auto minimum = GetPlayerCharacterDarkAlleyMinimumWager().value();
+		Terminal::WriteLine("Yer money: {:.4f}", GetPlayerCharacterMoney());
 		Terminal::WriteLine("Minimum bet: {:.4f}", minimum);
 		Terminal::WriteLine("Ante: {:.4f}", ante);
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		if (game::character::Statistics::ReadMoney(GetPlayerCharacterId()) >= minimum)
+		if (GetPlayerCharacterMoney() >= minimum)
 		{
 			Terminal::WriteLine("1) Play a hand");
 		}
@@ -43,9 +43,9 @@ namespace state::in_play
 
 	static void DealHand()
 	{
-		if (game::character::Statistics::ReadMoney(GetPlayerCharacterId()) >= game::islands::DarkAlley::GetMinimumWager(GetPlayerCharacterIslandId().value()).value())
+		if (GetPlayerCharacterMoney() >= GetPlayerCharacterDarkAlleyMinimumWager().value())
 		{
-			ChangePlayerCharacterMoney(-game::islands::DarkAlley::GetAnte(GetPlayerCharacterIslandId().value()).value());
+			ChangePlayerCharacterMoney(-GetPlayerCharacterDarkAlleyAnte().value());
 			application::UIState::Write(::UIState::IN_PLAY_GAMBLE_PLAY);
 		}
 		else

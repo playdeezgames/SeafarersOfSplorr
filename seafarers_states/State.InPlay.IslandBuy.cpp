@@ -41,7 +41,7 @@ namespace state::in_play
 
 	static void RefreshStatistics()
 	{
-		Terminal::WriteLine(FORMAT_MONEY, game::character::Statistics::ReadMoney(GetPlayerCharacterId()));
+		Terminal::WriteLine(FORMAT_MONEY, GetPlayerCharacterMoney());
 		Terminal::WriteLine(FORMAT_TONNAGE, game::character::Ship::AvailableTonnage(GetPlayerCharacterId()).value());
 	}
 
