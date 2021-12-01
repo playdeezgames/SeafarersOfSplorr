@@ -24,8 +24,8 @@ namespace state::in_play
 	std::optional<double> GetPlayerCharacterShipHeading();
 	std::optional<double> GetPlayerCharacterShipSpeed();
 	void PlayMainTheme();
-	//game::Islands::GetKnownIslands(GetPlayerCharacterId())
-	//game::Ship::SetHeading(GetPlayerCharacterShipId().value(),
+	std::list<game::Island> GetPlayerCharacterKnownIslands();
+	void SetPlayerCharacterShipHeading(double);
 	//game::character::Actions::DoAction(GetPlayerCharacterId(),
 	//game::character::Statistics::ChangeMoney(GetPlayerCharacterId()
 	//game::character::Statistics::ReadMoney(GetPlayerCharacterId())

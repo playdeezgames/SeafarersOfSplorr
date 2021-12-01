@@ -73,4 +73,17 @@ namespace state::in_play
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 	}
 
+	std::list<game::Island> GetPlayerCharacterKnownIslands()
+	{
+		return game::Islands::GetKnownIslands(GetPlayerCharacterId());
+	}
+
+	void SetPlayerCharacterShipHeading(double heading)
+	{
+		auto shipId = GetPlayerCharacterShipId();
+		if (shipId)
+		{
+			game::Ship::SetHeading(shipId.value(), heading);
+		}
+	}
 }

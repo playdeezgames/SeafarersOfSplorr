@@ -17,7 +17,7 @@ namespace state::in_play
 		Terminal::WriteLine("Current: {:.2f}\xf8", GetPlayerCharacterShipHeading().value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		if (!game::Islands::GetKnownIslands(GetPlayerCharacterId()).empty())
+		if (!GetPlayerCharacterKnownIslands().empty())
 		{
 			Terminal::WriteLine("1) Head for a known island");
 		}
@@ -44,7 +44,7 @@ namespace state::in_play
 
 	static void OnHeadForKnownIsland()
 	{
-		if (!game::Islands::GetKnownIslands(GetPlayerCharacterId()).empty())
+		if (!GetPlayerCharacterKnownIslands().empty())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_HEAD_FOR_KNOWN);
 		}
@@ -76,7 +76,7 @@ namespace state::in_play
 		{
 			auto delta = quest.value().destination - GetPlayerCharacterShipLocation().value();
 			auto island = game::Islands::Read(quest.value().toIslandId);
-			game::Ship::SetHeading(GetPlayerCharacterShipId().value(), common::Heading::XYToDegrees(delta));
+			SetPlayerCharacterShipHeading(common::Heading::XYToDegrees(delta));
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine();
 			Terminal::WriteLine("You head for {}.", island.value().name);

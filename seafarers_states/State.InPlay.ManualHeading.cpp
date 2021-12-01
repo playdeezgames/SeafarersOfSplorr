@@ -22,7 +22,7 @@ namespace state::in_play
 
 	static void OnValidInput(double value)
 	{
-		game::Ship::SetHeading(GetPlayerCharacterShipId().value(), value);
+		SetPlayerCharacterShipHeading(value);
 		application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 	}
 
