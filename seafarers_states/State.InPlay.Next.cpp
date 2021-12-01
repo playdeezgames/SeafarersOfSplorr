@@ -1,5 +1,6 @@
 #include <Application.Update.h>
 #include <Game.h>
+#include <Game.Character.h>
 #include <Game.Character.Actions.h>
 #include <Game.Character.Statistics.h>
 #include "State.InPlay.Globals.h"
@@ -65,10 +66,10 @@ namespace state::in_play
 			return;
 		}
 
-		auto avatarState = game::character::Actions::GetState(GetPlayerCharacterId());
-		if (avatarState)
+		auto characterState = game::Character::GetState(GetPlayerCharacterId());
+		if (characterState)
 		{
-			auto iter = avatarStateTable.find(avatarState.value());
+			auto iter = avatarStateTable.find(characterState.value());
 			if(iter!= avatarStateTable.end())
 			{
 				application::UIState::Write(iter->second);

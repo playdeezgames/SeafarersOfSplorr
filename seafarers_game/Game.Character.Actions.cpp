@@ -4,6 +4,7 @@
 #include <Data.Game.Ship.Docks.h>
 #include <format>
 #include <functional>
+#include "Game.Character.h"
 #include "Game.Character.Action.h"
 #include "Game.Character.Actions.h"
 #include "Game.Character.Items.h"
@@ -402,19 +403,9 @@ namespace game::character
 		data::game::Character::Write(characterId, avatar);
 	}
 
-	std::optional<State> Actions::GetState(int characterId)
+	void Actions::DoAction(int characterId, const Action& action)
 	{
-		auto avatar = data::game::Character::Read(characterId);
-		if (avatar)
-		{
-			return (State)avatar.value().state;
-		}
-		return std::nullopt;
-	}
-
-	bool Actions::DoAction(int characterId, const Action& action)
-	{
-		auto state = GetState(characterId);
+		auto state = Character::GetState(characterId);
 		if (state)
 		{
 			auto descriptor = GetActionDescriptors().find(action);
@@ -430,6 +421,5 @@ namespace game::character
 				}
 			}
 		}
-		return false;
 	}
 }

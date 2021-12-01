@@ -6,7 +6,6 @@ namespace game::character
 {
 	struct Actions
 	{
-		static std::optional<State> GetState(int);
-		static bool DoAction(int,const Action&);
+		static void DoAction(int,const Action&);
 	};
 }
