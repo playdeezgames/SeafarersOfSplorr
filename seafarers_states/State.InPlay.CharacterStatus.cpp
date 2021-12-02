@@ -17,7 +17,7 @@ namespace state::in_play
 		Terminal::WriteLine("Brawling: {:.1f}", game::character::statistics::Brawling::Current(GetCrewDetailCharacterId()).value());
 		Terminal::WriteLine("Health: {:.0f}", game::character::statistics::Health::Current(GetCrewDetailCharacterId()).value());
 		Terminal::WriteLine("Satiety: {:.0f}", game::character::statistics::Satiety::Current(GetCrewDetailCharacterId()).value());
-		Terminal::WriteLine("Turns: {}", game::character::Statistics::GetTurnsRemaining(GetCrewDetailCharacterId()));
+		Terminal::WriteLine("Turns: {}", game::character::statistics::Turns::Remaining(GetCrewDetailCharacterId()).value());
 		Terminal::WriteLine("Dignity: {:.0f}", game::character::Statistics::GetDignity(GetCrewDetailCharacterId()));
 		Terminal::WriteLine("Poshness: {:.0f}", game::character::Statistics::GetPoshness(GetCrewDetailCharacterId()));
 	}

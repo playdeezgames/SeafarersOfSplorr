@@ -24,7 +24,7 @@ namespace game::ship
 		std::optional<DockResult> result = DockResult::DOCKED;
 		game::Islands::AddVisit(
 			data::game::Island::Find(location).value(),
-			game::character::Statistics::GetTurnsRemaining(characterId));
+			game::character::statistics::Turns::Remaining(characterId).value());
 		game::islands::Quests::Update(characterId, data::game::Island::Find(location).value());
 		int islandId = data::game::Island::Find(location).value();
 		if (game::character::Quest::Complete(characterId, islandId))

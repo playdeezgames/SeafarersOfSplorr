@@ -57,9 +57,6 @@ namespace game::character
 	struct Statistics
 	{
 		static void Reset(int, const game::Difficulty&);
-		static int GetTurnsRemaining(int);
-		static void SpendTurn(int);
-		static bool IsOutOfTurns(int);
 		static double GetDignity(int);
 		static double GetPoshness(int);
 	};

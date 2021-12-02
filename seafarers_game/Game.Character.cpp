@@ -104,7 +104,7 @@ namespace game
 		auto turnsSpent = DetermineTurnsSpent();
 		while (turnsSpent)
 		{
-			game::character::Statistics::SpendTurn(characterId);
+			game::character::statistics::Turns::Change(characterId, -1);
 			turnsSpent--;
 		}
 	}

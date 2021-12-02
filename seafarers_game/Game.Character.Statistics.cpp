@@ -1,4 +1,5 @@
 #include <Common.Utility.h>
+#include <Common.Utility.Optional.h>
 #include <Common.Utility.Table.h>
 #include <Data.Game.Character.Statistic.h>
 #include "Game.Character.Equipment.h"
@@ -323,22 +324,30 @@ namespace game::character
 		{
 			return ChangeCurrent(characterId, game::character::Statistic::BRAWLING, delta);
 		}
-	}
 
-	int Statistics::GetTurnsRemaining(int characterId)
-	{
-		return (int)GetCurrent(characterId, game::character::Statistic::TURNS_REMAINING).value();
-	}
+		std::optional<int> Turns::Remaining(int characterId)
+		{
+			return common::utility::Optional::Map<double, int>(
+				GetCurrent(characterId, game::character::Statistic::TURNS_REMAINING),
+				common::Utility::Cast<double, int>);
+		}
 
-	void Statistics::SpendTurn(int characterId)
-	{
-		const double TURN_DELTA = -1.0;
-		ChangeCurrent(characterId, game::character::Statistic::TURNS_REMAINING, TURN_DELTA);
-	}
+		std::optional<int> Turns::Change(int characterId, int amount)
+		{
+			return common::utility::Optional::Map<double, int>(
+				ChangeCurrent(characterId, game::character::Statistic::TURNS_REMAINING, (double)amount),
+				common::Utility::Cast<double, int>);
+		}
 
-	bool Statistics::IsOutOfTurns(int characterId)
-	{
-		return GetCurrent(characterId, game::character::Statistic::TURNS_REMAINING) <= GetMinimum(characterId, game::character::Statistic::TURNS_REMAINING);
+		std::optional<bool> Turns::HasRemaining(int characterId)
+		{
+			auto turns = Remaining(characterId);
+			if (turns)
+			{
+				return turns.value() > 0;
+			}
+			return std::nullopt;
+		}
 	}
 
 	double Statistics::GetDignity(int characterId)
