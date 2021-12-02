@@ -296,11 +296,6 @@ namespace game::character
 		}
 	}
 
-	double Statistics::GetSatiety(int characterId)
-	{
-		return GetCurrent(characterId, game::character::Statistic::SATIETY).value();
-	}
-
 	double Statistics::GetInfamy(int characterId)
 	{
 		return GetCurrent(characterId, game::character::Statistic::INFAMY).value();
@@ -309,34 +304,6 @@ namespace game::character
 	double Statistics::GetBrawling(int characterId)
 	{
 		return GetCurrent(characterId, game::character::Statistic::BRAWLING).value();
-	}
-
-	void Statistics::Eat(int characterId, double amount)
-	{
-		double healthDown = GetDownAmount(characterId, Statistic::HEALTH).value();
-		if (healthDown > 0)
-		{
-			ChangeCurrent(characterId, Statistic::HEALTH, amount);
-			amount -= healthDown;
-		}
-		if (amount > 0)
-		{
-			ChangeCurrent(characterId, Statistic::SATIETY, amount);
-		}
-	}
-
-	std::optional<bool> Statistics::NeedToEat(int characterId, double amount)
-	{
-		auto downHealth = GetDownAmount(characterId, game::character::Statistic::HEALTH);
-		if (downHealth)
-		{
-			auto downSatiety = GetDownAmount(characterId, game::character::Statistic::SATIETY);
-			if (downSatiety)
-			{
-				return (downHealth.value() + downSatiety.value()) >= amount;
-			}
-		}
-		return std::nullopt;
 	}
 
 	double Statistics::GetReputation(int characterId)
@@ -363,16 +330,6 @@ namespace game::character
 	bool Statistics::IsOutOfTurns(int characterId)
 	{
 		return GetCurrent(characterId, game::character::Statistic::TURNS_REMAINING) <= GetMinimum(characterId, game::character::Statistic::TURNS_REMAINING);
-	}
-
-	std::optional<bool> Statistics::IsStarving(int characterId)
-	{
-		return IsMinimal(characterId, Statistic::SATIETY);
-	}
-
-	void Statistics::ChangeSatiety(int characterId, double delta)
-	{
-		ChangeCurrent(characterId, Statistic::SATIETY, delta);
 	}
 
 	void Statistics::ChangeInfamy(int characterId, double delta)

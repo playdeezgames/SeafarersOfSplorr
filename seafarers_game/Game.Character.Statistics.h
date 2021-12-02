@@ -28,11 +28,6 @@ namespace game::character
 	struct Statistics
 	{
 		static void Reset(int, const game::Difficulty&);
-		static double GetSatiety(int);
-		static void ChangeSatiety(int, double);
-		static std::optional<bool> IsStarving(int);
-		static void Eat(int, double);
-		static std::optional<bool> NeedToEat(int, double);
 		static double GetReputation(int);
 		static void ChangeReputation(int, double);
 		static int GetTurnsRemaining(int);

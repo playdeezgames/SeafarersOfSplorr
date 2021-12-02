@@ -39,26 +39,26 @@ namespace game
 	static void ApplyHunger(int characterId)
 	{
 		double delta = DetermineHungerRate();
-		if (game::character::Statistics::IsStarving(characterId))
+		if (game::character::statistics::Satiety::IsStarving(characterId))
 		{
 			game::character::statistics::Health::Change(characterId, delta);
 		}
 		else
 		{
-			game::character::Statistics::ChangeSatiety(characterId, delta);
+			game::character::statistics::Satiety::Change(characterId, delta);
 		}
 	}
 
 	static void ApplyEating(int characterId)
 	{
 		const double EAT_BENEFIT = 10.0;
-		if (game::character::Statistics::NeedToEat(characterId, EAT_BENEFIT))
+		if (game::character::statistics::Satiety::NeedsToEat(characterId, EAT_BENEFIT))
 		{
 			const game::Item rationItem = game::Item::RATIONS;//TODO: when we can choose rations for an character, this will change
 			auto rations = game::character::Items::Read(characterId, rationItem);
 			if (rations > 0)
 			{
-				game::character::Statistics::Eat(characterId, EAT_BENEFIT);
+				game::character::statistics::Satiety::Eat(characterId, EAT_BENEFIT);
 				game::character::Items::Remove(characterId, rationItem, 1);
 				if (game::character::Flags::Has(characterId, game::character::Flag::UNFED))
 				{
