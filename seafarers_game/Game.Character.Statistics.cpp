@@ -206,6 +206,20 @@ namespace game::character
 		return std::nullopt;
 	}
 
+	static std::optional<double> GetDownAmount(int characterId, const Statistic& statistic)
+	{
+		auto maximum = GetMaximum(characterId, statistic);
+		if (maximum)
+		{
+			auto current = GetCurrent(characterId, statistic);
+			if (current)
+			{
+				return maximum.value() - current.value();
+			}
+		}
+		return std::nullopt;
+	}
+
 	namespace statistics
 	{
 		std::optional<double> Money::Current(int characterId)
@@ -233,6 +247,53 @@ namespace game::character
 			return IsMinimal(characterId, Statistic::HEALTH);
 		}
 
+		std::optional<double> Satiety::Current(int characterId)
+		{
+			return GetCurrent(characterId, game::character::Statistic::SATIETY);
+		}
+
+		std::optional<double> Satiety::Change(int characterId, double delta)
+		{
+			return ChangeCurrent(characterId, game::character::Statistic::SATIETY, delta);
+		}
+
+		std::optional<bool> Satiety::IsStarving(int characterId)
+		{
+			return IsMinimal(characterId, game::character::Statistic::SATIETY);
+		}
+
+		void Satiety::Eat(int characterId, double amount)
+		{
+			auto healthDown = GetDownAmount(characterId, Statistic::HEALTH);
+			if (healthDown)
+			{
+				ChangeCurrent(characterId, Statistic::HEALTH, amount);
+				amount -= healthDown.value();
+
+			}
+			if (amount > 0)
+			{
+				auto satietyDown = GetDownAmount(characterId, Statistic::SATIETY);
+				if (satietyDown)
+				{
+					ChangeCurrent(characterId, Statistic::SATIETY, amount);
+				}
+			}
+		}
+
+		std::optional<double> Satiety::NeedsToEat(int characterId, double amount)
+		{
+			auto downHealth = GetDownAmount(characterId, game::character::Statistic::HEALTH);
+			if (downHealth)
+			{
+				auto downSatiety = GetDownAmount(characterId, game::character::Statistic::SATIETY);
+				if (downSatiety)
+				{
+					return (downHealth.value() + downSatiety.value()) >= amount;
+				}
+			}
+			return std::nullopt;
+		}
 	}
 
 	double Statistics::GetSatiety(int characterId)
@@ -250,14 +311,9 @@ namespace game::character
 		return GetCurrent(characterId, game::character::Statistic::BRAWLING).value();
 	}
 
-	static double GetDownAmount(int characterId, const Statistic& statistic)
-	{
-		return GetMaximum(characterId, statistic).value() - GetCurrent(characterId, statistic).value();
-	}
-
 	void Statistics::Eat(int characterId, double amount)
 	{
-		double healthDown = GetDownAmount(characterId, Statistic::HEALTH);
+		double healthDown = GetDownAmount(characterId, Statistic::HEALTH).value();
 		if (healthDown > 0)
 		{
 			ChangeCurrent(characterId, Statistic::HEALTH, amount);
@@ -269,12 +325,18 @@ namespace game::character
 		}
 	}
 
-	bool Statistics::NeedToEat(int characterId, double amount)
+	std::optional<bool> Statistics::NeedToEat(int characterId, double amount)
 	{
-		double totalDown =
-			GetDownAmount(characterId, game::character::Statistic::HEALTH)+
-			GetDownAmount(characterId, game::character::Statistic::SATIETY);
-		return totalDown >= amount;
+		auto downHealth = GetDownAmount(characterId, game::character::Statistic::HEALTH);
+		if (downHealth)
+		{
+			auto downSatiety = GetDownAmount(characterId, game::character::Statistic::SATIETY);
+			if (downSatiety)
+			{
+				return (downHealth.value() + downSatiety.value()) >= amount;
+			}
+		}
+		return std::nullopt;
 	}
 
 	double Statistics::GetReputation(int characterId)

@@ -16,6 +16,14 @@ namespace game::character
 			static std::optional<double> Change(int, double);
 			static std::optional<bool> IsDead(int);
 		};
+		struct Satiety
+		{
+			static std::optional<double> Current(int);
+			static std::optional<double> Change(int, double);
+			static std::optional<bool> IsStarving(int);
+			static void Eat(int, double);
+			static std::optional<double> NeedsToEat(int, double);
+		};
 	}
 	struct Statistics
 	{
@@ -24,7 +32,7 @@ namespace game::character
 		static void ChangeSatiety(int, double);
 		static std::optional<bool> IsStarving(int);
 		static void Eat(int, double);
-		static bool NeedToEat(int, double);
+		static std::optional<bool> NeedToEat(int, double);
 		static double GetReputation(int);
 		static void ChangeReputation(int, double);
 		static int GetTurnsRemaining(int);
