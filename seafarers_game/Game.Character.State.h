@@ -3,8 +3,8 @@ namespace game::character
 {
 	enum class State
 	{
-		AT_SEA, //TODO: make into ship state
-		DOCK, //TODO: make into ship state
+		AT_SEA,
+		DOCK,
 		JOB_BOARD,
 		MARKET,
 		MARKET_BUY,

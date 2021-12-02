@@ -16,14 +16,6 @@
 #include "Game.Ship.Docked.h"
 namespace game
 {
-	static character::State OnUndock(int characterId)
-	{
-		auto islandId = game::ship::Docked::GetIsland(data::game::character::Ship::ReadForCharacter(characterId).value().shipId).value();
-		auto island = game::Islands::Read(islandId).value();
-		data::game::ship::Docks::Clear(data::game::character::Ship::ReadForCharacter(characterId).value().shipId);
-		return character::State::AT_SEA;
-	}
-
 	static character::State OnEnterDarkAlley(int characterId)
 	{
 		auto data = data::game::island::DarkAlley::Read(game::ship::Docked::GetIsland(data::game::character::Ship::ReadForCharacter(characterId).value().shipId).value()).value();
@@ -64,7 +56,7 @@ namespace game
 			{
 				{
 					character::State::DOCK,
-					OnUndock
+					DoTransition(character::State::AT_SEA)
 				}
 			}
 		},
@@ -88,6 +80,10 @@ namespace game
 		{
 			character::Action::ENTER_DOCK,
 			{
+				{
+					character::State::AT_SEA,
+					DoTransition(character::State::DOCK)
+				},
 				{
 					character::State::MARKET,
 					DoTransition(character::State::DOCK)

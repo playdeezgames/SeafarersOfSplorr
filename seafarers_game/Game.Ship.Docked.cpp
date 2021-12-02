@@ -1,7 +1,9 @@
 #include <Data.Game.Character.h>
 #include <Data.Game.Character.Ship.h>
 #include <Data.Game.Ship.Docks.h>
+#include <Data.Game.Ship.h>
 #include <Data.Game.Island.h>
+#include "Game.Character.h"
 #include "Game.Character.State.h"
 #include "Game.Character.Quest.h"
 #include "Game.Character.Ship.h"
@@ -12,13 +14,6 @@
 #include <set>
 namespace game::ship
 {
-	static void SetAvatarStateToDocked(int characterId)
-	{
-		auto avatar = data::game::Character::Read(characterId).value();
-		avatar.state = (int)game::character::State::DOCK;
-		data::game::Character::Write(characterId, avatar);
-	}
-
 	static std::optional<DockResult> DoDock(int characterId, const common::XY<double>& location)
 	{
 		std::optional<DockResult> result = DockResult::DOCKED;
@@ -33,7 +28,7 @@ namespace game::ship
 		}
 		int shipId = data::game::character::Ship::ReadForCharacter(characterId).value().shipId;
 		data::game::ship::Docks::Write(shipId, islandId);
-		SetAvatarStateToDocked(characterId);
+		game::Character::DoAction(characterId, game::character::Action::ENTER_DOCK);
 		auto island = game::Islands::Read(islandId).value();
 		return result;
 	}
@@ -71,5 +66,33 @@ namespace game::ship
 		return data::game::ship::Docks::Read(shipId);
 	}
 
+	std::optional<bool> Docked::Undock(int shipId)
+	{
+		if (data::game::Ship::Read(shipId))
+		{
+			if (!GetIsland(shipId))
+			{
+				return false;
+			}
+			auto billets = data::game::character::Ship::ReadForShip(shipId);
+			//first time, check that all billets are at the dock
+			for (auto billet : billets)
+			{
+				auto characterState = game::Character::GetState(billet.characterId).value();
+				if (characterState != game::character::State::DOCK)
+				{
+					return false;
+				}
+			}
+			//second time, put them on the boat
+			for (auto billet : billets)
+			{
+				game::Character::DoAction(billet.characterId, game::character::Action::UNDOCK);
+			}
+			data::game::ship::Docks::Clear(shipId);
+			return true;
+		}
+		return std::nullopt;
+	}
 
 }

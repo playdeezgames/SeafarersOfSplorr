@@ -38,12 +38,15 @@ namespace state::in_play
 
 	static void CompleteQuest(const game::Quest& quest)
 	{
-		Terminal::WriteLine("==DELIVERY COMPLETE==");
-		Terminal::Write("{} the {} ", quest.personName, quest.professionName);
-		Terminal::Write("is {} ", quest.receiptEmotion);
-		Terminal::Write("when given the ");
-		Terminal::Write("{}. ", quest.itemName);
-		Terminal::WriteLine("Yer reputation increases!");
+		AddPlayerCharacterMessage(game::Colors::LIGHT_CYAN, "Delivery Complete!");
+		AddPlayerCharacterMessage(
+			game::Colors::GRAY, 
+			"{} the {} is {} when given the {}.", 
+			quest.personName, 
+			quest.professionName,
+			quest.receiptEmotion,
+			quest.itemName);
+		AddPlayerCharacterMessage(game::Colors::GREEN,"Yer reputation increases!");
 	}
 
 	static void OnDock()
@@ -58,18 +61,14 @@ namespace state::in_play
 
 	static void OnCareenToPort()
 	{
-		Terminal::WriteLine();
-		Terminal::SetForeground(game::Colors::GREEN);
-		Terminal::WriteLine("You careen the vessel on its port side.");
+		AddPlayerCharacterMessage(game::Colors::GREEN,"You careen the vessel on its port side.");
 		DoPlayerCharacterAction(game::character::Action::CAREEN_TO_PORT);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnCareenToStarboard()
 	{
-		Terminal::WriteLine();
-		Terminal::SetForeground(game::Colors::GREEN);
-		Terminal::WriteLine("You careen the vessel on its starboard side.");
+		AddPlayerCharacterMessage(game::Colors::GREEN,"You careen the vessel on its starboard side.");
 		DoPlayerCharacterAction(game::character::Action::CAREEN_TO_STARBOARD);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}

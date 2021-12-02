@@ -7,6 +7,7 @@ namespace game::ship
 	struct Docked
 	{
 		static std::optional<DockResult> Dock(int);
+		static std::optional<bool> Undock(int);
 		static std::optional<int> GetIsland(int);
 	};
 }

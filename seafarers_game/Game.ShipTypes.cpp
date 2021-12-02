@@ -57,9 +57,9 @@ namespace game
 					{
 						ShipStatistic::FOULING_RATE,
 						{
-							0.001,
-							0.001,
-							0.001
+							0.0001,
+							0.0001,
+							0.0001
 						}
 					}
 				},
@@ -101,9 +101,9 @@ namespace game
 					{
 						ShipStatistic::FOULING_RATE,
 						{
-							0.001,
-							0.001,
-							0.001
+							0.0001,
+							0.0001,
+							0.0001
 						}
 					}
 				},

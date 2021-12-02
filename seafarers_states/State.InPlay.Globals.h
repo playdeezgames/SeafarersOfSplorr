@@ -22,6 +22,11 @@ namespace state::in_play
 {
 	void AddPlayerCharacterMessage(const std::string&, const std::string&);
 	void AddPlayerCharacterMessage(const std::string&);
+	template<typename... Ts>
+	static void AddPlayerCharacterMessage(const std::string& color, const std::string& fmt, Ts... args)
+	{
+		AddPlayerCharacterMessage(color, std::format(fmt, args...));
+	}
 	int GetPlayerCharacterId();
 	std::optional<game::ship::DockResult> Dock();//TODO: PlayerCharacterDock?
 	std::optional<int> GetPlayerCharacterIslandId();

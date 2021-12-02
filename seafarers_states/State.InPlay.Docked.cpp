@@ -1,6 +1,7 @@
 #include <Game.Demigods.h>
 #include <Game.Islands.h>
 #include <Game.Islands.Features.h>
+#include <Game.Ship.Docked.h>
 #include "State.InPlay.Docked.h"
 #include "State.InPlay.Globals.h"
 namespace state::in_play
@@ -41,7 +42,7 @@ namespace state::in_play
 
 	static void OnUndock()
 	{
-		DoPlayerCharacterAction(game::character::Action::UNDOCK);
+		game::ship::Docked::Undock(GetPlayerCharacterShipId().value());
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
