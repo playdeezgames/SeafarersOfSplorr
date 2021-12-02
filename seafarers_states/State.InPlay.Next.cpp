@@ -16,7 +16,7 @@ namespace state::in_play
 
 	static bool IsPlayerOutOfTurns()
 	{
-		return game::character::statistics::Turns::HasRemaining(GetPlayerCharacterId()).value();
+		return !game::character::statistics::Turns::HasRemaining(GetPlayerCharacterId()).value();
 	}
 
 	static bool IsPlayerDead()

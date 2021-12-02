@@ -172,7 +172,7 @@ namespace state::in_play
 
 	void SetEquipmentSlot(const game::EquipSlot& equipSlot)
 	{
-		equipmentSlot = equipmentSlot;
+		equipmentSlot = equipSlot;
 	}
 
 	const game::EquipSlot& GetEquipmentSlot()
