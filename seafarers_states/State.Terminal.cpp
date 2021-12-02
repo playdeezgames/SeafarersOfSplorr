@@ -1,6 +1,8 @@
 #include <Common.Data.h>
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Colors.h>
+#include <Game.Character.Messages.h>
+#include <Game.Player.h>
 #include <set>
 #include "State.Terminal.h"
 #include <Visuals.Terminals.h>
@@ -270,10 +272,26 @@ namespace state
 		Write(">");
 	}
 
+	static void ShowMessages(int characterId)
+	{
+		auto messages = game::character::Messages::Read(characterId);
+		if (!messages.empty())
+		{
+			Terminal::WriteLine();
+			for (auto message : messages)
+			{
+				Terminal::SetForeground(message.color);
+				Terminal::WriteLine(message.text);
+			}
+			game::character::Messages::Clear(characterId);
+		}
+	}
+
 	void Terminal::Reinitialize()
 	{
 		ClearStatusLine();
 		ClearInput();
+		ShowMessages(game::Player::GetCharacterId());
 		WriteLine();
 	}
 
