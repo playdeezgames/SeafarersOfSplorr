@@ -98,12 +98,10 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		Terminal::ClearStatusLine();
-		Terminal::ClearInput();
+		Terminal::Reinitialize();
 
 		Terminal::SetForeground(
 			game::Colors::LIGHT_CYAN);
-		Terminal::WriteLine();
 		Terminal::WriteLine(
 			"At Sea:");
 		Terminal::SetForeground(
@@ -152,9 +150,7 @@ namespace state::in_play
 
 	static void OnMove()
 	{
-		Terminal::SetForeground(game::Colors::GREEN);
-		Terminal::WriteLine();
-		Terminal::WriteLine("Steady as she goes!");
+		AddPlayerCharacterMessage(game::Colors::GREEN, "Steady as she goes!");
 		game::ApplyTurnEffects();
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}

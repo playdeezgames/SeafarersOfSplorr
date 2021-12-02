@@ -20,6 +20,8 @@
 #include <Game.Side.h>
 namespace state::in_play
 {
+	void AddPlayerCharacterMessage(const std::string&, const std::string&);
+	void AddPlayerCharacterMessage(const std::string&);
 	int GetPlayerCharacterId();
 	std::optional<game::ship::DockResult> Dock();//TODO: PlayerCharacterDock?
 	std::optional<int> GetPlayerCharacterIslandId();

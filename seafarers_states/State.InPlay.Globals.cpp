@@ -1,6 +1,7 @@
 #include <Common.Utility.Optional.h>
 #include <Game.Character.h>
 #include <Game.Character.Items.h>
+#include <Game.Character.Messages.h>
 #include <Game.Character.Quest.h>
 #include <Game.Character.Statistics.h>
 #include <Game.Character.Ship.h>
@@ -250,5 +251,15 @@ namespace state::in_play
 	const std::string& GetRenameShipAdjective()
 	{
 		return renameShipAdjective;
+	}
+
+	void AddPlayerCharacterMessage(const std::string& color, const std::string& text)
+	{
+		game::character::Messages::Add(GetPlayerCharacterId(), color, text);
+	}
+
+	void AddPlayerCharacterMessage(const std::string& text)
+	{
+		game::character::Messages::Add(GetPlayerCharacterId(), text);
 	}
 }
