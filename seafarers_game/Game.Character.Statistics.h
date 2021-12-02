@@ -57,7 +57,5 @@ namespace game::character
 	struct Statistics
 	{
 		static void Reset(int, const game::Difficulty&);
-		static double GetDignity(int);
-		static double GetPoshness(int);
 	};
 }

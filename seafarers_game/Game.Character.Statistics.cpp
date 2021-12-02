@@ -16,18 +16,22 @@ namespace game::character
 		double initial;
 	};
 
-	static const std::map<Item, double> dignityBuffs =
+	typedef std::map<Item, double> BuffTable;
+
+	static const BuffTable dignityBuffs =
 	{
 		{ Item::TROUSERS, 100.0 },
 		{ Item::POSH_TROUSERS, 100.0 }
 	};
 
-	static const std::map<Item, double> poshBuffs =
+	static const BuffTable poshBuffs =
 	{
 		{ Item::POSH_TROUSERS, 100.0 }
 	};
 
-	static const std::map<game::character::Statistic, std::map<Item, double>> allBuffs =
+	typedef std::map<game::character::Statistic, BuffTable> StatBuffTables;
+
+	static const StatBuffTables allBuffs =
 	{
 		{Statistic::DIGNITY, dignityBuffs},
 		{Statistic::POSHNESS, poshBuffs}
@@ -151,25 +155,30 @@ namespace game::character
 		return std::nullopt;
 	}
 
-	static double CalculateBuffs(int characterId, const std::map<game::Item, double> itemBuffs)
+	static double CalculateBuffs(int characterId, const BuffTable itemBuffs)
 	{
 		return common::utility::Table::Accumulate<game::Item, double, double>(
 			itemBuffs,
-			[characterId](const double& result, const game::Item& item, const double& buff)
+			[characterId](double& result, const game::Item& item, const double& buff)
 			{
-				return result + (game::character::Equipment::IsEquipped(characterId, item)) ? (buff) : (0.0);
+				result += (game::character::Equipment::IsEquipped(characterId, item)) ? (buff) : (0.0);
 			});
 	}
 
-	static double GetCurrentWithBuffs(int characterId, const game::character::Statistic& statistic)
+	static std::optional<double> GetCurrentWithBuffs(int characterId, const game::character::Statistic& statistic)
 	{
-		auto result = GetCurrent(characterId, statistic).value();
-		auto blah = common::utility::Table::TryGetKey(allBuffs, statistic);
-		if (blah)
+		auto current = GetCurrent(characterId, statistic);
+		if (current)
 		{
-			result += CalculateBuffs(characterId, blah.value());
+			auto result = current.value();
+			auto buffTable = common::utility::Table::TryGetKey(allBuffs, statistic);
+			if (buffTable)
+			{
+				result += CalculateBuffs(characterId, buffTable.value());
+			}
+			return result;
 		}
-		return result;
+		return std::nullopt;
 	}
 
 	static void SetCurrent(int characterId, const game::character::Statistic& statistic, double value)
@@ -348,15 +357,15 @@ namespace game::character
 			}
 			return std::nullopt;
 		}
-	}
 
-	double Statistics::GetDignity(int characterId)
-	{
-		return GetCurrentWithBuffs(characterId, character::Statistic::DIGNITY);
-	}
+		std::optional<double> Dignity::Current(int characterId)
+		{
+			return GetCurrentWithBuffs(characterId, character::Statistic::DIGNITY);
+		}
 
-	double Statistics::GetPoshness(int characterId)
-	{
-		return GetCurrentWithBuffs(characterId, character::Statistic::POSHNESS);
+		std::optional<double> Poshness::Current(int characterId)
+		{
+			return GetCurrentWithBuffs(characterId, character::Statistic::POSHNESS);
+		}
 	}
 }
