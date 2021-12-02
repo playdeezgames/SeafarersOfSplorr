@@ -80,7 +80,7 @@ namespace game::islands::dark_alley
 
 	static size_t DetermineFaceCardCount(int characterId, const data::game::island::DarkAlley& darkAlley)
 	{
-		auto brawling = game::character::Statistics::GetBrawling(characterId);
+		auto brawling = game::character::statistics::Brawling::Current(characterId).value();
 		size_t faceCardCount =
 			(size_t)(brawling / (brawling + darkAlley.ruffianBrawlingStrength) * (double)CARD_COUNT);
 		return

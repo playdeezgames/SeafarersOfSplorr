@@ -118,7 +118,7 @@ namespace state::in_play
 		Terminal::WriteLine("Enemy Brawling: {:.1f}", GetRuffianBrawling());
 		Terminal::WriteLine(
 			"Yer Brawling: {:.1f} Yer Health: {:.0f}", 
-			game::character::Statistics::GetBrawling(GetPlayerCharacterId()),
+			game::character::statistics::Brawling::Current(GetPlayerCharacterId()).value(),
 			game::character::statistics::Health::Current(GetPlayerCharacterId()).value());
 
 		RefreshBoard();
@@ -147,13 +147,13 @@ namespace state::in_play
 	static void IncreaseInfamy()
 	{
 		const double INFAMY_DELTA = 0.1;
-		game::character::Statistics::ChangeInfamy(GetPlayerCharacterId(), (hitsTaken == 0) ? (INFAMY_DELTA) : (INFAMY_DELTA / 2.0));
+		game::character::statistics::Infamy::Change(GetPlayerCharacterId(), (hitsTaken == 0) ? (INFAMY_DELTA) : (INFAMY_DELTA / 2.0));
 	}
 
 	static void IncreaseBrawling()
 	{
 		const double BRAWLING_DELTA = 0.1;
-		game::character::Statistics::ChangeBrawling(GetPlayerCharacterId(), (hitsTaken > 0) ? (BRAWLING_DELTA) : (BRAWLING_DELTA / 2.0));
+		game::character::statistics::Brawling::Change(GetPlayerCharacterId(), (hitsTaken > 0) ? (BRAWLING_DELTA) : (BRAWLING_DELTA / 2.0));
 	}
 
 	static void HandleRuffianDefeated()

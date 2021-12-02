@@ -13,8 +13,8 @@ namespace state::in_play
 	{
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Money: {:.4f}", game::character::statistics::Money::Current(GetCrewDetailCharacterId()).value());
-		Terminal::WriteLine("Reputation: {:.1f}", game::character::Statistics::GetReputation(GetCrewDetailCharacterId()));
-		Terminal::WriteLine("Brawling: {:.1f}", game::character::Statistics::GetBrawling(GetCrewDetailCharacterId()));
+		Terminal::WriteLine("Reputation: {:.1f}", game::character::statistics::Reputation::Current(GetCrewDetailCharacterId()).value());
+		Terminal::WriteLine("Brawling: {:.1f}", game::character::statistics::Brawling::Current(GetCrewDetailCharacterId()).value());
 		Terminal::WriteLine("Health: {:.0f}", game::character::statistics::Health::Current(GetCrewDetailCharacterId()).value());
 		Terminal::WriteLine("Satiety: {:.0f}", game::character::statistics::Satiety::Current(GetCrewDetailCharacterId()).value());
 		Terminal::WriteLine("Turns: {}", game::character::Statistics::GetTurnsRemaining(GetCrewDetailCharacterId()));

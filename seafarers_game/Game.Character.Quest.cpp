@@ -44,7 +44,7 @@ namespace game::character
 	static void CompleteQuest(int characterId, const data::game::character::Quest& quest)
 	{
 		game::character::statistics::Money::Change(characterId, quest.reward);
-		game::character::Statistics::ChangeReputation(characterId, World::GetReputationReward());
+		game::character::statistics::Reputation::Change(characterId, World::GetReputationReward());
 		data::game::character::Quest::Write(characterId, std::nullopt);
 	}
 
@@ -61,7 +61,7 @@ namespace game::character
 
 	static void AbandonQuest(int characterId)
 	{
-		game::character::Statistics::ChangeReputation(characterId, World::GetReputationPenalty());
+		game::character::statistics::Reputation::Change(characterId, World::GetReputationPenalty());
 		data::game::character::Quest::Write(characterId, std::nullopt);
 	}
 

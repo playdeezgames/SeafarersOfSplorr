@@ -27,7 +27,7 @@ namespace game
 	static character::State OnEnterDarkAlley(int characterId)
 	{
 		auto data = data::game::island::DarkAlley::Read(game::ship::Docked::GetIsland(data::game::character::Ship::ReadForCharacter(characterId).value().shipId).value()).value();
-		auto infamy = game::character::Statistics::GetInfamy(characterId);
+		auto infamy = game::character::statistics::Infamy::Current(characterId).value();
 		if (infamy < data.infamyRequirement)
 		{
 			return character::State::DARK_ALLEY_ENTRANCE;

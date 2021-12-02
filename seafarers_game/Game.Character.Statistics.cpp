@@ -294,26 +294,35 @@ namespace game::character
 			}
 			return std::nullopt;
 		}
-	}
+		std::optional<double> Reputation::Current(int characterId)
+		{
+			return GetCurrent(characterId, game::character::Statistic::REPUTATION);
+		}
 
-	double Statistics::GetInfamy(int characterId)
-	{
-		return GetCurrent(characterId, game::character::Statistic::INFAMY).value();
-	}
+		std::optional<double> Reputation::Change(int characterId, double delta)
+		{
+			return ChangeCurrent(characterId, game::character::Statistic::REPUTATION, delta);
+		}
 
-	double Statistics::GetBrawling(int characterId)
-	{
-		return GetCurrent(characterId, game::character::Statistic::BRAWLING).value();
-	}
+		std::optional<double> Infamy::Current(int characterId)
+		{
+			return GetCurrent(characterId, game::character::Statistic::INFAMY);
+		}
 
-	double Statistics::GetReputation(int characterId)
-	{
-		return GetCurrent(characterId, game::character::Statistic::REPUTATION).value();
-	}
+		std::optional<double> Infamy::Change(int characterId, double delta)
+		{
+			return ChangeCurrent(characterId, game::character::Statistic::INFAMY, delta);
+		}
 
-	void Statistics::ChangeReputation(int characterId, double delta)
-	{
-		ChangeCurrent(characterId, game::character::Statistic::REPUTATION, delta);
+		std::optional<double> Brawling::Current(int characterId)
+		{
+			return GetCurrent(characterId, game::character::Statistic::BRAWLING);
+		}
+
+		std::optional<double> Brawling::Change(int characterId, double delta)
+		{
+			return ChangeCurrent(characterId, game::character::Statistic::BRAWLING, delta);
+		}
 	}
 
 	int Statistics::GetTurnsRemaining(int characterId)
@@ -332,16 +341,6 @@ namespace game::character
 		return GetCurrent(characterId, game::character::Statistic::TURNS_REMAINING) <= GetMinimum(characterId, game::character::Statistic::TURNS_REMAINING);
 	}
 
-	void Statistics::ChangeInfamy(int characterId, double delta)
-	{
-		ChangeCurrent(characterId, Statistic::INFAMY, delta);
-	}
-
-	void Statistics::ChangeBrawling(int characterId, double delta)
-	{
-		ChangeCurrent(characterId, Statistic::BRAWLING, delta);
-	}
-
 	double Statistics::GetDignity(int characterId)
 	{
 		return GetCurrentWithBuffs(characterId, character::Statistic::DIGNITY);
@@ -350,10 +349,5 @@ namespace game::character
 	double Statistics::GetPoshness(int characterId)
 	{
 		return GetCurrentWithBuffs(characterId, character::Statistic::POSHNESS);
-	}
-
-	bool Statistics::IsPlayerOutOfTurns(int characterId)
-	{
-		return IsOutOfTurns(characterId);
 	}
 }
