@@ -6,6 +6,7 @@
 #include <functional>
 #include "Game.Character.h"
 #include "Game.Character.Action.h"
+#include "Game.Character.Island.h"
 #include "Game.Character.Items.h"
 #include "Game.Character.State.h"
 #include "Game.Character.Statistics.h"
@@ -40,14 +41,28 @@ namespace game
 		return character::State::AT_SEA;
 	}
 
-	static std::function<character::State(int)> DoTransition(const character::State& transition)
+	static std::function<character::State(int)> DoTransition(const character::State& state)
 	{
-		return [transition](int) { return transition; };
+		return [state](int) { return state; };
 	}
 
 	typedef std::function<character::State(int)> Transitioner;
 	typedef std::map<character::State, Transitioner> ActionDescriptor;
 	typedef std::map<character::Action, ActionDescriptor> ActionDescriptorTable;
+
+	static character::State OnUndock(int characterId)
+	{
+		game::character::Island::Clear(characterId);
+		return character::State::AT_SEA;
+	}
+
+	static character::State OnDock(int characterId)
+	{
+		auto ship = data::game::character::Ship::ReadForCharacter(characterId).value();
+		auto islandId = data::game::ship::Docks::Read(ship.shipId).value();
+		game::character::Island::Write(characterId, islandId);
+		return character::State::DOCK;
+	}
 
 	const ActionDescriptorTable actionDescriptors =
 	{
@@ -56,7 +71,7 @@ namespace game
 			{
 				{
 					character::State::DOCK,
-					DoTransition(character::State::AT_SEA)
+					OnUndock
 				}
 			}
 		},
@@ -82,7 +97,7 @@ namespace game
 			{
 				{
 					character::State::AT_SEA,
-					DoTransition(character::State::DOCK)
+					OnDock
 				},
 				{
 					character::State::TAVERN,

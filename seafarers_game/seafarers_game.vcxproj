@@ -23,6 +23,7 @@
     <ClInclude Include="Game.BerthType.h" />
     <ClInclude Include="Game.Character.AcceptQuestResult.h" />
     <ClInclude Include="Game.Character.Action.h" />
+    <ClInclude Include="Game.Character.Island.h" />
     <ClInclude Include="Game.Character.Messages.h" />
     <ClInclude Include="Game.Islands.Features.DarkAlley.h" />
     <ClInclude Include="Game.Islands.Features.Tavern.h" />
@@ -100,6 +101,7 @@
   <ItemGroup>
     <ClCompile Include="Game.Character.DoAction.cpp" />
     <ClCompile Include="Game.Character.cpp" />
+    <ClCompile Include="Game.Character.Island.cpp" />
     <ClCompile Include="Game.Character.Messages.cpp" />
     <ClCompile Include="Game.Islands.Features.DarkAlley.cpp" />
     <ClCompile Include="Game.Islands.Features.Tavern.cpp" />

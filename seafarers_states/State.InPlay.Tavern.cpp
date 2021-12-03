@@ -1,3 +1,5 @@
+#include <Game.Character.h>
+#include <Game.Character.Island.h>
 #include <Game.Islands.Taverns.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.Tavern.h"
@@ -5,14 +7,40 @@ namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_TAVERN;
 
+	static void RefreshCharacters(int islandId)
+	{
+		auto characterIds = game::character::Island::All(islandId, game::character::State::TAVERN);
+		if (!characterIds.empty())
+		{
+			Terminal::SetForeground(game::Colors::GRAY);
+			Terminal::WriteLine("People Present:");
+			for (auto characterId : characterIds)
+			{
+				bool isPC = characterId == GetPlayerCharacterId();
+				auto name = game::Character::GetName(characterId).value();
+				if (isPC)
+				{
+					Terminal::WriteLine("{}(you)", name);
+				}
+				else
+				{
+					Terminal::WriteLine(name);
+				}
+			}
+		}
+	}
+
 	static void Refresh()
 	{
 		Terminal::Reinitialize();
 
+		auto islandId = GetPlayerCharacterIslandId().value();
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine(
-			"Yer in a tavern called 'the {}'.", 
-			game::islands::Taverns::GetName(GetPlayerCharacterIslandId().value()).value());
+			"Yer in a tavern called 'the {}'.",
+			game::islands::Taverns::GetName(islandId).value());
+
+		RefreshCharacters(islandId);
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("0) Leave");

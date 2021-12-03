@@ -311,6 +311,9 @@
     <ClInclude Include="Game.Islands.Taverns.h">
       <Filter>Header Files\Islands</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Character.Island.h">
+      <Filter>Header Files\Character</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -444,6 +447,9 @@
     </ClCompile>
     <ClCompile Include="Game.Islands.Taverns.cpp">
       <Filter>Source Files\Islands</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Character.Island.cpp">
+      <Filter>Source Files\Character</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

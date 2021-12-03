@@ -1,6 +1,8 @@
 #include <Common.RNG.h>
 #include <Data.Game.Island.Tavern.h>
 #include <format>
+#include "Game.Character.h"
+#include "Game.Character.Island.h"
 #include "Game.Islands.Features.Tavern.h"
 #include <string>
 #include <list>
@@ -52,9 +54,25 @@ namespace game::islands::features
 		data::game::island::Tavern::Write({ islandId, name });
 	}
 
+	static void AddTavernCharacter(int islandId)
+	{
+		auto characterId = Character::Create(game::character::State::TAVERN);
+		character::Island::Write(characterId, islandId);
+	}
+
+	static void InitializeTavernCharacters(int islandId)
+	{
+		auto characterCount = common::RNG::FromRange(1, 4) + common::RNG::FromRange(1, 4);
+		while (characterCount > 0)
+		{
+			AddTavernCharacter(islandId);
+			characterCount--;
+		}
+	}
+
 	void Tavern::Initialize(int islandId)
 	{
 		InitializeTavernName(islandId);
-		//TODO: fill the tavern with NPC hirelings
+		InitializeTavernCharacters(islandId);
 	}
 }
