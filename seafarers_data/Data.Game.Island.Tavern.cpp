@@ -32,10 +32,13 @@ namespace data::game::island
 		return std::nullopt;
 	}
 
-	void Write(const Tavern& tavern)
+	void Tavern::Write(const Tavern& tavern)
 	{
 		AutoCreateTable();
-		Common::Execute(REPLACE_ITEM, tavern.islandId, tavern.name);
+		Common::Execute(
+			REPLACE_ITEM, 
+			tavern.islandId, 
+			common::Data::QuoteString(tavern.name));
 	}
 
 }
