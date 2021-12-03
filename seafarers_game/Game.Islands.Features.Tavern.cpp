@@ -17,7 +17,10 @@ namespace game::islands::features
 		"hemorrhaging",
 		"bulging",
 		"upchucking",
-		"lubricating"
+		"lubricating",
+		"lapdancing",
+		"pulsating",
+		"undulating"
 	};
 
 	static const std::list<std::string> nouns =
@@ -33,7 +36,12 @@ namespace game::islands::features
 		"vampire",
 		"ghost",
 		"maiden",
-		"maseuse"
+		"maseuse",
+		"kitten",
+		"vixen",
+		"mermaid",
+		"hobo",
+		"wench"
 	};
 
 	static void InitializeTavernName(int islandId)

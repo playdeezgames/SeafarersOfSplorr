@@ -26,6 +26,7 @@
     <ClInclude Include="Game.Character.Messages.h" />
     <ClInclude Include="Game.Islands.Features.DarkAlley.h" />
     <ClInclude Include="Game.Islands.Features.Tavern.h" />
+    <ClInclude Include="Game.Islands.Taverns.h" />
     <ClInclude Include="Game.Ship.Docked.h" />
     <ClInclude Include="Game.Ship.DockResult.h" />
     <ClInclude Include="Game.Character.Equipment.h" />
@@ -102,6 +103,7 @@
     <ClCompile Include="Game.Character.Messages.cpp" />
     <ClCompile Include="Game.Islands.Features.DarkAlley.cpp" />
     <ClCompile Include="Game.Islands.Features.Tavern.cpp" />
+    <ClCompile Include="Game.Islands.Taverns.cpp" />
     <ClCompile Include="Game.Ship.Docked.cpp" />
     <ClCompile Include="Game.Character.Equipment.cpp" />
     <ClCompile Include="Game.Character.Flags.cpp" />

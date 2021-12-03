@@ -1,3 +1,4 @@
+#include <Game.Islands.Taverns.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.Tavern.h"
 namespace state::in_play
@@ -9,7 +10,9 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
-		Terminal::WriteLine("Yer in a tavern.");
+		Terminal::WriteLine(
+			"Yer in a tavern called 'the {}'.", 
+			game::islands::Taverns::GetName(GetPlayerCharacterIslandId().value()).value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("0) Leave");

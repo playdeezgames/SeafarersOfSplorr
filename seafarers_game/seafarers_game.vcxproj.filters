@@ -308,6 +308,9 @@
     <ClInclude Include="Game.Islands.Features.Tavern.h">
       <Filter>Header Files\Islands\Features</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Islands.Taverns.h">
+      <Filter>Header Files\Islands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -438,6 +441,9 @@
     </ClCompile>
     <ClCompile Include="Game.Islands.Features.Tavern.cpp">
       <Filter>Source Files\Features</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Islands.Taverns.cpp">
+      <Filter>Source Files\Islands</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
