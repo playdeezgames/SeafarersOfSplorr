@@ -46,7 +46,7 @@ namespace data::game
 		}
 	}
 
-	static Island ToIsland(const std::map<std::string, std::string> record)
+	static Island ToIsland(const std::map<std::string, std::string>& record)
 	{
 		Island data =
 		{

@@ -48,6 +48,9 @@
     <Filter Include="Source Files\Character">
       <UniqueIdentifier>{0b40a556-1eab-4a39-a222-6284d0cd1819}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Island\Dark Alley">
+      <UniqueIdentifier>{53523306-fff7-4843-97ac-2eee8fa47be3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data.Game.Common.h">
@@ -55,12 +58,6 @@
     </ClInclude>
     <ClInclude Include="Data.Game.World.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Island.DarkAlley.FightCard.h">
-      <Filter>Header Files\Island</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Island.DarkAlley.h">
-      <Filter>Header Files\Island</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.Island.Feature.h">
       <Filter>Header Files\Island</Filter>
@@ -88,9 +85,6 @@
     </ClInclude>
     <ClInclude Include="Data.SQLite.Store.h">
       <Filter>Header Files\Stores</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Island.DarkAlley.GamblingHand.h">
-      <Filter>Header Files\Island</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.Demigod.h">
       <Filter>Header Files\Demigod</Filter>
@@ -151,6 +145,18 @@
     </ClInclude>
     <ClInclude Include="Data.Game.Character.Island.h">
       <Filter>Header Files\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.DarkAlley.FightCard.h">
+      <Filter>Header Files\Island\Dark Alley</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.DarkAlley.GamblingHand.h">
+      <Filter>Header Files\Island\Dark Alley</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.DarkAlley.h">
+      <Filter>Header Files\Island\Dark Alley</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Island.Tavern.h">
+      <Filter>Header Files\Island</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -249,6 +255,9 @@
     </ClCompile>
     <ClCompile Include="Data.Game.Character.Island.cpp">
       <Filter>Source Files\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Island.Tavern.cpp">
+      <Filter>Source Files\Island</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
