@@ -92,7 +92,6 @@ namespace state::in_play
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-
 	static void OnEnter()
 	{
 		PlayMainTheme();
