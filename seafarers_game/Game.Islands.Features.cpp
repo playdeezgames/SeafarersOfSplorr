@@ -4,6 +4,8 @@
 #include <Data.Game.Island.Feature.h>
 #include "Game.Features.h"
 #include "Game.Islands.Features.h"
+#include "Game.Islands.Features.DarkAlley.h"
+#include "Game.Islands.Features.Tavern.h"
 namespace game::islands
 {
 	bool Features::Read(int islandId, const game::Feature& feature)
@@ -23,41 +25,10 @@ namespace game::islands
 		}
 	}
 
-	static double GenerateInfamyRequirement()
-	{
-		return common::RNG::FromRange(1.0, 6.0) + common::RNG::FromRange(1.0, 6.0) + common::RNG::FromRange(1.0, 6.0);
-	}
-
-	static double GenerateRuffianBrawlingStrength()
-	{
-		return common::RNG::FromRange(1.0, 6.0) + common::RNG::FromRange(1.0, 6.0);
-	}
-
-	static double GenerateMinimumWager()
-	{
-		return common::RNG::FromRange(1.0, 4.0) + common::RNG::FromRange(1.0, 4.0);
-	}
-
-	static void InitializeDarkAlley(int islandId)
-	{
-		data::game::island::DarkAlley::Write(islandId, 
-			{ 
-				GenerateInfamyRequirement(),
-				GenerateRuffianBrawlingStrength(),
-				GenerateMinimumWager() 
-			});
-	}
-
-	static void InitializeTavern(int islandId)
-	{
-		//TODO: give the tavern a name
-		//TODO: fill the tavern with NPC hirelings
-	}
-
 	static const std::map<game::Feature, std::function<void(int)>> featureInitializers =
 	{
-		{game::Feature::DARK_ALLEY, InitializeDarkAlley},
-		{game::Feature::TAVERN, InitializeTavern}
+		{game::Feature::DARK_ALLEY, features::DarkAlley::Initialize},
+		{game::Feature::TAVERN, features::Tavern::Initialize}
 	};
 
 	static void InitializeFeature(const game::Feature& feature, int islandId)

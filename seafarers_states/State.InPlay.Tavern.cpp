@@ -47,12 +47,3 @@ namespace state::in_play
 				Refresh));
 	}
 }
-
-//tavern names!
-//adjective noun
-
-//adjectives
-//prancing
-
-//nouns
-//pony

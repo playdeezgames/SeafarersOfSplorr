@@ -72,6 +72,12 @@
     <Filter Include="Source Files\Ship">
       <UniqueIdentifier>{db5549fd-e249-4e7a-be4a-8cab11795267}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Islands\Features">
+      <UniqueIdentifier>{21da3d6a-2e22-4986-bd8d-913349b9a846}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Features">
+      <UniqueIdentifier>{2d667e5d-101a-47f1-9a8e-f9502a6d97dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -91,9 +97,6 @@
     </ClInclude>
     <ClInclude Include="Game.Features.h">
       <Filter>Header Files\Features</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.Features.h">
-      <Filter>Header Files\Islands</Filter>
     </ClInclude>
     <ClInclude Include="Game.Islands.h">
       <Filter>Header Files\Islands</Filter>
@@ -296,6 +299,15 @@
     <ClInclude Include="Game.Character.State.h">
       <Filter>Header Files\Character\Enums</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Islands.Features.DarkAlley.h">
+      <Filter>Header Files\Islands\Features</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Islands.Features.h">
+      <Filter>Header Files\Islands\Features</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Islands.Features.Tavern.h">
+      <Filter>Header Files\Islands\Features</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -308,9 +320,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.Islands.cpp">
-      <Filter>Source Files\Islands</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.Features.cpp">
       <Filter>Source Files\Islands</Filter>
     </ClCompile>
     <ClCompile Include="Game.Islands.Generation.cpp">
@@ -420,6 +429,15 @@
     </ClCompile>
     <ClCompile Include="Game.Character.Messages.cpp">
       <Filter>Source Files\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Islands.Features.cpp">
+      <Filter>Source Files\Features</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Islands.Features.DarkAlley.cpp">
+      <Filter>Source Files\Features</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Islands.Features.Tavern.cpp">
+      <Filter>Source Files\Features</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
