@@ -65,6 +65,7 @@
     <ClInclude Include="State.InPlay.ShipStatus.h" />
     <ClInclude Include="State.InPlay.ShipyardPurchaseShip.h" />
     <ClInclude Include="State.InPlay.ShipyardUnfoulShip.h" />
+    <ClInclude Include="State.InPlay.Tavern.h" />
     <ClInclude Include="State.InPlay.Temple.h" />
     <ClInclude Include="State.InPlay.Win.h" />
     <ClInclude Include="State.LeavePlay.h" />
@@ -110,6 +111,7 @@
     <ClCompile Include="State.InPlay.Shipyard.cpp" />
     <ClCompile Include="State.InPlay.ShipyardPurchaseShip.cpp" />
     <ClCompile Include="State.InPlay.ShipyardUnfoulShip.cpp" />
+    <ClCompile Include="State.InPlay.Tavern.cpp" />
     <ClCompile Include="State.Terminal.cpp" />
     <ClCompile Include="State.InPlay.CharacterStatus.cpp" />
     <ClCompile Include="State.InPlay.CareenedToPort.cpp" />

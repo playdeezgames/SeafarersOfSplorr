@@ -55,6 +55,7 @@
 #include <State.InPlay.ShipyardPurchaseShip.h>
 #include <State.InPlay.ShipyardUnfoulShip.h>
 #include <State.InPlay.ShipStatus.h>
+#include <State.InPlay.Tavern.h>
 #include <State.InPlay.Temple.h>
 #include <State.InPlay.Win.h>
 #include <State.LeavePlay.h>
@@ -186,6 +187,7 @@ namespace application
 		state::in_play::ChooseRations::Start,
 		state::in_play::RenameShipAdjective::Start,
 		state::in_play::RenameShipNoun::Start,
+		state::in_play::Tavern::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};

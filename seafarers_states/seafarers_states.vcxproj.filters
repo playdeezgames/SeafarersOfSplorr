@@ -230,6 +230,9 @@
     <ClInclude Include="State.InPlay.Globals.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="State.InPlay.Tavern.h">
+      <Filter>Header Files\Docked</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -405,6 +408,9 @@
     </ClCompile>
     <ClCompile Include="State.InPlay.Globals.cpp">
       <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.Tavern.cpp">
+      <Filter>Source Files\Docked</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
