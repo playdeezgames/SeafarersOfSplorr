@@ -4,6 +4,7 @@ namespace game
 	enum class Feature
 	{
 		SHIPYARD,
-		DARK_ALLEY
+		DARK_ALLEY,
+		TAVERN
 	};
 }

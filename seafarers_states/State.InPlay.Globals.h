@@ -13,6 +13,7 @@
 #include <Cards.Suit.h>
 #include <Game.Character.Action.h>
 #include <Game.EquipSlot.h>
+#include <Game.Feature.h>
 #include <Game.Island.h>
 #include <Game.Item.h>
 #include <Game.Quest.h>
@@ -42,6 +43,7 @@ namespace state::in_play
 	void DoPlayerCharacterAction(const game::character::Action&);
 	std::optional<double> ChangePlayerCharacterMoney(double);
 	std::optional<common::XY<double>> GetPlayerCharacterIslandLocation();
+	std::optional<bool> PlayerCharacterIslandHasFeature(const game::Feature&);//game::islands::Features::Read(island.id,
 	std::optional<double> GetPlayerCharacterMoney();
 	std::optional<double> GetPlayerCharacterDarkAlleyAnte();
 	std::optional<double> GetPlayerCharacterDarkAlleyMinimumWager();

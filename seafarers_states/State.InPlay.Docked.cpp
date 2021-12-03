@@ -26,15 +26,19 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Jobs");
 		Terminal::WriteLine("2) Trade");
-		if (game::islands::Features::Read(island.id, game::Feature::SHIPYARD))
+		if (PlayerCharacterIslandHasFeature(game::Feature::SHIPYARD))
 		{
 			Terminal::WriteLine("3) Shipyard");
 		}
-		if (game::islands::Features::Read(island.id, game::Feature::DARK_ALLEY))
+		if (PlayerCharacterIslandHasFeature(game::Feature::DARK_ALLEY))
 		{
 			Terminal::WriteLine("4) Dark Alley");
 		}
 		Terminal::WriteLine(FORMAT_TEMPLE, game::Demigods::ReadName(island.patronDemigodId));
+		if (PlayerCharacterIslandHasFeature(game::Feature::TAVERN))
+		{
+			Terminal::WriteLine("6) Tavern");
+		}
 		Terminal::WriteLine("0) Undock");
 
 		Terminal::ShowPrompt();
@@ -60,9 +64,7 @@ namespace state::in_play
 
 	static void OnShipyard()
 	{
-		auto islandId = GetPlayerCharacterIslandId().value();
-		auto island = game::Islands::Read(islandId).value();
-		if (game::islands::Features::Read(island.id, game::Feature::SHIPYARD))
+		if (PlayerCharacterIslandHasFeature(game::Feature::SHIPYARD))
 		{
 			DoPlayerCharacterAction(game::character::Action::ENTER_SHIPYARD);
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
@@ -76,9 +78,7 @@ namespace state::in_play
 
 	static void OnDarkAlley()
 	{
-		auto islandId = GetPlayerCharacterIslandId().value();
-		auto island = game::Islands::Read(islandId).value();
-		if (game::islands::Features::Read(island.id, game::Feature::DARK_ALLEY))
+		if (PlayerCharacterIslandHasFeature(game::Feature::DARK_ALLEY))
 		{
 			DoPlayerCharacterAction(game::character::Action::ENTER_DARK_ALLEY);
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);

@@ -25,6 +25,13 @@ namespace game
 				1,
 				0.6
 			}
+		},
+		{game::Feature::TAVERN,
+			{
+				"tavern",
+				1,
+				0.9
+			}
 		}
 	};
 

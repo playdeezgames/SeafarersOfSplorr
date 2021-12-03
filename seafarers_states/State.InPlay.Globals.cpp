@@ -8,6 +8,7 @@
 #include <Game.Ship.Statistics.h>
 #include <Game.Islands.h>
 #include <Game.Islands.DarkAlley.h>
+#include <Game.Islands.Features.h>
 #include <Game.Islands.Items.h>
 #include <Game.Player.h>
 #include <Game.Ship.h>
@@ -261,5 +262,12 @@ namespace state::in_play
 	void AddPlayerCharacterMessage(const std::string& text)
 	{
 		game::character::Messages::Add(GetPlayerCharacterId(), text);
+	}
+
+	std::optional<bool> PlayerCharacterIslandHasFeature(const game::Feature& feature)
+	{
+		return common::utility::Optional::Map<int, bool>(
+			GetPlayerCharacterIslandId(),
+			[feature](int islandId) { return game::islands::Features::Read(islandId, feature); });
 	}
 }
