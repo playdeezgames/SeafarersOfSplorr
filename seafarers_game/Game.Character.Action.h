@@ -18,6 +18,7 @@ namespace game::character
 		UNCAREEN,
 		ENTER_TEMPLE,
 		START_FISHING,
-		STOP_FISHING
+		STOP_FISHING,
+		ENTER_TAVERN
 	};
 }

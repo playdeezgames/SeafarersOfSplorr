@@ -62,32 +62,28 @@ namespace state::in_play
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	static void OnShipyard()
+	static const std::map<game::Feature, game::character::Action> featureActionMap =
 	{
-		if (PlayerCharacterIslandHasFeature(game::Feature::SHIPYARD))
-		{
-			DoPlayerCharacterAction(game::character::Action::ENTER_SHIPYARD);
-			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
-		}
-		else
-		{
-			Terminal::ErrorMessage("Please select a valid option.");
-			Refresh();
-		}
-	}
+		{game::Feature::SHIPYARD, game::character::Action::ENTER_SHIPYARD},
+		{game::Feature::DARK_ALLEY, game::character::Action::ENTER_DARK_ALLEY},
+		{game::Feature::TAVERN, game::character::Action::ENTER_TAVERN},
+	};
 
-	static void OnDarkAlley()
+	static std::function<void()> OnEnterFeature(const game::Feature& feature)
 	{
-		if (PlayerCharacterIslandHasFeature(game::Feature::DARK_ALLEY))
+		return [feature]() 
 		{
-			DoPlayerCharacterAction(game::character::Action::ENTER_DARK_ALLEY);
-			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
-		}
-		else
-		{
-			Terminal::ErrorMessage("Please select a valid option.");
-			Refresh();
-		}
+			if (PlayerCharacterIslandHasFeature(feature))
+			{
+				DoPlayerCharacterAction(featureActionMap.find(feature)->second);
+				::application::UIState::Write(::UIState::IN_PLAY_NEXT);
+			}
+			else
+			{
+				Terminal::ErrorMessage("Please select a valid option.");
+				Refresh();
+			}
+		};
 	}
 
 	static void OnTemple()
@@ -107,9 +103,10 @@ namespace state::in_play
 	{
 		{"1", OnJob},
 		{"2", OnTrade},
-		{"3", OnShipyard},
-		{"4", OnDarkAlley},
+		{"3", OnEnterFeature(game::Feature::SHIPYARD)},
+		{"4", OnEnterFeature(game::Feature::DARK_ALLEY)},
 		{"5", OnTemple},
+		{"6", OnEnterFeature(game::Feature::TAVERN)},
 		{"0", OnUndock}
 	};
 

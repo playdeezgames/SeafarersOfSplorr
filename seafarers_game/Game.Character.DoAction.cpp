@@ -85,6 +85,10 @@ namespace game
 					DoTransition(character::State::DOCK)
 				},
 				{
+					character::State::TAVERN,
+					DoTransition(character::State::DOCK)
+				},
+				{
 					character::State::MARKET,
 					DoTransition(character::State::DOCK)
 				},
@@ -143,6 +147,15 @@ namespace game
 				{
 					character::State::DOCK,
 					DoTransition(character::State::TEMPLE)
+				}
+			}
+		},
+		{
+			character::Action::ENTER_TAVERN,
+			{
+				{
+					character::State::DOCK,
+					DoTransition(character::State::TAVERN)
 				}
 			}
 		},

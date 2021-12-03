@@ -248,9 +248,6 @@
     <ClInclude Include="Game.Character.Ship.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Character.State.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Character.Statistics.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
@@ -295,6 +292,9 @@
     </ClInclude>
     <ClInclude Include="Game.Character.Messages.h">
       <Filter>Header Files\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Character.State.h">
+      <Filter>Header Files\Character\Enums</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

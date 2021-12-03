@@ -16,6 +16,7 @@ namespace game::character
 		CAREENED_TO_PORT,//TODO: make into ship state
 		CAREENED_TO_STARBOARD,//TODO: make into ship state
 		TEMPLE,
-		FISHING
+		FISHING,
+		TAVERN
 	};
 }
