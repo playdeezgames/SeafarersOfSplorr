@@ -26,16 +26,16 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Jobs");
 		Terminal::WriteLine("2) Trade");
-		if (PlayerCharacterIslandHasFeature(game::Feature::SHIPYARD))
+		if (PlayerCharacterIslandHasFeature(game::Feature::SHIPYARD).value())
 		{
 			Terminal::WriteLine("3) Shipyard");
 		}
-		if (PlayerCharacterIslandHasFeature(game::Feature::DARK_ALLEY))
+		if (PlayerCharacterIslandHasFeature(game::Feature::DARK_ALLEY).value())
 		{
 			Terminal::WriteLine("4) Dark Alley");
 		}
 		Terminal::WriteLine(FORMAT_TEMPLE, game::Demigods::ReadName(island.patronDemigodId));
-		if (PlayerCharacterIslandHasFeature(game::Feature::TAVERN))
+		if (PlayerCharacterIslandHasFeature(game::Feature::TAVERN).value())
 		{
 			Terminal::WriteLine("6) Tavern");
 		}
@@ -73,7 +73,7 @@ namespace state::in_play
 	{
 		return [feature]() 
 		{
-			if (PlayerCharacterIslandHasFeature(feature))
+			if (PlayerCharacterIslandHasFeature(feature).value())
 			{
 				DoPlayerCharacterAction(featureActionMap.find(feature)->second);
 				::application::UIState::Write(::UIState::IN_PLAY_NEXT);

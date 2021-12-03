@@ -62,7 +62,7 @@ namespace game::islands::features
 
 	static void InitializeTavernCharacters(int islandId)
 	{
-		auto characterCount = common::RNG::FromRange(1, 4) + common::RNG::FromRange(1, 4);
+		auto characterCount = common::RNG::FromRange(1, 4) + common::RNG::FromRange(0, 3);
 		while (characterCount > 0)
 		{
 			AddTavernCharacter(islandId);
