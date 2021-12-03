@@ -20,16 +20,16 @@
 #include "Game.World.h"
 namespace game
 {
-	static double DetermineHungerRate()
+	static double DetermineHungerRate(int characterId)
 	{
 		double delta = -1.0;
-		if (character::Plights::Has(game::Player::GetCharacterId(), character::Plight::DOUBLE_HUNGER) &&
-			!character::Plights::Has(game::Player::GetCharacterId(), character::Plight::HUNGER_IMMUNITY))
+		if (character::Plights::Has(characterId, character::Plight::DOUBLE_HUNGER) &&
+			!character::Plights::Has(characterId, character::Plight::HUNGER_IMMUNITY))
 		{
 			delta *= 2.0;
 		}
-		if (character::Plights::Has(game::Player::GetCharacterId(), character::Plight::HUNGER_IMMUNITY) &&
-			!character::Plights::Has(game::Player::GetCharacterId(), character::Plight::DOUBLE_HUNGER))
+		if (character::Plights::Has(characterId, character::Plight::HUNGER_IMMUNITY) &&
+			!character::Plights::Has(characterId, character::Plight::DOUBLE_HUNGER))
 		{
 			delta = 0.0;
 		}
@@ -38,7 +38,7 @@ namespace game
 
 	static void ApplyHunger(int characterId)
 	{
-		double delta = DetermineHungerRate();
+		double delta = DetermineHungerRate(characterId);
 		if (game::character::statistics::Satiety::IsStarving(characterId))
 		{
 			game::character::statistics::Health::Change(characterId, delta);
@@ -83,16 +83,16 @@ namespace game
 		}
 	}
 
-	static size_t DetermineTurnsSpent()
+	static size_t DetermineTurnsSpent(int characterId)
 	{
 		size_t agingRate = 1;
-		if (character::Plights::Has(game::Player::GetCharacterId(), character::Plight::DOUBLE_AGING) &&
-			!character::Plights::Has(game::Player::GetCharacterId(), character::Plight::AGING_IMMUNITY))
+		if (character::Plights::Has(characterId, character::Plight::DOUBLE_AGING) &&
+			!character::Plights::Has(characterId, character::Plight::AGING_IMMUNITY))
 		{
 			agingRate = 2;
 		}
-		if (character::Plights::Has(game::Player::GetCharacterId(), character::Plight::AGING_IMMUNITY) &&
-			!character::Plights::Has(game::Player::GetCharacterId(), character::Plight::DOUBLE_AGING))
+		if (character::Plights::Has(characterId, character::Plight::AGING_IMMUNITY) &&
+			!character::Plights::Has(characterId, character::Plight::DOUBLE_AGING))
 		{
 			agingRate = 0;
 		}
@@ -101,7 +101,7 @@ namespace game
 
 	static void ApplyTurn(int characterId)
 	{
-		auto turnsSpent = DetermineTurnsSpent();
+		auto turnsSpent = DetermineTurnsSpent(characterId);
 		while (turnsSpent)
 		{
 			game::character::statistics::Turns::Change(characterId, -1);
@@ -164,24 +164,27 @@ namespace game
 		return nameGenerator.Generate();
 	}
 
-	static int CreateAvatar()
-	{
-		data::game::Character data =
-		{
-			(int)game::character::State::AT_SEA,
-			GenerateName()
-		};
-		return data::game::Character::Create(data);
-	}
-
-	static void GenerateAvatarRations(int characterId)
+	static void GenerateCharacterRations(int characterId)
 	{
 		data::game::character::Rations::Write(
 			characterId,
 			(int)game::Items::GenerateRationsForAvatar());
 	}
 
-	static void GenerateAvatarShip()
+
+	int Character::Create(const game::character::State& state)
+	{
+		data::game::Character data =
+		{
+			(int)state,
+			GenerateName()
+		};
+		int characterId = data::game::Character::Create(data);
+		GenerateCharacterRations(characterId);
+		return characterId;
+	}
+
+	static void GenerateCharacterShip(int characterId)
 	{
 		auto worldSize = game::World::GetSize();
 		auto shipType = game::ShipTypes::GenerateForAvatar();
@@ -196,15 +199,14 @@ namespace game
 				common::RNG::FromRange(0.0, common::Heading::DEGREES),
 				common::Heading::DEGREES).value(),
 			1.0 });
-		game::character::Ship::Write(game::Player::GetCharacterId(), shipId, BerthType::CAPTAIN);
+		game::character::Ship::Write(characterId, shipId, BerthType::CAPTAIN);
 	}
 
 	void Character::Reset(const game::Difficulty&)
 	{
-		auto characterId = CreateAvatar();
+		auto characterId = Create(game::character::State::AT_SEA);
 		Player::Create(characterId);
-		GenerateAvatarRations(characterId);
-		GenerateAvatarShip();
+		GenerateCharacterShip(characterId);
 	}
 
 	std::optional<std::string> Character::GetName(int characterId)

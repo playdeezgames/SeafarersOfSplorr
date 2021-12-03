@@ -13,6 +13,7 @@ namespace game
 		static std::optional<std::string> GetName(int);
 		static std::optional<character::State> GetState(int);
 		static void DoAction(int, const character::Action&);
+		static int Create(const game::character::State&);
 	private:
 		static void SetState(int, const character::State&);
 	};
