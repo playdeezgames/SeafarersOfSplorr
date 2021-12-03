@@ -38,26 +38,34 @@ namespace game::islands
 		return common::RNG::FromRange(1.0, 4.0) + common::RNG::FromRange(1.0, 4.0);
 	}
 
-	static void InitializeDarkAlley(const common::XY<double>& location)
+	static void InitializeDarkAlley(int islandId)
 	{
-		data::game::island::DarkAlley::Write(data::game::Island::Find(location).value(), {
-			GenerateInfamyRequirement(),
-			GenerateRuffianBrawlingStrength(),
-			GenerateMinimumWager()
+		data::game::island::DarkAlley::Write(islandId, 
+			{ 
+				GenerateInfamyRequirement(),
+				GenerateRuffianBrawlingStrength(),
+				GenerateMinimumWager() 
 			});
 	}
 
-	static const std::map<game::Feature, std::function<void(const common::XY<double>&)>> featureInitializers =
+	static void InitializeTavern(int islandId)
 	{
-		{game::Feature::DARK_ALLEY, InitializeDarkAlley}
+		//TODO: give the tavern a name
+		//TODO: fill the tavern with NPC hirelings
+	}
+
+	static const std::map<game::Feature, std::function<void(int)>> featureInitializers =
+	{
+		{game::Feature::DARK_ALLEY, InitializeDarkAlley},
+		{game::Feature::TAVERN, InitializeTavern}
 	};
 
-	static void InitializeFeature(const game::Feature& feature, const common::XY<double>& location)
+	static void InitializeFeature(const game::Feature& feature, int islandId)
 	{
 		auto initializer = featureInitializers.find(feature);
 		if (initializer != featureInitializers.end())
 		{
-			initializer->second(location);
+			initializer->second(islandId);
 		}
 	}
 
@@ -77,10 +85,10 @@ namespace game::islands
 
 	static void GenerateFeature(const game::Feature& feature, const std::list<data::game::Island>& islands)
 	{
-		std::vector<common::XY<double>> candidates;
+		std::vector<int> candidates;
 		for (auto island : islands)
 		{
-			candidates.push_back(island.location);
+			candidates.push_back(island.id);
 		}
 		size_t islandCount = DetermineIslandCountForFeature(feature, islands.size());
 		while (islandCount > 0)
@@ -91,7 +99,7 @@ namespace game::islands
 			candidates[index] = candidates.back();
 			candidates.pop_back();
 
-			data::game::island::Feature::Write(data::game::Island::Find(candidate).value(), (int)feature);
+			data::game::island::Feature::Write(candidate, (int)feature);
 			InitializeFeature(feature, candidate);
 			islandCount--;
 		}
