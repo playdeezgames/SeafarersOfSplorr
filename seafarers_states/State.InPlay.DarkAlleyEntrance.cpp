@@ -118,8 +118,8 @@ namespace state::in_play
 		Terminal::WriteLine("Enemy Brawling: {:.1f}", GetRuffianBrawling());
 		Terminal::WriteLine(
 			"Yer Brawling: {:.1f} Yer Health: {:.0f}", 
-			game::character::statistics::Brawling::Current(GetPlayerCharacterId()).value(),
-			game::character::statistics::Health::Current(GetPlayerCharacterId()).value());
+			game::characters::statistics::Brawling::Current(GetPlayerCharacterId()).value(),
+			game::characters::statistics::Health::Current(GetPlayerCharacterId()).value());
 
 		RefreshBoard();
 
@@ -140,20 +140,20 @@ namespace state::in_play
 	static void OnRetreat()
 	{
 		ChangePlayerCharacterMoney(-GetPlayerCharacterMoney().value() / 2.0);
-		DoPlayerCharacterAction(game::character::Action::ENTER_DOCK);
+		DoPlayerCharacterAction(game::characters::Action::ENTER_DOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void IncreaseInfamy()
 	{
 		const double INFAMY_DELTA = 0.1;
-		game::character::statistics::Infamy::Change(GetPlayerCharacterId(), (hitsTaken == 0) ? (INFAMY_DELTA) : (INFAMY_DELTA / 2.0));
+		game::characters::statistics::Infamy::Change(GetPlayerCharacterId(), (hitsTaken == 0) ? (INFAMY_DELTA) : (INFAMY_DELTA / 2.0));
 	}
 
 	static void IncreaseBrawling()
 	{
 		const double BRAWLING_DELTA = 0.1;
-		game::character::statistics::Brawling::Change(GetPlayerCharacterId(), (hitsTaken > 0) ? (BRAWLING_DELTA) : (BRAWLING_DELTA / 2.0));
+		game::characters::statistics::Brawling::Change(GetPlayerCharacterId(), (hitsTaken > 0) ? (BRAWLING_DELTA) : (BRAWLING_DELTA / 2.0));
 	}
 
 	static void HandleRuffianDefeated()
@@ -163,15 +163,15 @@ namespace state::in_play
 		Terminal::WriteLine("VICTORY!");
 		IncreaseInfamy();
 		IncreaseBrawling();
-		DoPlayerCharacterAction(game::character::Action::DEFEAT_RUFFIAN);
+		DoPlayerCharacterAction(game::characters::Action::DEFEAT_RUFFIAN);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 
 	}
 
 	static void HandleTakeDamage()
 	{
-		game::character::statistics::Health::Change(GetPlayerCharacterId(), -GetRuffianBrawling());
-		if (game::character::statistics::Health::IsDead(GetPlayerCharacterId()).value())
+		game::characters::statistics::Health::Change(GetPlayerCharacterId(), -GetRuffianBrawling());
+		if (game::characters::statistics::Health::IsDead(GetPlayerCharacterId()).value())
 		{
 			Terminal::WriteLine("DEFEAT!");
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);

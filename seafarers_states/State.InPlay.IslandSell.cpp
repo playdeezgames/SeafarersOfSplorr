@@ -13,7 +13,7 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		DoPlayerCharacterAction(game::character::Action::ENTER_MARKET);
+		DoPlayerCharacterAction(game::characters::Action::ENTER_MARKET);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -32,7 +32,7 @@ namespace state::in_play
 			Terminal::WriteLine("{}) {} ({} @ {:.4f})",
 				index++,
 				game::Items::GetName(unitPrice.first),
-				game::character::Items::Read(GetPlayerCharacterId(), unitPrice.first),
+				game::characters::Items::Read(GetPlayerCharacterId(), unitPrice.first),
 				unitPrice.second);
 		}
 	}

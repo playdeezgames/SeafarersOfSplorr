@@ -1,7 +1,7 @@
 #include <Common.Data.h>
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Colors.h>
-#include <Game.Character.Messages.h>
+#include <Game.Characters.Messages.h>
 #include <Game.Player.h>
 #include <set>
 #include "State.Terminal.h"
@@ -274,7 +274,7 @@ namespace state
 
 	static void ShowMessages(int characterId)
 	{
-		auto messages = game::character::Messages::Read(characterId);
+		auto messages = game::characters::Messages::Read(characterId);
 		if (!messages.empty())
 		{
 			Terminal::WriteLine();
@@ -283,7 +283,7 @@ namespace state
 				Terminal::SetForeground(message.color);
 				Terminal::WriteLine(message.text);
 			}
-			game::character::Messages::Clear(characterId);
+			game::characters::Messages::Clear(characterId);
 		}
 	}
 

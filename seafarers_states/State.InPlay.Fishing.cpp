@@ -115,7 +115,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::YELLOW);
 		if (game::FishGame::GetState(GetPlayerCharacterId()) ==
 			game::FishGameState::OUT_OF_GUESSES && 
-			game::character::Items::Has(
+			game::characters::Items::Has(
 				GetPlayerCharacterId(), 
 				game::Item::BAIT))
 		{
@@ -139,7 +139,7 @@ namespace state::in_play
 
 	static void LeaveFishing()
 	{
-		DoPlayerCharacterAction(game::character::Action::STOP_FISHING);
+		DoPlayerCharacterAction(game::characters::Action::STOP_FISHING);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -181,7 +181,7 @@ namespace state::in_play
 
 	static bool OutOfGuessesInputHandler(const std::string& line)
 	{
-		if (line == "1" && game::character::Items::Has(GetPlayerCharacterId(), game::Item::BAIT))
+		if (line == "1" && game::characters::Items::Has(GetPlayerCharacterId(), game::Item::BAIT))
 		{
 			game::FishGame::AddBait(GetPlayerCharacterId());
 			Refresh();

@@ -23,13 +23,13 @@ namespace game
 	static double DetermineHungerRate(int characterId)
 	{
 		double delta = -1.0;
-		if (character::Plights::Has(characterId, character::Plight::DOUBLE_HUNGER) &&
-			!character::Plights::Has(characterId, character::Plight::HUNGER_IMMUNITY))
+		if (characters::Plights::Has(characterId, characters::Plight::DOUBLE_HUNGER) &&
+			!characters::Plights::Has(characterId, characters::Plight::HUNGER_IMMUNITY))
 		{
 			delta *= 2.0;
 		}
-		if (character::Plights::Has(characterId, character::Plight::HUNGER_IMMUNITY) &&
-			!character::Plights::Has(characterId, character::Plight::DOUBLE_HUNGER))
+		if (characters::Plights::Has(characterId, characters::Plight::HUNGER_IMMUNITY) &&
+			!characters::Plights::Has(characterId, characters::Plight::DOUBLE_HUNGER))
 		{
 			delta = 0.0;
 		}
@@ -39,45 +39,45 @@ namespace game
 	static void ApplyHunger(int characterId)
 	{
 		double delta = DetermineHungerRate(characterId);
-		if (game::character::statistics::Satiety::IsStarving(characterId))
+		if (game::characters::statistics::Satiety::IsStarving(characterId))
 		{
-			game::character::statistics::Health::Change(characterId, delta);
+			game::characters::statistics::Health::Change(characterId, delta);
 		}
 		else
 		{
-			game::character::statistics::Satiety::Change(characterId, delta);
+			game::characters::statistics::Satiety::Change(characterId, delta);
 		}
 	}
 
 	static void ApplyEating(int characterId)
 	{
 		const double EAT_BENEFIT = 10.0;
-		if (game::character::statistics::Satiety::NeedsToEat(characterId, EAT_BENEFIT))
+		if (game::characters::statistics::Satiety::NeedsToEat(characterId, EAT_BENEFIT))
 		{
 			const game::Item rationItem = game::Item::RATIONS;//TODO: when we can choose rations for an character, this will change
-			auto rations = game::character::Items::Read(characterId, rationItem);
+			auto rations = game::characters::Items::Read(characterId, rationItem);
 			if (rations > 0)
 			{
-				game::character::statistics::Satiety::Eat(characterId, EAT_BENEFIT);
-				game::character::Items::Remove(characterId, rationItem, 1);
-				if (game::character::Flags::Has(characterId, game::character::Flag::UNFED))
+				game::characters::statistics::Satiety::Eat(characterId, EAT_BENEFIT);
+				game::characters::Items::Remove(characterId, rationItem, 1);
+				if (game::characters::Flags::Has(characterId, game::characters::Flag::UNFED))
 				{
-					game::character::Flags::Clear(characterId, game::character::Flag::UNFED);
+					game::characters::Flags::Clear(characterId, game::characters::Flag::UNFED);
 				}
 				else
 				{
-					game::character::Flags::Write(characterId, game::character::Flag::FED);
+					game::characters::Flags::Write(characterId, game::characters::Flag::FED);
 				}
 			}
 			else
 			{
-				if (game::character::Flags::Has(characterId, game::character::Flag::FED))
+				if (game::characters::Flags::Has(characterId, game::characters::Flag::FED))
 				{
-					game::character::Flags::Clear(characterId, game::character::Flag::FED);
+					game::characters::Flags::Clear(characterId, game::characters::Flag::FED);
 				}
 				else
 				{
-					game::character::Flags::Write(characterId, game::character::Flag::UNFED);
+					game::characters::Flags::Write(characterId, game::characters::Flag::UNFED);
 				}
 			}
 		}
@@ -86,13 +86,13 @@ namespace game
 	static size_t DetermineTurnsSpent(int characterId)
 	{
 		size_t agingRate = 1;
-		if (character::Plights::Has(characterId, character::Plight::DOUBLE_AGING) &&
-			!character::Plights::Has(characterId, character::Plight::AGING_IMMUNITY))
+		if (characters::Plights::Has(characterId, characters::Plight::DOUBLE_AGING) &&
+			!characters::Plights::Has(characterId, characters::Plight::AGING_IMMUNITY))
 		{
 			agingRate = 2;
 		}
-		if (character::Plights::Has(characterId, character::Plight::AGING_IMMUNITY) &&
-			!character::Plights::Has(characterId, character::Plight::DOUBLE_AGING))
+		if (characters::Plights::Has(characterId, characters::Plight::AGING_IMMUNITY) &&
+			!characters::Plights::Has(characterId, characters::Plight::DOUBLE_AGING))
 		{
 			agingRate = 0;
 		}
@@ -104,12 +104,12 @@ namespace game
 		auto turnsSpent = DetermineTurnsSpent(characterId);
 		while (turnsSpent)
 		{
-			game::character::statistics::Turns::Change(characterId, -1);
+			game::characters::statistics::Turns::Change(characterId, -1);
 			turnsSpent--;
 		}
 	}
 
-	void Character::ApplyTurnEffects()
+	void Characters::ApplyTurnEffects()
 	{
 		auto avatarIds = data::game::Character::All();
 		for (auto characterId : avatarIds)
@@ -172,7 +172,7 @@ namespace game
 	}
 
 
-	int Character::Create(const game::character::State& state)
+	int Characters::Create(const game::characters::State& state)
 	{
 		data::game::Character data =
 		{
@@ -199,17 +199,17 @@ namespace game
 				common::RNG::FromRange(0.0, common::Heading::DEGREES),
 				common::Heading::DEGREES).value(),
 			1.0 });
-		game::character::Ship::Write(characterId, shipId, BerthType::CAPTAIN);
+		game::characters::Ships::Write(characterId, shipId, BerthType::CAPTAIN);
 	}
 
-	void Character::Reset(const game::Difficulty&)
+	void Characters::Reset(const game::Difficulty&)
 	{
-		auto characterId = Create(game::character::State::AT_SEA);
+		auto characterId = Create(game::characters::State::AT_SEA);
 		Player::Create(characterId);
 		GenerateCharacterShip(characterId);
 	}
 
-	std::optional<std::string> Character::GetName(int characterId)
+	std::optional<std::string> Characters::GetName(int characterId)
 	{
 		return common::utility::Optional::Map<data::game::Character, std::string>(
 			data::game::Character::Read(characterId),
@@ -217,14 +217,14 @@ namespace game
 			{ return character.name; });
 	}
 
-	std::optional<character::State> Character::GetState(int characterId)
+	std::optional<characters::State> Characters::GetState(int characterId)
 	{
-		return common::utility::Optional::Bind<data::game::Character, character::State>(
+		return common::utility::Optional::Bind<data::game::Character, characters::State>(
 			data::game::Character::Read(characterId),
-			[](const data::game::Character& character) { return (character::State)character.state; });
+			[](const data::game::Character& character) { return (characters::State)character.state; });
 	}
 
-	void Character::SetState(int characterId, const character::State& state)
+	void Characters::SetState(int characterId, const characters::State& state)
 	{
 		auto avatar = data::game::Character::Read(characterId).value();
 		avatar.state = (int)state;

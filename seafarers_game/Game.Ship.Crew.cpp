@@ -11,7 +11,7 @@ namespace game::ship
 		{
 			crew.characterId,
 			(BerthType)crew.berthType,
-			Character::GetName(crew.characterId).value_or("????")
+			Characters::GetName(crew.characterId).value_or("????")
 		};
 	}
 
@@ -19,7 +19,7 @@ namespace game::ship
 	{
 		return common::utility::Array::Map<data::game::character::Ship, Crew>(
 			data::game::character::Ship::ReadForShip(
-				game::character::Ship::ReadShipId(
+				game::characters::Ships::ReadShipId(
 					characterId)
 				.value()),
 			ToCrew);

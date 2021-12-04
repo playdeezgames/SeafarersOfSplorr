@@ -1,5 +1,5 @@
 #include <Common.Heading.h>
-#include <Game.Character.Quest.h>
+#include <Game.Characters.Quests.h>
 #include <Game.Islands.h>
 #include <Game.Islands.Quests.h>
 #include <Game.Ship.h>
@@ -11,13 +11,13 @@ namespace state::in_play
 
 	static void OnAccept()//TODO: make this more declarative
 	{
-		switch (game::character::Quest::Accept(GetPlayerCharacterId(), GetPlayerCharacterIslandId().value()))
+		switch (game::characters::Quests::Accept(GetPlayerCharacterId(), GetPlayerCharacterIslandId().value()))
 		{
-		case game::character::AcceptQuestResult::ACCEPTED_QUEST:
-			DoPlayerCharacterAction(game::character::Action::ENTER_DOCK);
+		case game::characters::AcceptQuestResult::ACCEPTED_QUEST:
+			DoPlayerCharacterAction(game::characters::Action::ENTER_DOCK);
 			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			break;
-		case game::character::AcceptQuestResult::ALREADY_HAS_QUEST:
+		case game::characters::AcceptQuestResult::ALREADY_HAS_QUEST:
 			::application::UIState::Write(::UIState::IN_PLAY_CONFIRM_REPLACE_JOB);
 			break;
 		}
@@ -25,7 +25,7 @@ namespace state::in_play
 
 	static void OnCancel()
 	{
-		DoPlayerCharacterAction(game::character::Action::ENTER_DOCK);
+		DoPlayerCharacterAction(game::characters::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

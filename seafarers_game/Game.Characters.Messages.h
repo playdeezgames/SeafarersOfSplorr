@@ -1,8 +1,9 @@
 #pragma once
 #include <list>
 #include <string>
-namespace game::character
+namespace game::characters
 {
+	//leave this here until it is used somewhere else also
 	struct Message
 	{
 		std::string color;

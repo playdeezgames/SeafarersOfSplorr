@@ -40,7 +40,7 @@ namespace state::in_play
 	void PlayMainTheme();
 	std::list<game::Island> GetPlayerCharacterKnownIslands();
 	void SetPlayerCharacterShipHeading(double);
-	void DoPlayerCharacterAction(const game::character::Action&);
+	void DoPlayerCharacterAction(const game::characters::Action&);
 	std::optional<double> ChangePlayerCharacterMoney(double);
 	std::optional<common::XY<double>> GetPlayerCharacterIslandLocation();
 	std::optional<bool> PlayerCharacterIslandHasFeature(const game::Feature&);//game::islands::Features::Read(island.id,

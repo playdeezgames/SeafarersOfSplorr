@@ -1,7 +1,7 @@
 #include <Data.Game.Character.Rations.h>
 #include "Game.Characters.Rations.h"
 #include "Game.Items.h"
-namespace game::character
+namespace game::characters
 {
 	std::optional<game::Item> Rations::Read(int characterId)
 	{

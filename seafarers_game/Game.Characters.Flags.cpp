@@ -2,7 +2,7 @@
 #include <Data.Game.Character.Flags.h>
 #include "Game.Characters.Flags.h"
 #include <map>
-namespace game::character
+namespace game::characters
 {
 	struct FlagDescriptor
 	{

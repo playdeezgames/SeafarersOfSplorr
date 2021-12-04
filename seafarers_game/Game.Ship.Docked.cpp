@@ -19,16 +19,16 @@ namespace game::ship
 		std::optional<DockResult> result = DockResult::DOCKED;
 		game::Islands::AddVisit(
 			data::game::Island::Find(location).value(),
-			game::character::statistics::Turns::Remaining(characterId).value());
+			game::characters::statistics::Turns::Remaining(characterId).value());
 		game::islands::Quests::Update(characterId, data::game::Island::Find(location).value());
 		int islandId = data::game::Island::Find(location).value();
-		if (game::character::Quest::Complete(characterId, islandId))
+		if (game::characters::Quests::Complete(characterId, islandId))
 		{
 			result = DockResult::COMPLETED_QUEST;
 		}
 		int shipId = data::game::character::Ship::ReadForCharacter(characterId).value().shipId;
 		data::game::ship::Docks::Write(shipId, islandId);
-		game::Character::DoAction(characterId, game::character::Action::ENTER_DOCK);
+		game::Characters::DoAction(characterId, game::characters::Action::ENTER_DOCK);
 		auto island = game::Islands::Read(islandId).value();
 		return result;
 	}
@@ -78,8 +78,8 @@ namespace game::ship
 			//first time, check that all billets are at the dock
 			for (auto billet : billets)
 			{
-				auto characterState = game::Character::GetState(billet.characterId).value();
-				if (characterState != game::character::State::DOCK)
+				auto characterState = game::Characters::GetState(billet.characterId).value();
+				if (characterState != game::characters::State::DOCK)
 				{
 					return false;
 				}
@@ -87,7 +87,7 @@ namespace game::ship
 			//second time, put them on the boat
 			for (auto billet : billets)
 			{
-				game::Character::DoAction(billet.characterId, game::character::Action::UNDOCK);
+				game::Characters::DoAction(billet.characterId, game::characters::Action::UNDOCK);
 			}
 			data::game::ship::Docks::Clear(shipId);
 			return true;

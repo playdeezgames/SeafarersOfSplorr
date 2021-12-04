@@ -17,249 +17,249 @@
 #include "Game.Ship.Docked.h"
 namespace game
 {
-	static character::State OnEnterDarkAlley(int characterId)
+	static characters::State OnEnterDarkAlley(int characterId)
 	{
 		auto data = data::game::island::DarkAlley::Read(game::ship::Docked::GetIsland(data::game::character::Ship::ReadForCharacter(characterId).value().shipId).value()).value();
-		auto infamy = game::character::statistics::Infamy::Current(characterId).value();
+		auto infamy = game::characters::statistics::Infamy::Current(characterId).value();
 		if (infamy < data.infamyRequirement)
 		{
-			return character::State::DARK_ALLEY_ENTRANCE;
+			return characters::State::DARK_ALLEY_ENTRANCE;
 		}
-		return character::State::DARK_ALLEY;
+		return characters::State::DARK_ALLEY;
 	}
 
-	static character::State OnStartFishing(int characterId)
+	static characters::State OnStartFishing(int characterId)
 	{
-		if (game::character::Items::Has(characterId, Item::FISHING_POLE))
+		if (game::characters::Items::Has(characterId, Item::FISHING_POLE))
 		{
-			if (game::character::Items::Has(characterId, Item::BAIT))
+			if (game::characters::Items::Has(characterId, Item::BAIT))
 			{
 				Fishboard::Generate(game::Player::GetCharacterId());
-				return character::State::FISHING;
+				return characters::State::FISHING;
 			}
 		}
-		return character::State::AT_SEA;
+		return characters::State::AT_SEA;
 	}
 
-	static std::function<character::State(int)> DoTransition(const character::State& state)
+	static std::function<characters::State(int)> DoTransition(const characters::State& state)
 	{
 		return [state](int) { return state; };
 	}
 
-	typedef std::function<character::State(int)> Transitioner;
-	typedef std::map<character::State, Transitioner> ActionDescriptor;
-	typedef std::map<character::Action, ActionDescriptor> ActionDescriptorTable;
+	typedef std::function<characters::State(int)> Transitioner;
+	typedef std::map<characters::State, Transitioner> ActionDescriptor;
+	typedef std::map<characters::Action, ActionDescriptor> ActionDescriptorTable;
 
-	static character::State OnUndock(int characterId)
+	static characters::State OnUndock(int characterId)
 	{
-		game::character::Island::Clear(characterId);
-		return character::State::AT_SEA;
+		game::characters::Islands::Clear(characterId);
+		return characters::State::AT_SEA;
 	}
 
-	static character::State OnDock(int characterId)
+	static characters::State OnDock(int characterId)
 	{
 		auto ship = data::game::character::Ship::ReadForCharacter(characterId).value();
 		auto islandId = data::game::ship::Docks::Read(ship.shipId).value();
-		game::character::Island::Write(characterId, islandId);
-		return character::State::DOCK;
+		game::characters::Islands::Write(characterId, islandId);
+		return characters::State::DOCK;
 	}
 
 	const ActionDescriptorTable actionDescriptors =
 	{
 		{
-			character::Action::UNDOCK,
+			characters::Action::UNDOCK,
 			{
 				{
-					character::State::DOCK,
+					characters::State::DOCK,
 					OnUndock
 				}
 			}
 		},
 		{
-			character::Action::ENTER_MARKET,
+			characters::Action::ENTER_MARKET,
 			{
 				{
-					character::State::MARKET_BUY,
-					DoTransition(character::State::MARKET)
+					characters::State::MARKET_BUY,
+					DoTransition(characters::State::MARKET)
 				},
 				{
-					character::State::MARKET_SELL,
-					DoTransition(character::State::MARKET)
+					characters::State::MARKET_SELL,
+					DoTransition(characters::State::MARKET)
 				},
 				{
-					character::State::DOCK,
-					DoTransition(character::State::MARKET)
+					characters::State::DOCK,
+					DoTransition(characters::State::MARKET)
 				}
 			}
 		},
 		{
-			character::Action::ENTER_DOCK,
+			characters::Action::ENTER_DOCK,
 			{
 				{
-					character::State::AT_SEA,
+					characters::State::AT_SEA,
 					OnDock
 				},
 				{
-					character::State::TAVERN,
-					DoTransition(character::State::DOCK)
+					characters::State::TAVERN,
+					DoTransition(characters::State::DOCK)
 				},
 				{
-					character::State::MARKET,
-					DoTransition(character::State::DOCK)
+					characters::State::MARKET,
+					DoTransition(characters::State::DOCK)
 				},
 				{
-					character::State::SHIPYARD,
-					DoTransition(character::State::DOCK)
+					characters::State::SHIPYARD,
+					DoTransition(characters::State::DOCK)
 				},
 				{
-					character::State::JOB_BOARD,
-					DoTransition(character::State::DOCK)
+					characters::State::JOB_BOARD,
+					DoTransition(characters::State::DOCK)
 				},
 				{
-					character::State::DARK_ALLEY_ENTRANCE,
-					DoTransition(character::State::DOCK)
+					characters::State::DARK_ALLEY_ENTRANCE,
+					DoTransition(characters::State::DOCK)
 				},
 				{
-					character::State::DARK_ALLEY,
-					DoTransition(character::State::DOCK)
+					characters::State::DARK_ALLEY,
+					DoTransition(characters::State::DOCK)
 				},
 				{
-					character::State::TEMPLE,
-					DoTransition(character::State::DOCK)
+					characters::State::TEMPLE,
+					DoTransition(characters::State::DOCK)
 				},
 			}
 		},
 		{
-			character::Action::MARKET_BUY,
+			characters::Action::MARKET_BUY,
 			{
 				{
-					character::State::MARKET,
-					DoTransition(character::State::MARKET_BUY)
+					characters::State::MARKET,
+					DoTransition(characters::State::MARKET_BUY)
 				}
 			}
 		},
 		{
-			character::Action::MARKET_SELL,
+			characters::Action::MARKET_SELL,
 			{
 				{
-					character::State::MARKET,
-					DoTransition(character::State::MARKET_SELL)
+					characters::State::MARKET,
+					DoTransition(characters::State::MARKET_SELL)
 				}
 			}
 		},
 		{
-			character::Action::ENTER_JOB_BOARD,
+			characters::Action::ENTER_JOB_BOARD,
 			{
 				{
-					character::State::DOCK,
-					DoTransition(character::State::JOB_BOARD)
+					characters::State::DOCK,
+					DoTransition(characters::State::JOB_BOARD)
 				}
 			}
 		},
 		{
-			character::Action::ENTER_TEMPLE,
+			characters::Action::ENTER_TEMPLE,
 			{
 				{
-					character::State::DOCK,
-					DoTransition(character::State::TEMPLE)
+					characters::State::DOCK,
+					DoTransition(characters::State::TEMPLE)
 				}
 			}
 		},
 		{
-			character::Action::ENTER_TAVERN,
+			characters::Action::ENTER_TAVERN,
 			{
 				{
-					character::State::DOCK,
-					DoTransition(character::State::TAVERN)
+					characters::State::DOCK,
+					DoTransition(characters::State::TAVERN)
 				}
 			}
 		},
 		{
-			character::Action::ENTER_SHIPYARD,
+			characters::Action::ENTER_SHIPYARD,
 			{
 				{
-					character::State::DOCK,
-					DoTransition(character::State::SHIPYARD)
+					characters::State::DOCK,
+					DoTransition(characters::State::SHIPYARD)
 				}
 			}
 		},
 		{
-			character::Action::ENTER_DARK_ALLEY,
+			characters::Action::ENTER_DARK_ALLEY,
 			{
 				{
-					character::State::DOCK,
+					characters::State::DOCK,
 					OnEnterDarkAlley
 				},
 				{
-					character::State::GAMBLE_START,
-					DoTransition(character::State::DARK_ALLEY)
+					characters::State::GAMBLE_START,
+					DoTransition(characters::State::DARK_ALLEY)
 				}
 			}
 		},
 		{
-			character::Action::DEFEAT_RUFFIAN,
+			characters::Action::DEFEAT_RUFFIAN,
 			{
 				{
-					character::State::DARK_ALLEY_ENTRANCE,
-					DoTransition(character::State::DARK_ALLEY)
+					characters::State::DARK_ALLEY_ENTRANCE,
+					DoTransition(characters::State::DARK_ALLEY)
 				}
 			}
 		},
 		{
-			character::Action::START_GAMBLING,
+			characters::Action::START_GAMBLING,
 			{
 				{
-					character::State::DARK_ALLEY,
-					DoTransition(character::State::GAMBLE_START)
+					characters::State::DARK_ALLEY,
+					DoTransition(characters::State::GAMBLE_START)
 				}
 			}
 		},
 		{
-			character::Action::CAREEN_TO_PORT,
+			characters::Action::CAREEN_TO_PORT,
 			{
 				{
-					character::State::AT_SEA,
-					DoTransition(character::State::CAREENED_TO_PORT)
+					characters::State::AT_SEA,
+					DoTransition(characters::State::CAREENED_TO_PORT)
 				}
 			}
 		},
 		{
-			character::Action::CAREEN_TO_STARBOARD,
+			characters::Action::CAREEN_TO_STARBOARD,
 			{
 				{
-					character::State::AT_SEA,
-					DoTransition(character::State::CAREENED_TO_STARBOARD)
+					characters::State::AT_SEA,
+					DoTransition(characters::State::CAREENED_TO_STARBOARD)
 				}
 			}
 		},
 		{
-			character::Action::UNCAREEN,
+			characters::Action::UNCAREEN,
 			{
 				{
-					character::State::CAREENED_TO_PORT,
-					DoTransition(character::State::AT_SEA)
+					characters::State::CAREENED_TO_PORT,
+					DoTransition(characters::State::AT_SEA)
 				},
 				{
-					character::State::CAREENED_TO_STARBOARD,
-					DoTransition(character::State::AT_SEA)
+					characters::State::CAREENED_TO_STARBOARD,
+					DoTransition(characters::State::AT_SEA)
 				}
 			}
 		},
 		{
-			character::Action::START_FISHING,
+			characters::Action::START_FISHING,
 			{
 				{
-					character::State::AT_SEA,
+					characters::State::AT_SEA,
 					OnStartFishing
 				}
 			}
 		},
 		{
-			character::Action::STOP_FISHING,
+			characters::Action::STOP_FISHING,
 			{
 				{
-					character::State::FISHING,
-					DoTransition(character::State::AT_SEA)
+					characters::State::FISHING,
+					DoTransition(characters::State::AT_SEA)
 				}
 			}
 		}
@@ -270,7 +270,7 @@ namespace game
 		return actionDescriptors;
 	}
 
-	static std::optional<ActionDescriptor> FindActionDescriptor(const character::Action& action)
+	static std::optional<ActionDescriptor> FindActionDescriptor(const characters::Action& action)
 	{
 		auto descriptor = GetActionDescriptors().find(action);
 		if (descriptor != GetActionDescriptors().end())
@@ -280,7 +280,7 @@ namespace game
 		return std::nullopt;
 	}
 
-	static std::optional<Transitioner> FindTransitioner(const ActionDescriptor& descriptor, const character::State& state)
+	static std::optional<Transitioner> FindTransitioner(const ActionDescriptor& descriptor, const characters::State& state)
 	{
 		auto transition = descriptor.find(state);
 		if (transition != descriptor.end())
@@ -290,9 +290,9 @@ namespace game
 		return std::nullopt;
 	}
 
-	void Character::DoAction(int characterId, const character::Action& action)
+	void Characters::DoAction(int characterId, const characters::Action& action)
 	{
-		auto state = Character::GetState(characterId);
+		auto state = Characters::GetState(characterId);
 		if (state)
 		{
 			auto descriptor = FindActionDescriptor(action);
@@ -301,7 +301,7 @@ namespace game
 				auto transitioner = FindTransitioner(descriptor.value(), state.value());
 				if (transitioner)
 				{
-					Character::SetState(characterId, transitioner.value()(characterId));
+					Characters::SetState(characterId, transitioner.value()(characterId));
 				}
 			}
 		}

@@ -4,7 +4,7 @@
 #include <Data.Game.Character.Items.h>
 #include "Game.Characters.Items.h"
 #include "Game.Items.h"
-namespace game::character
+namespace game::characters
 {
 	std::map<game::Item, size_t> Items::All(int avatarId)
 	{

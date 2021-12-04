@@ -56,8 +56,8 @@ namespace game::islands::features
 
 	static void AddTavernCharacter(int islandId)
 	{
-		auto characterId = Character::Create(game::character::State::TAVERN);
-		character::Island::Write(characterId, islandId);
+		auto characterId = Characters::Create(game::characters::State::TAVERN);
+		characters::Islands::Write(characterId, islandId);
 	}
 
 	static const std::map<int, size_t> npcCountGenerator = 

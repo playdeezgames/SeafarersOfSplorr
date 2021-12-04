@@ -32,7 +32,7 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		DoPlayerCharacterAction(game::character::Action::ENTER_DOCK);
+		DoPlayerCharacterAction(game::characters::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

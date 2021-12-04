@@ -139,7 +139,7 @@ namespace game
 	{
 		ClearFishGame(characterId);
 		ClearFishboard(characterId);
-		character::Items::Remove(characterId, BAIT_ITEM, 1);
+		characters::Items::Remove(characterId, BAIT_ITEM, 1);
 		PlaceFish(characterId, GenerateFish(characterId));
 	}
 
@@ -154,7 +154,7 @@ namespace game
 	static void ReelInFish(int characterId, Fish fish)
 	{
 		auto item = Fishes::GetItem(fish);
-		game::character::Items::Add(characterId, item, 1);
+		game::characters::Items::Add(characterId, item, 1);
 	}
 
 	static void DepleteFishery(int characterId)

@@ -2,7 +2,7 @@
 #include <Common.Utility.Table.h>
 #include <Data.Game.Character.Equipment.h>
 #include "Game.Characters.Equipment.h"
-namespace game::character
+namespace game::characters
 {
 	void Equipment::Reset(const Difficulty& difficulty)
 	{

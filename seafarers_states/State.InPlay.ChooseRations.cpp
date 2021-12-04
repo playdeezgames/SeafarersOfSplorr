@@ -32,10 +32,10 @@ namespace state::in_play
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		auto avatarId = GetCrewDetailCharacterId();
-		Terminal::WriteLine("Rations for {}:", game::Character::GetName(avatarId).value());
+		Terminal::WriteLine("Rations for {}:", game::Characters::GetName(avatarId).value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		auto current = game::character::Rations::Read(avatarId);
+		auto current = game::characters::Rations::Read(avatarId);
 
 		int index = 1;
 		for (auto& entry : rationsMenu)
@@ -48,7 +48,7 @@ namespace state::in_play
 			}
 			if (entry.has_value())
 			{
-				Terminal::Write("(cargo: {})", game::character::Items::Read(avatarId, entry.value()));
+				Terminal::Write("(cargo: {})", game::characters::Items::Read(avatarId, entry.value()));
 			}
 			Terminal::WriteLine();
 		}
@@ -76,7 +76,7 @@ namespace state::in_play
 		int index = common::Data::ToInt(line) - 1;
 		if (index >= 0 && index < rationsMenu.size())
 		{
-			game::character::Rations::Write(GetCrewDetailCharacterId(), rationsMenu[index]);
+			game::characters::Rations::Write(GetCrewDetailCharacterId(), rationsMenu[index]);
 			OnLeave();
 		}
 		else

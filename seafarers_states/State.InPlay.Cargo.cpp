@@ -1,7 +1,7 @@
 #include <Common.Data.h>
-#include <Game.Character.Items.h>
-#include <Game.Character.Ship.h>
-#include <Game.Character.Statistics.h>
+#include <Game.Characters.Items.h>
+#include <Game.Characters.Ships.h>
+#include <Game.Characters.Statistics.h>
 #include <Game.Items.h>
 #include "State.InPlay.Cargo.h"
 #include "State.InPlay.Globals.h"
@@ -24,7 +24,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Cargo:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		auto tonnage = game::character::Items::TotalTonnage(GetPlayerCharacterId());
+		auto tonnage = game::characters::Items::TotalTonnage(GetPlayerCharacterId());
 		auto availableTonnage = GetPlayerCharacterAvailableTonnage().value();
 		Terminal::WriteLine(
 				"Tonnage: {:.3f} ({:d}%)",

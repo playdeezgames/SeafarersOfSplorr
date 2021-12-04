@@ -3,7 +3,7 @@
 #include "Game.Characters.Messages.h"
 #include "Game.Player.h"
 #include <map>
-namespace game::character
+namespace game::characters
 {
 	typedef std::map<int, MessageList> MessageListTable;
 

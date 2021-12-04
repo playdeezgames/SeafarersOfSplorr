@@ -22,7 +22,7 @@ namespace state::in_play
 	{
 		auto slotName = game::EquipSlots::GetName(equipSlot);
 
-		auto item = game::character::Equipment::Read(GetCrewDetailCharacterId(), equipSlot);
+		auto item = game::characters::Equipment::Read(GetCrewDetailCharacterId(), equipSlot);
 		std::string itemName = item.has_value() ? (game::Items::GetName(item.value())) : EMPTY;
 		Terminal::WriteLine("{}) {} - {}", index, slotName, itemName);
 	}
@@ -43,7 +43,7 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
-		Terminal::WriteLine("Equipment for {}:", game::Character::GetName(GetCrewDetailCharacterId()).value());
+		Terminal::WriteLine("Equipment for {}:", game::Characters::GetName(GetCrewDetailCharacterId()).value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		RefreshEquipSlots();

@@ -6,15 +6,15 @@
 #include <string>
 namespace game
 {
-	struct Character
+	struct Characters
 	{
 		static void ApplyTurnEffects();
 		static void Reset(const Difficulty&);
 		static std::optional<std::string> GetName(int);
-		static std::optional<character::State> GetState(int);
-		static void DoAction(int, const character::Action&);
-		static int Create(const game::character::State&);
+		static std::optional<characters::State> GetState(int);
+		static void DoAction(int, const characters::Action&);
+		static int Create(const game::characters::State&);
 	private:
-		static void SetState(int, const character::State&);
+		static void SetState(int, const characters::State&);
 	};
 }

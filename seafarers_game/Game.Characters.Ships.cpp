@@ -4,9 +4,9 @@
 #include "Game.Characters.Items.h"
 #include "Game.Ship.h"
 #include "Game.ShipTypes.h"
-namespace game::character
+namespace game::characters
 {
-	void Ship::Write(int characterId, int shipId, const BerthType& berthType)
+	void Ships::Write(int characterId, int shipId, const BerthType& berthType)
 	{
 		data::game::character::Ship::Write(characterId, 
 			{ 
@@ -25,7 +25,7 @@ namespace game::character
 		return (BerthType)ship.berthType;
 	}
 
-	std::optional<int> Ship::ReadShipId(int characterId)
+	std::optional<int> Ships::ReadShipId(int characterId)
 	{
 		return common::utility::Optional::Map<data::game::character::Ship, int>(
 			data::game::character::Ship::ReadForCharacter(characterId),
@@ -41,18 +41,18 @@ namespace game::character
 			{
 				return
 					game::ShipTypes::GetTotalTonnage(shipType) -
-					game::character::Items::TotalTonnage(characterId);
+					game::characters::Items::TotalTonnage(characterId);
 			}).value_or(0.0);
 	}
 
-	std::optional<double> Ship::AvailableTonnage(int characterId)
+	std::optional<double> Ships::AvailableTonnage(int characterId)
 	{
 		return common::utility::Optional::Map<int, double>(
 			ReadShipId(characterId),
 			[characterId](int shipId) { return GetAvailableTonnage(characterId, shipId); });
 	}
 
-	std::optional<BerthType> Ship::ReadBerthType(int characterId)
+	std::optional<BerthType> Ships::ReadBerthType(int characterId)
 	{
 		return common::utility::Optional::Map<data::game::character::Ship, BerthType>(
 			data::game::character::Ship::ReadForCharacter(characterId),

@@ -52,21 +52,21 @@ namespace state::in_play
 
 	static void OnJob()
 	{
-		DoPlayerCharacterAction(game::character::Action::ENTER_JOB_BOARD);
+		DoPlayerCharacterAction(game::characters::Action::ENTER_JOB_BOARD);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnTrade()
 	{
-		DoPlayerCharacterAction(game::character::Action::ENTER_MARKET);
+		DoPlayerCharacterAction(game::characters::Action::ENTER_MARKET);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	static const std::map<game::Feature, game::character::Action> featureActionMap =
+	static const std::map<game::Feature, game::characters::Action> featureActionMap =
 	{
-		{game::Feature::SHIPYARD, game::character::Action::ENTER_SHIPYARD},
-		{game::Feature::DARK_ALLEY, game::character::Action::ENTER_DARK_ALLEY},
-		{game::Feature::TAVERN, game::character::Action::ENTER_TAVERN},
+		{game::Feature::SHIPYARD, game::characters::Action::ENTER_SHIPYARD},
+		{game::Feature::DARK_ALLEY, game::characters::Action::ENTER_DARK_ALLEY},
+		{game::Feature::TAVERN, game::characters::Action::ENTER_TAVERN},
 	};
 
 	static std::function<void()> OnEnterFeature(const game::Feature& feature)
@@ -88,7 +88,7 @@ namespace state::in_play
 
 	static void OnTemple()
 	{
-		DoPlayerCharacterAction(game::character::Action::ENTER_TEMPLE);
+		DoPlayerCharacterAction(game::characters::Action::ENTER_TEMPLE);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

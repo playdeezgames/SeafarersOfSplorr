@@ -4,7 +4,7 @@
 #include "Game.Item.h"
 #include <map>
 #include <optional>
-namespace game::character
+namespace game::characters
 {
 	struct Equipment
 	{

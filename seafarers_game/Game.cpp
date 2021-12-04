@@ -40,11 +40,11 @@ namespace game
 
 		World::Reset(difficulty);//must be done first to establish world size
 		Ships::Reset(difficulty);
-		Character::Reset(difficulty);
-		character::Equipment::Reset(difficulty);
-		character::Items::Reset(Player::GetCharacterId(), difficulty);
-		character::Plights::Reset(difficulty);
-		character::Statistics::Reset(Player::GetCharacterId(), difficulty);
+		Characters::Reset(difficulty);
+		characters::Equipment::Reset(difficulty);
+		characters::Items::Reset(Player::GetCharacterId(), difficulty);
+		characters::Plights::Reset(difficulty);
+		characters::Statistics::Reset(Player::GetCharacterId(), difficulty);
 		Demigods::Reset(game::Player::GetCharacterId(), difficulty);
 		Fisheries::Reset(difficulty);
 		Islands::Reset(difficulty);
@@ -120,9 +120,9 @@ namespace game
 	static const std::list<std::function<void()>> turnEffects = 
 	{
 		Ships::ApplyTurnEffects,
-		Character::ApplyTurnEffects,
+		Characters::ApplyTurnEffects,
 		Islands::ApplyTurnEffects,
-		[]() { character::Plights::ApplyTurnEffects(game::Player::GetCharacterId()); },
+		[]() { characters::Plights::ApplyTurnEffects(game::Player::GetCharacterId()); },
 		[]() { Demigods::ApplyTurnEffects(game::Player::GetCharacterId()); },
 		Fisheries::ApplyTurnEffects,
 		World::ApplyTurnEffects,

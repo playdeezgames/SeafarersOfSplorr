@@ -4,7 +4,7 @@
 #include "Game.Difficulty.h"
 #include <set>
 #include <string>
-namespace game::character
+namespace game::characters
 {
 	struct Plights
 	{

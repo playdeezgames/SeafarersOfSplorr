@@ -89,7 +89,7 @@ namespace state::in_play
 		ChangePlayerCharacterMoney(-price);
 		auto desiredShipId = game::Ship::Add({ desiredShipType,game::ShipNames::Generate(), location, 0.0, 1.0 });
 		//TODO: transfer crew/passengers/captives?
-		game::character::Ship::Write(GetPlayerCharacterId() , desiredShipId, game::BerthType::CAPTAIN);
+		game::characters::Ships::Write(GetPlayerCharacterId() , desiredShipId, game::BerthType::CAPTAIN);
 		game::islands::Markets::BuyShipType(GetPlayerCharacterIslandId().value(), desiredShipType);
 		game::islands::Markets::SellShipType(GetPlayerCharacterIslandId().value(), currentShipType);
 		UpdateShipPrices();
@@ -98,7 +98,7 @@ namespace state::in_play
 
 	static void CheckTonnage(game::ShipType desiredShip, double price)
 	{
-		if (game::character::Items::TotalTonnage(GetPlayerCharacterId()) <= game::ShipTypes::GetTotalTonnage(desiredShip))
+		if (game::characters::Items::TotalTonnage(GetPlayerCharacterId()) <= game::ShipTypes::GetTotalTonnage(desiredShip))
 		{
 			Terminal::WriteLine();
 			Terminal::SetForeground(game::Colors::GREEN);

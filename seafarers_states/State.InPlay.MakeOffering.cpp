@@ -1,6 +1,6 @@
 #include <Common.Data.h>
 #include <Common.Utility.Table.h>
-#include <Game.Character.Items.h>
+#include <Game.Characters.Items.h>
 #include <Game.Demigods.h>
 #include <Game.Islands.h>
 #include <Game.Items.h>
@@ -83,7 +83,7 @@ namespace state::in_play
 		auto item = common::utility::Table::GetNthKey(items, hiliteRow).value();
 		auto islandId = GetPlayerCharacterIslandId().value();
 		auto island = game::Islands::Read(islandId).value();
-		game::character::Items::Remove(GetPlayerCharacterId(), item, 1);
+		game::characters::Items::Remove(GetPlayerCharacterId(), item, 1);
 		OnOfferingResult(game::Demigods::MakeOffering(GetPlayerCharacterId(), island.patronDemigodId, item));
 		OnLeave();
 	}

@@ -1,5 +1,5 @@
 #pragma once
-namespace game::character
+namespace game::characters
 {
 	enum class Statistic
 	{

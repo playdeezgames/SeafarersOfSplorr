@@ -158,7 +158,7 @@ namespace game
 
 	std::list<Island> Islands::GetKnownIslands(int characterId)
 	{
-		int shipId = game::character::Ship::ReadShipId(characterId).value();
+		int shipId = game::characters::Ships::ReadShipId(characterId).value();
 		auto shipLocation = game::Ship::GetLocation(shipId).value();
 		auto knownLocations = data::game::island::Known::All();
 		std::list<Island> result;

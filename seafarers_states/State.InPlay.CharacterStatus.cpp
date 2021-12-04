@@ -12,27 +12,27 @@ namespace state::in_play
 	static void RefreshStatistics()
 	{
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Money: {:.4f}", game::character::statistics::Money::Current(GetCrewDetailCharacterId()).value());
-		Terminal::WriteLine("Reputation: {:.1f}", game::character::statistics::Reputation::Current(GetCrewDetailCharacterId()).value());
-		Terminal::WriteLine("Brawling: {:.1f}", game::character::statistics::Brawling::Current(GetCrewDetailCharacterId()).value());
-		Terminal::WriteLine("Health: {:.0f}", game::character::statistics::Health::Current(GetCrewDetailCharacterId()).value());
-		Terminal::WriteLine("Satiety: {:.0f}", game::character::statistics::Satiety::Current(GetCrewDetailCharacterId()).value());
-		Terminal::WriteLine("Turns: {}", game::character::statistics::Turns::Remaining(GetCrewDetailCharacterId()).value());
-		Terminal::WriteLine("Dignity: {:.0f}", game::character::statistics::Dignity::Current(GetCrewDetailCharacterId()).value());
-		Terminal::WriteLine("Poshness: {:.0f}", game::character::statistics::Poshness::Current(GetCrewDetailCharacterId()).value());
+		Terminal::WriteLine("Money: {:.4f}", game::characters::statistics::Money::Current(GetCrewDetailCharacterId()).value());
+		Terminal::WriteLine("Reputation: {:.1f}", game::characters::statistics::Reputation::Current(GetCrewDetailCharacterId()).value());
+		Terminal::WriteLine("Brawling: {:.1f}", game::characters::statistics::Brawling::Current(GetCrewDetailCharacterId()).value());
+		Terminal::WriteLine("Health: {:.0f}", game::characters::statistics::Health::Current(GetCrewDetailCharacterId()).value());
+		Terminal::WriteLine("Satiety: {:.0f}", game::characters::statistics::Satiety::Current(GetCrewDetailCharacterId()).value());
+		Terminal::WriteLine("Turns: {}", game::characters::statistics::Turns::Remaining(GetCrewDetailCharacterId()).value());
+		Terminal::WriteLine("Dignity: {:.0f}", game::characters::statistics::Dignity::Current(GetCrewDetailCharacterId()).value());
+		Terminal::WriteLine("Poshness: {:.0f}", game::characters::statistics::Poshness::Current(GetCrewDetailCharacterId()).value());
 	}
 
 	static void RefreshPlights()
 	{
-		auto inflicted = game::character::Plights::InflictedWith(GetCrewDetailCharacterId());
+		auto inflicted = game::characters::Plights::InflictedWith(GetCrewDetailCharacterId());
 		if (!inflicted.empty())
 		{
 			Terminal::SetForeground(game::Colors::GRAY);
 			Terminal::WriteLine("Plights:");
 			for (auto& plight : inflicted)
 			{
-				Terminal::SetForeground((game::character::Plights::GetType(plight) == game::character::PlightType::CURSE) ? (game::Colors::RED) : (game::Colors::GREEN));
-				Terminal::WriteLine("{}", game::character::Plights::GetName(plight));
+				Terminal::SetForeground((game::characters::Plights::GetType(plight) == game::characters::PlightType::CURSE) ? (game::Colors::RED) : (game::Colors::GREEN));
+				Terminal::WriteLine("{}", game::characters::Plights::GetName(plight));
 			}
 			Terminal::SetForeground(game::Colors::GRAY);
 		}

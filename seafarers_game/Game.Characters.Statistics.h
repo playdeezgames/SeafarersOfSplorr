@@ -1,7 +1,7 @@
 #pragma once
 #include "Game.Difficulty.h"
 #include <optional>
-namespace game::character
+namespace game::characters
 {
 	namespace statistics
 	{

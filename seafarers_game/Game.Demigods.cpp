@@ -118,10 +118,10 @@ namespace game
 				common::RNG::FromGenerator(patronWeights),
 				BLESSING_THRESHOLD,
 				BLESSING_MULTIPLIER,
-				(int)character::Plights::Generate(character::PlightType::BLESSING),
+				(int)characters::Plights::Generate(characters::PlightType::BLESSING),
 				CURSE_THRESHOLD,
 				CURSE_MULTIPLIER,
-				(int)character::Plights::Generate(character::PlightType::CURSE)};
+				(int)characters::Plights::Generate(characters::PlightType::CURSE)};
 			auto demigodId = data::game::Demigod::Write(demigod);
 			for (auto item : items)
 			{
@@ -134,7 +134,7 @@ namespace game
 	{
 		if (favor >= demigod.blessingThreshold)
 		{
-			game::character::Plights::Inflict(characterId, (game::character::Plight)demigod.blessingPlightId);
+			game::characters::Plights::Inflict(characterId, (game::characters::Plight)demigod.blessingPlightId);
 			favor -= demigod.blessingThreshold;
 			data::game::character::DemigodFavor::Write(characterId, demigod.id, favor, data::game::character::DemigodFavor::ReadOfferingCooldown(characterId, demigod.id).value_or(0));
 			demigod.blessingThreshold *= demigod.blessingMultiplier;
@@ -148,7 +148,7 @@ namespace game
 	{
 		if (favor <= demigod.curseThreshold)
 		{
-			game::character::Plights::Inflict(characterId, (game::character::Plight)demigod.cursePlightId);
+			game::characters::Plights::Inflict(characterId, (game::characters::Plight)demigod.cursePlightId);
 			favor -= demigod.curseThreshold;
 			data::game::character::DemigodFavor::Write(characterId, demigod.id, favor, data::game::character::DemigodFavor::ReadOfferingCooldown(characterId, demigod.id).value_or(0));
 			demigod.curseThreshold *= demigod.curseMultiplier;

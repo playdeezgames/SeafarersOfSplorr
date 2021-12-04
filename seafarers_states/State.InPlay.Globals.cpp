@@ -23,7 +23,7 @@ namespace state::in_play
 
 	std::optional<int> GetPlayerCharacterShipId()
 	{
-		return game::character::Ship::ReadShipId(GetPlayerCharacterId());
+		return game::characters::Ships::ReadShipId(GetPlayerCharacterId());
 	}
 
 	std::optional<int> GetPlayerCharacterIslandId()
@@ -44,7 +44,7 @@ namespace state::in_play
 
 	std::optional<game::Quest> GetPlayerCharacterQuest()
 	{
-		return game::character::Quest::Read(GetPlayerCharacterId());
+		return game::characters::Quests::Read(GetPlayerCharacterId());
 	}
 
 	std::optional<common::XY<double>> GetPlayerCharacterShipLocation()
@@ -94,14 +94,14 @@ namespace state::in_play
 			);
 	}
 
-	void DoPlayerCharacterAction(const game::character::Action& action)
+	void DoPlayerCharacterAction(const game::characters::Action& action)
 	{
-		game::Character::DoAction(GetPlayerCharacterId(), action);
+		game::Characters::DoAction(GetPlayerCharacterId(), action);
 	}
 
 	std::optional<double> ChangePlayerCharacterMoney(double delta)
 	{
-		return game::character::statistics::Money::Change(GetPlayerCharacterId(), delta);
+		return game::characters::statistics::Money::Change(GetPlayerCharacterId(), delta);
 	}
 
 	std::optional<common::XY<double>> GetPlayerCharacterIslandLocation()
@@ -120,7 +120,7 @@ namespace state::in_play
 
 	std::optional<double> GetPlayerCharacterMoney()
 	{
-		return game::character::statistics::Money::Current(GetPlayerCharacterId());
+		return game::characters::statistics::Money::Current(GetPlayerCharacterId());
 	}
 
 	std::optional<double> GetPlayerCharacterDarkAlleyAnte()
@@ -139,7 +139,7 @@ namespace state::in_play
 
 	std::optional<double> GetPlayerCharacterAvailableTonnage()
 	{
-		return game::character::Ship::AvailableTonnage(GetPlayerCharacterId());
+		return game::characters::Ships::AvailableTonnage(GetPlayerCharacterId());
 	}
 
 	std::optional<std::map<game::Item, double>> GetPlayerCharacterPurchasePrices()
@@ -150,7 +150,7 @@ namespace state::in_play
 	}
 	std::map<game::Item, size_t> GetPlayerCharacterItems()
 	{
-		return game::character::Items::All(GetPlayerCharacterId());
+		return game::characters::Items::All(GetPlayerCharacterId());
 	}
 
 	void PlayerCharacterCleanHull(const game::Side& side)
@@ -256,12 +256,12 @@ namespace state::in_play
 
 	void AddPlayerCharacterMessage(const std::string& color, const std::string& text)
 	{
-		game::character::Messages::Add(GetPlayerCharacterId(), color, text);
+		game::characters::Messages::Add(GetPlayerCharacterId(), color, text);
 	}
 
 	void AddPlayerCharacterMessage(const std::string& text)
 	{
-		game::character::Messages::Add(GetPlayerCharacterId(), text);
+		game::characters::Messages::Add(GetPlayerCharacterId(), text);
 	}
 
 	std::optional<bool> PlayerCharacterIslandHasFeature(const game::Feature& feature)

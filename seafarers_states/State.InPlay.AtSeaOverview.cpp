@@ -16,8 +16,8 @@ namespace state::in_play
 	static bool IsFishingEnabled()
 	{
 		return
-			game::character::Items::Has(GetPlayerCharacterId(), game::Item::FISHING_POLE) &&
-			game::character::Items::Has(GetPlayerCharacterId(), game::Item::BAIT);
+			game::characters::Items::Has(GetPlayerCharacterId(), game::Item::FISHING_POLE) &&
+			game::characters::Items::Has(GetPlayerCharacterId(), game::Item::BAIT);
 	}
 
 	static bool RefreshDockableIslands()
@@ -172,7 +172,7 @@ namespace state::in_play
 	{
 		if (IsFishingEnabled())
 		{
-			DoPlayerCharacterAction(game::character::Action::START_FISHING);
+			DoPlayerCharacterAction(game::characters::Action::START_FISHING);
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			return;
 		}

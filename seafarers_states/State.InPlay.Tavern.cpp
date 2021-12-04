@@ -9,7 +9,7 @@ namespace state::in_play
 
 	static void RefreshCharacters(int islandId)
 	{
-		auto characterIds = game::character::Island::All(islandId, game::character::State::TAVERN);
+		auto characterIds = game::characters::Islands::All(islandId, game::characters::State::TAVERN);
 		if (!characterIds.empty())
 		{
 			Terminal::SetForeground(game::Colors::GRAY);
@@ -17,7 +17,7 @@ namespace state::in_play
 			for (auto characterId : characterIds)
 			{
 				bool isPC = characterId == GetPlayerCharacterId();
-				auto name = game::Character::GetName(characterId).value();
+				auto name = game::Characters::GetName(characterId).value();
 				if (isPC)
 				{
 					Terminal::WriteLine("{}(you)", name);
@@ -51,7 +51,7 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		DoPlayerCharacterAction(game::character::Action::ENTER_DOCK);
+		DoPlayerCharacterAction(game::characters::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

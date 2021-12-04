@@ -1,9 +1,9 @@
 #pragma once
 #include "Game.BerthType.h"
 #include <optional>
-namespace game::character
+namespace game::characters
 {
-	struct Ship
+	struct Ships
 	{
 		static void Write(int, int, const BerthType&);
 		static std::optional<int> ReadShipId(int);

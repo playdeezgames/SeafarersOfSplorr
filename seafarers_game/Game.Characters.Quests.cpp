@@ -7,7 +7,7 @@
 #include "Game.Characters.Statistics.h"
 #include "Game.Islands.h"
 #include "Game.World.h"
-namespace game::character
+namespace game::characters
 {
 	static void AcceptQuest(int characterId, const data::game::island::Quest& quest)
 	{
@@ -22,11 +22,11 @@ namespace game::character
 				quest.professionName ,
 				quest.receiptEmotion }));
 		data::game::island::Quest::Clear(fromIslandId);
-		game::Islands::SetKnown(quest.toIslandId, game::character::statistics::Turns::Remaining(characterId).value());
+		game::Islands::SetKnown(quest.toIslandId, game::characters::statistics::Turns::Remaining(characterId).value());
 		data::game::island::Known::Write(quest.toIslandId);
 	}
 
-	AcceptQuestResult Quest::Accept(int characterId, int fromIslandId)
+	AcceptQuestResult Quests::Accept(int characterId, int fromIslandId)
 	{
 		if (data::game::character::Quest::Read(characterId))
 		{
@@ -43,12 +43,12 @@ namespace game::character
 
 	static void CompleteQuest(int characterId, const data::game::character::Quest& quest)
 	{
-		game::character::statistics::Money::Change(characterId, quest.reward);
-		game::character::statistics::Reputation::Change(characterId, World::GetReputationReward());
+		game::characters::statistics::Money::Change(characterId, quest.reward);
+		game::characters::statistics::Reputation::Change(characterId, World::GetReputationReward());
 		data::game::character::Quest::Write(characterId, std::nullopt);
 	}
 
-	bool Quest::Complete(int characterId, int islandId)
+	bool Quests::Complete(int characterId, int islandId)
 	{
 		auto quest = data::game::character::Quest::Read(characterId);
 		if (quest.has_value() && quest.value().toIslandId == islandId)
@@ -61,11 +61,11 @@ namespace game::character
 
 	static void AbandonQuest(int characterId)
 	{
-		game::character::statistics::Reputation::Change(characterId, World::GetReputationPenalty());
+		game::characters::statistics::Reputation::Change(characterId, World::GetReputationPenalty());
 		data::game::character::Quest::Write(characterId, std::nullopt);
 	}
 
-	bool Quest::Abandon(int characterId)
+	bool Quests::Abandon(int characterId)
 	{
 		if (data::game::character::Quest::Read(characterId))
 		{
@@ -89,7 +89,7 @@ namespace game::character
 			};
 	}
 
-	std::optional<game::Quest> Quest::Read(int characterId)
+	std::optional<game::Quest> Quests::Read(int characterId)
 	{
 		return
 			common::utility::Optional::Map<data::game::character::Quest, game::Quest>(

@@ -2,7 +2,7 @@
 #include "Game.Characters.Flag.h"
 #include <set>
 #include <string>
-namespace game::character
+namespace game::characters
 {
 	struct Flags
 	{

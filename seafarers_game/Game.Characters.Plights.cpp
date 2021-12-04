@@ -2,7 +2,7 @@
 #include <Data.Game.Character.Plight.h>
 #include "Game.Characters.Plights.h"
 #include <map>
-namespace game::character
+namespace game::characters
 {
 	struct PlightDescriptor
 	{

@@ -12,7 +12,7 @@ namespace state::in_play
 
 	static void RefreshRations()
 	{
-		auto rations = game::character::Rations::Read(GetCrewDetailCharacterId());
+		auto rations = game::characters::Rations::Read(GetCrewDetailCharacterId());
 		if (rations)
 		{
 			Terminal::WriteLine("Rations: {}", game::Items::GetName(rations.value()));
@@ -25,13 +25,13 @@ namespace state::in_play
 
 	static void RefreshFlags()
 	{
-		auto flags = game::character::Flags::All(GetCrewDetailCharacterId());
+		auto flags = game::characters::Flags::All(GetCrewDetailCharacterId());
 		if (!flags.empty())
 		{
 			bool first = true;
 			for (auto flag : flags)
 			{
-				auto& name = game::character::Flags::GetName(flag);
+				auto& name = game::characters::Flags::GetName(flag);
 				if (first)
 				{
 					Terminal::Write("Status: {}", name);
@@ -53,7 +53,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Crew Details:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Name: {}", game::Character::GetName(GetCrewDetailCharacterId()).value());
+		Terminal::WriteLine("Name: {}", game::Characters::GetName(GetCrewDetailCharacterId()).value());
 		RefreshRations();
 		RefreshFlags();
 

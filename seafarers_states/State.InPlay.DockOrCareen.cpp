@@ -62,14 +62,14 @@ namespace state::in_play
 	static void OnCareenToPort()
 	{
 		AddPlayerCharacterMessage(game::Colors::GREEN,"You careen the vessel on its port side.");
-		DoPlayerCharacterAction(game::character::Action::CAREEN_TO_PORT);
+		DoPlayerCharacterAction(game::characters::Action::CAREEN_TO_PORT);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnCareenToStarboard()
 	{
 		AddPlayerCharacterMessage(game::Colors::GREEN,"You careen the vessel on its starboard side.");
-		DoPlayerCharacterAction(game::character::Action::CAREEN_TO_STARBOARD);
+		DoPlayerCharacterAction(game::characters::Action::CAREEN_TO_STARBOARD);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

@@ -1,6 +1,6 @@
 #include <format>
-#include <Game.Character.h>
-#include <Game.Character.Statistics.h>
+#include <Game.Characters.h>
+#include <Game.Characters.Statistics.h>
 #include <Game.Islands.DarkAlley.h>
 #include "State.InPlay.DarkAlley.h"
 #include "State.InPlay.Globals.h"
@@ -10,7 +10,7 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		DoPlayerCharacterAction(game::character::Action::ENTER_DOCK);
+		DoPlayerCharacterAction(game::characters::Action::ENTER_DOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -19,13 +19,13 @@ namespace state::in_play
 		return GetPlayerCharacterDarkAlleyMinimumWager().value();
 	}
 
-	static const auto ReadMoney = game::character::statistics::Money::Current;
+	static const auto ReadMoney = game::characters::statistics::Money::Current;
 
 	static void OnGamble()
 	{
 		if (ReadMoney(GetPlayerCharacterId()).value() >= GetMinimumWager())
 		{
-			DoPlayerCharacterAction(game::character::Action::START_GAMBLING);
+			DoPlayerCharacterAction(game::characters::Action::START_GAMBLING);
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			return;
 		}

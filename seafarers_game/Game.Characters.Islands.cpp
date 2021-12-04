@@ -1,30 +1,30 @@
 #include <Data.Game.Character.Island.h>
 #include "Game.Characters.Islands.h"
 #include "Game.Characters.h"
-namespace game::character
+namespace game::characters
 {
-	std::optional<int> Island::Read(int characterId)
+	std::optional<int> Islands::Read(int characterId)
 	{
 		return data::game::character::Island::Read(characterId);
 	}
 
-	void Island::Write(int characterId, int islandId)
+	void Islands::Write(int characterId, int islandId)
 	{
 		data::game::character::Island::Write(characterId, islandId);
 	}
 
-	void Island::Clear(int characterId)
+	void Islands::Clear(int characterId)
 	{
 		data::game::character::Island::Clear(characterId);
 	}
 
-	std::list<int> Island::All(int islandId, const game::character::State& state)
+	std::list<int> Islands::All(int islandId, const game::characters::State& state)
 	{
 		auto characterIds = data::game::character::Island::All(islandId);
 		std::list<int> result;
 		for (auto characterId : characterIds)
 		{
-			if (state == Character::GetState(characterId))
+			if (state == Characters::GetState(characterId))
 			{
 				result.push_back(characterId);
 			}

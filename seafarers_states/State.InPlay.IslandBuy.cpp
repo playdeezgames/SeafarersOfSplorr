@@ -1,7 +1,7 @@
 #include <Common.Data.h>
 #include <Common.Utility.Table.h>
-#include <Game.Character.Ship.h>
-#include <Game.Character.Statistics.h>
+#include <Game.Characters.Ships.h>
+#include <Game.Characters.Statistics.h>
 #include <Game.Islands.Items.h>
 #include <Game.Items.h>
 #include "State.InPlay.Globals.h"
@@ -13,7 +13,7 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		DoPlayerCharacterAction(game::character::Action::ENTER_MARKET);
+		DoPlayerCharacterAction(game::characters::Action::ENTER_MARKET);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

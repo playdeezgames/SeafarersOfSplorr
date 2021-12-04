@@ -16,12 +16,12 @@ namespace state::in_play
 
 	static bool IsPlayerOutOfTurns()
 	{
-		return !game::character::statistics::Turns::HasRemaining(GetPlayerCharacterId()).value();
+		return !game::characters::statistics::Turns::HasRemaining(GetPlayerCharacterId()).value();
 	}
 
 	static bool IsPlayerDead()
 	{
-		return game::character::statistics::Health::IsDead(GetPlayerCharacterId()).value();
+		return game::characters::statistics::Health::IsDead(GetPlayerCharacterId()).value();
 	}
 
 	static const std::list<StatusChecker> statusCheckers =
@@ -30,22 +30,22 @@ namespace state::in_play
 		{IsPlayerDead, ::UIState::IN_PLAY_LOSE}
 	};
 
-	static const std::map<game::character::State, ::UIState> avatarStateTable =
+	static const std::map<game::characters::State, ::UIState> avatarStateTable =
 	{
-		{ game::character::State::DARK_ALLEY, ::UIState::IN_PLAY_DARK_ALLEY },
-		{ game::character::State::DARK_ALLEY_ENTRANCE, ::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE },
-		{ game::character::State::SHIPYARD, ::UIState::IN_PLAY_SHIPYARD },
-		{ game::character::State::MARKET_BUY,::UIState::IN_PLAY_ISLAND_BUY },
-		{ game::character::State::MARKET_SELL, ::UIState::IN_PLAY_ISLAND_SELL },
-		{ game::character::State::MARKET, ::UIState::IN_PLAY_ISLAND_TRADE },
-		{ game::character::State::JOB_BOARD, ::UIState::IN_PLAY_ISLAND_JOBS },
-		{ game::character::State::GAMBLE_START, ::UIState::IN_PLAY_GAMBLE_INTRO },
-		{ game::character::State::AT_SEA, ::UIState::IN_PLAY_AT_SEA_OVERVIEW },
-		{ game::character::State::CAREENED_TO_PORT, ::UIState::IN_PLAY_CAREENED_TO_PORT },
-		{ game::character::State::CAREENED_TO_STARBOARD, ::UIState::IN_PLAY_CAREENED_TO_STARBOARD },
-		{ game::character::State::TEMPLE, ::UIState::IN_PLAY_TEMPLE },
-		{ game::character::State::FISHING, ::UIState::IN_PLAY_FISHING },
-		{ game::character::State::TAVERN, ::UIState::IN_PLAY_TAVERN }
+		{ game::characters::State::DARK_ALLEY, ::UIState::IN_PLAY_DARK_ALLEY },
+		{ game::characters::State::DARK_ALLEY_ENTRANCE, ::UIState::IN_PLAY_DARK_ALLEY_ENTRANCE },
+		{ game::characters::State::SHIPYARD, ::UIState::IN_PLAY_SHIPYARD },
+		{ game::characters::State::MARKET_BUY,::UIState::IN_PLAY_ISLAND_BUY },
+		{ game::characters::State::MARKET_SELL, ::UIState::IN_PLAY_ISLAND_SELL },
+		{ game::characters::State::MARKET, ::UIState::IN_PLAY_ISLAND_TRADE },
+		{ game::characters::State::JOB_BOARD, ::UIState::IN_PLAY_ISLAND_JOBS },
+		{ game::characters::State::GAMBLE_START, ::UIState::IN_PLAY_GAMBLE_INTRO },
+		{ game::characters::State::AT_SEA, ::UIState::IN_PLAY_AT_SEA_OVERVIEW },
+		{ game::characters::State::CAREENED_TO_PORT, ::UIState::IN_PLAY_CAREENED_TO_PORT },
+		{ game::characters::State::CAREENED_TO_STARBOARD, ::UIState::IN_PLAY_CAREENED_TO_STARBOARD },
+		{ game::characters::State::TEMPLE, ::UIState::IN_PLAY_TEMPLE },
+		{ game::characters::State::FISHING, ::UIState::IN_PLAY_FISHING },
+		{ game::characters::State::TAVERN, ::UIState::IN_PLAY_TAVERN }
 	};
 
 	static void OnEnter()
@@ -66,7 +66,7 @@ namespace state::in_play
 			return;
 		}
 
-		auto characterState = game::Character::GetState(GetPlayerCharacterId());
+		auto characterState = game::Characters::GetState(GetPlayerCharacterId());
 		if (characterState)
 		{
 			auto iter = avatarStateTable.find(characterState.value());

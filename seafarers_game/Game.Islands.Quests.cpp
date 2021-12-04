@@ -15,7 +15,7 @@ namespace game::islands
 	static const double NEGATIVE_REWARD_RADIX = 2.0;
 	static double GenerateReward(int characterId)
 	{
-		double reputation = floor(game::character::statistics::Reputation::Current(characterId).value());
+		double reputation = floor(game::characters::statistics::Reputation::Current(characterId).value());
 		double minimum = DEFAULT_MINIMUM_REWARD;
 		double maximum = DEFAULT_MAXIMUM_REWARD;
 		if (reputation <= 0.0)
