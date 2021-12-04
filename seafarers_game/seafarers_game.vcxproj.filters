@@ -320,6 +320,9 @@
     <ClInclude Include="Game.Characteristic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Characteristics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -459,6 +462,9 @@
     </ClCompile>
     <ClCompile Include="Game.Characters.Characteristics.cpp">
       <Filter>Source Files\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Characteristics.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

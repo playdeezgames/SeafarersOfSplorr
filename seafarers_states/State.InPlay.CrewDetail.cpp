@@ -1,4 +1,6 @@
+#include <Game.Characteristics.h>
 #include <Game.Characters.h>
+#include <Game.Characters.Characteristics.h>
 #include <Game.Characters.Flags.h>
 #include <Game.Characters.Rations.h>
 #include <Game.Items.h>
@@ -10,9 +12,9 @@ namespace state::in_play
 
 	static auto OnLeave = application::UIState::GoTo(::UIState::IN_PLAY_CREW_LIST);
 
-	static void RefreshRations()
+	static void RefreshRations(int characterId)
 	{
-		auto rations = game::characters::Rations::Read(GetCrewDetailCharacterId());
+		auto rations = game::characters::Rations::Read(characterId);
 		if (rations)
 		{
 			Terminal::WriteLine("Rations: {}", game::Items::GetName(rations.value()));
@@ -23,9 +25,9 @@ namespace state::in_play
 		}
 	}
 
-	static void RefreshFlags()
+	static void RefreshFlags(int characterId)
 	{
-		auto flags = game::characters::Flags::All(GetCrewDetailCharacterId());
+		auto flags = game::characters::Flags::All(characterId);
 		if (!flags.empty())
 		{
 			bool first = true;
@@ -46,16 +48,31 @@ namespace state::in_play
 		}
 	}
 
+	static void RefreshCharacteristics(int characterId)
+	{
+		Terminal::WriteLine("Characteristics:");
+		auto characteristics = game::characters::Characteristics::Read(characterId);
+		for (auto characteristic : characteristics)
+		{
+			Terminal::WriteLine("{}: {}", 
+				game::Characteristics::GetName(characteristic.first), 
+				characteristic.second);
+		}
+	}
+
 	static void Refresh()
 	{
+		int characterId = GetCrewDetailCharacterId();
+
 		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Crew Details:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Name: {}", game::Characters::GetName(GetCrewDetailCharacterId()).value());
-		RefreshRations();
-		RefreshFlags();
+		Terminal::WriteLine("Name: {}", game::Characters::GetName(characterId).value());
+		RefreshRations(characterId);
+		RefreshFlags(characterId);
+		RefreshCharacteristics(characterId);//TODO: make this its own screen
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Statistics");
