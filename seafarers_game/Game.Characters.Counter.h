@@ -4,6 +4,7 @@ namespace game::characters
 	enum class Counter
 	{
 		HUNGER,
-		STARVATION
+		STARVATION, 
+		WOUNDS
 	};
 }

@@ -7,6 +7,7 @@
 #include <Data.Game.Character.Rations.h>
 #include "Game.Characters.h"
 #include "Game.Characters.Characteristics.h"
+#include "Game.Characters.Counters.h"
 #include "Game.Characters.Flags.h"
 #include "Game.Characters.Items.h"
 #include "Game.Characters.Plights.h"
@@ -37,7 +38,7 @@ namespace game
 		return delta;
 	}
 
-	static void ApplyHunger(int characterId)
+	static void ApplyHungerLegacy(int characterId)
 	{
 		double delta = DetermineHungerRate(characterId);
 		if (game::characters::statistics::Satiety::IsStarving(characterId))
@@ -110,12 +111,64 @@ namespace game
 		}
 	}
 
+	static void SufferWoundDueToStarvation(int characterId)
+	{
+		characters::counters::Starvation::Reset(characterId);
+		characters::counters::Wounds::Change(characterId, 1);
+	}
+
+	static void SufferStarvationDueToHunger(int characterId)
+	{
+		characters::counters::Hunger::Reset(characterId);
+		characters::Characteristics::OnOpposedCheck(
+			characterId,
+			Characteristic::CONSTITUTION,
+			characters::counters::Starvation::Change(characterId, 1).value(),
+			[characterId](bool success)
+			{
+				if (!success)
+				{
+					SufferWoundDueToStarvation(characterId);
+				}
+			});
+	}
+
+	static void SufferHunger(int characterId)
+	{
+		characters::Characteristics::OnOpposedCheck(
+			characterId,
+			Characteristic::CONSTITUTION,
+			characters::counters::Hunger::Change(characterId, 1).value(),
+			[characterId](bool success)
+			{
+				if (!success)
+				{
+					SufferStarvationDueToHunger(characterId);
+				}
+			});
+	}
+
+	static void ApplyHunger(int characterId)
+	{
+		characters::Characteristics::OnCheck(
+			characterId, 
+			Characteristic::CONSTITUTION, 
+			[characterId](bool success)
+			{
+				if (!success)
+				{
+					SufferHunger(characterId);
+				}
+			});
+	}
+
 	void Characters::ApplyTurnEffects()
 	{
 		auto avatarIds = data::game::Character::All();
 		for (auto characterId : avatarIds)
 		{
 			ApplyTurn(characterId);
+			ApplyHungerLegacy(characterId);
 			ApplyHunger(characterId);
 			ApplyEating(characterId);
 		}
@@ -183,6 +236,7 @@ namespace game
 		int characterId = data::game::Character::Create(data);
 		GenerateCharacterRations(characterId);
 		characters::Characteristics::Generate(characterId);
+		characters::Counters::Initialize(characterId);
 		return characterId;
 	}
 
