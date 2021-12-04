@@ -2,7 +2,7 @@
 #include <Common.Utility.Optional.h>
 #include <Common.Utility.Table.h>
 #include <Data.Game.Character.Items.h>
-#include "Game.Character.Items.h"
+#include "Game.Characters.Items.h"
 #include "Game.Items.h"
 namespace game::character
 {

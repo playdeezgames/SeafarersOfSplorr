@@ -1,8 +1,8 @@
 #include <Common.RNG.h>
 #include <Data.Game.Island.Tavern.h>
 #include <format>
-#include "Game.Character.h"
-#include "Game.Character.Island.h"
+#include "Game.Characters.h"
+#include "Game.Characters.Islands.h"
 #include "Game.Islands.Features.Tavern.h"
 #include <string>
 #include <list>

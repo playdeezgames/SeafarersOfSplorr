@@ -1,4 +1,4 @@
-#include <Game.Character.Statistics.h>
+#include <Game.Characters.Statistics.h>
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.DarkAlley.GamblingHand.h>
 #include "State.InPlay.DarkAlleyEntrance.h"

@@ -1,7 +1,7 @@
 #include <Application.Update.h>
 #include <Game.h>
-#include <Game.Character.h>
-#include <Game.Character.Statistics.h>
+#include <Game.Characters.h>
+#include <Game.Characters.Statistics.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.Next.h"
 namespace state::in_play

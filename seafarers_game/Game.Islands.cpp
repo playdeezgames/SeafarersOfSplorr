@@ -2,7 +2,7 @@
 #include <Data.Game.Island.h>
 #include <Data.Game.Island.Known.h>
 #include <Data.Game.Island.Visit.h>
-#include "Game.Character.Ship.h"
+#include "Game.Characters.Ships.h"
 #include "Game.Islands.h"
 #include "Game.Ship.h"
 #include "Game.World.h"

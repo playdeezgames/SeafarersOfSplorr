@@ -1,10 +1,10 @@
 #include <Common.Utility.Optional.h>
-#include <Game.Character.h>
-#include <Game.Character.Items.h>
-#include <Game.Character.Messages.h>
-#include <Game.Character.Quest.h>
-#include <Game.Character.Statistics.h>
-#include <Game.Character.Ship.h>
+#include <Game.Characters.h>
+#include <Game.Characters.Items.h>
+#include <Game.Characters.Messages.h>
+#include <Game.Characters.Quests.h>
+#include <Game.Characters.Statistics.h>
+#include <Game.Characters.Ships.h>
 #include <Game.Ship.Statistics.h>
 #include <Game.Islands.h>
 #include <Game.Islands.DarkAlley.h>

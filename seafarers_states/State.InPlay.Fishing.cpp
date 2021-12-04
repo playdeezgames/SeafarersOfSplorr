@@ -1,6 +1,6 @@
 #include <Common.Data.h>
 #include <Common.Utility.Dispatcher.h>
-#include <Game.Character.Items.h>
+#include <Game.Characters.Items.h>
 #include <Game.Fishboard.h>
 #include <Game.FishGame.h>
 #include "State.InPlay.Fishing.h"

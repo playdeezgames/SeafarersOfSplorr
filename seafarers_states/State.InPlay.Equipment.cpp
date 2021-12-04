@@ -1,6 +1,6 @@
 #include <Common.Data.h>
-#include <Game.Character.h>
-#include <Game.Character.Equipment.h>
+#include <Game.Characters.h>
+#include <Game.Characters.Equipment.h>
 #include <Game.EquipSlots.h>
 #include <Game.Items.h>
 #include "State.InPlay.CrewDetail.h"

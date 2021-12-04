@@ -1,6 +1,6 @@
-#include <Game.Character.h>
-#include <Game.Character.Flags.h>
-#include <Game.Character.Rations.h>
+#include <Game.Characters.h>
+#include <Game.Characters.Flags.h>
+#include <Game.Characters.Rations.h>
 #include <Game.Items.h>
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.Globals.h"

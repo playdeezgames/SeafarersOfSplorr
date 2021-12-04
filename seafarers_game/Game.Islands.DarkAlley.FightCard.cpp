@@ -1,7 +1,7 @@
 #include <Common.RNG.h>
 #include <Data.Game.Island.DarkAlley.h>
 #include <Data.Game.Island.DarkAlley.FightCard.h>
-#include "Game.Character.Statistics.h"
+#include "Game.Characters.Statistics.h"
 #include "Game.Islands.DarkAlley.FightCard.h"
 #include <list>
 #include <set>

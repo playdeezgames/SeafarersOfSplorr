@@ -1,6 +1,6 @@
 #pragma once
-#include "Game.Character.Plight.h"
-#include "Game.Character.PlightType.h"
+#include "Game.Characters.Plight.h"
+#include "Game.Characters.PlightType.h"
 #include "Game.Difficulty.h"
 #include <set>
 #include <string>

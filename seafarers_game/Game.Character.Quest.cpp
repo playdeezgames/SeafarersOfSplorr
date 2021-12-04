@@ -3,8 +3,8 @@
 #include <Data.Game.Island.h>
 #include <Data.Game.Island.Known.h>
 #include <Data.Game.Island.Quest.h>
-#include "Game.Character.Quest.h"
-#include "Game.Character.Statistics.h"
+#include "Game.Characters.Quests.h"
+#include "Game.Characters.Statistics.h"
 #include "Game.Islands.h"
 #include "Game.World.h"
 namespace game::character

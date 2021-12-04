@@ -4,7 +4,7 @@
 #include <Data.Game.Island.h>
 #include <Data.Game.Island.Quest.h>
 #include <format>
-#include "Game.Character.Statistics.h"
+#include "Game.Characters.Statistics.h"
 #include "Game.Islands.h"
 #include "Game.Islands.Quests.h"
 namespace game::islands

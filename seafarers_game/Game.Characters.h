@@ -1,6 +1,6 @@
 #pragma once
-#include "Game.Character.State.h"
-#include "Game.Character.Action.h"
+#include "Game.Characters.State.h"
+#include "Game.Characters.Action.h"
 #include "Game.Difficulty.h"
 #include <optional>
 #include <string>

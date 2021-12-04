@@ -1,6 +1,6 @@
 #include <Common.Utility.Set.h>
 #include <Data.Game.Character.Flags.h>
-#include "Game.Character.Flags.h"
+#include "Game.Characters.Flags.h"
 #include <map>
 namespace game::character
 {

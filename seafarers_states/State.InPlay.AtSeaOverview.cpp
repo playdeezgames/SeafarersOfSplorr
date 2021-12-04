@@ -1,7 +1,7 @@
 #include <Common.Heading.h>
 #include <Game.h>
-#include <Game.Character.Items.h>
-#include <Game.Character.Statistics.h>
+#include <Game.Characters.Items.h>
+#include <Game.Characters.Statistics.h>
 #include <Game.Fisheries.h>
 #include <Game.Islands.h>
 #include <Game.Player.h>

@@ -1,5 +1,5 @@
-#include <Game.Character.Plights.h>
-#include <Game.Character.Statistics.h>
+#include <Game.Characters.Plights.h>
+#include <Game.Characters.Statistics.h>
 #include "State.InPlay.CharacterStatus.h"
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.Globals.h"

@@ -3,7 +3,7 @@
 #include <Data.Game.Fishery.h>
 #include <Data.Game.FishGame.h>
 #include <Data.Game.Character.Ship.h>
-#include "Game.Character.Items.h"
+#include "Game.Characters.Items.h"
 #include "Game.Fishboard.h"
 #include "Game.Fisheries.h"
 #include "Game.Fishes.h"

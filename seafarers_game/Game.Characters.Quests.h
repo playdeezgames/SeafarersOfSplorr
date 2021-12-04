@@ -1,5 +1,5 @@
 #pragma once
-#include "Game.Character.AcceptQuestResult.h"
+#include "Game.Characters.AcceptQuestResult.h"
 #include "Game.Quest.h"
 #include <optional>
 namespace game::character

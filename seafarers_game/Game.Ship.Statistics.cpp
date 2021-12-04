@@ -1,7 +1,7 @@
 #include <Common.Data.h>
 #include <Data.Game.Ship.Statistic.h>
 #include "Game.Ship.Statistics.h"
-#include "Game.Character.Ship.h"
+#include "Game.Characters.Ships.h"
 #include "Game.Colors.h"
 #include "Game.ShipStatistic.h"
 #include <map>

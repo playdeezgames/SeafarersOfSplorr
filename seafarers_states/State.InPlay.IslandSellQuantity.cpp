@@ -1,6 +1,6 @@
 #include <Common.Data.h>
-#include <Game.Character.Items.h>
-#include <Game.Character.Statistics.h>
+#include <Game.Characters.Items.h>
+#include <Game.Characters.Statistics.h>
 #include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>

@@ -2,9 +2,9 @@
 #include <Common.Utility.Optional.h>
 #include <Common.Utility.Table.h>
 #include <Data.Game.Character.Statistic.h>
-#include "Game.Character.Equipment.h"
-#include "Game.Character.Statistic.h"
-#include "Game.Character.Statistics.h"
+#include "Game.Characters.Equipment.h"
+#include "Game.Characters.Statistic.h"
+#include "Game.Characters.Statistics.h"
 #include "Game.Item.h"
 namespace game::character
 {

@@ -1,6 +1,6 @@
 #include <Common.Utility.Table.h>
 #include "Game.Colors.h"
-#include "Game.Character.Messages.h"
+#include "Game.Characters.Messages.h"
 #include "Game.Player.h"
 #include <map>
 namespace game::character

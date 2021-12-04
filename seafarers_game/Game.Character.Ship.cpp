@@ -1,7 +1,7 @@
 #include <Common.Utility.Optional.h>
 #include <Data.Game.Character.Ship.h>
-#include "Game.Character.Ship.h"
-#include "Game.Character.Items.h"
+#include "Game.Characters.Ships.h"
+#include "Game.Characters.Items.h"
 #include "Game.Ship.h"
 #include "Game.ShipTypes.h"
 namespace game::character

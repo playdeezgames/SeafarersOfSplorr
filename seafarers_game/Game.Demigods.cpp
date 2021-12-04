@@ -3,7 +3,7 @@
 #include <Data.Game.Character.DemigodFavor.h>
 #include <Data.Game.Demigod.h>
 #include <Data.Game.DemigodItem.h>
-#include "Game.Character.Plights.h"
+#include "Game.Characters.Plights.h"
 #include "Game.Items.h"
 #include "Game.Demigods.h"
 #include <map>

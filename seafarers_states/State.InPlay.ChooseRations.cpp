@@ -1,7 +1,7 @@
 #include <Common.Data.h>
-#include <Game.Character.h>
-#include <Game.Character.Items.h>
-#include <Game.Character.Rations.h>
+#include <Game.Characters.h>
+#include <Game.Characters.Items.h>
+#include <Game.Characters.Rations.h>
 #include <Game.Items.h>
 #include "State.InPlay.ChooseRations.h"
 #include "State.InPlay.CrewDetail.h"

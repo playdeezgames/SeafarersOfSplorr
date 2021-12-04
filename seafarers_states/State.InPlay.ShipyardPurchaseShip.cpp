@@ -1,8 +1,8 @@
 #include <Common.Data.h>
 #include <Common.Utility.Table.h>
-#include <Game.Character.Items.h>
-#include <Game.Character.Ship.h>
-#include <Game.Character.Statistics.h>
+#include <Game.Characters.Items.h>
+#include <Game.Characters.Ships.h>
+#include <Game.Characters.Statistics.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Islands.Ships.h>
 #include <Game.Ship.h>

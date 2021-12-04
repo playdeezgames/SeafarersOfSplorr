@@ -1,6 +1,6 @@
 #include <Common.RNG.h>
 #include <Data.Game.Character.Plight.h>
-#include "Game.Character.Plights.h"
+#include "Game.Characters.Plights.h"
 #include <map>
 namespace game::character
 {

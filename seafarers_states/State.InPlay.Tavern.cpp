@@ -1,5 +1,5 @@
-#include <Game.Character.h>
-#include <Game.Character.Island.h>
+#include <Game.Characters.h>
+#include <Game.Characters.Islands.h>
 #include <Game.Islands.Taverns.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.Tavern.h"

@@ -1,5 +1,5 @@
 #pragma once
-#include "Game.Character.Flag.h"
+#include "Game.Characters.Flag.h"
 #include <set>
 #include <string>
 namespace game::character
