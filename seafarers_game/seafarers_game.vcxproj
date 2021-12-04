@@ -101,24 +101,24 @@
     <ClInclude Include="Game.Colors.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.Character.DoAction.cpp" />
-    <ClCompile Include="Game.Character.cpp" />
-    <ClCompile Include="Game.Character.Island.cpp" />
-    <ClCompile Include="Game.Character.Messages.cpp" />
+    <ClCompile Include="Game.Characters.DoAction.cpp" />
+    <ClCompile Include="Game.Characters.cpp" />
+    <ClCompile Include="Game.Characters.Islands.cpp" />
+    <ClCompile Include="Game.Characters.Messages.cpp" />
     <ClCompile Include="Game.Characters.Characteristics.cpp" />
     <ClCompile Include="Game.Islands.Features.DarkAlley.cpp" />
     <ClCompile Include="Game.Islands.Features.Tavern.cpp" />
     <ClCompile Include="Game.Islands.Taverns.cpp" />
     <ClCompile Include="Game.Ship.Docked.cpp" />
-    <ClCompile Include="Game.Character.Equipment.cpp" />
-    <ClCompile Include="Game.Character.Flags.cpp" />
-    <ClCompile Include="Game.Character.Items.cpp" />
-    <ClCompile Include="Game.Character.Plights.cpp" />
-    <ClCompile Include="Game.Character.Quest.cpp" />
-    <ClCompile Include="Game.Character.Rations.cpp" />
-    <ClCompile Include="Game.Character.Ship.cpp" />
+    <ClCompile Include="Game.Characters.Equipment.cpp" />
+    <ClCompile Include="Game.Characters.Flags.cpp" />
+    <ClCompile Include="Game.Characters.Items.cpp" />
+    <ClCompile Include="Game.Characters.Plights.cpp" />
+    <ClCompile Include="Game.Characters.Quests.cpp" />
+    <ClCompile Include="Game.Characters.Rations.cpp" />
+    <ClCompile Include="Game.Characters.Ships.cpp" />
     <ClCompile Include="Game.Ship.Statistics.cpp" />
-    <ClCompile Include="Game.Character.Statistics.cpp" />
+    <ClCompile Include="Game.Characters.Statistics.cpp" />
     <ClCompile Include="Game.Commodities.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game.Demigods.cpp" />
