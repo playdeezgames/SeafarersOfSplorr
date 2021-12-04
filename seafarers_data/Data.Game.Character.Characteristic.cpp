@@ -1,5 +1,5 @@
 #include <Common.Data.h>
-#include "Data.Game.Character.Characteristics.h"
+#include "Data.Game.Character.Characteristic.h"
 #include "Data.Game.Common.h"
 namespace data::game::character
 {
@@ -13,13 +13,13 @@ namespace data::game::character
 
 	static const auto AutoCreateTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Characteristics::Write(int characterId, int characteristicId, int value)
+	void Characteristic::Write(int characterId, int characteristicId, int value)
 	{
 		AutoCreateTable();
 		Common::Execute(REPLACE_ITEM, characterId, characteristicId, value);
 	}
 
-	std::optional<int> Characteristics::Read(int characterId, int characteristicId)
+	std::optional<int> Characteristic::Read(int characterId, int characteristicId)
 	{
 		AutoCreateTable();
 		auto records = Common::Execute(QUERY_ITEM, characterId, characteristicId);
@@ -30,7 +30,7 @@ namespace data::game::character
 		return std::nullopt;
 	}
 
-	std::map<int, int> Characteristics::Read(int characterId)
+	std::map<int, int> Characteristic::Read(int characterId)
 	{
 		AutoCreateTable();
 		std::map<int, int> result;

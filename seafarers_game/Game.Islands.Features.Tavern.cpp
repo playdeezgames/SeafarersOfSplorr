@@ -60,9 +60,18 @@ namespace game::islands::features
 		character::Island::Write(characterId, islandId);
 	}
 
+	static const std::map<int, size_t> npcCountGenerator = 
+	{
+		{1, 1},
+		{2, 2},
+		{3, 3},
+		{4, 2},
+		{5, 1}
+	};
+
 	static void InitializeTavernCharacters(int islandId)
 	{
-		auto characterCount = common::RNG::FromRange(1, 4) + common::RNG::FromRange(0, 3);
+		auto characterCount = common::RNG::FromGenerator(npcCountGenerator);
 		while (characterCount > 0)
 		{
 			AddTavernCharacter(islandId);

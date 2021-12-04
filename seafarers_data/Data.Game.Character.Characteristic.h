@@ -3,7 +3,7 @@
 #include <map>
 namespace data::game::character
 {
-	struct Characteristics
+	struct Characteristic
 	{
 		static void Write(int, int, int);
 		static std::optional<int> Read(int, int);

@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Data.Game.Character.Characteristics.h" />
+    <ClInclude Include="Data.Game.Character.Characteristic.h" />
     <ClInclude Include="Data.Game.Character.DemigodFavor.h" />
     <ClInclude Include="Data.Game.Character.Equipment.h" />
     <ClInclude Include="Data.Game.Character.Flags.h" />
@@ -57,7 +57,7 @@
     <ClInclude Include="Data.SQLite.Store.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Data.Game.Character.Characteristics.cpp" />
+    <ClCompile Include="Data.Game.Character.Characteristic.cpp" />
     <ClCompile Include="Data.Game.Character.cpp" />
     <ClCompile Include="Data.Game.Character.DemigodFavor.cpp" />
     <ClCompile Include="Data.Game.Character.Equipment.cpp" />
