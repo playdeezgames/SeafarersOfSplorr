@@ -161,6 +161,9 @@
     <ClInclude Include="Data.Game.Character.Characteristic.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.Character.Counter.h">
+      <Filter>Header Files\Character</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">
@@ -263,6 +266,9 @@
       <Filter>Source Files\Island</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Character.Characteristic.cpp">
+      <Filter>Source Files\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Character.Counter.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
   </ItemGroup>
