@@ -58,6 +58,7 @@ namespace state::in_play
 				game::Characteristics::GetName(characteristic.first), 
 				characteristic.second);
 		}
+		Terminal::WriteLine("Maximum HP: {}", game::characters::Characteristics::GetMaximumHitPoints(characterId).value());
 	}
 
 	static void Refresh()

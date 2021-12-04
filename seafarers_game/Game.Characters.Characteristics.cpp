@@ -81,4 +81,19 @@ namespace game::characters
 				common::RNG::FromGenerator(characteristicRoll.second));
 		}
 	}
+
+	std::optional<int> Characteristics::GetMaximumHitPoints(int characterId)
+	{
+		auto constitution = Read(characterId, Characteristic::CONSTITUTION);
+		if (constitution)
+		{
+			auto size = Read(characterId, Characteristic::SIZE);
+			if (size)
+			{
+				return (constitution.value() + size.value() + 1) / 2;//CON+SIZ/2, round up!
+			}
+		}
+		return std::nullopt;
+	}
+
 }
