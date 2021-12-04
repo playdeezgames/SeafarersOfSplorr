@@ -6,6 +6,7 @@
 #include <Data.Game.Character.h>
 #include <Data.Game.Character.Rations.h>
 #include "Game.Characters.h"
+#include "Game.Characters.Characteristics.h"
 #include "Game.Characters.Flags.h"
 #include "Game.Characters.Items.h"
 #include "Game.Characters.Plights.h"
@@ -164,13 +165,13 @@ namespace game
 		return nameGenerator.Generate();
 	}
 
+	//TODO: does this go into game::characters::Rations?
 	static void GenerateCharacterRations(int characterId)
 	{
 		data::game::character::Rations::Write(
 			characterId,
 			(int)game::Items::GenerateRationsForAvatar());
 	}
-
 
 	int Characters::Create(const game::characters::State& state)
 	{
@@ -181,6 +182,7 @@ namespace game
 		};
 		int characterId = data::game::Character::Create(data);
 		GenerateCharacterRations(characterId);
+		characters::Characteristics::Generate(characterId);
 		return characterId;
 	}
 

@@ -9,5 +9,6 @@ namespace game::characters
 		static void Write(int, const Characteristic&, int);
 		static std::optional<int> Read(int, const Characteristic&);
 		static std::map<Characteristic, int> Read(int);
+		static void Generate(int);
 	};
 }
