@@ -119,7 +119,6 @@ namespace game
 
 	static void SufferStarvationDueToHunger(int characterId)
 	{
-		characters::counters::Hunger::Reset(characterId);
 		characters::Characteristics::OnOpposedCheck(
 			characterId,
 			Characteristic::CONSTITUTION,
@@ -138,7 +137,7 @@ namespace game
 		characters::Characteristics::OnOpposedCheck(
 			characterId,
 			Characteristic::CONSTITUTION,
-			characters::counters::Hunger::Change(characterId, 1).value(),
+			characters::counters::Starvation::Change(characterId, 1).value(),
 			[characterId](bool success)
 			{
 				if (!success)

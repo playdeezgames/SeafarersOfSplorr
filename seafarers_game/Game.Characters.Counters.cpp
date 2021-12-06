@@ -1,3 +1,4 @@
+#include <Common.Utility.Table.h>
 #include <Data.Game.Character.Counter.h>
 #include "Game.Characters.Counters.h"
 #include <map>
@@ -11,9 +12,8 @@ namespace game::characters
 
 	static const std::map<Counter, CounterDescriptor> counterDescriptors =
 	{
-		{Counter::HUNGER, {"Hunger", 0}},
-		{Counter::STARVATION, {"Starvation", 0}},
-		{Counter::WOUNDS, {"Wounds", 0}}
+		{Counter::STARVATION, {"Starvation", -10}},
+		{Counter::WOUNDS, {"Wounds", -10}}
 	};
 
 	const std::string& Counters::GetName(const Counter& counter)
@@ -42,6 +42,16 @@ namespace game::characters
 		}
 	}
 
+	void Counters::Reset(int characterId, const Counter& counter)
+	{
+		auto descriptor = common::utility::Table::TryGetKey(counterDescriptors, counter);
+		if (descriptor)
+		{
+			Write(characterId, counter, descriptor.value().initialValue.value());
+		}
+	}
+
+
 	namespace counters
 	{
 		static std::optional<int> DoChange(int characterId, const Counter& counter, int delta)
@@ -56,16 +66,6 @@ namespace game::characters
 			return std::nullopt;
 		}
 
-		std::optional<int> Hunger::Change(int characterId, int delta)
-		{
-			return DoChange(characterId, Counter::HUNGER, delta);
-		}
-
-		void Hunger::Reset(int characterId)
-		{
-			Counters::Write(characterId, Counter::HUNGER, 0);
-		}
-
 		std::optional<int> Starvation::Change(int characterId, int delta)
 		{
 			return DoChange(characterId, Counter::STARVATION, delta);
@@ -73,7 +73,7 @@ namespace game::characters
 
 		void Starvation::Reset(int characterId)
 		{
-			Counters::Write(characterId, Counter::STARVATION, 0);
+			Counters::Reset(characterId, Counter::STARVATION);
 		}
 
 		std::optional<int> Wounds::Change(int characterId, int delta)
