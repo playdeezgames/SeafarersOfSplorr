@@ -14,6 +14,7 @@ namespace game
 		static std::optional<characters::State> GetState(int);
 		static void DoAction(int, const characters::Action&);
 		static int Create(const game::characters::State&);
+		static std::optional<bool> IsDead(int);
 	private:
 		static void SetState(int, const characters::State&);
 	};

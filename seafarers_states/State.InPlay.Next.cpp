@@ -21,7 +21,7 @@ namespace state::in_play
 
 	static bool IsPlayerDead()
 	{
-		return game::characters::statistics::Health::IsDead(GetPlayerCharacterId()).value();
+		return game::Characters::IsDead(GetPlayerCharacterId()).value();
 	}
 
 	static const std::list<StatusChecker> statusCheckers =

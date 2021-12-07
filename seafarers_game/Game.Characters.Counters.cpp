@@ -13,7 +13,7 @@ namespace game::characters
 	static const std::map<Counter, CounterDescriptor> counterDescriptors =
 	{
 		{Counter::STARVATION, {"Starvation", -10}},
-		{Counter::WOUNDS, {"Wounds", -10}}
+		{Counter::WOUNDS, {"Wounds", 0}}
 	};
 
 	const std::string& Counters::GetName(const Counter& counter)
