@@ -5,7 +5,7 @@
 #include "State.InPlay.Globals.h"
 namespace state::in_play
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_AVATAR_STATUS;
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CHARACTER_STATUS;
 
 	static const auto OnLeave = ::application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL);
 

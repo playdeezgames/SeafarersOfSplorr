@@ -76,9 +76,11 @@ namespace state::in_play
 		RefreshCharacteristics(characterId);//TODO: make this its own screen
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine("1) Statistics");
-		Terminal::WriteLine("2) Equipment");
-		Terminal::WriteLine("3) Change Rations");
+		Terminal::WriteLine("1) Characteristics");
+		Terminal::WriteLine("2) Skills");
+		Terminal::WriteLine("3) Statistics");
+		Terminal::WriteLine("4) Equipment");
+		Terminal::WriteLine("5) Change Rations");
 		Terminal::WriteLine("0) Never mind");
 
 		Terminal::ShowPrompt();
@@ -92,9 +94,9 @@ namespace state::in_play
 
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
-		{ "1", application::UIState::GoTo(::UIState::IN_PLAY_AVATAR_STATUS) },
-		{ "2", application::UIState::GoTo(::UIState::IN_PLAY_EQUIPMENT)},
-		{ "3", application::UIState::GoTo(::UIState::IN_PLAY_CHOOSE_RATIONS)},
+		{ "3", application::UIState::GoTo(::UIState::IN_PLAY_CHARACTER_STATUS) },
+		{ "4", application::UIState::GoTo(::UIState::IN_PLAY_EQUIPMENT)},
+		{ "5", application::UIState::GoTo(::UIState::IN_PLAY_CHOOSE_RATIONS)},
 		{ "0", OnLeave}
 	};
 
