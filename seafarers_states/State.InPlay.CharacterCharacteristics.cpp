@@ -8,10 +8,15 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		auto characteristics =
+		auto character =
 			GetGameSession()
-			.GetCharacter(GetCrewDetailCharacterId()).value()
+			.GetCharacter(GetCrewDetailCharacterId()).value();
+		auto characteristics =
+			character
 			.GetCharacteristics();
+		auto hitPoints =
+			character
+			.GetHitpoints();
 
 		Terminal::Reinitialize();
 
@@ -24,10 +29,12 @@ namespace state::in_play
 			Terminal::WriteLine("{}: {}", characteristic.GetName(), characteristic.GetValue().value());
 		}
 
-		Terminal::SetForeground(game::Colors::GRAY);
+		Terminal::WriteLine("HP: {}/{}", hitPoints.GetCurrent().value(), hitPoints.GetMaximum().value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine("0) Never mind");
+		Terminal::WriteLine("0) Done");
+
+		Terminal::ShowPrompt();
 	}
 
 	static void OnEnter()

@@ -19,4 +19,8 @@ namespace game::session
 		return result;
 	}
 
+	character::HitPoints Character::GetHitpoints() const
+	{
+		return character::HitPoints(characterId);
+	}
 }

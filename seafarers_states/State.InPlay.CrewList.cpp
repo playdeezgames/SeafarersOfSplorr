@@ -37,7 +37,6 @@ namespace state::in_play
 		Terminal::WriteLine("0) Never mind");
 
 		Terminal::ShowPrompt();
-
 	}
 
 	static const std::map<game::BerthType, std::string> berthNames =
