@@ -78,6 +78,12 @@
     <Filter Include="Source Files\Features">
       <UniqueIdentifier>{2d667e5d-101a-47f1-9a8e-f9502a6d97dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Session">
+      <UniqueIdentifier>{32cfb385-1f2c-42c2-9e4c-1ec1493e87e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session">
+      <UniqueIdentifier>{e7849dd6-5ff4-4f56-8ec8-0103a081c30c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -335,6 +341,15 @@
     <ClInclude Include="Game.Characters.Skills.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.h">
+      <Filter>Header Files\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Character.h">
+      <Filter>Header Files\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Character.Characteristic.h">
+      <Filter>Header Files\Session</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -483,6 +498,15 @@
     </ClCompile>
     <ClCompile Include="Game.Characters.Skills.cpp">
       <Filter>Source Files\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.cpp">
+      <Filter>Source Files\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.cpp">
+      <Filter>Source Files\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.Characteristic.cpp">
+      <Filter>Source Files\Session</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

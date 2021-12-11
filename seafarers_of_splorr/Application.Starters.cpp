@@ -20,6 +20,7 @@
 #include <State.InPlay.Cargo.h>
 #include <State.InPlay.ChangeHeading.h>
 #include <State.InPlay.ChangeSpeed.h>
+#include <State.InPlay.CharacterCharacteristics.h>
 #include <State.InPlay.CharacterStatus.h>
 #include <State.InPlay.ChooseRations.h>
 #include <State.InPlay.ConfirmAbandonJob.h>
@@ -188,6 +189,7 @@ namespace application
 		state::in_play::RenameShipAdjective::Start,
 		state::in_play::RenameShipNoun::Start,
 		state::in_play::Tavern::Start,
+		state::in_play::CharacterCharacteristics::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};

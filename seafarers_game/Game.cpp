@@ -135,4 +135,9 @@ namespace game
 			turnEffect();
 		}
 	}
+
+	Session GetSession()
+	{
+		return Session();
+	}
 }

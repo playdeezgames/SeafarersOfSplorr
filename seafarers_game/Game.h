@@ -1,5 +1,6 @@
 #pragma once
 #include "Game.Difficulty.h"
+#include "Game.Session.h"
 #include <functional>
 namespace game
 {
@@ -13,4 +14,5 @@ namespace game
 	void LoadFromSlot(int);
 	void SaveToSlot(int);
 	void ApplyTurnEffects();
+	Session GetSession();
 }

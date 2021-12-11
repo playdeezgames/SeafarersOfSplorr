@@ -297,4 +297,8 @@ namespace game
 		return std::nullopt;
 	}
 
+	bool Characters::Exists(int characterId)
+	{
+		return data::game::Character::Read(characterId).has_value();
+	}
 }

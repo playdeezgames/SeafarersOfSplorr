@@ -11,6 +11,7 @@
 
 #include <Cards.Rank.h>
 #include <Cards.Suit.h>
+#include <Game.h>
 #include <Game.Characters.Action.h>
 #include <Game.EquipSlot.h>
 #include <Game.Feature.h>
@@ -63,4 +64,6 @@ namespace state::in_play
 	const std::map<cards::Suit, std::string>& GetSuits();
 	void SetRenameShipAdjective(const std::string&);
 	const std::string& GetRenameShipAdjective();
+
+	game::Session GetGameSession();
 }

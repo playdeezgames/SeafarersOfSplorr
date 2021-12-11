@@ -50,14 +50,6 @@ namespace state::in_play
 
 	static void RefreshCharacteristics(int characterId)
 	{
-		Terminal::WriteLine("Characteristics:");
-		auto characteristics = game::characters::Characteristics::Read(characterId);
-		for (auto characteristic : characteristics)
-		{
-			Terminal::WriteLine("{}: {}", 
-				game::Characteristics::GetName(characteristic.first), 
-				characteristic.second);
-		}
 		Terminal::WriteLine("Maximum HP: {}", game::characters::Characteristics::GetMaximumHitPoints(characterId).value());
 	}
 
@@ -94,6 +86,7 @@ namespace state::in_play
 
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
+		{ "1", application::UIState::GoTo(::UIState::IN_PLAY_CHARACTER_CHARACTERISTICS) },
 		{ "3", application::UIState::GoTo(::UIState::IN_PLAY_CHARACTER_STATUS) },
 		{ "4", application::UIState::GoTo(::UIState::IN_PLAY_EQUIPMENT)},
 		{ "5", application::UIState::GoTo(::UIState::IN_PLAY_CHOOSE_RATIONS)},
