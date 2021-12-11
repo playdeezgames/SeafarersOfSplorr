@@ -6,5 +6,6 @@ namespace game
 	struct Session
 	{
 		std::optional<game::session::Character> GetCharacter(int) const;
+		std::optional<game::session::Character> GetPlayerCharacter() const;
 	};
 }

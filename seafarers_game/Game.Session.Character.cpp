@@ -1,5 +1,6 @@
 #include "Game.Characters.Characteristics.h"
 #include "Game.Session.Character.h"
+#include "Game.Characters.Ships.h"
 namespace game::session
 {
 	Character::Character(int characterId)
@@ -23,4 +24,15 @@ namespace game::session
 	{
 		return character::HitPoints(characterId);
 	}
+
+	std::optional<Ship> Character::GetShip() const
+	{
+		auto shipId = characters::Ships::ReadShipId(characterId);
+		if (shipId)
+		{
+			return Ship(shipId.value());
+		}
+		return std::nullopt;
+	}
+
 }
