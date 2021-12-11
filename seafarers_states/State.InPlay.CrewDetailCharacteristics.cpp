@@ -1,8 +1,8 @@
-#include "State.InPlay.CharacterCharacteristics.h"
+#include "State.InPlay.CrewDetailCharacteristics.h"
 #include "State.InPlay.Globals.h"
 namespace state::in_play
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CHARACTER_CHARACTERISTICS;
+	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CREW_DETAIL_CHARACTERISTICS;
 
 	static auto OnLeave = application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL);
 
@@ -48,7 +48,7 @@ namespace state::in_play
 		{ "0", OnLeave}
 	};
 
-	void CharacterCharacteristics::Start()
+	void CrewDetailCharacteristics::Start()
 	{
 		::application::OnEnter::AddHandler(
 			CURRENT_STATE,

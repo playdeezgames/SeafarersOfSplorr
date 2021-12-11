@@ -233,7 +233,7 @@
     <ClInclude Include="State.InPlay.Tavern.h">
       <Filter>Header Files\Docked</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.CharacterCharacteristics.h">
+    <ClInclude Include="State.InPlay.CrewDetailCharacteristics.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
   </ItemGroup>
@@ -415,7 +415,7 @@
     <ClCompile Include="State.InPlay.Tavern.cpp">
       <Filter>Source Files\Docked</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.CharacterCharacteristics.cpp">
+    <ClCompile Include="State.InPlay.CrewDetailCharacteristics.cpp">
       <Filter>Source Files\AtSea\Status</Filter>
     </ClCompile>
   </ItemGroup>

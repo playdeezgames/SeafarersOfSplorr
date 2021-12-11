@@ -86,7 +86,7 @@ namespace state::in_play
 
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
-		{ "1", application::UIState::GoTo(::UIState::IN_PLAY_CHARACTER_CHARACTERISTICS) },
+		{ "1", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_CHARACTERISTICS) },
 		{ "3", application::UIState::GoTo(::UIState::IN_PLAY_CHARACTER_STATUS) },
 		{ "4", application::UIState::GoTo(::UIState::IN_PLAY_EQUIPMENT)},
 		{ "5", application::UIState::GoTo(::UIState::IN_PLAY_CHOOSE_RATIONS)},
