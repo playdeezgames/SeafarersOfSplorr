@@ -98,6 +98,18 @@ namespace state::in_play
 
 	static void Refresh()
 	{
+		auto playerCharacter = 
+			GetGameSession()
+			.GetPlayerCharacter()
+			.value();
+		auto shipId = 
+			playerCharacter
+			.GetBerth().value().
+			GetShipId().value();
+		auto ship =
+			GetGameSession()
+			.GetShip(shipId).value();
+
 		Terminal::Reinitialize();
 
 		Terminal::SetForeground(
@@ -106,17 +118,24 @@ namespace state::in_play
 			"At Sea:");
 		Terminal::SetForeground(
 			game::Colors::GRAY);
+		//ship
 		Terminal::WriteLine(
 			"Heading: {:.2f}\xf8, Speed: {:.1f}",
-			GetPlayerCharacterShipHeading().value(),
-			GetPlayerCharacterShipSpeed().value());
+			ship.GetHeading().value(),
+			ship.GetSpeed().value());
+		//wind
+		auto wind = GetGameSession().GetWorld().GetWind();
 		Terminal::WriteLine(
 			"Wind: {:.2f}\xf8 (x{:.1f})",
-			game::World::GetWindHeading(),
-			game::World::GetWindSpeedMultiplier(GetPlayerCharacterShipHeading().value()));
+			wind.GetHeading(),
+			wind.GetMultiplier(ship.GetHeading().value()));
+		//fisheries
 		RefreshFisheries();
+		//dockable islands
 		bool canDock = RefreshDockableIslands();
+		//nearby islands
 		RefreshNearbyIslands();
+		//job destination
 		bool hasJob = RefreshJobDestination();
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Move");

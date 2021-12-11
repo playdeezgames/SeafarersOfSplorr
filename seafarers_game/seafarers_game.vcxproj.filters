@@ -362,6 +362,12 @@
     <ClInclude Include="Game.Session.Ship.Berth.h">
       <Filter>Header Files\Session</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.World.h">
+      <Filter>Header Files\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.World.Wind.h">
+      <Filter>Header Files\Session</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -530,6 +536,12 @@
       <Filter>Source Files\Session</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Ship.Berth.cpp">
+      <Filter>Source Files\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.World.cpp">
+      <Filter>Source Files\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.World.Wind.cpp">
       <Filter>Source Files\Session</Filter>
     </ClCompile>
   </ItemGroup>

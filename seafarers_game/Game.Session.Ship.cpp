@@ -1,3 +1,4 @@
+#include "Game.Ship.h"
 #include "Game.Ship.Crew.h"
 #include "Game.Session.Ship.h"
 namespace game::session
@@ -19,4 +20,13 @@ namespace game::session
 		return result;
 	}
 
+	std::optional<double> Ship::GetHeading() const
+	{
+		return game::Ship::GetHeading(shipId);
+	}
+
+	std::optional<double> Ship::GetSpeed() const
+	{
+		return game::Ship::GetSpeed(shipId);
+	}
 }

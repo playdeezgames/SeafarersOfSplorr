@@ -2,6 +2,7 @@
 #include "Game.Player.h"
 #include "Game.Session.h"
 #include "Game.Session.Character.h"
+#include "Game.Ship.h"
 namespace game
 {
 	std::optional<session::Character> Session::GetCharacter(int characterId) const
@@ -16,6 +17,20 @@ namespace game
 	std::optional<game::session::Character> Session::GetPlayerCharacter() const
 	{
 		return GetCharacter(game::Player::GetCharacterId());
+	}
+
+	std::optional<game::session::Ship> Session::GetShip(int shipId) const
+	{
+		if (game::Ship::GetShipType(shipId).has_value())
+		{
+			return game::session::Ship(shipId);
+		}
+		return std::nullopt;
+	}
+
+	session::World Session::GetWorld() const
+	{
+		return game::session::World();
 	}
 
 }

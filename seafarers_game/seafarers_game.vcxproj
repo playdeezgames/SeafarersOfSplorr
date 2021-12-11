@@ -41,6 +41,8 @@
     <ClInclude Include="Game.Session.h" />
     <ClInclude Include="Game.Session.Ship.Berth.h" />
     <ClInclude Include="Game.Session.Ship.h" />
+    <ClInclude Include="Game.Session.World.h" />
+    <ClInclude Include="Game.Session.World.Wind.h" />
     <ClInclude Include="Game.Ship.Docked.h" />
     <ClInclude Include="Game.Ship.DockResult.h" />
     <ClInclude Include="Game.Characters.Equipment.h" />
@@ -131,6 +133,8 @@
     <ClCompile Include="Game.Session.cpp" />
     <ClCompile Include="Game.Session.Ship.Berth.cpp" />
     <ClCompile Include="Game.Session.Ship.cpp" />
+    <ClCompile Include="Game.Session.World.cpp" />
+    <ClCompile Include="Game.Session.World.Wind.cpp" />
     <ClCompile Include="Game.Ship.Docked.cpp" />
     <ClCompile Include="Game.Characters.Equipment.cpp" />
     <ClCompile Include="Game.Characters.Flags.cpp" />
