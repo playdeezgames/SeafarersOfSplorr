@@ -8,10 +8,16 @@ namespace game::session::character
 
 	}
 
-	std::optional<int> Berth::GetShipId() const
+	std::optional<game::session::Ship> Berth::GetShip() const
 	{
-		return game::characters::Ships::ReadShipId(characterId);
+		auto shipId = game::characters::Ships::ReadShipId(characterId);
+		if (shipId)
+		{
+			return game::session::Ship(shipId.value());
+		}
+		return std::nullopt;
 	}
+
 
 	std::optional<BerthType> Berth::GetBerthType() const
 	{

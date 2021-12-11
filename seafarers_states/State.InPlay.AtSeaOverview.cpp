@@ -103,13 +103,6 @@ namespace state::in_play
 			GetGameSession()
 			.GetPlayerCharacter()
 			.value();
-		auto shipId = 
-			playerCharacter
-			.GetBerth().value().
-			GetShipId().value();
-		auto ship =
-			GetGameSession()
-			.GetShip(shipId).value();
 
 		Terminal::Reinitialize();
 
@@ -120,6 +113,10 @@ namespace state::in_play
 		Terminal::SetForeground(
 			game::Colors::GRAY);
 		//ship
+		auto ship = 
+			playerCharacter
+			.GetBerth().value()
+			.GetShip().value();
 		Terminal::WriteLine(
 			"Heading: {:.2f}\xf8, Speed: {:.1f}",
 			ship.GetHeading().value(),
