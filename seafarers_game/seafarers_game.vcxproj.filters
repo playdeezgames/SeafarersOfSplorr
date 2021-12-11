@@ -368,6 +368,9 @@
     <ClInclude Include="Game.Session.World.Wind.h">
       <Filter>Header Files\Session</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Character.Items.h">
+      <Filter>Header Files\Session</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -542,6 +545,9 @@
       <Filter>Source Files\Session</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.World.Wind.cpp">
+      <Filter>Source Files\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.Items.cpp">
       <Filter>Source Files\Session</Filter>
     </ClCompile>
   </ItemGroup>

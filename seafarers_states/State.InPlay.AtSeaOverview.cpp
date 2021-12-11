@@ -15,9 +15,10 @@ namespace state::in_play
 
 	static bool IsFishingEnabled()
 	{
+		auto items = GetGameSession().GetPlayerCharacter().value().GetItems();
 		return
-			game::characters::Items::Has(GetPlayerCharacterId(), game::Item::FISHING_POLE) &&
-			game::characters::Items::Has(GetPlayerCharacterId(), game::Item::BAIT);
+			items.Has(game::Item::FISHING_POLE) &&
+			items.Has(game::Item::BAIT);
 	}
 
 	static bool RefreshDockableIslands()

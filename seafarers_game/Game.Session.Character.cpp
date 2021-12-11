@@ -34,4 +34,9 @@ namespace game::session
 		return std::nullopt;
 	}
 
+	character::Items Character::GetItems() const
+	{
+		return character::Items(characterId);
+	}
+
 }
