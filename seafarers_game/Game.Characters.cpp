@@ -292,7 +292,7 @@ namespace game
 		if (maximumHitPoints)
 		{
 			auto wounds = game::characters::Counters::Read(characterId, game::characters::Counter::WOUNDS).value_or(0);
-			return wounds < maximumHitPoints.value();
+			return wounds >= maximumHitPoints.value();
 		}
 		return std::nullopt;
 	}
