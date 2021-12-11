@@ -1,6 +1,6 @@
 #include "Game.Characters.Ships.h"
-#include "Game.Session.Ship.Berth.h"
-namespace game::session::ship
+#include "Game.Session.Character.Berth.h"
+namespace game::session::character
 {
 	Berth::Berth(int characterId)
 		: characterId(characterId)
@@ -8,14 +8,13 @@ namespace game::session::ship
 
 	}
 
-	int Berth::GetCharacterId() const
+	std::optional<int> Berth::GetShipId() const
 	{
-		return characterId;
+		return game::characters::Ships::ReadShipId(characterId);
 	}
 
 	std::optional<BerthType> Berth::GetBerthType() const
 	{
 		return game::characters::Ships::ReadBerthType(characterId);
 	}
-
 }

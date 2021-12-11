@@ -1,5 +1,6 @@
 #pragma once
 #include "Game.Session.Character.h"
+#include "Game.Session.Ship.h"
 #include <optional>
 namespace game
 {

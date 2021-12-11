@@ -353,6 +353,12 @@
     <ClInclude Include="Game.Session.Character.HitPoints.h">
       <Filter>Header Files\Session</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Ship.h">
+      <Filter>Header Files\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Character.Berth.h">
+      <Filter>Header Files\Session</Filter>
+    </ClInclude>
     <ClInclude Include="Game.Session.Ship.Berth.h">
       <Filter>Header Files\Session</Filter>
     </ClInclude>
@@ -515,6 +521,12 @@
       <Filter>Source Files\Session</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Character.HitPoints.cpp">
+      <Filter>Source Files\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Ship.cpp">
+      <Filter>Source Files\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.Berth.cpp">
       <Filter>Source Files\Session</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Ship.Berth.cpp">
