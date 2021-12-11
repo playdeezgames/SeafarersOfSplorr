@@ -353,7 +353,7 @@
     <ClInclude Include="Game.Session.Character.HitPoints.h">
       <Filter>Header Files\Session</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.Ship.h">
+    <ClInclude Include="Game.Session.Ship.Berth.h">
       <Filter>Header Files\Session</Filter>
     </ClInclude>
   </ItemGroup>
@@ -517,7 +517,7 @@
     <ClCompile Include="Game.Session.Character.HitPoints.cpp">
       <Filter>Source Files\Session</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.Ship.cpp">
+    <ClCompile Include="Game.Session.Ship.Berth.cpp">
       <Filter>Source Files\Session</Filter>
     </ClCompile>
   </ItemGroup>

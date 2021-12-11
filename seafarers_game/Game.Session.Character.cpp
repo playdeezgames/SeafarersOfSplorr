@@ -25,12 +25,12 @@ namespace game::session
 		return character::HitPoints(characterId);
 	}
 
-	std::optional<Ship> Character::GetShip() const
+	std::optional<ship::Berth> Character::GetBerth() const
 	{
 		auto shipId = characters::Ships::ReadShipId(characterId);
 		if (shipId)
 		{
-			return Ship(shipId.value());
+			return ship::Berth(characterId, shipId.value());
 		}
 		return std::nullopt;
 	}
