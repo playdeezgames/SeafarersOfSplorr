@@ -14,6 +14,7 @@ namespace game::session
 		std::optional<double> GetHeading() const;
 		void SetHeading(double) const;
 		std::optional<double> GetSpeed() const;
+		void SetSpeed(double) const;
 		Islands GetDockableIslands() const;
 		Islands GetNearbyIslands() const;
 		std::optional<common::XY<double>> GetLocation() const;

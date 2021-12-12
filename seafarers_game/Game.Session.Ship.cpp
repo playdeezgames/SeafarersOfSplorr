@@ -72,4 +72,10 @@ namespace game::session
 	{
 		game::Ship::SetHeading(shipId, heading);
 	}
+
+	void Ship::SetSpeed(double speed) const
+	{
+		game::Ship::SetSpeed(shipId, speed);
+	}
+
 }

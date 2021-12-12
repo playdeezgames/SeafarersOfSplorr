@@ -1,4 +1,3 @@
-#include <Game.Ship.h>
 #include "State.InPlay.ChangeSpeed.h"
 #include "State.InPlay.Globals.h"
 namespace state::in_play
@@ -12,7 +11,12 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Change Speed:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Current Speed: {:.2f}", GetPlayerCharacterShipSpeed().value());
+		Terminal::WriteLine("Current Speed: {:.2f}", 
+			GetGameSession()
+			.GetPlayerCharacter().value()
+			.GetBerth().value()
+			.GetShip().value()
+			.GetSpeed().value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) All stop");
@@ -35,7 +39,11 @@ namespace state::in_play
 	{
 		return [speed]() 
 		{
-			game::Ship::SetSpeed(GetPlayerCharacterShipId().value(), speed);
+			GetGameSession()
+				.GetPlayerCharacter().value()
+				.GetBerth().value()
+				.GetShip().value()
+				.SetSpeed(speed);
 			application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 		};
 	}
