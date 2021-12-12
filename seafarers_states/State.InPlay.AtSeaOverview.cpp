@@ -23,14 +23,19 @@ namespace state::in_play
 
 	static bool RefreshDockableIslands()
 	{
-		auto dockable = game::Islands::GetDockableIslands(GetPlayerCharacterShipId().value());
-		if (!dockable.empty())
+		auto island =
+			GetGameSession()
+			.GetPlayerCharacter().value()
+			.GetBerth().value()
+			.GetShip().value()
+			.GetDockableIslands()
+			.GetFirst();
+		if (island)
 		{
-			auto island = dockable.front();
 			Terminal::SetForeground(game::Colors::LIGHT_BLUE);
-			if (island.visits.has_value())
+			if (island.value().IsKnown().value())
 			{
-				Terminal::Write("You can dock at {}", island.GetDisplayName());
+				Terminal::Write("You can dock at {}", island.value().GetDisplayName().value());
 			}
 			else
 			{
@@ -45,14 +50,19 @@ namespace state::in_play
 
 	static void RefreshNearbyIslands()
 	{
-		auto nearby = GetPlayerCharacterViewableIslands();
-		if (nearby && !nearby.value().empty())
+		auto islands =
+			GetGameSession()
+			.GetPlayerCharacter().value()
+			.GetBerth().value()
+			.GetShip().value()
+			.GetNearbyIslands();
+		if (islands.HasAny())
 		{
-			Terminal::Write("You see {} islands nearby", nearby.value().size());
+			Terminal::Write("You see {} islands nearby", islands.GetCount());
 			bool first = true;
-			for (auto& island : nearby.value())
+			for (auto& island : islands.GetAll())
 			{
-				if (island.IsKnown())
+				if (island.IsKnown().value())
 				{
 					if (first)
 					{
@@ -63,11 +73,10 @@ namespace state::in_play
 					{
 						Terminal::Write(", ");
 					}
-					Terminal::Write(island.GetDisplayName());
+					Terminal::Write(island.GetDisplayName().value());
 				}
 			}
 			Terminal::WriteLine();
-
 		}
 		else
 		{

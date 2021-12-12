@@ -40,6 +40,8 @@
     <ClInclude Include="Game.Session.Character.HitPoints.h" />
     <ClInclude Include="Game.Session.Character.Items.h" />
     <ClInclude Include="Game.Session.h" />
+    <ClInclude Include="Game.Session.Island.h" />
+    <ClInclude Include="Game.Session.Islands.h" />
     <ClInclude Include="Game.Session.Ship.Berth.h" />
     <ClInclude Include="Game.Session.Ship.h" />
     <ClInclude Include="Game.Session.World.h" />
@@ -133,6 +135,8 @@
     <ClCompile Include="Game.Session.Character.HitPoints.cpp" />
     <ClCompile Include="Game.Session.Character.Items.cpp" />
     <ClCompile Include="Game.Session.cpp" />
+    <ClCompile Include="Game.Session.Island.cpp" />
+    <ClCompile Include="Game.Session.Islands.cpp" />
     <ClCompile Include="Game.Session.Ship.Berth.cpp" />
     <ClCompile Include="Game.Session.Ship.cpp" />
     <ClCompile Include="Game.Session.World.cpp" />
