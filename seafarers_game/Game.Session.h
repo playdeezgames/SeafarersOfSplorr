@@ -11,5 +11,6 @@ namespace game
 		std::optional<game::session::Character> GetPlayerCharacter() const;
 		std::optional<game::session::Ship> GetShip(int) const;
 		session::World GetWorld() const;
+		void ApplyTurnEffects() const;
 	};
 }

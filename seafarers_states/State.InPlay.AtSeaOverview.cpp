@@ -194,14 +194,22 @@ namespace state::in_play
 
 	static void OnMove()
 	{
-		AddPlayerCharacterMessage(game::Colors::GREEN, "Steady as she goes!");
-		game::ApplyTurnEffects();
+		GetGameSession()
+			.GetPlayerCharacter().value()
+			.GetMessages()
+			.Add(game::Colors::GREEN, "Steady as she goes!");
+		GetGameSession().ApplyTurnEffects();
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnDock()
 	{
-		if (!game::Islands::GetDockableIslands(GetPlayerCharacterShipId().value()).empty())
+		if (GetGameSession()
+			.GetPlayerCharacter().value()
+			.GetBerth().value()
+			.GetShip().value()
+			.GetDockableIslands()
+			.HasAny())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_DOCK_OR_CAREEN);
 		}
@@ -216,7 +224,9 @@ namespace state::in_play
 	{
 		if (IsFishingEnabled())
 		{
-			DoPlayerCharacterAction(game::characters::Action::START_FISHING);
+			GetGameSession()
+			.GetPlayerCharacter().value()
+			.DoAction(game::characters::Action::START_FISHING);
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			return;
 		}
@@ -226,7 +236,9 @@ namespace state::in_play
 
 	static void OnJob()
 	{
-		if (GetPlayerCharacterQuest())
+		if (GetGameSession()
+			.GetPlayerCharacter().value()
+			.GetQuest())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_CURRENT_JOB);
 			return;

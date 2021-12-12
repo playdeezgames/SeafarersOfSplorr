@@ -383,6 +383,9 @@
     <ClInclude Include="Game.Session.Fisheries.h">
       <Filter>Header Files\Session</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Character.Messages.h">
+      <Filter>Header Files\Session</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -572,6 +575,9 @@
       <Filter>Source Files\Session</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Fisheries.cpp">
+      <Filter>Source Files\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.Messages.cpp">
       <Filter>Source Files\Session</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,3 +1,4 @@
+#include "Game.Characters.h"
 #include "Game.Characters.Characteristics.h"
 #include "Game.Characters.Quests.h"
 #include "Game.Characters.Ships.h"
@@ -7,7 +8,6 @@ namespace game::session
 	Character::Character(int characterId)
 		: characterId(characterId)
 	{
-
 	}
 
 	std::list<game::session::character::Characteristic> Character::GetCharacteristics() const
@@ -49,4 +49,15 @@ namespace game::session
 		}
 		return std::nullopt;
 	}
+
+	void Character::DoAction(const game::characters::Action& action) const
+	{
+		game::Characters::DoAction(characterId, action);
+	}
+
+	character::Messages Character::GetMessages() const
+	{
+		return character::Messages(characterId);
+	}
+
 }

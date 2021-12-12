@@ -1,3 +1,4 @@
+#include "Game.h"
 #include "Game.Characters.h"
 #include "Game.Player.h"
 #include "Game.Session.h"
@@ -33,4 +34,8 @@ namespace game
 		return game::session::World();
 	}
 
+	void Session::ApplyTurnEffects() const
+	{
+		game::ApplyTurnEffects();
+	}
 }
