@@ -1,6 +1,4 @@
 #include <Common.Heading.h>
-#include <Game.Islands.h>
-#include <Game.Ship.h>
 #include "State.InPlay.ChangeHeading.h"
 #include "State.InPlay.Globals.h"
 namespace state::in_play
@@ -11,22 +9,34 @@ namespace state::in_play
 	{
 		Terminal::Reinitialize();
 
+		auto playerCharacter =
+			GetGameSession()
+			.GetPlayerCharacter().value();
+
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Change Heading:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Current: {:.2f}\xf8", GetPlayerCharacterShipHeading().value());
+		Terminal::WriteLine("Current: {:.2f}\xf8", 
+			playerCharacter
+			.GetBerth().value()
+			.GetShip().value()
+			.GetHeading().value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		if (!GetPlayerCharacterKnownIslands().empty())
+		if (playerCharacter
+			.GetKnownIslands().HasAny())
 		{
 			Terminal::WriteLine("1) Head for a known island");
 		}
-		auto viewable = GetPlayerCharacterViewableIslands();
-		if (viewable && !viewable.value().empty())
+		if (playerCharacter
+			.GetBerth().value()
+			.GetShip().value()
+			.GetNearbyIslands().HasAny())
 		{
 			Terminal::WriteLine("2) Head for a nearby island");
 		}
-		if (GetPlayerCharacterQuest())
+		if (playerCharacter
+			.GetQuest().has_value())
 		{
 			Terminal::WriteLine("3) Head for job destination");
 		}
@@ -44,7 +54,9 @@ namespace state::in_play
 
 	static void OnHeadForKnownIsland()
 	{
-		if (!GetPlayerCharacterKnownIslands().empty())
+		if (GetGameSession()
+			.GetPlayerCharacter().value()
+			.GetKnownIslands().HasAny())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_HEAD_FOR_KNOWN);
 		}
@@ -57,8 +69,11 @@ namespace state::in_play
 
 	static void OnHeadForNearbyIsland()
 	{
-		auto viewable = GetPlayerCharacterViewableIslands();
-		if (viewable && !viewable.value().empty())
+		if (GetGameSession()
+			.GetPlayerCharacter().value()
+			.GetBerth().value()
+			.GetShip().value()
+			.GetNearbyIslands().HasAny())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_HEAD_FOR_NEAR_BY);
 		}
@@ -71,15 +86,19 @@ namespace state::in_play
 
 	static void OnHeadForJobDestination()
 	{
-		auto quest = GetPlayerCharacterQuest();
+		auto playerCharacter = GetGameSession().GetPlayerCharacter().value();
+		auto quest = 
+			playerCharacter
+			.GetQuest();
 		if (quest)
 		{
-			auto delta = quest.value().destination - GetPlayerCharacterShipLocation().value();
-			auto island = game::Islands::Read(quest.value().toIslandId);
-			SetPlayerCharacterShipHeading(common::Heading::XYToDegrees(delta));
+			auto destination = quest.value().GetDestinationIsland().value().GetLocation().value();
+			auto location = playerCharacter.GetBerth().value().GetShip().value().GetLocation().value();
+			auto delta = destination - location;
+			playerCharacter.GetBerth().value().GetShip().value().SetHeading(common::Heading::XYToDegrees(delta));
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine();
-			Terminal::WriteLine("You head for {}.", island.value().name);
+			Terminal::WriteLine("You head for {}.", quest.value().GetDestinationIsland().value().GetDisplayName().value());
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		}
 		else

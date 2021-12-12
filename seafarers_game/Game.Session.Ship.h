@@ -12,6 +12,7 @@ namespace game::session
 		Ship(int);
 		std::list<ship::Berth> GetBerths() const;
 		std::optional<double> GetHeading() const;
+		void SetHeading(double) const;
 		std::optional<double> GetSpeed() const;
 		Islands GetDockableIslands() const;
 		Islands GetNearbyIslands() const;

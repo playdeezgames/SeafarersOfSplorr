@@ -67,4 +67,9 @@ namespace game::session
 		}
 		return game::session::Fisheries(fisheryIds);
 	}
+
+	void Ship::SetHeading(double heading) const
+	{
+		game::Ship::SetHeading(shipId, heading);
+	}
 }

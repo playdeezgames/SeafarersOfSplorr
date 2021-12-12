@@ -2,6 +2,7 @@
 #include "Game.Characters.Characteristics.h"
 #include "Game.Characters.Quests.h"
 #include "Game.Characters.Ships.h"
+#include "Game.Islands.h"
 #include "Game.Session.Character.h"
 namespace game::session
 {
@@ -60,4 +61,14 @@ namespace game::session
 		return character::Messages(characterId);
 	}
 
+	Islands Character::GetKnownIslands() const
+	{
+		auto islands = game::Islands::GetKnownIslands(characterId);
+		std::list<int> result;
+		for (auto island : islands)
+		{
+			result.push_back(island.id);
+		}
+		return Islands(result);
+	}
 }

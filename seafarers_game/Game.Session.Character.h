@@ -3,6 +3,7 @@
 #include "Game.Session.Character.Berth.h"
 #include "Game.Session.Character.Characteristic.h"
 #include "Game.Session.Character.HitPoints.h"
+#include "Game.Session.Islands.h"
 #include "Game.Session.Character.Items.h"
 #include "Game.Session.Character.Messages.h"
 #include "Game.Session.Character.Quest.h"
@@ -20,6 +21,7 @@ namespace game::session
 		std::optional<character::Quest> GetQuest() const;
 		void DoAction(const game::characters::Action&) const;
 		character::Messages GetMessages() const;
+		Islands GetKnownIslands() const;
 	private:
 		int characterId;
 	};
