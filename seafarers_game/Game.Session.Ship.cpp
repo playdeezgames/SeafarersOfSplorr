@@ -1,3 +1,4 @@
+#include "Game.Fisheries.h"
 #include "Game.Islands.h"
 #include "Game.Ship.h"
 #include "Game.Ship.Crew.h"
@@ -56,4 +57,14 @@ namespace game::session
 		return game::Ship::GetLocation(shipId);
 	}
 
+	game::session::Fisheries Ship::GetFisheries() const
+	{
+		auto fisheries = game::Fisheries::Available(shipId);
+		std::list<int> fisheryIds;
+		for (auto fishery : fisheries)
+		{
+			fisheryIds.push_back(fishery.fisheryId);
+		}
+		return game::session::Fisheries(fisheryIds);
+	}
 }
