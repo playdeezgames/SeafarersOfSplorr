@@ -27,4 +27,14 @@ namespace game::session
 		}
 		return std::nullopt;
 	}
+
+	std::optional<common::XY<double>> Island::GetLocation() const
+	{
+		auto island = game::Islands::Read(islandId);
+		if (island)
+		{
+			return island.value().absoluteLocation;
+		}
+		return std::nullopt;
+	}
 }

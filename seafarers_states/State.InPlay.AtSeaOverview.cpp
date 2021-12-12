@@ -86,10 +86,23 @@ namespace state::in_play
 
 	static bool RefreshJobDestination()
 	{
-		auto quest = GetPlayerCharacterQuest();
+		auto quest =
+			GetGameSession()
+			.GetPlayerCharacter().value()
+			.GetQuest();
 		if (quest)
 		{
-			auto delta = quest.value().destination - GetPlayerCharacterShipLocation().value();
+			auto destination = 
+				quest.value().
+				GetDestinationIsland().value().
+				GetLocation().value();
+			auto location = 
+				GetGameSession()
+				.GetPlayerCharacter().value()
+				.GetBerth().value()
+				.GetShip().value()
+				.GetLocation().value();
+			auto delta = destination - location;
 			Terminal::WriteLine(
 				"Delivery distance: {:.1f}", 
 				delta.GetMagnitude());			

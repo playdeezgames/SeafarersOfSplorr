@@ -3,6 +3,7 @@
 #include "Game.Session.Character.Characteristic.h"
 #include "Game.Session.Character.HitPoints.h"
 #include "Game.Session.Character.Items.h"
+#include "Game.Session.Character.Quest.h"
 #include <list>
 #include <optional>
 namespace game::session
@@ -14,6 +15,7 @@ namespace game::session
 		character::HitPoints GetHitpoints() const;
 		std::optional<character::Berth> GetBerth() const;
 		character::Items GetItems() const;
+		std::optional<character::Quest> GetQuest() const;
 	private:
 		int characterId;
 	};

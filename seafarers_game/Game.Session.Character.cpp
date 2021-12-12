@@ -1,6 +1,7 @@
 #include "Game.Characters.Characteristics.h"
-#include "Game.Session.Character.h"
+#include "Game.Characters.Quests.h"
 #include "Game.Characters.Ships.h"
+#include "Game.Session.Character.h"
 namespace game::session
 {
 	Character::Character(int characterId)
@@ -39,4 +40,13 @@ namespace game::session
 		return character::Items(characterId);
 	}
 
+	std::optional<character::Quest> Character::GetQuest() const
+	{
+		auto quest = game::characters::Quests::Read(characterId);
+		if (quest)
+		{
+			return game::session::character::Quest(characterId);
+		}
+		return std::nullopt;
+	}
 }

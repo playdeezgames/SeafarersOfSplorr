@@ -50,4 +50,10 @@ namespace game::session
 	{
 		return ToIslands(game::Islands::GetViewableIslands(shipId));
 	}
+
+	std::optional<common::XY<double>> Ship::GetLocation() const
+	{
+		return game::Ship::GetLocation(shipId);
+	}
+
 }

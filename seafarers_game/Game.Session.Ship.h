@@ -1,4 +1,5 @@
 #pragma once
+#include <Common.XY.h>
 #include "Game.Session.Islands.h"
 #include "Game.Session.Ship.Berth.h"
 #include <list>
@@ -13,6 +14,7 @@ namespace game::session
 		std::optional<double> GetSpeed() const;
 		Islands GetDockableIslands() const;
 		Islands GetNearbyIslands() const;
+		std::optional<common::XY<double>> GetLocation() const;
 	private:
 		int shipId;
 	};
