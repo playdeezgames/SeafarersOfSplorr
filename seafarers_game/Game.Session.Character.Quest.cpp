@@ -17,4 +17,9 @@ namespace game::session::character
 		}
 		return std::nullopt;
 	}
+
+	void Quest::Abandon() const
+	{
+		game::characters::Quests::Abandon(characterId);
+	}
 }

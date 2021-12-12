@@ -7,6 +7,7 @@ namespace game::session::character
 	{
 		Quest(int);
 		std::optional<Island> GetDestinationIsland() const;
+		void Abandon() const;
 	private:
 		int characterId;
 	};

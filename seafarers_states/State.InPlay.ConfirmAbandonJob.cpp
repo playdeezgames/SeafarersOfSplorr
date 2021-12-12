@@ -1,4 +1,3 @@
-#include <Game.Characters.Quests.h>
 #include "State.InPlay.ConfirmAbandonJob.h"
 #include "State.InPlay.Globals.h"
 namespace state::in_play
@@ -8,7 +7,7 @@ namespace state::in_play
 	static void AbandonJob()
 	{
 		Terminal::ErrorMessage("You abandon yer job, and yer reputation suffers!");
-		game::characters::Quests::Abandon(GetPlayerCharacterId());
+		GetGameSession().GetPlayerCharacter().value().GetQuest().value().Abandon();
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
