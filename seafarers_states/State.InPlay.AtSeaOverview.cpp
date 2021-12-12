@@ -1,12 +1,4 @@
 #include <Common.Heading.h>
-#include <Game.h>
-#include <Game.Characters.Items.h>
-#include <Game.Characters.Statistics.h>
-#include <Game.Fisheries.h>
-#include <Game.Islands.h>
-#include <Game.Player.h>
-#include <Game.Ship.h>
-#include <Game.World.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.AtSeaOverview.h"
 namespace state::in_play
