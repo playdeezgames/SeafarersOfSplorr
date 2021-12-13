@@ -16,14 +16,6 @@ namespace game::characters
 			static std::optional<double> Change(int, double);
 			static std::optional<bool> IsDead(int);
 		};
-		struct Satiety
-		{
-			static std::optional<double> Current(int);
-			static std::optional<double> Change(int, double);
-			static std::optional<bool> IsStarving(int);
-			static void Eat(int, double);
-			static std::optional<double> NeedsToEat(int, double);
-		};
 		struct Reputation
 		{
 			static std::optional<double> Current(int);

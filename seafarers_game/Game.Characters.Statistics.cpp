@@ -41,7 +41,6 @@ namespace game::characters
 			{
 				{game::characters::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
 				{game::characters::Statistic::HEALTH, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
-				{game::characters::Statistic::SATIETY, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
 				{game::characters::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
 				{game::characters::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
@@ -51,7 +50,6 @@ namespace game::characters
 			{
 				{game::characters::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
 				{game::characters::Statistic::HEALTH, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
-				{game::characters::Statistic::SATIETY, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
 				{game::characters::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
 				{game::characters::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
@@ -61,7 +59,6 @@ namespace game::characters
 			{
 				{game::characters::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
 				{game::characters::Statistic::HEALTH, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
-				{game::characters::Statistic::SATIETY, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
 				{game::characters::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
 				{game::characters::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
@@ -71,7 +68,6 @@ namespace game::characters
 			{
 				{game::characters::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
 				{game::characters::Statistic::HEALTH, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
-				{game::characters::Statistic::SATIETY, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
 				{game::characters::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
 				{game::characters::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
@@ -227,53 +223,6 @@ namespace game::characters
 			return IsMinimal(characterId, Statistic::HEALTH);
 		}
 
-		std::optional<double> Satiety::Current(int characterId)
-		{
-			return GetCurrent(characterId, game::characters::Statistic::SATIETY);
-		}
-
-		std::optional<double> Satiety::Change(int characterId, double delta)
-		{
-			return ChangeCurrent(characterId, game::characters::Statistic::SATIETY, delta);
-		}
-
-		std::optional<bool> Satiety::IsStarving(int characterId)
-		{
-			return IsMinimal(characterId, game::characters::Statistic::SATIETY);
-		}
-
-		void Satiety::Eat(int characterId, double amount)
-		{
-			auto healthDown = GetDownAmount(characterId, Statistic::HEALTH);
-			if (healthDown)
-			{
-				ChangeCurrent(characterId, Statistic::HEALTH, amount);
-				amount -= healthDown.value();
-
-			}
-			if (amount > 0)
-			{
-				auto satietyDown = GetDownAmount(characterId, Statistic::SATIETY);
-				if (satietyDown)
-				{
-					ChangeCurrent(characterId, Statistic::SATIETY, amount);
-				}
-			}
-		}
-
-		std::optional<double> Satiety::NeedsToEat(int characterId, double amount)
-		{
-			auto downHealth = GetDownAmount(characterId, game::characters::Statistic::HEALTH);
-			if (downHealth)
-			{
-				auto downSatiety = GetDownAmount(characterId, game::characters::Statistic::SATIETY);
-				if (downSatiety)
-				{
-					return (downHealth.value() + downSatiety.value()) >= amount;
-				}
-			}
-			return std::nullopt;
-		}
 		std::optional<double> Reputation::Current(int characterId)
 		{
 			return GetCurrent(characterId, game::characters::Statistic::REPUTATION);

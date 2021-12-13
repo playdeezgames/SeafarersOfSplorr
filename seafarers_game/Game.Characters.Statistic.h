@@ -5,7 +5,6 @@ namespace game::characters
 	{
 		TURNS_REMAINING,
 		HEALTH,
-		SATIETY,
 		MONEY,
 		REPUTATION,
 		BRAWLING,
