@@ -1,4 +1,4 @@
-#include <Game.Ship.h>
+#include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.ShipStatus.h"
 namespace state::in_play
@@ -9,14 +9,16 @@ namespace state::in_play
 	{
 		Terminal::Reinitialize();
 
+		auto ship = game::Session().GetPlayerCharacter().GetBerth().GetShip();
+
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Ship status:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Name: {}", game::Ship::GetName(GetPlayerCharacterShipId().value()).value());
+		Terminal::WriteLine("Name: {}", ship.GetName());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine("1) Change Heading(Current: {:.2f}\xf8)", GetPlayerCharacterShipHeading().value());
-		Terminal::WriteLine("2) Change Speed(Current: {:.1f})", GetPlayerCharacterShipSpeed().value());
+		Terminal::WriteLine("1) Change Heading(Current: {:.2f}\xf8)", ship.GetHeading());
+		Terminal::WriteLine("2) Change Speed(Current: {:.1f})", ship.GetSpeed());
 		Terminal::WriteLine("3) Cargo");
 		Terminal::WriteLine("4) Rename ship");
 		Terminal::WriteLine("0) Never mind");
@@ -47,7 +49,7 @@ namespace state::in_play
 			CURRENT_STATE, 
 			Terminal::DoIntegerInput(
 				menuActions, 
-				"Please enter a number between 1 and 4.", 
+				Terminal::INVALID_INPUT, 
 				Refresh));
 	}
 }

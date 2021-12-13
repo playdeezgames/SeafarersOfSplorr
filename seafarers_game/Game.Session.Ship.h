@@ -22,6 +22,7 @@ namespace game::session
 		Fisheries GetFisheries() const;
 		ship::Fouling GetFouling(const game::Side&) const;
 		void SetName(const std::string&) const;
+		std::string GetName() const;
 	private:
 		int shipId;
 	};

@@ -97,4 +97,19 @@ namespace game::session
 	{
 		return ship::Fouling(shipId, side);
 	}
+
+	static std::optional<std::string> TryGetName(int shipId)
+	{
+		return game::Ship::GetName(shipId);
+	}
+
+	std::string Ship::GetName() const
+	{
+		return TryGetName(shipId).value();
+	}
+
+	void Ship::SetName(const std::string& name) const
+	{
+		game::Ship::SetName(shipId, name);
+	}
 }
