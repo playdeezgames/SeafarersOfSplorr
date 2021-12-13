@@ -41,7 +41,10 @@
     <ClInclude Include="Game.Session.Character.Items.h" />
     <ClInclude Include="Game.Session.Character.Messages.h" />
     <ClInclude Include="Game.Session.Character.Quest.h" />
+    <ClInclude Include="Game.Session.Fishboard.h" />
+    <ClInclude Include="Game.Session.FishboardCell.h" />
     <ClInclude Include="Game.Session.Fisheries.h" />
+    <ClInclude Include="Game.Session.FishGame.h" />
     <ClInclude Include="Game.Session.h" />
     <ClInclude Include="Game.Session.Island.h" />
     <ClInclude Include="Game.Session.Islands.h" />
@@ -141,7 +144,10 @@
     <ClCompile Include="Game.Session.Character.Messages.cpp" />
     <ClCompile Include="Game.Session.Character.Quest.cpp" />
     <ClCompile Include="Game.Session.cpp" />
+    <ClCompile Include="Game.Session.Fishboard.cpp" />
+    <ClCompile Include="Game.Session.FishboardCell.cpp" />
     <ClCompile Include="Game.Session.Fisheries.cpp" />
+    <ClCompile Include="Game.Session.FishGame.cpp" />
     <ClCompile Include="Game.Session.Island.cpp" />
     <ClCompile Include="Game.Session.Islands.cpp" />
     <ClCompile Include="Game.Session.Ship.Berth.cpp" />

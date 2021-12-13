@@ -389,6 +389,15 @@
     <ClInclude Include="Game.Session.Ship.Fouling.h">
       <Filter>Header Files\Session</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Fishboard.h">
+      <Filter>Header Files\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.FishGame.h">
+      <Filter>Header Files\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.FishboardCell.h">
+      <Filter>Header Files\Session</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -584,6 +593,15 @@
       <Filter>Source Files\Session</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Ship.Fouling.cpp">
+      <Filter>Source Files\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Fishboard.cpp">
+      <Filter>Source Files\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.FishGame.cpp">
+      <Filter>Source Files\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.FishboardCell.cpp">
       <Filter>Source Files\Session</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,8 +1,5 @@
 #include <Common.Data.h>
 #include <Common.Utility.Dispatcher.h>
-#include <Game.Characters.Items.h>
-#include <Game.Fishboard.h>
-#include <Game.FishGame.h>
 #include "State.InPlay.Fishing.h"
 #include "State.InPlay.Globals.h"
 namespace state::in_play
@@ -41,13 +38,14 @@ namespace state::in_play
 
 	static void RefreshCellMiddle(int row, int column)
 	{
-		auto cell = game::Fishboard::Read(GetPlayerCharacterId(), { column, row });
+		auto fishGame = GetGameSession().GetPlayerCharacter().value().GetFishGame().value();
+		auto cell = fishGame.GetBoard().value().GetCell(column, row).value();
 		if (
-			cell.revealed || 
-			game::FishGame::HasGivenUp(GetPlayerCharacterId()) || 
-			game::FishGame::GetState(GetPlayerCharacterId()) == game::FishGameState::DONE)
+			cell.IsRevealed().value() || 
+			fishGame.HasGivenUp().value() || 
+			fishGame.GetState().value() == game::FishGameState::DONE)
 		{
-			Terminal::Write(CELL_MIDDLE, cellContents.find(cell.fish)->second);
+			Terminal::Write(CELL_MIDDLE, cellContents.find(cell.GetFish().value())->second);
 		}
 		else
 		{
@@ -104,24 +102,28 @@ namespace state::in_play
 
 	static void Refresh()
 	{
+		auto fishGame = GetGameSession().GetPlayerCharacter().value().GetFishGame().value();
+
 		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Fishing:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Guesses Left: {} Completion: {:.0f}%", game::FishGame::ReadGuesses(GetPlayerCharacterId()), game::Fishboard::ReadProgressPercentage(GetPlayerCharacterId()));
+		Terminal::WriteLine("Guesses Left: {} Completion: {:.0f}%", 
+			fishGame.GetGuesses().value(), 
+			fishGame.GetBoard().value().GetProgressPercentage().value());
 		RefreshBoard();
 
+		auto items = GetGameSession().GetPlayerCharacter().value().GetItems();
+
 		Terminal::SetForeground(game::Colors::YELLOW);
-		if (game::FishGame::GetState(GetPlayerCharacterId()) ==
+		if (fishGame.GetState().value() ==
 			game::FishGameState::OUT_OF_GUESSES && 
-			game::characters::Items::Has(
-				GetPlayerCharacterId(), 
-				game::Item::BAIT))
+			items.Has(game::Item::BAIT))
 		{
 			Terminal::WriteLine("1) Use more bait");
 		}
-		Terminal::WriteLine("0) {}", goBackMenuItemTexts.find(game::FishGame::GetState(GetPlayerCharacterId()))->second);
+		Terminal::WriteLine("0) {}", goBackMenuItemTexts.find(fishGame.GetState().value())->second);
 
 		Terminal::ShowPrompt();
 	}
@@ -133,13 +135,13 @@ namespace state::in_play
 
 	static void GiveUp()
 	{
-		game::FishGame::GiveUp(GetPlayerCharacterId());
+		GetGameSession().GetPlayerCharacter().value().GetFishGame().value().GiveUp();
 		Refresh();
 	}
 
 	static void LeaveFishing()
 	{
-		DoPlayerCharacterAction(game::characters::Action::STOP_FISHING);
+		GetGameSession().GetPlayerCharacter().value().DoAction(game::characters::Action::STOP_FISHING);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -153,7 +155,8 @@ namespace state::in_play
 
 	static void OnLeave()
 	{
-		common::utility::Dispatcher::Dispatch(leaveHandlers, game::FishGame::GetState(GetPlayerCharacterId()));
+		common::utility::Dispatcher::Dispatch(leaveHandlers, 
+			GetGameSession().GetPlayerCharacter().value().GetFishGame().value().GetState().value());
 	}
 
 	static const std::map<std::string, std::function<void()>> menuActions =
@@ -168,10 +171,10 @@ namespace state::in_play
 		{
 			int column = index % COLUMNS;
 			int row = index / COLUMNS;
-			auto cell = game::Fishboard::Read(GetPlayerCharacterId(), { column, row });
-			if (!cell.revealed)
+			auto cell = GetGameSession().GetPlayerCharacter().value().GetFishGame().value().GetBoard().value().GetCell(column, row).value();
+			if (!cell.IsRevealed().value())
 			{
-				game::Fishboard::Reveal(GetPlayerCharacterId(), {column, row});
+				cell.Reveal();
 				Refresh();
 				return true;
 			}
@@ -181,9 +184,10 @@ namespace state::in_play
 
 	static bool OutOfGuessesInputHandler(const std::string& line)
 	{
-		if (line == "1" && game::characters::Items::Has(GetPlayerCharacterId(), game::Item::BAIT))
+		auto playerCharacter = GetGameSession().GetPlayerCharacter().value();
+		if (line == "1" && playerCharacter.GetItems().Has(game::Item::BAIT))
 		{
-			game::FishGame::AddBait(GetPlayerCharacterId());
+			playerCharacter.GetFishGame().value().AddBait();
 			Refresh();
 			return true;
 		}
@@ -202,7 +206,7 @@ namespace state::in_play
 	{
 		if (!common::utility::Dispatcher::DispatchParameter(
 			otherInputHandlers, 
-			game::FishGame::GetState(GetPlayerCharacterId()),
+			GetGameSession().GetPlayerCharacter().value().GetFishGame().value().GetState().value(),
 			line, 
 			false))
 		{

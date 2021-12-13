@@ -71,4 +71,9 @@ namespace game::session
 		}
 		return Islands(result);
 	}
+
+	std::optional<FishGame> Character::GetFishGame() const
+	{
+		return std::nullopt;
+	}
 }
