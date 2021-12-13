@@ -21,6 +21,7 @@ namespace game::session
 		common::XY<double> GetLocation() const;
 		Fisheries GetFisheries() const;
 		ship::Fouling GetFouling(const game::Side&) const;
+		void SetName(const std::string&) const;
 	private:
 		int shipId;
 	};

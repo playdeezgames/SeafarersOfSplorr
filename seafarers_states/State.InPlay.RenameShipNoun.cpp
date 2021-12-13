@@ -1,5 +1,5 @@
 #include <Common.Data.h>
-#include <Game.Ship.h>
+#include <Game.Session.h>
 #include <Game.ShipNames.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.RenameShipAdjective.h"
@@ -58,8 +58,8 @@ namespace state::in_play
 			if (nouns.contains(index.value()))
 			{
 				auto noun = nouns[index.value()];
-				auto shipId = GetPlayerCharacterShipId().value();
-				game::Ship::SetName(shipId, std::format("{} {}", GetRenameShipAdjective(), noun));
+
+				game::Session().GetPlayerCharacter().GetBerth().GetShip().SetName(std::format("{} {}", GetRenameShipAdjective(), noun));
 				application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 				return;
 			}
