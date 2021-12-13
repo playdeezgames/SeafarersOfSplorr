@@ -3,6 +3,7 @@
 #include "Game.Session.Fisheries.h"
 #include "Game.Session.Islands.h"
 #include "Game.Session.Ship.Berth.h"
+#include "Game.Session.Ship.Fouling.h"
 #include <list>
 #include <optional>
 namespace game::session
@@ -19,6 +20,7 @@ namespace game::session
 		Islands GetNearbyIslands() const;
 		std::optional<common::XY<double>> GetLocation() const;
 		Fisheries GetFisheries() const;
+		ship::Fouling GetFouling(const game::Side&) const;
 	private:
 		int shipId;
 	};

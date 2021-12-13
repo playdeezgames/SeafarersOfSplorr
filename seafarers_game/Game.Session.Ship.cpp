@@ -77,5 +77,9 @@ namespace game::session
 	{
 		game::Ship::SetSpeed(shipId, speed);
 	}
-
+	
+	ship::Fouling Ship::GetFouling(const game::Side& side) const
+	{
+		return ship::Fouling(shipId, side);
+	}
 }

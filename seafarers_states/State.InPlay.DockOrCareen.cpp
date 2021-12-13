@@ -1,4 +1,3 @@
-#include <Game.Ship.Statistics.h>
 #include "State.InPlay.DockOrCareen.h"
 #include "State.InPlay.Globals.h"
 namespace state::in_play
@@ -9,17 +8,19 @@ namespace state::in_play
 	{
 		Terminal::Reinitialize();
 
+		auto ship = 
+			GetGameSession()
+			.GetPlayerCharacter().value()
+			.GetBerth().value()
+			.GetShip().value();
+
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Dock or Careen:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Port fouling {:.0f}%", 
-			game::ship::Statistics::GetFoulingPercentage(
-				GetPlayerCharacterShipId().value(), 
-				game::Side::PORT));
+		Terminal::WriteLine("Port fouling {:.0f}%",
+			ship.GetFouling(game::Side::PORT).GetPercentage());
 		Terminal::WriteLine("Starboard fouling {:.0f}%", 
-			game::ship::Statistics::GetFoulingPercentage(
-				GetPlayerCharacterShipId().value(), 
-				game::Side::STARBOARD));
+			ship.GetFouling(game::Side::STARBOARD).GetPercentage());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Dock");
@@ -36,40 +37,53 @@ namespace state::in_play
 		Refresh();
 	}
 
-	static void CompleteQuest(const game::Quest& quest)
+	static void CompleteQuest(const std::string& message)
 	{
-		AddPlayerCharacterMessage(game::Colors::LIGHT_CYAN, "Delivery Complete!");
-		AddPlayerCharacterMessage(
-			game::Colors::GRAY, 
-			"{} the {} is {} when given the {}.", 
-			quest.personName, 
-			quest.professionName,
-			quest.receiptEmotion,
-			quest.itemName);
-		AddPlayerCharacterMessage(game::Colors::GREEN,"Yer reputation increases!");
+		auto playerCharacter =
+			GetGameSession()
+			.GetPlayerCharacter().value();
+		playerCharacter.GetMessages().Add(game::Colors::LIGHT_CYAN, "Delivery Complete!");
+		playerCharacter.GetMessages().Add(game::Colors::GRAY, message);
+		playerCharacter.GetMessages().Add(game::Colors::GREEN,"Yer reputation increases!");//<-
+	}
+
+	static std::optional<std::string> GetQuestCompletionMesssage()
+	{
+		auto quest = GetGameSession().GetPlayerCharacter().value().GetQuest();
+		if (quest)
+		{
+			return quest.value().GetCompletionMessage();
+		}
+		return std::nullopt;
 	}
 
 	static void OnDock()
 	{
-		auto quest = GetPlayerCharacterQuest();//after the call to Dock(), this will be nullopt if completed!
+		auto message = GetQuestCompletionMesssage();
 		if (Dock() == game::ship::DockResult::COMPLETED_QUEST)
 		{
-			CompleteQuest(quest.value());
+			CompleteQuest(message.value());
 		}
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnCareenToPort()
 	{
-		AddPlayerCharacterMessage(game::Colors::GREEN,"You careen the vessel on its port side.");
-		DoPlayerCharacterAction(game::characters::Action::CAREEN_TO_PORT);
+		auto playerCharacter =
+			GetGameSession()
+				.GetPlayerCharacter().value();
+		playerCharacter.GetMessages().Add(game::Colors::GREEN,"You careen the vessel on its port side.");
+		playerCharacter.DoAction(game::characters::Action::CAREEN_TO_PORT);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnCareenToStarboard()
 	{
-		AddPlayerCharacterMessage(game::Colors::GREEN,"You careen the vessel on its starboard side.");
-		DoPlayerCharacterAction(game::characters::Action::CAREEN_TO_STARBOARD);
+		auto playerCharacter =
+			GetGameSession()
+			.GetPlayerCharacter().value();
+		playerCharacter.GetMessages().Add(game::Colors::GREEN, "You careen the vessel on its starboard side.");
+		playerCharacter.DoAction(game::characters::Action::CAREEN_TO_STARBOARD);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -89,7 +103,7 @@ namespace state::in_play
 			CURRENT_STATE,
 			Terminal::DoIntegerInput(
 				menuActions,
-				"Please enter a number between 1 and 4.",
+				Terminal::INVALID_INPUT,
 				Refresh));
 	}
 }
