@@ -42,11 +42,11 @@ namespace state::in_play
 		auto fishGame = game::Session().GetPlayerCharacter().GetFishGame();
 		auto cell = fishGame.GetBoard().value().GetCell(column, row);
 		if (
-			cell.IsRevealed().value() || 
+			cell.IsRevealed() || 
 			fishGame.HasGivenUp().value() || 
 			fishGame.GetState().value() == game::FishGameState::DONE)
 		{
-			Terminal::Write(CELL_MIDDLE, cellContents.find(cell.GetFish().value())->second);
+			Terminal::Write(CELL_MIDDLE, cellContents.find(cell.GetFish())->second);
 		}
 		else
 		{
@@ -173,7 +173,7 @@ namespace state::in_play
 			int column = index % COLUMNS;
 			int row = index / COLUMNS;
 			auto cell = game::Session().GetPlayerCharacter().GetFishGame().GetBoard().value().GetCell(column, row);
-			if (!cell.IsRevealed().value())
+			if (!cell.IsRevealed())
 			{
 				cell.Reveal();
 				Refresh();
