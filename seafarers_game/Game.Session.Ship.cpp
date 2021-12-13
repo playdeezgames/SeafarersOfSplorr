@@ -22,14 +22,24 @@ namespace game::session
 		return result;
 	}
 
-	std::optional<double> Ship::GetHeading() const
+	static std::optional<double> TryGetHeading(int shipId)
 	{
 		return game::Ship::GetHeading(shipId);
 	}
 
-	std::optional<double> Ship::GetSpeed() const
+	double Ship::GetHeading() const
+	{
+		return TryGetHeading(shipId).value();
+	}
+
+	static std::optional<double> TryGetSpeed(int shipId)
 	{
 		return game::Ship::GetSpeed(shipId);
+	}
+
+	double Ship::GetSpeed() const
+	{
+		return TryGetSpeed(shipId).value();
 	}
 
 	static Islands ToIslands(const std::list<game::Island> islands)
@@ -52,9 +62,14 @@ namespace game::session
 		return ToIslands(game::Islands::GetViewableIslands(shipId));
 	}
 
-	std::optional<common::XY<double>> Ship::GetLocation() const
+	static std::optional<common::XY<double>> TryGetLocation(int shipId)
 	{
 		return game::Ship::GetLocation(shipId);
+	}
+
+	common::XY<double> Ship::GetLocation() const
+	{
+		return TryGetLocation(shipId).value();
 	}
 
 	game::session::Fisheries Ship::GetFisheries() const

@@ -21,7 +21,7 @@ namespace state::in_play
 			playerCharacter
 			.GetBerth()
 			.GetShip()
-			.GetHeading().value());
+			.GetHeading());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		if (playerCharacter
@@ -94,7 +94,7 @@ namespace state::in_play
 		if (quest)
 		{
 			auto destination = quest.value().GetDestinationIsland().GetLocation();
-			auto location = playerCharacter.GetBerth().GetShip().GetLocation().value();
+			auto location = playerCharacter.GetBerth().GetShip().GetLocation();
 			auto delta = destination - location;
 			playerCharacter.GetBerth().GetShip().SetHeading(common::Heading::XYToDegrees(delta));
 			Terminal::SetForeground(game::Colors::GREEN);

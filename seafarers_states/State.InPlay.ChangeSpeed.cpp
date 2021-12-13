@@ -17,7 +17,7 @@ namespace state::in_play
 			.GetPlayerCharacter()
 			.GetBerth()
 			.GetShip()
-			.GetSpeed().value());
+			.GetSpeed());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) All stop");

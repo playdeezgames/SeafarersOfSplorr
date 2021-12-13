@@ -12,13 +12,13 @@ namespace game::session
 	{
 		Ship(int);
 		std::list<ship::Berth> GetBerths() const;
-		std::optional<double> GetHeading() const;
+		double GetHeading() const;
 		void SetHeading(double) const;
-		std::optional<double> GetSpeed() const;
+		double GetSpeed() const;
 		void SetSpeed(double) const;
 		Islands GetDockableIslands() const;
 		Islands GetNearbyIslands() const;
-		std::optional<common::XY<double>> GetLocation() const;
+		common::XY<double> GetLocation() const;
 		Fisheries GetFisheries() const;
 		ship::Fouling GetFouling(const game::Side&) const;
 	private:

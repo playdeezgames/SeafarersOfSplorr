@@ -94,7 +94,7 @@ namespace state::in_play
 				.GetPlayerCharacter()
 				.GetBerth()
 				.GetShip()
-				.GetLocation().value();
+				.GetLocation();
 			auto delta = destination - location;
 			Terminal::WriteLine(
 				"Delivery distance: {:.1f}", 
@@ -138,14 +138,14 @@ namespace state::in_play
 			.GetShip();
 		Terminal::WriteLine(
 			"Heading: {:.2f}\xf8, Speed: {:.1f}",
-			ship.GetHeading().value(),
-			ship.GetSpeed().value());
+			ship.GetHeading(),
+			ship.GetSpeed());
 		//wind
 		auto wind = game::Session().GetWorld().GetWind();
 		Terminal::WriteLine(
 			"Wind: {:.2f}\xf8 (x{:.1f})",
 			wind.GetHeading(),
-			wind.GetMultiplier(ship.GetHeading().value()));
+			wind.GetMultiplier(ship.GetHeading()));
 		//fisheries
 		RefreshFisheries();
 		//dockable islands
