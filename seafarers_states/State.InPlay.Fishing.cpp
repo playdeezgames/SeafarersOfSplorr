@@ -40,7 +40,7 @@ namespace state::in_play
 	static void RefreshCellMiddle(int row, int column)
 	{
 		auto fishGame = game::Session().GetPlayerCharacter().GetFishGame();
-		auto cell = fishGame.GetBoard().value().GetCell(column, row).value();
+		auto cell = fishGame.GetBoard().value().GetCell(column, row);
 		if (
 			cell.IsRevealed().value() || 
 			fishGame.HasGivenUp().value() || 
@@ -112,7 +112,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Guesses Left: {} Completion: {:.0f}%", 
 			fishGame.GetGuesses().value(), 
-			fishGame.GetBoard().value().GetProgressPercentage().value());
+			fishGame.GetBoard().value().GetProgressPercentage());
 		RefreshBoard();
 
 		auto items = game::Session().GetPlayerCharacter().GetItems();
@@ -172,7 +172,7 @@ namespace state::in_play
 		{
 			int column = index % COLUMNS;
 			int row = index / COLUMNS;
-			auto cell = game::Session().GetPlayerCharacter().GetFishGame().GetBoard().value().GetCell(column, row).value();
+			auto cell = game::Session().GetPlayerCharacter().GetFishGame().GetBoard().value().GetCell(column, row);
 			if (!cell.IsRevealed().value())
 			{
 				cell.Reveal();
