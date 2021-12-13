@@ -30,7 +30,7 @@ namespace state::in_play
 			Terminal::WriteLine("{}: {}", characteristic.GetName(), characteristic.GetValue());
 		}
 
-		Terminal::WriteLine("HP: {}/{}", hitPoints.GetCurrent().value(), hitPoints.GetMaximum().value());
+		Terminal::WriteLine("HP: {}/{}", hitPoints.GetCurrent(), hitPoints.GetMaximum());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("0) Done");

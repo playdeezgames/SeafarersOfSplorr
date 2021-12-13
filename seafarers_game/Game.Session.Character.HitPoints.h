@@ -5,8 +5,8 @@ namespace game::session::character
 	struct HitPoints
 	{
 		HitPoints(int);
-		std::optional<int> GetMaximum() const;
-		std::optional<int> GetCurrent() const;
+		int GetMaximum() const;
+		int GetCurrent() const;
 	private:
 		int characterId;
 	};

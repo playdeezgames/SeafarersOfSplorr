@@ -9,19 +9,29 @@ namespace game::session::character
 		
 	}
 
-	std::optional<int> HitPoints::GetMaximum() const
+	static std::optional<int> TryGetMaximum(int characterId)
 	{
 		return game::characters::Characteristics::GetMaximumHitPoints(characterId);
 	}
 
-	std::optional<int> HitPoints::GetCurrent() const
+	static std::optional<int> TryGetCurrent(int characterId)
 	{
-		auto maximum = GetMaximum();
+		auto maximum = TryGetMaximum(characterId);
 		if (maximum)
 		{
 			auto value = maximum.value() - game::characters::Counters::Read(characterId, game::characters::Counter::WOUNDS).value_or(0);
 			return value < 0 ? 0 : value;
 		}
 		return std::nullopt;
+	}
+
+	int HitPoints::GetMaximum() const
+	{
+		return TryGetMaximum(characterId).value();
+	}
+
+	int HitPoints::GetCurrent() const
+	{
+		return TryGetCurrent(characterId).value();
 	}
 }
