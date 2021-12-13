@@ -1,3 +1,4 @@
+#include <Game.Session.h>
 #include "State.InPlay.ChangeSpeed.h"
 #include "State.InPlay.Globals.h"
 namespace state::in_play
@@ -12,7 +13,7 @@ namespace state::in_play
 		Terminal::WriteLine("Change Speed:");
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Current Speed: {:.2f}", 
-			GetGameSession()
+			game::Session()
 			.GetPlayerCharacter()
 			.GetBerth().value()
 			.GetShip().value()
@@ -39,7 +40,7 @@ namespace state::in_play
 	{
 		return [speed]() 
 		{
-			GetGameSession()
+			game::Session()
 				.GetPlayerCharacter()
 				.GetBerth().value()
 				.GetShip().value()

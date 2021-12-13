@@ -1,4 +1,5 @@
 #include <Common.Heading.h>
+#include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.AtSeaOverview.h"
 namespace state::in_play
@@ -7,7 +8,7 @@ namespace state::in_play
 
 	static bool IsFishingEnabled()
 	{
-		auto items = GetGameSession().GetPlayerCharacter().GetItems();
+		auto items = game::Session().GetPlayerCharacter().GetItems();
 		return
 			items.Has(game::Item::FISHING_POLE) &&
 			items.Has(game::Item::BAIT);
@@ -16,7 +17,7 @@ namespace state::in_play
 	static bool RefreshDockableIslands()
 	{
 		auto island =
-			GetGameSession()
+			game::Session()
 			.GetPlayerCharacter()
 			.GetBerth().value()
 			.GetShip().value()
@@ -43,7 +44,7 @@ namespace state::in_play
 	static void RefreshNearbyIslands()
 	{
 		auto islands =
-			GetGameSession()
+			game::Session()
 			.GetPlayerCharacter()
 			.GetBerth().value()
 			.GetShip().value()
@@ -79,7 +80,7 @@ namespace state::in_play
 	static bool RefreshJobDestination()
 	{
 		auto quest =
-			GetGameSession()
+			game::Session()
 			.GetPlayerCharacter()
 			.GetQuest();
 		if (quest)
@@ -89,7 +90,7 @@ namespace state::in_play
 				GetDestinationIsland().value().
 				GetLocation().value();
 			auto location = 
-				GetGameSession()
+				game::Session()
 				.GetPlayerCharacter()
 				.GetBerth().value()
 				.GetShip().value()
@@ -105,7 +106,7 @@ namespace state::in_play
 
 	static void RefreshFisheries()
 	{
-		if(GetGameSession()
+		if(game::Session()
 			.GetPlayerCharacter()
 			.GetBerth().value()
 			.GetShip().value()
@@ -119,7 +120,7 @@ namespace state::in_play
 	static void Refresh()
 	{
 		auto playerCharacter = 
-			GetGameSession()
+			game::Session()
 			.GetPlayerCharacter();
 
 		Terminal::Reinitialize();
@@ -140,7 +141,7 @@ namespace state::in_play
 			ship.GetHeading().value(),
 			ship.GetSpeed().value());
 		//wind
-		auto wind = GetGameSession().GetWorld().GetWind();
+		auto wind = game::Session().GetWorld().GetWind();
 		Terminal::WriteLine(
 			"Wind: {:.2f}\xf8 (x{:.1f})",
 			wind.GetHeading(),
@@ -185,17 +186,17 @@ namespace state::in_play
 
 	static void OnMove()
 	{
-		GetGameSession()
+		game::Session()
 			.GetPlayerCharacter()
 			.GetMessages()
 			.Add(game::Colors::GREEN, "Steady as she goes!");
-		GetGameSession().ApplyTurnEffects();
+		game::Session().ApplyTurnEffects();
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnDock()
 	{
-		if (GetGameSession()
+		if (game::Session()
 			.GetPlayerCharacter()
 			.GetBerth().value()
 			.GetShip().value()
@@ -215,7 +216,7 @@ namespace state::in_play
 	{
 		if (IsFishingEnabled())
 		{
-			GetGameSession()
+			game::Session()
 			.GetPlayerCharacter()
 			.DoAction(game::characters::Action::START_FISHING);
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
@@ -227,7 +228,7 @@ namespace state::in_play
 
 	static void OnJob()
 	{
-		if (GetGameSession()
+		if (game::Session()
 			.GetPlayerCharacter()
 			.GetQuest())
 		{

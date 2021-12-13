@@ -1,3 +1,4 @@
+#include <Game.Session.h>
 #include "State.InPlay.CrewDetailCharacteristics.h"
 #include "State.InPlay.Globals.h"
 namespace state::in_play
@@ -9,7 +10,7 @@ namespace state::in_play
 	static void Refresh()
 	{
 		auto character =
-			GetGameSession()
+			game::Session()
 			.GetCharacter(GetCrewDetailCharacterId());
 		auto characteristics =
 			character

@@ -270,9 +270,4 @@ namespace state::in_play
 			GetPlayerCharacterIslandId(),
 			[feature](int islandId) { return game::islands::Features::Read(islandId, feature); });
 	}
-
-	game::Session GetGameSession()
-	{
-		return game::GetSession();
-	}
 }

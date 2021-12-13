@@ -1,4 +1,5 @@
 #include <Common.Heading.h>
+#include <Game.Session.h>
 #include "State.InPlay.ChangeHeading.h"
 #include "State.InPlay.Globals.h"
 namespace state::in_play
@@ -10,7 +11,7 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		auto playerCharacter =
-			GetGameSession()
+			game::Session()
 			.GetPlayerCharacter();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
@@ -54,7 +55,7 @@ namespace state::in_play
 
 	static void OnHeadForKnownIsland()
 	{
-		if (GetGameSession()
+		if (game::Session()
 			.GetPlayerCharacter()
 			.GetKnownIslands().HasAny())
 		{
@@ -69,7 +70,7 @@ namespace state::in_play
 
 	static void OnHeadForNearbyIsland()
 	{
-		if (GetGameSession()
+		if (game::Session()
 			.GetPlayerCharacter()
 			.GetBerth().value()
 			.GetShip().value()
@@ -86,7 +87,7 @@ namespace state::in_play
 
 	static void OnHeadForJobDestination()
 	{
-		auto playerCharacter = GetGameSession().GetPlayerCharacter();
+		auto playerCharacter = game::Session().GetPlayerCharacter();
 		auto quest = 
 			playerCharacter
 			.GetQuest();

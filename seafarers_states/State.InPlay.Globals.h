@@ -64,6 +64,4 @@ namespace state::in_play
 	const std::map<cards::Suit, std::string>& GetSuits();
 	void SetRenameShipAdjective(const std::string&);
 	const std::string& GetRenameShipAdjective();
-
-	game::Session GetGameSession();
 }

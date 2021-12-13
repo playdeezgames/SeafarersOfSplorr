@@ -1,3 +1,4 @@
+#include <Game.Session.h>
 #include "State.InPlay.DockOrCareen.h"
 #include "State.InPlay.Globals.h"
 namespace state::in_play
@@ -9,7 +10,7 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		auto ship = 
-			GetGameSession()
+			game::Session()
 			.GetPlayerCharacter()
 			.GetBerth().value()
 			.GetShip().value();
@@ -40,7 +41,7 @@ namespace state::in_play
 	static void CompleteQuest(const std::string& message)
 	{
 		auto playerCharacter =
-			GetGameSession()
+			game::Session()
 			.GetPlayerCharacter();
 		playerCharacter.GetMessages().Add(game::Colors::LIGHT_CYAN, "Delivery Complete!");
 		playerCharacter.GetMessages().Add(game::Colors::GRAY, message);
@@ -49,7 +50,7 @@ namespace state::in_play
 
 	static std::optional<std::string> GetQuestCompletionMesssage()
 	{
-		auto quest = GetGameSession().GetPlayerCharacter().GetQuest();
+		auto quest = game::Session().GetPlayerCharacter().GetQuest();
 		if (quest)
 		{
 			return quest.value().GetCompletionMessage();
@@ -70,7 +71,7 @@ namespace state::in_play
 	static void OnCareenToPort()
 	{
 		auto playerCharacter =
-			GetGameSession()
+			game::Session()
 				.GetPlayerCharacter();
 		playerCharacter.GetMessages().Add(game::Colors::GREEN,"You careen the vessel on its port side.");
 		playerCharacter.DoAction(game::characters::Action::CAREEN_TO_PORT);
@@ -80,7 +81,7 @@ namespace state::in_play
 	static void OnCareenToStarboard()
 	{
 		auto playerCharacter =
-			GetGameSession()
+			game::Session()
 			.GetPlayerCharacter();
 		playerCharacter.GetMessages().Add(game::Colors::GREEN, "You careen the vessel on its starboard side.");
 		playerCharacter.DoAction(game::characters::Action::CAREEN_TO_STARBOARD);
