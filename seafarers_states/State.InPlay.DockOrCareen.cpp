@@ -13,7 +13,7 @@ namespace state::in_play
 			game::Session()
 			.GetPlayerCharacter()
 			.GetBerth().value()
-			.GetShip().value();
+			.GetShip();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Dock or Careen:");

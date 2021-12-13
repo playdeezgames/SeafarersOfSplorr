@@ -20,7 +20,7 @@ namespace state::in_play
 		Terminal::WriteLine("Current: {:.2f}\xf8", 
 			playerCharacter
 			.GetBerth().value()
-			.GetShip().value()
+			.GetShip()
 			.GetHeading().value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
@@ -31,7 +31,7 @@ namespace state::in_play
 		}
 		if (playerCharacter
 			.GetBerth().value()
-			.GetShip().value()
+			.GetShip()
 			.GetNearbyIslands().HasAny())
 		{
 			Terminal::WriteLine("2) Head for a nearby island");
@@ -73,7 +73,7 @@ namespace state::in_play
 		if (game::Session()
 			.GetPlayerCharacter()
 			.GetBerth().value()
-			.GetShip().value()
+			.GetShip()
 			.GetNearbyIslands().HasAny())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_HEAD_FOR_NEAR_BY);
@@ -94,9 +94,9 @@ namespace state::in_play
 		if (quest)
 		{
 			auto destination = quest.value().GetDestinationIsland().value().GetLocation().value();
-			auto location = playerCharacter.GetBerth().value().GetShip().value().GetLocation().value();
+			auto location = playerCharacter.GetBerth().value().GetShip().GetLocation().value();
 			auto delta = destination - location;
-			playerCharacter.GetBerth().value().GetShip().value().SetHeading(common::Heading::XYToDegrees(delta));
+			playerCharacter.GetBerth().value().GetShip().SetHeading(common::Heading::XYToDegrees(delta));
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine();
 			Terminal::WriteLine("You head for {}.", quest.value().GetDestinationIsland().value().GetDisplayName().value());

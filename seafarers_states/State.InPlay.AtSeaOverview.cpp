@@ -20,7 +20,7 @@ namespace state::in_play
 			game::Session()
 			.GetPlayerCharacter()
 			.GetBerth().value()
-			.GetShip().value()
+			.GetShip()
 			.GetDockableIslands()
 			.GetFirst();
 		if (island)
@@ -47,7 +47,7 @@ namespace state::in_play
 			game::Session()
 			.GetPlayerCharacter()
 			.GetBerth().value()
-			.GetShip().value()
+			.GetShip()
 			.GetNearbyIslands();
 		if (islands.HasAny())
 		{
@@ -93,7 +93,7 @@ namespace state::in_play
 				game::Session()
 				.GetPlayerCharacter()
 				.GetBerth().value()
-				.GetShip().value()
+				.GetShip()
 				.GetLocation().value();
 			auto delta = destination - location;
 			Terminal::WriteLine(
@@ -109,7 +109,7 @@ namespace state::in_play
 		if(game::Session()
 			.GetPlayerCharacter()
 			.GetBerth().value()
-			.GetShip().value()
+			.GetShip()
 			.GetFisheries()
 			.HasAny())
 		{
@@ -135,7 +135,7 @@ namespace state::in_play
 		auto ship = 
 			playerCharacter
 			.GetBerth().value()
-			.GetShip().value();
+			.GetShip();
 		Terminal::WriteLine(
 			"Heading: {:.2f}\xf8, Speed: {:.1f}",
 			ship.GetHeading().value(),
@@ -199,7 +199,7 @@ namespace state::in_play
 		if (game::Session()
 			.GetPlayerCharacter()
 			.GetBerth().value()
-			.GetShip().value()
+			.GetShip()
 			.GetDockableIslands()
 			.HasAny())
 		{

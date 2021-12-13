@@ -16,7 +16,7 @@ namespace state::in_play
 			game::Session()
 			.GetPlayerCharacter()
 			.GetBerth().value()
-			.GetShip().value()
+			.GetShip()
 			.GetSpeed().value());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
@@ -43,7 +43,7 @@ namespace state::in_play
 			game::Session()
 				.GetPlayerCharacter()
 				.GetBerth().value()
-				.GetShip().value()
+				.GetShip()
 				.SetSpeed(speed);
 			application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 		};

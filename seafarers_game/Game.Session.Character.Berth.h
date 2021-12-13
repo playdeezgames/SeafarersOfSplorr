@@ -7,8 +7,8 @@ namespace game::session::character
 	struct Berth
 	{
 		Berth(int);
-		std::optional<game::session::Ship> GetShip() const;
-		std::optional<BerthType> GetBerthType() const;
+		game::session::Ship GetShip() const;
+		BerthType GetBerthType() const;
 	private:
 		int characterId;
 	};

@@ -8,7 +8,7 @@ namespace game::session::character
 
 	}
 
-	std::optional<game::session::Ship> Berth::GetShip() const
+	static std::optional<game::session::Ship> TryGetShip(int characterId)
 	{
 		auto shipId = game::characters::Ships::ReadShipId(characterId);
 		if (shipId)
@@ -18,9 +18,18 @@ namespace game::session::character
 		return std::nullopt;
 	}
 
+	session::Ship Berth::GetShip() const
+	{
+		return TryGetShip(characterId).value();
+	}
 
-	std::optional<BerthType> Berth::GetBerthType() const
+	static std::optional<BerthType> TryGetBerthType(int characterId)
 	{
 		return game::characters::Ships::ReadBerthType(characterId);
+	}
+
+	BerthType Berth::GetBerthType() const
+	{
+		return TryGetBerthType(characterId).value();
 	}
 }
