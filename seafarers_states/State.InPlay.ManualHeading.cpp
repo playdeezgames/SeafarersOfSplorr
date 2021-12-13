@@ -1,4 +1,4 @@
-#include <Game.Ship.h>
+#include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.ManualHeading.h"
 namespace state::in_play
@@ -22,7 +22,7 @@ namespace state::in_play
 
 	static void OnValidInput(double value)
 	{
-		SetPlayerCharacterShipHeading(value);
+		game::Session().GetPlayerCharacter().GetBerth().GetShip().SetHeading(value);
 		application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 	}
 
