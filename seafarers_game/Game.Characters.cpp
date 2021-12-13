@@ -38,53 +38,6 @@ namespace game
 		return delta;
 	}
 
-	static void ApplyHungerLegacy(int characterId)
-	{
-		double delta = DetermineHungerRate(characterId);
-		if (game::characters::statistics::Satiety::IsStarving(characterId))
-		{
-			game::characters::statistics::Health::Change(characterId, delta);
-		}
-		else
-		{
-			game::characters::statistics::Satiety::Change(characterId, delta);
-		}
-	}
-
-	static void ApplyEating(int characterId)
-	{
-		const double EAT_BENEFIT = 10.0;
-		if (game::characters::statistics::Satiety::NeedsToEat(characterId, EAT_BENEFIT))
-		{
-			const game::Item rationItem = game::Item::RATIONS;//TODO: when we can choose rations for an character, this will change
-			auto rations = game::characters::Items::Read(characterId, rationItem);
-			if (rations > 0)
-			{
-				game::characters::statistics::Satiety::Eat(characterId, EAT_BENEFIT);
-				game::characters::Items::Remove(characterId, rationItem, 1);
-				if (game::characters::Flags::Has(characterId, game::characters::Flag::UNFED))
-				{
-					game::characters::Flags::Clear(characterId, game::characters::Flag::UNFED);
-				}
-				else
-				{
-					game::characters::Flags::Write(characterId, game::characters::Flag::FED);
-				}
-			}
-			else
-			{
-				if (game::characters::Flags::Has(characterId, game::characters::Flag::FED))
-				{
-					game::characters::Flags::Clear(characterId, game::characters::Flag::FED);
-				}
-				else
-				{
-					game::characters::Flags::Write(characterId, game::characters::Flag::UNFED);
-				}
-			}
-		}
-	}
-
 	static size_t DetermineTurnsSpent(int characterId)
 	{
 		size_t agingRate = 1;
@@ -147,6 +100,38 @@ namespace game
 			});
 	}
 
+	static void ApplyEating(int characterId)
+	{
+		const game::Item rationItem = game::Item::RATIONS;//TODO: when we can choose rations for an character, this will change
+		auto rations = game::characters::Items::Read(characterId, rationItem);
+		if (rations > 0)
+		{
+			characters::counters::Starvation::Change(characterId, -1);
+			game::characters::Items::Remove(characterId, rationItem, 1);
+			if (game::characters::Flags::Has(characterId, game::characters::Flag::UNFED))
+			{
+				game::characters::Flags::Clear(characterId, game::characters::Flag::UNFED);
+			}
+			else
+			{
+				game::characters::Flags::Write(characterId, game::characters::Flag::FED);
+			}
+		}
+		else
+		{
+			SufferHunger(characterId);
+			if (game::characters::Flags::Has(characterId, game::characters::Flag::FED))
+			{
+				game::characters::Flags::Clear(characterId, game::characters::Flag::FED);
+			}
+			else
+			{
+				game::characters::Flags::Write(characterId, game::characters::Flag::UNFED);
+			}
+		}
+	}
+
+
 	static void ApplyHunger(int characterId)
 	{
 		characters::Characteristics::OnCheck(
@@ -156,7 +141,7 @@ namespace game
 			{
 				if (!success)
 				{
-					SufferHunger(characterId);
+					ApplyEating(characterId);
 				}
 			});
 	}
@@ -167,9 +152,7 @@ namespace game
 		for (auto characterId : avatarIds)
 		{
 			ApplyTurn(characterId);
-			ApplyHungerLegacy(characterId);
 			ApplyHunger(characterId);
-			ApplyEating(characterId);
 		}
 	}
 
