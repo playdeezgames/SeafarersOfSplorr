@@ -1,5 +1,5 @@
 #include <Common.Data.h>
-#include <Game.h>
+#include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.MultipleMove.h"
 namespace state::in_play
@@ -29,7 +29,7 @@ namespace state::in_play
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine();
 			Terminal::WriteLine("Steady as she goes!");
-			game::ApplyTurnEffects();
+			game::Session().ApplyTurnEffects();
 			moves--;
 		}
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
