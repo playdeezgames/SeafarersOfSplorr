@@ -9,7 +9,7 @@ namespace game::session::character
 
 	}
 
-	std::optional<Island> Quest::GetDestinationIsland() const
+	static std::optional<Island> TryGetDestinationIsland(int characterId)
 	{
 		auto quest = game::characters::Quests::Read(characterId);
 		if (quest)
@@ -24,17 +24,27 @@ namespace game::session::character
 		game::characters::Quests::Abandon(characterId);
 	}
 
-	std::optional<std::string> Quest::GetCompletionMessage() const
+	static std::optional<std::string> TryGetCompletionMessage(int characterId)
 	{
 		auto quest = game::characters::Quests::Read(characterId);
 		if (quest)
 		{
-			std::format("{} the {} is {} when given the {}.",
+			return std::format("{} the {} is {} when given the {}.",
 				quest.value().personName,
 				quest.value().professionName,
 				quest.value().receiptEmotion,
 				quest.value().itemName);
 		}
 		return std::nullopt;
+	}
+
+	std::string Quest::GetCompletionMessage() const
+	{
+		return TryGetCompletionMessage(characterId).value();
+	}
+
+	Island Quest::GetDestinationIsland() const
+	{
+		return TryGetDestinationIsland(characterId).value();
 	}
 }
