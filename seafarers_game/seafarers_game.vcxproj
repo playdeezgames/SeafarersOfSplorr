@@ -38,6 +38,7 @@
     <ClInclude Include="Game.Session.Character.Characteristic.h" />
     <ClInclude Include="Game.Session.Character.h" />
     <ClInclude Include="Game.Session.Character.HitPoints.h" />
+    <ClInclude Include="Game.Session.Character.Item.h" />
     <ClInclude Include="Game.Session.Character.Items.h" />
     <ClInclude Include="Game.Session.Character.Messages.h" />
     <ClInclude Include="Game.Session.Character.Quest.h" />
@@ -140,6 +141,7 @@
     <ClCompile Include="Game.Session.Character.Characteristic.cpp" />
     <ClCompile Include="Game.Session.Character.cpp" />
     <ClCompile Include="Game.Session.Character.HitPoints.cpp" />
+    <ClCompile Include="Game.Session.Character.Item.cpp" />
     <ClCompile Include="Game.Session.Character.Items.cpp" />
     <ClCompile Include="Game.Session.Character.Messages.cpp" />
     <ClCompile Include="Game.Session.Character.Quest.cpp" />

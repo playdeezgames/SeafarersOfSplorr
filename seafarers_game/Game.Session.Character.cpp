@@ -3,6 +3,7 @@
 #include "Game.Characters.Characteristics.h"
 #include "Game.Characters.Quests.h"
 #include "Game.Characters.Ships.h"
+#include "Game.Characters.Statistics.h"
 #include "Game.Islands.h"
 #include "Game.Session.Character.h"
 namespace game::session
@@ -86,5 +87,15 @@ namespace game::session
 	character::Quest Character::GetQuest() const
 	{
 		return TryGetQuest().value();
+	}
+
+	double Character::GetAvailableTonnage() const
+	{
+		return game::characters::Ships::AvailableTonnage(characterId).value();
+	}
+
+	double Character::GetMoney() const
+	{
+		return game::characters::statistics::Money::Current(characterId).value();
 	}
 }

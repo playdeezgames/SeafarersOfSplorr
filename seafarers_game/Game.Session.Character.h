@@ -25,6 +25,8 @@ namespace game::session
 		character::Messages GetMessages() const;
 		Islands GetKnownIslands() const;
 		FishGame GetFishGame() const;
+		double GetAvailableTonnage() const;
+		double GetMoney() const;
 	private:
 		int characterId;
 	};

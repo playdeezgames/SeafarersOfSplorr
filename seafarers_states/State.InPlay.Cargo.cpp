@@ -3,6 +3,7 @@
 #include <Game.Characters.Ships.h>
 #include <Game.Characters.Statistics.h>
 #include <Game.Items.h>
+#include <Game.Session.h>
 #include "State.InPlay.Cargo.h"
 #include "State.InPlay.Globals.h"
 namespace state::in_play
@@ -11,35 +12,30 @@ namespace state::in_play
 
 	static auto OnLeave = ::application::UIState::GoTo(::UIState::IN_PLAY_NEXT);
 
-	static std::map<game::Item, size_t> manifest;
-
-	static void UpdateManifest()
-	{
-		manifest = GetPlayerCharacterItems();
-	}
-
 	static void Refresh()
 	{
+		auto playerCharacter = game::Session().GetPlayerCharacter();
 		Terminal::Reinitialize();
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Cargo:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		auto tonnage = game::characters::Items::TotalTonnage(GetPlayerCharacterId());
-		auto availableTonnage = GetPlayerCharacterAvailableTonnage().value();
+		auto tonnage = playerCharacter.GetItems().GetTonnage();
+		auto availableTonnage = playerCharacter.GetAvailableTonnage();
 		Terminal::WriteLine(
 				"Tonnage: {:.3f} ({:d}%)",
 				tonnage,
 				(int)(100.0 * tonnage / availableTonnage));
 		Terminal::WriteLine(
 			"Money: {:.3f}",
-			GetPlayerCharacterMoney().value());
+			playerCharacter.GetMoney());
 		Terminal::SetForeground(game::Colors::BROWN);
 		Terminal::WriteLine("Manifest:");
 		Terminal::SetForeground(game::Colors::YELLOW);
 		size_t index = 1;
+		auto manifest = game::Session().GetPlayerCharacter().GetItems().GetAll();
 		for (auto entry : manifest)
 		{
-			Terminal::WriteLine("{}) {} (x{})", index++, game::Items::GetName(entry.first), entry.second);
+			Terminal::WriteLine("{}) {} (x{})", index++, entry.GetName(), entry.GetCount());
 		}
 		Terminal::WriteLine("0) Never mind");
 		Terminal::ShowPrompt();
@@ -48,7 +44,6 @@ namespace state::in_play
 	static void OnEnter()
 	{
 		PlayMainTheme();
-		UpdateManifest();
 		Refresh();
 	}
 
@@ -60,7 +55,7 @@ namespace state::in_play
 	static void OnHandleOther(const std::string& input)
 	{
 		auto index = common::Data::ToInt(input)-1;
-		if (index < manifest.size())
+		if (index < game::Session().GetPlayerCharacter().GetItems().GetAll().size())
 		{
 			Terminal::ErrorMessage("TODO: whatever one does with cargo...");
 		}
