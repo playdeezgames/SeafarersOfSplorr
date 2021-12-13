@@ -1,8 +1,7 @@
 #include <Common.Data.h>
 #include <Common.Heading.h>
 #include <Common.Utility.List.h>
-#include <Game.Ship.h>
-#include <Game.Islands.h>
+#include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.HeadForKnown.h"
 namespace state::in_play
@@ -15,20 +14,22 @@ namespace state::in_play
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Head for:");
-		auto known = GetPlayerCharacterKnownIslands();
-		if (!known.empty())
+		auto known = game::Session().GetPlayerCharacter().GetKnownIslands();
+		auto location = game::Session().GetPlayerCharacter().GetBerth().GetShip().GetLocation();
+		if (known.HasAny())
 		{
 			Terminal::SetForeground(game::Colors::GRAY);
 			Terminal::WriteLine("Known islands:");
 			Terminal::SetForeground(game::Colors::YELLOW);
 			int index = 1;
-			for (auto& island : known)
+			for (auto& island : known.GetAll())
 			{
+				auto relativeLocation = island.GetLocation() - location;
 				Terminal::WriteLine("{}) {} ({:.2f}\xf8 dist {:.1f})",
 					index++,
 					island.GetDisplayName(),
-					common::Heading::XYToDegrees(island.relativeLocation),
-					island.relativeLocation.GetMagnitude());
+					common::Heading::XYToDegrees(relativeLocation),
+					relativeLocation.GetMagnitude());
 			}
 		}
 
@@ -45,13 +46,15 @@ namespace state::in_play
 
 	static void DoHeadForKnownIndex(size_t index)
 	{
-		auto nearby = GetPlayerCharacterKnownIslands();
+		auto location = game::Session().GetPlayerCharacter().GetBerth().GetShip().GetLocation();
+		auto nearby = game::Session().GetPlayerCharacter().GetKnownIslands().GetAll();
 		auto chosen = common::utility::List::GetNth(nearby, index);
 		if (chosen)
 		{
+			auto relativeLocation = chosen.value().GetLocation() - location;
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine();
-			SetPlayerCharacterShipHeading(common::Heading::XYToDegrees(chosen.value().relativeLocation));
+			game::Session().GetPlayerCharacter().GetBerth().GetShip().SetHeading(common::Heading::XYToDegrees(relativeLocation));
 			Terminal::WriteLine("You head for {}.", chosen.value().GetDisplayName());
 			application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
 		}
