@@ -45,14 +45,6 @@ namespace game::characters
 			static std::optional<int> Change(int, int);
 			static std::optional<bool> HasRemaining(int);
 		};
-		struct Dignity
-		{
-			static std::optional<double> Current(int);
-		};
-		struct Poshness
-		{
-			static std::optional<double> Current(int);
-		};
 	}
 	struct Statistics
 	{

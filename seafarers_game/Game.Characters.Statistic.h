@@ -9,8 +9,6 @@ namespace game::characters
 		MONEY,
 		REPUTATION,
 		BRAWLING,
-		INFAMY,
-		DIGNITY,
-		POSHNESS
+		INFAMY
 	};
 }

@@ -33,8 +33,6 @@ namespace game::characters
 
 	static const StatBuffTables allBuffs =
 	{
-		{Statistic::DIGNITY, dignityBuffs},
-		{Statistic::POSHNESS, poshBuffs}
 	};
 
 	static const std::map<game::Difficulty, std::list<StatisticDescriptor>> initialValues =
@@ -47,14 +45,7 @@ namespace game::characters
 				{game::characters::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
 				{game::characters::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::characters::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0},
-				{
-					game::characters::Statistic::DIGNITY,
-					std::optional<double>(0.0), 
-					std::optional<double>(100.0), 
-					0.0
-				},
-				{game::characters::Statistic::POSHNESS, std::optional<double>(0.0), std::nullopt, 0.0}
+				{game::characters::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0}
 			}},
 		{game::Difficulty::NORMAL,
 			{
@@ -64,14 +55,7 @@ namespace game::characters
 				{game::characters::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
 				{game::characters::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::characters::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0},
-				{
-					game::characters::Statistic::DIGNITY,
-					std::optional<double>(0.0),
-					std::optional<double>(100.0),
-					0.0
-				},
-				{game::characters::Statistic::POSHNESS, std::optional<double>(0.0), std::nullopt, 0.0}
+				{game::characters::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0}
 			}},
 		{game::Difficulty::HARD,
 			{
@@ -81,14 +65,7 @@ namespace game::characters
 				{game::characters::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
 				{game::characters::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::characters::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0},
-				{
-					game::characters::Statistic::DIGNITY,
-					std::optional<double>(0.0),
-					std::optional<double>(100.0),
-					0.0
-				},
-				{game::characters::Statistic::POSHNESS, std::optional<double>(0.0), std::nullopt, 0.0}
+				{game::characters::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0}
 			}},
 		{game::Difficulty::HARDCORE,
 			{
@@ -98,14 +75,7 @@ namespace game::characters
 				{game::characters::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
 				{game::characters::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::characters::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0},
-				{
-					game::characters::Statistic::DIGNITY,
-					std::optional<double>(0.0),
-					std::optional<double>(100.0),
-					0.0
-				},
-				{game::characters::Statistic::POSHNESS, std::optional<double>(0.0), std::nullopt, 0.0}
+				{game::characters::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0}
 			}}
 	};
 
@@ -356,16 +326,6 @@ namespace game::characters
 				return turns.value() > 0;
 			}
 			return std::nullopt;
-		}
-
-		std::optional<double> Dignity::Current(int characterId)
-		{
-			return GetCurrentWithBuffs(characterId, characters::Statistic::DIGNITY);
-		}
-
-		std::optional<double> Poshness::Current(int characterId)
-		{
-			return GetCurrentWithBuffs(characterId, characters::Statistic::POSHNESS);
 		}
 	}
 }

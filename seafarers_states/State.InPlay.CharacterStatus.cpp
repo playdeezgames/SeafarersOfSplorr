@@ -18,8 +18,6 @@ namespace state::in_play
 		Terminal::WriteLine("Health: {:.0f}", game::characters::statistics::Health::Current(GetCrewDetailCharacterId()).value());
 		Terminal::WriteLine("Satiety: {:.0f}", game::characters::statistics::Satiety::Current(GetCrewDetailCharacterId()).value());
 		Terminal::WriteLine("Turns: {}", game::characters::statistics::Turns::Remaining(GetCrewDetailCharacterId()).value());
-		Terminal::WriteLine("Dignity: {:.0f}", game::characters::statistics::Dignity::Current(GetCrewDetailCharacterId()).value());
-		Terminal::WriteLine("Poshness: {:.0f}", game::characters::statistics::Poshness::Current(GetCrewDetailCharacterId()).value());
 	}
 
 	static void RefreshPlights()
