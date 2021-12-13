@@ -26,9 +26,9 @@ namespace state::in_play
 		if (island)
 		{
 			Terminal::SetForeground(game::Colors::LIGHT_BLUE);
-			if (island.value().IsKnown().value())
+			if (island.value().IsKnown())
 			{
-				Terminal::Write("You can dock at {}", island.value().GetDisplayName().value());
+				Terminal::Write("You can dock at {}", island.value().GetDisplayName());
 			}
 			else
 			{
@@ -55,7 +55,7 @@ namespace state::in_play
 			bool first = true;
 			for (auto& island : islands.GetAll())
 			{
-				if (island.IsKnown().value())
+				if (island.IsKnown())
 				{
 					if (first)
 					{
@@ -66,7 +66,7 @@ namespace state::in_play
 					{
 						Terminal::Write(", ");
 					}
-					Terminal::Write(island.GetDisplayName().value());
+					Terminal::Write(island.GetDisplayName());
 				}
 			}
 			Terminal::WriteLine();
@@ -88,7 +88,7 @@ namespace state::in_play
 			auto destination = 
 				quest.value()
 				.GetDestinationIsland()
-				.GetLocation().value();
+				.GetLocation();
 			auto location = 
 				game::Session()
 				.GetPlayerCharacter()

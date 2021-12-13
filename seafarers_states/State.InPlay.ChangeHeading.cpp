@@ -93,13 +93,13 @@ namespace state::in_play
 			.TryGetQuest();
 		if (quest)
 		{
-			auto destination = quest.value().GetDestinationIsland().GetLocation().value();
+			auto destination = quest.value().GetDestinationIsland().GetLocation();
 			auto location = playerCharacter.GetBerth().GetShip().GetLocation().value();
 			auto delta = destination - location;
 			playerCharacter.GetBerth().GetShip().SetHeading(common::Heading::XYToDegrees(delta));
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine();
-			Terminal::WriteLine("You head for {}.", quest.value().GetDestinationIsland().GetDisplayName().value());
+			Terminal::WriteLine("You head for {}.", quest.value().GetDestinationIsland().GetDisplayName());
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		}
 		else

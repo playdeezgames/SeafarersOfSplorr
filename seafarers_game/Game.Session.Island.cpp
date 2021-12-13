@@ -8,7 +8,7 @@ namespace game::session
 
 	}
 
-	std::optional<bool> Island::IsKnown() const
+	static std::optional<bool> TryIsKnown(int islandId)
 	{
 		auto island = game::Islands::Read(islandId);
 		if (island)
@@ -18,7 +18,12 @@ namespace game::session
 		return std::nullopt;
 	}
 
-	std::optional<std::string> Island::GetDisplayName() const
+	bool Island::IsKnown() const
+	{
+		return TryIsKnown(islandId).value();
+	}
+
+	static std::optional<std::string> TryGetDisplayName(int islandId)
 	{
 		auto island = game::Islands::Read(islandId);
 		if (island)
@@ -28,7 +33,12 @@ namespace game::session
 		return std::nullopt;
 	}
 
-	std::optional<common::XY<double>> Island::GetLocation() const
+	std::string Island::GetDisplayName() const
+	{
+		return TryGetDisplayName(islandId).value();
+	}
+
+	static std::optional<common::XY<double>> TryGetLocation(int islandId)
 	{
 		auto island = game::Islands::Read(islandId);
 		if (island)
@@ -36,5 +46,10 @@ namespace game::session
 			return island.value().absoluteLocation;
 		}
 		return std::nullopt;
+	}
+
+	common::XY<double> Island::GetLocation() const
+	{
+		return TryGetLocation(islandId).value();
 	}
 }
