@@ -10,7 +10,7 @@ namespace state::in_play
 	{
 		auto character =
 			GetGameSession()
-			.GetCharacter(GetCrewDetailCharacterId()).value();
+			.GetCharacter(GetCrewDetailCharacterId());
 		auto characteristics =
 			character
 			.GetCharacteristics();

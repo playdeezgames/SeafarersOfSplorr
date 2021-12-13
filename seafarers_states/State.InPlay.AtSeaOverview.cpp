@@ -7,7 +7,7 @@ namespace state::in_play
 
 	static bool IsFishingEnabled()
 	{
-		auto items = GetGameSession().GetPlayerCharacter().value().GetItems();
+		auto items = GetGameSession().GetPlayerCharacter().GetItems();
 		return
 			items.Has(game::Item::FISHING_POLE) &&
 			items.Has(game::Item::BAIT);
@@ -17,7 +17,7 @@ namespace state::in_play
 	{
 		auto island =
 			GetGameSession()
-			.GetPlayerCharacter().value()
+			.GetPlayerCharacter()
 			.GetBerth().value()
 			.GetShip().value()
 			.GetDockableIslands()
@@ -44,7 +44,7 @@ namespace state::in_play
 	{
 		auto islands =
 			GetGameSession()
-			.GetPlayerCharacter().value()
+			.GetPlayerCharacter()
 			.GetBerth().value()
 			.GetShip().value()
 			.GetNearbyIslands();
@@ -80,7 +80,7 @@ namespace state::in_play
 	{
 		auto quest =
 			GetGameSession()
-			.GetPlayerCharacter().value()
+			.GetPlayerCharacter()
 			.GetQuest();
 		if (quest)
 		{
@@ -90,7 +90,7 @@ namespace state::in_play
 				GetLocation().value();
 			auto location = 
 				GetGameSession()
-				.GetPlayerCharacter().value()
+				.GetPlayerCharacter()
 				.GetBerth().value()
 				.GetShip().value()
 				.GetLocation().value();
@@ -106,7 +106,7 @@ namespace state::in_play
 	static void RefreshFisheries()
 	{
 		if(GetGameSession()
-			.GetPlayerCharacter().value()
+			.GetPlayerCharacter()
 			.GetBerth().value()
 			.GetShip().value()
 			.GetFisheries()
@@ -120,8 +120,7 @@ namespace state::in_play
 	{
 		auto playerCharacter = 
 			GetGameSession()
-			.GetPlayerCharacter()
-			.value();
+			.GetPlayerCharacter();
 
 		Terminal::Reinitialize();
 
@@ -187,7 +186,7 @@ namespace state::in_play
 	static void OnMove()
 	{
 		GetGameSession()
-			.GetPlayerCharacter().value()
+			.GetPlayerCharacter()
 			.GetMessages()
 			.Add(game::Colors::GREEN, "Steady as she goes!");
 		GetGameSession().ApplyTurnEffects();
@@ -197,7 +196,7 @@ namespace state::in_play
 	static void OnDock()
 	{
 		if (GetGameSession()
-			.GetPlayerCharacter().value()
+			.GetPlayerCharacter()
 			.GetBerth().value()
 			.GetShip().value()
 			.GetDockableIslands()
@@ -217,7 +216,7 @@ namespace state::in_play
 		if (IsFishingEnabled())
 		{
 			GetGameSession()
-			.GetPlayerCharacter().value()
+			.GetPlayerCharacter()
 			.DoAction(game::characters::Action::START_FISHING);
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			return;
@@ -229,7 +228,7 @@ namespace state::in_play
 	static void OnJob()
 	{
 		if (GetGameSession()
-			.GetPlayerCharacter().value()
+			.GetPlayerCharacter()
 			.GetQuest())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_CURRENT_JOB);

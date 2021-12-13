@@ -10,7 +10,7 @@ namespace state::in_play
 
 		auto ship = 
 			GetGameSession()
-			.GetPlayerCharacter().value()
+			.GetPlayerCharacter()
 			.GetBerth().value()
 			.GetShip().value();
 
@@ -41,7 +41,7 @@ namespace state::in_play
 	{
 		auto playerCharacter =
 			GetGameSession()
-			.GetPlayerCharacter().value();
+			.GetPlayerCharacter();
 		playerCharacter.GetMessages().Add(game::Colors::LIGHT_CYAN, "Delivery Complete!");
 		playerCharacter.GetMessages().Add(game::Colors::GRAY, message);
 		playerCharacter.GetMessages().Add(game::Colors::GREEN,"Yer reputation increases!");//<-
@@ -49,7 +49,7 @@ namespace state::in_play
 
 	static std::optional<std::string> GetQuestCompletionMesssage()
 	{
-		auto quest = GetGameSession().GetPlayerCharacter().value().GetQuest();
+		auto quest = GetGameSession().GetPlayerCharacter().GetQuest();
 		if (quest)
 		{
 			return quest.value().GetCompletionMessage();
@@ -71,7 +71,7 @@ namespace state::in_play
 	{
 		auto playerCharacter =
 			GetGameSession()
-				.GetPlayerCharacter().value();
+				.GetPlayerCharacter();
 		playerCharacter.GetMessages().Add(game::Colors::GREEN,"You careen the vessel on its port side.");
 		playerCharacter.DoAction(game::characters::Action::CAREEN_TO_PORT);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
@@ -81,7 +81,7 @@ namespace state::in_play
 	{
 		auto playerCharacter =
 			GetGameSession()
-			.GetPlayerCharacter().value();
+			.GetPlayerCharacter();
 		playerCharacter.GetMessages().Add(game::Colors::GREEN, "You careen the vessel on its starboard side.");
 		playerCharacter.DoAction(game::characters::Action::CAREEN_TO_STARBOARD);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);

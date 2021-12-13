@@ -13,7 +13,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Current Speed: {:.2f}", 
 			GetGameSession()
-			.GetPlayerCharacter().value()
+			.GetPlayerCharacter()
 			.GetBerth().value()
 			.GetShip().value()
 			.GetSpeed().value());
@@ -40,7 +40,7 @@ namespace state::in_play
 		return [speed]() 
 		{
 			GetGameSession()
-				.GetPlayerCharacter().value()
+				.GetPlayerCharacter()
 				.GetBerth().value()
 				.GetShip().value()
 				.SetSpeed(speed);

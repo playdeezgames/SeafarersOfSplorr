@@ -6,7 +6,7 @@
 #include "Game.Ship.h"
 namespace game
 {
-	std::optional<session::Character> Session::GetCharacter(int characterId) const
+	static std::optional<session::Character> TryGetCharacter(int characterId)
 	{
 		if (game::Characters::Exists(characterId))
 		{
@@ -15,18 +15,33 @@ namespace game
 		return std::nullopt;
 	}
 
-	std::optional<game::session::Character> Session::GetPlayerCharacter() const
+	session::Character Session::GetCharacter(int characterId) const
 	{
-		return GetCharacter(game::Player::GetCharacterId());
+		return TryGetCharacter(characterId).value();
 	}
 
-	std::optional<game::session::Ship> Session::GetShip(int shipId) const
+	static std::optional<game::session::Character> TryGetPlayerCharacter()
+	{
+		return TryGetCharacter(game::Player::GetCharacterId());
+	}
+
+	session::Character Session::GetPlayerCharacter() const
+	{
+		return TryGetPlayerCharacter().value();
+	}
+
+	static std::optional<game::session::Ship> TryGetShip(int shipId)
 	{
 		if (game::Ship::GetShipType(shipId).has_value())
 		{
 			return game::session::Ship(shipId);
 		}
 		return std::nullopt;
+	}
+
+	session::Ship Session::GetShip(int shipId) const
+	{
+		return TryGetShip(shipId).value();
 	}
 
 	session::World Session::GetWorld() const
