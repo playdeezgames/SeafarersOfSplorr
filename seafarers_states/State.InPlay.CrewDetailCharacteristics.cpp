@@ -27,7 +27,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::GRAY);
 		for (auto characteristic : characteristics)
 		{
-			Terminal::WriteLine("{}: {}", characteristic.GetName(), characteristic.GetValue().value());
+			Terminal::WriteLine("{}: {}", characteristic.GetName(), characteristic.GetValue());
 		}
 
 		Terminal::WriteLine("HP: {}/{}", hitPoints.GetCurrent().value(), hitPoints.GetMaximum().value());

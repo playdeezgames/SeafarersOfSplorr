@@ -15,9 +15,14 @@ namespace game::session::character
 		return game::Characteristics::GetName(characteristic);
 	}
 
-	std::optional<int> Characteristic::GetValue() const
+	static std::optional<int> TryGetValue(int characterId, const game::Characteristic& characteristic)
 	{
 		return game::characters::Characteristics::Read(characterId, characteristic);
+	}
+
+	int Characteristic::GetValue() const
+	{
+		return TryGetValue(characterId, characteristic).value();
 	}
 
 }

@@ -8,7 +8,7 @@ namespace game::session::character
 	{
 		Characteristic(int, const game::Characteristic&);
 		const std::string& GetName() const;
-		std::optional<int> GetValue() const;
+		int GetValue() const;
 	private:
 		int characterId;
 		game::Characteristic characteristic;
