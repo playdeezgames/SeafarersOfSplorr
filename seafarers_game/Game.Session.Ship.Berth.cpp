@@ -13,9 +13,13 @@ namespace game::session::ship
 		return characterId;
 	}
 
-	std::optional<BerthType> Berth::GetBerthType() const
+	static std::optional<BerthType> TryGetBerthType(int characterId)
 	{
 		return game::characters::Ships::ReadBerthType(characterId);
 	}
 
+	BerthType Berth::GetBerthType() const
+	{
+		return TryGetBerthType(characterId).value();
+	}
 }

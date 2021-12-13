@@ -7,7 +7,7 @@ namespace game::session::ship
 	{
 		Berth(int);
 		int GetCharacterId() const;
-		std::optional<BerthType> GetBerthType() const;
+		BerthType GetBerthType() const;
 	private:
 		int characterId;
 	};
