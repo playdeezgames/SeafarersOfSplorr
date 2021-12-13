@@ -22,7 +22,7 @@ namespace state::in_play
 			.GetBerth()
 			.GetShip()
 			.GetDockableIslands()
-			.GetFirst();
+			.TryGetFirst();
 		if (island)
 		{
 			Terminal::SetForeground(game::Colors::LIGHT_BLUE);

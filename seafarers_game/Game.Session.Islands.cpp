@@ -12,13 +12,18 @@ namespace game::session
 		return !islandIds.empty();
 	}
 
-	std::optional<Island> Islands::GetFirst() const
+	std::optional<Island> Islands::TryGetFirst() const
 	{
 		if (HasAny())
 		{
 			return Island(islandIds.front());
 		}
 		return std::nullopt;
+	}
+
+	Island Islands::GetFirst() const
+	{
+		return TryGetFirst().value();
 	}
 
 	size_t Islands::GetCount() const
