@@ -40,11 +40,11 @@ namespace state::in_play
 	static void RefreshCellMiddle(int row, int column)
 	{
 		auto fishGame = game::Session().GetPlayerCharacter().GetFishGame();
-		auto cell = fishGame.GetBoard().value().GetCell(column, row);
+		auto cell = fishGame.GetBoard().GetCell(column, row);
 		if (
 			cell.IsRevealed() || 
-			fishGame.HasGivenUp().value() || 
-			fishGame.GetState().value() == game::FishGameState::DONE)
+			fishGame.HasGivenUp() || 
+			fishGame.GetState() == game::FishGameState::DONE)
 		{
 			Terminal::Write(CELL_MIDDLE, cellContents.find(cell.GetFish())->second);
 		}
@@ -111,20 +111,20 @@ namespace state::in_play
 		Terminal::WriteLine("Fishing:");
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Guesses Left: {} Completion: {:.0f}%", 
-			fishGame.GetGuesses().value(), 
-			fishGame.GetBoard().value().GetProgressPercentage());
+			fishGame.GetGuesses(), 
+			fishGame.GetBoard().GetProgressPercentage());
 		RefreshBoard();
 
 		auto items = game::Session().GetPlayerCharacter().GetItems();
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		if (fishGame.GetState().value() ==
+		if (fishGame.GetState() ==
 			game::FishGameState::OUT_OF_GUESSES && 
 			items.Has(game::Item::BAIT))
 		{
 			Terminal::WriteLine("1) Use more bait");
 		}
-		Terminal::WriteLine("0) {}", goBackMenuItemTexts.find(fishGame.GetState().value())->second);
+		Terminal::WriteLine("0) {}", goBackMenuItemTexts.find(fishGame.GetState())->second);
 
 		Terminal::ShowPrompt();
 	}
@@ -157,7 +157,7 @@ namespace state::in_play
 	static void OnLeave()
 	{
 		common::utility::Dispatcher::Dispatch(leaveHandlers, 
-			game::Session().GetPlayerCharacter().GetFishGame().GetState().value());
+			game::Session().GetPlayerCharacter().GetFishGame().GetState());
 	}
 
 	static const std::map<std::string, std::function<void()>> menuActions =
@@ -172,7 +172,7 @@ namespace state::in_play
 		{
 			int column = index % COLUMNS;
 			int row = index / COLUMNS;
-			auto cell = game::Session().GetPlayerCharacter().GetFishGame().GetBoard().value().GetCell(column, row);
+			auto cell = game::Session().GetPlayerCharacter().GetFishGame().GetBoard().GetCell(column, row);
 			if (!cell.IsRevealed())
 			{
 				cell.Reveal();
@@ -207,7 +207,7 @@ namespace state::in_play
 	{
 		if (!common::utility::Dispatcher::DispatchParameter(
 			otherInputHandlers, 
-			game::Session().GetPlayerCharacter().GetFishGame().GetState().value(),
+			game::Session().GetPlayerCharacter().GetFishGame().GetState(),
 			line, 
 			false))
 		{
