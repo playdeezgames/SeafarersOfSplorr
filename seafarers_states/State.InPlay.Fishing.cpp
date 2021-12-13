@@ -39,7 +39,7 @@ namespace state::in_play
 
 	static void RefreshCellMiddle(int row, int column)
 	{
-		auto fishGame = game::Session().GetPlayerCharacter().GetFishGame().value();
+		auto fishGame = game::Session().GetPlayerCharacter().GetFishGame();
 		auto cell = fishGame.GetBoard().value().GetCell(column, row).value();
 		if (
 			cell.IsRevealed().value() || 
@@ -103,7 +103,7 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		auto fishGame = game::Session().GetPlayerCharacter().GetFishGame().value();
+		auto fishGame = game::Session().GetPlayerCharacter().GetFishGame();
 
 		Terminal::Reinitialize();
 
@@ -136,7 +136,7 @@ namespace state::in_play
 
 	static void GiveUp()
 	{
-		game::Session().GetPlayerCharacter().GetFishGame().value().GiveUp();
+		game::Session().GetPlayerCharacter().GetFishGame().GiveUp();
 		Refresh();
 	}
 
@@ -157,7 +157,7 @@ namespace state::in_play
 	static void OnLeave()
 	{
 		common::utility::Dispatcher::Dispatch(leaveHandlers, 
-			game::Session().GetPlayerCharacter().GetFishGame().value().GetState().value());
+			game::Session().GetPlayerCharacter().GetFishGame().GetState().value());
 	}
 
 	static const std::map<std::string, std::function<void()>> menuActions =
@@ -172,7 +172,7 @@ namespace state::in_play
 		{
 			int column = index % COLUMNS;
 			int row = index / COLUMNS;
-			auto cell = game::Session().GetPlayerCharacter().GetFishGame().value().GetBoard().value().GetCell(column, row).value();
+			auto cell = game::Session().GetPlayerCharacter().GetFishGame().GetBoard().value().GetCell(column, row).value();
 			if (!cell.IsRevealed().value())
 			{
 				cell.Reveal();
@@ -188,7 +188,7 @@ namespace state::in_play
 		auto playerCharacter = game::Session().GetPlayerCharacter();
 		if (line == "1" && playerCharacter.GetItems().Has(game::Item::BAIT))
 		{
-			playerCharacter.GetFishGame().value().AddBait();
+			playerCharacter.GetFishGame().AddBait();
 			Refresh();
 			return true;
 		}
@@ -207,7 +207,7 @@ namespace state::in_play
 	{
 		if (!common::utility::Dispatcher::DispatchParameter(
 			otherInputHandlers, 
-			game::Session().GetPlayerCharacter().GetFishGame().value().GetState().value(),
+			game::Session().GetPlayerCharacter().GetFishGame().GetState().value(),
 			line, 
 			false))
 		{

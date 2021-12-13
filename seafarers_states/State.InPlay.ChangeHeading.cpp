@@ -19,7 +19,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Current: {:.2f}\xf8", 
 			playerCharacter
-			.GetBerth().value()
+			.GetBerth()
 			.GetShip()
 			.GetHeading().value());
 
@@ -30,14 +30,14 @@ namespace state::in_play
 			Terminal::WriteLine("1) Head for a known island");
 		}
 		if (playerCharacter
-			.GetBerth().value()
+			.GetBerth()
 			.GetShip()
 			.GetNearbyIslands().HasAny())
 		{
 			Terminal::WriteLine("2) Head for a nearby island");
 		}
 		if (playerCharacter
-			.GetQuest().has_value())
+			.TryGetQuest().has_value())
 		{
 			Terminal::WriteLine("3) Head for job destination");
 		}
@@ -72,7 +72,7 @@ namespace state::in_play
 	{
 		if (game::Session()
 			.GetPlayerCharacter()
-			.GetBerth().value()
+			.GetBerth()
 			.GetShip()
 			.GetNearbyIslands().HasAny())
 		{
@@ -90,13 +90,13 @@ namespace state::in_play
 		auto playerCharacter = game::Session().GetPlayerCharacter();
 		auto quest = 
 			playerCharacter
-			.GetQuest();
+			.TryGetQuest();
 		if (quest)
 		{
 			auto destination = quest.value().GetDestinationIsland().value().GetLocation().value();
-			auto location = playerCharacter.GetBerth().value().GetShip().GetLocation().value();
+			auto location = playerCharacter.GetBerth().GetShip().GetLocation().value();
 			auto delta = destination - location;
-			playerCharacter.GetBerth().value().GetShip().SetHeading(common::Heading::XYToDegrees(delta));
+			playerCharacter.GetBerth().GetShip().SetHeading(common::Heading::XYToDegrees(delta));
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine();
 			Terminal::WriteLine("You head for {}.", quest.value().GetDestinationIsland().value().GetDisplayName().value());

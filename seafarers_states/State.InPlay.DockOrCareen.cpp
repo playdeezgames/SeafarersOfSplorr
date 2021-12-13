@@ -12,7 +12,7 @@ namespace state::in_play
 		auto ship = 
 			game::Session()
 			.GetPlayerCharacter()
-			.GetBerth().value()
+			.GetBerth()
 			.GetShip();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
@@ -50,7 +50,7 @@ namespace state::in_play
 
 	static std::optional<std::string> GetQuestCompletionMesssage()
 	{
-		auto quest = game::Session().GetPlayerCharacter().GetQuest();
+		auto quest = game::Session().GetPlayerCharacter().TryGetQuest();
 		if (quest)
 		{
 			return quest.value().GetCompletionMessage();

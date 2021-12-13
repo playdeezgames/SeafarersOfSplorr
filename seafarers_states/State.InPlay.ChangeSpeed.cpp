@@ -15,7 +15,7 @@ namespace state::in_play
 		Terminal::WriteLine("Current Speed: {:.2f}", 
 			game::Session()
 			.GetPlayerCharacter()
-			.GetBerth().value()
+			.GetBerth()
 			.GetShip()
 			.GetSpeed().value());
 
@@ -42,7 +42,7 @@ namespace state::in_play
 		{
 			game::Session()
 				.GetPlayerCharacter()
-				.GetBerth().value()
+				.GetBerth()
 				.GetShip()
 				.SetSpeed(speed);
 			application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);

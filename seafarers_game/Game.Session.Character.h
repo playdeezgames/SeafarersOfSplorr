@@ -17,13 +17,14 @@ namespace game::session
 		Character(int);
 		std::list<character::Characteristic> GetCharacteristics() const;
 		character::HitPoints GetHitpoints() const;
-		std::optional<character::Berth> GetBerth() const;
+		character::Berth GetBerth() const;
 		character::Items GetItems() const;
-		std::optional<character::Quest> GetQuest() const;
+		std::optional<character::Quest> TryGetQuest() const;
+		character::Quest GetQuest() const;
 		void DoAction(const game::characters::Action&) const;
 		character::Messages GetMessages() const;
 		Islands GetKnownIslands() const;
-		std::optional<FishGame> GetFishGame() const;
+		FishGame GetFishGame() const;
 	private:
 		int characterId;
 	};

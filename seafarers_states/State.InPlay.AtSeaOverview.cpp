@@ -19,7 +19,7 @@ namespace state::in_play
 		auto island =
 			game::Session()
 			.GetPlayerCharacter()
-			.GetBerth().value()
+			.GetBerth()
 			.GetShip()
 			.GetDockableIslands()
 			.GetFirst();
@@ -46,7 +46,7 @@ namespace state::in_play
 		auto islands =
 			game::Session()
 			.GetPlayerCharacter()
-			.GetBerth().value()
+			.GetBerth()
 			.GetShip()
 			.GetNearbyIslands();
 		if (islands.HasAny())
@@ -82,7 +82,7 @@ namespace state::in_play
 		auto quest =
 			game::Session()
 			.GetPlayerCharacter()
-			.GetQuest();
+			.TryGetQuest();
 		if (quest)
 		{
 			auto destination = 
@@ -92,7 +92,7 @@ namespace state::in_play
 			auto location = 
 				game::Session()
 				.GetPlayerCharacter()
-				.GetBerth().value()
+				.GetBerth()
 				.GetShip()
 				.GetLocation().value();
 			auto delta = destination - location;
@@ -108,7 +108,7 @@ namespace state::in_play
 	{
 		if(game::Session()
 			.GetPlayerCharacter()
-			.GetBerth().value()
+			.GetBerth()
 			.GetShip()
 			.GetFisheries()
 			.HasAny())
@@ -134,7 +134,7 @@ namespace state::in_play
 		//ship
 		auto ship = 
 			playerCharacter
-			.GetBerth().value()
+			.GetBerth()
 			.GetShip();
 		Terminal::WriteLine(
 			"Heading: {:.2f}\xf8, Speed: {:.1f}",
@@ -198,7 +198,7 @@ namespace state::in_play
 	{
 		if (game::Session()
 			.GetPlayerCharacter()
-			.GetBerth().value()
+			.GetBerth()
 			.GetShip()
 			.GetDockableIslands()
 			.HasAny())
@@ -230,7 +230,7 @@ namespace state::in_play
 	{
 		if (game::Session()
 			.GetPlayerCharacter()
-			.GetQuest())
+			.TryGetQuest())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_CURRENT_JOB);
 			return;

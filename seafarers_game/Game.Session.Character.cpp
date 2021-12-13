@@ -1,4 +1,5 @@
 #include "Game.Characters.h"
+#include "Game.Session.FishGame.h"
 #include "Game.Characters.Characteristics.h"
 #include "Game.Characters.Quests.h"
 #include "Game.Characters.Ships.h"
@@ -27,7 +28,7 @@ namespace game::session
 		return character::HitPoints(characterId);
 	}
 
-	std::optional<character::Berth> Character::GetBerth() const
+	static std::optional<character::Berth> TryGetBerth(int characterId)
 	{
 		if (characters::Ships::ReadShipId(characterId).has_value())
 		{
@@ -41,7 +42,7 @@ namespace game::session
 		return character::Items(characterId);
 	}
 
-	std::optional<character::Quest> Character::GetQuest() const
+	std::optional<character::Quest> Character::TryGetQuest() const
 	{
 		auto quest = game::characters::Quests::Read(characterId);
 		if (quest)
@@ -72,8 +73,18 @@ namespace game::session
 		return Islands(result);
 	}
 
-	std::optional<FishGame> Character::GetFishGame() const
+	FishGame Character::GetFishGame() const
 	{
-		return std::nullopt;
+		return game::session::FishGame(characterId);
+	}
+
+	character::Berth Character::GetBerth() const
+	{
+		return TryGetBerth(characterId).value();
+	}
+
+	character::Quest Character::GetQuest() const
+	{
+		return TryGetQuest().value();
 	}
 }
