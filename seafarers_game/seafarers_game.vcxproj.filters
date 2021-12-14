@@ -84,6 +84,42 @@
     <Filter Include="Source Files\Session">
       <UniqueIdentifier>{e7849dd6-5ff4-4f56-8ec8-0103a081c30c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Session\Character">
+      <UniqueIdentifier>{eb9f596a-602c-4342-a8c7-7e8167f56e8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Session\Fish">
+      <UniqueIdentifier>{1abd00c0-3f9c-4689-a12b-61e5beff5ba4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Session\Island">
+      <UniqueIdentifier>{8a0c350c-6536-4d13-9090-c8bace4f1568}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Session\Item">
+      <UniqueIdentifier>{e13ac23c-6b05-42c3-ab20-00864d52740e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Session\Ship">
+      <UniqueIdentifier>{9ce119fe-5471-45a3-903c-6e935cd20e6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Session\World">
+      <UniqueIdentifier>{9b6d2b8e-6b0f-46d4-b269-1fb739c02069}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Character">
+      <UniqueIdentifier>{967f9481-c5ce-4c8b-928c-aae6af4cb2a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Fish">
+      <UniqueIdentifier>{5cf745b4-04ac-4ee6-a76e-41766b570693}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Island">
+      <UniqueIdentifier>{3a6a2755-9025-47d0-b027-52fb062b1fde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Item">
+      <UniqueIdentifier>{0c960a3a-f2ad-49f6-90d9-1499e2f83c6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Ship">
+      <UniqueIdentifier>{6aa51fb7-911f-4612-a578-7f6d4bed47a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\World">
+      <UniqueIdentifier>{b7465420-c047-4464-aaf2-4e8c5057fa86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -344,68 +380,68 @@
     <ClInclude Include="Game.Session.h">
       <Filter>Header Files\Session</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.Character.h">
-      <Filter>Header Files\Session</Filter>
+    <ClInclude Include="Game.Session.Character.Berth.h">
+      <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Character.Characteristic.h">
-      <Filter>Header Files\Session</Filter>
+      <Filter>Header Files\Session\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Character.h">
+      <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Character.HitPoints.h">
-      <Filter>Header Files\Session</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Ship.h">
-      <Filter>Header Files\Session</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Character.Berth.h">
-      <Filter>Header Files\Session</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Ship.Berth.h">
-      <Filter>Header Files\Session</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.World.h">
-      <Filter>Header Files\Session</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.World.Wind.h">
-      <Filter>Header Files\Session</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Character.LegacyItems.h">
-      <Filter>Header Files\Session</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Islands.h">
-      <Filter>Header Files\Session</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Island.h">
-      <Filter>Header Files\Session</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Character.Quest.h">
-      <Filter>Header Files\Session</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Fisheries.h">
-      <Filter>Header Files\Session</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Character.Messages.h">
-      <Filter>Header Files\Session</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Ship.Fouling.h">
-      <Filter>Header Files\Session</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Fishboard.h">
-      <Filter>Header Files\Session</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.FishGame.h">
-      <Filter>Header Files\Session</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.FishboardCell.h">
-      <Filter>Header Files\Session</Filter>
+      <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Character.LegacyItem.h">
-      <Filter>Header Files\Session</Filter>
+      <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.Items.h">
-      <Filter>Header Files\Session</Filter>
+    <ClInclude Include="Game.Session.Character.LegacyItems.h">
+      <Filter>Header Files\Session\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Character.Messages.h">
+      <Filter>Header Files\Session\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Character.Quest.h">
+      <Filter>Header Files\Session\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Fishboard.h">
+      <Filter>Header Files\Session\Fish</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.FishboardCell.h">
+      <Filter>Header Files\Session\Fish</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Fisheries.h">
+      <Filter>Header Files\Session\Fish</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.FishGame.h">
+      <Filter>Header Files\Session\Fish</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Island.h">
+      <Filter>Header Files\Session\Island</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Islands.h">
+      <Filter>Header Files\Session\Island</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Item.h">
-      <Filter>Header Files\Session</Filter>
+      <Filter>Header Files\Session\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Items.h">
+      <Filter>Header Files\Session\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Ship.Berth.h">
+      <Filter>Header Files\Session\Ship</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Ship.Fouling.h">
+      <Filter>Header Files\Session\Ship</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Ship.h">
+      <Filter>Header Files\Session\Ship</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.World.h">
+      <Filter>Header Files\Session\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.World.Wind.h">
+      <Filter>Header Files\Session\World</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -559,68 +595,68 @@
     <ClCompile Include="Game.Session.cpp">
       <Filter>Source Files\Session</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.Character.cpp">
-      <Filter>Source Files\Session</Filter>
+    <ClCompile Include="Game.Session.Character.Berth.cpp">
+      <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Character.Characteristic.cpp">
-      <Filter>Source Files\Session</Filter>
+      <Filter>Source Files\Session\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.cpp">
+      <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Character.HitPoints.cpp">
-      <Filter>Source Files\Session</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Ship.cpp">
-      <Filter>Source Files\Session</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Character.Berth.cpp">
-      <Filter>Source Files\Session</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Ship.Berth.cpp">
-      <Filter>Source Files\Session</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.World.cpp">
-      <Filter>Source Files\Session</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.World.Wind.cpp">
-      <Filter>Source Files\Session</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Character.LegacyItems.cpp">
-      <Filter>Source Files\Session</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Islands.cpp">
-      <Filter>Source Files\Session</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Island.cpp">
-      <Filter>Source Files\Session</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Character.Quest.cpp">
-      <Filter>Source Files\Session</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Fisheries.cpp">
-      <Filter>Source Files\Session</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Character.Messages.cpp">
-      <Filter>Source Files\Session</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Ship.Fouling.cpp">
-      <Filter>Source Files\Session</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Fishboard.cpp">
-      <Filter>Source Files\Session</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.FishGame.cpp">
-      <Filter>Source Files\Session</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.FishboardCell.cpp">
-      <Filter>Source Files\Session</Filter>
+      <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Character.LegacyItem.cpp">
-      <Filter>Source Files\Session</Filter>
+      <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.Items.cpp">
-      <Filter>Source Files\Session</Filter>
+    <ClCompile Include="Game.Session.Character.LegacyItems.cpp">
+      <Filter>Source Files\Session\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.Messages.cpp">
+      <Filter>Source Files\Session\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.Quest.cpp">
+      <Filter>Source Files\Session\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Fishboard.cpp">
+      <Filter>Source Files\Session\Fish</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.FishboardCell.cpp">
+      <Filter>Source Files\Session\Fish</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Fisheries.cpp">
+      <Filter>Source Files\Session\Fish</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.FishGame.cpp">
+      <Filter>Source Files\Session\Fish</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Island.cpp">
+      <Filter>Source Files\Session\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Islands.cpp">
+      <Filter>Source Files\Session\Island</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Item.cpp">
-      <Filter>Source Files\Session</Filter>
+      <Filter>Source Files\Session\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Items.cpp">
+      <Filter>Source Files\Session\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Ship.Berth.cpp">
+      <Filter>Source Files\Session\Ship</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Ship.cpp">
+      <Filter>Source Files\Session\Ship</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Ship.Fouling.cpp">
+      <Filter>Source Files\Session\Ship</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.World.cpp">
+      <Filter>Source Files\Session\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.World.Wind.cpp">
+      <Filter>Source Files\Session\World</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
