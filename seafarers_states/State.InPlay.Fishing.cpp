@@ -115,7 +115,7 @@ namespace state::in_play
 			fishGame.GetBoard().GetProgressPercentage());
 		RefreshBoard();
 
-		auto items = game::Session().GetPlayerCharacter().GetItems();
+		auto items = game::Session().GetPlayerCharacter().GetLegacyItems();
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		if (fishGame.GetState() ==
@@ -186,7 +186,7 @@ namespace state::in_play
 	static bool OutOfGuessesInputHandler(const std::string& line)
 	{
 		auto playerCharacter = game::Session().GetPlayerCharacter();
-		if (line == "1" && playerCharacter.GetItems().Has(game::Item::BAIT))
+		if (line == "1" && playerCharacter.GetLegacyItems().Has(game::Item::BAIT))
 		{
 			playerCharacter.GetFishGame().AddBait();
 			Refresh();

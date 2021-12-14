@@ -19,7 +19,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Cargo:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		auto tonnage = playerCharacter.GetItems().GetTonnage();
+		auto tonnage = playerCharacter.GetLegacyItems().GetTonnage();
 		auto availableTonnage = playerCharacter.GetAvailableTonnage();
 		Terminal::WriteLine(
 				"Tonnage: {:.3f} ({:d}%)",
@@ -32,7 +32,7 @@ namespace state::in_play
 		Terminal::WriteLine("Manifest:");
 		Terminal::SetForeground(game::Colors::YELLOW);
 		size_t index = 1;
-		auto manifest = game::Session().GetPlayerCharacter().GetItems().GetAll();
+		auto manifest = game::Session().GetPlayerCharacter().GetLegacyItems().GetAll();
 		for (auto entry : manifest)
 		{
 			Terminal::WriteLine("{}) {} (x{})", index++, entry.GetName(), entry.GetCount());
@@ -55,7 +55,7 @@ namespace state::in_play
 	static void OnHandleOther(const std::string& input)
 	{
 		auto index = common::Data::ToInt(input)-1;
-		if (index < game::Session().GetPlayerCharacter().GetItems().GetAll().size())
+		if (index < game::Session().GetPlayerCharacter().GetLegacyItems().GetAll().size())
 		{
 			Terminal::ErrorMessage("TODO: whatever one does with cargo...");
 		}

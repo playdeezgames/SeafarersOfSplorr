@@ -38,7 +38,7 @@ namespace game::session
 		return std::nullopt;
 	}
 
-	character::LegacyItems Character::GetItems() const
+	character::LegacyItems Character::GetLegacyItems() const
 	{
 		return character::LegacyItems(characterId);
 	}

@@ -19,7 +19,7 @@ namespace game::session
 		std::list<character::Characteristic> GetCharacteristics() const;
 		character::HitPoints GetHitpoints() const;
 		character::Berth GetBerth() const;
-		character::LegacyItems GetItems() const;
+		character::LegacyItems GetLegacyItems() const;
 		std::optional<character::Quest> TryGetQuest() const;
 		character::Quest GetQuest() const;
 		void DoAction(const game::characters::Action&) const;
@@ -29,7 +29,7 @@ namespace game::session
 		double GetAvailableTonnage() const;
 		double GetMoney() const;
 		bool IsDead() const;
-		//character::Items GetItemsNew() const;
+		//character::Items GetItems() const;
 	private:
 		int characterId;
 	};
