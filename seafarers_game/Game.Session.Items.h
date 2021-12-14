@@ -1,4 +1,5 @@
 #pragma once
+#include "Game.ItemType.h"
 #include "Game.Session.Item.h"
 namespace game::session
 {
@@ -6,5 +7,6 @@ namespace game::session
 	{
 		Item GetItem(int) const;
 		void Purge() const;
+		Item Add(const game::ItemType&, int) const;
 	};
 }

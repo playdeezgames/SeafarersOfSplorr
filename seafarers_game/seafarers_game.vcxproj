@@ -34,6 +34,7 @@
     <ClInclude Include="Game.Islands.Features.DarkAlley.h" />
     <ClInclude Include="Game.Islands.Features.Tavern.h" />
     <ClInclude Include="Game.Islands.Taverns.h" />
+    <ClInclude Include="Game.ItemType.h" />
     <ClInclude Include="Game.Session.Character.Berth.h" />
     <ClInclude Include="Game.Session.Character.Characteristic.h" />
     <ClInclude Include="Game.Session.Character.h" />

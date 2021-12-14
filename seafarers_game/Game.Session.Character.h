@@ -29,7 +29,7 @@ namespace game::session
 		double GetAvailableTonnage() const;
 		double GetMoney() const;
 		bool IsDead() const;
-		//character::Items GetItems() const;
+		character::Items GetItems() const;
 	private:
 		int characterId;
 	};

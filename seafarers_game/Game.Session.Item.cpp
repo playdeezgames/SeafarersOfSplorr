@@ -9,9 +9,9 @@ namespace game::session
 
 	}
 
-	game::Item Item::GetItemType() const
+	game::ItemType Item::GetItemType() const
 	{
-		return (game::Item)data::game::ItemInstance::ReadType(itemInstanceId).value();
+		return (game::ItemType)data::game::ItemInstance::ReadType(itemInstanceId).value();
 	}
 
 	void Item::SetQuantity(int quantity) const

@@ -1,12 +1,12 @@
 #pragma once
-#include "Game.Item.h"
+#include "Game.ItemType.h"
 #include <optional>
 namespace game::session
 {
 	struct Item
 	{
 		Item(int);
-		game::Item GetItemType() const;
+		game::ItemType GetItemType() const;
 		void SetQuantity(int) const;
 		int GetQuantity() const;
 		std::optional<int> TryGetCharacterId() const;

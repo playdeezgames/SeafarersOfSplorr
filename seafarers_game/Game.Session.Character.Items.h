@@ -8,6 +8,7 @@ namespace game::session::character
 		Items(int);
 		std::list<Item> GetAll() const;
 		void Purge() const;
+		void Add(const Item&) const;
 	private:
 		int characterId;
 	};

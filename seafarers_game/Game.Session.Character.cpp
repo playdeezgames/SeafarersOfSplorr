@@ -104,4 +104,9 @@ namespace game::session
 		return GetHitpoints().GetCurrent() <= 0;
 	}
 
+	character::Items Character::GetItems() const
+	{
+		return character::Items(characterId);
+	}
+
 }

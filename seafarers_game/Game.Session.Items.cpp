@@ -11,4 +11,11 @@ namespace game::session
 	{
 		data::game::ItemInstance::Purge();
 	}
+
+	Item Items::Add(const game::ItemType& itemType, int count) const
+	{
+		int itemInstanceId = data::game::ItemInstance::Create((int)itemType, count);
+		return Item(itemInstanceId);
+	}
+
 }

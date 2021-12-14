@@ -23,4 +23,9 @@ namespace game::session::character
 	{
 		data::game::character::ItemInstance::Purge();
 	}
+
+	void Items::Add(const Item& item) const
+	{
+		item.SetCharacterId(characterId);
+	}
 }
