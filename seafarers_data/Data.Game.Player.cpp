@@ -9,19 +9,19 @@ namespace data::game
 
 	static const std::string FIELD_AVATAR_ID = "CharacterId";
 
-	static const auto AutoCreatePlayerTable = Common::Run(CREATE_TABLE);
+	static const auto AutoCreateTable = Common::Run(CREATE_TABLE);
 
 	static const int PLAYER_ID = 1;
 
 	void Player::Create(int avatarId)
 	{
-		AutoCreatePlayerTable();
+		AutoCreateTable();
 		Common::Execute(REPLACE_ITEM, PLAYER_ID, avatarId);
 	}
 
 	int Player::GetCharacterId()
 	{
-		AutoCreatePlayerTable();
+		AutoCreateTable();
 		auto records = Common::Execute(QUERY_ITEM, PLAYER_ID);
 		return common::Data::ToInt(records.front()[FIELD_AVATAR_ID]);
 	}
