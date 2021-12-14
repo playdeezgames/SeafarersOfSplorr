@@ -4,12 +4,12 @@
 #include <list>
 namespace game::session::character
 {
-	struct Items
+	struct LegacyItems
 	{
-		Items(int);
+		LegacyItems(int);
 		bool Has(const game::Item&) const;
 		double GetTonnage() const;
-		std::list<character::Item> GetAll() const;
+		std::list<character::LegacyItem> GetAll() const;
 	private:
 		int characterId;
 	};

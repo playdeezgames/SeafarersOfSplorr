@@ -3,9 +3,9 @@
 #include <string>
 namespace game::session::character
 {
-	struct Item
+	struct LegacyItem
 	{
-		Item(int, const game::Item&);
+		LegacyItem(int, const game::Item&);
 		std::string GetName() const;
 		size_t GetCount() const;
 	private:

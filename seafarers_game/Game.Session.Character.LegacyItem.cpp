@@ -3,19 +3,19 @@
 #include "Game.Session.Character.LegacyItem.h"
 namespace game::session::character
 {
-	Item::Item(int characterId, const game::Item& item)
+	LegacyItem::LegacyItem(int characterId, const game::Item& item)
 		: characterId(characterId)
 		, item(item)
 	{
 
 	}
 
-	std::string Item::GetName() const
+	std::string LegacyItem::GetName() const
 	{
 		return game::Items::GetName(item);
 	}
 
-	size_t Item::GetCount() const
+	size_t LegacyItem::GetCount() const
 	{
 		return game::characters::Items::Read(characterId, item);
 	}

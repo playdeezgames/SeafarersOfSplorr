@@ -18,7 +18,7 @@ namespace game::session
 		std::list<character::Characteristic> GetCharacteristics() const;
 		character::HitPoints GetHitpoints() const;
 		character::Berth GetBerth() const;
-		character::Items GetItems() const;
+		character::LegacyItems GetItems() const;
 		std::optional<character::Quest> TryGetQuest() const;
 		character::Quest GetQuest() const;
 		void DoAction(const game::characters::Action&) const;

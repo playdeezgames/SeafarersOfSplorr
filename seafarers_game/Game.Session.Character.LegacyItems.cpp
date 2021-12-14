@@ -2,29 +2,29 @@
 #include "Game.Session.Character.LegacyItems.h"
 namespace game::session::character
 {
-	Items::Items(int characterId)
+	LegacyItems::LegacyItems(int characterId)
 		: characterId(characterId)
 	{
 
 	}
 
-	bool Items::Has(const game::Item& item) const
+	bool LegacyItems::Has(const game::Item& item) const
 	{
 		return game::characters::Items::Has(characterId, item);
 	}
 
-	double Items::GetTonnage() const
+	double LegacyItems::GetTonnage() const
 	{
 		return game::characters::Items::TotalTonnage(characterId);
 	}
 
-	std::list<character::Item> Items::GetAll() const
+	std::list<character::LegacyItem> LegacyItems::GetAll() const
 	{
 		auto items = game::characters::Items::All(characterId);
-		std::list<character::Item> result;
+		std::list<character::LegacyItem> result;
 		for (auto item : items)
 		{
-			result.push_back(character::Item(characterId, item.first));
+			result.push_back(character::LegacyItem(characterId, item.first));
 		}
 		return result;
 	}
