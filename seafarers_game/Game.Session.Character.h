@@ -5,7 +5,7 @@
 #include "Game.Session.Character.HitPoints.h"
 #include "Game.Session.FishGame.h"
 #include "Game.Session.Islands.h"
-#include "Game.Session.Character.Items.h"
+#include "Game.Session.Character.LegacyItems.h"
 #include "Game.Session.Character.Messages.h"
 #include "Game.Session.Character.Quest.h"
 #include <list>

@@ -1,6 +1,6 @@
 #pragma once
 #include "Game.Item.h"
-#include "Game.Session.Character.Item.h"
+#include "Game.Session.Character.LegacyItem.h"
 #include <list>
 namespace game::session::character
 {

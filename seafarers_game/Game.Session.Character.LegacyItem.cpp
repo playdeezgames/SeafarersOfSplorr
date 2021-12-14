@@ -1,6 +1,6 @@
 #include "Game.Characters.Items.h"
 #include "Game.Items.h"
-#include "Game.Session.Character.Item.h"
+#include "Game.Session.Character.LegacyItem.h"
 namespace game::session::character
 {
 	Item::Item(int characterId, const game::Item& item)
