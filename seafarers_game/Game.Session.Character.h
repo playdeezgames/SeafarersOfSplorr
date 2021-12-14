@@ -3,6 +3,7 @@
 #include "Game.Session.Character.Berth.h"
 #include "Game.Session.Character.Characteristic.h"
 #include "Game.Session.Character.HitPoints.h"
+#include "Game.Session.Character.Items.h"
 #include "Game.Session.FishGame.h"
 #include "Game.Session.Islands.h"
 #include "Game.Session.Character.LegacyItems.h"
@@ -28,6 +29,7 @@ namespace game::session
 		double GetAvailableTonnage() const;
 		double GetMoney() const;
 		bool IsDead() const;
+		//character::Items GetItemsNew() const;
 	private:
 		int characterId;
 	};
