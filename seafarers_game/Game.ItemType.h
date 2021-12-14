@@ -3,6 +3,7 @@ namespace game
 {
 	enum class ItemType
 	{
-		Currency
+		MACGUFFIN,
+		CURRENCY
 	};
 }
