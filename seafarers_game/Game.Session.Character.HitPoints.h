@@ -7,6 +7,7 @@ namespace game::session::character
 		HitPoints(int);
 		int GetMaximum() const;
 		int GetCurrent() const;
+		void Change(int) const;
 	private:
 		int characterId;
 	};

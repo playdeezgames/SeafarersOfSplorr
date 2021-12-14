@@ -40,7 +40,6 @@ namespace game::characters
 		{game::Difficulty::EASY,
 			{
 				{game::characters::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
-				{game::characters::Statistic::HEALTH, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
 				{game::characters::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
 				{game::characters::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
@@ -49,7 +48,6 @@ namespace game::characters
 		{game::Difficulty::NORMAL,
 			{
 				{game::characters::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
-				{game::characters::Statistic::HEALTH, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
 				{game::characters::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
 				{game::characters::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
@@ -58,7 +56,6 @@ namespace game::characters
 		{game::Difficulty::HARD,
 			{
 				{game::characters::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
-				{game::characters::Statistic::HEALTH, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
 				{game::characters::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
 				{game::characters::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
@@ -67,7 +64,6 @@ namespace game::characters
 		{game::Difficulty::HARDCORE,
 			{
 				{game::characters::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
-				{game::characters::Statistic::HEALTH, std::optional<double>(0.0), std::optional<double>(100.0), 100.0},
 				{game::characters::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
 				{game::characters::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
@@ -206,21 +202,6 @@ namespace game::characters
 		std::optional<double> Money::Change(int characterId, double delta)
 		{
 			return ChangeCurrent(characterId, game::characters::Statistic::MONEY, delta);
-		}
-
-		std::optional<double> Health::Current(int characterId)
-		{
-			return GetCurrent(characterId, game::characters::Statistic::HEALTH);
-		}
-
-		std::optional<double> Health::Change(int characterId, double delta)
-		{
-			return ChangeCurrent(characterId, game::characters::Statistic::HEALTH, delta);
-		}
-
-		std::optional<bool> Health::IsDead(int characterId)
-		{
-			return IsMinimal(characterId, Statistic::HEALTH);
 		}
 
 		std::optional<double> Reputation::Current(int characterId)

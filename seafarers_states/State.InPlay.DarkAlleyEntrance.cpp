@@ -1,6 +1,7 @@
 #include <Game.Characters.Statistics.h>
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.DarkAlley.FightCard.h>
+#include <Game.Session.h>
 #include "State.InPlay.DarkAlleyEntrance.h"
 #include "State.InPlay.Globals.h"
 namespace state::in_play
@@ -117,9 +118,9 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Enemy Brawling: {:.1f}", GetRuffianBrawling());
 		Terminal::WriteLine(
-			"Yer Brawling: {:.1f} Yer Health: {:.0f}", 
+			"Yer Brawling: {:.1f} Yer HP: {}", 
 			game::characters::statistics::Brawling::Current(GetPlayerCharacterId()).value(),
-			game::characters::statistics::Health::Current(GetPlayerCharacterId()).value());
+			game::Session().GetPlayerCharacter().GetHitpoints().GetCurrent());
 
 		RefreshBoard();
 
@@ -170,8 +171,8 @@ namespace state::in_play
 
 	static void HandleTakeDamage()
 	{
-		game::characters::statistics::Health::Change(GetPlayerCharacterId(), -GetRuffianBrawling());
-		if (game::characters::statistics::Health::IsDead(GetPlayerCharacterId()).value())
+		game::Session().GetPlayerCharacter().GetHitpoints().Change(-1);
+		if (game::Session().GetPlayerCharacter().IsDead())
 		{
 			Terminal::WriteLine("DEFEAT!");
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);

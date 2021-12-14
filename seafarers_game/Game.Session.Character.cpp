@@ -98,4 +98,10 @@ namespace game::session
 	{
 		return game::characters::statistics::Money::Current(characterId).value();
 	}
+
+	bool Character::IsDead() const
+	{
+		return GetHitpoints().GetCurrent() <= 0;
+	}
+
 }

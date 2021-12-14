@@ -27,6 +27,7 @@ namespace game::session
 		FishGame GetFishGame() const;
 		double GetAvailableTonnage() const;
 		double GetMoney() const;
+		bool IsDead() const;
 	private:
 		int characterId;
 	};

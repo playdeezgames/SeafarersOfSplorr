@@ -34,4 +34,17 @@ namespace game::session::character
 	{
 		return TryGetCurrent(characterId).value();
 	}
+
+	void HitPoints::Change(int delta) const
+	{
+		auto wounds = game::characters::Counters::Read(characterId, game::characters::Counter::WOUNDS);
+		if (wounds)
+		{
+			game::characters::Counters::Write(
+				characterId,
+				game::characters::Counter::WOUNDS,
+				wounds.value()-delta);
+		}
+	}
+
 }

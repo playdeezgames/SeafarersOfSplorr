@@ -10,12 +10,6 @@ namespace game::characters
 			static std::optional<double> Current(int);
 			static std::optional<double> Change(int, double);
 		};
-		struct Health
-		{
-			static std::optional<double> Current(int);
-			static std::optional<double> Change(int, double);
-			static std::optional<bool> IsDead(int);
-		};
 		struct Reputation
 		{
 			static std::optional<double> Current(int);
