@@ -401,6 +401,12 @@
     <ClInclude Include="Game.Session.Character.LegacyItem.h">
       <Filter>Header Files\Session</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Items.h">
+      <Filter>Header Files\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Item.h">
+      <Filter>Header Files\Session</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -608,6 +614,12 @@
       <Filter>Source Files\Session</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Character.LegacyItem.cpp">
+      <Filter>Source Files\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Items.cpp">
+      <Filter>Source Files\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Item.cpp">
       <Filter>Source Files\Session</Filter>
     </ClCompile>
   </ItemGroup>

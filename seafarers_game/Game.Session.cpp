@@ -53,4 +53,9 @@ namespace game
 	{
 		game::ApplyTurnEffects();
 	}
+
+	session::Items Session::GetItems() const
+	{
+		return session::Items();
+	}
 }

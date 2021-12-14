@@ -49,6 +49,8 @@
     <ClInclude Include="Game.Session.h" />
     <ClInclude Include="Game.Session.Island.h" />
     <ClInclude Include="Game.Session.Islands.h" />
+    <ClInclude Include="Game.Session.Item.h" />
+    <ClInclude Include="Game.Session.Items.h" />
     <ClInclude Include="Game.Session.Ship.Berth.h" />
     <ClInclude Include="Game.Session.Ship.Fouling.h" />
     <ClInclude Include="Game.Session.Ship.h" />
@@ -152,6 +154,8 @@
     <ClCompile Include="Game.Session.FishGame.cpp" />
     <ClCompile Include="Game.Session.Island.cpp" />
     <ClCompile Include="Game.Session.Islands.cpp" />
+    <ClCompile Include="Game.Session.Item.cpp" />
+    <ClCompile Include="Game.Session.Items.cpp" />
     <ClCompile Include="Game.Session.Ship.Berth.cpp" />
     <ClCompile Include="Game.Session.Ship.cpp" />
     <ClCompile Include="Game.Session.Ship.Fouling.cpp" />
