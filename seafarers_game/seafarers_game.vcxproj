@@ -55,6 +55,7 @@
     <ClInclude Include="Game.Session.Item.h" />
     <ClInclude Include="Game.Session.Items.h" />
     <ClInclude Include="Game.Session.ItemType.h" />
+    <ClInclude Include="Game.Session.ItemTypes.h" />
     <ClInclude Include="Game.Session.Ship.Berth.h" />
     <ClInclude Include="Game.Session.Ship.Fouling.h" />
     <ClInclude Include="Game.Session.Ship.h" />

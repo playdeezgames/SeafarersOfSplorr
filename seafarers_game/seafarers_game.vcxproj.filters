@@ -458,6 +458,9 @@
     <ClInclude Include="Game.Session.Ships.h">
       <Filter>Header Files\Session\Ship</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.ItemTypes.h">
+      <Filter>Header Files\Session\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">

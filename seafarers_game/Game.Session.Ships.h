@@ -4,6 +4,6 @@ namespace game::session
 {
 	struct Ships
 	{
-
+		Ship GetShip(int) const;
 	};
 }

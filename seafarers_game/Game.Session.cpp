@@ -16,18 +16,9 @@ namespace game
 		return GetCharacters().GetCharacter(game::Player::GetCharacterId());
 	}
 
-	static std::optional<game::session::Ship> TryGetShip(int shipId)
+	session::Ships Session::GetShips() const
 	{
-		if (game::Ship::GetShipType(shipId).has_value())
-		{
-			return game::session::Ship(shipId);
-		}
-		return std::nullopt;
-	}
-
-	session::Ship Session::GetShip(int shipId) const
-	{
-		return TryGetShip(shipId).value();
+		return session::Ships();
 	}
 
 	session::World Session::GetWorld() const
