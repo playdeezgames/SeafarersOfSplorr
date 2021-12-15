@@ -449,6 +449,9 @@
     <ClInclude Include="Game.ItemType.h">
       <Filter>Header Files\Items</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.ItemType.h">
+      <Filter>Header Files\Session\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -666,6 +669,9 @@
     </ClCompile>
     <ClCompile Include="Game.Session.Character.Items.cpp">
       <Filter>Source Files\Session\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.ItemType.cpp">
+      <Filter>Source Files\Session\Item</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
