@@ -356,20 +356,11 @@
     <ClInclude Include="Game.Characters.Characteristics.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Characteristic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Characteristics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Characters.Counter.h">
       <Filter>Header Files\Character\Enums</Filter>
     </ClInclude>
     <ClInclude Include="Game.Characters.Counters.h">
       <Filter>Header Files\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Skill.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game.Characters.Skills.h">
       <Filter>Header Files\Character</Filter>
@@ -466,6 +457,15 @@
     </ClInclude>
     <ClInclude Include="Game.Session.Save.h">
       <Filter>Header Files\Session\Saves</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Characteristic.h">
+      <Filter>Header Files\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Characteristics.h">
+      <Filter>Header Files\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Skill.h">
+      <Filter>Header Files\Character</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
