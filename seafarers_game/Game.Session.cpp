@@ -1,9 +1,15 @@
+#include <Data.SQLite.Store.h> //FOR RESET
+#include <Data.SQLite.Stores.h> //FOR RESET
 #include "Game.h"
 #include "Game.Characters.h" //FOR APPLY TURN EFFECTS
+#include "Game.Characters.Equipment.h" //FOR RESET
+#include "Game.Characters.Items.h" //FOR RESET
 #include "Game.Characters.Plights.h" //FOR APPLY TURN EFFECTS
+#include "Game.Characters.Statistics.h" //FOR RESET
 #include "Game.Demigods.h" //FOR APPLY TURN EFFECTS
 #include "Game.Fisheries.h" //FOR APPLY TURN EFFECTS
 #include "Game.Islands.h" //FOR APPLY TURN EFFECTS
+#include "Game.Islands.Features.h" //FOR RESET
 #include "Game.Player.h" //FOR GetPlayerCharacter
 #include "Game.Session.h"
 #include "Game.Session.Character.h"
@@ -54,6 +60,18 @@ namespace game
 
 	void Session::Reset(const Difficulty& difficulty) const
 	{
-		game::ResetLegacy(difficulty);
+		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);
+
+		game::World::Reset(difficulty);//must be done first to establish world size
+		game::Ships::Reset(difficulty);
+		game::Characters::Reset(difficulty);
+		game::characters::Equipment::Reset(difficulty);
+		game::characters::Items::Reset(Player::GetCharacterId(), difficulty);
+		game::characters::Plights::Reset(difficulty);
+		game::characters::Statistics::Reset(Player::GetCharacterId(), difficulty);
+		game::Demigods::Reset(game::Player::GetCharacterId(), difficulty);
+		game::Fisheries::Reset(difficulty);
+		game::Islands::Reset(difficulty);
+		game::islands::Features::Reset(difficulty);
 	}
 }

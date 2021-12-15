@@ -3,7 +3,6 @@
 #include <functional>
 namespace game
 {
-	void ResetLegacy(const Difficulty&);
 	void AutoSave();
 	bool DoesAutosaveExist();
 	void LoadFromAutosave();

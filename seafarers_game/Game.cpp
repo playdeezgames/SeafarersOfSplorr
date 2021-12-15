@@ -20,23 +20,6 @@
 #include <map>
 namespace game
 {
-	void ResetLegacy(const Difficulty& difficulty)
-	{
-		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);
-
-		World::Reset(difficulty);//must be done first to establish world size
-		Ships::Reset(difficulty);
-		Characters::Reset(difficulty);
-		characters::Equipment::Reset(difficulty);
-		characters::Items::Reset(Player::GetCharacterId(), difficulty);
-		characters::Plights::Reset(difficulty);
-		characters::Statistics::Reset(Player::GetCharacterId(), difficulty);
-		Demigods::Reset(game::Player::GetCharacterId(), difficulty);
-		Fisheries::Reset(difficulty);
-		Islands::Reset(difficulty);
-		islands::Features::Reset(difficulty);
-	}
-
 	void AutoSave()
 	{
 		data::sqlite::Stores::Copy(data::sqlite::Store::IN_MEMORY, data::sqlite::Store::AUTOSAVE);
