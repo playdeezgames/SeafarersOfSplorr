@@ -120,6 +120,12 @@
     <Filter Include="Source Files\Session\World">
       <UniqueIdentifier>{b7465420-c047-4464-aaf2-4e8c5057fa86}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Session\Demigod">
+      <UniqueIdentifier>{4f53863b-1dc0-4d25-8ce4-016183a97ae6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Demigod">
+      <UniqueIdentifier>{01785989-2bbb-48f4-a868-8264df2302e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -462,7 +468,7 @@
       <Filter>Header Files\Session\Item</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Demigods.h">
-      <Filter>Header Files\Session</Filter>
+      <Filter>Header Files\Session\Demigod</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -695,7 +701,7 @@
       <Filter>Source Files\Session\Item</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Demigods.cpp">
-      <Filter>Source Files\Session</Filter>
+      <Filter>Source Files\Session\Demigod</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

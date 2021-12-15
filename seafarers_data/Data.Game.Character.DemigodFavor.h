@@ -7,6 +7,6 @@ namespace data::game::character
 		static void Write(int, int, double, int);
 		static std::optional<double> ReadFavor(int, int);
 		static std::optional<int> ReadOfferingCooldown(int, int);
-		static void Clear(int);
+		static void ClearAll();
 	};
 }

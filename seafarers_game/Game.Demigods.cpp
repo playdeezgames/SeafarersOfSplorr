@@ -96,7 +96,7 @@ namespace game
 		{10,1}
 	};
 
-	void Demigods::Reset(int characterId, const Difficulty&)
+	void Demigods::Reset(const Difficulty&)
 	{
 		const double BLESSING_THRESHOLD = 5.0;
 		const double BLESSING_MULTIPLIER = 2.0;
@@ -106,7 +106,7 @@ namespace game
 		const double OFFERING_FAVOR_MAXIMUM = 1.0;
 		data::game::Demigod::Clear();
 		data::game::DemigodItem::Clear();
-		data::game::character::DemigodFavor::Clear(characterId);
+		data::game::character::DemigodFavor::ClearAll();
 		auto demigodCount = common::RNG::FromGenerator(demigodCounts);
 		auto names = GenerateNames(demigodCount);
 		auto items = Items::All();
@@ -178,7 +178,7 @@ namespace game
 	{
 		size_t coolDown = data::game::character::DemigodFavor::ReadOfferingCooldown(characterId, demigod.id).value_or(0);
 		coolDown++;
-		data::game::character::DemigodFavor::Write(characterId, demigod.id, data::game::character::DemigodFavor::ReadFavor(characterId, demigod.id).value_or(0.0) , coolDown);
+		data::game::character::DemigodFavor::Write(characterId, demigod.id, data::game::character::DemigodFavor::ReadFavor(characterId, demigod.id).value_or(0.0) , (int)coolDown);
 	}
 
 	static OfferingResult DoMakeOffering(int characterId, data::game::Demigod& demigod, const Item& item)

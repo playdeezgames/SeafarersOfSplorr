@@ -7,7 +7,8 @@ namespace data::game::character
 	static const std::string REPLACE_ITEM = "REPLACE INTO [CharacterDemigodFavor]([CharacterId],[DemigodId],[Favor],[OfferingCooldown]) VALUES({},{},{},{});";
 	static const std::string QUERY_ITEM_FAVOR = "SELECT [Favor] FROM [CharacterDemigodFavor] WHERE [CharacterId]={} AND [DemigodId]={};";
 	static const std::string QUERY_ITEM_OFFERING_COOLDOWN = "SELECT [OfferingCooldown] FROM [CharacterDemigodFavor] WHERE [CharacterId]={} AND [DemigodId]={};";
-	static const std::string DELETE_ALL = "DELETE FROM [CharacterDemigodFavor] WHERE [CharacterId]={};";
+	static const std::string DELETE_ALL_FOR_CHARACTER = "DELETE FROM [CharacterDemigodFavor] WHERE [CharacterId]={};";
+	static const std::string DELETE_ALL = "DELETE FROM [CharacterDemigodFavor];";
 
 	static const std::string FIELD_FAVOR = "Favor";
 	static const std::string FIELD_OFFERING_COOLDOWN = "OfferingCooldown";
@@ -47,9 +48,9 @@ namespace data::game::character
 		return std::nullopt;
 	}
 
-	void DemigodFavor::Clear(int characterId)
+	void DemigodFavor::ClearAll()
 	{
 		AutoCreateTable();
-		Common::Execute(DELETE_ALL, characterId);
+		Common::Execute(DELETE_ALL);
 	}
 }
