@@ -6,6 +6,7 @@
 #include <Game.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
+#include <Game.Session.h>
 #include "State.ConfirmOverwrite.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -39,8 +40,24 @@ namespace state
 
 	static void ConfirmOverwrite()
 	{
-		int slot = slotTable.find((::UIState)application::UIState::Read())->second;
-		game::SaveToSlot(slot);
+		switch ((::UIState)application::UIState::Read())
+		{
+		case ::UIState::CONFIRM_OVERWRITE_SLOT1:
+			game::Session().GetSaves().GetSlot1().Store();
+			break;
+		case ::UIState::CONFIRM_OVERWRITE_SLOT2:
+			game::Session().GetSaves().GetSlot2().Store();
+			break;
+		case ::UIState::CONFIRM_OVERWRITE_SLOT3:
+			game::Session().GetSaves().GetSlot3().Store();
+			break;
+		case ::UIState::CONFIRM_OVERWRITE_SLOT4:
+			game::Session().GetSaves().GetSlot4().Store();
+			break;
+		case ::UIState::CONFIRM_OVERWRITE_SLOT5:
+			game::Session().GetSaves().GetSlot5().Store();
+			break;
+		}
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
