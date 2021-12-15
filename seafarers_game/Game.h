@@ -3,7 +3,6 @@
 #include <functional>
 namespace game
 {
-	std::function<void()> DoAddResetter(std::function<void()>);//TODO: legacize
 	void ResetLegacy(const Difficulty&);
 	void AutoSave();
 	bool DoesAutosaveExist();

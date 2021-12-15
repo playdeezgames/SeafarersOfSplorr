@@ -20,20 +20,6 @@
 #include <map>
 namespace game
 {
-	static std::list<std::function<void()>> resetters;
-	static void AddResetter(std::function<void()> resetter)
-	{
-		resetters.push_back(resetter);
-	}
-
-	std::function<void()> DoAddResetter(std::function<void()> resetter)
-	{
-		return [resetter]()
-		{
-			AddResetter(resetter);
-		};
-	}
-
 	void ResetLegacy(const Difficulty& difficulty)
 	{
 		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);
@@ -49,10 +35,6 @@ namespace game
 		Fisheries::Reset(difficulty);
 		Islands::Reset(difficulty);
 		islands::Features::Reset(difficulty);
-		for (auto& resetter : resetters)
-		{
-			resetter();
-		}
 	}
 
 	void AutoSave()
