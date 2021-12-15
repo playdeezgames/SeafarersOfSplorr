@@ -1,9 +1,10 @@
 #pragma once
+#include <optional>
 namespace data::game
 {
 	struct Player
 	{
 		static void Create(int);
-		static int GetCharacterId();
+		static std::optional<int> GetCharacterId();
 	};
 }

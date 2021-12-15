@@ -291,7 +291,11 @@ namespace state
 	{
 		ClearStatusLine();
 		ClearInput();
-		ShowMessages(game::Player::GetCharacterId());
+		auto characterId = game::Player::TryGetCharacterId();
+		if (characterId)
+		{
+			ShowMessages(characterId.value());
+		}
 		WriteLine();
 	}
 

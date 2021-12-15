@@ -19,10 +19,14 @@ namespace data::game
 		Common::Execute(REPLACE_ITEM, PLAYER_ID, avatarId);
 	}
 
-	int Player::GetCharacterId()
+	std::optional<int> Player::GetCharacterId()
 	{
 		AutoCreateTable();
 		auto records = Common::Execute(QUERY_ITEM, PLAYER_ID);
-		return common::Data::ToInt(records.front()[FIELD_AVATAR_ID]);
+		if (!records.empty())
+		{
+			return common::Data::ToInt(records.front()[FIELD_AVATAR_ID]);
+		}
+		return std::nullopt;
 	}
 }
