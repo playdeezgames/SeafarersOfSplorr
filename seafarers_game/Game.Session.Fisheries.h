@@ -1,4 +1,5 @@
 #pragma once
+#include "Game.Difficulty.h"
 #include <functional>
 #include <list>
 namespace game::session
@@ -7,6 +8,8 @@ namespace game::session
 	{
 		Fisheries(std::function<std::list<int>()>);
 		bool HasAny() const;
+		void Reset(const Difficulty&) const;
+		void ApplyTurnEffects() const;
 	private:
 		std::function<std::list<int>()> fisherySource;
 	};

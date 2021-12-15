@@ -1,5 +1,6 @@
 #include <Data.SQLite.Store.h> //FOR RESET
 #include <Data.SQLite.Stores.h> //FOR RESET
+#include <Data.Game.Fishery.h> //For GetFisheries
 #include <Data.Game.Island.h> //FOR GetIslands
 #include "Game.Demigods.h" //FOR APPLY TURN EFFECTS
 #include "Game.Fisheries.h" //FOR APPLY TURN EFFECTS
@@ -34,8 +35,8 @@ namespace game
 		GetIslands().ApplyTurnEffects();
 
 		GetDemigods().ApplyTurnEffects();
+		GetFisheries().ApplyTurnEffects();
 
-		game::Fisheries::ApplyTurnEffects();
 
 		GetWorld().ApplyTurnEffects();
 	}
@@ -58,6 +59,7 @@ namespace game
 		GetShips().Reset(difficulty);
 		GetCharacters().Reset(difficulty);
 		GetDemigods().Reset(difficulty);
+		GetFisheries().Reset(difficulty);
 
 		game::Fisheries::Reset(difficulty);
 
@@ -80,4 +82,14 @@ namespace game
 		return session::Demigods();
 	}
 
+	session::Fisheries Session::GetFisheries() const
+	{
+		auto fisheries = data::game::Fishery::All();
+		std::list<int> fisheryIds;
+		for (auto fishery : fisheries)
+		{
+			fisheryIds.push_back(fishery.fisheryId);
+		}
+		return session::Fisheries([fisheryIds]() { return fisheryIds; });
+	}
 }

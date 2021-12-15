@@ -7,6 +7,7 @@
 #include "Game.Session.ItemTypes.h"
 #include "Game.Session.Ships.h"
 #include "Game.Session.World.h"
+#include "Game.Session.Fisheries.h"
 #include <optional>
 namespace game
 {
@@ -20,6 +21,7 @@ namespace game
 		session::Items GetItems() const;
 		session::ItemTypes GetItemTypes() const;
 		session::Demigods GetDemigods() const;
+		session::Fisheries GetFisheries() const;
 		void ApplyTurnEffects() const;
 		void Reset(const Difficulty&) const;
 	};
