@@ -14,7 +14,6 @@
 #include "Game.Session.h"
 #include "Game.Session.Character.h"
 #include "Game.Ships.h" //FOR APPLY TURN EFFECTS
-#include "Game.World.h" //FOR APPLY TURN EFFECTS
 namespace game
 {
 	session::Characters Session::GetCharacters() const
@@ -45,7 +44,8 @@ namespace game
 		game::characters::Plights::ApplyTurnEffects(game::Player::GetCharacterId());
 		game::Demigods::ApplyTurnEffects(game::Player::GetCharacterId());
 		game::Fisheries::ApplyTurnEffects();
-		game::World::ApplyTurnEffects();//put this into session world
+
+		GetWorld().ApplyTurnEffects();
 	}
 
 	session::Items Session::GetItems() const
@@ -62,7 +62,8 @@ namespace game
 	{
 		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);//TODO: mebbe this becomes the new game::Reset?
 
-		game::World::Reset(difficulty);//put this into session world
+		GetWorld().Reset(difficulty);//MUST BE FIRST
+
 		game::Ships::Reset(difficulty);
 		game::Characters::Reset(difficulty);
 		game::characters::Equipment::Reset(difficulty);

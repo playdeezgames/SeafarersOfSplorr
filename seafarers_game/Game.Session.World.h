@@ -1,4 +1,5 @@
 #pragma once
+#include "Game.Difficulty.h"
 #include "Game.Session.World.Wind.h"
 namespace game::session
 {
@@ -6,5 +7,7 @@ namespace game::session
 	{
 		World();
 		world::Wind GetWind() const;
+		void Reset(const Difficulty&) const;
+		void ApplyTurnEffects() const;
 	};
 }
