@@ -165,6 +165,7 @@
     <ClCompile Include="Game.Session.Item.cpp" />
     <ClCompile Include="Game.Session.Items.cpp" />
     <ClCompile Include="Game.Session.ItemType.cpp" />
+    <ClCompile Include="Game.Session.ItemTypes.cpp" />
     <ClCompile Include="Game.Session.Ship.Berth.cpp" />
     <ClCompile Include="Game.Session.Ship.cpp" />
     <ClCompile Include="Game.Session.Ship.Fouling.cpp" />

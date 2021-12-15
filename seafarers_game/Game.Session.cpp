@@ -35,4 +35,9 @@ namespace game
 	{
 		return session::Items();
 	}
+
+	session::ItemTypes Session::GetItemTypes() const
+	{
+		return session::ItemTypes();
+	}
 }
