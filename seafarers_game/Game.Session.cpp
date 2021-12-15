@@ -1,10 +1,5 @@
 #include <Data.SQLite.Store.h> //FOR RESET
 #include <Data.SQLite.Stores.h> //FOR RESET
-#include "Game.Characters.h" //FOR APPLY TURN EFFECTS
-#include "Game.Characters.Equipment.h" //FOR RESET
-#include "Game.Characters.Items.h" //FOR RESET
-#include "Game.Characters.Plights.h" //FOR APPLY TURN EFFECTS
-#include "Game.Characters.Statistics.h" //FOR RESET
 #include "Game.Demigods.h" //FOR APPLY TURN EFFECTS
 #include "Game.Fisheries.h" //FOR APPLY TURN EFFECTS
 #include "Game.Islands.h" //FOR APPLY TURN EFFECTS
@@ -37,10 +32,9 @@ namespace game
 	void Session::ApplyTurnEffects() const
 	{
 		GetShips().ApplyTurnEffects();
+		GetCharacters().ApplyTurnEffects();
 
-		game::Characters::ApplyTurnEffects();
 		game::Islands::ApplyTurnEffects();
-		game::characters::Plights::ApplyTurnEffects(game::Player::GetCharacterId());
 		game::Demigods::ApplyTurnEffects(game::Player::GetCharacterId());
 		game::Fisheries::ApplyTurnEffects();
 
@@ -63,12 +57,8 @@ namespace game
 
 		GetWorld().Reset(difficulty);//MUST BE FIRST
 		GetShips().Reset(difficulty);
+		GetCharacters().Reset(difficulty);
 
-		game::Characters::Reset(difficulty);
-		game::characters::Equipment::Reset(difficulty);
-		game::characters::Items::Reset(Player::GetCharacterId(), difficulty);
-		game::characters::Plights::Reset(difficulty);
-		game::characters::Statistics::Reset(Player::GetCharacterId(), difficulty);
 		game::Demigods::Reset(game::Player::GetCharacterId(), difficulty);
 		game::Fisheries::Reset(difficulty);
 		game::Islands::Reset(difficulty);
