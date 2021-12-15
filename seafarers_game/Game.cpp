@@ -34,7 +34,7 @@ namespace game
 		};
 	}
 
-	void Reset(const Difficulty& difficulty)
+	void ResetLegacy(const Difficulty& difficulty)
 	{
 		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);
 
@@ -53,11 +53,6 @@ namespace game
 		{
 			resetter();
 		}
-	}
-
-	void Start()
-	{
-		Reset(Difficulty::NORMAL);
 	}
 
 	void AutoSave()
@@ -134,10 +129,5 @@ namespace game
 		{
 			turnEffect();
 		}
-	}
-
-	Session GetSession()
-	{
-		return Session();
 	}
 }

@@ -43,6 +43,6 @@ namespace game
 
 	void Session::Reset(const Difficulty& difficulty) const
 	{
-		game::Reset(difficulty);
+		game::ResetLegacy(difficulty);
 	}
 }

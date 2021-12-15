@@ -138,7 +138,6 @@ namespace application
 		state::Options::Start,
 		state::StartGame::Start,
 		state::LeavePlay::Start,
-		game::Start,
 		state::Statistics::Start,
 		state::LoadGame::Start,
 		state::SaveGame::Start,

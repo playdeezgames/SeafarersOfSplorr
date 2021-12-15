@@ -5,6 +5,7 @@
 #include <Game.h>
 #include <Game.Colors.h>
 #include <Game.Audio.Mux.h>
+#include <Game.Session.h>
 #include "State.Terminal.h"
 #include "State.StartGame.h"
 #include "UIState.h"
@@ -16,7 +17,7 @@ namespace state
 	{
 		return [difficulty]()
 		{
-			game::Reset(difficulty);
+			game::Session().Reset(difficulty);
 			application::UIState::Write(::UIState::TIP);
 		};
 	}
