@@ -461,6 +461,9 @@
     <ClInclude Include="Game.Session.ItemTypes.h">
       <Filter>Header Files\Session\Item</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Demigods.h">
+      <Filter>Header Files\Session</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -690,6 +693,9 @@
     </ClCompile>
     <ClCompile Include="Game.Session.ItemTypes.cpp">
       <Filter>Source Files\Session\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Demigods.cpp">
+      <Filter>Source Files\Session</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

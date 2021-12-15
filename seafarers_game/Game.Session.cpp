@@ -33,7 +33,8 @@ namespace game
 		GetCharacters().ApplyTurnEffects();
 		GetIslands().ApplyTurnEffects();
 
-		game::Demigods::ApplyTurnEffects(game::Player::GetCharacterId());
+		GetDemigods().ApplyTurnEffects();
+
 		game::Fisheries::ApplyTurnEffects();
 
 		GetWorld().ApplyTurnEffects();
@@ -56,8 +57,8 @@ namespace game
 		GetWorld().Reset(difficulty);//MUST BE FIRST
 		GetShips().Reset(difficulty);
 		GetCharacters().Reset(difficulty);
+		GetDemigods().Reset(difficulty);
 
-		game::Demigods::Reset(game::Player::GetCharacterId(), difficulty);
 		game::Fisheries::Reset(difficulty);
 
 		GetIslands().Reset(difficulty);
@@ -73,4 +74,10 @@ namespace game
 		}
 		return session::Islands([islandIds]() { return islandIds; });
 	}
+
+	session::Demigods Session::GetDemigods() const
+	{
+		return session::Demigods();
+	}
+
 }

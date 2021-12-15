@@ -1,6 +1,7 @@
 #pragma once
 #include "Game.Difficulty.h"
 #include "Game.Session.Characters.h"
+#include "Game.Session.Demigods.h"
 #include "Game.Session.Islands.h"
 #include "Game.Session.Items.h"
 #include "Game.Session.ItemTypes.h"
@@ -18,6 +19,7 @@ namespace game
 		session::Islands GetIslands() const;
 		session::Items GetItems() const;
 		session::ItemTypes GetItemTypes() const;
+		session::Demigods GetDemigods() const;
 		void ApplyTurnEffects() const;
 		void Reset(const Difficulty&) const;
 	};
