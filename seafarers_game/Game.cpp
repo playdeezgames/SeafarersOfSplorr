@@ -1,23 +1,6 @@
-#include <Data.Game.World.h>
 #include <Data.SQLite.Store.h>
 #include <Data.SQLite.Stores.h>
 #include "Game.h"
-#include "Game.Characters.h"
-#include "Game.Characters.Equipment.h"
-#include "Game.Characters.Items.h"
-#include "Game.Characters.Plights.h"
-#include "Game.Characters.Ships.h"
-#include "Game.Characters.Statistics.h"
-#include "Game.Demigods.h"
-#include "Game.Fisheries.h"
-#include "Game.Islands.h"
-#include "Game.Islands.Features.h"
-#include "Game.Player.h"
-#include "Game.Ships.h"
-#include "Game.Ship.Docked.h"
-#include "Game.World.h"
-#include <list>
-#include <map>
 namespace game
 {
 	void AutoSave()
