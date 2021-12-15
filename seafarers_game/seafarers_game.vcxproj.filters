@@ -452,6 +452,12 @@
     <ClInclude Include="Game.Session.ItemType.h">
       <Filter>Header Files\Session\Item</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Characters.h">
+      <Filter>Header Files\Session\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Ships.h">
+      <Filter>Header Files\Session\Ship</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -672,6 +678,12 @@
     </ClCompile>
     <ClCompile Include="Game.Session.ItemType.cpp">
       <Filter>Source Files\Session\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Characters.cpp">
+      <Filter>Source Files\Session\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Ships.cpp">
+      <Filter>Source Files\Session\Ship</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -11,6 +11,7 @@ namespace state::in_play
 	{
 		auto character =
 			game::Session()
+			.GetCharacters()
 			.GetCharacter(GetCrewDetailCharacterId());
 		auto characteristics =
 			character
