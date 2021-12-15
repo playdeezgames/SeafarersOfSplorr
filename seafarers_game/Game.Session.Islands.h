@@ -1,6 +1,7 @@
 #pragma once
-#include "Game.Session.Island.h"
 #include <functional>
+#include "Game.Difficulty.h"
+#include "Game.Session.Island.h"
 #include <optional>
 #include <list>
 namespace game::session
@@ -13,6 +14,8 @@ namespace game::session
 		Island GetFirst() const;
 		size_t GetCount() const;
 		std::list<Island> GetAll() const;
+		void Reset(const Difficulty&) const;
+		void ApplyTurnEffects() const;
 	private:
 		std::function<std::list<int>()> islandSource;
 	};

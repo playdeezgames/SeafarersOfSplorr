@@ -1,12 +1,10 @@
 #include <Data.SQLite.Store.h> //FOR RESET
 #include <Data.SQLite.Stores.h> //FOR RESET
+#include <Data.Game.Island.h> //FOR GetIslands
 #include "Game.Demigods.h" //FOR APPLY TURN EFFECTS
 #include "Game.Fisheries.h" //FOR APPLY TURN EFFECTS
-#include "Game.Islands.h" //FOR APPLY TURN EFFECTS
-#include "Game.Islands.Features.h" //FOR RESET
 #include "Game.Player.h" //FOR GetPlayerCharacter
-#include "Game.Session.h"
-#include "Game.Session.Character.h"
+#include "Game.Session.h"//Cuz we implement here
 namespace game
 {
 	session::Characters Session::GetCharacters() const
@@ -33,8 +31,8 @@ namespace game
 	{
 		GetShips().ApplyTurnEffects();
 		GetCharacters().ApplyTurnEffects();
+		GetIslands().ApplyTurnEffects();
 
-		game::Islands::ApplyTurnEffects();
 		game::Demigods::ApplyTurnEffects(game::Player::GetCharacterId());
 		game::Fisheries::ApplyTurnEffects();
 
@@ -61,7 +59,18 @@ namespace game
 
 		game::Demigods::Reset(game::Player::GetCharacterId(), difficulty);
 		game::Fisheries::Reset(difficulty);
-		game::Islands::Reset(difficulty);
-		game::islands::Features::Reset(difficulty);
+
+		GetIslands().Reset(difficulty);
+	}
+
+	session::Islands Session::GetIslands() const
+	{
+		auto islands = data::game::Island::All();
+		std::list<int> islandIds;
+		for (auto island : islands)
+		{
+			islandIds.push_back(island.id);
+		}
+		return session::Islands([islandIds]() { return islandIds; });
 	}
 }

@@ -1,3 +1,5 @@
+#include "Game.Islands.h"
+#include "Game.Islands.Features.h"
 #include "Game.Session.Islands.h"
 namespace game::session
 {
@@ -39,5 +41,16 @@ namespace game::session
 			result.push_back(Island(islandId));
 		}
 		return result;
+	}
+
+	void Islands::Reset(const Difficulty& difficulty) const
+	{
+		game::Islands::Reset(difficulty);
+		game::islands::Features::Reset(difficulty);
+	}
+
+	void Islands::ApplyTurnEffects() const
+	{
+		game::Islands::ApplyTurnEffects();
 	}
 }
