@@ -71,7 +71,7 @@ namespace state
 		{
 			Terminal::WriteLine("6) Autosave Slot");
 		}
-		Terminal::WriteLine("7) Never mind");
+		Terminal::WriteLine("0) Never mind");
 
 		Terminal::ShowPrompt();
 	}
@@ -151,7 +151,7 @@ namespace state
 		{"4", Slot4Saver },
 		{"5", Slot5Saver },
 		{"6", SaveToAutosave},
-		{"7", application::UIState::GoTo(::UIState::LEAVE_PLAY)}
+		{"0", application::UIState::GoTo(::UIState::LEAVE_PLAY)}
 	};
 
 	void SaveGame::Start()
