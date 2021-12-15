@@ -243,7 +243,7 @@ namespace game
 	void Characters::Reset(const game::Difficulty&)
 	{
 		auto characterId = Create(game::characters::State::AT_SEA);
-		Player::Create(characterId);
+		Player::CreateLegacy(characterId);
 		GenerateCharacterShip(characterId);
 	}
 

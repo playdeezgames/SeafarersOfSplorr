@@ -2,7 +2,7 @@
 #include "Game.Player.h"
 namespace game
 {
-	void Player::Create(int characterId)
+	void Player::CreateLegacy(int characterId)
 	{
 		data::game::Player::Create(characterId);
 	}

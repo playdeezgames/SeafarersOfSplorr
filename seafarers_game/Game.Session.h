@@ -9,6 +9,7 @@
 #include "Game.Session.World.h"
 #include "Game.Session.Fisheries.h"
 #include "Game.Session.Saves.h"
+#include "Game.Session.Player.h"
 #include <optional>
 namespace game
 {
@@ -24,6 +25,7 @@ namespace game
 		session::Demigods GetDemigods() const;
 		session::Fisheries GetFisheries() const;
 		session::Saves GetSaves() const;
+		session::Player GetPlayer() const;
 		void ApplyTurnEffects() const;
 		void Reset(const Difficulty&) const;
 	};

@@ -467,6 +467,9 @@
     <ClInclude Include="Game.Skill.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Player.h">
+      <Filter>Header Files\Session</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Features.cpp">
@@ -702,6 +705,9 @@
     </ClCompile>
     <ClCompile Include="Game.Session.Save.cpp">
       <Filter>Source Files\Session\Saves</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Player.cpp">
+      <Filter>Source Files\Session</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

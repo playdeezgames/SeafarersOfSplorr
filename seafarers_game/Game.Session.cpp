@@ -97,4 +97,9 @@ namespace game
 	{
 		return session::Saves();
 	}
+
+	session::Player Session::GetPlayer() const
+	{
+		return session::Player();
+	}
 }
