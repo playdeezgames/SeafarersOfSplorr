@@ -111,23 +111,4 @@ namespace game
 			data::sqlite::Stores::Copy(data::sqlite::Store::IN_MEMORY, iter->second);
 		}
 	}
-
-	static const std::list<std::function<void()>> turnEffects = 
-	{
-		Ships::ApplyTurnEffects,
-		Characters::ApplyTurnEffects,
-		Islands::ApplyTurnEffects,
-		[]() { characters::Plights::ApplyTurnEffects(game::Player::GetCharacterId()); },
-		[]() { Demigods::ApplyTurnEffects(game::Player::GetCharacterId()); },
-		Fisheries::ApplyTurnEffects,
-		World::ApplyTurnEffects,
-	};
-
-	void ApplyTurnEffects()
-	{
-		for (auto turnEffect : turnEffects)
-		{
-			turnEffect();
-		}
-	}
 }

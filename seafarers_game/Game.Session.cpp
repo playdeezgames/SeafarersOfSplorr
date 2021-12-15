@@ -1,9 +1,14 @@
 #include "Game.h"
-#include "Game.Characters.h"
-#include "Game.Player.h"
+#include "Game.Characters.h" //FOR APPLY TURN EFFECTS
+#include "Game.Characters.Plights.h" //FOR APPLY TURN EFFECTS
+#include "Game.Demigods.h" //FOR APPLY TURN EFFECTS
+#include "Game.Fisheries.h" //FOR APPLY TURN EFFECTS
+#include "Game.Islands.h" //FOR APPLY TURN EFFECTS
+#include "Game.Player.h" //FOR GetPlayerCharacter
 #include "Game.Session.h"
 #include "Game.Session.Character.h"
-#include "Game.Ship.h"
+#include "Game.Ships.h" //FOR APPLY TURN EFFECTS
+#include "Game.World.h" //FOR APPLY TURN EFFECTS
 namespace game
 {
 	session::Characters Session::GetCharacters() const
@@ -28,7 +33,13 @@ namespace game
 
 	void Session::ApplyTurnEffects() const
 	{
-		game::ApplyTurnEffects();
+		game::Ships::ApplyTurnEffects();
+		game::Characters::ApplyTurnEffects();
+		game::Islands::ApplyTurnEffects();
+		game::characters::Plights::ApplyTurnEffects(game::Player::GetCharacterId());
+		game::Demigods::ApplyTurnEffects(game::Player::GetCharacterId());
+		game::Fisheries::ApplyTurnEffects();
+		game::World::ApplyTurnEffects();
 	}
 
 	session::Items Session::GetItems() const
