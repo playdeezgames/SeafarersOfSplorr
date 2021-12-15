@@ -1,4 +1,5 @@
 #pragma once
+#include "Game.Difficulty.h"
 #include "Game.Session.Characters.h"
 #include "Game.Session.Items.h"
 #include "Game.Session.ItemTypes.h"
@@ -16,5 +17,6 @@ namespace game
 		session::Items GetItems() const;
 		session::ItemTypes GetItemTypes() const;
 		void ApplyTurnEffects() const;
+		void Reset(const Difficulty&) const;
 	};
 }

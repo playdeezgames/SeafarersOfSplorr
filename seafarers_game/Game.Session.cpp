@@ -40,4 +40,9 @@ namespace game
 	{
 		return session::ItemTypes();
 	}
+
+	void Session::Reset(const Difficulty& difficulty) const
+	{
+		game::Reset(difficulty);
+	}
 }
