@@ -56,6 +56,8 @@
     <ClInclude Include="Game.Session.Items.h" />
     <ClInclude Include="Game.Session.ItemType.h" />
     <ClInclude Include="Game.Session.ItemTypes.h" />
+    <ClInclude Include="Game.Session.Save.h" />
+    <ClInclude Include="Game.Session.Saves.h" />
     <ClInclude Include="Game.Session.Ship.Berth.h" />
     <ClInclude Include="Game.Session.Ship.Fouling.h" />
     <ClInclude Include="Game.Session.Ship.h" />
@@ -164,6 +166,8 @@
     <ClCompile Include="Game.Session.Items.cpp" />
     <ClCompile Include="Game.Session.ItemType.cpp" />
     <ClCompile Include="Game.Session.ItemTypes.cpp" />
+    <ClCompile Include="Game.Session.Save.cpp" />
+    <ClCompile Include="Game.Session.Saves.cpp" />
     <ClCompile Include="Game.Session.Ship.Berth.cpp" />
     <ClCompile Include="Game.Session.Ship.cpp" />
     <ClCompile Include="Game.Session.Ship.Fouling.cpp" />

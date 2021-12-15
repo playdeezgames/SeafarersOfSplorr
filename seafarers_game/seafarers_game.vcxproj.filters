@@ -126,6 +126,12 @@
     <Filter Include="Source Files\Session\Demigod">
       <UniqueIdentifier>{01785989-2bbb-48f4-a868-8264df2302e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Session\Saves">
+      <UniqueIdentifier>{2b817d04-d723-4f48-a357-a57a0cc59391}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Saves">
+      <UniqueIdentifier>{0cb6ac6f-493f-4455-86c5-a4fca343dcff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -458,6 +464,12 @@
     <ClInclude Include="Game.Session.Demigods.h">
       <Filter>Header Files\Session\Demigod</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Saves.h">
+      <Filter>Header Files\Session\Saves</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Save.h">
+      <Filter>Header Files\Session\Saves</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -690,6 +702,12 @@
     </ClCompile>
     <ClCompile Include="Game.Session.Demigods.cpp">
       <Filter>Source Files\Session\Demigod</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Saves.cpp">
+      <Filter>Source Files\Session\Saves</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Save.cpp">
+      <Filter>Source Files\Session\Saves</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

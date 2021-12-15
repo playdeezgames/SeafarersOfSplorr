@@ -92,4 +92,9 @@ namespace game
 		}
 		return session::Fisheries([fisheryIds]() { return fisheryIds; });
 	}
+
+	session::Saves Session::GetSaves() const
+	{
+		return session::Saves();
+	}
 }
