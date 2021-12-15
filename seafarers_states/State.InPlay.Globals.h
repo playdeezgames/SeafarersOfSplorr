@@ -11,7 +11,6 @@
 
 #include <Cards.Rank.h>
 #include <Cards.Suit.h>
-#include <Game.h>
 #include <Game.Characters.Action.h>
 #include <Game.EquipSlot.h>
 #include <Game.Feature.h>

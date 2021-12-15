@@ -1,5 +1,4 @@
 #include <Application.Update.h>
-#include <Game.h>
 #include <Game.Characters.h>
 #include <Game.Characters.Statistics.h>
 #include <Game.Session.h>

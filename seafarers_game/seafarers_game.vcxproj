@@ -101,7 +101,6 @@
     <ClInclude Include="Game.Features.h" />
     <ClInclude Include="Game.Fish.h" />
     <ClInclude Include="Game.Fishes.h" />
-    <ClInclude Include="Game.h" />
     <ClInclude Include="Game.Island.h" />
     <ClInclude Include="Game.Islands.Commodities.h" />
     <ClInclude Include="Game.Islands.DarkAlley.FightCard.h" />
@@ -185,7 +184,6 @@
     <ClCompile Include="Game.Ship.Statistics.cpp" />
     <ClCompile Include="Game.Characters.Statistics.cpp" />
     <ClCompile Include="Game.Commodities.cpp" />
-    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game.Demigods.cpp" />
     <ClCompile Include="Game.EquipSlots.cpp" />
     <ClCompile Include="Game.Features.cpp" />

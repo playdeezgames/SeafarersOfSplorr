@@ -8,7 +8,6 @@
 #include <Data.SQLite.Store.h>
 #include <Data.SQLite.Stores.h>
 #include <functional>
-#include <Game.h>
 #include <State.About.h>
 #include <State.ConfirmAbandon.h>
 #include <State.ConfirmOverwrite.h>

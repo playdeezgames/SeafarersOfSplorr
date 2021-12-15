@@ -179,9 +179,6 @@
     <ClInclude Include="Game.Difficulty.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Colors.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
@@ -472,9 +469,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Features.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

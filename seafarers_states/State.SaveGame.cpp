@@ -3,7 +3,6 @@
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
 #include <Common.Utility.h>
-#include <Game.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
 #include <Game.Session.h>
