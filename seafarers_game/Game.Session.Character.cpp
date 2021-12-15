@@ -71,7 +71,7 @@ namespace game::session
 		{
 			result.push_back(island.id);
 		}
-		return Islands(result);
+		return Islands([result]() {return result; });//!!!
 	}
 
 	FishGame Character::GetFishGame() const

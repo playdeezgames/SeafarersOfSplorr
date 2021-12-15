@@ -1,22 +1,22 @@
 #include "Game.Session.Islands.h"
 namespace game::session
 {
-	Islands::Islands(const std::list<int>& islandIds)
-		: islandIds(islandIds)
+	Islands::Islands(std::function<std::list<int>()> islandSource)
+		: islandSource(islandSource)
 	{
 
 	}
 
 	bool Islands::HasAny() const
 	{
-		return !islandIds.empty();
+		return !islandSource().empty();
 	}
 
 	std::optional<Island> Islands::TryGetFirst() const
 	{
 		if (HasAny())
 		{
-			return Island(islandIds.front());
+			return Island(islandSource().front());
 		}
 		return std::nullopt;
 	}
@@ -28,13 +28,13 @@ namespace game::session
 
 	size_t Islands::GetCount() const
 	{
-		return islandIds.size();
+		return islandSource().size();
 	}
 
 	std::list<Island> Islands::GetAll() const
 	{
 		std::list<Island> result;
-		for (auto islandId : islandIds)
+		for (auto islandId : islandSource())
 		{
 			result.push_back(Island(islandId));
 		}

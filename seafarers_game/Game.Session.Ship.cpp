@@ -49,7 +49,7 @@ namespace game::session
 		{
 			islandIds.push_back(island.id);
 		}
-		return game::session::Islands(islandIds);
+		return game::session::Islands([islandIds]() {return islandIds; });//!!!!
 	}
 
 	Islands Ship::GetDockableIslands() const
