@@ -3,11 +3,6 @@
 #include "Game.h"
 namespace game
 {
-	void AutoSave()
-	{
-		data::sqlite::Stores::Copy(data::sqlite::Store::IN_MEMORY, data::sqlite::Store::AUTOSAVE);
-	}
-
 	void LoadFromAutosave()
 	{
 		data::sqlite::Stores::Copy(data::sqlite::Store::AUTOSAVE, data::sqlite::Store::IN_MEMORY);

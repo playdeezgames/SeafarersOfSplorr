@@ -6,6 +6,7 @@
 #include <Game.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
+#include <Game.Session.h>
 #include "State.SaveGame.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -22,18 +23,47 @@ namespace state
 		Terminal::WriteLine();
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		for (int slot = 1; slot <= 5; ++slot)
+		if (game::Session().GetSaves().GetSlot1().Exists())
 		{
-			if (game::DoesSlotExist(slot))
-			{
-				Terminal::WriteLine("{}) Slot {}(overwrite)", slot, slot);
-			}
-			else
-			{
-				Terminal::WriteLine("{}) Slot {}", slot, slot);
-			}
+			Terminal::WriteLine("1) Slot 1(overwrite)");
 		}
-		if (game::DoesAutosaveExist())
+		else
+		{
+			Terminal::WriteLine("1) Slot 1");
+		}
+		if (game::Session().GetSaves().GetSlot2().Exists())
+		{
+			Terminal::WriteLine("2) Slot 2(overwrite)");
+		}
+		else
+		{
+			Terminal::WriteLine("2) Slot 2");
+		}
+		if (game::Session().GetSaves().GetSlot3().Exists())
+		{
+			Terminal::WriteLine("3) Slot 3(overwrite)");
+		}
+		else
+		{
+			Terminal::WriteLine("3) Slot 3");
+		}
+		if (game::Session().GetSaves().GetSlot4().Exists())
+		{
+			Terminal::WriteLine("4) Slot 4(overwrite)");
+		}
+		else
+		{
+			Terminal::WriteLine("4) Slot 4");
+		}
+		if (game::Session().GetSaves().GetSlot5().Exists())
+		{
+			Terminal::WriteLine("5) Slot 5(overwrite)");
+		}
+		else
+		{
+			Terminal::WriteLine("5) Slot 5");
+		}
+		if (game::Session().GetSaves().GetAuto().Exists())
 		{
 			Terminal::WriteLine("6) Autosave Slot(overwrite)");
 		}
@@ -48,22 +78,63 @@ namespace state
 
 	static void SaveToAutosave()
 	{
-		game::AutoSave();
+		game::Session().GetSaves().GetAuto().Store();
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	static std::function<void()> SlotSaver(int slot, ::UIState confirmState)
+	static void Slot1Saver()
 	{
-		return [slot, confirmState]()
+		if (game::Session().GetSaves().GetSlot1().Exists())
 		{
-			if (game::DoesSlotExist(slot))
-			{
-				application::UIState::Write(confirmState);
-				return;
-			}
-			game::SaveToSlot(slot);
-			application::UIState::Write(::UIState::IN_PLAY_NEXT);
-		};
+			application::UIState::Write(::UIState::CONFIRM_OVERWRITE_SLOT1);
+			return;
+		}
+		game::Session().GetSaves().GetSlot1().Store();
+		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+	}
+
+	static void Slot2Saver()
+	{
+		if (game::Session().GetSaves().GetSlot2().Exists())
+		{
+			application::UIState::Write(::UIState::CONFIRM_OVERWRITE_SLOT2);
+			return;
+		}
+		game::Session().GetSaves().GetSlot2().Store();
+		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+	}
+
+	static void Slot3Saver()
+	{
+		if (game::Session().GetSaves().GetSlot3().Exists())
+		{
+			application::UIState::Write(::UIState::CONFIRM_OVERWRITE_SLOT3);
+			return;
+		}
+		game::Session().GetSaves().GetSlot3().Store();
+		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+	}
+
+	static void Slot4Saver()
+	{
+		if (game::Session().GetSaves().GetSlot4().Exists())
+		{
+			application::UIState::Write(::UIState::CONFIRM_OVERWRITE_SLOT4);
+			return;
+		}
+		game::Session().GetSaves().GetSlot4().Store();
+		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+	}
+
+	static void Slot5Saver()
+	{
+		if (game::Session().GetSaves().GetSlot5().Exists())
+		{
+			application::UIState::Write(::UIState::CONFIRM_OVERWRITE_SLOT5);
+			return;
+		}
+		game::Session().GetSaves().GetSlot5().Store();
+		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
 	static void OnEnter()
@@ -74,13 +145,13 @@ namespace state
 
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
-		{"1",SlotSaver(1, ::UIState::CONFIRM_OVERWRITE_SLOT1)},
-		{"2",SlotSaver(2, ::UIState::CONFIRM_OVERWRITE_SLOT2)},
-		{"3",SlotSaver(3, ::UIState::CONFIRM_OVERWRITE_SLOT3)},
-		{"4",SlotSaver(4, ::UIState::CONFIRM_OVERWRITE_SLOT4)},
-		{"5",SlotSaver(5, ::UIState::CONFIRM_OVERWRITE_SLOT5)},
-		{"6",SaveToAutosave},
-		{"7",application::UIState::GoTo(::UIState::LEAVE_PLAY)}
+		{"1", Slot1Saver },
+		{"2", Slot2Saver },
+		{"3", Slot3Saver },
+		{"4", Slot4Saver },
+		{"5", Slot5Saver },
+		{"6", SaveToAutosave},
+		{"7", application::UIState::GoTo(::UIState::LEAVE_PLAY)}
 	};
 
 	void SaveGame::Start()
@@ -91,7 +162,7 @@ namespace state
 			CURRENT_STATE,
 			Terminal::DoIntegerInput(
 				menuActions,
-				"Please enter a number between 1 and 7.",
+				Terminal::INVALID_INPUT,
 				Refresh));
 	}
 }

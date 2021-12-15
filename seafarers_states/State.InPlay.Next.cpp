@@ -2,6 +2,7 @@
 #include <Game.h>
 #include <Game.Characters.h>
 #include <Game.Characters.Statistics.h>
+#include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.Next.h"
 namespace state::in_play
@@ -58,7 +59,7 @@ namespace state::in_play
 				return;
 			}
 		}
-		game::AutoSave();
+		game::Session().GetSaves().GetAuto().Store();
 
 		if (application::UIState::CanPop())
 		{

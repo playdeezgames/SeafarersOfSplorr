@@ -6,6 +6,7 @@
 #include <Game.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
+#include <Game.Session.h>
 #include "State.LoadGame.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -22,14 +23,27 @@ namespace state
 		Terminal::WriteLine();
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		for (int slot = 1; slot <= 5; ++slot)
+		if (game::Session().GetSaves().GetSlot1().Exists())
 		{
-			if (game::DoesSlotExist(slot))
-			{
-				Terminal::WriteLine("{}) Slot {}", slot, slot);
-			}
+			Terminal::WriteLine("1) Slot 1");
 		}
-		if (game::DoesAutosaveExist())
+		if (game::Session().GetSaves().GetSlot2().Exists())
+		{
+			Terminal::WriteLine("2) Slot 2");
+		}
+		if (game::Session().GetSaves().GetSlot3().Exists())
+		{
+			Terminal::WriteLine("3) Slot 3");
+		}
+		if (game::Session().GetSaves().GetSlot4().Exists())
+		{
+			Terminal::WriteLine("4) Slot 4");
+		}
+		if (game::Session().GetSaves().GetSlot5().Exists())
+		{
+			Terminal::WriteLine("5) Slot 5");
+		}
+		if (game::Session().GetSaves().GetAuto().Exists())
 		{
 			Terminal::WriteLine("6) Autosave Slot");
 		}
@@ -46,9 +60,9 @@ namespace state
 
 	static void LoadFromAutosave()
 	{
-		if (game::DoesAutosaveExist())
+		if (game::Session().GetSaves().GetAuto().Exists())
 		{
-			game::LoadFromAutosave();
+			game::Session().GetSaves().GetAuto().Load();
 			application::UIState::Write(::UIState::TIP);
 		}
 		else
@@ -57,20 +71,69 @@ namespace state
 		}
 	}
 
-	static std::function<void()> SlotLoader(int slot)
+	static void Slot1Loader()
 	{
-		return [slot]()
+		if (game::Session().GetSaves().GetSlot1().Exists())
 		{
-			if (game::DoesSlotExist(slot))
-			{
-				game::LoadFromSlot(slot);
-				application::UIState::Write(::UIState::TIP);
-			}
-			else
-			{
-				Terminal::ErrorMessage(Terminal::INVALID_INPUT);
-			}
-		};
+			game::Session().GetSaves().GetSlot1().Load();
+			application::UIState::Write(::UIState::TIP);
+		}
+		else
+		{
+			Terminal::ErrorMessage(Terminal::INVALID_INPUT);
+		}
+	}
+
+	static void Slot2Loader()
+	{
+		if (game::Session().GetSaves().GetSlot2().Exists())
+		{
+			game::Session().GetSaves().GetSlot2().Load();
+			application::UIState::Write(::UIState::TIP);
+		}
+		else
+		{
+			Terminal::ErrorMessage(Terminal::INVALID_INPUT);
+		}
+	}
+
+	static void Slot3Loader()
+	{
+		if (game::Session().GetSaves().GetSlot3().Exists())
+		{
+			game::Session().GetSaves().GetSlot3().Load();
+			application::UIState::Write(::UIState::TIP);
+		}
+		else
+		{
+			Terminal::ErrorMessage(Terminal::INVALID_INPUT);
+		}
+	}
+
+	static void Slot4Loader()
+	{
+		if (game::Session().GetSaves().GetSlot4().Exists())
+		{
+			game::Session().GetSaves().GetSlot4().Load();
+			application::UIState::Write(::UIState::TIP);
+		}
+		else
+		{
+			Terminal::ErrorMessage(Terminal::INVALID_INPUT);
+		}
+	}
+
+	static void Slot5Loader()
+	{
+		if (game::Session().GetSaves().GetSlot5().Exists())
+		{
+			game::Session().GetSaves().GetSlot5().Load();
+			application::UIState::Write(::UIState::TIP);
+		}
+		else
+		{
+			Terminal::ErrorMessage(Terminal::INVALID_INPUT);
+		}
 	}
 
 	static void OnEnter()
@@ -81,11 +144,11 @@ namespace state
 
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
-		{"1", SlotLoader(1)},
-		{"2", SlotLoader(2)},
-		{"3", SlotLoader(3)},
-		{"4", SlotLoader(4)},
-		{"5", SlotLoader(5)},
+		{"1", Slot1Loader },
+		{"2", Slot2Loader },
+		{"3", Slot3Loader },
+		{"4", Slot4Loader },
+		{"5", Slot5Loader },
 		{"6", LoadFromAutosave},
 		{"0", GoBack}
 	};
