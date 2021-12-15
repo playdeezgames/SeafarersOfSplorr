@@ -9,7 +9,6 @@
 #include <Data.SQLite.Stores.h>
 #include <functional>
 #include <Game.h>
-#include <Game.Achievements.h>
 #include <State.About.h>
 #include <State.ConfirmAbandon.h>
 #include <State.ConfirmOverwrite.h>
@@ -102,7 +101,6 @@ namespace application
 	std::vector<std::function<void()>> starters =
 	{
 		application::UIState::DoSetFinalState(::UIState::QUIT),
-		game::Achievements::Start,
 		data::json::Stores::DoSetStoreFile(data::json::Store::COLORS, FILE_CONFIG_COLORS,std::nullopt),
 		data::json::Stores::DoSetStoreFile(data::json::Store::SOUND_EFFECTS, FILE_CONFIG_SFX,std::nullopt),
 		data::json::Stores::DoSetStoreFile(data::json::Store::MUSIC_THEMES, FILE_CONFIG_MUX,std::nullopt),

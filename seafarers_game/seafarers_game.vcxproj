@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.Achievement.h" />
     <ClInclude Include="Game.BerthType.h" />
     <ClInclude Include="Game.Characteristics.h" />
     <ClInclude Include="Game.Characters.AcceptQuestResult.h" />
@@ -88,7 +87,6 @@
     <ClInclude Include="Game.FishGameState.h" />
     <ClInclude Include="Game.Fishery.h" />
     <ClInclude Include="Game.Fisheries.h" />
-    <ClInclude Include="Game.Achievements.h" />
     <ClInclude Include="Game.Audio.GameSfx.h" />
     <ClInclude Include="Game.Audio.Mux.h" />
     <ClInclude Include="Game.Audio.Sfx.h" />
@@ -129,8 +127,6 @@
     <ClInclude Include="Game.ShipStatistic.h" />
     <ClInclude Include="Game.Side.h" />
     <ClInclude Include="Game.Skill.h" />
-    <ClInclude Include="Game.Statistic.h" />
-    <ClInclude Include="Game.Statistics.h" />
     <ClInclude Include="Game.World.h" />
     <ClInclude Include="Game.Colors.h" />
   </ItemGroup>
