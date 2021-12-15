@@ -1,6 +1,5 @@
 #include <Data.SQLite.Store.h> //FOR RESET
 #include <Data.SQLite.Stores.h> //FOR RESET
-#include "Game.h"
 #include "Game.Characters.h" //FOR APPLY TURN EFFECTS
 #include "Game.Characters.Equipment.h" //FOR RESET
 #include "Game.Characters.Items.h" //FOR RESET
@@ -13,7 +12,6 @@
 #include "Game.Player.h" //FOR GetPlayerCharacter
 #include "Game.Session.h"
 #include "Game.Session.Character.h"
-#include "Game.Ships.h" //FOR APPLY TURN EFFECTS
 namespace game
 {
 	session::Characters Session::GetCharacters() const
@@ -38,7 +36,8 @@ namespace game
 
 	void Session::ApplyTurnEffects() const
 	{
-		game::Ships::ApplyTurnEffects();
+		GetShips().ApplyTurnEffects();
+
 		game::Characters::ApplyTurnEffects();
 		game::Islands::ApplyTurnEffects();
 		game::characters::Plights::ApplyTurnEffects(game::Player::GetCharacterId());
@@ -63,8 +62,8 @@ namespace game
 		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);//TODO: mebbe this becomes the new game::Reset?
 
 		GetWorld().Reset(difficulty);//MUST BE FIRST
+		GetShips().Reset(difficulty);
 
-		game::Ships::Reset(difficulty);
 		game::Characters::Reset(difficulty);
 		game::characters::Equipment::Reset(difficulty);
 		game::characters::Items::Reset(Player::GetCharacterId(), difficulty);
