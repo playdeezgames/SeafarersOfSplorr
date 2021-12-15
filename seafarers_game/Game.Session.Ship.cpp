@@ -80,7 +80,7 @@ namespace game::session
 		{
 			fisheryIds.push_back(fishery.fisheryId);
 		}
-		return game::session::Fisheries(fisheryIds);
+		return game::session::Fisheries([fisheryIds]() {return fisheryIds; });
 	}
 
 	void Ship::SetHeading(double heading) const

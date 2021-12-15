@@ -1,15 +1,14 @@
 #include "Game.Session.Fisheries.h"
 namespace game::session
 {
-	Fisheries::Fisheries(const std::list<int>& fisheryIds)
-		: fisheryIds(fisheryIds)
+	Fisheries::Fisheries(std::function<std::list<int>()> fisherySource)
+		: fisherySource(fisherySource)
 	{
 
 	}
 
 	bool Fisheries::HasAny() const
 	{
-		return !fisheryIds.empty();
+		return !fisherySource().empty();
 	}
-
 }
