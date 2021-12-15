@@ -45,7 +45,7 @@ namespace game
 		game::characters::Plights::ApplyTurnEffects(game::Player::GetCharacterId());
 		game::Demigods::ApplyTurnEffects(game::Player::GetCharacterId());
 		game::Fisheries::ApplyTurnEffects();
-		game::World::ApplyTurnEffects();
+		game::World::ApplyTurnEffects();//put this into session world
 	}
 
 	session::Items Session::GetItems() const
@@ -60,9 +60,9 @@ namespace game
 
 	void Session::Reset(const Difficulty& difficulty) const
 	{
-		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);
+		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);//TODO: mebbe this becomes the new game::Reset?
 
-		game::World::Reset(difficulty);//must be done first to establish world size
+		game::World::Reset(difficulty);//put this into session world
 		game::Ships::Reset(difficulty);
 		game::Characters::Reset(difficulty);
 		game::characters::Equipment::Reset(difficulty);

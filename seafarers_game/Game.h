@@ -1,6 +1,4 @@
 #pragma once
-#include "Game.Difficulty.h"
-#include <functional>
 namespace game
 {
 	void AutoSave();
