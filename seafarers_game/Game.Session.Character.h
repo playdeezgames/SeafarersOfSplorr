@@ -17,7 +17,6 @@ namespace game::session
 	struct Character
 	{
 		Character(int);
-		std::list<character::Characteristic> GetCharacteristicsLegacy() const;
 		character::Characteristics GetCharacteristics() const;
 		character::HitPoints GetHitpoints() const;
 		character::Berth GetBerth() const;

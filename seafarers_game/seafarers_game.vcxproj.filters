@@ -712,5 +712,8 @@
     <ClCompile Include="Game.Session.World.Distances.cpp">
       <Filter>Source Files\Session\World</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Session.Character.Characteristics.cpp">
+      <Filter>Source Files\Session\Character</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

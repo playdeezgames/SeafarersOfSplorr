@@ -13,17 +13,6 @@ namespace game::session
 	{
 	}
 
-	std::list<game::session::character::Characteristic> Character::GetCharacteristicsLegacy() const
-	{
-		std::list<game::session::character::Characteristic> result;
-		auto characteristics = game::characters::Characteristics::ReadLegacy(characterId);
-		for (auto characteristic : characteristics)
-		{
-			result.push_back(character::Characteristic(characterId, characteristic.first));
-		}
-		return result;
-	}
-
 	character::HitPoints Character::GetHitpoints() const
 	{
 		return character::HitPoints(characterId);
