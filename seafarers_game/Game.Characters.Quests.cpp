@@ -6,7 +6,6 @@
 #include "Game.Characters.Quests.h"
 #include "Game.Characters.Statistics.h"
 #include "Game.Islands.h"
-#include "Game.World.h"
 namespace game::characters
 {
 	static void AcceptQuest(int characterId, const data::game::island::Quest& quest)

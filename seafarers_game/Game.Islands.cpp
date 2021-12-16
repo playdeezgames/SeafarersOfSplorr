@@ -6,7 +6,6 @@
 #include "Game.Islands.h"
 #include "Game.Session.h"
 #include "Game.Ship.h"
-#include "Game.World.h"
 namespace game
 {
 	const std::string Islands::UNKNOWN = "????";

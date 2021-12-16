@@ -1,7 +1,6 @@
 #include <Game.Characters.Statistics.h>
 #include <Game.Ship.Statistics.h>
 #include <Game.Islands.Commodities.h>
-#include <Game.World.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.ShipyardUnfoulShip.h"
 namespace state::in_play

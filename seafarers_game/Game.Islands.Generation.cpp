@@ -10,7 +10,6 @@
 #include "Game.Commodities.h"
 #include "Game.Session.h"
 #include "Game.Items.h"
-#include "Game.World.h"
 #include <set>
 #include <vector>
 namespace game

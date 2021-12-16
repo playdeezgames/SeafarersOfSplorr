@@ -18,7 +18,6 @@
 #include "Game.Ship.h"
 #include "Game.ShipNames.h"
 #include "Game.ShipTypes.h"
-#include "Game.World.h"
 namespace game
 {
 	static double DetermineHungerRate(int characterId)

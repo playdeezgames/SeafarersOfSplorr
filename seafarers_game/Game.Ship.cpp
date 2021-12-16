@@ -8,7 +8,6 @@
 #include "Game.Ship.h"
 #include "Game.Ship.Statistics.h"
 #include "Game.ShipTypes.h"
-#include "Game.World.h"
 namespace game
 {
 	std::optional<ShipType> Ship::GetShipType(int shipId)

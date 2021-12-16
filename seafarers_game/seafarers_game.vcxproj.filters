@@ -185,9 +185,6 @@
     <ClInclude Include="Game.Quest.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Game.World.h">
-      <Filter>Header Files\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Audio.GameSfx.h">
       <Filter>Header Files\Audio</Filter>
     </ClInclude>
@@ -476,9 +473,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Features.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.World.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.Islands.cpp">

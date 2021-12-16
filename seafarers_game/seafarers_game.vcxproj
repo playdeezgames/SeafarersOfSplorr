@@ -130,7 +130,6 @@
     <ClInclude Include="Game.ShipStatistic.h" />
     <ClInclude Include="Game.Side.h" />
     <ClInclude Include="Game.Skill.h" />
-    <ClInclude Include="Game.World.h" />
     <ClInclude Include="Game.Colors.h" />
   </ItemGroup>
   <ItemGroup>
@@ -213,7 +212,6 @@
     <ClCompile Include="Game.ShipNames.cpp" />
     <ClCompile Include="Game.Ships.cpp" />
     <ClCompile Include="Game.ShipTypes.cpp" />
-    <ClCompile Include="Game.World.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

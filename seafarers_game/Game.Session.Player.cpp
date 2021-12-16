@@ -11,7 +11,6 @@
 #include "Game.ShipNames.h"
 #include "Game.ShipTypes.h"
 #include "Game.Characters.Statistics.h"
-#include "Game.World.h"
 namespace game::session
 {
 	Character Player::GetCharacter() const

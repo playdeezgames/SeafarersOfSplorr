@@ -2,7 +2,6 @@
 #include <Common.RNG.h>
 #include <Data.Game.World.h>
 #include "Game.Session.World.h"
-#include "Game.World.h"
 namespace game::session
 {
 	static const int CURRENT_VERSION = 1;

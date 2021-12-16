@@ -6,7 +6,6 @@
 #include "Game.Fishes.h"
 #include "Game.Session.h"
 #include "Game.Ship.h"
-#include "Game.World.h"
 namespace game
 {
 	static void GenerateFishery(const Fish& fish)
