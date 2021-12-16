@@ -150,7 +150,7 @@ namespace game
 				common::Heading::DegreesToXY(ship.value().heading) *
 				GetEffectiveSpeed(ship.value().shipId, ship.value().heading, ship.value().speed);
 
-			game::World::ClampLocation(ship.value().location);
+			game::Session().GetWorld().GetBounds().ClampLocation(ship.value().location);
 
 			HandleFouling(shipId, ship.value().speed);
 

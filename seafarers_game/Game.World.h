@@ -6,7 +6,6 @@ namespace game
 	struct World
 	{
 		static common::XY<double> GetSize();
-		static bool ClampLocation(common::XY<double>&);
 
 		static int GetVersion();
 
