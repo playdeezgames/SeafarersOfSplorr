@@ -72,7 +72,7 @@ namespace game
 
 	std::list<Island> Islands::GetDockableIslands(int shipId)
 	{
-		return GetIslandsInRange(shipId, FixedDistance(game::World::GetDockDistance()));
+		return GetIslandsInRange(shipId, FixedDistance(game::Session().GetWorld().GetDistances().GetDock()));
 	}
 
 	bool Islands::CanDock(int shipId)

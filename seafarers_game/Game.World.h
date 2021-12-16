@@ -5,8 +5,6 @@ namespace game
 {
 	struct World
 	{
-		static double GetDockDistance();
-
 		static double GetUnfoulingLaborMultiplier();
 		static double GetReputationReward();
 		static double GetReputationPenalty();

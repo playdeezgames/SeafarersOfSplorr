@@ -13,11 +13,6 @@ namespace game
 		return data::game::World::Read().value();
 	}
 
-	double World::GetDockDistance()
-	{
-		return Read().dockDistance;
-	}
-
 	double World::GetUnfoulingLaborMultiplier()
 	{
 		return Read().unfoulingLaborMultiplier;
