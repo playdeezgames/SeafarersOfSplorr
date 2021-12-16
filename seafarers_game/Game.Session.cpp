@@ -27,11 +27,8 @@ namespace game
 		GetShips().ApplyTurnEffects();
 		GetCharacters().ApplyTurnEffects();
 		GetIslands().ApplyTurnEffects();
-
 		GetDemigods().ApplyTurnEffects();
 		GetFisheries().ApplyTurnEffects();
-
-
 		GetWorld().ApplyTurnEffects();
 	}
 
@@ -51,12 +48,10 @@ namespace game
 
 		GetWorld().Reset(difficulty);//MUST BE FIRST
 		GetShips().Reset(difficulty);
+		GetPlayer().Reset(difficulty);//MUST HAPPEN BEFORE CHARACTERS
 		GetCharacters().Reset(difficulty);
 		GetDemigods().Reset(difficulty);
 		GetFisheries().Reset(difficulty);
-
-		game::Fisheries::Reset(difficulty);
-
 		GetIslands().Reset(difficulty);
 	}
 

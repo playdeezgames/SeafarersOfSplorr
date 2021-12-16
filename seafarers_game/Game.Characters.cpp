@@ -222,29 +222,8 @@ namespace game
 		return characterId;
 	}
 
-	static void GenerateCharacterShip(int characterId)
-	{
-		auto worldSize = game::World::GetSize();
-		auto shipType = game::ShipTypes::GenerateForAvatar();
-		int shipId = game::Ship::Add({
-			shipType,
-			game::ShipNames::Generate(),
-			{
-				worldSize.GetX() / 2.0,
-				worldSize.GetY() / 2.0
-			},
-			common::Data::ModuloDouble(
-				common::RNG::FromRange(0.0, common::Heading::DEGREES),
-				common::Heading::DEGREES).value(),
-			1.0 });
-		game::characters::Ships::Write(characterId, shipId, BerthType::CAPTAIN);
-	}
-
 	void Characters::Reset(const game::Difficulty&)
 	{
-		auto characterId = Create(game::characters::State::AT_SEA);
-		Player::CreateLegacy(characterId);
-		GenerateCharacterShip(characterId);
 	}
 
 	std::optional<std::string> Characters::GetName(int characterId)
