@@ -4,6 +4,7 @@
 #include <Common.Utility.Optional.h>
 #include <Data.Game.Ship.h>
 #include <Data.Game.Ship.Statistic.h>
+#include "Game.Session.h"
 #include "Game.Ship.h"
 #include "Game.Ship.Statistics.h"
 #include "Game.ShipTypes.h"
@@ -132,7 +133,7 @@ namespace game
 		auto fouling = ship::Statistics::GetFouling(shipId);
 		auto effectiveSpeed = speed * (1.0 - fouling);
 
-		effectiveSpeed *= World::GetWindSpeedMultiplierLegacy(heading);
+		effectiveSpeed *= game::Session().GetWorld().GetWind().GetMultiplier(heading);
 
 		auto shipType = game::Ship::GetShipType(shipId).value();
 		effectiveSpeed *= game::ShipTypes::GetSpeedFactor(shipType);

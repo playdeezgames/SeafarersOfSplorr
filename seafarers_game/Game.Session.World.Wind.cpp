@@ -1,5 +1,7 @@
+#include <Common.Data.h>
+#include <Common.Heading.h>
+#include <Data.Game.World.h>
 #include "Game.Session.World.Wind.h"
-#include "Game.World.h"
 namespace game::session::world
 {
 	Wind::Wind()
@@ -9,17 +11,23 @@ namespace game::session::world
 
 	double Wind::GetHeading() const
 	{
-		return game::World::GetWindHeadingLegacy();
+		return data::game::World::Read().value().windHeading;
 	}
 
-	double Wind::GetMultiplier(double angle) const
+	double Wind::GetMultiplier(double heading) const
 	{
-		return game::World::GetWindSpeedMultiplierLegacy(angle);
+		auto relativeHeading = common::Heading::Difference(GetHeading(), heading);
+		return 1.0 - std::abs(relativeHeading / common::Heading::DEGREES);
 	}
 
 	void Wind::SetHeading(double heading) const
 	{
-		game::World::SetWindHeadingLegacy(heading);
+		auto data = data::game::World::Read();
+		if (data)
+		{
+			data.value().windHeading = common::Data::ModuloDouble(heading, common::Heading::DEGREES).value();
+			data::game::World::Write(data.value());
+		}
 	}
 
 }
