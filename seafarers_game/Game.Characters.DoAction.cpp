@@ -289,21 +289,4 @@ namespace game
 		}
 		return std::nullopt;
 	}
-
-	void Characters::DoAction(int characterId, const characters::Action& action)
-	{
-		auto state = Characters::GetState(characterId);
-		if (state)
-		{
-			auto descriptor = FindActionDescriptor(action);
-			if (descriptor)
-			{
-				auto transitioner = FindTransitioner(descriptor.value(), state.value());
-				if (transitioner)
-				{
-					Characters::SetState(characterId, transitioner.value()(characterId));
-				}
-			}
-		}
-	}
 }

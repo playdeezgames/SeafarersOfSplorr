@@ -11,6 +11,7 @@
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.Features.h>
 #include <Game.Islands.Items.h>
+#include <Game.Session.h>
 #include <Game.Ship.h>
 #include <Game.Ship.Docked.h>
 #include "State.InPlay.Globals.h"
@@ -96,7 +97,7 @@ namespace state::in_play
 
 	void DoPlayerCharacterAction(const game::characters::Action& action)
 	{
-		game::Characters::DoAction(GetPlayerCharacterId(), action);
+		game::Session().GetPlayer().GetCharacter().DoAction(action);
 	}
 
 	std::optional<double> ChangePlayerCharacterMoney(double delta)

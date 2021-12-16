@@ -10,6 +10,7 @@
 #include "Game.Characters.Statistics.h"
 #include "Game.Islands.Quests.h"
 #include "Game.Islands.h"
+#include "Game.Session.h"
 #include "Game.Ship.Docked.h"
 #include <set>
 namespace game::ship
@@ -28,7 +29,7 @@ namespace game::ship
 		}
 		int shipId = data::game::character::Ship::ReadForCharacter(characterId).value().shipId;
 		data::game::ship::Docks::Write(shipId, islandId);
-		game::Characters::DoAction(characterId, game::characters::Action::ENTER_DOCK);
+		game::Session().GetCharacters().GetCharacter(characterId).DoAction(game::characters::Action::ENTER_DOCK);
 		auto island = game::Islands::Read(islandId).value();
 		return result;
 	}
@@ -87,7 +88,7 @@ namespace game::ship
 			//second time, put them on the boat
 			for (auto billet : billets)
 			{
-				game::Characters::DoAction(billet.characterId, game::characters::Action::UNDOCK);
+				game::Session().GetCharacters().GetCharacter(billet.characterId).DoAction(game::characters::Action::UNDOCK);
 			}
 			data::game::ship::Docks::Clear(shipId);
 			return true;
