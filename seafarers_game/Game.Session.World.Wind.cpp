@@ -9,12 +9,17 @@ namespace game::session::world
 
 	double Wind::GetHeading() const
 	{
-		return game::World::GetWindHeading();
+		return game::World::GetWindHeadingLegacy();
 	}
 
 	double Wind::GetMultiplier(double angle) const
 	{
-		return game::World::GetWindSpeedMultiplier(angle);
+		return game::World::GetWindSpeedMultiplierLegacy(angle);
+	}
+
+	void Wind::SetHeading(double heading) const
+	{
+		game::World::SetWindHeadingLegacy(heading);
 	}
 
 }

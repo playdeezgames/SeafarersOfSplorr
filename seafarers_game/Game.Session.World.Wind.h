@@ -6,5 +6,6 @@ namespace game::session::world
 		Wind();
 		double GetHeading() const;
 		double GetMultiplier(double) const;
+		void SetHeading(double) const;
 	};
 }

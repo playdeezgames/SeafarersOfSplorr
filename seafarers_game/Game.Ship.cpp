@@ -132,7 +132,7 @@ namespace game
 		auto fouling = ship::Statistics::GetFouling(shipId);
 		auto effectiveSpeed = speed * (1.0 - fouling);
 
-		effectiveSpeed *= World::GetWindSpeedMultiplier(heading);
+		effectiveSpeed *= World::GetWindSpeedMultiplierLegacy(heading);
 
 		auto shipType = game::Ship::GetShipType(shipId).value();
 		effectiveSpeed *= game::ShipTypes::GetSpeedFactor(shipType);

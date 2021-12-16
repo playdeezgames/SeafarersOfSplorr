@@ -10,14 +10,13 @@ namespace game
 		static double GetMinimumIslandDistance();
 		static double GetViewDistance();
 		static double GetDockDistance();
-		static double GetWindHeading();
-		static double GetWindSpeedMultiplier(double);
+		static double GetWindHeadingLegacy();
+		static double GetWindSpeedMultiplierLegacy(double);
+		static void SetWindHeadingLegacy(double);
 		static double GetUnfoulingLaborMultiplier();
 		static double GetReputationReward();
 		static double GetReputationPenalty();
-		static void SetWindHeading(double);
 		static void Reset(const game::Difficulty&);
-		static void ApplyTurnEffects();
 		static bool ClampLocation(common::XY<double>&);
 	};
 }

@@ -75,12 +75,12 @@ namespace game
 		data::game::World::Write(data);
 	}
 
-	double World::GetWindHeading()
+	double World::GetWindHeadingLegacy()
 	{
 		return Read().windHeading;
 	}
 
-	void World::SetWindHeading(double heading)
+	void World::SetWindHeadingLegacy(double heading)
 	{
 		auto data = data::game::World::Read();
 		if (data)
@@ -90,26 +90,15 @@ namespace game
 		}
 	}
 
-	double World::GetWindSpeedMultiplier(double heading)
+	double World::GetWindSpeedMultiplierLegacy(double heading)
 	{
-		auto relativeHeading = common::Heading::Difference(game::World::GetWindHeading(), heading);
+		auto relativeHeading = common::Heading::Difference(game::World::GetWindHeadingLegacy(), heading);
 		return 1.0 - std::abs(relativeHeading / common::Heading::DEGREES);
 	}
 
 	double World::GetUnfoulingLaborMultiplier()
 	{
 		return Read().unfoulingLaborMultiplier;
-	}
-
-	static void ApplyWindChange()
-	{
-		const double NORMAL_WIND_CHANGE = 5.0;
-		game::World::SetWindHeading(game::World::GetWindHeading() + common::RNG::FromRange(-NORMAL_WIND_CHANGE, NORMAL_WIND_CHANGE));
-	}
-
-	void World::ApplyTurnEffects()
-	{
-		ApplyWindChange();
 	}
 
 	bool World::ClampLocation(common::XY<double>& location)
