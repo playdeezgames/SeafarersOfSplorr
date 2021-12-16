@@ -1,7 +1,7 @@
 #include <Common.Utility.Table.h>
+#include <Data.Game.Player.h>
 #include "Game.Colors.h"
 #include "Game.Characters.Messages.h"
-#include "Game.Player.h"
 #include <map>
 namespace game::characters
 {
@@ -11,7 +11,7 @@ namespace game::characters
 
 	void Messages::Add(int characterId, const std::string& color, const std::string& text)
 	{
-		if (characterId == Player::GetCharacterId())
+		if (characterId == data::game::Player::GetCharacterId().value())
 		{
 			messageListTable[characterId].push_back({color, text});
 		}

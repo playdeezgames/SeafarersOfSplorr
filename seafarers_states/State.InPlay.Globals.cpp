@@ -1,4 +1,5 @@
 #include <Common.Utility.Optional.h>
+#include <Data.Game.Player.h>
 #include <Game.Characters.h>
 #include <Game.Characters.Items.h>
 #include <Game.Characters.Messages.h>
@@ -10,7 +11,6 @@
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.Features.h>
 #include <Game.Islands.Items.h>
-#include <Game.Player.h>
 #include <Game.Ship.h>
 #include <Game.Ship.Docked.h>
 #include "State.InPlay.Globals.h"
@@ -18,7 +18,7 @@ namespace state::in_play
 {
 	int GetPlayerCharacterId()
 	{
-		return game::Player::GetCharacterId();
+		return data::game::Player::GetCharacterId().value();
 	}
 
 	std::optional<int> GetPlayerCharacterShipId()

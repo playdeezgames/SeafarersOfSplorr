@@ -1,6 +1,7 @@
 #include <Data.Game.Character.h>
 #include <Data.Game.Character.Ship.h>
 #include <Data.Game.Island.DarkAlley.h>
+#include <Data.Game.Player.h>
 #include <Data.Game.Ship.Docks.h>
 #include <format>
 #include <functional>
@@ -13,7 +14,6 @@
 #include "Game.Colors.h"
 #include "Game.Fishboard.h"
 #include "Game.Islands.h"
-#include "Game.Player.h"
 #include "Game.Ship.Docked.h"
 namespace game
 {
@@ -34,7 +34,7 @@ namespace game
 		{
 			if (game::characters::Items::Has(characterId, Item::BAIT))
 			{
-				Fishboard::Generate(game::Player::GetCharacterId());
+				Fishboard::Generate(data::game::Player::GetCharacterId().value());
 				return characters::State::FISHING;
 			}
 		}

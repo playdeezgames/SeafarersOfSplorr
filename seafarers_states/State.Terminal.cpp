@@ -3,7 +3,6 @@
 #include <Game.Colors.h>
 #include <Game.Characters.Messages.h>
 #include <Game.Session.h>
-#include <Game.Player.h>
 #include <set>
 #include "State.Terminal.h"
 #include <Visuals.Terminals.h>

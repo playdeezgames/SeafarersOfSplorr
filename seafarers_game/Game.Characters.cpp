@@ -15,7 +15,6 @@
 #include "Game.Characters.Statistics.h"
 #include "Game.Characters.State.h"
 #include "Game.Items.h"
-#include "Game.Player.h"
 #include "Game.Ship.h"
 #include "Game.ShipNames.h"
 #include "Game.ShipTypes.h"

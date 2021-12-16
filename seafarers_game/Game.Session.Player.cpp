@@ -10,13 +10,12 @@
 #include "Game.ShipNames.h"
 #include "Game.ShipTypes.h"
 #include "Game.Characters.Statistics.h"
-#include "Game.Player.h"
 #include "Game.World.h"
 namespace game::session
 {
 	Character Player::GetCharacter() const
 	{
-		return Character(game::Player::GetCharacterId());
+		return Character(data::game::Player::GetCharacterId().value());
 	}
 
 	static void GenerateCharacterShip(int characterId)
@@ -41,8 +40,8 @@ namespace game::session
 	{
 		auto characterId = game::Characters::Create(game::characters::State::AT_SEA);
 		data::game::Player::Create(characterId);
-		game::characters::Items::Reset(game::Player::GetCharacterId(), difficulty);
-		game::characters::Statistics::Reset(game::Player::GetCharacterId(), difficulty);
+		game::characters::Items::Reset(data::game::Player::GetCharacterId().value(), difficulty);
+		game::characters::Statistics::Reset(data::game::Player::GetCharacterId().value(), difficulty);
 		GenerateCharacterShip(characterId);
 	}
 
