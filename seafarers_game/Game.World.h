@@ -6,13 +6,16 @@ namespace game
 	struct World
 	{
 		static common::XY<double> GetSize();
+		static bool ClampLocation(common::XY<double>&);
+
 		static int GetVersion();
+
 		static double GetMinimumIslandDistance();
 		static double GetViewDistance();
 		static double GetDockDistance();
+
 		static double GetUnfoulingLaborMultiplier();
 		static double GetReputationReward();
 		static double GetReputationPenalty();
-		static bool ClampLocation(common::XY<double>&);
 	};
 }

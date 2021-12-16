@@ -58,4 +58,10 @@ namespace game::session
 	{
 		GetWind().ApplyTurnEffects();
 	}
+
+	world::Bounds World::GetBounds() const
+	{
+		return world::Bounds();
+	}
+
 }
