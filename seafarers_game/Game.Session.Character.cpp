@@ -1,11 +1,11 @@
 #include "Game.Characters.h"
-#include "Game.Session.FishGame.h"
 #include "Game.Characters.Characteristics.h"
 #include "Game.Characters.Quests.h"
 #include "Game.Characters.Ships.h"
 #include "Game.Characters.Statistics.h"
 #include "Game.Islands.h"
 #include "Game.Session.Character.h"
+#include "Game.Session.FishGame.h"
 namespace game::session
 {
 	Character::Character(int characterId)
@@ -102,4 +102,10 @@ namespace game::session
 	{
 		return character::Characteristics(characterId);
 	}
+
+	void Character::SetIsland(Island island) const
+	{
+
+	}
+
 }

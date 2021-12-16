@@ -5,6 +5,7 @@
 #include "Game.Characters.h"
 #include "Game.Characters.Items.h"
 #include "Game.Characters.Ships.h"
+#include "Game.Session.Characters.h"
 #include "Game.Session.Player.h"
 #include "Game.Session.World.Bounds.h"
 #include "Game.Ship.h"
@@ -38,11 +39,11 @@ namespace game::session
 
 	void Player::Reset(const Difficulty& difficulty) const
 	{
-		auto characterId = game::Characters::Create(game::characters::State::AT_SEA);
-		data::game::Player::Create(characterId);
+		auto character = game::session::Characters().Create(game::characters::State::AT_SEA);
+		data::game::Player::Create(character.characterId);
 		game::characters::Items::Reset(data::game::Player::GetCharacterId().value(), difficulty);
 		game::characters::Statistics::Reset(data::game::Player::GetCharacterId().value(), difficulty);
-		GenerateCharacterShip(characterId);
+		GenerateCharacterShip(character.characterId);
 	}
 
 	std::optional<Character> Player::TryGetCharacter() const

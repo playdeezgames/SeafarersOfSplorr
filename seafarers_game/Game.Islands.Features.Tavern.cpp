@@ -4,6 +4,7 @@
 #include "Game.Characters.h"
 #include "Game.Characters.Islands.h"
 #include "Game.Islands.Features.Tavern.h"
+#include "Game.Session.h"
 #include <string>
 #include <list>
 namespace game::islands::features
@@ -56,8 +57,8 @@ namespace game::islands::features
 
 	static void AddTavernCharacter(int islandId)
 	{
-		auto characterId = Characters::Create(game::characters::State::TAVERN);
-		characters::Islands::Write(characterId, islandId);
+		auto character = game::Session().GetCharacters().Create(game::characters::State::TAVERN);
+		character.SetIsland(game::Session().GetIslands().GetIsland(islandId));
 	}
 
 	static const std::map<int, size_t> npcCountGenerator = 

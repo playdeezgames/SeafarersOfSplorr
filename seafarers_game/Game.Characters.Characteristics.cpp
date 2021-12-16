@@ -4,17 +4,6 @@
 #include <map>
 namespace game::characters
 {
-	std::map<Characteristic, int> Characteristics::ReadLegacy(int characterId)
-	{
-		std::map<Characteristic, int> result;
-		auto characteristics = data::game::character::Characteristic::Read(characterId);
-		for (auto characteristic : characteristics)
-		{
-			result[(Characteristic)characteristic.first] = characteristic.second;
-		}
-		return result;
-	}
-
 	static const std::map<int, size_t> _2d6plus6 =
 	{
 		{8,1},
@@ -61,7 +50,7 @@ namespace game::characters
 		{ Characteristic::STRENGTH, _3d6},
 	};
 
-	void Characteristics::Generate(int characterId)
+	void Characteristics::GenerateLegacy(int characterId)
 	{
 		for (auto characteristicRoll : characteristicRolls)
 		{

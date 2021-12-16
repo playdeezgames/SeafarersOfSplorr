@@ -16,6 +16,7 @@ namespace game::session
 		std::list<Island> GetAll() const;
 		void Reset(const Difficulty&) const;
 		void ApplyTurnEffects() const;
+		Island GetIsland(int) const;
 	private:
 		std::function<std::list<int>()> islandSource;
 	};

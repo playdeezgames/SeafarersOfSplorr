@@ -53,4 +53,9 @@ namespace game::session
 	{
 		game::Islands::ApplyTurnEffects();
 	}
+
+	Island Islands::GetIsland(int islandId) const
+	{
+		return Island(islandId);
+	}
 }

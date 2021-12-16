@@ -4,6 +4,7 @@
 #include <string>
 namespace game::session
 {
+	struct Character;
 	struct Island
 	{
 		Island(int);
@@ -12,5 +13,6 @@ namespace game::session
 		common::XY<double> GetLocation() const;
 	private:
 		int islandId;
+		friend struct game::session::Character;
 	};
 }

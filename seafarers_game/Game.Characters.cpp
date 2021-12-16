@@ -206,7 +206,7 @@ namespace game
 			(int)game::Items::GenerateRationsForAvatar());
 	}
 
-	int Characters::Create(const game::characters::State& state)
+	int Characters::CreateLegacy(const game::characters::State& state)
 	{
 		data::game::Character data =
 		{
@@ -215,7 +215,7 @@ namespace game
 		};
 		int characterId = data::game::Character::Create(data);
 		GenerateCharacterRations(characterId);
-		characters::Characteristics::Generate(characterId);
+		characters::Characteristics::GenerateLegacy(characterId);
 		characters::Counters::Initialize(characterId);
 		return characterId;
 	}

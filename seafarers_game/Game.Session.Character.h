@@ -14,6 +14,7 @@
 #include <optional>
 namespace game::session
 {
+	struct Player;
 	struct Character
 	{
 		Character(int);
@@ -31,7 +32,9 @@ namespace game::session
 		double GetMoney() const;
 		bool IsDead() const;
 		character::Items GetItems() const;
+		void SetIsland(Island island) const;
 	private:
+		friend struct game::session::Player;
 		int characterId;
 	};
 }
