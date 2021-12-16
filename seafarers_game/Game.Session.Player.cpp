@@ -1,6 +1,7 @@
 #include <Common.Data.h>
 #include <Common.Heading.h>
 #include <Common.RNG.h>
+#include <Data.Game.Player.h>
 #include "Game.Characters.h"
 #include "Game.Characters.Items.h"
 #include "Game.Characters.Ships.h"
@@ -39,7 +40,7 @@ namespace game::session
 	void Player::Reset(const Difficulty& difficulty) const
 	{
 		auto characterId = game::Characters::Create(game::characters::State::AT_SEA);
-		game::Player::CreateLegacy(characterId);
+		data::game::Player::Create(characterId);
 		game::characters::Items::Reset(game::Player::GetCharacterId(), difficulty);
 		game::characters::Statistics::Reset(game::Player::GetCharacterId(), difficulty);
 		GenerateCharacterShip(characterId);
