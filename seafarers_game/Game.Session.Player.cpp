@@ -45,4 +45,14 @@ namespace game::session
 		game::characters::Statistics::Reset(game::Player::GetCharacterId(), difficulty);
 		GenerateCharacterShip(characterId);
 	}
+
+	std::optional<Character> Player::TryGetCharacter() const
+	{
+		auto characterId = data::game::Player::GetCharacterId();
+		if (characterId)
+		{
+			return Character(characterId.value());
+		}
+		return std::nullopt;
+	}
 }

@@ -12,4 +12,15 @@ namespace game::session::character
 	{
 		game::characters::Messages::Add(characterId, color, text);
 	}
+
+	characters::MessageList Messages::GetAll() const
+	{
+		return game::characters::Messages::Read(characterId);
+	}
+
+	void Messages::Clear() const
+	{
+		game::characters::Messages::Clear(characterId);
+	}
+
 }

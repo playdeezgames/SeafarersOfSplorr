@@ -2,6 +2,7 @@
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Colors.h>
 #include <Game.Characters.Messages.h>
+#include <Game.Session.h>
 #include <Game.Player.h>
 #include <set>
 #include "State.Terminal.h"
@@ -272,9 +273,9 @@ namespace state
 		Write(">");
 	}
 
-	static void ShowMessages(int characterId)
+	static void ShowMessages(const game::session::Character& character)
 	{
-		auto messages = game::characters::Messages::Read(characterId);
+		auto messages = character.GetMessages().GetAll();
 		if (!messages.empty())
 		{
 			Terminal::WriteLine();
@@ -283,7 +284,7 @@ namespace state
 				Terminal::SetForeground(message.color);
 				Terminal::WriteLine(message.text);
 			}
-			game::characters::Messages::Clear(characterId);
+			character.GetMessages().Clear();
 		}
 	}
 
@@ -291,10 +292,10 @@ namespace state
 	{
 		ClearStatusLine();
 		ClearInput();
-		auto characterId = game::Player::TryGetCharacterId();
-		if (characterId)
+		auto character = game::Session().GetPlayer().TryGetCharacter();
+		if (character)
 		{
-			ShowMessages(characterId.value());
+			ShowMessages(character.value());
 		}
 		WriteLine();
 	}
