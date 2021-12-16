@@ -6,7 +6,5 @@ namespace game
 	struct World
 	{
 		static double GetUnfoulingLaborMultiplier();
-		static double GetReputationReward();
-		static double GetReputationPenalty();
 	};
 }

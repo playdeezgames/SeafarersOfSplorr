@@ -17,15 +17,4 @@ namespace game
 	{
 		return Read().unfoulingLaborMultiplier;
 	}
-
-	double World::GetReputationReward()
-	{
-		return 1.0;
-	}
-
-	double World::GetReputationPenalty()
-	{
-		return -1.0;
-	}
-
 }
