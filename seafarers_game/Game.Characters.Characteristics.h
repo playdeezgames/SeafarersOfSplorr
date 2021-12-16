@@ -7,9 +7,7 @@ namespace game::characters
 {
 	struct Characteristics
 	{
-		static void Write(int, const Characteristic&, int);
-		static std::optional<int> Read(int, const Characteristic&);
-		static std::map<Characteristic, int> Read(int);
+		static std::map<Characteristic, int> ReadLegacy(int);
 		static void Generate(int);
 		static std::optional<int> GetMaximumHitPoints(int);
 		static std::optional<bool> Check(int, const Characteristic&);

@@ -1,5 +1,5 @@
+#include <Data.Game.Character.Characteristic.h>
 #include "Game.Characteristics.h"
-#include "Game.Characters.Characteristics.h"
 #include "Game.Session.Character.Characteristic.h"
 namespace game::session::character
 {
@@ -17,12 +17,11 @@ namespace game::session::character
 
 	static std::optional<int> TryGetValue(int characterId, const game::Characteristic& characteristic)
 	{
-		return game::characters::Characteristics::Read(characterId, characteristic);
+		return data::game::character::Characteristic::Read(characterId, (int)characteristic);
 	}
 
 	int Characteristic::GetValue() const
 	{
 		return TryGetValue(characterId, characteristic).value();
 	}
-
 }

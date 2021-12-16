@@ -15,7 +15,7 @@ namespace state::in_play
 			.GetCharacter(GetCrewDetailCharacterId());
 		auto characteristics =
 			character
-			.GetCharacteristics();
+			.GetCharacteristicsLegacy();
 		auto hitPoints =
 			character
 			.GetHitpoints();

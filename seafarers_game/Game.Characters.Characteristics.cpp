@@ -4,17 +4,7 @@
 #include <map>
 namespace game::characters
 {
-	void Characteristics::Write(int characterId, const Characteristic& characteristic, int value)
-	{
-		data::game::character::Characteristic::Write(characterId, (int)characteristic, value);
-	}
-
-	std::optional<int> Characteristics::Read(int characterId, const Characteristic& characteristic)
-	{
-		return data::game::character::Characteristic::Read(characterId, (int)characteristic);
-	}
-
-	std::map<Characteristic, int> Characteristics::Read(int characterId)
+	std::map<Characteristic, int> Characteristics::ReadLegacy(int characterId)
 	{
 		std::map<Characteristic, int> result;
 		auto characteristics = data::game::character::Characteristic::Read(characterId);
@@ -84,10 +74,10 @@ namespace game::characters
 
 	std::optional<int> Characteristics::GetMaximumHitPoints(int characterId)
 	{
-		auto constitution = Read(characterId, Characteristic::CONSTITUTION);
+		auto constitution = data::game::character::Characteristic::Read(characterId, (int)Characteristic::CONSTITUTION);
 		if (constitution)
 		{
-			auto size = Read(characterId, Characteristic::SIZE);
+			auto size = data::game::character::Characteristic::Read(characterId, (int)Characteristic::SIZE);
 			if (size)
 			{
 				return (constitution.value() + size.value() + 1) / 2;//CON+SIZ/2, round up!
@@ -103,7 +93,7 @@ namespace game::characters
 
 	std::optional<bool> Characteristics::OpposedCheck(int characterId, const Characteristic& characteristic, int opposition)
 	{
-		auto value = Read(characterId, characteristic);
+		auto value = data::game::character::Characteristic::Read(characterId, (int)characteristic);
 		if (value)
 		{
 			return common::RNG::FromRange(1, 21) < (10 + value.value() - opposition);//d20 < (10 + my characteristic - opposed characteristic)
