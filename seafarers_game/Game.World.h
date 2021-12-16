@@ -13,7 +13,6 @@ namespace game
 		static double GetUnfoulingLaborMultiplier();
 		static double GetReputationReward();
 		static double GetReputationPenalty();
-		static void Reset(const game::Difficulty&);
 		static bool ClampLocation(common::XY<double>&);
 	};
 }
