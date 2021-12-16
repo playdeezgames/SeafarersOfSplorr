@@ -7,7 +7,6 @@ namespace game::characters
 {
 	struct Characteristics
 	{
-		static void GenerateLegacy(int);
 		static std::optional<int> GetMaximumHitPoints(int);
 		static std::optional<bool> Check(int, const Characteristic&);
 		static std::optional<bool> OpposedCheck(int, const Characteristic&, int);

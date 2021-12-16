@@ -50,17 +50,6 @@ namespace game::characters
 		{ Characteristic::STRENGTH, _3d6},
 	};
 
-	void Characteristics::GenerateLegacy(int characterId)
-	{
-		for (auto characteristicRoll : characteristicRolls)
-		{
-			data::game::character::Characteristic::Write(
-				characterId, 
-				(int)characteristicRoll.first, 
-				common::RNG::FromGenerator(characteristicRoll.second));
-		}
-	}
-
 	std::optional<int> Characteristics::GetMaximumHitPoints(int characterId)
 	{
 		auto constitution = data::game::character::Characteristic::Read(characterId, (int)Characteristic::CONSTITUTION);
