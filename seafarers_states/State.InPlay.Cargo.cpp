@@ -14,7 +14,7 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		auto playerCharacter = game::Session().GetPlayerCharacter();
+		auto playerCharacter = game::Session().GetPlayer().GetCharacter();
 		Terminal::Reinitialize();
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Cargo:");
@@ -32,7 +32,7 @@ namespace state::in_play
 		Terminal::WriteLine("Manifest:");
 		Terminal::SetForeground(game::Colors::YELLOW);
 		size_t index = 1;
-		auto manifest = game::Session().GetPlayerCharacter().GetLegacyItems().GetAll();
+		auto manifest = game::Session().GetPlayer().GetCharacter().GetLegacyItems().GetAll();
 		for (auto entry : manifest)
 		{
 			Terminal::WriteLine("{}) {} (x{})", index++, entry.GetName(), entry.GetCount());
@@ -55,7 +55,7 @@ namespace state::in_play
 	static void OnHandleOther(const std::string& input)
 	{
 		auto index = common::Data::ToInt(input)-1;
-		if (index < game::Session().GetPlayerCharacter().GetLegacyItems().GetAll().size())
+		if (index < game::Session().GetPlayer().GetCharacter().GetLegacyItems().GetAll().size())
 		{
 			Terminal::ErrorMessage("TODO: whatever one does with cargo...");
 		}

@@ -12,7 +12,7 @@ namespace state::in_play
 
 		auto playerCharacter =
 			game::Session()
-			.GetPlayerCharacter();
+			.GetPlayer().GetCharacter();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Change Heading:");
@@ -56,7 +56,7 @@ namespace state::in_play
 	static void OnHeadForKnownIsland()
 	{
 		if (game::Session()
-			.GetPlayerCharacter()
+			.GetPlayer().GetCharacter()
 			.GetKnownIslands().HasAny())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_HEAD_FOR_KNOWN);
@@ -71,7 +71,7 @@ namespace state::in_play
 	static void OnHeadForNearbyIsland()
 	{
 		if (game::Session()
-			.GetPlayerCharacter()
+			.GetPlayer().GetCharacter()
 			.GetBerth()
 			.GetShip()
 			.GetNearbyIslands().HasAny())
@@ -87,7 +87,7 @@ namespace state::in_play
 
 	static void OnHeadForJobDestination()
 	{
-		auto playerCharacter = game::Session().GetPlayerCharacter();
+		auto playerCharacter = game::Session().GetPlayer().GetCharacter();
 		auto quest = 
 			playerCharacter
 			.TryGetQuest();

@@ -8,7 +8,7 @@ namespace state::in_play
 	static void AbandonJob()
 	{
 		Terminal::ErrorMessage("You abandon yer job, and yer reputation suffers!");
-		game::Session().GetPlayerCharacter().GetQuest().Abandon();
+		game::Session().GetPlayer().GetCharacter().GetQuest().Abandon();
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

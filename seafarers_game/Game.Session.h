@@ -16,7 +16,6 @@ namespace game
 	struct Session
 	{
 		session::Characters GetCharacters() const;
-		session::Character GetPlayerCharacter() const;
 		session::Ships GetShips() const;
 		session::World GetWorld() const;
 		session::Islands GetIslands() const;

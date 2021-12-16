@@ -14,8 +14,8 @@ namespace state::in_play
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Head for:");
-		auto known = game::Session().GetPlayerCharacter().GetKnownIslands();
-		auto location = game::Session().GetPlayerCharacter().GetBerth().GetShip().GetLocation();
+		auto known = game::Session().GetPlayer().GetCharacter().GetKnownIslands();
+		auto location = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().GetLocation();
 		if (known.HasAny())
 		{
 			Terminal::SetForeground(game::Colors::GRAY);
@@ -46,15 +46,15 @@ namespace state::in_play
 
 	static void DoHeadForKnownIndex(size_t index)
 	{
-		auto location = game::Session().GetPlayerCharacter().GetBerth().GetShip().GetLocation();
-		auto nearby = game::Session().GetPlayerCharacter().GetKnownIslands().GetAll();
+		auto location = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().GetLocation();
+		auto nearby = game::Session().GetPlayer().GetCharacter().GetKnownIslands().GetAll();
 		auto chosen = common::utility::List::GetNth(nearby, index);
 		if (chosen)
 		{
 			auto relativeLocation = chosen.value().GetLocation() - location;
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine();
-			game::Session().GetPlayerCharacter().GetBerth().GetShip().SetHeading(common::Heading::XYToDegrees(relativeLocation));
+			game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().SetHeading(common::Heading::XYToDegrees(relativeLocation));
 			Terminal::WriteLine("You head for {}.", chosen.value().GetDisplayName());
 			application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
 		}

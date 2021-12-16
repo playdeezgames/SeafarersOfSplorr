@@ -120,7 +120,7 @@ namespace state::in_play
 		Terminal::WriteLine(
 			"Yer Brawling: {:.1f} Yer HP: {}", 
 			game::characters::statistics::Brawling::Current(GetPlayerCharacterId()).value(),
-			game::Session().GetPlayerCharacter().GetHitpoints().GetCurrent());
+			game::Session().GetPlayer().GetCharacter().GetHitpoints().GetCurrent());
 
 		RefreshBoard();
 
@@ -171,8 +171,8 @@ namespace state::in_play
 
 	static void HandleTakeDamage()
 	{
-		game::Session().GetPlayerCharacter().GetHitpoints().Change(-1);
-		if (game::Session().GetPlayerCharacter().IsDead())
+		game::Session().GetPlayer().GetCharacter().GetHitpoints().Change(-1);
+		if (game::Session().GetPlayer().GetCharacter().IsDead())
 		{
 			Terminal::WriteLine("DEFEAT!");
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);

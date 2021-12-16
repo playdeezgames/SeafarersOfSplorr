@@ -8,7 +8,7 @@ namespace state::in_play
 
 	static bool IsFishingEnabled()
 	{
-		auto items = game::Session().GetPlayerCharacter().GetLegacyItems();
+		auto items = game::Session().GetPlayer().GetCharacter().GetLegacyItems();
 		return
 			items.Has(game::Item::FISHING_POLE) &&
 			items.Has(game::Item::BAIT);
@@ -18,7 +18,7 @@ namespace state::in_play
 	{
 		auto island =
 			game::Session()
-			.GetPlayerCharacter()
+			.GetPlayer().GetCharacter()
 			.GetBerth()
 			.GetShip()
 			.GetDockableIslands()
@@ -45,7 +45,7 @@ namespace state::in_play
 	{
 		auto islands =
 			game::Session()
-			.GetPlayerCharacter()
+			.GetPlayer().GetCharacter()
 			.GetBerth()
 			.GetShip()
 			.GetNearbyIslands();
@@ -81,7 +81,7 @@ namespace state::in_play
 	{
 		auto quest =
 			game::Session()
-			.GetPlayerCharacter()
+			.GetPlayer().GetCharacter()
 			.TryGetQuest();
 		if (quest)
 		{
@@ -91,7 +91,7 @@ namespace state::in_play
 				.GetLocation();
 			auto location = 
 				game::Session()
-				.GetPlayerCharacter()
+				.GetPlayer().GetCharacter()
 				.GetBerth()
 				.GetShip()
 				.GetLocation();
@@ -107,7 +107,7 @@ namespace state::in_play
 	static void RefreshFisheries()
 	{
 		if(game::Session()
-			.GetPlayerCharacter()
+			.GetPlayer().GetCharacter()
 			.GetBerth()
 			.GetShip()
 			.GetFisheries()
@@ -121,7 +121,7 @@ namespace state::in_play
 	{
 		auto playerCharacter = 
 			game::Session()
-			.GetPlayerCharacter();
+			.GetPlayer().GetCharacter();
 
 		Terminal::Reinitialize();
 
@@ -187,7 +187,7 @@ namespace state::in_play
 	static void OnMove()
 	{
 		game::Session()
-			.GetPlayerCharacter()
+			.GetPlayer().GetCharacter()
 			.GetMessages()
 			.Add(game::Colors::GREEN, "Steady as she goes!");
 		game::Session().ApplyTurnEffects();
@@ -197,7 +197,7 @@ namespace state::in_play
 	static void OnDock()
 	{
 		if (game::Session()
-			.GetPlayerCharacter()
+			.GetPlayer().GetCharacter()
 			.GetBerth()
 			.GetShip()
 			.GetDockableIslands()
@@ -217,7 +217,7 @@ namespace state::in_play
 		if (IsFishingEnabled())
 		{
 			game::Session()
-			.GetPlayerCharacter()
+			.GetPlayer().GetCharacter()
 			.DoAction(game::characters::Action::START_FISHING);
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 			return;
@@ -229,7 +229,7 @@ namespace state::in_play
 	static void OnJob()
 	{
 		if (game::Session()
-			.GetPlayerCharacter()
+			.GetPlayer().GetCharacter()
 			.TryGetQuest())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_CURRENT_JOB);

@@ -9,7 +9,7 @@ namespace state::in_play
 	{
 		Terminal::Reinitialize();
 
-		auto ship = game::Session().GetPlayerCharacter().GetBerth().GetShip();
+		auto ship = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Ship status:");

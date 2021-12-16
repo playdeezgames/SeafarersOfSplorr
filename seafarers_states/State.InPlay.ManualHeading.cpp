@@ -22,7 +22,7 @@ namespace state::in_play
 
 	static void OnValidInput(double value)
 	{
-		game::Session().GetPlayerCharacter().GetBerth().GetShip().SetHeading(value);
+		game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().SetHeading(value);
 		application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 	}
 

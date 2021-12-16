@@ -4,18 +4,12 @@
 #include <Data.Game.Island.h> //FOR GetIslands
 #include "Game.Demigods.h" //FOR APPLY TURN EFFECTS
 #include "Game.Fisheries.h" //FOR APPLY TURN EFFECTS
-#include "Game.Player.h" //FOR GetPlayerCharacter
 #include "Game.Session.h"//Cuz we implement here
 namespace game
 {
 	session::Characters Session::GetCharacters() const
 	{
 		return session::Characters();
-	}
-
-	session::Character Session::GetPlayerCharacter() const
-	{
-		return GetCharacters().GetCharacter(game::Player::GetCharacterId());
 	}
 
 	session::Ships Session::GetShips() const

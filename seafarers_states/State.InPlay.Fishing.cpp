@@ -39,7 +39,7 @@ namespace state::in_play
 
 	static void RefreshCellMiddle(int row, int column)
 	{
-		auto fishGame = game::Session().GetPlayerCharacter().GetFishGame();
+		auto fishGame = game::Session().GetPlayer().GetCharacter().GetFishGame();
 		auto cell = fishGame.GetBoard().GetCell(column, row);
 		if (
 			cell.IsRevealed() || 
@@ -103,7 +103,7 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		auto fishGame = game::Session().GetPlayerCharacter().GetFishGame();
+		auto fishGame = game::Session().GetPlayer().GetCharacter().GetFishGame();
 
 		Terminal::Reinitialize();
 
@@ -115,7 +115,7 @@ namespace state::in_play
 			fishGame.GetBoard().GetProgressPercentage());
 		RefreshBoard();
 
-		auto items = game::Session().GetPlayerCharacter().GetLegacyItems();
+		auto items = game::Session().GetPlayer().GetCharacter().GetLegacyItems();
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		if (fishGame.GetState() ==
@@ -136,13 +136,13 @@ namespace state::in_play
 
 	static void GiveUp()
 	{
-		game::Session().GetPlayerCharacter().GetFishGame().GiveUp();
+		game::Session().GetPlayer().GetCharacter().GetFishGame().GiveUp();
 		Refresh();
 	}
 
 	static void LeaveFishing()
 	{
-		game::Session().GetPlayerCharacter().DoAction(game::characters::Action::STOP_FISHING);
+		game::Session().GetPlayer().GetCharacter().DoAction(game::characters::Action::STOP_FISHING);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
@@ -157,7 +157,7 @@ namespace state::in_play
 	static void OnLeave()
 	{
 		common::utility::Dispatcher::Dispatch(leaveHandlers, 
-			game::Session().GetPlayerCharacter().GetFishGame().GetState());
+			game::Session().GetPlayer().GetCharacter().GetFishGame().GetState());
 	}
 
 	static const std::map<std::string, std::function<void()>> menuActions =
@@ -172,7 +172,7 @@ namespace state::in_play
 		{
 			int column = index % COLUMNS;
 			int row = index / COLUMNS;
-			auto cell = game::Session().GetPlayerCharacter().GetFishGame().GetBoard().GetCell(column, row);
+			auto cell = game::Session().GetPlayer().GetCharacter().GetFishGame().GetBoard().GetCell(column, row);
 			if (!cell.IsRevealed())
 			{
 				cell.Reveal();
@@ -185,7 +185,7 @@ namespace state::in_play
 
 	static bool OutOfGuessesInputHandler(const std::string& line)
 	{
-		auto playerCharacter = game::Session().GetPlayerCharacter();
+		auto playerCharacter = game::Session().GetPlayer().GetCharacter();
 		if (line == "1" && playerCharacter.GetLegacyItems().Has(game::Item::BAIT))
 		{
 			playerCharacter.GetFishGame().AddBait();
@@ -207,7 +207,7 @@ namespace state::in_play
 	{
 		if (!common::utility::Dispatcher::DispatchParameter(
 			otherInputHandlers, 
-			game::Session().GetPlayerCharacter().GetFishGame().GetState(),
+			game::Session().GetPlayer().GetCharacter().GetFishGame().GetState(),
 			line, 
 			false))
 		{
