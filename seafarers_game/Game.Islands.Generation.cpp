@@ -19,7 +19,7 @@ namespace game
 
 	static std::list<common::XY<double>> GenerateLocations()
 	{
-		double minimumIslandDistance = game::World::GetMinimumIslandDistance();
+		double minimumIslandDistance = game::Session().GetWorld().GetDistances().GetIslandSpacing();
 		auto worldSize = game::Session().GetWorld().GetBounds().GetSize();
 		size_t retry = 0;
 		std::list<common::XY<double>> locations;
