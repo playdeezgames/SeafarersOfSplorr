@@ -68,4 +68,10 @@ namespace game::session
 	{
 		return data::game::World::Read().value().version;
 	}
+
+	world::Distances World::GetDistances() const
+	{
+		return world::Distances();
+	}
+
 }
