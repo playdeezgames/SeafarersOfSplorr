@@ -1,5 +1,6 @@
 #include <Common.Data.h>
 #include <Common.Heading.h>
+#include <Common.RNG.h>
 #include <Data.Game.World.h>
 #include "Game.Session.World.Wind.h"
 namespace game::session::world
@@ -30,4 +31,9 @@ namespace game::session::world
 		}
 	}
 
+	void Wind::ApplyTurnEffects() const
+	{
+		const double NORMAL_WIND_CHANGE = 5.0;
+		SetHeading(GetHeading() + common::RNG::FromRange(-NORMAL_WIND_CHANGE, NORMAL_WIND_CHANGE));
+	}
 }

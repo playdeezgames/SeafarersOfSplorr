@@ -7,5 +7,6 @@ namespace game::session::world
 		double GetHeading() const;
 		double GetMultiplier(double) const;
 		void SetHeading(double) const;
+		void ApplyTurnEffects() const;
 	};
 }

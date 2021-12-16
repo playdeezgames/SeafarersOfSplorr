@@ -10,9 +10,6 @@ namespace game
 		static double GetMinimumIslandDistance();
 		static double GetViewDistance();
 		static double GetDockDistance();
-		static double GetWindHeadingLegacy();
-		static double GetWindSpeedMultiplierLegacy(double);
-		static void SetWindHeadingLegacy(double);
 		static double GetUnfoulingLaborMultiplier();
 		static double GetReputationReward();
 		static double GetReputationPenalty();

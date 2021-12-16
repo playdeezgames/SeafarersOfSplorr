@@ -75,27 +75,6 @@ namespace game
 		data::game::World::Write(data);
 	}
 
-	double World::GetWindHeadingLegacy()
-	{
-		return Read().windHeading;
-	}
-
-	void World::SetWindHeadingLegacy(double heading)
-	{
-		auto data = data::game::World::Read();
-		if (data)
-		{
-			data.value().windHeading = common::Data::ModuloDouble(heading, common::Heading::DEGREES).value();
-			data::game::World::Write(data.value());
-		}
-	}
-
-	double World::GetWindSpeedMultiplierLegacy(double heading)
-	{
-		auto relativeHeading = common::Heading::Difference(game::World::GetWindHeadingLegacy(), heading);
-		return 1.0 - std::abs(relativeHeading / common::Heading::DEGREES);
-	}
-
 	double World::GetUnfoulingLaborMultiplier()
 	{
 		return Read().unfoulingLaborMultiplier;
