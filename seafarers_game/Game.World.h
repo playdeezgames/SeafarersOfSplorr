@@ -5,8 +5,6 @@ namespace game
 {
 	struct World
 	{
-		static common::XY<double> GetSize();
-
 		static int GetVersion();
 
 		static double GetMinimumIslandDistance();

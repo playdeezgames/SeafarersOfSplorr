@@ -13,11 +13,6 @@ namespace game
 		return data::game::World::Read().value();
 	}
 
-	common::XY<double> World::GetSize()
-	{
-		return Read().size;
-	}
-
 	int World::GetVersion()
 	{
 		return Read().version;

@@ -4,13 +4,14 @@
 #include <Data.Game.Fishery.h>
 #include "Game.Fisheries.h"
 #include "Game.Fishes.h"
+#include "Game.Session.h"
 #include "Game.Ship.h"
 #include "Game.World.h"
 namespace game
 {
 	static void GenerateFishery(const Fish& fish)
 	{
-		auto worldSize = World::GetSize();
+		auto worldSize = game::Session().GetWorld().GetBounds().GetSize();
 		double speed = Fishes::GenerateSpeed(fish);
 		double radians = common::Heading::ToRadians(common::RNG::FromRange(0.0, common::Heading::DEGREES));
 		int stock = Fishes::GenerateStock(fish);
@@ -52,7 +53,7 @@ namespace game
 
 	void Fisheries::ApplyTurnEffects()
 	{
-		auto worldSize = World::GetSize();
+		auto worldSize = game::Session().GetWorld().GetBounds().GetSize();
 		for (auto& fishery : data::game::Fishery::All())
 		{
 			fishery.location = fishery.location + fishery.movement;

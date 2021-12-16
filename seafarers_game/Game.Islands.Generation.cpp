@@ -8,6 +8,7 @@
 #include <Data.Game.Island.Market.h>
 #include <Data.Game.Island.Visit.h>
 #include "Game.Commodities.h"
+#include "Game.Session.h"
 #include "Game.Items.h"
 #include "Game.World.h"
 #include <set>
@@ -19,7 +20,7 @@ namespace game
 	static std::list<common::XY<double>> GenerateLocations()
 	{
 		double minimumIslandDistance = game::World::GetMinimumIslandDistance();
-		auto worldSize = game::World::GetSize();
+		auto worldSize = game::Session().GetWorld().GetBounds().GetSize();
 		size_t retry = 0;
 		std::list<common::XY<double>> locations;
 		while (retry < RETRY_COUNT)
