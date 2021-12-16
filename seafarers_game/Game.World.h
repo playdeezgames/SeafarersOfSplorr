@@ -5,6 +5,5 @@ namespace game
 {
 	struct World
 	{
-		static double GetUnfoulingLaborMultiplier();
 	};
 }

@@ -14,7 +14,7 @@ namespace state::in_play
 			GetPlayerCharacterIslandId().value(),
 			{
 					{game::Commodity::LABOR, 
-						game::World::GetUnfoulingLaborMultiplier() * 
+						100.0 * 
 						game::ship::Statistics::GetFouling(GetPlayerCharacterShipId().value())}
 			});
 	}

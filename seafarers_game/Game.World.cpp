@@ -6,15 +6,4 @@
 #include <map>
 namespace game
 {
-	static const int CURRENT_VERSION = 1;
-
-	static data::game::World Read()
-	{
-		return data::game::World::Read().value();
-	}
-
-	double World::GetUnfoulingLaborMultiplier()
-	{
-		return Read().unfoulingLaborMultiplier;
-	}
 }
