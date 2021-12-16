@@ -8,8 +8,6 @@ namespace game
 {
 	struct Characters
 	{
-		static void ApplyTurnEffects();
-		static void Reset(const Difficulty&);
 		static std::optional<std::string> GetName(int);
 		static std::optional<characters::State> GetState(int);
 		static void DoAction(int, const characters::Action&);

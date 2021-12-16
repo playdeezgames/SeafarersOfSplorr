@@ -144,20 +144,6 @@ namespace game
 			});
 	}
 
-	void Characters::ApplyTurnEffects()
-	{
-		auto avatarIds = data::game::Character::All();
-		for (auto characterId : avatarIds)
-		{
-			ApplyTurn(characterId);
-			ApplyHunger(characterId);
-		}
-	}
-
-	void Characters::Reset(const game::Difficulty&)
-	{
-	}
-
 	std::optional<std::string> Characters::GetName(int characterId)
 	{
 		return common::utility::Optional::Map<data::game::Character, std::string>(

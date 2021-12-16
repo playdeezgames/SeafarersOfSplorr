@@ -7,6 +7,7 @@
 #include "Game.Items.h"
 #include "Game.Characters.Characteristics.h"
 #include "Game.Characters.Counters.h"
+#include "Game.Characters.Flags.h"
 #include "Game.Session.Character.h"
 #include "Game.Session.Characters.h"
 #include "Game.Characters.h" //FOR APPLY TURN EFFECTS
@@ -23,14 +24,126 @@ namespace game::session
 
 	void Characters::Reset(const Difficulty& difficulty) const
 	{
-		game::Characters::Reset(difficulty);
 		game::characters::Equipment::Reset(difficulty);
 		game::characters::Plights::Reset(difficulty);
 	}
 
+	static size_t DetermineTurnsSpent(int characterId)
+	{
+		size_t agingRate = 1;
+		if (characters::Plights::Has(characterId, characters::Plight::DOUBLE_AGING) &&
+			!characters::Plights::Has(characterId, characters::Plight::AGING_IMMUNITY))
+		{
+			agingRate = 2;
+		}
+		if (characters::Plights::Has(characterId, characters::Plight::AGING_IMMUNITY) &&
+			!characters::Plights::Has(characterId, characters::Plight::DOUBLE_AGING))
+		{
+			agingRate = 0;
+		}
+		return agingRate;
+	}
+
+	static void ApplyTurn(int characterId)
+	{
+		auto turnsSpent = DetermineTurnsSpent(characterId);
+		while (turnsSpent)
+		{
+			game::characters::statistics::Turns::Change(characterId, -1);
+			turnsSpent--;
+		}
+	}
+
+	static void SufferWoundDueToStarvation(int characterId)
+	{
+		characters::counters::Starvation::Reset(characterId);
+		characters::counters::Wounds::Change(characterId, 1);
+	}
+
+	static void SufferStarvationDueToHunger(int characterId)
+	{
+		characters::Characteristics::OnOpposedCheck(
+			characterId,
+			Characteristic::CONSTITUTION,
+			characters::counters::Starvation::Change(characterId, 1).value(),
+			[characterId](bool success)
+			{
+				if (!success)
+				{
+					SufferWoundDueToStarvation(characterId);
+				}
+			});
+	}
+
+	static void SufferHunger(int characterId)
+	{
+		characters::Characteristics::OnOpposedCheck(
+			characterId,
+			Characteristic::CONSTITUTION,
+			characters::counters::Starvation::Change(characterId, 1).value(),
+			[characterId](bool success)
+			{
+				if (!success)
+				{
+					SufferStarvationDueToHunger(characterId);
+				}
+			});
+	}
+
+	static void ApplyEating(int characterId)
+	{
+		const game::Item rationItem = game::Item::RATIONS;//TODO: when we can choose rations for an character, this will change
+		auto rations = game::characters::Items::Read(characterId, rationItem);
+		if (rations > 0)
+		{
+			characters::counters::Starvation::Change(characterId, -1);
+			game::characters::Items::Remove(characterId, rationItem, 1);
+			if (game::characters::Flags::Has(characterId, game::characters::Flag::UNFED))
+			{
+				game::characters::Flags::Clear(characterId, game::characters::Flag::UNFED);
+			}
+			else
+			{
+				game::characters::Flags::Write(characterId, game::characters::Flag::FED);
+			}
+		}
+		else
+		{
+			SufferHunger(characterId);
+			if (game::characters::Flags::Has(characterId, game::characters::Flag::FED))
+			{
+				game::characters::Flags::Clear(characterId, game::characters::Flag::FED);
+			}
+			else
+			{
+				game::characters::Flags::Write(characterId, game::characters::Flag::UNFED);
+			}
+		}
+	}
+
+
+	static void ApplyHunger(int characterId)
+	{
+		characters::Characteristics::OnCheck(
+			characterId,
+			Characteristic::CONSTITUTION,
+			[characterId](bool success)
+			{
+				if (!success)
+				{
+					ApplyEating(characterId);
+				}
+			});
+	}
+
 	void Characters::ApplyTurnEffects() const
 	{
-		game::Characters::ApplyTurnEffects();
+		auto avatarIds = data::game::Character::All();
+		for (auto characterId : avatarIds)
+		{
+			ApplyTurn(characterId);
+			ApplyHunger(characterId);
+		}
 		game::characters::Plights::ApplyTurnEffects(data::game::Player::GetCharacterId().value());//should apply to all characters
 	}
 
