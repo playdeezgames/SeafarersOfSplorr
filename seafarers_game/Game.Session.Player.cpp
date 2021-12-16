@@ -2,11 +2,13 @@
 #include <Common.Heading.h>
 #include <Common.RNG.h>
 #include "Game.Characters.h"
+#include "Game.Characters.Items.h"
 #include "Game.Characters.Ships.h"
 #include "Game.Session.Player.h"
 #include "Game.Ship.h"
 #include "Game.ShipNames.h"
 #include "Game.ShipTypes.h"
+#include "Game.Characters.Statistics.h"
 #include "Game.Player.h"
 #include "Game.World.h"
 namespace game::session
@@ -34,10 +36,12 @@ namespace game::session
 		game::characters::Ships::Write(characterId, shipId, BerthType::CAPTAIN);
 	}
 
-	void Player::Reset(const Difficulty&) const
+	void Player::Reset(const Difficulty& difficulty) const
 	{
 		auto characterId = game::Characters::Create(game::characters::State::AT_SEA);
 		game::Player::CreateLegacy(characterId);
+		game::characters::Items::Reset(game::Player::GetCharacterId(), difficulty);
+		game::characters::Statistics::Reset(game::Player::GetCharacterId(), difficulty);
 		GenerateCharacterShip(characterId);
 	}
 }

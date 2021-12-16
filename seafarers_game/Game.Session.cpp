@@ -48,8 +48,8 @@ namespace game
 
 		GetWorld().Reset(difficulty);//MUST BE FIRST
 		GetShips().Reset(difficulty);
-		GetPlayer().Reset(difficulty);//MUST HAPPEN BEFORE CHARACTERS
 		GetCharacters().Reset(difficulty);
+		GetPlayer().Reset(difficulty);
 		GetDemigods().Reset(difficulty);
 		GetFisheries().Reset(difficulty);
 		GetIslands().Reset(difficulty);

@@ -17,9 +17,7 @@ namespace game::session
 	{
 		game::Characters::Reset(difficulty);
 		game::characters::Equipment::Reset(difficulty);
-		game::characters::Items::Reset(Player::GetCharacterId(), difficulty);
 		game::characters::Plights::Reset(difficulty);
-		game::characters::Statistics::Reset(Player::GetCharacterId(), difficulty);
 	}
 
 	void Characters::ApplyTurnEffects() const
