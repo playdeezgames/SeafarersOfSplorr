@@ -13,11 +13,6 @@ namespace game
 		return data::game::World::Read().value();
 	}
 
-	int World::GetVersion()
-	{
-		return Read().version;
-	}
-
 	double World::GetMinimumIslandDistance()
 	{
 		return Read().minimumIslandDistance;

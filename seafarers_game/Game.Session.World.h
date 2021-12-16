@@ -11,5 +11,6 @@ namespace game::session
 		world::Wind GetWind() const;
 		void Reset(const Difficulty&) const;
 		void ApplyTurnEffects() const;
+		int GetVersion() const;
 	};
 }

@@ -5,8 +5,6 @@ namespace game
 {
 	struct World
 	{
-		static int GetVersion();
-
 		static double GetMinimumIslandDistance();
 		static double GetViewDistance();
 		static double GetDockDistance();

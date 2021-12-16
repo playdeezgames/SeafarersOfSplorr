@@ -64,4 +64,8 @@ namespace game::session
 		return world::Bounds();
 	}
 
+	int World::GetVersion() const
+	{
+		return data::game::World::Read().value().version;
+	}
 }
