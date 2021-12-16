@@ -165,20 +165,4 @@ namespace game
 		avatar.state = (int)state;
 		data::game::Character::Write(characterId, avatar);
 	}
-
-	std::optional<bool> Characters::IsDead(int characterId)
-	{
-		auto maximumHitPoints = game::characters::Characteristics::GetMaximumHitPoints(characterId);
-		if (maximumHitPoints)
-		{
-			auto wounds = game::characters::Counters::Read(characterId, game::characters::Counter::WOUNDS).value_or(0);
-			return wounds >= maximumHitPoints.value();
-		}
-		return std::nullopt;
-	}
-
-	bool Characters::Exists(int characterId)
-	{
-		return data::game::Character::Read(characterId).has_value();
-	}
 }
