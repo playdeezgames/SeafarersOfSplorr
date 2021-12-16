@@ -13,11 +13,6 @@ namespace game
 		return data::game::World::Read().value();
 	}
 
-	double World::GetViewDistance()
-	{
-		return Read().viewDistance;
-	}
-
 	double World::GetDockDistance()
 	{
 		return Read().dockDistance;

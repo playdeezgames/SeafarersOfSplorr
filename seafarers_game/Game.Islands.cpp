@@ -4,6 +4,7 @@
 #include <Data.Game.Island.Visit.h>
 #include "Game.Characters.Ships.h"
 #include "Game.Islands.h"
+#include "Game.Session.h"
 #include "Game.Ship.h"
 #include "Game.World.h"
 namespace game
@@ -66,7 +67,7 @@ namespace game
 
 	std::list<Island> Islands::GetViewableIslands(int shipId)
 	{
-		return GetIslandsInRange(shipId, FixedDistance(game::World::GetViewDistance()));
+		return GetIslandsInRange(shipId, FixedDistance(game::Session().GetWorld().GetDistances().GetView()));
 	}
 
 	std::list<Island> Islands::GetDockableIslands(int shipId)
