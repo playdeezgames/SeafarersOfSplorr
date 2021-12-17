@@ -23,7 +23,6 @@
     <ClInclude Include="Game.Characters.AcceptQuestResult.h" />
     <ClInclude Include="Game.Characters.Action.h" />
     <ClInclude Include="Game.Characters.Counter.h" />
-    <ClInclude Include="Game.Characters.Counters.h" />
     <ClInclude Include="Game.Characters.Islands.h" />
     <ClInclude Include="Game.Characters.Messages.h" />
     <ClInclude Include="Game.Characteristic.h" />
@@ -134,7 +133,6 @@
     <ClInclude Include="Game.Colors.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.Characters.Counters.cpp" />
     <ClCompile Include="Game.Characters.DoAction.cpp" />
     <ClCompile Include="Game.Characters.cpp" />
     <ClCompile Include="Game.Characters.Islands.cpp" />

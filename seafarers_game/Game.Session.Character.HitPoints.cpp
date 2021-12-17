@@ -1,6 +1,7 @@
 #include <Data.Game.Character.Characteristic.h>
+#include <Data.Game.Character.Counter.h>
+#include "Game.Characters.Counter.h"
 #include "Game.Characteristic.h"
-#include "Game.Characters.Counters.h"
 #include "Game.Session.Character.HitPoints.h"
 namespace game::session::character
 {
@@ -29,7 +30,7 @@ namespace game::session::character
 		auto maximum = TryGetMaximum(characterId);
 		if (maximum)
 		{
-			auto value = maximum.value() - game::characters::Counters::Read(characterId, game::characters::Counter::WOUNDS).value_or(0);
+			auto value = maximum.value() - data::game::character::Counter::Read(characterId, (int)game::characters::Counter::WOUNDS).value_or(0);
 			return value < 0 ? 0 : value;
 		}
 		return std::nullopt;
@@ -47,13 +48,10 @@ namespace game::session::character
 
 	void HitPoints::Change(int delta) const
 	{
-		auto wounds = game::characters::Counters::Read(characterId, game::characters::Counter::WOUNDS);
+		auto wounds = data::game::character::Counter::Read(characterId, (int)game::characters::Counter::WOUNDS);
 		if (wounds)
 		{
-			game::characters::Counters::Write(
-				characterId,
-				game::characters::Counter::WOUNDS,
-				wounds.value()-delta);
+			data::game::character::Counter::Write(characterId, (int)game::characters::Counter::WOUNDS, wounds.value() - delta);
 		}
 	}
 

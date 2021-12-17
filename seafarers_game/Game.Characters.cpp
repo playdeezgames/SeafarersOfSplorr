@@ -6,7 +6,6 @@
 #include <Data.Game.Character.h>
 #include <Data.Game.Character.Rations.h>
 #include "Game.Characters.h"
-#include "Game.Characters.Counters.h"
 #include "Game.Characters.Flags.h"
 #include "Game.Characters.Items.h"
 #include "Game.Characters.Plights.h"
