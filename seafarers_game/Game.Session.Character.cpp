@@ -336,7 +336,7 @@ namespace game::session
 				if (transitioner)
 				{
 					auto avatar = data::game::Character::Read(characterId).value();
-					avatar.state = (int)state.value();
+					avatar.state = (int)transitioner.value()(characterId);
 					data::game::Character::Write(characterId, avatar);
 				}
 			}
