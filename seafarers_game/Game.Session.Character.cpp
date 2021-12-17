@@ -1,3 +1,4 @@
+#include <Data.Game.Character.h>
 #include <Data.Game.Character.Ship.h>
 #include <Data.Game.Island.DarkAlley.h>
 #include <Data.Game.Player.h>
@@ -335,7 +336,9 @@ namespace game::session
 				auto transitioner = FindTransitioner(descriptor.value(), state.value());
 				if (transitioner)
 				{
-					Characters::SetState(characterId, transitioner.value()(characterId));
+					auto avatar = data::game::Character::Read(characterId).value();
+					avatar.state = (int)state.value();
+					data::game::Character::Write(characterId, avatar);
 				}
 			}
 		}

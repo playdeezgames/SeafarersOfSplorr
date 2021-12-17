@@ -158,11 +158,4 @@ namespace game
 			data::game::Character::Read(characterId),
 			[](const data::game::Character& character) { return (characters::State)character.state; });
 	}
-
-	void Characters::SetState(int characterId, const characters::State& state)
-	{
-		auto avatar = data::game::Character::Read(characterId).value();
-		avatar.state = (int)state;
-		data::game::Character::Write(characterId, avatar);
-	}
 }

@@ -10,6 +10,6 @@ namespace game
 	{
 		static std::optional<std::string> GetName(int);
 		static std::optional<characters::State> GetState(int);
-		static void SetState(int, const characters::State&);
+		static void SetStateLegacy(int, const characters::State&);
 	};
 }
