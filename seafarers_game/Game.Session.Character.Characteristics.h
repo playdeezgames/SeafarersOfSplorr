@@ -8,6 +8,7 @@ namespace game::session::character
 	{
 		Characteristics(int);
 		std::list<Characteristic> GetAll() const;
+		Characteristic GetCharacteristic(const game::Characteristic&) const;
 	private:
 		int characterId;
 	};

@@ -4,7 +4,6 @@
 #include <Data.Game.Player.h>
 #include <Data.Game.Ship.Docks.h>
 #include "Game.Characters.h"
-#include "Game.Characters.Characteristics.h"
 #include "Game.Characters.Islands.h"
 #include "Game.Characters.Items.h"
 #include "Game.Characters.Quests.h"

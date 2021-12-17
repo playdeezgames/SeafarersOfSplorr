@@ -6,7 +6,6 @@
 #include <Data.Game.Character.h>
 #include <Data.Game.Character.Rations.h>
 #include "Game.Characters.h"
-#include "Game.Characters.Characteristics.h"
 #include "Game.Characters.Counters.h"
 #include "Game.Characters.Flags.h"
 #include "Game.Characters.Items.h"
@@ -15,6 +14,7 @@
 #include "Game.Characters.Statistics.h"
 #include "Game.Characters.State.h"
 #include "Game.Items.h"
+#include "Game.Session.h"
 #include "Game.Ship.h"
 #include "Game.ShipNames.h"
 #include "Game.ShipTypes.h"
@@ -68,34 +68,22 @@ namespace game
 		characters::counters::Wounds::Change(characterId, 1);
 	}
 
-	static void SufferStarvationDueToHunger(int characterId)
-	{
-		characters::Characteristics::OnOpposedCheck(
-			characterId,
-			Characteristic::CONSTITUTION,
-			characters::counters::Starvation::Change(characterId, 1).value(),
-			[characterId](bool success)
-			{
-				if (!success)
-				{
-					SufferWoundDueToStarvation(characterId);
-				}
-			});
-	}
-
 	static void SufferHunger(int characterId)
 	{
-		characters::Characteristics::OnOpposedCheck(
-			characterId,
-			Characteristic::CONSTITUTION,
-			characters::counters::Starvation::Change(characterId, 1).value(),
-			[characterId](bool success)
-			{
-				if (!success)
+		game::Session()
+			.GetCharacters()
+			.GetCharacter(characterId)
+			.GetCharacteristics()
+			.GetCharacteristic(Characteristic::CONSTITUTION)
+			.OnOpposedCheck(
+				characters::counters::Starvation::Change(characterId, 1).value(),
+				[characterId](bool success)
 				{
-					SufferStarvationDueToHunger(characterId);
-				}
-			});
+					if (!success)
+					{
+						SufferWoundDueToStarvation(characterId);
+					}
+				});
 	}
 
 	static void ApplyEating(int characterId)
@@ -129,19 +117,20 @@ namespace game
 		}
 	}
 
-
 	static void ApplyHunger(int characterId)
 	{
-		characters::Characteristics::OnCheck(
-			characterId, 
-			Characteristic::CONSTITUTION, 
-			[characterId](bool success)
-			{
-				if (!success)
+		game::Session()
+			.GetCharacters()
+			.GetCharacter(characterId)
+			.GetCharacteristics()
+			.GetCharacteristic(Characteristic::CONSTITUTION)
+			.OnCheck([characterId](bool success)
 				{
-					ApplyEating(characterId);
-				}
-			});
+					if (!success)
+					{
+						ApplyEating(characterId);
+					}
+				});
 	}
 
 	std::optional<std::string> Characters::GetName(int characterId)

@@ -1,5 +1,5 @@
 #include <Data.Game.Character.Characteristic.h>
-#include "Game.Characters.Characteristics.h"
+#include "Game.Characteristic.h"
 #include "Game.Characters.Counters.h"
 #include "Game.Session.Character.HitPoints.h"
 namespace game::session::character

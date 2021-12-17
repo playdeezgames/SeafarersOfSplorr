@@ -18,4 +18,9 @@ namespace game::session::character
 		}
 		return result;
 	}
+
+	Characteristic Characteristics::GetCharacteristic(const game::Characteristic& characteristic) const
+	{
+		return Characteristic(characterId, characteristic);
+	}
 }

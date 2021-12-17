@@ -5,7 +5,6 @@
 #include <Data.Game.Character.Characteristic.h>
 #include <Data.Game.Character.Rations.h>
 #include "Game.Items.h"
-#include "Game.Characters.Characteristics.h"
 #include "Game.Characters.Counters.h"
 #include "Game.Characters.Flags.h"
 #include "Game.Session.Character.h"
@@ -62,32 +61,36 @@ namespace game::session
 
 	static void SufferStarvationDueToHunger(int characterId)
 	{
-		characters::Characteristics::OnOpposedCheck(
-			characterId,
-			Characteristic::CONSTITUTION,
-			characters::counters::Starvation::Change(characterId, 1).value(),
-			[characterId](bool success)
-			{
-				if (!success)
+		Characters()
+			.GetCharacter(characterId)
+			.GetCharacteristics()
+			.GetCharacteristic(Characteristic::CONSTITUTION)
+			.OnOpposedCheck(
+				characters::counters::Starvation::Change(characterId, 1).value(),
+				[characterId](bool success)
 				{
-					SufferWoundDueToStarvation(characterId);
-				}
-			});
+					if (!success)
+					{
+						SufferWoundDueToStarvation(characterId);
+					}
+				});
 	}
 
 	static void SufferHunger(int characterId)
 	{
-		characters::Characteristics::OnOpposedCheck(
-			characterId,
-			Characteristic::CONSTITUTION,
-			characters::counters::Starvation::Change(characterId, 1).value(),
-			[characterId](bool success)
-			{
-				if (!success)
+		Characters()
+			.GetCharacter(characterId)
+			.GetCharacteristics()
+			.GetCharacteristic(Characteristic::CONSTITUTION)
+			.OnOpposedCheck(
+				characters::counters::Starvation::Change(characterId, 1).value(),
+				[characterId](bool success)
 				{
-					SufferStarvationDueToHunger(characterId);
-				}
-			});
+					if (!success)
+					{
+						SufferStarvationDueToHunger(characterId);
+					}
+				});
 	}
 
 	static void ApplyEating(int characterId)
@@ -124,16 +127,17 @@ namespace game::session
 
 	static void ApplyHunger(int characterId)
 	{
-		characters::Characteristics::OnCheck(
-			characterId,
-			Characteristic::CONSTITUTION,
-			[characterId](bool success)
-			{
-				if (!success)
+		Characters()
+			.GetCharacter(characterId)
+			.GetCharacteristics()
+			.GetCharacteristic(Characteristic::CONSTITUTION)
+			.OnCheck([characterId](bool success)
 				{
-					ApplyEating(characterId);
-				}
-			});
+					if (!success)
+					{
+						ApplyEating(characterId);
+					}
+				});
 	}
 
 	void Characters::ApplyTurnEffects() const
