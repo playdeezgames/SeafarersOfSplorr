@@ -6,6 +6,7 @@ namespace game::session::character
 	{
 		Counter(int, const game::characters::Counter&);
 		int Change(int) const;
+		void Reset() const;
 	private:
 		int characterId;
 		game::characters::Counter counter;
