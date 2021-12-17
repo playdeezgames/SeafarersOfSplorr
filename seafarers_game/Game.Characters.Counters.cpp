@@ -65,11 +65,5 @@ namespace game::characters
 			}
 			return std::nullopt;
 		}
-
-		void Starvation::Reset(int characterId)
-		{
-			Counters::Reset(characterId, Counter::STARVATION);
-		}
-
 	}
 }

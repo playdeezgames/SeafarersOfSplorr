@@ -55,10 +55,14 @@ namespace game::session
 
 	static void SufferWoundDueToStarvation(int characterId)
 	{
-		characters::counters::Starvation::Reset(characterId);
-		Characters()
+		auto counters =
+			Characters()
 			.GetCharacter(characterId)
-			.GetCounters()
+			.GetCounters();
+		counters
+			.GetCounter(game::characters::Counter::STARVATION)
+			.Reset();
+		counters
 			.GetCounter(game::characters::Counter::WOUNDS)
 			.Change(1);
 	}

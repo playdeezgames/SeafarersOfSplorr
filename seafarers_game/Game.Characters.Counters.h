@@ -4,13 +4,6 @@
 #include <string>
 namespace game::characters
 {
-	namespace counters
-	{
-		struct Starvation
-		{
-			static void Reset(int);
-		};
-	}
 	struct Counters
 	{
 		static const std::string& GetName(const Counter&);

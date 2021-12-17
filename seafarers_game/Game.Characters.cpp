@@ -62,9 +62,14 @@ namespace game
 		}
 	}
 
-	static void SufferWoundDueToStarvation(int characterId)
+	static void SufferWoundDueToStarvation(int characterId)//TODO: eliminate me!
 	{
-		characters::counters::Starvation::Reset(characterId);
+		game::Session()
+			.GetCharacters()
+			.GetCharacter(characterId)
+			.GetCounters()
+			.GetCounter(game::characters::Counter::STARVATION)
+			.Reset();
 		game::Session()
 			.GetCharacters()
 			.GetCharacter(characterId)
