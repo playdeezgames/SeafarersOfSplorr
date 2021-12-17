@@ -81,7 +81,7 @@ namespace game
 			.GetCharacteristics()
 			.GetCharacteristic(Characteristic::CONSTITUTION)
 			.OnOpposedCheck(
-				characters::counters::Starvation::Change(characterId, 1).value(),
+				game::Session().GetCharacters().GetCharacter(characterId).GetCounters().GetCounter(game::characters::Counter::STARVATION).Change(1),
 				[characterId](bool success)
 				{
 					if (!success)
@@ -97,7 +97,12 @@ namespace game
 		auto rations = game::characters::Items::Read(characterId, rationItem);
 		if (rations > 0)
 		{
-			characters::counters::Starvation::Change(characterId, -1);
+			game::Session()
+				.GetCharacters()
+				.GetCharacter(characterId)
+				.GetCounters()
+				.GetCounter(game::characters::Counter::STARVATION)
+				.Change(-1);
 			game::characters::Items::Remove(characterId, rationItem, 1);
 			if (game::characters::Flags::Has(characterId, game::characters::Flag::UNFED))
 			{

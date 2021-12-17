@@ -66,11 +66,6 @@ namespace game::characters
 			return std::nullopt;
 		}
 
-		std::optional<int> Starvation::Change(int characterId, int delta)
-		{
-			return DoChange(characterId, Counter::STARVATION, delta);
-		}
-
 		void Starvation::Reset(int characterId)
 		{
 			Counters::Reset(characterId, Counter::STARVATION);

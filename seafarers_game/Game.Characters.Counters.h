@@ -8,7 +8,6 @@ namespace game::characters
 	{
 		struct Starvation
 		{
-			static std::optional<int> Change(int, int);
 			static void Reset(int);
 		};
 	}
