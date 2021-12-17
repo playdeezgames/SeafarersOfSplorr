@@ -11,10 +11,6 @@ namespace game::characters
 			static std::optional<int> Change(int, int);
 			static void Reset(int);
 		};
-		struct Wounds
-		{
-			static std::optional<int> Change(int, int);
-		};
 	}
 	struct Counters
 	{

@@ -146,6 +146,8 @@
     <ClCompile Include="Game.Session.Character.Berth.cpp" />
     <ClCompile Include="Game.Session.Character.Characteristic.cpp" />
     <ClCompile Include="Game.Session.Character.Characteristics.cpp" />
+    <ClCompile Include="Game.Session.Character.Counter.cpp" />
+    <ClCompile Include="Game.Session.Character.Counters.cpp" />
     <ClCompile Include="Game.Session.Character.cpp" />
     <ClCompile Include="Game.Session.Character.HitPoints.cpp" />
     <ClCompile Include="Game.Session.Character.Items.cpp" />

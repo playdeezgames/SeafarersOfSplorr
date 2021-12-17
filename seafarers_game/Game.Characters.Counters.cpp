@@ -76,9 +76,5 @@ namespace game::characters
 			Counters::Reset(characterId, Counter::STARVATION);
 		}
 
-		std::optional<int> Wounds::Change(int characterId, int delta)
-		{
-			return DoChange(characterId, Counter::WOUNDS, delta);
-		}
 	}
 }

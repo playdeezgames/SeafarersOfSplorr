@@ -709,5 +709,11 @@
     <ClCompile Include="Game.Session.Character.Characteristics.cpp">
       <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Session.Character.Counter.cpp">
+      <Filter>Source Files\Session\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.Counters.cpp">
+      <Filter>Source Files\Session\Character</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

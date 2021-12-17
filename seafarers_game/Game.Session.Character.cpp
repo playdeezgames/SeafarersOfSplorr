@@ -401,7 +401,11 @@ namespace game::session
 
 	void Character::SetIsland(Island island) const
 	{
-
+		game::characters::Islands::Write(characterId, island.islandId);
 	}
 
+	character::Counters Character::GetCounters() const
+	{
+		return character::Counters(characterId);
+	}
 }
