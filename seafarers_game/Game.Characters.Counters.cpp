@@ -16,11 +16,6 @@ namespace game::characters
 		{Counter::WOUNDS, {"Wounds", 0}}
 	};
 
-	const std::string& Counters::GetName(const Counter& counter)
-	{
-		return counterDescriptors.find(counter)->second.name;
-	}
-
 	void Counters::Write(int characterId, const Counter& counter, int value)
 	{
 		data::game::character::Counter::Write(characterId, (int)counter, value);
@@ -29,17 +24,6 @@ namespace game::characters
 	std::optional<int> Counters::Read(int characterId, const Counter& counter)
 	{
 		return data::game::character::Counter::Read(characterId, (int)counter);
-	}
-
-	void Counters::Initialize(int characterId)
-	{
-		for (auto descriptor : counterDescriptors)
-		{
-			if (descriptor.second.initialValue)
-			{
-				Write(characterId, descriptor.first, descriptor.second.initialValue.value());
-			}
-		}
 	}
 
 	namespace counters

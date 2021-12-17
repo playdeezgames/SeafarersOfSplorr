@@ -272,7 +272,7 @@ namespace game::session
 				(int)characteristicRoll.first,
 				common::RNG::FromGenerator(characteristicRoll.second));
 		}
-		characters::Counters::Initialize(characterId);
+		GetCharacter(characterId).GetCounters().Initialize();
 		return characterId;
 	}
 }
