@@ -4,20 +4,6 @@
 #include <map>
 namespace game::characters
 {
-	std::optional<int> Characteristics::GetMaximumHitPoints(int characterId)
-	{
-		auto constitution = data::game::character::Characteristic::Read(characterId, (int)Characteristic::CONSTITUTION);
-		if (constitution)
-		{
-			auto size = data::game::character::Characteristic::Read(characterId, (int)Characteristic::SIZE);
-			if (size)
-			{
-				return (constitution.value() + size.value() + 1) / 2;//CON+SIZ/2, round up!
-			}
-		}
-		return std::nullopt;
-	}
-
 	std::optional<bool> Characteristics::Check(int characterId, const Characteristic& characteristic)
 	{
 		return OpposedCheck(characterId, characteristic, 10);

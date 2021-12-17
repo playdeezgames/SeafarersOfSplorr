@@ -4,6 +4,7 @@
 #include <Game.Characters.Flags.h>
 #include <Game.Characters.Rations.h>
 #include <Game.Items.h>
+#include <Game.Session.h>
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.Globals.h"
 namespace state::in_play
@@ -50,7 +51,7 @@ namespace state::in_play
 
 	static void RefreshCharacteristics(int characterId)
 	{
-		Terminal::WriteLine("Maximum HP: {}", game::characters::Characteristics::GetMaximumHitPoints(characterId).value());
+		Terminal::WriteLine("Maximum HP: {}", game::Session().GetCharacters().GetCharacter(characterId).GetHitpoints().GetMaximum());
 	}
 
 	static void Refresh()

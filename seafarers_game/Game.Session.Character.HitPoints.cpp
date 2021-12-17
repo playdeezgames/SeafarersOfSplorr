@@ -1,3 +1,4 @@
+#include <Data.Game.Character.Characteristic.h>
 #include "Game.Characters.Characteristics.h"
 #include "Game.Characters.Counters.h"
 #include "Game.Session.Character.HitPoints.h"
@@ -11,7 +12,16 @@ namespace game::session::character
 
 	static std::optional<int> TryGetMaximum(int characterId)
 	{
-		return game::characters::Characteristics::GetMaximumHitPoints(characterId);
+		auto constitution = data::game::character::Characteristic::Read(characterId, (int)Characteristic::CONSTITUTION);
+		if (constitution)
+		{
+			auto size = data::game::character::Characteristic::Read(characterId, (int)Characteristic::SIZE);
+			if (size)
+			{
+				return (constitution.value() + size.value() + 1) / 2;//CON+SIZ/2, round up!
+			}
+		}
+		return std::nullopt;
 	}
 
 	static std::optional<int> TryGetCurrent(int characterId)
