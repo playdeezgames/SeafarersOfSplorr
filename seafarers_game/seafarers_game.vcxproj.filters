@@ -449,12 +449,6 @@
     <ClInclude Include="Game.Session.Save.h">
       <Filter>Header Files\Session\Saves</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Characteristic.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Characteristics.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Skill.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
@@ -469,6 +463,9 @@
     </ClInclude>
     <ClInclude Include="Game.Session.Character.Characteristics.h">
       <Filter>Header Files\Session\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Characteristic.h">
+      <Filter>Header Files\Character\Enums</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -597,9 +594,6 @@
     </ClCompile>
     <ClCompile Include="Game.Characters.Islands.cpp">
       <Filter>Source Files\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Characteristics.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.Characters.Counters.cpp">
       <Filter>Source Files\Character</Filter>

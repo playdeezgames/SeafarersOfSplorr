@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.BerthType.h" />
-    <ClInclude Include="Game.Characteristics.h" />
     <ClInclude Include="Game.Characters.AcceptQuestResult.h" />
     <ClInclude Include="Game.Characters.Action.h" />
     <ClInclude Include="Game.Characters.Counter.h" />
@@ -133,7 +132,6 @@
     <ClInclude Include="Game.Colors.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.Characteristics.cpp" />
     <ClCompile Include="Game.Characters.Counters.cpp" />
     <ClCompile Include="Game.Characters.DoAction.cpp" />
     <ClCompile Include="Game.Characters.cpp" />

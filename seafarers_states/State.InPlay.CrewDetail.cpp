@@ -1,4 +1,3 @@
-#include <Game.Characteristics.h>
 #include <Game.Characters.h>
 #include <Game.Characters.Flags.h>
 #include <Game.Characters.Rations.h>

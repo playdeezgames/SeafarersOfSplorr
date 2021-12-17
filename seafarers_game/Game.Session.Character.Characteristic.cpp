@@ -1,6 +1,5 @@
 #include <Common.RNG.h>
 #include <Data.Game.Character.Characteristic.h>
-#include "Game.Characteristics.h"
 #include "Game.Session.Character.Characteristic.h"
 namespace game::session::character
 {
@@ -11,9 +10,20 @@ namespace game::session::character
 
 	}
 
+	static const std::map<game::Characteristic, std::string> characteristicNames =
+	{
+		{game::Characteristic::CHARISMA, "Charisma"},
+		{game::Characteristic::CONSTITUTION, "Constitution"},
+		{game::Characteristic::DEXTERITY, "Dexterity"},
+		{game::Characteristic::INTELLIGENCE, "Intelligence"},
+		{game::Characteristic::POWER, "Power"},
+		{game::Characteristic::SIZE, "Size"},
+		{game::Characteristic::STRENGTH, "Strength"}
+	};
+
 	const std::string& Characteristic::GetName() const
 	{
-		return game::Characteristics::GetName(characteristic);
+		return characteristicNames.find(characteristic)->second;
 	}
 
 	static std::optional<int> TryGetValue(int characterId, const game::Characteristic& characteristic)
