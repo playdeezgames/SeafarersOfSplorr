@@ -10,6 +10,5 @@ namespace game::characters
 		static void Write(int, const Counter&, int);
 		static std::optional<int> Read(int, const Counter&);
 		static void Initialize(int);
-		static void Reset(int, const Counter&);
 	};
 }

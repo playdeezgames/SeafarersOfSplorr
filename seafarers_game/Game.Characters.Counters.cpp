@@ -42,16 +42,6 @@ namespace game::characters
 		}
 	}
 
-	void Counters::Reset(int characterId, const Counter& counter)
-	{
-		auto descriptor = common::utility::Table::TryGetKey(counterDescriptors, counter);
-		if (descriptor)
-		{
-			Write(characterId, counter, descriptor.value().initialValue.value());
-		}
-	}
-
-
 	namespace counters
 	{
 		static std::optional<int> DoChange(int characterId, const Counter& counter, int delta)

@@ -6,7 +6,8 @@ namespace game::session::character
 	struct Counters
 	{
 		Counters(int);
-		Counter GetCounter(const game::characters::Counter&);
+		Counter GetCounter(const game::characters::Counter&) const;
+		void Initialize() const;
 	private:
 		int characterId;
 	};
