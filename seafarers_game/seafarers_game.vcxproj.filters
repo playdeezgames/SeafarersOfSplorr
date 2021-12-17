@@ -467,6 +467,12 @@
     <ClInclude Include="Game.Characteristic.h">
       <Filter>Header Files\Character\Enums</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Character.Counters.h">
+      <Filter>Header Files\Session\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Character.Counter.h">
+      <Filter>Header Files\Session\Character</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Features.cpp">

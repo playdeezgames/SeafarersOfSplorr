@@ -35,6 +35,8 @@
     <ClInclude Include="Game.Session.Character.Berth.h" />
     <ClInclude Include="Game.Session.Character.Characteristic.h" />
     <ClInclude Include="Game.Session.Character.Characteristics.h" />
+    <ClInclude Include="Game.Session.Character.Counter.h" />
+    <ClInclude Include="Game.Session.Character.Counters.h" />
     <ClInclude Include="Game.Session.Character.h" />
     <ClInclude Include="Game.Session.Character.HitPoints.h" />
     <ClInclude Include="Game.Session.Character.Items.h" />
