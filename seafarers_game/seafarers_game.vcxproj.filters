@@ -132,6 +132,9 @@
     <Filter Include="Source Files\Session\Saves">
       <UniqueIdentifier>{0cb6ac6f-493f-4455-86c5-a4fca343dcff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Character\Legacy">
+      <UniqueIdentifier>{011d361e-94dd-4d6f-9e9f-949d87073ff3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -269,13 +272,7 @@
     <ClInclude Include="Game.Ship.State.h">
       <Filter>Header Files\Ships</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Characters.Equipment.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Characters.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Characters.Items.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
     <ClInclude Include="Game.Characters.Plights.h">
@@ -284,13 +281,7 @@
     <ClInclude Include="Game.Characters.Quests.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Characters.Rations.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Characters.Ships.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Characters.Statistics.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
     <ClInclude Include="Game.Ship.Crew.h">
@@ -322,9 +313,6 @@
     </ClInclude>
     <ClInclude Include="Game.Ship.Statistics.h">
       <Filter>Header Files\Ships</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Characters.Message.h">
-      <Filter>Header Files\Character</Filter>
     </ClInclude>
     <ClInclude Include="Game.Characters.State.h">
       <Filter>Header Files\Character\Enums</Filter>
@@ -443,9 +431,6 @@
     <ClInclude Include="Game.Session.Save.h">
       <Filter>Header Files\Session\Saves</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Skill.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.Player.h">
       <Filter>Header Files\Session</Filter>
     </ClInclude>
@@ -469,6 +454,24 @@
     </ClInclude>
     <ClInclude Include="Game.Session.Character.Flag.h">
       <Filter>Header Files\Session\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Characters.Message.h">
+      <Filter>Header Files\Character\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Skill.h">
+      <Filter>Header Files\Character\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Characters.Equipment.h">
+      <Filter>Header Files\Character\Legacy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Characters.Items.h">
+      <Filter>Header Files\Character\Legacy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Characters.Rations.h">
+      <Filter>Header Files\Character\Legacy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Characters.Statistics.h">
+      <Filter>Header Files\Character\Legacy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
