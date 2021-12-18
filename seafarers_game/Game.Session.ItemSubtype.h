@@ -1,9 +1,9 @@
 #pragma once
 namespace game::session
 {
-	struct ItemType
+	struct ItemSubtype
 	{
-		ItemType(int);
+		ItemSubtype(int);
 	private:
 		int itemSubtypeId;
 	};

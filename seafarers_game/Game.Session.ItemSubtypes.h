@@ -4,6 +4,6 @@ namespace game::session
 {
 	struct ItemTypes
 	{
-		ItemType GetItemType(int) const;
+		ItemSubtype GetItemSubtype(int) const;
 	};
 }

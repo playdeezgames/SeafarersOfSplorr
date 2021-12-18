@@ -1,7 +1,7 @@
 #include "Game.Session.ItemSubtype.h"
 namespace game::session
 {
-	ItemType::ItemType(int itemSubtypeId)
+	ItemSubtype::ItemSubtype(int itemSubtypeId)
 		: itemSubtypeId(itemSubtypeId)
 	{
 

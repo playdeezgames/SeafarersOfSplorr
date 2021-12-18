@@ -1,8 +1,8 @@
 #include "Game.Session.ItemSubtypes.h"
 namespace game::session
 {
-	ItemType ItemTypes::GetItemType(int itemSubtypeId) const
+	ItemSubtype ItemTypes::GetItemSubtype(int itemSubtypeId) const
 	{
-		return ItemType(itemSubtypeId);
+		return ItemSubtype(itemSubtypeId);
 	}
 }

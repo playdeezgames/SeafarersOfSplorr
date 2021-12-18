@@ -6,7 +6,7 @@ namespace game::session
 	struct Item
 	{
 		Item(int);
-		ItemType GetItemType() const;
+		ItemSubtype GetItemSubtype() const;
 		void SetQuantity(int) const;
 		int GetQuantity() const;
 		std::optional<int> TryGetCharacterId() const;
