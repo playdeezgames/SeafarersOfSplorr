@@ -52,7 +52,7 @@ namespace game
 
 	static characters::State OnUndock(int characterId)
 	{
-		game::characters::Islands::Clear(characterId);
+		game::Session().GetCharacters().GetCharacter(characterId).ClearIsland();
 		return characters::State::AT_SEA;
 	}
 

@@ -8,11 +8,6 @@ namespace game::characters
 		return data::game::character::Island::Read(characterId);
 	}
 
-	void Islands::Clear(int characterId)
-	{
-		data::game::character::Island::Clear(characterId);
-	}
-
 	std::list<int> Islands::All(int islandId, const game::characters::State& state)
 	{
 		auto characterIds = data::game::character::Island::All(islandId);
