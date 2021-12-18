@@ -18,11 +18,6 @@
 #include "Game.Ship.Docked.h"
 namespace game::session
 {
-	Character::Character(int characterId)
-		: characterId(characterId)
-	{
-	}
-
 	character::HitPoints Character::GetHitpoints() const
 	{
 		return character::HitPoints(characterId);
@@ -402,7 +397,7 @@ namespace game::session
 
 	void Character::SetIsland(Island island) const
 	{
-		data::game::character::Island::Write(characterId, island.islandId);
+		data::game::character::Island::Write(characterId, (int)island);
 	}
 
 	character::Counters Character::GetCounters() const

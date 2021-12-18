@@ -2,12 +2,6 @@
 #include "Game.Session.Island.h"
 namespace game::session
 {
-	Island::Island(int islandId)
-		: islandId(islandId)
-	{
-
-	}
-
 	static std::optional<bool> TryIsKnown(int islandId)
 	{
 		auto island = game::Islands::Read(islandId);

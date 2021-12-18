@@ -20,7 +20,8 @@ namespace game::session
 	struct Player;
 	struct Character
 	{
-		Character(int);
+		constexpr Character(int characterId) : characterId(characterId) {}
+		constexpr explicit operator int() const { return characterId; }
 		character::Characteristics GetCharacteristics() const;
 		character::HitPoints GetHitpoints() const;
 		character::Berth GetBerth() const;
@@ -45,7 +46,6 @@ namespace game::session
 		std::optional<characters::State> TryGetState() const;
 		characters::State GetState() const;
 	private:
-		friend struct game::session::Player;
 		int characterId;
 	};
 }

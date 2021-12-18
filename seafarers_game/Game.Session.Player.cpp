@@ -39,10 +39,10 @@ namespace game::session
 	void Player::Reset(const Difficulty& difficulty) const
 	{
 		auto character = game::session::Characters().Create(game::characters::State::AT_SEA);
-		data::game::Player::Create(character.characterId);
+		data::game::Player::Create((int)character);
 		game::characters::Items::Reset(data::game::Player::GetCharacterId().value(), difficulty);
 		game::characters::Statistics::Reset(data::game::Player::GetCharacterId().value(), difficulty);
-		GenerateCharacterShip(character.characterId);
+		GenerateCharacterShip((int)character);
 	}
 
 	std::optional<Character> Player::TryGetCharacter() const
