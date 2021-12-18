@@ -5,7 +5,6 @@
 #include <Data.Game.Character.Characteristic.h>
 #include <Data.Game.Character.Rations.h>
 #include "Game.Items.h"
-#include "Game.Characters.Flags.h"
 #include "Game.Session.Character.h"
 #include "Game.Session.Characters.h"
 #include "Game.Characters.h" //FOR APPLY TURN EFFECTS
