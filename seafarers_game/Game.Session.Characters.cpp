@@ -104,29 +104,30 @@ namespace game::session
 	{
 		const game::Item rationItem = game::Item::RATIONS;//TODO: when we can choose rations for an character, this will change
 		auto rations = game::characters::Items::Read(characterId, rationItem);
+		auto character = Characters().GetCharacter(characterId);
 		if (rations > 0)
 		{
-			Characters().GetCharacter(characterId).GetCounters().GetCounter(game::characters::Counter::STARVATION).Change(-1);
+			character.GetCounters().GetCounter(game::characters::Counter::STARVATION).Change(-1);
 			game::characters::Items::Remove(characterId, rationItem, 1);
-			if (game::characters::Flags::Has(characterId, game::characters::Flag::UNFED))
+			if (character.GetFlags().GetFlag(game::characters::Flag::UNFED).Has())
 			{
-				game::characters::Flags::Clear(characterId, game::characters::Flag::UNFED);
+				character.GetFlags().GetFlag(game::characters::Flag::UNFED).Reset();
 			}
 			else
 			{
-				game::characters::Flags::Write(characterId, game::characters::Flag::FED);
+				character.GetFlags().GetFlag(game::characters::Flag::FED).Set();
 			}
 		}
 		else
 		{
 			SufferHunger(characterId);
-			if (game::characters::Flags::Has(characterId, game::characters::Flag::FED))
+			if (character.GetFlags().GetFlag(game::characters::Flag::FED).Has())
 			{
-				game::characters::Flags::Clear(characterId, game::characters::Flag::FED);
+				character.GetFlags().GetFlag(game::characters::Flag::FED).Reset();
 			}
 			else
 			{
-				game::characters::Flags::Write(characterId, game::characters::Flag::UNFED);
+				character.GetFlags().GetFlag(game::characters::Flag::UNFED).Set();
 			}
 		}
 	}

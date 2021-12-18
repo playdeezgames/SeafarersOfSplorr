@@ -36,6 +36,7 @@
     <ClInclude Include="Game.Session.Character.Characteristics.h" />
     <ClInclude Include="Game.Session.Character.Counter.h" />
     <ClInclude Include="Game.Session.Character.Counters.h" />
+    <ClInclude Include="Game.Session.Character.Flag.h" />
     <ClInclude Include="Game.Session.Character.h" />
     <ClInclude Include="Game.Session.Character.HitPoints.h" />
     <ClInclude Include="Game.Session.Character.Items.h" />
@@ -147,6 +148,8 @@
     <ClCompile Include="Game.Session.Character.Counter.cpp" />
     <ClCompile Include="Game.Session.Character.Counters.cpp" />
     <ClCompile Include="Game.Session.Character.cpp" />
+    <ClCompile Include="Game.Session.Character.Flag.cpp" />
+    <ClCompile Include="Game.Session.Character.Flags.cpp" />
     <ClCompile Include="Game.Session.Character.HitPoints.cpp" />
     <ClCompile Include="Game.Session.Character.Items.cpp" />
     <ClCompile Include="Game.Session.Character.LegacyItem.cpp" />
@@ -212,6 +215,9 @@
     <ClCompile Include="Game.ShipNames.cpp" />
     <ClCompile Include="Game.Ships.cpp" />
     <ClCompile Include="Game.ShipTypes.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Game.Session.Character.Flags.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

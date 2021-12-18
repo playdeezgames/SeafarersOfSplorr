@@ -4,6 +4,7 @@
 #include "Game.Session.Character.Characteristic.h"
 #include "Game.Session.Character.Characteristics.h"
 #include "Game.Session.Character.Counters.h"
+#include "Game.Session.Character.Flags.h"
 #include "Game.Session.Character.HitPoints.h"
 #include "Game.Session.Character.Items.h"
 #include "Game.Session.Character.LegacyItems.h"
@@ -35,6 +36,7 @@ namespace game::session
 		character::Items GetItems() const;
 		void SetIsland(Island island) const;
 		character::Counters GetCounters() const;
+		character::Flags GetFlags() const;
 	private:
 		friend struct game::session::Player;
 		int characterId;

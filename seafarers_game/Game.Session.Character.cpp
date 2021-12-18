@@ -408,4 +408,9 @@ namespace game::session
 	{
 		return character::Counters(characterId);
 	}
+
+	character::Flags Character::GetFlags() const
+	{
+		return character::Flags(characterId);
+	}
 }

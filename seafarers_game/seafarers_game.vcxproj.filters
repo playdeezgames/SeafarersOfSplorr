@@ -470,6 +470,9 @@
     <ClInclude Include="Game.Session.Character.Counter.h">
       <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Character.Flag.h">
+      <Filter>Header Files\Session\Character</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Features.cpp">
@@ -709,5 +712,16 @@
     <ClCompile Include="Game.Session.Character.Counters.cpp">
       <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Session.Character.Flags.cpp">
+      <Filter>Source Files\Session\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.Flag.cpp">
+      <Filter>Source Files\Session\Character</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Game.Session.Character.Flags.h">
+      <Filter>Header Files\Session\Character</Filter>
+    </None>
   </ItemGroup>
 </Project>
