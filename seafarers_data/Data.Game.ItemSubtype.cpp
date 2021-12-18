@@ -8,6 +8,7 @@ namespace data::game
 	static const std::string QUERY_MAXIMUM_SUBTYPE = "SELECT MAX([Subtype]) AS MaximumSubtype FROM [ItemSubtypes] WHERE [ItemTypeId]={};";
 	static const std::string QUERY_ITEM_TYPE_ID = "SELECT [ItemTypeId] FROM [ItemSubtypes] WHERE [ItemSubtypeId]={};";
 	static const std::string QUERY_SUBTYPE = "SELECT [Subtype] FROM [ItemSubtypes] WHERE [ItemSubtypeId]={};";
+	static const std::string DELETE_ALL = "DELETE FROM [ItemSubtypes];";
 
 	static const std::string FIELD_MAXIMUM_SUBTYPE = "MaximumSubtype";
 	static const std::string FIELD_SUBTYPE = "Subtype";
@@ -53,5 +54,10 @@ namespace data::game
 			return common::Data::ToOptionalInt(records.front()[FIELD_SUBTYPE]);
 		}
 		return std::nullopt;
+	}
+	
+	void ItemSubtype::Clear()
+	{
+		Common::Execute(DELETE_ALL);
 	}
 }

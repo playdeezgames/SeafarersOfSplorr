@@ -21,7 +21,7 @@ namespace game
 		session::World GetWorld() const;
 		session::Islands GetIslands() const;
 		session::Items GetItems() const;
-		session::ItemTypes GetItemTypes() const;
+		session::ItemSubtypes GetItemSubtypes() const;//this becomes a subobject of the WORLD!!!
 		session::Demigods GetDemigods() const;
 		session::Fisheries GetFisheries() const;
 		session::Saves GetSaves() const;

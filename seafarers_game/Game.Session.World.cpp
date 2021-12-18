@@ -1,6 +1,7 @@
 #include <Common.Heading.h>
 #include <Common.RNG.h>
 #include <Data.Game.World.h>
+#include "Game.Session.ItemSubtypes.h"
 #include "Game.Session.World.h"
 namespace game::session
 {
@@ -32,6 +33,7 @@ namespace game::session
 	void World::Reset(const Difficulty& difficulty) const
 	{
 		auto properties = worldProperties.find(difficulty)->second;
+		auto currencyItemSubtype = ItemSubtypes().Create(game::ItemType::CURRENCY);
 		data::game::World data =
 		{
 			CURRENT_VERSION,
@@ -40,6 +42,7 @@ namespace game::session
 			properties.viewDistance,
 			properties.dockDistance,
 			common::RNG::FromRange(0.0, common::Heading::DEGREES),
+			(int)currencyItemSubtype,
 			100.0,
 			properties.reputationReward,
 			properties.reputationPenalty

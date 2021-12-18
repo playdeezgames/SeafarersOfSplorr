@@ -3,6 +3,6 @@ namespace game
 {
 	enum class ItemType
 	{
-		TROUSERS
+		CURRENCY
 	};
 }

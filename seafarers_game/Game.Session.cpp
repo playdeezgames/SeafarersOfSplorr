@@ -37,16 +37,17 @@ namespace game
 		return session::Items();
 	}
 
-	session::ItemTypes Session::GetItemTypes() const
+	session::ItemSubtypes Session::GetItemSubtypes() const
 	{
-		return session::ItemTypes();
+		return session::ItemSubtypes();
 	}
 
 	void Session::Reset(const Difficulty& difficulty) const
 	{
 		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);//TODO: mebbe this becomes the new game::Reset?
 
-		GetWorld().Reset(difficulty);//MUST BE FIRST
+		GetItemSubtypes().Reset(difficulty);//MUST BE FIRST
+		GetWorld().Reset(difficulty);//MUST BE SECOND
 		GetShips().Reset(difficulty);
 		GetCharacters().Reset(difficulty);
 		GetPlayer().Reset(difficulty);

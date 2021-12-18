@@ -11,6 +11,9 @@ namespace data::game
 		double viewDistance;
 		double dockDistance;
 		double windHeading;
+		int currencyItemSubtypeId;
+
+		//DEPRECATE THESE
 		double unfoulingLaborMultiplier;
 		double reputationReward;
 		double reputationPenalty;
