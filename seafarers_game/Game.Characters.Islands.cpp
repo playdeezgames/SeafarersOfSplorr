@@ -3,11 +3,6 @@
 #include "Game.Session.h"
 namespace game::characters
 {
-	std::optional<int> Islands::Read(int characterId)
-	{
-		return data::game::character::Island::Read(characterId);
-	}
-
 	std::list<int> Islands::All(int islandId, const game::characters::State& state)
 	{
 		auto characterIds = data::game::character::Island::All(islandId);
