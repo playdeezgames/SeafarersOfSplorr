@@ -36,6 +36,9 @@ namespace game::session
 		bool IsDead() const;
 		character::Items GetItems() const;
 		void SetIsland(Island island) const;
+		void ClearIsland() const;
+		std::optional<Island> TryGetIsland() const;
+		Island GetIsland() const;
 		character::Counters GetCounters() const;
 		character::Flags GetFlags() const;
 		std::string GetName() const;

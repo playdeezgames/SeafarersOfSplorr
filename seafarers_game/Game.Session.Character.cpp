@@ -435,4 +435,24 @@ namespace game::session
 	{
 		return TryGetState().value();
 	}
+
+	void Character::ClearIsland() const
+	{
+		data::game::character::Island::Clear(characterId);
+	}
+
+	std::optional<Island> Character::TryGetIsland() const
+	{
+		auto islandId = data::game::character::Island::Read(characterId);
+		if (islandId)
+		{
+			return Island(islandId.value());
+		}
+		return std::nullopt;
+	}
+
+	Island Character::GetIsland() const
+	{
+		return TryGetIsland().value();
+	}
 }
