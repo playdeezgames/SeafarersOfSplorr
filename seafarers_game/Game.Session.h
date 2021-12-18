@@ -4,7 +4,7 @@
 #include "Game.Session.Demigods.h"
 #include "Game.Session.Islands.h"
 #include "Game.Session.Items.h"
-#include "Game.Session.ItemTypes.h"
+#include "Game.Session.ItemSubtypes.h"
 #include "Game.Session.Ships.h"
 #include "Game.Session.World.h"
 #include "Game.Session.Fisheries.h"
@@ -15,6 +15,7 @@ namespace game
 {
 	struct Session
 	{
+		constexpr Session() {}
 		session::Characters GetCharacters() const;
 		session::Ships GetShips() const;
 		session::World GetWorld() const;

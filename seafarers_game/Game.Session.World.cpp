@@ -6,11 +6,6 @@ namespace game::session
 {
 	static const int CURRENT_VERSION = 1;
 
-	World::World()
-	{
-
-	}
-
 	world::Wind World::GetWind() const
 	{
 		return world::Wind();

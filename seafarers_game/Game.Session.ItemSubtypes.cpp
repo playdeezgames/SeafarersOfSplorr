@@ -1,4 +1,4 @@
-#include "Game.Session.ItemTypes.h"
+#include "Game.Session.ItemSubtypes.h"
 namespace game::session
 {
 	ItemType ItemTypes::GetItemType(int itemSubtypeId) const

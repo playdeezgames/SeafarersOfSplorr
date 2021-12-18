@@ -3,7 +3,7 @@ namespace game::session::world
 {
 	struct Wind
 	{
-		Wind();
+		constexpr Wind() {};
 		double GetHeading() const;
 		double GetMultiplier(double) const;
 		void SetHeading(double) const;

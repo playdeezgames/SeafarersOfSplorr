@@ -7,7 +7,7 @@ namespace game::session
 {
 	struct World
 	{
-		World();
+		constexpr World() {}
 		world::Bounds GetBounds() const;
 		world::Wind GetWind() const;
 		world::Distances GetDistances() const;

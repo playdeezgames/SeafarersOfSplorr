@@ -407,7 +407,7 @@
     <ClInclude Include="Game.ItemType.h">
       <Filter>Header Files\Items</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.ItemType.h">
+    <ClInclude Include="Game.Session.ItemSubtype.h">
       <Filter>Header Files\Session\Item</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Characters.h">
@@ -416,7 +416,7 @@
     <ClInclude Include="Game.Session.Ships.h">
       <Filter>Header Files\Session\Ship</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.ItemTypes.h">
+    <ClInclude Include="Game.Session.ItemSubtypes.h">
       <Filter>Header Files\Session\Item</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Demigods.h">
@@ -661,7 +661,7 @@
     <ClCompile Include="Game.Session.Character.Items.cpp">
       <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.ItemType.cpp">
+    <ClCompile Include="Game.Session.ItemSubtype.cpp">
       <Filter>Source Files\Session\Item</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Characters.cpp">
@@ -670,7 +670,7 @@
     <ClCompile Include="Game.Session.Ships.cpp">
       <Filter>Source Files\Session\Ship</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.ItemTypes.cpp">
+    <ClCompile Include="Game.Session.ItemSubtypes.cpp">
       <Filter>Source Files\Session\Item</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Demigods.cpp">

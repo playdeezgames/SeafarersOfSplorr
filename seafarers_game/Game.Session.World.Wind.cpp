@@ -5,11 +5,6 @@
 #include "Game.Session.World.Wind.h"
 namespace game::session::world
 {
-	Wind::Wind()
-	{
-
-	}
-
 	double Wind::GetHeading() const
 	{
 		return data::game::World::Read().value().windHeading;
