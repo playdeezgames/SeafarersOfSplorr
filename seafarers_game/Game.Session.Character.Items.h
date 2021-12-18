@@ -5,7 +5,7 @@ namespace game::session::character
 {
 	struct Items
 	{
-		Items(int);
+		constexpr Items(int characterId): characterId(characterId) {}
 		std::list<Item> GetAll() const;
 		void Purge() const;
 		void Add(const Item&) const;

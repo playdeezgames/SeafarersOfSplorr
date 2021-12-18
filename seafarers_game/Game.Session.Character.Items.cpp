@@ -2,12 +2,6 @@
 #include "Game.Session.Character.Items.h"
 namespace game::session::character
 {
-	Items::Items(int characterId)
-		: characterId(characterId)
-	{
-
-	}
-
 	std::list<Item> Items::GetAll() const
 	{
 		auto itemInstances = data::game::character::ItemInstance::ReadForCharacter(characterId);
