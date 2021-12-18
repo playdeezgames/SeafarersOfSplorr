@@ -1,4 +1,3 @@
-#include <Game.Characters.h>
 #include <Game.Characters.Islands.h>
 #include <Game.Islands.Taverns.h>
 #include <Game.Session.h>

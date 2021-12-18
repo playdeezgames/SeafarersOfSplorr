@@ -1,6 +1,5 @@
 #include <Common.Utility.Optional.h>
 #include <Data.Game.Player.h>
-#include <Game.Characters.h>
 #include <Game.Characters.Items.h>
 #include <Game.Characters.Message.h>
 #include <Game.Characters.Quests.h>

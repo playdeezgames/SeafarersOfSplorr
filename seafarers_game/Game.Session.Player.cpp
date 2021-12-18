@@ -2,7 +2,6 @@
 #include <Common.Heading.h>
 #include <Common.RNG.h>
 #include <Data.Game.Player.h>
-#include "Game.Characters.h"
 #include "Game.Characters.Items.h"
 #include "Game.Characters.Ships.h"
 #include "Game.Session.Characters.h"

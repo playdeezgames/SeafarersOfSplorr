@@ -272,9 +272,6 @@
     <ClInclude Include="Game.Ship.State.h">
       <Filter>Header Files\Ships</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Characters.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Characters.Plights.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
@@ -533,9 +530,6 @@
       <Filter>Source Files\Fishing</Filter>
     </ClCompile>
     <ClCompile Include="Game.Characters.DoAction.cpp">
-      <Filter>Source Files\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Characters.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Game.Characters.Equipment.cpp">

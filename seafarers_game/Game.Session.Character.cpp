@@ -3,7 +3,6 @@
 #include <Data.Game.Island.DarkAlley.h>
 #include <Data.Game.Player.h>
 #include <Data.Game.Ship.Docks.h>
-#include "Game.Characters.h"
 #include "Game.Characters.Islands.h"
 #include "Game.Characters.Items.h"
 #include "Game.Characters.Quests.h"
@@ -12,6 +11,7 @@
 #include "Game.Fishboard.h"
 #include "Game.Islands.h"
 #include "Game.Item.h"
+#include "Game.Session.h"
 #include "Game.Session.Character.h"
 #include "Game.Session.FishGame.h"
 #include "Game.Ship.Docked.h"
@@ -326,7 +326,7 @@ namespace game::session
 
 	void Character::DoAction(const game::characters::Action& action) const
 	{
-		auto state = Characters::GetState(characterId);
+		auto state = TryGetState();
 		if (state)
 		{
 			auto descriptor = FindActionDescriptor(action);
@@ -419,8 +419,19 @@ namespace game::session
 		return data::game::Character::Read(characterId).value().name;
 	}
 
+	std::optional<characters::State> Character::TryGetState() const
+	{
+		auto character = data::game::Character::Read(characterId);
+		if (character)
+		{
+			return (characters::State)character.value().state;
+		}
+		return std::nullopt;
+	}
+
+
 	characters::State Character::GetState() const
 	{
-		return (characters::State)data::game::Character::Read(characterId).value().state;
+		return TryGetState().value();
 	}
 }

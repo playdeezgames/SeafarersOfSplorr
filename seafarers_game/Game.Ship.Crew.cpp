@@ -1,6 +1,5 @@
 #include <Common.Utility.Array.h>
 #include <Data.Game.Character.Ship.h>
-#include "Game.Characters.h"
 #include "Game.Characters.Ships.h"
 #include "Game.Session.h"
 #include "Game.Ship.Crew.h"

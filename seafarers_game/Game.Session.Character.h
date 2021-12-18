@@ -39,6 +39,7 @@ namespace game::session
 		character::Counters GetCounters() const;
 		character::Flags GetFlags() const;
 		std::string GetName() const;
+		std::optional<characters::State> TryGetState() const;
 		characters::State GetState() const;
 	private:
 		friend struct game::session::Player;

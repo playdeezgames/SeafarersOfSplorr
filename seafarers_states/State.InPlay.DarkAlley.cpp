@@ -1,5 +1,4 @@
 #include <format>
-#include <Game.Characters.h>
 #include <Game.Characters.Statistics.h>
 #include <Game.Islands.DarkAlley.h>
 #include "State.InPlay.DarkAlley.h"

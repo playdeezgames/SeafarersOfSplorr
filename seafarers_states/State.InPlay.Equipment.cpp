@@ -1,5 +1,4 @@
 #include <Common.Data.h>
-#include <Game.Characters.h>
 #include <Game.Characters.Equipment.h>
 #include <Game.EquipSlots.h>
 #include <Game.Items.h>

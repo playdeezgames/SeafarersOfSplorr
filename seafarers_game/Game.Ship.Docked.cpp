@@ -3,7 +3,6 @@
 #include <Data.Game.Ship.Docks.h>
 #include <Data.Game.Ship.h>
 #include <Data.Game.Island.h>
-#include "Game.Characters.h"
 #include "Game.Characters.State.h"
 #include "Game.Characters.Quests.h"
 #include "Game.Characters.Ships.h"
@@ -79,7 +78,7 @@ namespace game::ship
 			//first time, check that all billets are at the dock
 			for (auto billet : billets)
 			{
-				auto characterState = game::Characters::GetState(billet.characterId).value();
+				auto characterState = game::Session().GetCharacters().GetCharacter(billet.characterId).GetState();
 				if (characterState != game::characters::State::DOCK)
 				{
 					return false;

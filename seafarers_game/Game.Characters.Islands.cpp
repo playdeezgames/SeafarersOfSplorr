@@ -1,6 +1,6 @@
 #include <Data.Game.Character.Island.h>
 #include "Game.Characters.Islands.h"
-#include "Game.Characters.h"
+#include "Game.Session.h"
 namespace game::characters
 {
 	std::optional<int> Islands::Read(int characterId)
@@ -24,7 +24,7 @@ namespace game::characters
 		std::list<int> result;
 		for (auto characterId : characterIds)
 		{
-			if (state == Characters::GetState(characterId))
+			if (state == game::Session().GetCharacters().GetCharacter(characterId).GetState())
 			{
 				result.push_back(characterId);
 			}

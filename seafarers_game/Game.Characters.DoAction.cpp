@@ -5,7 +5,6 @@
 #include <Data.Game.Ship.Docks.h>
 #include <format>
 #include <functional>
-#include "Game.Characters.h"
 #include "Game.Characters.Action.h"
 #include "Game.Characters.Islands.h"
 #include "Game.Characters.Items.h"

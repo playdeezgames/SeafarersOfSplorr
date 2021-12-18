@@ -7,7 +7,6 @@
 #include "Game.Items.h"
 #include "Game.Session.Character.h"
 #include "Game.Session.Characters.h"
-#include "Game.Characters.h" //FOR APPLY TURN EFFECTS
 #include "Game.Characters.Equipment.h" //FOR RESET
 #include "Game.Characters.Items.h" //FOR RESET
 #include "Game.Characters.Plights.h" //FOR APPLY TURN EFFECTS

@@ -1,4 +1,3 @@
-#include <Game.Characters.h>
 #include <Game.Characters.Rations.h>
 #include <Game.Items.h>
 #include <Game.Session.h>

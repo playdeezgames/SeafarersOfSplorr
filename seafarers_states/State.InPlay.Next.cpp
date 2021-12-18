@@ -1,5 +1,4 @@
 #include <Application.Update.h>
-#include <Game.Characters.h>
 #include <Game.Characters.Statistics.h>
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
@@ -66,7 +65,7 @@ namespace state::in_play
 			return;
 		}
 
-		auto characterState = game::Characters::GetState(GetPlayerCharacterId());
+		auto characterState = game::Session().GetPlayer().GetCharacter().TryGetState();
 		if (characterState)
 		{
 			auto iter = avatarStateTable.find(characterState.value());

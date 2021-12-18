@@ -72,7 +72,6 @@
     <ClInclude Include="Game.Ship.DockResult.h" />
     <ClInclude Include="Game.Characters.Equipment.h" />
     <ClInclude Include="Game.Characters.Flag.h" />
-    <ClInclude Include="Game.Characters.h" />
     <ClInclude Include="Game.Characters.Items.h" />
     <ClInclude Include="Game.Characters.Plight.h" />
     <ClInclude Include="Game.Characters.Plights.h" />
@@ -134,7 +133,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Characters.DoAction.cpp" />
-    <ClCompile Include="Game.Characters.cpp" />
     <ClCompile Include="Game.Characters.Islands.cpp" />
     <ClCompile Include="Game.Characters.Skills.cpp" />
     <ClCompile Include="Game.Islands.Features.DarkAlley.cpp" />
