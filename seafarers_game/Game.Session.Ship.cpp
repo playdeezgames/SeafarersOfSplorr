@@ -5,12 +5,6 @@
 #include "Game.Session.Ship.h"
 namespace game::session
 {
-	Ship::Ship(int shipId)
-		: shipId(shipId)
-	{
-		
-	}
-
 	std::list<ship::Berth> Ship::GetBerths() const
 	{
 		std::list<ship::Berth> result;

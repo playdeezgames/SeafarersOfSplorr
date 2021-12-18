@@ -12,16 +12,6 @@ namespace game
 		return session::Characters();
 	}
 
-	session::Ships Session::GetShips() const
-	{
-		return session::Ships();
-	}
-
-	session::World Session::GetWorld() const
-	{
-		return game::session::World();
-	}
-
 	void Session::ApplyTurnEffects() const
 	{
 		GetShips().ApplyTurnEffects();

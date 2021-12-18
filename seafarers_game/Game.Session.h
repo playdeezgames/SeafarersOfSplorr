@@ -16,8 +16,8 @@ namespace game
 	{
 		constexpr Session() {}
 		session::Characters GetCharacters() const;
-		session::Ships GetShips() const;
-		session::World GetWorld() const;
+		constexpr session::Ships GetShips() const { return session::Ships(); }
+		constexpr session::World GetWorld() const { return session::World(); }
 		session::Islands GetIslands() const;
 		session::Items GetItems() const;
 		session::Demigods GetDemigods() const;

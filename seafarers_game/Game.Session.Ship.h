@@ -10,7 +10,7 @@ namespace game::session
 {
 	struct Ship
 	{
-		Ship(int);
+		constexpr Ship(int shipId) : shipId(shipId) {}
 		std::list<ship::Berth> GetBerths() const;
 		double GetHeading() const;
 		void SetHeading(double) const;
