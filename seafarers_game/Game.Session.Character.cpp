@@ -418,4 +418,9 @@ namespace game::session
 	{
 		return data::game::Character::Read(characterId).value().name;
 	}
+
+	characters::State Character::GetState() const
+	{
+		return (characters::State)data::game::Character::Read(characterId).value().state;
+	}
 }

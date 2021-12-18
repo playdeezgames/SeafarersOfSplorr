@@ -1,5 +1,6 @@
 #pragma once
 #include "Game.Characters.Action.h"
+#include "Game.Characters.State.h"
 #include "Game.Session.Character.Berth.h"
 #include "Game.Session.Character.Characteristic.h"
 #include "Game.Session.Character.Characteristics.h"
@@ -38,6 +39,7 @@ namespace game::session
 		character::Counters GetCounters() const;
 		character::Flags GetFlags() const;
 		std::string GetName() const;
+		characters::State GetState() const;
 	private:
 		friend struct game::session::Player;
 		int characterId;
