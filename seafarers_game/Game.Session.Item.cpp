@@ -3,12 +3,6 @@
 #include "Game.Session.Item.h"
 namespace game::session
 {
-	Item::Item(int itemInstanceId)
-		: itemInstanceId(itemInstanceId)
-	{
-
-	}
-
 	ItemSubtype Item::GetItemSubtype() const
 	{
 		return ItemSubtype(data::game::ItemInstance::ReadItemSubtypeId(itemInstanceId).value());

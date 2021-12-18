@@ -3,7 +3,7 @@ namespace game::session
 {
 	struct ItemSubtype
 	{
-		ItemSubtype(int);
+		constexpr ItemSubtype(int itemSubtypeId): itemSubtypeId(itemSubtypeId) {}
 	private:
 		int itemSubtypeId;
 	};

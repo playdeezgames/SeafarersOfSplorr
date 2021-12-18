@@ -5,7 +5,7 @@ namespace game::session
 {
 	struct Item
 	{
-		Item(int);
+		constexpr Item(int itemInstanceId) : itemInstanceId(itemInstanceId) {}
 		ItemSubtype GetItemSubtype() const;
 		void SetQuantity(int) const;
 		int GetQuantity() const;
