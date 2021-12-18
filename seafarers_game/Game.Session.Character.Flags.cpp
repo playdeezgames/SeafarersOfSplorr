@@ -4,17 +4,6 @@
 #include <string>
 namespace game::session::character
 {
-	struct FlagDescriptor
-	{
-		std::string name;
-	};
-
-	static const std::map<game::characters::Flag, FlagDescriptor> descriptors =
-	{
-		{ game::characters::Flag::FED, { "fed" }},
-		{ game::characters::Flag::UNFED, { "unfed" }}
-	};
-
 	Flags::Flags(int characterId)
 		: characterId(characterId)
 	{
@@ -24,5 +13,15 @@ namespace game::session::character
 	Flag Flags::GetFlag(const game::characters::Flag& flag) const
 	{
 		return Flag(characterId, flag);
+	}
+
+	std::list<Flag> Flags::GetAll() const
+	{
+		std::list<Flag> result;
+		for (auto flag : data::game::character::Flags::All(characterId))
+		{
+			result.push_back(Flag(characterId, (game::characters::Flag)flag));
+		}
+		return result;
 	}
 }

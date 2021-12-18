@@ -26,13 +26,17 @@ namespace state::in_play
 
 	static void RefreshFlags(int characterId)
 	{
-		auto flags = game::characters::Flags::All(characterId);
+		auto character =
+			game::Session()
+			.GetCharacters()
+			.GetCharacter(characterId);
+		auto flags = character.GetFlags().GetAll();
 		if (!flags.empty())
 		{
 			bool first = true;
 			for (auto flag : flags)
 			{
-				auto& name = game::characters::Flags::GetName(flag);
+				auto& name = flag.GetName();
 				if (first)
 				{
 					Terminal::Write("Status: {}", name);

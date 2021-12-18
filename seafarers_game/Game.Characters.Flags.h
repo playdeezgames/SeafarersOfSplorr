@@ -6,7 +6,5 @@ namespace game::characters
 {
 	struct Flags
 	{
-		static std::set<Flag> All(int);
-		static const std::string& GetName(const Flag&);
 	};
 }
