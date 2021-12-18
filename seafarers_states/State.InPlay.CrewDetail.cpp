@@ -64,7 +64,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Crew Details:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Name: {}", game::Characters::GetName(characterId).value());
+		Terminal::WriteLine("Name: {}", game::Session().GetCharacters().GetCharacter(characterId).GetName());
 		RefreshRations(characterId);
 		RefreshFlags(characterId);
 		RefreshCharacteristics(characterId);//TODO: make this its own screen

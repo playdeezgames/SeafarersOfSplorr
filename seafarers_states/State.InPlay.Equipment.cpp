@@ -3,6 +3,7 @@
 #include <Game.Characters.Equipment.h>
 #include <Game.EquipSlots.h>
 #include <Game.Items.h>
+#include <Game.Session.h>
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.Equipment.h"
 #include "State.InPlay.EquipmentSlot.h"
@@ -43,7 +44,7 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
-		Terminal::WriteLine("Equipment for {}:", game::Characters::GetName(GetCrewDetailCharacterId()).value());
+		Terminal::WriteLine("Equipment for {}:", game::Session().GetCharacters().GetCharacter(GetCrewDetailCharacterId()).GetName());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		RefreshEquipSlots();

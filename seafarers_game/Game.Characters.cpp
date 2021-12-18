@@ -148,14 +148,6 @@ namespace game
 				});
 	}
 
-	std::optional<std::string> Characters::GetName(int characterId)
-	{
-		return common::utility::Optional::Map<data::game::Character, std::string>(
-			data::game::Character::Read(characterId),
-			[](const data::game::Character& character)
-			{ return character.name; });
-	}
-
 	std::optional<characters::State> Characters::GetState(int characterId)
 	{
 		return common::utility::Optional::Bind<data::game::Character, characters::State>(

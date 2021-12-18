@@ -3,6 +3,7 @@
 #include <Game.Characters.Items.h>
 #include <Game.Characters.Rations.h>
 #include <Game.Items.h>
+#include <Game.Session.h>
 #include "State.InPlay.ChooseRations.h"
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.Globals.h"
@@ -32,7 +33,7 @@ namespace state::in_play
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		auto avatarId = GetCrewDetailCharacterId();
-		Terminal::WriteLine("Rations for {}:", game::Characters::GetName(avatarId).value());
+		Terminal::WriteLine("Rations for {}:", game::Session().GetCharacters().GetCharacter(avatarId).GetName());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		auto current = game::characters::Rations::Read(avatarId);

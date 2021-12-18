@@ -4,6 +4,7 @@
 #include <Game.Characters.Items.h>
 #include <Game.EquipSlots.h>
 #include <Game.Items.h>
+#include <Game.Session.h>
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.EquipmentSlot.h"
@@ -28,7 +29,7 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
-		auto avatarName = game::Characters::GetName(GetCrewDetailCharacterId()).value();
+		auto avatarName = game::Session().GetCharacters().GetCharacter(GetCrewDetailCharacterId()).GetName();
 		auto equipSlotName = game::EquipSlots::GetName(GetEquipmentSlot());
 		Terminal::WriteLine("Equipping {}'s {}:", avatarName, equipSlotName);
 		Terminal::SetForeground(game::Colors::GRAY);

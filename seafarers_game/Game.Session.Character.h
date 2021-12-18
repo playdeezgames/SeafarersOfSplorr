@@ -37,6 +37,7 @@ namespace game::session
 		void SetIsland(Island island) const;
 		character::Counters GetCounters() const;
 		character::Flags GetFlags() const;
+		std::string GetName() const;
 	private:
 		friend struct game::session::Player;
 		int characterId;

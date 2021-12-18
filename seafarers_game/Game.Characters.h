@@ -8,7 +8,6 @@ namespace game
 {
 	struct Characters
 	{
-		static std::optional<std::string> GetName(int);
 		static std::optional<characters::State> GetState(int);
 	};
 }

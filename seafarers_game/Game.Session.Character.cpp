@@ -413,4 +413,9 @@ namespace game::session
 	{
 		return character::Flags(characterId);
 	}
+
+	std::string Character::GetName() const
+	{
+		return data::game::Character::Read(characterId).value().name;
+	}
 }

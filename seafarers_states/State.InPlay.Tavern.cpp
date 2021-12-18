@@ -1,6 +1,7 @@
 #include <Game.Characters.h>
 #include <Game.Characters.Islands.h>
 #include <Game.Islands.Taverns.h>
+#include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.Tavern.h"
 namespace state::in_play
@@ -17,7 +18,7 @@ namespace state::in_play
 			for (auto characterId : characterIds)
 			{
 				bool isPC = characterId == GetPlayerCharacterId();
-				auto name = game::Characters::GetName(characterId).value();
+				auto name = game::Session().GetCharacters().GetCharacter(characterId).GetName();
 				if (isPC)
 				{
 					Terminal::WriteLine("{}(you)", name);

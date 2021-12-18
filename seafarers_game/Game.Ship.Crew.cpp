@@ -2,6 +2,7 @@
 #include <Data.Game.Character.Ship.h>
 #include "Game.Characters.h"
 #include "Game.Characters.Ships.h"
+#include "Game.Session.h"
 #include "Game.Ship.Crew.h"
 namespace game::ship
 {
@@ -11,7 +12,7 @@ namespace game::ship
 		{
 			crew.characterId,
 			(BerthType)crew.berthType,
-			Characters::GetName(crew.characterId).value_or("????")
+			game::Session().GetCharacters().GetCharacter(crew.characterId).GetName()
 		};
 	}
 
