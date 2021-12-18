@@ -4,7 +4,6 @@
 #include "Game.Session.Demigods.h"
 #include "Game.Session.Islands.h"
 #include "Game.Session.Items.h"
-#include "Game.Session.ItemSubtypes.h"
 #include "Game.Session.Ships.h"
 #include "Game.Session.World.h"
 #include "Game.Session.Fisheries.h"
@@ -21,7 +20,6 @@ namespace game
 		session::World GetWorld() const;
 		session::Islands GetIslands() const;
 		session::Items GetItems() const;
-		session::ItemSubtypes GetItemSubtypes() const;//this becomes a subobject of the WORLD!!!
 		session::Demigods GetDemigods() const;
 		session::Fisheries GetFisheries() const;
 		session::Saves GetSaves() const;

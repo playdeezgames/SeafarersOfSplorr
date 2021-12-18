@@ -7,11 +7,6 @@ namespace game::session
 {
 	static const int CURRENT_VERSION = 1;
 
-	world::Wind World::GetWind() const
-	{
-		return world::Wind();
-	}
-
 	struct WorldProperties
 	{
 		double size;
@@ -32,6 +27,7 @@ namespace game::session
 
 	void World::Reset(const Difficulty& difficulty) const
 	{
+		GetItemSubtypes().Reset(difficulty);
 		auto properties = worldProperties.find(difficulty)->second;
 		auto currencyItemSubtype = ItemSubtypes().Create(game::ItemType::CURRENCY);
 		data::game::World data =
@@ -55,19 +51,8 @@ namespace game::session
 		GetWind().ApplyTurnEffects();
 	}
 
-	world::Bounds World::GetBounds() const
-	{
-		return world::Bounds();
-	}
-
 	int World::GetVersion() const
 	{
 		return data::game::World::Read().value().version;
 	}
-
-	world::Distances World::GetDistances() const
-	{
-		return world::Distances();
-	}
-
 }

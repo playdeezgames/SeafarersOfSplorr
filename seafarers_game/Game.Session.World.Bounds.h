@@ -4,6 +4,7 @@ namespace game::session::world
 {
 	struct Bounds
 	{
+		constexpr Bounds() {}
 		common::XY<double> GetSize() const;
 		bool ClampLocation(common::XY<double>&) const;
 	};
