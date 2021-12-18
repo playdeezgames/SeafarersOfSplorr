@@ -136,7 +136,6 @@
     <ClCompile Include="Game.Characters.DoAction.cpp" />
     <ClCompile Include="Game.Characters.cpp" />
     <ClCompile Include="Game.Characters.Islands.cpp" />
-    <ClCompile Include="Game.Characters.Messages.cpp" />
     <ClCompile Include="Game.Characters.Skills.cpp" />
     <ClCompile Include="Game.Islands.Features.DarkAlley.cpp" />
     <ClCompile Include="Game.Islands.Features.Tavern.cpp" />

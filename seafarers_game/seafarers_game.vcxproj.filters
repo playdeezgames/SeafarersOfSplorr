@@ -577,9 +577,6 @@
     <ClCompile Include="Game.Ship.Statistics.cpp">
       <Filter>Source Files\Ship</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Characters.Messages.cpp">
-      <Filter>Source Files\Character</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Islands.Features.cpp">
       <Filter>Source Files\Features</Filter>
     </ClCompile>

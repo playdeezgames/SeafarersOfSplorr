@@ -257,12 +257,12 @@ namespace state::in_play
 
 	void AddPlayerCharacterMessage(const std::string& color, const std::string& text)
 	{
-		game::characters::Messages::Add(GetPlayerCharacterId(), color, text);
+		game::Session().GetPlayer().GetCharacter().GetMessages().Add(color, text);
 	}
 
 	void AddPlayerCharacterMessage(const std::string& text)
 	{
-		game::characters::Messages::Add(GetPlayerCharacterId(), text);
+		game::Session().GetPlayer().GetCharacter().GetMessages().Add(game::Colors::GRAY, text);
 	}
 
 	std::optional<bool> PlayerCharacterIslandHasFeature(const game::Feature& feature)

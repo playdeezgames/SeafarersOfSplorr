@@ -1,7 +1,13 @@
-#include "Game.Characters.Message.h"
+#include <Common.Utility.Table.h>
+#include <Data.Game.Player.h>
 #include "Game.Session.Character.Messages.h"
+#include <map>
 namespace game::session::character
 {
+	typedef std::map<int, game::characters::MessageList> MessageListTable;
+
+	static MessageListTable messageListTable;
+
 	Messages::Messages(int characterId)
 		: characterId(characterId)
 	{
@@ -10,17 +16,20 @@ namespace game::session::character
 
 	void Messages::Add(const std::string& color, const std::string& text) const
 	{
-		game::characters::Messages::Add(characterId, color, text);
+		if (characterId == data::game::Player::GetCharacterId().value())
+		{
+			messageListTable[characterId].push_back({ color, text });
+		}
 	}
 
 	characters::MessageList Messages::GetAll() const
 	{
-		return game::characters::Messages::Read(characterId);
+		return common::utility::Table::TryGetKey(messageListTable, characterId).value_or(characters::MessageList());
 	}
 
 	void Messages::Clear() const
 	{
-		game::characters::Messages::Clear(characterId);
+		messageListTable.erase(characterId);
 	}
 
 }
