@@ -1,4 +1,5 @@
 #include <Data.Game.Character.h>
+#include <Data.Game.Character.Island.h>
 #include <Data.Game.Character.Ship.h>
 #include <Data.Game.Island.DarkAlley.h>
 #include <Data.Game.Player.h>
@@ -94,7 +95,7 @@ namespace game::session
 	{
 		auto ship = data::game::character::Ship::ReadForCharacter(characterId).value();
 		auto islandId = data::game::ship::Docks::Read(ship.shipId).value();
-		game::characters::Islands::Write(characterId, islandId);
+		Characters().GetCharacter(characterId).SetIsland(Island(islandId));
 		return characters::State::DOCK;
 	}
 
@@ -401,7 +402,7 @@ namespace game::session
 
 	void Character::SetIsland(Island island) const
 	{
-		game::characters::Islands::Write(characterId, island.islandId);
+		data::game::character::Island::Write(characterId, island.islandId);
 	}
 
 	character::Counters Character::GetCounters() const

@@ -8,11 +8,6 @@ namespace game::characters
 		return data::game::character::Island::Read(characterId);
 	}
 
-	void Islands::Write(int characterId, int islandId)
-	{
-		data::game::character::Island::Write(characterId, islandId);
-	}
-
 	void Islands::Clear(int characterId)
 	{
 		data::game::character::Island::Clear(characterId);

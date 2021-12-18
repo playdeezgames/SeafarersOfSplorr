@@ -13,6 +13,7 @@
 #include "Game.Colors.h"
 #include "Game.Fishboard.h"
 #include "Game.Islands.h"
+#include "Game.Session.h"
 #include "Game.Ship.Docked.h"
 namespace game
 {
@@ -59,7 +60,7 @@ namespace game
 	{
 		auto ship = data::game::character::Ship::ReadForCharacter(characterId).value();
 		auto islandId = data::game::ship::Docks::Read(ship.shipId).value();
-		game::characters::Islands::Write(characterId, islandId);
+		game::Session().GetCharacters().GetCharacter(characterId).SetIsland(game::session::Island(islandId));
 		return characters::State::DOCK;
 	}
 
