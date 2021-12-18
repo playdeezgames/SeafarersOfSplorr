@@ -1,5 +1,5 @@
 #pragma once
-#include "Game.Characters.Messages.h"
+#include "Game.Characters.Message.h"
 #include <string>
 namespace game::session::character
 {

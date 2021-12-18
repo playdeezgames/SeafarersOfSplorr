@@ -323,7 +323,7 @@
     <ClInclude Include="Game.Ship.Statistics.h">
       <Filter>Header Files\Ships</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Characters.Messages.h">
+    <ClInclude Include="Game.Characters.Message.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
     <ClInclude Include="Game.Characters.State.h">

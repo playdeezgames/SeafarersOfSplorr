@@ -1,4 +1,4 @@
-#include "Game.Characters.Messages.h"
+#include "Game.Characters.Message.h"
 #include "Game.Session.Character.Messages.h"
 namespace game::session::character
 {

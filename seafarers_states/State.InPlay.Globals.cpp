@@ -2,7 +2,7 @@
 #include <Data.Game.Player.h>
 #include <Game.Characters.h>
 #include <Game.Characters.Items.h>
-#include <Game.Characters.Messages.h>
+#include <Game.Characters.Message.h>
 #include <Game.Characters.Quests.h>
 #include <Game.Characters.Statistics.h>
 #include <Game.Characters.Ships.h>

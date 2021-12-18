@@ -24,7 +24,7 @@
     <ClInclude Include="Game.Characters.Action.h" />
     <ClInclude Include="Game.Characters.Counter.h" />
     <ClInclude Include="Game.Characters.Islands.h" />
-    <ClInclude Include="Game.Characters.Messages.h" />
+    <ClInclude Include="Game.Characters.Message.h" />
     <ClInclude Include="Game.Characteristic.h" />
     <ClInclude Include="Game.Characters.Skills.h" />
     <ClInclude Include="Game.Islands.Features.DarkAlley.h" />

@@ -1,7 +1,7 @@
 #include <Common.Data.h>
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Colors.h>
-#include <Game.Characters.Messages.h>
+#include <Game.Characters.Message.h>
 #include <Game.Session.h>
 #include <set>
 #include "State.Terminal.h"

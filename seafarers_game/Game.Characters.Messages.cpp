@@ -1,7 +1,7 @@
 #include <Common.Utility.Table.h>
 #include <Data.Game.Player.h>
 #include "Game.Colors.h"
-#include "Game.Characters.Messages.h"
+#include "Game.Characters.Message.h"
 #include <map>
 namespace game::characters
 {
