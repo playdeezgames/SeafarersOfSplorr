@@ -9,6 +9,6 @@ namespace game
 		static double GetBasePrice(const game::Commodity&);
 		static double GetDemandFactor(const game::Commodity&);
 		static double GetSupplyFactor(const game::Commodity&);
-		static double GetDiscount(const game::Commodity&);
+		//static double GetDiscount(const game::Commodity&);
 	};
 }

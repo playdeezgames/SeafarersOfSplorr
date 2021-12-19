@@ -133,9 +133,4 @@ namespace game
 	{
 		return Read(commodity).supplyFactor;
 	}
-
-	double Commodities::GetDiscount(const game::Commodity& commodity)
-	{
-		return Read(commodity).discount;
-	}
 }

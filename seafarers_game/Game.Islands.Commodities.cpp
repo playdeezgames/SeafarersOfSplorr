@@ -2,6 +2,7 @@
 #include <functional>
 #include "Game.Commodities.h"
 #include "Game.Islands.Commodities.h"
+#include "Game.Session.h"
 namespace game::islands
 {
 	static double GetCommodityUnitPurchasePrice(
@@ -21,7 +22,7 @@ namespace game::islands
 	{
 		return 
 			GetCommodityUnitPurchasePrice(islandId, commodity) *
-			(1.0 - game::Commodities::GetDiscount(commodity));
+			(1.0 - game::Session().GetWorld().GetCommodities().GetCommodity(commodity).GetDiscount());
 	}
 
 	static double DeterminePrice(const std::map<Commodity, double>& table, std::function<double(const Commodity&)> unitPricer)
