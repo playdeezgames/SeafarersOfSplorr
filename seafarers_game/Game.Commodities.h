@@ -7,6 +7,5 @@ namespace game
 	{
 		static const std::list<game::Commodity>& All();
 		static double GetBasePrice(const game::Commodity&);
-		static double GetDemandFactor(const game::Commodity&);
 	};
 }

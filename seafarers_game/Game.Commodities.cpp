@@ -123,9 +123,4 @@ namespace game
 	{
 		return Read(commodity).basePrice;
 	}
-
-	double Commodities::GetDemandFactor(const game::Commodity& commodity)
-	{
-		return Read(commodity).demandFactor;
-	}
 }
