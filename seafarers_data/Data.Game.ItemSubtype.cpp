@@ -3,8 +3,8 @@
 #include "Data.Game.ItemSubtype.h"
 namespace data::game
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [ItemSubtypes]([ItemSubtypeId] INTEGERY PRIMARY KEY AUTOINCREMENT, [ItemTypeId] INT NOT NULL,[Subtype] INT NOT NULL, UNIQUE([ItemTypeId],[Subtype]));";
-	static const std::string INSERT_ITEM = "INSERT INTO []([],[]) VALUES({},{});";
+	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [ItemSubtypes]([ItemSubtypeId] INTEGER PRIMARY KEY AUTOINCREMENT, [ItemTypeId] INT NOT NULL,[Subtype] INT NOT NULL, UNIQUE([ItemTypeId],[Subtype]));";
+	static const std::string INSERT_ITEM = "INSERT INTO [ItemSubtypes]([ItemTypeId],[Subtype]) VALUES({},{});";
 	static const std::string QUERY_MAXIMUM_SUBTYPE = "SELECT MAX([Subtype]) AS MaximumSubtype FROM [ItemSubtypes] WHERE [ItemTypeId]={};";
 	static const std::string QUERY_ITEM_TYPE_ID = "SELECT [ItemTypeId] FROM [ItemSubtypes] WHERE [ItemSubtypeId]={};";
 	static const std::string QUERY_SUBTYPE = "SELECT [Subtype] FROM [ItemSubtypes] WHERE [ItemSubtypeId]={};";
@@ -58,6 +58,7 @@ namespace data::game
 	
 	void ItemSubtype::Clear()
 	{
+		AutoCreateTable();
 		Common::Execute(DELETE_ALL);
 	}
 }

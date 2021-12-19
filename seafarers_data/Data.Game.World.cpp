@@ -6,8 +6,8 @@ namespace data::game
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Worlds]([WorldId] INT NOT NULL UNIQUE,[Version] INT NOT NULL,[Width] REAL NOT NULL,[Height] REAL NOT NULL,[MinimumIslandDistance] REAL NOT NULL,[ViewDistance] REAL NOT NULL,[DockDistance] REAL NOT NULL,[WindHeading] REAL NOT NULL,[CurrencyItemSubtypeId] INT NOT NULL,[UnfoulingLaborMultiplier] REAL NOT NULL,[ReputationReward] REAL NOT NULL,[ReputationPenalty] REAL NOT NULL);";
 	static const auto AutoCreateWorldsTable = data::game::Common::Run(CREATE_TABLE);
 	
-	static const std::string QUERY_ITEM = "SELECT [Version],[Width],[Height],[MinimumIslandDistance],[ViewDistance],[DockDistance],[WindHeading],[UnfoulingLaborMultiplier],[ReputationReward],[ReputationPenalty] FROM [Worlds] WHERE [WorldId] = {};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [Worlds]([WorldId],[Version],[Width],[Height],[MinimumIslandDistance],[ViewDistance],[DockDistance],[WindHeading],[UnfoulingLaborMultiplier],[ReputationReward],[ReputationPenalty]) VALUES ({},{},{},{},{},{},{},{},{},{},{});";
+	static const std::string QUERY_ITEM = "SELECT [Version],[Width],[Height],[MinimumIslandDistance],[ViewDistance],[DockDistance],[WindHeading],[UnfoulingLaborMultiplier],[ReputationReward],[ReputationPenalty],[CurrencyItemSubtypeId] FROM [Worlds] WHERE [WorldId] = {};";
+	static const std::string REPLACE_ITEM = "REPLACE INTO [Worlds]([WorldId],[Version],[Width],[Height],[MinimumIslandDistance],[ViewDistance],[DockDistance],[WindHeading],[CurrencyItemSubtypeId],[UnfoulingLaborMultiplier],[ReputationReward],[ReputationPenalty]) VALUES ({},{},{},{},{},{},{},{},{},{},{},{});";
 
 	static const std::string FIELD_VERSION = "Version";
 	static const std::string FIELD_WIDTH = "Width";
