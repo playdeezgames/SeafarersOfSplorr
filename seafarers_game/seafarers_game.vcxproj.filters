@@ -479,6 +479,12 @@
     <ClInclude Include="Game.Session.Commodity.h">
       <Filter>Header Files\Session\Commodity</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.ItemSubtype.Commodity.h">
+      <Filter>Header Files\Session\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.ItemSubtype.Commodities.h">
+      <Filter>Header Files\Session\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Features.cpp">
@@ -717,6 +723,9 @@
     </ClCompile>
     <ClCompile Include="Game.Session.Commodity.cpp">
       <Filter>Source Files\Session\Commodity</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.ItemSubtype.Commodity.cpp">
+      <Filter>Source Files\Session\Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

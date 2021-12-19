@@ -1,4 +1,5 @@
 #include <Data.Game.ItemSubtype.h>
+#include <Data.Game.ItemSubtype.Commodity.h>
 #include "Game.Session.ItemSubtypes.h"
 namespace game::session
 {
@@ -9,6 +10,7 @@ namespace game::session
 
 	void ItemSubtypes::Reset(const game::Difficulty&) const
 	{
+		data::game::item_subtype::Commodity::Clear();
 		data::game::ItemSubtype::Clear();
 	}
 

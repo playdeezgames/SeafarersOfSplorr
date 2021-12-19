@@ -182,6 +182,9 @@
     <ClInclude Include="Data.Game.ItemSubtype.h">
       <Filter>Header Files\Item</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.ItemSubtype.Commodity.h">
+      <Filter>Header Files\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">
@@ -299,6 +302,9 @@
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.ItemSubtype.cpp">
+      <Filter>Source Files\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.ItemSubtype.Commodity.cpp">
       <Filter>Source Files\Item</Filter>
     </ClCompile>
   </ItemGroup>

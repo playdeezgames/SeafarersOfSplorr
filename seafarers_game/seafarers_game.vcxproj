@@ -57,7 +57,9 @@
     <ClInclude Include="Game.Session.Islands.h" />
     <ClInclude Include="Game.Session.Item.h" />
     <ClInclude Include="Game.Session.Items.h" />
+    <ClInclude Include="Game.Session.ItemSubtype.Commodities.h" />
     <ClInclude Include="Game.Session.ItemSubtype.h" />
+    <ClInclude Include="Game.Session.ItemSubtype.Commodity.h" />
     <ClInclude Include="Game.Session.ItemSubtypes.h" />
     <ClInclude Include="Game.Session.Player.h" />
     <ClInclude Include="Game.Session.Save.h" />
@@ -166,6 +168,7 @@
     <ClCompile Include="Game.Session.Islands.cpp" />
     <ClCompile Include="Game.Session.Item.cpp" />
     <ClCompile Include="Game.Session.Items.cpp" />
+    <ClCompile Include="Game.Session.ItemSubtype.Commodity.cpp" />
     <ClCompile Include="Game.Session.ItemSubtype.cpp" />
     <ClCompile Include="Game.Session.ItemSubtypes.cpp" />
     <ClCompile Include="Game.Session.Player.cpp" />

@@ -25,11 +25,22 @@ namespace game::session
 		{game::Difficulty::HARDCORE, {250.0, 25.0, 10.0, 1.0, 1.0, -1.0}}
 	};
 
+
+	static session::ItemSubtype CreateWorldCurrencyItemSubtype()
+	{
+		const double WORLD_CURRENCY_JOOLS_AMOUNT = 0.001;
+		auto result = ItemSubtypes().Create(game::ItemType::CURRENCY);
+		result.GetCommodities().GetCommodity(game::Commodity::JOOLS).SetAmount(WORLD_CURRENCY_JOOLS_AMOUNT);
+		return result;
+	}
+
 	void World::Reset(const Difficulty& difficulty) const
 	{
 		GetItemSubtypes().Reset(difficulty);
 		auto properties = worldProperties.find(difficulty)->second;
-		auto currencyItemSubtype = ItemSubtypes().Create(game::ItemType::CURRENCY);
+
+		auto currencyItemSubtype = CreateWorldCurrencyItemSubtype();
+
 		data::game::World data =
 		{
 			CURRENT_VERSION,
