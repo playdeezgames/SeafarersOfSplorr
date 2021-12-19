@@ -194,12 +194,12 @@ namespace game::characters
 
 	namespace statistics
 	{
-		std::optional<double> Money::Current(int characterId)
+		std::optional<double> Money::CurrentLegacy(int characterId)
 		{
 			return GetCurrent(characterId, game::characters::Statistic::MONEY);
 		}
 
-		std::optional<double> Money::Change(int characterId, double delta)
+		std::optional<double> Money::ChangeLegacy(int characterId, double delta)
 		{
 			return ChangeCurrent(characterId, game::characters::Statistic::MONEY, delta);
 		}

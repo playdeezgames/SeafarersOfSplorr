@@ -42,7 +42,7 @@ namespace game::characters
 
 	static void CompleteQuest(int characterId, const data::game::character::Quest& quest)
 	{
-		game::characters::statistics::Money::Change(characterId, quest.reward);
+		game::characters::statistics::Money::ChangeLegacy(characterId, quest.reward);
 		game::characters::statistics::Reputation::Change(characterId, 1.0);
 		data::game::character::Quest::Write(characterId, std::nullopt);
 	}

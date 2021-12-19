@@ -18,7 +18,7 @@ namespace state::in_play
 		return GetPlayerCharacterDarkAlleyMinimumWager().value();
 	}
 
-	static const auto ReadMoney = game::characters::statistics::Money::Current;
+	static const auto ReadMoney = game::characters::statistics::Money::CurrentLegacy;
 
 	static void OnGamble()
 	{

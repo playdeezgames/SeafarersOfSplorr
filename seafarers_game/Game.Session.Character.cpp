@@ -377,7 +377,7 @@ namespace game::session
 
 	double Character::GetMoney() const
 	{
-		return game::characters::statistics::Money::Current(characterId).value();
+		return game::characters::statistics::Money::CurrentLegacy(characterId).value();
 	}
 
 	bool Character::IsDead() const

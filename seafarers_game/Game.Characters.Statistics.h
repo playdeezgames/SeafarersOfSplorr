@@ -7,8 +7,8 @@ namespace game::characters
 	{
 		struct Money
 		{
-			static std::optional<double> Current(int);
-			static std::optional<double> Change(int, double);
+			static std::optional<double> CurrentLegacy(int);
+			static std::optional<double> ChangeLegacy(int, double);
 		};
 		struct Reputation
 		{
