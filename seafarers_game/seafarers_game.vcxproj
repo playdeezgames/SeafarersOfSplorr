@@ -54,6 +54,7 @@
     <ClInclude Include="Game.Session.FishGame.h" />
     <ClInclude Include="Game.Session.h" />
     <ClInclude Include="Game.Session.Island.h" />
+    <ClInclude Include="Game.Session.Island.Market.h" />
     <ClInclude Include="Game.Session.Island.Markets.h" />
     <ClInclude Include="Game.Session.Islands.h" />
     <ClInclude Include="Game.Session.Item.h" />
