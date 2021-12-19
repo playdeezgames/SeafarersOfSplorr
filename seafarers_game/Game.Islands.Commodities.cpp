@@ -13,7 +13,7 @@ namespace game::islands
 		return 
 			game::Commodities::GetBasePrice(commodity) *
 			(market.demand + (double)market.purchases * game::Commodities::GetDemandFactor(commodity)) /
-			(market.supply + (double)market.sales * game::Commodities::GetSupplyFactor(commodity));
+			(market.supply + (double)market.sales * game::Session().GetWorld().GetCommodities().GetCommodity(commodity).GetSupplyFactor());
 	}
 
 	static double GetCommodityUnitSalePrice(

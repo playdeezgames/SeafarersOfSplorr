@@ -128,9 +128,4 @@ namespace game
 	{
 		return Read(commodity).demandFactor;
 	}
-
-	double Commodities::GetSupplyFactor(const game::Commodity& commodity)
-	{
-		return Read(commodity).supplyFactor;
-	}
 }
