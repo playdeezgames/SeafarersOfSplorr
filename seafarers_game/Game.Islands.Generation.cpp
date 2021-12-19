@@ -123,7 +123,7 @@ namespace game
 
 	static void GenerateMarkets(int islandId)
 	{
-		for (auto& commodity : game::Commodities::All())
+		for (auto& commodity : game::Session().GetWorld().GetCommodities().GetAll())
 		{
 			data::game::island::Market data =
 			{

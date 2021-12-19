@@ -113,9 +113,4 @@ namespace game
 	{
 		return commodityTable.find(commodity)->second;
 	}
-
-	const std::list<game::Commodity>& Commodities::All()
-	{
-		return common::utility::List::FromTable(commodityList, commodityTable);
-	}
 }

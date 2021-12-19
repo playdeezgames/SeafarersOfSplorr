@@ -5,6 +5,5 @@ namespace game
 {
 	struct Commodities
 	{
-		static const std::list<game::Commodity>& All();
 	};
 }
