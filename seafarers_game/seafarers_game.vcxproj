@@ -46,6 +46,7 @@
     <ClInclude Include="Game.Session.Character.Quest.h" />
     <ClInclude Include="Game.Session.Characters.h" />
     <ClInclude Include="Game.Session.Commodities.h" />
+    <ClInclude Include="Game.Session.Commodity.h" />
     <ClInclude Include="Game.Session.Demigods.h" />
     <ClInclude Include="Game.Session.Fishboard.h" />
     <ClInclude Include="Game.Session.FishboardCell.h" />
@@ -154,6 +155,8 @@
     <ClCompile Include="Game.Session.Character.Messages.cpp" />
     <ClCompile Include="Game.Session.Character.Quest.cpp" />
     <ClCompile Include="Game.Session.Characters.cpp" />
+    <ClCompile Include="Game.Session.Commodities.cpp" />
+    <ClCompile Include="Game.Session.Commodity.cpp" />
     <ClCompile Include="Game.Session.cpp" />
     <ClCompile Include="Game.Session.Demigods.cpp" />
     <ClCompile Include="Game.Session.Fishboard.cpp" />

@@ -138,6 +138,9 @@
     <Filter Include="Header Files\Session\Commodity">
       <UniqueIdentifier>{27fa31a9-8c34-410f-92ec-90cc05940608}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Session\Commodity">
+      <UniqueIdentifier>{8459a7f5-66bc-476f-bf46-fcd836f84e5f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -476,6 +479,9 @@
     <ClInclude Include="Game.Session.Commodities.h">
       <Filter>Header Files\Session\Commodity</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Commodity.h">
+      <Filter>Header Files\Session\Commodity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Features.cpp">
@@ -711,6 +717,12 @@
     </ClCompile>
     <ClCompile Include="Game.Session.Character.Flag.cpp">
       <Filter>Source Files\Session\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Commodities.cpp">
+      <Filter>Source Files\Session\Commodity</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Commodity.cpp">
+      <Filter>Source Files\Session\Commodity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
