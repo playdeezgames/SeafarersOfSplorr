@@ -6,6 +6,5 @@ namespace game
 	struct Commodities
 	{
 		static const std::list<game::Commodity>& All();
-		static double GetBasePrice(const game::Commodity&);
 	};
 }

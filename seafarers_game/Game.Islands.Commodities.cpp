@@ -11,7 +11,7 @@ namespace game::islands
 	{
 		auto market = data::game::island::Market::Read(islandId, (int)commodity).value();
 		return 
-			game::Commodities::GetBasePrice(commodity) *
+			game::Session().GetWorld().GetCommodities().GetCommodity(commodity).GetBasePrice() *
 			(market.demand + (double)market.purchases * game::Session().GetWorld().GetCommodities().GetCommodity(commodity).GetDemandFactor()) /
 			(market.supply + (double)market.sales * game::Session().GetWorld().GetCommodities().GetCommodity(commodity).GetSupplyFactor());
 	}

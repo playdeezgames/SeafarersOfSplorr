@@ -118,9 +118,4 @@ namespace game
 	{
 		return common::utility::List::FromTable(commodityList, commodityTable);
 	}
-
-	double Commodities::GetBasePrice(const game::Commodity& commodity)
-	{
-		return Read(commodity).basePrice;
-	}
 }
