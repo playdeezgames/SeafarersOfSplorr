@@ -6,4 +6,9 @@ namespace game::session::item_subtype
 	{
 		data::game::item_subtype::Commodity::Write(itemSubtypeId, (int)commodity, amount);
 	}
+
+	double Commodity::GetAmount() const
+	{
+		return data::game::item_subtype::Commodity::Read(itemSubtypeId, (int)commodity).value();
+	}
 }

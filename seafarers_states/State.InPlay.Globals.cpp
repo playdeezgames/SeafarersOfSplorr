@@ -99,7 +99,7 @@ namespace state::in_play
 		game::Session().GetPlayer().GetCharacter().DoAction(action);
 	}
 
-	std::optional<double> ChangePlayerCharacterMoney(double delta)
+	std::optional<double> ChangePlayerCharacterMoneyLegacy(double delta)
 	{
 		return game::characters::statistics::Money::ChangeLegacy(GetPlayerCharacterId(), delta);
 	}

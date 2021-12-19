@@ -22,4 +22,18 @@ namespace game::session::character
 	{
 		item.SetCharacterId(characterId);
 	}
+
+	std::list<Item> Items::GetItems(const ItemSubtype& itemSubtype) const
+	{
+		auto items = GetAll();
+		std::list<Item> result;
+		for (auto item : items)
+		{
+			if (item.GetItemSubtype()==itemSubtype)
+			{
+				result.push_back(item);
+			}
+		}
+		return result;
+	}
 }

@@ -86,7 +86,7 @@ namespace state::in_play
 
 		auto currentShipId = GetPlayerCharacterShipId().value();
 		auto currentShipType = game::Ship::GetShipType(currentShipId).value();
-		ChangePlayerCharacterMoney(-price);
+		ChangePlayerCharacterMoneyLegacy(-price);
 		auto desiredShipId = game::Ship::Add({ desiredShipType,game::ShipNames::Generate(), location, 0.0, 1.0 });
 		//TODO: transfer crew/passengers/captives?
 		game::characters::Ships::Write(GetPlayerCharacterId() , desiredShipId, game::BerthType::CAPTAIN);

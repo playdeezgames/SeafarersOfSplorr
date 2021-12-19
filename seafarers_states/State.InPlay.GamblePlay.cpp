@@ -72,14 +72,14 @@ namespace state::in_play
 			game::audio::Sfx::Play(game::audio::GameSfx::WOOHOO);
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine("You win!");
-			ChangePlayerCharacterMoney(GetPlayerCharacterDarkAlleyMinimumWager().value() + GetPlayerCharacterDarkAlleyAnte().value());
+			ChangePlayerCharacterMoneyLegacy(GetPlayerCharacterDarkAlleyMinimumWager().value() + GetPlayerCharacterDarkAlleyAnte().value());
 		}
 		else
 		{
 			game::audio::Sfx::Play(game::audio::GameSfx::SHUCKS);
 			Terminal::SetForeground(game::Colors::RED);
 			Terminal::WriteLine("You lose!");
-			ChangePlayerCharacterMoney(-GetPlayerCharacterDarkAlleyMinimumWager().value() + GetPlayerCharacterDarkAlleyAnte().value());
+			ChangePlayerCharacterMoneyLegacy(-GetPlayerCharacterDarkAlleyMinimumWager().value() + GetPlayerCharacterDarkAlleyAnte().value());
 		}
 		Terminal::SetForeground(game::Colors::GRAY);
 		application::UIState::Write(::UIState::IN_PLAY_GAMBLE_INTRO);//TODO: play again y/n?

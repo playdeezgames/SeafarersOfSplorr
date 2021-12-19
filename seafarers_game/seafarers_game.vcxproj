@@ -167,9 +167,12 @@
     <ClCompile Include="Game.Session.Fisheries.cpp" />
     <ClCompile Include="Game.Session.FishGame.cpp" />
     <ClCompile Include="Game.Session.Island.cpp" />
+    <ClCompile Include="Game.Session.Island.Market.cpp" />
+    <ClCompile Include="Game.Session.Island.Markets.cpp" />
     <ClCompile Include="Game.Session.Islands.cpp" />
     <ClCompile Include="Game.Session.Item.cpp" />
     <ClCompile Include="Game.Session.Items.cpp" />
+    <ClCompile Include="Game.Session.ItemSubtype.Commodities.cpp" />
     <ClCompile Include="Game.Session.ItemSubtype.Commodity.cpp" />
     <ClCompile Include="Game.Session.ItemSubtype.cpp" />
     <ClCompile Include="Game.Session.ItemSubtypes.cpp" />

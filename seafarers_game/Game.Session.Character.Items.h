@@ -1,5 +1,6 @@
 #pragma once
 #include "Game.Session.Item.h"
+#include "Game.Session.ItemSubtype.h"
 #include <list>
 namespace game::session::character
 {
@@ -9,6 +10,7 @@ namespace game::session::character
 		std::list<Item> GetAll() const;
 		void Purge() const;
 		void Add(const Item&) const;
+		std::list<Item> GetItems(const ItemSubtype&) const;
 	private:
 		int characterId;
 	};

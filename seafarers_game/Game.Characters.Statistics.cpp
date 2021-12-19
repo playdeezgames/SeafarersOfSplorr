@@ -6,6 +6,7 @@
 #include "Game.Characters.Statistic.h"
 #include "Game.Characters.Statistics.h"
 #include "Game.Item.h"
+#include "Game.Session.h"
 namespace game::characters
 {
 	struct StatisticDescriptor
@@ -196,7 +197,23 @@ namespace game::characters
 	{
 		std::optional<double> Money::CurrentLegacy(int characterId)
 		{
-			return GetCurrent(characterId, game::characters::Statistic::MONEY);
+			auto character = game::Session().GetCharacters().GetCharacter(characterId);
+			auto island = character.TryGetIsland();
+			if (island)
+			{
+				//what is the world currency?
+				auto currencyItemSubtype = game::Session().GetWorld().GetCurrencyItemSubtype();
+				//how many units of world currency does the character have?
+				auto currencyItems = character.GetItems().GetItems(currencyItemSubtype);
+				int currencyCount = 0;
+				for (auto currencyItem : currencyItems)
+				{
+					currencyCount += currencyItem.GetQuantity();
+				}
+				//what is the sale price of this amount of currency on the character's current island?
+				return currencyCount * island.value().GetMarkets().GetSaleValue(currencyItemSubtype);
+			}
+			return std::nullopt;
 		}
 
 		std::optional<double> Money::ChangeLegacy(int characterId, double delta)

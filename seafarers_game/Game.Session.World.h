@@ -15,6 +15,7 @@ namespace game::session
 		constexpr world::Bounds GetBounds() const { return world::Bounds(); }
 		constexpr world::Wind GetWind() const { return world::Wind(); }
 		constexpr world::Distances GetDistances() const { return world::Distances(); }
+		ItemSubtype GetCurrencyItemSubtype() const;
 		void Reset(const Difficulty&) const;
 		void ApplyTurnEffects() const;
 		int GetVersion() const;

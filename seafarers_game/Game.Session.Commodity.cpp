@@ -20,7 +20,7 @@ namespace game::session
 				1.0,
 				0.05,
 				0.05,
-				0.15
+				0.85
 			}
 		},
 		{
@@ -30,7 +30,7 @@ namespace game::session
 				7.5,
 				0.05,
 				0.05,
-				0.15
+				0.85
 			}
 		},
 		{
@@ -40,7 +40,7 @@ namespace game::session
 				2.5,
 				0.05,
 				0.05,
-				0.15
+				0.85
 			}
 		},
 		{
@@ -50,7 +50,7 @@ namespace game::session
 				1.0,
 				0.05,
 				0.05,
-				0.15
+				0.85
 			}
 		},
 		{
@@ -60,7 +60,7 @@ namespace game::session
 				5.0,
 				0.05,
 				0.05,
-				0.15
+				0.85
 			}
 		},
 		{
@@ -70,7 +70,7 @@ namespace game::session
 				1.0,
 				0.0,
 				0.0,
-				0.0
+				1.0
 			}
 		},
 		{
@@ -80,7 +80,7 @@ namespace game::session
 				50.0,
 				0.05,
 				0.05,
-				0.15
+				0.85
 			}
 		},
 		{
@@ -90,7 +90,7 @@ namespace game::session
 				0.01,
 				0.00,
 				0.00,
-				0.15
+				0.85
 			}
 		},
 		{
@@ -100,7 +100,7 @@ namespace game::session
 				1.0,
 				0.02,
 				0.02,
-				0.15
+				0.85
 			}
 		}
 	};

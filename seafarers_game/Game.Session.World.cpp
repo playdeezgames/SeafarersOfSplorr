@@ -66,4 +66,10 @@ namespace game::session
 	{
 		return data::game::World::Read().value().version;
 	}
+
+	ItemSubtype World::GetCurrencyItemSubtype() const
+	{
+		return ItemSubtype(data::game::World::Read().value().currencyItemSubtypeId);
+	}
+
 }

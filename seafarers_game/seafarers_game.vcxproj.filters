@@ -733,6 +733,15 @@
     <ClCompile Include="Game.Session.ItemSubtype.Commodity.cpp">
       <Filter>Source Files\Session\Item</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Session.Island.Markets.cpp">
+      <Filter>Source Files\Session\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.ItemSubtype.Commodities.cpp">
+      <Filter>Source Files\Session\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Island.Market.cpp">
+      <Filter>Source Files\Session\Island</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Game.Session.Character.Flags.h">

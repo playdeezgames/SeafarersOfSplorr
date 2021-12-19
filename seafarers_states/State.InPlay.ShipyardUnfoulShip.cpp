@@ -59,7 +59,7 @@ namespace state::in_play
 		double price = GetUnfoulingPrice();
 		if (price>0 && GetPlayerCharacterMoney().value() >= price)
 		{
-			ChangePlayerCharacterMoney(-price);
+			ChangePlayerCharacterMoneyLegacy(-price);
 			PlayerCharacterCleanHull(game::Side::STARBOARD);
 			PlayerCharacterCleanHull(game::Side::PORT);
 			Terminal::WriteLine("You unfoul yer ship!");

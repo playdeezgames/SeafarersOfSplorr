@@ -45,7 +45,7 @@ namespace state::in_play
 	{
 		if (GetPlayerCharacterMoney().value() >= GetPlayerCharacterDarkAlleyMinimumWager().value())
 		{
-			ChangePlayerCharacterMoney(-GetPlayerCharacterDarkAlleyAnte().value());
+			ChangePlayerCharacterMoneyLegacy(-GetPlayerCharacterDarkAlleyAnte().value());
 			application::UIState::Write(::UIState::IN_PLAY_GAMBLE_PLAY);
 		}
 		else

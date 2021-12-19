@@ -7,8 +7,7 @@ namespace game::session
 		constexpr ItemSubtype(int itemSubtypeId): itemSubtypeId(itemSubtypeId) {}
 		constexpr explicit operator int() const { return itemSubtypeId; }
 		constexpr item_subtype::Commodities GetCommodities() const { return item_subtype::Commodities(itemSubtypeId); }
-		//TODO: determine base purchase value
-		//TODO: determine base sell value
+		constexpr bool operator==(const ItemSubtype& other) const { return itemSubtypeId == other.itemSubtypeId; }
 	private:
 		int itemSubtypeId;
 	};
