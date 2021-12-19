@@ -1,5 +1,6 @@
 #pragma once
 #include <Common.XY.h>
+#include "Game.Session.Island.Markets.h"
 #include <optional>
 #include <string>
 namespace game::session
@@ -9,6 +10,7 @@ namespace game::session
 	{
 		constexpr Island(int islandId): islandId(islandId) {}
 		constexpr operator int() const { return islandId; }
+		constexpr island::Markets GetMarkets() const { return island::Markets(islandId); }
 		bool IsKnown() const;
 		std::string GetDisplayName() const;
 		common::XY<double> GetLocation() const;

@@ -485,6 +485,9 @@
     <ClInclude Include="Game.Session.ItemSubtype.Commodities.h">
       <Filter>Header Files\Session\Item</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Island.Markets.h">
+      <Filter>Header Files\Session\Island</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Features.cpp">
