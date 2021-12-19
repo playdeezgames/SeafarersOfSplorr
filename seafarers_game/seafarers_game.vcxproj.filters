@@ -135,6 +135,9 @@
     <Filter Include="Header Files\Character\Legacy">
       <UniqueIdentifier>{011d361e-94dd-4d6f-9e9f-949d87073ff3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Session\Commodity">
+      <UniqueIdentifier>{27fa31a9-8c34-410f-92ec-90cc05940608}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -469,6 +472,9 @@
     </ClInclude>
     <ClInclude Include="Game.Characters.Statistics.h">
       <Filter>Header Files\Character\Legacy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Commodities.h">
+      <Filter>Header Files\Session\Commodity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

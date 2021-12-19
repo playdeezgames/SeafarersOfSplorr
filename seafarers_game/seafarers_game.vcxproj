@@ -45,6 +45,7 @@
     <ClInclude Include="Game.Session.Character.Messages.h" />
     <ClInclude Include="Game.Session.Character.Quest.h" />
     <ClInclude Include="Game.Session.Characters.h" />
+    <ClInclude Include="Game.Session.Commodities.h" />
     <ClInclude Include="Game.Session.Demigods.h" />
     <ClInclude Include="Game.Session.Fishboard.h" />
     <ClInclude Include="Game.Session.FishboardCell.h" />
