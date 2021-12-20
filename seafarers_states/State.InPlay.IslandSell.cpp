@@ -4,6 +4,7 @@
 #include <Game.Characters.Statistics.h>
 #include <Game.Islands.Items.h>
 #include <Game.Items.h>
+#include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.IslandSell.h"
 #include "State.InPlay.IslandSellQuantity.h"
@@ -41,7 +42,12 @@ namespace state::in_play
 
 	static void RefreshStatistics()
 	{
-		Terminal::WriteLine(FORMAT_MONEY, GetPlayerCharacterMoney().value());
+		auto currencyItem = game::Session().GetWorld().GetCurrencyItemSubtype();
+		auto character = game::Session().GetPlayer().GetCharacter();
+		auto markets = character.GetIsland().GetMarkets();
+		auto quantity = character.GetItems().GetItemQuantity(currencyItem);
+		auto money = quantity * markets.GetSaleValue(currencyItem);
+		Terminal::WriteLine(FORMAT_MONEY, money);
 	}
 
 	static void Refresh()

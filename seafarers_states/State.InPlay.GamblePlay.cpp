@@ -1,6 +1,7 @@
 #include <Game.Characters.Statistics.h>
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.DarkAlley.GamblingHand.h>
+#include <Game.Session.h>
 #include "State.InPlay.DarkAlleyEntrance.h"
 #include "State.InPlay.GamblePlay.h"
 #include "State.InPlay.Globals.h"
@@ -20,7 +21,12 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Play Hand:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Yer money: {:.4f}", GetPlayerCharacterMoney().value());
+		auto currencyItem = game::Session().GetWorld().GetCurrencyItemSubtype();
+		auto character = game::Session().GetPlayer().GetCharacter();
+		auto markets = character.GetIsland().GetMarkets();
+		auto quantity = character.GetItems().GetItemQuantity(currencyItem);
+		auto money = quantity * markets.GetSaleValue(currencyItem);
+		Terminal::WriteLine("Yer money: {:.4f}", money);
 		Terminal::WriteLine("Minimum wager(less ante): {:.4f}", 
 			GetPlayerCharacterDarkAlleyMinimumWager().value() -
 			GetPlayerCharacterDarkAlleyAnte().value());
@@ -67,19 +73,26 @@ namespace state::in_play
 		Terminal::Write(GetSuits().find(std::get<1>(hand[2]))->second);
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::GRAY);
+		auto currencyItem = game::Session().GetWorld().GetCurrencyItemSubtype();
+		auto character = game::Session().GetPlayer().GetCharacter();
+		auto markets = character.GetIsland().GetMarkets();
 		if (game::islands::dark_alley::GamblingHand::IsWinner(GetPlayerCharacterIslandId().value()))
 		{
 			game::audio::Sfx::Play(game::audio::GameSfx::WOOHOO);
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine("You win!");
-			ChangePlayerCharacterMoneyLegacy(GetPlayerCharacterDarkAlleyMinimumWager().value() + GetPlayerCharacterDarkAlleyAnte().value());
+			auto value = GetPlayerCharacterDarkAlleyMinimumWager().value();
+			auto quantity = markets.GetPurchaseQuantity(currencyItem, value);
+			character.GetItems().AddItemQuantity(currencyItem, quantity);
 		}
 		else
 		{
 			game::audio::Sfx::Play(game::audio::GameSfx::SHUCKS);
 			Terminal::SetForeground(game::Colors::RED);
 			Terminal::WriteLine("You lose!");
-			ChangePlayerCharacterMoneyLegacy(-GetPlayerCharacterDarkAlleyMinimumWager().value() + GetPlayerCharacterDarkAlleyAnte().value());
+			auto value = GetPlayerCharacterDarkAlleyMinimumWager().value() - GetPlayerCharacterDarkAlleyAnte().value();
+			auto quantity = markets.GetSaleQuantity(currencyItem, value);
+			character.GetItems().RemoveItemQuantity(currencyItem, quantity);
 		}
 		Terminal::SetForeground(game::Colors::GRAY);
 		application::UIState::Write(::UIState::IN_PLAY_GAMBLE_INTRO);//TODO: play again y/n?

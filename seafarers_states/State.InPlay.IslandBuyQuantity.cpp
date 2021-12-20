@@ -5,6 +5,7 @@
 #include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
+#include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.IslandBuyQuantity.h"
 namespace state::in_play
@@ -16,7 +17,11 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		auto unitPrice = GetPlayerCharacterPurchasePrices().value()[GetIslandTradeItem()];
-		auto money = GetPlayerCharacterMoney().value();
+		auto currencyItem = game::Session().GetWorld().GetCurrencyItemSubtype();
+		auto character = game::Session().GetPlayer().GetCharacter();
+		auto markets = character.GetIsland().GetMarkets();
+		auto quantity = character.GetItems().GetItemQuantity(currencyItem);
+		auto money = quantity * markets.GetSaleValue(currencyItem);
 		double availableTonnage = GetPlayerCharacterAvailableTonnage().value();
 		double unitTonnage = game::Items::GetUnitTonnage(GetIslandTradeItem());
 		int affordableQuantity = (int)(money / unitPrice);
@@ -42,7 +47,11 @@ namespace state::in_play
 	static void OnOtherInput(const std::string& line)
 	{
 		auto unitPrice = GetPlayerCharacterPurchasePrices().value()[GetIslandTradeItem()];
-		auto money = GetPlayerCharacterMoney().value();
+		auto currencyItem = game::Session().GetWorld().GetCurrencyItemSubtype();
+		auto character = game::Session().GetPlayer().GetCharacter();
+		auto markets = character.GetIsland().GetMarkets();
+		auto quantity = character.GetItems().GetItemQuantity(currencyItem);
+		auto money = quantity * markets.GetSaleValue(currencyItem);
 		double availableTonnage = GetPlayerCharacterAvailableTonnage().value();
 		double unitTonnage = game::Items::GetUnitTonnage(GetIslandTradeItem());
 		int affordableQuantity = (int)(money / unitPrice);
@@ -54,7 +63,11 @@ namespace state::in_play
 			double totalPrice = unitPrice * units;
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine("You purchase {} {} for {:.4f}.", units, game::Items::GetName(GetIslandTradeItem()), totalPrice);
-			ChangePlayerCharacterMoneyLegacy(-totalPrice);
+			auto currencyItem = game::Session().GetWorld().GetCurrencyItemSubtype();
+			auto character = game::Session().GetPlayer().GetCharacter();
+			auto markets = character.GetIsland().GetMarkets();
+			auto quantity = markets.GetSaleQuantity(currencyItem, totalPrice);
+			character.GetItems().RemoveItemQuantity(currencyItem, quantity);
 			game::islands::Markets::BuyItems(
 					GetPlayerCharacterIslandId().value()
 				, GetIslandTradeItem(), units);

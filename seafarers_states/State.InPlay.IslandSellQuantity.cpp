@@ -4,6 +4,7 @@
 #include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Items.h>
+#include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.IslandSellQuantity.h"
 namespace state::in_play
@@ -40,7 +41,11 @@ namespace state::in_play
 			double totalPrice = unitPrice * units;
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine("You sell {} {} for {:.4f}.", units, game::Items::GetName(GetIslandTradeItem()), totalPrice);
-			ChangePlayerCharacterMoneyLegacy(totalPrice);
+			auto currencyItem = game::Session().GetWorld().GetCurrencyItemSubtype();
+			auto character = game::Session().GetPlayer().GetCharacter();
+			auto markets = character.GetIsland().GetMarkets();
+			auto quantity = markets.GetPurchaseQuantity(currencyItem, totalPrice);
+			character.GetItems().AddItemQuantity(currencyItem, quantity);
 			game::islands::Markets::SellItems(
 				GetPlayerCharacterIslandId().value()
 				, GetIslandTradeItem(), units);

@@ -12,9 +12,9 @@ namespace game::session
 		data::game::ItemInstance::Purge();
 	}
 
-	Item Items::Add(int itemSubtypeId, int quantity) const
+	Item Items::Add(const ItemSubtype& itemSubtype, int quantity) const
 	{
-		int itemInstanceId = data::game::ItemInstance::Create(itemSubtypeId, quantity);
+		int itemInstanceId = data::game::ItemInstance::Create((int)itemSubtype, quantity);
 		return Item(itemInstanceId);
 	}
 

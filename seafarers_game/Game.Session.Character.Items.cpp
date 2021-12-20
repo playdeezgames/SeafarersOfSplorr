@@ -1,5 +1,6 @@
 #include <Data.Game.Character.ItemInstance.h>
 #include "Game.Session.Character.Items.h"
+#include "Game.Session.Items.h"
 namespace game::session::character
 {
 	std::list<Item> Items::GetAll() const
@@ -18,11 +19,6 @@ namespace game::session::character
 		data::game::character::ItemInstance::Purge();
 	}
 
-	void Items::Add(const Item& item) const
-	{
-		item.SetCharacterId(characterId);
-	}
-
 	std::list<Item> Items::GetItems(const ItemSubtype& itemSubtype) const
 	{
 		auto items = GetAll();
@@ -35,5 +31,47 @@ namespace game::session::character
 			}
 		}
 		return result;
+	}
+
+	int Items::GetItemQuantity(const ItemSubtype& itemSubtype) const
+	{
+		int quantity = 0;
+		auto items = GetItems(itemSubtype);
+		for (auto item : items)
+		{
+			quantity += item.GetQuantity();
+		}
+		return quantity;
+	}
+
+	void Items::AddItemQuantity(const ItemSubtype& itemSubtype, int quantity) const
+	{
+		auto items = GetItems(itemSubtype);
+		for (auto item : items)
+		{
+			item.SetQuantity(quantity + item.GetQuantity());
+			break;
+		}
+		auto item = game::session::Items().Add(itemSubtype, quantity);
+		item.SetCharacterId(characterId);
+	}
+
+	void Items::RemoveItemQuantity(const ItemSubtype& itemSubtype, int quantity) const
+	{
+		auto items = GetItems(itemSubtype);
+		for (auto item : items)
+		{
+			if (quantity > item.GetQuantity())
+			{
+				quantity -= item.GetQuantity();
+				item.SetQuantity(0);
+			}
+			else
+			{
+				item.SetQuantity(item.GetQuantity() - quantity);
+				quantity = 0;
+				break;
+			}
+		}
 	}
 }

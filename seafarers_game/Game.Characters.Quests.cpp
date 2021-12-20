@@ -6,6 +6,7 @@
 #include "Game.Characters.Quests.h"
 #include "Game.Characters.Statistics.h"
 #include "Game.Islands.h"
+#include "Game.Session.h"
 namespace game::characters
 {
 	static void AcceptQuest(int characterId, const data::game::island::Quest& quest)
@@ -42,7 +43,11 @@ namespace game::characters
 
 	static void CompleteQuest(int characterId, const data::game::character::Quest& quest)
 	{
-		game::characters::statistics::Money::ChangeLegacy(characterId, quest.reward);
+		auto character = game::Session().GetCharacters().GetCharacter(characterId);
+		auto markets = game::Session().GetIslands().GetIsland(quest.toIslandId).GetMarkets();
+		auto currencyItem = game::Session().GetWorld().GetCurrencyItemSubtype();
+		int quantity = markets.GetPurchaseQuantity(currencyItem, quest.reward);
+		character.GetItems().AddItemQuantity(currencyItem, quantity);
 		game::characters::statistics::Reputation::Change(characterId, 1.0);
 		data::game::character::Quest::Write(characterId, std::nullopt);
 	}

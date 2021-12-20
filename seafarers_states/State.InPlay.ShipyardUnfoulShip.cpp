@@ -1,6 +1,7 @@
 #include <Game.Characters.Statistics.h>
 #include <Game.Ship.Statistics.h>
 #include <Game.Islands.Commodities.h>
+#include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.ShipyardUnfoulShip.h"
 namespace state::in_play
@@ -30,7 +31,12 @@ namespace state::in_play
 		{
 			Terminal::SetForeground(game::Colors::GRAY);
 			Terminal::WriteLine("The price is {:.4f}.", price);
-			if (GetPlayerCharacterMoney().value() >= price)
+			auto currencyItem = game::Session().GetWorld().GetCurrencyItemSubtype();
+			auto character = game::Session().GetPlayer().GetCharacter();
+			auto markets = character.GetIsland().GetMarkets();
+			auto quantity = character.GetItems().GetItemQuantity(currencyItem);
+			auto money = quantity * markets.GetSaleValue(currencyItem);
+			if (money >= price)
 			{
 				Terminal::SetForeground(game::Colors::YELLOW);
 				Terminal::WriteLine("1) Clean hull");
@@ -57,9 +63,18 @@ namespace state::in_play
 	static void OnCleanHull()
 	{
 		double price = GetUnfoulingPrice();
-		if (price>0 && GetPlayerCharacterMoney().value() >= price)
+		auto currencyItem = game::Session().GetWorld().GetCurrencyItemSubtype();
+		auto character = game::Session().GetPlayer().GetCharacter();
+		auto markets = character.GetIsland().GetMarkets();
+		auto quantity = character.GetItems().GetItemQuantity(currencyItem);
+		auto money = quantity * markets.GetSaleValue(currencyItem);
+		if (price>0 && money >= price)
 		{
-			ChangePlayerCharacterMoneyLegacy(-price);
+			auto currencyItem = game::Session().GetWorld().GetCurrencyItemSubtype();
+			auto character = game::Session().GetPlayer().GetCharacter();
+			auto markets = character.GetIsland().GetMarkets();
+			auto quantity = markets.GetSaleQuantity(currencyItem, price);
+			character.GetItems().RemoveItemQuantity(currencyItem, quantity);
 			PlayerCharacterCleanHull(game::Side::STARBOARD);
 			PlayerCharacterCleanHull(game::Side::PORT);
 			Terminal::WriteLine("You unfoul yer ship!");

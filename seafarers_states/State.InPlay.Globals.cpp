@@ -118,11 +118,6 @@ namespace state::in_play
 		return std::nullopt;
 	}
 
-	std::optional<double> GetPlayerCharacterMoney()
-	{
-		return game::characters::statistics::Money::CurrentLegacy(GetPlayerCharacterId());
-	}
-
 	std::optional<double> GetPlayerCharacterDarkAlleyAnte()
 	{
 		return common::utility::Optional::Bind<int, double>(

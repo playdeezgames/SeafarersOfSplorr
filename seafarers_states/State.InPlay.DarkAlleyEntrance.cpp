@@ -140,7 +140,29 @@ namespace state::in_play
 
 	static void OnRetreat()
 	{
-		ChangePlayerCharacterMoneyLegacy(-GetPlayerCharacterMoney().value() / 2.0);
+		auto currencyItem = game::Session().GetWorld().GetCurrencyItemSubtype();
+		auto character = game::Session().GetPlayer().GetCharacter();
+		auto items = character.GetItems().GetItems(currencyItem);
+		int quantity = 0;
+		for (auto item : items)
+		{
+			quantity += item.GetQuantity();
+		}
+		quantity = quantity / 2;
+		for (auto item : items)
+		{
+			if (quantity >= item.GetQuantity())
+			{
+				quantity -= item.GetQuantity();
+				item.SetQuantity(0);
+			}
+			else
+			{
+				item.SetQuantity(item.GetQuantity() - quantity);
+				quantity = 0;
+				break;
+			}
+		}
 		DoPlayerCharacterAction(game::characters::Action::ENTER_DOCK);
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}

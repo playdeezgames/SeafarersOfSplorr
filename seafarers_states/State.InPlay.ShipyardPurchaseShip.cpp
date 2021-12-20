@@ -5,6 +5,7 @@
 #include <Game.Characters.Statistics.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Islands.Ships.h>
+#include <Game.Session.h>
 #include <Game.Ship.h>
 #include <Game.ShipNames.h>
 #include <Game.ShipTypes.h>
@@ -52,7 +53,12 @@ namespace state::in_play
 		auto shipType = game::Ship::GetShipType(shipId).value();
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("You currently have a {}.", game::ShipTypes::GetName(shipType));
-		Terminal::WriteLine("You have {:.4f}.", GetPlayerCharacterMoney().value());
+		auto currencyItem = game::Session().GetWorld().GetCurrencyItemSubtype();
+		auto character = game::Session().GetPlayer().GetCharacter();
+		auto markets = character.GetIsland().GetMarkets();
+		auto quantity = character.GetItems().GetItemQuantity(currencyItem);
+		auto money = quantity * markets.GetSaleValue(currencyItem);
+		Terminal::WriteLine("You have {:.4f}.", money);
 		Terminal::WriteLine("Prices shown after trade-in value.");
 		RefreshShipPrices();
 
@@ -86,7 +92,11 @@ namespace state::in_play
 
 		auto currentShipId = GetPlayerCharacterShipId().value();
 		auto currentShipType = game::Ship::GetShipType(currentShipId).value();
-		ChangePlayerCharacterMoneyLegacy(-price);
+		auto currencyItem = game::Session().GetWorld().GetCurrencyItemSubtype();
+		auto character = game::Session().GetPlayer().GetCharacter();
+		auto markets = character.GetIsland().GetMarkets();
+		auto quantity = markets.GetSaleQuantity(currencyItem, price);
+		character.GetItems().RemoveItemQuantity(currencyItem, quantity);
 		auto desiredShipId = game::Ship::Add({ desiredShipType,game::ShipNames::Generate(), location, 0.0, 1.0 });
 		//TODO: transfer crew/passengers/captives?
 		game::characters::Ships::Write(GetPlayerCharacterId() , desiredShipId, game::BerthType::CAPTAIN);
@@ -116,7 +126,12 @@ namespace state::in_play
 	static void CheckAvailableFunds(game::ShipType desiredShip)
 	{
 		double price = shipPrices[desiredShip];
-		if (GetPlayerCharacterMoney().value() >= price)
+		auto currencyItem = game::Session().GetWorld().GetCurrencyItemSubtype();
+		auto character = game::Session().GetPlayer().GetCharacter();
+		auto markets = character.GetIsland().GetMarkets();
+		auto quantity = character.GetItems().GetItemQuantity(currencyItem);
+		auto money = quantity * markets.GetSaleValue(currencyItem);
+		if (money >= price)
 		{
 			CheckTonnage(desiredShip, price);
 		}
