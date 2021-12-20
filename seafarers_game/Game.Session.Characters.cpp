@@ -3,7 +3,7 @@
 #include <Data.Game.Player.h>
 #include <Data.Game.Character.h>
 #include <Data.Game.Character.Characteristic.h>
-#include <Data.Game.Character.Rations.h>
+#include <Data.Game.Character.RationsLegacy.h>
 #include "Game.Items.h"
 #include "Game.Session.Character.h"
 #include "Game.Session.Characters.h"
@@ -203,7 +203,7 @@ namespace game::session
 
 	static void GenerateCharacterRations(int characterId)
 	{
-		data::game::character::Rations::Write(
+		data::game::character::RationsLegacy::Write(
 			characterId,
 			(int)game::Items::GenerateRationsForAvatar());
 	}

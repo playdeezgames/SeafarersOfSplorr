@@ -3,16 +3,16 @@
 #include <list>
 namespace data::game::character
 {
-	struct Plight
+	struct PlightLegacy
 	{
 		int plightId;
 		std::optional<int> duration;
 
-		static std::optional<Plight> Read(int, int);
-		static void Write(int, const Plight&);
+		static std::optional<PlightLegacy> Read(int, int);
+		static void Write(int, const PlightLegacy&);
 		static void ClearPlight(int, int);
 		static void Clear(int);
-		static std::list<Plight> All(int);
+		static std::list<PlightLegacy> All(int);
 
 		static void ClearAll();
 	};

@@ -28,9 +28,9 @@
     <ClInclude Include="Data.Game.Character.Island.h" />
     <ClInclude Include="Data.Game.Character.ItemInstance.h" />
     <ClInclude Include="Data.Game.Character.ItemsLegacy.h" />
-    <ClInclude Include="Data.Game.Character.Plight.h" />
-    <ClInclude Include="Data.Game.Character.Quest.h" />
-    <ClInclude Include="Data.Game.Character.Rations.h" />
+    <ClInclude Include="Data.Game.Character.PlightLegacy.h" />
+    <ClInclude Include="Data.Game.Character.QuestLegacy.h" />
+    <ClInclude Include="Data.Game.Character.RationsLegacy.h" />
     <ClInclude Include="Data.Game.Character.Ship.h" />
     <ClInclude Include="Data.Game.Character.Skill.h" />
     <ClInclude Include="Data.Game.Character.Statistic.h" />
@@ -72,9 +72,9 @@
     <ClCompile Include="Data.Game.Character.Island.cpp" />
     <ClCompile Include="Data.Game.Character.ItemInstance.cpp" />
     <ClCompile Include="Data.Game.Character.ItemsLegacy.cpp" />
-    <ClCompile Include="Data.Game.Character.Plight.cpp" />
-    <ClCompile Include="Data.Game.Character.Quest.cpp" />
-    <ClCompile Include="Data.Game.Character.Rations.cpp" />
+    <ClCompile Include="Data.Game.Character.PlightLegacy.cpp" />
+    <ClCompile Include="Data.Game.Character.QuestLegacy.cpp" />
+    <ClCompile Include="Data.Game.Character.RationsLegacy.cpp" />
     <ClCompile Include="Data.Game.Character.Ship.cpp" />
     <ClCompile Include="Data.Game.Character.Skill.cpp" />
     <ClCompile Include="Data.Game.Character.Statistic.cpp" />

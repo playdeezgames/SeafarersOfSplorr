@@ -1,5 +1,5 @@
 #include <Common.Utility.Optional.h>
-#include <Data.Game.Character.Quest.h>
+#include <Data.Game.Character.QuestLegacy.h>
 #include <Data.Game.Island.h>
 #include <Data.Game.Island.Known.h>
 #include <Data.Game.Island.Quest.h>
@@ -12,9 +12,9 @@ namespace game::characters
 	static void AcceptQuest(int characterId, const data::game::island::Quest& quest)
 	{
 		auto fromIslandId = quest.fromIslandId;
-		data::game::character::Quest::Write(
+		data::game::character::QuestLegacy::Write(
 			characterId,
-			std::optional<data::game::character::Quest>({
+			std::optional<data::game::character::QuestLegacy>({
 				quest.toIslandId,
 				quest.reward,
 				quest.itemName,
@@ -28,7 +28,7 @@ namespace game::characters
 
 	AcceptQuestResult Quests::Accept(int characterId, int fromIslandId)
 	{
-		if (data::game::character::Quest::Read(characterId))
+		if (data::game::character::QuestLegacy::Read(characterId))
 		{
 			return AcceptQuestResult::ALREADY_HAS_QUEST;
 		}
@@ -41,7 +41,7 @@ namespace game::characters
 		return AcceptQuestResult::NO_QUEST_TO_ACCEPT;
 	}
 
-	static void CompleteQuest(int characterId, const data::game::character::Quest& quest)
+	static void CompleteQuest(int characterId, const data::game::character::QuestLegacy& quest)
 	{
 		auto character = game::Session().GetCharacters().GetCharacter(characterId);
 		auto markets = game::Session().GetIslands().GetIsland(quest.toIslandId).GetMarkets();
@@ -49,12 +49,12 @@ namespace game::characters
 		int quantity = markets.GetPurchaseQuantity(currencyItem, quest.reward);
 		character.GetItems().AddItemQuantity(currencyItem, quantity);
 		game::characters::statistics::Reputation::Change(characterId, 1.0);
-		data::game::character::Quest::Write(characterId, std::nullopt);
+		data::game::character::QuestLegacy::Write(characterId, std::nullopt);
 	}
 
 	bool Quests::Complete(int characterId, int islandId)
 	{
-		auto quest = data::game::character::Quest::Read(characterId);
+		auto quest = data::game::character::QuestLegacy::Read(characterId);
 		if (quest.has_value() && quest.value().toIslandId == islandId)
 		{
 			CompleteQuest(characterId, quest.value());
@@ -66,12 +66,12 @@ namespace game::characters
 	static void AbandonQuest(int characterId)
 	{
 		game::characters::statistics::Reputation::Change(characterId, -1.0);
-		data::game::character::Quest::Write(characterId, std::nullopt);
+		data::game::character::QuestLegacy::Write(characterId, std::nullopt);
 	}
 
 	bool Quests::Abandon(int characterId)
 	{
-		if (data::game::character::Quest::Read(characterId))
+		if (data::game::character::QuestLegacy::Read(characterId))
 		{
 			AbandonQuest(characterId);
 			return true;
@@ -79,7 +79,7 @@ namespace game::characters
 		return false;
 	}
 
-	static game::Quest ToQuest(const data::game::character::Quest& quest)
+	static game::Quest ToQuest(const data::game::character::QuestLegacy& quest)
 	{
 		return 
 			{
@@ -96,8 +96,8 @@ namespace game::characters
 	std::optional<game::Quest> Quests::Read(int characterId)
 	{
 		return
-			common::utility::Optional::Map<data::game::character::Quest, game::Quest>(
-				data::game::character::Quest::Read(characterId),
+			common::utility::Optional::Map<data::game::character::QuestLegacy, game::Quest>(
+				data::game::character::QuestLegacy::Read(characterId),
 				ToQuest);
 	}
 }

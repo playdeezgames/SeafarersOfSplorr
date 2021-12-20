@@ -1,5 +1,5 @@
 #include <Common.Data.h>
-#include "Data.Game.Character.Quest.h"
+#include "Data.Game.Character.QuestLegacy.h"
 #include "Data.Game.Common.h"
 namespace data::game::character
 {
@@ -17,7 +17,7 @@ namespace data::game::character
 
 	static const auto AutoCreateTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Quest::Write(int characterId, const std::optional<Quest>& data)
+	void QuestLegacy::Write(int characterId, const std::optional<QuestLegacy>& data)
 	{
 		AutoCreateTable();
 		data::game::Common::Execute(DELETE_ITEM, characterId);
@@ -35,7 +35,7 @@ namespace data::game::character
 		}
 	}
 
-	static Quest ToQuest(const std::map<std::string, std::string>& record)
+	static QuestLegacy ToQuest(const std::map<std::string, std::string>& record)
 	{
 		return
 		{
@@ -48,7 +48,7 @@ namespace data::game::character
 		};
 	}
 
-	std::optional<Quest> Quest::Read(int characterId)
+	std::optional<QuestLegacy> QuestLegacy::Read(int characterId)
 	{
 		AutoCreateTable();
 		auto records = data::game::Common::Execute(

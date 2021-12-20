@@ -1,5 +1,5 @@
 #include <Common.Data.h>
-#include "Data.Game.Character.Rations.h"
+#include "Data.Game.Character.RationsLegacy.h"
 #include "Data.Game.Common.h"
 namespace data::game::character
 {
@@ -14,7 +14,7 @@ namespace data::game::character
 
 	static auto AutoCreateTable = Common::Run(CREATE_TABLE);
 
-	void Rations::Write(int characterId, int itemId)
+	void RationsLegacy::Write(int characterId, int itemId)
 	{
 		AutoCreateTable();
 		Common::Execute(
@@ -23,7 +23,7 @@ namespace data::game::character
 			itemId);
 	}
 
-	std::optional<int> Rations::Read(int characterId)
+	std::optional<int> RationsLegacy::Read(int characterId)
 	{
 		AutoCreateTable();
 		auto records = Common::Execute(QUERY_ITEM, characterId);
@@ -34,7 +34,7 @@ namespace data::game::character
 		return std::nullopt;
 	}
 
-	void Rations::Clear(int characterId)
+	void RationsLegacy::Clear(int characterId)
 	{
 		AutoCreateTable();
 		Common::Execute(
@@ -42,7 +42,7 @@ namespace data::game::character
 			characterId);
 	}
 
-	void Rations::ClearAll()
+	void RationsLegacy::ClearAll()
 	{
 		AutoCreateTable();
 		Common::Execute(DELETE_ALL);

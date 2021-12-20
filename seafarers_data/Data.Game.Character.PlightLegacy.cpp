@@ -1,6 +1,6 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
-#include "Data.Game.Character.Plight.h"
+#include "Data.Game.Character.PlightLegacy.h"
 namespace data::game::character
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Plights]([CharacterId] INT NOT NULL,[PlightId] INT NOT NULL, [Duration] INT NULL, UNIQUE([CharacterId],[PlightId]));";
@@ -16,7 +16,7 @@ namespace data::game::character
 
 	static const auto AutoCreateTable = Common::Run(CREATE_TABLE);
 
-	static Plight ToPlight(const std::map<std::string, std::string>& record)
+	static PlightLegacy ToPlight(const std::map<std::string, std::string>& record)
 	{
 		return
 		{
@@ -25,7 +25,7 @@ namespace data::game::character
 		};
 	}
 
-	std::optional<Plight> Plight::Read(int characterId, int plightId)
+	std::optional<PlightLegacy> PlightLegacy::Read(int characterId, int plightId)
 	{
 		AutoCreateTable();
 		auto records = Common::Execute(QUERY_ITEM, plightId, characterId);
@@ -36,28 +36,28 @@ namespace data::game::character
 		return std::nullopt;
 	}
 
-	void Plight::Write(int characterId, const Plight& plight)
+	void PlightLegacy::Write(int characterId, const PlightLegacy& plight)
 	{
 		AutoCreateTable();
 		Common::Execute(REPLACE_ITEM, characterId, plight.plightId, common::Data::OfOptional(plight.duration));
 	}
 
-	void Plight::ClearPlight(int characterId, int plightId)
+	void PlightLegacy::ClearPlight(int characterId, int plightId)
 	{
 		AutoCreateTable();
 		Common::Execute(DELETE_ITEM, plightId, characterId);
 
 	}
-	void Plight::Clear(int characterId)
+	void PlightLegacy::Clear(int characterId)
 	{
 		AutoCreateTable();
 		Common::Execute(DELETE_ALL,characterId);
 	}
 
-	std::list<Plight> Plight::All(int characterId)
+	std::list<PlightLegacy> PlightLegacy::All(int characterId)
 	{
 		AutoCreateTable();
-		std::list<Plight> result;
+		std::list<PlightLegacy> result;
 		auto records = Common::Execute(QUERY_ALL, characterId);
 		for (auto& record : records)
 		{
@@ -66,7 +66,7 @@ namespace data::game::character
 		return result;
 	}
 
-	void Plight::ClearAll()
+	void PlightLegacy::ClearAll()
 	{
 		AutoCreateTable();
 		Common::Execute(DELETE_ALL_PLIGHTS);

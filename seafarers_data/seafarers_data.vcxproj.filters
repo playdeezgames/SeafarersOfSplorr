@@ -131,13 +131,13 @@
     <ClInclude Include="Data.Game.Character.ItemsLegacy.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Character.Plight.h">
+    <ClInclude Include="Data.Game.Character.PlightLegacy.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Character.Quest.h">
+    <ClInclude Include="Data.Game.Character.QuestLegacy.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Character.Rations.h">
+    <ClInclude Include="Data.Game.Character.RationsLegacy.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.Character.Ship.h">
@@ -262,13 +262,13 @@
     <ClCompile Include="Data.Game.Character.ItemsLegacy.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Character.Plight.cpp">
+    <ClCompile Include="Data.Game.Character.PlightLegacy.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Character.Quest.cpp">
+    <ClCompile Include="Data.Game.Character.QuestLegacy.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Character.Rations.cpp">
+    <ClCompile Include="Data.Game.Character.RationsLegacy.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Character.Ship.cpp">
