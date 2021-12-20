@@ -1,5 +1,5 @@
-#include <Data.Game.ItemSubtype.h>
-#include <Data.Game.ItemSubtype.Commodity.h>
+#include <Data.Game.Item.Type.h>
+#include <Data.Game.Item.Type.Commodity.h>
 #include "Game.Session.ItemSubtypes.h"
 namespace game::session
 {
@@ -10,14 +10,14 @@ namespace game::session
 
 	void ItemSubtypes::Reset(const game::Difficulty&) const
 	{
-		data::game::item_subtype::Commodity::Clear();
-		data::game::ItemSubtype::Clear();
+		data::game::item::type::Commodity::Clear();
+		data::game::item::Type::Clear();
 	}
 
 	ItemSubtype ItemSubtypes::Create(const game::item::Category& category, const std::string& name) const
 	{
-		auto index = data::game::ItemSubtype::ReadNextSubtype((int)category);
+		auto index = data::game::item::Type::ReadNextSubtype((int)category);
 		return ItemSubtype(
-			data::game::ItemSubtype::Establish((int)category, index, name));
+			data::game::item::Type::Establish((int)category, index, name));
 	}
 }

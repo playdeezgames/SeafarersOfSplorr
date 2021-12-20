@@ -179,10 +179,10 @@
     <ClInclude Include="Data.Game.Character.ItemInstance.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.ItemSubtype.h">
+    <ClInclude Include="Data.Game.Item.Type.h">
       <Filter>Header Files\Item</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.ItemSubtype.Commodity.h">
+    <ClInclude Include="Data.Game.Item.Type.Commodity.h">
       <Filter>Header Files\Item</Filter>
     </ClInclude>
   </ItemGroup>

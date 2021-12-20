@@ -1,10 +1,10 @@
-#include <Data.Game.ItemSubtype.Commodity.h>
+#include <Data.Game.Item.Type.Commodity.h>
 #include "Game.Session.ItemSubtype.Commodities.h"
 namespace game::session::item_subtype
 {
 	std::list<Commodity> Commodities::GetAll() const
 	{
-		auto commodities = data::game::item_subtype::Commodity::All(itemSubtypeId);
+		auto commodities = data::game::item::type::Commodity::All(itemSubtypeId);
 		std::list<Commodity> result;
 		for (auto commodity : commodities)
 		{

@@ -1,7 +1,7 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
-#include "Data.Game.ItemSubtype.h"
-namespace data::game
+#include "Data.Game.Item.Type.h"
+namespace data::game::item
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [ItemSubtypes]([ItemSubtypeId] INTEGER PRIMARY KEY AUTOINCREMENT, [ItemTypeId] INT NOT NULL,[Subtype] INT NOT NULL,[Name] TEXT NOT NULL,UNIQUE([ItemTypeId],[Subtype]));";
 	static const std::string INSERT_ITEM = "INSERT INTO [ItemSubtypes]([ItemTypeId],[Subtype],[Name]) VALUES({},{},{});";
@@ -18,7 +18,7 @@ namespace data::game
 
 	static const auto AutoCreateTable = Common::Run(CREATE_TABLE);
 
-	int ItemSubtype::ReadNextSubtype(int itemTypeId)
+	int Type::ReadNextSubtype(int itemTypeId)
 	{
 		AutoCreateTable();
 		auto records = Common::Execute(QUERY_MAXIMUM_SUBTYPE, itemTypeId);
@@ -29,14 +29,14 @@ namespace data::game
 		return 0;
 	}
 
-	int ItemSubtype::Establish(int itemTypeId, int subtype, const std::string& name)
+	int Type::Establish(int itemTypeId, int subtype, const std::string& name)
 	{
 		AutoCreateTable();
 		Common::Execute(INSERT_ITEM, itemTypeId, subtype, common::Data::QuoteString(name));
 		return Common::LastInsertedIndex();
 	}
 
-	std::optional<int> ItemSubtype::ReadItemType(int itemSubTypeId)
+	std::optional<int> Type::ReadItemType(int itemSubTypeId)
 	{
 		AutoCreateTable();
 		auto records = Common::Execute(QUERY_ITEM_TYPE_ID, itemSubTypeId);
@@ -47,7 +47,7 @@ namespace data::game
 		return std::nullopt;
 	}
 
-	std::optional<int> ItemSubtype::ReadSubtype(int itemSubtypeId)
+	std::optional<int> Type::ReadSubtype(int itemSubtypeId)
 	{
 		AutoCreateTable();
 		auto records = Common::Execute(QUERY_SUBTYPE, itemSubtypeId);
@@ -58,7 +58,7 @@ namespace data::game
 		return std::nullopt;
 	}
 
-	std::optional<std::string> ItemSubtype::ReadName(int itemSubtypeId)
+	std::optional<std::string> Type::ReadName(int itemSubtypeId)
 	{
 		AutoCreateTable();
 		auto records = Common::Execute(QUERY_SUBTYPE, itemSubtypeId);
@@ -69,7 +69,7 @@ namespace data::game
 		return std::nullopt;
 	}
 	
-	void ItemSubtype::Clear()
+	void Type::Clear()
 	{
 		AutoCreateTable();
 		Common::Execute(DELETE_ALL);

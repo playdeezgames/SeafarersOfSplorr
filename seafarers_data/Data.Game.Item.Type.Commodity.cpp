@@ -1,7 +1,7 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
-#include "Data.Game.ItemSubtype.Commodity.h"
-namespace data::game::item_subtype
+#include "Data.Game.Item.Type.Commodity.h"
+namespace data::game::item::type
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [ItemSubtypeCommodities]([ItemSubtypeId] INT NOT NULL,[CommodityId] INT NOT NULL,[Amount] REAL NOT NULL,UNIQUE([ItemSubtypeId],[CommodityId]));";
 	static const std::string REPLACE_ITEM = "REPLACE INTO [ItemSubtypeCommodities]([ItemSubtypeId],[CommodityId],[Amount]) VALUES({},{},{});";

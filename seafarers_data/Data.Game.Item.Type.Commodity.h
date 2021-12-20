@@ -1,7 +1,7 @@
 #pragma once
 #include <list>
 #include <optional>
-namespace data::game::item_subtype
+namespace data::game::item::type
 {
 	struct Commodity
 	{

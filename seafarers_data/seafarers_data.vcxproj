@@ -52,8 +52,8 @@
     <ClInclude Include="Data.Game.Island.Tavern.h" />
     <ClInclude Include="Data.Game.Island.Visit.h" />
     <ClInclude Include="Data.Game.ItemInstance.h" />
-    <ClInclude Include="Data.Game.ItemSubtype.h" />
-    <ClInclude Include="Data.Game.ItemSubtype.Commodity.h" />
+    <ClInclude Include="Data.Game.Item.Type.h" />
+    <ClInclude Include="Data.Game.Item.Type.Commodity.h" />
     <ClInclude Include="Data.Game.Player.h" />
     <ClInclude Include="Data.Game.Ship.Docks.h" />
     <ClInclude Include="Data.Game.Ship.h" />

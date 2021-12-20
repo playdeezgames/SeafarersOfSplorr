@@ -1,9 +1,9 @@
 #pragma once
 #include <optional>
 #include <string>
-namespace data::game
+namespace data::game::item
 {
-	struct ItemSubtype
+	struct Type
 	{
 		static int ReadNextSubtype(int);
 		static int Establish(int, int, const std::string&);
