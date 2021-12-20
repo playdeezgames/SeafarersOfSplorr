@@ -1,6 +1,6 @@
 #pragma once
 #include "Game.Session.Item.h"
-#include "Game.Session.ItemSubtype.h"
+#include "Game.Session.Item.Type.h"
 #include <list>
 namespace game::session::character
 {

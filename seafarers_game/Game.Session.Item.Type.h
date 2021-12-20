@@ -7,7 +7,7 @@ namespace game::session
 	{
 		constexpr ItemSubtype(int itemSubtypeId): itemSubtypeId(itemSubtypeId) {}
 		constexpr explicit operator int() const { return itemSubtypeId; }
-		constexpr item_subtype::Commodities GetCommodities() const { return item_subtype::Commodities(itemSubtypeId); }
+		constexpr item::type::Commodities GetCommodities() const { return item::type::Commodities(itemSubtypeId); }
 		constexpr bool operator==(const ItemSubtype& other) const { return itemSubtypeId == other.itemSubtypeId; }
 		std::string GetName() const;
 	private:

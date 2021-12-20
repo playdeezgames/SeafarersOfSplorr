@@ -1,7 +1,7 @@
 #pragma once
 #include "Game.Session.Item.Type.Commodity.h"
 #include <list>
-namespace game::session::item_subtype
+namespace game::session::item::type
 {
 	struct Commodities
 	{

@@ -1,7 +1,7 @@
 #pragma once
 #include "Game.Difficulty.h"
 #include "Game.Item.Category.h"
-#include "Game.Session.ItemSubtype.h"
+#include "Game.Session.Item.Type.h"
 #include <string>
 namespace game::session
 {

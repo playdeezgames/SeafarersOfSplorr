@@ -1,7 +1,7 @@
 #pragma once
 #include "Game.Difficulty.h"
 #include "Game.Session.Commodities.h"
-#include "Game.Session.ItemSubtypes.h"
+#include "Game.Session.Item.Types.h"
 #include "Game.Session.World.Bounds.h"
 #include "Game.Session.World.Distances.h"
 #include "Game.Session.World.Wind.h"

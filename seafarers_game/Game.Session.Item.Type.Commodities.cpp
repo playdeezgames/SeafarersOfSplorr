@@ -1,6 +1,6 @@
 #include <Data.Game.Item.Type.Commodity.h>
 #include "Game.Session.Item.Type.Commodities.h"
-namespace game::session::item_subtype
+namespace game::session::item::type
 {
 	std::list<Commodity> Commodities::GetAll() const
 	{

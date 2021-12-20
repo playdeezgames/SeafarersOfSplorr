@@ -1,6 +1,6 @@
 #include <Data.Game.Item.Type.Commodity.h>
 #include "Game.Session.Item.Type.Commodity.h"
-namespace game::session::item_subtype
+namespace game::session::item::type
 {
 	void Commodity::SetAmount(double amount) const
 	{

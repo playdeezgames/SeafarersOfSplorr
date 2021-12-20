@@ -1,6 +1,6 @@
 #pragma once
 #include "Game.Commodity.h"
-namespace game::session::item_subtype
+namespace game::session::item::type
 {
 	struct Commodity
 	{

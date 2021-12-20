@@ -410,7 +410,7 @@
     <ClInclude Include="Game.Item.Category.h">
       <Filter>Header Files\Items</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.ItemSubtype.h">
+    <ClInclude Include="Game.Session.Item.Type.h">
       <Filter>Header Files\Session\Item</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Characters.h">
@@ -419,7 +419,7 @@
     <ClInclude Include="Game.Session.Ships.h">
       <Filter>Header Files\Session\Ship</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.ItemSubtypes.h">
+    <ClInclude Include="Game.Session.Item.Types.h">
       <Filter>Header Files\Session\Item</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Demigods.h">

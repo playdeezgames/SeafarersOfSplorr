@@ -60,9 +60,9 @@
     <ClInclude Include="Game.Session.Item.h" />
     <ClInclude Include="Game.Session.Items.h" />
     <ClInclude Include="Game.Session.Item.Type.Commodities.h" />
-    <ClInclude Include="Game.Session.ItemSubtype.h" />
+    <ClInclude Include="Game.Session.Item.Type.h" />
     <ClInclude Include="Game.Session.Item.Type.Commodity.h" />
-    <ClInclude Include="Game.Session.ItemSubtypes.h" />
+    <ClInclude Include="Game.Session.Item.Types.h" />
     <ClInclude Include="Game.Session.Player.h" />
     <ClInclude Include="Game.Session.Save.h" />
     <ClInclude Include="Game.Session.Saves.h" />
