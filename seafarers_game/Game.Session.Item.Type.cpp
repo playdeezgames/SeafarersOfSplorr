@@ -4,7 +4,7 @@ namespace game::session::item
 {
 	std::string Type::GetName() const
 	{
-		return data::game::item::Type::ReadName(itemSubtypeId).value();
+		return data::game::item::Type::ReadName(typeId).value();
 	}
 
 }

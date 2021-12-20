@@ -5,12 +5,12 @@ namespace game::session::item
 {
 	struct Type
 	{
-		constexpr Type(int itemSubtypeId): itemSubtypeId(itemSubtypeId) {}
-		constexpr explicit operator int() const { return itemSubtypeId; }
-		constexpr item::type::Commodities GetCommodities() const { return item::type::Commodities(itemSubtypeId); }
-		constexpr bool operator==(const Type& other) const { return itemSubtypeId == other.itemSubtypeId; }
+		constexpr Type(int typeId): typeId(typeId) {}
+		constexpr explicit operator int() const { return typeId; }
+		constexpr item::type::Commodities GetCommodities() const { return item::type::Commodities(typeId); }
+		constexpr bool operator==(const Type& other) const { return typeId == other.typeId; }
 		std::string GetName() const;
 	private:
-		int itemSubtypeId;
+		int typeId;
 	};
 }

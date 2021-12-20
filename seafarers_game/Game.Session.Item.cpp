@@ -5,22 +5,22 @@ namespace game::session
 {
 	item::Type Item::GetItemSubtype() const
 	{
-		return item::Type(data::game::ItemInstance::ReadItemSubtypeId(itemInstanceId).value());
+		return item::Type(data::game::ItemInstance::ReadItemSubtypeId(itemId).value());
 	}
 
 	void Item::SetQuantity(int quantity) const
 	{
-		data::game::ItemInstance::WriteQuantity(itemInstanceId, quantity);
+		data::game::ItemInstance::WriteQuantity(itemId, quantity);
 	}
 
 	int Item::GetQuantity() const
 	{
-		return data::game::ItemInstance::ReadQuantity(itemInstanceId).value();
+		return data::game::ItemInstance::ReadQuantity(itemId).value();
 	}
 
 	std::optional<int> Item::TryGetCharacterId() const
 	{
-		return data::game::character::ItemInstance::ReadForItemInstance(itemInstanceId);
+		return data::game::character::ItemInstance::ReadForItemInstance(itemId);
 	}
 
 	int Item::GetCharacterId() const
@@ -30,6 +30,6 @@ namespace game::session
 
 	void Item::SetCharacterId(int characterId) const
 	{
-		data::game::character::ItemInstance::Write(itemInstanceId, characterId);
+		data::game::character::ItemInstance::Write(itemId, characterId);
 	}
 }
