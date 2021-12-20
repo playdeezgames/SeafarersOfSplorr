@@ -1,5 +1,5 @@
 #pragma once
-#include "Game.Session.ItemSubtype.Commodity.h"
+#include "Game.Session.Item.Type.Commodity.h"
 #include <list>
 namespace game::session::item_subtype
 {

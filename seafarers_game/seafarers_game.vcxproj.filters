@@ -479,10 +479,10 @@
     <ClInclude Include="Game.Session.Commodity.h">
       <Filter>Header Files\Session\Commodity</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.ItemSubtype.Commodity.h">
+    <ClInclude Include="Game.Session.Item.Type.Commodity.h">
       <Filter>Header Files\Session\Item</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.ItemSubtype.Commodities.h">
+    <ClInclude Include="Game.Session.Item.Type.Commodities.h">
       <Filter>Header Files\Session\Item</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Island.Markets.h">
@@ -679,7 +679,7 @@
     <ClCompile Include="Game.Session.Character.Items.cpp">
       <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.ItemSubtype.cpp">
+    <ClCompile Include="Game.Session.Item.Type.cpp">
       <Filter>Source Files\Session\Item</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Characters.cpp">
@@ -688,7 +688,7 @@
     <ClCompile Include="Game.Session.Ships.cpp">
       <Filter>Source Files\Session\Ship</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.ItemSubtypes.cpp">
+    <ClCompile Include="Game.Session.Item.Types.cpp">
       <Filter>Source Files\Session\Item</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Demigods.cpp">
@@ -730,13 +730,13 @@
     <ClCompile Include="Game.Session.Commodity.cpp">
       <Filter>Source Files\Session\Commodity</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.ItemSubtype.Commodity.cpp">
+    <ClCompile Include="Game.Session.Item.Type.Commodity.cpp">
       <Filter>Source Files\Session\Item</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Island.Markets.cpp">
       <Filter>Source Files\Session\Island</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.ItemSubtype.Commodities.cpp">
+    <ClCompile Include="Game.Session.Item.Type.Commodities.cpp">
       <Filter>Source Files\Session\Item</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Island.Market.cpp">
