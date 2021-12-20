@@ -195,32 +195,6 @@ namespace game::characters
 
 	namespace statistics
 	{
-		std::optional<double> Money::CurrentLegacy(int characterId)
-		{
-			auto character = game::Session().GetCharacters().GetCharacter(characterId);
-			auto island = character.TryGetIsland();
-			if (island)
-			{
-				//what is the world currency?
-				auto currencyItemSubtype = game::Session().GetWorld().GetCurrencyItemSubtype();
-				//how many units of world currency does the character have?
-				auto currencyItems = character.GetItems().GetItems(currencyItemSubtype);
-				int currencyCount = 0;
-				for (auto currencyItem : currencyItems)
-				{
-					currencyCount += currencyItem.GetQuantity();
-				}
-				//what is the sale price of this amount of currency on the character's current island?
-				return currencyCount * island.value().GetMarkets().GetSaleValue(currencyItemSubtype);
-			}
-			return std::nullopt;
-		}
-
-		std::optional<double> Money::ChangeLegacy(int characterId, double delta)
-		{
-			return ChangeCurrent(characterId, game::characters::Statistic::MONEY, delta);
-		}
-
 		std::optional<double> Reputation::Current(int characterId)
 		{
 			return GetCurrent(characterId, game::characters::Statistic::REPUTATION);

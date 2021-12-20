@@ -5,11 +5,6 @@ namespace game::characters
 {
 	namespace statistics
 	{
-		struct Money
-		{
-			static std::optional<double> CurrentLegacy(int);
-			static std::optional<double> ChangeLegacy(int, double);
-		};
 		struct Reputation
 		{
 			static std::optional<double> Current(int);
