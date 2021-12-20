@@ -30,7 +30,7 @@ namespace game::session
 	{
 		const double WORLD_CURRENCY_JOOLS_AMOUNT = 0.001;
 		const std::string WORLD_CURRENCY_JOOLS_NAME = "jools";
-		auto result = ItemSubtypes().Create(game::ItemType::CURRENCY, WORLD_CURRENCY_JOOLS_NAME);
+		auto result = ItemSubtypes().Create(game::item::Category::CURRENCY, WORLD_CURRENCY_JOOLS_NAME);
 		result.GetCommodities().GetCommodity(game::Commodity::JOOLS).SetAmount(WORLD_CURRENCY_JOOLS_AMOUNT);
 		return result;
 	}

@@ -96,8 +96,8 @@
     <ClCompile Include="Data.Game.Island.Tavern.cpp" />
     <ClCompile Include="Data.Game.Island.Visit.cpp" />
     <ClCompile Include="Data.Game.ItemInstance.cpp" />
-    <ClCompile Include="Data.Game.ItemSubtype.cpp" />
-    <ClCompile Include="Data.Game.ItemSubtype.Commodity.cpp" />
+    <ClCompile Include="Data.Game.Item.Type.cpp" />
+    <ClCompile Include="Data.Game.Item.Type.Commodity.cpp" />
     <ClCompile Include="Data.Game.Player.cpp" />
     <ClCompile Include="Data.Game.Ship.cpp" />
     <ClCompile Include="Data.Game.Ship.Docks.cpp" />

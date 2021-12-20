@@ -1,7 +1,7 @@
 #pragma once
-namespace game
+namespace game::item
 {
-	enum class ItemType
+	enum class Category
 	{
 		CURRENCY
 	};

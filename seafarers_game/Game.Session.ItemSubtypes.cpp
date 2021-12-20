@@ -14,10 +14,10 @@ namespace game::session
 		data::game::ItemSubtype::Clear();
 	}
 
-	ItemSubtype ItemSubtypes::Create(const game::ItemType& itemType, const std::string& name) const
+	ItemSubtype ItemSubtypes::Create(const game::item::Category& category, const std::string& name) const
 	{
-		auto index = data::game::ItemSubtype::ReadNextSubtype((int)itemType);
+		auto index = data::game::ItemSubtype::ReadNextSubtype((int)category);
 		return ItemSubtype(
-			data::game::ItemSubtype::Establish((int)itemType, index, name));
+			data::game::ItemSubtype::Establish((int)category, index, name));
 	}
 }

@@ -9,6 +9,6 @@ namespace game::session
 	{
 		ItemSubtype GetItemSubtype(int) const;
 		void Reset(const game::Difficulty&) const;
-		ItemSubtype Create(const game::ItemType&, const std::string&) const;
+		ItemSubtype Create(const game::item::Category&, const std::string&) const;
 	};
 }
