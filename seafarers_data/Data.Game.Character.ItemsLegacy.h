@@ -2,7 +2,7 @@
 #include <map>
 namespace data::game::character
 {
-	struct Items//TODO: become ItemsLegacy
+	struct ItemsLegacy
 	{
 		static size_t Read(int, const int&);
 		static std::map<int, size_t> All(int);

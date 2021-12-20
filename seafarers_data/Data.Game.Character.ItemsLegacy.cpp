@@ -1,5 +1,5 @@
 #include <Common.Data.h>
-#include "Data.Game.Character.Items.h"
+#include "Data.Game.Character.ItemsLegacy.h"
 #include "Data.Game.Common.h"
 namespace data::game::character
 {
@@ -16,7 +16,7 @@ namespace data::game::character
 
 	static const auto AutoCreateTable = data::game::Common::Run(CREATE_TABLE);
 
-	size_t Items::Read(int avatarId, const int& itemId)
+	size_t ItemsLegacy::Read(int avatarId, const int& itemId)
 	{
 		AutoCreateTable();
 		auto records =
@@ -28,7 +28,7 @@ namespace data::game::character
 		return 0;
 	}
 
-	void Items::Write(int avatarId, const int& itemId, const size_t& count)
+	void ItemsLegacy::Write(int avatarId, const int& itemId, const size_t& count)
 	{
 		AutoCreateTable();
 		data::game::Common::Execute(
@@ -45,7 +45,7 @@ namespace data::game::character
 		}
 	}
 
-	void Items::Clear(int avatarId)
+	void ItemsLegacy::Clear(int avatarId)
 	{
 		AutoCreateTable();
 		data::game::Common::Execute(
@@ -53,13 +53,13 @@ namespace data::game::character
 			avatarId);
 	}
 
-	void Items::ClearAll()
+	void ItemsLegacy::ClearAll()
 	{
 		AutoCreateTable();
 		data::game::Common::Execute(DELETE_ALL_ITEMS);
 	}
 
-	std::map<int, size_t> Items::All(int avatarId)
+	std::map<int, size_t> ItemsLegacy::All(int avatarId)
 	{
 		std::map<int, size_t> result;
 		auto records =

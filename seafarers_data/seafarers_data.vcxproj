@@ -27,7 +27,7 @@
     <ClInclude Include="Data.Game.Character.h" />
     <ClInclude Include="Data.Game.Character.Island.h" />
     <ClInclude Include="Data.Game.Character.ItemInstance.h" />
-    <ClInclude Include="Data.Game.Character.Items.h" />
+    <ClInclude Include="Data.Game.Character.ItemsLegacy.h" />
     <ClInclude Include="Data.Game.Character.Plight.h" />
     <ClInclude Include="Data.Game.Character.Quest.h" />
     <ClInclude Include="Data.Game.Character.Rations.h" />
@@ -71,7 +71,7 @@
     <ClCompile Include="Data.Game.Character.Flags.cpp" />
     <ClCompile Include="Data.Game.Character.Island.cpp" />
     <ClCompile Include="Data.Game.Character.ItemInstance.cpp" />
-    <ClCompile Include="Data.Game.Character.Items.cpp" />
+    <ClCompile Include="Data.Game.Character.ItemsLegacy.cpp" />
     <ClCompile Include="Data.Game.Character.Plight.cpp" />
     <ClCompile Include="Data.Game.Character.Quest.cpp" />
     <ClCompile Include="Data.Game.Character.Rations.cpp" />

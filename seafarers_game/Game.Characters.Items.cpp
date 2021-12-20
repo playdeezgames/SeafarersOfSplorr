@@ -1,7 +1,7 @@
 #include <Common.Utility.h>
 #include <Common.Utility.Optional.h>
 #include <Common.Utility.Table.h>
-#include <Data.Game.Character.Items.h>
+#include <Data.Game.Character.ItemsLegacy.h>
 #include "Game.Characters.Items.h"
 #include "Game.Items.h"
 namespace game::characters
@@ -10,14 +10,14 @@ namespace game::characters
 	{
 		return
 			common::utility::Table::Map<int, size_t, Item, size_t>(
-				data::game::character::Items::All(avatarId),
+				data::game::character::ItemsLegacy::All(avatarId),
 				common::Utility::Cast<int, Item>,
 				common::Utility::Identity<size_t>);
 	}
 
 	size_t Items::Read(int avatarId, const game::Item& item)
 	{
-		return data::game::character::Items::Read(avatarId, (int)item);
+		return data::game::character::ItemsLegacy::Read(avatarId, (int)item);
 	}
 
 	bool Items::Has(int avatarId, const Item& item)
@@ -28,13 +28,13 @@ namespace game::characters
 
 	void Items::Add(int avatarId, const game::Item& item, const size_t& count)
 	{
-		data::game::character::Items::Write(avatarId, (int)item, Read(avatarId, item) + count);
+		data::game::character::ItemsLegacy::Write(avatarId, (int)item, Read(avatarId, item) + count);
 	}
 
 	void Items::Remove(int avatarId, const game::Item& item, const size_t& count)
 	{
 		auto previous = Read(avatarId, item);
-		data::game::character::Items::Write(avatarId, (int)item, (previous>=count) ? (previous - count) : (0));
+		data::game::character::ItemsLegacy::Write(avatarId, (int)item, (previous>=count) ? (previous - count) : (0));
 	}
 
 	double Items::TotalTonnage(int avatarId)
@@ -50,7 +50,7 @@ namespace game::characters
 
 	void Items::Reset(int characterId, const game::Difficulty& difficulty)
 	{
-		data::game::character::Items::Clear(characterId);
+		data::game::character::ItemsLegacy::Clear(characterId);
 		for (auto& item : game::Items::All())
 		{
 			common::utility::Optional::Iterate<size_t>(
