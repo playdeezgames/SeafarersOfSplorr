@@ -19,6 +19,7 @@
 #include <State.InPlay.ChangeHeading.h>
 #include <State.InPlay.ChangeSpeed.h>
 #include <State.InPlay.CrewDetailCharacteristics.h>
+#include <State.InPlay.CrewDetail.Items.h>
 #include <State.InPlay.CharacterStatus.h>
 #include <State.InPlay.ChooseRations.h>
 #include <State.InPlay.ConfirmAbandonJob.h>
@@ -186,6 +187,7 @@ namespace application
 		state::in_play::RenameShipNoun::Start,
 		state::in_play::Tavern::Start,
 		state::in_play::CrewDetailCharacteristics::Start,
+		state::in_play::crew_detail::Items::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};

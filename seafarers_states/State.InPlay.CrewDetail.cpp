@@ -91,6 +91,7 @@ namespace state::in_play
 		{ "3", application::UIState::GoTo(::UIState::IN_PLAY_CHARACTER_STATUS) },
 		{ "4", application::UIState::GoTo(::UIState::IN_PLAY_EQUIPMENT)},
 		{ "5", application::UIState::GoTo(::UIState::IN_PLAY_CHOOSE_RATIONS)},
+		{ "6", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_ITEMS)},
 		{ "0", OnLeave}
 	};
 
