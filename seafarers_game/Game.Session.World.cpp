@@ -29,7 +29,8 @@ namespace game::session
 	static session::ItemSubtype CreateWorldCurrencyItemSubtype()
 	{
 		const double WORLD_CURRENCY_JOOLS_AMOUNT = 0.001;
-		auto result = ItemSubtypes().Create(game::ItemType::CURRENCY);
+		const std::string WORLD_CURRENCY_JOOLS_NAME = "jools";
+		auto result = ItemSubtypes().Create(game::ItemType::CURRENCY, WORLD_CURRENCY_JOOLS_NAME);
 		result.GetCommodities().GetCommodity(game::Commodity::JOOLS).SetAmount(WORLD_CURRENCY_JOOLS_AMOUNT);
 		return result;
 	}

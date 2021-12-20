@@ -1,7 +1,7 @@
 #include <Game.Session.h>
-#include "State.InPlay.CrewDetailCharacteristics.h"
+#include "State.InPlay.CrewDetail.Characteristics.h"
 #include "State.InPlay.Globals.h"
-namespace state::in_play
+namespace state::in_play::crew_detail
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CREW_DETAIL_CHARACTERISTICS;
 
@@ -51,7 +51,7 @@ namespace state::in_play
 		{ "0", OnLeave}
 	};
 
-	void CrewDetailCharacteristics::Start()
+	void Characteristics::Start()
 	{
 		::application::OnEnter::AddHandler(
 			CURRENT_STATE,

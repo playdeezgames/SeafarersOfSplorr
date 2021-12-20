@@ -74,6 +74,7 @@ namespace state::in_play
 		Terminal::WriteLine("3) Statistics");
 		Terminal::WriteLine("4) Equipment");
 		Terminal::WriteLine("5) Change Rations");
+		Terminal::WriteLine("6) Items");
 		Terminal::WriteLine("0) Never mind");
 
 		Terminal::ShowPrompt();

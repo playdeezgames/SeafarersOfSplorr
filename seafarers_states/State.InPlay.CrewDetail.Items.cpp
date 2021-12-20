@@ -1,3 +1,4 @@
+#include <Game.Session.h>
 #include "State.InPlay.CrewDetail.Items.h"
 #include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
@@ -13,8 +14,15 @@ namespace state::in_play::crew_detail
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Items:");
-		Terminal::WriteLine();
-
+		Terminal::SetForeground(game::Colors::GRAY);
+		auto character = game::Session().GetCharacters().GetCharacter(GetCrewDetailCharacterId());
+		auto items = character.GetItems().GetAll();
+		for (auto item : items)
+		{
+			auto subtype = item.GetItemSubtype();
+			auto quantity = item.GetQuantity();
+			Terminal::WriteLine("{} (x{})", subtype.GetName(), quantity);
+		}
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("0) Never mind");
 

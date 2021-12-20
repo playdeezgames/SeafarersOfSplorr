@@ -1,5 +1,6 @@
 #pragma once
 #include "Game.Session.ItemSubtype.Commodities.h"
+#include <string>
 namespace game::session
 {
 	struct ItemSubtype
@@ -8,6 +9,7 @@ namespace game::session
 		constexpr explicit operator int() const { return itemSubtypeId; }
 		constexpr item_subtype::Commodities GetCommodities() const { return item_subtype::Commodities(itemSubtypeId); }
 		constexpr bool operator==(const ItemSubtype& other) const { return itemSubtypeId == other.itemSubtypeId; }
+		std::string GetName() const;
 	private:
 		int itemSubtypeId;
 	};
