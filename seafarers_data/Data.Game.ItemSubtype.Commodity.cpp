@@ -26,7 +26,7 @@ namespace data::game::item_subtype
 		auto records = Common::Execute(QUERY_AMOUNT, itemSubtypeId, commodityId);
 		if (!records.empty())
 		{
-			return common::Data::ToOptionalInt(records.front()[FIELD_AMOUNT]);
+			return common::Data::ToOptionalDouble(records.front()[FIELD_AMOUNT]);
 		}
 		return std::nullopt;
 	}

@@ -5,12 +5,12 @@ namespace data::game
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [ItemInstances]([ItemInstanceId] INTEGER PRIMARY KEY AUTOINCREMENT, [ItemSubtypeId] INT NOT NULL, [Quantity] INT NOT NULL);";
 	static const std::string CREATE_ITEM = "INSERT INTO [ItemInstances]([ItemSubtypeId],[Quantity]) VALUES({},{});";
-	static const std::string QUERY_ITEM_SUBTYPE = "SELECT [ItemSubypeId] FROM [ItemInstances] WHERE [ItemInstanceId]={};";
+	static const std::string QUERY_ITEM_SUBTYPE = "SELECT [ItemSubtypeId] FROM [ItemInstances] WHERE [ItemInstanceId]={};";
 	static const std::string QUERY_QUANTITY = "SELECT [Quantity] FROM [ItemInstances] WHERE [ItemInstanceId]={};";
 	static const std::string UPDATE_QUANTITY = "UPDATE [ItemInstances] SET [Quantity]={} WHERE [ItemInstanceId]={};";
 	static const std::string PURGE_ITEMS = "DELETE FROM [ItemInstances] WHERE [Quantity]<=0;";
 
-	static const std::string FIELD_ITEM_SUBTYPE_ID = "ItemTypeId";
+	static const std::string FIELD_ITEM_SUBTYPE_ID = "ItemSubtypeId";
 	static const std::string FIELD_QUANTITY = "Quantity";
 
 	static const auto AutoCreateTable = Common::Run(CREATE_TABLE);

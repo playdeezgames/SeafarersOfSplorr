@@ -10,7 +10,9 @@ namespace game::session::island
 		for (auto itemCommodity : itemCommodities)
 		{
 			auto market = GetMarket(itemCommodity);
-			totalValue += market.GetUnitPurchaseValue() * itemCommodity.GetAmount();
+			auto unitPrice = market.GetUnitPurchaseValue();
+			auto amount = itemCommodity.GetAmount();
+			totalValue += unitPrice * amount;
 		}
 		return totalValue;
 	}

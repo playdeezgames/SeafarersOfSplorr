@@ -13,12 +13,6 @@ namespace state::in_play
 	static void RefreshStatistics()
 	{
 		Terminal::SetForeground(game::Colors::GRAY);
-		auto currencyItem = game::Session().GetWorld().GetCurrencyItemSubtype();
-		auto character = game::Session().GetPlayer().GetCharacter();
-		auto markets = character.GetIsland().GetMarkets();
-		auto quantity = character.GetItems().GetItemQuantity(currencyItem);
-		auto money = quantity * markets.GetSaleValue(currencyItem);
-		Terminal::WriteLine("Money: {:.4f}", money);
 		Terminal::WriteLine("Reputation: {:.1f}", game::characters::statistics::Reputation::Current(GetCrewDetailCharacterId()).value());
 		Terminal::WriteLine("Brawling: {:.1f}", game::characters::statistics::Brawling::Current(GetCrewDetailCharacterId()).value());
 		Terminal::WriteLine("Turns: {}", game::characters::statistics::Turns::Remaining(GetCrewDetailCharacterId()).value());
