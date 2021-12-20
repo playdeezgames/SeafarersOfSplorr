@@ -25,9 +25,14 @@ namespace state::in_play
 				"Tonnage: {:.3f} ({:d}%)",
 				tonnage,
 				(int)(100.0 * tonnage / availableTonnage));
+		auto currencyItem = game::Session().GetWorld().GetCurrencyItemSubtype();
+		auto character = game::Session().GetPlayer().GetCharacter();
+		auto markets = character.GetIsland().GetMarkets();
+		auto quantity = character.GetItems().GetItemQuantity(currencyItem);
+		auto money = quantity * markets.GetSaleValue(currencyItem);
 		Terminal::WriteLine(
 			"Money: {:.3f}",
-			playerCharacter.GetMoney());
+			money);
 		Terminal::SetForeground(game::Colors::BROWN);
 		Terminal::WriteLine("Manifest:");
 		Terminal::SetForeground(game::Colors::YELLOW);

@@ -375,11 +375,6 @@ namespace game::session
 		return game::characters::Ships::AvailableTonnage(characterId).value();
 	}
 
-	double Character::GetMoney() const
-	{
-		return game::characters::statistics::Money::CurrentLegacy(characterId).value();
-	}
-
 	bool Character::IsDead() const
 	{
 		return GetHitpoints().GetCurrent() <= 0;

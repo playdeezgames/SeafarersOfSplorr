@@ -1,5 +1,6 @@
 #include <format>
 #include <Game.Characters.Statistics.h>
+#include <Game.Session.h>
 #include <Game.Islands.DarkAlley.h>
 #include "State.InPlay.DarkAlley.h"
 #include "State.InPlay.Globals.h"
@@ -18,11 +19,14 @@ namespace state::in_play
 		return GetPlayerCharacterDarkAlleyMinimumWager().value();
 	}
 
-	static const auto ReadMoney = game::characters::statistics::Money::CurrentLegacy;
-
 	static void OnGamble()
 	{
-		if (ReadMoney(GetPlayerCharacterId()).value() >= GetMinimumWager())
+		auto currencyItem = game::Session().GetWorld().GetCurrencyItemSubtype();
+		auto character = game::Session().GetPlayer().GetCharacter();
+		auto markets = character.GetIsland().GetMarkets();
+		auto quantity = character.GetItems().GetItemQuantity(currencyItem);
+		auto money = quantity * markets.GetSaleValue(currencyItem);
+		if (money >= GetMinimumWager())
 		{
 			DoPlayerCharacterAction(game::characters::Action::START_GAMBLING);
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);

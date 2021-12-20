@@ -33,7 +33,6 @@ namespace game::session
 		Islands GetKnownIslands() const;
 		FishGame GetFishGame() const;
 		double GetAvailableTonnage() const;
-		double GetMoney() const;
 		bool IsDead() const;
 		character::Items GetItems() const;
 		void SetIsland(Island island) const;
