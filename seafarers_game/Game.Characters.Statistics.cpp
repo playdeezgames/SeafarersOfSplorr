@@ -42,7 +42,6 @@ namespace game::characters
 			{
 				{game::characters::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
 				{game::characters::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
-				{game::characters::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0}
 			}},
@@ -50,7 +49,6 @@ namespace game::characters
 			{
 				{game::characters::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
 				{game::characters::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
-				{game::characters::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0}
 			}},
@@ -58,7 +56,6 @@ namespace game::characters
 			{
 				{game::characters::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
 				{game::characters::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
-				{game::characters::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0}
 			}},
@@ -66,7 +63,6 @@ namespace game::characters
 			{
 				{game::characters::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
 				{game::characters::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
-				{game::characters::Statistic::MONEY, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0}
 			}}
