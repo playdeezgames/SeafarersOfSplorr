@@ -1,6 +1,6 @@
 #pragma once
 #include "Game.EquipSlot.h"
-#include "Game.Item.h"
+#include "Game.ItemLegacy.h"
 #include <list>
 #include <set>
 #include <string>

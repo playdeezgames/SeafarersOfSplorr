@@ -1,7 +1,7 @@
 #pragma once
 #include <Common.XY.h>
 #include "Game.Fish.h"
-#include "Game.Item.h"
+#include "Game.ItemLegacy.h"
 #include <list>
 #include <string>
 namespace game

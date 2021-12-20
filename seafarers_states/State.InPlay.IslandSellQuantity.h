@@ -1,5 +1,5 @@
 #pragma once
-#include <Game.Item.h>
+#include <Game.ItemLegacy.h>
 namespace state::in_play
 {
 	struct IslandSellQuantity

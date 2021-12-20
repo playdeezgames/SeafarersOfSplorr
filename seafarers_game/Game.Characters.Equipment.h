@@ -1,7 +1,7 @@
 #pragma once
 #include "Game.Difficulty.h"
 #include "Game.EquipSlot.h"
-#include "Game.Item.h"
+#include "Game.ItemLegacy.h"
 #include <map>
 #include <optional>
 namespace game::characters

@@ -15,7 +15,7 @@
 #include <Game.EquipSlot.h>
 #include <Game.Feature.h>
 #include <Game.Island.h>
-#include <Game.Item.h>
+#include <Game.ItemLegacy.h>
 #include <Game.Quest.h>
 #include <Game.Ship.DockResult.h>
 #include <Game.Side.h>

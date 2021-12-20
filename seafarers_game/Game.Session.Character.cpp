@@ -11,7 +11,7 @@
 #include "Game.Characters.Statistics.h"
 #include "Game.Fishboard.h"
 #include "Game.Islands.h"
-#include "Game.Item.h"
+#include "Game.ItemLegacy.h"
 #include "Game.Session.h"
 #include "Game.Session.Character.h"
 #include "Game.Session.FishGame.h"

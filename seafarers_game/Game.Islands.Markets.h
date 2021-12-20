@@ -1,5 +1,5 @@
 #pragma once
-#include "Game.Item.h"
+#include "Game.ItemLegacy.h"
 #include "Game.ShipType.h"
 namespace game::islands
 {

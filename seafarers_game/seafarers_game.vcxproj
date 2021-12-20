@@ -119,7 +119,7 @@
     <ClInclude Include="Game.Islands.Markets.h" />
     <ClInclude Include="Game.Islands.Quests.h" />
     <ClInclude Include="Game.Islands.Ships.h" />
-    <ClInclude Include="Game.Item.h" />
+    <ClInclude Include="Game.ItemLegacy.h" />
     <ClInclude Include="Game.Items.h" />
     <ClInclude Include="Game.OfferingResult.h" />
     <ClInclude Include="Game.Quest.h" />
@@ -214,7 +214,7 @@
     <ClCompile Include="Game.Islands.Markets.cpp" />
     <ClCompile Include="Game.Islands.Quests.cpp" />
     <ClCompile Include="Game.Islands.Ships.cpp" />
-    <ClCompile Include="Game.Items.cpp" />
+    <ClCompile Include="Game.ItemsLegacy.cpp" />
     <ClCompile Include="Game.Ship.cpp" />
     <ClCompile Include="Game.Ship.Crew.cpp" />
     <ClCompile Include="Game.ShipNames.cpp" />

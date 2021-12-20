@@ -1,7 +1,7 @@
 #pragma once
 #include "Game.Commodity.h"
 #include "Game.Difficulty.h"
-#include "Game.Item.h"
+#include "Game.ItemLegacy.h"
 #include <list>
 #include <map>
 #include <string>

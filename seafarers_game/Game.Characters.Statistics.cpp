@@ -5,7 +5,7 @@
 #include "Game.Characters.Equipment.h"
 #include "Game.Characters.Statistic.h"
 #include "Game.Characters.Statistics.h"
-#include "Game.Item.h"
+#include "Game.ItemLegacy.h"
 #include "Game.Session.h"
 namespace game::characters
 {
