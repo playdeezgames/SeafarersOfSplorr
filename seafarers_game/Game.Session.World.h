@@ -10,12 +10,12 @@ namespace game::session
 	struct World
 	{
 		constexpr World() {}
-		constexpr ItemSubtypes GetItemSubtypes() const { return ItemSubtypes(); }
+		constexpr item::Types GetItemSubtypes() const { return item::Types(); }
 		constexpr Commodities GetCommodities() const { return Commodities(); }
 		constexpr world::Bounds GetBounds() const { return world::Bounds(); }
 		constexpr world::Wind GetWind() const { return world::Wind(); }
 		constexpr world::Distances GetDistances() const { return world::Distances(); }
-		ItemSubtype GetCurrencyItemSubtype() const;
+		item::Type GetCurrencyItemSubtype() const;
 		void Reset(const Difficulty&) const;
 		void ApplyTurnEffects() const;
 		int GetVersion() const;

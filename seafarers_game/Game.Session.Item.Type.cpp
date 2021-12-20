@@ -1,8 +1,8 @@
 #include <Data.Game.Item.Type.h>
-#include "Game.Session.ItemSubtype.h"
-namespace game::session
+#include "Game.Session.Item.Type.h"
+namespace game::session::item
 {
-	std::string ItemSubtype::GetName() const
+	std::string Type::GetName() const
 	{
 		return data::game::item::Type::ReadName(itemSubtypeId).value();
 	}

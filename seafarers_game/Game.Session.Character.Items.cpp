@@ -19,7 +19,7 @@ namespace game::session::character
 		data::game::character::ItemInstance::Purge();
 	}
 
-	std::list<Item> Items::GetItems(const ItemSubtype& itemSubtype) const
+	std::list<Item> Items::GetItems(const item::Type& itemSubtype) const
 	{
 		auto items = GetAll();
 		std::list<Item> result;
@@ -33,7 +33,7 @@ namespace game::session::character
 		return result;
 	}
 
-	int Items::GetItemQuantity(const ItemSubtype& itemSubtype) const
+	int Items::GetItemQuantity(const item::Type& itemSubtype) const
 	{
 		int quantity = 0;
 		auto items = GetItems(itemSubtype);
@@ -44,7 +44,7 @@ namespace game::session::character
 		return quantity;
 	}
 
-	void Items::AddItemQuantity(const ItemSubtype& itemSubtype, int quantity) const
+	void Items::AddItemQuantity(const item::Type& itemSubtype, int quantity) const
 	{
 		auto items = GetItems(itemSubtype);
 		for (auto item : items)
@@ -56,7 +56,7 @@ namespace game::session::character
 		item.SetCharacterId(characterId);
 	}
 
-	void Items::RemoveItemQuantity(const ItemSubtype& itemSubtype, int quantity) const
+	void Items::RemoveItemQuantity(const item::Type& itemSubtype, int quantity) const
 	{
 		auto items = GetItems(itemSubtype);
 		for (auto item : items)

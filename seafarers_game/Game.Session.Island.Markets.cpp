@@ -3,7 +3,7 @@
 #include "Game.Session.Commodities.h"
 namespace game::session::island
 {
-	double Markets::GetPurchaseValue(const ItemSubtype& itemSubtype) const
+	double Markets::GetPurchaseValue(const item::Type& itemSubtype) const
 	{
 		auto itemCommodities = itemSubtype.GetCommodities().GetAll();
 		double totalValue = 0.0;
@@ -17,14 +17,14 @@ namespace game::session::island
 		return totalValue;
 	}
 
-	int Markets::GetPurchaseQuantity(const ItemSubtype& itemSubtype, double value) const
+	int Markets::GetPurchaseQuantity(const item::Type& itemSubtype, double value) const
 	{
 		auto unitValue = GetPurchaseValue(itemSubtype);
 		return (int)std::floor(value / unitValue);
 	}
 
 
-	double Markets::GetSaleValue(const ItemSubtype& itemSubtype) const
+	double Markets::GetSaleValue(const item::Type& itemSubtype) const
 	{
 		auto itemCommodities = itemSubtype.GetCommodities().GetAll();
 		double totalValue = 0.0;
@@ -36,7 +36,7 @@ namespace game::session::island
 		return totalValue;
 	}
 
-	int Markets::GetSaleQuantity(const ItemSubtype& itemSubtype, double value) const
+	int Markets::GetSaleQuantity(const item::Type& itemSubtype, double value) const
 	{
 		auto unitValue = GetSaleValue(itemSubtype);
 		return (int)std::ceil(value / unitValue);

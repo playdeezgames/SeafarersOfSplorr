@@ -3,9 +3,9 @@
 #include "Game.Session.Item.h"
 namespace game::session
 {
-	ItemSubtype Item::GetItemSubtype() const
+	item::Type Item::GetItemSubtype() const
 	{
-		return ItemSubtype(data::game::ItemInstance::ReadItemSubtypeId(itemInstanceId).value());
+		return item::Type(data::game::ItemInstance::ReadItemSubtypeId(itemInstanceId).value());
 	}
 
 	void Item::SetQuantity(int quantity) const

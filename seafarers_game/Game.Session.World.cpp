@@ -1,7 +1,7 @@
 #include <Common.Heading.h>
 #include <Common.RNG.h>
 #include <Data.Game.World.h>
-#include "Game.Session.ItemSubtypes.h"
+#include "Game.Session.Item.Types.h"
 #include "Game.Session.World.h"
 namespace game::session
 {
@@ -26,11 +26,11 @@ namespace game::session
 	};
 
 
-	static session::ItemSubtype CreateWorldCurrencyItemSubtype()
+	static item::Type CreateWorldCurrencyItemSubtype()
 	{
 		const double WORLD_CURRENCY_JOOLS_AMOUNT = 0.001;
 		const std::string WORLD_CURRENCY_JOOLS_NAME = "jools";
-		auto result = ItemSubtypes().Create(game::item::Category::CURRENCY, WORLD_CURRENCY_JOOLS_NAME);
+		auto result = item::Types().Create(game::item::Category::CURRENCY, WORLD_CURRENCY_JOOLS_NAME);
 		result.GetCommodities().GetCommodity(game::Commodity::JOOLS).SetAmount(WORLD_CURRENCY_JOOLS_AMOUNT);
 		return result;
 	}
@@ -68,9 +68,9 @@ namespace game::session
 		return data::game::World::Read().value().version;
 	}
 
-	ItemSubtype World::GetCurrencyItemSubtype() const
+	item::Type World::GetCurrencyItemSubtype() const
 	{
-		return ItemSubtype(data::game::World::Read().value().currencyItemSubtypeId);
+		return item::Type(data::game::World::Read().value().currencyItemSubtypeId);
 	}
 
 }

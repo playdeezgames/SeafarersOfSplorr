@@ -3,12 +3,12 @@
 #include "Game.Item.Category.h"
 #include "Game.Session.Item.Type.h"
 #include <string>
-namespace game::session
+namespace game::session::item
 {
-	struct ItemSubtypes
+	struct Types
 	{
-		ItemSubtype GetItemSubtype(int) const;
+		Type GetItemSubtype(int) const;
 		void Reset(const game::Difficulty&) const;
-		ItemSubtype Create(const game::item::Category&, const std::string&) const;
+		Type Create(const game::item::Category&, const std::string&) const;
 	};
 }

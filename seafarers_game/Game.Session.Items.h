@@ -7,6 +7,6 @@ namespace game::session
 	{
 		Item GetItem(int) const;
 		void Purge() const;
-		Item Add(const ItemSubtype&, int) const;
+		Item Add(const item::Type&, int) const;
 	};
 }
