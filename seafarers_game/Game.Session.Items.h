@@ -1,5 +1,5 @@
 #pragma once
-#include "Game.ItemType.h"
+#include "Game.Item.Category.h"
 #include "Game.Session.Item.h"
 namespace game::session
 {

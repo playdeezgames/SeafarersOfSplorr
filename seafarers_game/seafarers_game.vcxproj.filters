@@ -407,7 +407,7 @@
     <ClInclude Include="Game.Session.Character.Items.h">
       <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Game.ItemType.h">
+    <ClInclude Include="Game.Item.Category.h">
       <Filter>Header Files\Items</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.ItemSubtype.h">
