@@ -3,13 +3,53 @@
 #include "Data.Game.FishGame.h"
 namespace data::game
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [FishGames]([CharacterId] INT NOT NULL UNIQUE,[Guesses] INT NOT NULL,[GivenUp] INT NOT NULL,[FisheryId] INT NULL);";
-	static const std::string DELETE_ITEM = "DELETE FROM [FishGames] WHERE [CharacterId]={};";
-	static const std::string QUERY_ITEM = "SELECT [Guesses],[GivenUp],[FisheryId] FROM [FishGames] WHERE [CharacterId]={};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [FishGames]([CharacterId],[Guesses],[GivenUp],[FisheryId]) VALUES({},{},{},{});";
-	static const std::string UPDATE_GUESSES = "UPDATE [FishGames] SET [Guesses]={} WHERE [CharacterId]={};";
-	static const std::string UPDATE_GIVEN_UP = "UPDATE [FishGames] SET [GivenUp]={} WHERE [CharacterId]={};";
-	static const std::string UPDATE_FISHERY_ID = "UPDATE [FishGames] SET [FisheryId]={} WHERE [CharacterId]={};";
+	static const std::string CREATE_TABLE = 
+		"CREATE TABLE IF NOT EXISTS [FishGames]"
+		"("
+			"[CharacterId] INT NOT NULL UNIQUE,"
+			"[Guesses] INT NOT NULL,"
+			"[GivenUp] INT NOT NULL,"
+			"[FisheryId] INT NULL"
+		");";
+	static const std::string DELETE_ITEM = 
+		"DELETE FROM [FishGames] "
+		"WHERE "
+			"[CharacterId]={};";
+	static const std::string QUERY_ITEM = 
+		"SELECT "
+			"[Guesses],"
+			"[GivenUp],"
+			"[FisheryId] "
+		"FROM [FishGames] "
+		"WHERE "
+			"[CharacterId]={};";
+	static const std::string REPLACE_ITEM = 
+		"REPLACE INTO [FishGames]"
+		"("
+			"[CharacterId],"
+			"[Guesses],"
+			"[GivenUp],"
+			"[FisheryId]"
+		") "
+		"VALUES({},{},{},{});";
+	static const std::string UPDATE_GUESSES = 
+		"UPDATE [FishGames] "
+		"SET "
+			"[Guesses]={} "
+		"WHERE "
+			"[CharacterId]={};";
+	static const std::string UPDATE_GIVEN_UP = 
+		"UPDATE [FishGames] "
+		"SET "
+			"[GivenUp]={} "
+		"WHERE "
+			"[CharacterId]={};";
+	static const std::string UPDATE_FISHERY_ID = 
+		"UPDATE [FishGames] "
+		"SET "
+			"[FisheryId]={} "
+		"WHERE "
+			"[CharacterId]={};";
 
 	static const std::string FIELD_GUESSES = "Guesses";
 	static const std::string FIELD_GIVEN_UP = "GivenUp";
