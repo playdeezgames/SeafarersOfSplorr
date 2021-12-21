@@ -15,7 +15,13 @@ namespace state::in_play
 
 	static bool IsPlayerOutOfTurns()
 	{
-		return !game::characters::statistics::Turns::HasRemaining(GetPlayerCharacterId()).value();
+		return 
+			game::Session()
+			.GetPlayer()
+			.GetCharacter()
+			.GetCounters()
+			.GetCounter(game::characters::Counter::TURNS_REMAINING)
+			.GetValue() > 0;
 	}
 
 	static bool IsPlayerDead()

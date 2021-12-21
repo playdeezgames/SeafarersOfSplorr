@@ -40,28 +40,24 @@ namespace game::characters
 	{
 		{game::Difficulty::EASY,
 			{
-				{game::characters::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
 				{game::characters::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
 				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0}
 			}},
 		{game::Difficulty::NORMAL,
 			{
-				{game::characters::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
 				{game::characters::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
 				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0}
 			}},
 		{game::Difficulty::HARD,
 			{
-				{game::characters::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
 				{game::characters::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
 				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0}
 			}},
 		{game::Difficulty::HARDCORE,
 			{
-				{game::characters::Statistic::TURNS_REMAINING, std::optional<double>(0.0), std::optional<double>(10000.0), 10000.0},
 				{game::characters::Statistic::REPUTATION, std::nullopt, std::nullopt, 0.0},
 				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
 				{game::characters::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0}
@@ -219,30 +215,6 @@ namespace game::characters
 		std::optional<double> Brawling::Change(int characterId, double delta)
 		{
 			return ChangeCurrent(characterId, game::characters::Statistic::BRAWLING, delta);
-		}
-
-		std::optional<int> Turns::Remaining(int characterId)
-		{
-			return common::utility::Optional::Map<double, int>(
-				GetCurrent(characterId, game::characters::Statistic::TURNS_REMAINING),
-				common::Utility::Cast<double, int>);
-		}
-
-		std::optional<int> Turns::Change(int characterId, int amount)
-		{
-			return common::utility::Optional::Map<double, int>(
-				ChangeCurrent(characterId, game::characters::Statistic::TURNS_REMAINING, (double)amount),
-				common::Utility::Cast<double, int>);
-		}
-
-		std::optional<bool> Turns::HasRemaining(int characterId)
-		{
-			auto turns = Remaining(characterId);
-			if (turns)
-			{
-				return turns.value() > 0;
-			}
-			return std::nullopt;
 		}
 	}
 }

@@ -15,7 +15,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Reputation: {:.1f}", game::characters::statistics::Reputation::Current(GetCrewDetailCharacterId()).value());
 		Terminal::WriteLine("Brawling: {:.1f}", game::characters::statistics::Brawling::Current(GetCrewDetailCharacterId()).value());
-		Terminal::WriteLine("Turns: {}", game::characters::statistics::Turns::Remaining(GetCrewDetailCharacterId()).value());
+		Terminal::WriteLine("Turns: {}", game::Session().GetCharacters().GetCharacter(GetCrewDetailCharacterId()).GetCounters().GetCounter(game::characters::Counter::TURNS_REMAINING).GetValue());
 	}
 
 	static void RefreshPlights()

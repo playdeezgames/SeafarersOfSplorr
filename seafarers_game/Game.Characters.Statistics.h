@@ -20,12 +20,6 @@ namespace game::characters
 			static std::optional<double> Current(int);
 			static std::optional<double> Change(int, double);
 		};
-		struct Turns
-		{
-			static std::optional<int> Remaining(int);
-			static std::optional<int> Change(int, int);
-			static std::optional<bool> HasRemaining(int);
-		};
 	}
 	struct Statistics
 	{

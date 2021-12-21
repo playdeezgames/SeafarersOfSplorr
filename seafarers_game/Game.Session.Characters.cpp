@@ -45,7 +45,11 @@ namespace game::session
 		auto turnsSpent = DetermineTurnsSpent(characterId);
 		while (turnsSpent)
 		{
-			game::characters::statistics::Turns::Change(characterId, -1);
+			Characters()
+				.GetCharacter(characterId)
+				.GetCounters()
+				.GetCounter(game::characters::Counter::TURNS_REMAINING)
+				.Change(-1);
 			turnsSpent--;
 		}
 	}

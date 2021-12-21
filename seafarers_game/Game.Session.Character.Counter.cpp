@@ -20,6 +20,11 @@ namespace game::session::character
 		return newValue;
 	}
 
+	int Counter::GetValue() const
+	{
+		return data::game::character::Counter::Read(characterId, (int)counter).value();
+	}
+
 	struct CounterDescriptor
 	{
 		std::string name;
