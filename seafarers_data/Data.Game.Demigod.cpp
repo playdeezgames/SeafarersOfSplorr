@@ -3,7 +3,7 @@
 #include "Data.Game.Demigod.h"
 namespace data::game
 {
-	static const std::string CREATE_TABLE = 
+	static const std::string CREATE_TABLE =
 		"CREATE TABLE IF NOT EXISTS [Demigods]"
 		"("
 			"[DemigodId] INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -16,7 +16,7 @@ namespace data::game
 			"[CurseMultiplier] REAL NOT NULL,"
 			"[CursePlightId] INT NOT NULL"
 		");";
-	static const std::string INSERT_ITEM = 
+	static const std::string INSERT_ITEM =
 		"INSERT INTO [Demigods]"
 		"("
 			"[Name],"
@@ -29,7 +29,7 @@ namespace data::game
 			"[CursePlightId]"
 		") "
 		"VALUES({},{},{},{},{},{},{},{});";
-	static const std::string UPDATE_ITEM = 
+	static const std::string UPDATE_ITEM =
 		"UPDATE [Demigods] "
 		"SET "
 			"[Name]={}, "
@@ -42,9 +42,9 @@ namespace data::game
 			"[CursePlightId]={} "
 		"WHERE "
 			"[DemigodId]={};";
-	static const std::string DELETE_ALL = 
+	static const std::string DELETE_ALL =
 		"DELETE FROM [Demigods];";
-	static const std::string QUERY_ALL = 
+	static const std::string QUERY_ALL =
 		"SELECT "
 			"[DemigodId],"
 			"[Name],"
@@ -56,7 +56,7 @@ namespace data::game
 			"[CurseMultiplier],"
 			"[CursePlightId] "
 		"FROM [Demigods];";
-	static const std::string QUERY_ITEM = 
+	static const std::string QUERY_ITEM =
 		"SELECT "
 			"[DemigodId],"
 			"[Name],"
@@ -81,17 +81,20 @@ namespace data::game
 	static const std::string FIELD_CURSE_MULTIPLIER = "CurseMultiplier";
 	static const std::string FIELD_CURSE_PLIGHT_ID = "CursePlightId";
 
-	static const auto AutoCreateTable = data::game::Common::Run(CREATE_TABLE);
+	void Demigod::Initialize()
+	{
+		Common::Execute(CREATE_TABLE);
+	}
 
 	void Demigod::Clear()
 	{
-		AutoCreateTable();
+		Initialize();
 		data::game::Common::Execute(DELETE_ALL);
 	}
 
 	int Demigod::Write(const Demigod& demigod)
 	{
-		AutoCreateTable();
+		Initialize();
 		if (demigod.id == 0)
 		{
 			data::game::Common::Execute(
@@ -140,7 +143,7 @@ namespace data::game
 
 	std::list<Demigod> Demigod::All()
 	{
-		AutoCreateTable();
+		Initialize();
 		std::list<Demigod> result;
 		auto records = Common::Execute(QUERY_ALL);
 		for (auto& record : records)
@@ -152,7 +155,7 @@ namespace data::game
 
 	std::optional<Demigod> Demigod::Read(int demigodId)
 	{
-		AutoCreateTable();
+		Initialize();
 		auto records = Common::Execute(QUERY_ITEM, demigodId);
 		if (!records.empty())
 		{

@@ -16,6 +16,7 @@ namespace data::game
 		double curseMultiplier;
 		int cursePlightId;
 
+		static void Initialize();
 		static void Clear();
 		static std::list<Demigod> All();
 		static std::optional<Demigod> Read(int);
