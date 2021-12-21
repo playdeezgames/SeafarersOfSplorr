@@ -48,7 +48,7 @@ namespace game::characters
 		auto currencyItem = game::Session().GetWorld().GetCurrencyItemSubtype();
 		int quantity = markets.GetPurchaseQuantity(currencyItem, quest.reward);
 		character.GetItems().AddItemQuantity(currencyItem, quantity);
-		game::characters::statistics::Reputation::Change(characterId, 1.0);
+		character.GetCounters().GetCounter(game::characters::Counter::REPUTATION).Change(1);
 		data::game::character::QuestLegacy::Write(characterId, std::nullopt);
 	}
 
@@ -65,7 +65,7 @@ namespace game::characters
 
 	static void AbandonQuest(int characterId)
 	{
-		game::characters::statistics::Reputation::Change(characterId, -1.0);
+		game::Session().GetCharacters().GetCharacter(characterId).GetCounters().GetCounter(game::characters::Counter::REPUTATION).Change(-1);
 		data::game::character::QuestLegacy::Write(characterId, std::nullopt);
 	}
 

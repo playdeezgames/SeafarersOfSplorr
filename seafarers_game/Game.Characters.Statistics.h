@@ -5,11 +5,6 @@ namespace game::characters
 {
 	namespace statistics
 	{
-		struct Reputation
-		{
-			static std::optional<double> Current(int);
-			static std::optional<double> Change(int, double);
-		};
 		struct Infamy
 		{
 			static std::optional<double> Current(int);

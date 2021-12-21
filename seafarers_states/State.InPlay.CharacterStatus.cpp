@@ -12,10 +12,11 @@ namespace state::in_play
 
 	static void RefreshStatistics()
 	{
+		auto counters = game::Session().GetCharacters().GetCharacter(GetCrewDetailCharacterId()).GetCounters();
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Reputation: {:.1f}", game::characters::statistics::Reputation::Current(GetCrewDetailCharacterId()).value());
+		Terminal::WriteLine("Reputation: {:.1f}", counters.GetCounter(game::characters::Counter::REPUTATION).GetValue());
 		Terminal::WriteLine("Brawling: {:.1f}", game::characters::statistics::Brawling::Current(GetCrewDetailCharacterId()).value());
-		Terminal::WriteLine("Turns: {}", game::Session().GetCharacters().GetCharacter(GetCrewDetailCharacterId()).GetCounters().GetCounter(game::characters::Counter::TURNS_REMAINING).GetValue());
+		Terminal::WriteLine("Turns: {}", counters.GetCounter(game::characters::Counter::TURNS_REMAINING).GetValue());
 	}
 
 	static void RefreshPlights()
