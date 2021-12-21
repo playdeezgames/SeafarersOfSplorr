@@ -2,7 +2,7 @@
 #include <Common.RNG.h>
 #include <Data.Game.Character.DemigodFavor.h>
 #include <Data.Game.Demigod.h>
-#include <Data.Game.DemigodItem.h>
+#include <Data.Game.DemigodItemLegacy.h>
 #include "Game.Characters.Plights.h"
 #include "Game.Items.h"
 #include "Game.Demigods.h"
@@ -105,7 +105,7 @@ namespace game
 		const double OFFERING_FAVOR_MINIMUM = -1.0;
 		const double OFFERING_FAVOR_MAXIMUM = 1.0;
 		data::game::Demigod::Clear();
-		data::game::DemigodItem::Clear();
+		data::game::DemigodItemLegacy::Clear();
 		data::game::character::DemigodFavor::ClearAll();
 		auto demigodCount = common::RNG::FromGenerator(demigodCounts);
 		auto names = GenerateNames(demigodCount);
@@ -125,7 +125,7 @@ namespace game
 			auto demigodId = data::game::Demigod::Write(demigod);
 			for (auto item : items)
 			{
-				data::game::DemigodItem::Write(demigodId, (int)item, common::RNG::FromRange(OFFERING_FAVOR_MINIMUM, OFFERING_FAVOR_MAXIMUM));
+				data::game::DemigodItemLegacy::Write(demigodId, (int)item, common::RNG::FromRange(OFFERING_FAVOR_MINIMUM, OFFERING_FAVOR_MAXIMUM));
 			}
 		}
 	}
@@ -183,7 +183,7 @@ namespace game
 
 	static OfferingResult DoMakeOffering(int characterId, data::game::Demigod& demigod, const Item& item)
 	{
-		auto delta = data::game::DemigodItem::Read(demigod.id, (int)item);
+		auto delta = data::game::DemigodItemLegacy::Read(demigod.id, (int)item);
 		if (delta)
 		{
 			UpdateCooldown(characterId, demigod);

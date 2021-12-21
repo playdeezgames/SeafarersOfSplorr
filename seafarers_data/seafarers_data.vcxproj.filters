@@ -95,7 +95,7 @@
     <ClInclude Include="Data.Game.Demigod.h">
       <Filter>Header Files\Demigod</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.DemigodItem.h">
+    <ClInclude Include="Data.Game.DemigodItemLegacy.h">
       <Filter>Header Files\Demigod</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.FishboardCell.h">

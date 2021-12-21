@@ -36,7 +36,7 @@
     <ClInclude Include="Data.Game.Character.StatisticLegacy.h" />
     <ClInclude Include="Data.Game.Common.h" />
     <ClInclude Include="Data.Game.Demigod.h" />
-    <ClInclude Include="Data.Game.DemigodItem.h" />
+    <ClInclude Include="Data.Game.DemigodItemLegacy.h" />
     <ClInclude Include="Data.Game.FishboardCell.h" />
     <ClInclude Include="Data.Game.Fishery.h" />
     <ClInclude Include="Data.Game.FishGame.h" />

@@ -22,7 +22,7 @@ namespace game
 		const data::game::Island& island, 
 		const common::XY<double>& shipLocation)
 	{
-		auto visitData = data::game::island::Visit::Read(island.id);
+		auto visitData = data::game::island::VisitLegacy::Read(island.id);
 		data::game::island::Known::Write(island.id);
 		accumulator.push_back(
 			{
@@ -80,20 +80,20 @@ namespace game
 	}
 
 	static void AddSubsequentVisit(
-		data::game::island::Visit islandVisits, 
+		data::game::island::VisitLegacy islandVisits,
 		const int& currentTurn)
 	{
 		if (islandVisits.lastVisit != currentTurn)
 		{
 			islandVisits.visits++;
 			islandVisits.lastVisit = currentTurn;
-			data::game::island::Visit::Write(islandVisits);
+			data::game::island::VisitLegacy::Write(islandVisits);
 		}
 	}
 
 	static void AddInitialVisit(int islandId, const int& currentTurn)
 	{
-		data::game::island::Visit::Write({
+		data::game::island::VisitLegacy::Write({
 			islandId,
 			1,
 			currentTurn });
@@ -101,7 +101,7 @@ namespace game
 
 	void Islands::AddVisit(int islandId, int currentTurn)
 	{
-		auto previousVisits = data::game::island::Visit::Read(islandId);
+		auto previousVisits = data::game::island::VisitLegacy::Read(islandId);
 		if (previousVisits)
 		{
 			AddSubsequentVisit(previousVisits.value(), currentTurn);
@@ -114,9 +114,9 @@ namespace game
 
 	void Islands::SetKnown(int islandId, int turn)
 	{
-		if (!data::game::island::Visit::Read(islandId))
+		if (!data::game::island::VisitLegacy::Read(islandId))
 		{
-			data::game::island::Visit::Write({
+			data::game::island::VisitLegacy::Write({
 				islandId,
 				0,
 				turn });
@@ -125,7 +125,7 @@ namespace game
 
 	static Island ToIsland(const data::game::Island& island)
 	{
-		auto previousVisits = data::game::island::Visit::Read(island.id);
+		auto previousVisits = data::game::island::VisitLegacy::Read(island.id);
 		return 
 		{
 			island.id,
@@ -150,7 +150,7 @@ namespace game
 	static void ObfuscateIfUnknown(game::Island& island)
 	{
 		auto islandId = data::game::Island::Find(island.absoluteLocation).value();
-		if (!data::game::island::Visit::Read(islandId))
+		if (!data::game::island::VisitLegacy::Read(islandId))
 		{
 			island.name = Islands::UNKNOWN;
 		}

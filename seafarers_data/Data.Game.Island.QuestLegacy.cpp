@@ -18,7 +18,7 @@ namespace data::game::island
 
 	static const auto AutoCreateIslandQuestsTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Quest::Write(const Quest& data)
+	void QuestLegacy::Write(const QuestLegacy& data)
 	{
 		AutoCreateIslandQuestsTable();
 		data::game::Common::Execute(
@@ -32,7 +32,7 @@ namespace data::game::island
 			common::Data::QuoteString(data.receiptEmotion));
 	}
 
-	static Quest ToQuest(const std::map<std::string, std::string>& record)
+	static QuestLegacy ToQuest(const std::map<std::string, std::string>& record)
 	{
 		return 
 		{
@@ -46,7 +46,7 @@ namespace data::game::island
 		};
 	}
 
-	std::optional<Quest> Quest::Read(int islandId)
+	std::optional<QuestLegacy> QuestLegacy::Read(int islandId)
 	{
 		AutoCreateIslandQuestsTable();
 		auto records = data::game::Common::Execute(QUERY_ITEM, islandId);
@@ -57,7 +57,7 @@ namespace data::game::island
 		return std::nullopt;
 	}
 
-	void Quest::Clear(int islandId)
+	void QuestLegacy::Clear(int islandId)
 	{
 		AutoCreateIslandQuestsTable();
 		data::game::Common::Execute(DELETE_ITEM, islandId);

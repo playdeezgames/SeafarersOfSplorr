@@ -24,7 +24,7 @@ namespace game::islands
 		std::function<double(int, const Item&)> unitPricer)
 	{
 		std::map<game::Item, double> result;
-		auto itemsAvailable = data::game::island::Item::GetAll(islandId);
+		auto itemsAvailable = data::game::island::ItemLegacy::GetAll(islandId);
 		for (auto& item : itemsAvailable)
 		{
 			double price = unitPricer(islandId, (game::Item)item);

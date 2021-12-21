@@ -15,7 +15,7 @@ namespace data::game::island
 
 	static const auto AutoCreateIslandItemTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Item::Write(int islandId, int item)
+	void ItemLegacy::Write(int islandId, int item)
 	{
 		AutoCreateIslandItemTable();
 		data::game::Common::Execute(
@@ -24,7 +24,7 @@ namespace data::game::island
 			item);
 	}
 
-	void Item::Clear(int islandId, int item)
+	void ItemLegacy::Clear(int islandId, int item)
 	{
 		AutoCreateIslandItemTable();
 		data::game::Common::Execute(
@@ -33,19 +33,19 @@ namespace data::game::island
 			item);
 	}
 
-	bool Item::Read(int islandId, int item)
+	bool ItemLegacy::Read(int islandId, int item)
 	{
 		AutoCreateIslandItemTable();
 		return !data::game::Common::Execute(QUERY_ITEM, islandId, item).empty();
 	}
 
-	void Item::ClearAll()
+	void ItemLegacy::ClearAll()
 	{
 		AutoCreateIslandItemTable();
 		data::game::Common::Execute(DELETE_ALL);
 	}
 
-	std::set<int> Item::GetAll(int islandId)
+	std::set<int> ItemLegacy::GetAll(int islandId)
 	{
 		std::set<int> result;
 		AutoCreateIslandItemTable();

@@ -2,7 +2,7 @@
 #include <set>
 namespace data::game::island
 {
-	struct Item
+	struct ItemLegacy
 	{
 		static void Write(int, int);
 		static void Clear(int, int);

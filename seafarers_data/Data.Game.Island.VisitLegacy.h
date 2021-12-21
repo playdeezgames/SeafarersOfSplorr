@@ -2,14 +2,14 @@
 #include <optional>
 namespace data::game::island
 {
-	struct Visit
+	struct VisitLegacy
 	{
 		int islandId;
 		int visits;
 		std::optional<int> lastVisit;
 
-		static void Write(const Visit&);
-		static std::optional<Visit> Read(int);
+		static void Write(const VisitLegacy&);
+		static std::optional<VisitLegacy> Read(int);
 		static void Clear();
 	};
 

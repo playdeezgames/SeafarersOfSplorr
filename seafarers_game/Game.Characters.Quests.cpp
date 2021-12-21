@@ -9,7 +9,7 @@
 #include "Game.Session.h"
 namespace game::characters
 {
-	static void AcceptQuest(int characterId, const data::game::island::Quest& quest)
+	static void AcceptQuest(int characterId, const data::game::island::QuestLegacy& quest)
 	{
 		auto fromIslandId = quest.fromIslandId;
 		data::game::character::QuestLegacy::Write(
@@ -21,7 +21,7 @@ namespace game::characters
 				quest.personName,
 				quest.professionName ,
 				quest.receiptEmotion }));
-		data::game::island::Quest::Clear(fromIslandId);
+		data::game::island::QuestLegacy::Clear(fromIslandId);
 		game::Islands::SetKnown(quest.toIslandId, game::characters::statistics::Turns::Remaining(characterId).value());
 		data::game::island::Known::Write(quest.toIslandId);
 	}
@@ -32,7 +32,7 @@ namespace game::characters
 		{
 			return AcceptQuestResult::ALREADY_HAS_QUEST;
 		}
-		auto quest = data::game::island::Quest::Read(fromIslandId);
+		auto quest = data::game::island::QuestLegacy::Read(fromIslandId);
 		if (quest)
 		{
 			AcceptQuest(characterId, quest.value());

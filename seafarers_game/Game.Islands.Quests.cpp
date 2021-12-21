@@ -209,9 +209,9 @@ namespace game::islands
 	{
 		if (game::Islands::Read(fromIslandId).has_value())
 		{
-			if (!data::game::island::Quest::Read(fromIslandId).has_value())
+			if (!data::game::island::QuestLegacy::Read(fromIslandId).has_value())
 			{
-				data::game::island::Quest::Write(
+				data::game::island::QuestLegacy::Write(
 					{
 						fromIslandId,
 						GenerateDestination(fromIslandId),
@@ -225,7 +225,7 @@ namespace game::islands
 		}
 	}
 
-	static Quest ToQuest(const data::game::island::Quest& quest)
+	static Quest ToQuest(const data::game::island::QuestLegacy& quest)
 	{
 		auto toIsland = data::game::Island::Read(quest.toIslandId).value();
 		return
@@ -243,8 +243,8 @@ namespace game::islands
 	std::optional<game::Quest> Quests::Read(int fromIslandId)
 	{
 		return 
-			common::utility::Optional::Map<data::game::island::Quest, Quest>(
-				data::game::island::Quest::Read(fromIslandId),
+			common::utility::Optional::Map<data::game::island::QuestLegacy, Quest>(
+				data::game::island::QuestLegacy::Read(fromIslandId),
 				ToQuest);
 	}
 }

@@ -114,10 +114,10 @@ namespace game
 	static void ClearData()
 	{
 		data::game::Island::Clear();
-		data::game::island::Visit::Clear();
+		data::game::island::VisitLegacy::Clear();
 		data::game::island::Known::Clear();
 		data::game::island::Market::Clear();
-		data::game::island::Item::ClearAll();
+		data::game::island::ItemLegacy::ClearAll();
 	}
 
 	static void GenerateMarkets(int islandId)
@@ -141,7 +141,7 @@ namespace game
 		{
 			if (Items::GeneratePresenceForIsland(item))
 			{
-				data::game::island::Item::Write(islandId, (int)item);
+				data::game::island::ItemLegacy::Write(islandId, (int)item);
 			}
 		}
 	}

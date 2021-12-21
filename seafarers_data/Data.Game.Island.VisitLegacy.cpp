@@ -14,7 +14,7 @@ namespace data::game::island
 
 	static const auto AutoCreateIslandVisitsTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Visit::Write(const Visit& data)
+	void VisitLegacy::Write(const VisitLegacy& data)
 	{
 		AutoCreateIslandVisitsTable();
 		data::game::Common::Execute(
@@ -24,7 +24,7 @@ namespace data::game::island
 			common::Data::OfOptional(data.lastVisit));
 	}
 
-	static Visit ToVisit(const std::map<std::string, std::string>& record)
+	static VisitLegacy ToVisit(const std::map<std::string, std::string>& record)
 	{
 		return
 		{
@@ -34,7 +34,7 @@ namespace data::game::island
 		};
 	}
 
-	std::optional<Visit> Visit::Read(int islandId)
+	std::optional<VisitLegacy> VisitLegacy::Read(int islandId)
 	{
 		AutoCreateIslandVisitsTable();
 		auto records = data::game::Common::Execute(
@@ -47,7 +47,7 @@ namespace data::game::island
 		return std::nullopt;
 	}
 
-	void Visit::Clear()
+	void VisitLegacy::Clear()
 	{
 		AutoCreateIslandVisitsTable();
 		data::game::Common::Execute(DELETE_ALL);

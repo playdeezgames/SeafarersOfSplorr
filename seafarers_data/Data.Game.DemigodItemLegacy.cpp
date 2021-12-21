@@ -1,6 +1,6 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
-#include "Data.Game.DemigodItem.h"
+#include "Data.Game.DemigodItemLegacy.h"
 namespace data::game
 {
 	static const std::string CREATE_TABLE = 
@@ -33,7 +33,7 @@ namespace data::game
 
 	static const auto AutoCreateDemigodItemsTable = Common::Run(CREATE_TABLE);
 
-	std::optional<double> DemigodItem::Read(int demigodId, int itemId)
+	std::optional<double> DemigodItemLegacy::Read(int demigodId, int itemId)
 	{
 		AutoCreateDemigodItemsTable();
 		auto records = 
@@ -48,7 +48,7 @@ namespace data::game
 		return std::nullopt;
 	}
 
-	void DemigodItem::Write(int demigodId, int itemId, double favor)
+	void DemigodItemLegacy::Write(int demigodId, int itemId, double favor)
 	{
 		AutoCreateDemigodItemsTable();
 		Common::Execute(
@@ -58,7 +58,7 @@ namespace data::game
 			favor);
 	}
 
-	void DemigodItem::Clear()
+	void DemigodItemLegacy::Clear()
 	{
 		AutoCreateDemigodItemsTable();
 		Common::Execute(DELETE_ALL);

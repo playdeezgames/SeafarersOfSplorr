@@ -3,7 +3,7 @@
 #include <string>
 namespace data::game::island
 {
-	struct Quest
+	struct QuestLegacy
 	{
 		int fromIslandId;
 		int toIslandId;
@@ -13,8 +13,8 @@ namespace data::game::island
 		std::string professionName;
 		std::string receiptEmotion;
 
-		static void Write(const Quest&);
-		static std::optional<Quest> Read(int);
+		static void Write(const QuestLegacy&);
+		static std::optional<QuestLegacy> Read(int);
 		static void Clear(int);
 	};
 
