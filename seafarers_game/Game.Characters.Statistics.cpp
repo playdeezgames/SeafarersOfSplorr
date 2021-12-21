@@ -73,7 +73,7 @@ namespace game::characters
 		auto values = initialValues.find(difficulty)->second;
 		for (auto& value : values)
 		{
-			data::game::character::Statistic::Write(
+			data::game::character::StatisticLegacy::Write(
 				characterId,
 				(int)value.statistic,
 				{
@@ -86,7 +86,7 @@ namespace game::characters
 
 	static std::optional<double> GetMaximum(int characterId, const game::characters::Statistic& statistic)
 	{
-		auto stat = data::game::character::Statistic::Read(characterId, (int)statistic);
+		auto stat = data::game::character::StatisticLegacy::Read(characterId, (int)statistic);
 		if (stat)
 		{
 			return stat.value().maximum;
@@ -96,7 +96,7 @@ namespace game::characters
 
 	static std::optional<double> GetMinimum(int characterId, const game::characters::Statistic& statistic)
 	{
-		auto stat = data::game::character::Statistic::Read(characterId, (int)statistic);
+		auto stat = data::game::character::StatisticLegacy::Read(characterId, (int)statistic);
 		if (stat)
 		{
 			return stat.value().minimum;
@@ -106,7 +106,7 @@ namespace game::characters
 
 	static std::optional<double> GetCurrent(int characterId, const game::characters::Statistic& statistic)
 	{
-		auto stat = data::game::character::Statistic::Read(characterId, (int)statistic);
+		auto stat = data::game::character::StatisticLegacy::Read(characterId, (int)statistic);
 		if (stat)
 		{
 			return stat.value().current;
@@ -142,9 +142,9 @@ namespace game::characters
 
 	static void SetCurrent(int characterId, const game::characters::Statistic& statistic, double value)
 	{
-		auto data = data::game::character::Statistic::Read(characterId, (int)statistic).value();
+		auto data = data::game::character::StatisticLegacy::Read(characterId, (int)statistic).value();
 		data.current = common::Utility::Clamp<double>(value, data.minimum, data.maximum);
-		data::game::character::Statistic::Write(
+		data::game::character::StatisticLegacy::Write(
 			characterId,
 			(int)statistic, 
 			data);

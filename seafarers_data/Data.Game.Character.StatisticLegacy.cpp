@@ -39,7 +39,7 @@ namespace data::game::character
 
 	static const auto AutoCreateTable = data::game::Common::Run(CREATE_TABLE);
 
-	void Statistic::Write(int characterId, int statisticId, const Statistic& data)
+	void StatisticLegacy::Write(int characterId, int statisticId, const StatisticLegacy& data)
 	{
 		AutoCreateTable();
 		data::game::Common::Execute(
@@ -51,7 +51,7 @@ namespace data::game::character
 			data.current);
 	}
 
-	static Statistic ToStatistic(const std::map<std::string, std::string>& record)
+	static StatisticLegacy ToStatistic(const std::map<std::string, std::string>& record)
 	{
 		return
 		{
@@ -61,7 +61,7 @@ namespace data::game::character
 		};
 	}
 
-	std::optional<Statistic> Statistic::Read(int characterId, int statisticId)
+	std::optional<StatisticLegacy> StatisticLegacy::Read(int characterId, int statisticId)
 	{
 		AutoCreateTable();
 		auto records = data::game::Common::Execute(QUERY_ITEM, statisticId, characterId);
