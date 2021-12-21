@@ -71,7 +71,7 @@
     <ClInclude Include="Data.Game.Island.h">
       <Filter>Header Files\Island</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Island.Item.h">
+    <ClInclude Include="Data.Game.Island.ItemLegacy.h">
       <Filter>Header Files\Island</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.Island.Known.h">
@@ -80,10 +80,10 @@
     <ClInclude Include="Data.Game.Island.Market.h">
       <Filter>Header Files\Island</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Island.Quest.h">
+    <ClInclude Include="Data.Game.Island.QuestLegacy.h">
       <Filter>Header Files\Island</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Island.Visit.h">
+    <ClInclude Include="Data.Game.Island.VisitLegacy.h">
       <Filter>Header Files\Island</Filter>
     </ClInclude>
     <ClInclude Include="Data.JSON.Store.h">
@@ -205,7 +205,7 @@
     <ClCompile Include="Data.Game.Island.Feature.cpp">
       <Filter>Source Files\Island</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Island.Item.cpp">
+    <ClCompile Include="Data.Game.Island.ItemLegacy.cpp">
       <Filter>Source Files\Island</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Island.Known.cpp">
@@ -214,10 +214,10 @@
     <ClCompile Include="Data.Game.Island.Market.cpp">
       <Filter>Source Files\Island</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Island.Quest.cpp">
+    <ClCompile Include="Data.Game.Island.QuestLegacy.cpp">
       <Filter>Source Files\Island</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Island.Visit.cpp">
+    <ClCompile Include="Data.Game.Island.VisitLegacy.cpp">
       <Filter>Source Files\Island</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Island.DarkAlley.GamblingHand.cpp">
@@ -226,7 +226,7 @@
     <ClCompile Include="Data.Game.Demigod.cpp">
       <Filter>Source Files\Demigod</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.DemigodItem.cpp">
+    <ClCompile Include="Data.Game.DemigodItemLegacy.cpp">
       <Filter>Source Files\Demigod</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Fishery.cpp">

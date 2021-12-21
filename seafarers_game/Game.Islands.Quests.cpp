@@ -2,7 +2,7 @@
 #include <Common.Utility.List.h>
 #include <Common.Utility.Optional.h>
 #include <Data.Game.Island.h>
-#include <Data.Game.Island.Quest.h>
+#include <Data.Game.Island.QuestLegacy.h>
 #include <format>
 #include "Game.Characters.Statistics.h"
 #include "Game.Islands.h"

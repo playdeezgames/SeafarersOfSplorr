@@ -1,4 +1,4 @@
-#include <Data.Game.Island.Item.h>
+#include <Data.Game.Island.ItemLegacy.h>
 #include <functional>
 #include "Game.Islands.Commodities.h"
 #include "Game.Islands.Items.h"

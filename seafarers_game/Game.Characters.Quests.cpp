@@ -2,7 +2,7 @@
 #include <Data.Game.Character.QuestLegacy.h>
 #include <Data.Game.Island.h>
 #include <Data.Game.Island.Known.h>
-#include <Data.Game.Island.Quest.h>
+#include <Data.Game.Island.QuestLegacy.h>
 #include "Game.Characters.Quests.h"
 #include "Game.Characters.Statistics.h"
 #include "Game.Islands.h"

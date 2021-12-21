@@ -3,10 +3,10 @@
 #include <Common.RNG.h>
 #include <Data.Game.Demigod.h>
 #include <Data.Game.Island.h>
-#include <Data.Game.Island.Item.h>
+#include <Data.Game.Island.ItemLegacy.h>
 #include <Data.Game.Island.Known.h>
 #include <Data.Game.Island.Market.h>
-#include <Data.Game.Island.Visit.h>
+#include <Data.Game.Island.VisitLegacy.h>
 #include "Game.Session.h"
 #include "Game.Items.h"
 #include <set>

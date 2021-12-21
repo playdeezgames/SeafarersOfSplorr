@@ -1,7 +1,7 @@
 #include <Common.Heading.h>
 #include <Data.Game.Island.h>
 #include <Data.Game.Island.Known.h>
-#include <Data.Game.Island.Visit.h>
+#include <Data.Game.Island.VisitLegacy.h>
 #include "Game.Characters.Ships.h"
 #include "Game.Islands.h"
 #include "Game.Session.h"

@@ -1,6 +1,6 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
-#include "Data.Game.Island.Quest.h"
+#include "Data.Game.Island.QuestLegacy.h"
 namespace data::game::island
 {
 	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandQuests]([FromIslandId] INT NOT NULL, [ToIslandId] INT NOT NULL, [ItemName] TEXT NOT NULL, [PersonName] TEXT NOT NULL, [ProfessionName] TEXT NOT NULL, [ReceiptEmotion] TEXT NOT NULL , [Reward] REAL NOT NULL, UNIQUE([FromIslandId]));";
