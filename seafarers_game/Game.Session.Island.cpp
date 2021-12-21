@@ -46,4 +46,9 @@ namespace game::session
 	{
 		return TryGetLocation(islandId).value();
 	}
+
+	island::Tavern Island::GetTavern() const
+	{
+		return island::Tavern(islandId);
+	}
 }

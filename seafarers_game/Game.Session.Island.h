@@ -1,6 +1,7 @@
 #pragma once
 #include <Common.XY.h>
 #include "Game.Session.Island.Markets.h"
+#include "Game.Session.Island.Tavern.h"
 #include <optional>
 #include <string>
 namespace game::session
@@ -14,6 +15,7 @@ namespace game::session
 		bool IsKnown() const;
 		std::string GetDisplayName() const;
 		common::XY<double> GetLocation() const;
+		island::Tavern GetTavern() const;
 	private:
 		int islandId;
 	};

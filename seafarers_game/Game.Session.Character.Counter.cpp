@@ -29,7 +29,9 @@ namespace game::session::character
 	static const std::map<game::characters::Counter, CounterDescriptor> counterDescriptors =
 	{
 		{ game::characters::Counter::STARVATION, {"Starvation", -10}},
-		{ game::characters::Counter::WOUNDS, {"Wounds", 0}}
+		{ game::characters::Counter::WOUNDS, {"Wounds", 0}},
+		{ game::characters::Counter::REPUTATION, {"Reputation", 0}},
+		{ game::characters::Counter::INFAMY, {"Infamy", 0}}
 	};
 
 	void Counter::Reset() const
