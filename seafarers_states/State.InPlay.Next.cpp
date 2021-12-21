@@ -21,7 +21,7 @@ namespace state::in_play
 			.GetCharacter()
 			.GetCounters()
 			.GetCounter(game::characters::Counter::TURNS_REMAINING)
-			.GetValue() > 0;
+			.GetValue() <= 0;
 	}
 
 	static bool IsPlayerDead()

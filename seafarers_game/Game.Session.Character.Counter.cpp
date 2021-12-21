@@ -14,15 +14,10 @@ namespace game::session::character
 
 	int Counter::Change(int delta) const
 	{
-		auto counterValue = data::game::character::Counter::Read(characterId, (int)counter).value();
+		auto counterValue = GetValue();
 		auto newValue = counterValue + delta;
 		data::game::character::Counter::Write(characterId, (int)counter, newValue);
 		return newValue;
-	}
-
-	int Counter::GetValue() const
-	{
-		return data::game::character::Counter::Read(characterId, (int)counter).value();
 	}
 
 	struct CounterDescriptor
@@ -36,8 +31,19 @@ namespace game::session::character
 		{ game::characters::Counter::STARVATION, {"Starvation", -10}},
 		{ game::characters::Counter::WOUNDS, {"Wounds", 0}},
 		{ game::characters::Counter::REPUTATION, {"Reputation", 0}},
-		{ game::characters::Counter::INFAMY, {"Infamy", 0}}
+		{ game::characters::Counter::INFAMY, {"Infamy", 0}},
+		{ game::characters::Counter::TURNS_REMAINING, {"Turns Remaining", 10000}}
 	};
+
+	int Counter::GetValue() const
+	{
+		auto counterValue = data::game::character::Counter::Read(characterId, (int)counter);
+		if (counterValue)
+		{
+			return counterValue.value();
+		}
+		return counterDescriptors.find(counter)->second.initialValue.value_or(0);
+	}
 
 	void Counter::Reset() const
 	{
