@@ -6,6 +6,7 @@ namespace game::characters
 		STARVATION, 
 		WOUNDS,
 		REPUTATION,
-		INFAMY
+		INFAMY,
+		TURNS_REMAINING
 	};
 }
