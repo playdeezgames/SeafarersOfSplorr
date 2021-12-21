@@ -4,13 +4,61 @@
 #include "Data.Game.Island.h"
 namespace data::game
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Islands]([IslandId] INTEGER PRIMARY KEY AUTOINCREMENT, [X] REAL NOT NULL,[Y] REAL NOT NULL,[Name] TEXT NOT NULL,[PatronDemigodId] INT NOT NULL,UNIQUE([X],[Y]));";
-	static const std::string QUERY_ITEM = "SELECT [IslandId],[X],[Y],[Name],[PatronDemigodId] FROM [Islands] WHERE [IslandId]={};";
-	static const std::string QUERY_ID_FOR_LOCATION = "SELECT [IslandId] FROM [Islands] WHERE [X]={:.4f} AND [Y]={:.4f};";
-	static const std::string INSERT_ITEM = "INSERT INTO [Islands]([X],[Y],[Name],[PatronDemigodId]) VALUES ({:.4f},{:.4f},{},{});";
-	static const std::string UPDATE_ITEM = "UPDATE [Islands] SET [X]={:.4f},[Y]={:.4f},[Name]={},[PatronDemigodId]={}) WHERE [IslandId]={};";
-	static const std::string QUERY_ALL = "SELECT [IslandId],[X],[Y],[Name],[PatronDemigodId] FROM [Islands];";
-	static const std::string CLEAR_ALL = "DELETE FROM [Islands];";
+	static const std::string CREATE_TABLE = 
+		"CREATE TABLE IF NOT EXISTS [Islands]"
+		"("
+			"[IslandId] INTEGER PRIMARY KEY AUTOINCREMENT, "
+			"[X] REAL NOT NULL,"
+			"[Y] REAL NOT NULL,"
+			"[Name] TEXT NOT NULL,"
+			"[PatronDemigodId] INT NOT NULL,"
+			"UNIQUE([X],[Y])"
+		");";
+	static const std::string QUERY_ITEM = 
+		"SELECT "
+			"[IslandId],"
+			"[X],"
+			"[Y],"
+			"[Name],"
+			"[PatronDemigodId] "
+		"FROM [Islands] "
+		"WHERE "
+			"[IslandId]={};";
+	static const std::string QUERY_ID_FOR_LOCATION = 
+		"SELECT "
+			"[IslandId] "
+		"FROM [Islands] "
+		"WHERE "
+			"[X]={:.4f} "
+			"AND [Y]={:.4f};";
+	static const std::string INSERT_ITEM = 
+		"INSERT INTO [Islands]"
+		"("
+			"[X],"
+			"[Y],"
+			"[Name],"
+			"[PatronDemigodId]"
+		") "
+		"VALUES ({:.4f},{:.4f},{},{});";
+	static const std::string UPDATE_ITEM = 
+		"UPDATE [Islands] "
+		"SET "
+		"[X]={:.4f},"
+		"[Y]={:.4f},"
+		"[Name]={},"
+		"[PatronDemigodId]={}"
+		"WHERE "
+			"[IslandId]={};";
+	static const std::string QUERY_ALL = 
+		"SELECT "
+			"[IslandId],"
+			"[X],"
+			"[Y],"
+			"[Name],"
+			"[PatronDemigodId] "
+		"FROM [Islands];";
+	static const std::string CLEAR_ALL = 
+		"DELETE FROM [Islands];";
 
 	static const std::string FIELD_ISLAND_ID = "IslandId";
 	static const std::string FIELD_X = "X";

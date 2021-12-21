@@ -3,10 +3,31 @@
 #include "Data.Game.Island.VisitLegacy.h"
 namespace data::game::island
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [IslandVisits]([IslandId] INT NOT NULL UNIQUE, [Visits] INT NOT NULL, [Turn] INT NULL);";
-	static const std::string QUERY_ITEM = "SELECT [IslandId],[Visits],[Turn] FROM [IslandVisits] WHERE [IslandId]={};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [IslandVisits]([IslandId],[Visits],[Turn]) VALUES({},{},{});";
-	static const std::string DELETE_ALL = "DELETE FROM [IslandVisits];";
+	static const std::string CREATE_TABLE = 
+		"CREATE TABLE IF NOT EXISTS [IslandVisits]"
+		"("
+			"[IslandId] INT NOT NULL UNIQUE, "
+			"[Visits] INT NOT NULL, "
+			"[Turn] INT NULL"
+		");";
+	static const std::string QUERY_ITEM = 
+		"SELECT "
+			"[IslandId],"
+			"[Visits],"
+			"[Turn] "
+		"FROM [IslandVisits] "
+		"WHERE "
+			"[IslandId]={};";
+	static const std::string REPLACE_ITEM = 
+		"REPLACE INTO [IslandVisits]"
+		"("
+			"[IslandId],"
+			"[Visits],"
+			"[Turn]"
+		") "
+		"VALUES({},{},{});";
+	static const std::string DELETE_ALL = 
+		"DELETE FROM [IslandVisits];";
 
 	static const std::string FIELD_ISLAND_ID = "IslandId";
 	static const std::string FIELD_VISITS = "Visits";

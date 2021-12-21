@@ -3,11 +3,52 @@
 #include "Data.Game.Island.DarkAlley.FightCard.h"
 namespace data::game::island::dark_alley
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [DarkAlleyFightCards]([IslandId] INT NOT NULL,[CardId] INT NOT NULL,[RankId] INT NOT NULL,[SuitId] INT NOT NULL,[Adjacent] INT NOT NULL,[Shown] INT NOT NULL,UNIQUE([IslandId], [CardId]));";
-	static const std::string QUERY_ITEM = "SELECT [RankId],[SuitId],[Adjacent],[Shown] FROM [DarkAlleyFightCards] WHERE [IslandId]={} AND [CardId]={};";
-	static const std::string QUERY_ITEMS = "SELECT [RankId],[SuitId],[Adjacent],[Shown],[CardId] FROM [DarkAlleyFightCards] WHERE [IslandId]={};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [DarkAlleyFightCards]([IslandId],[CardId],[RankId],[SuitId],[Adjacent],[Shown]) VALUES({},{},{},{},{},{});";
-	static const std::string DELETE_ALL = "DELETE FROM [DarkAlleyFightCards] WHERE [IslandId]={};";
+	static const std::string CREATE_TABLE = 
+		"CREATE TABLE IF NOT EXISTS [DarkAlleyFightCards]"
+		"("
+			"[IslandId] INT NOT NULL,"
+			"[CardId] INT NOT NULL,"
+			"[RankId] INT NOT NULL,"
+			"[SuitId] INT NOT NULL,"
+			"[Adjacent] INT NOT NULL,"
+			"[Shown] INT NOT NULL,"
+			"UNIQUE([IslandId], [CardId])"
+		");";
+	static const std::string QUERY_ITEM = 
+		"SELECT "
+			"[RankId],"
+			"[SuitId],"
+			"[Adjacent],"
+			"[Shown] "
+		"FROM [DarkAlleyFightCards] "
+		"WHERE "
+			"[IslandId]={} "
+			"AND [CardId]={};";
+	static const std::string QUERY_ITEMS = 
+		"SELECT "
+			"[RankId],"
+			"[SuitId],"
+			"[Adjacent],"
+			"[Shown],"
+			"[CardId] "
+		"FROM [DarkAlleyFightCards] "
+		"WHERE "
+			"[IslandId]={};";
+	static const std::string REPLACE_ITEM = 
+		"REPLACE INTO [DarkAlleyFightCards]"
+		"("
+			"[IslandId],"
+			"[CardId],"
+			"[RankId],"
+			"[SuitId],"
+			"[Adjacent],"
+			"[Shown]"
+		") "
+		"VALUES({},{},{},{},{},{});";
+	static const std::string DELETE_ALL = 
+		"DELETE FROM [DarkAlleyFightCards] "
+		"WHERE "
+			"[IslandId]={};";
 
 	static const std::string FIELD_SUIT_ID = "SuitId";
 	static const std::string FIELD_RANK_ID = "RankId";

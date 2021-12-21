@@ -3,7 +3,7 @@
 #include <optional>
 namespace data::game::island
 {
-	struct Known
+	struct KnownLegacy
 	{
 		static void Write(int);
 		static bool Read(int);

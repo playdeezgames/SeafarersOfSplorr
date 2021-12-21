@@ -1,6 +1,6 @@
 #include <Common.Heading.h>
 #include <Data.Game.Island.h>
-#include <Data.Game.Island.Known.h>
+#include <Data.Game.Island.KnownLegacy.h>
 #include <Data.Game.Island.VisitLegacy.h>
 #include "Game.Characters.Ships.h"
 #include "Game.Islands.h"
@@ -23,7 +23,7 @@ namespace game
 		const common::XY<double>& shipLocation)
 	{
 		auto visitData = data::game::island::VisitLegacy::Read(island.id);
-		data::game::island::Known::Write(island.id);
+		data::game::island::KnownLegacy::Write(island.id);
 		accumulator.push_back(
 			{
 				island.id,
@@ -160,7 +160,7 @@ namespace game
 	{
 		int shipId = game::characters::Ships::ReadShipId(characterId).value();
 		auto shipLocation = game::Ship::GetLocation(shipId).value();
-		auto knownLocations = data::game::island::Known::All();
+		auto knownLocations = data::game::island::KnownLegacy::All();
 		std::list<Island> result;
 		for (auto& knownLocation : knownLocations)
 		{
