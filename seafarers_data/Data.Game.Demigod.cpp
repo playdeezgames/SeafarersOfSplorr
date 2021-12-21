@@ -3,12 +3,73 @@
 #include "Data.Game.Demigod.h"
 namespace data::game
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Demigods]([DemigodId] INTEGER PRIMARY KEY AUTOINCREMENT,[Name] TEXT NOT NULL UNIQUE, [PatronWeight] INT NOT NULL,[BlessingThreshold] REAL NOT NULL,[BlessingMultiplier] REAL NOT NULL,[BlessingPlightId] INT NOT NULL,[CurseThreshold] REAL NOT NULL,[CurseMultiplier] REAL NOT NULL,[CursePlightId] INT NOT NULL);";
-	static const std::string INSERT_ITEM = "INSERT INTO [Demigods]([Name],[PatronWeight],[BlessingThreshold],[BlessingMultiplier],[BlessingPlightId],[CurseThreshold],[CurseMultiplier],[CursePlightId]) VALUES({},{},{},{},{},{},{},{});";
-	static const std::string UPDATE_ITEM = "UPDATE [Demigods] SET [Name]={}, [PatronWeight]={}, [BlessingThreshold]={}, [BlessingMultiplier]={}, [BlessingPlightId]={}, [CurseThreshold]={}, [CurseMultiplier]={}, [CursePlightId]={} WHERE [DemigodId]={};";
-	static const std::string DELETE_ALL = "DELETE FROM [Demigods];";
-	static const std::string QUERY_ALL = "SELECT [DemigodId],[Name],[PatronWeight],[BlessingThreshold],[BlessingMultiplier],[BlessingPlightId],[CurseThreshold],[CurseMultiplier],[CursePlightId] FROM [Demigods];";
-	static const std::string QUERY_ITEM = "SELECT [DemigodId],[Name],[PatronWeight],[BlessingThreshold],[BlessingMultiplier],[BlessingPlightId],[CurseThreshold],[CurseMultiplier],[CursePlightId] FROM [Demigods] WHERE [DemigodId]={};";
+	static const std::string CREATE_TABLE = 
+		"CREATE TABLE IF NOT EXISTS [Demigods]"
+		"("
+			"[DemigodId] INTEGER PRIMARY KEY AUTOINCREMENT,"
+			"[Name] TEXT NOT NULL UNIQUE, "
+			"[PatronWeight] INT NOT NULL,"
+			"[BlessingThreshold] REAL NOT NULL,"
+			"[BlessingMultiplier] REAL NOT NULL,"
+			"[BlessingPlightId] INT NOT NULL,"
+			"[CurseThreshold] REAL NOT NULL,"
+			"[CurseMultiplier] REAL NOT NULL,"
+			"[CursePlightId] INT NOT NULL"
+		");";
+	static const std::string INSERT_ITEM = 
+		"INSERT INTO [Demigods]"
+		"("
+			"[Name],"
+			"[PatronWeight],"
+			"[BlessingThreshold],"
+			"[BlessingMultiplier],"
+			"[BlessingPlightId],"
+			"[CurseThreshold],"
+			"[CurseMultiplier],"
+			"[CursePlightId]"
+		") "
+		"VALUES({},{},{},{},{},{},{},{});";
+	static const std::string UPDATE_ITEM = 
+		"UPDATE [Demigods] "
+		"SET "
+			"[Name]={}, "
+			"[PatronWeight]={}, "
+			"[BlessingThreshold]={}, "
+			"[BlessingMultiplier]={}, "
+			"[BlessingPlightId]={}, "
+			"[CurseThreshold]={}, "
+			"[CurseMultiplier]={}, "
+			"[CursePlightId]={} "
+		"WHERE "
+			"[DemigodId]={};";
+	static const std::string DELETE_ALL = 
+		"DELETE FROM [Demigods];";
+	static const std::string QUERY_ALL = 
+		"SELECT "
+			"[DemigodId],"
+			"[Name],"
+			"[PatronWeight],"
+			"[BlessingThreshold],"
+			"[BlessingMultiplier],"
+			"[BlessingPlightId],"
+			"[CurseThreshold],"
+			"[CurseMultiplier],"
+			"[CursePlightId] "
+		"FROM [Demigods];";
+	static const std::string QUERY_ITEM = 
+		"SELECT "
+			"[DemigodId],"
+			"[Name],"
+			"[PatronWeight],"
+			"[BlessingThreshold],"
+			"[BlessingMultiplier],"
+			"[BlessingPlightId],"
+			"[CurseThreshold],"
+			"[CurseMultiplier],"
+			"[CursePlightId] "
+		"FROM [Demigods] "
+		"WHERE "
+			"[DemigodId]={};";
 
 	static const std::string FIELD_ID = "DemigodId";
 	static const std::string FIELD_NAME = "Name";
