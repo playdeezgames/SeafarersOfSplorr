@@ -40,7 +40,10 @@ namespace data::game
 	static const std::string FIELD_NAME = "Name";
 	static const std::string FIELD_CHARACTER_ID = "CharacterId";
 
-	static const auto AutoCreateTable = data::game::Common::Run(CREATE_TABLE);
+	void Character::Initialize()
+	{
+		data::game::Common::Execute(CREATE_TABLE);
+	}
 
 	static Character ToCharacter(const std::map<std::string, std::string> record)
 	{
@@ -53,7 +56,7 @@ namespace data::game
 
 	std::optional<Character> Character::Read(int characterId)
 	{
-		AutoCreateTable();
+		Initialize();
 		auto records = Common::Execute(
 				QUERY_ITEM,
 				characterId);
@@ -66,7 +69,7 @@ namespace data::game
 
 	int Character::Create(const Character& character)
 	{
-		AutoCreateTable();
+		Initialize();
 		Common::Execute(
 			CREATE_ITEM,
 			character.state,
@@ -77,7 +80,7 @@ namespace data::game
 
 	void Character::Write(int characterId, const Character& avatar)
 	{
-		AutoCreateTable();
+		Initialize();
 		Common::Execute(
 			UPDATE_ITEM,
 			avatar.state,
@@ -87,7 +90,7 @@ namespace data::game
 
 	std::list<int> Character::All()
 	{
-		AutoCreateTable();
+		Initialize();
 		auto records = Common::Execute(QUERY_ALL);
 		std::list<int> result;
 		for (auto& record : records)

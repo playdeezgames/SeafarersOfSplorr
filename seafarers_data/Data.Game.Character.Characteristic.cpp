@@ -1,4 +1,5 @@
 #include <Common.Data.h>
+#include "Data.Game.Character.h"
 #include "Data.Game.Character.Characteristic.h"
 #include "Data.Game.Common.h"
 namespace data::game::character
@@ -9,7 +10,8 @@ namespace data::game::character
 			"[CharacterId] INT NOT NULL,"
 			"[CharacteristicId] INT NOT NULL,"
 			"[Value] INT NOT NULL,"
-			"UNIQUE([CharacterId],[CharacteristicId])"
+			"UNIQUE([CharacterId],[CharacteristicId]),"
+			"FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId])"
 		");";
 	static const std::string QUERY_ITEM = 
 		"SELECT "
@@ -37,17 +39,21 @@ namespace data::game::character
 	static const std::string FIELD_VALUE = "Value";
 	static const std::string FIELD_CHARACTERISTIC_ID = "CharacteristicId";
 
-	static auto AutoCreateTable = data::game::Common::Run(CREATE_TABLE);
+	void Characteristic::Initialize()
+	{
+		Character::Initialize();
+		Common::Execute(CREATE_TABLE);
+	}
 
 	void Characteristic::Write(int characterId, int characteristicId, int value)
 	{
-		AutoCreateTable();
+		Initialize();
 		Common::Execute(REPLACE_ITEM, characterId, characteristicId, value);
 	}
 
 	std::optional<int> Characteristic::Read(int characterId, int characteristicId)
 	{
-		AutoCreateTable();
+		Initialize();
 		auto records = Common::Execute(QUERY_ITEM, characterId, characteristicId);
 		if (!records.empty())
 		{
@@ -58,7 +64,7 @@ namespace data::game::character
 
 	std::map<int, int> Characteristic::Read(int characterId)
 	{
-		AutoCreateTable();
+		Initialize();
 		std::map<int, int> result;
 		auto records = Common::Execute(QUERY_ITEMS, characterId);
 		for (auto record : records)
