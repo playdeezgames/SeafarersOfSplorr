@@ -3,11 +3,35 @@
 #include "Data.Game.Common.h"
 namespace data::game::character
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [CharacterIslands]([CharacterId] INT NOT NULL UNIQUE,[IslandId] INT NOT NULL);";
-	static const std::string QUERY_ITEM = "SELECT [IslandId] FROM [CharacterIslands] WHERE [CharacterId]={};";
-	static const std::string QUERY_ALL = "SELECT [CharacterId] FROM [CharacterIslands] WHERE [IslandId]={};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [CharacterIslands]([CharacterId], [IslandId]) VALUES({},{});";
-	static const std::string DELETE_ITEM = "DELETE FROM [CharacterIslands] WHERE [CharacterId]={};";
+	static const std::string CREATE_TABLE = 
+		"CREATE TABLE IF NOT EXISTS [CharacterIslands]"
+		"("
+			"[CharacterId] INT NOT NULL UNIQUE,"
+			"[IslandId] INT NOT NULL"
+		");";
+	static const std::string QUERY_ITEM = 
+		"SELECT "
+			"[IslandId] "
+		"FROM [CharacterIslands] "
+		"WHERE "
+			"[CharacterId]={};";
+	static const std::string QUERY_ALL = 
+		"SELECT "
+			"[CharacterId] "
+		"FROM [CharacterIslands] "
+		"WHERE "
+			"[IslandId]={};";
+	static const std::string REPLACE_ITEM = 
+		"REPLACE INTO [CharacterIslands]"
+		"("
+			"[CharacterId], "
+			"[IslandId]"
+		") "
+		"VALUES({},{});";
+	static const std::string DELETE_ITEM = 
+		"DELETE FROM [CharacterIslands] "
+		"WHERE "
+			"[CharacterId]={};";
 
 	static const std::string FIELD_ISLAND_ID = "IslandId";
 	static const std::string FIELD_CHARACTER_ID = "CharacterId";

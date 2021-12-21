@@ -3,12 +3,44 @@
 #include "Data.Game.Character.DemigodFavor.h"
 namespace data::game::character
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [CharacterDemigodFavor]([CharacterId] INT NOT NULL,[DemigodId] INT NOT NULL,[Favor] REAL NOT NULL, [OfferingCooldown] INT NOT NULL, UNIQUE([CharacterId],[DemigodId]));";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [CharacterDemigodFavor]([CharacterId],[DemigodId],[Favor],[OfferingCooldown]) VALUES({},{},{},{});";
-	static const std::string QUERY_ITEM_FAVOR = "SELECT [Favor] FROM [CharacterDemigodFavor] WHERE [CharacterId]={} AND [DemigodId]={};";
-	static const std::string QUERY_ITEM_OFFERING_COOLDOWN = "SELECT [OfferingCooldown] FROM [CharacterDemigodFavor] WHERE [CharacterId]={} AND [DemigodId]={};";
-	static const std::string DELETE_ALL_FOR_CHARACTER = "DELETE FROM [CharacterDemigodFavor] WHERE [CharacterId]={};";
-	static const std::string DELETE_ALL = "DELETE FROM [CharacterDemigodFavor];";
+	static const std::string CREATE_TABLE = 
+		"CREATE TABLE IF NOT EXISTS [CharacterDemigodFavor]"
+		"("
+			"[CharacterId] INT NOT NULL,"
+			"[DemigodId] INT NOT NULL,"
+			"[Favor] REAL NOT NULL, "
+			"[OfferingCooldown] INT NOT NULL, "
+			"UNIQUE([CharacterId],[DemigodId])"
+		");";
+	static const std::string REPLACE_ITEM = 
+		"REPLACE INTO [CharacterDemigodFavor]"
+		"("
+			"[CharacterId],"
+			"[DemigodId],"
+			"[Favor],"
+			"[OfferingCooldown]"
+		") "
+		"VALUES({},{},{},{});";
+	static const std::string QUERY_ITEM_FAVOR = 
+		"SELECT "
+			"[Favor] "
+		"FROM [CharacterDemigodFavor] "
+		"WHERE "
+			"[CharacterId]={} "
+			"AND [DemigodId]={};";
+	static const std::string QUERY_ITEM_OFFERING_COOLDOWN = 
+		"SELECT "
+			"[OfferingCooldown] "
+		"FROM [CharacterDemigodFavor] "
+		"WHERE "
+			"[CharacterId]={} "
+			"AND [DemigodId]={};";
+	static const std::string DELETE_ALL_FOR_CHARACTER = 
+		"DELETE FROM [CharacterDemigodFavor] "
+		"WHERE "
+			"[CharacterId]={};";
+	static const std::string DELETE_ALL = 
+		"DELETE FROM [CharacterDemigodFavor];";
 
 	static const std::string FIELD_FAVOR = "Favor";
 	static const std::string FIELD_OFFERING_COOLDOWN = "OfferingCooldown";

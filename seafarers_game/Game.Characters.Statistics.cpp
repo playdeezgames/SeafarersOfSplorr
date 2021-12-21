@@ -1,7 +1,7 @@
 #include <Common.Utility.h>
 #include <Common.Utility.Optional.h>
 #include <Common.Utility.Table.h>
-#include <Data.Game.Character.Statistic.h>
+#include <Data.Game.Character.StatisticLegacy.h>
 #include "Game.Characters.Equipment.h"
 #include "Game.Characters.Statistic.h"
 #include "Game.Characters.Statistics.h"

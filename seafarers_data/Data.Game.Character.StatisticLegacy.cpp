@@ -1,11 +1,37 @@
 #include <Common.Data.h>
-#include "Data.Game.Character.Statistic.h"
+#include "Data.Game.Character.StatisticLegacy.h"
 #include "Data.Game.Common.h"
 namespace data::game::character
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [CharacterStatistics]([CharacterId] INT NOT NULL,[StatisticId] INT NOT NULL,[Minimum] REAL NULL,[Maximum] REAL NULL,[Current] REAL NOT NULL, UNIQUE([CharacterId],[StatisticId]));";
-	static const std::string QUERY_ITEM = "SELECT [Minimum], [Maximum], [Current] FROM [CharacterStatistics] WHERE [StatisticId] = {} AND [CharacterId]={};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [CharacterStatistics]([CharacterId],[StatisticId],[Minimum],[Maximum],[Current]) VALUES ({},{},{},{},{});";
+	static const std::string CREATE_TABLE = 
+		"CREATE TABLE IF NOT EXISTS[CharacterStatistics]"
+		"("
+			"[CharacterId] INT NOT NULL, "
+			"[StatisticId] INT NOT NULL, "
+			"[Minimum] REAL NULL, "
+			"[Maximum] REAL NULL, "
+			"[Current] REAL NOT NULL, "
+			"UNIQUE([CharacterId], [StatisticId])"
+		");";
+	static const std::string QUERY_ITEM = 
+		"SELECT "
+			"[Minimum], "
+			"[Maximum], "
+			"[Current] "
+		"FROM [CharacterStatistics] "
+		"WHERE "
+			"[StatisticId] = {} "
+			"AND [CharacterId]={};";
+	static const std::string REPLACE_ITEM = 
+		"REPLACE INTO [CharacterStatistics]"
+		"("
+			"[CharacterId],"
+			"[StatisticId],"
+			"[Minimum],"
+			"[Maximum],"
+			"[Current]"
+		") "
+		"VALUES ({},{},{},{},{});";
 
 	static const std::string FIELD_MINIMUM = "Minimum";
 	static const std::string FIELD_MAXIMUM = "Maximum";

@@ -3,10 +3,37 @@
 #include "Data.Game.Common.h"
 namespace data::game::character
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [CharacterSkills]([CharacterId] INT NOT NULL,[SkillId] INT NOT NULL,[Value] INT NOT NULL, UNIQUE([CharacterId],[SkillId]));";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [CharacterSkills]([CharacterId],[SkillId],[Value]) VALUES({},{},{});";
-	static const std::string QUERY_ITEM = "SELECT [Value] FROM [CharacterSkills] WHERE [CharacterId]={} AND [SkillId]={};";
-	static const std::string QUERY_ITEMS = "SELECT [SkillId],[Value] FROM [CharacterSkills] WHERE [CharacterId]={};";
+	static const std::string CREATE_TABLE = 
+		"CREATE TABLE IF NOT EXISTS [CharacterSkills]"
+		"("
+			"[CharacterId] INT NOT NULL,"
+			"[SkillId] INT NOT NULL,"
+			"[Value] INT NOT NULL, "
+			"UNIQUE([CharacterId],[SkillId])"
+		");";
+	static const std::string REPLACE_ITEM = 
+		"REPLACE INTO [CharacterSkills]"
+		"("
+			"[CharacterId],"
+			"[SkillId],"
+			"[Value]"
+		") "
+		"VALUES({},{},{});";
+	static const std::string QUERY_ITEM = 
+		"SELECT "
+			"[Value] "
+		"FROM [CharacterSkills] "
+		"WHERE "
+			"[CharacterId]={} "
+			"AND [SkillId]={};";
+	static const std::string QUERY_ITEMS = 
+		"SELECT "
+			"[SkillId],"
+			"[Value] "
+		"FROM [CharacterSkills] "
+		"WHERE "
+			"[CharacterId]={};";
+
 	static const std::string FIELD_VALUE = "Value";
 	static const std::string FIELD_SKILL_ID = "SkillId";
 	static const auto AutoCreateTable = data::game::Common::Run(CREATE_TABLE);

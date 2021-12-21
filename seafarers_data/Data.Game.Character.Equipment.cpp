@@ -3,13 +3,47 @@
 #include "Data.Game.Common.h"
 namespace data::game::character
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [CharacterEquipment]([CharacterId] INT NOT NULL,[EquipSlotId] INT NOT NULL,[ItemId] INT NOT NULL,UNIQUE([CharacterId],[EquipSlotId]));";
-	static const std::string QUERY_ITEM = "SELECT [ItemId] FROM [CharacterEquipment] WHERE [CharacterId]={} AND [EquipSlotId]={};";
-	static const std::string QUERY_ALL = "SELECT [EquipSlotId],[ItemId] FROM [CharacterEquipment] WHERE [CharacterId]={};";
-	static const std::string DELETE_ITEM = "DELETE FROM [CharacterEquipment] WHERE [CharacterId]={} AND [EquipSlotId]={};";
-	static const std::string DELETE_ALL_FOR_CHARACTER = "DELETE FROM [CharacterEquipment] WHERE [CharacterId]={};";
-	static const std::string DELETE_ALL = "DELETE FROM [CharacterEquipment];";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [CharacterEquipment] ([CharacterId],[EquipSlotId],[ItemId]) VALUES({},{},{});";
+	static const std::string CREATE_TABLE = 
+		"CREATE TABLE IF NOT EXISTS [CharacterEquipment]"
+		"("
+			"[CharacterId] INT NOT NULL,"
+			"[EquipSlotId] INT NOT NULL,"
+			"[ItemId] INT NOT NULL,"
+			"UNIQUE([CharacterId],[EquipSlotId])"
+		");";
+	static const std::string QUERY_ITEM = 
+		"SELECT "
+			"[ItemId] "
+		"FROM [CharacterEquipment] "
+		"WHERE "
+			"[CharacterId]={} "
+			"AND [EquipSlotId]={};";
+	static const std::string QUERY_ALL = 
+		"SELECT "
+			"[EquipSlotId],"
+			"[ItemId] "
+		"FROM [CharacterEquipment] "
+		"WHERE "
+			"[CharacterId]={};";
+	static const std::string DELETE_ITEM = 
+		"DELETE FROM [CharacterEquipment] "
+		"WHERE "
+			"[CharacterId]={} "
+			"AND [EquipSlotId]={};";
+	static const std::string DELETE_ALL_FOR_CHARACTER = 
+		"DELETE FROM [CharacterEquipment] "
+		"WHERE "
+			"[CharacterId]={};";
+	static const std::string DELETE_ALL = 
+		"DELETE FROM [CharacterEquipment];";
+	static const std::string REPLACE_ITEM = 
+		"REPLACE INTO [CharacterEquipment]"
+		"("
+			"[CharacterId],"
+			"[EquipSlotId],"
+			"[ItemId]"
+		") "
+		"VALUES({},{},{});";
 
 	static const std::string FIELD_ITEM_ID = "ItemId";
 	static const std::string FIELD_EQUIP_SLOT_ID = "EquipSlotId";

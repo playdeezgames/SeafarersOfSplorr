@@ -3,11 +3,37 @@
 #include "Data.Game.Character.ItemInstance.h"
 namespace data::game::character
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [CharacterItemInstances]([ItemInstanceId] INT NOT NULL UNIQUE,[CharacterId] INT NOT NULL);";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [CharacterItemInstances]([ItemInstanceId],[CharacterId]) VALUES({},{});";
-	static const std::string PURGE_ITEMS = "DELETE FROM [CharacterItemInstances] cii LEFT JOIN [ItemInstances] ii ON ii.[ItemInstanceId]=cii.[ItemInstanceId] WHERE ii.[ItemInstanceId] IS NULL;";
-	static const std::string QUERY_ITEMS_FOR_CHARACTER = "SELECT [ItemInstanceId] FROM [CharacterItemInstances] WHERE [CharacterId]={};";
-	static const std::string QUERY_ITEMS_FOR_ITEM_INSTANCE = "SELECT [CharacterId] FROM [CharacterItemInstances] WHERE [ItemInstanceId]={};";
+	static const std::string CREATE_TABLE = 
+		"CREATE TABLE IF NOT EXISTS [CharacterItemInstances]"
+		"("
+			"[ItemInstanceId] INT NOT NULL UNIQUE,"
+			"[CharacterId] INT NOT NULL"
+		");";
+	static const std::string REPLACE_ITEM = 
+		"REPLACE INTO [CharacterItemInstances]"
+		"("
+			"[ItemInstanceId],"
+			"[CharacterId]"
+		") "
+		"VALUES({},{});";
+	static const std::string PURGE_ITEMS = 
+		"DELETE FROM [CharacterItemInstances] cii "
+		"LEFT JOIN [ItemInstances] ii "
+			"ON ii.[ItemInstanceId]=cii.[ItemInstanceId] "
+		"WHERE "
+			"ii.[ItemInstanceId] IS NULL;";
+	static const std::string QUERY_ITEMS_FOR_CHARACTER = 
+		"SELECT "
+			"[ItemInstanceId] "
+		"FROM [CharacterItemInstances] "
+		"WHERE "
+			"[CharacterId]={};";
+	static const std::string QUERY_ITEMS_FOR_ITEM_INSTANCE = 
+		"SELECT "
+			"[CharacterId] "
+		"FROM [CharacterItemInstances] "
+		"WHERE "
+			"[ItemInstanceId]={};";
 
 	static const std::string FIELD_CHARACTER_ID = "CharacterId";
 	static const std::string FIELD_ITEM_INSTANCE_ID = "ItemInstanceId";

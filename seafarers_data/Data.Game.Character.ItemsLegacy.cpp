@@ -3,13 +3,47 @@
 #include "Data.Game.Common.h"
 namespace data::game::character
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [CharacterItems]([CharacterId] INT NOT NULL,[ItemId] INT NOT NULL, [ItemCount] INT NOT NULL, UNIQUE([CharacterId],[ItemId]))";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [CharacterItems]([CharacterId],[ItemId],[ItemCount]) VALUES({},{},{});";
-	static const std::string QUERY_ITEM = "SELECT [ItemCount] FROM [CharacterItems] WHERE [CharacterId]={} AND [ItemId]={};";
-	static const std::string QUERY_ALL = "SELECT [ItemId],[ItemCount] FROM [CharacterItems] WHERE [CharacterId]={};";
-	static const std::string DELETE_ALL = "DELETE FROM [CharacterItems] WHERE [CharacterId]={};";
-	static const std::string DELETE_ALL_ITEMS = "DELETE FROM [CharacterItems];";
-	static const std::string DELETE_ITEM = "DELETE FROM [CharacterItems] WHERE [CharacterId]={} AND [ItemId]={};";
+	static const std::string CREATE_TABLE = 
+		"CREATE TABLE IF NOT EXISTS [CharacterItems]"
+		"("
+			"[CharacterId] INT NOT NULL,"
+			"[ItemId] INT NOT NULL, "
+			"[ItemCount] INT NOT NULL, "
+			"UNIQUE([CharacterId],[ItemId])"
+		");";
+	static const std::string REPLACE_ITEM = 
+		"REPLACE INTO [CharacterItems]"
+		"("
+			"[CharacterId],"
+			"[ItemId],"
+			"[ItemCount]"
+		") "
+			"VALUES({},{},{});";
+	static const std::string QUERY_ITEM = 
+		"SELECT "
+			"[ItemCount] "
+		"FROM [CharacterItems] "
+		"WHERE "
+			"[CharacterId]={} "
+			"AND [ItemId]={};";
+	static const std::string QUERY_ALL = 
+		"SELECT "
+			"[ItemId],"
+			"[ItemCount] "
+		"FROM [CharacterItems] "
+		"WHERE "
+			"[CharacterId]={};";
+	static const std::string DELETE_ALL = 
+		"DELETE FROM [CharacterItems] "
+		"WHERE "
+			"[CharacterId]={};";
+	static const std::string DELETE_ALL_ITEMS = 
+		"DELETE FROM [CharacterItems];";
+	static const std::string DELETE_ITEM = 
+		"DELETE FROM [CharacterItems] "
+		"WHERE "
+			"[CharacterId]={} "
+			"AND [ItemId]={};";
 
 	static const std::string FIELD_ITEM_ID = "ItemId";
 	static const std::string FIELD_ITEM_COUNT = "ItemCount";

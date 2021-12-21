@@ -3,11 +3,44 @@
 #include "Data.Game.Common.h"
 namespace data::game::character
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [CharacterShips]([CharacterId] INT NOT NULL UNIQUE, [ShipId] INT NOT NULL,[BerthType] INT NOT NULL);";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [CharacterShips]([CharacterId], [ShipId], [BerthType]) VALUES({},{},{});";
-	static const std::string QUERY_ITEM_FOR_CHARACTER = "SELECT [ShipId],[BerthType],[CharacterId] FROM [CharacterShips] WHERE [CharacterId]={};";
-	static const std::string QUERY_ITEM_FOR_SHIP = "SELECT [ShipId],[BerthType],[CharacterId] FROM [CharacterShips] WHERE [ShipId]={};";
-	static const std::string QUERY_CREW_FOR_SHIP = "SELECT [CharacterId], [BerthType] FROM [CharacterShips] WHERE [ShipId]={};";
+	static const std::string CREATE_TABLE = 
+		"CREATE TABLE IF NOT EXISTS [CharacterShips]"
+		"("
+			"[CharacterId] INT NOT NULL UNIQUE, "
+			"[ShipId] INT NOT NULL,"
+			"[BerthType] INT NOT NULL"
+		");";
+	static const std::string REPLACE_ITEM = 
+		"REPLACE INTO [CharacterShips]"
+		"("
+			"[CharacterId], "
+			"[ShipId], "
+			"[BerthType]"
+		") "
+		"VALUES({},{},{});";
+	static const std::string QUERY_ITEM_FOR_CHARACTER = 
+		"SELECT "
+			"[ShipId],"
+			"[BerthType],"
+			"[CharacterId] "
+		"FROM [CharacterShips] "
+		"WHERE "
+			"[CharacterId]={};";
+	static const std::string QUERY_ITEM_FOR_SHIP = 
+		"SELECT "
+			"[ShipId],"
+			"[BerthType],"
+			"[CharacterId] "
+		"FROM [CharacterShips] "
+		"WHERE "
+			"[ShipId]={};";
+	static const std::string QUERY_CREW_FOR_SHIP = 
+		"SELECT "
+			"[CharacterId], "
+			"[BerthType] "
+		"FROM [CharacterShips] "
+		"WHERE "
+			"[ShipId]={};";
 
 	static const std::string FIELD_SHIP_ID = "ShipId";
 	static const std::string FIELD_BERTH_TYPE = "BerthType";

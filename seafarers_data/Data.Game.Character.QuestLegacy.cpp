@@ -3,10 +3,44 @@
 #include "Data.Game.Common.h"
 namespace data::game::character
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [CharacterQuests]([CharacterId] INT NOT NULL UNIQUE,[ToIslandId] INT NOT NULL, [ItemName] TEXT NOT NULL, [PersonName] TEXT NOT NULL, [ProfessionName] TEXT NOT NULL, [ReceiptEmotion] TEXT NOT NULL, [Reward] REAL NOT NULL);";
-	static const std::string QUERY_ITEM = "SELECT [ToIslandId],[Reward],[ItemName],[PersonName],[ProfessionName],[ReceiptEmotion] FROM [CharacterQuests] WHERE [CharacterId]={};";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [CharacterQuests]([CharacterId],[ToIslandId],[Reward],[ItemName],[PersonName],[ProfessionName],[ReceiptEmotion]) VALUES({},{},{:.4f},{},{},{},{});";
-	static const std::string DELETE_ITEM = "DELETE FROM [CharacterQuests] WHERE [CharacterId]={};";
+	static const std::string CREATE_TABLE =
+		"CREATE TABLE IF NOT EXISTS [CharacterQuests]"
+		"("
+			"[CharacterId] INT NOT NULL UNIQUE,"
+			"[ToIslandId] INT NOT NULL, "
+			"[ItemName] TEXT NOT NULL, "
+			"[PersonName] TEXT NOT NULL, "
+			"[ProfessionName] TEXT NOT NULL, "
+			"[ReceiptEmotion] TEXT NOT NULL, "
+			"[Reward] REAL NOT NULL"
+		");";
+	static const std::string QUERY_ITEM = 
+		"SELECT "
+			"[ToIslandId], "
+			"[Reward], "
+			"[ItemName], "
+			"[PersonName], "
+			"[ProfessionName], "
+			"[ReceiptEmotion] "
+		"FROM [CharacterQuests] "
+		"WHERE "
+			"[CharacterId] = {};";
+	static const std::string REPLACE_ITEM = 
+		"REPLACE INTO [CharacterQuests]"
+		"("
+			"[CharacterId],"
+			"[ToIslandId],"
+			"[Reward],"
+			"[ItemName],"
+			"[PersonName],"
+			"[ProfessionName],"
+			"[ReceiptEmotion]"
+		") "
+		"VALUES({},{},{},{},{},{},{});";
+	static const std::string DELETE_ITEM = 
+		"DELETE FROM [CharacterQuests] "
+		"WHERE "
+			"[CharacterId]={};";
 
 	static const std::string FIELD_TO_ISLAND_ID = "ToIslandId";
 	static const std::string FIELD_REWARD = "Reward";
