@@ -1,5 +1,5 @@
 #include <Common.Data.h>
-#include "Data.Game.Character.Equipment.h"
+#include "Data.Game.Character.EquipmentLegacy.h"
 #include "Data.Game.Common.h"
 namespace data::game::character
 {
@@ -50,7 +50,7 @@ namespace data::game::character
 
 	static auto AutoCreateTable = Common::Run(CREATE_TABLE);
 
-	std::optional<int> Equipment::Read(int characterId, int equipSlotId)
+	std::optional<int> EquipmentLegacy::Read(int characterId, int equipSlotId)
 	{
 		AutoCreateTable();
 		auto records = Common::Execute(QUERY_ITEM, characterId, equipSlotId);
@@ -61,7 +61,7 @@ namespace data::game::character
 		return std::nullopt;
 	}
 
-	void Equipment::Write(int characterId, int equipSlotId, const std::optional<int>& itemId)
+	void EquipmentLegacy::Write(int characterId, int equipSlotId, const std::optional<int>& itemId)
 	{
 		AutoCreateTable();
 		Common::Execute(
@@ -78,7 +78,7 @@ namespace data::game::character
 		}
 	}
 
-	void Equipment::Clear(int characterId)
+	void EquipmentLegacy::Clear(int characterId)
 	{
 		AutoCreateTable();
 		Common::Execute(
@@ -86,7 +86,7 @@ namespace data::game::character
 			characterId);
 	}
 
-	std::map<int, int> Equipment::All(int characterId)
+	std::map<int, int> EquipmentLegacy::All(int characterId)
 	{
 		std::map<int, int> result;
 		AutoCreateTable();
@@ -98,7 +98,7 @@ namespace data::game::character
 		return result;
 	}
 
-	void Equipment::Clear()
+	void EquipmentLegacy::Clear()
 	{
 		AutoCreateTable();
 		Common::Execute(

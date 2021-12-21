@@ -3,7 +3,7 @@
 #include <optional>
 namespace data::game::character
 {
-	struct Equipment
+	struct EquipmentLegacy
 	{
 		static std::optional<int> Read(int, int);
 		static void Write(int, int, const std::optional<int>&);//TODO: make a Write(int,int,int) and Clear(int,int)
