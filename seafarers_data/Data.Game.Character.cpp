@@ -99,5 +99,4 @@ namespace data::game
 		}
 		return result;
 	}
-
 }

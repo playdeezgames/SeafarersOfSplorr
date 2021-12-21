@@ -1,4 +1,5 @@
 #include <Common.Data.h>
+#include "Data.Game.Character.h"
 #include "Data.Game.Character.Counter.h"
 #include "Data.Game.Common.h"
 namespace data::game::character
@@ -9,7 +10,8 @@ namespace data::game::character
 			"[CharacterId] INT NOT NULL,"
 			"[CounterId] INT NOT NULL,"
 			"[Value] INT NOT NULL,"
-			"UNIQUE([CharacterId],[CounterId])"
+			"UNIQUE([CharacterId],[CounterId]),"
+			"FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId])"
 		");";
 	static const std::string REPLACE_ITEM = 
 		"REPLACE INTO [CharacterCounters]"
@@ -34,17 +36,21 @@ namespace data::game::character
 
 	static const std::string FIELD_VALUE = "Value";
 
-	static const auto AutoCreateTable = data::game::Common::Run(CREATE_TABLE);
+	void Counter::Initialize()
+	{
+		Character::Initialize();
+		Common::Execute(CREATE_TABLE);
+	}
 
 	void Counter::Write(int characterId, int counterId, int value)
 	{
-		AutoCreateTable();
+		Initialize();
 		Common::Execute(REPLACE_ITEM, characterId, counterId, value);
 	}
 
 	std::optional<int> Counter::Read(int characterId, int counterId)
 	{
-		AutoCreateTable();
+		Initialize();
 		auto records = Common::Execute(QUERY_ITEM, characterId, counterId);
 		if (!records.empty())
 		{
@@ -55,7 +61,7 @@ namespace data::game::character
 
 	void Counter::Clear(int characterId, int counterId)
 	{
-		AutoCreateTable();
+		Initialize();
 		Common::Execute(DELETE_ITEM, characterId, counterId);
 	}
 }
