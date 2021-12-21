@@ -8,7 +8,7 @@ namespace data::game::ship
 		"("
 			"[ShipId] INT NOT NULL, "
 			"[IslandId] INT NOT NULL, "
-			"UNIQUE([ShipId],[IslandId])"
+			"UNIQUE([ShipId])"
 		");";
 	static const std::string REPLACE_ITEM = 
 		"REPLACE INTO [ShipDocks]"
