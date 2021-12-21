@@ -3,13 +3,49 @@
 #include "Data.Game.Item.Type.h"
 namespace data::game::item
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [ItemSubtypes]([ItemSubtypeId] INTEGER PRIMARY KEY AUTOINCREMENT, [ItemTypeId] INT NOT NULL,[Subtype] INT NOT NULL,[Name] TEXT NOT NULL,UNIQUE([ItemTypeId],[Subtype]));";
-	static const std::string INSERT_ITEM = "INSERT INTO [ItemSubtypes]([ItemTypeId],[Subtype],[Name]) VALUES({},{},{});";
-	static const std::string QUERY_MAXIMUM_SUBTYPE = "SELECT MAX([Subtype]) AS MaximumSubtype FROM [ItemSubtypes] WHERE [ItemTypeId]={};";
-	static const std::string QUERY_ITEM_TYPE_ID = "SELECT [ItemTypeId] FROM [ItemSubtypes] WHERE [ItemSubtypeId]={};";
-	static const std::string QUERY_SUBTYPE = "SELECT [Subtype] FROM [ItemSubtypes] WHERE [ItemSubtypeId]={};";
-	static const std::string QUERY_NAME = "SELECT [Name] FROM [ItemSubtypes] WHERE [ItemSubtypeId]={};";
-	static const std::string DELETE_ALL = "DELETE FROM [ItemSubtypes];";
+	static const std::string CREATE_TABLE = 
+		"CREATE TABLE IF NOT EXISTS [ItemSubtypes]"
+		"("
+			"[ItemSubtypeId] INTEGER PRIMARY KEY AUTOINCREMENT, "
+			"[ItemTypeId] INT NOT NULL,"
+			"[Subtype] INT NOT NULL,"
+			"[Name] TEXT NOT NULL,"
+			"UNIQUE([ItemTypeId],[Subtype])"
+		");";
+	static const std::string INSERT_ITEM = 
+		"INSERT INTO [ItemSubtypes]"
+		"("
+			"[ItemTypeId],"
+			"[Subtype],"
+			"[Name]"
+		") "
+		"VALUES({},{},{});";
+	static const std::string QUERY_MAXIMUM_SUBTYPE = 
+		"SELECT "
+			"MAX([Subtype]) AS MaximumSubtype "
+		"FROM [ItemSubtypes] "
+		"WHERE "
+			"[ItemTypeId]={};";
+	static const std::string QUERY_ITEM_TYPE_ID = 
+		"SELECT "
+			"[ItemTypeId] "
+		"FROM [ItemSubtypes] "
+		"WHERE "
+			"[ItemSubtypeId]={};";
+	static const std::string QUERY_SUBTYPE = 
+		"SELECT "
+			"[Subtype] "
+		"FROM [ItemSubtypes] "
+		"WHERE "
+			"[ItemSubtypeId]={};";
+	static const std::string QUERY_NAME = 
+		"SELECT "
+			"[Name] "
+		"FROM [ItemSubtypes] "
+		"WHERE "
+			"[ItemSubtypeId]={};";
+	static const std::string DELETE_ALL = 
+		"DELETE FROM [ItemSubtypes];";
 
 	static const std::string FIELD_MAXIMUM_SUBTYPE = "MaximumSubtype";
 	static const std::string FIELD_SUBTYPE = "Subtype";

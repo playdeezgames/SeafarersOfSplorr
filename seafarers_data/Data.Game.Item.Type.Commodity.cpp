@@ -3,11 +3,37 @@
 #include "Data.Game.Item.Type.Commodity.h"
 namespace data::game::item::type
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [ItemSubtypeCommodities]([ItemSubtypeId] INT NOT NULL,[CommodityId] INT NOT NULL,[Amount] REAL NOT NULL,UNIQUE([ItemSubtypeId],[CommodityId]));";
-	static const std::string REPLACE_ITEM = "REPLACE INTO [ItemSubtypeCommodities]([ItemSubtypeId],[CommodityId],[Amount]) VALUES({},{},{});";
-	static const std::string QUERY_AMOUNT = "SELECT [Amount] FROM [ItemSubtypeCommodities] WHERE [ItemSubtypeId]={} AND [CommodityId]={};";
-	static const std::string QUERY_COMMODITY_ID = "SELECT [CommodityId] FROM [ItemSubtypeCommodities] WHERE [ItemSubtypeId]={};";
-	static const std::string DELETE_ALL = "DELETE FROM [ItemSubtypeCommodities];";
+	static const std::string CREATE_TABLE = 
+		"CREATE TABLE IF NOT EXISTS [ItemSubtypeCommodities]"
+		"("
+			"[ItemSubtypeId] INT NOT NULL,"
+			"[CommodityId] INT NOT NULL,"
+			"[Amount] REAL NOT NULL,"
+			"UNIQUE([ItemSubtypeId],[CommodityId])"
+		");";
+	static const std::string REPLACE_ITEM = 
+		"REPLACE INTO [ItemSubtypeCommodities]"
+		"("
+			"[ItemSubtypeId],"
+			"[CommodityId],"
+			"[Amount]"
+		") "
+		"VALUES({},{},{});";
+	static const std::string QUERY_AMOUNT = 
+		"SELECT "
+			"[Amount] "
+		"FROM [ItemSubtypeCommodities] "
+		"WHERE "
+			"[ItemSubtypeId]={} "
+			"AND [CommodityId]={};";
+	static const std::string QUERY_COMMODITY_ID = 
+		"SELECT "
+			"[CommodityId] "
+		"FROM [ItemSubtypeCommodities] "
+		"WHERE "
+			"[ItemSubtypeId]={};";
+	static const std::string DELETE_ALL = 
+		"DELETE FROM [ItemSubtypeCommodities];";
 
 	static const std::string FIELD_AMOUNT = "Amount";
 	static const std::string FIELD_COMMODITY_ID = "CommodityId";

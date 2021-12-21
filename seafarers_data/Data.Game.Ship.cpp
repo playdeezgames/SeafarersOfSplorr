@@ -3,12 +3,57 @@
 #include "Data.Game.Ship.h"
 namespace data::game
 {
-	static const std::string CREATE_TABLE = "CREATE TABLE IF NOT EXISTS [Ships]([ShipId] INTEGER PRIMARY KEY AUTOINCREMENT,[ShipType] INT NOT NULL,[Name] TEXT NOT NULL,[X] REAL NOT NULL,[Y] REAL NOT NULL,[Heading] REAL NOT NULL,[Speed] REAL NOT NULL);";
-	static const std::string QUERY_ITEM = "SELECT [ShipId],[ShipType],[Name],[X],[Y],[Heading],[Speed] FROM [Ships] WHERE [ShipId]={};";
-	static const std::string INSERT_ITEM = "INSERT INTO [Ships] ([ShipType],[Name],[X],[Y],[Heading],[Speed]) VALUES({},{},{:.4f},{:.4f},{:.4f},{:.4f});";
-	static const std::string UPDATE_ITEM = "UPDATE [Ships] SET [ShipType]={},[Name]={},[X]={:4f},[Y]={:4f},[Heading]={},[Speed]={} WHERE [ShipId]={};";
-	static const std::string DELETE_ALL = "DELETE FROM [Ships];";
-	static const std::string QUERY_ALL = "SELECT [ShipId] FROM [Ships];";
+	static const std::string CREATE_TABLE = 
+		"CREATE TABLE IF NOT EXISTS [Ships]"
+		"("
+			"[ShipId] INTEGER PRIMARY KEY AUTOINCREMENT,"
+			"[ShipType] INT NOT NULL,"
+			"[Name] TEXT NOT NULL,"
+			"[X] REAL NOT NULL,"
+			"[Y] REAL NOT NULL,"
+			"[Heading] REAL NOT NULL,"
+			"[Speed] REAL NOT NULL"
+		");";
+	static const std::string QUERY_ITEM = 
+		"SELECT "
+			"[ShipId],"
+			"[ShipType],"
+			"[Name],"
+			"[X],"
+			"[Y],"
+			"[Heading],"
+			"[Speed] "
+		"FROM [Ships] "
+		"WHERE "
+			"[ShipId]={};";
+	static const std::string INSERT_ITEM = 
+		"INSERT INTO [Ships] "
+		"("
+			"[ShipType],"
+			"[Name],"
+			"[X],"
+			"[Y],"
+			"[Heading],"
+			"[Speed]"
+		") "
+		"VALUES({},{},{:.4f},{:.4f},{:.4f},{:.4f});";
+	static const std::string UPDATE_ITEM = 
+		"UPDATE [Ships] "
+		"SET "
+			"[ShipType]={},"
+			"[Name]={},"
+			"[X]={:4f},"
+			"[Y]={:4f},"
+			"[Heading]={},"
+			"[Speed]={} "
+		"WHERE "
+			"[ShipId]={};";
+	static const std::string DELETE_ALL = 
+		"DELETE FROM [Ships];";
+	static const std::string QUERY_ALL = 
+		"SELECT "
+			"[ShipId] "
+		"FROM [Ships];";
 
 	static const std::string FIELD_SHIP_ID = "ShipId";
 	static const std::string FIELD_SHIP_TYPE = "ShipType";
