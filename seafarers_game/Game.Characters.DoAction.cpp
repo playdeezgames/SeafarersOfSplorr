@@ -20,7 +20,7 @@ namespace game
 	static characters::State OnEnterDarkAlley(int characterId)
 	{
 		auto data = data::game::island::DarkAlley::Read(game::ship::Docked::GetIsland(data::game::character::Ship::ReadForCharacter(characterId).value().shipId).value()).value();
-		auto infamy = game::characters::statistics::Infamy::Current(characterId).value();
+		auto infamy = game::Session().GetCharacters().GetCharacter(characterId).GetCounters().GetCounter(game::characters::Counter::INFAMY).GetValue();
 		if (infamy < data.infamyRequirement)
 		{
 			return characters::State::DARK_ALLEY_ENTRANCE;

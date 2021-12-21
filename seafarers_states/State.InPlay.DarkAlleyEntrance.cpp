@@ -169,8 +169,8 @@ namespace state::in_play
 
 	static void IncreaseInfamy()
 	{
-		const double INFAMY_DELTA = 0.1;
-		game::characters::statistics::Infamy::Change(GetPlayerCharacterId(), (hitsTaken == 0) ? (INFAMY_DELTA) : (INFAMY_DELTA / 2.0));
+		const int INFAMY_DELTA = 1;
+		game::Session().GetPlayer().GetCharacter().GetCounters().GetCounter(game::characters::Counter::INFAMY).Change((hitsTaken == 0) ? (INFAMY_DELTA * 2) : (INFAMY_DELTA));
 	}
 
 	static void IncreaseBrawling()

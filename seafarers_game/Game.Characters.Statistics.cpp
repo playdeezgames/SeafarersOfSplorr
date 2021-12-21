@@ -40,23 +40,19 @@ namespace game::characters
 	{
 		{game::Difficulty::EASY,
 			{
-				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::characters::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0}
+				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0}
 			}},
 		{game::Difficulty::NORMAL,
 			{
-				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::characters::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0}
+				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0}
 			}},
 		{game::Difficulty::HARD,
 			{
-				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::characters::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0}
+				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0}
 			}},
 		{game::Difficulty::HARDCORE,
 			{
-				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0},
-				{game::characters::Statistic::INFAMY, std::optional<double>(0.0), std::nullopt, 0.0}
+				{game::characters::Statistic::BRAWLING, std::optional<double>(0.0), std::nullopt, 0.0}
 			}}
 	};
 
@@ -183,16 +179,6 @@ namespace game::characters
 
 	namespace statistics
 	{
-		std::optional<double> Infamy::Current(int characterId)
-		{
-			return GetCurrent(characterId, game::characters::Statistic::INFAMY);
-		}
-
-		std::optional<double> Infamy::Change(int characterId, double delta)
-		{
-			return ChangeCurrent(characterId, game::characters::Statistic::INFAMY, delta);
-		}
-
 		std::optional<double> Brawling::Current(int characterId)
 		{
 			return GetCurrent(characterId, game::characters::Statistic::BRAWLING);

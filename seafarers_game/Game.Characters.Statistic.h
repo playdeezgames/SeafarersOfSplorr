@@ -3,7 +3,6 @@ namespace game::characters
 {
 	enum class Statistic
 	{
-		BRAWLING,
-		INFAMY
+		BRAWLING
 	};
 }
