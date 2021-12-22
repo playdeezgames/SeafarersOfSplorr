@@ -57,12 +57,15 @@
     <Filter Include="Source Files\Item">
       <UniqueIdentifier>{1222b979-f67f-4203-8e08-2a6e2dc969c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\World">
+      <UniqueIdentifier>{aee462d3-6650-4b8e-a969-ec35afea52b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\World">
+      <UniqueIdentifier>{425cb4b1-6bb9-4dc2-a512-02ac72aaf8ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data.Game.Common.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.World.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.Island.Feature.h">
@@ -185,12 +188,12 @@
     <ClInclude Include="Data.Game.Character.KnownIsland.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.World.h">
+      <Filter>Header Files\World</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.World.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Island.cpp">
@@ -306,6 +309,9 @@
     </ClCompile>
     <ClCompile Include="Data.Game.Character.KnowIsland.cpp">
       <Filter>Source Files\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.World.cpp">
+      <Filter>Source Files\World</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
