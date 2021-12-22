@@ -13,16 +13,14 @@ namespace game::session
 		double minimumIslandDistance;
 		double viewDistance;
 		double dockDistance;
-		double reputationReward;
-		double reputationPenalty;
 	};
 
 	static const std::map<game::Difficulty, WorldProperties> worldProperties =
 	{
-		{game::Difficulty::EASY, {100.0, 10.0, 10.0, 1.0, 1.0, -1.0}},
-		{game::Difficulty::NORMAL, {150.0, 15.0, 10.0, 1.0, 1.0, -1.0}},
-		{game::Difficulty::HARD, {200.0, 20.0, 10.0, 1.0, 1.0, -1.0}},
-		{game::Difficulty::HARDCORE, {250.0, 25.0, 10.0, 1.0, 1.0, -1.0}}
+		{game::Difficulty::EASY, {100.0, 10.0, 10.0, 1.0}},
+		{game::Difficulty::NORMAL, {150.0, 15.0, 10.0, 1.0}},
+		{game::Difficulty::HARD, {200.0, 20.0, 10.0, 1.0}},
+		{game::Difficulty::HARDCORE, {250.0, 25.0, 10.0, 1.0}}
 	};
 
 
@@ -50,10 +48,7 @@ namespace game::session
 			properties.viewDistance,
 			properties.dockDistance,
 			common::RNG::FromRange(0.0, common::Heading::DEGREES),
-			(int)currencyItemSubtype,
-			100.0,
-			properties.reputationReward,
-			properties.reputationPenalty
+			(int)currencyItemSubtype
 		};
 		data::game::World::Write(data);
 	}

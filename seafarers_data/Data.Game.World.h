@@ -13,11 +13,6 @@ namespace data::game
 		double windHeading;
 		int currencyItemTypeId;
 
-		//DEPRECATE THESE
-		double unfoulingLaborMultiplier;
-		double reputationReward;
-		double reputationPenalty;
-
 		static void Initialize();
 		static void Write(const World&);
 		static std::optional<World> Read();

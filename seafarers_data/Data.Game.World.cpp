@@ -87,10 +87,7 @@ namespace data::game
 			data.viewDistance,
 			data.dockDistance,
 			data.windHeading,
-			data.currencyItemTypeId,
-			data.unfoulingLaborMultiplier,
-			data.reputationReward,
-			data.reputationPenalty);
+			data.currencyItemTypeId);
 	}
 
 	static World ToWorld(const std::map<std::string, std::string> record)
@@ -106,10 +103,7 @@ namespace data::game
 			common::Data::ToDouble(record.find(FIELD_VIEW_DISTANCE)->second),
 			common::Data::ToDouble(record.find(FIELD_DOCK_DISTANCE)->second),
 			common::Data::ToDouble(record.find(FIELD_WIND_HEADING)->second),
-			common::Data::ToInt(record.find(FIELD_CURRENCY_ITEM_SUBTYPE_ID)->second),
-			common::Data::ToDouble(record.find(FIELD_UNFOULING_LABOR_MULTIPLIER)->second),
-			common::Data::ToDouble(record.find(FIELD_REPUTATION_REWARD)->second),
-			common::Data::ToDouble(record.find(FIELD_REPUTATION_PENALTY)->second)
+			common::Data::ToInt(record.find(FIELD_CURRENCY_ITEM_SUBTYPE_ID)->second)
 		};
 	}
 
