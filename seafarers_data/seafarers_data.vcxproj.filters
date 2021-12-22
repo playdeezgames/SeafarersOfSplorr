@@ -194,6 +194,9 @@
     <ClInclude Include="Data.Game.World.Month.h">
       <Filter>Header Files\World</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.Ship.Island.h">
+      <Filter>Header Files\Ship</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">
@@ -318,6 +321,9 @@
     </ClCompile>
     <ClCompile Include="Data.Game.World.Month.cpp">
       <Filter>Source Files\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Ship.Island.cpp">
+      <Filter>Source Files\Ship</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
