@@ -6,7 +6,7 @@ namespace data::game::world
 {
 	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		R"("CREATE TABLE IF NOT EXISTS [WorldMonths]
+		R"(CREATE TABLE IF NOT EXISTS [WorldMonths]
 		(
 			[WorldId] INT NOT NULL,
 			[Ordinal] INT NOT NULL,
@@ -14,27 +14,27 @@ namespace data::game::world
 			[Days] INT NOT NULL,
 			UNIQUE([WorldId],[Ordinal]),
 			FOREIGN KEY ([WorldId]) REFERENCES [Worlds]([WorldId])
-		);")"s;
+		);)"s;
 	static const std::string REPLACE_ITEM =
-		R"("REPLACE INTO [WorldMonths]
+		R"(REPLACE INTO [WorldMonths]
 		(
 			[WorldId],
 			[Ordinal],
 			[Name],
 			[Days]
 		) 
-		VALUES({},{},{},{});")"s;
+		VALUES({},{},{},{});)"s;
 	static const std::string QUERY_ITEM =
-		R"("SELECT 
+		R"(SELECT 
 			[Ordinal],
 			[Name],
 			[Days] 
 		FROM [WorldMonths] 
 		WHERE 
 			[WorldId]={} 
-			AND [Ordinal]={};")"s;
+			AND [Ordinal]={};)"s;
 	static const std::string QUERY_ALL =
-		R"("SELECT 
+		R"(SELECT 
 			[Ordinal],
 			[Name],
 			[Days] 
@@ -42,15 +42,15 @@ namespace data::game::world
 		WHERE 
 			[WorldId]={} 
 		ORDER BY 
-			[Ordinal];")"s;
+			[Ordinal];)"s;
 	static const std::string QUERY_YEAR_LENGTH =
-		R"("SELECT 
+		R"(SELECT 
 			SUM([Days]) AS [YearLength] 
 		FROM [WorldMonths] 
 		WHERE 
-			[WorldId]={};")"s;
+			[WorldId]={};)"s;
 	static const std::string DELETE_ALL =
-		R"("DELETE FROM [WorldMonths];")"s;
+		R"(DELETE FROM [WorldMonths];)"s;
 
 	static const std::string FIELD_ORDINAL = "Ordinal";
 	static const std::string FIELD_NAME = "Name";
