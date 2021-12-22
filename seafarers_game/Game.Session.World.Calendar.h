@@ -11,6 +11,7 @@ namespace game::session::world
 		std::string GetDate() const;
 		int GetYearLength() const;
 		void Reset(const Difficulty&) const;
+		void ApplyTurnEffects() const;
 	private:
 		int worldId;
 	};

@@ -33,6 +33,10 @@ namespace game::session
 		return result;
 	}
 
+	static const int EARLIEST_INITIAL_YEAR = 500;
+	static const int LATEST_INITIAL_YEAR = 5000;
+	static const int DAYS_PER_YEAR = 360;
+
 	void World::Reset(const Difficulty& difficulty) const
 	{
 		GetItemSubtypes().Reset(difficulty);
@@ -48,7 +52,9 @@ namespace game::session
 			properties.viewDistance,
 			properties.dockDistance,
 			common::RNG::FromRange(0.0, common::Heading::DEGREES),
-			(int)currencyItemSubtype
+			(int)currencyItemSubtype,
+			common::RNG::FromRange(EARLIEST_INITIAL_YEAR, LATEST_INITIAL_YEAR)* DAYS_PER_YEAR +
+				common::RNG::FromRange(0, DAYS_PER_YEAR)
 		};
 		data::game::World::Write(worldId, data);
 		GetCalendar().Reset(difficulty);
@@ -57,6 +63,7 @@ namespace game::session
 	void World::ApplyTurnEffects() const
 	{
 		GetWind().ApplyTurnEffects();
+		GetCalendar().ApplyTurnEffects();
 	}
 
 	int World::GetVersion() const

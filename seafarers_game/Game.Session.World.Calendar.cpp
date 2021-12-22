@@ -106,4 +106,11 @@ namespace game::session::world
 				});
 		}
 	}
+
+	void Calendar::ApplyTurnEffects() const
+	{
+		auto world = data::game::World::Read(worldId).value();
+		world.day++;
+		data::game::World::Write(worldId, world);
+	}
 }

@@ -59,9 +59,6 @@ namespace data::game
 	static const std::string FIELD_CURRENCY_ITEM_SUBTYPE_ID = "CurrencyItemSubtypeId";
 	static const std::string FIELD_DAY = "Day";
 
-	static const int EARLIEST_INITIAL_YEAR = 500;
-	static const int LATEST_INITIAL_YEAR = 5000;
-	static const int DAYS_PER_YEAR = 360;
 
 	void World::Initialize()
 	{
@@ -83,8 +80,7 @@ namespace data::game
 			data.dockDistance,
 			data.windHeading,
 			data.currencyItemTypeId,
-			common::RNG::FromRange(EARLIEST_INITIAL_YEAR, LATEST_INITIAL_YEAR) * DAYS_PER_YEAR + 
-			common::RNG::FromRange(0, DAYS_PER_YEAR));
+			data.day);
 	}
 
 	static World ToWorld(const std::map<std::string, std::string> record)
