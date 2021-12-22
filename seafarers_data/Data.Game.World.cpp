@@ -1,4 +1,5 @@
 #include <Common.Data.h>
+#include <Common.RNG.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.World.h"
 namespace data::game
@@ -67,6 +68,9 @@ namespace data::game
 	static const std::string FIELD_REPUTATION_PENALTY = "ReputationPenalty";
 
 	static const int WORLD_ID = 1;
+	static const int EARLIEST_INITIAL_YEAR = 500;
+	static const int LATEST_INITIAL_YEAR = 5000;
+	static const int DAYS_PER_YEAR = 360;
 
 	void World::Initialize()
 	{
@@ -87,7 +91,9 @@ namespace data::game
 			data.viewDistance,
 			data.dockDistance,
 			data.windHeading,
-			data.currencyItemTypeId);
+			data.currencyItemTypeId,
+			common::RNG::FromRange(EARLIEST_INITIAL_YEAR, LATEST_INITIAL_YEAR) * DAYS_PER_YEAR + 
+			common::RNG::FromRange(0, DAYS_PER_YEAR));
 	}
 
 	static World ToWorld(const std::map<std::string, std::string> record)

@@ -12,6 +12,7 @@ namespace data::game
 		double dockDistance;
 		double windHeading;
 		int currencyItemTypeId;
+		int day;
 
 		static void Initialize();
 		static void Write(const World&);
