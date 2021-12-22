@@ -4,52 +4,53 @@
 #include "Data.Game.World.Month.h"
 namespace data::game::world
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [WorldMonths]"
-		"("
-			"[WorldId] INT NOT NULL,"
-			"[Ordinal] INT NOT NULL,"
-			"[Name] TEXT NOT NULL UNIQUE,"
-			"[Days] INT NOT NULL,"
-			"UNIQUE([WorldId],[Ordinal]),"
-			"FOREIGN KEY ([WorldId]) REFERENCES [Worlds]([WorldId])"
-		");";
+		R"("CREATE TABLE IF NOT EXISTS [WorldMonths]
+		(
+			[WorldId] INT NOT NULL,
+			[Ordinal] INT NOT NULL,
+			[Name] TEXT NOT NULL UNIQUE,
+			[Days] INT NOT NULL,
+			UNIQUE([WorldId],[Ordinal]),
+			FOREIGN KEY ([WorldId]) REFERENCES [Worlds]([WorldId])
+		);")"s;
 	static const std::string REPLACE_ITEM =
-		"REPLACE INTO [WorldMonths]"
-		"("
-			"[WorldId],"
-			"[Ordinal],"
-			"[Name],"
-			"[Days]"
-		") "
-		"VALUES({},{},{},{});";
+		R"("REPLACE INTO [WorldMonths]
+		(
+			[WorldId],
+			[Ordinal],
+			[Name],
+			[Days]
+		) 
+		VALUES({},{},{},{});")"s;
 	static const std::string QUERY_ITEM =
-		"SELECT "
-			"[Ordinal],"
-			"[Name],"
-			"[Days] "
-		"FROM [WorldMonths] "
-		"WHERE "
-			"[WorldId]={} "
-			"AND [Ordinal]={};";
+		R"("SELECT 
+			[Ordinal],
+			[Name],
+			[Days] 
+		FROM [WorldMonths] 
+		WHERE 
+			[WorldId]={} 
+			AND [Ordinal]={};")"s;
 	static const std::string QUERY_ALL =
-		"SELECT "
-			"[Ordinal],"
-			"[Name],"
-			"[Days] "
-		"FROM [WorldMonths] "
-		"WHERE "
-			"[WorldId]={} "
-		"ORDER BY "
-			"[Ordinal];";
+		R"("SELECT 
+			[Ordinal],
+			[Name],
+			[Days] 
+		FROM [WorldMonths] 
+		WHERE 
+			[WorldId]={} 
+		ORDER BY 
+			[Ordinal];")"s;
 	static const std::string QUERY_YEAR_LENGTH =
-		"SELECT "
-			"SUM([Days]) AS [YearLength] "
-		"FROM [WorldMonths] "
-		"WHERE "
-			"[WorldId]={};";
+		R"("SELECT 
+			SUM([Days]) AS [YearLength] 
+		FROM [WorldMonths] 
+		WHERE 
+			[WorldId]={};")"s;
 	static const std::string DELETE_ALL =
-		"DELETE FROM [WorldMonths];";
+		R"("DELETE FROM [WorldMonths];")"s;
 
 	static const std::string FIELD_ORDINAL = "Ordinal";
 	static const std::string FIELD_NAME = "Name";

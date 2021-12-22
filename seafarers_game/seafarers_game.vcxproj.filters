@@ -497,6 +497,12 @@
     <ClInclude Include="Game.Session.World.Calendar.h">
       <Filter>Header Files\Session\World</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.World.Calendar.Months.h">
+      <Filter>Header Files\Session\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.World.Calendar.Month.h">
+      <Filter>Header Files\Session\World</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Features.cpp">
@@ -747,6 +753,12 @@
     </ClCompile>
     <ClCompile Include="Game.Session.Island.Market.cpp">
       <Filter>Source Files\Session\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.World.Calendar.Month.cpp">
+      <Filter>Source Files\Session\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.World.Calendar.Months.cpp">
+      <Filter>Source Files\Session\World</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
