@@ -11,13 +11,14 @@ namespace data::game
 		double viewDistance;
 		double dockDistance;
 		double windHeading;
-		int currencyItemSubtypeId;
+		int currencyItemTypeId;
 
 		//DEPRECATE THESE
 		double unfoulingLaborMultiplier;
 		double reputationReward;
 		double reputationPenalty;
 
+		static void Initialize();
 		static void Write(const World&);
 		static std::optional<World> Read();
 	};

@@ -66,13 +66,17 @@ namespace data::game
 	static const std::string FIELD_REPUTATION_REWARD = "ReputationReward";
 	static const std::string FIELD_REPUTATION_PENALTY = "ReputationPenalty";
 
-	static const auto AutoCreateTable = data::game::Common::Run(CREATE_TABLE);
-
 	static const int WORLD_ID = 1;
+
+	void World::Initialize()
+	{
+		Common::Execute(CREATE_TABLE);
+	}
+
 
 	void World::Write(const World& data)
 	{
-		AutoCreateTable();
+		Initialize();
 		data::game::Common::Execute(
 			REPLACE_ITEM, 
 			WORLD_ID,
@@ -83,7 +87,7 @@ namespace data::game
 			data.viewDistance,
 			data.dockDistance,
 			data.windHeading,
-			data.currencyItemSubtypeId,
+			data.currencyItemTypeId,
 			data.unfoulingLaborMultiplier,
 			data.reputationReward,
 			data.reputationPenalty);
@@ -111,7 +115,7 @@ namespace data::game
 
 	std::optional<World> World::Read()
 	{
-		AutoCreateTable();
+		Initialize();
 		auto result = data::game::Common::Execute(QUERY_ITEM, WORLD_ID);
 		if (!result.empty())
 		{

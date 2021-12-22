@@ -70,7 +70,7 @@ namespace game::session
 
 	item::Type World::GetCurrencyItemSubtype() const
 	{
-		return item::Type(data::game::World::Read().value().currencyItemSubtypeId);
+		return item::Type(data::game::World::Read().value().currencyItemTypeId);
 	}
 
 }
