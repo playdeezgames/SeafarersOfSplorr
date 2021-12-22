@@ -1,11 +1,12 @@
 #include <Common.Heading.h>
+#include <Data.Game.Character.KnownIsland.h>
 #include <Data.Game.Island.h>
-#include <Data.Game.Island.KnownLegacy.h>
 #include <Data.Game.Island.VisitLegacy.h>
 #include "Game.Characters.Ships.h"
 #include "Game.Islands.h"
 #include "Game.Session.h"
 #include "Game.Ship.h"
+#include "Game.Ship.Crew.h"
 namespace game
 {
 	const std::string Islands::UNKNOWN = "????";
@@ -18,12 +19,13 @@ namespace game
 	}
 
 	static void KnowIsland(
+		int characterId,
 		std::list<Island>& accumulator, 
 		const data::game::Island& island, 
 		const common::XY<double>& shipLocation)
 	{
 		auto visitData = data::game::island::VisitLegacy::Read(island.id);
-		data::game::island::KnownLegacy::Write(island.id);
+		data::game::character::KnownIsland::Write(characterId, island.id);
 		accumulator.push_back(
 			{
 				island.id,
@@ -35,12 +37,12 @@ namespace game
 			});
 	}
 
-	static void KnowIslandWhenCloseEnough(std::list<Island>& accumulator, const data::game::Island& island, const common::XY<double>& shipLocation, std::function<bool(const data::game::Island&, double)> filter)
+	static void KnowIslandWhenCloseEnough(int characterId, std::list<Island>& accumulator, const data::game::Island& island, const common::XY<double>& shipLocation, std::function<bool(const data::game::Island&, double)> filter)
 	{
 		auto distance = common::Heading::Distance(shipLocation, island.location);
 		if (filter(island, distance))
 		{
-			KnowIsland(accumulator, island, shipLocation);
+			KnowIsland(characterId, accumulator, island, shipLocation);
 		}
 	}
 
@@ -49,9 +51,13 @@ namespace game
 		std::list<Island> accumulator;
 		auto shipLocation = game::Ship::GetLocation(shipId).value();;
 		auto islands = data::game::Island::All();
-		for (auto& island : islands)
+		auto crew = game::ship::Crew::Read(shipId);
+		for (auto crewMember : crew)
 		{
-			KnowIslandWhenCloseEnough(accumulator, island, shipLocation, filter);
+			for (auto& island : islands)
+			{
+				KnowIslandWhenCloseEnough(crewMember.avatarId, accumulator, island, shipLocation, filter);
+			}
 		}
 		return accumulator;
 	}
@@ -160,7 +166,7 @@ namespace game
 	{
 		int shipId = game::characters::Ships::ReadShipId(characterId).value();
 		auto shipLocation = game::Ship::GetLocation(shipId).value();
-		auto knownLocations = data::game::island::KnownLegacy::All();
+		auto knownLocations = data::game::character::KnownIsland::All(characterId);
 		std::list<Island> result;
 		for (auto& knownLocation : knownLocations)
 		{

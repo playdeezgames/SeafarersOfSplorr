@@ -1,7 +1,7 @@
 #include <Common.Utility.Optional.h>
+#include <Data.Game.Character.KnownIsland.h>
 #include <Data.Game.Character.QuestLegacy.h>
 #include <Data.Game.Island.h>
-#include <Data.Game.Island.KnownLegacy.h>
 #include <Data.Game.Island.QuestLegacy.h>
 #include "Game.Characters.Quests.h"
 #include "Game.Characters.Statistics.h"
@@ -23,7 +23,7 @@ namespace game::characters
 				quest.receiptEmotion }));
 		data::game::island::QuestLegacy::Clear(fromIslandId);
 		game::Islands::SetKnown(quest.toIslandId, game::Session().GetCharacters().GetCharacter(characterId).GetCounters().GetCounter(game::characters::Counter::TURNS_REMAINING).GetValue());
-		data::game::island::KnownLegacy::Write(quest.toIslandId);
+		data::game::character::KnownIsland::Write(characterId, quest.toIslandId);
 	}
 
 	AcceptQuestResult Quests::Accept(int characterId, int fromIslandId)

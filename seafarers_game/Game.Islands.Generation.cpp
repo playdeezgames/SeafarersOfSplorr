@@ -1,10 +1,10 @@
 #include <Common.Heading.h>
 #include <Common.NameGenerator.h>
 #include <Common.RNG.h>
+#include <Data.Game.Character.KnownIsland.h>
 #include <Data.Game.Demigod.h>
 #include <Data.Game.Island.h>
 #include <Data.Game.Island.ItemLegacy.h>
-#include <Data.Game.Island.KnownLegacy.h>
 #include <Data.Game.Island.Market.h>
 #include <Data.Game.Island.VisitLegacy.h>
 #include "Game.Session.h"
@@ -115,7 +115,7 @@ namespace game
 	{
 		data::game::Island::Clear();
 		data::game::island::VisitLegacy::Clear();
-		data::game::island::KnownLegacy::Clear();
+		data::game::character::KnownIsland::Clear();
 		data::game::island::Market::Clear();
 		data::game::island::ItemLegacy::ClearAll();
 	}
