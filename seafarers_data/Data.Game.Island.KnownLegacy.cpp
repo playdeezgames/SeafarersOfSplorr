@@ -4,7 +4,7 @@
 namespace data::game::island
 {
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [KnownIslands]"
+		"CREATE TABLE IF NOT EXISTS [KnownIslandsLegacy]"
 		"("
 			"[IslandId] INT NOT NULL, "
 			"UNIQUE([IslandId])"
@@ -12,21 +12,21 @@ namespace data::game::island
 	static const std::string QUERY_ITEM = 
 		"SELECT "
 			"[IslandId] "
-		"FROM [KnownIslands] "
+		"FROM [KnownIslandsLegacy] "
 		"WHERE "
 			"[IslandId]={};";
 	static const std::string QUERY_ALL = 
 		"SELECT "
 			"[IslandId] "
-		"FROM [KnownIslands];";
+		"FROM [KnownIslandsLegacy];";
 	static const std::string REPLACE_ITEM = 
-		"REPLACE INTO [KnownIslands]"
+		"REPLACE INTO [KnownIslandsLegacy]"
 		"("
 			"[IslandId]"
 		") "
 		"VALUES({});";
 	static const std::string DELETE_ALL = 
-		"DELETE FROM [KnownIslands];";
+		"DELETE FROM [KnownIslandsLegacy];";
 
 	static const std::string FIELD_ISLAND_ID = "IslandId";
 

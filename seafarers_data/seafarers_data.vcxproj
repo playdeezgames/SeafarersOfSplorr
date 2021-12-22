@@ -25,7 +25,7 @@
     <ClInclude Include="Data.Game.Character.EquipmentLegacy.h" />
     <ClInclude Include="Data.Game.Character.Flags.h" />
     <ClInclude Include="Data.Game.Character.h" />
-    <ClInclude Include="Data.Game.Character.Island.h" />
+    <ClInclude Include="Data.Game.Character.CurrentIsland.h" />
     <ClInclude Include="Data.Game.Character.ItemInstance.h" />
     <ClInclude Include="Data.Game.Character.ItemsLegacy.h" />
     <ClInclude Include="Data.Game.Character.PlightLegacy.h" />
@@ -69,7 +69,7 @@
     <ClCompile Include="Data.Game.Character.DemigodFavor.cpp" />
     <ClCompile Include="Data.Game.Character.EquipmentLegacy.cpp" />
     <ClCompile Include="Data.Game.Character.Flags.cpp" />
-    <ClCompile Include="Data.Game.Character.Island.cpp" />
+    <ClCompile Include="Data.Game.Character.CurrentIsland.cpp" />
     <ClCompile Include="Data.Game.Character.ItemInstance.cpp" />
     <ClCompile Include="Data.Game.Character.ItemsLegacy.cpp" />
     <ClCompile Include="Data.Game.Character.PlightLegacy.cpp" />

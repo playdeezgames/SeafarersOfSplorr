@@ -1,10 +1,10 @@
 #include <Common.Data.h>
-#include "Data.Game.Character.Island.h"
+#include "Data.Game.Character.CurrentIsland.h"
 #include "Data.Game.Common.h"
 namespace data::game::character
 {
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [CharacterIslands]"
+		"CREATE TABLE IF NOT EXISTS [CharacterCurrentIslands]"
 		"("
 			"[CharacterId] INT NOT NULL UNIQUE,"
 			"[IslandId] INT NOT NULL"
@@ -12,24 +12,24 @@ namespace data::game::character
 	static const std::string QUERY_ITEM = 
 		"SELECT "
 			"[IslandId] "
-		"FROM [CharacterIslands] "
+		"FROM [CharacterCurrentIslands] "
 		"WHERE "
 			"[CharacterId]={};";
 	static const std::string QUERY_ALL = 
 		"SELECT "
 			"[CharacterId] "
-		"FROM [CharacterIslands] "
+		"FROM [CharacterCurrentIslands] "
 		"WHERE "
 			"[IslandId]={};";
 	static const std::string REPLACE_ITEM = 
-		"REPLACE INTO [CharacterIslands]"
+		"REPLACE INTO [CharacterCurrentIslands]"
 		"("
 			"[CharacterId], "
 			"[IslandId]"
 		") "
 		"VALUES({},{});";
 	static const std::string DELETE_ITEM = 
-		"DELETE FROM [CharacterIslands] "
+		"DELETE FROM [CharacterCurrentIslands] "
 		"WHERE "
 			"[CharacterId]={};";
 

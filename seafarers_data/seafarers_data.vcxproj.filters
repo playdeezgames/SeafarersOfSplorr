@@ -149,7 +149,7 @@
     <ClInclude Include="Data.Game.Ship.Docks.h">
       <Filter>Header Files\Ship</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Character.Island.h">
+    <ClInclude Include="Data.Game.Character.CurrentIsland.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.Island.DarkAlley.FightCard.h">
@@ -280,7 +280,7 @@
     <ClCompile Include="Data.Game.Ship.Docks.cpp">
       <Filter>Source Files\Ship</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Character.Island.cpp">
+    <ClCompile Include="Data.Game.Character.CurrentIsland.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Island.Tavern.cpp">
