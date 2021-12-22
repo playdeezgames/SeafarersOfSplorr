@@ -1,5 +1,7 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
+#include "Data.Game.Island.h"
+#include "Data.Game.Ship.h"
 #include "Data.Game.Ship.Island.h"
 namespace data::game::ship
 {
@@ -36,6 +38,8 @@ namespace data::game::ship
 
 	void Island::Initialize()
 	{
+		Island::Initialize();
+		Ship::Initialize();
 		Common::Execute(CREATE_TABLE);
 	}
 

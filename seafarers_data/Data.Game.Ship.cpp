@@ -3,57 +3,58 @@
 #include "Data.Game.Ship.h"
 namespace data::game
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [Ships]"
-		"("
-			"[ShipId] INTEGER PRIMARY KEY AUTOINCREMENT,"
-			"[ShipType] INT NOT NULL,"
-			"[Name] TEXT NOT NULL,"
-			"[X] REAL NOT NULL,"
-			"[Y] REAL NOT NULL,"
-			"[Heading] REAL NOT NULL,"
-			"[Speed] REAL NOT NULL"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [Ships]
+		(
+			[ShipId] INTEGER PRIMARY KEY AUTOINCREMENT,
+			[ShipType] INT NOT NULL,
+			[Name] TEXT NOT NULL,
+			[X] REAL NOT NULL,
+			[Y] REAL NOT NULL,
+			[Heading] REAL NOT NULL,
+			[Speed] REAL NOT NULL
+		);)"s;
 	static const std::string QUERY_ITEM = 
-		"SELECT "
-			"[ShipId],"
-			"[ShipType],"
-			"[Name],"
-			"[X],"
-			"[Y],"
-			"[Heading],"
-			"[Speed] "
-		"FROM [Ships] "
-		"WHERE "
-			"[ShipId]={};";
+		R"(SELECT 
+			[ShipId],
+			[ShipType],
+			[Name],
+			[X],
+			[Y],
+			[Heading],
+			[Speed] 
+		FROM [Ships] 
+		WHERE 
+			[ShipId]={};)"s;
 	static const std::string INSERT_ITEM = 
-		"INSERT INTO [Ships] "
-		"("
-			"[ShipType],"
-			"[Name],"
-			"[X],"
-			"[Y],"
-			"[Heading],"
-			"[Speed]"
-		") "
-		"VALUES({},{},{:.4f},{:.4f},{:.4f},{:.4f});";
+		R"(INSERT INTO [Ships] 
+		(
+			[ShipType],
+			[Name],
+			[X],
+			[Y],
+			[Heading],
+			[Speed]
+		) 
+		VALUES({},{},{:.4f},{:.4f},{:.4f},{:.4f});)"s;
 	static const std::string UPDATE_ITEM = 
-		"UPDATE [Ships] "
-		"SET "
-			"[ShipType]={},"
-			"[Name]={},"
-			"[X]={:4f},"
-			"[Y]={:4f},"
-			"[Heading]={},"
-			"[Speed]={} "
-		"WHERE "
-			"[ShipId]={};";
+		R"(UPDATE [Ships] 
+		SET 
+			[ShipType]={},
+			[Name]={},
+			[X]={:4f},
+			[Y]={:4f},
+			[Heading]={},
+			[Speed]={} 
+		WHERE 
+			[ShipId]={};)"s;
 	static const std::string DELETE_ALL = 
-		"DELETE FROM [Ships];";
+		R"(DELETE FROM [Ships];)"s;
 	static const std::string QUERY_ALL = 
-		"SELECT "
-			"[ShipId] "
-		"FROM [Ships];";
+		R"(SELECT 
+			[ShipId] 
+		FROM [Ships];)"s;
 
 	static const std::string FIELD_SHIP_ID = "ShipId";
 	static const std::string FIELD_SHIP_TYPE = "ShipType";
@@ -63,11 +64,14 @@ namespace data::game
 	static const std::string FIELD_HEADING = "Heading";
 	static const std::string FIELD_SPEED = "Speed";
 
-	static const auto AutoCreateShipTable = Common::Run(CREATE_TABLE);
+	void Ship::Initialize()
+	{
+		Common::Execute(CREATE_TABLE);
+	}
 
 	int Ship::Write(const Ship& ship)
 	{
-		AutoCreateShipTable();
+		Initialize();
 		if (ship.shipId == 0)
 		{
 			Common::Execute(
@@ -113,7 +117,7 @@ namespace data::game
 
 	std::optional<Ship> Ship::Read(int shipId)
 	{
-		AutoCreateShipTable();
+		Initialize();
 		auto records = Common::Execute(QUERY_ITEM, shipId);
 		if (!records.empty())
 		{
@@ -124,13 +128,13 @@ namespace data::game
 
 	void Ship::Clear()
 	{
-		AutoCreateShipTable();
+		Initialize();
 		Common::Execute(DELETE_ALL);
 	}
 
 	std::list<int> Ship::All()
 	{
-		AutoCreateShipTable();
+		Initialize();
 		std::list<int> result;
 		auto records = Common::Execute(QUERY_ALL);
 		for (auto& record : records)
