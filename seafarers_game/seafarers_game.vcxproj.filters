@@ -760,6 +760,9 @@
     <ClCompile Include="Game.Session.World.Calendar.Months.cpp">
       <Filter>Source Files\Session\World</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Session.World.Calendar.cpp">
+      <Filter>Source Files\Session\World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Game.Session.Character.Flags.h">

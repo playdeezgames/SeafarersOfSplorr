@@ -15,7 +15,7 @@ namespace data::game
 		int day;
 
 		static void Initialize();
-		static int Write(const World&);
-		static std::optional<World> Read();//TODO: this needs to take a world id
+		static void Write(int, const World&);
+		static std::optional<World> Read(int);//TODO: this needs to take a world id
 	};
 }

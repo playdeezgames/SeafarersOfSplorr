@@ -57,8 +57,8 @@ namespace data::game
 	static const std::string FIELD_DOCK_DISTANCE = "DockDistance";
 	static const std::string FIELD_WIND_HEADING = "WindHeading";
 	static const std::string FIELD_CURRENCY_ITEM_SUBTYPE_ID = "CurrencyItemSubtypeId";
+	static const std::string FIELD_DAY = "Day";
 
-	static const int WORLD_ID = 1;
 	static const int EARLIEST_INITIAL_YEAR = 500;
 	static const int LATEST_INITIAL_YEAR = 5000;
 	static const int DAYS_PER_YEAR = 360;
@@ -69,12 +69,12 @@ namespace data::game
 	}
 
 
-	int World::Write(const World& data)
+	void World::Write(int worldId, const World& data)
 	{
 		Initialize();
 		data::game::Common::Execute(
 			REPLACE_ITEM, 
-			WORLD_ID,
+			worldId,
 			data.version,
 			data.size.GetX(),
 			data.size.GetY(),
@@ -85,7 +85,6 @@ namespace data::game
 			data.currencyItemTypeId,
 			common::RNG::FromRange(EARLIEST_INITIAL_YEAR, LATEST_INITIAL_YEAR) * DAYS_PER_YEAR + 
 			common::RNG::FromRange(0, DAYS_PER_YEAR));
-		return WORLD_ID;
 	}
 
 	static World ToWorld(const std::map<std::string, std::string> record)
@@ -101,14 +100,15 @@ namespace data::game
 			common::Data::ToDouble(record.find(FIELD_VIEW_DISTANCE)->second),
 			common::Data::ToDouble(record.find(FIELD_DOCK_DISTANCE)->second),
 			common::Data::ToDouble(record.find(FIELD_WIND_HEADING)->second),
-			common::Data::ToInt(record.find(FIELD_CURRENCY_ITEM_SUBTYPE_ID)->second)
+			common::Data::ToInt(record.find(FIELD_CURRENCY_ITEM_SUBTYPE_ID)->second),
+			common::Data::ToInt(record.find(FIELD_DAY)->second)
 		};
 	}
 
-	std::optional<World> World::Read()
+	std::optional<World> World::Read(int worldId)
 	{
 		Initialize();
-		auto result = data::game::Common::Execute(QUERY_ITEM, WORLD_ID);
+		auto result = data::game::Common::Execute(QUERY_ITEM, worldId);
 		if (!result.empty())
 		{
 			return ToWorld(result.front());

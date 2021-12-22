@@ -10,15 +10,15 @@ namespace game::session
 {
 	struct World
 	{
-		constexpr World() : worldId(0) {}
+		constexpr World(int worldId) : worldId(worldId) {}
 		constexpr item::Types GetItemSubtypes() const { return item::Types(); }
 		constexpr Commodities GetCommodities() const { return Commodities(); }
-		constexpr world::Bounds GetBounds() const { return world::Bounds(); }
-		constexpr world::Wind GetWind() const { return world::Wind(); }
-		constexpr world::Distances GetDistances() const { return world::Distances(); }
+		constexpr world::Bounds GetBounds() const { return world::Bounds(worldId); }
+		constexpr world::Wind GetWind() const { return world::Wind(worldId); }
+		constexpr world::Distances GetDistances() const { return world::Distances(worldId); }
 		constexpr world::Calendar GetCalendar() const { return world::Calendar(worldId); }
 		item::Type GetCurrencyItemSubtype() const;
-		void Reset(const Difficulty&);
+		void Reset(const Difficulty&) const;
 		void ApplyTurnEffects() const;
 		int GetVersion() const;
 	private:

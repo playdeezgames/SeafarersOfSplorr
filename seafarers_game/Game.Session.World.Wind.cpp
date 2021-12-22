@@ -7,7 +7,7 @@ namespace game::session::world
 {
 	double Wind::GetHeading() const
 	{
-		return data::game::World::Read().value().windHeading;
+		return data::game::World::Read(worldId).value().windHeading;
 	}
 
 	double Wind::GetMultiplier(double heading) const
@@ -18,11 +18,11 @@ namespace game::session::world
 
 	void Wind::SetHeading(double heading) const
 	{
-		auto data = data::game::World::Read();
+		auto data = data::game::World::Read(worldId);
 		if (data)
 		{
 			data.value().windHeading = common::Data::ModuloDouble(heading, common::Heading::DEGREES).value();
-			data::game::World::Write(data.value());
+			data::game::World::Write(worldId, data.value());
 		}
 	}
 

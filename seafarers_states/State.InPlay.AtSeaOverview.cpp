@@ -131,6 +131,8 @@ namespace state::in_play
 			"At Sea:");
 		Terminal::SetForeground(
 			game::Colors::GRAY);
+		Terminal::WriteLine(game::Session().GetWorld().GetCalendar().GetDate());
+
 		//ship
 		auto ship = 
 			playerCharacter

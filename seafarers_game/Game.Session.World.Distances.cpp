@@ -4,16 +4,16 @@ namespace game::session::world
 {
 	double Distances::GetView() const
 	{
-		return data::game::World::Read().value().viewDistance;
+		return data::game::World::Read(worldId).value().viewDistance;
 	}
 
 	double Distances::GetDock() const
 	{
-		return data::game::World::Read().value().dockDistance;
+		return data::game::World::Read(worldId).value().dockDistance;
 	}
 
 	double Distances::GetIslandSpacing() const
 	{
-		return data::game::World::Read().value().minimumIslandDistance;
+		return data::game::World::Read(worldId).value().minimumIslandDistance;
 	}
 }

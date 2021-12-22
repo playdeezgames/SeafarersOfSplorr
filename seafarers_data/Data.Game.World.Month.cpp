@@ -50,7 +50,9 @@ namespace data::game::world
 		WHERE 
 			[WorldId]={};)"s;
 	static const std::string DELETE_ALL =
-		R"(DELETE FROM [WorldMonths];)"s;
+		R"(DELETE FROM [WorldMonths] 
+		WHERE 
+			[WorldId]={};)"s;
 
 	static const std::string FIELD_ORDINAL = "Ordinal";
 	static const std::string FIELD_NAME = "Name";
@@ -99,9 +101,10 @@ namespace data::game::world
 	int Month::YearLength(int worldId)
 	{
 		Initialize();
+		auto records = Common::Execute(QUERY_YEAR_LENGTH, worldId);
 		return 
 			common::Data::ToInt(
-				Common::Execute(QUERY_YEAR_LENGTH, worldId)
+				records
 				.front()
 				.find(FIELD_YEAR_LENGTH)->second);
 	}
@@ -119,9 +122,9 @@ namespace data::game::world
 	}
 
 
-	void Month::Clear()
+	void Month::Clear(int worldId)
 	{
 		Initialize();
-		Common::Execute(DELETE_ALL);
+		Common::Execute(DELETE_ALL, worldId);
 	}
 }

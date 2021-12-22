@@ -15,6 +15,6 @@ namespace data::game::world
 		static std::optional<Month> Read(int, int);
 		static std::list<Month> All(int);
 		static int YearLength(int);
-		static void Clear();
+		static void Clear(int);
 	};
 }

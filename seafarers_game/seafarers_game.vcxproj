@@ -188,6 +188,7 @@
     <ClCompile Include="Game.Session.Ship.Fouling.cpp" />
     <ClCompile Include="Game.Session.Ships.cpp" />
     <ClCompile Include="Game.Session.World.Bounds.cpp" />
+    <ClCompile Include="Game.Session.World.Calendar.cpp" />
     <ClCompile Include="Game.Session.World.Calendar.Month.cpp" />
     <ClCompile Include="Game.Session.World.Calendar.Months.cpp" />
     <ClCompile Include="Game.Session.World.cpp" />

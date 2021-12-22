@@ -4,7 +4,7 @@ namespace game::session::world
 {
 	common::XY<double> Bounds::GetSize() const
 	{
-		return data::game::World::Read().value().size;
+		return data::game::World::Read(worldId).value().size;
 	}
 
 	bool Bounds::ClampLocation(common::XY<double>& location) const

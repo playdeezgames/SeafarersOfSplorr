@@ -33,7 +33,7 @@ namespace game::session
 		return result;
 	}
 
-	void World::Reset(const Difficulty& difficulty)
+	void World::Reset(const Difficulty& difficulty) const
 	{
 		GetItemSubtypes().Reset(difficulty);
 		auto properties = worldProperties.find(difficulty)->second;
@@ -50,8 +50,8 @@ namespace game::session
 			common::RNG::FromRange(0.0, common::Heading::DEGREES),
 			(int)currencyItemSubtype
 		};
-		worldId = data::game::World::Write(data);
-		//reset calendar here!
+		data::game::World::Write(worldId, data);
+		GetCalendar().Reset(difficulty);
 	}
 
 	void World::ApplyTurnEffects() const
@@ -61,12 +61,12 @@ namespace game::session
 
 	int World::GetVersion() const
 	{
-		return data::game::World::Read().value().version;
+		return data::game::World::Read(worldId).value().version;
 	}
 
 	item::Type World::GetCurrencyItemSubtype() const
 	{
-		return item::Type(data::game::World::Read().value().currencyItemTypeId);
+		return item::Type(data::game::World::Read(worldId).value().currencyItemTypeId);
 	}
 
 }

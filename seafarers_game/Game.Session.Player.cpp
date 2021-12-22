@@ -4,9 +4,9 @@
 #include <Data.Game.Player.h>
 #include "Game.Characters.Items.h"
 #include "Game.Characters.Ships.h"
+#include "Game.Session.h"
 #include "Game.Session.Characters.h"
 #include "Game.Session.Player.h"
-#include "Game.Session.World.Bounds.h"
 #include "Game.Ship.h"
 #include "Game.ShipNames.h"
 #include "Game.ShipTypes.h"
@@ -20,7 +20,7 @@ namespace game::session
 
 	static void GenerateCharacterShip(int characterId)
 	{
-		auto worldSize = world::Bounds().GetSize();
+		auto worldSize = game::Session().GetWorld().GetBounds().GetSize();
 		auto shipType = game::ShipTypes::GenerateForAvatar();
 		int shipId = game::Ship::Add({
 			shipType,

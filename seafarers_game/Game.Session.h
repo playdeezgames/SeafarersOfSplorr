@@ -12,12 +12,13 @@
 #include <optional>
 namespace game
 {
+	constexpr int WORLD_ID = 1;
 	struct Session
 	{
 		constexpr Session() {}
 		session::Characters GetCharacters() const;
 		constexpr session::Ships GetShips() const { return session::Ships(); }
-		constexpr session::World GetWorld() const { return session::World(); }
+		constexpr session::World GetWorld() const { return session::World(WORLD_ID); }
 		session::Islands GetIslands() const;
 		session::Items GetItems() const;
 		session::Demigods GetDemigods() const;
