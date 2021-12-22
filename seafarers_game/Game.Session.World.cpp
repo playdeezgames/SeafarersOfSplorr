@@ -33,7 +33,7 @@ namespace game::session
 		return result;
 	}
 
-	void World::Reset(const Difficulty& difficulty) const
+	void World::Reset(const Difficulty& difficulty)
 	{
 		GetItemSubtypes().Reset(difficulty);
 		auto properties = worldProperties.find(difficulty)->second;
@@ -50,7 +50,8 @@ namespace game::session
 			common::RNG::FromRange(0.0, common::Heading::DEGREES),
 			(int)currencyItemSubtype
 		};
-		data::game::World::Write(data);
+		worldId = data::game::World::Write(data);
+		//reset calendar here!
 	}
 
 	void World::ApplyTurnEffects() const

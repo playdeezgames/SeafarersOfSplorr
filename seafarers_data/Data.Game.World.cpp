@@ -78,7 +78,7 @@ namespace data::game
 	}
 
 
-	void World::Write(const World& data)
+	int World::Write(const World& data)
 	{
 		Initialize();
 		data::game::Common::Execute(
@@ -94,6 +94,7 @@ namespace data::game
 			data.currencyItemTypeId,
 			common::RNG::FromRange(EARLIEST_INITIAL_YEAR, LATEST_INITIAL_YEAR) * DAYS_PER_YEAR + 
 			common::RNG::FromRange(0, DAYS_PER_YEAR));
+		return WORLD_ID;
 	}
 
 	static World ToWorld(const std::map<std::string, std::string> record)

@@ -72,6 +72,7 @@
     <ClInclude Include="Game.Session.Ship.h" />
     <ClInclude Include="Game.Session.Ships.h" />
     <ClInclude Include="Game.Session.World.Bounds.h" />
+    <ClInclude Include="Game.Session.World.Calendar.h" />
     <ClInclude Include="Game.Session.World.Distances.h" />
     <ClInclude Include="Game.Session.World.h" />
     <ClInclude Include="Game.Session.World.Wind.h" />
