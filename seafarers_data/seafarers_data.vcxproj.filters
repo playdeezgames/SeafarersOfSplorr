@@ -191,6 +191,9 @@
     <ClInclude Include="Data.Game.World.h">
       <Filter>Header Files\World</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.World.Month.h">
+      <Filter>Header Files\World</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">
@@ -311,6 +314,9 @@
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.World.cpp">
+      <Filter>Source Files\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.World.Month.cpp">
       <Filter>Source Files\World</Filter>
     </ClCompile>
   </ItemGroup>
