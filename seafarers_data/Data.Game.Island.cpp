@@ -66,11 +66,14 @@ namespace data::game
 	static const std::string FIELD_NAME = "Name";
 	static const std::string FIELD_PATRON_DEMIGOD_ID = "PatronDemigodId";
 
-	static const auto AutoCreateIslandTable = data::game::Common::Run(CREATE_TABLE);
+	void Island::Initialize()
+	{
+		Common::Execute(CREATE_TABLE);
+	}
 
 	int Island::Write(const Island& data)
 	{
-		AutoCreateIslandTable();
+		Initialize();
 		if (data.id == 0)
 		{
 			data::game::Common::Execute(
@@ -111,7 +114,7 @@ namespace data::game
 
 	std::optional<Island> Island::Read(int islandId)
 	{
-		AutoCreateIslandTable();
+		Initialize();
 		auto result = data::game::Common::Execute(
 			QUERY_ITEM,
 			islandId);
@@ -124,7 +127,7 @@ namespace data::game
 
 	std::optional<int> Island::Find(const common::XY<double>& location)
 	{
-		AutoCreateIslandTable();
+		Initialize();
 		auto result = data::game::Common::Execute(
 			QUERY_ID_FOR_LOCATION,
 			location.GetX(),
@@ -138,20 +141,20 @@ namespace data::game
 
 	std::list<Island> Island::Filter(std::function<bool(const Island&)> filter)
 	{
-		AutoCreateIslandTable();
+		Initialize();
 		return common::utility::List::Map<Common::Record, Island>(Common::DoExecute(QUERY_ALL), ToIsland, filter);
 	}
 
 
 	std::list<Island> Island::All()
 	{
-		AutoCreateIslandTable();
+		Initialize();
 		return common::utility::List::Map<Common::Record, Island>(Common::DoExecute(QUERY_ALL), ToIsland);
 	}
 
 	void Island::Clear()
 	{
-		AutoCreateIslandTable();
+		Initialize();
 		data::game::Common::Execute(CLEAR_ALL);
 	}
 }

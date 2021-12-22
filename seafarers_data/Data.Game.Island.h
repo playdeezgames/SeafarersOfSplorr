@@ -13,6 +13,7 @@ namespace data::game
 		std::string name;
 		int patronDemigodId;
 
+		static void Initialize();
 		static int Write(const Island&);
 		static std::optional<Island> Read(int);
 		static std::optional<int> Find(const common::XY<double>&);
