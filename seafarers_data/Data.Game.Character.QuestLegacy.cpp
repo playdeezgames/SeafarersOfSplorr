@@ -3,44 +3,45 @@
 #include "Data.Game.Common.h"
 namespace data::game::character
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE =
-		"CREATE TABLE IF NOT EXISTS [CharacterQuests]"
-		"("
-			"[CharacterId] INT NOT NULL UNIQUE,"
-			"[ToIslandId] INT NOT NULL, "
-			"[ItemName] TEXT NOT NULL, "
-			"[PersonName] TEXT NOT NULL, "
-			"[ProfessionName] TEXT NOT NULL, "
-			"[ReceiptEmotion] TEXT NOT NULL, "
-			"[Reward] REAL NOT NULL"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [CharacterQuests]
+		(
+			[CharacterId] INT NOT NULL UNIQUE,
+			[ToIslandId] INT NOT NULL, 
+			[ItemName] TEXT NOT NULL, 
+			[PersonName] TEXT NOT NULL, 
+			[ProfessionName] TEXT NOT NULL, 
+			[ReceiptEmotion] TEXT NOT NULL, 
+			[Reward] REAL NOT NULL
+		);)"s;
 	static const std::string QUERY_ITEM = 
-		"SELECT "
-			"[ToIslandId], "
-			"[Reward], "
-			"[ItemName], "
-			"[PersonName], "
-			"[ProfessionName], "
-			"[ReceiptEmotion] "
-		"FROM [CharacterQuests] "
-		"WHERE "
-			"[CharacterId] = {};";
+		R"(SELECT 
+			[ToIslandId], 
+			[Reward], 
+			[ItemName], 
+			[PersonName], 
+			[ProfessionName], 
+			[ReceiptEmotion] 
+		FROM [CharacterQuests] 
+		WHERE 
+			[CharacterId] = {};)"s;
 	static const std::string REPLACE_ITEM = 
-		"REPLACE INTO [CharacterQuests]"
-		"("
-			"[CharacterId],"
-			"[ToIslandId],"
-			"[Reward],"
-			"[ItemName],"
-			"[PersonName],"
-			"[ProfessionName],"
-			"[ReceiptEmotion]"
-		") "
-		"VALUES({},{},{},{},{},{},{});";
+		R"(REPLACE INTO [CharacterQuests]
+		(
+			[CharacterId],
+			[ToIslandId],
+			[Reward],
+			[ItemName],
+			[PersonName],
+			[ProfessionName],
+			[ReceiptEmotion]
+		) 
+		VALUES({},{},{},{},{},{},{});)"s;
 	static const std::string DELETE_ITEM = 
-		"DELETE FROM [CharacterQuests] "
-		"WHERE "
-			"[CharacterId]={};";
+		R"(DELETE FROM [CharacterQuests] 
+		WHERE 
+			[CharacterId]={};)"s;
 
 	static const std::string FIELD_TO_ISLAND_ID = "ToIslandId";
 	static const std::string FIELD_REWARD = "Reward";
