@@ -101,10 +101,11 @@ namespace state::in_play
 
 	std::optional<common::XY<double>> GetPlayerCharacterIslandLocation()
 	{
+		auto characterId = GetPlayerCharacterId();
 		auto islandId = GetPlayerCharacterIslandId();
 		if (islandId)
 		{
-			auto island = game::Islands::Read(islandId.value());
+			auto island = game::Islands::Read(characterId, islandId.value());
 			if (island)
 			{
 				return island.value().absoluteLocation;

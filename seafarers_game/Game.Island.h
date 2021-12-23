@@ -10,11 +10,11 @@ namespace game
 		common::XY<double> relativeLocation;
 		common::XY<double> absoluteLocation;
 		std::string name;
-		std::optional<int> visits;
+		bool isKnown;
 		int patronDemigodId;
 		std::string GetDisplayName()
 		{
-			if (visits.has_value())
+			if (isKnown)
 			{
 				return name;
 			}
@@ -22,10 +22,6 @@ namespace game
 			{
 				return "(unknown)";
 			}
-		}
-		bool IsKnown()
-		{
-			return visits.has_value();
 		}
 	};
 }

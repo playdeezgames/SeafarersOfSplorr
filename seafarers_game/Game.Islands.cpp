@@ -1,7 +1,6 @@
 #include <Common.Heading.h>
 #include <Data.Game.Character.KnownIsland.h>
 #include <Data.Game.Island.h>
-#include <Data.Game.Island.VisitLegacy.h>
 #include "Game.Characters.Ships.h"
 #include "Game.Islands.h"
 #include "Game.Session.h"
@@ -24,7 +23,6 @@ namespace game
 		const data::game::Island& island, 
 		const common::XY<double>& shipLocation)
 	{
-		auto visitData = data::game::island::VisitLegacy::Read(island.id);
 		data::game::character::KnownIsland::Write(characterId, island.id);
 		accumulator.push_back(
 			{
@@ -32,7 +30,7 @@ namespace game
 				(island.location - shipLocation),
 				island.location,
 				island.name,
-				(visitData.has_value()) ? (std::optional<int>(visitData.value().visits)) : (std::nullopt),
+				true,
 				island.patronDemigodId
 			});
 	}
@@ -85,78 +83,40 @@ namespace game
 		return !GetDockableIslands(shipId).empty();
 	}
 
-	static void AddSubsequentVisit(
-		data::game::island::VisitLegacy islandVisits,
-		const int& currentTurn)
+	void Islands::SetKnown(int characterId, int islandId, int turn)
 	{
-		if (islandVisits.lastVisit != currentTurn)
-		{
-			islandVisits.visits++;
-			islandVisits.lastVisit = currentTurn;
-			data::game::island::VisitLegacy::Write(islandVisits);
-		}
+		data::game::character::KnownIsland::Write(characterId, islandId);
 	}
 
-	static void AddInitialVisit(int islandId, const int& currentTurn)
+	static Island ToIsland(const data::game::Island& island, bool isKnown)
 	{
-		data::game::island::VisitLegacy::Write({
-			islandId,
-			1,
-			currentTurn });
-	}
-
-	void Islands::AddVisit(int islandId, int currentTurn)
-	{
-		auto previousVisits = data::game::island::VisitLegacy::Read(islandId);
-		if (previousVisits)
-		{
-			AddSubsequentVisit(previousVisits.value(), currentTurn);
-		}
-		else
-		{
-			AddInitialVisit(islandId, currentTurn);
-		}
-	}
-
-	void Islands::SetKnown(int islandId, int turn)
-	{
-		if (!data::game::island::VisitLegacy::Read(islandId))
-		{
-			data::game::island::VisitLegacy::Write({
-				islandId,
-				0,
-				turn });
-		}
-	}
-
-	static Island ToIsland(const data::game::Island& island)
-	{
-		auto previousVisits = data::game::island::VisitLegacy::Read(island.id);
 		return 
 		{
 			island.id,
 			{0.0, 0.0},
 			island.location,
 			island.name,
-			(previousVisits.has_value()) ? (std::optional<int>(previousVisits.value().visits)) : (std::nullopt),
+			isKnown,
 			island.patronDemigodId
 		};
 	}
 
-	std::optional<Island> Islands::Read(int islandId)
+	std::optional<Island> Islands::Read(int characterId, int islandId)
 	{
 		auto island = data::game::Island::Read(islandId);
 		if (island)
 		{
-			return ToIsland(island.value());
+			return ToIsland(
+				island.value(),
+				data::game::character::KnownIsland::Read(characterId, islandId));
 		}
 		return std::nullopt;
 	}
 
-	static void ObfuscateIfUnknown(game::Island& island)
+	static void ObfuscateIfUnknown(int characterId, game::Island& island)
 	{
 		auto islandId = data::game::Island::Find(island.absoluteLocation).value();
-		if (!data::game::island::VisitLegacy::Read(islandId))
+		if (!data::game::character::KnownIsland::Read(characterId, islandId))
 		{
 			island.name = Islands::UNKNOWN;
 		}
@@ -170,11 +130,11 @@ namespace game
 		std::list<Island> result;
 		for (auto& knownLocation : knownLocations)
 		{
-			auto model = Read(knownLocation);
+			auto model = Read(characterId, knownLocation);
 			if (model)
 			{
 				model.value().relativeLocation = model.value().absoluteLocation - shipLocation;
-				ObfuscateIfUnknown(model.value());
+				ObfuscateIfUnknown(characterId, model.value());
 				result.push_back(model.value());
 			}
 		}

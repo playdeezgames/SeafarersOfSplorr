@@ -12,9 +12,9 @@ namespace game::session
 		constexpr Island(int islandId): islandId(islandId) {}
 		constexpr operator int() const { return islandId; }
 		constexpr island::Markets GetMarkets() const { return island::Markets(islandId); }
-		bool IsKnown() const;
-		std::string GetDisplayName() const;
-		common::XY<double> GetLocation() const;
+		bool IsKnown(int characterId) const;
+		std::string GetDisplayName(int characterId) const;
+		common::XY<double> GetLocation(int characterId) const;
 		island::Tavern GetTavern() const;
 	private:
 		int islandId;

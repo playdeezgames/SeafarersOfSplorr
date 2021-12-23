@@ -50,7 +50,6 @@
     <ClInclude Include="Data.Game.Island.Market.h" />
     <ClInclude Include="Data.Game.Island.QuestLegacy.h" />
     <ClInclude Include="Data.Game.Island.Tavern.h" />
-    <ClInclude Include="Data.Game.Island.VisitLegacy.h" />
     <ClInclude Include="Data.Game.ItemInstance.h" />
     <ClInclude Include="Data.Game.Item.Type.h" />
     <ClInclude Include="Data.Game.Item.Type.Commodity.h" />
@@ -96,7 +95,6 @@
     <ClCompile Include="Data.Game.Island.Market.cpp" />
     <ClCompile Include="Data.Game.Island.QuestLegacy.cpp" />
     <ClCompile Include="Data.Game.Island.Tavern.cpp" />
-    <ClCompile Include="Data.Game.Island.VisitLegacy.cpp" />
     <ClCompile Include="Data.Game.ItemInstance.cpp" />
     <ClCompile Include="Data.Game.Item.Type.cpp" />
     <ClCompile Include="Data.Game.Item.Type.Commodity.cpp" />

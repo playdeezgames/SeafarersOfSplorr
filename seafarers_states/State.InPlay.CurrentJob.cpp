@@ -7,14 +7,14 @@ namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CURRENT_JOB;
 
-	static void RefreshQuest(const game::Quest& questModel)
+	static void RefreshQuest(int characterId, const game::Quest& questModel)
 	{
 		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Current Job:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		auto islandModel = game::Islands::Read(questModel.toIslandId).value();
+		auto islandModel = game::Islands::Read(characterId, questModel.toIslandId).value();
 		auto delta = questModel.destination - GetPlayerCharacterShipLocation().value();
 		Terminal::WriteLine(
 			"Please deliver this {} to {} the {} at {} ({:.2f}\xf8 distance {:.1f}). Reward: {:.2f}",
@@ -39,10 +39,11 @@ namespace state::in_play
 
 	static void Refresh()
 	{
+		auto characterId = GetPlayerCharacterId();
 		auto quest = GetPlayerCharacterQuest();
 		if (quest)
 		{
-			RefreshQuest(quest.value());
+			RefreshQuest(characterId, quest.value());
 			return;
 		}
 		RefreshNoQuest();

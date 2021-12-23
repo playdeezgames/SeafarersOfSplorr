@@ -6,7 +6,6 @@
 #include <Data.Game.Island.h>
 #include <Data.Game.Island.ItemLegacy.h>
 #include <Data.Game.Island.Market.h>
-#include <Data.Game.Island.VisitLegacy.h>
 #include "Game.Session.h"
 #include "Game.Items.h"
 #include <set>
@@ -114,7 +113,6 @@ namespace game
 	static void ClearData()
 	{
 		data::game::Island::Clear();
-		data::game::island::VisitLegacy::Clear();
 		data::game::character::KnownIsland::Clear();
 		data::game::island::Market::Clear();
 		data::game::island::ItemLegacy::ClearAll();

@@ -214,7 +214,7 @@ namespace game::islands
 
 	void Quests::Update(int characterId, int fromIslandId)
 	{
-		if (game::Islands::Read(fromIslandId).has_value())
+		if (game::Islands::Read(characterId, fromIslandId).has_value())
 		{
 			if (!data::game::island::QuestLegacy::Read(fromIslandId).has_value())
 			{

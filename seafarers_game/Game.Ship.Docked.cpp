@@ -1,4 +1,5 @@
 #include <Data.Game.Character.h>
+#include <Data.Game.Character.KnownIsland.h>
 #include <Data.Game.Character.Ship.h>
 #include <Data.Game.Ship.Docks.h>
 #include <Data.Game.Ship.h>
@@ -16,12 +17,12 @@ namespace game::ship
 {
 	static std::optional<DockResult> DoDock(int characterId, const common::XY<double>& location)
 	{
-		std::optional<DockResult> result = DockResult::DOCKED;
-		game::Islands::AddVisit(
-			data::game::Island::Find(location).value(),
-			game::Session().GetCharacters().GetCharacter(characterId).GetCounters().GetCounter(game::characters::Counter::TURNS_REMAINING).GetValue());
-		game::islands::Quests::Update(characterId, data::game::Island::Find(location).value());
 		int islandId = data::game::Island::Find(location).value();
+		std::optional<DockResult> result = DockResult::DOCKED;
+		data::game::character::KnownIsland::Write(
+			characterId, 
+			islandId);
+		game::islands::Quests::Update(characterId, islandId);
 		if (game::characters::Quests::Complete(characterId, islandId))
 		{
 			result = DockResult::COMPLETED_QUEST;
@@ -29,7 +30,7 @@ namespace game::ship
 		int shipId = data::game::character::Ship::ReadForCharacter(characterId).value().shipId;
 		data::game::ship::Docks::Write(shipId, islandId);
 		game::Session().GetCharacters().GetCharacter(characterId).DoAction(game::characters::Action::ENTER_DOCK);
-		auto island = game::Islands::Read(islandId).value();
+		auto island = game::Islands::Read(characterId, islandId).value();
 		return result;
 	}
 

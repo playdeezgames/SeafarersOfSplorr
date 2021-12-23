@@ -14,8 +14,9 @@ namespace state::in_play
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Head for:");
-		auto known = game::Session().GetPlayer().GetCharacter().GetKnownIslands();
-		auto location = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().GetLocation();
+		auto character = game::Session().GetPlayer().GetCharacter();
+		auto known = character.GetKnownIslands();
+		auto location = character.GetBerth().GetShip().GetLocation();
 		if (known.HasAny())
 		{
 			Terminal::SetForeground(game::Colors::GRAY);
@@ -24,10 +25,10 @@ namespace state::in_play
 			int index = 1;
 			for (auto& island : known.GetAll())
 			{
-				auto relativeLocation = island.GetLocation() - location;
+				auto relativeLocation = island.GetLocation((int)character) - location;
 				Terminal::WriteLine("{}) {} ({:.2f}\xf8 dist {:.1f})",
 					index++,
-					island.GetDisplayName(),
+					island.GetDisplayName((int)character),
 					common::Heading::XYToDegrees(relativeLocation),
 					relativeLocation.GetMagnitude());
 			}
@@ -46,16 +47,17 @@ namespace state::in_play
 
 	static void DoHeadForKnownIndex(size_t index)
 	{
-		auto location = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().GetLocation();
-		auto nearby = game::Session().GetPlayer().GetCharacter().GetKnownIslands().GetAll();
+		auto character = game::Session().GetPlayer().GetCharacter();
+		auto location = character.GetBerth().GetShip().GetLocation();
+		auto nearby = character.GetKnownIslands().GetAll();
 		auto chosen = common::utility::List::GetNth(nearby, index);
 		if (chosen)
 		{
-			auto relativeLocation = chosen.value().GetLocation() - location;
+			auto relativeLocation = chosen.value().GetLocation((int)character) - location;
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine();
 			game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().SetHeading(common::Heading::XYToDegrees(relativeLocation));
-			Terminal::WriteLine("You head for {}.", chosen.value().GetDisplayName());
+			Terminal::WriteLine("You head for {}.", chosen.value().GetDisplayName((int)character));
 			application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
 		}
 		else

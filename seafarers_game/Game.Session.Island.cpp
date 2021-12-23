@@ -2,24 +2,24 @@
 #include "Game.Session.Island.h"
 namespace game::session
 {
-	static std::optional<bool> TryIsKnown(int islandId)
+	static std::optional<bool> TryIsKnown(int characterId, int islandId)
 	{
-		auto island = game::Islands::Read(islandId);
+		auto island = game::Islands::Read(characterId, islandId);
 		if (island)
 		{
-			return island.value().IsKnown();
+			return island.value().isKnown;
 		}
 		return std::nullopt;
 	}
 
-	bool Island::IsKnown() const
+	bool Island::IsKnown(int characterId) const
 	{
-		return TryIsKnown(islandId).value();
+		return TryIsKnown(characterId, islandId).value();
 	}
 
-	static std::optional<std::string> TryGetDisplayName(int islandId)
+	static std::optional<std::string> TryGetDisplayName(int characterId, int islandId)
 	{
-		auto island = game::Islands::Read(islandId);
+		auto island = game::Islands::Read(characterId, islandId);
 		if (island)
 		{
 			return island.value().GetDisplayName();
@@ -27,14 +27,14 @@ namespace game::session
 		return std::nullopt;
 	}
 
-	std::string Island::GetDisplayName() const
+	std::string Island::GetDisplayName(int characterId) const
 	{
-		return TryGetDisplayName(islandId).value();
+		return TryGetDisplayName(characterId, islandId).value();
 	}
 
-	static std::optional<common::XY<double>> TryGetLocation(int islandId)
+	static std::optional<common::XY<double>> TryGetLocation(int characterId, int islandId)
 	{
-		auto island = game::Islands::Read(islandId);
+		auto island = game::Islands::Read(characterId, islandId);
 		if (island)
 		{
 			return island.value().absoluteLocation;
@@ -42,9 +42,9 @@ namespace game::session
 		return std::nullopt;
 	}
 
-	common::XY<double> Island::GetLocation() const
+	common::XY<double> Island::GetLocation(int characterId) const
 	{
-		return TryGetLocation(islandId).value();
+		return TryGetLocation(characterId, islandId).value();
 	}
 
 	island::Tavern Island::GetTavern() const

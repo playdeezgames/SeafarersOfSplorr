@@ -9,8 +9,9 @@ namespace state::in_play
 
 	static void Refresh()
 	{
+		auto characterId = GetPlayerCharacterId();
 		auto islandId = GetPlayerCharacterIslandId().value();
-		auto island = game::Islands::Read(islandId).value();
+		auto island = game::Islands::Read(characterId, islandId).value();
 		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);

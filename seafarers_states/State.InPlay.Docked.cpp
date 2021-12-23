@@ -13,15 +13,15 @@ namespace state::in_play
 
 	static void Refresh()
 	{
+		auto characterId = GetPlayerCharacterId();
 		auto islandId = GetPlayerCharacterIslandId().value();
-		auto island = game::Islands::Read(islandId).value();
+		auto island = game::Islands::Read(characterId, islandId).value();
 		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Docked:");
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine(FORMAT_NAME, island.name);
-		Terminal::WriteLine(FORMAT_VISITS, island.visits.value_or(0));
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Jobs");

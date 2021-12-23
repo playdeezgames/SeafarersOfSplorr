@@ -29,9 +29,9 @@ namespace state::in_play
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	static void RefreshQuest(const game::Quest& questModel)
+	static void RefreshQuest(int characterId, const game::Quest& questModel)
 	{
-		auto islandModel = game::Islands::Read(questModel.toIslandId).value();
+		auto islandModel = game::Islands::Read(characterId, questModel.toIslandId).value();
 		double distance = common::Heading::Distance(questModel.destination, GetPlayerCharacterShipLocation().value());
 
 		Terminal::Reinitialize();
@@ -62,12 +62,13 @@ namespace state::in_play
 
 	static void Refresh()
 	{
+		auto characterId = GetPlayerCharacterId();
 		auto islandId =
 			GetPlayerCharacterIslandId().value();
 		auto quest = game::islands::Quests::Read(islandId);
 		if (quest)
 		{
-			RefreshQuest(quest.value());
+			RefreshQuest(characterId, quest.value());
 		}
 		else
 		{

@@ -13,7 +13,8 @@ namespace state::in_play
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Head for:");
-		auto nearby = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().GetNearbyIslands();
+		auto character = game::Session().GetPlayer().GetCharacter();
+		auto nearby = character.GetBerth().GetShip().GetNearbyIslands();
 		if (nearby.HasAny())
 		{
 			Terminal::SetForeground(game::Colors::GRAY);
@@ -24,10 +25,10 @@ namespace state::in_play
 			auto location = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().GetLocation();
 			for (auto& island : nearby.GetAll())
 			{
-				auto relativeLocation = island.GetLocation() - location;
+				auto relativeLocation = island.GetLocation((int)character) - location;
 				Terminal::WriteLine("{}) {} ({:.2f}\xf8 dist {:.1f})",
 					index++,
-					island.GetDisplayName(),
+					island.GetDisplayName((int)character),
 					common::Heading::XYToDegrees(relativeLocation),
 					relativeLocation.GetMagnitude());
 			}
@@ -48,16 +49,17 @@ namespace state::in_play
 	{
 		return [index]() 
 		{
-			auto nearby = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().GetNearbyIslands().GetAll();
+			auto character = game::Session().GetPlayer().GetCharacter();
+			auto nearby = character.GetBerth().GetShip().GetNearbyIslands().GetAll();
 			auto chosen = common::utility::List::GetNth(nearby, index);
 			if (chosen)
 			{
 				Terminal::SetForeground(game::Colors::GREEN);
 				Terminal::WriteLine();
 				auto location = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().GetLocation();
-				auto relativeLocation = chosen.value().GetLocation() - location;
+				auto relativeLocation = chosen.value().GetLocation((int)character) - location;
 				game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().SetHeading(common::Heading::XYToDegrees(relativeLocation));
-				Terminal::WriteLine("You head for {}.", chosen.value().GetDisplayName());
+				Terminal::WriteLine("You head for {}.", chosen.value().GetDisplayName((int)character));
 				application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
 			}
 			else

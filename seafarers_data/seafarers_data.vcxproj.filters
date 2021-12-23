@@ -83,9 +83,6 @@
     <ClInclude Include="Data.Game.Island.QuestLegacy.h">
       <Filter>Header Files\Island</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Island.VisitLegacy.h">
-      <Filter>Header Files\Island</Filter>
-    </ClInclude>
     <ClInclude Include="Data.JSON.Store.h">
       <Filter>Header Files\Stores</Filter>
     </ClInclude>
@@ -221,9 +218,6 @@
       <Filter>Source Files\Island</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Island.QuestLegacy.cpp">
-      <Filter>Source Files\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Island.VisitLegacy.cpp">
       <Filter>Source Files\Island</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Island.DarkAlley.GamblingHand.cpp">

@@ -16,9 +16,11 @@ namespace state::in_play
 
 	static bool RefreshDockableIslands()
 	{
-		auto island =
+		auto character =
 			game::Session()
-			.GetPlayer().GetCharacter()
+			.GetPlayer().GetCharacter();
+		auto island =
+			character
 			.GetBerth()
 			.GetShip()
 			.GetDockableIslands()
@@ -26,9 +28,9 @@ namespace state::in_play
 		if (island)
 		{
 			Terminal::SetForeground(game::Colors::LIGHT_BLUE);
-			if (island.value().IsKnown())
+			if (island.value().IsKnown((int)character))
 			{
-				Terminal::Write("You can dock at {}", island.value().GetDisplayName());
+				Terminal::Write("You can dock at {}", island.value().GetDisplayName((int)character));
 			}
 			else
 			{
@@ -43,9 +45,11 @@ namespace state::in_play
 
 	static void RefreshNearbyIslands()
 	{
-		auto islands =
+		auto character =
 			game::Session()
-			.GetPlayer().GetCharacter()
+			.GetPlayer().GetCharacter();
+		auto islands =
+			character
 			.GetBerth()
 			.GetShip()
 			.GetNearbyIslands();
@@ -55,7 +59,7 @@ namespace state::in_play
 			bool first = true;
 			for (auto& island : islands.GetAll())
 			{
-				if (island.IsKnown())
+				if (island.IsKnown((int)character))
 				{
 					if (first)
 					{
@@ -66,7 +70,7 @@ namespace state::in_play
 					{
 						Terminal::Write(", ");
 					}
-					Terminal::Write(island.GetDisplayName());
+					Terminal::Write(island.GetDisplayName((int)character));
 				}
 			}
 			Terminal::WriteLine();
@@ -79,16 +83,18 @@ namespace state::in_play
 
 	static bool RefreshJobDestination()
 	{
-		auto quest =
+		auto character =
 			game::Session()
-			.GetPlayer().GetCharacter()
+			.GetPlayer().GetCharacter();
+		auto quest =
+			character
 			.TryGetQuest();
 		if (quest)
 		{
 			auto destination = 
 				quest.value()
 				.GetDestinationIsland()
-				.GetLocation();
+				.GetLocation((int)character);
 			auto location = 
 				game::Session()
 				.GetPlayer().GetCharacter()
