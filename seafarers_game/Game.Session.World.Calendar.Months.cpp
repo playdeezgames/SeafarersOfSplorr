@@ -5,10 +5,10 @@ namespace game::session::world::calendar
 	std::list<Month> Months::GetAll() const
 	{
 		std::list<Month> result;
-		auto months = data::game::world::Month::All(worldId);
+		auto months = data::game::world::Month::AllOrdinals(worldId);
 		for (auto month : months)
 		{
-			result.push_back(GetMonth(month.ordinal));
+			result.push_back(GetMonth(month));
 		}
 		return result;
 	}

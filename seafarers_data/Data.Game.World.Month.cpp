@@ -24,15 +24,6 @@ namespace data::game::world
 			[Days]
 		) 
 		VALUES({},{},{},{});)"s;
-	static const std::string QUERY_ITEM =
-		R"(SELECT 
-			[Ordinal],
-			[Name],
-			[Days] 
-		FROM [WorldMonths] 
-		WHERE 
-			[WorldId]={} 
-			AND [Ordinal]={};)"s;
 	static const std::string QUERY_ITEM_COLUMN =
 		R"(SELECT 
 			[{}]
@@ -42,9 +33,7 @@ namespace data::game::world
 			AND [Ordinal]={};)"s;
 	static const std::string QUERY_ALL =
 		R"(SELECT 
-			[Ordinal],
-			[Name],
-			[Days] 
+			[Ordinal]
 		FROM [WorldMonths] 
 		WHERE 
 			[WorldId]={} 
@@ -66,32 +55,10 @@ namespace data::game::world
 	static const std::string FIELD_DAYS = "Days";
 	static const std::string FIELD_YEAR_LENGTH = "YearLength";
 
-
 	void Month::Initialize()
 	{
 		World::Initialize();
 		Common::Execute(CREATE_TABLE);
-	}
-
-	static Month ToMonth(const Common::Record& record)
-	{
-		return 
-		{
-			common::Data::ToInt(record.find(FIELD_ORDINAL)->second),
-			record.find(FIELD_NAME)->second,
-			common::Data::ToInt(record.find(FIELD_DAYS)->second),
-		};
-	}
-
-	std::optional<Month> Month::Read(int worldId, int ordinal)
-	{
-		Initialize();
-		auto records = Common::Execute(QUERY_ITEM, worldId, ordinal);
-		if (!records.empty())
-		{
-			return ToMonth(records.front());
-		}
-		return std::nullopt;
 	}
 
 	int Month::YearLength(int worldId)
@@ -103,18 +70,6 @@ namespace data::game::world
 				records
 				.front()
 				.find(FIELD_YEAR_LENGTH)->second);
-	}
-
-	std::list<Month> Month::All(int worldId)
-	{
-		Initialize();
-		std::list<Month> result;
-		auto records = Common::Execute(QUERY_ALL, worldId);
-		for (auto record : records)
-		{
-			result.push_back(ToMonth(record));
-		}
-		return result;
 	}
 
 	void Month::Clear(int worldId)

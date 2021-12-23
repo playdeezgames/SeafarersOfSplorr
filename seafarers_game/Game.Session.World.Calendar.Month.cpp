@@ -4,11 +4,11 @@ namespace game::session::world::calendar
 {
 	std::string Month::GetName() const
 	{
-		return data::game::world::Month::Read(worldId, ordinal).value().name;
+		return data::game::world::Month::ReadName(worldId, ordinal).value();
 	}
 
 	int Month::GetDays() const
 	{
-		return data::game::world::Month::Read(worldId, ordinal).value().days;
+		return data::game::world::Month::ReadDays(worldId, ordinal).value();
 	}
 }
