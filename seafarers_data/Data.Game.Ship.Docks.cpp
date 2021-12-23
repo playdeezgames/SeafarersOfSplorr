@@ -3,30 +3,31 @@
 #include "Data.Game.Ship.Docks.h"
 namespace data::game::ship
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [ShipDocks]"
-		"("
-			"[ShipId] INT NOT NULL, "
-			"[IslandId] INT NOT NULL, "
-			"UNIQUE([ShipId])"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [ShipDocks]
+		(
+			[ShipId] INT NOT NULL, 
+			[IslandId] INT NOT NULL, 
+			UNIQUE([ShipId])
+		);)"s;
 	static const std::string REPLACE_ITEM = 
-		"REPLACE INTO [ShipDocks]"
-		"("
-			"[ShipId],"
-			"[IslandId]"
-		") "
-		"VALUES({},{});";
+		R"(REPLACE INTO [ShipDocks]
+		(
+			[ShipId],
+			[IslandId]
+		) 
+		VALUES({},{});)"s;
 	static const std::string QUERY_ITEM = 
-		"SELECT "
-			"[IslandId] "
-		"FROM [ShipDocks] "
-		"WHERE "
-			"[ShipId]={};";
+		R"(SELECT 
+			[IslandId] 
+		FROM [ShipDocks] 
+		WHERE 
+			[ShipId]={};)"s;
 	static const std::string DELETE_ITEM = 
-		"DELETE FROM [ShipDocks] "
-		"WHERE "
-			"[ShipId]={};";
+		R"(DELETE FROM[ShipDocks] 
+		WHERE 
+			[ShipId]={};)"s;
 	static const std::string DELETE_ALL = 
 		"DELETE FROM [ShipDocks];";
 
