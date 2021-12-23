@@ -1,3 +1,4 @@
+#include <Data.Game.Island.h>
 #include "Game.Islands.h"
 #include "Game.Session.Island.h"
 namespace game::session
@@ -32,19 +33,19 @@ namespace game::session
 		return TryGetDisplayName(characterId, islandId).value();
 	}
 
-	static std::optional<common::XY<double>> TryGetLocation(int characterId, int islandId)
+	static std::optional<common::XY<double>> TryGetLocation(int islandId)
 	{
-		auto island = game::Islands::Read(characterId, islandId);
+		auto island = data::game::Island::Read(islandId);
 		if (island)
 		{
-			return island.value().absoluteLocation;
+			return island.value().location;
 		}
 		return std::nullopt;
 	}
 
-	common::XY<double> Island::GetLocation(int characterId) const
+	common::XY<double> Island::GetLocation() const
 	{
-		return TryGetLocation(characterId, islandId).value();
+		return TryGetLocation(islandId).value();
 	}
 
 	island::Tavern Island::GetTavern() const

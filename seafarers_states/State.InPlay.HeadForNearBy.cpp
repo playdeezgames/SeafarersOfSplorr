@@ -25,7 +25,7 @@ namespace state::in_play
 			auto location = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().GetLocation();
 			for (auto& island : nearby.GetAll())
 			{
-				auto relativeLocation = island.GetLocation((int)character) - location;
+				auto relativeLocation = island.GetLocation() - location;
 				Terminal::WriteLine("{}) {} ({:.2f}\xf8 dist {:.1f})",
 					index++,
 					island.GetDisplayName((int)character),
@@ -57,7 +57,7 @@ namespace state::in_play
 				Terminal::SetForeground(game::Colors::GREEN);
 				Terminal::WriteLine();
 				auto location = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().GetLocation();
-				auto relativeLocation = chosen.value().GetLocation((int)character) - location;
+				auto relativeLocation = chosen.value().GetLocation() - location;
 				game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().SetHeading(common::Heading::XYToDegrees(relativeLocation));
 				Terminal::WriteLine("You head for {}.", chosen.value().GetDisplayName((int)character));
 				application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);

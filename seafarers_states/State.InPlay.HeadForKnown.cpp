@@ -25,7 +25,7 @@ namespace state::in_play
 			int index = 1;
 			for (auto& island : known.GetAll())
 			{
-				auto relativeLocation = island.GetLocation((int)character) - location;
+				auto relativeLocation = island.GetLocation() - location;
 				Terminal::WriteLine("{}) {} ({:.2f}\xf8 dist {:.1f})",
 					index++,
 					island.GetDisplayName((int)character),
@@ -53,7 +53,7 @@ namespace state::in_play
 		auto chosen = common::utility::List::GetNth(nearby, index);
 		if (chosen)
 		{
-			auto relativeLocation = chosen.value().GetLocation((int)character) - location;
+			auto relativeLocation = chosen.value().GetLocation() - location;
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine();
 			game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().SetHeading(common::Heading::XYToDegrees(relativeLocation));

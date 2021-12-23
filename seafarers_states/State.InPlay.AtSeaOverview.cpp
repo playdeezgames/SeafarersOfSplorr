@@ -94,7 +94,7 @@ namespace state::in_play
 			auto destination = 
 				quest.value()
 				.GetDestinationIsland()
-				.GetLocation((int)character);
+				.GetLocation();
 			auto location = 
 				game::Session()
 				.GetPlayer().GetCharacter()

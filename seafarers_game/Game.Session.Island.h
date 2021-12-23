@@ -6,7 +6,6 @@
 #include <string>
 namespace game::session
 {
-	struct Character;
 	struct Island
 	{
 		constexpr Island(int islandId): islandId(islandId) {}
@@ -14,7 +13,7 @@ namespace game::session
 		constexpr island::Markets GetMarkets() const { return island::Markets(islandId); }
 		bool IsKnown(int characterId) const;
 		std::string GetDisplayName(int characterId) const;
-		common::XY<double> GetLocation(int characterId) const;
+		common::XY<double> GetLocation() const;
 		island::Tavern GetTavern() const;
 	private:
 		int islandId;

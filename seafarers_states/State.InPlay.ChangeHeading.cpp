@@ -93,7 +93,7 @@ namespace state::in_play
 			.TryGetQuest();
 		if (quest)
 		{
-			auto destination = quest.value().GetDestinationIsland().GetLocation((int)playerCharacter);
+			auto destination = quest.value().GetDestinationIsland().GetLocation();
 			auto location = playerCharacter.GetBerth().GetShip().GetLocation();
 			auto delta = destination - location;
 			playerCharacter.GetBerth().GetShip().SetHeading(common::Heading::XYToDegrees(delta));
