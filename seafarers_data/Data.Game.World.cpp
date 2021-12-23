@@ -110,23 +110,6 @@ namespace data::game
 			day);
 	}
 
-	void World::Write(int worldId, const World& data)
-	{
-		Initialize();
-		data::game::Common::Execute(
-			REPLACE_ITEM, 
-			worldId,
-			data.version,
-			data.size.GetX(),
-			data.size.GetY(),
-			data.minimumIslandDistance,
-			data.viewDistance,
-			data.dockDistance,
-			data.windHeading,
-			data.currencyItemTypeId,
-			data.day);
-	}
-
 	static World ToWorld(const std::map<std::string, std::string> record)
 	{
 		return 

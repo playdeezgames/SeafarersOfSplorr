@@ -18,12 +18,7 @@ namespace game::session::world
 
 	void Wind::SetHeading(double heading) const
 	{
-		auto data = data::game::World::Read(worldId);
-		if (data)
-		{
-			data.value().windHeading = common::Data::ModuloDouble(heading, common::Heading::DEGREES).value();
-			data::game::World::Write(worldId, data.value());
-		}
+		data::game::World::WriteWindHeading(worldId, common::Data::ModuloDouble(heading, common::Heading::DEGREES).value());
 	}
 
 	void Wind::ApplyTurnEffects() const

@@ -14,7 +14,6 @@ namespace data::game
 		int currencyItemTypeId;
 		int day;
 
-		static void Write(int, const World&);
 		static std::optional<World> Read(int);
 
 		static void Initialize();
