@@ -3,38 +3,39 @@
 #include "Data.Game.Common.h"
 namespace data::game
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [Characters]"
-		"("
-			"[CharacterId] INTEGER PRIMARY KEY AUTOINCREMENT,"
-			"[State] INT NOT NULL, "
-			"[Name] TEXT NOT NULL"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [Characters]
+		(
+			[CharacterId] INTEGER PRIMARY KEY AUTOINCREMENT,
+			[State] INT NOT NULL, 
+			[Name] TEXT NOT NULL
+		);)"s;
 	static const std::string QUERY_ITEM= 
-		"SELECT "
-			"[State],"
-			"[Name] "
-		"FROM [Characters] "
-		"WHERE "
-			"[CharacterId] = {};";
+		R"(SELECT 
+			[State],
+			[Name] 
+		FROM [Characters] 
+		WHERE 
+			[CharacterId] = {};)"s;
 	static const std::string CREATE_ITEM = 
-		"INSERT INTO [Characters]"
-		"("
-			"[State],"
-			"[Name]"
-		") "
-		"VALUES({}, {});";
+		R"(INSERT INTO [Characters]
+		(
+			[State],
+			[Name]
+		) 
+		VALUES({}, {});)"s;
 	static const std::string UPDATE_ITEM = 
-		"UPDATE [Characters] "
-		"SET "
-			"[State]={}, "
-			"[Name]={} "
-		"WHERE "
-			"CharacterId={};";
+		R"(UPDATE [Characters] 
+		SET 
+			[State]={}, 
+			[Name]={} 
+		WHERE 
+			CharacterId={};)"s;
 	static const std::string QUERY_ALL = 
-		"SELECT "
-			"[CharacterId] "
-		"FROM [Characters];";
+		R"(SELECT 
+			[CharacterId] 
+		FROM [Characters];)"s;
 
 	static const std::string FIELD_STATE = "State";
 	static const std::string FIELD_NAME = "Name";
