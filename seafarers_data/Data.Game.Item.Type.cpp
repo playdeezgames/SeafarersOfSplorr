@@ -5,100 +5,91 @@ namespace data::game::item
 {
 	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		R"(CREATE TABLE IF NOT EXISTS [ItemSubtypes]
+		R"(CREATE TABLE IF NOT EXISTS [ItemTypes]
 		(
-			[ItemSubtypeId] INTEGER PRIMARY KEY AUTOINCREMENT, 
-			[ItemTypeId] INT NOT NULL,
-			[Subtype] INT NOT NULL,
+			[ItemTypeId] INTEGER PRIMARY KEY AUTOINCREMENT, 
+			[Category] INT NOT NULL,
+			[Type] INT NOT NULL,
 			[Name] TEXT NOT NULL,
-			UNIQUE([ItemTypeId],[Subtype])
+			UNIQUE([ItemCategory],[Type])
 		);)"s;
 	static const std::string INSERT_ITEM = 
-		R"(INSERT INTO [ItemSubtypes]
+		R"(INSERT INTO [ItemTypes]
 		(
-			[ItemTypeId],
-			[Subtype],
+			[Category],
+			[Type],
 			[Name]
 		) 
 		VALUES({},{},{});)"s;
-	static const std::string QUERY_MAXIMUM_SUBTYPE = 
+	static const std::string QUERY_MAXIMUM_TYPE = 
 		R"(SELECT 
-			MAX([Subtype]) AS MaximumSubtype 
-		FROM [ItemSubtypes] 
+			MAX([Type]) AS MaximumType 
+		FROM [ItemTypes] 
+		WHERE 
+			[Category]={};)"s;
+	static const std::string QUERY_ITEM_COLUMN =
+		R"(SELECT 
+			[{}] 
+		FROM [ItemTypes] 
 		WHERE 
 			[ItemTypeId]={};)"s;
-	static const std::string QUERY_ITEM_TYPE_ID = 
-		R"(SELECT 
-			[ItemTypeId] 
-		FROM [ItemSubtypes] 
-		WHERE 
-			[ItemSubtypeId]={};)"s;
-	static const std::string QUERY_SUBTYPE = 
-		R"(SELECT 
-			[Subtype] 
-		FROM [ItemSubtypes] 
-		WHERE 
-			[ItemSubtypeId]={};)"s;
-	static const std::string QUERY_NAME = 
-		R"(SELECT 
-			[Name] 
-		FROM [ItemSubtypes] 
-		WHERE 
-			[ItemSubtypeId]={};)"s;
-	static const std::string DELETE_ALL = 
-		R"(DELETE FROM [ItemSubtypes];)"s;
+	static const std::string DELETE_ALL =
+		R"(DELETE FROM [ItemTypes];)"s;
 
-	static const std::string FIELD_MAXIMUM_SUBTYPE = "MaximumSubtype";
-	static const std::string FIELD_SUBTYPE = "Subtype";
-	static const std::string FIELD_ITEM_TYPE_ID = "ItemTypeId";
+	static const std::string FIELD_MAXIMUM_TYPE = "MaximumType";
+	static const std::string FIELD_TYPE = "Type";
+	static const std::string FIELD_CATEGORY = "Category";
 	static const std::string FIELD_NAME = "Name";
 
-	static const auto AutoCreateTable = Common::Run(CREATE_TABLE);
-
-	int Type::ReadNextSubtype(int itemTypeId)
+	void Type::Initialize()
 	{
-		AutoCreateTable();
-		auto records = Common::Execute(QUERY_MAXIMUM_SUBTYPE, itemTypeId);
+		Common::Execute(CREATE_TABLE);
+	}
+
+	int Type::ReadNextTypeForCategory(int category)
+	{
+		Initialize();
+		auto records = Common::Execute(QUERY_MAXIMUM_TYPE, category);
 		if (!records.empty())
 		{
-			return common::Data::ToInt(records.front()[FIELD_MAXIMUM_SUBTYPE]) + 1;
+			return common::Data::ToInt(records.front()[FIELD_MAXIMUM_TYPE]) + 1;
 		}
 		return 0;
 	}
 
-	int Type::Establish(int itemTypeId, int subtype, const std::string& name)
+	int Type::Establish(int category, int type, const std::string& name)
 	{
-		AutoCreateTable();
-		Common::Execute(INSERT_ITEM, itemTypeId, subtype, common::Data::QuoteString(name));
+		Initialize();
+		Common::Execute(INSERT_ITEM, category, type, common::Data::QuoteString(name));
 		return Common::LastInsertedIndex();
 	}
 
-	std::optional<int> Type::ReadItemType(int itemSubTypeId)
+	std::optional<int> Type::ReadCategory(int itemType)
 	{
-		AutoCreateTable();
-		auto records = Common::Execute(QUERY_ITEM_TYPE_ID, itemSubTypeId);
+		Initialize();
+		auto records = Common::Execute(QUERY_ITEM_COLUMN, FIELD_CATEGORY, itemType);
 		if (!records.empty())
 		{
-			return common::Data::ToOptionalInt(records.front()[FIELD_ITEM_TYPE_ID]);
+			return common::Data::ToOptionalInt(records.front()[FIELD_CATEGORY]);
 		}
 		return std::nullopt;
 	}
 
-	std::optional<int> Type::ReadSubtype(int itemSubtypeId)
+	std::optional<int> Type::ReadType(int itemType)
 	{
-		AutoCreateTable();
-		auto records = Common::Execute(QUERY_SUBTYPE, itemSubtypeId);
+		Initialize();
+		auto records = Common::Execute(QUERY_ITEM_COLUMN, FIELD_TYPE, itemType);
 		if (!records.empty())
 		{
-			return common::Data::ToOptionalInt(records.front()[FIELD_SUBTYPE]);
+			return common::Data::ToOptionalInt(records.front()[FIELD_TYPE]);
 		}
 		return std::nullopt;
 	}
 
-	std::optional<std::string> Type::ReadName(int itemSubtypeId)
+	std::optional<std::string> Type::ReadName(int itemType)
 	{
-		AutoCreateTable();
-		auto records = Common::Execute(QUERY_SUBTYPE, itemSubtypeId);
+		Initialize();
+		auto records = Common::Execute(QUERY_ITEM_COLUMN, FIELD_NAME, itemType);
 		if (!records.empty())
 		{
 			return records.front()[FIELD_NAME];
@@ -108,7 +99,7 @@ namespace data::game::item
 	
 	void Type::Clear()
 	{
-		AutoCreateTable();
+		Initialize();
 		Common::Execute(DELETE_ALL);
 	}
 }
