@@ -1,5 +1,4 @@
 #include <Common.Data.h>
-#include <Game.Characters.Equipment.h>
 #include <Game.EquipSlots.h>
 #include <Game.Items.h>
 #include <Game.Session.h>
@@ -22,8 +21,7 @@ namespace state::in_play
 	{
 		auto slotName = game::EquipSlots::GetName(equipSlot);
 
-		auto item = game::characters::Equipment::Read(GetCrewDetailCharacterId(), equipSlot);
-		std::string itemName = item.has_value() ? (game::Items::GetName(item.value())) : EMPTY;
+		std::string itemName = EMPTY;
 		Terminal::WriteLine("{}) {} - {}", index, slotName, itemName);
 	}
 

@@ -82,7 +82,6 @@
     <ClInclude Include="Game.Session.World.Wind.h" />
     <ClInclude Include="Game.Ship.Docked.h" />
     <ClInclude Include="Game.Ship.DockResult.h" />
-    <ClInclude Include="Game.Characters.Equipment.h" />
     <ClInclude Include="Game.Characters.Flag.h" />
     <ClInclude Include="Game.Characters.Items.h" />
     <ClInclude Include="Game.Characters.Plight.h" />
@@ -199,7 +198,6 @@
     <ClCompile Include="Game.Session.World.Distances.cpp" />
     <ClCompile Include="Game.Session.World.Wind.cpp" />
     <ClCompile Include="Game.Ship.Docked.cpp" />
-    <ClCompile Include="Game.Characters.Equipment.cpp" />
     <ClCompile Include="Game.Characters.Items.cpp" />
     <ClCompile Include="Game.Characters.Plights.cpp" />
     <ClCompile Include="Game.Characters.Quests.cpp" />

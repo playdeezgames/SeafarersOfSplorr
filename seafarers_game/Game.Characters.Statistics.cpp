@@ -2,7 +2,6 @@
 #include <Common.Utility.Optional.h>
 #include <Common.Utility.Table.h>
 #include <Data.Game.Character.StatisticLegacy.h>
-#include "Game.Characters.Equipment.h"
 #include "Game.Characters.Statistic.h"
 #include "Game.Characters.Statistics.h"
 #include "Game.ItemLegacy.h"
@@ -15,25 +14,6 @@ namespace game::characters
 		std::optional<double> minimum;
 		std::optional<double> maximum;
 		double initial;
-	};
-
-	typedef std::map<Item, double> BuffTable;
-
-	static const BuffTable dignityBuffs =
-	{
-		{ Item::TROUSERS, 100.0 },
-		{ Item::POSH_TROUSERS, 100.0 }
-	};
-
-	static const BuffTable poshBuffs =
-	{
-		{ Item::POSH_TROUSERS, 100.0 }
-	};
-
-	typedef std::map<game::characters::Statistic, BuffTable> StatBuffTables;
-
-	static const StatBuffTables allBuffs =
-	{
 	};
 
 	static const std::map<game::Difficulty, std::list<StatisticDescriptor>> initialValues =
@@ -102,30 +82,9 @@ namespace game::characters
 		return std::nullopt;
 	}
 
-	static double CalculateBuffs(int characterId, const BuffTable itemBuffs)
-	{
-		return common::utility::Table::Accumulate<game::Item, double, double>(
-			itemBuffs,
-			[characterId](double& result, const game::Item& item, const double& buff)
-			{
-				result += (game::characters::Equipment::IsEquipped(characterId, item)) ? (buff) : (0.0);
-			});
-	}
-
 	static std::optional<double> GetCurrentWithBuffs(int characterId, const game::characters::Statistic& statistic)
 	{
-		auto current = GetCurrent(characterId, statistic);
-		if (current)
-		{
-			auto result = current.value();
-			auto buffTable = common::utility::Table::TryGetKey(allBuffs, statistic);
-			if (buffTable)
-			{
-				result += CalculateBuffs(characterId, buffTable.value());
-			}
-			return result;
-		}
-		return std::nullopt;
+		return GetCurrent(characterId, statistic);
 	}
 
 	static void SetCurrent(int characterId, const game::characters::Statistic& statistic, double value)

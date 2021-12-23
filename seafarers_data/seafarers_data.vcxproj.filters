@@ -119,9 +119,6 @@
     <ClInclude Include="Data.Game.Character.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Character.EquipmentLegacy.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Data.Game.Character.Flags.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
@@ -251,9 +248,6 @@
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Character.cpp">
-      <Filter>Source Files\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Character.EquipmentLegacy.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Character.Flags.cpp">
