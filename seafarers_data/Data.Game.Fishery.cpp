@@ -3,71 +3,72 @@
 #include "Data.Game.Fishery.h"
 namespace data::game
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [Fisheries]"
-		"("
-			"[FisheryId] INTEGER PRIMARY KEY AUTOINCREMENT,"
-			"[FishType] INT NOT NULL,"
-			"[X] REAL NOT NULL,"
-			"[Y] REAL NOT NULL,"
-			"[MoveX] REAL NOT NULL,"
-			"[MoveY] REAL NOT NULL,"
-			"[Radius] REAL NOT NULL,"
-			"[Stock] INT NOT NULL,"
-			"[Depletion] INT NOT NULL"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [Fisheries]
+		(
+			[FisheryId] INTEGER PRIMARY KEY AUTOINCREMENT,
+			[FishType] INT NOT NULL,
+			[X] REAL NOT NULL,
+			[Y] REAL NOT NULL,
+			[MoveX] REAL NOT NULL,
+			[MoveY] REAL NOT NULL,
+			[Radius] REAL NOT NULL,
+			[Stock] INT NOT NULL,
+			[Depletion] INT NOT NULL
+		);)"s;
 	static const std::string INSERT_ITEM = 
-		"INSERT INTO [Fisheries]"
-		"("
-			"[FishType],"
-			"[X],"
-			"[Y],"
-			"[MoveX],"
-			"[MoveY],"
-			"[Radius],"
-			"[Stock],"
-			"[Depletion]"
-			") "
-		"VALUES({},{},{},{},{},{},{},{});";
+		R"(INSERT INTO [Fisheries]
+		(
+			[FishType],
+			[X],
+			[Y],
+			[MoveX],
+			[MoveY],
+			[Radius],
+			[Stock],
+			[Depletion]
+		) 
+		VALUES({},{},{},{},{},{},{},{});)"s;
 	static const std::string DELETE_ALL = 
-		"DELETE FROM [Fisheries];";
+		R"(DELETE FROM [Fisheries];)"s;
 	static const std::string QUERY_ALL = 
-		"SELECT "
-			"[FisheryId],"
-			"[FishType],"
-			"[X],"
-			"[Y],"
-			"[MoveX],"
-			"[MoveY],"
-			"[Radius],"
-			"[Stock],"
-			"[Depletion] "
-		"FROM [Fisheries];";
+		R"(SELECT 
+			[FisheryId],
+			[FishType],
+			[X],
+			[Y],
+			[MoveX],
+			[MoveY],
+			[Radius],
+			[Stock],
+			[Depletion] 
+		FROM [Fisheries];)"s;
 	static const std::string QUERY_BY_ID = 
-		"SELECT "
-			"[FisheryId],"
-			"[FishType],"
-			"[X],"
-			"[Y],"
-			"[MoveX],"
-			"[MoveY],"
-			"[Radius],"
-			"[Stock],"
-			"[Depletion] "
-		"FROM [Fisheries] "
-		"WHERE "
-			"[FisheryId]={};";
+		R"(SELECT 
+			[FisheryId],
+			[FishType],
+			[X],
+			[Y],
+			[MoveX],
+			[MoveY],
+			[Radius],
+			[Stock],
+			[Depletion] 
+		FROM [Fisheries] 
+		WHERE 
+			[FisheryId]={};)"s;
 	static const std::string UPDATE_ITEM = 
-		"UPDATE [Fisheries] "
-		"SET "
-			"[X]={},"
-			"[Y]={},"
-			"[MoveX]={},"
-			"[MoveY]={},"
-			"[Stock]={},"
-			"[Depletion]={} "
-		"WHERE "
-			"[FisheryId]={};";
+		R"(UPDATE [Fisheries] 
+		SET 
+			[X]={},
+			[Y]={},
+			[MoveX]={},
+			[MoveY]={},
+			[Stock]={},
+			[Depletion]={} 
+		WHERE 
+			[FisheryId]={};)"s;
 
 	static const std::string FIELD_FISHERY_ID = "FisheryId";
 	static const std::string FIELD_FISH_TYPE = "FishType";
