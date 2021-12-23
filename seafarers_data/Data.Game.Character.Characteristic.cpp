@@ -4,37 +4,38 @@
 #include "Data.Game.Common.h"
 namespace data::game::character
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE =
-		"CREATE TABLE IF NOT EXISTS [CharacterCharacteristics]"
-		"("
-			"[CharacterId] INT NOT NULL,"
-			"[CharacteristicId] INT NOT NULL,"
-			"[Value] INT NOT NULL,"
-			"UNIQUE([CharacterId],[CharacteristicId]),"
-			"FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId])"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [CharacterCharacteristics]
+		(
+			[CharacterId] INT NOT NULL,
+			[CharacteristicId] INT NOT NULL,
+			[Value] INT NOT NULL,
+			UNIQUE([CharacterId],[CharacteristicId]),
+			FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId])
+		);)"s;
 	static const std::string QUERY_ITEM = 
-		"SELECT "
-			"[Value] "
-		"FROM [CharacterCharacteristics] "
-		"WHERE "
-			"[CharacterId]={} "
-			"AND [CharacteristicId]={};";
+		R"(SELECT 
+			[Value] 
+		FROM [CharacterCharacteristics] 
+		WHERE 
+			[CharacterId]={} 
+			AND [CharacteristicId]={};)"s;
 	static const std::string QUERY_ITEMS = 
-		"SELECT "
-			"[CharacteristicId], "
-			"[Value] "
-		"FROM [CharacterCharacteristics] "
-		"WHERE "
-			"[CharacterId]={};";
+		R"(SELECT 
+			[CharacteristicId], 
+			[Value] 
+		FROM [CharacterCharacteristics] 
+		WHERE 
+			[CharacterId]={};)"s;
 	static const std::string REPLACE_ITEM = 
-		"REPLACE INTO [CharacterCharacteristics]"
-		"("
-			"[CharacterId],"
-			"[CharacteristicId],"
-			"[Value]"
-		") "
-		"VALUES({},{},{});";
+		R"(REPLACE INTO [CharacterCharacteristics]
+		(
+			[CharacterId],
+			[CharacteristicId],
+			[Value]
+		) 
+		VALUES({},{},{});)"s;
 
 	static const std::string FIELD_VALUE = "Value";
 	static const std::string FIELD_CHARACTERISTIC_ID = "CharacteristicId";
