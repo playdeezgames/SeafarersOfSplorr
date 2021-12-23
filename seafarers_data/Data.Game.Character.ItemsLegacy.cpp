@@ -3,47 +3,48 @@
 #include "Data.Game.Common.h"
 namespace data::game::character
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [CharacterItems]"
-		"("
-			"[CharacterId] INT NOT NULL,"
-			"[ItemId] INT NOT NULL, "
-			"[ItemCount] INT NOT NULL, "
-			"UNIQUE([CharacterId],[ItemId])"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [CharacterItems]
+		(
+			[CharacterId] INT NOT NULL,
+			[ItemId] INT NOT NULL, 
+			[ItemCount] INT NOT NULL, 
+			UNIQUE([CharacterId],[ItemId])
+		);)"s;
 	static const std::string REPLACE_ITEM = 
-		"REPLACE INTO [CharacterItems]"
-		"("
-			"[CharacterId],"
-			"[ItemId],"
-			"[ItemCount]"
-		") "
-			"VALUES({},{},{});";
+		R"(REPLACE INTO [CharacterItems]
+		(
+			[CharacterId],
+			[ItemId],
+			[ItemCount]
+		) 
+		VALUES({},{},{});)"s;
 	static const std::string QUERY_ITEM = 
-		"SELECT "
-			"[ItemCount] "
-		"FROM [CharacterItems] "
-		"WHERE "
-			"[CharacterId]={} "
-			"AND [ItemId]={};";
+		R"(SELECT 
+			[ItemCount] 
+		FROM [CharacterItems] 
+		WHERE 
+			[CharacterId]={} 
+			AND [ItemId]={};)"s;
 	static const std::string QUERY_ALL = 
-		"SELECT "
-			"[ItemId],"
-			"[ItemCount] "
-		"FROM [CharacterItems] "
-		"WHERE "
-			"[CharacterId]={};";
+		R"(SELECT 
+			[ItemId],
+			[ItemCount] 
+		FROM [CharacterItems] 
+		WHERE 
+			[CharacterId]={};)"s;
 	static const std::string DELETE_ALL = 
-		"DELETE FROM [CharacterItems] "
-		"WHERE "
-			"[CharacterId]={};";
+		R"(DELETE FROM [CharacterItems] 
+		WHERE 
+			[CharacterId]={};)"s;
 	static const std::string DELETE_ALL_ITEMS = 
-		"DELETE FROM [CharacterItems];";
+		R"(DELETE FROM [CharacterItems];)"s;
 	static const std::string DELETE_ITEM = 
-		"DELETE FROM [CharacterItems] "
-		"WHERE "
-			"[CharacterId]={} "
-			"AND [ItemId]={};";
+		R"(DELETE FROM [CharacterItems] 
+		WHERE 
+			[CharacterId]={} 
+			AND [ItemId]={};)"s;
 
 	static const std::string FIELD_ITEM_ID = "ItemId";
 	static const std::string FIELD_ITEM_COUNT = "ItemCount";
