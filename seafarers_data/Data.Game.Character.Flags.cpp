@@ -3,38 +3,39 @@
 #include "Data.Game.Common.h"
 namespace data::game::character
 {
+	using namespace std::string_literals;
 	const static std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [CharacterFlags]"
-		"("
-			"[CharacterId] INT NOT NULL,"
-			"[FlagId] INT NOT NULL,"
-			"UNIQUE([CharacterId],[FlagId])"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [CharacterFlags]
+		(
+			[CharacterId] INT NOT NULL,
+			[FlagId] INT NOT NULL,
+			UNIQUE([CharacterId],[FlagId])
+		);)"s;
 	const static std::string QUERY_ITEM = 
-		"SELECT "
-			"[FlagId] "
-		"FROM [CharacterFlags] "
-		"WHERE "
-			"[CharacterId]={} "
-			"AND [FlagId]={};";
+		R"(SELECT 
+			[FlagId] 
+		FROM [CharacterFlags] 
+		WHERE 
+			[CharacterId]={} 
+			AND [FlagId]={};)"s;
 	const static std::string REPLACE_ITEM = 
-		"REPLACE INTO [CharacterFlags]"
-		"("
-			"[CharacterId],"
-			"[FlagId]"
-		") "
-		"VALUES({},{});";
+		R"(REPLACE INTO [CharacterFlags]
+		(
+			[CharacterId],
+			[FlagId]
+		) 
+		VALUES({},{});)"s;
 	const static std::string DELETE_ITEM = 
-		"DELETE FROM [CharacterFlags] "
-		"WHERE "
-			"[CharacterId]={} "
-			"AND [FlagId]={};";
+		R"(DELETE FROM [CharacterFlags] 
+		WHERE 
+			[CharacterId]={} 
+			AND [FlagId]={};)"s;
 	const static std::string QUERY_ALL_FOR_AVATAR = 
-		"SELECT "
-			"[FlagId] "
-		"FROM [CharacterFlags] "
-		"WHERE "
-			"[CharacterId]={};";
+		R"(SELECT 
+			[FlagId] 
+		FROM [CharacterFlags] 
+		WHERE 
+			[CharacterId]={};)"s;
 
 	const static std::string FIELD_FLAG_ID = "FlagId";
 
