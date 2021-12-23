@@ -5,46 +5,47 @@
 #include "Data.Game.Demigod.h"
 namespace data::game::character
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [CharacterDemigodFavor]"
-		"("
-			"[CharacterId] INT NOT NULL,"
-			"[DemigodId] INT NOT NULL,"
-			"[Favor] REAL NOT NULL, "
-			"[OfferingCooldown] INT NOT NULL, "
-			"UNIQUE([CharacterId],[DemigodId]),"
-			"FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId]),"
-			"FOREIGN KEY ([DemigodId]) REFERENCES [Demigods]([DemigodId])"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [CharacterDemigodFavor]
+		(
+			[CharacterId] INT NOT NULL,
+			[DemigodId] INT NOT NULL,
+			[Favor] REAL NOT NULL, 
+			[OfferingCooldown] INT NOT NULL, 
+			UNIQUE([CharacterId],[DemigodId]),
+			FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId]),
+			FOREIGN KEY ([DemigodId]) REFERENCES [Demigods]([DemigodId])
+		);)"s;
 	static const std::string REPLACE_ITEM = 
-		"REPLACE INTO [CharacterDemigodFavor]"
-		"("
-			"[CharacterId],"
-			"[DemigodId],"
-			"[Favor],"
-			"[OfferingCooldown]"
-		") "
-		"VALUES({},{},{},{});";
+		R"(REPLACE INTO [CharacterDemigodFavor]
+		(
+			[CharacterId],
+			[DemigodId],
+			[Favor],
+			[OfferingCooldown]
+		) 
+		VALUES({},{},{},{});)"s;
 	static const std::string QUERY_ITEM_FAVOR = 
-		"SELECT "
-			"[Favor] "
-		"FROM [CharacterDemigodFavor] "
-		"WHERE "
-			"[CharacterId]={} "
-			"AND [DemigodId]={};";
+		R"(SELECT 
+			[Favor] 
+		FROM [CharacterDemigodFavor] 
+		WHERE 
+			[CharacterId]={} 
+			AND [DemigodId]={};)"s;
 	static const std::string QUERY_ITEM_OFFERING_COOLDOWN = 
-		"SELECT "
-			"[OfferingCooldown] "
-		"FROM [CharacterDemigodFavor] "
-		"WHERE "
-			"[CharacterId]={} "
-			"AND [DemigodId]={};";
+		R"(SELECT 
+			[OfferingCooldown] 
+		FROM [CharacterDemigodFavor] 
+		WHERE 
+			[CharacterId]={} 
+			AND [DemigodId]={};)"s;
 	static const std::string DELETE_ALL_FOR_CHARACTER = 
-		"DELETE FROM [CharacterDemigodFavor] "
-		"WHERE "
-			"[CharacterId]={};";
+		R"(DELETE FROM [CharacterDemigodFavor] 
+		WHERE 
+			[CharacterId]={};)"s;
 	static const std::string DELETE_ALL = 
-		"DELETE FROM [CharacterDemigodFavor];";
+		R"(DELETE FROM [CharacterDemigodFavor];)"s;
 
 	static const std::string FIELD_FAVOR = "Favor";
 	static const std::string FIELD_OFFERING_COOLDOWN = "OfferingCooldown";
