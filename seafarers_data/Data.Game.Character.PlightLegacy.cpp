@@ -3,48 +3,49 @@
 #include "Data.Game.Character.PlightLegacy.h"
 namespace data::game::character
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [Plights]"
-		"("
-			"[CharacterId] INT NOT NULL,"
-			"[PlightId] INT NOT NULL, "
-			"[Duration] INT NULL, "
-			"UNIQUE([CharacterId],[PlightId])"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [Plights]
+		(
+			[CharacterId] INT NOT NULL,
+			[PlightId] INT NOT NULL, 
+			[Duration] INT NULL, 
+			UNIQUE([CharacterId],[PlightId])
+		);)"s;
 	static const std::string DELETE_ALL = 
-		"DELETE FROM [Plights] "
-		"WHERE "
-			"[CharacterId]={};";
+		R"(DELETE FROM [Plights] 
+		WHERE 
+			[CharacterId]={};)"s;
 	static const std::string DELETE_ALL_PLIGHTS = 
-		"DELETE FROM [Plights];";
+		R"(DELETE FROM [Plights];)"s;
 	static const std::string DELETE_ITEM = 
-		"DELETE FROM [Plights] "
-		"WHERE "
-			"[PlightId]={} "
-			"AND [CharacterId]={};";
+		R"(DELETE FROM [Plights] 
+		WHERE 
+			[PlightId]={} 
+			AND [CharacterId]={};)"s;
 	static const std::string REPLACE_ITEM = 
-		"REPLACE INTO [Plights]"
-		"("
-			"[CharacterId], "
-			"[PlightId], "
-			"[Duration]"
-		") "
-		"VALUES({}, {}, {});";
+		R"(REPLACE INTO [Plights]
+		(
+			[CharacterId], 
+			[PlightId], 
+			[Duration]
+		) 
+		VALUES({}, {}, {});)"s;
 	static const std::string QUERY_ITEM = 
-		"SELECT "
-			"[PlightId], "
-			"[Duration] "
-		"FROM [Plights] "
-		"WHERE "
-			"[PlightId]={} "
-			"AND [CharacterId]={};";
+		R"(SELECT 
+			[PlightId], 
+			[Duration] 
+		FROM [Plights] 
+		WHERE 
+			[PlightId]={} 
+			AND [CharacterId]={};)"s;
 	static const std::string QUERY_ALL = 
-		"SELECT "
-			"[PlightId], "
-			"[Duration] "
-		"FROM [Plights] "
-		"WHERE "
-			"[CharacterId]={};";
+		R"(SELECT 
+			[PlightId], 
+			[Duration] 
+		FROM [Plights] 
+		WHERE 
+			[CharacterId]={};)"s;
 
 	static const std::string FIELD_PLIGHT_ID = "PlightId";
 	static const std::string FIELD_DURATION = "Duration";
