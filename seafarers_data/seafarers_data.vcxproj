@@ -70,7 +70,7 @@
     <ClCompile Include="Data.Game.Character.CurrentIsland.cpp" />
     <ClCompile Include="Data.Game.Character.ItemInstance.cpp" />
     <ClCompile Include="Data.Game.Character.ItemsLegacy.cpp" />
-    <ClCompile Include="Data.Game.Character.KnowIsland.cpp" />
+    <ClCompile Include="Data.Game.Character.KnownIsland.cpp" />
     <ClCompile Include="Data.Game.Character.PlightLegacy.cpp" />
     <ClCompile Include="Data.Game.Character.QuestLegacy.cpp" />
     <ClCompile Include="Data.Game.Character.RationsLegacy.cpp" />

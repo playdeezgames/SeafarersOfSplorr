@@ -5,41 +5,43 @@
 #include "Data.Game.Island.h"
 namespace data::game::character
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [CharacterKnownIslands]"
-		"("
-			"[CharacterId],"
-			"[IslandId],"
-			"UNIQUE([CharacterId],[IslandId]),"
-			"FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId]),"
-			"FOREIGN KEY ([IslandId]) REFERENCES [Islands]([IslandId])"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [CharacterKnownIslands]
+		(
+			[CharacterId],
+			[IslandId],
+			UNIQUE([CharacterId],[IslandId]),
+			FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId]),
+			FOREIGN KEY ([IslandId]) REFERENCES [Islands]([IslandId])
+		);)"s;
 	static const std::string REPLACE_ITEM =
-		"REPLACE INTO [CharacterKnownIslands]"
-		"("
-			"[CharacterId],"
-			"[IslandId]"
-		")"
-		"VALUES({},{});";
+		R"(REPLACE INTO [CharacterKnownIslands]
+		(
+			[CharacterId],
+			[IslandId]
+		)
+		VALUES({},{});)"s;
 	static const std::string QUERY_ITEM =
-		"SELECT "
-			"[IslandId] "
-		"FROM [CharacterKnownIslands] "
-		"WHERE "
-			"[CharacterId]={} "
-			"AND [IslandId]={};";
+		R"(SELECT 
+			[IslandId] 
+		FROM [CharacterKnownIslands] 
+		WHERE 
+			[CharacterId]={} "
+			AND [IslandId]={};)"s;
 	static const std::string QUERY_FOR_CHARACTER =
-		"SELECT "
-			"[IslandId] "
-		"FROM [CharacterKnownIslands] "
-		"WHERE "
-			"[CharacterId]={};";
+		R"(SELECT 
+			[IslandId] 
+		FROM [CharacterKnownIslands] 
+		WHERE 
+			[CharacterId]={};)"s;
 	static const std::string DELETE_ALL =
-		"DELETE FROM [CharacterKnownIslands];";
+		R"(DELETE FROM [CharacterKnownIslands];)"s;
 	static const std::string DELETE_CHARACTER =
-		"DELETE FROM [CharacterKnownIslands] "
-		"WHERE "
-			"[CharacterId]={};";
+		R"(DELETE FROM [CharacterKnownIslands] 
+		WHERE 
+			[CharacterId]={};)"s;
+
 	static const std::string FIELD_ISLAND_ID = "IslandId";
 
 	void KnownIsland::Initialize()

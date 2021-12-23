@@ -295,7 +295,7 @@
     <ClCompile Include="Data.Game.Item.Type.Commodity.cpp">
       <Filter>Source Files\Item</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Character.KnowIsland.cpp">
+    <ClCompile Include="Data.Game.Character.KnownIsland.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.World.cpp">
