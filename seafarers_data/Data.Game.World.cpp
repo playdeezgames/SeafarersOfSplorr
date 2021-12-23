@@ -37,7 +37,7 @@ namespace data::game
 		R"(SELECT 
 			[Width],
 			[Height] 
-		FROM [World] 
+		FROM [Worlds] 
 		WHERE 
 			[WorldId]={};)";
 	static const std::string QUERY_ITEM_COLUMN =
@@ -78,13 +78,12 @@ namespace data::game
 	static const std::string FIELD_CURRENCY_ITEM_SUBTYPE_ID = "CurrencyItemSubtypeId";
 	static const std::string FIELD_DAY = "Day";
 
-
 	void World::Initialize()
 	{
 		Common::Execute(CREATE_TABLE);
 	}
 
-	void World::Create(
+	void World::Write(
 		int worldId,
 		int version,
 		const common::XY<double>& size,
@@ -126,17 +125,6 @@ namespace data::game
 			common::Data::ToInt(record.find(FIELD_CURRENCY_ITEM_SUBTYPE_ID)->second),
 			common::Data::ToInt(record.find(FIELD_DAY)->second)
 		};
-	}
-
-	std::optional<World> World::Read(int worldId)
-	{
-		Initialize();
-		auto result = data::game::Common::Execute(QUERY_ITEM, worldId);
-		if (!result.empty())
-		{
-			return ToWorld(result.front());
-		}
-		return std::nullopt;
 	}
 
 	std::optional<common::XY<double>> World::ReadSize(int worldId)
@@ -214,6 +202,17 @@ namespace data::game
 		if (record)
 		{
 			return Common::ToInt(record.value(), FIELD_DAY);
+		}
+		return std::nullopt;
+	}
+
+	std::optional<int> World::ReadVersion(int worldId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_VERSION, worldId);
+		if (record)
+		{
+			return Common::ToInt(record.value(), FIELD_VERSION);
 		}
 		return std::nullopt;
 	}

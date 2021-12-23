@@ -27,7 +27,7 @@ namespace data::game::character
 			[IslandId] 
 		FROM [CharacterKnownIslands] 
 		WHERE 
-			[CharacterId]={} "
+			[CharacterId]={} 
 			AND [IslandId]={};)"s;
 	static const std::string QUERY_FOR_CHARACTER =
 		R"(SELECT 

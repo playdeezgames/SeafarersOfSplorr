@@ -7,7 +7,7 @@ namespace game::session::world
 {
 	double Wind::GetHeading() const
 	{
-		return data::game::World::Read(worldId).value().windHeading;
+		return data::game::World::ReadWindHeading(worldId).value();
 	}
 
 	double Wind::GetMultiplier(double heading) const

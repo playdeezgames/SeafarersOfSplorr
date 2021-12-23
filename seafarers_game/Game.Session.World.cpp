@@ -44,7 +44,7 @@ namespace game::session
 
 		auto currencyItemSubtype = CreateWorldCurrencyItemSubtype();
 
-		data::game::World::Create(
+		data::game::World::Write(
 			worldId, 
 			CURRENT_VERSION,
 			{properties.size, properties.size},
@@ -67,12 +67,12 @@ namespace game::session
 
 	int World::GetVersion() const
 	{
-		return data::game::World::Read(worldId).value().version;
+		return data::game::World::ReadVersion(worldId).value();
 	}
 
 	item::Type World::GetCurrencyItemSubtype() const
 	{
-		return item::Type(data::game::World::Read(worldId).value().currencyItemTypeId);
+		return item::Type(data::game::World::ReadCurrencyItemTypeId(worldId).value());
 	}
 
 }

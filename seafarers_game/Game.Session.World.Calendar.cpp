@@ -69,7 +69,7 @@ namespace game::session::world
 	std::string Calendar::GetDate() const
 	{
 		auto yearLength = GetYearLength();
-		auto dayInWorld = data::game::World::Read(worldId).value().day;
+		auto dayInWorld = data::game::World::ReadDay(worldId).value();
 		auto year = dayInWorld / yearLength;
 		auto dayOfYear = dayInWorld % yearLength;
 		auto months = GetMonths().GetAll();
