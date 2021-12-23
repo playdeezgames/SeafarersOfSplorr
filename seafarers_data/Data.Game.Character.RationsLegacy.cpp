@@ -3,31 +3,32 @@
 #include "Data.Game.Common.h"
 namespace data::game::character
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [CharacterRations]"
-		"("
-			"[CharacterId] INT NOT NULL UNIQUE,"
-			"[ItemId] INT NOT NULL"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [CharacterRations]
+		(
+			[CharacterId] INT NOT NULL UNIQUE,
+			[ItemId] INT NOT NULL
+		);)"s;
 	static const std::string REPLACE_ITEM = 
-		"REPLACE INTO [CharacterRations]"
-		"("
-			"[CharacterId],"
-			"[ItemId]"
-		") "
-		"VALUES({},{});";
+		R"(REPLACE INTO [CharacterRations]
+		(
+			[CharacterId],
+			[ItemId]
+		) 
+		VALUES({},{});)"s;
 	static const std::string QUERY_ITEM = 
-		"SELECT "
-			"[ItemId] "
-		"FROM [CharacterRations] "
-		"WHERE "
-			"[CharacterId]={};";
+		R"(SELECT 
+			[ItemId] 
+		FROM [CharacterRations] 
+		WHERE 
+			[CharacterId]={};)"s;
 	static const std::string DELETE_ITEM = 
-		"DELETE FROM [CharacterRations] "
-		"WHERE "
-			"[CharacterId]={};";
+		R"(DELETE FROM[CharacterRations] 
+		WHERE 
+			[CharacterId]={};)"s;
 	static const std::string DELETE_ALL = 
-		"DELETE FROM [CharacterRations];";
+		R"(DELETE FROM [CharacterRations];)"s;
 
 	static const std::string FIELD_ITEM_ID = "ItemId";
 
