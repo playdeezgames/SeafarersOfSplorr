@@ -464,7 +464,7 @@
     <ClInclude Include="Game.Characters.State.h">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Skill.h">
+    <ClInclude Include="Game.SkillCategory.h">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
     <ClInclude Include="Game.Characters.Plights.h">

@@ -1,0 +1,57 @@
+#pragma once
+namespace game
+{
+	enum class SkillCategory
+	{
+		APPRAISE,//15
+		ART,//5*
+		ARTILLERY,//var*
+		BARGAIN,//5
+		BRAWL,//25
+		CLIMB,//40
+		COMMAND,//5
+		CRAFT,//5*
+		DEMOLITION,//1
+		DISGUISE,//1
+		DODGE,//DEX x 2
+		ETIQUETTE,//5
+		FAST_TALK,//5
+		FINE_MANIPULATION,//5
+		FIREARM,//var*
+		FIRST_AID,//INT x 1
+		GAMING,//INT + POW
+		GRAPPLE,//25
+		HEAVY_MACHINE,//1*
+		HIDE,//10
+		INSIGHT,//5
+		JUMP,//25
+		KNOWLEDGE,//1*
+		LANGUAGE,//INT x 5 or 0*
+		LISTEN,//25
+		LITERACY,//0*
+		MARTIAL_ARTS,//1
+		MEDICINE,//0
+		MELEE_WEAPON,//var*
+		MISSILE_WEAPON,//var*
+		NAVIGATE,//10
+		PERFORM,//5*
+		PERSUADE,//15
+		PILOT,//1*
+		PSYCHOTHERAPY,//1*
+		REPAIR,//15*
+		RESEARCH,//25
+		RIDE,//5*
+		SENSE,//10
+		SHIELD,//var*
+		SLIGHT_OF_HAND,//5
+		SPOT,//25
+		STATUS,//15*
+		STEALTH,//10
+		STRATEGY,//1
+		SWIM,//25
+		TEACH,//10
+		TECHNICAL_SKILL,//0*
+		THROW,//25
+		TRACK //10
+	};
+}

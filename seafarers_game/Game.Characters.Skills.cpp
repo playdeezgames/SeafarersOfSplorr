@@ -2,7 +2,7 @@
 #include "Game.Characters.Skills.h"
 namespace game::characters
 {
-	std::optional<int> Skills::Read(int characterId, const Skill& skill)
+	std::optional<int> Skills::Read(int characterId, const SkillCategory& skill)
 	{
 		auto value = data::game::character::Skill::Read(characterId, (int)skill);
 		if (value)
@@ -12,18 +12,18 @@ namespace game::characters
 		return std::nullopt;
 	}
 
-	std::map<Skill, int> Skills::Read(int characterId)
+	std::map<SkillCategory, int> Skills::Read(int characterId)
 	{
-		std::map<Skill, int> result;
+		std::map<SkillCategory, int> result;
 		auto skills = data::game::character::Skill::Read(characterId);
 		for (auto skill : skills)
 		{
-			result[(Skill)skill.first] = skill.second;
+			result[(SkillCategory)skill.first] = skill.second;
 		}
 		return result;
 	}
 
-	void Skills::Write(int characterId, const Skill& skill, int value)
+	void Skills::Write(int characterId, const SkillCategory& skill, int value)
 	{
 		data::game::character::Skill::Write(characterId, (int)skill, value);
 	}

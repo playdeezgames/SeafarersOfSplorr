@@ -136,7 +136,7 @@
     <ClInclude Include="Game.ShipTypes.h" />
     <ClInclude Include="Game.ShipStatistic.h" />
     <ClInclude Include="Game.Side.h" />
-    <ClInclude Include="Game.Skill.h" />
+    <ClInclude Include="Game.SkillCategory.h" />
     <ClInclude Include="Game.Colors.h" />
   </ItemGroup>
   <ItemGroup>
