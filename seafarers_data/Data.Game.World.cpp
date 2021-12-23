@@ -33,7 +33,26 @@ namespace data::game
 		FROM [Worlds] 
 		WHERE 
 			[WorldId] = {};)"s;
-	static const std::string REPLACE_ITEM = 
+	static const std::string QUERY_ITEM_SIZE =
+		R"(SELECT 
+			[Width],
+			[Height] 
+		FROM [World] 
+		WHERE 
+			[WorldId]={};)";
+	static const std::string QUERY_ITEM_COLUMN =
+		R"(SELECT 
+			[{}] 
+		FROM [Worlds] 
+		WHERE 
+			[WorldId]={};)";
+	static const std::string UPDATE_ITEM_COLUMN =
+		R"(UPDATE [Worlds] 
+		SET 
+			[{}]={} 
+		WHERE 
+			[WorldId]={};)";
+	static const std::string REPLACE_ITEM =
 		R"(REPLACE INTO [Worlds]
 		(
 			[WorldId],
@@ -65,6 +84,31 @@ namespace data::game
 		Common::Execute(CREATE_TABLE);
 	}
 
+	void World::Create(
+		int worldId,
+		int version,
+		const common::XY<double>& size,
+		double minimumIslandDistance,
+		double viewDistance,
+		double dockDistance,
+		double windHeading,
+		int currencyItemTypeId,
+		int day)
+	{
+		Initialize();
+		Common::Execute(
+			REPLACE_ITEM,
+			worldId,
+			version,
+			size.GetX(),
+			size.GetY(),
+			minimumIslandDistance,
+			viewDistance,
+			dockDistance,
+			windHeading,
+			currencyItemTypeId,
+			day);
+	}
 
 	void World::Write(int worldId, const World& data)
 	{
@@ -110,5 +154,96 @@ namespace data::game
 			return ToWorld(result.front());
 		}
 		return std::nullopt;
+	}
+
+	std::optional<common::XY<double>> World::ReadSize(int worldId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_SIZE, worldId);
+		if (record)
+		{
+			return common::XY(
+				Common::ToDouble(record.value(), FIELD_WIDTH), 
+				Common::ToDouble(record.value(), FIELD_HEIGHT));
+		}
+		return std::nullopt;
+	}
+
+	std::optional<double> World::ReadMinimumIslandDistance(int worldId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_MINIMUM_ISLAND_DISTANCE, worldId);
+		if (record)
+		{
+			return Common::ToDouble(record.value(), FIELD_MINIMUM_ISLAND_DISTANCE);
+		}
+		return std::nullopt;
+	}
+
+	std::optional<double> World::ReadViewDistance(int worldId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_VIEW_DISTANCE, worldId);
+		if (record)
+		{
+			return Common::ToDouble(record.value(), FIELD_VIEW_DISTANCE);
+		}
+		return std::nullopt;
+	}
+
+	std::optional<double> World::ReadDockDistance(int worldId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_DOCK_DISTANCE, worldId);
+		if (record)
+		{
+			return Common::ToDouble(record.value(), FIELD_DOCK_DISTANCE);
+		}
+		return std::nullopt;
+	}
+
+	std::optional<double> World::ReadWindHeading(int worldId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_WIND_HEADING, worldId);
+		if (record)
+		{
+			return Common::ToDouble(record.value(), FIELD_WIND_HEADING);
+		}
+		return std::nullopt;
+	}
+
+	std::optional<int> World::ReadCurrencyItemTypeId(int worldId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_CURRENCY_ITEM_SUBTYPE_ID, worldId);
+		if (record)
+		{
+			return Common::ToInt(record.value(), FIELD_CURRENCY_ITEM_SUBTYPE_ID);
+		}
+		return std::nullopt;
+	}
+
+	std::optional<int> World::ReadDay(int worldId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_DAY, worldId);
+		if (record)
+		{
+			return Common::ToInt(record.value(), FIELD_DAY);
+		}
+		return std::nullopt;
+	}
+
+	void World::WriteWindHeading(int worldId, double heading)
+	{
+		Initialize();
+		Common::Execute(UPDATE_ITEM_COLUMN, FIELD_WIND_HEADING, heading, worldId);
+	}
+
+	void World::WriteDay(int worldId, int day)
+	{
+		Initialize();
+		Common::Execute(UPDATE_ITEM_COLUMN, FIELD_DAY, day, worldId);
 	}
 }
