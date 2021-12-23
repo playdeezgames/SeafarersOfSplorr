@@ -4,35 +4,36 @@
 #include "Data.Game.Common.h"
 namespace data::game::character
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [CharacterCounters]"
-		"("
-			"[CharacterId] INT NOT NULL,"
-			"[CounterId] INT NOT NULL,"
-			"[Value] INT NOT NULL,"
-			"UNIQUE([CharacterId],[CounterId]),"
-			"FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId])"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [CharacterCounters]
+		(
+			[CharacterId] INT NOT NULL,
+			[CounterId] INT NOT NULL,
+			[Value] INT NOT NULL,
+			UNIQUE([CharacterId],[CounterId]),
+			FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId])
+		);)"s;
 	static const std::string REPLACE_ITEM = 
-		"REPLACE INTO [CharacterCounters]"
-		"("
-			"[CharacterId],"
-			"[CounterId],"
-			"[Value]"
-		") "
-		"VALUES({},{},{});";
+		R"(REPLACE INTO [CharacterCounters]
+		(
+			[CharacterId],
+			[CounterId],
+			[Value]
+		) 
+		VALUES({},{},{});)"s;
 	static const std::string QUERY_ITEM = 
-		"SELECT "
-			"[Value] "
-		"FROM [CharacterCounters] "
-		"WHERE "
-			"[CharacterId]={} "
-			"AND [CounterId]={};";
+		R"(SELECT 
+			[Value] 
+		FROM [CharacterCounters] 
+		WHERE 
+			[CharacterId]={} 
+			AND [CounterId]={};)"s;
 	static const std::string DELETE_ITEM = 
-		"DELETE FROM [CharacterCounters] "
-		"WHERE "
-			"[CharacterId]={} "
-			"AND [CounterId]={};";
+		R"(DELETE FROM [CharacterCounters] 
+		WHERE 
+			[CharacterId]={} 
+			AND [CounterId]={};)"s;
 
 	static const std::string FIELD_VALUE = "Value";
 
