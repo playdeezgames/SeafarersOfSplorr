@@ -11,9 +11,14 @@ namespace data::game::world
 		int days;
 
 		static void Initialize();
-		static void Write(int, const Month&);
-		static std::optional<Month> Read(int, int);
-		static std::list<Month> All(int);
+
+		static std::optional<Month> Read(int, int);//eliminate
+		static std::list<Month> All(int);//change to return list of int
+
+		static std::list<int> AllOrdinals(int);
+		static void Write(int, int, const std::string&, int);
+		static std::optional<std::string> ReadName(int, int);
+		static std::optional<int> ReadDays(int, int);
 		static int YearLength(int);
 		static void Clear(int);
 	};

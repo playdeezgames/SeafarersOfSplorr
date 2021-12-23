@@ -98,12 +98,11 @@ namespace game::session::world
 			auto name = nameGenerator.Generate();
 			auto length = common::RNG::FromGenerator(lengthGenerator);
 			total += length;
-			data::game::world::Month::Write(worldId, 
-				{
-					ordinal++,
-					name,
-					length
-				});
+			data::game::world::Month::Write(
+				worldId, 
+				ordinal++,
+				name,
+				length);
 		}
 	}
 

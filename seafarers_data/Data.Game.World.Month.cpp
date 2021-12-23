@@ -33,6 +33,13 @@ namespace data::game::world
 		WHERE 
 			[WorldId]={} 
 			AND [Ordinal]={};)"s;
+	static const std::string QUERY_ITEM_COLUMN =
+		R"(SELECT 
+			[{}]
+		FROM [WorldMonths] 
+		WHERE 
+			[WorldId]={} 
+			AND [Ordinal]={};)"s;
 	static const std::string QUERY_ALL =
 		R"(SELECT 
 			[Ordinal],
@@ -64,17 +71,6 @@ namespace data::game::world
 	{
 		World::Initialize();
 		Common::Execute(CREATE_TABLE);
-	}
-
-	void Month::Write(int worldId, const Month& month)
-	{
-		Initialize();
-		Common::Execute(
-			REPLACE_ITEM, 
-			worldId, 
-			month.ordinal, 
-			common::Data::QuoteString(month.name), 
-			month.days);
 	}
 
 	static Month ToMonth(const Common::Record& record)
@@ -121,10 +117,54 @@ namespace data::game::world
 		return result;
 	}
 
-
 	void Month::Clear(int worldId)
 	{
 		Initialize();
 		Common::Execute(DELETE_ALL, worldId);
+	}
+
+	std::list<int> Month::AllOrdinals(int worldId)
+	{
+		Initialize();
+		std::list<int> result;
+		auto records = Common::Execute(QUERY_ALL, worldId);
+		for (auto record : records)
+		{
+			result.push_back(Common::ToInt(record, FIELD_ORDINAL));
+		}
+		return result;
+	}
+
+	void Month::Write(int worldId, int ordinal, const std::string& name, int days)
+	{
+		Initialize();
+		Common::Execute(
+			REPLACE_ITEM,
+			worldId,
+			ordinal,
+			common::Data::QuoteString(name),
+			days);
+	}
+
+	std::optional<std::string> Month::ReadName(int worldId, int ordinal)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_NAME, worldId, ordinal);
+		if (record)
+		{
+			return Common::ToString(record.value(), FIELD_NAME);
+		}
+		return std::nullopt;
+	}
+
+	std::optional<int> Month::ReadDays(int worldId, int ordinal)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_DAYS, worldId, ordinal);
+		if (record)
+		{
+			return Common::ToInt(record.value(), FIELD_DAYS);
+		}
+		return std::nullopt;
 	}
 }

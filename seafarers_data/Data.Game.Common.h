@@ -25,10 +25,11 @@ namespace data::game
 			return Common::TryExecuteForOne(std::format(query, args...));
 		}
 		static std::function<void()> Run(const std::string&);
-		static common::XY<double> ToXY(const Record&);
+		static common::XY<double> ToXY(const Record&);//TODO: eliminate?
 		static int LastInsertedIndex();
 		static double ToDouble(const Record&, const std::string&);
 		static int ToInt(const Record&, const std::string&);
+		static std::string ToString(const Record&, const std::string&);
 	};
 
 }
