@@ -3,32 +3,33 @@
 #include "Data.Game.Island.DarkAlley.GamblingHand.h"
 namespace data::game::island::dark_alley
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [DarkAlleyGamblingHands]"
-		"("
-			"[IslandId] INT NOT NULL,"
-			"[FirstCard] INT NOT NULL,"
-			"[SecondCard] INT NOT NULL,"
-			"[ThirdCard] INT NOT NULL, "
-			"UNIQUE([IslandId])"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [DarkAlleyGamblingHands]
+		(
+			[IslandId] INT NOT NULL,
+			[FirstCard] INT NOT NULL,
+			[SecondCard] INT NOT NULL,
+			[ThirdCard] INT NOT NULL, 
+			UNIQUE([IslandId])
+		);)"s;
 	static const std::string REPLACE_ITEM = 
-		"REPLACE INTO [DarkAlleyGamblingHands]"
-		"("
-			"[IslandId],"
-			"[FirstCard],"
-			"[SecondCard],"
-			"[ThirdCard]"
-		") "
-		"VALUES ({},{},{},{});";
+		R"(REPLACE INTO [DarkAlleyGamblingHands]
+		(
+			[IslandId],
+			[FirstCard],
+			[SecondCard],
+			[ThirdCard]
+		) 
+		VALUES ({},{},{},{});)"s;
 	static const std::string QUERY_ITEM = 
-		"SELECT "
-			"[FirstCard],"
-			"[SecondCard],"
-			"[ThirdCard] "
-		"FROM [DarkAlleyGamblingHands] "
-		"WHERE "
-			"[IslandId]={};";
+		R"(SELECT 
+			[FirstCard],
+			[SecondCard],
+			[ThirdCard] 
+		FROM [DarkAlleyGamblingHands] 
+		WHERE 
+			[IslandId]={};)"s;
 
 	static const std::string FIELD_FIRST_CARD = "FirstCard";
 	static const std::string FIELD_SECOND_CARD = "SecondCard";

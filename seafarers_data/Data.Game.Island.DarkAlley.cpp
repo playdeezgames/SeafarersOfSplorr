@@ -3,34 +3,35 @@
 #include "Data.Game.Island.DarkAlley.h"
 namespace data::game::island
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [DarkAlleys]"
-		"("
-			"[IslandId] INT NOT NULL,"
-			"[InfamyRequirement] REAL NOT NULL,"
-			"[RuffianBrawlingStrength] REAL NOT NULL, "
-			"[MinimumWager] REAL NOT NULL, "
-			"UNIQUE([IslandId])"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [DarkAlleys]
+		(
+			[IslandId] INT NOT NULL,
+			[InfamyRequirement] REAL NOT NULL,
+			[RuffianBrawlingStrength] REAL NOT NULL, 
+			[MinimumWager] REAL NOT NULL, 
+			UNIQUE([IslandId])
+		);)"s;
 	static const std::string DELETE_ALL = 
-		"DELETE FROM [DarkAlleys];";
+		R"(DELETE FROM [DarkAlleys];)"s;
 	static const std::string REPLACE_ITEM = 
-		"REPLACE INTO [DarkAlleys]"
-		"("
-			"[IslandId],"
-			"[InfamyRequirement],"
-			"[RuffianBrawlingStrength],"
-			"[MinimumWager]"
-		") "
-		"VALUES({},{},{},{});";
+		R"(REPLACE INTO [DarkAlleys]
+		(
+			[IslandId],
+			[InfamyRequirement],
+			[RuffianBrawlingStrength],
+			[MinimumWager]
+		) 
+		VALUES({},{},{},{});)"s;
 	static const std::string QUERY_ITEM = 
-		"SELECT "
-			"[InfamyRequirement],"
-			"[RuffianBrawlingStrength],"
-			"[MinimumWager] "
-		"FROM [DarkAlleys] "
-		"WHERE "
-			"[IslandId]={};";
+		R"(SELECT 
+			[InfamyRequirement],
+			[RuffianBrawlingStrength],
+			[MinimumWager] 
+		FROM [DarkAlleys] 
+		WHERE 
+			[IslandId]={};)"s;
 
 	static const std::string FIELD_INFAMY_REQUIREMENT = "InfamyRequirement";
 	static const std::string FIELD_RUFFIAN_BRAWLING_STRENGTH = "RuffianBrawlingStrength";

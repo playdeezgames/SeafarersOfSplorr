@@ -3,34 +3,35 @@
 #include "Data.Game.Island.Feature.h"
 namespace data::game::island
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [IslandFeatures]"
-		"("
-			"[IslandId] INT NOT NULL,"
-			"[FeatureId] INT NOT NULL,"
-			"UNIQUE([IslandId],[FeatureId])"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [IslandFeatures]
+		(
+			[IslandId] INT NOT NULL,
+			[FeatureId] INT NOT NULL,
+			UNIQUE([IslandId],[FeatureId])
+		);)"s;
 	static const std::string DELETE_ALL = 
-		"DELETE FROM [IslandFeatures];";
+		R"(DELETE FROM [IslandFeatures];)"s;
 	static const std::string REPLACE_ITEM = 
-		"REPLACE INTO [IslandFeatures]"
-		"("
-			"[IslandId],"
-			"[FeatureId]"
-		") "
-		"VALUES({},{});";
+		R"(REPLACE INTO [IslandFeatures]
+		(
+			[IslandId],
+			[FeatureId]
+		) 
+		VALUES({},{});)"s;
 	static const std::string QUERY_ITEM = 
-		"SELECT "
-			"[FeatureId] "
-		"FROM [IslandFeatures] "
-		"WHERE "
-			"[IslandId]={} "
-			"AND [FeatureId]={};";
+		R"(SELECT 
+			[FeatureId] 
+		FROM [IslandFeatures] 
+		WHERE 
+			[IslandId]={} 
+			AND [FeatureId]={};)"s;
 	static const std::string DELETE_ITEM = 
-		"DELETE FROM [IslandFeatures] "
-		"WHERE "
-			"[IslandId]={} "
-			"AND [FeatureId]={};";
+		R"(DELETE FROM [IslandFeatures] 
+		WHERE 
+			[IslandId]={} 
+			AND [FeatureId]={};)"s;
 
 	static const auto AutoCreateIslandFeaturesTable = data::game::Common::Run(CREATE_TABLE);
 

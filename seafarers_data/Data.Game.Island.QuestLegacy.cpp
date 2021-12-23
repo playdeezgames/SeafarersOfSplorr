@@ -3,46 +3,47 @@
 #include "Data.Game.Island.QuestLegacy.h"
 namespace data::game::island
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [IslandQuests]"
-		"("
-			"[FromIslandId] INT NOT NULL, "
-			"[ToIslandId] INT NOT NULL, "
-			"[ItemName] TEXT NOT NULL, "
-			"[PersonName] TEXT NOT NULL, "
-			"[ProfessionName] TEXT NOT NULL, "
-			"[ReceiptEmotion] TEXT NOT NULL , "
-			"[Reward] REAL NOT NULL, "
-			"UNIQUE([FromIslandId])"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [IslandQuests]
+		(
+			[FromIslandId] INT NOT NULL, 
+			[ToIslandId] INT NOT NULL, 
+			[ItemName] TEXT NOT NULL, 
+			[PersonName] TEXT NOT NULL, 
+			[ProfessionName] TEXT NOT NULL, 
+			[ReceiptEmotion] TEXT NOT NULL , 
+			[Reward] REAL NOT NULL, 
+			UNIQUE([FromIslandId])
+		);)"s;
 	static const std::string QUERY_ITEM = 
-		"SELECT "
-			"[FromIslandId],"
-			"[ToIslandId],"
-			"[Reward],"
-			"[ItemName],"
-			"[PersonName],"
-			"[ProfessionName],"
-			"[ReceiptEmotion] "
-		"FROM [IslandQuests] "
-		"WHERE "
-			"[FromIslandId]={};";
+		R"(SELECT 
+			[FromIslandId],
+			[ToIslandId],
+			[Reward],
+			[ItemName],
+			[PersonName],
+			[ProfessionName],
+			[ReceiptEmotion] 
+		FROM [IslandQuests] 
+		WHERE 
+			[FromIslandId]={};)"s;
 	static const std::string REPLACE_ITEM = 
-		"REPLACE INTO [IslandQuests]"
-		"("
-			"[FromIslandId],"
-			"[ToIslandId],"
-			"[Reward],"
-			"[ItemName],"
-			"[PersonName],"
-			"[ProfessionName],"
-			"[ReceiptEmotion]"
-		") "
-		"VALUES({},{},{:.4f},{},{},{},{});";
+		R"(REPLACE INTO [IslandQuests]
+		(
+			[FromIslandId],
+			[ToIslandId],
+			[Reward],
+			[ItemName],
+			[PersonName],
+			[ProfessionName],
+			[ReceiptEmotion]
+		) 
+		VALUES({},{},{:.4f},{},{},{},{});)"s;
 	static const std::string DELETE_ITEM = 
-		"DELETE FROM [IslandQuests] "
-		"WHERE "
-			"[FromIslandId]={};";
+		R"(DELETE FROM [IslandQuests] 
+		WHERE 
+			[FromIslandId]={};)"s;
 
 	static const std::string FIELD_FROM_ISLAND_ID = "FromIslandId";
 	static const std::string FIELD_TO_ISLAND_ID = "ToIslandId";

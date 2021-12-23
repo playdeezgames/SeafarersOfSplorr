@@ -3,50 +3,51 @@
 #include "Data.Game.Island.Market.h"
 namespace data::game::island
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [IslandMarkets]"
-		"("
-			"[IslandId] INT NOT NULL, "
-			"[CommodityId] INT NOT NULL,"
-			"[Supply] REAL NOT NULL, "
-			"[Demand] REAL NOT NULL, "
-			"[Purchases] REAL NOT NULL, "
-			"[Sales] REAL NOT NULL, "
-			"UNIQUE([IslandId],[CommodityId])"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [IslandMarkets]
+		(
+			[IslandId] INT NOT NULL, 
+			[CommodityId] INT NOT NULL,
+			[Supply] REAL NOT NULL, 
+			[Demand] REAL NOT NULL, 
+			[Purchases] REAL NOT NULL, 
+			[Sales] REAL NOT NULL, 
+			UNIQUE([IslandId],[CommodityId])
+		);)"s;
 	static const std::string REPLACE_ITEM = 
-		"REPLACE INTO [IslandMarkets]"
-		"("
-			"[IslandId],"
-			"[CommodityId],"
-			"[Supply],"
-			"[Demand],"
-			"[Purchases],"
-			"[Sales]"
-		") "
-		"VALUES ({},{},{},{},{},{})";
+		R"(REPLACE INTO [IslandMarkets]
+		(
+			[IslandId],
+			[CommodityId],
+			[Supply],
+			[Demand],
+			[Purchases],
+			[Sales]
+		) 
+		VALUES ({},{},{},{},{},{});)"s;
 	static const std::string QUERY_ITEM = 
-		"SELECT "
-			"[Supply], "
-			"[Demand], "
-			"[Purchases], "
-			"[Sales] "
-		"FROM [IslandMarkets] "
-		"WHERE "
-			"[IslandId]={} "
-			"AND [CommodityId]={};";
+		R"(SELECT 
+			[Supply], 
+			[Demand], 
+			[Purchases], 
+			[Sales] 
+		FROM [IslandMarkets] 
+		WHERE 
+			[IslandId]={} 
+			AND [CommodityId]={};)"s;
 	static const std::string QUERY_ALL = 
-		"SELECT "
-			"[CommodityId], "
-			"[Supply], "
-			"[Demand], "
-			"[Purchases], "
-			"[Sales] "
-		"FROM [IslandMarkets] "
-		"WHERE "
-			"[IslandId]={};";
+		R"(SELECT 
+			[CommodityId], 
+			[Supply], 
+			[Demand], 
+			[Purchases], 
+			[Sales] 
+		FROM [IslandMarkets] 
+		WHERE 
+			[IslandId]={};)"s;
 	static const std::string DELETE_ALL = 
-		"DELETE FROM [IslandMarkets];";
+		R"(DELETE FROM [IslandMarkets];)"s;
 
 	static const std::string FIELD_ISLAND_ID = "IslandId";
 	static const std::string FIELD_COMMODITY_ID = "CommodityId";

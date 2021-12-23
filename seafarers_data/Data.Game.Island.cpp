@@ -4,16 +4,17 @@
 #include "Data.Game.Island.h"
 namespace data::game
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [Islands]"
-		"("
-			"[IslandId] INTEGER PRIMARY KEY AUTOINCREMENT, "
-			"[X] REAL NOT NULL,"
-			"[Y] REAL NOT NULL,"
-			"[Name] TEXT NOT NULL,"
-			"[PatronDemigodId] INT NOT NULL,"
-			"UNIQUE([X],[Y])"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [Islands]
+		(
+			[IslandId] INTEGER PRIMARY KEY AUTOINCREMENT, 
+			[X] REAL NOT NULL,
+			[Y] REAL NOT NULL,
+			[Name] TEXT NOT NULL,
+			[PatronDemigodId] INT NOT NULL,
+			UNIQUE([X],[Y])
+		);)"s;
 	static const std::string QUERY_ITEM = 
 		"SELECT "
 			"[IslandId],"

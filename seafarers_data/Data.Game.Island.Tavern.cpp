@@ -3,26 +3,27 @@
 #include "Data.Game.Island.Tavern.h"
 namespace data::game::island
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [Taverns]"
-		"("
-			"[IslandId] INT NOT NULL UNIQUE,"
-			"[TavernName] TEXT NOT NULL"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [Taverns]
+		(
+			[IslandId] INT NOT NULL UNIQUE,
+			[TavernName] TEXT NOT NULL
+		);)"s;
 	static const std::string QUERY_ITEM = 
-		"SELECT "
-			"[IslandId], "
-			"[TavernName] "
-		"FROM [Taverns] "
-		"WHERE "
-			"[IslandId]={};";
+		R"(SELECT 
+			[IslandId], 
+			[TavernName] 
+		FROM [Taverns] 
+		WHERE 
+			[IslandId]={};)"s;
 	static const std::string REPLACE_ITEM = 
-		"REPLACE INTO [Taverns]"
-		"("
-			"[IslandId],"
-			"[TavernName]"
-		") "
-		"VALUES({},{});";
+		R"(REPLACE INTO [Taverns]
+		(
+			[IslandId],
+			[TavernName]
+		) 
+		VALUES({},{});)"s;
 
 	static const std::string FIELD_ISLAND_ID = "IslandId";
 	static const std::string FIELD_TAVERN_NAME = "TavernName";
