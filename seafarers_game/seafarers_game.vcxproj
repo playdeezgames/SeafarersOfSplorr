@@ -92,8 +92,6 @@
     <ClInclude Include="Game.Characters.Ships.h" />
     <ClInclude Include="Game.Ship.Statistics.h" />
     <ClInclude Include="Game.Characters.State.h" />
-    <ClInclude Include="Game.Characters.Statistic.h" />
-    <ClInclude Include="Game.Characters.Statistics.h" />
     <ClInclude Include="Game.EquipSlot.h" />
     <ClInclude Include="Game.EquipSlots.h" />
     <ClInclude Include="Game.Fishboard.h" />
@@ -204,7 +202,6 @@
     <ClCompile Include="Game.Characters.Rations.cpp" />
     <ClCompile Include="Game.Characters.Ships.cpp" />
     <ClCompile Include="Game.Ship.Statistics.cpp" />
-    <ClCompile Include="Game.Characters.Statistics.cpp" />
     <ClCompile Include="Game.Demigods.cpp" />
     <ClCompile Include="Game.EquipSlots.cpp" />
     <ClCompile Include="Game.Features.cpp" />

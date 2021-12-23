@@ -2,7 +2,6 @@
 #include <Common.Utility.Table.h>
 #include <Game.Characters.Items.h>
 #include <Game.Characters.Ships.h>
-#include <Game.Characters.Statistics.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Islands.Ships.h>
 #include <Game.Session.h>

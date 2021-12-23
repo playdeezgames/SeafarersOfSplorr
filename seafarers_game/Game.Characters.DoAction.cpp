@@ -9,7 +9,6 @@
 #include "Game.Characters.Islands.h"
 #include "Game.Characters.Items.h"
 #include "Game.Characters.State.h"
-#include "Game.Characters.Statistics.h"
 #include "Game.Colors.h"
 #include "Game.Fishboard.h"
 #include "Game.Islands.h"

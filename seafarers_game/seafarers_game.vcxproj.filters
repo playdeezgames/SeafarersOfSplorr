@@ -416,9 +416,6 @@
     <ClInclude Include="Game.Characters.Rations.h">
       <Filter>Header Files\Character\Legacy</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Characters.Statistics.h">
-      <Filter>Header Files\Character\Legacy</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.Commodities.h">
       <Filter>Header Files\Session\Commodity</Filter>
     </ClInclude>
@@ -465,9 +462,6 @@
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
     <ClInclude Include="Game.Characters.State.h">
-      <Filter>Header Files\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Characters.Statistic.h">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
     <ClInclude Include="Game.Skill.h">
@@ -578,9 +572,6 @@
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Game.Characters.Ships.cpp">
-      <Filter>Source Files\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Characters.Statistics.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Game.Ship.Docked.cpp">

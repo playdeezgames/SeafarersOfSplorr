@@ -1,7 +1,6 @@
 #include <Common.RNG.h>
 #include <Data.Game.Island.DarkAlley.h>
 #include <Data.Game.Island.DarkAlley.FightCard.h>
-#include "Game.Characters.Statistics.h"
 #include "Game.Islands.DarkAlley.FightCard.h"
 #include <list>
 #include <set>
@@ -80,7 +79,7 @@ namespace game::islands::dark_alley
 
 	static size_t DetermineFaceCardCount(int characterId, const data::game::island::DarkAlley& darkAlley)
 	{
-		auto brawling = game::characters::statistics::Brawling::Current(characterId).value();
+		auto brawling = 1.0;
 		size_t faceCardCount =
 			(size_t)(brawling / (brawling + darkAlley.ruffianBrawlingStrength) * (double)CARD_COUNT);
 		return

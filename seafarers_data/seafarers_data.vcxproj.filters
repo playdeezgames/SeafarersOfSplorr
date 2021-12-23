@@ -137,9 +137,6 @@
     <ClInclude Include="Data.Game.Character.Ship.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Character.StatisticLegacy.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Data.Game.Ship.Docks.h">
       <Filter>Header Files\Ship</Filter>
     </ClInclude>
@@ -266,9 +263,6 @@
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Character.Ship.cpp">
-      <Filter>Source Files\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Character.StatisticLegacy.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Ship.Docks.cpp">

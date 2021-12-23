@@ -1,4 +1,3 @@
-#include <Game.Characters.Statistics.h>
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.DarkAlley.FightCard.h>
 #include <Game.Session.h>
@@ -119,7 +118,7 @@ namespace state::in_play
 		Terminal::WriteLine("Enemy Brawling: {:.1f}", GetRuffianBrawling());
 		Terminal::WriteLine(
 			"Yer Brawling: {:.1f} Yer HP: {}", 
-			game::characters::statistics::Brawling::Current(GetPlayerCharacterId()).value(),
+			1.0,
 			game::Session().GetPlayer().GetCharacter().GetHitpoints().GetCurrent());
 
 		RefreshBoard();
@@ -175,8 +174,6 @@ namespace state::in_play
 
 	static void IncreaseBrawling()
 	{
-		const double BRAWLING_DELTA = 0.1;
-		game::characters::statistics::Brawling::Change(GetPlayerCharacterId(), (hitsTaken > 0) ? (BRAWLING_DELTA) : (BRAWLING_DELTA / 2.0));
 	}
 
 	static void HandleRuffianDefeated()

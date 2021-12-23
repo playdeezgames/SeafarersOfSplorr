@@ -9,7 +9,6 @@
 #include "Game.Session.Characters.h"
 #include "Game.Characters.Items.h" //FOR RESET
 #include "Game.Characters.Plights.h" //FOR APPLY TURN EFFECTS
-#include "Game.Characters.Statistics.h" //FOR RESET
 namespace game::session
 {
 	session::Character Characters::GetCharacter(int characterId) const

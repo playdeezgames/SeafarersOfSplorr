@@ -8,7 +8,6 @@
 #include "Game.Characters.Items.h"
 #include "Game.Characters.Quests.h"
 #include "Game.Characters.Ships.h"
-#include "Game.Characters.Statistics.h"
 #include "Game.Fishboard.h"
 #include "Game.Islands.h"
 #include "Game.ItemLegacy.h"

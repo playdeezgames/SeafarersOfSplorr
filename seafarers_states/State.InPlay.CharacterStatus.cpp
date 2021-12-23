@@ -1,5 +1,4 @@
 #include <Game.Characters.Plights.h>
-#include <Game.Characters.Statistics.h>
 #include <Game.Session.h>
 #include "State.InPlay.CharacterStatus.h"
 #include "State.InPlay.CrewDetail.h"
@@ -15,7 +14,7 @@ namespace state::in_play
 		auto counters = game::Session().GetCharacters().GetCharacter(GetCrewDetailCharacterId()).GetCounters();
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Reputation: {:.1f}", counters.GetCounter(game::characters::Counter::REPUTATION).GetValue());
-		Terminal::WriteLine("Brawling: {:.1f}", game::characters::statistics::Brawling::Current(GetCrewDetailCharacterId()).value());
+		Terminal::WriteLine("Brawling: {:.1f}", 1.0);
 		Terminal::WriteLine("Turns: {}", counters.GetCounter(game::characters::Counter::TURNS_REMAINING).GetValue());
 	}
 

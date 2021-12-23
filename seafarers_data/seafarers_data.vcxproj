@@ -33,7 +33,6 @@
     <ClInclude Include="Data.Game.Character.RationsLegacy.h" />
     <ClInclude Include="Data.Game.Character.Ship.h" />
     <ClInclude Include="Data.Game.Character.Skill.h" />
-    <ClInclude Include="Data.Game.Character.StatisticLegacy.h" />
     <ClInclude Include="Data.Game.Common.h" />
     <ClInclude Include="Data.Game.Demigod.h" />
     <ClInclude Include="Data.Game.DemigodItemLegacy.h" />
@@ -77,7 +76,6 @@
     <ClCompile Include="Data.Game.Character.RationsLegacy.cpp" />
     <ClCompile Include="Data.Game.Character.Ship.cpp" />
     <ClCompile Include="Data.Game.Character.Skill.cpp" />
-    <ClCompile Include="Data.Game.Character.StatisticLegacy.cpp" />
     <ClCompile Include="Data.Game.Common.cpp" />
     <ClCompile Include="Data.Game.Demigod.cpp" />
     <ClCompile Include="Data.Game.DemigodItemLegacy.cpp" />

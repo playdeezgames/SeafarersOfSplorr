@@ -10,7 +10,6 @@
 #include "Game.Ship.h"
 #include "Game.ShipNames.h"
 #include "Game.ShipTypes.h"
-#include "Game.Characters.Statistics.h"
 namespace game::session
 {
 	Character Player::GetCharacter() const
@@ -41,7 +40,6 @@ namespace game::session
 		auto character = game::session::Characters().Create(game::characters::State::AT_SEA);
 		data::game::Player::Create((int)character);
 		game::characters::Items::Reset(data::game::Player::GetCharacterId().value(), difficulty);
-		game::characters::Statistics::Reset(data::game::Player::GetCharacterId().value(), difficulty);
 		GenerateCharacterShip((int)character);
 	}
 

@@ -4,7 +4,6 @@
 #include <Data.Game.Island.h>
 #include <Data.Game.Island.QuestLegacy.h>
 #include <format>
-#include "Game.Characters.Statistics.h"
 #include "Game.Islands.h"
 #include "Game.Islands.Quests.h"
 #include "Game.Session.h"

@@ -1,5 +1,4 @@
 #include <Application.Update.h>
-#include <Game.Characters.Statistics.h>
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.Next.h"
