@@ -99,7 +99,8 @@ namespace state::in_play
 			playerCharacter.GetBerth().GetShip().SetHeading(common::Heading::XYToDegrees(delta));
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine();
-			Terminal::WriteLine("You head for {}.", quest.value().GetDestinationIsland().GetDisplayName((int)playerCharacter));
+			auto knownIsland = playerCharacter.GetKnownIslands().GetKnownIsland(quest.value().GetDestinationIsland());
+			Terminal::WriteLine("You head for {}.", knownIsland.GetDisplayName());
 			application::UIState::Write(::UIState::IN_PLAY_NEXT);
 		}
 		else

@@ -26,9 +26,10 @@ namespace state::in_play
 			for (auto& island : nearby.GetAll())
 			{
 				auto relativeLocation = island.GetLocation() - location;
+				auto knownIsland = character.GetKnownIslands().GetKnownIsland(island);
 				Terminal::WriteLine("{}) {} ({:.2f}\xf8 dist {:.1f})",
 					index++,
-					island.GetDisplayName((int)character),
+					knownIsland.GetDisplayName(),
 					common::Heading::XYToDegrees(relativeLocation),
 					relativeLocation.GetMagnitude());
 			}
@@ -59,7 +60,8 @@ namespace state::in_play
 				auto location = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().GetLocation();
 				auto relativeLocation = chosen.value().GetLocation() - location;
 				game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().SetHeading(common::Heading::XYToDegrees(relativeLocation));
-				Terminal::WriteLine("You head for {}.", chosen.value().GetDisplayName((int)character));
+				auto knownIsland = character.GetKnownIslands().GetKnownIsland(chosen.value());
+				Terminal::WriteLine("You head for {}.", knownIsland.GetDisplayName());
 				application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
 			}
 			else

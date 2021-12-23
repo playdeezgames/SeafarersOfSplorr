@@ -344,17 +344,6 @@ namespace game::session
 		return character::Messages(characterId);
 	}
 
-	Islands Character::GetKnownIslands() const
-	{
-		auto islands = game::Islands::GetKnownIslands(characterId);
-		std::list<int> result;
-		for (auto island : islands)
-		{
-			result.push_back(island.id);
-		}
-		return Islands([result]() {return result; });//!!!
-	}
-
 	FishGame Character::GetFishGame() const
 	{
 		return game::session::FishGame(characterId);

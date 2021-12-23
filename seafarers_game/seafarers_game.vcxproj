@@ -39,6 +39,8 @@
     <ClInclude Include="Game.Session.Character.Flag.h" />
     <ClInclude Include="Game.Session.Character.h" />
     <ClInclude Include="Game.Session.Character.HitPoints.h" />
+    <ClInclude Include="Game.Session.Character.KnownIsland.h" />
+    <ClInclude Include="Game.Session.Character.KnownIslands.h" />
     <ClInclude Include="Game.Session.Character.Items.h" />
     <ClInclude Include="Game.Session.Character.LegacyItem.h" />
     <ClInclude Include="Game.Session.Character.LegacyItems.h" />
@@ -157,6 +159,8 @@
     <ClCompile Include="Game.Session.Character.Flags.cpp" />
     <ClCompile Include="Game.Session.Character.HitPoints.cpp" />
     <ClCompile Include="Game.Session.Character.Items.cpp" />
+    <ClCompile Include="Game.Session.Character.KnownIsland.cpp" />
+    <ClCompile Include="Game.Session.Character.KnownIslands.cpp" />
     <ClCompile Include="Game.Session.Character.LegacyItem.cpp" />
     <ClCompile Include="Game.Session.Character.LegacyItems.cpp" />
     <ClCompile Include="Game.Session.Character.Messages.cpp" />

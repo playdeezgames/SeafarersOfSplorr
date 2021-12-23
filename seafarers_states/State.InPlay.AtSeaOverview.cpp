@@ -27,10 +27,14 @@ namespace state::in_play
 			.TryGetFirst();
 		if (island)
 		{
+			auto knownIsland =
+				character
+				.GetKnownIslands()
+				.GetKnownIsland(island.value());
 			Terminal::SetForeground(game::Colors::LIGHT_BLUE);
-			if (island.value().IsKnown((int)character))
+			if (knownIsland.IsKnown())
 			{
-				Terminal::Write("You can dock at {}", island.value().GetDisplayName((int)character));
+				Terminal::Write("You can dock at {}", knownIsland.GetDisplayName());
 			}
 			else
 			{
@@ -59,7 +63,11 @@ namespace state::in_play
 			bool first = true;
 			for (auto& island : islands.GetAll())
 			{
-				if (island.IsKnown((int)character))
+				auto knownIsland =
+					character
+					.GetKnownIslands()
+					.GetKnownIsland(island);
+				if (knownIsland.IsKnown())
 				{
 					if (first)
 					{
@@ -70,7 +78,7 @@ namespace state::in_play
 					{
 						Terminal::Write(", ");
 					}
-					Terminal::Write(island.GetDisplayName((int)character));
+					Terminal::Write(knownIsland.GetDisplayName());
 				}
 			}
 			Terminal::WriteLine();

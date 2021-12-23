@@ -7,7 +7,7 @@ namespace game::session::character
 	struct Quest
 	{
 		Quest(int);
-		Island GetDestinationIsland() const;
+		game::session::Island GetDestinationIsland() const;
 		std::string GetCompletionMessage() const;
 		void Abandon() const;
 	private:
