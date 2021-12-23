@@ -30,20 +30,21 @@ namespace game::session
 		character::Quest GetQuest() const;
 		void DoAction(const game::characters::Action&) const;
 		character::Messages GetMessages() const;
-		Islands GetKnownIslands() const;
 		FishGame GetFishGame() const;
 		double GetAvailableTonnage() const;
 		bool IsDead() const;
 		character::Items GetItems() const;
-		void SetIsland(Island island) const;
-		void ClearIsland() const;
-		std::optional<Island> TryGetIsland() const;
-		Island GetIsland() const;
 		character::Counters GetCounters() const;
 		character::Flags GetFlags() const;
 		std::string GetName() const;
 		std::optional<characters::State> TryGetState() const;
 		characters::State GetState() const;
+
+		Islands GetKnownIslands() const;
+		void SetIsland(Island island) const;
+		void ClearIsland() const;
+		std::optional<Island> TryGetIsland() const;
+		Island GetIsland() const;
 	private:
 		int characterId;
 	};
