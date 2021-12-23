@@ -5,17 +5,12 @@ namespace data::game
 {
 	struct World
 	{
-		int version;
-		common::XY<double> size;
-		double minimumIslandDistance;
-		double viewDistance;
-		double dockDistance;
-		double windHeading;
-		int currencyItemTypeId;
-		int day;
-
 		static void Initialize();
+
 		static void Write(int, int, const common::XY<double>&, double, double, double, double, int, int);
+		static void WriteWindHeading(int, double);
+		static void WriteDay(int, int);
+
 		static std::optional<common::XY<double>> ReadSize(int);
 		static std::optional<double> ReadMinimumIslandDistance(int);
 		static std::optional<double> ReadViewDistance(int);
@@ -24,7 +19,5 @@ namespace data::game
 		static std::optional<int> ReadCurrencyItemTypeId(int);
 		static std::optional<int> ReadDay(int);
 		static std::optional<int> ReadVersion(int);
-		static void WriteWindHeading(int, double);
-		static void WriteDay(int, int);
 	};
 }
