@@ -3,31 +3,32 @@
 #include "Data.Game.DemigodItemLegacy.h"
 namespace data::game
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [DemigodItems]"
-		"("
-			"[DemigodId] INT NOT NULL,"
-			"[ItemId] INT NOT NULL,"
-			"[Favor] REAL NOT NULL,"
-			"UNIQUE([DemigodId],[ItemId])"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [DemigodItems]
+		(
+			[DemigodId] INT NOT NULL,
+			[ItemId] INT NOT NULL,
+			[Favor] REAL NOT NULL,
+			UNIQUE([DemigodId],[ItemId])
+		);)"s;
 	static const std::string DELETE_ALL = 
-		"DELETE FROM [DemigodItems];";
+		R"(DELETE FROM [DemigodItems];)"s;
 	static const std::string QUERY_ITEM = 
-		"SELECT "
-			"[Favor] "
-		"FROM [DemigodItems] "
-		"WHERE "
-			"[DemigodId]={} "
-			"AND [ItemId]={};";
+		R"(SELECT 
+			[Favor] 
+		FROM [DemigodItems] 
+		WHERE 
+			[DemigodId]={} 
+			AND [ItemId]={};)"s;
 	static const std::string REPLACE_ITEM = 
-		"REPLACE INTO [DemigodItems]"
-		"("
-			"[DemigodId],"
-			"[ItemId],"
-			"[Favor]"
-		") "
-		"VALUES({},{},{});";
+		R"(REPLACE INTO [DemigodItems]
+		(
+			[DemigodId],
+			[ItemId],
+			[Favor]
+		) 
+		VALUES({},{},{});)"s;
 
 	static const std::string FIELD_FAVOR = "Favor";
 
