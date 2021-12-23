@@ -3,42 +3,43 @@
 #include "Data.Game.ItemInstance.h"
 namespace data::game
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [ItemInstances]"
-		"("
-			"[ItemInstanceId] INTEGER PRIMARY KEY AUTOINCREMENT, "
-			"[ItemSubtypeId] INT NOT NULL, "
-			"[Quantity] INT NOT NULL"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [ItemInstances]
+		(
+			[ItemInstanceId] INTEGER PRIMARY KEY AUTOINCREMENT, 
+			[ItemSubtypeId] INT NOT NULL, 
+			[Quantity] INT NOT NULL
+		);)"s;
 	static const std::string CREATE_ITEM = 
-		"INSERT INTO [ItemInstances]"
-		"("
-			"[ItemSubtypeId],"
-			"[Quantity]"
-		") "
-		"VALUES({},{});";
+		R"(INSERT INTO [ItemInstances]
+		(
+			[ItemSubtypeId],
+			[Quantity]
+		) 
+		VALUES({},{});)"s;
 	static const std::string QUERY_ITEM_SUBTYPE = 
-		"SELECT "
-			"[ItemSubtypeId] "
-		"FROM [ItemInstances] "
-		"WHERE "
-			"[ItemInstanceId]={};";
+		R"(SELECT 
+			[ItemSubtypeId] 
+		FROM [ItemInstances] 
+		WHERE 
+			[ItemInstanceId]={};)"s;
 	static const std::string QUERY_QUANTITY = 
-		"SELECT "
-			"[Quantity] "
-		"FROM [ItemInstances] "
-		"WHERE "
-			"[ItemInstanceId]={};";
+		R"(SELECT 
+			[Quantity] 
+		FROM [ItemInstances] 
+		WHERE 
+			[ItemInstanceId]={};)"s;
 	static const std::string UPDATE_QUANTITY = 
-		"UPDATE [ItemInstances] "
-		"SET "
-			"[Quantity]={} "
-		"WHERE "
-			"[ItemInstanceId]={};";
+		R"(UPDATE [ItemInstances] 
+		SET 
+			[Quantity]={} 
+		WHERE 
+			[ItemInstanceId]={};)"s;
 	static const std::string PURGE_ITEMS = 
-		"DELETE FROM [ItemInstances] "
-		"WHERE "
-			"[Quantity]<=0;";
+		R"(DELETE FROM [ItemInstances] 
+		WHERE 
+			[Quantity]<=0;)"s;
 
 	static const std::string FIELD_ITEM_SUBTYPE_ID = "ItemSubtypeId";
 	static const std::string FIELD_QUANTITY = "Quantity";

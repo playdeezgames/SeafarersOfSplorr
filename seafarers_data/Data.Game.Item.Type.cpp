@@ -3,49 +3,50 @@
 #include "Data.Game.Item.Type.h"
 namespace data::game::item
 {
+	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		"CREATE TABLE IF NOT EXISTS [ItemSubtypes]"
-		"("
-			"[ItemSubtypeId] INTEGER PRIMARY KEY AUTOINCREMENT, "
-			"[ItemTypeId] INT NOT NULL,"
-			"[Subtype] INT NOT NULL,"
-			"[Name] TEXT NOT NULL,"
-			"UNIQUE([ItemTypeId],[Subtype])"
-		");";
+		R"(CREATE TABLE IF NOT EXISTS [ItemSubtypes]
+		(
+			[ItemSubtypeId] INTEGER PRIMARY KEY AUTOINCREMENT, 
+			[ItemTypeId] INT NOT NULL,
+			[Subtype] INT NOT NULL,
+			[Name] TEXT NOT NULL,
+			UNIQUE([ItemTypeId],[Subtype])
+		);)"s;
 	static const std::string INSERT_ITEM = 
-		"INSERT INTO [ItemSubtypes]"
-		"("
-			"[ItemTypeId],"
-			"[Subtype],"
-			"[Name]"
-		") "
-		"VALUES({},{},{});";
+		R"(INSERT INTO [ItemSubtypes]
+		(
+			[ItemTypeId],
+			[Subtype],
+			[Name]
+		) 
+		VALUES({},{},{});)"s;
 	static const std::string QUERY_MAXIMUM_SUBTYPE = 
-		"SELECT "
-			"MAX([Subtype]) AS MaximumSubtype "
-		"FROM [ItemSubtypes] "
-		"WHERE "
-			"[ItemTypeId]={};";
+		R"(SELECT 
+			MAX([Subtype]) AS MaximumSubtype 
+		FROM [ItemSubtypes] 
+		WHERE 
+			[ItemTypeId]={};)"s;
 	static const std::string QUERY_ITEM_TYPE_ID = 
-		"SELECT "
-			"[ItemTypeId] "
-		"FROM [ItemSubtypes] "
-		"WHERE "
-			"[ItemSubtypeId]={};";
+		R"(SELECT 
+			[ItemTypeId] 
+		FROM [ItemSubtypes] 
+		WHERE 
+			[ItemSubtypeId]={};)"s;
 	static const std::string QUERY_SUBTYPE = 
-		"SELECT "
-			"[Subtype] "
-		"FROM [ItemSubtypes] "
-		"WHERE "
-			"[ItemSubtypeId]={};";
+		R"(SELECT 
+			[Subtype] 
+		FROM [ItemSubtypes] 
+		WHERE 
+			[ItemSubtypeId]={};)"s;
 	static const std::string QUERY_NAME = 
-		"SELECT "
-			"[Name] "
-		"FROM [ItemSubtypes] "
-		"WHERE "
-			"[ItemSubtypeId]={};";
+		R"(SELECT 
+			[Name] 
+		FROM [ItemSubtypes] 
+		WHERE 
+			[ItemSubtypeId]={};)"s;
 	static const std::string DELETE_ALL = 
-		"DELETE FROM [ItemSubtypes];";
+		R"(DELETE FROM [ItemSubtypes];)"s;
 
 	static const std::string FIELD_MAXIMUM_SUBTYPE = "MaximumSubtype";
 	static const std::string FIELD_SUBTYPE = "Subtype";
