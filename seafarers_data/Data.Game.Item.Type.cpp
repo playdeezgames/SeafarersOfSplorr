@@ -57,7 +57,7 @@ namespace data::game::item
 		return 0;
 	}
 
-	int Type::Establish(int category, int type, const std::string& name)
+	int Type::EstablishTypeForCategory(int category, int type, const std::string& name)
 	{
 		Initialize();
 		Common::Execute(INSERT_ITEM, category, type, common::Data::QuoteString(name));

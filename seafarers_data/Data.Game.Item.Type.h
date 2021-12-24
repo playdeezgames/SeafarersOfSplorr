@@ -7,7 +7,7 @@ namespace data::game::item
 	{
 		static void Initialize();
 		static int ReadNextTypeForCategory(int);
-		static int Establish(int, int, const std::string&);
+		static int EstablishTypeForCategory(int, int, const std::string&);
 		static std::optional<int> ReadCategory(int);
 		static std::optional<int> ReadType(int);
 		static std::optional<std::string> ReadName(int);

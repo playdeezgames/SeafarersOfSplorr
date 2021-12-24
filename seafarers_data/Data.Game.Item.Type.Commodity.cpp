@@ -1,56 +1,62 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
+#include "Data.Game.Item.Type.h"
 #include "Data.Game.Item.Type.Commodity.h"
 namespace data::game::item::type
 {
 	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		R"(CREATE TABLE IF NOT EXISTS [ItemSubtypeCommodities]
+		R"(CREATE TABLE IF NOT EXISTS [ItemTypeCommodities]
 		(
-			[ItemSubtypeId] INT NOT NULL,
-			[CommodityId] INT NOT NULL,
+			[ItemTypeId] INT NOT NULL,
+			[Commodity] INT NOT NULL,
 			[Amount] REAL NOT NULL,
-			UNIQUE([ItemSubtypeId],[CommodityId])
+			UNIQUE([ItemTypeId],[Commodity]),
+			FOREIGN KEY ([ItemTypeId]) REFERENCE [ItemTypes]([ItemTypeId])
 		);)"s;
 	static const std::string REPLACE_ITEM = 
-		R"(REPLACE INTO [ItemSubtypeCommodities]
+		R"(REPLACE INTO [ItemTypeCommodities]
 		(
-			[ItemSubtypeId],
-			[CommodityId],
+			[ItemTypeId],
+			[Commodity],
 			[Amount]
 		) 
 		VALUES({},{},{});)"s;
 	static const std::string QUERY_AMOUNT = 
 		R"(SELECT 
 			[Amount] 
-		FROM [ItemSubtypeCommodities] 
+		FROM [ItemTypeCommodities] 
 		WHERE 
-			[ItemSubtypeId]={} 
-			AND [CommodityId]={};)"s;
-	static const std::string QUERY_COMMODITY_ID = 
+			[ItemTypeId]={} 
+			AND [Commodity]={};)"s;
+	static const std::string QUERY_COMMODITY = 
 		R"(SELECT 
-			[CommodityId] 
-		FROM [ItemSubtypeCommodities] 
+			[Commodity] 
+		FROM [ItemTypeCommodities] 
 		WHERE 
-			[ItemSubtypeId]={};)"s;
+			[ItemTypeId]={};)"s;
 	static const std::string DELETE_ALL = 
-		R"(DELETE FROM [ItemSubtypeCommodities];)"s;
+		R"(DELETE FROM [ItemTypeCommodities];)"s;
 
 	static const std::string FIELD_AMOUNT = "Amount";
-	static const std::string FIELD_COMMODITY_ID = "CommodityId";
+	static const std::string FIELD_COMMODITY = "Commodity";
 
-	static const auto AutoCreateTable = Common::Run(CREATE_TABLE);
-
-	void Commodity::Write(int itemSubtypeId, int commodityId, double amount)
+	void Commodity::Initialize()
 	{
-		AutoCreateTable();
-		Common::Execute(REPLACE_ITEM, itemSubtypeId, commodityId, amount);
+		Type::Initialize();
+		Common::Execute(CREATE_TABLE);
 	}
 
-	std::optional<double> Commodity::Read(int itemSubtypeId, int commodityId)
+	void Commodity::Write(int itemTypeId, int commodity, double amount)
 	{
-		AutoCreateTable();
-		auto records = Common::Execute(QUERY_AMOUNT, itemSubtypeId, commodityId);
+		Initialize();
+		Common::Execute(REPLACE_ITEM, itemTypeId, commodity, amount);
+	}
+
+	std::optional<double> Commodity::Read(int itemTypeId, int commodity)
+	{
+		Initialize();
+		auto records = Common::Execute(QUERY_AMOUNT, itemTypeId, commodity);
 		if (!records.empty())
 		{
 			return common::Data::ToOptionalDouble(records.front()[FIELD_AMOUNT]);
@@ -58,21 +64,21 @@ namespace data::game::item::type
 		return std::nullopt;
 	}
 
-	std::list<int> Commodity::All(int itemSubtypeId)
+	std::list<int> Commodity::All(int itemTypeId)
 	{
-		AutoCreateTable();
+		Initialize();
 		std::list<int> result;
-		auto records = Common::Execute(QUERY_COMMODITY_ID, itemSubtypeId);
+		auto records = Common::Execute(QUERY_COMMODITY, itemTypeId);
 		for (auto record : records)
 		{
-			result.push_back(common::Data::ToInt(record[FIELD_COMMODITY_ID]));
+			result.push_back(common::Data::ToInt(record[FIELD_COMMODITY]));
 		}
 		return result;
 	}
 
 	void Commodity::Clear()
 	{
-		AutoCreateTable();
+		Initialize();
 		Common::Execute(DELETE_ALL);
 	}
 }

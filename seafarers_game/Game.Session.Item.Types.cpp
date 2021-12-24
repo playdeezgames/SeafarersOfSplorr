@@ -3,6 +3,9 @@
 #include "Game.Session.Item.Types.h"
 namespace game::session::item
 {
+	using TypeData = data::game::item::Type;
+	using CommodityData = data::game::item::type::Commodity;
+
 	Type Types::GetItemSubtype(int itemSubtypeId) const
 	{
 		return Type(itemSubtypeId);
@@ -10,13 +13,13 @@ namespace game::session::item
 
 	void Types::Reset(const game::Difficulty&) const
 	{
-		data::game::item::type::Commodity::Clear();
-		data::game::item::Type::Clear();
+		CommodityData::Clear();
+		TypeData::Clear();
 	}
 
 	Type Types::Create(const game::item::Category& category, const std::string& name) const
 	{
-		auto index = data::game::item::Type::ReadNextTypeForCategory((int)category);
-		return Type(data::game::item::Type::Establish((int)category, index, name));
+		auto index = TypeData::ReadNextTypeForCategory((int)category);
+		return Type(TypeData::EstablishTypeForCategory((int)category, index, name));
 	}
 }

@@ -4,8 +4,9 @@ namespace data::game
 {
 	struct ItemInstance
 	{
+		static void Initialize();
 		static int Create(int, int);
-		static std::optional<int> ReadItemSubtypeId(int);
+		static std::optional<int> ReadItemTypeId(int);
 		static std::optional<int> ReadQuantity(int);
 		static void WriteQuantity(int, int);
 		static void Purge();
