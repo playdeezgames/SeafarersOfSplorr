@@ -52,7 +52,7 @@
     <ClInclude Include="Data.Game.Item.Type.h" />
     <ClInclude Include="Data.Game.Item.Type.Commodity.h" />
     <ClInclude Include="Data.Game.Player.h" />
-    <ClInclude Include="Data.Game.Ship.Docks.h" />
+    <ClInclude Include="Data.Game.Ship.CurrentIsland.h" />
     <ClInclude Include="Data.Game.Ship.h" />
     <ClInclude Include="Data.Game.Ship.Statistic.h" />
     <ClInclude Include="Data.Game.Ship.Island.h" />
@@ -96,7 +96,7 @@
     <ClCompile Include="Data.Game.Item.Type.Commodity.cpp" />
     <ClCompile Include="Data.Game.Player.cpp" />
     <ClCompile Include="Data.Game.Ship.cpp" />
-    <ClCompile Include="Data.Game.Ship.Docks.cpp" />
+    <ClCompile Include="Data.Game.Ship.CurrentIsland.cpp" />
     <ClCompile Include="Data.Game.Ship.Island.cpp" />
     <ClCompile Include="Data.Game.Ship.Statistic.cpp" />
     <ClCompile Include="Data.Game.World.cpp" />

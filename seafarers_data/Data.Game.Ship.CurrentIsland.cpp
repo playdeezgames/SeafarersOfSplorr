@@ -2,7 +2,7 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.h"
 #include "Data.Game.Ship.h"
-#include "Data.Game.Ship.Docks.h"
+#include "Data.Game.Ship.CurrentIsland.h"
 namespace data::game::ship
 {
 	using namespace std::string_literals;
