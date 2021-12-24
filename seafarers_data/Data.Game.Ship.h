@@ -14,7 +14,6 @@ namespace data::game
 		double heading;
 		double speed;
 
-		static int Write(const Ship&);
 		static void Clear();
 
 		static void Initialize();

@@ -95,36 +95,6 @@ namespace data::game
 		Common::Execute(CREATE_TABLE);
 	}
 
-	int Ship::Write(const Ship& ship)
-	{
-		Initialize();
-		if (ship.shipId == 0)
-		{
-			Common::Execute(
-				INSERT_ITEM,
-				ship.shipType,
-				common::Data::QuoteString(ship.name),
-				ship.location.GetX(),
-				ship.location.GetY(),
-				ship.heading,
-				ship.speed);
-			return Common::LastInsertedIndex();
-		}
-		else
-		{
-			Common::Execute(
-				UPDATE_ITEM,
-				ship.shipType,
-				common::Data::QuoteString(ship.name),
-				ship.location.GetX(),
-				ship.location.GetY(),
-				ship.heading,
-				ship.speed,
-				ship.shipId);
-			return ship.shipId;
-		}
-	}
-
 	static Ship ToShip(const std::map<std::string, std::string> table)
 	{
 		return
