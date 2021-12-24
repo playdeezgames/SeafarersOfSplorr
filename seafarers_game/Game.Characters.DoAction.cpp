@@ -58,7 +58,7 @@ namespace game
 	static characters::State OnDock(int characterId)
 	{
 		auto ship = data::game::character::Ship::ReadForCharacter(characterId).value();
-		auto islandId = data::game::ship::Docks::Read(ship.shipId).value();
+		auto islandId = data::game::ship::CurrentIsland::Read(ship.shipId).value();
 		game::Session().GetCharacters().GetCharacter(characterId).SetIsland(game::session::Island(islandId));
 		return characters::State::DOCK;
 	}

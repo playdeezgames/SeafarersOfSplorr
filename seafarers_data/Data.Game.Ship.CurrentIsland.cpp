@@ -37,24 +37,22 @@ namespace data::game::ship
 
 	static const std::string FIELD_ISLAND_ID = "IslandId";
 
-	static const auto AutoCreateTable = data::game::Common::Run(CREATE_TABLE);
-
-	void Docks::Initialize()
+	void CurrentIsland::Initialize()
 	{
 		Island::Initialize();
 		Ship::Initialize();
 		Common::Execute(CREATE_TABLE);
 	}
 
-	void Docks::Write(int shipId, int islandId)
+	void CurrentIsland::Write(int shipId, int islandId)
 	{
-		AutoCreateTable();
+		Initialize();
 		Common::Execute(REPLACE_ITEM, shipId, islandId);
 	}
 
-	std::optional<int> Docks::Read(int shipId)
+	std::optional<int> CurrentIsland::Read(int shipId)
 	{
-		AutoCreateTable();
+		Initialize();
 		auto records = Common::Execute(QUERY_ITEM, shipId);
 		if (!records.empty())
 		{
@@ -63,15 +61,15 @@ namespace data::game::ship
 		return std::nullopt;
 	}
 
-	void Docks::Clear(int shipId)
+	void CurrentIsland::Clear(int shipId)
 	{
-		AutoCreateTable();
+		Initialize();
 		Common::Execute(DELETE_ITEM, shipId);
 	}
 
-	void Docks::ClearAll()
+	void CurrentIsland::ClearAll()
 	{
-		AutoCreateTable();
+		Initialize();
 		Common::Execute(DELETE_ALL);
 	}
 }

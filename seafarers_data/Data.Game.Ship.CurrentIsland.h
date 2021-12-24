@@ -2,7 +2,7 @@
 #include <optional>
 namespace data::game::ship
 {
-	struct Docks
+	struct CurrentIsland
 	{
 		static void Initialize();
 		static void Write(int, int);
