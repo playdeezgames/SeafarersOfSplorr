@@ -68,7 +68,7 @@ namespace game::ship
 
 	std::optional<bool> Docked::Undock(int shipId)
 	{
-		if (data::game::Ship::Read(shipId))
+		if (data::game::Ship::GetHeading(shipId).has_value())
 		{
 			if (!GetIsland(shipId))
 			{

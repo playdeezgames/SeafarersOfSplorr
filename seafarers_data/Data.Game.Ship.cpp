@@ -141,17 +141,6 @@ namespace data::game
 		};
 	}
 
-	std::optional<Ship> Ship::Read(int shipId)
-	{
-		Initialize();
-		auto records = Common::Execute(QUERY_ITEM, shipId);
-		if (!records.empty())
-		{
-			return ToShip(records.front());
-		}
-		return std::nullopt;
-	}
-
 	void Ship::Clear()
 	{
 		Initialize();

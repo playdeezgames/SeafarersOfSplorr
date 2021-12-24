@@ -10,12 +10,14 @@
 #include "Game.ShipTypes.h"
 namespace game
 {
+	using ShipData = data::game::Ship;
+
 	std::optional<ShipType> Ship::GetShipType(int shipId)
 	{
 		return 
-			common::utility::Optional::Map<data::game::Ship, ShipType>(
-				data::game::Ship::Read(shipId), 
-				[](const data::game::Ship& ship) {return (ShipType)ship.shipType; });
+			common::utility::Optional::Map<int, ShipType>(
+				ShipData::GetShipType(shipId),
+				[](const int shipType) {return (ShipType)shipType; });
 	}
 
 	static void AddShipStatistics(int shipId, ShipType shipType)
@@ -50,43 +52,23 @@ namespace game
 
 	std::optional<std::string> Ship::GetName(int shipId)
 	{
-		auto ship = data::game::Ship::Read(shipId);
-		if (ship)
-		{
-			return ship.value().name;
-		}
-		return std::nullopt;
+		return ShipData::GetName(shipId);
 	}
 
 	void Ship::SetName(int shipId, const std::string& name)
 	{
-		auto ship = data::game::Ship::Read(shipId);
-		if (ship)
-		{
-			ship.value().name = name;
-			data::game::Ship::Write(ship.value());
-		}
+		ShipData::SetName(shipId, name);
 	}
 
 
 	std::optional<double> Ship::GetHeading(int shipId)
 	{
-		auto ship = data::game::Ship::Read(shipId);
-		if (ship)
-		{
-			return ship.value().heading;
-		}
-		return std::nullopt;
+		return ShipData::GetHeading(shipId);
 	}
 
 	void Ship::SetHeading(int shipId, double heading)
 	{
-		auto ship = data::game::Ship::Read(shipId);
-		if (ship)
-		{
-			ship.value().heading = common::Data::ModuloDouble(heading, common::Heading::DEGREES).value();
-			data::game::Ship::Write(ship.value());
-		}
+		ShipData::SetHeading(shipId, heading);
 	}
 
 	const double SPEED_MINIMUM = 0.0;
@@ -94,32 +76,17 @@ namespace game
 
 	std::optional<common::XY<double>> Ship::GetLocation(int shipId)
 	{
-		auto ship = data::game::Ship::Read(shipId);
-		if (ship)
-		{
-			return ship.value().location;
-		}
-		return std::nullopt;
+		return ShipData::GetLocation(shipId);
 	}
 
 	std::optional<double> Ship::GetSpeed(int shipId)
 	{
-		auto ship = data::game::Ship::Read(shipId);
-		if (ship)
-		{
-			return ship.value().speed;
-		}
-		return std::nullopt;
+		return ShipData::GetSpeed(shipId);
 	}
 
 	void Ship::SetSpeed(int shipId, double speed)
 	{
-		auto ship = data::game::Ship::Read(shipId);
-		if (ship)
-		{
-			ship.value().speed = common::Data::ClampDouble(speed, SPEED_MINIMUM, SPEED_MAXIMUM);
-			data::game::Ship::Write(ship.value());
-		}
+		ShipData::SetSpeed(shipId, speed);
 	}
 
 	static void HandleFouling(int shipId, double speed)
@@ -142,18 +109,20 @@ namespace game
 
 	void Ship::ApplyTurnEffects(int shipId)
 	{
-		auto ship = data::game::Ship::Read(shipId);
-		if (ship)
+		auto location = ShipData::GetLocation(shipId);
+		if (location)
 		{
-			ship.value().location += 
-				common::Heading::DegreesToXY(ship.value().heading) *
-				GetEffectiveSpeed(ship.value().shipId, ship.value().heading, ship.value().speed);
+			auto heading = ShipData::GetHeading(shipId).value();
+			auto effectiveSpeed = GetEffectiveSpeed(shipId, heading, ShipData::GetSpeed(shipId).value());
+			location.value() +=
+				common::Heading::DegreesToXY(heading) *
+				effectiveSpeed;
 
-			game::Session().GetWorld().GetBounds().ClampLocation(ship.value().location);
+			game::Session().GetWorld().GetBounds().ClampLocation(location.value());
 
-			HandleFouling(shipId, ship.value().speed);
+			HandleFouling(shipId, effectiveSpeed);
 
-			data::game::Ship::Write(ship.value());
+			ShipData::SetLocation(shipId, location.value());
 		}
 	}
 }
