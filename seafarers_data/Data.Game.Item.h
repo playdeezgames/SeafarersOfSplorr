@@ -2,7 +2,7 @@
 #include <optional>
 namespace data::game
 {
-	struct ItemInstance
+	struct Item
 	{
 		static void Initialize();
 		static int Create(int, int);

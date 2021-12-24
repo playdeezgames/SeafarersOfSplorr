@@ -2,6 +2,8 @@
 #include "Game.Session.Items.h"
 namespace game::session
 {
+	using ItemData = data::game::Item;
+
 	Item Items::GetItem(int itemInstanceId) const
 	{
 		return Item(itemInstanceId);
@@ -9,12 +11,12 @@ namespace game::session
 
 	void Items::Purge() const
 	{
-		data::game::ItemInstance::Purge();
+		ItemData::Purge();
 	}
 
 	Item Items::Add(const item::Type& itemSubtype, int quantity) const
 	{
-		int itemInstanceId = data::game::ItemInstance::Create((int)itemSubtype, quantity);
+		int itemInstanceId = ItemData::Create((int)itemSubtype, quantity);
 		return Item(itemInstanceId);
 	}
 

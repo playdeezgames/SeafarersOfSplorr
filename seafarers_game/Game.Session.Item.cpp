@@ -5,17 +5,17 @@ namespace game::session
 {
 	item::Type Item::GetItemSubtype() const
 	{
-		return item::Type(data::game::ItemInstance::ReadItemTypeId(itemId).value());
+		return item::Type(data::game::Item::ReadItemTypeId(itemId).value());
 	}
 
 	void Item::SetQuantity(int quantity) const
 	{
-		data::game::ItemInstance::WriteQuantity(itemId, quantity);
+		data::game::Item::WriteQuantity(itemId, quantity);
 	}
 
 	int Item::GetQuantity() const
 	{
-		return data::game::ItemInstance::ReadQuantity(itemId).value();
+		return data::game::Item::ReadQuantity(itemId).value();
 	}
 
 	std::optional<int> Item::TryGetCharacterId() const

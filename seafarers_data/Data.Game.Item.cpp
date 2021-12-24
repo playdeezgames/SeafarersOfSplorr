@@ -46,20 +46,20 @@ namespace data::game
 	static const std::string FIELD_ITEM_TYPE_ID = "ItemTypeId";
 	static const std::string FIELD_QUANTITY = "Quantity";
 
-	void ItemInstance::Initialize()
+	void Item::Initialize()
 	{
 		item::Type::Initialize();
 		Common::Execute(CREATE_TABLE);
 	}
 
-	int ItemInstance::Create(int itemSubtypeId, int quantity)
+	int Item::Create(int itemSubtypeId, int quantity)
 	{
 		Initialize();
 		Common::Execute(CREATE_ITEM, itemSubtypeId, quantity);
 		return Common::LastInsertedIndex();
 	}
 
-	std::optional<int> ItemInstance::ReadItemTypeId(int itemInstanceId)
+	std::optional<int> Item::ReadItemTypeId(int itemInstanceId)
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_ITEM_TYPE, itemInstanceId);
@@ -70,7 +70,7 @@ namespace data::game
 		return std::nullopt;
 	}
 
-	std::optional<int> ItemInstance::ReadQuantity(int itemInstanceId)
+	std::optional<int> Item::ReadQuantity(int itemInstanceId)
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_QUANTITY, itemInstanceId);
@@ -81,13 +81,13 @@ namespace data::game
 		return std::nullopt;
 	}
 
-	void ItemInstance::WriteQuantity(int itemInstanceId, int quantity)
+	void Item::WriteQuantity(int itemInstanceId, int quantity)
 	{
 		Initialize();
 		Common::Execute(UPDATE_QUANTITY, quantity, itemInstanceId);
 	}
 
-	void ItemInstance::Purge()
+	void Item::Purge()
 	{
 		Initialize();
 		Common::Execute(PURGE_ITEMS);
