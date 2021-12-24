@@ -1,8 +1,8 @@
 #pragma once
 #include <Common.XY.h>
+#include <list>
 #include <optional>
 #include <string>
-#include <list>
 namespace data::game
 {
 	struct Ship
@@ -14,10 +14,21 @@ namespace data::game
 		double heading;
 		double speed;
 
-		static void Initialize();
 		static int Write(const Ship&);
 		static std::optional<Ship> Read(int);
 		static void Clear();
+
+		static void Initialize();
+		static int Create(int, const std::string&, const common::XY<double>&, double, double);
+		static std::optional<int> GetShipType(int);
+		static std::optional<std::string> GetName(int);
+		static std::optional<common::XY<double>> GetLocation(int);
+		static std::optional<double> GetHeading(int);
+		static std::optional<double> GetSpeed(int);
+		static void SetName(int, const std::string&);
+		static void SetLocation(int, const common::XY<double>&);
+		static void SetHeading(int, double);
+		static void SetSpeed(int, double);
 
 		static std::list<int> All();
 	};

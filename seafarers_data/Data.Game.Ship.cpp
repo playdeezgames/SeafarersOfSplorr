@@ -27,7 +27,20 @@ namespace data::game
 		FROM [Ships] 
 		WHERE 
 			[ShipId]={};)"s;
-	static const std::string INSERT_ITEM = 
+	static const std::string QUERY_ITEM_COLUMN =
+		R"(SELECT 
+			[{}]
+		FROM [Ships] 
+		WHERE 
+			[ShipId]={};)"s;
+	static const std::string QUERY_ITEM_XY =
+		R"(SELECT 
+			[X],
+			[Y]
+		FROM [Ships] 
+		WHERE 
+			[ShipId]={};)"s;
+	static const std::string INSERT_ITEM =
 		R"(INSERT INTO [Ships] 
 		(
 			[ShipType],
@@ -49,7 +62,20 @@ namespace data::game
 			[Speed]={} 
 		WHERE 
 			[ShipId]={};)"s;
-	static const std::string DELETE_ALL = 
+	static const std::string UPDATE_ITEM_COLUMN =
+		R"(UPDATE [Ships] 
+		SET 
+			[{}]={}
+		WHERE 
+			[ShipId]={};)"s;
+	static const std::string UPDATE_ITEM_XY =
+		R"(UPDATE [Ships] 
+		SET 
+			[X]={},
+			[Y]={}
+		WHERE 
+			[ShipId]={};)"s;
+	static const std::string DELETE_ALL =
 		R"(DELETE FROM [Ships];)"s;
 	static const std::string QUERY_ALL = 
 		R"(SELECT 
@@ -142,5 +168,98 @@ namespace data::game
 			result.push_back(common::Data::ToInt(record[FIELD_SHIP_ID]));
 		}
 		return result;
+	}
+
+	int Ship::Create(int shipType, const std::string& name, const common::XY<double>& location, double heading, double speed)
+	{
+		Initialize();
+		Common::Execute(
+			INSERT_ITEM,
+			shipType,
+			common::Data::QuoteString(name),
+			location.GetX(),
+			location.GetY(),
+			heading,
+			speed);
+		return Common::LastInsertedIndex();
+	}
+
+	std::optional<int> Ship::GetShipType(int shipId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_SHIP_TYPE, shipId);
+		if (record)
+		{
+			return Common::ToInt(record.value(), FIELD_SHIP_TYPE);
+		}
+		return std::nullopt;
+	}
+
+	std::optional<std::string> Ship::GetName(int shipId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_NAME, shipId);
+		if (record)
+		{
+			return Common::ToString(record.value(), FIELD_NAME);
+		}
+		return std::nullopt;
+	}
+
+	std::optional<common::XY<double>> Ship::GetLocation(int shipId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_XY, shipId);
+		if (record)
+		{
+			return Common::ToXY(record.value());
+		}
+		return std::nullopt;
+	}
+
+	std::optional<double> Ship::GetHeading(int shipId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_HEADING, shipId);
+		if (record)
+		{
+			return Common::ToDouble(record.value(), FIELD_HEADING);
+		}
+		return std::nullopt;
+	}
+
+	std::optional<double> Ship::GetSpeed(int shipId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_SPEED, shipId);
+		if (record)
+		{
+			return Common::ToDouble(record.value(), FIELD_SPEED);
+		}
+		return std::nullopt;
+	}
+
+	void Ship::SetName(int shipId, const std::string& name)
+	{
+		Initialize();
+		Common::Execute(UPDATE_ITEM_COLUMN, FIELD_NAME, common::Data::QuoteString(name), shipId);
+	}
+
+	void Ship::SetLocation(int shipId, const common::XY<double>& location)
+	{
+		Initialize();
+		Common::Execute(UPDATE_ITEM_XY, location.GetX(), location.GetY(), shipId);
+	}
+
+	void Ship::SetHeading(int shipId, double heading)
+	{
+		Initialize();
+		Common::Execute(UPDATE_ITEM_COLUMN, FIELD_HEADING, heading, shipId);
+	}
+
+	void Ship::SetSpeed(int shipId, double speed)
+	{
+		Initialize();
+		Common::Execute(UPDATE_ITEM_COLUMN, FIELD_SPEED, speed, shipId);
 	}
 }
