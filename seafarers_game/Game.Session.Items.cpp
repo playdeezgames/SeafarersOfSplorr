@@ -1,4 +1,4 @@
-#include <Data.Game.ItemInstance.h>
+#include <Data.Game.Item.h>
 #include "Game.Session.Items.h"
 namespace game::session
 {

@@ -1,7 +1,7 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Item.Type.h"
-#include "Data.Game.ItemInstance.h"
+#include "Data.Game.Item.h"
 namespace data::game
 {
 	using namespace std::string_literals;
