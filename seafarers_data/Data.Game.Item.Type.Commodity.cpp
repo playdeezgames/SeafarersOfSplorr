@@ -12,7 +12,7 @@ namespace data::game::item::type
 			[Commodity] INT NOT NULL,
 			[Amount] REAL NOT NULL,
 			UNIQUE([ItemTypeId],[Commodity]),
-			FOREIGN KEY ([ItemTypeId]) REFERENCE [ItemTypes]([ItemTypeId])
+			FOREIGN KEY ([ItemTypeId]) REFERENCES [ItemTypes]([ItemTypeId])
 		);)"s;
 	static const std::string REPLACE_ITEM = 
 		R"(REPLACE INTO [ItemTypeCommodities]
