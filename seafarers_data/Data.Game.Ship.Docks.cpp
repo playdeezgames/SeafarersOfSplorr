@@ -1,18 +1,22 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
+#include "Data.Game.Island.h"
+#include "Data.Game.Ship.h"
 #include "Data.Game.Ship.Docks.h"
 namespace data::game::ship
 {
 	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		R"(CREATE TABLE IF NOT EXISTS [ShipDocks]
+		R"(CREATE TABLE IF NOT EXISTS [ShipCurrentIslands]
 		(
 			[ShipId] INT NOT NULL, 
 			[IslandId] INT NOT NULL, 
-			UNIQUE([ShipId])
+			UNIQUE([ShipId]),
+			FOREIGN KEY ([ShipId]) REFERENCES [Ships]([ShipId]),
+			FOREIGN KEY ([IslandId]) REFERENCES [Islands]([IslandId])
 		);)"s;
 	static const std::string REPLACE_ITEM = 
-		R"(REPLACE INTO [ShipDocks]
+		R"(REPLACE INTO [ShipCurrentIslands]
 		(
 			[ShipId],
 			[IslandId]
@@ -21,20 +25,26 @@ namespace data::game::ship
 	static const std::string QUERY_ITEM = 
 		R"(SELECT 
 			[IslandId] 
-		FROM [ShipDocks] 
+		FROM [ShipCurrentIslands] 
 		WHERE 
 			[ShipId]={};)"s;
 	static const std::string DELETE_ITEM = 
-		R"(DELETE FROM[ShipDocks] 
+		R"(DELETE FROM[ShipCurrentIslands] 
 		WHERE 
 			[ShipId]={};)"s;
 	static const std::string DELETE_ALL = 
-		"DELETE FROM [ShipDocks];";
+		"DELETE FROM [ShipCurrentIslands];";
 
 	static const std::string FIELD_ISLAND_ID = "IslandId";
 
 	static const auto AutoCreateTable = data::game::Common::Run(CREATE_TABLE);
 
+	void Docks::Initialize()
+	{
+		Island::Initialize();
+		Ship::Initialize();
+		Common::Execute(CREATE_TABLE);
+	}
 
 	void Docks::Write(int shipId, int islandId)
 	{
