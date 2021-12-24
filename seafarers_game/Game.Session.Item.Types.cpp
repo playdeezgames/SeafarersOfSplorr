@@ -17,7 +17,6 @@ namespace game::session::item
 	Type Types::Create(const game::item::Category& category, const std::string& name) const
 	{
 		auto index = data::game::item::Type::ReadNextTypeForCategory((int)category);
-		return Type(
-			data::game::item::Type::Establish((int)category, index, name));
+		return Type(data::game::item::Type::Establish((int)category, index, name));
 	}
 }

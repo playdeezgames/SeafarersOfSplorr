@@ -8,38 +8,12 @@ namespace data::game
 	static const std::string CREATE_TABLE = 
 		R"(CREATE TABLE IF NOT EXISTS [Worlds]
 		(
-			[WorldId] INT NOT NULL UNIQUE,
-			[Version] INT NOT NULL,
-			[Width] REAL NOT NULL,
-			[Height] REAL NOT NULL,
-			[MinimumIslandDistance] REAL NOT NULL,
-			[ViewDistance] REAL NOT NULL,
-			[DockDistance] REAL NOT NULL,
+			[WorldId] INT NOT NULL UNIQUE CHECK([WorldId]=1),
+			[Difficulty] INT NOT NULL,
 			[WindHeading] REAL NOT NULL,
-			[CurrencyItemSubtypeId] INT NOT NULL,
-			[Day] INT NOT NULL
+			[CurrencyItemTypeId] INT NOT NULL,
+			[Day] INT NOT NULL --changes each turn
 		);)"s;
-	static const std::string QUERY_ITEM = 
-		R"(SELECT 
-			[Version],
-			[Width],
-			[Height],
-			[MinimumIslandDistance],
-			[ViewDistance],
-			[DockDistance],
-			[WindHeading],
-			[CurrencyItemSubtypeId],
-			[Day]
-		FROM [Worlds] 
-		WHERE 
-			[WorldId] = {};)"s;
-	static const std::string QUERY_ITEM_SIZE =
-		R"(SELECT 
-			[Width],
-			[Height] 
-		FROM [Worlds] 
-		WHERE 
-			[WorldId]={};)";
 	static const std::string QUERY_ITEM_COLUMN =
 		R"(SELECT 
 			[{}] 
@@ -56,26 +30,16 @@ namespace data::game
 		R"(REPLACE INTO [Worlds]
 		(
 			[WorldId],
-			[Version],
-			[Width],
-			[Height],
-			[MinimumIslandDistance],
-			[ViewDistance],
-			[DockDistance],
+			[Difficulty],
 			[WindHeading],
-			[CurrencyItemSubtypeId],
+			[CurrencyItemTypeId],
 			[Day]
 		) 
-		VALUES ({},{},{},{},{},{},{},{},{},{});)"s;
+		VALUES ({},{},{},{},{});)"s;
 
-	static const std::string FIELD_VERSION = "Version";
-	static const std::string FIELD_WIDTH = "Width";
-	static const std::string FIELD_HEIGHT = "Height";
-	static const std::string FIELD_MINIMUM_ISLAND_DISTANCE = "MinimumIslandDistance";
-	static const std::string FIELD_VIEW_DISTANCE = "ViewDistance";
-	static const std::string FIELD_DOCK_DISTANCE = "DockDistance";
+	static const std::string FIELD_DIFFICULTY = "Difficulty";
 	static const std::string FIELD_WIND_HEADING = "WindHeading";
-	static const std::string FIELD_CURRENCY_ITEM_SUBTYPE_ID = "CurrencyItemSubtypeId";
+	static const std::string FIELD_CURRENCY_ITEM_TYPE_ID = "CurrencyItemTypeId";
 	static const std::string FIELD_DAY = "Day";
 
 	void World::Initialize()
@@ -85,11 +49,7 @@ namespace data::game
 
 	void World::Write(
 		int worldId,
-		int version,
-		const common::XY<double>& size,
-		double minimumIslandDistance,
-		double viewDistance,
-		double dockDistance,
+		int difficulty,
 		double windHeading,
 		int currencyItemTypeId,
 		int day)
@@ -98,61 +58,10 @@ namespace data::game
 		Common::Execute(
 			REPLACE_ITEM,
 			worldId,
-			version,
-			size.GetX(),
-			size.GetY(),
-			minimumIslandDistance,
-			viewDistance,
-			dockDistance,
+			difficulty,
 			windHeading,
 			currencyItemTypeId,
 			day);
-	}
-
-	std::optional<common::XY<double>> World::ReadSize(int worldId)
-	{
-		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM_SIZE, worldId);
-		if (record)
-		{
-			return common::XY(
-				Common::ToDouble(record.value(), FIELD_WIDTH), 
-				Common::ToDouble(record.value(), FIELD_HEIGHT));
-		}
-		return std::nullopt;
-	}
-
-	std::optional<double> World::ReadMinimumIslandDistance(int worldId)
-	{
-		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_MINIMUM_ISLAND_DISTANCE, worldId);
-		if (record)
-		{
-			return Common::ToDouble(record.value(), FIELD_MINIMUM_ISLAND_DISTANCE);
-		}
-		return std::nullopt;
-	}
-
-	std::optional<double> World::ReadViewDistance(int worldId)
-	{
-		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_VIEW_DISTANCE, worldId);
-		if (record)
-		{
-			return Common::ToDouble(record.value(), FIELD_VIEW_DISTANCE);
-		}
-		return std::nullopt;
-	}
-
-	std::optional<double> World::ReadDockDistance(int worldId)
-	{
-		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_DOCK_DISTANCE, worldId);
-		if (record)
-		{
-			return Common::ToDouble(record.value(), FIELD_DOCK_DISTANCE);
-		}
-		return std::nullopt;
 	}
 
 	std::optional<double> World::ReadWindHeading(int worldId)
@@ -169,10 +78,10 @@ namespace data::game
 	std::optional<int> World::ReadCurrencyItemTypeId(int worldId)
 	{
 		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_CURRENCY_ITEM_SUBTYPE_ID, worldId);
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_CURRENCY_ITEM_TYPE_ID, worldId);
 		if (record)
 		{
-			return Common::ToInt(record.value(), FIELD_CURRENCY_ITEM_SUBTYPE_ID);
+			return Common::ToInt(record.value(), FIELD_CURRENCY_ITEM_TYPE_ID);
 		}
 		return std::nullopt;
 	}
@@ -188,13 +97,13 @@ namespace data::game
 		return std::nullopt;
 	}
 
-	std::optional<int> World::ReadVersion(int worldId)
+	std::optional<int> World::ReadDifficulty(int worldId)
 	{
 		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_VERSION, worldId);
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_DIFFICULTY, worldId);
 		if (record)
 		{
-			return Common::ToInt(record.value(), FIELD_VERSION);
+			return Common::ToInt(record.value(), FIELD_DIFFICULTY);
 		}
 		return std::nullopt;
 	}

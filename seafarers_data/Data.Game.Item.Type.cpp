@@ -11,7 +11,7 @@ namespace data::game::item
 			[Category] INT NOT NULL,
 			[Type] INT NOT NULL,
 			[Name] TEXT NOT NULL,
-			UNIQUE([ItemCategory],[Type])
+			UNIQUE([Category],[Type])
 		);)"s;
 	static const std::string INSERT_ITEM = 
 		R"(INSERT INTO [ItemTypes]

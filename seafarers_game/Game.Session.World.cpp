@@ -5,25 +5,6 @@
 #include "Game.Session.World.h"
 namespace game::session
 {
-	static const int CURRENT_VERSION = 1;
-
-	struct WorldProperties
-	{
-		double size;
-		double minimumIslandDistance;
-		double viewDistance;
-		double dockDistance;
-	};
-
-	static const std::map<game::Difficulty, WorldProperties> worldProperties =
-	{
-		{game::Difficulty::EASY, {100.0, 10.0, 10.0, 1.0}},
-		{game::Difficulty::NORMAL, {150.0, 15.0, 10.0, 1.0}},
-		{game::Difficulty::HARD, {200.0, 20.0, 10.0, 1.0}},
-		{game::Difficulty::HARDCORE, {250.0, 25.0, 10.0, 1.0}}
-	};
-
-
 	static item::Type CreateWorldCurrencyItemSubtype()
 	{
 		const double WORLD_CURRENCY_JOOLS_AMOUNT = 0.001;
@@ -40,17 +21,12 @@ namespace game::session
 	void World::Reset(const Difficulty& difficulty) const
 	{
 		GetItemSubtypes().Reset(difficulty);
-		auto properties = worldProperties.find(difficulty)->second;
 
 		auto currencyItemSubtype = CreateWorldCurrencyItemSubtype();
 
 		data::game::World::Write(
 			worldId, 
-			CURRENT_VERSION,
-			{properties.size, properties.size},
-			properties.minimumIslandDistance,
-			properties.viewDistance,
-			properties.dockDistance,
+			(int)difficulty,
 			common::RNG::FromRange(0.0, common::Heading::DEGREES),
 			(int)currencyItemSubtype,
 			common::RNG::FromRange(EARLIEST_INITIAL_YEAR, LATEST_INITIAL_YEAR)* DAYS_PER_YEAR +
@@ -65,9 +41,9 @@ namespace game::session
 		GetCalendar().ApplyTurnEffects();
 	}
 
-	int World::GetVersion() const
+	game::Difficulty World::GetDifficulty() const
 	{
-		return data::game::World::ReadVersion(worldId).value();
+		return (Difficulty)data::game::World::ReadDifficulty(worldId).value();
 	}
 
 	item::Type World::GetCurrencyItemSubtype() const

@@ -20,7 +20,7 @@ namespace game::session
 		item::Type GetCurrencyItemSubtype() const;
 		void Reset(const Difficulty&) const;
 		void ApplyTurnEffects() const;
-		int GetVersion() const;
+		game::Difficulty GetDifficulty() const;
 	private:
 		int worldId;
 	};
