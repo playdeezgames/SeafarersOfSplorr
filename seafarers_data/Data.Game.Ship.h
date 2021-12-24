@@ -7,13 +7,6 @@ namespace data::game
 {
 	struct Ship
 	{
-		int shipId;
-		int shipType;
-		std::string name;
-		common::XY<double> location;
-		double heading;
-		double speed;
-
 		static void Clear();
 
 		static void Initialize();

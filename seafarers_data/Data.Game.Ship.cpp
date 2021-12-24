@@ -15,18 +15,6 @@ namespace data::game
 			[Heading] REAL NOT NULL,
 			[Speed] REAL NOT NULL
 		);)"s;
-	static const std::string QUERY_ITEM = 
-		R"(SELECT 
-			[ShipId],
-			[ShipType],
-			[Name],
-			[X],
-			[Y],
-			[Heading],
-			[Speed] 
-		FROM [Ships] 
-		WHERE 
-			[ShipId]={};)"s;
 	static const std::string QUERY_ITEM_COLUMN =
 		R"(SELECT 
 			[{}]
@@ -51,17 +39,6 @@ namespace data::game
 			[Speed]
 		) 
 		VALUES({},{},{:.4f},{:.4f},{:.4f},{:.4f});)"s;
-	static const std::string UPDATE_ITEM = 
-		R"(UPDATE [Ships] 
-		SET 
-			[ShipType]={},
-			[Name]={},
-			[X]={:4f},
-			[Y]={:4f},
-			[Heading]={},
-			[Speed]={} 
-		WHERE 
-			[ShipId]={};)"s;
 	static const std::string UPDATE_ITEM_COLUMN =
 		R"(UPDATE [Ships] 
 		SET 
@@ -93,22 +70,6 @@ namespace data::game
 	void Ship::Initialize()
 	{
 		Common::Execute(CREATE_TABLE);
-	}
-
-	static Ship ToShip(const std::map<std::string, std::string> table)
-	{
-		return
-		{
-			common::Data::ToInt(table.find(FIELD_SHIP_ID)->second),
-			common::Data::ToInt(table.find(FIELD_SHIP_TYPE)->second),
-			table.find(FIELD_NAME)->second,
-			{
-				common::Data::ToDouble(table.find(FIELD_X)->second),
-				common::Data::ToDouble(table.find(FIELD_Y)->second)
-			},
-			common::Data::ToDouble(table.find(FIELD_HEADING)->second),
-			common::Data::ToDouble(table.find(FIELD_SPEED)->second)
-		};
 	}
 
 	void Ship::Clear()
