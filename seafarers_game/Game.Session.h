@@ -2,13 +2,14 @@
 #include "Game.Difficulty.h"
 #include "Game.Session.Characters.h"
 #include "Game.Session.Demigods.h"
+#include "Game.Session.Fisheries.h"
 #include "Game.Session.Islands.h"
 #include "Game.Session.Items.h"
-#include "Game.Session.Ships.h"
-#include "Game.Session.World.h"
-#include "Game.Session.Fisheries.h"
-#include "Game.Session.Saves.h"
 #include "Game.Session.Player.h"
+#include "Game.Session.Saves.h"
+#include "Game.Session.Ships.h"
+#include "Game.Session.Tribes.h"
+#include "Game.Session.World.h"
 #include <optional>
 namespace game
 {
@@ -25,6 +26,7 @@ namespace game
 		session::Fisheries GetFisheries() const;
 		session::Saves GetSaves() const;
 		session::Player GetPlayer() const;
+		session::Tribes GetTribes() const;
 		void ApplyTurnEffects() const;
 		void Reset(const Difficulty&) const;
 	};

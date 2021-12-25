@@ -141,6 +141,15 @@
     <Filter Include="Header Files\Enums">
       <UniqueIdentifier>{d6bad619-809b-411f-882f-5b3c54604ef6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Session\World\Calendar">
+      <UniqueIdentifier>{d00956d9-dcfb-4f89-ab56-9f444d1636df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Session\Tribe">
+      <UniqueIdentifier>{1cff355f-8324-413f-8bb5-65ea3e12845e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Tribe">
+      <UniqueIdentifier>{27514cff-e544-4f34-9a2a-fadf98f5fa41}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -485,20 +494,26 @@
     <ClInclude Include="Game.Session.Island.Tavern.h">
       <Filter>Header Files\Session\Island</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.World.Calendar.h">
-      <Filter>Header Files\Session\World</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.World.Calendar.Months.h">
-      <Filter>Header Files\Session\World</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.World.Calendar.Month.h">
-      <Filter>Header Files\Session\World</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.Character.KnownIslands.h">
       <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Character.KnownIsland.h">
       <Filter>Header Files\Session\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.World.Calendar.h">
+      <Filter>Header Files\Session\World\Calendar</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.World.Calendar.Month.h">
+      <Filter>Header Files\Session\World\Calendar</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.World.Calendar.Months.h">
+      <Filter>Header Files\Session\World\Calendar</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Tribe.h">
+      <Filter>Header Files\Session\Tribe</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Tribes.h">
+      <Filter>Header Files\Session\Tribe</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -759,6 +774,12 @@
     </ClCompile>
     <ClCompile Include="Game.Session.Character.KnownIslands.cpp">
       <Filter>Source Files\Session\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Tribes.cpp">
+      <Filter>Source Files\Session\Tribe</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Tribe.cpp">
+      <Filter>Source Files\Session\Tribe</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

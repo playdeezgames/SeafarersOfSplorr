@@ -73,6 +73,8 @@
     <ClInclude Include="Game.Session.Ship.Fouling.h" />
     <ClInclude Include="Game.Session.Ship.h" />
     <ClInclude Include="Game.Session.Ships.h" />
+    <ClInclude Include="Game.Session.Tribe.h" />
+    <ClInclude Include="Game.Session.Tribes.h" />
     <ClInclude Include="Game.Session.World.Bounds.h" />
     <ClInclude Include="Game.Session.World.Calendar.h" />
     <ClInclude Include="Game.Session.World.Calendar.Month.h" />
@@ -188,6 +190,8 @@
     <ClCompile Include="Game.Session.Ship.cpp" />
     <ClCompile Include="Game.Session.Ship.Fouling.cpp" />
     <ClCompile Include="Game.Session.Ships.cpp" />
+    <ClCompile Include="Game.Session.Tribe.cpp" />
+    <ClCompile Include="Game.Session.Tribes.cpp" />
     <ClCompile Include="Game.Session.World.Bounds.cpp" />
     <ClCompile Include="Game.Session.World.Calendar.cpp" />
     <ClCompile Include="Game.Session.World.Calendar.Month.cpp" />

@@ -49,7 +49,7 @@ namespace game
 		std::list<Island> accumulator;
 		auto shipLocation = game::Ship::GetLocation(shipId).value();;
 		auto islands = data::game::Island::All();
-		auto crew = game::ship::Crew::Read(shipId);
+		auto crew = game::ship::Crew::ReadForShip(shipId);
 		for (auto crewMember : crew)
 		{
 			for (auto& island : islands)

@@ -8,7 +8,7 @@ namespace game::session
 	std::list<ship::Berth> Ship::GetBerths() const
 	{
 		std::list<ship::Berth> result;
-		auto berths = game::ship::Crew::Read(shipId);
+		auto berths = game::ship::Crew::ReadForShip(shipId);
 		for (auto berth : berths)
 		{
 			result.push_back(ship::Berth(berth.avatarId));

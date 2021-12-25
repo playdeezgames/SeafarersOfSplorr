@@ -15,13 +15,26 @@ namespace game::ship
 		};
 	}
 
-	std::vector<Crew> Crew::Read(int characterId)
+	std::vector<Crew> Crew::ReadForShip(int shipId)
 	{
-		return common::utility::Array::Map<data::game::character::Ship, Crew>(
-			data::game::character::Ship::ReadForShip(
-				game::characters::Ships::ReadShipId(
-					characterId)
-				.value()),
-			ToCrew);
+		std::vector<Crew> result;
+		auto crew = data::game::character::Ship::ReadForShip(shipId);
+		for (auto member : crew)
+		{
+			result.push_back(ToCrew(member));
+		}
+		return result;
+	}
+
+	std::vector<Crew> Crew::ReadForCharacter(int characterId)
+	{
+		auto shipId = game::characters::Ships::ReadShipId(
+			characterId);
+		std::vector<Crew> result;
+		if (shipId)
+		{
+			ReadForShip(shipId.value());
+		}
+		return std::vector<Crew>();
 	}
 }

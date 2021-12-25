@@ -32,12 +32,13 @@ namespace game
 		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);//TODO: mebbe this becomes the new game::Reset?
 
 		GetWorld().Reset(difficulty);//MUST BE FIRST
+		GetTribes().Reset(difficulty);
+		GetDemigods().Reset(difficulty);
 		GetShips().Reset(difficulty);
 		GetCharacters().Reset(difficulty);
-		GetPlayer().Reset(difficulty);
-		GetDemigods().Reset(difficulty);
-		GetFisheries().Reset(difficulty);
 		GetIslands().Reset(difficulty);
+		GetPlayer().Reset(difficulty);
+		GetFisheries().Reset(difficulty);
 	}
 
 	session::Islands Session::GetIslands() const
@@ -75,5 +76,10 @@ namespace game
 	session::Player Session::GetPlayer() const
 	{
 		return session::Player();
+	}
+
+	session::Tribes Session::GetTribes() const
+	{
+		return session::Tribes();
 	}
 }
