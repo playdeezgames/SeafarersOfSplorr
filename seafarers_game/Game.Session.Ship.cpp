@@ -36,22 +36,22 @@ namespace game::session
 		return TryGetSpeed(shipId).value();
 	}
 
-	static Islands ToIslands(const std::list<game::Island> islands)
+	static IslandDeprecated ToIslands(const std::list<game::Island> islands)
 	{
 		std::list<int> islandIds;
 		for (auto island : islands)
 		{
 			islandIds.push_back(island.id);
 		}
-		return game::session::Islands([islandIds]() {return islandIds; });//!!!!
+		return game::session::IslandDeprecated([islandIds]() {return islandIds; });//!!!!
 	}
 
-	Islands Ship::GetDockableIslands() const
+	IslandDeprecated Ship::GetDockableIslands() const
 	{
 		return ToIslands(game::Islands::GetDockableIslands(shipId));
 	}
 
-	Islands Ship::GetNearbyIslands() const
+	IslandDeprecated Ship::GetNearbyIslands() const
 	{
 		return ToIslands(game::Islands::GetViewableIslands(shipId));
 	}

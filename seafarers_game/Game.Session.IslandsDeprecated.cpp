@@ -3,18 +3,18 @@
 #include "Game.Session.IslandsDeprecated.h"
 namespace game::session
 {
-	Islands::Islands(std::function<std::list<int>()> islandSource)
+	IslandDeprecated::IslandDeprecated(std::function<std::list<int>()> islandSource)
 		: islandSource(islandSource)
 	{
 
 	}
 
-	bool Islands::HasAny() const
+	bool IslandDeprecated::HasAny() const
 	{
 		return !islandSource().empty();
 	}
 
-	std::optional<Island> Islands::TryGetFirst() const
+	std::optional<Island> IslandDeprecated::TryGetFirst() const
 	{
 		if (HasAny())
 		{
@@ -23,17 +23,17 @@ namespace game::session
 		return std::nullopt;
 	}
 
-	Island Islands::GetFirst() const
+	Island IslandDeprecated::GetFirst() const
 	{
 		return TryGetFirst().value();
 	}
 
-	size_t Islands::GetCount() const
+	size_t IslandDeprecated::GetCount() const
 	{
 		return islandSource().size();
 	}
 
-	std::list<Island> Islands::GetAll() const
+	std::list<Island> IslandDeprecated::GetAll() const
 	{
 		std::list<Island> result;
 		for (auto islandId : islandSource())
@@ -43,18 +43,18 @@ namespace game::session
 		return result;
 	}
 
-	void Islands::Reset(const Difficulty& difficulty) const
+	void IslandDeprecated::Reset(const Difficulty& difficulty) const
 	{
 		game::Islands::Reset(difficulty);
 		game::islands::Features::Reset(difficulty);
 	}
 
-	void Islands::ApplyTurnEffects() const
+	void IslandDeprecated::ApplyTurnEffects() const
 	{
 		game::Islands::ApplyTurnEffects();
 	}
 
-	Island Islands::GetIsland(int islandId) const
+	Island IslandDeprecated::GetIsland(int islandId) const
 	{
 		return Island(islandId);
 	}

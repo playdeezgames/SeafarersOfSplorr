@@ -20,7 +20,7 @@ namespace game
 		session::Characters GetCharacters() const;
 		constexpr session::Ships GetShips() const { return session::Ships(); }
 		constexpr session::World GetWorld() const { return session::World(WORLD_ID); }
-		session::Islands GetIslands() const;
+		session::IslandDeprecated GetIslandDeprecated() const;
 		session::Items GetItems() const;
 		session::Demigods GetDemigods() const;
 		session::Fisheries GetFisheries() const;

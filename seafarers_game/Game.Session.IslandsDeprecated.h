@@ -6,9 +6,9 @@
 #include <list>
 namespace game::session
 {
-	struct Islands
+	struct IslandDeprecated
 	{
-		Islands(std::function<std::list<int>()>);
+		IslandDeprecated(std::function<std::list<int>()>);
 		bool HasAny() const;
 		std::optional<Island> TryGetFirst() const;
 		Island GetFirst() const;
