@@ -63,6 +63,12 @@
     <Filter Include="Source Files\World">
       <UniqueIdentifier>{425cb4b1-6bb9-4dc2-a512-02ac72aaf8ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Tribe">
+      <UniqueIdentifier>{3e829f9e-3c1c-4406-ba88-dc9e5253e6f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tribe">
+      <UniqueIdentifier>{ef4e17df-c105-4a38-b8be-1d3f7ef428a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data.Game.Common.h">
@@ -185,8 +191,8 @@
     <ClInclude Include="Data.Game.World.Month.h">
       <Filter>Header Files\World</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Ship.Island.h">
-      <Filter>Header Files\Ship</Filter>
+    <ClInclude Include="Data.Game.Tribe.h">
+      <Filter>Header Files\Tribe</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -304,8 +310,8 @@
     <ClCompile Include="Data.Game.World.Month.cpp">
       <Filter>Source Files\World</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Ship.Island.cpp">
-      <Filter>Source Files\Ship</Filter>
+    <ClCompile Include="Data.Game.Tribe.cpp">
+      <Filter>Source Files\Tribe</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

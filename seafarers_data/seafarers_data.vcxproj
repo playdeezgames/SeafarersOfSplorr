@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -55,11 +55,11 @@
     <ClInclude Include="Data.Game.Ship.CurrentIsland.h" />
     <ClInclude Include="Data.Game.Ship.h" />
     <ClInclude Include="Data.Game.Ship.Statistic.h" />
-    <ClInclude Include="Data.Game.Ship.Island.h" />
     <ClInclude Include="Data.Game.World.h" />
     <ClInclude Include="Data.Game.World.Month.h" />
     <ClInclude Include="Data.JSON.Store.h" />
     <ClInclude Include="Data.SQLite.Store.h" />
+    <ClInclude Include="Data.Game.Tribe.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Character.Characteristic.cpp" />
@@ -97,8 +97,8 @@
     <ClCompile Include="Data.Game.Player.cpp" />
     <ClCompile Include="Data.Game.Ship.cpp" />
     <ClCompile Include="Data.Game.Ship.CurrentIsland.cpp" />
-    <ClCompile Include="Data.Game.Ship.Island.cpp" />
     <ClCompile Include="Data.Game.Ship.Statistic.cpp" />
+    <ClCompile Include="Data.Game.Tribe.cpp" />
     <ClCompile Include="Data.Game.World.cpp" />
     <ClCompile Include="Data.Game.World.Month.cpp" />
   </ItemGroup>
