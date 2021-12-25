@@ -194,6 +194,9 @@
     <ClInclude Include="Data.Game.Tribe.h">
       <Filter>Header Files\Tribe</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.Island.Tribe.h">
+      <Filter>Header Files\Island</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">
@@ -312,6 +315,9 @@
     </ClCompile>
     <ClCompile Include="Data.Game.Tribe.cpp">
       <Filter>Source Files\Tribe</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Island.Tribe.cpp">
+      <Filter>Source Files\Island</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
