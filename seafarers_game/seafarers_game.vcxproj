@@ -59,7 +59,7 @@
     <ClInclude Include="Game.Session.Island.Market.h" />
     <ClInclude Include="Game.Session.Island.Markets.h" />
     <ClInclude Include="Game.Session.Island.Tavern.h" />
-    <ClInclude Include="Game.Session.Islands.h" />
+    <ClInclude Include="Game.Session.IslandsDeprecated.h" />
     <ClInclude Include="Game.Session.Item.h" />
     <ClInclude Include="Game.Session.Items.h" />
     <ClInclude Include="Game.Session.Item.Type.Commodities.h" />
@@ -176,7 +176,7 @@
     <ClCompile Include="Game.Session.Island.cpp" />
     <ClCompile Include="Game.Session.Island.Market.cpp" />
     <ClCompile Include="Game.Session.Island.Markets.cpp" />
-    <ClCompile Include="Game.Session.Islands.cpp" />
+    <ClCompile Include="Game.Session.IslandsDeprecated.cpp" />
     <ClCompile Include="Game.Session.Item.cpp" />
     <ClCompile Include="Game.Session.Items.cpp" />
     <ClCompile Include="Game.Session.Item.Type.Commodities.cpp" />

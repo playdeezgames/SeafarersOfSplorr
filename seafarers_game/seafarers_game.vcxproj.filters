@@ -347,7 +347,7 @@
     <ClInclude Include="Game.Session.Island.h">
       <Filter>Header Files\Session\Island</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.Islands.h">
+    <ClInclude Include="Game.Session.IslandsDeprecated.h">
       <Filter>Header Files\Session\Island</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Item.h">
@@ -670,7 +670,7 @@
     <ClCompile Include="Game.Session.Island.cpp">
       <Filter>Source Files\Session\Island</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.Islands.cpp">
+    <ClCompile Include="Game.Session.IslandsDeprecated.cpp">
       <Filter>Source Files\Session\Island</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Item.cpp">

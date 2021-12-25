@@ -1,6 +1,6 @@
 #include "Game.Islands.h"
 #include "Game.Islands.Features.h"
-#include "Game.Session.Islands.h"
+#include "Game.Session.IslandsDeprecated.h"
 namespace game::session
 {
 	Islands::Islands(std::function<std::list<int>()> islandSource)

@@ -3,7 +3,7 @@
 #include "Game.Session.Characters.h"
 #include "Game.Session.Demigods.h"
 #include "Game.Session.Fisheries.h"
-#include "Game.Session.Islands.h"
+#include "Game.Session.IslandsDeprecated.h"
 #include "Game.Session.Items.h"
 #include "Game.Session.Player.h"
 #include "Game.Session.Saves.h"
