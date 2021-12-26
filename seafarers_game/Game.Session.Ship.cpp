@@ -46,11 +46,6 @@ namespace game::session
 		return game::session::IslandDeprecated([islandIds]() {return islandIds; });//!!!!
 	}
 
-	IslandDeprecated Ship::GetDockableIslands() const
-	{
-		return ToIslands(game::Islands::GetDockableIslands(shipId));
-	}
-
 	IslandDeprecated Ship::GetNearbyIslands() const
 	{
 		return ToIslands(game::Islands::GetViewableIslands(shipId));

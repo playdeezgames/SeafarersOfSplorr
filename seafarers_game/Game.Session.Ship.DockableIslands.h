@@ -1,12 +1,12 @@
 #pragma once
 #include "Game.Session.Island.h"
-#include <list>
+#include <optional>
 namespace game::session::ship
 {
 	struct DockableIslands
 	{
 		constexpr DockableIslands(int shipId) : shipId(shipId) {}
-		std::list<Island> GetAll() const;
+		std::optional<Island> TryGetFirst() const;
 	private:
 		int shipId;
 	};

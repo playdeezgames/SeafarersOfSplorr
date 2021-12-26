@@ -4,9 +4,9 @@
 #include "Game.Session.Ship.DockableIslands.h"
 namespace game::session::ship
 {
-	std::list<Island> DockableIslands::GetAll() const
+	std::optional<Island> DockableIslands::TryGetFirst() const
 	{
-		auto maximumDistance = game::Session().GetWorld().GetDistances().GetDock();//TODO: this is the same as VisibleIslands, except for the max dist value
+		auto maximumDistance = game::Session().GetWorld().GetDistances().GetDock();
 		auto shipLocation = data::game::Ship::GetLocation(shipId).value();
 		auto islands = data::game::Island::All();
 		std::list<Island> result;
@@ -15,9 +15,9 @@ namespace game::session::ship
 			auto delta = island.location - shipLocation;
 			if (delta.GetMagnitude() <= maximumDistance)
 			{
-				result.push_back(Island(island.id));
+				return Island(island.id);
 			}
 		}
-		return result;
+		return std::nullopt;
 	}
 }

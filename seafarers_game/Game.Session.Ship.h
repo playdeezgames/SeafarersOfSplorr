@@ -18,7 +18,7 @@ namespace game::session
 		void SetHeading(double) const;
 		double GetSpeed() const;
 		void SetSpeed(double) const;
-		IslandDeprecated GetDockableIslands() const;
+		const ship::DockableIslands GetDockableIslands() const { return ship::DockableIslands(shipId); }
 		IslandDeprecated GetNearbyIslands() const;
 		common::XY<double> GetLocation() const;
 		Fisheries GetFisheries() const;

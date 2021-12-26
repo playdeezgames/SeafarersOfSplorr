@@ -217,7 +217,7 @@ namespace state::in_play
 			.GetBerth()
 			.GetShip()
 			.GetDockableIslands()
-			.HasAny())
+			.TryGetFirst())
 		{
 			application::UIState::Write(::UIState::IN_PLAY_DOCK_OR_CAREEN);
 		}
