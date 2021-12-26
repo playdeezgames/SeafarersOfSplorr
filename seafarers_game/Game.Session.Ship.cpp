@@ -36,21 +36,6 @@ namespace game::session
 		return TryGetSpeed(shipId).value();
 	}
 
-	static IslandDeprecated ToIslands(const std::list<game::Island> islands)
-	{
-		std::list<int> islandIds;
-		for (auto island : islands)
-		{
-			islandIds.push_back(island.id);
-		}
-		return game::session::IslandDeprecated([islandIds]() {return islandIds; });//!!!!
-	}
-
-	IslandDeprecated Ship::GetNearbyIslands() const
-	{
-		return ToIslands(game::Islands::GetViewableIslands(shipId));
-	}
-
 	static std::optional<common::XY<double>> TryGetLocation(int shipId)
 	{
 		return game::Ship::GetLocation(shipId);

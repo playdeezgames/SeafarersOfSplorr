@@ -7,6 +7,8 @@ namespace game::session::ship
 	{
 		constexpr VisibleIslands(int shipId) : shipId(shipId) {}
 		std::list<Island> GetAll() const;
+		bool HasAny() const;
+		int GetCount() const;
 	private:
 		int shipId;
 	};

@@ -20,4 +20,14 @@ namespace game::session::ship
 		}
 		return result;
 	}
+
+	bool VisibleIslands::HasAny() const
+	{
+		return !GetAll().empty();
+	}
+
+	int VisibleIslands::GetCount() const
+	{
+		return (int)GetAll().size();
+	}
 }
