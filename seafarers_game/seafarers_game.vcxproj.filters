@@ -515,6 +515,15 @@
     <ClInclude Include="Game.Session.Tribes.h">
       <Filter>Header Files\Session\Tribe</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.World.Islands.h">
+      <Filter>Header Files\Session\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Ship.DockableIslands.h">
+      <Filter>Header Files\Session\Ship</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Ship.VisibleIslands.h">
+      <Filter>Header Files\Session\Ship</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Features.cpp">
@@ -780,6 +789,15 @@
     </ClCompile>
     <ClCompile Include="Game.Session.Tribe.cpp">
       <Filter>Source Files\Session\Tribe</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.World.Islands.cpp">
+      <Filter>Source Files\Session\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Ship.DockableIslands.cpp">
+      <Filter>Source Files\Session\Ship</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Ship.VisibleIslands.cpp">
+      <Filter>Source Files\Session\Ship</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

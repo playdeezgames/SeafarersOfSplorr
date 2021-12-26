@@ -4,6 +4,8 @@
 #include "Game.Session.IslandsDeprecated.h"
 #include "Game.Session.Ship.Berth.h"
 #include "Game.Session.Ship.Fouling.h"
+#include "Game.Session.Ship.DockableIslands.h"
+#include "Game.Session.Ship.VisibleIslands.h"
 #include <list>
 #include <optional>
 namespace game::session

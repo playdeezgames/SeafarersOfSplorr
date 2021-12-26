@@ -5,6 +5,7 @@
 #include "Game.Session.World.Bounds.h"
 #include "Game.Session.World.Calendar.h"
 #include "Game.Session.World.Distances.h"
+#include "Game.Session.World.Islands.h"
 #include "Game.Session.World.Wind.h"
 namespace game::session
 {
@@ -17,6 +18,7 @@ namespace game::session
 		constexpr world::Wind GetWind() const { return world::Wind(worldId); }
 		constexpr world::Distances GetDistances() const { return world::Distances(worldId); }
 		constexpr world::Calendar GetCalendar() const { return world::Calendar(worldId); }
+		constexpr world::Islands GetIslands() const { return world::Islands(); }
 		item::Type GetCurrencyItemSubtype() const;
 		void Reset(const Difficulty&) const;
 		void ApplyTurnEffects() const;
