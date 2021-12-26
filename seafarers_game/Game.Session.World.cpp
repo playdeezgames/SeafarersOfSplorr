@@ -37,6 +37,7 @@ namespace game::session
 
 	void World::ApplyTurnEffects() const
 	{
+		GetIslands().ApplyTurnEffects();
 		GetWind().ApplyTurnEffects();
 		GetCalendar().ApplyTurnEffects();
 	}

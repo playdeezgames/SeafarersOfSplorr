@@ -46,7 +46,7 @@ namespace game::characters
 	static void CompleteQuest(int characterId, const data::game::character::QuestLegacy& quest)
 	{
 		auto character = game::Session().GetCharacters().GetCharacter(characterId);
-		auto markets = game::Session().GetIslandDeprecated().GetIsland(quest.toIslandId).GetMarkets();
+		auto markets = game::Session().GetWorld().GetIslands().GetIsland(quest.toIslandId).GetMarkets();
 		auto currencyItem = game::Session().GetWorld().GetCurrencyItemSubtype();
 		int quantity = markets.GetPurchaseQuantity(currencyItem, quest.reward);
 		character.GetItems().AddItemQuantity(currencyItem, quantity);

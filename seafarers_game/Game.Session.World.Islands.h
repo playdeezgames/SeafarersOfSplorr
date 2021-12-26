@@ -8,12 +8,8 @@ namespace game::session::world
 	{
 		constexpr Islands() {}
 		constexpr Island GetIsland(int islandId) const { return Island(islandId); }
-		//bool HasAny() const;
-		//std::optional<Island> TryGetFirst() const;
-		//Island GetFirst() const;
-		//size_t GetCount() const;
 		std::list<Island> GetAll() const;
-		//void Reset(const Difficulty&) const;
-		//void ApplyTurnEffects() const;
+		void Reset(const Difficulty&) const;
+		void ApplyTurnEffects() const;
 	};
 }

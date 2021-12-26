@@ -16,7 +16,6 @@ namespace game
 	{
 		GetShips().ApplyTurnEffects();
 		GetCharacters().ApplyTurnEffects();
-		GetIslandDeprecated().ApplyTurnEffects();
 		GetDemigods().ApplyTurnEffects();
 		GetFisheries().ApplyTurnEffects();
 		GetWorld().ApplyTurnEffects();
@@ -36,20 +35,9 @@ namespace game
 		GetDemigods().Reset(difficulty);
 		GetShips().Reset(difficulty);
 		GetCharacters().Reset(difficulty);
-		GetIslandDeprecated().Reset(difficulty);
+		GetWorld().GetIslands().Reset(difficulty);//MAY NEED TO SPLIT OUT BETWEEN RESET AND GENERATE
 		GetPlayer().Reset(difficulty);
 		GetFisheries().Reset(difficulty);
-	}
-
-	session::IslandDeprecated Session::GetIslandDeprecated() const
-	{
-		auto islands = data::game::Island::All();
-		std::list<int> islandIds;
-		for (auto island : islands)
-		{
-			islandIds.push_back(island.id);
-		}
-		return session::IslandDeprecated([islandIds]() { return islandIds; });
 	}
 
 	session::Demigods Session::GetDemigods() const

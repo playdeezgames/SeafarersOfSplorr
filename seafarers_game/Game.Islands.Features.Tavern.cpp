@@ -57,7 +57,7 @@ namespace game::islands::features
 	static void AddTavernCharacter(int islandId)
 	{
 		auto character = game::Session().GetCharacters().Create(game::characters::State::TAVERN);
-		character.SetIsland(game::Session().GetIslandDeprecated().GetIsland(islandId));
+		character.SetIsland(game::Session().GetWorld().GetIslands().GetIsland(islandId));
 	}
 
 	static const std::map<int, size_t> npcCountGenerator = 
