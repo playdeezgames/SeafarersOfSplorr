@@ -29,40 +29,31 @@ namespace data::game
 		WHERE 
 		[IslandId]={};)"s;
 	static const std::string QUERY_ID_FOR_LOCATION =
-		"SELECT "
-			"[IslandId] "
-		"FROM [Islands] "
-		"WHERE "
-			"[X]={:.4f} "
-			"AND [Y]={:.4f};";
+		R"(SELECT 
+			[IslandId] 
+		FROM [Islands] 
+		WHERE 
+			[X]={:.4f} 
+			AND [Y]={:.4f};)"s;
 	static const std::string INSERT_ITEM = 
-		"INSERT INTO [Islands]"
-		"("
-			"[X],"
-			"[Y],"
-			"[Name],"
-			"[PatronDemigodId]"
-		") "
-		"VALUES ({:.4f},{:.4f},{},{});";
-	static const std::string UPDATE_ITEM = 
-		"UPDATE [Islands] "
-		"SET "
-		"[X]={:.4f},"
-		"[Y]={:.4f},"
-		"[Name]={},"
-		"[PatronDemigodId]={}"
-		"WHERE "
-			"[IslandId]={};";
-	static const std::string QUERY_ALL = 
-		"SELECT "
-			"[IslandId],"
-			"[X],"
-			"[Y],"
-			"[Name],"
-			"[PatronDemigodId] "
-		"FROM [Islands];";
+		R"(INSERT INTO [Islands]
+		(
+			[X],
+			[Y],
+			[Name],
+			[PatronDemigodId]
+		) 
+		VALUES ({:.4f},{:.4f},{},{});)"s;
+	static const std::string QUERY_ALL =
+		R"(SELECT 
+			[IslandId],
+			[X],
+			[Y],
+			[Name],
+			[PatronDemigodId] 
+		FROM [Islands];)"s;
 	static const std::string CLEAR_ALL = 
-		"DELETE FROM [Islands];";
+		R"(DELETE FROM [Islands];)"s;
 
 	static const std::string FIELD_ISLAND_ID = "IslandId";
 	static const std::string FIELD_X = "X";
