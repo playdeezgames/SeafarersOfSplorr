@@ -7,7 +7,6 @@
 #include "Game.Session.Player.h"
 #include "Game.Session.Saves.h"
 #include "Game.Session.Ships.h"
-#include "Game.Session.Tribes.h"
 #include "Game.Session.World.h"
 #include <optional>
 namespace game
@@ -17,14 +16,14 @@ namespace game
 	{
 		constexpr Session() {}
 
-		session::Characters GetCharacters() const;//to world
-		session::Fisheries GetFisheries() const;//to world
-		session::Items GetItems() const;//to world
-		session::Player GetPlayer() const;
-		session::Saves GetSaves() const;
-		session::Tribes GetTribes() const;//to world
-		constexpr session::Ships GetShips() const { return session::Ships(); }//to world
+		constexpr session::Characters GetCharacters() const { return session::Characters(); }
+		constexpr session::Items GetItems() const { return session::Items(); }
+		constexpr session::Player GetPlayer() const { return session::Player(); }
+		constexpr session::Saves GetSaves() const { return session::Saves(); }
+		constexpr session::Ships GetShips() const { return session::Ships(); }
 		constexpr session::World GetWorld() const { return session::World(WORLD_ID); }
+
+		session::Fisheries GetFisheries() const;//to world
 
 		void ApplyTurnEffects() const;
 		void Reset() const;

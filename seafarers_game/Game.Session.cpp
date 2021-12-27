@@ -6,22 +6,12 @@
 #include "Game.Session.h"//Cuz we implement here
 namespace game
 {
-	session::Characters Session::GetCharacters() const
-	{
-		return session::Characters();
-	}
-
 	void Session::ApplyTurnEffects() const
 	{
 		GetShips().ApplyTurnEffects();
 		GetCharacters().ApplyTurnEffects();
 		GetFisheries().ApplyTurnEffects();
 		GetWorld().ApplyTurnEffects();
-	}
-
-	session::Items Session::GetItems() const
-	{
-		return session::Items();
 	}
 
 	void Session::Populate(const Difficulty& difficulty) const
@@ -36,7 +26,6 @@ namespace game
 		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);//TODO: mebbe this becomes the new game::Reset?
 
 		GetWorld().Reset();
-		GetTribes().Reset();
 		GetShips().Reset();
 		GetCharacters().Reset();
 		GetFisheries().Reset();
@@ -52,20 +41,5 @@ namespace game
 			fisheryIds.push_back(fishery.fisheryId);
 		}
 		return session::Fisheries([fisheryIds]() { return fisheryIds; });
-	}
-
-	session::Saves Session::GetSaves() const
-	{
-		return session::Saves();
-	}
-
-	session::Player Session::GetPlayer() const
-	{
-		return session::Player();
-	}
-
-	session::Tribes Session::GetTribes() const
-	{
-		return session::Tribes();
 	}
 }

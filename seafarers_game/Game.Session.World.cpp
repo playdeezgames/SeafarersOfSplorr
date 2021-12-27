@@ -34,6 +34,7 @@ namespace game::session
 		GetCharacters().Populate(difficulty);
 		GetCalendar().Populate(difficulty);
 		GetDemigods().Populate(difficulty);
+		GetTribes().Populate(difficulty);
 		GetIslands().Populate(difficulty);
 	}
 
@@ -48,6 +49,7 @@ namespace game::session
 		GetDistances().Reset();
 		GetIslands().Reset();
 		GetItemSubtypes().Reset();
+		GetTribes().Reset();
 		GetWind().Reset();
 	}
 

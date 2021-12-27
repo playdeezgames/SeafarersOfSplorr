@@ -9,6 +9,7 @@
 #include "Game.Session.World.Distances.h"
 #include "Game.Session.World.Islands.h"
 #include "Game.Session.World.Wind.h"
+#include "Game.Session.Tribes.h"
 namespace game::session
 {
 	struct World
@@ -27,6 +28,7 @@ namespace game::session
 		constexpr world::Islands GetIslands() const { return world::Islands(); }
 		constexpr item::Types GetItemSubtypes() const { return item::Types(); }
 		constexpr world::Wind GetWind() const { return world::Wind(worldId); }
+		constexpr Tribes GetTribes() const { return Tribes(); }
 
 		void Reset() const;
 		void Populate(const Difficulty&) const;
