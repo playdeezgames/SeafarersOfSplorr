@@ -2,7 +2,6 @@
 #include <Common.RNG.h>
 #include <Common.NameGenerator.h>
 #include <Data.Game.Demigod.h>
-#include <Data.Game.DemigodItemLegacy.h>
 #include <Data.Game.Character.DemigodFavor.h>
 #include <Data.Game.Character.h>
 #include "Game.Characters.Plights.h"
@@ -20,7 +19,6 @@ namespace game::session
 	void Demigods::Reset() const
 	{
 		DemigodData::Clear();
-		data::game::DemigodItemLegacy::Clear();//TODO: ELIMINATE!
 		DemigodFavorData::ClearAll();
 	}
 
@@ -134,10 +132,7 @@ namespace game::session
 				CURSE_MULTIPLIER,
 				(int)characters::Plights::Generate(characters::PlightType::CURSE) };
 			auto demigodId = DemigodData::Write(demigod);
-			for (auto item : items)
-			{
-				data::game::DemigodItemLegacy::Write(demigodId, (int)item, common::RNG::FromRange(OFFERING_FAVOR_MINIMUM, OFFERING_FAVOR_MAXIMUM));
-			}
+			//TODO: demigod item categories
 		}
 
 	}

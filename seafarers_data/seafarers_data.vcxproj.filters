@@ -98,9 +98,6 @@
     <ClInclude Include="Data.Game.Demigod.h">
       <Filter>Header Files\Demigod</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.DemigodItemLegacy.h">
-      <Filter>Header Files\Demigod</Filter>
-    </ClInclude>
     <ClInclude Include="Data.Game.FishboardCell.h">
       <Filter>Header Files\Fishing</Filter>
     </ClInclude>
@@ -227,9 +224,6 @@
       <Filter>Source Files\Island</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Demigod.cpp">
-      <Filter>Source Files\Demigod</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.DemigodItemLegacy.cpp">
       <Filter>Source Files\Demigod</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Fishery.cpp">
