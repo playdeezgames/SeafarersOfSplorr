@@ -7,8 +7,13 @@
 #include <Data.Game.Island.Feature.h>
 #include <Data.Game.Island.ItemLegacy.h>
 #include <Data.Game.Island.Market.h>
+#include <Data.Game.Island.Tribe.h>
+#include <Data.Game.Island.Tribe.h>
+#include "Game.Features.h"
 #include "Game.Islands.h"
 #include "Game.Islands.Features.h"
+#include "Game.Islands.Features.DarkAlley.h"
+#include "Game.Islands.Features.Tavern.h"
 #include "Game.Items.h"
 #include "Game.Session.h"
 #include "Game.Session.World.Islands.h"
@@ -161,6 +166,65 @@ namespace game::session::world
 		}
 		return result;
 	}
+	static const std::map<game::Feature, std::function<void(int)>> featureInitializers =
+	{
+		{game::Feature::DARK_ALLEY, game::islands::features::DarkAlley::Initialize},
+		{game::Feature::TAVERN, game::islands::features::Tavern::Initialize}
+	};
+
+	static void InitializeFeature(const game::Feature& feature, int islandId)
+	{
+		auto initializer = featureInitializers.find(feature);
+		if (initializer != featureInitializers.end())
+		{
+			initializer->second(islandId);
+		}
+	}
+
+	static size_t DetermineIslandCountForFeature(const game::Feature& feature, size_t totalIslandCount)
+	{
+		size_t islandCount = (size_t)(game::Features::GetCoveragePercentage(feature) * (double)totalIslandCount);
+		if (islandCount < game::Features::GetMinimumCount(feature))
+		{
+			islandCount = game::Features::GetMinimumCount(feature);
+		}
+		if (islandCount > totalIslandCount)
+		{
+			islandCount = totalIslandCount;
+		}
+		return islandCount;
+	}
+
+	static void GenerateFeature(const game::Feature& feature, const std::list<data::game::Island>& islands)
+	{
+		std::vector<int> candidates;
+		for (auto island : islands)
+		{
+			candidates.push_back(island.id);
+		}
+		size_t islandCount = DetermineIslandCountForFeature(feature, islands.size());
+		while (islandCount > 0)
+		{
+			auto index = common::RNG::FromRange(0u, candidates.size());
+
+			auto candidate = candidates[index];
+			candidates[index] = candidates.back();
+			candidates.pop_back();
+
+			data::game::island::Feature::Write(candidate, (int)feature);
+			InitializeFeature(feature, candidate);
+			islandCount--;
+		}
+	}
+
+	static void GenerateAllFeatures()
+	{
+		auto allIslands = data::game::Island::All();
+		for (auto feature : game::Features::All())
+		{
+			GenerateFeature(feature, allIslands);
+		}
+	}
 
 	void Islands::Populate(const Difficulty& difficulty) const
 	{
@@ -181,7 +245,7 @@ namespace game::session::world
 			GenerateMarkets(islandId);
 			GenerateItems(islandId);
 		}
-		game::islands::Features::Populate(difficulty);
+		GenerateAllFeatures();
 	}
 
 
