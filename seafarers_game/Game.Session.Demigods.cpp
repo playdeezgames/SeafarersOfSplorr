@@ -9,15 +9,20 @@
 #include "Game.Demigods.h"
 #include "Game.Items.h"
 #include "Game.Session.Demigods.h"
+#include <iterator>
 #include <map>
 #include <set>
 namespace game::session
 {
+	using CharacterData = data::game::Character;
+	using DemigodData = data::game::Demigod;
+	using DemigodFavorData = data::game::character::DemigodFavor;
+
 	void Demigods::Reset() const
 	{
-		data::game::Demigod::Clear();
-		data::game::DemigodItemLegacy::Clear();
-		data::game::character::DemigodFavor::ClearAll();
+		DemigodData::Clear();
+		data::game::DemigodItemLegacy::Clear();//TODO: ELIMINATE!
+		DemigodFavorData::ClearAll();
 	}
 
 	static const std::map<std::string, size_t> consonants =
@@ -119,7 +124,7 @@ namespace game::session
 		auto items = Items::All();
 		for (auto name : names)
 		{
-			data::game::Demigod demigod = {
+			DemigodData demigod = {
 				0,
 				name,
 				common::RNG::FromGenerator(patronWeights),
@@ -129,7 +134,7 @@ namespace game::session
 				CURSE_THRESHOLD,
 				CURSE_MULTIPLIER,
 				(int)characters::Plights::Generate(characters::PlightType::CURSE) };
-			auto demigodId = data::game::Demigod::Write(demigod);
+			auto demigodId = DemigodData::Write(demigod);
 			for (auto item : items)
 			{
 				data::game::DemigodItemLegacy::Write(demigodId, (int)item, common::RNG::FromRange(OFFERING_FAVOR_MINIMUM, OFFERING_FAVOR_MAXIMUM));
@@ -137,10 +142,6 @@ namespace game::session
 		}
 
 	}
-
-	using CharacterData = data::game::Character;
-	using DemigodData = data::game::Demigod;
-	using DemigodFavorData = data::game::character::DemigodFavor;
 
 	void Demigods::ApplyTurnEffects() const
 	{
@@ -155,5 +156,20 @@ namespace game::session
 					candidate.cooldown--;
 				}
 			});
+	}
+
+	std::list<Demigod> Demigods::GetAll() const
+	{
+		auto demigods = DemigodData::All();
+		std::list<Demigod> result;
+		std::transform(
+			demigods.begin(),
+			demigods.end(),
+			std::back_inserter(result),
+			[](const DemigodData& demigod) 
+			{
+				return Demigod(demigod.id);
+			});
+		return result;
 	}
 }

@@ -96,44 +96,6 @@ namespace game
 		{10,1}
 	};
 
-	void Demigods::Populate(const Difficulty& difficulty)
-	{
-		const double BLESSING_THRESHOLD = 5.0;
-		const double BLESSING_MULTIPLIER = 2.0;
-		const double CURSE_THRESHOLD = -5.0;
-		const double CURSE_MULTIPLIER = 0.5;
-		const double OFFERING_FAVOR_MINIMUM = -1.0;
-		const double OFFERING_FAVOR_MAXIMUM = 1.0;
-		auto demigodCount = common::RNG::FromGenerator(demigodCounts);
-		auto names = GenerateNames(demigodCount);
-		auto items = Items::All();
-		for (auto name : names)
-		{
-			data::game::Demigod demigod ={ 
-				0,
-				name,
-				common::RNG::FromGenerator(patronWeights),
-				BLESSING_THRESHOLD,
-				BLESSING_MULTIPLIER,
-				(int)characters::Plights::Generate(characters::PlightType::BLESSING),
-				CURSE_THRESHOLD,
-				CURSE_MULTIPLIER,
-				(int)characters::Plights::Generate(characters::PlightType::CURSE)};
-			auto demigodId = data::game::Demigod::Write(demigod);
-			for (auto item : items)
-			{
-				data::game::DemigodItemLegacy::Write(demigodId, (int)item, common::RNG::FromRange(OFFERING_FAVOR_MINIMUM, OFFERING_FAVOR_MAXIMUM));
-			}
-		}
-	}
-
-	void Demigods::Reset()
-	{
-		data::game::Demigod::Clear();
-		data::game::DemigodItemLegacy::Clear();
-		data::game::character::DemigodFavor::ClearAll();
-	}
-
 	static bool ApplyBlessing(int characterId, data::game::Demigod& demigod, const Item& item, double favor)
 	{
 		if (favor >= demigod.blessingThreshold)
@@ -215,19 +177,6 @@ namespace game
 		return OfferingResult::FAILURE;
 	}
 
-	void Demigods::ApplyTurnEffects(int characterId)
-	{
-		auto demigods = data::game::Demigod::All();
-		for (auto& demigod : demigods)
-		{
-			int coolDown = data::game::character::DemigodFavor::ReadOfferingCooldown(characterId, demigod.id).value_or(0);
-			if (coolDown > 0)
-			{
-				coolDown--;
-				data::game::character::DemigodFavor::Write(characterId, demigod.id, data::game::character::DemigodFavor::ReadFavor(characterId, demigod.id).value_or(0.0), coolDown);
-			}
-		}
-	}
 	std::string Demigods::ReadName(int demigodId)
 	{
 		auto demigod = data::game::Demigod::Read(demigodId);

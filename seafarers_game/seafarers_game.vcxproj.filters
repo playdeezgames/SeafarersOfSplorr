@@ -521,6 +521,9 @@
     <ClInclude Include="Game.OfferingResult.h">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Demigod.h">
+      <Filter>Header Files\Session\Demigod</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Features.cpp">

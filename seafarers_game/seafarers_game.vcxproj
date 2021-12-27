@@ -49,6 +49,7 @@
     <ClInclude Include="Game.Session.Characters.h" />
     <ClInclude Include="Game.Session.Commodities.h" />
     <ClInclude Include="Game.Session.Commodity.h" />
+    <ClInclude Include="Game.Session.Demigod.h" />
     <ClInclude Include="Game.Session.Demigods.h" />
     <ClInclude Include="Game.Session.Fishboard.h" />
     <ClInclude Include="Game.Session.FishboardCell.h" />
