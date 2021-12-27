@@ -85,9 +85,13 @@ namespace game::islands
 		}
 	}
 
+	void Features::Populate(const game::Difficulty&)
+	{
+		GenerateAllFeatures();
+	}
+
 	void Features::Reset(const game::Difficulty&)
 	{
 		data::game::island::Feature::Clear();
-		GenerateAllFeatures();
 	}
 }

@@ -17,6 +17,13 @@ namespace game::session::world
 		return result;
 	}
 
+	void Islands::Populate(const Difficulty& difficulty) const
+	{
+		game::Islands::Populate(difficulty);
+		game::islands::Features::Populate(difficulty);
+	}
+
+
 	void Islands::Reset(const Difficulty& difficulty) const
 	{
 		game::Islands::Reset(difficulty);

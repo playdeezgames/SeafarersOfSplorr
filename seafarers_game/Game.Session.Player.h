@@ -7,6 +7,7 @@ namespace game::session
 	struct Player
 	{
 		void Reset(const Difficulty&) const;
+		void Populate(const Difficulty&) const;
 		Character GetCharacter() const;
 		std::optional<Character> TryGetCharacter() const;
 	};

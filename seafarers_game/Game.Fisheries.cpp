@@ -41,13 +41,17 @@ namespace game
 		}
 	}
 
-	void Fisheries::Reset(const Difficulty&)
+	void Fisheries::Populate(const Difficulty&)
 	{
-		data::game::Fishery::Clear();
 		for (auto& fish : game::Fishes::All())
 		{
 			GenerateFisheries(fish);
 		}
+	}
+
+	void Fisheries::Reset(const Difficulty&)
+	{
+		data::game::Fishery::Clear();
 	}
 
 	void Fisheries::ApplyTurnEffects()

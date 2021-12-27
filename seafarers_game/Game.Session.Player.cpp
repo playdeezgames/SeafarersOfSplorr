@@ -35,12 +35,16 @@ namespace game::session
 		game::characters::Ships::Write(characterId, shipId, BerthType::CAPTAIN);
 	}
 
-	void Player::Reset(const Difficulty& difficulty) const
+	void Player::Populate(const Difficulty& difficulty) const
 	{
 		auto character = game::session::Characters().Create(game::characters::State::AT_SEA);
 		data::game::Player::Create((int)character);
 		game::characters::Items::Reset(data::game::Player::GetCharacterId().value(), difficulty);
 		GenerateCharacterShip((int)character);
+	}
+
+	void Player::Reset(const Difficulty& difficulty) const
+	{
 	}
 
 	std::optional<Character> Player::TryGetCharacter() const

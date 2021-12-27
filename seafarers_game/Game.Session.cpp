@@ -35,9 +35,12 @@ namespace game
 		GetDemigods().Reset(difficulty);
 		GetShips().Reset(difficulty);
 		GetCharacters().Reset(difficulty);
-		GetWorld().GetIslands().Reset(difficulty);//MAY NEED TO SPLIT OUT BETWEEN RESET AND GENERATE
-		GetPlayer().Reset(difficulty);
 		GetFisheries().Reset(difficulty);
+		GetPlayer().Reset(difficulty);
+
+		GetWorld().GetIslands().Populate(difficulty);
+		GetPlayer().Populate(difficulty);
+		GetFisheries().Populate(difficulty);
 	}
 
 	session::Demigods Session::GetDemigods() const

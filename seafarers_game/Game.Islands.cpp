@@ -10,13 +10,6 @@ namespace game
 {
 	const std::string Islands::UNKNOWN = "????";
 
-	void GenerateIslands();
-
-	void Islands::Reset(const game::Difficulty&)
-	{
-		GenerateIslands();
-	}
-
 	static void KnowIsland(
 		int characterId,
 		std::list<Island>& accumulator, 

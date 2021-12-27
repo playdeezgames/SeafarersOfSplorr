@@ -7,6 +7,7 @@
 #include <Data.Game.Island.ItemLegacy.h>
 #include <Data.Game.Island.Market.h>
 #include "Game.Session.h"
+#include "Game.Islands.h"
 #include "Game.Items.h"
 #include <set>
 #include <vector>
@@ -110,7 +111,7 @@ namespace game
 		return names;
 	}
 
-	static void ClearData()
+	void Islands::Reset(const game::Difficulty&)
 	{
 		data::game::Island::Clear();
 		data::game::character::KnownIsland::Clear();
@@ -155,9 +156,8 @@ namespace game
 		return common::RNG::FromGenerator(table);
 	}
 
-	void GenerateIslands()
+	void Islands::Populate(const game::Difficulty&)
 	{
-		ClearData();
 		auto locations = GenerateLocations();
 		auto names = GenerateNames(locations.size());
 		while (!locations.empty())

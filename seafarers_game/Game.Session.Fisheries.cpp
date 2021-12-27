@@ -12,6 +12,11 @@ namespace game::session
 		return !fisherySource().empty();
 	}
 
+	void Fisheries::Populate(const Difficulty& difficulty) const
+	{
+		game::Fisheries::Populate(difficulty);
+	}
+
 	void Fisheries::Reset(const Difficulty& difficulty) const
 	{
 		game::Fisheries::Reset(difficulty);

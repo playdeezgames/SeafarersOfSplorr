@@ -20,6 +20,7 @@ namespace game::session
 
 	void World::Reset(const Difficulty& difficulty) const
 	{
+		GetIslands().Reset(difficulty);
 		GetItemSubtypes().Reset(difficulty);
 
 		auto currencyItemSubtype = CreateWorldCurrencyItemSubtype();
