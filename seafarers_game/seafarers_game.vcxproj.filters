@@ -529,9 +529,6 @@
     <ClCompile Include="Game.Islands.cpp">
       <Filter>Source Files\Islands</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Islands.Generation.cpp">
-      <Filter>Source Files\Islands</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Islands.Quests.cpp">
       <Filter>Source Files\Islands</Filter>
     </ClCompile>

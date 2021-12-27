@@ -89,9 +89,4 @@ namespace game::islands
 	{
 		GenerateAllFeatures();
 	}
-
-	void Features::Reset()
-	{
-		data::game::island::Feature::Clear();
-	}
 }
