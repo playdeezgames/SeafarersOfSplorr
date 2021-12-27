@@ -13,6 +13,7 @@ namespace game::session
 		constexpr island::Markets GetMarkets() const { return island::Markets(islandId); }
 		common::XY<double> GetLocation() const;
 		island::Tavern GetTavern() const;
+		constexpr static Island ToIsland(int islandId) { return Island(islandId); }
 	private:
 		int islandId;
 	};

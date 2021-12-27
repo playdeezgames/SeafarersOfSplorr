@@ -147,10 +147,15 @@ namespace data::game
 	}
 
 
-	std::list<Island> Island::All()
+	std::list<int> Island::All()
 	{
 		Initialize();
-		return common::utility::List::Map<Common::Record, Island>(Common::DoExecute(QUERY_ALL), ToIsland);
+		return common::utility::List::Map<Common::Record, int>(
+			Common::DoExecute(QUERY_ALL), 
+			[](Common::Record record) 
+			{
+				return Common::ToInt(record, FIELD_ISLAND_ID); 
+			});
 	}
 
 	void Island::Clear()

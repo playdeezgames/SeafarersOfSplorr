@@ -45,8 +45,9 @@ namespace game
 		auto crew = game::ship::Crew::ReadForShip(shipId);
 		for (auto crewMember : crew)
 		{
-			for (auto& island : islands)
+			for (auto& islandId : islands)
 			{
+				auto island = data::game::Island::Read(islandId).value();
 				KnowIslandWhenCloseEnough(crewMember.avatarId, accumulator, island, shipLocation, filter);
 			}
 		}

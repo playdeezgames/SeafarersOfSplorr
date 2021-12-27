@@ -1,3 +1,5 @@
+#include <algorithm>
+#include <ranges>
 #include <Common.Heading.h>
 #include <Common.NameGenerator.h>
 #include <Common.RNG.h>
@@ -7,7 +9,7 @@
 #include <Data.Game.Island.Feature.h>
 #include <Data.Game.Island.ItemLegacy.h>
 #include <Data.Game.Island.Market.h>
-#include <Data.Game.Island.Tribe.h>
+#include <Data.Game.Tribe.h>
 #include <Data.Game.Island.Tribe.h>
 #include "Game.Features.h"
 #include "Game.Islands.h"
@@ -160,10 +162,11 @@ namespace game::session::world
 	{
 		auto islands = IslandData::All();
 		std::list<Island> result;
-		for (auto island : islands)
-		{
-			result.push_back(Island(island.id));
-		}
+		std::transform(
+			islands.begin(), 
+			islands.end(), 
+			std::back_inserter(result),
+			Island::ToIsland);
 		return result;
 	}
 	static const std::map<game::Feature, std::function<void(int)>> featureInitializers =
@@ -195,12 +198,12 @@ namespace game::session::world
 		return islandCount;
 	}
 
-	static void GenerateFeature(const game::Feature& feature, const std::list<data::game::Island>& islands)
+	static void GenerateFeature(const game::Feature& feature, const std::list<int>& islands)
 	{
 		std::vector<int> candidates;
 		for (auto island : islands)
 		{
-			candidates.push_back(island.id);
+			candidates.push_back(island);
 		}
 		size_t islandCount = DetermineIslandCountForFeature(feature, islands.size());
 		while (islandCount > 0)
@@ -226,6 +229,13 @@ namespace game::session::world
 		}
 	}
 
+	static void PopulateIslandTribes()
+	{
+		auto tribes = data::game::Tribe().All();
+		auto islands = data::game::Island::All();
+
+	}
+
 	void Islands::Populate(const Difficulty& difficulty) const
 	{
 		auto locations = GenerateLocations();
@@ -246,6 +256,7 @@ namespace game::session::world
 			GenerateItems(islandId);
 		}
 		GenerateAllFeatures();
+		PopulateIslandTribes();
 	}
 
 

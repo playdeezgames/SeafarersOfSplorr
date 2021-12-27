@@ -18,7 +18,7 @@ namespace data::game
 		static std::optional<Island> Read(int);
 		static std::optional<int> Find(const common::XY<double>&);
 		static std::list<Island> Filter(std::function<bool(const Island&)>);
-		static std::list<Island> All();
+		static std::list<int> All();
 		static void Clear();
 	};
 

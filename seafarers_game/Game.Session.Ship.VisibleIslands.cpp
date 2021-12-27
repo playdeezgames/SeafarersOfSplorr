@@ -10,8 +10,9 @@ namespace game::session::ship
 		auto shipLocation = data::game::Ship::GetLocation(shipId).value();
 		auto islands = data::game::Island::All();
 		std::list<Island> result;
-		for (auto island : islands)
+		for (auto islandId : islands)
 		{
+			auto island = data::game::Island::Read(islandId).value();
 			auto delta = island.location - shipLocation;
 			if (delta.GetMagnitude() <= maximumDistance)
 			{
