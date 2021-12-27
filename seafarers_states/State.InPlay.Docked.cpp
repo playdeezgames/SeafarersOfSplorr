@@ -1,6 +1,7 @@
 #include <Game.Demigods.h>
 #include <Game.Islands.h>
 #include <Game.Islands.Features.h>
+#include <Game.Session.h>
 #include <Game.Ship.Docked.h>
 #include "State.InPlay.Docked.h"
 #include "State.InPlay.Globals.h"
@@ -34,7 +35,8 @@ namespace state::in_play
 		{
 			Terminal::WriteLine("4) Dark Alley");
 		}
-		Terminal::WriteLine(FORMAT_TEMPLE, game::Demigods::ReadName(island.patronDemigodId));
+		auto demigod = game::Session().GetWorld().GetDemigods().GetDemigod(island.patronDemigodId);
+		Terminal::WriteLine(FORMAT_TEMPLE, demigod.GetName());
 		if (PlayerCharacterIslandHasFeature(game::Feature::TAVERN).value())
 		{
 			Terminal::WriteLine("6) Tavern");

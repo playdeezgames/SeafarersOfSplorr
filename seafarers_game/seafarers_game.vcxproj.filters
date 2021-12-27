@@ -796,6 +796,9 @@
     <ClCompile Include="Game.Session.Ship.VisibleIslands.cpp">
       <Filter>Source Files\Session\Ship</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Session.Demigod.cpp">
+      <Filter>Source Files\Session\Demigod</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Game.Session.Character.Flags.h">

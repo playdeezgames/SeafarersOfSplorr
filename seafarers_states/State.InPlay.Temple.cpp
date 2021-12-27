@@ -1,5 +1,6 @@
 #include <Game.Demigods.h>
 #include <Game.Islands.h>
+#include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.Temple.h"
 namespace state::in_play
@@ -15,7 +16,8 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
-		Terminal::WriteLine(FORMAT_TEMPLE, game::Demigods::ReadName(island.patronDemigodId));
+		auto demigod = game::Session().GetWorld().GetDemigods().GetDemigod(island.patronDemigodId);
+		Terminal::WriteLine(FORMAT_TEMPLE, demigod.GetName());
 		Terminal::WriteLine();
 
 		Terminal::SetForeground(game::Colors::YELLOW);

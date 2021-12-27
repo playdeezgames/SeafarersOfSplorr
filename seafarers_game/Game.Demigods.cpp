@@ -166,11 +166,4 @@ namespace game
 		}
 		return DoMakeOffering(characterId, demigod, item);
 	}
-
-	std::string Demigods::ReadName(int demigodId)
-	{
-		auto demigod = data::game::Demigod::Read(demigodId);
-		return demigod.value().name;
-	}
-
 }

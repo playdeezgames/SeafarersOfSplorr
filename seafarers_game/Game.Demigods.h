@@ -7,6 +7,5 @@ namespace game
 {
 	struct Demigods
 	{
-		static std::string ReadName(int);
 	};
 }
