@@ -148,16 +148,11 @@ namespace game::session
 		std::for_each(
 			candidates.begin(), 
 			candidates.end(), 
-			[](std::tuple<int,int,int>& candidate) 
+			[](DemigodFavorData::Cooldown& candidate)
 			{
-				auto cooldown = std::get<2>(candidate);
-				if (cooldown > 0)
+				if (candidate.cooldown > 0)
 				{
-					candidate =
-						std::make_tuple(
-							std::get<0>(candidate),
-							std::get<1>(candidate),
-							cooldown - 1);
+					candidate.cooldown--;
 				}
 			});
 	}

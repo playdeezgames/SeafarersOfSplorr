@@ -120,18 +120,19 @@ namespace data::game::character
 		Common::Execute(DELETE_ALL);
 	}
 
-	std::list<std::tuple<int, int, int>> DemigodFavor::ReadOfferingCooldowns()
+	std::list<DemigodFavor::Cooldown> DemigodFavor::ReadOfferingCooldowns()
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_OFFERING_COOLDOWNS);
-		std::list<std::tuple<int, int, int>> result;
+		std::list<Cooldown> result;
 		std::transform(
 			records.begin(), 
 			records.end(), 
 			std::back_inserter(result), 
 			[](Common::Record record) 
 			{
-				return std::make_tuple(
+				return 
+				Cooldown(
 					Common::ToInt(record, FIELD_CHARACTER_ID),
 					Common::ToInt(record, FIELD_DEMIGOD_ID),
 					Common::ToInt(record, FIELD_OFFERING_COOLDOWN));
@@ -139,20 +140,20 @@ namespace data::game::character
 		return result;
 	}
 
-	void DemigodFavor::WriteOfferingCooldowns(const std::list<std::tuple<int, int, int>>& updates)
+	void DemigodFavor::WriteOfferingCooldowns(const std::list<Cooldown>& updates)
 	{
 		Initialize();
 		std::for_each(
 			updates.begin(), 
 			updates.end(), 
-			[](const std::tuple<int, int, int>& update)
+			[](const Cooldown& update)
 			{
 				Common::Execute(
 					UPDATE_ITEM_COLUMN, 
 					FIELD_OFFERING_COOLDOWN, 
-					std::get<2>(update), 
-					std::get<0>(update), 
-					std::get<1>(update));
+					update.cooldown, 
+					update.characterId, 
+					update.demigodId);
 			});
 
 	}
