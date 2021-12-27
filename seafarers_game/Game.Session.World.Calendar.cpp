@@ -88,9 +88,8 @@ namespace game::session::world
 		throw "YOU SHOULD NOT GET HERE!";
 	}
 
-	void Calendar::Reset(const Difficulty&) const
+	void Calendar::Populate(const Difficulty&) const
 	{
-		data::game::world::Month::Clear(worldId);
 		int total = 0;
 		int ordinal = 1;
 		while (total < 350)
@@ -99,11 +98,16 @@ namespace game::session::world
 			auto length = common::RNG::FromGenerator(lengthGenerator);
 			total += length;
 			data::game::world::Month::Write(
-				worldId, 
+				worldId,
 				ordinal++,
 				name,
 				length);
 		}
+	}
+
+	void Calendar::Reset(const Difficulty&) const
+	{
+		data::game::world::Month::Clear(worldId);
 	}
 
 	void Calendar::ApplyTurnEffects() const

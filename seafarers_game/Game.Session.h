@@ -16,6 +16,7 @@ namespace game
 	struct Session
 	{
 		constexpr Session() {}
+
 		session::Characters GetCharacters() const;
 		constexpr session::Ships GetShips() const { return session::Ships(); }
 		constexpr session::World GetWorld() const { return session::World(WORLD_ID); }
@@ -25,6 +26,7 @@ namespace game
 		session::Saves GetSaves() const;
 		session::Player GetPlayer() const;
 		session::Tribes GetTribes() const;
+
 		void ApplyTurnEffects() const;
 		void Reset(const Difficulty&) const;
 	};

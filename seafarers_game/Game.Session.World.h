@@ -21,6 +21,7 @@ namespace game::session
 		constexpr world::Islands GetIslands() const { return world::Islands(); }
 		item::Type GetCurrencyItemSubtype() const;
 		void Reset(const Difficulty&) const;
+		void Populate(const Difficulty&) const;
 		void ApplyTurnEffects() const;
 		game::Difficulty GetDifficulty() const;
 	private:

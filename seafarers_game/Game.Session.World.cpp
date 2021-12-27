@@ -18,22 +18,31 @@ namespace game::session
 	static const int LATEST_INITIAL_YEAR = 5000;
 	static const int DAYS_PER_YEAR = 360;
 
-	void World::Reset(const Difficulty& difficulty) const
+	void World::Populate(const Difficulty& difficulty) const
 	{
-		GetIslands().Reset(difficulty);
-		GetItemSubtypes().Reset(difficulty);
 
 		auto currencyItemSubtype = CreateWorldCurrencyItemSubtype();
 
 		data::game::World::Write(
-			worldId, 
+			worldId,
 			(int)difficulty,
 			common::RNG::FromRange(0.0, common::Heading::DEGREES),
 			(int)currencyItemSubtype,
-			common::RNG::FromRange(EARLIEST_INITIAL_YEAR, LATEST_INITIAL_YEAR)* DAYS_PER_YEAR +
-				common::RNG::FromRange(0, DAYS_PER_YEAR));
+			common::RNG::FromRange(EARLIEST_INITIAL_YEAR, LATEST_INITIAL_YEAR) * DAYS_PER_YEAR +
+			common::RNG::FromRange(0, DAYS_PER_YEAR));
 
+		//tribes!
+		GetCalendar().Populate(difficulty);
+		GetIslands().Populate(difficulty);
+	}
+
+
+	void World::Reset(const Difficulty& difficulty) const
+	{
+		GetIslands().Reset(difficulty);
+		GetItemSubtypes().Reset(difficulty);
 		GetCalendar().Reset(difficulty);
+		GetIslands().Reset(difficulty);
 	}
 
 	void World::ApplyTurnEffects() const

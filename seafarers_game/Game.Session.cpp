@@ -30,7 +30,7 @@ namespace game
 	{
 		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);//TODO: mebbe this becomes the new game::Reset?
 
-		GetWorld().Reset(difficulty);//MUST BE FIRST
+		GetWorld().Reset(difficulty);
 		GetTribes().Reset(difficulty);
 		GetDemigods().Reset(difficulty);
 		GetShips().Reset(difficulty);
@@ -38,6 +38,7 @@ namespace game
 		GetFisheries().Reset(difficulty);
 		GetPlayer().Reset(difficulty);
 
+		GetWorld().Populate(difficulty);
 		GetWorld().GetIslands().Populate(difficulty);
 		GetPlayer().Populate(difficulty);
 		GetFisheries().Populate(difficulty);
