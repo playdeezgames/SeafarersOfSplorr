@@ -17,15 +17,15 @@ namespace game
 	{
 		constexpr Session() {}
 
-		session::Characters GetCharacters() const;
-		constexpr session::Ships GetShips() const { return session::Ships(); }
-		constexpr session::World GetWorld() const { return session::World(WORLD_ID); }
-		session::Items GetItems() const;
-		session::Demigods GetDemigods() const;
-		session::Fisheries GetFisheries() const;
-		session::Saves GetSaves() const;
+		session::Characters GetCharacters() const;//to world
+		session::Demigods GetDemigods() const;//to world
+		session::Fisheries GetFisheries() const;//to world
+		session::Items GetItems() const;//to world
 		session::Player GetPlayer() const;
-		session::Tribes GetTribes() const;
+		session::Saves GetSaves() const;
+		session::Tribes GetTribes() const;//to world
+		constexpr session::Ships GetShips() const { return session::Ships(); }//to world
+		constexpr session::World GetWorld() const { return session::World(WORLD_ID); }
 
 		void ApplyTurnEffects() const;
 		void Reset(const Difficulty&) const;

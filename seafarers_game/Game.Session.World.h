@@ -1,5 +1,6 @@
 #pragma once
 #include "Game.Difficulty.h"
+#include "Game.Session.Characters.h"
 #include "Game.Session.Commodities.h"
 #include "Game.Session.Item.Types.h"
 #include "Game.Session.World.Bounds.h"
@@ -12,18 +13,22 @@ namespace game::session
 	struct World
 	{
 		constexpr World(int worldId) : worldId(worldId) {}
-		constexpr item::Types GetItemSubtypes() const { return item::Types(); }
-		constexpr Commodities GetCommodities() const { return Commodities(); }
-		constexpr world::Bounds GetBounds() const { return world::Bounds(worldId); }
-		constexpr world::Wind GetWind() const { return world::Wind(worldId); }
-		constexpr world::Distances GetDistances() const { return world::Distances(worldId); }
-		constexpr world::Calendar GetCalendar() const { return world::Calendar(worldId); }
-		constexpr world::Islands GetIslands() const { return world::Islands(); }
+
 		item::Type GetCurrencyItemSubtype() const;
+		game::Difficulty GetDifficulty() const;
+
+		constexpr world::Bounds GetBounds() const { return world::Bounds(worldId); }
+		constexpr world::Calendar GetCalendar() const { return world::Calendar(worldId); }
+		constexpr session::Characters GetCharacters() const { return session::Characters();  }
+		constexpr world::Distances GetDistances() const { return world::Distances(worldId); }
+		constexpr Commodities GetCommodities() const { return Commodities(); }
+		constexpr world::Islands GetIslands() const { return world::Islands(); }
+		constexpr item::Types GetItemSubtypes() const { return item::Types(); }
+		constexpr world::Wind GetWind() const { return world::Wind(worldId); }
+
 		void Reset(const Difficulty&) const;
 		void Populate(const Difficulty&) const;
 		void ApplyTurnEffects() const;
-		game::Difficulty GetDifficulty() const;
 	private:
 		int worldId;
 	};
