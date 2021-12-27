@@ -167,16 +167,6 @@ namespace game
 		return DoMakeOffering(characterId, demigod, item);
 	}
 
-	OfferingResult Demigods::MakeOffering(int characterId, int demigodId, const Item& item)
-	{
-		auto demigod = data::game::Demigod::Read(demigodId);
-		if(demigod)
-		{
-			return CheckOfferingCooldown(characterId, demigod.value(), item);
-		}
-		return OfferingResult::FAILURE;
-	}
-
 	std::string Demigods::ReadName(int demigodId)
 	{
 		auto demigod = data::game::Demigod::Read(demigodId);

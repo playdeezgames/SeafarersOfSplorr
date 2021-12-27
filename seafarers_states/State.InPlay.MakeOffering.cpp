@@ -85,7 +85,7 @@ namespace state::in_play
 		auto islandId = GetPlayerCharacterIslandId().value();
 		auto island = game::Islands::Read(characterId, islandId).value();
 		game::characters::Items::Remove(GetPlayerCharacterId(), item, 1);
-		OnOfferingResult(game::Demigods::MakeOffering(GetPlayerCharacterId(), island.patronDemigodId, item));
+		//TODO: when items are worked out, this is where you sacrifice the item!
 		OnLeave();
 	}
 
