@@ -72,30 +72,15 @@ namespace data::game
 		Common::Execute(CREATE_TABLE);
 	}
 
-	int Island::Write(const Island& data)
+	int Island::Create(const common::XY<double>& location, const std::string& name, int patronDemigodId)
 	{
-		Initialize();
-		if (data.id == 0)
-		{
-			data::game::Common::Execute(
-				INSERT_ITEM,
-				data.location.GetX(),
-				data.location.GetY(),
-				common::Data::QuoteString(data.name),
-				data.patronDemigodId);
-			return Common::LastInsertedIndex();
-		}
-		else
-		{
-			data::game::Common::Execute(
-				UPDATE_ITEM,
-				data.location.GetX(),
-				data.location.GetY(),
-				common::Data::QuoteString(data.name),
-				data.patronDemigodId,
-				data.id);
-			return data.id;
-		}
+		data::game::Common::Execute(
+			INSERT_ITEM,
+			location.GetX(),
+			location.GetY(),
+			common::Data::QuoteString(name),
+			patronDemigodId);
+		return Common::LastInsertedIndex();
 	}
 
 	static Island ToIsland(const std::map<std::string, std::string>& record)

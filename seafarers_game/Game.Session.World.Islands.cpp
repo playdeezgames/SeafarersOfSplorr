@@ -242,14 +242,11 @@ namespace game::session::world
 		auto names = GenerateNames(locations.size());
 		while (!locations.empty())
 		{
-			data::game::Island data =
-			{
-				0,
-				locations.front(),
-				*names.begin(),
-				GeneratePatronDemigod()
-			};
-			auto islandId = data::game::Island::Write(data);
+			auto islandId = 
+				data::game::Island::Create(
+					locations.front(), 
+					*names.begin(), 
+					GeneratePatronDemigod());
 			locations.pop_front();
 			names.erase(names.begin());
 			GenerateMarkets(islandId);
