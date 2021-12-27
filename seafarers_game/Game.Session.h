@@ -18,7 +18,6 @@ namespace game
 		constexpr Session() {}
 
 		session::Characters GetCharacters() const;//to world
-		session::Demigods GetDemigods() const;//to world
 		session::Fisheries GetFisheries() const;//to world
 		session::Items GetItems() const;//to world
 		session::Player GetPlayer() const;
@@ -28,6 +27,7 @@ namespace game
 		constexpr session::World GetWorld() const { return session::World(WORLD_ID); }
 
 		void ApplyTurnEffects() const;
-		void Reset(const Difficulty&) const;
+		void Reset() const;
+		void Populate(const Difficulty&) const;
 	};
 }

@@ -260,9 +260,6 @@
     <ClInclude Include="Game.FishboardCell.h">
       <Filter>Header Files\Fishing</Filter>
     </ClInclude>
-    <ClInclude Include="Game.OfferingResult.h">
-      <Filter>Header Files\Demigods</Filter>
-    </ClInclude>
     <ClInclude Include="Game.FishGame.h">
       <Filter>Header Files\Fishing</Filter>
     </ClInclude>
@@ -520,6 +517,9 @@
     </ClInclude>
     <ClInclude Include="Game.Session.Ship.VisibleIslands.h">
       <Filter>Header Files\Session\Ship</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.OfferingResult.h">
+      <Filter>Header Files\Enums</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

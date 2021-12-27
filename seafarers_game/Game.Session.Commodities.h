@@ -8,5 +8,6 @@ namespace game::session
 		constexpr Commodities() {}
 		constexpr Commodity GetCommodity(const game::Commodity& commodity) const { return Commodity(commodity); }
 		const std::list<Commodity>& GetAll() const;
+		void Reset() const {}
 	};
 }

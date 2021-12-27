@@ -7,7 +7,7 @@ namespace game
 {
 	struct Fisheries
 	{
-		static void Reset(const Difficulty&);
+		static void Reset();
 		static void Populate(const Difficulty&);
 		static void ApplyTurnEffects();
 		static std::list<Fishery> All();

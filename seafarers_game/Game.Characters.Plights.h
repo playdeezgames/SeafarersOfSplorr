@@ -13,7 +13,7 @@ namespace game::characters
 		static Plight Generate(const PlightType&);
 		static void Inflict(int, const Plight&);
 		static std::set<Plight> InflictedWith(int);
-		static void Reset(const Difficulty&);
+		static void Reset();
 		static const std::string& GetName(const Plight&);
 		static PlightType GetType(const Plight&);
 	};

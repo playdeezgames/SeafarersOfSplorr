@@ -43,7 +43,7 @@ namespace game::session
 		GenerateCharacterShip((int)character);
 	}
 
-	void Player::Reset(const Difficulty& difficulty) const
+	void Player::Reset() const
 	{
 	}
 

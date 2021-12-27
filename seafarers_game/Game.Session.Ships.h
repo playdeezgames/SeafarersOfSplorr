@@ -6,7 +6,8 @@ namespace game::session
 	struct Ships
 	{
 		Ship GetShip(int) const;
-		void Reset(const Difficulty&) const;
+		void Reset() const;
+		void Populate(const Difficulty&) const;
 		void ApplyTurnEffects() const;
 	};
 }

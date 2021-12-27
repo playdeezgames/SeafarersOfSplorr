@@ -8,7 +8,7 @@ namespace game::session::item
 	struct Types
 	{
 		Type GetItemSubtype(int) const;
-		void Reset(const game::Difficulty&) const;
+		void Reset() const;
 		Type Create(const game::item::Category&, const std::string&) const;
 	};
 }

@@ -3,9 +3,14 @@
 #include "Game.Session.Demigods.h"
 namespace game::session
 {
-	void Demigods::Reset(const Difficulty& difficulty) const
+	void Demigods::Reset() const
 	{
-		game::Demigods::Reset(difficulty);//TODO: reset ALL
+		game::Demigods::Reset();
+	}
+
+	void Demigods::Populate(const Difficulty& difficulty) const
+	{
+		game::Demigods::Populate(difficulty);
 	}
 
 	void Demigods::ApplyTurnEffects() const

@@ -11,7 +11,7 @@ namespace game::session::item
 		return Type(itemSubtypeId);
 	}
 
-	void Types::Reset(const game::Difficulty&) const
+	void Types::Reset() const
 	{
 		CommodityData::Clear();
 		TypeData::Clear();

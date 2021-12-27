@@ -8,6 +8,7 @@ namespace game::session::world
 		double GetMultiplier(double) const;
 		void SetHeading(double) const;
 		void ApplyTurnEffects() const;
+		void Reset() const {}
 	private:
 		int worldId;
 	};

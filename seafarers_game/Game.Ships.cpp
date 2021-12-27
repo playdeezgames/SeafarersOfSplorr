@@ -3,7 +3,7 @@
 #include "Game.Ships.h"
 namespace game
 {
-	void Ships::Reset(const game::Difficulty&)
+	void Ships::Reset()
 	{
 		data::game::Ship::Clear();
 	}

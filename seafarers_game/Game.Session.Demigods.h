@@ -4,7 +4,8 @@ namespace game::session
 {
 	struct Demigods
 	{
-		void Reset(const Difficulty&) const;
+		void Reset() const;
+		void Populate(const Difficulty&) const;
 		void ApplyTurnEffects() const;
 	};
 }

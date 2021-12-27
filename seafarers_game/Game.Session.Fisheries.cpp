@@ -17,9 +17,9 @@ namespace game::session
 		game::Fisheries::Populate(difficulty);
 	}
 
-	void Fisheries::Reset(const Difficulty& difficulty) const
+	void Fisheries::Reset() const
 	{
-		game::Fisheries::Reset(difficulty);
+		game::Fisheries::Reset();
 	}
 
 	void Fisheries::ApplyTurnEffects() const

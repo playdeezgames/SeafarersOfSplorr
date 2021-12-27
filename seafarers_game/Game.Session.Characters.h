@@ -7,7 +7,8 @@ namespace game::session
 	struct Characters
 	{
 		Character GetCharacter(int) const;
-		void Reset(const Difficulty&) const;
+		void Reset() const;
+		void Populate(const Difficulty&) const {}
 		void ApplyTurnEffects() const;
 		Character Create(const game::characters::State&);
 	};

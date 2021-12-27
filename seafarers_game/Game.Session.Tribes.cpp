@@ -100,9 +100,8 @@ namespace game::session
 		}},
 	};
 
-	void Tribes::Reset(const Difficulty& difficulty) const
+	void Tribes::Populate(const Difficulty& difficulty) const
 	{
-		TribeData::Clear();
 		auto tribeCount = 
 			common::RNG::FromGenerator(
 				tribeCountGenerators.find(difficulty)->second);
@@ -115,5 +114,10 @@ namespace game::session
 		{
 			TribeData::Create(name);
 		}
+	}
+
+	void Tribes::Reset() const
+	{
+		TribeData::Clear();
 	}
 }

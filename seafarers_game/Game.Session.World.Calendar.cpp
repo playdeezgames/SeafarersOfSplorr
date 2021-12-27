@@ -105,7 +105,7 @@ namespace game::session::world
 		}
 	}
 
-	void Calendar::Reset(const Difficulty&) const
+	void Calendar::Reset() const
 	{
 		data::game::world::Month::Clear(worldId);
 	}

@@ -7,6 +7,7 @@ namespace game::session::world
 		constexpr Bounds(int worldId) : worldId(worldId) {}
 		common::XY<double> GetSize() const;
 		bool ClampLocation(common::XY<double>&) const;
+		void Reset() const {}
 	private:
 		int worldId;
 	};

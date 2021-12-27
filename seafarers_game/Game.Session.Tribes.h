@@ -9,6 +9,7 @@ namespace game::session
 		constexpr Tribes() {}
 		std::list<Tribe> GetAll() const;
 		Tribe GetTribe(int) const;
-		void Reset(const Difficulty&) const;
+		void Reset() const;
+		void Populate(const Difficulty&) const;
 	};
 }

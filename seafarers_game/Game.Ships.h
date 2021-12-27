@@ -4,7 +4,7 @@ namespace game
 {
 	struct Ships
 	{
-		static void Reset(const game::Difficulty&);
+		static void Reset();
 		static void ApplyTurnEffects();
 	};
 }

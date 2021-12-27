@@ -126,7 +126,7 @@ namespace game::characters
 		return result;
 	}
 
-	void Plights::Reset(const Difficulty&)
+	void Plights::Reset()
 	{
 		data::game::character::PlightLegacy::ClearAll();
 	}

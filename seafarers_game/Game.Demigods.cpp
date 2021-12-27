@@ -96,7 +96,7 @@ namespace game
 		{10,1}
 	};
 
-	void Demigods::Reset(const Difficulty&)
+	void Demigods::Populate(const Difficulty& difficulty)
 	{
 		const double BLESSING_THRESHOLD = 5.0;
 		const double BLESSING_MULTIPLIER = 2.0;
@@ -104,9 +104,6 @@ namespace game
 		const double CURSE_MULTIPLIER = 0.5;
 		const double OFFERING_FAVOR_MINIMUM = -1.0;
 		const double OFFERING_FAVOR_MAXIMUM = 1.0;
-		data::game::Demigod::Clear();
-		data::game::DemigodItemLegacy::Clear();
-		data::game::character::DemigodFavor::ClearAll();
 		auto demigodCount = common::RNG::FromGenerator(demigodCounts);
 		auto names = GenerateNames(demigodCount);
 		auto items = Items::All();
@@ -128,6 +125,13 @@ namespace game
 				data::game::DemigodItemLegacy::Write(demigodId, (int)item, common::RNG::FromRange(OFFERING_FAVOR_MINIMUM, OFFERING_FAVOR_MAXIMUM));
 			}
 		}
+	}
+
+	void Demigods::Reset()
+	{
+		data::game::Demigod::Clear();
+		data::game::DemigodItemLegacy::Clear();
+		data::game::character::DemigodFavor::ClearAll();
 	}
 
 	static bool ApplyBlessing(int characterId, data::game::Demigod& demigod, const Item& item, double favor)

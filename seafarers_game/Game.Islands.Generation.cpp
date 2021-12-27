@@ -111,7 +111,7 @@ namespace game
 		return names;
 	}
 
-	void Islands::Reset(const game::Difficulty&)
+	void Islands::Reset()
 	{
 		data::game::Island::Clear();
 		data::game::character::KnownIsland::Clear();

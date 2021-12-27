@@ -16,7 +16,6 @@ namespace game
 	{
 		GetShips().ApplyTurnEffects();
 		GetCharacters().ApplyTurnEffects();
-		GetDemigods().ApplyTurnEffects();
 		GetFisheries().ApplyTurnEffects();
 		GetWorld().ApplyTurnEffects();
 	}
@@ -26,27 +25,23 @@ namespace game
 		return session::Items();
 	}
 
-	void Session::Reset(const Difficulty& difficulty) const
+	void Session::Populate(const Difficulty& difficulty) const
 	{
-		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);//TODO: mebbe this becomes the new game::Reset?
-
-		GetWorld().Reset(difficulty);
-		GetTribes().Reset(difficulty);
-		GetDemigods().Reset(difficulty);
-		GetShips().Reset(difficulty);
-		GetCharacters().Reset(difficulty);
-		GetFisheries().Reset(difficulty);
-		GetPlayer().Reset(difficulty);
-
 		GetWorld().Populate(difficulty);
-		GetWorld().GetIslands().Populate(difficulty);
 		GetPlayer().Populate(difficulty);
 		GetFisheries().Populate(difficulty);
 	}
 
-	session::Demigods Session::GetDemigods() const
+	void Session::Reset() const
 	{
-		return session::Demigods();
+		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);//TODO: mebbe this becomes the new game::Reset?
+
+		GetWorld().Reset();
+		GetTribes().Reset();
+		GetShips().Reset();
+		GetCharacters().Reset();
+		GetFisheries().Reset();
+		GetPlayer().Reset();
 	}
 
 	session::Fisheries Session::GetFisheries() const

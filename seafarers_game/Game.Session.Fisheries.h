@@ -8,7 +8,7 @@ namespace game::session
 	{
 		Fisheries(std::function<std::list<int>()>);
 		bool HasAny() const;
-		void Reset(const Difficulty&) const;
+		void Reset() const;
 		void Populate(const Difficulty&) const;
 		void ApplyTurnEffects() const;
 	private:

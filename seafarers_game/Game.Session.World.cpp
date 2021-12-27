@@ -31,18 +31,24 @@ namespace game::session
 			common::RNG::FromRange(EARLIEST_INITIAL_YEAR, LATEST_INITIAL_YEAR) * DAYS_PER_YEAR +
 			common::RNG::FromRange(0, DAYS_PER_YEAR));
 
-		//tribes!
+		GetCharacters().Populate(difficulty);
 		GetCalendar().Populate(difficulty);
+		GetDemigods().Populate(difficulty);
 		GetIslands().Populate(difficulty);
 	}
 
 
-	void World::Reset(const Difficulty& difficulty) const
+	void World::Reset() const
 	{
-		GetIslands().Reset(difficulty);
-		GetItemSubtypes().Reset(difficulty);
-		GetCalendar().Reset(difficulty);
-		GetIslands().Reset(difficulty);
+		GetBounds().Reset();
+		GetCalendar().Reset();
+		GetCharacters().Reset();
+		GetCommodities().Reset();
+		GetDemigods().Reset();
+		GetDistances().Reset();
+		GetIslands().Reset();
+		GetItemSubtypes().Reset();
+		GetWind().Reset();
 	}
 
 	void World::ApplyTurnEffects() const
@@ -50,6 +56,7 @@ namespace game::session
 		GetIslands().ApplyTurnEffects();
 		GetWind().ApplyTurnEffects();
 		GetCalendar().ApplyTurnEffects();
+		GetDemigods().ApplyTurnEffects();
 	}
 
 	game::Difficulty World::GetDifficulty() const

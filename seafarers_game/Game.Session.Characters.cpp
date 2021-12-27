@@ -16,9 +16,9 @@ namespace game::session
 		return Character(characterId);
 	}
 
-	void Characters::Reset(const Difficulty& difficulty) const
+	void Characters::Reset() const
 	{
-		game::characters::Plights::Reset(difficulty);
+		game::characters::Plights::Reset();
 	}
 
 	static size_t DetermineTurnsSpent(int characterId)

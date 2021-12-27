@@ -9,6 +9,7 @@ namespace game::session::world
 		constexpr double GetView() const { return VIEW_DISTANCE; }
 		constexpr double GetDock() const { return DOCK_DISTANCE; }
 		double GetIslandSpacing() const;
+		void Reset() const {}
 	private:
 		int worldId;
 	};

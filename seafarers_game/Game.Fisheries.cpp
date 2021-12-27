@@ -49,7 +49,7 @@ namespace game
 		}
 	}
 
-	void Fisheries::Reset(const Difficulty&)
+	void Fisheries::Reset()
 	{
 		data::game::Fishery::Clear();
 	}

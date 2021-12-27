@@ -7,9 +7,9 @@ namespace game::session
 		return Ship(shipId);
 	}
 
-	void Ships::Reset(const Difficulty& difficulty) const
+	void Ships::Reset() const
 	{
-		game::Ships::Reset(difficulty);
+		game::Ships::Reset();
 	}
 
 	void Ships::ApplyTurnEffects() const

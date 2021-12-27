@@ -24,10 +24,10 @@ namespace game::session::world
 	}
 
 
-	void Islands::Reset(const Difficulty& difficulty) const
+	void Islands::Reset() const
 	{
-		game::Islands::Reset(difficulty);
-		game::islands::Features::Reset(difficulty);
+		game::Islands::Reset();
+		game::islands::Features::Reset();
 	}
 
 	void Islands::ApplyTurnEffects() const
