@@ -14,9 +14,8 @@
 #include <set>
 namespace game::ship
 {
-	static std::optional<DockResult> DoDock(int characterId, const common::XY<double>& location)
+	static std::optional<DockResult> DoDock(int characterId, int islandId)
 	{
-		int islandId = data::game::Island::Find(location).value();
 		std::optional<DockResult> result = DockResult::DOCKED;
 		data::game::character::KnownIsland::Write(
 			characterId, 
@@ -46,7 +45,7 @@ namespace game::ship
 			std::set<DockResult> dockResults;
 			for (auto billet : billets)
 			{
-				auto dockResult = DoDock(billet.characterId, dockables.front().absoluteLocation);
+				auto dockResult = DoDock(billet.characterId, dockables.front().id);
 				if (dockResult)
 				{
 					dockResults.insert(dockResult.value());

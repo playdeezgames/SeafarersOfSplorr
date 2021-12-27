@@ -86,7 +86,7 @@ namespace game::characters
 		return 
 			{
 				quest.toIslandId,
-				data::game::Island::Read(quest.toIslandId).value().location,
+				data::game::Island::ReadLocation(quest.toIslandId).value(),
 				quest.reward,
 				quest.itemName,
 				quest.personName,

@@ -5,12 +5,7 @@ namespace game::session
 {
 	static std::optional<common::XY<double>> TryGetLocation(int islandId)
 	{
-		auto island = data::game::Island::Read(islandId);
-		if (island)
-		{
-			return island.value().location;
-		}
-		return std::nullopt;
+		return data::game::Island::ReadLocation(islandId);
 	}
 
 	common::XY<double> Island::GetLocation() const

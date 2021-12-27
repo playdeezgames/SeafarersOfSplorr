@@ -206,9 +206,9 @@ namespace game::islands
 
 	static int GenerateDestination(int islandId)
 	{
-		auto allOtherIslands = data::game::Island::Filter([islandId](const data::game::Island& island) { return island.id != islandId; });
-		size_t index = common::RNG::FromRange(0u, allOtherIslands.size() - 1);
-		return common::utility::List::GetNth(allOtherIslands, index)->id;
+		auto islandIds = data::game::Island::All();
+		islandIds.remove_if([islandId](int candidateId) { return candidateId == islandId; });
+		return common::RNG::FromList(islandIds).value();
 	}
 
 	void Quests::Update(int characterId, int fromIslandId)
@@ -233,11 +233,11 @@ namespace game::islands
 
 	static Quest ToQuest(const data::game::island::QuestLegacy& quest)
 	{
-		auto toIsland = data::game::Island::Read(quest.toIslandId).value();
+		auto location = data::game::Island::ReadLocation(quest.toIslandId).value();
 		return
 			{
 				quest.toIslandId,
-				toIsland.location,
+				location,
 				quest.reward,
 				quest.itemName,
 				quest.personName,

@@ -12,11 +12,11 @@ namespace game::session::ship
 		std::list<Island> result;
 		for (auto islandId : islands)
 		{
-			auto island = data::game::Island::Read(islandId).value();
-			auto delta = island.location - shipLocation;
+			auto location = data::game::Island::ReadLocation(islandId).value();
+			auto delta = location - shipLocation;
 			if (delta.GetMagnitude() <= maximumDistance)
 			{
-				return Island(island.id);
+				return Island(islandId);
 			}
 		}
 		return std::nullopt;

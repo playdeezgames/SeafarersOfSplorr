@@ -13,31 +13,32 @@ namespace game
 	static void KnowIsland(
 		int characterId,
 		std::list<Island>& accumulator, 
-		const data::game::Island& island, 
+		int islandId, 
 		const common::XY<double>& shipLocation)
 	{
-		data::game::character::KnownIsland::Write(characterId, island.id);
+		data::game::character::KnownIsland::Write(characterId, islandId);
 		accumulator.push_back(
 			{
-				island.id,
-				(island.location - shipLocation),
-				island.location,
-				island.name,
+				islandId,
+				(data::game::Island::ReadLocation(islandId).value() - shipLocation),
+				data::game::Island::ReadLocation(islandId).value(),
+				data::game::Island::ReadName(islandId).value(),
 				true,
-				island.patronDemigodId
+				data::game::Island::ReadPatronDemigodId(islandId).value()
 			});
 	}
 
-	static void KnowIslandWhenCloseEnough(int characterId, std::list<Island>& accumulator, const data::game::Island& island, const common::XY<double>& shipLocation, std::function<bool(const data::game::Island&, double)> filter)
+	static void KnowIslandWhenCloseEnough(int characterId, std::list<Island>& accumulator, int islandId, const common::XY<double>& shipLocation, std::function<bool(int, double)> filter)
 	{
-		auto distance = common::Heading::Distance(shipLocation, island.location);
-		if (filter(island, distance))
+		auto location = data::game::Island::ReadLocation(islandId).value();
+		auto distance = common::Heading::Distance(shipLocation, location);
+		if (filter(islandId, distance))
 		{
-			KnowIsland(characterId, accumulator, island, shipLocation);
+			KnowIsland(characterId, accumulator, islandId, shipLocation);
 		}
 	}
 
-	static std::list<Island> GetIslandsInRange(int shipId, std::function<bool(const data::game::Island&, double)> filter)
+	static std::list<Island> GetIslandsInRange(int shipId, std::function<bool(int, double)> filter)
 	{
 		std::list<Island> accumulator;
 		auto shipLocation = game::Ship::GetLocation(shipId).value();;
@@ -47,16 +48,15 @@ namespace game
 		{
 			for (auto& islandId : islands)
 			{
-				auto island = data::game::Island::Read(islandId).value();
-				KnowIslandWhenCloseEnough(crewMember.avatarId, accumulator, island, shipLocation, filter);
+				KnowIslandWhenCloseEnough(crewMember.avatarId, accumulator, islandId, shipLocation, filter);
 			}
 		}
 		return accumulator;
 	}
 
-	static std::function<bool(const data::game::Island&, double)> FixedDistance(double maximumDistance)
+	static std::function<bool(int, double)> FixedDistance(double maximumDistance)
 	{
-		return [maximumDistance](const data::game::Island&, double distance)
+		return [maximumDistance](int, double distance)
 		{
 			return distance <= maximumDistance;
 		};
@@ -82,26 +82,26 @@ namespace game
 		data::game::character::KnownIsland::Write(characterId, islandId);
 	}
 
-	static Island ToIsland(const data::game::Island& island, bool isKnown)
+	static Island ToIsland(int islandId, bool isKnown)
 	{
 		return 
 		{
-			island.id,
+			islandId,
 			{0.0, 0.0},
-			island.location,
-			island.name,
+			data::game::Island::ReadLocation(islandId).value(),
+			data::game::Island::ReadName(islandId).value(),
 			isKnown,
-			island.patronDemigodId
+			data::game::Island::ReadPatronDemigodId(islandId).value()
 		};
 	}
 
 	std::optional<Island> Islands::Read(int characterId, int islandId)
 	{
-		auto island = data::game::Island::Read(islandId);
+		auto island = data::game::Island::ReadLocation(islandId);
 		if (island)
 		{
 			return ToIsland(
-				island.value(),
+				islandId,
 				data::game::character::KnownIsland::Read(characterId, islandId));
 		}
 		return std::nullopt;
@@ -109,7 +109,7 @@ namespace game
 
 	static void ObfuscateIfUnknown(int characterId, game::Island& island)
 	{
-		auto islandId = data::game::Island::Find(island.absoluteLocation).value();
+		auto islandId = island.id;
 		if (!data::game::character::KnownIsland::Read(characterId, islandId))
 		{
 			island.name = Islands::UNKNOWN;

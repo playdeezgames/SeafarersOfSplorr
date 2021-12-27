@@ -15,17 +15,20 @@ namespace data::game
 			[PatronDemigodId] INT NOT NULL,
 			UNIQUE([X],[Y])
 		);)"s;
-	static const std::string QUERY_ITEM = 
-		"SELECT "
-			"[IslandId],"
-			"[X],"
-			"[Y],"
-			"[Name],"
-			"[PatronDemigodId] "
-		"FROM [Islands] "
-		"WHERE "
-			"[IslandId]={};";
-	static const std::string QUERY_ID_FOR_LOCATION = 
+	static const std::string QUERY_ITEM_XY =
+		R"(SELECT 
+			[X],
+			[Y]
+		FROM [Islands] 
+		WHERE 
+		[IslandId]={};)"s;
+	static const std::string QUERY_ITEM_COLUMN =
+		R"(SELECT 
+			[{}]
+		FROM [Islands] 
+		WHERE 
+		[IslandId]={};)"s;
+	static const std::string QUERY_ID_FOR_LOCATION =
 		"SELECT "
 			"[IslandId] "
 		"FROM [Islands] "
@@ -83,55 +86,6 @@ namespace data::game
 		return Common::LastInsertedIndex();
 	}
 
-	static Island ToIsland(const std::map<std::string, std::string>& record)
-	{
-		Island data =
-		{
-			common::Data::ToInt(record.find(FIELD_ISLAND_ID)->second),
-			{
-				common::Data::ToDouble(record.find(FIELD_X)->second),
-				common::Data::ToDouble(record.find(FIELD_Y)->second)
-			},
-			record.find(FIELD_NAME)->second,
-			common::Data::ToInt(record.find(FIELD_PATRON_DEMIGOD_ID)->second)
-		};
-		return data;
-	}
-
-	std::optional<Island> Island::Read(int islandId)
-	{
-		Initialize();
-		auto result = data::game::Common::Execute(
-			QUERY_ITEM,
-			islandId);
-		if (!result.empty())
-		{
-			return ToIsland(result.front());
-		}
-		return std::nullopt;
-	}
-
-	std::optional<int> Island::Find(const common::XY<double>& location)
-	{
-		Initialize();
-		auto result = data::game::Common::Execute(
-			QUERY_ID_FOR_LOCATION,
-			location.GetX(),
-			location.GetY());
-		if (!result.empty())
-		{
-			return common::Data::ToInt(result.front()[FIELD_ISLAND_ID]);
-		}
-		return std::nullopt;
-	}
-
-	std::list<Island> Island::Filter(std::function<bool(const Island&)> filter)
-	{
-		Initialize();
-		return common::utility::List::Map<Common::Record, Island>(Common::DoExecute(QUERY_ALL), ToIsland, filter);
-	}
-
-
 	std::list<int> Island::All()
 	{
 		Initialize();
@@ -147,5 +101,38 @@ namespace data::game
 	{
 		Initialize();
 		data::game::Common::Execute(CLEAR_ALL);
+	}
+
+	std::optional<common::XY<double>> Island::ReadLocation(int islandId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_XY, islandId);
+		if (record)
+		{
+			return Common::ToXY(record.value());
+		}
+		return std::nullopt;
+	}
+
+	std::optional<std::string> Island::ReadName(int islandId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_NAME, islandId);
+		if (record)
+		{
+			return Common::ToString(record.value(), FIELD_NAME);
+		}
+		return std::nullopt;
+	}
+
+	std::optional<int> Island::ReadPatronDemigodId(int islandId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_PATRON_DEMIGOD_ID, islandId);
+		if (record)
+		{
+			return Common::ToInt(record.value(), FIELD_PATRON_DEMIGOD_ID);
+		}
+		return std::nullopt;
 	}
 }
