@@ -1,9 +1,9 @@
 #include <Common.Data.h>
 #include <Common.Utility.Table.h>
 #include <Game.Characters.Items.h>
-#include <Game.Demigods.h>
 #include <Game.Islands.h>
 #include <Game.Items.h>
+#include <Game.OfferingResult.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.MakeOffering.h"
 namespace state::in_play

@@ -212,9 +212,6 @@
     <ClInclude Include="Game.Side.h">
       <Filter>Header Files\Ships</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Demigods.h">
-      <Filter>Header Files\Demigods</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Islands.DarkAlley.FightCard.h">
       <Filter>Header Files\Islands\DarkAlley</Filter>
     </ClInclude>
@@ -540,9 +537,6 @@
     </ClCompile>
     <ClCompile Include="Game.Islands.Ships.cpp">
       <Filter>Source Files\Islands</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Demigods.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.ItemsLegacy.cpp">
       <Filter>Source Files\Trade</Filter>

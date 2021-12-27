@@ -2,7 +2,6 @@
 #include <Data.SQLite.Stores.h> //FOR RESET
 #include <Data.Game.Fishery.h> //For GetFisheries
 #include <Data.Game.Island.h> //FOR GetIslands
-#include "Game.Demigods.h" //FOR APPLY TURN EFFECTS
 #include "Game.Fisheries.h" //FOR APPLY TURN EFFECTS
 #include "Game.Session.h"//Cuz we implement here
 namespace game

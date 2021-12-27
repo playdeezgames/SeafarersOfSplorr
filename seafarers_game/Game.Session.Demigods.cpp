@@ -6,7 +6,6 @@
 #include <Data.Game.Character.DemigodFavor.h>
 #include <Data.Game.Character.h>
 #include "Game.Characters.Plights.h"
-#include "Game.Demigods.h"
 #include "Game.Items.h"
 #include "Game.Session.Demigods.h"
 #include <iterator>
