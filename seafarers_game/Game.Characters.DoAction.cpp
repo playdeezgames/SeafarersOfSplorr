@@ -17,7 +17,10 @@ namespace game
 {
 	static characters::State OnEnterDarkAlley(int characterId)
 	{
-		auto data = data::game::island::DarkAlley::Read(game::ship::Docked::GetIsland(data::game::character::Ship::ReadForCharacter(characterId).value().shipId).value()).value();
+		auto data = 
+			data::game::island::DarkAlley::Read(
+				game::ship::Docked::GetIsland(
+					data::game::character::Ship::ReadShipForCharacter(characterId).value()).value()).value();
 		auto infamy = game::Session().GetCharacters().GetCharacter(characterId).GetCounters().GetCounter(game::characters::Counter::INFAMY).GetValue();
 		if (infamy < data.infamyRequirement)
 		{
@@ -56,8 +59,8 @@ namespace game
 
 	static characters::State OnDock(int characterId)
 	{
-		auto ship = data::game::character::Ship::ReadForCharacter(characterId).value();
-		auto islandId = data::game::ship::CurrentIsland::Read(ship.shipId).value();
+		auto shipId = data::game::character::Ship::ReadShipForCharacter(characterId).value();
+		auto islandId = data::game::ship::CurrentIsland::Read(shipId).value();
 		game::Session().GetCharacters().GetCharacter(characterId).SetIsland(game::session::Island(islandId));
 		return characters::State::DOCK;
 	}

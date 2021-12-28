@@ -9,27 +9,16 @@ namespace game::characters
 	void Ships::Write(int characterId, int shipId, const BerthType& berthType)
 	{
 		data::game::character::Ship::Write(characterId, 
-			{ 
+			 
 				shipId,
 				(int)berthType
-			});
-	}
-
-	static int ToShipId(const data::game::character::Ship& ship)
-	{
-		return ship.shipId;
-	}
-
-	static BerthType ToBerthType(const data::game::character::Ship& ship)
-	{
-		return (BerthType)ship.berthType;
+			);
 	}
 
 	std::optional<int> Ships::ReadShipId(int characterId)
 	{
-		return common::utility::Optional::Map<data::game::character::Ship, int>(
-			data::game::character::Ship::ReadForCharacter(characterId),
-			ToShipId);
+		return
+			data::game::character::Ship::ReadShipForCharacter(characterId);
 	}
 
 
@@ -54,9 +43,12 @@ namespace game::characters
 
 	std::optional<BerthType> Ships::ReadBerthType(int characterId)
 	{
-		return common::utility::Optional::Map<data::game::character::Ship, BerthType>(
-			data::game::character::Ship::ReadForCharacter(characterId),
-			ToBerthType);
+		auto berth = data::game::character::Ship::ReadBerthForCharacter(characterId);
+		if (berth)
+		{
+			return (BerthType)berth.value();
+		}
+		return std::nullopt;
 	}
 
 }

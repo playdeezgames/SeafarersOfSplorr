@@ -24,7 +24,7 @@ namespace game::ship
 		{
 			result = DockResult::COMPLETED_QUEST;
 		}
-		int shipId = data::game::character::Ship::ReadForCharacter(characterId).value().shipId;
+		int shipId = data::game::character::Ship::ReadShipForCharacter(characterId).value();
 		data::game::ship::CurrentIsland::Write(shipId, islandId);
 		game::Session().GetCharacters().GetCharacter(characterId).DoAction(game::characters::Action::ENTER_DOCK);
 		return result;
@@ -39,11 +39,11 @@ namespace game::ship
 		auto dockable = game::Session().GetShips().GetShip(shipId).GetDockableIslands().TryGetFirst();
 		if (dockable)
 		{
-			auto billets = data::game::character::Ship::ReadForShip(shipId);
+			auto billets = data::game::character::Ship::ReadCharactersForShip(shipId);
 			std::set<DockResult> dockResults;
 			for (auto billet : billets)
 			{
-				auto dockResult = DoDock(billet.characterId, dockable.value().operator int());
+				auto dockResult = DoDock(billet, dockable.value().operator int());
 				if (dockResult)
 				{
 					dockResults.insert(dockResult.value());
@@ -71,11 +71,11 @@ namespace game::ship
 			{
 				return false;
 			}
-			auto billets = data::game::character::Ship::ReadForShip(shipId);
+			auto billets = data::game::character::Ship::ReadCharactersForShip(shipId);
 			//first time, check that all billets are at the dock
 			for (auto billet : billets)
 			{
-				auto characterState = game::Session().GetCharacters().GetCharacter(billet.characterId).GetState();
+				auto characterState = game::Session().GetCharacters().GetCharacter(billet).GetState();
 				if (characterState != game::characters::State::DOCK)
 				{
 					return false;
@@ -84,7 +84,7 @@ namespace game::ship
 			//second time, put them on the boat
 			for (auto billet : billets)
 			{
-				game::Session().GetCharacters().GetCharacter(billet.characterId).DoAction(game::characters::Action::UNDOCK);
+				game::Session().GetCharacters().GetCharacter(billet).DoAction(game::characters::Action::UNDOCK);
 			}
 			data::game::ship::CurrentIsland::Clear(shipId);
 			return true;

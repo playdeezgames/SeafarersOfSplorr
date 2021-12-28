@@ -5,23 +5,19 @@
 #include "Game.Ship.Crew.h"
 namespace game::ship
 {
-	static Crew ToCrew(const data::game::character::Ship& crew)
-	{
-		return
-		{
-			crew.characterId,
-			(BerthType)crew.berthType,
-			game::Session().GetCharacters().GetCharacter(crew.characterId).GetName()
-		};
-	}
-
 	std::vector<Crew> Crew::ReadForShip(int shipId)
 	{
 		std::vector<Crew> result;
-		auto crew = data::game::character::Ship::ReadForShip(shipId);
-		for (auto member : crew)
+		auto crewMembers = data::game::character::Ship::ReadCharactersForShip(shipId);
+		for (auto crewMember : crewMembers)
 		{
-			result.push_back(ToCrew(member));
+			Crew crew = 
+			{
+				crewMember,
+				(game::BerthType)data::game::character::Ship::ReadBerthForCharacter(crewMember).value(),
+				"(idk)"
+			};
+			result.push_back(crew);
 		}
 		return result;
 	}

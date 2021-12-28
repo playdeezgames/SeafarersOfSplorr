@@ -110,7 +110,7 @@ namespace game
 
 	static Fish GenerateFish(int characterId)
 	{
-		int shipId = data::game::character::Ship::ReadForCharacter(characterId).value().shipId;
+		int shipId = data::game::character::Ship::ReadShipForCharacter(characterId).value();
 		std::map<Fish, size_t> fishGenerator = MakeFishGenerator(characterId, MakeFisheryGenerator(shipId));
 		return common::RNG::FromGenerator(fishGenerator);
 	}

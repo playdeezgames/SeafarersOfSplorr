@@ -6,14 +6,6 @@ namespace data::game::character
 {
 	struct Ship
 	{
-		int shipId;
-		int characterId;
-		int berthType;
-
-		static void Write(int, const Ship&);
-		static std::optional<Ship> ReadForCharacter(int);
-		static std::vector<Ship> ReadForShip(int);
-
 		static void Initialize();
 		static void Write(int, int, int);
 		static void Clear(int, int);

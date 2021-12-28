@@ -76,49 +76,6 @@ namespace data::game::character
 	static const std::string FIELD_BERTH = "Berth";
 	static const std::string FIELD_CHARACTER_ID = "CharacterId";
 
-	void Ship::Write(int characterId, const Ship& ship)
-	{
-		Initialize();
-		data::game::Common::Execute(
-			REPLACE_ITEM, 
-			characterId, 
-			ship.shipId, 
-			ship.berthType);
-	}
-
-	static Ship ToShip(const std::map<std::string, std::string>& record)
-	{
-		return
-		{
-			common::Data::ToInt(record.find(FIELD_SHIP_ID)->second),
-			common::Data::ToInt(record.find(FIELD_CHARACTER_ID)->second),
-			common::Data::ToInt(record.find(FIELD_BERTH)->second)
-		};
-	}
-
-	std::optional<Ship> Ship::ReadForCharacter(int characterId)
-	{
-		Initialize();
-		auto records = data::game::Common::Execute(QUERY_ITEM_FOR_CHARACTER, characterId);
-		if (!records.empty())
-		{
-			return ToShip(records.front());
-		}
-		return std::nullopt;
-	}
-
-	std::vector<Ship> Ship::ReadForShip(int shipId)
-	{
-		Initialize();
-		auto records = data::game::Common::Execute(QUERY_ITEM_FOR_SHIP, shipId);
-		std::vector<Ship> result;
-		for(auto record : records)
-		{
-			result.push_back(ToShip(record));
-		}
-		return result;
-	}
-
 	void Ship::Initialize()
 	{
 		Common::Execute(CREATE_TABLE);
