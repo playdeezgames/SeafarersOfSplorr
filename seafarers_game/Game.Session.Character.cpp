@@ -7,11 +7,9 @@
 #include "Game.Characters.Islands.h"
 #include "Game.Characters.Quests.h"
 #include "Game.Characters.Ships.h"
-#include "Game.Fishboard.h"
 #include "Game.ItemLegacy.h"
 #include "Game.Session.h"
 #include "Game.Session.Character.h"
-#include "Game.Session.FishGame.h"
 #include "Game.Ship.Docked.h"
 #include <map>
 namespace game::session
@@ -327,11 +325,6 @@ namespace game::session
 	character::Messages Character::GetMessages() const
 	{
 		return character::Messages(characterId);
-	}
-
-	FishGame Character::GetFishGame() const
-	{
-		return game::session::FishGame(characterId);
 	}
 
 	character::Berth Character::GetBerth() const

@@ -33,7 +33,6 @@
 #include <State.InPlay.DockOrCareen.h>
 #include <State.InPlay.Equipment.h>
 #include <State.InPlay.EquipmentSlot.h>
-#include <State.InPlay.Fishing.h>
 #include <State.InPlay.GambleIntro.h>
 #include <State.InPlay.GamblePlay.h>
 #include <State.InPlay.HeadForKnown.h>
@@ -181,7 +180,6 @@ namespace application
 		state::in_play::ShipyardUnfoulShip::Start,
 		state::in_play::GambleIntro::Start,
 		state::in_play::GamblePlay::Start,
-		state::in_play::Fishing::Start,
 		state::in_play::ChooseRations::Start,
 		state::in_play::RenameShipAdjective::Start,
 		state::in_play::RenameShipNoun::Start,

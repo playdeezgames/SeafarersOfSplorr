@@ -51,10 +51,7 @@
     <ClInclude Include="Game.Session.Commodity.h" />
     <ClInclude Include="Game.Session.Demigod.h" />
     <ClInclude Include="Game.Session.Demigods.h" />
-    <ClInclude Include="Game.Session.Fishboard.h" />
-    <ClInclude Include="Game.Session.FishboardCell.h" />
     <ClInclude Include="Game.Session.Fisheries.h" />
-    <ClInclude Include="Game.Session.FishGame.h" />
     <ClInclude Include="Game.Session.h" />
     <ClInclude Include="Game.Session.Island.h" />
     <ClInclude Include="Game.Session.Island.Market.h" />
@@ -97,9 +94,6 @@
     <ClInclude Include="Game.Characters.State.h" />
     <ClInclude Include="Game.EquipSlot.h" />
     <ClInclude Include="Game.EquipSlots.h" />
-    <ClInclude Include="Game.Fishboard.h" />
-    <ClInclude Include="Game.FishboardCell.h" />
-    <ClInclude Include="Game.FishGame.h" />
     <ClInclude Include="Game.FishGameState.h" />
     <ClInclude Include="Game.Fishery.h" />
     <ClInclude Include="Game.Fisheries.h" />
@@ -169,10 +163,7 @@
     <ClCompile Include="Game.Session.cpp" />
     <ClCompile Include="Game.Session.Demigod.cpp" />
     <ClCompile Include="Game.Session.Demigods.cpp" />
-    <ClCompile Include="Game.Session.Fishboard.cpp" />
-    <ClCompile Include="Game.Session.FishboardCell.cpp" />
     <ClCompile Include="Game.Session.Fisheries.cpp" />
-    <ClCompile Include="Game.Session.FishGame.cpp" />
     <ClCompile Include="Game.Session.Island.cpp" />
     <ClCompile Include="Game.Session.Island.Market.cpp" />
     <ClCompile Include="Game.Session.Island.Markets.cpp" />
@@ -208,10 +199,8 @@
     <ClCompile Include="Game.Ship.Statistics.cpp" />
     <ClCompile Include="Game.EquipSlots.cpp" />
     <ClCompile Include="Game.Features.cpp" />
-    <ClCompile Include="Game.Fishboard.cpp" />
     <ClCompile Include="Game.Fisheries.cpp" />
     <ClCompile Include="Game.Fishes.cpp" />
-    <ClCompile Include="Game.FishGame.cpp" />
     <ClCompile Include="Game.Islands.Commodities.cpp" />
     <ClCompile Include="Game.Islands.DarkAlley.cpp" />
     <ClCompile Include="Game.Islands.DarkAlley.FightCard.cpp" />

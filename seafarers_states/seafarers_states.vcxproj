@@ -27,7 +27,6 @@
     <ClInclude Include="State.InPlay.DarkAlleyEntrance.h" />
     <ClInclude Include="State.InPlay.DockOrCareen.h" />
     <ClInclude Include="State.InPlay.EquipmentSlot.h" />
-    <ClInclude Include="State.InPlay.Fishing.h" />
     <ClInclude Include="State.InPlay.GambleIntro.h" />
     <ClInclude Include="State.InPlay.GamblePlay.h" />
     <ClInclude Include="State.InPlay.Globals.h" />
@@ -99,7 +98,6 @@
     <ClCompile Include="State.InPlay.DockOrCareen.cpp" />
     <ClCompile Include="State.InPlay.Equipment.cpp" />
     <ClCompile Include="State.InPlay.EquipmentSlot.cpp" />
-    <ClCompile Include="State.InPlay.Fishing.cpp" />
     <ClCompile Include="State.InPlay.GambleIntro.cpp" />
     <ClCompile Include="State.InPlay.GamblePlay.cpp" />
     <ClCompile Include="State.InPlay.Globals.cpp" />

@@ -12,7 +12,6 @@
 #include "Game.Session.Character.Messages.h"
 #include "Game.Session.Character.Quest.h"
 #include "Game.Session.Character.Plights.h"
-#include "Game.Session.FishGame.h"
 #include <list>
 #include <optional>
 namespace game::session
@@ -33,7 +32,6 @@ namespace game::session
 		character::Quest GetQuest() const;
 		void DoAction(const game::characters::Action&) const;
 		character::Messages GetMessages() const;
-		FishGame GetFishGame() const;
 		double GetAvailableTonnage() const;
 		bool IsDead() const;
 		character::Items GetItems() const;

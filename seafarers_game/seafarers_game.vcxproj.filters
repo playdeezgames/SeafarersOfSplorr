@@ -242,9 +242,6 @@
     <ClInclude Include="Game.Fishery.h">
       <Filter>Header Files\Fishing</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Fishboard.h">
-      <Filter>Header Files\Fishing</Filter>
-    </ClInclude>
     <ClInclude Include="Game.FishGameState.h">
       <Filter>Header Files\Fishing</Filter>
     </ClInclude>
@@ -256,12 +253,6 @@
     </ClInclude>
     <ClInclude Include="Game.ShipNames.h">
       <Filter>Header Files\Ships</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.FishboardCell.h">
-      <Filter>Header Files\Fishing</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.FishGame.h">
-      <Filter>Header Files\Fishing</Filter>
     </ClInclude>
     <ClInclude Include="Game.Ships.h">
       <Filter>Header Files\Ships</Filter>
@@ -323,16 +314,7 @@
     <ClInclude Include="Game.Session.Character.Quest.h">
       <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.Fishboard.h">
-      <Filter>Header Files\Session\Fish</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.FishboardCell.h">
-      <Filter>Header Files\Session\Fish</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.Fisheries.h">
-      <Filter>Header Files\Session\Fish</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.FishGame.h">
       <Filter>Header Files\Session\Fish</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Island.h">
@@ -559,14 +541,8 @@
     <ClCompile Include="Game.Fishes.cpp">
       <Filter>Source Files\Fishing</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Fishboard.cpp">
-      <Filter>Source Files\Fishing</Filter>
-    </ClCompile>
     <ClCompile Include="Game.EquipSlots.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.FishGame.cpp">
-      <Filter>Source Files\Fishing</Filter>
     </ClCompile>
     <ClCompile Include="Game.Characters.DoAction.cpp">
       <Filter>Source Files\Character</Filter>
@@ -634,16 +610,7 @@
     <ClCompile Include="Game.Session.Character.Quest.cpp">
       <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.Fishboard.cpp">
-      <Filter>Source Files\Session\Fish</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.FishboardCell.cpp">
-      <Filter>Source Files\Session\Fish</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Session.Fisheries.cpp">
-      <Filter>Source Files\Session\Fish</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.FishGame.cpp">
       <Filter>Source Files\Session\Fish</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Island.cpp">
