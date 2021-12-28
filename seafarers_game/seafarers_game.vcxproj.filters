@@ -33,9 +33,6 @@
     <Filter Include="Source Files\Islands">
       <UniqueIdentifier>{03628875-d3ae-4e27-a48d-0f8623f28eab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Demigods">
-      <UniqueIdentifier>{4fd9f52c-415b-4c9a-ad1d-2ba03b180a46}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Islands\DarkAlley">
       <UniqueIdentifier>{4409cc6b-118f-4b7c-bc52-eb342cc15031}</UniqueIdentifier>
     </Filter>

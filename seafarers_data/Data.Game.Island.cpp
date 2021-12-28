@@ -46,13 +46,15 @@ namespace data::game
 		VALUES ({:.4f},{:.4f},{},{});)"s;
 	static const std::string QUERY_ALL =
 		R"(SELECT 
+			[IslandId]
+		FROM [Islands];)"s;
+	static const std::string QUERY_ALL_LOCATIONS =
+		R"(SELECT 
 			[IslandId],
 			[X],
-			[Y],
-			[Name],
-			[PatronDemigodId] 
+			[Y]
 		FROM [Islands];)"s;
-	static const std::string CLEAR_ALL = 
+	static const std::string CLEAR_ALL =
 		R"(DELETE FROM [Islands];)"s;
 
 	static const std::string FIELD_ISLAND_ID = "IslandId";
@@ -87,6 +89,12 @@ namespace data::game
 				return Common::ToInt(record, FIELD_ISLAND_ID); 
 			});
 	}
+
+	std::map<int, common::XY<double>> Island::AllLocations()
+	{
+
+	}
+
 
 	void Island::Clear()
 	{

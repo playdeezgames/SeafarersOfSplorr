@@ -2,6 +2,7 @@
 #include <Common.XY.h>
 #include <functional>
 #include <list>
+#include <map>
 #include <optional>
 #include <string>
 namespace data::game
@@ -14,6 +15,7 @@ namespace data::game
 		static std::optional<std::string> ReadName(int);
 		static std::optional<int> ReadPatronDemigodId(int);
 		static std::list<int> All();
+		static std::map<int, common::XY<double>> AllLocations();
 		static void Clear();
 	};
 
