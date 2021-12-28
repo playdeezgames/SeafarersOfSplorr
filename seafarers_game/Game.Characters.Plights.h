@@ -11,6 +11,5 @@ namespace game::characters
 		static Plight Generate(const PlightType&);
 		static void Inflict(int, const Plight&);
 		static std::set<Plight> InflictedWith(int);
-		static void Reset();
 	};
 }

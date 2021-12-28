@@ -107,9 +107,4 @@ namespace game::characters
 		}
 		return result;
 	}
-
-	void Plights::Reset()
-	{
-		data::game::character::Plight::ClearAll();
-	}
 }

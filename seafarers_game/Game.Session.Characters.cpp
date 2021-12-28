@@ -3,6 +3,7 @@
 #include <Common.RNG.h>
 #include <Data.Game.Player.h>
 #include <Data.Game.Character.h>
+#include <Data.Game.Character.Plight.h>
 #include <Data.Game.Character.Characteristic.h>
 #include <Data.Game.Character.RationsLegacy.h>
 #include "Game.Items.h"
@@ -32,7 +33,7 @@ namespace game::session
 
 	void Characters::Reset() const
 	{
-		game::characters::Plights::Reset();
+		data::game::character::Plight::ClearAll();
 	}
 
 	static size_t DetermineTurnsSpent(int characterId)

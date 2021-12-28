@@ -147,6 +147,21 @@
     <Filter Include="Source Files\Session\Tribe">
       <UniqueIdentifier>{27514cff-e544-4f34-9a2a-fadf98f5fa41}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Session\Character\Characteristic">
+      <UniqueIdentifier>{8c7af976-7193-4b98-9c70-998e3a46ff0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Character\Counter">
+      <UniqueIdentifier>{c504ca88-6dcf-411e-ae57-efc8cd8b26e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Character\Flag">
+      <UniqueIdentifier>{a83f0430-af35-4560-82a4-eec905320536}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Character\Plight">
+      <UniqueIdentifier>{baef431e-a98d-46be-abb0-4718100623a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Character\KnownIsland">
+      <UniqueIdentifier>{00cc2bef-512b-4040-81be-6d29dfe1836f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -631,13 +646,7 @@
     <ClCompile Include="Game.Session.Character.Berth.cpp">
       <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.Character.Characteristic.cpp">
-      <Filter>Source Files\Session\Character</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Session.Character.cpp">
-      <Filter>Source Files\Session\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Character.HitPoints.cpp">
       <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Character.LegacyItem.cpp">
@@ -721,21 +730,6 @@
     <ClCompile Include="Game.Session.World.Distances.cpp">
       <Filter>Source Files\Session\World</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.Character.Characteristics.cpp">
-      <Filter>Source Files\Session\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Character.Counter.cpp">
-      <Filter>Source Files\Session\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Character.Counters.cpp">
-      <Filter>Source Files\Session\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Character.Flags.cpp">
-      <Filter>Source Files\Session\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Character.Flag.cpp">
-      <Filter>Source Files\Session\Character</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Session.Commodities.cpp">
       <Filter>Source Files\Session\Commodity</Filter>
     </ClCompile>
@@ -763,12 +757,6 @@
     <ClCompile Include="Game.Session.World.Calendar.cpp">
       <Filter>Source Files\Session\World</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.Character.KnownIsland.cpp">
-      <Filter>Source Files\Session\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Character.KnownIslands.cpp">
-      <Filter>Source Files\Session\Character</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Session.Tribes.cpp">
       <Filter>Source Files\Session\Tribe</Filter>
     </ClCompile>
@@ -787,11 +775,38 @@
     <ClCompile Include="Game.Session.Demigod.cpp">
       <Filter>Source Files\Session\Demigod</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.Character.Plights.cpp">
-      <Filter>Source Files\Session\Character</Filter>
+    <ClCompile Include="Game.Session.Character.Characteristic.cpp">
+      <Filter>Source Files\Session\Character\Characteristic</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.Characteristics.cpp">
+      <Filter>Source Files\Session\Character\Characteristic</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.Counter.cpp">
+      <Filter>Source Files\Session\Character\Counter</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.Counters.cpp">
+      <Filter>Source Files\Session\Character\Counter</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.Flag.cpp">
+      <Filter>Source Files\Session\Character\Flag</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.Flags.cpp">
+      <Filter>Source Files\Session\Character\Flag</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.HitPoints.cpp">
+      <Filter>Source Files\Session\Character\Characteristic</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Character.Plight.cpp">
-      <Filter>Source Files\Session\Character</Filter>
+      <Filter>Source Files\Session\Character\Plight</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.Plights.cpp">
+      <Filter>Source Files\Session\Character\Plight</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.KnownIsland.cpp">
+      <Filter>Source Files\Session\Character\KnownIsland</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.KnownIslands.cpp">
+      <Filter>Source Files\Session\Character\KnownIsland</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
