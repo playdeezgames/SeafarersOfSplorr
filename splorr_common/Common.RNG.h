@@ -8,6 +8,11 @@ namespace common
 	{
 		static void Seed();
 		static int FromRange(int, int);
+		template<int size>
+		static int Roll()
+		{
+			return FromRange(1, size + 1);
+		}
 		static size_t FromRange(size_t, size_t);
 		static double FromRange(double, double);
 		template <typename TResult>
@@ -27,7 +32,7 @@ namespace common
 			return std::nullopt;
 		}
 		template <typename TResult>
-		static TResult FromGenerator(const std::map<TResult, size_t>& table)
+		static std::optional<TResult> TryFromGenerator(const std::map<TResult, size_t>& table)
 		{
 			size_t total = 0u;
 			for (auto& entry : table)
@@ -49,7 +54,12 @@ namespace common
 					}
 				}
 			}
-			throw "empty generator";
+			return std::nullopt;
+		}
+		template <typename TResult>
+		static TResult FromGenerator(const std::map<TResult, size_t>& table)
+		{
+			return TryFromGenerator(table).value();
 		}
 	};
 }

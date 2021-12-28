@@ -1,7 +1,9 @@
+#include <algorithm>
 #include <Common.Data.h>
 #include <Common.Utility.List.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.h"
+#include <iterator>
 namespace data::game
 {
 	using namespace std::string_literals;
@@ -92,7 +94,21 @@ namespace data::game
 
 	std::map<int, common::XY<double>> Island::AllLocations()
 	{
-
+		std::map<int, common::XY<double>> result;
+		auto records = Common::Execute(QUERY_ALL_LOCATIONS);
+		std::transform(
+			records.begin(), 
+			records.end(), 
+			std::inserter(result, result.end()), 
+			[](const Common::Record& record) 
+			{
+				return std::make_pair(
+					Common::ToInt(record, FIELD_ISLAND_ID),
+					common::XY<double>(
+						Common::ToDouble(record, FIELD_X),
+						Common::ToDouble(record, FIELD_Y)));
+			});
+		return result;
 	}
 
 
