@@ -39,7 +39,6 @@ namespace state::in_play
 	void PlayMainTheme();
 	void SetPlayerCharacterShipHeading(double);
 	void DoPlayerCharacterAction(const game::characters::Action&);
-	std::optional<common::XY<double>> GetPlayerCharacterIslandLocation();
 	std::optional<bool> PlayerCharacterIslandHasFeature(const game::Feature&);//game::islands::Features::Read(island.id,
 	std::optional<double> GetPlayerCharacterDarkAlleyAnte();
 	std::optional<double> GetPlayerCharacterDarkAlleyMinimumWager();

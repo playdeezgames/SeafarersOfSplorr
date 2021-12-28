@@ -213,21 +213,18 @@ namespace game::islands
 
 	void Quests::Update(int characterId, int fromIslandId)
 	{
-		if (game::Islands::Read(characterId, fromIslandId).has_value())
+		if (!data::game::island::QuestLegacy::Read(fromIslandId).has_value())
 		{
-			if (!data::game::island::QuestLegacy::Read(fromIslandId).has_value())
-			{
-				data::game::island::QuestLegacy::Write(
-					{
-						fromIslandId,
-						GenerateDestination(fromIslandId),
-						GenerateReward(characterId),
-						GenerateItemName(),
-						GeneratePersonName(),
-						GenerateProfessionName(),
-						GenerateReceiptEmotion()
-					});
-			}
+			data::game::island::QuestLegacy::Write(
+				{
+					fromIslandId,
+					GenerateDestination(fromIslandId),
+					GenerateReward(characterId),
+					GenerateItemName(),
+					GeneratePersonName(),
+					GenerateProfessionName(),
+					GenerateReceiptEmotion()
+				});
 		}
 	}
 

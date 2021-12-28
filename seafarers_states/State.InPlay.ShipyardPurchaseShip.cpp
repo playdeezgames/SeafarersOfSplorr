@@ -18,7 +18,7 @@ namespace state::in_play
 
 	static void UpdateShipPrices()
 	{
-		auto location =	GetPlayerCharacterIslandLocation();
+		auto location = game::Session().GetPlayer().GetCharacter().GetIsland().GetLocation();
 		auto prices = game::islands::Ships::GetPurchasePrices(GetPlayerCharacterIslandId().value());
 		auto tradeIn = game::islands::Ships::GetSalePrice(GetPlayerCharacterIslandId().value(), game::Ship::GetShipType(GetPlayerCharacterShipId().value()).value());
 		shipPrices.clear();
@@ -87,8 +87,7 @@ namespace state::in_play
 
 	static void BuyShip(game::ShipType desiredShipType, double price)
 	{
-		auto location = GetPlayerCharacterIslandLocation().value();
-
+		auto location = game::Session().GetPlayer().GetCharacter().GetIsland().GetLocation();
 		auto currentShipId = GetPlayerCharacterShipId().value();
 		auto currentShipType = game::Ship::GetShipType(currentShipId).value();
 		auto currencyItem = game::Session().GetWorld().GetCurrencyItemSubtype();

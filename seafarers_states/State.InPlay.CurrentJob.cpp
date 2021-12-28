@@ -1,4 +1,5 @@
 #include <Common.Heading.h>
+#include <Data.Game.Island.h>
 #include <Game.Islands.h>
 #include <Game.Ship.h>
 #include "State.InPlay.CurrentJob.h"
@@ -14,14 +15,13 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Current Job:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		auto islandModel = game::Islands::Read(characterId, questModel.toIslandId).value();
 		auto delta = questModel.destination - GetPlayerCharacterShipLocation().value();
 		Terminal::WriteLine(
 			"Please deliver this {} to {} the {} at {} ({:.2f}\xf8 distance {:.1f}). Reward: {:.2f}",
 			questModel.itemName,
 			questModel.personName,
 			questModel.professionName,
-			islandModel.name, 
+			data::game::Island::ReadName(questModel.toIslandId).value(),
 			common::Heading::XYToDegrees(delta),
 			delta.GetMagnitude(),
 			questModel.reward);

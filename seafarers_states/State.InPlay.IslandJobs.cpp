@@ -2,6 +2,7 @@
 #include <Game.Characters.Quests.h>
 #include <Game.Islands.h>
 #include <Game.Islands.Quests.h>
+#include <Game.Session.h>
 #include <Game.Ship.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.IslandJobs.h"
@@ -31,7 +32,6 @@ namespace state::in_play
 
 	static void RefreshQuest(int characterId, const game::Quest& questModel)
 	{
-		auto islandModel = game::Islands::Read(characterId, questModel.toIslandId).value();
 		double distance = common::Heading::Distance(questModel.destination, GetPlayerCharacterShipLocation().value());
 
 		Terminal::Reinitialize();
@@ -44,7 +44,7 @@ namespace state::in_play
 			questModel.itemName,
 			questModel.personName,
 			questModel.professionName,
-			islandModel.name,
+			game::Session().GetWorld().GetIslands().GetIsland(questModel.toIslandId).GetName(),
 			distance,
 			questModel.reward);
 

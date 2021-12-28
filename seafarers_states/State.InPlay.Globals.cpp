@@ -86,21 +86,6 @@ namespace state::in_play
 		game::Session().GetPlayer().GetCharacter().DoAction(action);
 	}
 
-	std::optional<common::XY<double>> GetPlayerCharacterIslandLocation()
-	{
-		auto characterId = GetPlayerCharacterId();
-		auto islandId = GetPlayerCharacterIslandId();
-		if (islandId)
-		{
-			auto island = game::Islands::Read(characterId, islandId.value());
-			if (island)
-			{
-				return island.value().absoluteLocation;
-			}
-		}
-		return std::nullopt;
-	}
-
 	std::optional<double> GetPlayerCharacterDarkAlleyAnte()
 	{
 		return common::utility::Optional::Bind<int, double>(

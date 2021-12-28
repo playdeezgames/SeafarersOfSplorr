@@ -8,7 +8,6 @@ namespace game
 {
 	struct Islands
 	{
-		static std::optional<Island> Read(int, int);
 		static const std::string UNKNOWN;
 	};
 }

@@ -83,7 +83,6 @@ namespace state::in_play
 		auto item = common::utility::Table::GetNthKey(items, hiliteRow).value();
 		auto characterId = GetPlayerCharacterId();
 		auto islandId = GetPlayerCharacterIslandId().value();
-		auto island = game::Islands::Read(characterId, islandId).value();
 		game::characters::Items::Remove(GetPlayerCharacterId(), item, 1);
 		//TODO: when items are worked out, this is where you sacrifice the item!
 		OnLeave();

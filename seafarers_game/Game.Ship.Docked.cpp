@@ -28,7 +28,6 @@ namespace game::ship
 		int shipId = data::game::character::Ship::ReadForCharacter(characterId).value().shipId;
 		data::game::ship::CurrentIsland::Write(shipId, islandId);
 		game::Session().GetCharacters().GetCharacter(characterId).DoAction(game::characters::Action::ENTER_DOCK);
-		auto island = game::Islands::Read(characterId, islandId).value();
 		return result;
 	}
 

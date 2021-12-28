@@ -1,3 +1,5 @@
+#include <Data.Game.Character.KnownIsland.h>
+#include <Data.Game.Island.h>
 #include "Game.Islands.h"
 #include "Game.Session.Character.KnownIsland.h"
 #include <optional>
@@ -5,20 +7,14 @@ namespace game::session::character
 {
 	bool KnownIsland::IsKnown() const
 	{
-		auto island = game::Islands::Read(characterId, islandId);
-		if (island)
-		{
-			return island.value().isKnown;
-		}
-		return false;
+		return data::game::character::KnownIsland::Read(characterId, islandId);
 	}
 
 	std::string KnownIsland::GetDisplayName() const
 	{
-		auto island = game::Islands::Read(characterId, islandId);
-		if (island)
+		if (IsKnown())
 		{
-			return island.value().GetDisplayName();
+			return data::game::Island::ReadName(islandId).value();
 		}
 		return "????";
 	}

@@ -15,13 +15,13 @@ namespace state::in_play
 	{
 		auto characterId = GetPlayerCharacterId();
 		auto islandId = GetPlayerCharacterIslandId().value();
-		auto island = game::Islands::Read(characterId, islandId).value();
+		auto island = game::Session().GetWorld().GetIslands().GetIsland(islandId);
 		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Docked:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine(FORMAT_NAME, island.name);
+		Terminal::WriteLine(FORMAT_NAME, island.GetName());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Jobs");
@@ -34,7 +34,7 @@ namespace state::in_play
 		{
 			Terminal::WriteLine("4) Dark Alley");
 		}
-		auto demigod = game::Session().GetWorld().GetDemigods().GetDemigod(island.patronDemigodId);
+		auto demigod = game::Session().GetWorld().GetDemigods().GetDemigod(island.GetPatronDemigodId());
 		Terminal::WriteLine(FORMAT_TEMPLE, demigod.GetName());
 		if (PlayerCharacterIslandHasFeature(game::Feature::TAVERN).value())
 		{

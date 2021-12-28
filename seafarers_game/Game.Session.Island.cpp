@@ -17,4 +17,15 @@ namespace game::session
 	{
 		return island::Tavern(islandId);
 	}
+
+	std::string Island::GetName() const
+	{
+		return data::game::Island::ReadName(islandId).value();
+	}
+
+	int Island::GetPatronDemigodId() const
+	{
+		return data::game::Island::ReadPatronDemigodId(islandId).value();
+	}
+
 }

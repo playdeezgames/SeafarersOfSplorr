@@ -14,6 +14,8 @@ namespace game::session
 		common::XY<double> GetLocation() const;
 		island::Tavern GetTavern() const;
 		constexpr static Island ToIsland(int islandId) { return Island(islandId); }
+		std::string GetName() const;
+		int GetPatronDemigodId() const;
 	private:
 		int islandId;
 	};

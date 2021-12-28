@@ -75,18 +75,6 @@ namespace game
 		};
 	}
 
-	std::optional<Island> Islands::Read(int characterId, int islandId)
-	{
-		auto island = data::game::Island::ReadLocation(islandId);
-		if (island)
-		{
-			return ToIsland(
-				islandId,
-				data::game::character::KnownIsland::Read(characterId, islandId));
-		}
-		return std::nullopt;
-	}
-
 	static void ObfuscateIfUnknown(int characterId, game::Island& island)
 	{
 		auto islandId = island.id;

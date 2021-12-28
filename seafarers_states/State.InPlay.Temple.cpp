@@ -11,11 +11,10 @@ namespace state::in_play
 	{
 		auto characterId = GetPlayerCharacterId();
 		auto islandId = GetPlayerCharacterIslandId().value();
-		auto island = game::Islands::Read(characterId, islandId).value();
 		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
-		auto demigod = game::Session().GetWorld().GetDemigods().GetDemigod(island.patronDemigodId);
+		auto demigod = game::Session().GetWorld().GetDemigods().GetDemigod(game::Session().GetWorld().GetIslands().GetIsland(islandId).GetPatronDemigodId());
 		Terminal::WriteLine(FORMAT_TEMPLE, demigod.GetName());
 		Terminal::WriteLine();
 
