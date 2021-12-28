@@ -8,8 +8,6 @@ namespace game
 {
 	struct Islands
 	{
-		static void Reset();
-		static void Populate(const game::Difficulty&);
 		static std::list<Island> GetViewableIslands(int);
 		static std::list<Island> GetDockableIslands(int);
 		static bool CanDock(int);
