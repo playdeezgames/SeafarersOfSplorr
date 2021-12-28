@@ -38,14 +38,14 @@ namespace game::ship
 		{
 			return DockResult::ALREADY_DOCKED;
 		}
-		auto dockables = game::Islands::GetDockableIslands(shipId);
-		if (!dockables.empty())
+		auto dockable = game::Session().GetShips().GetShip(shipId).GetDockableIslands().TryGetFirst();
+		if (dockable)
 		{
 			auto billets = data::game::character::Ship::ReadForShip(shipId);
 			std::set<DockResult> dockResults;
 			for (auto billet : billets)
 			{
-				auto dockResult = DoDock(billet.characterId, dockables.front().id);
+				auto dockResult = DoDock(billet.characterId, dockable.value().operator int());
 				if (dockResult)
 				{
 					dockResults.insert(dockResult.value());

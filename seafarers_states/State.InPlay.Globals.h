@@ -37,7 +37,6 @@ namespace state::in_play
 	std::optional<double> GetPlayerCharacterShipHeading();
 	std::optional<double> GetPlayerCharacterShipSpeed();
 	void PlayMainTheme();
-	std::list<game::Island> GetPlayerCharacterKnownIslands();
 	void SetPlayerCharacterShipHeading(double);
 	void DoPlayerCharacterAction(const game::characters::Action&);
 	std::optional<common::XY<double>> GetPlayerCharacterIslandLocation();

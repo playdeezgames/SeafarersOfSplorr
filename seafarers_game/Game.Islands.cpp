@@ -62,16 +62,6 @@ namespace game
 		};
 	}
 
-	std::list<Island> Islands::GetDockableIslands(int shipId)
-	{
-		return GetIslandsInRange(shipId, FixedDistance(game::Session().GetWorld().GetDistances().GetDock()));
-	}
-
-	bool Islands::CanDock(int shipId)
-	{
-		return !GetDockableIslands(shipId).empty();
-	}
-
 	void Islands::SetKnown(int characterId, int islandId, int turn)
 	{
 		data::game::character::KnownIsland::Write(characterId, islandId);
@@ -109,28 +99,5 @@ namespace game
 		{
 			island.name = Islands::UNKNOWN;
 		}
-	}
-
-	std::list<Island> Islands::GetKnownIslands(int characterId)
-	{
-		int shipId = game::characters::Ships::ReadShipId(characterId).value();
-		auto shipLocation = game::Ship::GetLocation(shipId).value();
-		auto knownLocations = data::game::character::KnownIsland::All(characterId);
-		std::list<Island> result;
-		for (auto& knownLocation : knownLocations)
-		{
-			auto model = Read(characterId, knownLocation);
-			if (model)
-			{
-				model.value().relativeLocation = model.value().absoluteLocation - shipLocation;
-				ObfuscateIfUnknown(characterId, model.value());
-				result.push_back(model.value());
-			}
-		}
-		return result;
-	}
-
-	void Islands::ApplyTurnEffects()
-	{
 	}
 }
