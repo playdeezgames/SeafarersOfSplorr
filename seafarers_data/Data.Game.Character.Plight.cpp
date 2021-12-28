@@ -50,19 +50,19 @@ namespace data::game::character
 	static const std::string FIELD_PLIGHT_ID = "PlightId";
 	static const std::string FIELD_DURATION = "Duration";
 
-	void PlightLegacy::ClearPlight(int characterId, int plight)
+	void Plight::ClearPlight(int characterId, int plight)
 	{
 		Initialize();
 		Common::Execute(DELETE_ITEM, characterId, plight);
 
 	}
-	void PlightLegacy::Clear(int characterId)
+	void Plight::Clear(int characterId)
 	{
 		Initialize();
 		Common::Execute(DELETE_ALL_FOR_CHARACTER,characterId);
 	}
 
-	std::list<int> PlightLegacy::All(int characterId)
+	std::list<int> Plight::All(int characterId)
 	{
 		Initialize();
 		std::list<int> result;
@@ -74,25 +74,25 @@ namespace data::game::character
 		return result;
 	}
 
-	void PlightLegacy::ClearAll()
+	void Plight::ClearAll()
 	{
 		Initialize();
 		Common::Execute(DELETE_ALL_PLIGHTS);
 	}
 
-	void PlightLegacy::Initialize()
+	void Plight::Initialize()
 	{
 		Character::Initialize();
 		Common::Execute(CREATE_TABLE);
 	}
 
-	void PlightLegacy::Write(int characterId, int plight, int duration)
+	void Plight::Write(int characterId, int plight, int duration)
 	{
 		Initialize();
 		Common::Execute(REPLACE_ITEM, characterId, plight, duration);
 	}
 
-	std::optional<int> PlightLegacy::ReadDuration(int characterId, int plight)
+	std::optional<int> Plight::ReadDuration(int characterId, int plight)
 	{
 		Initialize();
 		auto record = Common::TryExecuteForOne(QUERY_ITEM, characterId, plight);

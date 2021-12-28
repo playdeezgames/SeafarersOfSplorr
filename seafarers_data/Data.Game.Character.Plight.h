@@ -3,7 +3,7 @@
 #include <list>
 namespace data::game::character
 {
-	struct PlightLegacy
+	struct Plight
 	{
 		static void Initialize();
 		static std::list<int> All(int);

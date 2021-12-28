@@ -65,24 +65,24 @@ namespace game::characters
 
 	bool Plights::Has(int characterId, const Plight& plight)
 	{
-		return data::game::character::PlightLegacy::ReadDuration(characterId, (int)plight).has_value();
+		return data::game::character::Plight::ReadDuration(characterId, (int)plight).has_value();
 	}
 
 	void Plights::ApplyTurnEffects(int characterId)
 	{
-		auto plights = data::game::character::PlightLegacy::All(characterId);
+		auto plights = data::game::character::Plight::All(characterId);
 		for (auto& plight : plights)
 		{
-			auto duration = data::game::character::PlightLegacy::ReadDuration(characterId, plight);
+			auto duration = data::game::character::Plight::ReadDuration(characterId, plight);
 			if (duration)
 			{
 				duration.value()--;
 				if (duration.value() <= 0)
 				{
-					data::game::character::PlightLegacy::ClearPlight(characterId, plight);
+					data::game::character::Plight::ClearPlight(characterId, plight);
 					continue;
 				}
-				data::game::character::PlightLegacy::Write(characterId, plight, duration.value());
+				data::game::character::Plight::Write(characterId, plight, duration.value());
 			}
 		}
 	}
@@ -115,7 +115,7 @@ namespace game::characters
 
 		if (duration)
 		{
-			data::game::character::PlightLegacy::Write(
+			data::game::character::Plight::Write(
 				characterId, 
 				(int)plight, 
 				(int)duration.value());
@@ -125,7 +125,7 @@ namespace game::characters
 	std::set<Plight> Plights::InflictedWith(int characterId)
 	{
 		std::set<Plight> result;
-		auto plights = data::game::character::PlightLegacy::All(characterId);
+		auto plights = data::game::character::Plight::All(characterId);
 		for (auto& plight : plights)
 		{
 			result.insert((Plight)plight);
@@ -135,7 +135,7 @@ namespace game::characters
 
 	void Plights::Reset()
 	{
-		data::game::character::PlightLegacy::ClearAll();
+		data::game::character::Plight::ClearAll();
 	}
 
 	const std::string& Plights::GetName(const Plight& plight)
