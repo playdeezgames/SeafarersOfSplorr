@@ -3,6 +3,6 @@ namespace game::session::character
 {
 	void Plight::ApplyTurnEffects() const
 	{
-
+		throw "THIS DOESNT WORK";
 	}
 }
