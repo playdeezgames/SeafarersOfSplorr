@@ -128,7 +128,7 @@
     <ClInclude Include="Data.Game.Character.ItemsLegacy.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Character.PlightLegacy.h">
+    <ClInclude Include="Data.Game.Character.Plight.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.Character.QuestLegacy.h">
@@ -256,7 +256,7 @@
     <ClCompile Include="Data.Game.Character.ItemsLegacy.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Character.PlightLegacy.cpp">
+    <ClCompile Include="Data.Game.Character.Plight.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Character.QuestLegacy.cpp">

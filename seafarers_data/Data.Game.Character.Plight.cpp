@@ -1,6 +1,6 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
-#include "Data.Game.Character.PlightLegacy.h"
+#include "Data.Game.Character.Plight.h"
 #include "Data.Game.Character.h"
 namespace data::game::character
 {
