@@ -236,24 +236,6 @@ namespace game
 					DoTransition(characters::State::AT_SEA)
 				}
 			}
-		},
-		{
-			characters::Action::START_FISHING,
-			{
-				{
-					characters::State::AT_SEA,
-					OnStartFishing
-				}
-			}
-		},
-		{
-			characters::Action::STOP_FISHING,
-			{
-				{
-					characters::State::FISHING,
-					DoTransition(characters::State::AT_SEA)
-				}
-			}
 		}
 	};
 

@@ -225,20 +225,6 @@ namespace state::in_play
 		Refresh();
 	}
 
-	static void OnFishing()
-	{
-		if (IsFishingEnabled())
-		{
-			game::Session()
-			.GetPlayer().GetCharacter()
-			.DoAction(game::characters::Action::START_FISHING);
-			application::UIState::Write(::UIState::IN_PLAY_NEXT);
-			return;
-		}
-		Terminal::ErrorMessage(Terminal::INVALID_INPUT);
-		Refresh();
-	}
-
 	static void OnJob()
 	{
 		if (game::Session()
@@ -260,7 +246,6 @@ namespace state::in_play
 		{"4", application::UIState::GoTo(::UIState::IN_PLAY_CREW_LIST) },
 		{"5", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS) },
 		{"6", OnJob },
-		{"7", OnFishing},
 		{"0", application::UIState::GoTo(::UIState::LEAVE_PLAY) }
 
 	};

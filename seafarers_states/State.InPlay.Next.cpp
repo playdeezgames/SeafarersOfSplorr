@@ -48,7 +48,6 @@ namespace state::in_play
 		{ game::characters::State::CAREENED_TO_PORT, ::UIState::IN_PLAY_CAREENED_TO_PORT },
 		{ game::characters::State::CAREENED_TO_STARBOARD, ::UIState::IN_PLAY_CAREENED_TO_STARBOARD },
 		{ game::characters::State::TEMPLE, ::UIState::IN_PLAY_TEMPLE },
-		{ game::characters::State::FISHING, ::UIState::IN_PLAY_FISHING },
 		{ game::characters::State::TAVERN, ::UIState::IN_PLAY_TAVERN }
 	};
 

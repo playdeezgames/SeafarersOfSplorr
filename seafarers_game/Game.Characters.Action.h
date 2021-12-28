@@ -17,8 +17,6 @@ namespace game::characters
 		CAREEN_TO_STARBOARD,
 		UNCAREEN,
 		ENTER_TEMPLE,
-		START_FISHING,
-		STOP_FISHING,
 		ENTER_TAVERN
 	};
 }
