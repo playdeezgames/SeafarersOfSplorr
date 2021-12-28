@@ -1,6 +1,5 @@
 #include <Data.Game.Character.KnownIsland.h>
 #include <Data.Game.Island.h>
-#include "Game.Islands.h"
 #include "Game.Session.Character.KnownIsland.h"
 #include <optional>
 namespace game::session::character

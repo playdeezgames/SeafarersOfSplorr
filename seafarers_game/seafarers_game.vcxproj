@@ -121,7 +121,6 @@
     <ClInclude Include="Game.Islands.DarkAlley.GamblingHand.h" />
     <ClInclude Include="Game.Islands.DarkAlley.h" />
     <ClInclude Include="Game.Islands.Features.h" />
-    <ClInclude Include="Game.Islands.h" />
     <ClInclude Include="Game.Islands.Items.h" />
     <ClInclude Include="Game.Islands.Markets.h" />
     <ClInclude Include="Game.Islands.Quests.h" />
@@ -218,7 +217,6 @@
     <ClCompile Include="Game.Fishes.cpp" />
     <ClCompile Include="Game.FishGame.cpp" />
     <ClCompile Include="Game.Islands.Commodities.cpp" />
-    <ClCompile Include="Game.Islands.cpp" />
     <ClCompile Include="Game.Islands.DarkAlley.cpp" />
     <ClCompile Include="Game.Islands.DarkAlley.FightCard.cpp" />
     <ClCompile Include="Game.Islands.DarkAlley.GamblingHand.cpp" />

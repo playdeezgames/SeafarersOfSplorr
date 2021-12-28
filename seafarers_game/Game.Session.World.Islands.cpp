@@ -12,7 +12,6 @@
 #include <Data.Game.Tribe.h>
 #include <Data.Game.Island.Tribe.h>
 #include "Game.Features.h"
-#include "Game.Islands.h"
 #include "Game.Islands.Features.h"
 #include "Game.Islands.Features.DarkAlley.h"
 #include "Game.Islands.Features.Tavern.h"

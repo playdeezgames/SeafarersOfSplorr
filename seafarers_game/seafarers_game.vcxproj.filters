@@ -161,9 +161,6 @@
     <ClInclude Include="Game.Features.h">
       <Filter>Header Files\Features</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Islands.h">
-      <Filter>Header Files\Islands</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Islands.Quests.h">
       <Filter>Header Files\Islands</Filter>
     </ClInclude>
@@ -522,9 +519,6 @@
   <ItemGroup>
     <ClCompile Include="Game.Features.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.cpp">
-      <Filter>Source Files\Islands</Filter>
     </ClCompile>
     <ClCompile Include="Game.Islands.Quests.cpp">
       <Filter>Source Files\Islands</Filter>

@@ -1,7 +1,6 @@
 #include <Common.Data.h>
 #include <Common.Utility.Table.h>
 #include <Game.Characters.Items.h>
-#include <Game.Islands.h>
 #include <Game.Items.h>
 #include <Game.OfferingResult.h>
 #include "State.InPlay.Globals.h"

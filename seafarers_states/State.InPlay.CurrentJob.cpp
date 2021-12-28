@@ -1,6 +1,5 @@
 #include <Common.Heading.h>
 #include <Data.Game.Island.h>
-#include <Game.Islands.h>
 #include <Game.Ship.h>
 #include "State.InPlay.CurrentJob.h"
 #include "State.InPlay.Globals.h"

@@ -1,4 +1,3 @@
-#include <Game.Islands.h>
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.Temple.h"

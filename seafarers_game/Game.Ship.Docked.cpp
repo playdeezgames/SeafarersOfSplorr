@@ -8,7 +8,6 @@
 #include "Game.Characters.Quests.h"
 #include "Game.Characters.Ships.h"
 #include "Game.Islands.Quests.h"
-#include "Game.Islands.h"
 #include "Game.Session.h"
 #include "Game.Ship.Docked.h"
 #include <set>

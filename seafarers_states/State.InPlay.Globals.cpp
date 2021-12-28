@@ -5,7 +5,6 @@
 #include <Game.Characters.Quests.h>
 #include <Game.Characters.Ships.h>
 #include <Game.Ship.Statistics.h>
-#include <Game.Islands.h>
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.Features.h>
 #include <Game.Islands.Items.h>
