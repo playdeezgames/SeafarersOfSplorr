@@ -62,12 +62,6 @@ namespace game::characters
 		return descriptors.find(plight)->second;
 	}
 
-
-	bool Plights::Has(int characterId, const Plight& plight)
-	{
-		return data::game::character::Plight::ReadDuration(characterId, (int)plight).has_value();
-	}
-
 	void Plights::ApplyTurnEffects(int characterId)
 	{
 		auto plights = data::game::character::Plight::All(characterId);

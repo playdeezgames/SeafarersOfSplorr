@@ -9,6 +9,7 @@ namespace game::session::character
 		constexpr Plight GetPlight(const game::characters::Plight& plight) const { return Plight(characterId, plight); }
 		std::list<Plight> GetAll() const;
 		void ApplyTurnEffects() const;
+		bool Has(const game::characters::Plight& plight) const;
 	private:
 		int characterId;
 	};

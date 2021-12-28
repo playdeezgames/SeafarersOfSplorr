@@ -37,14 +37,15 @@ namespace game::session
 
 	static size_t DetermineTurnsSpent(int characterId)
 	{
+		auto plights = Character::ToCharacter(characterId).GetPlights();
 		size_t agingRate = 1;
-		if (characters::Plights::Has(characterId, characters::Plight::DOUBLE_AGING) &&
-			!characters::Plights::Has(characterId, characters::Plight::AGING_IMMUNITY))
+		if (plights.Has(characters::Plight::DOUBLE_AGING) &&
+			!plights.Has(characters::Plight::AGING_IMMUNITY))
 		{
 			agingRate = 2;
 		}
-		if (characters::Plights::Has(characterId, characters::Plight::AGING_IMMUNITY) &&
-			!characters::Plights::Has(characterId, characters::Plight::DOUBLE_AGING))
+		if (plights.Has(characters::Plight::AGING_IMMUNITY) &&
+			!plights.Has(characters::Plight::DOUBLE_AGING))
 		{
 			agingRate = 0;
 		}

@@ -8,7 +8,6 @@ namespace game::characters
 {
 	struct Plights
 	{
-		static bool Has(int, const Plight&);
 		static void ApplyTurnEffects(int);
 		static Plight Generate(const PlightType&);
 		static void Inflict(int, const Plight&);
