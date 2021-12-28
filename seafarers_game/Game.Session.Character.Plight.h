@@ -9,6 +9,7 @@ namespace game::session::character
 			const game::characters::Plight& plight) 
 			: characterId(characterId)
 			, plight(plight) {}
+		void ApplyTurnEffects() const;
 	private:
 		int characterId;
 		game::characters::Plight plight;

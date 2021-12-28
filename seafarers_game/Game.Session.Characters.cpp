@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <Common.NameGenerator.h>
 #include <Common.RNG.h>
 #include <Data.Game.Player.h>
@@ -9,11 +10,24 @@
 #include "Game.Session.Characters.h"
 #include "Game.Characters.Items.h" //FOR RESET
 #include "Game.Characters.Plights.h" //FOR APPLY TURN EFFECTS
+#include <iterator>
 namespace game::session
 {
 	session::Character Characters::GetCharacter(int characterId) const
 	{
 		return Character(characterId);
+	}
+
+	std::list<Character> Characters::GetAll() const
+	{
+		auto characters = data::game::Character::All();
+		std::list<Character> result;
+		std::transform(
+			characters.begin(),
+			characters.end(),
+			std::back_inserter(result),
+			Character::ToCharacter);
+		return result;
 	}
 
 	void Characters::Reset() const
@@ -131,7 +145,6 @@ namespace game::session
 		}
 	}
 
-
 	static void ApplyHunger(int characterId)
 	{
 		Characters()
@@ -147,15 +160,18 @@ namespace game::session
 				});
 	}
 
+	static void ApplyCharacterTurnEffects(const Character& character)
+	{
+		character.ApplyTurnEffects();
+	}
+
 	void Characters::ApplyTurnEffects() const
 	{
-		auto avatarIds = data::game::Character::All();
-		for (auto characterId : avatarIds)
-		{
-			ApplyTurn(characterId);
-			ApplyHunger(characterId);
-		}
-		game::characters::Plights::ApplyTurnEffects(data::game::Player::GetCharacterId().value());//should apply to all characters
+		auto characters = GetAll();
+		std::for_each(
+			characters.begin(), 
+			characters.end(), 
+			ApplyCharacterTurnEffects);
 	}
 
 	const std::map<std::string, size_t> CONSONANT_GENERATOR =

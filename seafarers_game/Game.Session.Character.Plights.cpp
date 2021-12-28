@@ -19,4 +19,17 @@ namespace game::session::character
 			});
 		return result;
 	}
+
+	void Plights::ApplyTurnEffects() const
+	{
+		auto plights = GetAll();
+		std::for_each(
+			plights.begin(), 
+			plights.end(), 
+			[](const Plight& plight) 
+			{
+				plight.ApplyTurnEffects();
+			});
+	}
+
 }

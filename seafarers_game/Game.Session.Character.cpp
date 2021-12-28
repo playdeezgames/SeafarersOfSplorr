@@ -407,6 +407,10 @@ namespace game::session
 		return std::nullopt;
 	}
 
+	void Character::ApplyTurnEffects() const
+	{
+		GetPlights().ApplyTurnEffects();
+	}
 
 	characters::State Character::GetState() const
 	{

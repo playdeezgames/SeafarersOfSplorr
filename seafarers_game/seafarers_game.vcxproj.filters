@@ -790,6 +790,9 @@
     <ClCompile Include="Game.Session.Character.Plights.cpp">
       <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Session.Character.Plight.cpp">
+      <Filter>Source Files\Session\Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Game.Session.Character.Flags.h">

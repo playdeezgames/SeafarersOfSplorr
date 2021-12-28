@@ -25,6 +25,7 @@ namespace game::session
 		constexpr explicit operator int() const { return characterId; }
 		constexpr character::KnownIslands GetKnownIslands() const { return character::KnownIslands(characterId); }
 		constexpr character::Plights GetPlights() const { return character::Plights(characterId); }
+		constexpr static Character ToCharacter(int characterId) { return Character(characterId); }
 
 		character::Characteristics GetCharacteristics() const;
 		character::HitPoints GetHitpoints() const;
@@ -42,6 +43,8 @@ namespace game::session
 		std::string GetName() const;
 		std::optional<characters::State> TryGetState() const;
 		characters::State GetState() const;
+		void ApplyTurnEffects() const;
+
 
 
 		void SetIsland(Island island) const;
