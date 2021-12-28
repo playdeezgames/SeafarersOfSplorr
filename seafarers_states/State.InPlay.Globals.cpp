@@ -54,13 +54,6 @@ namespace state::in_play
 				game::Ship::GetLocation);
 	}
 
-	std::optional<std::list<game::Island>> GetPlayerCharacterViewableIslands()
-	{
-		return common::utility::Optional::Map<int, std::list<game::Island>>(
-			GetPlayerCharacterShipId(),
-			game::Islands::GetViewableIslands);
-	}
-
 	std::optional<double> GetPlayerCharacterShipHeading()
 	{
 		return common::utility::Optional::Bind<int, double>(

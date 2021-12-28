@@ -62,11 +62,6 @@ namespace game
 		};
 	}
 
-	std::list<Island> Islands::GetViewableIslands(int shipId)
-	{
-		return GetIslandsInRange(shipId, FixedDistance(game::Session().GetWorld().GetDistances().GetView()));
-	}
-
 	std::list<Island> Islands::GetDockableIslands(int shipId)
 	{
 		return GetIslandsInRange(shipId, FixedDistance(game::Session().GetWorld().GetDistances().GetDock()));
