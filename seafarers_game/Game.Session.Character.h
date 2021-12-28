@@ -12,6 +12,7 @@
 #include "Game.Session.Character.LegacyItems.h"
 #include "Game.Session.Character.Messages.h"
 #include "Game.Session.Character.Quest.h"
+#include "Game.Session.Character.Plights.h"
 #include "Game.Session.FishGame.h"
 #include <list>
 #include <optional>
@@ -23,6 +24,7 @@ namespace game::session
 		constexpr Character(int characterId) : characterId(characterId) {}
 		constexpr explicit operator int() const { return characterId; }
 		constexpr character::KnownIslands GetKnownIslands() const { return character::KnownIslands(characterId); }
+		constexpr character::Plights GetPlights() const { return character::Plights(characterId); }
 
 		character::Characteristics GetCharacteristics() const;
 		character::HitPoints GetHitpoints() const;

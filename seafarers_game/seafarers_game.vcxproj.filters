@@ -515,6 +515,12 @@
     <ClInclude Include="Game.Session.Demigod.h">
       <Filter>Header Files\Session\Demigod</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Character.Plights.h">
+      <Filter>Header Files\Session\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Character.Plight.h">
+      <Filter>Header Files\Session\Character</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Features.cpp">
@@ -780,6 +786,9 @@
     </ClCompile>
     <ClCompile Include="Game.Session.Demigod.cpp">
       <Filter>Source Files\Session\Demigod</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.Plights.cpp">
+      <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
