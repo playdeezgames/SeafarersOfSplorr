@@ -1,6 +1,10 @@
+#include <algorithm>
 #include <Common.Data.h>
+#include "Data.Game.Character.h"
 #include "Data.Game.Character.Ship.h"
+#include "Data.Game.Ship.h"
 #include "Data.Game.Common.h"
+#include <iterator>
 namespace data::game::character
 {
 	using namespace std::string_literals;
@@ -9,20 +13,22 @@ namespace data::game::character
 		(
 			[CharacterId] INT NOT NULL UNIQUE, 
 			[ShipId] INT NOT NULL,
-			[BerthType] INT NOT NULL
+			[Berth] INT NOT NULL,
+			FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId]),
+			FOREIGN KEY ([ShipId]) REFERENCES [Ships]([ShipId])
 		);)"s;
 	static const std::string REPLACE_ITEM = 
 		R"(REPLACE INTO [CharacterShips]
 		(
 			[CharacterId], 
 			[ShipId], 
-			[BerthType]
+			[Berth]
 		) 
 		VALUES({},{},{});)"s;
 	static const std::string QUERY_ITEM_FOR_CHARACTER = 
 		R"(SELECT 
 			[ShipId],
-			[BerthType],
+			[Berth],
 			[CharacterId] 
 		FROM [CharacterShips] 
 		WHERE 
@@ -30,7 +36,7 @@ namespace data::game::character
 	static const std::string QUERY_ITEM_FOR_SHIP = 
 		R"(SELECT 
 			[ShipId],
-			[BerthType],
+			[Berth],
 			[CharacterId] 
 		FROM [CharacterShips] 
 		WHERE 
@@ -38,20 +44,41 @@ namespace data::game::character
 	static const std::string QUERY_CREW_FOR_SHIP = 
 		R"(SELECT 
 			[CharacterId], 
-			[BerthType] 
+			[Berth] 
+		FROM [CharacterShips] 
+		WHERE 
+			[ShipId]={};)"s;
+	static const std::string DELETE_ITEM =
+		R"(DELETE FROM [CharacterShips] 
+		WHERE 
+			[CharacterId]={} 
+			AND [ShipId]={};)"s;
+	static const std::string QUERY_SHIP_FOR_CHARACTER =
+		R"(SELECT 
+			[ShipId] 
+		FROM [CharacterShips] 
+		WHERE 
+			[CharacterId]={};)"s;
+	static const std::string QUERY_BERTH_FOR_CHARACTER =
+		R"(SELECT 
+			[Berth] 
+		FROM [CharacterShips] 
+		WHERE 
+			[CharacterId]={};)"s;
+	static const std::string QUERY_CHARACTERS_FOR_SHIP =
+		R"(SELECT 
+			[CharacterId] 
 		FROM [CharacterShips] 
 		WHERE 
 			[ShipId]={};)"s;
 
 	static const std::string FIELD_SHIP_ID = "ShipId";
-	static const std::string FIELD_BERTH_TYPE = "BerthType";
+	static const std::string FIELD_BERTH = "Berth";
 	static const std::string FIELD_CHARACTER_ID = "CharacterId";
-
-	static auto AutoCreateTable = data::game::Common::Run(CREATE_TABLE);
 
 	void Ship::Write(int characterId, const Ship& ship)
 	{
-		AutoCreateTable();
+		Initialize();
 		data::game::Common::Execute(
 			REPLACE_ITEM, 
 			characterId, 
@@ -65,13 +92,13 @@ namespace data::game::character
 		{
 			common::Data::ToInt(record.find(FIELD_SHIP_ID)->second),
 			common::Data::ToInt(record.find(FIELD_CHARACTER_ID)->second),
-			common::Data::ToInt(record.find(FIELD_BERTH_TYPE)->second)
+			common::Data::ToInt(record.find(FIELD_BERTH)->second)
 		};
 	}
 
 	std::optional<Ship> Ship::ReadForCharacter(int characterId)
 	{
-		AutoCreateTable();
+		Initialize();
 		auto records = data::game::Common::Execute(QUERY_ITEM_FOR_CHARACTER, characterId);
 		if (!records.empty())
 		{
@@ -82,7 +109,7 @@ namespace data::game::character
 
 	std::vector<Ship> Ship::ReadForShip(int shipId)
 	{
-		AutoCreateTable();
+		Initialize();
 		auto records = data::game::Common::Execute(QUERY_ITEM_FOR_SHIP, shipId);
 		std::vector<Ship> result;
 		for(auto record : records)
@@ -90,5 +117,60 @@ namespace data::game::character
 			result.push_back(ToShip(record));
 		}
 		return result;
+	}
+
+	void Ship::Initialize()
+	{
+		Common::Execute(CREATE_TABLE);
+	}
+
+	void Ship::Write(int characterId, int shipId, int berth)
+	{
+		Initialize();
+		Common::Execute(REPLACE_ITEM, characterId, shipId, berth);
+	}
+
+	void Ship::Clear(int characterId, int shipId)
+	{
+		Initialize();
+		Common::Execute(DELETE_ITEM, characterId, shipId);
+	}
+
+	std::optional<int> Ship::ReadShipForCharacter(int characterId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_SHIP_FOR_CHARACTER, characterId);
+		if (record)
+		{
+			return Common::ToInt(record.value(), FIELD_SHIP_ID);
+		}
+		return std::nullopt;
+	}
+
+	std::list<int> Ship::ReadCharactersForShip(int shipId)
+	{
+		Initialize();
+		auto records = Common::Execute(QUERY_CHARACTERS_FOR_SHIP, shipId);
+		std::list<int> result;
+		std::transform(
+			records.begin(), 
+			records.end(), 
+			std::back_inserter(result), 
+			[](const Common::Record& record) 
+			{
+				return Common::ToInt(record, FIELD_CHARACTER_ID);
+			});
+		return result;
+	}
+
+	std::optional<int> Ship::ReadBerthForCharacter(int characterId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_BERTH_FOR_CHARACTER, characterId);
+		if (record)
+		{
+			return Common::ToInt(record.value(), FIELD_BERTH);
+		}
+		return std::nullopt;
 	}
 }
