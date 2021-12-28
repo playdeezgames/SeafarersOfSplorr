@@ -7,12 +7,12 @@
 #include <functional>
 #include "Game.Characters.Action.h"
 #include "Game.Characters.Islands.h"
-#include "Game.Characters.Items.h"
 #include "Game.Characters.State.h"
 #include "Game.Colors.h"
 #include "Game.Fishboard.h"
 #include "Game.Session.h"
 #include "Game.Ship.Docked.h"
+#include <map>
 namespace game
 {
 	static characters::State OnEnterDarkAlley(int characterId)
@@ -31,14 +31,6 @@ namespace game
 
 	static characters::State OnStartFishing(int characterId)
 	{
-		if (game::characters::Items::Has(characterId, Item::FISHING_POLE))
-		{
-			if (game::characters::Items::Has(characterId, Item::BAIT))
-			{
-				Fishboard::Generate(data::game::Player::GetCharacterId().value());
-				return characters::State::FISHING;
-			}
-		}
 		return characters::State::AT_SEA;
 	}
 

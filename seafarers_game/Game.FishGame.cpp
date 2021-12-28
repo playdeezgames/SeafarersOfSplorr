@@ -1,5 +1,4 @@
 #include <Data.Game.FishGame.h>
-#include "Game.Characters.Items.h"
 #include "Game.Fishboard.h"
 #include "Game.FishGame.h"
 namespace game
@@ -38,7 +37,6 @@ namespace game
 
 	void FishGame::AddBait(int characterId)
 	{
-		characters::Items::Remove(characterId, Item::BAIT, 1);
 		data::game::FishGame::WriteGuesses(characterId, data::game::FishGame::ReadGuesses(characterId) + ADDITIONAL_GUESSES);
 	}
 }

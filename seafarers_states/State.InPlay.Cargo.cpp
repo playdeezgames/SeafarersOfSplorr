@@ -1,5 +1,4 @@
 #include <Common.Data.h>
-#include <Game.Characters.Items.h>
 #include <Game.Characters.Ships.h>
 #include <Game.Items.h>
 #include <Game.Session.h>
@@ -18,21 +17,11 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Cargo:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		auto tonnage = playerCharacter.GetLegacyItems().GetTonnage();
 		auto availableTonnage = playerCharacter.GetAvailableTonnage();
-		Terminal::WriteLine(
-				"Tonnage: {:.3f} ({:d}%)",
-				tonnage,
-				(int)(100.0 * tonnage / availableTonnage));
 		Terminal::SetForeground(game::Colors::BROWN);
 		Terminal::WriteLine("Manifest:");
 		Terminal::SetForeground(game::Colors::YELLOW);
 		size_t index = 1;
-		auto manifest = game::Session().GetPlayer().GetCharacter().GetLegacyItems().GetAll();
-		for (auto entry : manifest)
-		{
-			Terminal::WriteLine("{}) {} (x{})", index++, entry.GetName(), entry.GetCount());
-		}
 		Terminal::WriteLine("0) Never mind");
 		Terminal::ShowPrompt();
 	}
@@ -51,14 +40,7 @@ namespace state::in_play
 	static void OnHandleOther(const std::string& input)
 	{
 		auto index = common::Data::ToInt(input)-1;
-		if (index < game::Session().GetPlayer().GetCharacter().GetLegacyItems().GetAll().size())
-		{
-			Terminal::ErrorMessage("TODO: whatever one does with cargo...");
-		}
-		else
-		{
-			Terminal::ErrorMessage("Please select a valid option.");
-		}
+		Terminal::ErrorMessage("Please select a valid option.");
 		Refresh();
 	}
 

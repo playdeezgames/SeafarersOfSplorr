@@ -9,7 +9,6 @@
 #include "Game.Session.Character.HitPoints.h"
 #include "Game.Session.Character.KnownIslands.h"
 #include "Game.Session.Character.Items.h"
-#include "Game.Session.Character.LegacyItems.h"
 #include "Game.Session.Character.Messages.h"
 #include "Game.Session.Character.Quest.h"
 #include "Game.Session.Character.Plights.h"
@@ -51,7 +50,6 @@ namespace game::session
 		void ClearIsland() const;
 		std::optional<Island> TryGetIsland() const;
 		Island GetIsland() const;
-		character::LegacyItems GetLegacyItems() const;
 	private:
 		int characterId;
 	};

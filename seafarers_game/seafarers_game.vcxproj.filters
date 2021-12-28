@@ -12,9 +12,6 @@
     <Filter Include="Header Files\Audio">
       <UniqueIdentifier>{ed7134ca-fe86-4c03-a54c-82c6b078941a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Commodities">
-      <UniqueIdentifier>{f53793f1-b31f-4035-bf8e-e199bb37c807}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Features">
       <UniqueIdentifier>{9e0a44a5-8999-4fea-b33c-030773111142}</UniqueIdentifier>
     </Filter>
@@ -170,9 +167,6 @@
     <ClInclude Include="Game.Audio.Sfx.h">
       <Filter>Header Files\Audio</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Commodity.h">
-      <Filter>Header Files\Commodities</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Features.h">
       <Filter>Header Files\Features</Filter>
     </ClInclude>
@@ -323,12 +317,6 @@
     <ClInclude Include="Game.Session.Character.HitPoints.h">
       <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.Character.LegacyItem.h">
-      <Filter>Header Files\Session\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Character.LegacyItems.h">
-      <Filter>Header Files\Session\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.Character.Messages.h">
       <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
@@ -418,9 +406,6 @@
     </ClInclude>
     <ClInclude Include="Game.Session.Character.Flag.h">
       <Filter>Header Files\Session\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Characters.Items.h">
-      <Filter>Header Files\Character\Legacy</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Commodities.h">
       <Filter>Header Files\Session\Commodity</Filter>
@@ -533,6 +518,9 @@
     <ClInclude Include="Game.Characters.Plights.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Commodity.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Features.cpp">
@@ -581,9 +569,6 @@
       <Filter>Source Files\Fishing</Filter>
     </ClCompile>
     <ClCompile Include="Game.Characters.DoAction.cpp">
-      <Filter>Source Files\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Characters.Items.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Game.Characters.Plights.cpp">
@@ -641,12 +626,6 @@
       <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Character.cpp">
-      <Filter>Source Files\Session\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Character.LegacyItem.cpp">
-      <Filter>Source Files\Session\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Character.LegacyItems.cpp">
       <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Character.Messages.cpp">

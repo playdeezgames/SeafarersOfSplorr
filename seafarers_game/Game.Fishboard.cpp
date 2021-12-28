@@ -3,7 +3,6 @@
 #include <Data.Game.Fishery.h>
 #include <Data.Game.FishGame.h>
 #include <Data.Game.Character.Ship.h>
-#include "Game.Characters.Items.h"
 #include "Game.Fishboard.h"
 #include "Game.Fisheries.h"
 #include "Game.Fishes.h"
@@ -139,7 +138,6 @@ namespace game
 	{
 		ClearFishGame(characterId);
 		ClearFishboard(characterId);
-		characters::Items::Remove(characterId, BAIT_ITEM, 1);
 		PlaceFish(characterId, GenerateFish(characterId));
 	}
 
@@ -154,7 +152,6 @@ namespace game
 	static void ReelInFish(int characterId, Fish fish)
 	{
 		auto item = Fishes::GetItem(fish);
-		game::characters::Items::Add(characterId, item, 1);
 	}
 
 	static void DepleteFishery(int characterId)

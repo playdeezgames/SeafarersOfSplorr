@@ -1,6 +1,5 @@
 #include <Common.Data.h>
 #include <Common.Utility.Table.h>
-#include <Game.Characters.Items.h>
 #include <Game.Items.h>
 #include <Game.OfferingResult.h>
 #include "State.InPlay.Globals.h"
@@ -15,11 +14,6 @@ namespace state::in_play
 	}
 
 	static std::map<game::Item, size_t> items;
-
-	static void UpdateItems()
-	{
-		items = GetPlayerCharacterItems();
-	}
 
 	static void RefreshItems()
 	{
@@ -49,7 +43,6 @@ namespace state::in_play
 	static void OnEnter()
 	{
 		PlayMainTheme();
-		UpdateItems();
 		Refresh();
 	}
 
@@ -82,7 +75,6 @@ namespace state::in_play
 		auto item = common::utility::Table::GetNthKey(items, hiliteRow).value();
 		auto characterId = GetPlayerCharacterId();
 		auto islandId = GetPlayerCharacterIslandId().value();
-		game::characters::Items::Remove(GetPlayerCharacterId(), item, 1);
 		//TODO: when items are worked out, this is where you sacrifice the item!
 		OnLeave();
 	}

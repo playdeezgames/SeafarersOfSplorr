@@ -1,6 +1,5 @@
 #include <Common.Utility.Optional.h>
 #include <Data.Game.Player.h>
-#include <Game.Characters.Items.h>
 #include <Game.Characters.Message.h>
 #include <Game.Characters.Quests.h>
 #include <Game.Characters.Ships.h>
@@ -109,10 +108,6 @@ namespace state::in_play
 		return common::utility::Optional::Bind<int, std::map<game::Item, double>>(
 			GetPlayerCharacterIslandId(),
 			game::islands::Items::GetPurchasePrices);
-	}
-	std::map<game::Item, size_t> GetPlayerCharacterItems()
-	{
-		return game::characters::Items::All(GetPlayerCharacterId());
 	}
 
 	void PlayerCharacterCleanHull(const game::Side& side)

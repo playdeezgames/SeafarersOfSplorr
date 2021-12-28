@@ -5,7 +5,6 @@
 #include <Data.Game.Player.h>
 #include <Data.Game.Ship.CurrentIsland.h>
 #include "Game.Characters.Islands.h"
-#include "Game.Characters.Items.h"
 #include "Game.Characters.Quests.h"
 #include "Game.Characters.Ships.h"
 #include "Game.Fishboard.h"
@@ -14,6 +13,7 @@
 #include "Game.Session.Character.h"
 #include "Game.Session.FishGame.h"
 #include "Game.Ship.Docked.h"
+#include <map>
 namespace game::session
 {
 	character::HitPoints Character::GetHitpoints() const
@@ -28,11 +28,6 @@ namespace game::session
 			return character::Berth(characterId);
 		}
 		return std::nullopt;
-	}
-
-	character::LegacyItems Character::GetLegacyItems() const
-	{
-		return character::LegacyItems(characterId);
 	}
 
 	std::optional<character::Quest> Character::TryGetQuest() const
@@ -58,14 +53,6 @@ namespace game::session
 
 	static characters::State OnStartFishing(int characterId)
 	{
-		if (game::characters::Items::Has(characterId, game::Item::FISHING_POLE))
-		{
-			if (game::characters::Items::Has(characterId, game::Item::BAIT))
-			{
-				game::Fishboard::Generate(data::game::Player::GetCharacterId().value());
-				return characters::State::FISHING;
-			}
-		}
 		return characters::State::AT_SEA;
 	}
 

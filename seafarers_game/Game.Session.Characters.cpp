@@ -8,7 +8,6 @@
 #include "Game.Items.h"
 #include "Game.Session.Character.h"
 #include "Game.Session.Characters.h"
-#include "Game.Characters.Items.h" //FOR RESET
 #include "Game.Characters.Plights.h" //FOR APPLY TURN EFFECTS
 #include <iterator>
 namespace game::session
@@ -110,53 +109,6 @@ namespace game::session
 					if (!success)
 					{
 						SufferStarvationDueToHunger(characterId);
-					}
-				});
-	}
-
-	static void ApplyEating(int characterId)
-	{
-		const game::Item rationItem = game::Item::RATIONS;//TODO: when we can choose rations for an character, this will change
-		auto rations = game::characters::Items::Read(characterId, rationItem);
-		auto character = Characters().GetCharacter(characterId);
-		if (rations > 0)
-		{
-			character.GetCounters().GetCounter(game::characters::Counter::STARVATION).Change(-1);
-			game::characters::Items::Remove(characterId, rationItem, 1);
-			if (character.GetFlags().GetFlag(game::characters::Flag::UNFED).Has())
-			{
-				character.GetFlags().GetFlag(game::characters::Flag::UNFED).Reset();
-			}
-			else
-			{
-				character.GetFlags().GetFlag(game::characters::Flag::FED).Set();
-			}
-		}
-		else
-		{
-			SufferHunger(characterId);
-			if (character.GetFlags().GetFlag(game::characters::Flag::FED).Has())
-			{
-				character.GetFlags().GetFlag(game::characters::Flag::FED).Reset();
-			}
-			else
-			{
-				character.GetFlags().GetFlag(game::characters::Flag::UNFED).Set();
-			}
-		}
-	}
-
-	static void ApplyHunger(int characterId)
-	{
-		Characters()
-			.GetCharacter(characterId)
-			.GetCharacteristics()
-			.GetCharacteristic(Characteristic::CONSTITUTION)
-			.OnCheck([characterId](bool success)
-				{
-					if (!success)
-					{
-						ApplyEating(characterId);
 					}
 				});
 	}

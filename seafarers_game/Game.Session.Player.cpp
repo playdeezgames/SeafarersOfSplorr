@@ -2,7 +2,6 @@
 #include <Common.Heading.h>
 #include <Common.RNG.h>
 #include <Data.Game.Player.h>
-#include "Game.Characters.Items.h"
 #include "Game.Characters.Ships.h"
 #include "Game.Session.h"
 #include "Game.Session.Characters.h"
@@ -39,7 +38,6 @@ namespace game::session
 	{
 		auto character = game::session::Characters().Create(game::characters::State::AT_SEA);
 		data::game::Player::Create((int)character);
-		game::characters::Items::Reset(data::game::Player::GetCharacterId().value(), difficulty);
 		GenerateCharacterShip((int)character);
 	}
 

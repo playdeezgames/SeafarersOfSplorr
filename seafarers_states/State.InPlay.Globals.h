@@ -44,7 +44,6 @@ namespace state::in_play
 	std::optional<double> GetPlayerCharacterDarkAlleyMinimumWager();
 	std::optional<double> GetPlayerCharacterAvailableTonnage();
 	std::optional<std::map<game::Item, double>> GetPlayerCharacterPurchasePrices();
-	std::map<game::Item, size_t> GetPlayerCharacterItems();
 	void PlayerCharacterCleanHull(const game::Side&);
 
 	void SetIslandTradeItem(const game::Item&);

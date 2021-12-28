@@ -1,7 +1,6 @@
 #include <Common.Utility.Optional.h>
 #include <Data.Game.Character.Ship.h>
 #include "Game.Characters.Ships.h"
-#include "Game.Characters.Items.h"
 #include "Game.Ship.h"
 #include "Game.ShipTypes.h"
 namespace game::characters
@@ -29,8 +28,7 @@ namespace game::characters
 			[characterId](const ShipType& shipType)
 			{
 				return
-					game::ShipTypes::GetTotalTonnage(shipType) -
-					game::characters::Items::TotalTonnage(characterId);
+					game::ShipTypes::GetTotalTonnage(shipType);
 			}).value_or(0.0);
 	}
 

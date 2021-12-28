@@ -1,6 +1,5 @@
 #include <Common.Data.h>
 #include <Common.Utility.Table.h>
-#include <Game.Characters.Items.h>
 #include <Game.Characters.Ships.h>
 #include <Game.Islands.Markets.h>
 #include <Game.Islands.Ships.h>
@@ -106,19 +105,8 @@ namespace state::in_play
 
 	static void CheckTonnage(game::ShipType desiredShip, double price)
 	{
-		if (game::characters::Items::TotalTonnage(GetPlayerCharacterId()) <= game::ShipTypes::GetTotalTonnage(desiredShip))
-		{
-			Terminal::WriteLine();
-			Terminal::SetForeground(game::Colors::GREEN);
-			Terminal::WriteLine("You buy a new ship!");
-			BuyShip(desiredShip, price);
-			Refresh();
-		}
-		else
-		{
-			Terminal::ErrorMessage("Too Much Cargo!");
-			Refresh();
-		}
+		Terminal::ErrorMessage("Too Much Cargo!");
+		Refresh();
 	}
 
 	static void CheckAvailableFunds(game::ShipType desiredShip)

@@ -1,6 +1,5 @@
 #include <Common.Data.h>
 #include <Common.Utility.Table.h>
-#include <Game.Characters.Items.h>
 #include <Game.Islands.Items.h>
 #include <Game.Items.h>
 #include <Game.Session.h>
@@ -26,15 +25,6 @@ namespace state::in_play
 
 	static void RefreshUnitPrices()
 	{
-		int index = 1;
-		for (auto& unitPrice : unitPrices)
-		{
-			Terminal::WriteLine("{}) {} ({} @ {:.4f})",
-				index++,
-				game::Items::GetName(unitPrice.first),
-				game::characters::Items::Read(GetPlayerCharacterId(), unitPrice.first),
-				unitPrice.second);
-		}
 	}
 
 	static const std::string FORMAT_MONEY = "Money: {:.3f}";

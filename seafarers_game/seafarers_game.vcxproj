@@ -42,8 +42,6 @@
     <ClInclude Include="Game.Session.Character.KnownIsland.h" />
     <ClInclude Include="Game.Session.Character.KnownIslands.h" />
     <ClInclude Include="Game.Session.Character.Items.h" />
-    <ClInclude Include="Game.Session.Character.LegacyItem.h" />
-    <ClInclude Include="Game.Session.Character.LegacyItems.h" />
     <ClInclude Include="Game.Session.Character.Messages.h" />
     <ClInclude Include="Game.Session.Character.Plight.h" />
     <ClInclude Include="Game.Session.Character.Plights.h" />
@@ -90,7 +88,6 @@
     <ClInclude Include="Game.Ship.Docked.h" />
     <ClInclude Include="Game.Ship.DockResult.h" />
     <ClInclude Include="Game.Characters.Flag.h" />
-    <ClInclude Include="Game.Characters.Items.h" />
     <ClInclude Include="Game.Characters.Plight.h" />
     <ClInclude Include="Game.Characters.Plights.h" />
     <ClInclude Include="Game.Characters.PlightType.h" />
@@ -162,8 +159,6 @@
     <ClCompile Include="Game.Session.Character.Items.cpp" />
     <ClCompile Include="Game.Session.Character.KnownIsland.cpp" />
     <ClCompile Include="Game.Session.Character.KnownIslands.cpp" />
-    <ClCompile Include="Game.Session.Character.LegacyItem.cpp" />
-    <ClCompile Include="Game.Session.Character.LegacyItems.cpp" />
     <ClCompile Include="Game.Session.Character.Messages.cpp" />
     <ClCompile Include="Game.Session.Character.Plight.cpp" />
     <ClCompile Include="Game.Session.Character.Plights.cpp" />
@@ -207,7 +202,6 @@
     <ClCompile Include="Game.Session.World.Islands.cpp" />
     <ClCompile Include="Game.Session.World.Wind.cpp" />
     <ClCompile Include="Game.Ship.Docked.cpp" />
-    <ClCompile Include="Game.Characters.Items.cpp" />
     <ClCompile Include="Game.Characters.Plights.cpp" />
     <ClCompile Include="Game.Characters.Quests.cpp" />
     <ClCompile Include="Game.Characters.Ships.cpp" />

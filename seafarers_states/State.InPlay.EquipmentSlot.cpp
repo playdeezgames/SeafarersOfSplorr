@@ -1,5 +1,4 @@
 #include <Common.Data.h>
-#include <Game.Characters.Items.h>
 #include <Game.EquipSlots.h>
 #include <Game.Items.h>
 #include <Game.Session.h>
@@ -46,10 +45,6 @@ namespace state::in_play
 		auto equippableItems = game::EquipSlots::GetItems(GetEquipmentSlot());//add other possible items
 		for (auto equippableItem : equippableItems)
 		{
-			if (game::characters::Items::Has(GetCrewDetailCharacterId(), equippableItem))
-			{
-				candidates.insert(equippableItem);
-			}
 		}
 		return candidates;
 	}
@@ -71,7 +66,6 @@ namespace state::in_play
 		if (item)
 		{
 			//TODO: write to terminal that item was unequipped
-			game::characters::Items::Add(GetCrewDetailCharacterId(), item.value(), 1);
 		}
 	}
 
@@ -80,7 +74,6 @@ namespace state::in_play
 		if (item)
 		{
 			//TODO: write to terminal that item was equipped
-			game::characters::Items::Remove(GetCrewDetailCharacterId(), item.value(), 1);
 		}
 	}
 

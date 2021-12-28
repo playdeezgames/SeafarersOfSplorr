@@ -1,5 +1,4 @@
 #include <Common.Data.h>
-#include <Game.Characters.Items.h>
 #include <Game.Characters.Ships.h>
 #include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>
@@ -70,7 +69,6 @@ namespace state::in_play
 			game::islands::Markets::BuyItems(
 					GetPlayerCharacterIslandId().value()
 				, GetIslandTradeItem(), units);
-			game::characters::Items::Add(GetPlayerCharacterId(), GetIslandTradeItem(), units);
 			application::UIState::Write(::UIState::IN_PLAY_ISLAND_BUY);
 		}
 		else

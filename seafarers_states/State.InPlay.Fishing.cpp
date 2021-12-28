@@ -115,12 +115,9 @@ namespace state::in_play
 			fishGame.GetBoard().GetProgressPercentage());
 		RefreshBoard();
 
-		auto items = game::Session().GetPlayer().GetCharacter().GetLegacyItems();
-
 		Terminal::SetForeground(game::Colors::YELLOW);
 		if (fishGame.GetState() ==
-			game::FishGameState::OUT_OF_GUESSES && 
-			items.Has(game::Item::BAIT))
+			game::FishGameState::OUT_OF_GUESSES)
 		{
 			Terminal::WriteLine("1) Use more bait");
 		}
@@ -186,7 +183,7 @@ namespace state::in_play
 	static bool OutOfGuessesInputHandler(const std::string& line)
 	{
 		auto playerCharacter = game::Session().GetPlayer().GetCharacter();
-		if (line == "1" && playerCharacter.GetLegacyItems().Has(game::Item::BAIT))
+		if (line == "1")
 		{
 			playerCharacter.GetFishGame().AddBait();
 			Refresh();
