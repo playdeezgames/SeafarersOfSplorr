@@ -5,7 +5,6 @@
 #include <Data.Game.Character.h>
 #include <Data.Game.Character.Plight.h>
 #include <Data.Game.Character.Characteristic.h>
-#include <Data.Game.Character.RationsLegacy.h>
 #include "Game.Items.h"
 #include "Game.Session.Character.h"
 #include "Game.Session.Characters.h"
@@ -220,13 +219,6 @@ namespace game::session
 		return nameGenerator.Generate();
 	}
 
-	static void GenerateCharacterRations(int characterId)
-	{
-		data::game::character::RationsLegacy::Write(
-			characterId,
-			(int)game::Items::GenerateRationsForAvatar());
-	}
-
 	static const std::map<int, size_t> _2d6plus6 =
 	{
 		{8,1},
@@ -281,7 +273,6 @@ namespace game::session
 			GenerateName()
 		};
 		int characterId = data::game::Character::Create(data);
-		GenerateCharacterRations(characterId);
 		for (auto characteristicRoll : characteristicRolls)
 		{
 			data::game::character::Characteristic::Write(

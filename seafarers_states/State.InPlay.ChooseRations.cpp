@@ -1,6 +1,5 @@
 #include <Common.Data.h>
 #include <Game.Characters.Items.h>
-#include <Game.Characters.Rations.h>
 #include <Game.Items.h>
 #include <Game.Session.h>
 #include "State.InPlay.ChooseRations.h"
@@ -35,23 +34,6 @@ namespace state::in_play
 		Terminal::WriteLine("Rations for {}:", game::Session().GetCharacters().GetCharacter(avatarId).GetName());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		auto current = game::characters::Rations::Read(avatarId);
-
-		int index = 1;
-		for (auto& entry : rationsMenu)
-		{
-			std::string name = entry.has_value() ? game::Items::GetName(entry.value()) : "(nothing)";
-			Terminal::Write("{}) {}", index++, name);
-			if (entry == current)
-			{
-				Terminal::Write("*");
-			}
-			if (entry.has_value())
-			{
-				Terminal::Write("(cargo: {})", game::characters::Items::Read(avatarId, entry.value()));
-			}
-			Terminal::WriteLine();
-		}
 
 		Terminal::WriteLine("0) Never mind");
 
@@ -76,7 +58,6 @@ namespace state::in_play
 		int index = common::Data::ToInt(line) - 1;
 		if (index >= 0 && index < rationsMenu.size())
 		{
-			game::characters::Rations::Write(GetCrewDetailCharacterId(), rationsMenu[index]);
 			OnLeave();
 		}
 		else

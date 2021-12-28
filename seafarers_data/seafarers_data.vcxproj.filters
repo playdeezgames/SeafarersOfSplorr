@@ -134,9 +134,6 @@
     <ClInclude Include="Data.Game.Character.QuestLegacy.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Character.RationsLegacy.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Data.Game.Character.Ship.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
@@ -260,9 +257,6 @@
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Character.QuestLegacy.cpp">
-      <Filter>Source Files\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Character.RationsLegacy.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Character.Ship.cpp">

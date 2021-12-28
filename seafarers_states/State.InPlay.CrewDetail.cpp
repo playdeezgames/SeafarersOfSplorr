@@ -1,4 +1,3 @@
-#include <Game.Characters.Rations.h>
 #include <Game.Items.h>
 #include <Game.Session.h>
 #include "State.InPlay.CrewDetail.h"
@@ -11,15 +10,7 @@ namespace state::in_play
 
 	static void RefreshRations(int characterId)
 	{
-		auto rations = game::characters::Rations::Read(characterId);
-		if (rations)
-		{
-			Terminal::WriteLine("Rations: {}", game::Items::GetName(rations.value()));
-		}
-		else
-		{
-			Terminal::WriteLine("Rations: (nothing)");
-		}
+		Terminal::WriteLine("Rations: (nothing)");
 	}
 
 	static void RefreshFlags(int characterId)
