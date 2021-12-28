@@ -5,14 +5,12 @@ namespace data::game::character
 {
 	struct PlightLegacy
 	{
-		int plightId;
-		std::optional<int> duration;
-
-		static std::optional<PlightLegacy> Read(int, int);
-		static void Write(int, const PlightLegacy&);
+		static void Initialize();
+		static std::list<int> All(int);
+		static void Write(int, int, int);
+		static std::optional<int> ReadDuration(int, int);
 		static void ClearPlight(int, int);
 		static void Clear(int);
-		static std::list<PlightLegacy> All(int);
 
 		static void ClearAll();
 	};

@@ -1,110 +1,107 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Character.PlightLegacy.h"
+#include "Data.Game.Character.h"
 namespace data::game::character
 {
 	using namespace std::string_literals;
 	static const std::string CREATE_TABLE = 
-		R"(CREATE TABLE IF NOT EXISTS [Plights]
+		R"(CREATE TABLE IF NOT EXISTS [CharacterPlights]
 		(
 			[CharacterId] INT NOT NULL,
-			[PlightId] INT NOT NULL, 
-			[Duration] INT NULL, 
-			UNIQUE([CharacterId],[PlightId])
+			[Plight] INT NOT NULL, 
+			[Duration] INT NOT NULL, 
+			UNIQUE([CharacterId],[Plight]),
+			FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId])
 		);)"s;
-	static const std::string DELETE_ALL = 
-		R"(DELETE FROM [Plights] 
+	static const std::string DELETE_ALL_FOR_CHARACTER = 
+		R"(DELETE FROM [CharacterPlights] 
 		WHERE 
 			[CharacterId]={};)"s;
 	static const std::string DELETE_ALL_PLIGHTS = 
-		R"(DELETE FROM [Plights];)"s;
+		R"(DELETE FROM [CharacterPlights];)"s;
 	static const std::string DELETE_ITEM = 
-		R"(DELETE FROM [Plights] 
+		R"(DELETE FROM [CharacterPlights] 
 		WHERE 
-			[PlightId]={} 
-			AND [CharacterId]={};)"s;
+			[CharacterId]={} 
+			AND [Plight]={};)"s;
 	static const std::string REPLACE_ITEM = 
-		R"(REPLACE INTO [Plights]
+		R"(REPLACE INTO [CharacterPlights]
 		(
 			[CharacterId], 
-			[PlightId], 
+			[Plight], 
 			[Duration]
 		) 
 		VALUES({}, {}, {});)"s;
 	static const std::string QUERY_ITEM = 
 		R"(SELECT 
-			[PlightId], 
 			[Duration] 
-		FROM [Plights] 
+		FROM [CharacterPlights] 
 		WHERE 
-			[PlightId]={} 
-			AND [CharacterId]={};)"s;
+			[CharacterId]={} 
+			AND [Plight]={};)"s;
 	static const std::string QUERY_ALL = 
 		R"(SELECT 
-			[PlightId], 
-			[Duration] 
-		FROM [Plights] 
+			[Plight] 
+		FROM [CharacterPlights] 
 		WHERE 
 			[CharacterId]={};)"s;
 
 	static const std::string FIELD_PLIGHT_ID = "PlightId";
 	static const std::string FIELD_DURATION = "Duration";
 
-	static const auto AutoCreateTable = Common::Run(CREATE_TABLE);
-
-	static PlightLegacy ToPlight(const std::map<std::string, std::string>& record)
+	void PlightLegacy::ClearPlight(int characterId, int plight)
 	{
-		return
-		{
-			common::Data::ToInt(record.find(FIELD_PLIGHT_ID)->second),
-			common::Data::ToOptionalInt(record.find(FIELD_DURATION)->second)
-		};
-	}
-
-	std::optional<PlightLegacy> PlightLegacy::Read(int characterId, int plightId)
-	{
-		AutoCreateTable();
-		auto records = Common::Execute(QUERY_ITEM, plightId, characterId);
-		if (!records.empty())
-		{
-			return ToPlight(records.front());
-		}
-		return std::nullopt;
-	}
-
-	void PlightLegacy::Write(int characterId, const PlightLegacy& plight)
-	{
-		AutoCreateTable();
-		Common::Execute(REPLACE_ITEM, characterId, plight.plightId, common::Data::OfOptional(plight.duration));
-	}
-
-	void PlightLegacy::ClearPlight(int characterId, int plightId)
-	{
-		AutoCreateTable();
-		Common::Execute(DELETE_ITEM, plightId, characterId);
+		Initialize();
+		Common::Execute(DELETE_ITEM, characterId, plight);
 
 	}
 	void PlightLegacy::Clear(int characterId)
 	{
-		AutoCreateTable();
-		Common::Execute(DELETE_ALL,characterId);
+		Initialize();
+		Common::Execute(DELETE_ALL_FOR_CHARACTER,characterId);
 	}
 
-	std::list<PlightLegacy> PlightLegacy::All(int characterId)
+	std::list<int> PlightLegacy::All(int characterId)
 	{
-		AutoCreateTable();
-		std::list<PlightLegacy> result;
+		Initialize();
+		std::list<int> result;
 		auto records = Common::Execute(QUERY_ALL, characterId);
 		for (auto& record : records)
 		{
-			result.push_back(ToPlight(record));
+			result.push_back(Common::ToInt(record, FIELD_PLIGHT_ID));
 		}
 		return result;
 	}
 
 	void PlightLegacy::ClearAll()
 	{
-		AutoCreateTable();
+		Initialize();
 		Common::Execute(DELETE_ALL_PLIGHTS);
 	}
+
+	void PlightLegacy::Initialize()
+	{
+		Character::Initialize();
+		Common::Execute(CREATE_TABLE);
+	}
+
+	void PlightLegacy::Write(int characterId, int plight, int duration)
+	{
+		Initialize();
+		Common::Execute(REPLACE_ITEM, characterId, plight, duration);
+	}
+
+	std::optional<int> PlightLegacy::ReadDuration(int characterId, int plight)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM, characterId, plight);
+		if (record)
+		{
+			return Common::ToInt(record.value(), FIELD_DURATION);
+		}
+		return std::nullopt;
+
+	}
+
 }
