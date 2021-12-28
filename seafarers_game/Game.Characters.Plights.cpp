@@ -112,14 +112,4 @@ namespace game::characters
 	{
 		data::game::character::Plight::ClearAll();
 	}
-
-	const std::string& Plights::GetName(const Plight& plight)
-	{
-		return Read(plight).name;
-	}
-
-	PlightType Plights::GetType(const Plight& plight)
-	{
-		return Read(plight).type;
-	}
 }

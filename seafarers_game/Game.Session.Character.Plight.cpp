@@ -5,4 +5,14 @@ namespace game::session::character
 	{
 		throw "THIS DOESNT WORK";
 	}
+
+	std::string Plight::GetName() const
+	{
+		throw "THIS DOESNT WORK";
+	}
+
+	game::characters::PlightType Plight::GetType() const
+	{
+		throw "THIS DOESNT WORK";
+	}
 }

@@ -20,15 +20,17 @@ namespace state::in_play
 
 	static void RefreshPlights()
 	{
-		auto inflicted = game::characters::Plights::InflictedWith(GetCrewDetailCharacterId());
+		int characterId = GetCrewDetailCharacterId();
+		auto inflicted = game::characters::Plights::InflictedWith(characterId);
 		if (!inflicted.empty())
 		{
 			Terminal::SetForeground(game::Colors::GRAY);
 			Terminal::WriteLine("Plights:");
 			for (auto& plight : inflicted)
 			{
-				Terminal::SetForeground((game::characters::Plights::GetType(plight) == game::characters::PlightType::CURSE) ? (game::Colors::RED) : (game::Colors::GREEN));
-				Terminal::WriteLine("{}", game::characters::Plights::GetName(plight));
+				auto characterPlight = game::Session().GetCharacters().GetCharacter(characterId).GetPlights().GetPlight(plight);
+				Terminal::SetForeground((characterPlight.GetType() == game::characters::PlightType::CURSE) ? (game::Colors::RED) : (game::Colors::GREEN));
+				Terminal::WriteLine("{}", characterPlight.GetName());
 			}
 			Terminal::SetForeground(game::Colors::GRAY);
 		}
