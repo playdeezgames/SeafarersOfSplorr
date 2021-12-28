@@ -11,6 +11,7 @@ namespace game::session::character
 		{ 
 			return KnownIsland(characterId, island.operator int()); 
 		}
+		void AddKnownIsland(const Island& island) const;
 		bool HasAny() const;
 		std::list<KnownIsland> GetAll() const;
 	private:

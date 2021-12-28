@@ -62,11 +62,6 @@ namespace game
 		};
 	}
 
-	void Islands::SetKnown(int characterId, int islandId, int turn)
-	{
-		data::game::character::KnownIsland::Write(characterId, islandId);
-	}
-
 	static Island ToIsland(int islandId, bool isKnown)
 	{
 		return 

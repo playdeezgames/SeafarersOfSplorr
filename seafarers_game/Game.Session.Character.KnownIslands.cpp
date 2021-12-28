@@ -7,6 +7,11 @@ namespace game::session::character
 		return !data::game::character::KnownIsland::All(characterId).empty();
 	}
 
+	void KnownIslands::AddKnownIsland(const Island& island) const
+	{
+		data::game::character::KnownIsland::Write(characterId, island.operator int());
+	}
+
 	std::list<KnownIsland> KnownIslands::GetAll() const
 	{
 		auto islandIds = data::game::character::KnownIsland::All(characterId);
