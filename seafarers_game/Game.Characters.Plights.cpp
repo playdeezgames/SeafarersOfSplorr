@@ -62,25 +62,6 @@ namespace game::characters
 		return descriptors.find(plight)->second;
 	}
 
-	void Plights::ApplyTurnEffects(int characterId)
-	{
-		auto plights = data::game::character::Plight::All(characterId);
-		for (auto& plight : plights)
-		{
-			auto duration = data::game::character::Plight::ReadDuration(characterId, plight);
-			if (duration)
-			{
-				duration.value()--;
-				if (duration.value() <= 0)
-				{
-					data::game::character::Plight::ClearPlight(characterId, plight);
-					continue;
-				}
-				data::game::character::Plight::Write(characterId, plight, duration.value());
-			}
-		}
-	}
-
 	Plight Plights::Generate(const PlightType& type)
 	{
 		std::map<Plight, size_t> generator;
