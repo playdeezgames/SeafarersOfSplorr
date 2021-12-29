@@ -1,4 +1,5 @@
 #include <Common.Data.h>
+#include "Data.Game.Character.h"
 #include "Data.Game.Character.Skill.h"
 #include "Data.Game.Common.h"
 namespace data::game::character
@@ -10,7 +11,8 @@ namespace data::game::character
 			[CharacterId] INT NOT NULL,
 			[SkillId] INT NOT NULL,
 			[Value] INT NOT NULL, 
-			UNIQUE([CharacterId],[SkillId])
+			UNIQUE([CharacterId],[SkillId]),
+			FOREIGN KEY ([CharacterId]) REFERENCE [Characters]([CharacterId])
 		);)"s;
 	static const std::string REPLACE_ITEM = 
 		R"(REPLACE INTO [CharacterSkills]
@@ -37,17 +39,22 @@ namespace data::game::character
 
 	static const std::string FIELD_VALUE = "Value";
 	static const std::string FIELD_SKILL_ID = "SkillId";
-	static const auto AutoCreateTable = data::game::Common::Run(CREATE_TABLE);
+
+	void Skill::Initialize()
+	{
+		Character::Initialize();
+		Common::Execute(CREATE_TABLE);
+	}
 
 	void Skill::Write(int characterId, int skillId, int value)
 	{
-		AutoCreateTable();
+		Initialize();
 		Common::Execute(REPLACE_ITEM, characterId, skillId, value);
 	}
 
 	std::optional<int> Skill::Read(int characterId, int skillId)
 	{
-		AutoCreateTable();
+		Initialize();
 		auto records = Common::Execute(QUERY_ITEM, characterId, skillId);
 		if (!records.empty())
 		{
@@ -58,7 +65,7 @@ namespace data::game::character
 
 	std::map<int, int> Skill::Read(int characterId)
 	{
-		AutoCreateTable();
+		Initialize();
 		std::map<int, int> result;
 		auto records = Common::Execute(QUERY_ITEMS, characterId);
 		for (auto record : records)

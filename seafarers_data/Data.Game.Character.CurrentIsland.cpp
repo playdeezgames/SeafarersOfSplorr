@@ -1,4 +1,6 @@
 #include <Common.Data.h>
+#include "Data.Game.Character.h"
+#include "Data.Game.Island.h"
 #include "Data.Game.Character.CurrentIsland.h"
 #include "Data.Game.Common.h"
 namespace data::game::character
@@ -8,7 +10,9 @@ namespace data::game::character
 		R"(CREATE TABLE IF NOT EXISTS [CharacterCurrentIslands]
 		(
 			[CharacterId] INT NOT NULL UNIQUE,
-			[IslandId] INT NOT NULL
+			[IslandId] INT NOT NULL,
+			FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId]),
+			FOREIGN KEY ([IslandId]) REFERENCES [Islands]([IslandId])
 		);)"s;
 	static const std::string QUERY_ITEM = 
 		R"(SELECT 
@@ -37,11 +41,16 @@ namespace data::game::character
 	static const std::string FIELD_ISLAND_ID = "IslandId";
 	static const std::string FIELD_CHARACTER_ID = "CharacterId";
 
-	static const auto AutoCreateTable = data::game::Common::Run(CREATE_TABLE);
+	void Island::Initialize()
+	{
+		Character::Initialize();
+		Island::Initialize();
+		Common::Execute(CREATE_TABLE);
+	}
 
 	std::optional<Island::islandid_t> Island::Read(characterid_t characterId)
 	{
-		AutoCreateTable();
+		Initialize();
 		auto records = Common::Execute(QUERY_ITEM, characterId);
 		if (!records.empty())
 		{
@@ -52,19 +61,19 @@ namespace data::game::character
 
 	void Island::Write(characterid_t characterId, islandid_t islandId)
 	{
-		AutoCreateTable();
+		Initialize();
 		Common::Execute(REPLACE_ITEM, characterId, islandId);
 	}
 
 	void Island::Clear(characterid_t characterId)
 	{
-		AutoCreateTable();
+		Initialize();
 		Common::Execute(DELETE_ITEM, characterId);
 	}
 
 	std::list<Island::characterid_t> Island::All(islandid_t islandId)
 	{
-		AutoCreateTable();
+		Initialize();
 		auto records = Common::Execute(QUERY_ALL, islandId);
 		std::list<characterid_t> result;
 		for (auto record : records)

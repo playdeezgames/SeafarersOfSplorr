@@ -7,6 +7,7 @@ namespace data::game::character
 	{
 		typedef int characterid_t;
 		typedef int islandid_t;
+		static void Initialize();
 		static std::optional<islandid_t> Read(characterid_t);
 		static void Write(characterid_t, islandid_t);
 		static void Clear(characterid_t);
