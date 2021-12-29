@@ -219,12 +219,7 @@ namespace game::session
 
 	Character Characters::Create(const game::characters::State& state)
 	{
-		data::game::Character data =
-		{
-			(int)state,
-			GenerateName()
-		};
-		int characterId = data::game::Character::Create(data);
+		int characterId = data::game::Character::Create((int)state, GenerateName());
 		for (auto characteristicRoll : characteristicRolls)
 		{
 			data::game::character::Characteristic::Write(

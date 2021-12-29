@@ -296,9 +296,9 @@ namespace game::session
 				auto transitioner = FindTransitioner(descriptor.value(), state.value());
 				if (transitioner)
 				{
-					auto avatar = data::game::Character::Read(characterId).value();
-					avatar.state = (int)transitioner.value()(characterId);
-					data::game::Character::Write(characterId, avatar);
+					data::game::Character::WriteState(
+						characterId, 
+						(int)transitioner.value()(characterId));
 				}
 			}
 		}
@@ -356,15 +356,15 @@ namespace game::session
 
 	std::string Character::GetName() const
 	{
-		return data::game::Character::Read(characterId).value().name;
+		return data::game::Character::ReadName(characterId).value();
 	}
 
 	std::optional<characters::State> Character::TryGetState() const
 	{
-		auto character = data::game::Character::Read(characterId);
-		if (character)
+		auto state = data::game::Character::ReadState(characterId);
+		if (state)
 		{
-			return (characters::State)character.value().state;
+			return (characters::State)state.value();
 		}
 		return std::nullopt;
 	}
