@@ -46,13 +46,13 @@ namespace data::game::character
 		Common::Execute(CREATE_TABLE);
 	}
 
-	void Characteristic::Write(int characterId, int characteristicId, int value)
+	void Characteristic::Write(characterid_t characterId, characteristic_t characteristicId, value_t value)
 	{
 		Initialize();
 		Common::Execute(REPLACE_ITEM, characterId, characteristicId, value);
 	}
 
-	std::optional<int> Characteristic::Read(int characterId, int characteristicId)
+	std::optional<Characteristic::value_t> Characteristic::Read(characterid_t characterId, characteristic_t characteristicId)
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_ITEM, characterId, characteristicId);
@@ -63,10 +63,11 @@ namespace data::game::character
 		return std::nullopt;
 	}
 
-	std::map<int, int> Characteristic::Read(int characterId)
+	std::map<Characteristic::characteristic_t, Characteristic::value_t> 
+		Characteristic::Read(characterid_t characterId)
 	{
 		Initialize();
-		std::map<int, int> result;
+		std::map<characteristic_t, value_t> result;
 		auto records = Common::Execute(QUERY_ITEMS, characterId);
 		for (auto record : records)
 		{

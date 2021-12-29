@@ -5,9 +5,12 @@ namespace data::game::character
 {
 	struct Characteristic
 	{
+		typedef int characterid_t;
+		typedef int characteristic_t;
+		typedef int value_t;
 		static void Initialize();
-		static void Write(int, int, int);
-		static std::optional<int> Read(int, int);
-		static std::map<int, int> Read(int);
+		static void Write(characterid_t, characteristic_t, value_t);
+		static std::optional<value_t> Read(characterid_t, characteristic_t);
+		static std::map<characteristic_t, value_t> Read(characterid_t);
 	};
 }
