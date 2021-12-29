@@ -15,7 +15,6 @@
 #include <Game.EquipSlot.h>
 #include <Game.Feature.h>
 #include <Game.Island.h>
-#include <Game.ItemLegacy.h>
 #include <Game.Quest.h>
 #include <Game.Ship.DockResult.h>
 #include <Game.Side.h>
@@ -43,11 +42,8 @@ namespace state::in_play
 	std::optional<double> GetPlayerCharacterDarkAlleyAnte();
 	std::optional<double> GetPlayerCharacterDarkAlleyMinimumWager();
 	std::optional<double> GetPlayerCharacterAvailableTonnage();
-	std::optional<std::map<game::Item, double>> GetPlayerCharacterPurchasePrices();
 	void PlayerCharacterCleanHull(const game::Side&);
 
-	void SetIslandTradeItem(const game::Item&);
-	const game::Item& GetIslandTradeItem();
 	void SetEquipmentSlot(const game::EquipSlot&);
 	const game::EquipSlot& GetEquipmentSlot();
 	void SetCrewDetailCharacterId(int);

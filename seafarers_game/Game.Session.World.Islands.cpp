@@ -7,7 +7,6 @@
 #include <Data.Game.Character.KnownIsland.h>
 #include <Data.Game.Demigod.h>
 #include <Data.Game.Island.Feature.h>
-#include <Data.Game.Island.ItemLegacy.h>
 #include <Data.Game.Island.Market.h>
 #include <Data.Game.Tribe.h>
 #include <Data.Game.Island.Tribe.h>
@@ -15,11 +14,11 @@
 #include "Game.Islands.Features.h"
 #include "Game.Islands.Features.DarkAlley.h"
 #include "Game.Islands.Features.Tavern.h"
-#include "Game.Items.h"
 #include "Game.Session.h"
 #include "Game.Session.World.Islands.h"
 #include <map>
 #include <numeric>
+#include <set>
 #include <vector>
 namespace game::session::world
 {
@@ -135,17 +134,6 @@ namespace game::session::world
 				0
 			};
 			data::game::island::Market::Write(islandId, (int)commodity, data);
-		}
-	}
-
-	static void GenerateItems(int islandId)
-	{
-		for (auto& item : game::Items::All())
-		{
-			if (game::Items::GeneratePresenceForIsland(item))
-			{
-				data::game::island::ItemLegacy::Write(islandId, (int)item);
-			}
 		}
 	}
 
@@ -444,7 +432,6 @@ namespace game::session::world
 			locations.pop_front();
 			names.erase(names.begin());
 			GenerateMarkets(islandId);
-			GenerateItems(islandId);
 		}
 		PopulateIslandTribes();
 		GenerateAllFeatures();
@@ -456,7 +443,6 @@ namespace game::session::world
 		data::game::Island::Clear();
 		data::game::character::KnownIsland::Clear();
 		data::game::island::Market::Clear();
-		data::game::island::ItemLegacy::ClearAll();
 		data::game::island::Feature::Clear();
 	}
 

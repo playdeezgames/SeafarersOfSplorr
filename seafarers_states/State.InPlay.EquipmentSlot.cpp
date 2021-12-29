@@ -1,6 +1,5 @@
 #include <Common.Data.h>
 #include <Game.EquipSlots.h>
-#include <Game.Items.h>
 #include <Game.Session.h>
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.Globals.h"
@@ -8,17 +7,10 @@
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_EQUIPMENT_SLOT;
-	static std::vector<std::optional<game::Item>> items;
 	static std::string NOTHING = "(nothing)";
 
 	static void RefreshItems()
 	{
-		int index = 1;
-		for (auto item : items)
-		{
-			std::string itemName = (item.has_value()) ? (game::Items::GetName(item.value())) : NOTHING;
-			Terminal::WriteLine("{}) {}", index++, itemName);
-		}
 	}
 
 	static void Refresh()
@@ -39,48 +31,9 @@ namespace state::in_play
 		Terminal::ShowPrompt();
 	}
 
-	static std::set<game::Item> DetermineCandidates()
-	{
-		std::set<game::Item> candidates;
-		auto equippableItems = game::EquipSlots::GetItems(GetEquipmentSlot());//add other possible items
-		for (auto equippableItem : equippableItems)
-		{
-		}
-		return candidates;
-	}
-
-
-	static void UpdateItems()
-	{
-		std::set<game::Item> candidates = DetermineCandidates();
-		items.clear();
-		items.push_back(std::nullopt);//you can always equip nothing... thats called UNequipping!
-		for (auto candidate : candidates)
-		{
-			items.push_back(candidate);
-		}
-	}
-
-	static void UnequipItem(const std::optional<game::Item>& item)
-	{
-		if (item)
-		{
-			//TODO: write to terminal that item was unequipped
-		}
-	}
-
-	static void EquipItem(const std::optional<game::Item>& item)
-	{
-		if (item)
-		{
-			//TODO: write to terminal that item was equipped
-		}
-	}
-
 	static void OnEnter()
 	{
 		PlayMainTheme();
-		UpdateItems();
 		Refresh();
 	}
 
@@ -91,20 +44,8 @@ namespace state::in_play
 
 	static const void OnOtherInput(const std::string& line)
 	{
-		int index = common::Data::ToInt(line) - 1;
-		if (index >= 0 && index < items.size())
-		{
-			auto newItem = items[index];
-			auto oldItem = items[index];
-			UnequipItem(oldItem);
-			EquipItem(newItem);
-			application::UIState::Write(::UIState::IN_PLAY_EQUIPMENT);
-		}
-		else
-		{
-			Terminal::ErrorMessage(Terminal::INVALID_INPUT);
-			Refresh();
-		}
+		Terminal::ErrorMessage(Terminal::INVALID_INPUT);
+		Refresh();
 	}
 
 	void EquipmentSlot::Start()

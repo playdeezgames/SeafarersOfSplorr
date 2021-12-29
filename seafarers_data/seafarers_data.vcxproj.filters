@@ -80,9 +80,6 @@
     <ClInclude Include="Data.Game.Island.h">
       <Filter>Header Files\Island</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Island.ItemLegacy.h">
-      <Filter>Header Files\Island</Filter>
-    </ClInclude>
     <ClInclude Include="Data.Game.Island.Market.h">
       <Filter>Header Files\Island</Filter>
     </ClInclude>
@@ -197,9 +194,6 @@
       <Filter>Source Files\Island</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Island.Feature.cpp">
-      <Filter>Source Files\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Island.ItemLegacy.cpp">
       <Filter>Source Files\Island</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Island.Market.cpp">

@@ -1,5 +1,4 @@
 #include <Common.Data.h>
-#include <Game.Items.h>
 #include <Game.Session.h>
 #include "State.InPlay.ChooseRations.h"
 #include "State.InPlay.CrewDetail.h"
@@ -10,19 +9,9 @@ namespace state::in_play
 
 	static auto OnLeave = application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL);
 
-	static std::vector<std::optional<game::Item>> rationsMenu;
-
 	static void UpdateRationsMenu()
 	{
-		rationsMenu.clear();
-		rationsMenu.push_back(std::nullopt);
-		auto allRations = game::Items::AllRations();
-		for (auto& entry : allRations)
-		{
-			rationsMenu.push_back(entry);
-		}
 	}
-
 
 	static void Refresh()
 	{
@@ -54,16 +43,8 @@ namespace state::in_play
 
 	static const void OnOtherInput(const std::string& line)
 	{
-		int index = common::Data::ToInt(line) - 1;
-		if (index >= 0 && index < rationsMenu.size())
-		{
-			OnLeave();
-		}
-		else
-		{
-			Terminal::ErrorMessage(Terminal::INVALID_INPUT);
-			Refresh();
-		}
+		Terminal::ErrorMessage(Terminal::INVALID_INPUT);
+		Refresh();
 	}
 
 	void ChooseRations::Start()

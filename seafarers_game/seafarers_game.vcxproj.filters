@@ -36,9 +36,6 @@
     <Filter Include="Header Files\Islands\Trade">
       <UniqueIdentifier>{a08423a1-aba7-4dd4-ab85-4041c025144f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Trade">
-      <UniqueIdentifier>{fbdf2962-31a5-4a22-b678-a6ede14a2e07}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Islands\DarkAlley">
       <UniqueIdentifier>{c8711537-33ea-4351-ba03-fda64b379a77}</UniqueIdentifier>
     </Filter>
@@ -176,12 +173,6 @@
     <ClInclude Include="Game.Islands.Ships.h">
       <Filter>Header Files\Islands</Filter>
     </ClInclude>
-    <ClInclude Include="Game.ItemLegacy.h">
-      <Filter>Header Files\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Items.h">
-      <Filter>Header Files\Items</Filter>
-    </ClInclude>
     <ClInclude Include="Game.ShipType.h">
       <Filter>Header Files\Ships</Filter>
     </ClInclude>
@@ -228,9 +219,6 @@
       <Filter>Header Files\Islands\Trade</Filter>
     </ClInclude>
     <ClInclude Include="Game.Islands.Markets.h">
-      <Filter>Header Files\Islands\Trade</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.Items.h">
       <Filter>Header Files\Islands\Trade</Filter>
     </ClInclude>
     <ClInclude Include="Game.Fisheries.h">
@@ -514,9 +502,6 @@
     <ClCompile Include="Game.Islands.Ships.cpp">
       <Filter>Source Files\Islands</Filter>
     </ClCompile>
-    <ClCompile Include="Game.ItemsLegacy.cpp">
-      <Filter>Source Files\Trade</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Islands.DarkAlley.cpp">
       <Filter>Source Files\Islands\DarkAlley</Filter>
     </ClCompile>
@@ -527,9 +512,6 @@
       <Filter>Source Files\Islands\DarkAlley</Filter>
     </ClCompile>
     <ClCompile Include="Game.Islands.Commodities.cpp">
-      <Filter>Source Files\Islands\Trade</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.Items.cpp">
       <Filter>Source Files\Islands\Trade</Filter>
     </ClCompile>
     <ClCompile Include="Game.Islands.Markets.cpp">

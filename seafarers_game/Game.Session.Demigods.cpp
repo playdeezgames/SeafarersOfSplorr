@@ -5,7 +5,6 @@
 #include <Data.Game.Character.DemigodFavor.h>
 #include <Data.Game.Character.h>
 #include "Game.Characters.Plights.h"
-#include "Game.Items.h"
 #include "Game.Session.Demigods.h"
 #include <iterator>
 #include <map>
@@ -118,7 +117,6 @@ namespace game::session
 		const double OFFERING_FAVOR_MAXIMUM = 1.0;
 		auto demigodCount = common::RNG::FromGenerator(demigodCounts);
 		auto names = GenerateNames(demigodCount);
-		auto items = Items::All();
 		for (auto name : names)
 		{
 			DemigodData demigod = {

@@ -113,12 +113,9 @@
     <ClInclude Include="Game.Islands.DarkAlley.GamblingHand.h" />
     <ClInclude Include="Game.Islands.DarkAlley.h" />
     <ClInclude Include="Game.Islands.Features.h" />
-    <ClInclude Include="Game.Islands.Items.h" />
     <ClInclude Include="Game.Islands.Markets.h" />
     <ClInclude Include="Game.Islands.Quests.h" />
     <ClInclude Include="Game.Islands.Ships.h" />
-    <ClInclude Include="Game.ItemLegacy.h" />
-    <ClInclude Include="Game.Items.h" />
     <ClInclude Include="Game.OfferingResult.h" />
     <ClInclude Include="Game.Quest.h" />
     <ClInclude Include="Game.Ship.Crew.h" />
@@ -206,11 +203,9 @@
     <ClCompile Include="Game.Islands.DarkAlley.FightCard.cpp" />
     <ClCompile Include="Game.Islands.DarkAlley.GamblingHand.cpp" />
     <ClCompile Include="Game.Islands.Features.cpp" />
-    <ClCompile Include="Game.Islands.Items.cpp" />
     <ClCompile Include="Game.Islands.Markets.cpp" />
     <ClCompile Include="Game.Islands.Quests.cpp" />
     <ClCompile Include="Game.Islands.Ships.cpp" />
-    <ClCompile Include="Game.ItemsLegacy.cpp" />
     <ClCompile Include="Game.Ship.cpp" />
     <ClCompile Include="Game.Ship.Crew.cpp" />
     <ClCompile Include="Game.ShipNames.cpp" />

@@ -1,4 +1,3 @@
-#include <Game.Items.h>
 #include <Game.Session.h>
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.Globals.h"

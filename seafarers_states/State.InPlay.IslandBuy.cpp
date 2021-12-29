@@ -1,8 +1,6 @@
 #include <Common.Data.h>
 #include <Common.Utility.Table.h>
 #include <Game.Characters.Ships.h>
-#include <Game.Islands.Items.h>
-#include <Game.Items.h>
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.IslandBuy.h"
@@ -17,23 +15,8 @@ namespace state::in_play
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	static std::map<game::Item, double> unitPrices;
-
-	static void UpdateUnitPrices()
-	{
-		unitPrices = GetPlayerCharacterPurchasePrices().value();
-	}
-
 	static void RefreshUnitPrices()
 	{
-		int index = 1;
-		for (auto& unitPrice : unitPrices)
-		{
-			Terminal::WriteLine("{}) {} (@{:.4f})",
-				index++,
-				game::Items::GetName(unitPrice.first),
-				unitPrice.second);
-		}
 	}
 
 	static const std::string FORMAT_TONNAGE = "Avail. Tonn.: {:.3f}";
@@ -68,7 +51,6 @@ namespace state::in_play
 	static void OnEnter()
 	{
 		PlayMainTheme();
-		UpdateUnitPrices();
 		Refresh();
 	}
 
@@ -79,18 +61,8 @@ namespace state::in_play
 
 	static const void OnOtherInput(const std::string& line)
 	{
-		int index = common::Data::ToInt(line)-1;
-		if (index >= 0 && index < unitPrices.size())
-		{
-			auto key = common::utility::Table::GetNthKey(unitPrices, index).value();
-			SetIslandTradeItem(common::utility::Table::GetNthKey(unitPrices, index).value());
-			application::UIState::Write(::UIState::IN_PLAY_ISLAND_BUY_QUANTITY);
-		}
-		else
-		{
-			Terminal::ErrorMessage(Terminal::INVALID_INPUT);
-			Refresh();
-		}
+		Terminal::ErrorMessage(Terminal::INVALID_INPUT);
+		Refresh();
 	}
 
 	void IslandBuy::Start()

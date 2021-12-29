@@ -1,7 +1,6 @@
 #pragma once
 #include <Common.XY.h>
 #include "Game.Fish.h"
-#include "Game.ItemLegacy.h"
 #include <list>
 #include <string>
 namespace game
@@ -17,7 +16,6 @@ namespace game
 		static int GenerateStock(const Fish&);
 		static const std::list<common::XY<int>>& GetShape(const Fish&);
 		static const common::XY<size_t>& GetSize(const Fish&);
-		static Item GetItem(const Fish&);
 		static size_t GetJunkWeight(const Fish&);
 		static const std::string& GetSprite(const Fish&);
 	};

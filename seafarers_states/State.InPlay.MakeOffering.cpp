@@ -1,6 +1,5 @@
 #include <Common.Data.h>
 #include <Common.Utility.Table.h>
-#include <Game.Items.h>
 #include <Game.OfferingResult.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.MakeOffering.h"
@@ -13,17 +12,6 @@ namespace state::in_play
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	static std::map<game::Item, size_t> items;
-
-	static void RefreshItems()
-	{
-		int index = 1;
-		for (auto& item : items)
-		{
-			Terminal::WriteLine("{}) {}", index++, game::Items::GetName(item.first));
-		}
-	}
-
 	static void Refresh()
 	{
 		Terminal::Reinitialize();
@@ -33,7 +21,6 @@ namespace state::in_play
 		Terminal::WriteLine();
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		RefreshItems();
 		Terminal::WriteLine("0) Never mind");
 
 		Terminal::ShowPrompt();
@@ -72,10 +59,6 @@ namespace state::in_play
 
 	static void OfferItem(int hiliteRow)
 	{
-		auto item = common::utility::Table::GetNthKey(items, hiliteRow).value();
-		auto characterId = GetPlayerCharacterId();
-		auto islandId = GetPlayerCharacterIslandId().value();
-		//TODO: when items are worked out, this is where you sacrifice the item!
 		OnLeave();
 	}
 
@@ -86,16 +69,8 @@ namespace state::in_play
 
 	static void OnOtherInput(const std::string& line)
 	{
-		int index = common::Data::ToInt(line) - 1;
-		if (index >= 0 && index < items.size())
-		{
-			OfferItem(index);
-		}
-		else
-		{
-			Terminal::ErrorMessage(Terminal::INVALID_INPUT);
-			Refresh();
-		}
+		Terminal::ErrorMessage(Terminal::INVALID_INPUT);
+		Refresh();
 	}
 
 	void MakeOffering::Start()

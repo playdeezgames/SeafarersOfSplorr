@@ -7,7 +7,6 @@
 #include <Data.Game.Character.Plight.h>
 #include <Data.Game.Character.Characteristic.h>
 #include <Data.Game.Island.Tribe.h>
-#include "Game.Items.h"
 #include "Game.Session.Character.h"
 #include "Game.Session.Characters.h"
 #include "Game.Characters.Plights.h" //FOR APPLY TURN EFFECTS

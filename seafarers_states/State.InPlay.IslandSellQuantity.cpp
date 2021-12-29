@@ -1,7 +1,5 @@
 #include <Common.Data.h>
-#include <Game.Islands.Items.h>
 #include <Game.Islands.Markets.h>
-#include <Game.Items.h>
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.IslandSellQuantity.h"
@@ -12,13 +10,6 @@ namespace state::in_play
 	static void Refresh()
 	{
 		Terminal::Reinitialize();
-
-		auto unitPrice = game::islands::Items::GetSalePrices(GetPlayerCharacterIslandId().value())[GetIslandTradeItem()];
-
-		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
-		Terminal::WriteLine("Selling {}:", game::Items::GetName(GetIslandTradeItem()));
-		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Unit price: {:.4f}.", unitPrice);
 
 		Terminal::ShowPrompt();
 	}
@@ -31,8 +22,6 @@ namespace state::in_play
 
 	static void OnOtherInput(const std::string& line)
 	{
-		auto unitPrice = game::islands::Items::GetSalePrices(GetPlayerCharacterIslandId().value())[GetIslandTradeItem()];
-		int units = common::Data::ToInt(line);
 		Terminal::ErrorMessage(Terminal::INVALID_INPUT);
 		Refresh();
 	}

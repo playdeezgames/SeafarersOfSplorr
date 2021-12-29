@@ -6,7 +6,6 @@
 #include <Game.Ship.Statistics.h>
 #include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.Features.h>
-#include <Game.Islands.Items.h>
 #include <Game.Session.h>
 #include <Game.Ship.h>
 #include <Game.Ship.Docked.h>
@@ -103,28 +102,9 @@ namespace state::in_play
 		return game::characters::Ships::AvailableTonnage(GetPlayerCharacterId());
 	}
 
-	std::optional<std::map<game::Item, double>> GetPlayerCharacterPurchasePrices()
-	{
-		return common::utility::Optional::Bind<int, std::map<game::Item, double>>(
-			GetPlayerCharacterIslandId(),
-			game::islands::Items::GetPurchasePrices);
-	}
-
 	void PlayerCharacterCleanHull(const game::Side& side)
 	{
 		game::ship::Statistics::CleanHull(GetPlayerCharacterShipId().value(), side);
-	}
-
-	static game::Item islandTradeItem = game::Item::RATIONS;
-
-	void SetIslandTradeItem(const game::Item& item)
-	{
-		islandTradeItem = item;
-	}
-
-	const game::Item& GetIslandTradeItem()
-	{
-		return islandTradeItem;
 	}
 
 	static game::EquipSlot equipmentSlot = game::EquipSlot::PRISON_WALLET;

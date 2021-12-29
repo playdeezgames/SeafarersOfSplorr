@@ -1,7 +1,6 @@
 #include <Data.Game.Island.Market.h>
 #include <functional>
 #include "Game.Islands.Markets.h"
-#include "Game.Items.h"
 #include "Game.ShipTypes.h"
 namespace game::islands
 {
@@ -39,16 +38,6 @@ namespace game::islands
 	static void SellQuantities(int islandId, const std::map<Commodity, double> commodities, size_t quantity)
 	{
 		ExchangeQuantities(islandId, commodities, quantity, Sales);
-	}
-
-	void Markets::BuyItems(int islandId, const game::Item& item, size_t quantity)
-	{
-		BuyQuantities(islandId, game::Items::GetCommodities(item), quantity);
-	}
-
-	void Markets::SellItems(int islandId, const game::Item& item, size_t quantity)
-	{
-		SellQuantities(islandId, game::Items::GetCommodities(item), quantity);
 	}
 
 	void Markets::BuyShipType(int islandId, const game::ShipType& ship)

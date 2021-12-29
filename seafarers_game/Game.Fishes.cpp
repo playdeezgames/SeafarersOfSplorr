@@ -14,7 +14,6 @@ namespace game
 		std::function<int()> stockGenerator;
 		std::list<common::XY<int>> shape;
 		common::XY<size_t> size;
-		Item item;
 		size_t junkWeight;
 		std::string sprite;
 	};
@@ -33,7 +32,6 @@ namespace game
 					{0,0},{1,0}
 				},
 				{ 2, 1 },
-				Item::FISH,
 				0,
 				"FishboardFishRed"
 			}
@@ -50,7 +48,6 @@ namespace game
 					{0,0},{0,1}
 				},
 				{ 1, 2 },
-				Item::FISH,
 				0,
 				"FishboardFishPurple"
 			}
@@ -67,7 +64,6 @@ namespace game
 					{0,0},{1,1}
 				},
 				{ 2, 2 },
-				Item::FISH,
 				0,
 				"FishboardFishGreen"
 			}
@@ -84,7 +80,6 @@ namespace game
 					{0,0}
 				},
 				{ 1, 1 },
-				Item::TROUSERS,
 				1,
 				"FishboardFishTrousers"
 			}
@@ -101,7 +96,6 @@ namespace game
 					{0,0}
 				},
 				{ 1, 1 },
-				Item::SEAWEED,
 				99,
 				"FishboardFishSeaweed"
 			}
@@ -166,11 +160,6 @@ namespace game
 	const common::XY<size_t>& Fishes::GetSize(const Fish& fish)
 	{
 		return Read(fish).size;
-	}
-
-	Item Fishes::GetItem(const Fish& fish)
-	{
-		return Read(fish).item;
 	}
 
 	size_t Fishes::GetJunkWeight(const Fish& fish)
