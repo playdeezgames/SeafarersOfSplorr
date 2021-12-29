@@ -3,8 +3,10 @@
 #include <Common.RNG.h>
 #include <Data.Game.Player.h>
 #include <Data.Game.Character.h>
+#include <Data.Game.Character.KnownIsland.h>
 #include <Data.Game.Character.Plight.h>
 #include <Data.Game.Character.Characteristic.h>
+#include <Data.Game.Island.Tribe.h>
 #include "Game.Items.h"
 #include "Game.Session.Character.h"
 #include "Game.Session.Characters.h"
@@ -217,9 +219,32 @@ namespace game::session
 		{ Characteristic::STRENGTH, _3d6},
 	};
 
+	using IslandTribeData = data::game::island::Tribe;
+
+	static int GenerateOriginIslandId()
+	{
+		return 
+			common::RNG::FromGenerator(
+				IslandTribeData::AllTotals());
+	}
+
+	static int GenerateTribeId(int islandId)
+	{
+		return 
+			common::RNG::FromGenerator(
+				IslandTribeData::All(islandId));
+	}
+
 	Character Characters::Create(const game::characters::State& state)
 	{
-		int characterId = data::game::Character::Create((int)state, GenerateName());
+		auto originIslandId = GenerateOriginIslandId();
+		int characterId = 
+			data::game::Character::Create(
+				(int)state, 
+				GenerateName(), 
+				originIslandId, 
+				GenerateTribeId(originIslandId));
+		data::game::character::KnownIsland::Write(characterId, originIslandId);
 		for (auto characteristicRoll : characteristicRolls)
 		{
 			data::game::character::Characteristic::Write(

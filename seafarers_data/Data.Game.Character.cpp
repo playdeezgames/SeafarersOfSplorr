@@ -1,6 +1,8 @@
 #include <Common.Data.h>
 #include "Data.Game.Character.h"
 #include "Data.Game.Common.h"
+#include "Data.Game.Island.h"
+#include "Data.Game.Tribe.h"
 namespace data::game
 {
 	using namespace std::string_literals;
@@ -9,7 +11,11 @@ namespace data::game
 		(
 			[CharacterId] INTEGER PRIMARY KEY AUTOINCREMENT,
 			[State] INT NOT NULL, 
-			[Name] TEXT NOT NULL
+			[Name] TEXT NOT NULL,
+			[OriginIslandId] INT NOT NULL,
+			[TribeId] INT NOT NULL,
+			FOREIGN KEY ([OriginIslandId]) REFERENCES [Islands]([IslandId]),
+			FOREIGN KEY ([TribeId]) REFERENCES [Tribes]([TribeId])
 		);)"s;
 	static const std::string QUERY_ITEM_COLUMN =
 		R"(SELECT 
@@ -21,9 +27,11 @@ namespace data::game
 		R"(INSERT INTO [Characters]
 		(
 			[State],
-			[Name]
+			[Name],
+			[OriginIslandId],
+			[TribeId]
 		) 
-		VALUES({}, {});)"s;
+		VALUES({}, {}, {}, {});)"s;
 	static const std::string UPDATE_ITEM_COLUMN =
 		R"(UPDATE [Characters] 
 		SET 
@@ -37,20 +45,26 @@ namespace data::game
 
 	static const std::string FIELD_STATE = "State";
 	static const std::string FIELD_NAME = "Name";
+	static const std::string FIELD_TRIBE_ID = "TribeId";
+	static const std::string FIELD_ORIGIN_ISLAND_ID = "OriginIslandId";
 	static const std::string FIELD_CHARACTER_ID = "CharacterId";
 
 	void Character::Initialize()
 	{
-		data::game::Common::Execute(CREATE_TABLE);
+		Island::Initialize();
+		Tribe::Initialize();
+		Common::Execute(CREATE_TABLE);
 	}
 
-	int Character::Create(int state, const std::string& name)
+	int Character::Create(int state, const std::string& name, int islandId, int tribeId)
 	{
 		Initialize();
 		Common::Execute(
 			CREATE_ITEM,
 			state,
-			common::Data::QuoteString(name));
+			common::Data::QuoteString(name),
+			islandId,
+			tribeId);
 		return Common::LastInsertedIndex();
 	}
 
@@ -67,6 +81,28 @@ namespace data::game
 		if (record)
 		{
 			return Common::ToInt(record.value(), FIELD_STATE);
+		}
+		return std::nullopt;
+	}
+
+	std::optional<int> Character::ReadOriginIslandId(int characterId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_ORIGIN_ISLAND_ID, characterId);
+		if (record)
+		{
+			return Common::ToInt(record.value(), FIELD_ORIGIN_ISLAND_ID);
+		}
+		return std::nullopt;
+	}
+
+	std::optional<int> Character::ReadTribeId(int characterId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_TRIBE_ID, characterId);
+		if (record)
+		{
+			return Common::ToInt(record.value(), FIELD_TRIBE_ID);
 		}
 		return std::nullopt;
 	}

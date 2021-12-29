@@ -446,8 +446,8 @@ namespace game::session::world
 			GenerateMarkets(islandId);
 			GenerateItems(islandId);
 		}
-		GenerateAllFeatures();
 		PopulateIslandTribes();
+		GenerateAllFeatures();
 	}
 
 

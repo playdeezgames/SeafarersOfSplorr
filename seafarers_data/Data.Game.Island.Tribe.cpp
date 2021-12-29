@@ -40,9 +40,18 @@ namespace data::game::island
 		FROM [IslandTribes] 
 		WHERE 
 			[IslandId]={};)"s;
+	static const std::string QUERY_ALL_TOTALS =
+		R"(SELECT 
+			[IslandId],
+			SUM([Presence]) AS [TotalPresence] 
+		FROM [IslandTribes] 
+		GROUP BY 
+			[IslandId];)"s;
 
 	static const std::string FIELD_PRESENCE = "Presence";
 	static const std::string FIELD_TRIBE_ID = "TribeId";
+	static const std::string FIELD_ISLAND_ID = "IslandId";
+	static const std::string FIELD_TOTAL_PRESENCE = "TotalPresence";
 
 	void Tribe::Initialize()
 	{
@@ -74,15 +83,28 @@ namespace data::game::island
 		return std::nullopt;
 	}
 
-	std::map<int, int> Tribe::All(int islandId)
+	std::map<int, size_t> Tribe::All(int islandId)
 	{
 		Initialize();
-		std::map<int, int> result;
+		std::map<int, size_t> result;
 		auto records = Common::Execute(QUERY_ALL, islandId);
 		for (auto record : records)
 		{
-			result[Common::ToInt(record, FIELD_TRIBE_ID)] = Common::ToInt(record, FIELD_PRESENCE);
+			result[Common::ToInt(record, FIELD_TRIBE_ID)] = (size_t)Common::ToInt(record, FIELD_PRESENCE);
 		}
 		return result;
 	}
+
+	std::map<int, size_t> Tribe::AllTotals()
+	{
+		Initialize();
+		std::map<int, size_t> result;
+		auto records = Common::Execute(QUERY_ALL_TOTALS);
+		for (auto record : records)
+		{
+			result[Common::ToInt(record, FIELD_ISLAND_ID)] = (size_t)Common::ToInt(record, FIELD_TOTAL_PRESENCE);
+		}
+		return result;
+	}
+
 }

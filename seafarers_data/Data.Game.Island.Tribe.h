@@ -9,6 +9,7 @@ namespace data::game::island
 		static void Clear();
 		static void Write(int, int, int);
 		static std::optional<int> Read(int, int);
-		static std::map<int, int> All(int);
+		static std::map<int, size_t> All(int);
+		static std::map<int, size_t> AllTotals();
 	};
 }
