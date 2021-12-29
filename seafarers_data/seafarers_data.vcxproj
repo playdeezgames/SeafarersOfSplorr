@@ -28,7 +28,6 @@
     <ClInclude Include="Data.Game.Character.ItemInstance.h" />
     <ClInclude Include="Data.Game.Character.KnownIsland.h" />
     <ClInclude Include="Data.Game.Character.Plight.h" />
-    <ClInclude Include="Data.Game.Character.QuestLegacy.h" />
     <ClInclude Include="Data.Game.Character.Ship.h" />
     <ClInclude Include="Data.Game.Character.Skill.h" />
     <ClInclude Include="Data.Game.Common.h" />
@@ -66,7 +65,6 @@
     <ClCompile Include="Data.Game.Character.ItemInstance.cpp" />
     <ClCompile Include="Data.Game.Character.KnownIsland.cpp" />
     <ClCompile Include="Data.Game.Character.Plight.cpp" />
-    <ClCompile Include="Data.Game.Character.QuestLegacy.cpp" />
     <ClCompile Include="Data.Game.Character.Ship.cpp" />
     <ClCompile Include="Data.Game.Character.Skill.cpp" />
     <ClCompile Include="Data.Game.Common.cpp" />

@@ -71,7 +71,7 @@ namespace data::game
 	void Character::WriteState(characterid_t characterId, state_t state)
 	{
 		Initialize();
-		Common::Execute(UPDATE_ITEM_COLUMN, FIELD_STATE, state);
+		Common::Execute(UPDATE_ITEM_COLUMN, FIELD_STATE, state, characterId);
 	}
 
 	std::optional<Character::state_t> Character::ReadState(characterid_t characterId)

@@ -53,6 +53,8 @@
     <ClInclude Include="Game.Session.Demigods.h" />
     <ClInclude Include="Game.Session.Fisheries.h" />
     <ClInclude Include="Game.Session.h" />
+    <ClInclude Include="Game.Session.Island.Feature.h" />
+    <ClInclude Include="Game.Session.Island.Features.h" />
     <ClInclude Include="Game.Session.Island.h" />
     <ClInclude Include="Game.Session.Island.Market.h" />
     <ClInclude Include="Game.Session.Island.Markets.h" />

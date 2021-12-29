@@ -18,15 +18,9 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Dock or Careen:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Port fouling {:.0f}%",
-			ship.GetFouling(game::Side::PORT).GetPercentage());
-		Terminal::WriteLine("Starboard fouling {:.0f}%", 
-			ship.GetFouling(game::Side::STARBOARD).GetPercentage());
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Dock");
-		Terminal::WriteLine("2) Careen to port");
-		Terminal::WriteLine("3) Careen to starboard");
 		Terminal::WriteLine("0) Never mind");
 
 		Terminal::ShowPrompt();
@@ -68,31 +62,9 @@ namespace state::in_play
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	static void OnCareenToPort()
-	{
-		auto playerCharacter =
-			game::Session()
-				.GetPlayer().GetCharacter();
-		playerCharacter.GetMessages().Add(game::Colors::GREEN,"You careen the vessel on its port side.");
-		playerCharacter.DoAction(game::characters::Action::CAREEN_TO_PORT);
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
-	}
-
-	static void OnCareenToStarboard()
-	{
-		auto playerCharacter =
-			game::Session()
-			.GetPlayer().GetCharacter();
-		playerCharacter.GetMessages().Add(game::Colors::GREEN, "You careen the vessel on its starboard side.");
-		playerCharacter.DoAction(game::characters::Action::CAREEN_TO_STARBOARD);
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
-	}
-
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
 		{"1", OnDock},
-		{"2", OnCareenToPort},
-		{"3", OnCareenToStarboard},
 		{"0", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW)}
 	};
 

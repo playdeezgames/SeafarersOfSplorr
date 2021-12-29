@@ -12,11 +12,6 @@ namespace game::session
 		return TryGetLocation(islandId).value();
 	}
 
-	island::Tavern Island::GetTavern() const
-	{
-		return island::Tavern(islandId);
-	}
-
 	std::string Island::GetName() const
 	{
 		return data::game::Island::ReadName(islandId).value();
@@ -26,5 +21,4 @@ namespace game::session
 	{
 		return data::game::Island::ReadPatronDemigodId(islandId).value();
 	}
-
 }

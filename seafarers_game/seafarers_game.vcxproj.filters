@@ -18,9 +18,6 @@
     <Filter Include="Header Files\Islands">
       <UniqueIdentifier>{279dddf3-583e-40c2-802c-6051521ed1fd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Items">
-      <UniqueIdentifier>{ae957077-db46-464b-b834-f45660a2ec1b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Ships">
       <UniqueIdentifier>{9860971e-d6d9-476a-81f6-5263706ef053}</UniqueIdentifier>
     </Filter>
@@ -332,9 +329,6 @@
     <ClInclude Include="Game.Session.Character.Items.h">
       <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Item.Category.h">
-      <Filter>Header Files\Items</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.Item.Type.h">
       <Filter>Header Files\Session\Item</Filter>
     </ClInclude>
@@ -490,6 +484,15 @@
     </ClInclude>
     <ClInclude Include="Game.Commodity.h">
       <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Item.Category.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Island.Features.h">
+      <Filter>Header Files\Session\Island</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Island.Feature.h">
+      <Filter>Header Files\Session\Island</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

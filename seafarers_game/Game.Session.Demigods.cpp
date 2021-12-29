@@ -148,6 +148,7 @@ namespace game::session
 					candidate.cooldown--;
 				}
 			});
+		DemigodFavorData::WriteOfferingCooldowns(candidates);
 	}
 
 	std::list<Demigod> Demigods::GetAll() const
