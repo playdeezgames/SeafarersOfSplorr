@@ -11,13 +11,6 @@ namespace data::game
 			[State] INT NOT NULL, 
 			[Name] TEXT NOT NULL
 		);)"s;
-	static const std::string QUERY_ITEM =
-		R"(SELECT 
-			[State],
-			[Name] 
-		FROM [Characters] 
-		WHERE 
-			[CharacterId] = {};)"s;
 	static const std::string QUERY_ITEM_COLUMN =
 		R"(SELECT 
 			[{}]
@@ -31,13 +24,6 @@ namespace data::game
 			[Name]
 		) 
 		VALUES({}, {});)"s;
-	static const std::string UPDATE_ITEM = 
-		R"(UPDATE [Characters] 
-		SET 
-			[State]={}, 
-			[Name]={} 
-		WHERE 
-			CharacterId={};)"s;
 	static const std::string UPDATE_ITEM_COLUMN =
 		R"(UPDATE [Characters] 
 		SET 
