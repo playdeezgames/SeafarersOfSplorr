@@ -11,14 +11,20 @@ namespace data::game
 			[State] INT NOT NULL, 
 			[Name] TEXT NOT NULL
 		);)"s;
-	static const std::string QUERY_ITEM= 
+	static const std::string QUERY_ITEM =
 		R"(SELECT 
 			[State],
 			[Name] 
 		FROM [Characters] 
 		WHERE 
 			[CharacterId] = {};)"s;
-	static const std::string CREATE_ITEM = 
+	static const std::string QUERY_ITEM_COLUMN =
+		R"(SELECT 
+			[{}]
+		FROM [Characters] 
+		WHERE 
+			[CharacterId] = {};)"s;
+	static const std::string CREATE_ITEM =
 		R"(INSERT INTO [Characters]
 		(
 			[State],
@@ -32,7 +38,13 @@ namespace data::game
 			[Name]={} 
 		WHERE 
 			CharacterId={};)"s;
-	static const std::string QUERY_ALL = 
+	static const std::string UPDATE_ITEM_COLUMN =
+		R"(UPDATE [Characters] 
+		SET 
+			[{}]={}
+		WHERE 
+			CharacterId={};)"s;
+	static const std::string QUERY_ALL =
 		R"(SELECT 
 			[CharacterId] 
 		FROM [Characters];)"s;
@@ -78,6 +90,43 @@ namespace data::game
 		return Common::LastInsertedIndex();
 	}
 
+	int Character::Create(int state, const std::string& name)
+	{
+		Initialize();
+		Common::Execute(
+			CREATE_ITEM,
+			state,
+			common::Data::QuoteString(name));
+		return Common::LastInsertedIndex();
+	}
+
+	void Character::WriteState(int characterId, int state)
+	{
+		Initialize();
+		Common::Execute(UPDATE_ITEM_COLUMN, FIELD_STATE, state);
+	}
+
+	std::optional<int> Character::ReadState(int characterId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_STATE, characterId);
+		if (record)
+		{
+			return Common::ToInt(record.value(), FIELD_STATE);
+		}
+		return std::nullopt;
+	}
+
+	std::optional<std::string> Character::ReadName(int characterId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_NAME, characterId);
+		if (record)
+		{
+			return Common::ToString(record.value(), FIELD_NAME);
+		}
+		return std::nullopt;
+	}
 
 	void Character::Write(int characterId, const Character& avatar)
 	{
