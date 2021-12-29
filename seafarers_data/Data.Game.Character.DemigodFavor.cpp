@@ -74,7 +74,7 @@ namespace data::game::character
 		Common::Execute(CREATE_TABLE);
 	}
 
-	void DemigodFavor::Write(int characterId, int demigodId, double favor, int offeringCooldown)
+	void DemigodFavor::Write(characterid_t characterId, demigodid_t demigodId, favor_t favor, cooldown_t offeringCooldown)
 	{
 		Initialize();
 		Common::Execute(
@@ -85,7 +85,7 @@ namespace data::game::character
 			offeringCooldown);
 	}
 
-	std::optional<double> DemigodFavor::ReadFavor(int characterId, int demigodId)
+	std::optional<DemigodFavor::favor_t> DemigodFavor::ReadFavor(characterid_t characterId, demigodid_t demigodId)
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_ITEM_FAVOR, characterId, demigodId);
@@ -96,7 +96,7 @@ namespace data::game::character
 		return std::nullopt;
 	}
 
-	std::optional<int> DemigodFavor::ReadOfferingCooldown(int characterId, int demigodId)
+	std::optional<DemigodFavor::cooldown_t> DemigodFavor::ReadOfferingCooldown(characterid_t characterId, demigodid_t demigodId)
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_ITEM_OFFERING_COOLDOWN, characterId, demigodId);
@@ -107,12 +107,17 @@ namespace data::game::character
 		return std::nullopt;
 	}
 
-	void DemigodFavor::WriteOfferingCooldown(int characterId, int demigodId, int cooldown)
+	void DemigodFavor::WriteOfferingCooldown(characterid_t characterId, demigodid_t demigodId, cooldown_t cooldown)
 	{
 		Initialize();
 		Common::Execute(UPDATE_ITEM_COLUMN, FIELD_OFFERING_COOLDOWN, cooldown, characterId, demigodId);
 	}
 
+	void DemigodFavor::WriteFavor(characterid_t characterId, demigodid_t demigodId, favor_t favor)
+	{
+		Initialize();
+		Common::Execute(UPDATE_ITEM_COLUMN, FIELD_FAVOR, favor, characterId, demigodId);
+	}
 
 	void DemigodFavor::ClearAll()
 	{

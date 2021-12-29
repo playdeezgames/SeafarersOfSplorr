@@ -14,11 +14,16 @@ namespace data::game::character
 				: characterId(characterId), demigodId(demigodId), cooldown(cooldown) {}
 		};
 
+		typedef int characterid_t;
+		typedef int demigodid_t;
+		typedef double favor_t;
+		typedef int cooldown_t;
 		static void Initialize();
-		static void Write(int, int, double, int);
-		static std::optional<double> ReadFavor(int, int);
-		static std::optional<int> ReadOfferingCooldown(int, int);
-		static void WriteOfferingCooldown(int, int, int);
+		static void Write(characterid_t, demigodid_t, favor_t, cooldown_t);
+		static void WriteFavor(characterid_t, demigodid_t, favor_t);
+		static std::optional<favor_t> ReadFavor(characterid_t, demigodid_t);
+		static std::optional<cooldown_t> ReadOfferingCooldown(characterid_t, demigodid_t);
+		static void WriteOfferingCooldown(characterid_t, demigodid_t, cooldown_t);
 		static void ClearAll();
 
 		static std::list<Cooldown> ReadOfferingCooldowns();
