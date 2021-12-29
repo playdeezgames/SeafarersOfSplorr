@@ -398,4 +398,15 @@ namespace game::session
 	{
 		return TryGetIsland().value();
 	}
+
+	Island Character::GetOriginIsland() const
+	{
+		return Island(data::game::Character::ReadOriginIslandId(characterId).value());
+	}
+
+	Tribe Character::GetTribe() const
+	{
+		return Tribe(data::game::Character::ReadTribeId(characterId).value());
+	}
+
 }

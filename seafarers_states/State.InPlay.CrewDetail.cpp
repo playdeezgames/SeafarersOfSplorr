@@ -8,11 +8,6 @@ namespace state::in_play
 
 	static auto OnLeave = application::UIState::GoTo(::UIState::IN_PLAY_CREW_LIST);
 
-	static void RefreshRations(int characterId)
-	{
-		Terminal::WriteLine("Rations: (nothing)");
-	}
-
 	static void RefreshFlags(int characterId)
 	{
 		auto character =
@@ -40,32 +35,40 @@ namespace state::in_play
 		}
 	}
 
-	static void RefreshCharacteristics(int characterId)
+	static void RefreshHitPoints(int characterId)
 	{
-		Terminal::WriteLine("Maximum HP: {}", game::Session().GetCharacters().GetCharacter(characterId).GetHitpoints().GetMaximum());
+		auto hitPoints = 
+			game::Session()
+			.GetCharacters()
+			.GetCharacter(characterId)
+			.GetHitpoints();
+		Terminal::WriteLine(
+			"HP: {}/{}", 
+			hitPoints.GetCurrent(),
+			hitPoints.GetMaximum());
 	}
 
 	static void Refresh()
 	{
 		int characterId = GetCrewDetailCharacterId();
+		auto character = 
+			game::Session()
+			.GetCharacters()
+			.GetCharacter(characterId);
 
 		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Crew Details:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		Terminal::WriteLine("Name: {}", game::Session().GetCharacters().GetCharacter(characterId).GetName());
-		RefreshRations(characterId);
+		Terminal::WriteLine("Name: {}", character.GetName());
+		Terminal::WriteLine("From: {}", character.GetOriginIsland().GetName());
+		Terminal::WriteLine("Tribe: {}", character.GetTribe().GetName());
 		RefreshFlags(characterId);
-		RefreshCharacteristics(characterId);//TODO: make this its own screen
+		RefreshHitPoints(characterId);
 
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Characteristics");
-		Terminal::WriteLine("2) Skills");
-		Terminal::WriteLine("3) Statistics");
-		Terminal::WriteLine("4) Equipment");
-		Terminal::WriteLine("5) Change Rations");
-		Terminal::WriteLine("6) Items");
 		Terminal::WriteLine("0) Never mind");
 
 		Terminal::ShowPrompt();
@@ -80,10 +83,6 @@ namespace state::in_play
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
 		{ "1", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_CHARACTERISTICS) },
-		{ "3", application::UIState::GoTo(::UIState::IN_PLAY_CHARACTER_STATUS) },
-		{ "4", application::UIState::GoTo(::UIState::IN_PLAY_EQUIPMENT)},
-		{ "5", application::UIState::GoTo(::UIState::IN_PLAY_CHOOSE_RATIONS)},
-		{ "6", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_ITEMS)},
 		{ "0", OnLeave}
 	};
 

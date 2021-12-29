@@ -1,21 +1,25 @@
 #include <Common.Utility.Array.h>
+#include <Data.Game.Character.h>
 #include <Data.Game.Character.Ship.h>
 #include "Game.Characters.Ships.h"
 #include "Game.Session.h"
 #include "Game.Ship.Crew.h"
 namespace game::ship
 {
+	using ShipData = data::game::character::Ship;
+	using CharacterData = data::game::Character;
+
 	std::vector<Crew> Crew::ReadForShip(int shipId)
 	{
 		std::vector<Crew> result;
-		auto crewMembers = data::game::character::Ship::ReadCharactersForShip(shipId);
+		auto crewMembers = ShipData::ReadCharactersForShip(shipId);
 		for (auto crewMember : crewMembers)
 		{
 			Crew crew = 
 			{
 				crewMember,
-				(game::BerthType)data::game::character::Ship::ReadBerthForCharacter(crewMember).value(),
-				"(idk)"
+				(game::BerthType)ShipData::ReadBerthForCharacter(crewMember).value(),
+				CharacterData::ReadName(crewMember).value()
 			};
 			result.push_back(crew);
 		}
@@ -29,7 +33,7 @@ namespace game::ship
 		std::vector<Crew> result;
 		if (shipId)
 		{
-			ReadForShip(shipId.value());
+			return ReadForShip(shipId.value());
 		}
 		return std::vector<Crew>();
 	}

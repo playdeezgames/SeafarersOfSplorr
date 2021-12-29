@@ -12,6 +12,8 @@
 #include "Game.Session.Character.Messages.h"
 #include "Game.Session.Character.Quest.h"
 #include "Game.Session.Character.Plights.h"
+#include "Game.Session.Island.h"
+#include "Game.Session.Tribe.h"
 #include <list>
 #include <optional>
 namespace game::session
@@ -41,8 +43,8 @@ namespace game::session
 		std::optional<characters::State> TryGetState() const;
 		characters::State GetState() const;
 		void ApplyTurnEffects() const;
-
-
+		Island GetOriginIsland() const;
+		Tribe GetTribe() const;
 
 		void SetIsland(Island island) const;
 		void ClearIsland() const;
