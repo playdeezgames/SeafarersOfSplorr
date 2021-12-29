@@ -41,14 +41,14 @@ namespace data::game::character
 	static const std::string FIELD_ISLAND_ID = "IslandId";
 	static const std::string FIELD_CHARACTER_ID = "CharacterId";
 
-	void Island::Initialize()
+	void CurrentIsland::Initialize()
 	{
 		Character::Initialize();
 		Island::Initialize();
 		Common::Execute(CREATE_TABLE);
 	}
 
-	std::optional<Island::islandid_t> Island::Read(characterid_t characterId)
+	std::optional<CurrentIsland::islandid_t> CurrentIsland::Read(characterid_t characterId)
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_ITEM, characterId);
@@ -59,19 +59,19 @@ namespace data::game::character
 		return std::nullopt;
 	}
 
-	void Island::Write(characterid_t characterId, islandid_t islandId)
+	void CurrentIsland::Write(characterid_t characterId, islandid_t islandId)
 	{
 		Initialize();
 		Common::Execute(REPLACE_ITEM, characterId, islandId);
 	}
 
-	void Island::Clear(characterid_t characterId)
+	void CurrentIsland::Clear(characterid_t characterId)
 	{
 		Initialize();
 		Common::Execute(DELETE_ITEM, characterId);
 	}
 
-	std::list<Island::characterid_t> Island::All(islandid_t islandId)
+	std::list<CurrentIsland::characterid_t> CurrentIsland::All(islandid_t islandId)
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_ALL, islandId);

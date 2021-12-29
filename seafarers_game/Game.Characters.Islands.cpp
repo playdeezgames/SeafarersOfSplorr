@@ -5,7 +5,7 @@ namespace game::characters
 {
 	std::list<int> Islands::All(int islandId, const game::characters::State& state)
 	{
-		auto characterIds = data::game::character::Island::All(islandId);
+		auto characterIds = data::game::character::CurrentIsland::All(islandId);
 		std::list<int> result;
 		for (auto characterId : characterIds)
 		{

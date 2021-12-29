@@ -3,7 +3,7 @@
 #include <optional>
 namespace data::game::character
 {
-	struct Island
+	struct CurrentIsland
 	{
 		typedef int characterid_t;
 		typedef int islandid_t;

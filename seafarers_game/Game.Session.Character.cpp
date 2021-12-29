@@ -340,7 +340,7 @@ namespace game::session
 
 	void Character::SetIsland(Island island) const
 	{
-		data::game::character::Island::Write(characterId, (int)island);
+		data::game::character::CurrentIsland::Write(characterId, (int)island);
 	}
 
 	character::Counters Character::GetCounters() const
@@ -380,12 +380,12 @@ namespace game::session
 
 	void Character::ClearIsland() const
 	{
-		data::game::character::Island::Clear(characterId);
+		data::game::character::CurrentIsland::Clear(characterId);
 	}
 
 	std::optional<Island> Character::TryGetIsland() const
 	{
-		auto islandId = data::game::character::Island::Read(characterId);
+		auto islandId = data::game::character::CurrentIsland::Read(characterId);
 		if (islandId)
 		{
 			return Island(islandId.value());
