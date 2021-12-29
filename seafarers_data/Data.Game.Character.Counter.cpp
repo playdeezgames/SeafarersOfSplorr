@@ -43,13 +43,13 @@ namespace data::game::character
 		Common::Execute(CREATE_TABLE);
 	}
 
-	void Counter::Write(int characterId, int counterId, int value)
+	void Counter::Write(characterid_t characterId, counter_t counterId, value_t value)
 	{
 		Initialize();
 		Common::Execute(REPLACE_ITEM, characterId, counterId, value);
 	}
 
-	std::optional<int> Counter::Read(int characterId, int counterId)
+	std::optional<Counter::value_t> Counter::Read(characterid_t characterId, counter_t counterId)
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_ITEM, characterId, counterId);
@@ -60,7 +60,7 @@ namespace data::game::character
 		return std::nullopt;
 	}
 
-	void Counter::Clear(int characterId, int counterId)
+	void Counter::Clear(characterid_t characterId, counter_t counterId)
 	{
 		Initialize();
 		Common::Execute(DELETE_ITEM, characterId, counterId);
