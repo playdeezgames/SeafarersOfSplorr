@@ -1,5 +1,6 @@
 #include <Common.Data.h>
 #include <Game.BerthType.h>
+#include <Game.Session.h>
 #include <Game.Ship.Crew.h>
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.CrewList.h"
@@ -15,7 +16,7 @@ namespace state::in_play
 		std::string name;
 		std::string berth;
 		std::string mark;
-		int avatarId;
+		int characterId;
 	};
 
 	static std::vector<RosterItem> rosterItems;
@@ -32,7 +33,15 @@ namespace state::in_play
 		size_t index = 1;
 		for (auto& rosterItem : rosterItems)
 		{
-			Terminal::WriteLine("{}) {}{} - {}", index++, rosterItem.name, rosterItem.mark, rosterItem.berth);
+			auto hitPoints = game::Session().GetCharacters().GetCharacter(rosterItem.characterId).GetHitpoints();
+			Terminal::WriteLine(
+				"{}) {}{} - {} HP:{}/{}", 
+				index++, 
+				rosterItem.name, 
+				rosterItem.mark, 
+				rosterItem.berth,
+				hitPoints.GetCurrent(),
+				hitPoints.GetMaximum());
 		}
 		Terminal::WriteLine("0) Never mind");
 
@@ -80,7 +89,7 @@ namespace state::in_play
 		int index = common::Data::ToInt(line) - 1;
 		if (index >= 0 && index < rosterItems.size())
 		{
-			SetCrewDetailCharacterId(rosterItems[index].avatarId);
+			SetCrewDetailCharacterId(rosterItems[index].characterId);
 			application::UIState::Write(::UIState::IN_PLAY_CREW_DETAIL);
 		}
 		else
