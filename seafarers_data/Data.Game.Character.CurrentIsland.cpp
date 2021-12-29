@@ -39,7 +39,7 @@ namespace data::game::character
 
 	static const auto AutoCreateTable = data::game::Common::Run(CREATE_TABLE);
 
-	std::optional<int> Island::Read(int characterId)
+	std::optional<Island::islandid_t> Island::Read(characterid_t characterId)
 	{
 		AutoCreateTable();
 		auto records = Common::Execute(QUERY_ITEM, characterId);
@@ -50,23 +50,23 @@ namespace data::game::character
 		return std::nullopt;
 	}
 
-	void Island::Write(int characterId, int islandId)
+	void Island::Write(characterid_t characterId, islandid_t islandId)
 	{
 		AutoCreateTable();
 		Common::Execute(REPLACE_ITEM, characterId, islandId);
 	}
 
-	void Island::Clear(int characterId)
+	void Island::Clear(characterid_t characterId)
 	{
 		AutoCreateTable();
 		Common::Execute(DELETE_ITEM, characterId);
 	}
 
-	std::list<int> Island::All(int islandId)
+	std::list<Island::characterid_t> Island::All(islandid_t islandId)
 	{
 		AutoCreateTable();
 		auto records = Common::Execute(QUERY_ALL, islandId);
-		std::list<int> result;
+		std::list<characterid_t> result;
 		for (auto record : records)
 		{
 			result.push_back(common::Data::ToInt(record.find(FIELD_CHARACTER_ID)->second));
