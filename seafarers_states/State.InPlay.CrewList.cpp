@@ -1,7 +1,9 @@
+#include <algorithm>
 #include <Common.Data.h>
 #include <Game.BerthType.h>
 #include <Game.Session.h>
 #include <Game.Ship.Crew.h>
+#include <iterator>
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.CrewList.h"
 #include "State.InPlay.Globals.h"
@@ -13,13 +15,36 @@ namespace state::in_play
 
 	struct RosterItem
 	{
+		int index;
 		std::string name;
 		std::string berth;
 		std::string mark;
 		int characterId;
+		int currentHitPoints;
+		int maximumHitPoints;
 	};
 
 	static std::vector<RosterItem> rosterItems;
+
+	static void ShowRosterItem(const RosterItem& rosterItem)
+	{
+		Terminal::WriteLine(
+			"{}) {}{} - {} HP:{}/{}", 
+			rosterItem.index, 
+			rosterItem.name, 
+			rosterItem.mark, 
+			rosterItem.berth,
+			rosterItem.currentHitPoints,
+			rosterItem.maximumHitPoints);
+	}
+
+	static void RefreshRoster()
+	{
+		std::for_each(
+			rosterItems.begin(), 
+			rosterItems.end(), 
+			ShowRosterItem);
+	}
 
 	static void Refresh()
 	{
@@ -30,19 +55,7 @@ namespace state::in_play
 		Terminal::WriteLine();
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		size_t index = 1;
-		for (auto& rosterItem : rosterItems)
-		{
-			auto hitPoints = game::Session().GetCharacters().GetCharacter(rosterItem.characterId).GetHitpoints();
-			Terminal::WriteLine(
-				"{}) {}{} - {} HP:{}/{}", 
-				index++, 
-				rosterItem.name, 
-				rosterItem.mark, 
-				rosterItem.berth,
-				hitPoints.GetCurrent(),
-				hitPoints.GetMaximum());
-		}
+		RefreshRoster();
 		Terminal::WriteLine("0) Never mind");
 
 		Terminal::ShowPrompt();
@@ -61,15 +74,29 @@ namespace state::in_play
 	{
 		rosterItems.clear();
 		auto crew = game::ship::Crew::ReadForCharacter(GetPlayerCharacterId());
-		for (auto& entry : crew)
-		{
-			rosterItems.push_back({
-				entry.name,
-				berthNames.find(entry.berthType)->second,
-				(entry.avatarId==GetPlayerCharacterId()) ? ("(you)") : (""),
-				entry.avatarId
-				});
-		}
+		int index = 1;
+		std::transform(
+			crew.begin(), 
+			crew.end(), 
+			std::back_inserter(rosterItems), 
+			[&index](const game::ship::Crew& entry) 
+			{
+				auto hitPoints = 
+					game::Session()
+					.GetCharacters()
+					.GetCharacter(entry.avatarId)
+					.GetHitpoints();
+				RosterItem result = {
+					index++,
+					entry.name,
+					berthNames.find(entry.berthType)->second,
+					(entry.avatarId==GetPlayerCharacterId()) ? ("(you)") : (""),
+					entry.avatarId,
+					hitPoints.GetCurrent(),
+					hitPoints.GetMaximum()
+					};
+				return result;
+			});
 	}
 
 	static void OnEnter()
