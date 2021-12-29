@@ -56,7 +56,7 @@ namespace data::game
 		Common::Execute(CREATE_TABLE);
 	}
 
-	int Character::Create(int state, const std::string& name, int islandId, int tribeId)
+	int Character::Create(state_t state, const name_t& name, islandid_t islandId, tribeid_t tribeId)
 	{
 		Initialize();
 		Common::Execute(
@@ -68,13 +68,13 @@ namespace data::game
 		return Common::LastInsertedIndex();
 	}
 
-	void Character::WriteState(int characterId, int state)
+	void Character::WriteState(characterid_t characterId, state_t state)
 	{
 		Initialize();
 		Common::Execute(UPDATE_ITEM_COLUMN, FIELD_STATE, state);
 	}
 
-	std::optional<int> Character::ReadState(int characterId)
+	std::optional<Character::state_t> Character::ReadState(characterid_t characterId)
 	{
 		Initialize();
 		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_STATE, characterId);
@@ -85,7 +85,7 @@ namespace data::game
 		return std::nullopt;
 	}
 
-	std::optional<int> Character::ReadOriginIslandId(int characterId)
+	std::optional<Character::islandid_t> Character::ReadOriginIslandId(characterid_t characterId)
 	{
 		Initialize();
 		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_ORIGIN_ISLAND_ID, characterId);
@@ -96,7 +96,7 @@ namespace data::game
 		return std::nullopt;
 	}
 
-	std::optional<int> Character::ReadTribeId(int characterId)
+	std::optional<Character::tribeid_t> Character::ReadTribeId(characterid_t characterId)
 	{
 		Initialize();
 		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_TRIBE_ID, characterId);
@@ -107,7 +107,7 @@ namespace data::game
 		return std::nullopt;
 	}
 
-	std::optional<std::string> Character::ReadName(int characterId)
+	std::optional<Character::name_t> Character::ReadName(characterid_t characterId)
 	{
 		Initialize();
 		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_NAME, characterId);
@@ -118,11 +118,11 @@ namespace data::game
 		return std::nullopt;
 	}
 
-	std::list<int> Character::All()
+	std::list<Character::characterid_t> Character::All()
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_ALL);
-		std::list<int> result;
+		std::list<characterid_t> result;
 		for (auto& record : records)
 		{
 			result.push_back(common::Data::ToInt(record[FIELD_CHARACTER_ID]));
