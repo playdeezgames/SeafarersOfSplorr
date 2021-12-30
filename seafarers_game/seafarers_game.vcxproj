@@ -134,6 +134,7 @@
     <ClCompile Include="Game.Session.Save.cpp" />
     <ClCompile Include="Game.Session.Saves.cpp" />
     <ClCompile Include="Game.Session.Ship.Berth.cpp" />
+    <ClCompile Include="Game.Session.Ship.Berths.cpp" />
     <ClCompile Include="Game.Session.Ship.cpp" />
     <ClCompile Include="Game.Session.Ship.DockableIslands.cpp" />
     <ClCompile Include="Game.Session.Ship.VisibleIslands.cpp" />

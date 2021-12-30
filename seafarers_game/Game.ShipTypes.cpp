@@ -81,11 +81,6 @@ namespace game
 				result[shipType] = descriptor.initialShipGenerationWeight;
 			});
 
-	game::ShipType ShipTypes::GenerateForAvatar()
-	{
-		return common::RNG::FromGenerator(initialShipGenerator);
-	}
-
 	static double ReadProperty(const ShipType& shipType, const ship::Property& property)
 	{
 		return Read(shipType).properties.find(property)->second;

@@ -19,7 +19,7 @@ namespace game::session
 	static void GenerateCharacterShip(int characterId)
 	{
 		auto worldSize = game::Session().GetWorld().GetBounds().GetSize();
-		auto shipType = game::ShipTypes::GenerateForAvatar();
+		auto shipType = game::ShipType::RAFT;
 		int shipId = game::Ship::Add({
 			shipType,
 			game::ShipNames::Generate(),

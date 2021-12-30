@@ -10,7 +10,6 @@ namespace game
 	struct ShipTypes
 	{
 		static const std::list<game::ShipType>& All();
-		static game::ShipType GenerateForAvatar();
 		static double GetTotalTonnage(const game::ShipType&);
 		static const std::string& GetName(const game::ShipType&);
 		static double GetSpeedFactor(const game::ShipType&);

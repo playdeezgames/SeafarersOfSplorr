@@ -499,6 +499,9 @@
     <ClCompile Include="Game.ShipNames.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Session.Ship.Berths.cpp">
+      <Filter>Source Files\Session\Ship</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Game.Session.Character.Flags.h">
