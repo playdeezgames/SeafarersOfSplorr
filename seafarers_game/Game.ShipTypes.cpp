@@ -85,11 +85,6 @@ namespace game
 		return ReadProperty(shipType, ship::Property::TONNAGE);
 	}
 
-	const std::string& ShipTypes::GetName(const game::ShipType& shipType)
-	{
-		return Read(shipType).name;
-	}
-
 	double ShipTypes::GetSpeedFactor(const game::ShipType& shipType)
 	{
 		return ReadProperty(shipType, ship::Property::SPEED_FACTOR);
