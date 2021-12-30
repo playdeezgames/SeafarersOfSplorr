@@ -3,7 +3,6 @@
 #include <Game.Characters.Message.h>
 #include <Game.Characters.Ships.h>
 #include <Game.Ship.Statistics.h>
-#include <Game.Islands.DarkAlley.h>
 #include <Game.Islands.Features.h>
 #include <Game.Session.h>
 #include <Game.Ship.h>
@@ -75,20 +74,6 @@ namespace state::in_play
 	void DoPlayerCharacterAction(const game::characters::Action& action)
 	{
 		game::Session().GetPlayer().GetCharacter().DoAction(action);
-	}
-
-	std::optional<double> GetPlayerCharacterDarkAlleyAnte()
-	{
-		return common::utility::Optional::Bind<int, double>(
-			GetPlayerCharacterIslandId(),
-			game::islands::DarkAlley::GetAnte);
-	}
-
-	std::optional<double> GetPlayerCharacterDarkAlleyMinimumWager()
-	{
-		return common::utility::Optional::Bind<int, double>(
-			GetPlayerCharacterIslandId(),
-			game::islands::DarkAlley::GetMinimumWager);
 	}
 
 	std::optional<double> GetPlayerCharacterAvailableTonnage()

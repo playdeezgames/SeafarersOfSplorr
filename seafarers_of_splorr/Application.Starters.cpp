@@ -27,14 +27,10 @@
 #include <State.InPlay.CrewList.h>
 #include <State.InPlay.CrewDetail.h>
 #include <State.InPlay.CurrentJob.h>
-#include <State.InPlay.DarkAlley.h>
-#include <State.InPlay.DarkAlleyEntrance.h>
 #include <State.InPlay.Docked.h>
 #include <State.InPlay.DockOrCareen.h>
 #include <State.InPlay.Equipment.h>
 #include <State.InPlay.EquipmentSlot.h>
-#include <State.InPlay.GambleIntro.h>
-#include <State.InPlay.GamblePlay.h>
 #include <State.InPlay.HeadForKnown.h>
 #include <State.InPlay.HeadForNearBy.h>
 #include <State.InPlay.IslandBuy.h>
@@ -154,7 +150,6 @@ namespace application
 		state::in_play::IslandSell::Start,
 		state::in_play::Cargo::Start,
 		state::in_play::Next::Start,
-		state::in_play::DarkAlley::Start,
 		state::in_play::CareenedToPort::Start,
 		state::in_play::CareenedToStarboard::Start,
 		state::in_play::Temple::Start,
@@ -174,12 +169,9 @@ namespace application
 		state::in_play::IslandBuyQuantity::Start,
 		state::in_play::IslandSellQuantity::Start,
 		state::in_play::EquipmentSlot::Start,
-		state::in_play::DarkAlleyEntrance::Start,
 		state::in_play::Shipyard::Start,
 		state::in_play::ShipyardPurchaseShip::Start,
 		state::in_play::ShipyardUnfoulShip::Start,
-		state::in_play::GambleIntro::Start,
-		state::in_play::GamblePlay::Start,
 		state::in_play::ChooseRations::Start,
 		state::in_play::RenameShipAdjective::Start,
 		state::in_play::RenameShipNoun::Start,

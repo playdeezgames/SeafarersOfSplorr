@@ -12,7 +12,6 @@
 #include <Data.Game.Island.Tribe.h>
 #include "Game.Features.h"
 #include "Game.Islands.Features.h"
-#include "Game.Islands.Features.DarkAlley.h"
 #include "Game.Islands.Features.Tavern.h"
 #include "Game.Session.h"
 #include "Game.Session.World.Islands.h"
@@ -161,7 +160,6 @@ namespace game::session::world
 	}
 	static const std::map<game::Feature, std::function<void(int)>> featureInitializers =
 	{
-		{game::Feature::DARK_ALLEY, game::islands::features::DarkAlley::Initialize},
 		{game::Feature::TAVERN, game::islands::features::Tavern::Initialize}
 	};
 

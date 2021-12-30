@@ -98,9 +98,6 @@
     <ClInclude Include="State.InPlay.CurrentJob.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.DarkAlley.h">
-      <Filter>Header Files\Docked</Filter>
-    </ClInclude>
     <ClInclude Include="State.InPlay.Docked.h">
       <Filter>Header Files\Docked</Filter>
     </ClInclude>
@@ -197,9 +194,6 @@
     <ClInclude Include="State.InPlay.EquipmentSlot.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.DarkAlleyEntrance.h">
-      <Filter>Header Files\Docked</Filter>
-    </ClInclude>
     <ClInclude Include="State.InPlay.Shipyard.h">
       <Filter>Header Files\Docked</Filter>
     </ClInclude>
@@ -207,12 +201,6 @@
       <Filter>Header Files\Docked</Filter>
     </ClInclude>
     <ClInclude Include="State.InPlay.ShipyardUnfoulShip.h">
-      <Filter>Header Files\Docked</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.GambleIntro.h">
-      <Filter>Header Files\Docked</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.GamblePlay.h">
       <Filter>Header Files\Docked</Filter>
     </ClInclude>
     <ClInclude Include="State.InPlay.ChooseRations.h">
@@ -310,9 +298,6 @@
     <ClCompile Include="State.InPlay.IslandJobs.cpp">
       <Filter>Source Files\Docked\Jobs</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.DarkAlley.cpp">
-      <Filter>Source Files\Docked\DarkAlley</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.IslandBuy.cpp">
       <Filter>Source Files\Docked\Trading</Filter>
     </ClCompile>
@@ -379,9 +364,6 @@
     <ClCompile Include="State.InPlay.EquipmentSlot.cpp">
       <Filter>Source Files\AtSea\Status</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.DarkAlleyEntrance.cpp">
-      <Filter>Source Files\Docked\DarkAlley</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.Shipyard.cpp">
       <Filter>Source Files\Docked</Filter>
     </ClCompile>
@@ -390,12 +372,6 @@
     </ClCompile>
     <ClCompile Include="State.InPlay.ShipyardUnfoulShip.cpp">
       <Filter>Source Files\Docked</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.GambleIntro.cpp">
-      <Filter>Source Files\Docked\DarkAlley</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.GamblePlay.cpp">
-      <Filter>Source Files\Docked\DarkAlley</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.ChooseRations.cpp">
       <Filter>Source Files\AtSea\Status</Filter>

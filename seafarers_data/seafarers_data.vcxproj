@@ -32,9 +32,6 @@
     <ClInclude Include="Data.Game.Character.Skill.h" />
     <ClInclude Include="Data.Game.Common.h" />
     <ClInclude Include="Data.Game.Demigod.h" />
-    <ClInclude Include="Data.Game.Island.DarkAlley.FightCard.h" />
-    <ClInclude Include="Data.Game.Island.DarkAlley.GamblingHand.h" />
-    <ClInclude Include="Data.Game.Island.DarkAlley.h" />
     <ClInclude Include="Data.Game.Island.Feature.h" />
     <ClInclude Include="Data.Game.Island.h" />
     <ClInclude Include="Data.Game.Island.Market.h" />
@@ -68,9 +65,6 @@
     <ClCompile Include="Data.Game.Common.cpp" />
     <ClCompile Include="Data.Game.Demigod.cpp" />
     <ClCompile Include="Data.Game.Island.cpp" />
-    <ClCompile Include="Data.Game.Island.DarkAlley.cpp" />
-    <ClCompile Include="Data.Game.Island.DarkAlley.FightCard.cpp" />
-    <ClCompile Include="Data.Game.Island.DarkAlley.GamblingHand.cpp" />
     <ClCompile Include="Data.Game.Island.Feature.cpp" />
     <ClCompile Include="Data.Game.Island.Market.cpp" />
     <ClCompile Include="Data.Game.Island.Tavern.cpp" />

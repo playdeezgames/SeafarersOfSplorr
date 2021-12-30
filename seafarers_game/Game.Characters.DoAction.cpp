@@ -1,6 +1,5 @@
 #include <Data.Game.Character.h>
 #include <Data.Game.Character.Ship.h>
-#include <Data.Game.Island.DarkAlley.h>
 #include <Data.Game.Player.h>
 #include <Data.Game.Ship.CurrentIsland.h>
 #include <format>
@@ -16,15 +15,6 @@ namespace game
 {
 	static characters::State OnEnterDarkAlley(int characterId)
 	{
-		auto data = 
-			data::game::island::DarkAlley::Read(
-				game::ship::Docked::GetIsland(
-					data::game::character::Ship::ReadShipForCharacter(characterId).value()).value()).value();
-		auto infamy = game::Session().GetCharacters().GetCharacter(characterId).GetCounters().GetCounter(game::characters::Counter::INFAMY).GetValue();
-		if (infamy < data.infamyRequirement)
-		{
-			return characters::State::DARK_ALLEY_ENTRANCE;
-		}
 		return characters::State::DARK_ALLEY;
 	}
 

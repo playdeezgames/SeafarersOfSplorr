@@ -27,14 +27,8 @@
     <Filter Include="Source Files\Islands">
       <UniqueIdentifier>{03628875-d3ae-4e27-a48d-0f8623f28eab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Islands\DarkAlley">
-      <UniqueIdentifier>{4409cc6b-118f-4b7c-bc52-eb342cc15031}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Islands\Trade">
       <UniqueIdentifier>{a08423a1-aba7-4dd4-ab85-4041c025144f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Islands\DarkAlley">
-      <UniqueIdentifier>{c8711537-33ea-4351-ba03-fda64b379a77}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Islands\Trade">
       <UniqueIdentifier>{41300da2-b0b3-4d76-84fa-528ea2f52c68}</UniqueIdentifier>
@@ -185,15 +179,6 @@
     <ClInclude Include="Game.Side.h">
       <Filter>Header Files\Ships</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Islands.DarkAlley.FightCard.h">
-      <Filter>Header Files\Islands\DarkAlley</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.DarkAlley.GamblingHand.h">
-      <Filter>Header Files\Islands\DarkAlley</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.DarkAlley.h">
-      <Filter>Header Files\Islands\DarkAlley</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Islands.Commodities.h">
       <Filter>Header Files\Islands\Trade</Filter>
     </ClInclude>
@@ -229,9 +214,6 @@
     </ClInclude>
     <ClInclude Include="Game.Ship.Statistics.h">
       <Filter>Header Files\Ships</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.Features.DarkAlley.h">
-      <Filter>Header Files\Islands\Features</Filter>
     </ClInclude>
     <ClInclude Include="Game.Islands.Features.h">
       <Filter>Header Files\Islands\Features</Filter>
@@ -457,15 +439,6 @@
     <ClCompile Include="Game.Islands.Ships.cpp">
       <Filter>Source Files\Islands</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Islands.DarkAlley.cpp">
-      <Filter>Source Files\Islands\DarkAlley</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.DarkAlley.FightCard.cpp">
-      <Filter>Source Files\Islands\DarkAlley</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.DarkAlley.GamblingHand.cpp">
-      <Filter>Source Files\Islands\DarkAlley</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Islands.Commodities.cpp">
       <Filter>Source Files\Islands\Trade</Filter>
     </ClCompile>
@@ -506,9 +479,6 @@
       <Filter>Source Files\Ship</Filter>
     </ClCompile>
     <ClCompile Include="Game.Islands.Features.cpp">
-      <Filter>Source Files\Features</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.Features.DarkAlley.cpp">
       <Filter>Source Files\Features</Filter>
     </ClCompile>
     <ClCompile Include="Game.Islands.Features.Tavern.cpp">

@@ -42,9 +42,6 @@
     <Filter Include="Source Files\Character">
       <UniqueIdentifier>{0b40a556-1eab-4a39-a222-6284d0cd1819}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Island\Dark Alley">
-      <UniqueIdentifier>{53523306-fff7-4843-97ac-2eee8fa47be3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Item">
       <UniqueIdentifier>{b3c8d42d-3cf7-4a49-8cf2-acd49570516b}</UniqueIdentifier>
     </Filter>
@@ -116,15 +113,6 @@
     <ClInclude Include="Data.Game.Character.CurrentIsland.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Island.DarkAlley.FightCard.h">
-      <Filter>Header Files\Island\Dark Alley</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Island.DarkAlley.GamblingHand.h">
-      <Filter>Header Files\Island\Dark Alley</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Island.DarkAlley.h">
-      <Filter>Header Files\Island\Dark Alley</Filter>
-    </ClInclude>
     <ClInclude Include="Data.Game.Island.Tavern.h">
       <Filter>Header Files\Island</Filter>
     </ClInclude>
@@ -172,19 +160,10 @@
     <ClCompile Include="Data.Game.Island.cpp">
       <Filter>Source Files\Island</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Island.DarkAlley.cpp">
-      <Filter>Source Files\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Island.DarkAlley.FightCard.cpp">
-      <Filter>Source Files\Island</Filter>
-    </ClCompile>
     <ClCompile Include="Data.Game.Island.Feature.cpp">
       <Filter>Source Files\Island</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Island.Market.cpp">
-      <Filter>Source Files\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Island.DarkAlley.GamblingHand.cpp">
       <Filter>Source Files\Island</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Demigod.cpp">
