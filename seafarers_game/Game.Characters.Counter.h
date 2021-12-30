@@ -5,8 +5,6 @@ namespace game::characters
 	{
 		STARVATION, 
 		WOUNDS,
-		REPUTATION,
-		INFAMY,
 		TURNS_REMAINING
 	};
 }

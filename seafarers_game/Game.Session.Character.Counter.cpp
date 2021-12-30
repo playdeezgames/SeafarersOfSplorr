@@ -30,8 +30,6 @@ namespace game::session::character
 	{
 		{ game::characters::Counter::STARVATION, {"Starvation", -10}},
 		{ game::characters::Counter::WOUNDS, {"Wounds", 0}},
-		{ game::characters::Counter::REPUTATION, {"Reputation", 0}},
-		{ game::characters::Counter::INFAMY, {"Infamy", 0}},
 		{ game::characters::Counter::TURNS_REMAINING, {"Turns Remaining", 10000}}
 	};
 

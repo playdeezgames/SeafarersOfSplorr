@@ -281,9 +281,6 @@
     <ClInclude Include="Game.Islands.Commodities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Characters.Counter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Characters.Flag.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -348,6 +345,9 @@
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
     <ClInclude Include="Game.Characters.State.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Characters.Counter.h">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
   </ItemGroup>
