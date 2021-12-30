@@ -29,7 +29,6 @@ namespace state::in_play
 	std::optional<double> GetPlayerCharacterShipHeading();
 	std::optional<double> GetPlayerCharacterShipSpeed();
 	void PlayMainTheme();
-	void SetPlayerCharacterShipHeading(double);
 	void DoPlayerCharacterAction(const game::characters::Action&);
 
 	void SetCrewDetailCharacterId(int);

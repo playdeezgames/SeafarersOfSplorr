@@ -49,14 +49,6 @@ namespace state::in_play
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 	}
 
-	void SetPlayerCharacterShipHeading(double heading)
-	{
-		common::utility::Optional::Iterate<int>(
-			GetPlayerCharacterShipId(),
-			[heading](int shipId) {game::Ship::SetHeading(shipId, heading); }
-			);
-	}
-
 	void DoPlayerCharacterAction(const game::characters::Action& action)
 	{
 		game::Session().GetPlayer().GetCharacter().DoAction(action);

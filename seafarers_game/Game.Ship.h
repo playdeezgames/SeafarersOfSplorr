@@ -22,8 +22,5 @@ namespace game
 		static std::optional<double> GetSpeed(int);
 		static std::optional<common::XY<double>> GetLocation(int);
 		static void ApplyTurnEffects(int);
-
-		static void SetHeading(int, double);
-		static void SetSpeed(int, double);
 	};
 }

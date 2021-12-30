@@ -8,6 +8,8 @@
 #include "Game.Session.Ship.h"
 namespace game::session
 {
+	using ShipData = data::game::Ship;
+
 	static std::optional<double> TryGetHeading(int shipId)
 	{
 		return game::Ship::GetHeading(shipId);
@@ -40,12 +42,12 @@ namespace game::session
 
 	void Ship::SetHeading(double heading) const
 	{
-		game::Ship::SetHeading(shipId, heading);
+		ShipData::SetHeading(shipId, heading);
 	}
 
 	void Ship::SetSpeed(double speed) const
 	{
-		game::Ship::SetSpeed(shipId, speed);
+		ShipData::SetSpeed(shipId, speed);
 	}
 	
 	static std::optional<std::string> TryGetName(int shipId)

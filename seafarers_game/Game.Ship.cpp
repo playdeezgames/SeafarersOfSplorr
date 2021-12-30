@@ -44,11 +44,6 @@ namespace game
 		return ShipData::GetHeading(shipId);
 	}
 
-	void Ship::SetHeading(int shipId, double heading)
-	{
-		ShipData::SetHeading(shipId, heading);
-	}
-
 	const double SPEED_MINIMUM = 0.0;
 	const double SPEED_MAXIMUM = 1.0;
 
@@ -60,11 +55,6 @@ namespace game
 	std::optional<double> Ship::GetSpeed(int shipId)
 	{
 		return ShipData::GetSpeed(shipId);
-	}
-
-	void Ship::SetSpeed(int shipId, double speed)
-	{
-		ShipData::SetSpeed(shipId, speed);
 	}
 
 	static double GetEffectiveSpeed(int shipId, double heading, double speed)
