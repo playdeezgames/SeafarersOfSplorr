@@ -227,9 +227,6 @@
     <ClInclude Include="Game.Characters.Islands.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Characters.Skills.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.h">
       <Filter>Header Files\Session</Filter>
     </ClInclude>
@@ -488,9 +485,6 @@
       <Filter>Source Files\Islands</Filter>
     </ClCompile>
     <ClCompile Include="Game.Characters.Islands.cpp">
-      <Filter>Source Files\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Characters.Skills.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.cpp">
