@@ -30,13 +30,6 @@ namespace state::in_play
 				game::Ship::GetLocation);
 	}
 
-	std::optional<double> GetPlayerCharacterShipHeading()
-	{
-		return common::utility::Optional::Bind<int, double>(
-			GetPlayerCharacterShipId(),
-			game::Ship::GetHeading);
-	}
-
 	std::optional<double> GetPlayerCharacterShipSpeed()
 	{
 		return common::utility::Optional::Bind<int, double>(

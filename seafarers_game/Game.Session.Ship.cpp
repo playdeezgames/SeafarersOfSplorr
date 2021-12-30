@@ -12,7 +12,7 @@ namespace game::session
 
 	static std::optional<double> TryGetHeading(int shipId)
 	{
-		return game::Ship::GetHeading(shipId);
+		return ShipData::GetHeading(shipId);
 	}
 
 	double Ship::GetHeading() const

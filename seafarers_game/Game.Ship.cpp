@@ -38,12 +38,6 @@ namespace game
 		ShipData::SetName(shipId, name);
 	}
 
-
-	std::optional<double> Ship::GetHeading(int shipId)
-	{
-		return ShipData::GetHeading(shipId);
-	}
-
 	const double SPEED_MINIMUM = 0.0;
 	const double SPEED_MAXIMUM = 1.0;
 
