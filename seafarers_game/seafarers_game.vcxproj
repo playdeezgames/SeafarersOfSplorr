@@ -89,8 +89,6 @@
     <ClInclude Include="Game.Difficulty.h" />
     <ClInclude Include="Game.Island.h" />
     <ClInclude Include="Game.Islands.Commodities.h" />
-    <ClInclude Include="Game.Islands.Markets.h" />
-    <ClInclude Include="Game.Islands.Ships.h" />
     <ClInclude Include="Game.Quest.h" />
     <ClInclude Include="Game.Ship.Crew.h" />
     <ClInclude Include="Game.Ship.h" />
@@ -157,8 +155,6 @@
     <ClCompile Include="Game.Ship.Docked.cpp" />
     <ClCompile Include="Game.Characters.Plights.cpp" />
     <ClCompile Include="Game.Islands.Commodities.cpp" />
-    <ClCompile Include="Game.Islands.Markets.cpp" />
-    <ClCompile Include="Game.Islands.Ships.cpp" />
     <ClCompile Include="Game.Ship.cpp" />
     <ClCompile Include="Game.Ship.Crew.cpp" />
     <ClCompile Include="Game.ShipNames.cpp" />
