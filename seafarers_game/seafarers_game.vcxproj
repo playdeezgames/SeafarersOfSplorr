@@ -85,7 +85,6 @@
     <ClInclude Include="Game.Audio.Theme.h" />
     <ClInclude Include="Game.Commodity.h" />
     <ClInclude Include="Game.Difficulty.h" />
-    <ClInclude Include="Game.Islands.Commodities.h" />
     <ClInclude Include="Game.Ship.Crew.h" />
     <ClInclude Include="Game.Ship.h" />
     <ClInclude Include="Game.Ship.State.h" />
@@ -148,7 +147,6 @@
     <ClCompile Include="Game.Session.World.Islands.cpp" />
     <ClCompile Include="Game.Session.World.Wind.cpp" />
     <ClCompile Include="Game.Ship.Docked.cpp" />
-    <ClCompile Include="Game.Islands.Commodities.cpp" />
     <ClCompile Include="Game.Ship.cpp" />
     <ClCompile Include="Game.Ship.Crew.cpp" />
     <ClCompile Include="Game.ShipNames.cpp" />
