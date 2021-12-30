@@ -260,19 +260,10 @@
     <ClInclude Include="Game.Session.Character.Plight.h">
       <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Island.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Islands.Commodities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Commodity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Item.Category.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.SkillCategory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game.Ship.Crew.h">
@@ -290,22 +281,10 @@
     <ClInclude Include="Game.Ship.Property.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Ship.State.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.ShipNames.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Ships.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game.ShipType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game.ShipTypes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Side.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game.BerthType.h">
@@ -333,6 +312,24 @@
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
     <ClInclude Include="Game.Characters.PlightType.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Commodity.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Ship.State.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.ShipNames.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.ShipType.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Side.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.SkillCategory.h">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
   </ItemGroup>

@@ -85,7 +85,6 @@
     <ClInclude Include="Game.Audio.Theme.h" />
     <ClInclude Include="Game.Commodity.h" />
     <ClInclude Include="Game.Difficulty.h" />
-    <ClInclude Include="Game.Island.h" />
     <ClInclude Include="Game.Islands.Commodities.h" />
     <ClInclude Include="Game.Ship.Crew.h" />
     <ClInclude Include="Game.Ship.h" />
