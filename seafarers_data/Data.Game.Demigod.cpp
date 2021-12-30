@@ -47,15 +47,7 @@ namespace data::game
 		R"(DELETE FROM [Demigods];)"s;
 	static const std::string QUERY_ALL =
 		R"(SELECT 
-			[DemigodId],
-			[Name],
-			[PatronWeight],
-			[BlessingThreshold],
-			[BlessingMultiplier],
-			[BlessingPlightId],
-			[CurseThreshold],
-			[CurseMultiplier],
-			[CursePlightId] 
+			[DemigodId]
 		FROM [Demigods];)"s;
 	static const std::string QUERY_ITEM =
 		R"(SELECT 
@@ -72,7 +64,7 @@ namespace data::game
 		WHERE 
 			[DemigodId]={};)"s;
 
-	static const std::string FIELD_ID = "DemigodId";
+	static const std::string FIELD_DEMIGOD_ID = "DemigodId";
 	static const std::string FIELD_NAME = "Name";
 	static const std::string FIELD_PATRON_WEIGHT = "PatronWeight";
 	static const std::string FIELD_BLESSING_THRESHOLD = "BlessingThreshold";
@@ -130,7 +122,7 @@ namespace data::game
 	static Demigod ToDemigod(const std::map<std::string, std::string>& record)
 	{
 		return {
-				common::Data::ToInt(record.find(FIELD_ID)->second),
+				common::Data::ToInt(record.find(FIELD_DEMIGOD_ID)->second),
 				record.find(FIELD_NAME)->second,
 				(size_t)common::Data::ToInt(record.find(FIELD_PATRON_WEIGHT)->second),
 				common::Data::ToDouble(record.find(FIELD_BLESSING_THRESHOLD)->second),
@@ -142,14 +134,14 @@ namespace data::game
 		};
 	}
 
-	std::list<Demigod> Demigod::All()
+	std::list<Demigod::demigodid_t> Demigod::All()
 	{
 		Initialize();
-		std::list<Demigod> result;
+		std::list<demigodid_t> result;
 		auto records = Common::Execute(QUERY_ALL);
 		for (auto& record : records)
 		{
-			result.push_back(ToDemigod(record));
+			result.push_back(Common::ToInt(record, FIELD_DEMIGOD_ID));
 		}
 		return result;
 	}

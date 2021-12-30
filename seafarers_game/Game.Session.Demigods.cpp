@@ -147,9 +147,9 @@ namespace game::session
 			demigods.begin(),
 			demigods.end(),
 			std::back_inserter(result),
-			[](const DemigodData& demigod) 
+			[](int demigodId) 
 			{
-				return Demigod(demigod.id);
+				return Demigod(demigodId);
 			});
 		return result;
 	}
