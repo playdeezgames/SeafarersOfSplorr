@@ -24,16 +24,6 @@ namespace game::session
 		return std::nullopt;
 	}
 
-	static characters::State OnEnterDarkAlley(int characterId)
-	{
-		return characters::State::DARK_ALLEY;
-	}
-
-	static characters::State OnStartFishing(int characterId)
-	{
-		return characters::State::AT_SEA;
-	}
-
 	static std::function<characters::State(int)> DoTransition(const characters::State& state)
 	{
 		return [state](int) { return state; };
@@ -69,172 +59,11 @@ namespace game::session
 			}
 		},
 		{
-			characters::Action::ENTER_MARKET,
-			{
-				{
-					characters::State::MARKET_BUY,
-					DoTransition(characters::State::MARKET)
-				},
-				{
-					characters::State::MARKET_SELL,
-					DoTransition(characters::State::MARKET)
-				},
-				{
-					characters::State::DOCK,
-					DoTransition(characters::State::MARKET)
-				}
-			}
-		},
-		{
 			characters::Action::ENTER_DOCK,
 			{
 				{
 					characters::State::AT_SEA,
 					OnDock
-				},
-				{
-					characters::State::TAVERN,
-					DoTransition(characters::State::DOCK)
-				},
-				{
-					characters::State::MARKET,
-					DoTransition(characters::State::DOCK)
-				},
-				{
-					characters::State::SHIPYARD,
-					DoTransition(characters::State::DOCK)
-				},
-				{
-					characters::State::JOB_BOARD,
-					DoTransition(characters::State::DOCK)
-				},
-				{
-					characters::State::DARK_ALLEY_ENTRANCE,
-					DoTransition(characters::State::DOCK)
-				},
-				{
-					characters::State::DARK_ALLEY,
-					DoTransition(characters::State::DOCK)
-				},
-				{
-					characters::State::TEMPLE,
-					DoTransition(characters::State::DOCK)
-				},
-			}
-		},
-		{
-			characters::Action::MARKET_BUY,
-			{
-				{
-					characters::State::MARKET,
-					DoTransition(characters::State::MARKET_BUY)
-				}
-			}
-		},
-		{
-			characters::Action::MARKET_SELL,
-			{
-				{
-					characters::State::MARKET,
-					DoTransition(characters::State::MARKET_SELL)
-				}
-			}
-		},
-		{
-			characters::Action::ENTER_JOB_BOARD,
-			{
-				{
-					characters::State::DOCK,
-					DoTransition(characters::State::JOB_BOARD)
-				}
-			}
-		},
-		{
-			characters::Action::ENTER_TEMPLE,
-			{
-				{
-					characters::State::DOCK,
-					DoTransition(characters::State::TEMPLE)
-				}
-			}
-		},
-		{
-			characters::Action::ENTER_TAVERN,
-			{
-				{
-					characters::State::DOCK,
-					DoTransition(characters::State::TAVERN)
-				}
-			}
-		},
-		{
-			characters::Action::ENTER_SHIPYARD,
-			{
-				{
-					characters::State::DOCK,
-					DoTransition(characters::State::SHIPYARD)
-				}
-			}
-		},
-		{
-			characters::Action::ENTER_DARK_ALLEY,
-			{
-				{
-					characters::State::DOCK,
-					OnEnterDarkAlley
-				},
-				{
-					characters::State::GAMBLE_START,
-					DoTransition(characters::State::DARK_ALLEY)
-				}
-			}
-		},
-		{
-			characters::Action::DEFEAT_RUFFIAN,
-			{
-				{
-					characters::State::DARK_ALLEY_ENTRANCE,
-					DoTransition(characters::State::DARK_ALLEY)
-				}
-			}
-		},
-		{
-			characters::Action::START_GAMBLING,
-			{
-				{
-					characters::State::DARK_ALLEY,
-					DoTransition(characters::State::GAMBLE_START)
-				}
-			}
-		},
-		{
-			characters::Action::CAREEN_TO_PORT,
-			{
-				{
-					characters::State::AT_SEA,
-					DoTransition(characters::State::CAREENED_TO_PORT)
-				}
-			}
-		},
-		{
-			characters::Action::CAREEN_TO_STARBOARD,
-			{
-				{
-					characters::State::AT_SEA,
-					DoTransition(characters::State::CAREENED_TO_STARBOARD)
-				}
-			}
-		},
-		{
-			characters::Action::UNCAREEN,
-			{
-				{
-					characters::State::CAREENED_TO_PORT,
-					DoTransition(characters::State::AT_SEA)
-				},
-				{
-					characters::State::CAREENED_TO_STARBOARD,
-					DoTransition(characters::State::AT_SEA)
 				}
 			}
 		}

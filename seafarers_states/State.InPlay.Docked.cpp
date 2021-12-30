@@ -33,24 +33,6 @@ namespace state::in_play
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	static void OnJob()
-	{
-		DoPlayerCharacterAction(game::characters::Action::ENTER_JOB_BOARD);
-		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
-	}
-
-	static void OnTrade()
-	{
-		DoPlayerCharacterAction(game::characters::Action::ENTER_MARKET);
-		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
-	}
-
-	static void OnTemple()
-	{
-		DoPlayerCharacterAction(game::characters::Action::ENTER_TEMPLE);
-		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
-	}
-
 	static void OnEnter()
 	{
 		PlayMainTheme();

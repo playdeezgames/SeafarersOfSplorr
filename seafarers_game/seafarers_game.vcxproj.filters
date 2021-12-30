@@ -12,20 +12,11 @@
     <Filter Include="Header Files\Audio">
       <UniqueIdentifier>{ed7134ca-fe86-4c03-a54c-82c6b078941a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Islands">
-      <UniqueIdentifier>{279dddf3-583e-40c2-802c-6051521ed1fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Ships">
-      <UniqueIdentifier>{9860971e-d6d9-476a-81f6-5263706ef053}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Utility">
       <UniqueIdentifier>{73f30f16-ac81-43ca-acb5-364e21d57893}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Islands">
       <UniqueIdentifier>{03628875-d3ae-4e27-a48d-0f8623f28eab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Character">
-      <UniqueIdentifier>{e6e5cf3a-552f-4324-9554-5cfd7fdc1e77}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Character">
       <UniqueIdentifier>{d044c1fb-ed2a-48f6-b646-8749f8a84020}</UniqueIdentifier>
@@ -122,22 +113,10 @@
     <ClInclude Include="Game.Audio.Sfx.h">
       <Filter>Header Files\Audio</Filter>
     </ClInclude>
-    <ClInclude Include="Game.ShipType.h">
-      <Filter>Header Files\Ships</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Ship.Property.h">
-      <Filter>Header Files\Ships</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.ShipTypes.h">
-      <Filter>Header Files\Ships</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Difficulty.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
     <ClInclude Include="Game.Colors.h">
-      <Filter>Header Files\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Quest.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
     <ClInclude Include="Game.Audio.GameSfx.h">
@@ -145,36 +124,6 @@
     </ClInclude>
     <ClInclude Include="Game.Audio.Theme.h">
       <Filter>Header Files\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Island.h">
-      <Filter>Header Files\Islands</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Side.h">
-      <Filter>Header Files\Ships</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Ship.h">
-      <Filter>Header Files\Ships</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.ShipNames.h">
-      <Filter>Header Files\Ships</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Ships.h">
-      <Filter>Header Files\Ships</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Ship.State.h">
-      <Filter>Header Files\Ships</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Ship.Crew.h">
-      <Filter>Header Files\Ships</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Ship.Docked.h">
-      <Filter>Header Files\Ships</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Ship.DockResult.h">
-      <Filter>Header Files\Ships</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Characters.Islands.h">
-      <Filter>Header Files\Character</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.h">
       <Filter>Header Files\Session</Filter>
@@ -278,36 +227,6 @@
     <ClInclude Include="Game.Session.Island.Market.h">
       <Filter>Header Files\Session\Island</Filter>
     </ClInclude>
-    <ClInclude Include="Game.BerthType.h">
-      <Filter>Header Files\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Characteristic.h">
-      <Filter>Header Files\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Characters.Action.h">
-      <Filter>Header Files\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Characters.Counter.h">
-      <Filter>Header Files\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Characters.Flag.h">
-      <Filter>Header Files\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Characters.Message.h">
-      <Filter>Header Files\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Characters.Plight.h">
-      <Filter>Header Files\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Characters.PlightType.h">
-      <Filter>Header Files\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Characters.State.h">
-      <Filter>Header Files\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.SkillCategory.h">
-      <Filter>Header Files\Enums</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.Island.Tavern.h">
       <Filter>Header Files\Session\Island</Filter>
     </ClInclude>
@@ -350,17 +269,86 @@
     <ClInclude Include="Game.Session.Character.Plight.h">
       <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Characters.Islands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Game.Characters.Plights.h">
-      <Filter>Header Files\Character</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Commodity.h">
-      <Filter>Header Files\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Item.Category.h">
-      <Filter>Header Files\Enums</Filter>
+    <ClInclude Include="Game.Island.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game.Islands.Commodities.h">
-      <Filter>Header Files\Islands</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Characters.Counter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Characters.Flag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Characters.Message.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Characters.Plight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Characters.PlightType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Commodity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Item.Category.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.SkillCategory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Ship.Crew.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Ship.Docked.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Ship.DockResult.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Ship.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Ship.Property.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Ship.State.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.ShipNames.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Ships.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.ShipType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.ShipTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Side.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.BerthType.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Characteristic.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Characters.Action.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Characters.State.h">
+      <Filter>Header Files\Enums</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

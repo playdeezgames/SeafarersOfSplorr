@@ -89,7 +89,6 @@
     <ClInclude Include="Game.Difficulty.h" />
     <ClInclude Include="Game.Island.h" />
     <ClInclude Include="Game.Islands.Commodities.h" />
-    <ClInclude Include="Game.Quest.h" />
     <ClInclude Include="Game.Ship.Crew.h" />
     <ClInclude Include="Game.Ship.h" />
     <ClInclude Include="Game.Ship.State.h" />

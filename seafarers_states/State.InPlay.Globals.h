@@ -13,7 +13,6 @@
 #include <Cards.Suit.h>
 #include <Game.Characters.Action.h>
 #include <Game.Island.h>
-#include <Game.Quest.h>
 #include <Game.Ship.DockResult.h>
 #include <Game.Side.h>
 namespace state::in_play
