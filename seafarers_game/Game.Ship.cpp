@@ -5,7 +5,6 @@
 #include <Data.Game.Ship.h>
 #include "Game.Session.h"
 #include "Game.Ship.h"
-#include "Game.ShipTypes.h"
 namespace game
 {
 	using ShipData = data::game::Ship;

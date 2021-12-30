@@ -94,7 +94,6 @@
     <ClInclude Include="Game.Ships.h" />
     <ClInclude Include="Game.ShipType.h" />
     <ClInclude Include="Game.Ship.Property.h" />
-    <ClInclude Include="Game.ShipTypes.h" />
     <ClInclude Include="Game.Side.h" />
     <ClInclude Include="Game.SkillCategory.h" />
     <ClInclude Include="Game.Colors.h" />
@@ -153,7 +152,6 @@
     <ClCompile Include="Game.Ship.cpp" />
     <ClCompile Include="Game.ShipNames.cpp" />
     <ClCompile Include="Game.Ships.cpp" />
-    <ClCompile Include="Game.ShipTypes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Game.Session.Character.Flags.h" />
