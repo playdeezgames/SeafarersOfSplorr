@@ -1,4 +1,3 @@
-#include <Game.Islands.Features.h>
 #include <Game.Session.h>
 #include <Game.Ship.Docked.h>
 #include "State.InPlay.Docked.h"
@@ -44,30 +43,6 @@ namespace state::in_play
 	{
 		DoPlayerCharacterAction(game::characters::Action::ENTER_MARKET);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
-	}
-
-	static const std::map<game::Feature, game::characters::Action> featureActionMap =
-	{
-		{game::Feature::SHIPYARD, game::characters::Action::ENTER_SHIPYARD},
-		{game::Feature::DARK_ALLEY, game::characters::Action::ENTER_DARK_ALLEY},
-		{game::Feature::TAVERN, game::characters::Action::ENTER_TAVERN},
-	};
-
-	static std::function<void()> OnEnterFeature(const game::Feature& feature)
-	{
-		return [feature]() 
-		{
-			if (PlayerCharacterIslandHasFeature(feature).value())
-			{
-				DoPlayerCharacterAction(featureActionMap.find(feature)->second);
-				::application::UIState::Write(::UIState::IN_PLAY_NEXT);
-			}
-			else
-			{
-				Terminal::ErrorMessage("Please select a valid option.");
-				Refresh();
-			}
-		};
 	}
 
 	static void OnTemple()

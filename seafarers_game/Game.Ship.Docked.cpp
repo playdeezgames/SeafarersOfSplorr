@@ -5,7 +5,6 @@
 #include <Data.Game.Ship.h>
 #include <Data.Game.Island.h>
 #include "Game.Characters.State.h"
-#include "Game.Characters.Ships.h"
 #include "Game.Session.h"
 #include "Game.Ship.Docked.h"
 #include <set>
