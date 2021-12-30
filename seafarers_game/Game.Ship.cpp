@@ -46,11 +46,6 @@ namespace game
 		return ShipData::GetLocation(shipId);
 	}
 
-	std::optional<double> Ship::GetSpeed(int shipId)
-	{
-		return ShipData::GetSpeed(shipId);
-	}
-
 	static double GetEffectiveSpeed(int shipId, double heading, double speed)
 	{
 		auto fouling = 0.0;

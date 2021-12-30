@@ -22,7 +22,7 @@ namespace game::session
 
 	static std::optional<double> TryGetSpeed(int shipId)
 	{
-		return game::Ship::GetSpeed(shipId);
+		return ShipData::GetSpeed(shipId);
 	}
 
 	double Ship::GetSpeed() const
