@@ -3,6 +3,7 @@
 #include <Common.RNG.h>
 #include <Data.Game.Character.Ship.h>
 #include <Data.Game.Player.h>
+#include <Data.Game.Ship.h>
 #include "Game.Session.h"
 #include "Game.Session.Characters.h"
 #include "Game.Session.Player.h"
@@ -10,17 +11,21 @@
 #include "Game.ShipNames.h"
 namespace game::session
 {
+
+
 	Character Player::GetCharacter() const
 	{
 		return Character(data::game::Player::GetCharacterId().value());
 	}
 
+	using ShipData = data::game::Ship;
+
 	static void GenerateCharacterShip(int characterId)
 	{
 		auto worldSize = game::Session().GetWorld().GetBounds().GetSize();
 		auto shipType = game::ShipType::RAFT;
-		int shipId = game::Ship::Add({
-			shipType,
+		int shipId = ShipData::Create(
+			(int)shipType,
 			game::ShipNames::Generate(),
 			{
 				worldSize.GetX() / 2.0,
@@ -29,7 +34,7 @@ namespace game::session
 			common::Data::ModuloDouble(
 				common::RNG::FromRange(0.0, common::Heading::DEGREES),
 				common::Heading::DEGREES).value(),
-			1.0 });
+			1.0);
 		data::game::character::Ship::Write(characterId, shipId, (int)BerthType::CAPTAIN);
 	}
 

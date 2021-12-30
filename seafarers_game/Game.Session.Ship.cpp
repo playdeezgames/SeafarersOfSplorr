@@ -4,7 +4,6 @@
 #include <Data.Game.Ship.h>
 #include <Data.Game.Ship.CurrentIsland.h>
 #include "Game.Session.h"
-#include "Game.Ship.h"
 #include "Game.Session.Ship.h"
 namespace game::session
 {
@@ -32,7 +31,7 @@ namespace game::session
 
 	static std::optional<common::XY<double>> TryGetLocation(int shipId)
 	{
-		return game::Ship::GetLocation(shipId);
+		return ShipData::GetLocation(shipId);
 	}
 
 	common::XY<double> Ship::GetLocation() const
@@ -52,7 +51,7 @@ namespace game::session
 	
 	static std::optional<std::string> TryGetName(int shipId)
 	{
-		return game::Ship::GetName(shipId);
+		return ShipData::GetName(shipId);
 	}
 
 	std::string Ship::GetName() const
@@ -62,7 +61,7 @@ namespace game::session
 
 	void Ship::SetName(const std::string& name) const
 	{
-		game::Ship::SetName(shipId, name);
+		ShipData::SetName(shipId, name);
 	}
 
 	static void DoDock(int characterId, int islandId)

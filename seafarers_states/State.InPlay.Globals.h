@@ -25,7 +25,6 @@ namespace state::in_play
 	}
 	int GetPlayerCharacterId();
 	std::optional<int> GetPlayerCharacterShipId();
-	std::optional<common::XY<double>> GetPlayerCharacterShipLocation();
 	void PlayMainTheme();
 	void DoPlayerCharacterAction(const game::characters::Action&);
 

@@ -9,34 +9,8 @@ namespace game
 {
 	using ShipData = data::game::Ship;
 
-	int Ship::Add(const Ship& ship)
-	{
-		int shipId = ShipData::Create(
-			(int)ship.shipType,
-			ship.name,
-			ship.location,
-			ship.heading,
-			ship.speed);
-		return shipId;
-	}
-
-	std::optional<std::string> Ship::GetName(int shipId)
-	{
-		return ShipData::GetName(shipId);
-	}
-
-	void Ship::SetName(int shipId, const std::string& name)
-	{
-		ShipData::SetName(shipId, name);
-	}
-
 	const double SPEED_MINIMUM = 0.0;
 	const double SPEED_MAXIMUM = 1.0;
-
-	std::optional<common::XY<double>> Ship::GetLocation(int shipId)
-	{
-		return ShipData::GetLocation(shipId);
-	}
 
 	static double GetEffectiveSpeed(int shipId, double heading, double speed)
 	{

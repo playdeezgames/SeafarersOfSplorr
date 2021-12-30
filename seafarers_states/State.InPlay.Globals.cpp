@@ -22,14 +22,6 @@ namespace state::in_play
 		throw "FIXME";
 	}
 
-	std::optional<common::XY<double>> GetPlayerCharacterShipLocation()
-	{
-		return
-			common::utility::Optional::Bind<int, common::XY<double>>(
-				GetPlayerCharacterShipId(),
-				game::Ship::GetLocation);
-	}
-
 	void PlayMainTheme()
 	{
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
