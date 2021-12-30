@@ -1,5 +1,4 @@
 #include <Game.Session.h>
-#include <Game.Ship.Docked.h>
 #include "State.InPlay.Docked.h"
 #include "State.InPlay.Globals.h"
 namespace state::in_play
@@ -11,9 +10,7 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		auto characterId = GetPlayerCharacterId();
-		auto islandId = GetPlayerCharacterIslandId().value();
-		auto island = game::Session().GetWorld().GetIslands().GetIsland(islandId);
+		auto island = game::Session().GetPlayer().GetCharacter().GetIsland();
 		Terminal::Reinitialize();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
@@ -29,7 +26,7 @@ namespace state::in_play
 
 	static void OnUndock()
 	{
-		game::ship::Docked::Undock(GetPlayerCharacterShipId().value());
+		game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().Undock();
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

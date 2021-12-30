@@ -13,7 +13,6 @@
 #include <Cards.Rank.h>
 #include <Cards.Suit.h>
 #include <Game.Characters.Action.h>
-#include <Game.Ship.DockResult.h>
 #include <Game.Side.h>
 namespace state::in_play
 {
@@ -25,8 +24,6 @@ namespace state::in_play
 		AddPlayerCharacterMessage(color, std::format(fmt, args...));
 	}
 	int GetPlayerCharacterId();
-	std::optional<game::ship::DockResult> Dock();//TODO: PlayerCharacterDock?
-	std::optional<int> GetPlayerCharacterIslandId();
 	std::optional<int> GetPlayerCharacterShipId();
 	std::optional<common::XY<double>> GetPlayerCharacterShipLocation();
 	std::optional<double> GetPlayerCharacterShipHeading();

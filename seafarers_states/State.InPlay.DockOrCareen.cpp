@@ -44,7 +44,12 @@ namespace state::in_play
 
 	static void OnDock()
 	{
-		Dock();
+		game::Session()
+			.GetPlayer()
+			.GetCharacter()
+			.GetBerth()
+			.GetShip()
+			.Dock();
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

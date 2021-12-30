@@ -15,7 +15,7 @@ namespace game::session
 	}
 
 	static const int EARLIEST_INITIAL_YEAR = 500;
-	static const int LATEST_INITIAL_YEAR = 5000;
+	static const int LATEST_INITIAL_YEAR = 1000;
 	static const int DAYS_PER_YEAR = 360;
 
 	void World::Populate(const Difficulty& difficulty) const

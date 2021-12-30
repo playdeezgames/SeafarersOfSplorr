@@ -20,6 +20,10 @@ namespace game::session
 		common::XY<double> GetLocation() const;
 		void SetName(const std::string&) const;
 		std::string GetName() const;
+		void Dock() const;
+		bool Undock() const;
+		std::optional<Island> TryGetIsland() const;
+		Island GetIsland() const;
 	private:
 		int shipId;
 	};

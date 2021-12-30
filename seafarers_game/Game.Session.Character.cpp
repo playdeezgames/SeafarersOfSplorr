@@ -5,7 +5,6 @@
 #include <Data.Game.Ship.CurrentIsland.h>
 #include "Game.Session.h"
 #include "Game.Session.Character.h"
-#include "Game.Ship.Docked.h"
 #include <map>
 namespace game::session
 {

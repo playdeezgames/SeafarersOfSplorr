@@ -4,7 +4,6 @@
 #include <Data.Game.Character.Ship.h>
 #include <Game.Session.h>
 #include <Game.Ship.h>
-#include <Game.Ship.Docked.h>
 #include "State.InPlay.Globals.h"
 namespace state::in_play
 {
@@ -20,18 +19,7 @@ namespace state::in_play
 
 	std::optional<int> GetPlayerCharacterIslandId()
 	{
-		return
-			common::utility::Optional::Bind<int, int>(
-				GetPlayerCharacterShipId(),
-				game::ship::Docked::GetIsland);
-	}
-
-	std::optional<game::ship::DockResult> Dock()
-	{
-		return 
-			common::utility::Optional::Bind<int, game::ship::DockResult>(
-				GetPlayerCharacterShipId(), 
-				game::ship::Docked::Dock);
+		throw "FIXME";
 	}
 
 	std::optional<common::XY<double>> GetPlayerCharacterShipLocation()
