@@ -7,12 +7,6 @@ namespace game
 {
 	struct Ship
 	{
-		ShipType shipType;
-		std::string name;
-		common::XY<double> location;
-		double heading;
-		double speed;
-
 		static void ApplyTurnEffects(int);
 	};
 }
