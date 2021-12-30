@@ -27,15 +27,6 @@
     <Filter Include="Source Files\AtSea\Status">
       <UniqueIdentifier>{2cb8c9b2-d21e-4132-8a44-fafba0ab2c36}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Docked\Jobs">
-      <UniqueIdentifier>{06b5f530-4605-4784-9525-1c6c869b4410}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Docked\DarkAlley">
-      <UniqueIdentifier>{da113126-3d9d-4b41-8493-cd891ba88077}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Docked\Trading">
-      <UniqueIdentifier>{92350df5-07e8-48ad-ba08-feea747d60c6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Boilerplate">
       <UniqueIdentifier>{61816559-1be1-403a-ba9b-cef652ddda63}</UniqueIdentifier>
     </Filter>
@@ -71,23 +62,8 @@
     <ClInclude Include="State.InPlay.AtSeaOverview.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.CareenedToPort.h">
-      <Filter>Header Files\Careening</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.CareenedToStarboard.h">
-      <Filter>Header Files\Careening</Filter>
-    </ClInclude>
     <ClInclude Include="State.InPlay.CharacterStatus.h">
       <Filter>Header Files\AtSea</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.Cargo.h">
-      <Filter>Header Files\AtSea</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.ConfirmAbandonJob.h">
-      <Filter>Header Files\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.ConfirmReplaceJob.h">
-      <Filter>Header Files\Utility</Filter>
     </ClInclude>
     <ClInclude Include="State.InPlay.CrewDetail.h">
       <Filter>Header Files\AtSea</Filter>
@@ -95,32 +71,8 @@
     <ClInclude Include="State.InPlay.CrewList.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.CurrentJob.h">
-      <Filter>Header Files\AtSea</Filter>
-    </ClInclude>
     <ClInclude Include="State.InPlay.Docked.h">
       <Filter>Header Files\Docked</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.IslandBuy.h">
-      <Filter>Header Files\Docked</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.IslandJobs.h">
-      <Filter>Header Files\Docked</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.IslandSell.h">
-      <Filter>Header Files\Docked</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.IslandTrade.h">
-      <Filter>Header Files\Docked</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.MakeOffering.h">
-      <Filter>Header Files\Docked</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.Temple.h">
-      <Filter>Header Files\Docked</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.Equipment.h">
-      <Filter>Header Files\AtSea</Filter>
     </ClInclude>
     <ClInclude Include="State.InPlay.Lose.h">
       <Filter>Header Files\Utility</Filter>
@@ -185,27 +137,6 @@
     <ClInclude Include="State.Terminal.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.IslandBuyQuantity.h">
-      <Filter>Header Files\Docked</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.IslandSellQuantity.h">
-      <Filter>Header Files\Docked</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.EquipmentSlot.h">
-      <Filter>Header Files\AtSea</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.Shipyard.h">
-      <Filter>Header Files\Docked</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.ShipyardPurchaseShip.h">
-      <Filter>Header Files\Docked</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.ShipyardUnfoulShip.h">
-      <Filter>Header Files\Docked</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.ChooseRations.h">
-      <Filter>Header Files\AtSea</Filter>
-    </ClInclude>
     <ClInclude Include="State.InPlay.RenameShipAdjective.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
@@ -215,13 +146,7 @@
     <ClInclude Include="State.InPlay.Globals.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.Tavern.h">
-      <Filter>Header Files\Docked</Filter>
-    </ClInclude>
     <ClInclude Include="State.InPlay.CrewDetail.Characteristics.h">
-      <Filter>Header Files\AtSea</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.CrewDetail.Items.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
   </ItemGroup>
@@ -265,9 +190,6 @@
     <ClCompile Include="State.Tip.cpp">
       <Filter>Source Files\Boilerplate</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.ConfirmAbandonJob.cpp">
-      <Filter>Source Files\AtSea</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.Docked.cpp">
       <Filter>Source Files\Docked</Filter>
     </ClCompile>
@@ -280,43 +202,7 @@
     <ClCompile Include="State.InPlay.Win.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.CareenedToPort.cpp">
-      <Filter>Source Files\Careening</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.CareenedToStarboard.cpp">
-      <Filter>Source Files\Careening</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.Cargo.cpp">
-      <Filter>Source Files\AtSea\Status</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.CurrentJob.cpp">
-      <Filter>Source Files\AtSea\Status</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.ConfirmReplaceJob.cpp">
-      <Filter>Source Files\Docked\Jobs</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.IslandJobs.cpp">
-      <Filter>Source Files\Docked\Jobs</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.IslandBuy.cpp">
-      <Filter>Source Files\Docked\Trading</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.IslandSell.cpp">
-      <Filter>Source Files\Docked\Trading</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.IslandTrade.cpp">
-      <Filter>Source Files\Docked\Trading</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.Temple.cpp">
-      <Filter>Source Files\Docked</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.MakeOffering.cpp">
-      <Filter>Source Files\Docked</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.CharacterStatus.cpp">
-      <Filter>Source Files\AtSea\Status</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.Equipment.cpp">
       <Filter>Source Files\AtSea\Status</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.CrewList.cpp">
@@ -355,27 +241,6 @@
     <ClCompile Include="State.InPlay.MultipleMove.cpp">
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.IslandBuyQuantity.cpp">
-      <Filter>Source Files\Docked\Trading</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.IslandSellQuantity.cpp">
-      <Filter>Source Files\Docked\Trading</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.EquipmentSlot.cpp">
-      <Filter>Source Files\AtSea\Status</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.Shipyard.cpp">
-      <Filter>Source Files\Docked</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.ShipyardPurchaseShip.cpp">
-      <Filter>Source Files\Docked</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.ShipyardUnfoulShip.cpp">
-      <Filter>Source Files\Docked</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.ChooseRations.cpp">
-      <Filter>Source Files\AtSea\Status</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.RenameShipAdjective.cpp">
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
@@ -385,13 +250,7 @@
     <ClCompile Include="State.InPlay.Globals.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.Tavern.cpp">
-      <Filter>Source Files\Docked</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.CrewDetail.Characteristics.cpp">
-      <Filter>Source Files\AtSea\Status</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.CrewDetail.Items.cpp">
       <Filter>Source Files\AtSea\Status</Filter>
     </ClCompile>
   </ItemGroup>

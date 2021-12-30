@@ -13,45 +13,23 @@
 #include <State.ConfirmOverwrite.h>
 #include <State.ConfirmQuit.h>
 #include <State.InPlay.AtSeaOverview.h>
-#include <State.InPlay.CareenedToPort.h>
-#include <State.InPlay.CareenedToStarboard.h>
-#include <State.InPlay.Cargo.h>
 #include <State.InPlay.ChangeHeading.h>
 #include <State.InPlay.ChangeSpeed.h>
 #include <State.InPlay.CrewDetail.Characteristics.h>
-#include <State.InPlay.CrewDetail.Items.h>
 #include <State.InPlay.CharacterStatus.h>
-#include <State.InPlay.ChooseRations.h>
-#include <State.InPlay.ConfirmAbandonJob.h>
-#include <State.InPlay.ConfirmReplaceJob.h>
 #include <State.InPlay.CrewList.h>
 #include <State.InPlay.CrewDetail.h>
-#include <State.InPlay.CurrentJob.h>
 #include <State.InPlay.Docked.h>
 #include <State.InPlay.DockOrCareen.h>
-#include <State.InPlay.Equipment.h>
-#include <State.InPlay.EquipmentSlot.h>
 #include <State.InPlay.HeadForKnown.h>
 #include <State.InPlay.HeadForNearBy.h>
-#include <State.InPlay.IslandBuy.h>
-#include <State.InPlay.IslandBuyQuantity.h>
-#include <State.InPlay.IslandJobs.h>
-#include <State.InPlay.IslandSell.h>
-#include <State.InPlay.IslandSellQuantity.h>
-#include <State.InPlay.IslandTrade.h>
 #include <State.InPlay.Lose.h>
-#include <State.InPlay.MakeOffering.h>
 #include <State.InPlay.ManualHeading.h>
 #include <State.InPlay.MultipleMove.h>
 #include <State.InPlay.Next.h>
 #include <State.InPlay.RenameShipAdjective.h>
 #include <State.InPlay.RenameShipNoun.h>
-#include <State.InPlay.Shipyard.h>
-#include <State.InPlay.ShipyardPurchaseShip.h>
-#include <State.InPlay.ShipyardUnfoulShip.h>
 #include <State.InPlay.ShipStatus.h>
-#include <State.InPlay.Tavern.h>
-#include <State.InPlay.Temple.h>
 #include <State.InPlay.Win.h>
 #include <State.LeavePlay.h>
 #include <State.LoadGame.h>
@@ -141,21 +119,8 @@ namespace application
 		state::in_play::Docked::Start,
 		state::in_play::Win::Start,
 		state::in_play::Lose::Start,
-		state::in_play::IslandJobs::Start,
-		state::in_play::ConfirmReplaceJob::Start,
-		state::in_play::ConfirmAbandonJob::Start,
-		state::in_play::CurrentJob::Start,
-		state::in_play::IslandTrade::Start,
-		state::in_play::IslandBuy::Start,
-		state::in_play::IslandSell::Start,
-		state::in_play::Cargo::Start,
 		state::in_play::Next::Start,
-		state::in_play::CareenedToPort::Start,
-		state::in_play::CareenedToStarboard::Start,
-		state::in_play::Temple::Start,
-		state::in_play::MakeOffering::Start,
 		state::in_play::CharacterStatus::Start,
-		state::in_play::Equipment::Start,
 		state::in_play::CrewList::Start,
 		state::in_play::CrewDetail::Start,
 		state::in_play::ShipStatus::Start,
@@ -166,18 +131,9 @@ namespace application
 		state::in_play::HeadForNearBy::Start,
 		state::in_play::HeadForKnown::Start,
 		state::in_play::MultipleMove::Start,
-		state::in_play::IslandBuyQuantity::Start,
-		state::in_play::IslandSellQuantity::Start,
-		state::in_play::EquipmentSlot::Start,
-		state::in_play::Shipyard::Start,
-		state::in_play::ShipyardPurchaseShip::Start,
-		state::in_play::ShipyardUnfoulShip::Start,
-		state::in_play::ChooseRations::Start,
 		state::in_play::RenameShipAdjective::Start,
 		state::in_play::RenameShipNoun::Start,
-		state::in_play::Tavern::Start,
 		state::in_play::crew_detail::Characteristics::Start,
-		state::in_play::crew_detail::Items::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};

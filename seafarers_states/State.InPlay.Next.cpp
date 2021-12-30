@@ -36,16 +36,7 @@ namespace state::in_play
 
 	static const std::map<game::characters::State, ::UIState> avatarStateTable =
 	{
-		{ game::characters::State::SHIPYARD, ::UIState::IN_PLAY_SHIPYARD },
-		{ game::characters::State::MARKET_BUY,::UIState::IN_PLAY_ISLAND_BUY },
-		{ game::characters::State::MARKET_SELL, ::UIState::IN_PLAY_ISLAND_SELL },
-		{ game::characters::State::MARKET, ::UIState::IN_PLAY_ISLAND_TRADE },
-		{ game::characters::State::JOB_BOARD, ::UIState::IN_PLAY_ISLAND_JOBS },
-		{ game::characters::State::AT_SEA, ::UIState::IN_PLAY_AT_SEA_OVERVIEW },
-		{ game::characters::State::CAREENED_TO_PORT, ::UIState::IN_PLAY_CAREENED_TO_PORT },
-		{ game::characters::State::CAREENED_TO_STARBOARD, ::UIState::IN_PLAY_CAREENED_TO_STARBOARD },
-		{ game::characters::State::TEMPLE, ::UIState::IN_PLAY_TEMPLE },
-		{ game::characters::State::TAVERN, ::UIState::IN_PLAY_TAVERN }
+		{ game::characters::State::AT_SEA, ::UIState::IN_PLAY_AT_SEA_OVERVIEW }
 	};
 
 	static void OnEnter()
