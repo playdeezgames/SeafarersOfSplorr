@@ -80,11 +80,6 @@ namespace game
 		return Read(shipType).properties.find(property)->second;
 	}
 
-	double ShipTypes::GetTotalTonnage(const game::ShipType& shipType)
-	{
-		return ReadProperty(shipType, ship::Property::TONNAGE);
-	}
-
 	double ShipTypes::GetSpeedFactor(const game::ShipType& shipType)
 	{
 		return ReadProperty(shipType, ship::Property::SPEED_FACTOR);
