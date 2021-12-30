@@ -62,9 +62,6 @@
     <ClInclude Include="State.InPlay.AtSeaOverview.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.CharacterStatus.h">
-      <Filter>Header Files\AtSea</Filter>
-    </ClInclude>
     <ClInclude Include="State.InPlay.CrewDetail.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
@@ -201,9 +198,6 @@
     </ClCompile>
     <ClCompile Include="State.InPlay.Win.cpp">
       <Filter>Source Files\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.CharacterStatus.cpp">
-      <Filter>Source Files\AtSea\Status</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.CrewList.cpp">
       <Filter>Source Files\AtSea\Status</Filter>

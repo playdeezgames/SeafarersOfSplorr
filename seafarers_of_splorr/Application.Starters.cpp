@@ -16,7 +16,6 @@
 #include <State.InPlay.ChangeHeading.h>
 #include <State.InPlay.ChangeSpeed.h>
 #include <State.InPlay.CrewDetail.Characteristics.h>
-#include <State.InPlay.CharacterStatus.h>
 #include <State.InPlay.CrewList.h>
 #include <State.InPlay.CrewDetail.h>
 #include <State.InPlay.Docked.h>
@@ -120,7 +119,6 @@ namespace application
 		state::in_play::Win::Start,
 		state::in_play::Lose::Start,
 		state::in_play::Next::Start,
-		state::in_play::CharacterStatus::Start,
 		state::in_play::CrewList::Start,
 		state::in_play::CrewDetail::Start,
 		state::in_play::ShipStatus::Start,

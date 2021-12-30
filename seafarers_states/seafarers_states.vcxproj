@@ -32,7 +32,6 @@
     <ClInclude Include="State.ConfirmOverwrite.h" />
     <ClInclude Include="State.ConfirmQuit.h" />
     <ClInclude Include="State.InPlay.AtSeaOverview.h" />
-    <ClInclude Include="State.InPlay.CharacterStatus.h" />
     <ClInclude Include="State.InPlay.CrewDetail.h" />
     <ClInclude Include="State.InPlay.CrewList.h" />
     <ClInclude Include="State.InPlay.Docked.h" />
@@ -76,7 +75,6 @@
     <ClCompile Include="State.InPlay.RenameShipNoun.cpp" />
     <ClCompile Include="State.InPlay.ShipStatus.cpp" />
     <ClCompile Include="State.Terminal.cpp" />
-    <ClCompile Include="State.InPlay.CharacterStatus.cpp" />
     <ClCompile Include="State.InPlay.Docked.cpp" />
     <ClCompile Include="State.InPlay.Lose.cpp" />
     <ClCompile Include="State.InPlay.Next.cpp" />
