@@ -119,7 +119,6 @@
     <ClInclude Include="Game.Colors.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.Characters.DoAction.cpp" />
     <ClCompile Include="Game.Characters.Islands.cpp" />
     <ClCompile Include="Game.Islands.Features.Tavern.cpp" />
     <ClCompile Include="Game.Islands.Taverns.cpp" />

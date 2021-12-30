@@ -445,9 +445,6 @@
     <ClCompile Include="Game.EquipSlots.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Characters.DoAction.cpp">
-      <Filter>Source Files\Character</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Characters.Plights.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
