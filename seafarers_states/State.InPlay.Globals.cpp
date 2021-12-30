@@ -2,8 +2,6 @@
 #include <Data.Game.Player.h>
 #include <Game.Characters.Message.h>
 #include <Data.Game.Character.Ship.h>
-#include <Game.Ship.Statistics.h>
-#include <Game.Islands.Features.h>
 #include <Game.Session.h>
 #include <Game.Ship.h>
 #include <Game.Ship.Docked.h>
@@ -74,23 +72,6 @@ namespace state::in_play
 	void DoPlayerCharacterAction(const game::characters::Action& action)
 	{
 		game::Session().GetPlayer().GetCharacter().DoAction(action);
-	}
-
-	void PlayerCharacterCleanHull(const game::Side& side)
-	{
-		game::ship::Statistics::CleanHull(GetPlayerCharacterShipId().value(), side);
-	}
-
-	static game::EquipSlot equipmentSlot = game::EquipSlot::PRISON_WALLET;
-
-	void SetEquipmentSlot(const game::EquipSlot& equipSlot)
-	{
-		equipmentSlot = equipSlot;
-	}
-
-	const game::EquipSlot& GetEquipmentSlot()
-	{
-		return equipmentSlot;
 	}
 
 	static int crewDetailCharacterId = 0;
@@ -173,12 +154,5 @@ namespace state::in_play
 	void AddPlayerCharacterMessage(const std::string& text)
 	{
 		game::Session().GetPlayer().GetCharacter().GetMessages().Add(game::Colors::GRAY, text);
-	}
-
-	std::optional<bool> PlayerCharacterIslandHasFeature(const game::Feature& feature)
-	{
-		return common::utility::Optional::Map<int, bool>(
-			GetPlayerCharacterIslandId(),
-			[feature](int islandId) { return game::islands::Features::Read(islandId, feature); });
 	}
 }

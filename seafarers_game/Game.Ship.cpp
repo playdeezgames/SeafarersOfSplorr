@@ -3,10 +3,8 @@
 #include <Common.Utility.List.h>
 #include <Common.Utility.Optional.h>
 #include <Data.Game.Ship.h>
-#include <Data.Game.Ship.Statistic.h>
 #include "Game.Session.h"
 #include "Game.Ship.h"
-#include "Game.Ship.Statistics.h"
 #include "Game.ShipTypes.h"
 namespace game
 {
@@ -20,22 +18,6 @@ namespace game
 				[](const int shipType) {return (ShipType)shipType; });
 	}
 
-	static void AddShipStatistics(int shipId, ShipType shipType)
-	{
-		common::utility::List::Iterate<ShipStatistic>(
-			ShipTypes::GetStatistics(shipType),
-			[shipId, shipType](const ShipStatistic& statistic) 
-			{
-				data::game::ship::Statistic::Write(shipId,
-					(int)statistic,
-					{
-						ShipTypes::GetMinimumStatistic(shipType, statistic),
-						ShipTypes::GetMaximumStatistic(shipType, statistic),
-						ShipTypes::GetInitialStatistic(shipType, statistic)
-					});
-			});
-	}
-
 	int Ship::Add(const Ship& ship)
 	{
 		int shipId = ShipData::Create(
@@ -44,7 +26,6 @@ namespace game
 			ship.location,
 			ship.heading,
 			ship.speed);
-		AddShipStatistics(shipId, ship.shipType);
 		return shipId;
 	}
 
@@ -87,14 +68,9 @@ namespace game
 		ShipData::SetSpeed(shipId, speed);
 	}
 
-	static void HandleFouling(int shipId, double speed)
-	{
-		ship::Statistics::IncreaseFouling(shipId, speed);
-	}
-
 	static double GetEffectiveSpeed(int shipId, double heading, double speed)
 	{
-		auto fouling = ship::Statistics::GetFouling(shipId);
+		auto fouling = 0.0;
 		auto effectiveSpeed = speed * (1.0 - fouling);
 
 		effectiveSpeed *= game::Session().GetWorld().GetWind().GetMultiplier(heading);
@@ -118,7 +94,7 @@ namespace game
 
 			game::Session().GetWorld().GetBounds().ClampLocation(location.value());
 
-			HandleFouling(shipId, effectiveSpeed);
+			//TODO: Handle Fouling
 
 			ShipData::SetLocation(shipId, location.value());
 		}

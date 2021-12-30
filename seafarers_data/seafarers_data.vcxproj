@@ -32,10 +32,8 @@
     <ClInclude Include="Data.Game.Character.Skill.h" />
     <ClInclude Include="Data.Game.Common.h" />
     <ClInclude Include="Data.Game.Demigod.h" />
-    <ClInclude Include="Data.Game.Island.Feature.h" />
     <ClInclude Include="Data.Game.Island.h" />
     <ClInclude Include="Data.Game.Island.Market.h" />
-    <ClInclude Include="Data.Game.Island.Tavern.h" />
     <ClInclude Include="Data.Game.Island.Tribe.h" />
     <ClInclude Include="Data.Game.Item.h" />
     <ClInclude Include="Data.Game.Item.Type.h" />
@@ -43,7 +41,6 @@
     <ClInclude Include="Data.Game.Player.h" />
     <ClInclude Include="Data.Game.Ship.CurrentIsland.h" />
     <ClInclude Include="Data.Game.Ship.h" />
-    <ClInclude Include="Data.Game.Ship.Statistic.h" />
     <ClInclude Include="Data.Game.World.h" />
     <ClInclude Include="Data.Game.World.Month.h" />
     <ClInclude Include="Data.JSON.Store.h" />
@@ -65,9 +62,7 @@
     <ClCompile Include="Data.Game.Common.cpp" />
     <ClCompile Include="Data.Game.Demigod.cpp" />
     <ClCompile Include="Data.Game.Island.cpp" />
-    <ClCompile Include="Data.Game.Island.Feature.cpp" />
     <ClCompile Include="Data.Game.Island.Market.cpp" />
-    <ClCompile Include="Data.Game.Island.Tavern.cpp" />
     <ClCompile Include="Data.Game.Island.Tribe.cpp" />
     <ClCompile Include="Data.Game.Item.cpp" />
     <ClCompile Include="Data.Game.Item.Type.cpp" />
@@ -75,7 +70,6 @@
     <ClCompile Include="Data.Game.Player.cpp" />
     <ClCompile Include="Data.Game.Ship.cpp" />
     <ClCompile Include="Data.Game.Ship.CurrentIsland.cpp" />
-    <ClCompile Include="Data.Game.Ship.Statistic.cpp" />
     <ClCompile Include="Data.Game.Tribe.cpp" />
     <ClCompile Include="Data.Game.World.cpp" />
     <ClCompile Include="Data.Game.World.Month.cpp" />

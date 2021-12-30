@@ -12,9 +12,6 @@
     <Filter Include="Header Files\Audio">
       <UniqueIdentifier>{ed7134ca-fe86-4c03-a54c-82c6b078941a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Features">
-      <UniqueIdentifier>{9e0a44a5-8999-4fea-b33c-030773111142}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Islands">
       <UniqueIdentifier>{279dddf3-583e-40c2-802c-6051521ed1fd}</UniqueIdentifier>
     </Filter>
@@ -33,9 +30,6 @@
     <Filter Include="Source Files\Islands\Trade">
       <UniqueIdentifier>{41300da2-b0b3-4d76-84fa-528ea2f52c68}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Equipment">
-      <UniqueIdentifier>{9bd4ef81-2416-4817-ae49-8035c9d1b335}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Character">
       <UniqueIdentifier>{e6e5cf3a-552f-4324-9554-5cfd7fdc1e77}</UniqueIdentifier>
     </Filter>
@@ -44,12 +38,6 @@
     </Filter>
     <Filter Include="Source Files\Ship">
       <UniqueIdentifier>{db5549fd-e249-4e7a-be4a-8cab11795267}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Islands\Features">
-      <UniqueIdentifier>{21da3d6a-2e22-4986-bd8d-913349b9a846}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Features">
-      <UniqueIdentifier>{2d667e5d-101a-47f1-9a8e-f9502a6d97dd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Session">
       <UniqueIdentifier>{32cfb385-1f2c-42c2-9e4c-1ec1493e87e6}</UniqueIdentifier>
@@ -140,9 +128,6 @@
     <ClInclude Include="Game.Audio.Sfx.h">
       <Filter>Header Files\Audio</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Features.h">
-      <Filter>Header Files\Features</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Islands.Ships.h">
       <Filter>Header Files\Islands</Filter>
     </ClInclude>
@@ -170,9 +155,6 @@
     <ClInclude Include="Game.Audio.Theme.h">
       <Filter>Header Files\Audio</Filter>
     </ClInclude>
-    <ClInclude Include="Game.ShipStatistic.h">
-      <Filter>Header Files\Ships</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Island.h">
       <Filter>Header Files\Islands</Filter>
     </ClInclude>
@@ -184,9 +166,6 @@
     </ClInclude>
     <ClInclude Include="Game.Islands.Markets.h">
       <Filter>Header Files\Islands\Trade</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.EquipSlots.h">
-      <Filter>Header Files\Equipment</Filter>
     </ClInclude>
     <ClInclude Include="Game.Ship.h">
       <Filter>Header Files\Ships</Filter>
@@ -208,18 +187,6 @@
     </ClInclude>
     <ClInclude Include="Game.Ship.DockResult.h">
       <Filter>Header Files\Ships</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Ship.Statistics.h">
-      <Filter>Header Files\Ships</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.Features.h">
-      <Filter>Header Files\Islands\Features</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.Features.Tavern.h">
-      <Filter>Header Files\Islands\Features</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.Taverns.h">
-      <Filter>Header Files\Islands</Filter>
     </ClInclude>
     <ClInclude Include="Game.Characters.Islands.h">
       <Filter>Header Files\Character</Filter>
@@ -252,9 +219,6 @@
       <Filter>Header Files\Session\Item</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Ship.Berth.h">
-      <Filter>Header Files\Session\Ship</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Ship.Fouling.h">
       <Filter>Header Files\Session\Ship</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Ship.h">
@@ -359,12 +323,6 @@
     <ClInclude Include="Game.SkillCategory.h">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
-    <ClInclude Include="Game.EquipSlot.h">
-      <Filter>Header Files\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Feature.h">
-      <Filter>Header Files\Enums</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.Island.Tavern.h">
       <Filter>Header Files\Session\Island</Filter>
     </ClInclude>
@@ -398,9 +356,6 @@
     <ClInclude Include="Game.Session.Ship.VisibleIslands.h">
       <Filter>Header Files\Session\Ship</Filter>
     </ClInclude>
-    <ClInclude Include="Game.OfferingResult.h">
-      <Filter>Header Files\Enums</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.Demigod.h">
       <Filter>Header Files\Session\Demigod</Filter>
     </ClInclude>
@@ -419,17 +374,8 @@
     <ClInclude Include="Game.Item.Category.h">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.Island.Features.h">
-      <Filter>Header Files\Session\Island</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Island.Feature.h">
-      <Filter>Header Files\Session\Island</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.Features.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Islands.Ships.cpp">
       <Filter>Source Files\Islands</Filter>
     </ClCompile>
@@ -438,9 +384,6 @@
     </ClCompile>
     <ClCompile Include="Game.Islands.Markets.cpp">
       <Filter>Source Files\Islands\Trade</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.EquipSlots.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.Characters.Plights.cpp">
       <Filter>Source Files\Character</Filter>
@@ -462,18 +405,6 @@
     </ClCompile>
     <ClCompile Include="Game.ShipTypes.cpp">
       <Filter>Source Files\Ship</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Ship.Statistics.cpp">
-      <Filter>Source Files\Ship</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.Features.cpp">
-      <Filter>Source Files\Features</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.Features.Tavern.cpp">
-      <Filter>Source Files\Features</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Islands.Taverns.cpp">
-      <Filter>Source Files\Islands</Filter>
     </ClCompile>
     <ClCompile Include="Game.Characters.Islands.cpp">
       <Filter>Source Files\Character</Filter>
@@ -503,9 +434,6 @@
       <Filter>Source Files\Session\Ship</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Ship.cpp">
-      <Filter>Source Files\Session\Ship</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Ship.Fouling.cpp">
       <Filter>Source Files\Session\Ship</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.World.cpp">

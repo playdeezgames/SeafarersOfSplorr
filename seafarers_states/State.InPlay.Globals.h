@@ -12,8 +12,6 @@
 #include <Cards.Rank.h>
 #include <Cards.Suit.h>
 #include <Game.Characters.Action.h>
-#include <Game.EquipSlot.h>
-#include <Game.Feature.h>
 #include <Game.Island.h>
 #include <Game.Quest.h>
 #include <Game.Ship.DockResult.h>
@@ -37,11 +35,7 @@ namespace state::in_play
 	void PlayMainTheme();
 	void SetPlayerCharacterShipHeading(double);
 	void DoPlayerCharacterAction(const game::characters::Action&);
-	std::optional<bool> PlayerCharacterIslandHasFeature(const game::Feature&);//game::islands::Features::Read(island.id,
-	void PlayerCharacterCleanHull(const game::Side&);
 
-	void SetEquipmentSlot(const game::EquipSlot&);
-	const game::EquipSlot& GetEquipmentSlot();
 	void SetCrewDetailCharacterId(int);
 	int GetCrewDetailCharacterId();
 	const std::map<cards::Rank, std::string>& GetRanks();

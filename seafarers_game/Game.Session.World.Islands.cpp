@@ -6,13 +6,9 @@
 #include <Data.Game.Island.h>
 #include <Data.Game.Character.KnownIsland.h>
 #include <Data.Game.Demigod.h>
-#include <Data.Game.Island.Feature.h>
 #include <Data.Game.Island.Market.h>
 #include <Data.Game.Tribe.h>
 #include <Data.Game.Island.Tribe.h>
-#include "Game.Features.h"
-#include "Game.Islands.Features.h"
-#include "Game.Islands.Features.Tavern.h"
 #include "Game.Session.h"
 #include "Game.Session.World.Islands.h"
 #include <map>
@@ -157,64 +153,6 @@ namespace game::session::world
 			std::back_inserter(result),
 			Island::ToIsland);
 		return result;
-	}
-	static const std::map<game::Feature, std::function<void(int)>> featureInitializers =
-	{
-		{game::Feature::TAVERN, game::islands::features::Tavern::Initialize}
-	};
-
-	static void InitializeFeature(const game::Feature& feature, int islandId)
-	{
-		auto initializer = featureInitializers.find(feature);
-		if (initializer != featureInitializers.end())
-		{
-			initializer->second(islandId);
-		}
-	}
-
-	static size_t DetermineIslandCountForFeature(const game::Feature& feature, size_t totalIslandCount)
-	{
-		size_t islandCount = (size_t)(game::Features::GetCoveragePercentage(feature) * (double)totalIslandCount);
-		if (islandCount < game::Features::GetMinimumCount(feature))
-		{
-			islandCount = game::Features::GetMinimumCount(feature);
-		}
-		if (islandCount > totalIslandCount)
-		{
-			islandCount = totalIslandCount;
-		}
-		return islandCount;
-	}
-
-	static void GenerateFeature(const game::Feature& feature, const std::list<int>& islands)
-	{
-		std::vector<int> candidates;
-		for (auto island : islands)
-		{
-			candidates.push_back(island);
-		}
-		size_t islandCount = DetermineIslandCountForFeature(feature, islands.size());
-		while (islandCount > 0)
-		{
-			auto index = common::RNG::FromRange(0u, candidates.size());
-
-			auto candidate = candidates[index];
-			candidates[index] = candidates.back();
-			candidates.pop_back();
-
-			data::game::island::Feature::Write(candidate, (int)feature);
-			InitializeFeature(feature, candidate);
-			islandCount--;
-		}
-	}
-
-	static void GenerateAllFeatures()
-	{
-		auto allIslands = data::game::Island::All();
-		for (auto feature : game::Features::All())
-		{
-			GenerateFeature(feature, allIslands);
-		}
 	}
 
 	static std::set<int> DetermineOccupiedIslands(
@@ -432,7 +370,6 @@ namespace game::session::world
 			GenerateMarkets(islandId);
 		}
 		PopulateIslandTribes();
-		GenerateAllFeatures();
 	}
 
 
@@ -441,7 +378,6 @@ namespace game::session::world
 		data::game::Island::Clear();
 		data::game::character::KnownIsland::Clear();
 		data::game::island::Market::Clear();
-		data::game::island::Feature::Clear();
 	}
 
 	void Islands::ApplyTurnEffects() const

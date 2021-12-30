@@ -6,19 +6,11 @@
 #include "Game.Ship.Property.h"
 namespace game
 {
-	struct ShipStatisticDescriptor
-	{
-		std::optional<double> minimum;
-		std::optional<double> maximum;
-		double initial;
-	};
-
 	struct ShipDescriptor
 	{
 		std::string name;
 		std::map<game::ship::Property, double> properties;
 		std::map<game::Commodity, double> commodities;
-		std::map<ShipStatistic, ShipStatisticDescriptor> statistics;
 		size_t initialShipGenerationWeight;
 		std::map<BerthType, size_t> berths;
 	};
@@ -37,32 +29,6 @@ namespace game
 					{game::Commodity::WOOD, 100.0},
 					{game::Commodity::LABOR, 50.0}
 				},
-				{
-					{
-						ShipStatistic::PORT_FOULING,
-						{
-							0.0,
-							0.125,
-							0.0
-						}
-					},
-					{
-						ShipStatistic::STARBOARD_FOULING,
-						{
-							0.0,
-							0.125,
-							0.0
-						}
-					},
-					{
-						ShipStatistic::FOULING_RATE,
-						{
-							0.0001,
-							0.0001,
-							0.0001
-						}
-					}
-				},
 				1,
 				{
 					{BerthType::CAPTAIN, 1}
@@ -80,32 +46,6 @@ namespace game
 				{
 					{game::Commodity::WOOD, 200.0},
 					{game::Commodity::LABOR, 75.0}
-				},
-				{
-					{
-						ShipStatistic::PORT_FOULING,
-						{
-							0.0,
-							0.125,
-							0.0
-						}
-					},
-					{
-						ShipStatistic::STARBOARD_FOULING,
-						{
-							0.0,
-							0.125,
-							0.0
-						}
-					},
-					{
-						ShipStatistic::FOULING_RATE,
-						{
-							0.0001,
-							0.0001,
-							0.0001
-						}
-					}
 				},
 				0,
 				{
@@ -169,42 +109,5 @@ namespace game
 	const std::map<game::Commodity, double> ShipTypes::GetCommodities(const game::ShipType& shipType)
 	{
 		return Read(shipType).commodities;
-	}
-
-	static std::map<ShipType, std::list<ShipStatistic>> statisticLists;
-
-	static const std::list<ShipStatistic>& LoadDefaultStatistics(const ShipType& shipType)
-	{
-		return statisticLists[shipType] = common::utility::Table::Accumulate<ShipStatistic, ShipStatisticDescriptor, std::list<ShipStatistic>>(
-			[shipType]() { return Read(shipType).statistics;  },
-			[](std::list<ShipStatistic>& result, const ShipStatistic& statistic, const ShipStatisticDescriptor&) 
-			{ result.push_back(statistic); });
-	}
-
-	std::list<ShipStatistic> ShipTypes::GetStatistics(const game::ShipType& shipType)
-	{
-		return 
-			common::utility::Table::TryGetKey(statisticLists, shipType)
-				.value_or(LoadDefaultStatistics(shipType));
-	}
-
-	static const ShipStatisticDescriptor& ReadStatistic(const ShipType& shipType, const ShipStatistic& statistic)
-	{
-		return Read(shipType).statistics.find(statistic)->second;
-	}
-
-	std::optional<double> ShipTypes::GetMinimumStatistic(const game::ShipType& shipType, const game::ShipStatistic& statistic)
-	{
-		return ReadStatistic(shipType, statistic).minimum;
-	}
-
-	std::optional<double> ShipTypes::GetMaximumStatistic(const game::ShipType& shipType, const game::ShipStatistic& statistic)
-	{
-		return ReadStatistic(shipType, statistic).maximum;
-	}
-
-	double ShipTypes::GetInitialStatistic(const game::ShipType& shipType, const game::ShipStatistic& statistic)
-	{
-		return ReadStatistic(shipType, statistic).initial;
 	}
 }
