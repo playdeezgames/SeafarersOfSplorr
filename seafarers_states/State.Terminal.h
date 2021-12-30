@@ -2,16 +2,21 @@
 #include <format>
 #include <functional>
 #include <map>
+#include "Menu.h"
 #include <string>
 namespace state
 {
 	struct Terminal
 	{
+		static Menu menu;
 		static const std::string INVALID_INPUT;
 		static void ClearInput();
 		static const std::string& GetInput();
 		static const void AppendInput(const std::string&);
 		static const bool Backspace();
+		static std::function<bool(const std::string&)> DoMenuInput(
+			const std::string&,
+			std::function<void()>);
 		static std::function<bool(const std::string&)> DoIntegerInput(
 			const std::map<std::string, std::function<void()>>&,
 			std::function<void(const std::string&)>);
@@ -42,5 +47,6 @@ namespace state
 		static void ShowPrompt();
 		static void Reinitialize();
 		static void ErrorMessage(const std::string&);
+		static void ShowMenu();
 	};
 }

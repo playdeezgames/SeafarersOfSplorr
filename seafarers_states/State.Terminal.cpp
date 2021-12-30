@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <Common.Data.h>
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Colors.h>
@@ -8,12 +9,27 @@
 #include <Visuals.Terminals.h>
 namespace state
 {
+	Menu Terminal::menu;
+
 	const std::string Terminal::INVALID_INPUT = "Please select a valid option.";
 
 	static std::string inputBuffer = "";
 	const std::string Terminal::LAYOUT_NAME = "State.Terminal";
 	const std::string Terminal::TERMINAL_ID = "terminal";
 	const std::string Terminal::STATUS_ID = "status";
+
+	void Terminal::ShowMenu()
+	{
+		SetForeground(game::Colors::YELLOW);
+		auto items = menu.GetCurrentPage();
+		std::for_each(
+			items.begin(),
+			items.end(),
+			[](const std::string& item) 
+			{
+				WriteLine(item);
+			});
+	}
 
 	void Terminal::ClearInput()
 	{
@@ -161,6 +177,42 @@ namespace state
 		KEYPAD_ENTER
 	};
 
+	std::function<bool(const std::string&)> Terminal::DoMenuInput(
+		const std::string& errorMessage,
+		std::function<void()> refresh)
+	{
+		return [errorMessage, refresh](const std::string& key)
+		{
+			if (numericKeys.contains(key))
+			{
+				Terminal::AppendInput(keyToInput.find(key)->second);
+				visuals::Terminals::WriteText(LAYOUT_NAME, TERMINAL_ID, keyToInput.find(key)->second);
+				return true;
+			}
+			else if (newLineKeys.contains(key))
+			{
+				visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
+				auto number = common::Data::ToInt(Terminal::GetInput());
+				if (!menu.DoAction(number))
+				{
+					ErrorMessage(errorMessage);
+					refresh();
+				}
+				return true;
+			}
+			else if (key == KEY_BACKSPACE)
+			{
+				if (Terminal::Backspace())
+				{
+					visuals::Terminals::Backspace(LAYOUT_NAME, TERMINAL_ID);
+				}
+				return true;
+			}
+			return false;
+		};
+	}
+
+
 	std::function<bool(const std::string&)> Terminal::DoIntegerInput(
 		const std::map<std::string, std::function<void()>>& table,
 		std::function<void(const std::string&)> handleOther)
@@ -198,7 +250,6 @@ namespace state
 			}
 			return false;
 		};
-
 	}
 
 	std::function<bool(const std::string&)> Terminal::DoIntegerInput(
@@ -263,7 +314,6 @@ namespace state
 			return false;
 		};
 	}
-
 
 	void Terminal::ShowPrompt()
 	{

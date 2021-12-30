@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="State.InPlay.ChangeHeading.h" />
     <ClInclude Include="State.InPlay.ChangeSpeed.h" />
     <ClInclude Include="State.InPlay.CrewDetail.Characteristics.h" />
@@ -55,6 +56,7 @@
     <ClInclude Include="UIState.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="State.About.cpp" />
     <ClCompile Include="State.ConfirmAbandon.cpp" />
     <ClCompile Include="State.ConfirmOverwrite.cpp" />

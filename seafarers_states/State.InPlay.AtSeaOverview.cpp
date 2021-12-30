@@ -2,20 +2,17 @@
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.AtSeaOverview.h"
+#include "Menu.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_AT_SEA_OVERVIEW;
-
-	static bool IsFishingEnabled()
-	{
-		return false;
-	}
 
 	static bool RefreshDockableIslands()
 	{
 		auto character =
 			game::Session()
-			.GetPlayer().GetCharacter();
+			.GetPlayer()
+			.GetCharacter();
 		auto island =
 			character
 			.GetBerth()
@@ -121,31 +118,12 @@ namespace state::in_play
 		bool canDock = RefreshDockableIslands();
 		//nearby islands
 		RefreshNearbyIslands();
-		//job destination
-		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine("1) Move");
-		Terminal::WriteLine("2) Multiple move");
-		if (canDock)
-		{
-			Terminal::WriteLine("3) Dock/careen");
-		}
-		Terminal::WriteLine("4) Crew status");
-		Terminal::WriteLine("5) Ship status");
-		if (IsFishingEnabled())
-		{
-			Terminal::WriteLine("7) Fish");
-		}
-		Terminal::WriteLine("0) Menu");
+
+		Terminal::ShowMenu();
 
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine();
 		Terminal::Write(">");
-	}
-
-	static void OnEnter()
-	{
-		PlayMainTheme();
-		Refresh();
 	}
 
 	static void OnMove()
@@ -176,6 +154,28 @@ namespace state::in_play
 		Refresh();
 	}
 
+	static void UpdateMenu()
+	{
+		Terminal::menu.Clear();
+		Terminal::menu.AddAction({ "Move", OnMove });
+		Terminal::menu.AddAction({ "Multiple move", application::UIState::GoTo(::UIState::IN_PLAY_MULTIPLE_MOVE) });
+		if (game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().CanDock())
+		{
+			Terminal::menu.AddAction({ "Dock", OnDock });
+		}
+		Terminal::menu.AddAction({ "Crew Status", application::UIState::GoTo(::UIState::IN_PLAY_CREW_LIST) });
+		Terminal::menu.AddAction({ "Ship Status", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS) });
+		MenuAction defaultAction = { "Menu", application::UIState::GoTo(::UIState::LEAVE_PLAY) };
+		Terminal::menu.SetDefaultAction(defaultAction);
+	}
+
+	static void OnEnter()
+	{
+		PlayMainTheme();
+		UpdateMenu();
+		Refresh();
+	}
+
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
 		{"1", OnMove },
@@ -196,8 +196,7 @@ namespace state::in_play
 			Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(
 			CURRENT_STATE, 
-			Terminal::DoIntegerInput(
-				menuActions, 
+			Terminal::DoMenuInput(
 				Terminal::INVALID_INPUT, 
 				Refresh));
 	}

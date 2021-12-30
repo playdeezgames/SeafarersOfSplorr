@@ -146,6 +146,9 @@
     <ClInclude Include="State.InPlay.CrewDetail.Characteristics.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -246,6 +249,9 @@
     </ClCompile>
     <ClCompile Include="State.InPlay.CrewDetail.Characteristics.cpp">
       <Filter>Source Files\AtSea\Status</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source Files\Utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

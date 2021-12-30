@@ -21,6 +21,7 @@ namespace game::session
 		common::XY<double> GetLocation() const;
 		void SetName(const std::string&) const;
 		std::string GetName() const;
+		bool CanDock() const;
 		void Dock() const;
 		bool Undock() const;
 		std::optional<Island> TryGetIsland() const;

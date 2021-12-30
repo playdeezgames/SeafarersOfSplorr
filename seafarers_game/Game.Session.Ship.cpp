@@ -10,6 +10,11 @@ namespace game::session
 {
 	using ShipData = data::game::Ship;
 
+	bool Ship::CanDock() const
+	{
+		return GetDockableIslands().TryGetFirst().has_value();
+	}
+
 	static std::optional<double> TryGetHeading(int shipId)
 	{
 		return ShipData::GetHeading(shipId);
