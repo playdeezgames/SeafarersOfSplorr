@@ -3,6 +3,7 @@
 #include <Application.OnEnter.h> //common include
 #include <Application.Renderer.h> //common include
 #include <Application.UIState.h> //common include
+#include <Common.XY.h>
 #include <Game.Audio.Mux.h> //common include
 #include <Game.Audio.Sfx.h> //common include
 #include <Game.Colors.h> //common include
@@ -12,7 +13,6 @@
 #include <Cards.Rank.h>
 #include <Cards.Suit.h>
 #include <Game.Characters.Action.h>
-#include <Game.Island.h>
 #include <Game.Ship.DockResult.h>
 #include <Game.Side.h>
 namespace state::in_play
