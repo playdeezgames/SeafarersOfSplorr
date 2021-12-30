@@ -62,12 +62,6 @@ namespace game
 		return ships.find(ship)->second;
 	}
 
-	const std::list<game::ShipType>& ShipTypes::All()
-	{
-		return common::utility::List::FromTable(shipList, ships);
-	}
-
-
 	static const std::map<ShipType, ShipDescriptor>& AllDescriptors()
 	{
 		return ships;
