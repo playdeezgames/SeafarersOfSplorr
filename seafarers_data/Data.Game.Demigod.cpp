@@ -35,13 +35,13 @@ namespace data::game
 		R"(SELECT 
 			[DemigodId],
 			[Name],
-			[PatronWeight],
-			[BlessingThreshold],
-			[BlessingMultiplier],
-			[BlessingPlightId],
-			[CurseThreshold],
-			[CurseMultiplier],
-			[CursePlightId] 
+			[PatronWeight]
+		FROM [Demigods] 
+		WHERE 
+			[DemigodId]={};)"s;
+	static const std::string QUERY_ITEM_COLUMN =
+		R"(SELECT 
+			[{}]
 		FROM [Demigods] 
 		WHERE 
 			[DemigodId]={};)"s;
@@ -49,12 +49,6 @@ namespace data::game
 	static const std::string FIELD_DEMIGOD_ID = "DemigodId";
 	static const std::string FIELD_NAME = "Name";
 	static const std::string FIELD_PATRON_WEIGHT = "PatronWeight";
-	static const std::string FIELD_BLESSING_THRESHOLD = "BlessingThreshold";
-	static const std::string FIELD_BLESSING_MULTIPLIER = "BlessingMultiplier";
-	static const std::string FIELD_BLESSING_PLIGHT_ID = "BlessingPlightId";
-	static const std::string FIELD_CURSE_TRESHOLD = "CurseThreshold";
-	static const std::string FIELD_CURSE_MULTIPLIER = "CurseMultiplier";
-	static const std::string FIELD_CURSE_PLIGHT_ID = "CursePlightId";
 
 	void Demigod::Initialize()
 	{
@@ -117,6 +111,38 @@ namespace data::game
 		if (!records.empty())
 		{
 			return ToDemigod(records.front());
+		}
+		return std::nullopt;
+	}
+
+	int Demigod::Create(const name_t& name, patronweight_t patronWeight)
+	{
+		Initialize();
+		data::game::Common::Execute(
+			INSERT_ITEM,
+			common::Data::QuoteString(name),
+			patronWeight);
+		return Common::LastInsertedIndex();
+	}
+
+	std::optional<Demigod::name_t> Demigod::ReadName(demigodid_t demigodId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_NAME, demigodId);
+		if (record)
+		{
+			return Common::ToString(record.value(), FIELD_NAME);
+		}
+		return std::nullopt;
+	}
+
+	std::optional<Demigod::patronweight_t> Demigod::ReadPatronWeight(demigodid_t demigodId)
+	{
+		Initialize();
+		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_PATRON_WEIGHT, demigodId);
+		if (record)
+		{
+			return (size_t)Common::ToInt(record.value(), FIELD_NAME);
 		}
 		return std::nullopt;
 	}
