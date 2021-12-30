@@ -1,4 +1,4 @@
-#include "Game.Ships.h"
+#include <Data.Game.Ship.h>
 #include "Game.Session.Ships.h"
 namespace game::session
 {
@@ -9,11 +9,15 @@ namespace game::session
 
 	void Ships::Reset() const
 	{
-		game::Ships::Reset();
+		data::game::Ship::Clear();
 	}
 
 	void Ships::ApplyTurnEffects() const
 	{
-		game::Ships::ApplyTurnEffects();
+		auto shipIds = data::game::Ship::All();
+		for (auto shipId : shipIds)
+		{
+			Ship(shipId).ApplyTurnEffects();
+		}
 	}
 }

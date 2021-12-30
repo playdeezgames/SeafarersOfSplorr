@@ -26,6 +26,7 @@ namespace game::session
 		std::optional<Island> TryGetIsland() const;
 		Island GetIsland() const;
 		world::ShipType GetShipType() const;
+		void ApplyTurnEffects() const;
 	private:
 		int shipId;
 	};

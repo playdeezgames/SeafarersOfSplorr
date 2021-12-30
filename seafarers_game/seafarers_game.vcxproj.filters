@@ -266,12 +266,6 @@
     <ClInclude Include="Game.Session.Character.Plight.h">
       <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Ship.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Ships.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game.BerthType.h">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
@@ -483,12 +477,6 @@
     </ClCompile>
     <ClCompile Include="Game.Session.Character.KnownIslands.cpp">
       <Filter>Source Files\Session\Character\KnownIsland</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Ship.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Ships.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.ShipNames.cpp">
       <Filter>Source Files\Utility</Filter>

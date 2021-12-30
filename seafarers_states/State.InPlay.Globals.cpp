@@ -3,7 +3,6 @@
 #include <Game.Characters.Message.h>
 #include <Data.Game.Character.Ship.h>
 #include <Game.Session.h>
-#include <Game.Ship.h>
 #include "State.InPlay.Globals.h"
 namespace state::in_play
 {

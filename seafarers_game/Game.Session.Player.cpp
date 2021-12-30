@@ -7,12 +7,9 @@
 #include "Game.Session.h"
 #include "Game.Session.Characters.h"
 #include "Game.Session.Player.h"
-#include "Game.Ship.h"
 #include "Game.ShipNames.h"
 namespace game::session
 {
-
-
 	Character Player::GetCharacter() const
 	{
 		return Character(data::game::Player::GetCharacterId().value());
