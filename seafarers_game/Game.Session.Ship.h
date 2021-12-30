@@ -1,6 +1,6 @@
 #pragma once
 #include <Common.XY.h>
-#include "Game.Session.Ship.Berth.h"
+#include "Game.Session.Ship.Berths.h"
 #include "Game.Session.Ship.DockableIslands.h"
 #include "Game.Session.Ship.VisibleIslands.h"
 #include <list>
@@ -10,7 +10,7 @@ namespace game::session
 	struct Ship
 	{
 		constexpr Ship(int shipId) : shipId(shipId) {}
-		std::list<ship::Berth> GetBerths() const;
+		const ship::Berths GetBerths() const { return ship::Berths(shipId); }
 		double GetHeading() const;
 		void SetHeading(double) const;
 		double GetSpeed() const;

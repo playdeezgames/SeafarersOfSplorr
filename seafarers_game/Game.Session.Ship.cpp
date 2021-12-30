@@ -4,21 +4,9 @@
 #include <Data.Game.Ship.CurrentIsland.h>
 #include "Game.Session.h"
 #include "Game.Ship.h"
-#include "Game.Ship.Crew.h"
 #include "Game.Session.Ship.h"
 namespace game::session
 {
-	std::list<ship::Berth> Ship::GetBerths() const
-	{
-		std::list<ship::Berth> result;
-		auto berths = game::ship::Crew::ReadForShip(shipId);
-		for (auto berth : berths)
-		{
-			result.push_back(ship::Berth(berth.avatarId));
-		}
-		return result;
-	}
-
 	static std::optional<double> TryGetHeading(int shipId)
 	{
 		return game::Ship::GetHeading(shipId);

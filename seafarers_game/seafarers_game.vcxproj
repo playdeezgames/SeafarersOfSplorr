@@ -59,6 +59,7 @@
     <ClInclude Include="Game.Session.Save.h" />
     <ClInclude Include="Game.Session.Saves.h" />
     <ClInclude Include="Game.Session.Ship.Berth.h" />
+    <ClInclude Include="Game.Session.Ship.Berths.h" />
     <ClInclude Include="Game.Session.Ship.DockableIslands.h" />
     <ClInclude Include="Game.Session.Ship.h" />
     <ClInclude Include="Game.Session.Ship.VisibleIslands.h" />
@@ -87,7 +88,6 @@
     <ClInclude Include="Game.Audio.Theme.h" />
     <ClInclude Include="Game.Commodity.h" />
     <ClInclude Include="Game.Difficulty.h" />
-    <ClInclude Include="Game.Ship.Crew.h" />
     <ClInclude Include="Game.Ship.h" />
     <ClInclude Include="Game.Ship.State.h" />
     <ClInclude Include="Game.ShipNames.h" />
@@ -149,7 +149,6 @@
     <ClCompile Include="Game.Session.World.Islands.cpp" />
     <ClCompile Include="Game.Session.World.Wind.cpp" />
     <ClCompile Include="Game.Ship.cpp" />
-    <ClCompile Include="Game.Ship.Crew.cpp" />
     <ClCompile Include="Game.ShipNames.cpp" />
     <ClCompile Include="Game.Ships.cpp" />
     <ClCompile Include="Game.ShipTypes.cpp" />

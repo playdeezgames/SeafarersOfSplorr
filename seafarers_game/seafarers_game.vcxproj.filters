@@ -266,9 +266,6 @@
     <ClInclude Include="Game.Session.Character.Plight.h">
       <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Ship.Crew.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Ship.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -340,6 +337,9 @@
     </ClInclude>
     <ClInclude Include="Game.Session.World.ShipTypes.h">
       <Filter>Header Files\Session\World\ShipType</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Ship.Berths.h">
+      <Filter>Header Files\Session\Ship</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -488,9 +488,6 @@
       <Filter>Source Files\Session\Character\KnownIsland</Filter>
     </ClCompile>
     <ClCompile Include="Game.Ship.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Ship.Crew.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.Ships.cpp">

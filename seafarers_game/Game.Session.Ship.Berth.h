@@ -5,8 +5,8 @@ namespace game::session::ship
 {
 	struct Berth
 	{
-		Berth(int);
-		int GetCharacterId() const;
+		constexpr Berth(int characterId) : characterId(characterId) {}
+		constexpr int GetCharacterId() const { return characterId; }
 		BerthType GetBerthType() const;
 	private:
 		int characterId;

@@ -3,17 +3,6 @@
 #include "Game.Session.Ship.Berth.h"
 namespace game::session::ship
 {
-	Berth::Berth(int characterId)
-		: characterId(characterId)
-	{
-
-	}
-
-	int Berth::GetCharacterId() const
-	{
-		return characterId;
-	}
-
 	using OptUtil = common::utility::Optional;
 	using CharacterShipData = data::game::character::Ship;
 

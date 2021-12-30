@@ -2,7 +2,6 @@
 #include <Common.Data.h>
 #include <Game.BerthType.h>
 #include <Game.Session.h>
-#include <Game.Ship.Crew.h>
 #include <iterator>
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.CrewList.h"
@@ -73,25 +72,27 @@ namespace state::in_play
 	static void UpdateRoster()
 	{
 		rosterItems.clear();
-		auto crew = game::ship::Crew::ReadForCharacter(GetPlayerCharacterId());
+		auto crew = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().GetBerths().GetBerths();
 		int index = 1;
 		std::transform(
 			crew.begin(), 
 			crew.end(), 
 			std::back_inserter(rosterItems), 
-			[&index](const game::ship::Crew& entry) 
+			[&index](const game::session::ship::Berth& entry) 
 			{
+				auto characterId = entry.GetCharacterId();
+				auto character = game::Session().GetCharacters().GetCharacter(characterId);
 				auto hitPoints = 
 					game::Session()
 					.GetCharacters()
-					.GetCharacter(entry.avatarId)
+					.GetCharacter(characterId)
 					.GetHitpoints();
 				RosterItem result = {
 					index++,
-					entry.name,
-					berthNames.find(entry.berthType)->second,
-					(entry.avatarId==GetPlayerCharacterId()) ? ("(you)") : (""),
-					entry.avatarId,
+					character.GetName(),
+					berthNames.find(entry.GetBerthType())->second,
+					(characterId==GetPlayerCharacterId()) ? ("(you)") : (""),
+					characterId,
 					hitPoints.GetCurrent(),
 					hitPoints.GetMaximum()
 					};
