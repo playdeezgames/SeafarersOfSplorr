@@ -137,18 +137,6 @@ namespace game::session
 
 	void Demigods::ApplyTurnEffects() const
 	{
-		auto candidates = DemigodFavorData::ReadOfferingCooldowns();
-		std::for_each(
-			candidates.begin(), 
-			candidates.end(), 
-			[](DemigodFavorData::Cooldown& candidate)
-			{
-				if (candidate.cooldown > 0)
-				{
-					candidate.cooldown--;
-				}
-			});
-		DemigodFavorData::WriteOfferingCooldowns(candidates);
 	}
 
 	std::list<Demigod> Demigods::GetAll() const

@@ -14,7 +14,6 @@ namespace data::game::character
 			[CharacterId] INT NOT NULL,
 			[DemigodId] INT NOT NULL,
 			[Favor] REAL NOT NULL, 
-			[OfferingCooldown] INT NOT NULL, 
 			UNIQUE([CharacterId],[DemigodId]),
 			FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId]),
 			FOREIGN KEY ([DemigodId]) REFERENCES [Demigods]([DemigodId])
@@ -24,20 +23,12 @@ namespace data::game::character
 		(
 			[CharacterId],
 			[DemigodId],
-			[Favor],
-			[OfferingCooldown]
+			[Favor]
 		) 
 		VALUES({},{},{},{});)"s;
 	static const std::string QUERY_ITEM_FAVOR = 
 		R"(SELECT 
 			[Favor] 
-		FROM [CharacterDemigodFavor] 
-		WHERE 
-			[CharacterId]={} 
-			AND [DemigodId]={};)"s;
-	static const std::string QUERY_ITEM_OFFERING_COOLDOWN = 
-		R"(SELECT 
-			[OfferingCooldown] 
 		FROM [CharacterDemigodFavor] 
 		WHERE 
 			[CharacterId]={} 
@@ -55,17 +46,10 @@ namespace data::game::character
 		WHERE 
 			[CharacterId]={} 
 			AND [DemigodId]={};)"s;
-	static const std::string QUERY_OFFERING_COOLDOWNS =
-		R"(SELECT 
-			[CharacterId],
-			[DemigodId],
-			[OfferingCooldown] 
-		FROM [CharacterDemigodFavor];)"s;
 
 	static const std::string FIELD_CHARACTER_ID = "CharacterId";
 	static const std::string FIELD_DEMIGOD_ID = "DemigodId";
 	static const std::string FIELD_FAVOR = "Favor";
-	static const std::string FIELD_OFFERING_COOLDOWN = "OfferingCooldown";
 
 	void DemigodFavor::Initialize()
 	{
@@ -74,18 +58,17 @@ namespace data::game::character
 		Common::Execute(CREATE_TABLE);
 	}
 
-	void DemigodFavor::Write(characterid_t characterId, demigodid_t demigodId, favor_t favor, cooldown_t offeringCooldown)
+	void DemigodFavor::Write(characterid_t characterId, demigodid_t demigodId, favor_t favor)
 	{
 		Initialize();
 		Common::Execute(
 			REPLACE_ITEM, 
 			characterId, 
 			demigodId, 
-			favor,
-			offeringCooldown);
+			favor);
 	}
 
-	std::optional<DemigodFavor::favor_t> DemigodFavor::ReadFavor(characterid_t characterId, demigodid_t demigodId)
+	std::optional<DemigodFavor::favor_t> DemigodFavor::Read(characterid_t characterId, demigodid_t demigodId)
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_ITEM_FAVOR, characterId, demigodId);
@@ -96,70 +79,9 @@ namespace data::game::character
 		return std::nullopt;
 	}
 
-	std::optional<DemigodFavor::cooldown_t> DemigodFavor::ReadOfferingCooldown(characterid_t characterId, demigodid_t demigodId)
-	{
-		Initialize();
-		auto records = Common::Execute(QUERY_ITEM_OFFERING_COOLDOWN, characterId, demigodId);
-		if (!records.empty())
-		{
-			return common::Data::ToOptionalInt(records.front()[FIELD_OFFERING_COOLDOWN]);
-		}
-		return std::nullopt;
-	}
-
-	void DemigodFavor::WriteOfferingCooldown(characterid_t characterId, demigodid_t demigodId, cooldown_t cooldown)
-	{
-		Initialize();
-		Common::Execute(UPDATE_ITEM_COLUMN, FIELD_OFFERING_COOLDOWN, cooldown, characterId, demigodId);
-	}
-
-	void DemigodFavor::WriteFavor(characterid_t characterId, demigodid_t demigodId, favor_t favor)
-	{
-		Initialize();
-		Common::Execute(UPDATE_ITEM_COLUMN, FIELD_FAVOR, favor, characterId, demigodId);
-	}
-
 	void DemigodFavor::ClearAll()
 	{
 		Initialize();
 		Common::Execute(DELETE_ALL);
-	}
-
-	std::list<DemigodFavor::Cooldown> DemigodFavor::ReadOfferingCooldowns()
-	{
-		Initialize();
-		auto records = Common::Execute(QUERY_OFFERING_COOLDOWNS);
-		std::list<Cooldown> result;
-		std::transform(
-			records.begin(), 
-			records.end(), 
-			std::back_inserter(result), 
-			[](Common::Record record) 
-			{
-				return 
-				Cooldown(
-					Common::ToInt(record, FIELD_CHARACTER_ID),
-					Common::ToInt(record, FIELD_DEMIGOD_ID),
-					Common::ToInt(record, FIELD_OFFERING_COOLDOWN));
-			});
-		return result;
-	}
-
-	void DemigodFavor::WriteOfferingCooldowns(const std::list<Cooldown>& updates)
-	{
-		Initialize();
-		std::for_each(
-			updates.begin(), 
-			updates.end(), 
-			[](const Cooldown& update)
-			{
-				Common::Execute(
-					UPDATE_ITEM_COLUMN, 
-					FIELD_OFFERING_COOLDOWN, 
-					update.cooldown, 
-					update.characterId, 
-					update.demigodId);
-			});
-
 	}
 }
