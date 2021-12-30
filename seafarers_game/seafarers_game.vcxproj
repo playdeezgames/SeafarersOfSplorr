@@ -72,6 +72,10 @@
     <ClInclude Include="Game.Session.World.Distances.h" />
     <ClInclude Include="Game.Session.World.h" />
     <ClInclude Include="Game.Session.World.Islands.h" />
+    <ClInclude Include="Game.Session.World.ShipType.Commodities.h" />
+    <ClInclude Include="Game.Session.World.ShipType.Commodity.h" />
+    <ClInclude Include="Game.Session.World.ShipType.h" />
+    <ClInclude Include="Game.Session.World.ShipTypes.h" />
     <ClInclude Include="Game.Session.World.Wind.h" />
     <ClInclude Include="Game.Ship.Docked.h" />
     <ClInclude Include="Game.Ship.DockResult.h" />

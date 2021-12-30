@@ -8,6 +8,7 @@
 #include "Game.Session.World.Calendar.h"
 #include "Game.Session.World.Distances.h"
 #include "Game.Session.World.Islands.h"
+#include "Game.Session.World.ShipTypes.h"
 #include "Game.Session.World.Wind.h"
 #include "Game.Session.Tribes.h"
 namespace game::session
@@ -29,6 +30,7 @@ namespace game::session
 		constexpr item::Types GetItemSubtypes() const { return item::Types(); }
 		constexpr world::Wind GetWind() const { return world::Wind(worldId); }
 		constexpr Tribes GetTribes() const { return Tribes(); }
+		constexpr world::ShipTypes GetShipTypes() const { return world::ShipTypes(); }
 
 		void Reset() const;
 		void Populate(const Difficulty&) const;
