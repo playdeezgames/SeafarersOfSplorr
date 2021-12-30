@@ -3,6 +3,7 @@
 #include "Game.Session.Ship.Berths.h"
 #include "Game.Session.Ship.DockableIslands.h"
 #include "Game.Session.Ship.VisibleIslands.h"
+#include "Game.Session.World.ShipType.h"
 #include <list>
 #include <optional>
 namespace game::session
@@ -24,6 +25,7 @@ namespace game::session
 		bool Undock() const;
 		std::optional<Island> TryGetIsland() const;
 		Island GetIsland() const;
+		world::ShipType GetShipType() const;
 	private:
 		int shipId;
 	};

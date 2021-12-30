@@ -9,7 +9,6 @@ namespace game
 {
 	struct ShipTypes
 	{
-		static double GetSpeedFactor(const game::ShipType&);
 		static const std::map<game::Commodity, double> GetCommodities(const game::ShipType&);
 	};
 }

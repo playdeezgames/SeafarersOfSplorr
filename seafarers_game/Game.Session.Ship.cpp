@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <Data.Game.Character.KnownIsland.h>
 #include <Data.Game.Character.Ship.h>
+#include <Data.Game.Ship.h>
 #include <Data.Game.Ship.CurrentIsland.h>
 #include "Game.Session.h"
 #include "Game.Ship.h"
@@ -130,4 +131,10 @@ namespace game::session
 	{
 		return TryGetIsland().value();
 	}
+
+	world::ShipType Ship::GetShipType() const
+	{
+		return (game::ShipType)data::game::Ship::GetShipType(shipId).value();
+	}
+
 }

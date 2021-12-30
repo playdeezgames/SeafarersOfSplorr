@@ -76,7 +76,7 @@ namespace game
 		effectiveSpeed *= game::Session().GetWorld().GetWind().GetMultiplier(heading);
 
 		auto shipType = game::Ship::GetShipType(shipId).value();
-		effectiveSpeed *= game::ShipTypes::GetSpeedFactor(shipType);
+		effectiveSpeed *= game::Session().GetShips().GetShip(shipId).GetShipType().GetSpeedFactor();
 
 		return effectiveSpeed;
 	}

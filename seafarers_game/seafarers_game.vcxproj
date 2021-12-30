@@ -148,6 +148,7 @@
     <ClCompile Include="Game.Session.World.cpp" />
     <ClCompile Include="Game.Session.World.Distances.cpp" />
     <ClCompile Include="Game.Session.World.Islands.cpp" />
+    <ClCompile Include="Game.Session.World.ShipType.cpp" />
     <ClCompile Include="Game.Session.World.Wind.cpp" />
     <ClCompile Include="Game.Ship.cpp" />
     <ClCompile Include="Game.ShipNames.cpp" />

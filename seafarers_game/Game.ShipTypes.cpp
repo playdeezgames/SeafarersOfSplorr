@@ -80,11 +80,6 @@ namespace game
 		return Read(shipType).properties.find(property)->second;
 	}
 
-	double ShipTypes::GetSpeedFactor(const game::ShipType& shipType)
-	{
-		return ReadProperty(shipType, ship::Property::SPEED_FACTOR);
-	}
-
 	const std::map<game::Commodity, double> ShipTypes::GetCommodities(const game::ShipType& shipType)
 	{
 		return Read(shipType).commodities;
