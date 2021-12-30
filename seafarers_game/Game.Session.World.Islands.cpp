@@ -143,8 +143,7 @@ namespace game::session::world
 		std::map<int, size_t> table;
 		for (auto& demigodId : demigods)
 		{
-			auto demigod = data::game::Demigod::Read(demigodId).value();
-			table[demigodId] = demigod.patronWeight;
+			table[demigodId] = data::game::Demigod::ReadPatronWeight(demigodId).value();
 		}
 		return common::RNG::FromGenerator(table);
 	}

@@ -6,12 +6,6 @@ namespace data::game
 {
 	struct Demigod
 	{
-		int id;
-		std::string name;
-		size_t patronWeight;
-		static std::optional<Demigod> Read(int);
-		static int Write(const Demigod&);
-
 		typedef int demigodid_t;
 		typedef std::string name_t;
 		typedef size_t patronweight_t;

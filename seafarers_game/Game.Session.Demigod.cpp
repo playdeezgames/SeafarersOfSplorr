@@ -4,6 +4,6 @@ namespace game::session
 {
 	std::string Demigod::GetName() const
 	{
-		return data::game::Demigod::Read(demigodId).value().name;
+		return data::game::Demigod::ReadName(demigodId).value();
 	}
 }

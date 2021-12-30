@@ -119,12 +119,8 @@ namespace game::session
 		auto names = GenerateNames(demigodCount);
 		for (auto name : names)
 		{
-			DemigodData demigod = {
-				0,
-				name,
-				common::RNG::FromGenerator(patronWeights)};
-			auto demigodId = DemigodData::Write(demigod);
-			//TODO: demigod item categories
+			auto demigodId = DemigodData::Create(name,
+				common::RNG::FromGenerator(patronWeights));
 		}
 
 	}

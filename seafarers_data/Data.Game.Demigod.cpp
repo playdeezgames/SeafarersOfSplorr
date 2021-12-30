@@ -61,37 +61,6 @@ namespace data::game
 		data::game::Common::Execute(DELETE_ALL);
 	}
 
-	int Demigod::Write(const Demigod& demigod)
-	{
-		Initialize();
-		if (demigod.id == 0)
-		{
-			data::game::Common::Execute(
-				INSERT_ITEM,
-				common::Data::QuoteString(demigod.name),
-				demigod.patronWeight);
-			return Common::LastInsertedIndex();
-		}
-		else
-		{
-			data::game::Common::Execute(
-				UPDATE_ITEM,
-				common::Data::QuoteString(demigod.name),
-				demigod.patronWeight,
-				demigod.id);
-			return demigod.id;
-		}
-	}
-
-	static Demigod ToDemigod(const std::map<std::string, std::string>& record)
-	{
-		return {
-				common::Data::ToInt(record.find(FIELD_DEMIGOD_ID)->second),
-				record.find(FIELD_NAME)->second,
-				(size_t)common::Data::ToInt(record.find(FIELD_PATRON_WEIGHT)->second)
-		};
-	}
-
 	std::list<Demigod::demigodid_t> Demigod::All()
 	{
 		Initialize();
@@ -102,17 +71,6 @@ namespace data::game
 			result.push_back(Common::ToInt(record, FIELD_DEMIGOD_ID));
 		}
 		return result;
-	}
-
-	std::optional<Demigod> Demigod::Read(int demigodId)
-	{
-		Initialize();
-		auto records = Common::Execute(QUERY_ITEM, demigodId);
-		if (!records.empty())
-		{
-			return ToDemigod(records.front());
-		}
-		return std::nullopt;
 	}
 
 	int Demigod::Create(const name_t& name, patronweight_t patronWeight)
