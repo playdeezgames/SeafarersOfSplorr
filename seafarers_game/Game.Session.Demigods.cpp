@@ -122,13 +122,7 @@ namespace game::session
 			DemigodData demigod = {
 				0,
 				name,
-				common::RNG::FromGenerator(patronWeights),
-				BLESSING_THRESHOLD,
-				BLESSING_MULTIPLIER,
-				(int)characters::Plights::Generate(characters::PlightType::BLESSING),
-				CURSE_THRESHOLD,
-				CURSE_MULTIPLIER,
-				(int)characters::Plights::Generate(characters::PlightType::CURSE) };
+				common::RNG::FromGenerator(patronWeights)};
 			auto demigodId = DemigodData::Write(demigod);
 			//TODO: demigod item categories
 		}

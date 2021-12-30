@@ -9,38 +9,20 @@ namespace data::game
 		(
 			[DemigodId] INTEGER PRIMARY KEY AUTOINCREMENT,
 			[Name] TEXT NOT NULL UNIQUE, 
-			[PatronWeight] INT NOT NULL,
-			[BlessingThreshold] REAL NOT NULL,
-			[BlessingMultiplier] REAL NOT NULL,
-			[BlessingPlightId] INT NOT NULL,
-			[CurseThreshold] REAL NOT NULL,
-			[CurseMultiplier] REAL NOT NULL,
-			[CursePlightId] INT NOT NULL
+			[PatronWeight] INT NOT NULL
 		);)"s;
 	static const std::string INSERT_ITEM =
 		R"(INSERT INTO [Demigods]
 		(
 			[Name],
-			[PatronWeight],
-			[BlessingThreshold],
-			[BlessingMultiplier],
-			[BlessingPlightId],
-			[CurseThreshold],
-			[CurseMultiplier],
-			[CursePlightId]
+			[PatronWeight]
 		) 
-		VALUES({},{},{},{},{},{},{},{});)"s;
+		VALUES({},{});)"s;
 	static const std::string UPDATE_ITEM =
 		R"(UPDATE [Demigods] 
 		SET 
 			[Name]={}, 
-			[PatronWeight]={}, 
-			[BlessingThreshold]={}, 
-			[BlessingMultiplier]={}, 
-			[BlessingPlightId]={}, 
-			[CurseThreshold]={}, 
-			[CurseMultiplier]={}, 
-			[CursePlightId]={} 
+			[PatronWeight]={} 
 		WHERE 
 			[DemigodId]={};)"s;
 	static const std::string DELETE_ALL =
@@ -93,13 +75,7 @@ namespace data::game
 			data::game::Common::Execute(
 				INSERT_ITEM,
 				common::Data::QuoteString(demigod.name),
-				demigod.patronWeight,
-				demigod.blessingThreshold,
-				demigod.blessingMultiplier,
-				demigod.blessingPlightId,
-				demigod.curseThreshold,
-				demigod.curseMultiplier,
-				demigod.cursePlightId);
+				demigod.patronWeight);
 			return Common::LastInsertedIndex();
 		}
 		else
@@ -108,12 +84,6 @@ namespace data::game
 				UPDATE_ITEM,
 				common::Data::QuoteString(demigod.name),
 				demigod.patronWeight,
-				demigod.blessingThreshold,
-				demigod.blessingMultiplier,
-				demigod.blessingPlightId,
-				demigod.curseThreshold,
-				demigod.curseMultiplier,
-				demigod.cursePlightId,
 				demigod.id);
 			return demigod.id;
 		}
@@ -124,13 +94,7 @@ namespace data::game
 		return {
 				common::Data::ToInt(record.find(FIELD_DEMIGOD_ID)->second),
 				record.find(FIELD_NAME)->second,
-				(size_t)common::Data::ToInt(record.find(FIELD_PATRON_WEIGHT)->second),
-				common::Data::ToDouble(record.find(FIELD_BLESSING_THRESHOLD)->second),
-				common::Data::ToDouble(record.find(FIELD_BLESSING_MULTIPLIER)->second),
-				common::Data::ToInt(record.find(FIELD_BLESSING_PLIGHT_ID)->second),
-				common::Data::ToDouble(record.find(FIELD_CURSE_TRESHOLD)->second),
-				common::Data::ToDouble(record.find(FIELD_CURSE_MULTIPLIER)->second),
-				common::Data::ToInt(record.find(FIELD_CURSE_PLIGHT_ID)->second)
+				(size_t)common::Data::ToInt(record.find(FIELD_PATRON_WEIGHT)->second)
 		};
 	}
 

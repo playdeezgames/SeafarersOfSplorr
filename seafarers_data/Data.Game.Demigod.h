@@ -9,19 +9,13 @@ namespace data::game
 		int id;
 		std::string name;
 		size_t patronWeight;
-		double blessingThreshold;
-		double blessingMultiplier;
-		int blessingPlightId;
-		double curseThreshold;
-		double curseMultiplier;
-		int cursePlightId;
+		static std::optional<Demigod> Read(int);
+		static int Write(const Demigod&);
 
 		typedef int demigodid_t;
 		static void Initialize();
 		static void Clear();
 
 		static std::list<demigodid_t> All();
-		static std::optional<Demigod> Read(int);
-		static int Write(const Demigod&);
 	};
 }
