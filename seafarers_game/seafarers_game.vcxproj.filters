@@ -99,6 +99,9 @@
     <Filter Include="Source Files\Utility">
       <UniqueIdentifier>{9e9c9d53-3833-4953-851a-3d7f0a7123c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Session\World\ShipType">
+      <UniqueIdentifier>{b7eb14a4-4f9d-4a39-a5e6-66bbbd6237e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -332,17 +335,17 @@
     <ClInclude Include="Game.Item.Category.h">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.World.ShipTypes.h">
-      <Filter>Header Files\Session\World</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.World.ShipType.h">
-      <Filter>Header Files\Session\World</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.World.ShipType.Commodities.h">
-      <Filter>Header Files\Session\World</Filter>
+      <Filter>Header Files\Session\World\ShipType</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.World.ShipType.Commodity.h">
-      <Filter>Header Files\Session\World</Filter>
+      <Filter>Header Files\Session\World\ShipType</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.World.ShipType.h">
+      <Filter>Header Files\Session\World\ShipType</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.World.ShipTypes.h">
+      <Filter>Header Files\Session\World\ShipType</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
