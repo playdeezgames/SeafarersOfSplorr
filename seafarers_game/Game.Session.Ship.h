@@ -1,6 +1,5 @@
 #pragma once
 #include <Common.XY.h>
-#include "Game.Session.Fisheries.h"
 #include "Game.Session.Ship.Berth.h"
 #include "Game.Session.Ship.Fouling.h"
 #include "Game.Session.Ship.DockableIslands.h"
@@ -20,7 +19,6 @@ namespace game::session
 		constexpr ship::DockableIslands GetDockableIslands() const { return ship::DockableIslands(shipId); }
 		constexpr ship::VisibleIslands GetNearbyIslands() const { return ship::VisibleIslands(shipId); }
 		common::XY<double> GetLocation() const;
-		Fisheries GetFisheries() const;
 		ship::Fouling GetFouling(const game::Side&) const;
 		void SetName(const std::string&) const;
 		std::string GetName() const;

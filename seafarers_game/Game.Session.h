@@ -2,7 +2,6 @@
 #include "Game.Difficulty.h"
 #include "Game.Session.Characters.h"
 #include "Game.Session.Demigods.h"
-#include "Game.Session.Fisheries.h"
 #include "Game.Session.Items.h"
 #include "Game.Session.Player.h"
 #include "Game.Session.Saves.h"
@@ -22,8 +21,6 @@ namespace game
 		constexpr session::Saves GetSaves() const { return session::Saves(); }
 		constexpr session::Ships GetShips() const { return session::Ships(); }
 		constexpr session::World GetWorld() const { return session::World(WORLD_ID); }
-
-		session::Fisheries GetFisheries() const;//to world
 
 		void ApplyTurnEffects() const;
 		void Reset() const;

@@ -24,12 +24,6 @@
     <Filter Include="Source Files\Demigod">
       <UniqueIdentifier>{6efb8dd5-d82a-4a9c-952a-61c07e9bf061}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Fishing">
-      <UniqueIdentifier>{1dd22a68-235e-48bd-8540-c72f0ff1a190}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Fishing">
-      <UniqueIdentifier>{f52bb6bd-fa49-4e91-8135-9c93d58c2b3d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Player">
       <UniqueIdentifier>{8502177f-0eb3-48a1-b683-374d6db53904}</UniqueIdentifier>
     </Filter>
@@ -91,9 +85,6 @@
     </ClInclude>
     <ClInclude Include="Data.Game.Demigod.h">
       <Filter>Header Files\Demigod</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Fishery.h">
-      <Filter>Header Files\Fishing</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.Player.h">
       <Filter>Header Files\Player</Filter>
@@ -198,9 +189,6 @@
     </ClCompile>
     <ClCompile Include="Data.Game.Demigod.cpp">
       <Filter>Source Files\Demigod</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Fishery.cpp">
-      <Filter>Source Files\Fishing</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Player.cpp">
       <Filter>Source Files\Player</Filter>

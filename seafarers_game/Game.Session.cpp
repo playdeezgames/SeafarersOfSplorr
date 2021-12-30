@@ -1,8 +1,6 @@
 #include <Data.SQLite.Store.h> //FOR RESET
 #include <Data.SQLite.Stores.h> //FOR RESET
-#include <Data.Game.Fishery.h> //For GetFisheries
 #include <Data.Game.Island.h> //FOR GetIslands
-#include "Game.Fisheries.h" //FOR APPLY TURN EFFECTS
 #include "Game.Session.h"//Cuz we implement here
 namespace game
 {
@@ -10,7 +8,6 @@ namespace game
 	{
 		GetShips().ApplyTurnEffects();
 		GetCharacters().ApplyTurnEffects();
-		GetFisheries().ApplyTurnEffects();
 		GetWorld().ApplyTurnEffects();
 	}
 
@@ -18,7 +15,6 @@ namespace game
 	{
 		GetWorld().Populate(difficulty);
 		GetPlayer().Populate(difficulty);
-		GetFisheries().Populate(difficulty);
 	}
 
 	void Session::Reset() const
@@ -28,18 +24,6 @@ namespace game
 		GetWorld().Reset();
 		GetShips().Reset();
 		GetCharacters().Reset();
-		GetFisheries().Reset();
 		GetPlayer().Reset();
-	}
-
-	session::Fisheries Session::GetFisheries() const
-	{
-		auto fisheries = data::game::Fishery::All();
-		std::list<int> fisheryIds;
-		for (auto fishery : fisheries)
-		{
-			fisheryIds.push_back(fishery.fisheryId);
-		}
-		return session::Fisheries([fisheryIds]() { return fisheryIds; });
 	}
 }

@@ -100,7 +100,7 @@ namespace data::game
 		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_PATRON_WEIGHT, demigodId);
 		if (record)
 		{
-			return (size_t)Common::ToInt(record.value(), FIELD_NAME);
+			return (size_t)Common::ToInt(record.value(), FIELD_PATRON_WEIGHT);
 		}
 		return std::nullopt;
 	}

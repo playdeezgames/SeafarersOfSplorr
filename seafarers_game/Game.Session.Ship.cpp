@@ -1,4 +1,3 @@
-#include "Game.Fisheries.h"
 #include "Game.Ship.h"
 #include "Game.Ship.Crew.h"
 #include "Game.Session.Ship.h"
@@ -43,17 +42,6 @@ namespace game::session
 	common::XY<double> Ship::GetLocation() const
 	{
 		return TryGetLocation(shipId).value();
-	}
-
-	game::session::Fisheries Ship::GetFisheries() const
-	{
-		auto fisheries = game::Fisheries::Available(shipId);
-		std::list<int> fisheryIds;
-		for (auto fishery : fisheries)
-		{
-			fisheryIds.push_back(fishery.fisheryId);
-		}
-		return game::session::Fisheries([fisheryIds]() {return fisheryIds; });
 	}
 
 	void Ship::SetHeading(double heading) const

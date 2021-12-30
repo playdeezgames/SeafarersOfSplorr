@@ -86,19 +86,6 @@ namespace state::in_play
 		}
 	}
 
-	static void RefreshFisheries()
-	{
-		if(game::Session()
-			.GetPlayer().GetCharacter()
-			.GetBerth()
-			.GetShip()
-			.GetFisheries()
-			.HasAny())
-		{
-			Terminal::WriteLine("This looks like a good place to fish.");
-		}
-	}
-
 	static void Refresh()
 	{
 		auto playerCharacter = 
@@ -130,8 +117,6 @@ namespace state::in_play
 			"Wind: {:.2f}\xf8 (x{:.1f})",
 			wind.GetHeading(),
 			wind.GetMultiplier(ship.GetHeading()));
-		//fisheries
-		RefreshFisheries();
 		//dockable islands
 		bool canDock = RefreshDockableIslands();
 		//nearby islands

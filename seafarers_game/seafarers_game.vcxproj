@@ -49,7 +49,6 @@
     <ClInclude Include="Game.Session.Commodity.h" />
     <ClInclude Include="Game.Session.Demigod.h" />
     <ClInclude Include="Game.Session.Demigods.h" />
-    <ClInclude Include="Game.Session.Fisheries.h" />
     <ClInclude Include="Game.Session.h" />
     <ClInclude Include="Game.Session.Island.Feature.h" />
     <ClInclude Include="Game.Session.Island.Features.h" />
@@ -93,9 +92,6 @@
     <ClInclude Include="Game.Characters.State.h" />
     <ClInclude Include="Game.EquipSlot.h" />
     <ClInclude Include="Game.EquipSlots.h" />
-    <ClInclude Include="Game.FishGameState.h" />
-    <ClInclude Include="Game.Fishery.h" />
-    <ClInclude Include="Game.Fisheries.h" />
     <ClInclude Include="Game.Audio.GameSfx.h" />
     <ClInclude Include="Game.Audio.Mux.h" />
     <ClInclude Include="Game.Audio.Sfx.h" />
@@ -104,8 +100,6 @@
     <ClInclude Include="Game.Difficulty.h" />
     <ClInclude Include="Game.Feature.h" />
     <ClInclude Include="Game.Features.h" />
-    <ClInclude Include="Game.Fish.h" />
-    <ClInclude Include="Game.Fishes.h" />
     <ClInclude Include="Game.Island.h" />
     <ClInclude Include="Game.Islands.Commodities.h" />
     <ClInclude Include="Game.Islands.DarkAlley.FightCard.h" />
@@ -157,7 +151,6 @@
     <ClCompile Include="Game.Session.cpp" />
     <ClCompile Include="Game.Session.Demigod.cpp" />
     <ClCompile Include="Game.Session.Demigods.cpp" />
-    <ClCompile Include="Game.Session.Fisheries.cpp" />
     <ClCompile Include="Game.Session.Island.cpp" />
     <ClCompile Include="Game.Session.Island.Market.cpp" />
     <ClCompile Include="Game.Session.Island.Markets.cpp" />
@@ -192,8 +185,6 @@
     <ClCompile Include="Game.Ship.Statistics.cpp" />
     <ClCompile Include="Game.EquipSlots.cpp" />
     <ClCompile Include="Game.Features.cpp" />
-    <ClCompile Include="Game.Fisheries.cpp" />
-    <ClCompile Include="Game.Fishes.cpp" />
     <ClCompile Include="Game.Islands.Commodities.cpp" />
     <ClCompile Include="Game.Islands.DarkAlley.cpp" />
     <ClCompile Include="Game.Islands.DarkAlley.FightCard.cpp" />
