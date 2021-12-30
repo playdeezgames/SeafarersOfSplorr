@@ -4,7 +4,6 @@
 #include <Data.Game.Player.h>
 #include <Data.Game.Ship.CurrentIsland.h>
 #include "Game.Characters.Islands.h"
-#include "Game.Characters.Ships.h"
 #include "Game.Session.h"
 #include "Game.Session.Character.h"
 #include "Game.Ship.Docked.h"
@@ -18,7 +17,7 @@ namespace game::session
 
 	static std::optional<character::Berth> TryGetBerth(int characterId)
 	{
-		if (characters::Ships::ReadShipId(characterId).has_value())
+		if (data::game::character::Ship::ReadShipForCharacter(characterId).has_value())
 		{
 			return character::Berth(characterId);
 		}
@@ -293,11 +292,6 @@ namespace game::session
 	character::Berth Character::GetBerth() const
 	{
 		return TryGetBerth(characterId).value();
-	}
-
-	double Character::GetAvailableTonnage() const
-	{
-		return game::characters::Ships::AvailableTonnage(characterId).value();
 	}
 
 	bool Character::IsDead() const

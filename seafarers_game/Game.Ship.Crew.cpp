@@ -1,7 +1,6 @@
 #include <Common.Utility.Array.h>
 #include <Data.Game.Character.h>
 #include <Data.Game.Character.Ship.h>
-#include "Game.Characters.Ships.h"
 #include "Game.Session.h"
 #include "Game.Ship.Crew.h"
 namespace game::ship
@@ -28,7 +27,7 @@ namespace game::ship
 
 	std::vector<Crew> Crew::ReadForCharacter(int characterId)
 	{
-		auto shipId = game::characters::Ships::ReadShipId(
+		auto shipId = data::game::character::Ship::ReadShipForCharacter(
 			characterId);
 		std::vector<Crew> result;
 		if (shipId)

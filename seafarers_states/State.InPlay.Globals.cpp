@@ -1,7 +1,7 @@
 #include <Common.Utility.Optional.h>
 #include <Data.Game.Player.h>
 #include <Game.Characters.Message.h>
-#include <Game.Characters.Ships.h>
+#include <Data.Game.Character.Ship.h>
 #include <Game.Ship.Statistics.h>
 #include <Game.Islands.Features.h>
 #include <Game.Session.h>
@@ -17,7 +17,7 @@ namespace state::in_play
 
 	std::optional<int> GetPlayerCharacterShipId()
 	{
-		return game::characters::Ships::ReadShipId(GetPlayerCharacterId());
+		return data::game::character::Ship::ReadShipForCharacter(GetPlayerCharacterId());
 	}
 
 	std::optional<int> GetPlayerCharacterIslandId()
@@ -74,11 +74,6 @@ namespace state::in_play
 	void DoPlayerCharacterAction(const game::characters::Action& action)
 	{
 		game::Session().GetPlayer().GetCharacter().DoAction(action);
-	}
-
-	std::optional<double> GetPlayerCharacterAvailableTonnage()
-	{
-		return game::characters::Ships::AvailableTonnage(GetPlayerCharacterId());
 	}
 
 	void PlayerCharacterCleanHull(const game::Side& side)

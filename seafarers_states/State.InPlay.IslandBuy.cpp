@@ -1,6 +1,5 @@
 #include <Common.Data.h>
 #include <Common.Utility.Table.h>
-#include <Game.Characters.Ships.h>
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.IslandBuy.h"
@@ -30,7 +29,6 @@ namespace state::in_play
 		auto quantity = character.GetItems().GetItemQuantity(currencyItem);
 		auto money = quantity * markets.GetSaleValue(currencyItem);
 		Terminal::WriteLine(FORMAT_MONEY, money);
-		Terminal::WriteLine(FORMAT_TONNAGE, GetPlayerCharacterAvailableTonnage().value());
 	}
 
 	static void Refresh()

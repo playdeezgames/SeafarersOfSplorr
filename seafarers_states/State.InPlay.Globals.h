@@ -38,7 +38,6 @@ namespace state::in_play
 	void SetPlayerCharacterShipHeading(double);
 	void DoPlayerCharacterAction(const game::characters::Action&);
 	std::optional<bool> PlayerCharacterIslandHasFeature(const game::Feature&);//game::islands::Features::Read(island.id,
-	std::optional<double> GetPlayerCharacterAvailableTonnage();
 	void PlayerCharacterCleanHull(const game::Side&);
 
 	void SetEquipmentSlot(const game::EquipSlot&);

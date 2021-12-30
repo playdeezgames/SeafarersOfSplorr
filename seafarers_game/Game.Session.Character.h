@@ -31,7 +31,6 @@ namespace game::session
 		character::Berth GetBerth() const;
 		void DoAction(const game::characters::Action&) const;
 		character::Messages GetMessages() const;
-		double GetAvailableTonnage() const;
 		bool IsDead() const;
 		character::Items GetItems() const;
 		character::Counters GetCounters() const;

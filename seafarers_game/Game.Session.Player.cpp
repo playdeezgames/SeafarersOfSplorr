@@ -1,8 +1,8 @@
 #include <Common.Data.h>
 #include <Common.Heading.h>
 #include <Common.RNG.h>
+#include <Data.Game.Character.Ship.h>
 #include <Data.Game.Player.h>
-#include "Game.Characters.Ships.h"
 #include "Game.Session.h"
 #include "Game.Session.Characters.h"
 #include "Game.Session.Player.h"
@@ -31,7 +31,7 @@ namespace game::session
 				common::RNG::FromRange(0.0, common::Heading::DEGREES),
 				common::Heading::DEGREES).value(),
 			1.0 });
-		game::characters::Ships::Write(characterId, shipId, BerthType::CAPTAIN);
+		data::game::character::Ship::Write(characterId, shipId, (int)BerthType::CAPTAIN);
 	}
 
 	void Player::Populate(const Difficulty& difficulty) const

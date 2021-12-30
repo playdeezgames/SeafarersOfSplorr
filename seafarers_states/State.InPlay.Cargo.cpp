@@ -1,5 +1,4 @@
 #include <Common.Data.h>
-#include <Game.Characters.Ships.h>
 #include <Game.Session.h>
 #include "State.InPlay.Cargo.h"
 #include "State.InPlay.Globals.h"
@@ -16,7 +15,6 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Cargo:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		auto availableTonnage = playerCharacter.GetAvailableTonnage();
 		Terminal::SetForeground(game::Colors::BROWN);
 		Terminal::WriteLine("Manifest:");
 		Terminal::SetForeground(game::Colors::YELLOW);
