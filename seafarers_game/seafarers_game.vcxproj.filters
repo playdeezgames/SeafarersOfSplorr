@@ -15,15 +15,6 @@
     <Filter Include="Header Files\Utility">
       <UniqueIdentifier>{73f30f16-ac81-43ca-acb5-364e21d57893}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Islands">
-      <UniqueIdentifier>{03628875-d3ae-4e27-a48d-0f8623f28eab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Character">
-      <UniqueIdentifier>{d044c1fb-ed2a-48f6-b646-8749f8a84020}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Ship">
-      <UniqueIdentifier>{db5549fd-e249-4e7a-be4a-8cab11795267}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Session">
       <UniqueIdentifier>{32cfb385-1f2c-42c2-9e4c-1ec1493e87e6}</UniqueIdentifier>
     </Filter>
@@ -269,28 +260,10 @@
     <ClInclude Include="Game.Session.Character.Plight.h">
       <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Characters.Islands.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Characters.Plights.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Island.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game.Islands.Commodities.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Characters.Flag.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Characters.Message.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Characters.Plight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Characters.PlightType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game.Commodity.h">
@@ -350,32 +323,20 @@
     <ClInclude Include="Game.Characters.Counter.h">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Characters.Flag.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Characters.Message.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Characters.Plight.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Characters.PlightType.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.Characters.Plights.cpp">
-      <Filter>Source Files\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Ship.Docked.cpp">
-      <Filter>Source Files\Ship</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Ship.cpp">
-      <Filter>Source Files\Ship</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Ship.Crew.cpp">
-      <Filter>Source Files\Ship</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.ShipNames.cpp">
-      <Filter>Source Files\Ship</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Ships.cpp">
-      <Filter>Source Files\Ship</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.ShipTypes.cpp">
-      <Filter>Source Files\Ship</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Characters.Islands.cpp">
-      <Filter>Source Files\Character</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Session.cpp">
       <Filter>Source Files\Session</Filter>
     </ClCompile>
@@ -521,7 +482,25 @@
       <Filter>Source Files\Session\Character\KnownIsland</Filter>
     </ClCompile>
     <ClCompile Include="Game.Islands.Commodities.cpp">
-      <Filter>Source Files\Islands</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Ship.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Ship.Crew.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Ship.Docked.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.ShipNames.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Ships.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.ShipTypes.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

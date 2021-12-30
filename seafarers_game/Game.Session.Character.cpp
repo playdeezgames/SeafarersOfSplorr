@@ -3,7 +3,6 @@
 #include <Data.Game.Character.Ship.h>
 #include <Data.Game.Player.h>
 #include <Data.Game.Ship.CurrentIsland.h>
-#include "Game.Characters.Islands.h"
 #include "Game.Session.h"
 #include "Game.Session.Character.h"
 #include "Game.Ship.Docked.h"

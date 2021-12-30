@@ -22,7 +22,6 @@
     <ClInclude Include="Game.BerthType.h" />
     <ClInclude Include="Game.Characters.Action.h" />
     <ClInclude Include="Game.Characters.Counter.h" />
-    <ClInclude Include="Game.Characters.Islands.h" />
     <ClInclude Include="Game.Characters.Message.h" />
     <ClInclude Include="Game.Characteristic.h" />
     <ClInclude Include="Game.Item.Category.h" />
@@ -78,7 +77,6 @@
     <ClInclude Include="Game.Ship.DockResult.h" />
     <ClInclude Include="Game.Characters.Flag.h" />
     <ClInclude Include="Game.Characters.Plight.h" />
-    <ClInclude Include="Game.Characters.Plights.h" />
     <ClInclude Include="Game.Characters.PlightType.h" />
     <ClInclude Include="Game.Characters.State.h" />
     <ClInclude Include="Game.Audio.GameSfx.h" />
@@ -102,7 +100,6 @@
     <ClInclude Include="Game.Colors.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.Characters.Islands.cpp" />
     <ClCompile Include="Game.Session.Character.Berth.cpp" />
     <ClCompile Include="Game.Session.Character.Characteristic.cpp" />
     <ClCompile Include="Game.Session.Character.Characteristics.cpp" />
@@ -152,7 +149,6 @@
     <ClCompile Include="Game.Session.World.Islands.cpp" />
     <ClCompile Include="Game.Session.World.Wind.cpp" />
     <ClCompile Include="Game.Ship.Docked.cpp" />
-    <ClCompile Include="Game.Characters.Plights.cpp" />
     <ClCompile Include="Game.Islands.Commodities.cpp" />
     <ClCompile Include="Game.Ship.cpp" />
     <ClCompile Include="Game.Ship.Crew.cpp" />

@@ -9,7 +9,6 @@
 #include <Data.Game.Island.Tribe.h>
 #include "Game.Session.Character.h"
 #include "Game.Session.Characters.h"
-#include "Game.Characters.Plights.h" //FOR APPLY TURN EFFECTS
 #include <iterator>
 namespace game::session
 {
