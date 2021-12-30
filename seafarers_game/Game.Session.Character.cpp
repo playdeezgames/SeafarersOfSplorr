@@ -206,4 +206,9 @@ namespace game::session
 		return Tribe(data::game::Character::ReadTribeId(characterId).value());
 	}
 
+	bool Character::IsPlayer() const
+	{
+		return data::game::Player::GetCharacterId() == characterId;
+	}
+
 }

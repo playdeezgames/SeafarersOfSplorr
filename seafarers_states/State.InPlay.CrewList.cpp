@@ -91,7 +91,7 @@ namespace state::in_play
 					index++,
 					character.GetName(),
 					berthNames.find(entry.GetBerthType())->second,
-					(characterId==GetPlayerCharacterId()) ? ("(you)") : (""),
+					(character.IsPlayer()) ? ("(you)") : (""),
 					characterId,
 					hitPoints.GetCurrent(),
 					hitPoints.GetMaximum()

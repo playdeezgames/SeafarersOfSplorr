@@ -41,6 +41,7 @@ namespace game::session
 		void ApplyTurnEffects() const;
 		Island GetOriginIsland() const;
 		Tribe GetTribe() const;
+		bool IsPlayer() const;
 
 		void SetIsland(Island island) const;
 		void ClearIsland() const;
