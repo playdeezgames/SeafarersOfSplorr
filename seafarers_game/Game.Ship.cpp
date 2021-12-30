@@ -9,14 +9,6 @@ namespace game
 {
 	using ShipData = data::game::Ship;
 
-	std::optional<ShipType> Ship::GetShipType(int shipId)
-	{
-		return 
-			common::utility::Optional::Map<int, ShipType>(
-				ShipData::GetShipType(shipId),
-				[](const int shipType) {return (ShipType)shipType; });
-	}
-
 	int Ship::Add(const Ship& ship)
 	{
 		int shipId = ShipData::Create(
@@ -53,7 +45,6 @@ namespace game
 
 		effectiveSpeed *= game::Session().GetWorld().GetWind().GetMultiplier(heading);
 
-		auto shipType = game::Ship::GetShipType(shipId).value();
 		effectiveSpeed *= game::Session().GetShips().GetShip(shipId).GetShipType().GetSpeedFactor();
 
 		return effectiveSpeed;
