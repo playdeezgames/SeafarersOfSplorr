@@ -5,7 +5,6 @@
 #include <Data.Game.Player.h>
 #include <Data.Game.Ship.CurrentIsland.h>
 #include "Game.Characters.Islands.h"
-#include "Game.Characters.Quests.h"
 #include "Game.Characters.Ships.h"
 #include "Game.Session.h"
 #include "Game.Session.Character.h"
@@ -23,16 +22,6 @@ namespace game::session
 		if (characters::Ships::ReadShipId(characterId).has_value())
 		{
 			return character::Berth(characterId);
-		}
-		return std::nullopt;
-	}
-
-	std::optional<character::Quest> Character::TryGetQuest() const
-	{
-		auto quest = game::characters::Quests::Read(characterId);
-		if (quest)
-		{
-			return game::session::character::Quest(characterId);
 		}
 		return std::nullopt;
 	}
@@ -311,11 +300,6 @@ namespace game::session
 	character::Berth Character::GetBerth() const
 	{
 		return TryGetBerth(characterId).value();
-	}
-
-	character::Quest Character::GetQuest() const
-	{
-		return TryGetQuest().value();
 	}
 
 	double Character::GetAvailableTonnage() const

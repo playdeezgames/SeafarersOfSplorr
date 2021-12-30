@@ -31,7 +31,6 @@ namespace state::in_play
 	std::optional<game::ship::DockResult> Dock();//TODO: PlayerCharacterDock?
 	std::optional<int> GetPlayerCharacterIslandId();
 	std::optional<int> GetPlayerCharacterShipId();
-	std::optional<game::Quest> GetPlayerCharacterQuest();
 	std::optional<common::XY<double>> GetPlayerCharacterShipLocation();
 	std::optional<double> GetPlayerCharacterShipHeading();
 	std::optional<double> GetPlayerCharacterShipSpeed();

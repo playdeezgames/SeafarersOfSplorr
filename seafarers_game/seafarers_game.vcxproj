@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.BerthType.h" />
-    <ClInclude Include="Game.Characters.AcceptQuestResult.h" />
     <ClInclude Include="Game.Characters.Action.h" />
     <ClInclude Include="Game.Characters.Counter.h" />
     <ClInclude Include="Game.Characters.Islands.h" />
@@ -45,7 +44,6 @@
     <ClInclude Include="Game.Session.Character.Messages.h" />
     <ClInclude Include="Game.Session.Character.Plight.h" />
     <ClInclude Include="Game.Session.Character.Plights.h" />
-    <ClInclude Include="Game.Session.Character.Quest.h" />
     <ClInclude Include="Game.Session.Characters.h" />
     <ClInclude Include="Game.Session.Commodities.h" />
     <ClInclude Include="Game.Session.Commodity.h" />
@@ -90,7 +88,6 @@
     <ClInclude Include="Game.Characters.Plight.h" />
     <ClInclude Include="Game.Characters.Plights.h" />
     <ClInclude Include="Game.Characters.PlightType.h" />
-    <ClInclude Include="Game.Characters.Quests.h" />
     <ClInclude Include="Game.Characters.Ships.h" />
     <ClInclude Include="Game.Ship.Statistics.h" />
     <ClInclude Include="Game.Characters.State.h" />
@@ -116,7 +113,6 @@
     <ClInclude Include="Game.Islands.DarkAlley.h" />
     <ClInclude Include="Game.Islands.Features.h" />
     <ClInclude Include="Game.Islands.Markets.h" />
-    <ClInclude Include="Game.Islands.Quests.h" />
     <ClInclude Include="Game.Islands.Ships.h" />
     <ClInclude Include="Game.OfferingResult.h" />
     <ClInclude Include="Game.Quest.h" />
@@ -155,7 +151,6 @@
     <ClCompile Include="Game.Session.Character.Messages.cpp" />
     <ClCompile Include="Game.Session.Character.Plight.cpp" />
     <ClCompile Include="Game.Session.Character.Plights.cpp" />
-    <ClCompile Include="Game.Session.Character.Quest.cpp" />
     <ClCompile Include="Game.Session.Characters.cpp" />
     <ClCompile Include="Game.Session.Commodities.cpp" />
     <ClCompile Include="Game.Session.Commodity.cpp" />
@@ -193,7 +188,6 @@
     <ClCompile Include="Game.Session.World.Wind.cpp" />
     <ClCompile Include="Game.Ship.Docked.cpp" />
     <ClCompile Include="Game.Characters.Plights.cpp" />
-    <ClCompile Include="Game.Characters.Quests.cpp" />
     <ClCompile Include="Game.Characters.Ships.cpp" />
     <ClCompile Include="Game.Ship.Statistics.cpp" />
     <ClCompile Include="Game.EquipSlots.cpp" />
@@ -206,7 +200,6 @@
     <ClCompile Include="Game.Islands.DarkAlley.GamblingHand.cpp" />
     <ClCompile Include="Game.Islands.Features.cpp" />
     <ClCompile Include="Game.Islands.Markets.cpp" />
-    <ClCompile Include="Game.Islands.Quests.cpp" />
     <ClCompile Include="Game.Islands.Ships.cpp" />
     <ClCompile Include="Game.Ship.cpp" />
     <ClCompile Include="Game.Ship.Crew.cpp" />

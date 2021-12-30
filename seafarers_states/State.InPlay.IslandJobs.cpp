@@ -1,6 +1,4 @@
 #include <Common.Heading.h>
-#include <Game.Characters.Quests.h>
-#include <Game.Islands.Quests.h>
 #include <Game.Session.h>
 #include <Game.Ship.h>
 #include "State.InPlay.Globals.h"
@@ -8,20 +6,6 @@
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_ISLAND_JOBS;
-
-	static void OnAccept()//TODO: make this more declarative
-	{
-		switch (game::characters::Quests::Accept(GetPlayerCharacterId(), GetPlayerCharacterIslandId().value()))
-		{
-		case game::characters::AcceptQuestResult::ACCEPTED_QUEST:
-			DoPlayerCharacterAction(game::characters::Action::ENTER_DOCK);
-			::application::UIState::Write(::UIState::IN_PLAY_NEXT);
-			break;
-		case game::characters::AcceptQuestResult::ALREADY_HAS_QUEST:
-			::application::UIState::Write(::UIState::IN_PLAY_CONFIRM_REPLACE_JOB);
-			break;
-		}
-	}
 
 	static void OnCancel()
 	{
@@ -64,16 +48,8 @@ namespace state::in_play
 		auto characterId = GetPlayerCharacterId();
 		auto islandId =
 			GetPlayerCharacterIslandId().value();
-		auto quest = game::islands::Quests::Read(islandId);
-		if (quest)
-		{
-			RefreshQuest(characterId, quest.value());
-		}
-		else
-		{
-			RefreshNoQuest();
-			OnCancel();
-		}
+		RefreshNoQuest();
+		OnCancel();
 	}
 
 	static void OnEnter()
@@ -84,7 +60,6 @@ namespace state::in_play
 
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
-		{"1", OnAccept},
 		{"0", OnCancel}
 	};
 

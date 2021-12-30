@@ -10,7 +10,6 @@
 #include "Game.Session.Character.KnownIslands.h"
 #include "Game.Session.Character.Items.h"
 #include "Game.Session.Character.Messages.h"
-#include "Game.Session.Character.Quest.h"
 #include "Game.Session.Character.Plights.h"
 #include "Game.Session.Island.h"
 #include "Game.Session.Tribe.h"
@@ -30,8 +29,6 @@ namespace game::session
 		character::Characteristics GetCharacteristics() const;
 		character::HitPoints GetHitpoints() const;
 		character::Berth GetBerth() const;
-		std::optional<character::Quest> TryGetQuest() const;
-		character::Quest GetQuest() const;
 		void DoAction(const game::characters::Action&) const;
 		character::Messages GetMessages() const;
 		double GetAvailableTonnage() const;

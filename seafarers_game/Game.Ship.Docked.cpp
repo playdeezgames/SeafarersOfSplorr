@@ -5,9 +5,7 @@
 #include <Data.Game.Ship.h>
 #include <Data.Game.Island.h>
 #include "Game.Characters.State.h"
-#include "Game.Characters.Quests.h"
 #include "Game.Characters.Ships.h"
-#include "Game.Islands.Quests.h"
 #include "Game.Session.h"
 #include "Game.Ship.Docked.h"
 #include <set>
@@ -19,11 +17,6 @@ namespace game::ship
 		data::game::character::KnownIsland::Write(
 			characterId, 
 			islandId);
-		game::islands::Quests::Update(characterId, islandId);
-		if (game::characters::Quests::Complete(characterId, islandId))
-		{
-			result = DockResult::COMPLETED_QUEST;
-		}
 		int shipId = data::game::character::Ship::ReadShipForCharacter(characterId).value();
 		data::game::ship::CurrentIsland::Write(shipId, islandId);
 		game::Session().GetCharacters().GetCharacter(characterId).DoAction(game::characters::Action::ENTER_DOCK);
@@ -48,10 +41,6 @@ namespace game::ship
 				{
 					dockResults.insert(dockResult.value());
 				}
-			}
-			if (dockResults.contains(DockResult::COMPLETED_QUEST))
-			{
-				return DockResult::COMPLETED_QUEST;
 			}
 			return DockResult::DOCKED;
 		}

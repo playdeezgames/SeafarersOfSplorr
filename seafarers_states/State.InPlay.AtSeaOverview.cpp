@@ -86,35 +86,6 @@ namespace state::in_play
 		}
 	}
 
-	static bool RefreshJobDestination()
-	{
-		auto character =
-			game::Session()
-			.GetPlayer().GetCharacter();
-		auto quest =
-			character
-			.TryGetQuest();
-		if (quest)
-		{
-			auto destination = 
-				quest.value()
-				.GetDestinationIsland()
-				.GetLocation();
-			auto location = 
-				game::Session()
-				.GetPlayer().GetCharacter()
-				.GetBerth()
-				.GetShip()
-				.GetLocation();
-			auto delta = destination - location;
-			Terminal::WriteLine(
-				"Delivery distance: {:.1f}", 
-				delta.GetMagnitude());			
-			return true;
-		}
-		return false;
-	}
-
 	static void RefreshFisheries()
 	{
 		if(game::Session()
@@ -166,7 +137,6 @@ namespace state::in_play
 		//nearby islands
 		RefreshNearbyIslands();
 		//job destination
-		bool hasJob = RefreshJobDestination();
 		Terminal::SetForeground(game::Colors::YELLOW);
 		Terminal::WriteLine("1) Move");
 		Terminal::WriteLine("2) Multiple move");
@@ -176,10 +146,6 @@ namespace state::in_play
 		}
 		Terminal::WriteLine("4) Crew status");
 		Terminal::WriteLine("5) Ship status");
-		if (hasJob)
-		{
-			Terminal::WriteLine("6) Job status");
-		}
 		if (IsFishingEnabled())
 		{
 			Terminal::WriteLine("7) Fish");
@@ -225,19 +191,6 @@ namespace state::in_play
 		Refresh();
 	}
 
-	static void OnJob()
-	{
-		if (game::Session()
-			.GetPlayer().GetCharacter()
-			.TryGetQuest())
-		{
-			application::UIState::Write(::UIState::IN_PLAY_CURRENT_JOB);
-			return;
-		}
-		Terminal::ErrorMessage(Terminal::INVALID_INPUT);
-		Refresh();
-	}
-
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
 		{"1", OnMove },
@@ -245,9 +198,7 @@ namespace state::in_play
 		{"3", OnDock },
 		{"4", application::UIState::GoTo(::UIState::IN_PLAY_CREW_LIST) },
 		{"5", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS) },
-		{"6", OnJob },
 		{"0", application::UIState::GoTo(::UIState::LEAVE_PLAY) }
-
 	};
 
 	void AtSeaOverview::Start()

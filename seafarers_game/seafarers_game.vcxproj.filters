@@ -117,9 +117,6 @@
     <Filter Include="Source Files\Session\Saves">
       <UniqueIdentifier>{0cb6ac6f-493f-4455-86c5-a4fca343dcff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Character\Legacy">
-      <UniqueIdentifier>{011d361e-94dd-4d6f-9e9f-949d87073ff3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Session\Commodity">
       <UniqueIdentifier>{27fa31a9-8c34-410f-92ec-90cc05940608}</UniqueIdentifier>
     </Filter>
@@ -163,9 +160,6 @@
     </ClInclude>
     <ClInclude Include="Game.Features.h">
       <Filter>Header Files\Features</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Islands.Quests.h">
-      <Filter>Header Files\Islands</Filter>
     </ClInclude>
     <ClInclude Include="Game.Islands.Ships.h">
       <Filter>Header Files\Islands</Filter>
@@ -296,9 +290,6 @@
     <ClInclude Include="Game.Session.Character.Messages.h">
       <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.Character.Quest.h">
-      <Filter>Header Files\Session\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.Fisheries.h">
       <Filter>Header Files\Session\Fish</Filter>
     </ClInclude>
@@ -395,9 +386,6 @@
     <ClInclude Include="Game.Characteristic.h">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Characters.AcceptQuestResult.h">
-      <Filter>Header Files\Enums</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Characters.Action.h">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
@@ -421,9 +409,6 @@
     </ClInclude>
     <ClInclude Include="Game.SkillCategory.h">
       <Filter>Header Files\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Characters.Quests.h">
-      <Filter>Header Files\Character\Legacy</Filter>
     </ClInclude>
     <ClInclude Include="Game.EquipSlot.h">
       <Filter>Header Files\Enums</Filter>
@@ -499,9 +484,6 @@
     <ClCompile Include="Game.Features.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Islands.Quests.cpp">
-      <Filter>Source Files\Islands</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Islands.Ships.cpp">
       <Filter>Source Files\Islands</Filter>
     </ClCompile>
@@ -533,9 +515,6 @@
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Game.Characters.Plights.cpp">
-      <Filter>Source Files\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Characters.Quests.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Game.Characters.Ships.cpp">
@@ -590,9 +569,6 @@
       <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Character.Messages.cpp">
-      <Filter>Source Files\Session\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Character.Quest.cpp">
       <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Fisheries.cpp">

@@ -42,23 +42,9 @@ namespace state::in_play
 		playerCharacter.GetMessages().Add(game::Colors::GREEN,"Yer reputation increases!");//<-
 	}
 
-	static std::optional<std::string> GetQuestCompletionMesssage()
-	{
-		auto quest = game::Session().GetPlayer().GetCharacter().TryGetQuest();
-		if (quest)
-		{
-			return quest.value().GetCompletionMessage();
-		}
-		return std::nullopt;
-	}
-
 	static void OnDock()
 	{
-		auto message = GetQuestCompletionMesssage();
-		if (Dock() == game::ship::DockResult::COMPLETED_QUEST)
-		{
-			CompleteQuest(message.value());
-		}
+		Dock();
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 

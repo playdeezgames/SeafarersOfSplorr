@@ -39,7 +39,6 @@
     <ClInclude Include="Data.Game.Island.Feature.h" />
     <ClInclude Include="Data.Game.Island.h" />
     <ClInclude Include="Data.Game.Island.Market.h" />
-    <ClInclude Include="Data.Game.Island.QuestLegacy.h" />
     <ClInclude Include="Data.Game.Island.Tavern.h" />
     <ClInclude Include="Data.Game.Island.Tribe.h" />
     <ClInclude Include="Data.Game.Item.h" />
@@ -76,7 +75,6 @@
     <ClCompile Include="Data.Game.Island.DarkAlley.GamblingHand.cpp" />
     <ClCompile Include="Data.Game.Island.Feature.cpp" />
     <ClCompile Include="Data.Game.Island.Market.cpp" />
-    <ClCompile Include="Data.Game.Island.QuestLegacy.cpp" />
     <ClCompile Include="Data.Game.Island.Tavern.cpp" />
     <ClCompile Include="Data.Game.Island.Tribe.cpp" />
     <ClCompile Include="Data.Game.Item.cpp" />

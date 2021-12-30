@@ -39,12 +39,6 @@ namespace state::in_play
 	static void Refresh()
 	{
 		auto characterId = GetPlayerCharacterId();
-		auto quest = GetPlayerCharacterQuest();
-		if (quest)
-		{
-			RefreshQuest(characterId, quest.value());
-			return;
-		}
 		RefreshNoQuest();
 		application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
 	}

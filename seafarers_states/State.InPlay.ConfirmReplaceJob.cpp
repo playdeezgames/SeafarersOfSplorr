@@ -1,4 +1,3 @@
-#include <Game.Characters.Quests.h>
 #include "State.InPlay.ConfirmReplaceJob.h"
 #include "State.InPlay.Globals.h"
 namespace state::in_play
@@ -22,8 +21,6 @@ namespace state::in_play
 	static void ReplaceJob()
 	{
 		Terminal::ErrorMessage("You replace yer job, and yer reputation suffers!");
-		game::characters::Quests::Abandon(GetPlayerCharacterId());
-		game::characters::Quests::Accept(GetPlayerCharacterId(), GetPlayerCharacterIslandId().value());
 		DoPlayerCharacterAction(game::characters::Action::ENTER_DOCK);
 		::application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}

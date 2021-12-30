@@ -36,11 +36,6 @@ namespace state::in_play
 		{
 			Terminal::WriteLine("2) Head for a nearby island");
 		}
-		if (playerCharacter
-			.TryGetQuest().has_value())
-		{
-			Terminal::WriteLine("3) Head for job destination");
-		}
 		Terminal::WriteLine("4) Set heading manually");
 		Terminal::WriteLine("0) Never mind");
 
@@ -85,36 +80,10 @@ namespace state::in_play
 		}
 	}
 
-	static void OnHeadForJobDestination()
-	{
-		auto playerCharacter = game::Session().GetPlayer().GetCharacter();
-		auto quest = 
-			playerCharacter
-			.TryGetQuest();
-		if (quest)
-		{
-			auto destination = quest.value().GetDestinationIsland().GetLocation();
-			auto location = playerCharacter.GetBerth().GetShip().GetLocation();
-			auto delta = destination - location;
-			playerCharacter.GetBerth().GetShip().SetHeading(common::Heading::XYToDegrees(delta));
-			Terminal::SetForeground(game::Colors::GREEN);
-			Terminal::WriteLine();
-			auto knownIsland = playerCharacter.GetKnownIslands().GetKnownIsland(quest.value().GetDestinationIsland());
-			Terminal::WriteLine("You head for {}.", knownIsland.GetDisplayName());
-			application::UIState::Write(::UIState::IN_PLAY_NEXT);
-		}
-		else
-		{
-			Terminal::ErrorMessage("Please select a valid option.");
-			Refresh();
-		}
-	}
-
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
 		{"1", OnHeadForKnownIsland},
 		{"2", OnHeadForNearbyIsland},
-		{"3", OnHeadForJobDestination},
 		{"4", application::UIState::GoTo(::UIState::IN_PLAY_MANUAL_HEADING)},
 		{"0", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS)}
 	};

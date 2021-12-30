@@ -1,7 +1,6 @@
 #include <Common.Utility.Optional.h>
 #include <Data.Game.Player.h>
 #include <Game.Characters.Message.h>
-#include <Game.Characters.Quests.h>
 #include <Game.Characters.Ships.h>
 #include <Game.Ship.Statistics.h>
 #include <Game.Islands.DarkAlley.h>
@@ -36,11 +35,6 @@ namespace state::in_play
 			common::utility::Optional::Bind<int, game::ship::DockResult>(
 				GetPlayerCharacterShipId(), 
 				game::ship::Docked::Dock);
-	}
-
-	std::optional<game::Quest> GetPlayerCharacterQuest()
-	{
-		return game::characters::Quests::Read(GetPlayerCharacterId());
 	}
 
 	std::optional<common::XY<double>> GetPlayerCharacterShipLocation()
