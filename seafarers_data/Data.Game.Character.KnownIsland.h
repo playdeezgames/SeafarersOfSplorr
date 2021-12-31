@@ -4,6 +4,7 @@ namespace data::game::character
 {
 	struct KnownIsland
 	{
+		KnownIsland() = delete;
 		static void Initialize();
 		static void Write(int, int);
 		static bool Read(int, int);

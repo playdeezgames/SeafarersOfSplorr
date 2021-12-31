@@ -5,6 +5,7 @@ namespace data::game::character
 {
 	struct Plight
 	{
+		Plight() = delete;
 		static void Initialize();
 		static std::list<int> All(int);
 		static void Write(int, int, int);

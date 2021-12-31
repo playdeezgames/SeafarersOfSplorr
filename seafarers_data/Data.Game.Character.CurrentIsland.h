@@ -5,6 +5,7 @@ namespace data::game::character
 {
 	struct CurrentIsland
 	{
+		CurrentIsland() = delete;
 		static void Initialize();
 		static std::optional<int> Read(int characterId);
 		static void Write(int characterId, int islandId);

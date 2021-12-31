@@ -4,6 +4,7 @@ namespace data::game::character
 {
 	struct Flags
 	{
+		Flags() = delete;
 		static void Initialize();
 		static bool Has(int characterId, int flag);
 		static void Write(int characterId, int flag);
