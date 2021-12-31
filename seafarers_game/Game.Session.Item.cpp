@@ -1,5 +1,5 @@
 #include <Data.Game.Item.h>
-#include <Data.Game.Character.ItemInstance.h>
+#include <Data.Game.Character.Item.h>
 #include "Game.Session.Item.h"
 namespace game::session
 {

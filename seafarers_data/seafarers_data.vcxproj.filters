@@ -119,7 +119,7 @@
     <ClInclude Include="Data.Game.Item.h">
       <Filter>Header Files\Item</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Character.ItemInstance.h">
+    <ClInclude Include="Data.Game.Character.Item.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.Item.Type.h">

@@ -25,7 +25,7 @@
     <ClInclude Include="Data.Game.Character.Flags.h" />
     <ClInclude Include="Data.Game.Character.h" />
     <ClInclude Include="Data.Game.Character.CurrentIsland.h" />
-    <ClInclude Include="Data.Game.Character.ItemInstance.h" />
+    <ClInclude Include="Data.Game.Character.Item.h" />
     <ClInclude Include="Data.Game.Character.KnownIsland.h" />
     <ClInclude Include="Data.Game.Character.Plight.h" />
     <ClInclude Include="Data.Game.Character.Ship.h" />

@@ -1,4 +1,4 @@
-#include <Data.Game.Character.ItemInstance.h>
+#include <Data.Game.Character.Item.h>
 #include "Game.Session.Character.Items.h"
 #include "Game.Session.Items.h"
 namespace game::session::character

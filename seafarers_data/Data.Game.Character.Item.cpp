@@ -3,7 +3,7 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Character.h"
 #include "Data.Game.Item.h"
-#include "Data.Game.Character.ItemInstance.h"
+#include "Data.Game.Character.Item.h"
 #include <iterator>
 namespace data::game::character
 {
