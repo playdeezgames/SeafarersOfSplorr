@@ -61,10 +61,10 @@ namespace data::game
 		data::game::Common::Execute(DELETE_ALL);
 	}
 
-	std::list<Demigod::demigodid_t> Demigod::All()
+	std::list<int> Demigod::All()
 	{
 		Initialize();
-		std::list<demigodid_t> result;
+		std::list<int> result;
 		auto records = Common::Execute(QUERY_ALL);
 		for (auto& record : records)
 		{
@@ -73,7 +73,7 @@ namespace data::game
 		return result;
 	}
 
-	int Demigod::Create(const name_t& name, patronweight_t patronWeight)
+	int Demigod::Create(const std::string& name, size_t patronWeight)
 	{
 		Initialize();
 		data::game::Common::Execute(
@@ -83,7 +83,7 @@ namespace data::game
 		return Common::LastInsertedIndex();
 	}
 
-	std::optional<Demigod::name_t> Demigod::ReadName(demigodid_t demigodId)
+	std::optional<std::string> Demigod::ReadName(int demigodId)
 	{
 		Initialize();
 		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_NAME, demigodId);
@@ -94,7 +94,7 @@ namespace data::game
 		return std::nullopt;
 	}
 
-	std::optional<Demigod::patronweight_t> Demigod::ReadPatronWeight(demigodid_t demigodId)
+	std::optional<size_t> Demigod::ReadPatronWeight(int demigodId)
 	{
 		Initialize();
 		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_PATRON_WEIGHT, demigodId);
