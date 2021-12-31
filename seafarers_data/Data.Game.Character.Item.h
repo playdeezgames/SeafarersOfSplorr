@@ -3,7 +3,7 @@
 #include <optional>
 namespace data::game::character
 {
-	struct ItemInstance
+	struct Item
 	{
 		static void Initialize();
 		static void Write(int characterId, int itemId);

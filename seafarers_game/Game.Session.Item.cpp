@@ -20,7 +20,7 @@ namespace game::session
 
 	std::optional<int> Item::TryGetCharacterId() const
 	{
-		return data::game::character::ItemInstance::ReadForItemInstance(itemId);
+		return data::game::character::Item::ReadForItemInstance(itemId);
 	}
 
 	int Item::GetCharacterId() const
@@ -30,6 +30,6 @@ namespace game::session
 
 	void Item::SetCharacterId(int characterId) const
 	{
-		data::game::character::ItemInstance::Write(itemId, characterId);
+		data::game::character::Item::Write(itemId, characterId);
 	}
 }

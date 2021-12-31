@@ -39,20 +39,20 @@ namespace data::game::character
 	static const std::string FIELD_CHARACTER_ID = "CharacterId";
 	static const std::string FIELD_ITEM_ID = "ItemId";
 
-	void ItemInstance::Initialize()
+	void Item::Initialize()
 	{
 		Character::Initialize();
 		Item::Initialize();
 		Common::Execute(CREATE_TABLE);
 	}
 
-	void ItemInstance::Write(int itemInstanceId, int characterId)
+	void Item::Write(int itemInstanceId, int characterId)
 	{
 		Initialize();
 		Common::Execute(REPLACE_ITEM, itemInstanceId, characterId);
 	}
 
-	std::list<int> ItemInstance::ReadForCharacter(int characterId)
+	std::list<int> Item::ReadForCharacter(int characterId)
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_ITEMS_FOR_CHARACTER, characterId);
@@ -65,7 +65,7 @@ namespace data::game::character
 		return result;
 	}
 
-	std::optional<int> ItemInstance::ReadForItemInstance(int itemInstanceId)
+	std::optional<int> Item::ReadForItemInstance(int itemInstanceId)
 	{
 		Initialize();
 		return Common::TryToInt(

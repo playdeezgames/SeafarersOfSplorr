@@ -5,7 +5,7 @@ namespace game::session::character
 {
 	std::list<Item> Items::GetAll() const
 	{
-		auto itemInstances = data::game::character::ItemInstance::ReadForCharacter(characterId);
+		auto itemInstances = data::game::character::Item::ReadForCharacter(characterId);
 		std::list<Item> result;
 		for (auto itemInstanceId : itemInstances)
 		{
