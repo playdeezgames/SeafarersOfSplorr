@@ -29,6 +29,7 @@ namespace data::game
 		static int LastInsertedIndex();
 		static double ToDouble(const Record&, const std::string&);
 		static int ToInt(const Record&, const std::string&);
+		static std::function<int(const Record&)> DoToInt(const std::string& columnName);
 		static std::string ToString(const Record&, const std::string&);
 	};
 

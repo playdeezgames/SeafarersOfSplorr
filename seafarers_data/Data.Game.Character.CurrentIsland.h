@@ -5,12 +5,10 @@ namespace data::game::character
 {
 	struct CurrentIsland
 	{
-		typedef int characterid_t;
-		typedef int islandid_t;
 		static void Initialize();
-		static std::optional<islandid_t> Read(characterid_t);
-		static void Write(characterid_t, islandid_t);
-		static void Clear(characterid_t);
-		static std::list<characterid_t> All(islandid_t);
+		static std::optional<int> Read(int characterId);
+		static void Write(int characterId, int islandId);
+		static void Clear(int characterId);
+		static std::list<int> All(int islandId);
 	};
 }

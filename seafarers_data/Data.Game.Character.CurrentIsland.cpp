@@ -1,8 +1,10 @@
+#include <algorithm>
 #include <Common.Data.h>
 #include "Data.Game.Character.h"
 #include "Data.Game.Island.h"
 #include "Data.Game.Character.CurrentIsland.h"
 #include "Data.Game.Common.h"
+#include <iterator>
 namespace data::game::character
 {
 	using namespace std::string_literals;
@@ -48,38 +50,39 @@ namespace data::game::character
 		Common::Execute(CREATE_TABLE);
 	}
 
-	std::optional<CurrentIsland::islandid_t> CurrentIsland::Read(characterid_t characterId)
+	std::optional<int> CurrentIsland::Read(int characterId)
 	{
 		Initialize();
-		auto records = Common::Execute(QUERY_ITEM, characterId);
-		if (!records.empty())
+		auto record = Common::TryExecuteForOne(QUERY_ITEM, characterId);
+		if (record)
 		{
-			return common::Data::ToOptionalInt(records.front()[FIELD_ISLAND_ID]);
+			return Common::ToInt(*record, FIELD_ISLAND_ID);
 		}
 		return std::nullopt;
 	}
 
-	void CurrentIsland::Write(characterid_t characterId, islandid_t islandId)
+	void CurrentIsland::Write(int characterId, int islandId)
 	{
 		Initialize();
 		Common::Execute(REPLACE_ITEM, characterId, islandId);
 	}
 
-	void CurrentIsland::Clear(characterid_t characterId)
+	void CurrentIsland::Clear(int characterId)
 	{
 		Initialize();
 		Common::Execute(DELETE_ITEM, characterId);
 	}
 
-	std::list<CurrentIsland::characterid_t> CurrentIsland::All(islandid_t islandId)
+	std::list<int> CurrentIsland::All(int islandId)
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_ALL, islandId);
-		std::list<characterid_t> result;
-		for (auto record : records)
-		{
-			result.push_back(common::Data::ToInt(record.find(FIELD_CHARACTER_ID)->second));
-		}
+		std::list<int> result;
+		std::transform(
+			records.begin(),
+			records.end(),
+			std::back_inserter(result),
+			Common::DoToInt(FIELD_ISLAND_ID));
 		return result;
 	}
 }

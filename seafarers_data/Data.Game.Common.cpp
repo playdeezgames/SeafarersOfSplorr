@@ -62,6 +62,14 @@ namespace data::game
 		return common::Data::ToInt(record.find(columnName)->second);
 	}
 
+	std::function<int(const Common::Record&)> Common::DoToInt(const std::string& columnName)
+	{
+		return [columnName](const Common::Record& record) 
+		{
+			return ToInt(record, columnName);
+		};
+	}
+
 	std::string Common::ToString(const Common::Record& record, const std::string& columnName)
 	{
 		return record.find(columnName)->second;
