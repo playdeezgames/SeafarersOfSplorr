@@ -6,10 +6,10 @@ namespace data::game::character
 	{
 		KnownIsland() = delete;
 		static void Initialize();
-		static void Write(int, int);
-		static bool Read(int, int);
-		static void Clear(int);
+		static void Write(int characterId, int islandId);
+		static bool Has(int characterId, int islandId);
+		static void Clear(int characterId);
 		static void Clear();
-		static std::list<int> All(int);
+		static std::list<int> All(int characterId);
 	};
 }

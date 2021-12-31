@@ -1,8 +1,10 @@
+#include <algorithm>
 #include <Common.Data.h>
 #include "Data.Game.Character.h"
 #include "Data.Game.Character.KnownIsland.h"
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.h"
+#include <iterator>
 namespace data::game::character
 {
 	using namespace std::string_literals;
@@ -57,10 +59,10 @@ namespace data::game::character
 		Common::Execute(REPLACE_ITEM, characterId, islandId);
 	}
 
-	bool KnownIsland::Read(int characterId, int islandId)
+	bool KnownIsland::Has(int characterId, int islandId)
 	{
 		Initialize();
-		return !Common::Execute(QUERY_ITEM, characterId, islandId).empty();
+		return Common::TryExecuteForOne(QUERY_ITEM, characterId, islandId).has_value();
 	}
 
 	void KnownIsland::Clear(int characterId)
@@ -80,10 +82,11 @@ namespace data::game::character
 		Initialize();
 		auto records = Common::Execute(QUERY_FOR_CHARACTER, characterId);
 		std::list<int> result;
-		for (auto record : records)
-		{
-			result.push_back(common::Data::ToInt(record.find(FIELD_ISLAND_ID)->second));
-		}
+		std::transform(
+			records.begin(),
+			records.end(),
+			std::back_inserter(result),
+			Common::DoToInt(FIELD_ISLAND_ID));
 		return result;
 	}
 }

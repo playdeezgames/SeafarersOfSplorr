@@ -6,7 +6,7 @@ namespace game::session::character
 {
 	bool KnownIsland::IsKnown() const
 	{
-		return data::game::character::KnownIsland::Read(characterId, islandId);
+		return data::game::character::KnownIsland::Has(characterId, islandId);
 	}
 
 	std::string KnownIsland::GetDisplayName() const
