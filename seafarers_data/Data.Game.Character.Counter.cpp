@@ -9,16 +9,16 @@ namespace data::game::character
 		R"(CREATE TABLE IF NOT EXISTS [CharacterCounters]
 		(
 			[CharacterId] INT NOT NULL,
-			[CounterId] INT NOT NULL,
+			[Counter] INT NOT NULL,
 			[Value] INT NOT NULL,
-			UNIQUE([CharacterId],[CounterId]),
+			UNIQUE([CharacterId],[Counter]),
 			FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId])
 		);)"s;
 	static const std::string REPLACE_ITEM = 
 		R"(REPLACE INTO [CharacterCounters]
 		(
 			[CharacterId],
-			[CounterId],
+			[Counter],
 			[Value]
 		) 
 		VALUES({},{},{});)"s;
@@ -28,12 +28,12 @@ namespace data::game::character
 		FROM [CharacterCounters] 
 		WHERE 
 			[CharacterId]={} 
-			AND [CounterId]={};)"s;
+			AND [Counter]={};)"s;
 	static const std::string DELETE_ITEM = 
 		R"(DELETE FROM [CharacterCounters] 
 		WHERE 
 			[CharacterId]={} 
-			AND [CounterId]={};)"s;
+			AND [Counter]={};)"s;
 
 	static const std::string FIELD_VALUE = "Value";
 
@@ -43,26 +43,26 @@ namespace data::game::character
 		Common::Execute(CREATE_TABLE);
 	}
 
-	void Counter::Write(characterid_t characterId, counter_t counterId, value_t value)
+	void Counter::Write(int characterId, int counter, int value)
 	{
 		Initialize();
-		Common::Execute(REPLACE_ITEM, characterId, counterId, value);
+		Common::Execute(REPLACE_ITEM, characterId, counter, value);
 	}
 
-	std::optional<Counter::value_t> Counter::Read(characterid_t characterId, counter_t counterId)
+	std::optional<int> Counter::Read(int characterId, int counter)
 	{
 		Initialize();
-		auto records = Common::Execute(QUERY_ITEM, characterId, counterId);
-		if (!records.empty())
+		auto record = Common::TryExecuteForOne(QUERY_ITEM, characterId, counter);
+		if (record)
 		{
-			return common::Data::ToOptionalInt(records.front()[FIELD_VALUE]);
+			return Common::ToInt(*record, FIELD_VALUE);
 		}
 		return std::nullopt;
 	}
 
-	void Counter::Clear(characterid_t characterId, counter_t counterId)
+	void Counter::Clear(int characterId, int counter)
 	{
 		Initialize();
-		Common::Execute(DELETE_ITEM, characterId, counterId);
+		Common::Execute(DELETE_ITEM, characterId, counter);
 	}
 }
