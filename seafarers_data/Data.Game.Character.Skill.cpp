@@ -1,7 +1,9 @@
+#include <algorithm>
 #include <Common.Data.h>
 #include "Data.Game.Character.h"
 #include "Data.Game.Character.Skill.h"
 #include "Data.Game.Common.h"
+#include <iterator>
 namespace data::game::character
 {
 	using namespace std::string_literals;
@@ -55,12 +57,9 @@ namespace data::game::character
 	std::optional<int> Skill::Read(int characterId, int skillId)
 	{
 		Initialize();
-		auto records = Common::Execute(QUERY_ITEM, characterId, skillId);
-		if (!records.empty())
-		{
-			return common::Data::ToOptionalInt(records.front()[FIELD_VALUE]);
-		}
-		return std::nullopt;
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM, characterId, skillId), 
+			FIELD_VALUE);
 	}
 
 	std::map<int, int> Skill::Read(int characterId)
@@ -68,11 +67,16 @@ namespace data::game::character
 		Initialize();
 		std::map<int, int> result;
 		auto records = Common::Execute(QUERY_ITEMS, characterId);
-		for (auto record : records)
-		{
-			result[common::Data::ToInt(record[FIELD_SKILL_ID])] = 
-				common::Data::ToInt(record[FIELD_VALUE]);
-		}
+		std::transform(
+			records.begin(),
+			records.end(),
+			std::inserter(result, result.end()),
+			[](const Common::Record& record) 
+			{
+				return std::make_pair(
+					Common::ToInt(record, FIELD_SKILL_ID),
+					Common::ToInt(record, FIELD_VALUE));
+			});
 		return result;
 	}
 }
