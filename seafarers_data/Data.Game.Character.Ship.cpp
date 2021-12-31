@@ -96,12 +96,9 @@ namespace data::game::character
 	std::optional<int> Ship::ReadShipForCharacter(int characterId)
 	{
 		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_SHIP_FOR_CHARACTER, characterId);
-		if (record)
-		{
-			return Common::ToInt(record.value(), FIELD_SHIP_ID);
-		}
-		return std::nullopt;
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_SHIP_FOR_CHARACTER, characterId), 
+			FIELD_SHIP_ID);
 	}
 
 	std::list<int> Ship::ReadCharactersForShip(int shipId)
@@ -110,24 +107,18 @@ namespace data::game::character
 		auto records = Common::Execute(QUERY_CHARACTERS_FOR_SHIP, shipId);
 		std::list<int> result;
 		std::transform(
-			records.begin(), 
-			records.end(), 
-			std::back_inserter(result), 
-			[](const Common::Record& record) 
-			{
-				return Common::ToInt(record, FIELD_CHARACTER_ID);
-			});
+			records.begin(),
+			records.end(),
+			std::back_inserter(result),
+			Common::DoToInt(FIELD_CHARACTER_ID));
 		return result;
 	}
 
 	std::optional<int> Ship::ReadBerthForCharacter(int characterId)
 	{
 		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_BERTH_FOR_CHARACTER, characterId);
-		if (record)
-		{
-			return Common::ToInt(record.value(), FIELD_BERTH);
-		}
-		return std::nullopt;
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_BERTH_FOR_CHARACTER, characterId), 
+			FIELD_BERTH);
 	}
 }
