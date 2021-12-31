@@ -7,12 +7,11 @@ namespace data::game::character
 	{
 		Plight() = delete;
 		static void Initialize();
-		static std::list<int> All(int);
-		static void Write(int, int, int);
-		static std::optional<int> ReadDuration(int, int);
-		static void ClearPlight(int, int);
-		static void Clear(int);
-
+		static std::list<int> All(int characterId);
+		static void Write(int characterId, int plight, int duration);
+		static std::optional<int> ReadDuration(int characterId, int plight);
+		static void ClearPlight(int characterId, int plight);
+		static void Clear(int characterId);
 		static void ClearAll();
 	};
 }
