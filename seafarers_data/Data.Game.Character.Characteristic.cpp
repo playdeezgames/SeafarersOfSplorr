@@ -57,12 +57,9 @@ namespace data::game::character
 	std::optional<int> Characteristic::Read(int characterId, int characteristicId)
 	{
 		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM, characterId, characteristicId);
-		if (record)
-		{
-			return Common::ToInt(record.value(), FIELD_VALUE);
-		}
-		return std::nullopt;
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM, characterId, characteristicId),
+			FIELD_VALUE);
 	}
 
 	std::map<int, int>

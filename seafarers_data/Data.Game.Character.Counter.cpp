@@ -52,12 +52,9 @@ namespace data::game::character
 	std::optional<int> Counter::Read(int characterId, int counter)
 	{
 		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM, characterId, counter);
-		if (record)
-		{
-			return Common::ToInt(*record, FIELD_VALUE);
-		}
-		return std::nullopt;
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM, characterId, counter), 
+			FIELD_VALUE);
 	}
 
 	void Counter::Clear(int characterId, int counter)

@@ -53,12 +53,9 @@ namespace data::game::character
 	std::optional<int> CurrentIsland::Read(int characterId)
 	{
 		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM, characterId);
-		if (record)
-		{
-			return Common::ToInt(*record, FIELD_ISLAND_ID);
-		}
-		return std::nullopt;
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM, characterId),
+			FIELD_ISLAND_ID);
 	}
 
 	void CurrentIsland::Write(int characterId, int islandId)

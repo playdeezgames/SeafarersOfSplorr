@@ -52,9 +52,35 @@ namespace data::game
 		return (int)data::sqlite::Stores::LastInsertedIndex(data::sqlite::Store::IN_MEMORY);
 	}
 
+	std::optional<double> Common::TryToDouble(const std::optional<Record>& record, const std::string& columnName)
+	{
+		if (record)
+		{
+			return ToDouble(record.value(), columnName);
+		}
+		return std::nullopt;
+	}
+
 	double Common::ToDouble(const Common::Record& record, const std::string& columnName)
 	{
 		return common::Data::ToDouble(record.find(columnName)->second);
+	}
+
+	std::function<double(const Common::Record&)> Common::DoToDouble(const std::string& columnName)
+	{
+		return [columnName](const Common::Record& record)
+		{
+			return ToDouble(record, columnName);
+		};
+	}
+
+	std::optional<int> Common::TryToInt(const std::optional<Record>& record, const std::string& columnName)
+	{
+		if (record)
+		{
+			return ToInt(record.value(), columnName);
+		}
+		return std::nullopt;
 	}
 
 	int Common::ToInt(const Common::Record& record, const std::string& columnName)
@@ -70,8 +96,25 @@ namespace data::game
 		};
 	}
 
+	std::optional<std::string> Common::TryToString(const std::optional<Record>& record, const std::string& columnName)
+	{
+		if (record)
+		{
+			return ToString(record.value(), columnName);
+		}
+		return std::nullopt;
+	}
+
 	std::string Common::ToString(const Common::Record& record, const std::string& columnName)
 	{
 		return record.find(columnName)->second;
+	}
+
+	std::function<std::string(const Common::Record&)> Common::DoToString(const std::string& columnName)
+	{
+		return [columnName](const Common::Record& record)
+		{
+			return ToString(record, columnName);
+		};
 	}
 }

@@ -27,10 +27,18 @@ namespace data::game
 		static std::function<void()> Run(const std::string&);
 		static common::XY<double> ToXY(const Record&);//TODO: eliminate?
 		static int LastInsertedIndex();
-		static double ToDouble(const Record&, const std::string&);
-		static int ToInt(const Record&, const std::string&);
+
+		static std::optional<double> TryToDouble(const std::optional<Record>& record, const std::string& columnName);
+		static double ToDouble(const Record& record, const std::string& columnName);
+		static std::function<double(const Record&)> DoToDouble(const std::string& columnName);
+
+		static std::optional<int> TryToInt(const std::optional<Record>& record, const std::string& columnName);
+		static int ToInt(const Record& record, const std::string& columnName);
 		static std::function<int(const Record&)> DoToInt(const std::string& columnName);
-		static std::string ToString(const Record&, const std::string&);
+
+		static std::optional<std::string> TryToString(const std::optional<Record>& record, const std::string& columnName);
+		static std::string ToString(const Record& record, const std::string& columnName);
+		static std::function<std::string(const Record&)> DoToString(const std::string& columnName);
 	};
 
 }
