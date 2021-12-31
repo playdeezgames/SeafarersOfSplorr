@@ -31,6 +31,7 @@ namespace game::session
 			common::RNG::FromRange(EARLIEST_INITIAL_YEAR, LATEST_INITIAL_YEAR) * DAYS_PER_YEAR +
 			common::RNG::FromRange(0, DAYS_PER_YEAR));
 
+		GetSkills().Populate(difficulty);
 		GetCharacters().Populate(difficulty);
 		GetCalendar().Populate(difficulty);
 		GetDemigods().Populate(difficulty);
@@ -49,6 +50,7 @@ namespace game::session
 		GetDistances().Reset();
 		GetIslands().Reset();
 		GetItemSubtypes().Reset();
+		GetSkills().Reset();
 		GetTribes().Reset();
 		GetWind().Reset();
 	}

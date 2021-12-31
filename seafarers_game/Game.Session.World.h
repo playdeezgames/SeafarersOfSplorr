@@ -4,13 +4,14 @@
 #include "Game.Session.Commodities.h"
 #include "Game.Session.Demigods.h"
 #include "Game.Session.Item.Types.h"
+#include "Game.Session.Tribes.h"
 #include "Game.Session.World.Bounds.h"
 #include "Game.Session.World.Calendar.h"
 #include "Game.Session.World.Distances.h"
 #include "Game.Session.World.Islands.h"
 #include "Game.Session.World.ShipTypes.h"
+#include "Game.Session.World.Skills.h"
 #include "Game.Session.World.Wind.h"
-#include "Game.Session.Tribes.h"
 namespace game::session
 {
 	struct World
@@ -31,7 +32,7 @@ namespace game::session
 		constexpr world::Wind GetWind() const { return world::Wind(worldId); }
 		constexpr Tribes GetTribes() const { return Tribes(); }
 		constexpr world::ShipTypes GetShipTypes() const { return world::ShipTypes(); }
-
+		constexpr world::Skills GetSkills() const { return world::Skills(); }
 		void Reset() const;
 		void Populate(const Difficulty&) const;
 		void ApplyTurnEffects() const;

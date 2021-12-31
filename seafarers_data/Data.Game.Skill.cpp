@@ -34,11 +34,19 @@ namespace data::game
 			[SkillId]={};)"s;
 	static const std::string DELETE_ALL =
 		R"(DELETE FROM [Skills];)"s;
+	static const std::string QUERY_SKILL_FOR_CATEGORY_AND_TYPE =
+		R"(SELECT 
+			[SkillId] 
+		FROM [Skills] 
+		WHERE 
+			[Category]={} 
+			AND [Type]={})"s;
 
 	static const std::string FIELD_MAXIMUM_TYPE = "MaximumType";
 	static const std::string FIELD_CATEGORY = "Category";
 	static const std::string FIELD_TYPE = "Type";
 	static const std::string FIELD_NAME = "Name";
+	static const std::string FIELD_SKILL_ID = "SkillId";
 
 	void Skill::Initialize()
 	{
@@ -64,6 +72,23 @@ namespace data::game
 			common::Data::QuoteString(name));
 		return Common::LastInsertedIndex();
 	}
+
+	static const int GENERAL_TYPE = 0;
+
+	int Skill::EstablishGeneralSkillForCategory(int category, const std::string& name)
+	{
+		Initialize();
+		return EstablishTypeForCategory(category, GENERAL_TYPE, name);
+	}
+
+	std::optional<int> Skill::ReadGeneralSkillForCategory(int category)
+	{
+		Initialize();
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_SKILL_FOR_CATEGORY_AND_TYPE, category, GENERAL_TYPE),
+			FIELD_SKILL_ID);
+	}
+
 
 	std::optional<int> Skill::ReadCategory(int skillId)
 	{

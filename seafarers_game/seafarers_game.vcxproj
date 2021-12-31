@@ -77,6 +77,7 @@
     <ClInclude Include="Game.Session.World.ShipType.Commodity.h" />
     <ClInclude Include="Game.Session.World.ShipType.h" />
     <ClInclude Include="Game.Session.World.ShipTypes.h" />
+    <ClInclude Include="Game.Session.World.Skills.h" />
     <ClInclude Include="Game.Session.World.Wind.h" />
     <ClInclude Include="Game.Characters.Flag.h" />
     <ClInclude Include="Game.Characters.Plight.h" />
@@ -146,6 +147,7 @@
     <ClCompile Include="Game.Session.World.Distances.cpp" />
     <ClCompile Include="Game.Session.World.Islands.cpp" />
     <ClCompile Include="Game.Session.World.ShipType.cpp" />
+    <ClCompile Include="Game.Session.World.Skills.cpp" />
     <ClCompile Include="Game.Session.World.Wind.cpp" />
     <ClCompile Include="Game.ShipNames.cpp" />
   </ItemGroup>
