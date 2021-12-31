@@ -3,6 +3,7 @@
 #include "Data.Game.Character.h"
 #include "Data.Game.Character.Skill.h"
 #include "Data.Game.Common.h"
+#include "Data.Game.Skill.h"
 #include <iterator>
 namespace data::game::character
 {
@@ -14,7 +15,8 @@ namespace data::game::character
 			[SkillId] INT NOT NULL,
 			[Value] INT NOT NULL, 
 			UNIQUE([CharacterId],[SkillId]),
-			FOREIGN KEY ([CharacterId]) REFERENCE [Characters]([CharacterId])
+			FOREIGN KEY ([CharacterId]) REFERENCE [Characters]([CharacterId]),
+			FOREIGN KEY ([SkillId]) REFERENCE [Skills]([SkillId])
 		);)"s;
 	static const std::string REPLACE_ITEM = 
 		R"(REPLACE INTO [CharacterSkills]
@@ -45,6 +47,7 @@ namespace data::game::character
 	void Skill::Initialize()
 	{
 		Character::Initialize();
+		data::game::Skill::Initialize();
 		Common::Execute(CREATE_TABLE);
 	}
 

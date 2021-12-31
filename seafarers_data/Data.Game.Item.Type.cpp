@@ -23,7 +23,7 @@ namespace data::game::item
 		VALUES({},{},{});)"s;
 	static const std::string QUERY_MAXIMUM_TYPE = 
 		R"(SELECT 
-			MAX([Type]) AS MaximumType 
+			MAX([Type]) AS [MaximumType]
 		FROM [ItemTypes] 
 		WHERE 
 			[Category]={};)"s;

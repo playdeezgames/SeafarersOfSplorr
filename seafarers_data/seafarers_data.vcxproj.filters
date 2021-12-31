@@ -60,6 +60,12 @@
     <Filter Include="Source Files\Tribe">
       <UniqueIdentifier>{ef4e17df-c105-4a38-b8be-1d3f7ef428a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Skill">
+      <UniqueIdentifier>{7cee6f33-008f-4470-8f0b-c451923e286e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Skill">
+      <UniqueIdentifier>{8dbd1c61-d2c5-4bd7-a515-f1f4a0a0da03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data.Game.Common.h">
@@ -143,6 +149,9 @@
     <ClInclude Include="Data.Game.Island.Tribe.h">
       <Filter>Header Files\Island</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.Skill.h">
+      <Filter>Header Files\Skill</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">
@@ -219,6 +228,9 @@
     </ClCompile>
     <ClCompile Include="Data.Game.Island.Tribe.cpp">
       <Filter>Source Files\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Skill.cpp">
+      <Filter>Source Files\Skill</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
