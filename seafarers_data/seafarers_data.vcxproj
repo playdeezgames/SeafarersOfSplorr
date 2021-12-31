@@ -54,7 +54,7 @@
     <ClCompile Include="Data.Game.Character.DemigodFavor.cpp" />
     <ClCompile Include="Data.Game.Character.Flags.cpp" />
     <ClCompile Include="Data.Game.Character.CurrentIsland.cpp" />
-    <ClCompile Include="Data.Game.Character.ItemInstance.cpp" />
+    <ClCompile Include="Data.Game.Character.Item.cpp" />
     <ClCompile Include="Data.Game.Character.KnownIsland.cpp" />
     <ClCompile Include="Data.Game.Character.Plight.cpp" />
     <ClCompile Include="Data.Game.Character.Ship.cpp" />

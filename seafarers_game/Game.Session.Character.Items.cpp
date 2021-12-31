@@ -14,11 +14,6 @@ namespace game::session::character
 		return result;
 	}
 
-	void Items::Purge() const
-	{
-		data::game::character::ItemInstance::Purge();
-	}
-
 	std::list<Item> Items::GetItems(const item::Type& itemSubtype) const
 	{
 		auto items = GetAll();

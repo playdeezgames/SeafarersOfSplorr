@@ -5,9 +5,9 @@ namespace data::game::character
 {
 	struct ItemInstance
 	{
-		static void Write(int, int);
-		static std::list<int> ReadForCharacter(int);
-		static std::optional<int> ReadForItemInstance(int);
-		static void Purge();
+		static void Initialize();
+		static void Write(int characterId, int itemId);
+		static std::list<int> ReadForCharacter(int characterId);
+		static std::optional<int> ReadForItemInstance(int itemId);
 	};
 }

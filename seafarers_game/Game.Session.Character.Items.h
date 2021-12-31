@@ -8,7 +8,6 @@ namespace game::session::character
 	{
 		constexpr Items(int characterId): characterId(characterId) {}
 		std::list<Item> GetAll() const;
-		void Purge() const;
 		std::list<Item> GetItems(const item::Type&) const;
 		int GetItemQuantity(const item::Type&) const;
 		void AddItemQuantity(const item::Type&, int) const;

@@ -196,7 +196,7 @@
     <ClCompile Include="Data.Game.Item.cpp">
       <Filter>Source Files\Item</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Character.ItemInstance.cpp">
+    <ClCompile Include="Data.Game.Character.Item.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Item.Type.cpp">
