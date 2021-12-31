@@ -58,7 +58,7 @@ namespace data::game::character
 		Common::Execute(CREATE_TABLE);
 	}
 
-	void DemigodFavor::Write(characterid_t characterId, demigodid_t demigodId, favor_t favor)
+	void DemigodFavor::Write(int characterId, int demigodId, double favor)
 	{
 		Initialize();
 		Common::Execute(
@@ -68,15 +68,12 @@ namespace data::game::character
 			favor);
 	}
 
-	std::optional<DemigodFavor::favor_t> DemigodFavor::Read(characterid_t characterId, demigodid_t demigodId)
+	std::optional<double> DemigodFavor::Read(int characterId, int demigodId)
 	{
 		Initialize();
-		auto records = Common::Execute(QUERY_ITEM_FAVOR, characterId, demigodId);
-		if (!records.empty())
-		{
-			return common::Data::ToOptionalDouble(records.front()[FIELD_FAVOR]);
-		}
-		return std::nullopt;
+		return Common::TryToDouble(
+			Common::TryExecuteForOne(QUERY_ITEM_FAVOR, characterId, demigodId),
+			FIELD_FAVOR);
 	}
 
 	void DemigodFavor::ClearAll()
