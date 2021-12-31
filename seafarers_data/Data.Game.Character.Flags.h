@@ -4,9 +4,10 @@ namespace data::game::character
 {
 	struct Flags
 	{
-		static bool Has(int, int);
-		static void Write(int, int);
-		static void Clear(int, int);
-		static std::set<int> All(int);
+		static void Initialize();
+		static bool Has(int characterId, int flag);
+		static void Write(int characterId, int flag);
+		static void Clear(int characterId, int flag);
+		static std::set<int> All(int characterId);
 	};
 }

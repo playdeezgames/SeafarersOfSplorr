@@ -1,6 +1,9 @@
+#include <algorithm>
 #include <Common.Data.h>
+#include "Data.Game.Character.h"
 #include "Data.Game.Character.Flags.h"
 #include "Data.Game.Common.h"
+#include <iterator>
 namespace data::game::character
 {
 	using namespace std::string_literals;
@@ -8,67 +11,71 @@ namespace data::game::character
 		R"(CREATE TABLE IF NOT EXISTS [CharacterFlags]
 		(
 			[CharacterId] INT NOT NULL,
-			[FlagId] INT NOT NULL,
-			UNIQUE([CharacterId],[FlagId])
+			[Flag] INT NOT NULL,
+			UNIQUE([CharacterId],[Flag])
 		);)"s;
 	const static std::string QUERY_ITEM = 
 		R"(SELECT 
-			[FlagId] 
+			[Flag] 
 		FROM [CharacterFlags] 
 		WHERE 
 			[CharacterId]={} 
-			AND [FlagId]={};)"s;
+			AND [Flag]={};)"s;
 	const static std::string REPLACE_ITEM = 
 		R"(REPLACE INTO [CharacterFlags]
 		(
 			[CharacterId],
-			[FlagId]
+			[Flag]
 		) 
 		VALUES({},{});)"s;
 	const static std::string DELETE_ITEM = 
 		R"(DELETE FROM [CharacterFlags] 
 		WHERE 
 			[CharacterId]={} 
-			AND [FlagId]={};)"s;
-	const static std::string QUERY_ALL_FOR_AVATAR = 
+			AND [Flag]={};)"s;
+	const static std::string QUERY_ALL_FOR_CHARACTER = 
 		R"(SELECT 
-			[FlagId] 
+			[Flag] 
 		FROM [CharacterFlags] 
 		WHERE 
 			[CharacterId]={};)"s;
 
-	const static std::string FIELD_FLAG_ID = "FlagId";
+	const static std::string FIELD_FLAG = "Flag";
 
-	static auto AutoCreateTable = Common::Run(CREATE_TABLE);
+	void Flags::Initialize()
+	{
+		Character::Initialize();
+		Common::Execute(CREATE_TABLE);
+	}
 
 	bool Flags::Has(int characterId, int flagId)
 	{
-		AutoCreateTable();
-		auto records = Common::Execute(QUERY_ITEM, characterId, flagId);
-		return !records.empty();
+		Initialize();
+		return Common::TryExecuteForOne(QUERY_ITEM, characterId, flagId).has_value();
 	}
 
 	void Flags::Write(int characterId, int flagId)
 	{
-		AutoCreateTable();
+		Initialize();
 		Common::Execute(REPLACE_ITEM, characterId, flagId);
 	}
 
 	void Flags::Clear(int characterId, int flagId)
 	{
-		AutoCreateTable();
+		Initialize();
 		Common::Execute(DELETE_ITEM, characterId, flagId);
 	}
 
 	std::set<int> Flags::All(int characterId)
 	{
-		AutoCreateTable();
-		auto records = Common::Execute(QUERY_ALL_FOR_AVATAR, characterId);
+		Initialize();
+		auto records = Common::Execute(QUERY_ALL_FOR_CHARACTER, characterId);
 		std::set<int> result;
-		for (auto& record : records)
-		{
-			result.insert(common::Data::ToInt(record[FIELD_FLAG_ID]));
-		}
+		std::transform(
+			records.begin(),
+			records.end(),
+			std::inserter(result, result.end()),
+			Common::DoToInt(FIELD_FLAG));
 		return result;
 	}
 }
