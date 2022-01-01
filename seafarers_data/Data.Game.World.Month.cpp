@@ -1,7 +1,9 @@
+#include <algorithm>
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.World.h"
 #include "Data.Game.World.Month.h"
+#include <iterator>
 namespace data::game::world
 {
 	using namespace std::string_literals;
@@ -64,12 +66,9 @@ namespace data::game::world
 	int Month::YearLength(int worldId)
 	{
 		Initialize();
-		auto records = Common::Execute(QUERY_YEAR_LENGTH, worldId);
-		return 
-			common::Data::ToInt(
-				records
-				.front()
-				.find(FIELD_YEAR_LENGTH)->second);
+		return Common::ToInt(
+			Common::TryExecuteForOne(QUERY_YEAR_LENGTH, worldId).value(), 
+			FIELD_YEAR_LENGTH);
 	}
 
 	void Month::Clear(int worldId)
@@ -83,10 +82,11 @@ namespace data::game::world
 		Initialize();
 		std::list<int> result;
 		auto records = Common::Execute(QUERY_ALL, worldId);
-		for (auto record : records)
-		{
-			result.push_back(Common::ToInt(record, FIELD_ORDINAL));
-		}
+		std::transform(
+			records.begin(),
+			records.end(),
+			std::back_inserter(result),
+			Common::DoToInt(FIELD_ORDINAL));
 		return result;
 	}
 
@@ -104,22 +104,16 @@ namespace data::game::world
 	std::optional<std::string> Month::ReadName(int worldId, int ordinal)
 	{
 		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_NAME, worldId, ordinal);
-		if (record)
-		{
-			return Common::ToString(record.value(), FIELD_NAME);
-		}
-		return std::nullopt;
+		return Common::TryToString(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_NAME, worldId, ordinal),
+			FIELD_NAME);
 	}
 
 	std::optional<int> Month::ReadDays(int worldId, int ordinal)
 	{
 		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_DAYS, worldId, ordinal);
-		if (record)
-		{
-			return Common::ToInt(record.value(), FIELD_DAYS);
-		}
-		return std::nullopt;
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_DAYS, worldId, ordinal),
+			FIELD_DAYS);
 	}
 }

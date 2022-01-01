@@ -5,6 +5,7 @@ namespace data::game
 {
 	struct World
 	{
+		World() = delete;
 		static void Initialize();
 
 		static void Write(

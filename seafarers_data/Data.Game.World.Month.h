@@ -6,12 +6,13 @@ namespace data::game::world
 {
 	struct Month
 	{
+		Month() = delete;
 		static void Initialize();
-		static std::list<int> AllOrdinals(int);
-		static void Write(int, int, const std::string&, int);
-		static std::optional<std::string> ReadName(int, int);
-		static std::optional<int> ReadDays(int, int);
-		static int YearLength(int);
-		static void Clear(int);
+		static std::list<int> AllOrdinals(int worldId);
+		static void Write(int worldId, int ordinal, const std::string& name, int days);
+		static std::optional<std::string> ReadName(int worldId, int ordinal);
+		static std::optional<int> ReadDays(int worldId, int ordinal);
+		static int YearLength(int worldId);
+		static void Clear(int worldId);
 	};
 }
