@@ -5,7 +5,7 @@ namespace game::session::character
 {
 	struct Messages
 	{
-		Messages(int);
+		constexpr Messages(int characterId) : characterId(characterId) {}
 		void Add(const std::string&, const std::string&) const;
 		characters::MessageList GetAll() const;
 		void Clear() const;

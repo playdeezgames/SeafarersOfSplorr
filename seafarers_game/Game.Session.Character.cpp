@@ -8,11 +8,6 @@
 #include <map>
 namespace game::session
 {
-	character::HitPoints Character::GetHitpoints() const
-	{
-		return character::HitPoints(characterId);
-	}
-
 	static std::optional<character::Berth> TryGetBerth(int characterId)
 	{
 		if (data::game::character::Ship::ReadShipForCharacter(characterId).has_value())
@@ -111,44 +106,14 @@ namespace game::session
 		}
 	}
 
-	character::Messages Character::GetMessages() const
-	{
-		return character::Messages(characterId);
-	}
-
-	character::Berth Character::GetBerth() const
-	{
-		return TryGetBerth(characterId).value();
-	}
-
 	bool Character::IsDead() const
 	{
 		return GetHitpoints().GetCurrent() <= 0;
 	}
 
-	character::Items Character::GetItems() const
-	{
-		return character::Items(characterId);
-	}
-
-	character::Characteristics Character::GetCharacteristics() const
-	{
-		return character::Characteristics(characterId);
-	}
-
 	void Character::SetIsland(Island island) const
 	{
 		data::game::character::CurrentIsland::Write(characterId, (int)island);
-	}
-
-	character::Counters Character::GetCounters() const
-	{
-		return character::Counters(characterId);
-	}
-
-	character::Flags Character::GetFlags() const
-	{
-		return character::Flags(characterId);
 	}
 
 	std::string Character::GetName() const

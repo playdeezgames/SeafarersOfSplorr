@@ -251,6 +251,6 @@ namespace game::session
 				common::RNG::FromGenerator(characteristicRoll.second));
 		}
 		GetCharacter(characterId).GetCounters().Initialize();
-		return characterId;
+		return Character(characterId);
 	}
 }

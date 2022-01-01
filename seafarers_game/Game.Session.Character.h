@@ -17,24 +17,23 @@
 #include <optional>
 namespace game::session
 {
-	struct Player;
 	struct Character
 	{
-		constexpr Character(int characterId) : characterId(characterId) {}
+		constexpr explicit Character(int characterId) : characterId(characterId) {}
 		constexpr explicit operator int() const { return characterId; }
 		constexpr character::KnownIslands GetKnownIslands() const { return character::KnownIslands(characterId); }
 		constexpr character::Plights GetPlights() const { return character::Plights(characterId); }
 		constexpr static Character ToCharacter(int characterId) { return Character(characterId); }
+		constexpr character::Characteristics GetCharacteristics() const { return character::Characteristics(characterId); }
+		constexpr character::HitPoints GetHitpoints() const { return character::HitPoints(characterId); }
+		constexpr character::Berth GetBerth() const { return character::Berth(characterId); }
+		constexpr character::Messages GetMessages() const { return character::Messages(characterId); }
+		constexpr character::Items GetItems() const { return character::Items(characterId); }
+		constexpr character::Counters GetCounters() const { return character::Counters(characterId); }
+		constexpr character::Flags GetFlags() const { return character::Flags(characterId); }
 
-		character::Characteristics GetCharacteristics() const;
-		character::HitPoints GetHitpoints() const;
-		character::Berth GetBerth() const;
 		void DoAction(const game::characters::Action&) const;
-		character::Messages GetMessages() const;
 		bool IsDead() const;
-		character::Items GetItems() const;
-		character::Counters GetCounters() const;
-		character::Flags GetFlags() const;
 		std::string GetName() const;
 		std::optional<characters::State> TryGetState() const;
 		characters::State GetState() const;
@@ -42,7 +41,6 @@ namespace game::session
 		Island GetOriginIsland() const;
 		Tribe GetTribe() const;
 		bool IsPlayer() const;
-
 		void SetIsland(Island island) const;
 		void ClearIsland() const;
 		std::optional<Island> TryGetIsland() const;
