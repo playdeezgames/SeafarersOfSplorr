@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <Common.Data.h>
-#include <Common.Utility.List.h>
 #include "Data.Game.Common.h"
+#include "Data.Game.Demigod.h"
 #include "Data.Game.Island.h"
 #include <iterator>
 namespace data::game
@@ -15,7 +15,8 @@ namespace data::game
 			[Y] REAL NOT NULL,
 			[Name] TEXT NOT NULL,
 			[PatronDemigodId] INT NOT NULL,
-			UNIQUE([X],[Y])
+			UNIQUE([X],[Y]),
+			FOREIGN KEY ([PatronDemigodId]) REFERENCES [Demigods]([DemigodId])
 		);)"s;
 	static const std::string QUERY_ITEM_XY =
 		R"(SELECT 
@@ -67,6 +68,7 @@ namespace data::game
 
 	void Island::Initialize()
 	{
+		Demigod::Initialize();
 		Common::Execute(CREATE_TABLE);
 	}
 
@@ -84,12 +86,14 @@ namespace data::game
 	std::list<int> Island::All()
 	{
 		Initialize();
-		return common::utility::List::Map<Common::Record, int>(
-			Common::DoExecute(QUERY_ALL), 
-			[](Common::Record record) 
-			{
-				return Common::ToInt(record, FIELD_ISLAND_ID); 
-			});
+		auto records = Common::Execute(QUERY_ALL);
+		std::list<int> result;
+		std::transform(
+			records.begin(),
+			records.end(),
+			std::back_inserter(result),
+			Common::DoToInt(FIELD_ISLAND_ID));
+		return result;
 	}
 
 	std::map<int, common::XY<double>> Island::AllLocations()
@@ -132,22 +136,16 @@ namespace data::game
 	std::optional<std::string> Island::ReadName(int islandId)
 	{
 		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_NAME, islandId);
-		if (record)
-		{
-			return Common::ToString(record.value(), FIELD_NAME);
-		}
-		return std::nullopt;
+		return Common::TryToString(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_NAME, islandId),
+			FIELD_NAME);
 	}
 
 	std::optional<int> Island::ReadPatronDemigodId(int islandId)
 	{
 		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_PATRON_DEMIGOD_ID, islandId);
-		if (record)
-		{
-			return Common::ToInt(record.value(), FIELD_PATRON_DEMIGOD_ID);
-		}
-		return std::nullopt;
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_PATRON_DEMIGOD_ID, islandId),
+			FIELD_PATRON_DEMIGOD_ID);
 	}
 }
