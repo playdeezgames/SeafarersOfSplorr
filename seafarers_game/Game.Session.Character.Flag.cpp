@@ -3,6 +3,8 @@
 #include <map>
 namespace game::session::character
 {
+	using FlagData = data::game::character::Flags;
+
 	struct FlagDescriptor
 	{
 		std::string name;
@@ -14,26 +16,19 @@ namespace game::session::character
 		{ game::characters::Flag::UNFED, { "unfed" }}
 	};
 
-	Flag::Flag(int characterId, const game::characters::Flag& flag)
-		: characterId(characterId)
-		, flag(flag)
-	{
-
-	}
-
 	bool Flag::Has() const
 	{
-		return data::game::character::Flags::Has(characterId, (int)flag);
+		return FlagData::Has(characterId, (int)flag);
 	}
 
 	void Flag::Set() const
 	{
-		data::game::character::Flags::Write(characterId, (int)flag);
+		FlagData::Write(characterId, (int)flag);
 	}
 
 	void Flag::Reset() const
 	{
-		data::game::character::Flags::Clear(characterId, (int)flag);
+		FlagData::Clear(characterId, (int)flag);
 	}
 
 	const std::string& Flag::GetName() const

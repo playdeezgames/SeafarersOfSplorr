@@ -108,6 +108,9 @@
     <Filter Include="Header Files\Session\Character\Counter">
       <UniqueIdentifier>{7aeda261-fd33-426c-8810-e18d78896ce3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Session\Character\Flag">
+      <UniqueIdentifier>{ad1e58c1-14c4-4ac5-84b9-9b963e1e52e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -196,9 +199,6 @@
     </ClInclude>
     <ClInclude Include="Game.Session.World.Distances.h">
       <Filter>Header Files\Session\World</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Character.Flag.h">
-      <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Commodities.h">
       <Filter>Header Files\Session\Commodity</Filter>
@@ -340,6 +340,9 @@
     </ClInclude>
     <ClInclude Include="Game.Session.Character.Counters.h">
       <Filter>Header Files\Session\Character\Counter</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Character.Flag.h">
+      <Filter>Header Files\Session\Character\Flag</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -502,7 +505,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Game.Session.Character.Flags.h">
-      <Filter>Header Files\Session\Character</Filter>
+      <Filter>Header Files\Session\Character\Flag</Filter>
     </None>
   </ItemGroup>
 </Project>

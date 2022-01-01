@@ -5,7 +5,9 @@ namespace game::session::character
 {
 	struct Flag
 	{
-		Flag(int, const game::characters::Flag&);
+		constexpr explicit Flag(int characterId, const game::characters::Flag& flag)
+			: characterId(characterId)
+			, flag(flag) {}
 		bool Has() const;
 		void Set() const;
 		void Reset() const;
