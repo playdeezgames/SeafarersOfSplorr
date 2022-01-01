@@ -49,10 +49,10 @@ namespace data::game::item
 	int Type::ReadNextTypeForCategory(int category)
 	{
 		Initialize();
-		auto records = Common::Execute(QUERY_MAXIMUM_TYPE, category);
-		if (!records.empty())
+		auto record = Common::TryExecuteForOne(QUERY_MAXIMUM_TYPE, category);
+		if (record)
 		{
-			return common::Data::ToInt(records.front()[FIELD_MAXIMUM_TYPE]) + 1;
+			return Common::ToInt(record.value(), FIELD_MAXIMUM_TYPE) + 1;
 		}
 		return 0;
 	}
@@ -67,34 +67,25 @@ namespace data::game::item
 	std::optional<int> Type::ReadCategory(int itemType)
 	{
 		Initialize();
-		auto records = Common::Execute(QUERY_ITEM_COLUMN, FIELD_CATEGORY, itemType);
-		if (!records.empty())
-		{
-			return common::Data::ToOptionalInt(records.front()[FIELD_CATEGORY]);
-		}
-		return std::nullopt;
+		return Common::TryToInt(
+				Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_CATEGORY, itemType),
+				FIELD_CATEGORY);
 	}
 
 	std::optional<int> Type::ReadType(int itemType)
 	{
 		Initialize();
-		auto records = Common::Execute(QUERY_ITEM_COLUMN, FIELD_TYPE, itemType);
-		if (!records.empty())
-		{
-			return common::Data::ToOptionalInt(records.front()[FIELD_TYPE]);
-		}
-		return std::nullopt;
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_TYPE, itemType),
+			FIELD_TYPE);
 	}
 
 	std::optional<std::string> Type::ReadName(int itemType)
 	{
 		Initialize();
-		auto records = Common::Execute(QUERY_ITEM_COLUMN, FIELD_NAME, itemType);
-		if (!records.empty())
-		{
-			return records.front()[FIELD_NAME];
-		}
-		return std::nullopt;
+		return Common::TryToString(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_NAME, itemType),
+			FIELD_NAME);
 	}
 	
 	void Type::Clear()
