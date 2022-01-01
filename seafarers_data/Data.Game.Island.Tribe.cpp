@@ -1,8 +1,10 @@
+#include <algorithm>
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.h"
 #include "Data.Game.Island.Tribe.h"
 #include "Data.Game.Tribe.h"
+#include <iterator>
 namespace data::game::island
 {
 	using namespace std::string_literals;
@@ -72,13 +74,13 @@ namespace data::game::island
 		Common::Execute(REPLACE_ITEM, islandId, tribeId, presence);
 	}
 
-	std::optional<int> Tribe::Read(int islandId, int tribeId)
+	std::optional<size_t> Tribe::ReadPresence(int islandId, int tribeId)
 	{
 		Initialize();
 		auto record = Common::TryExecuteForOne(QUERY_ITEM, islandId, tribeId);
 		if (record)
 		{
-			return Common::ToInt(record.value(), FIELD_PRESENCE);
+			return (size_t)Common::ToInt(record.value(), FIELD_PRESENCE);
 		}
 		return std::nullopt;
 	}
@@ -88,10 +90,16 @@ namespace data::game::island
 		Initialize();
 		std::map<int, size_t> result;
 		auto records = Common::Execute(QUERY_ALL, islandId);
-		for (auto record : records)
-		{
-			result[Common::ToInt(record, FIELD_TRIBE_ID)] = (size_t)Common::ToInt(record, FIELD_PRESENCE);
-		}
+		std::transform(
+			records.begin(),
+			records.end(),
+			std::inserter(result, result.end()),
+			[](const Common::Record& record) 
+			{
+				return std::make_pair(
+					Common::ToInt(record, FIELD_TRIBE_ID),
+					(size_t)Common::ToInt(record, FIELD_PRESENCE));
+			});
 		return result;
 	}
 
@@ -100,11 +108,14 @@ namespace data::game::island
 		Initialize();
 		std::map<int, size_t> result;
 		auto records = Common::Execute(QUERY_ALL_TOTALS);
-		for (auto record : records)
-		{
-			result[Common::ToInt(record, FIELD_ISLAND_ID)] = (size_t)Common::ToInt(record, FIELD_TOTAL_PRESENCE);
-		}
+		std::transform(
+			records.begin(),
+			records.end(),
+			std::inserter(result, result.end()),
+			[](const Common::Record& record) 
+			{
+				return std::make_pair(Common::ToInt(record, FIELD_ISLAND_ID), (size_t)Common::ToInt(record, FIELD_TOTAL_PRESENCE));
+			});
 		return result;
 	}
-
 }
