@@ -14,9 +14,9 @@ namespace data::game::island
 			double sales;
 		};
 		static void Initialize();
-		static void Write(int, int, const Data&);
-		static std::optional<Data> Read(int, int);
-		static std::map<int, Data> All(int);
+		static void Write(int islandId, int commodity, const Data& marketData);
+		static std::optional<Data> Read(int islandId, int commodity);
+		static std::map<int, Data> All(int islandId);
 		static void Clear();
 	};
 

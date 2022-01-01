@@ -67,17 +67,17 @@ namespace data::game::island
 	}
 
 
-	void Market::Write(int islandId, int commodityId, const Data& data)
+	void Market::Write(int islandId, int commodity, const Data& marketData)
 	{
 		Initialize();
 		data::game::Common::Execute(
 			REPLACE_ITEM, 
 			islandId, 
-			commodityId, 
-			data.supply, 
-			data.demand, 
-			data.purchases, 
-			data.sales
+			commodity, 
+			marketData.supply,
+			marketData.demand,
+			marketData.purchases,
+			marketData.sales
 		);
 	}
 
@@ -85,20 +85,20 @@ namespace data::game::island
 	{
 		return
 		{
-			common::Data::ToDouble(record.find(FIELD_SUPPLY)->second),
-			common::Data::ToDouble(record.find(FIELD_DEMAND)->second),
-			common::Data::ToDouble(record.find(FIELD_PURCHASES)->second),
-			common::Data::ToDouble(record.find(FIELD_SALES)->second)
+			Common::ToDouble(record, FIELD_SUPPLY),
+			Common::ToDouble(record, FIELD_DEMAND),
+			Common::ToDouble(record, FIELD_PURCHASES),
+			Common::ToDouble(record, FIELD_SALES)
 		};
 	}
 
-	std::optional<Market::Data> Market::Read(int islandId, int commodityId)
+	std::optional<Market::Data> Market::Read(int islandId, int commodity)
 	{
 		Initialize();
 		auto record = Common::TryExecuteForOne(
 				QUERY_ITEM, 
 				islandId, 
-				commodityId
+				commodity
 			);
 		if (record)
 		{
