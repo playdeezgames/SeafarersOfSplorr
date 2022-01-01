@@ -1,4 +1,5 @@
 #include <Common.Data.h>
+#include "Data.Game.Character.h"
 #include "Data.Game.Common.h"
 #include "Data.Game.Player.h"
 namespace data::game
@@ -24,26 +25,27 @@ namespace data::game
 		) 
 		VALUES ({},{});)"s;
 
-	static const std::string FIELD_AVATAR_ID = "CharacterId";
-
-	static const auto AutoCreateTable = Common::Run(CREATE_TABLE);
+	static const std::string FIELD_CHARACTER_ID = "CharacterId";
 
 	static const int PLAYER_ID = 1;
 
+	void Player::Initialize()
+	{
+		Character::Initialize();
+		Common::Execute(CREATE_TABLE);
+	}
+
 	void Player::Create(int avatarId)
 	{
-		AutoCreateTable();
+		Initialize();
 		Common::Execute(REPLACE_ITEM, PLAYER_ID, avatarId);
 	}
 
 	std::optional<int> Player::GetCharacterId()
 	{
-		AutoCreateTable();
-		auto records = Common::Execute(QUERY_ITEM, PLAYER_ID);
-		if (!records.empty())
-		{
-			return common::Data::ToInt(records.front()[FIELD_AVATAR_ID]);
-		}
-		return std::nullopt;
+		Initialize();
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM, PLAYER_ID),
+			FIELD_CHARACTER_ID);
 	}
 }

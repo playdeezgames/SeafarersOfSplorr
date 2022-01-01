@@ -4,7 +4,9 @@ namespace data::game
 {
 	struct Player
 	{
-		static void Create(int);
+		Player() = delete;
+		static void Initialize();
+		static void Create(int characterId);
 		static std::optional<int> GetCharacterId();
 	};
 }
