@@ -6,9 +6,12 @@ namespace game::session::character
 {
 	struct Characteristics
 	{
-		Characteristics(int);
+		constexpr explicit Characteristics(int characterId) : characterId(characterId) { }
 		std::list<Characteristic> GetAll() const;
-		Characteristic GetCharacteristic(const game::Characteristic&) const;
+		constexpr Characteristic GetCharacteristic(const game::Characteristic& characteristic) const
+		{
+			return Characteristic(characterId, characteristic);
+		}
 	private:
 		int characterId;
 	};

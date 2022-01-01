@@ -7,13 +7,17 @@ namespace game::session::character
 {
 	struct Characteristic
 	{
-		Characteristic(int, const game::Characteristic&);
+		constexpr explicit Characteristic(
+			int characterId, 
+			const game::Characteristic& characteristic)
+			: characterId(characterId)
+			, characteristic(characteristic) { }
 		const std::string& GetName() const;
 		int GetValue() const;
 		bool Check() const;
-		void OnCheck(std::function<void(bool)>) const;
-		bool OpposedCheck(int) const;
-		void OnOpposedCheck(int, std::function<void(bool)>) const;
+		void OnCheck(std::function<void(bool)> callback) const;
+		bool OpposedCheck(int opposition) const;
+		void OnOpposedCheck(int opposition, std::function<void(bool)> callback) const;
 	private:
 		int characterId;
 		game::Characteristic characteristic;

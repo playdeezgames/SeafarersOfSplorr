@@ -3,13 +3,6 @@
 #include "Game.Session.Character.Characteristic.h"
 namespace game::session::character
 {
-	Characteristic::Characteristic(int characterId, const game::Characteristic& characteristic)
-		: characterId(characterId)
-		, characteristic(characteristic)
-	{
-
-	}
-
 	static const std::map<game::Characteristic, std::string> characteristicNames =
 	{
 		{game::Characteristic::CHARISMA, "Charisma"},
@@ -36,9 +29,12 @@ namespace game::session::character
 		return TryGetValue(characterId, characteristic).value();
 	}
 
+	static const int OPPOSITION_BASE = 10;
+
 	bool Characteristic::OpposedCheck(int opposition) const
 	{
-		return common::RNG::FromRange(1, 21) < (10 + GetValue() - opposition);//d20 < (10 + my characteristic - opposed characteristic)
+		const int CHECK_DIE_SIZE = 20;
+		return common::RNG::Roll<CHECK_DIE_SIZE>() < (OPPOSITION_BASE + GetValue() - opposition);
 	}
 
 	void Characteristic::OnOpposedCheck(int opposition, std::function<void(bool)> callback) const
@@ -48,7 +44,7 @@ namespace game::session::character
 
 	bool Characteristic::Check() const
 	{
-		return OpposedCheck(10);
+		return OpposedCheck(OPPOSITION_BASE);
 	}
 
 	void Characteristic::OnCheck(std::function<void(bool)> callback) const

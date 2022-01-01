@@ -102,6 +102,9 @@
     <Filter Include="Header Files\Session\World\ShipType">
       <UniqueIdentifier>{b7eb14a4-4f9d-4a39-a5e6-66bbbd6237e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Session\Character\Characteristic">
+      <UniqueIdentifier>{ab075171-7b8d-4967-bdec-215f8921526d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -126,9 +129,6 @@
       <Filter>Header Files\Session</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Character.Berth.h">
-      <Filter>Header Files\Session\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Character.Characteristic.h">
       <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Character.h">
@@ -193,9 +193,6 @@
     </ClInclude>
     <ClInclude Include="Game.Session.World.Distances.h">
       <Filter>Header Files\Session\World</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Character.Characteristics.h">
-      <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Character.Counters.h">
       <Filter>Header Files\Session\Character</Filter>
@@ -334,6 +331,12 @@
     </ClInclude>
     <ClInclude Include="Game.Session.World.Skills.h">
       <Filter>Header Files\Session\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Character.Characteristic.h">
+      <Filter>Header Files\Session\Character\Characteristic</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Character.Characteristics.h">
+      <Filter>Header Files\Session\Character\Characteristic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
