@@ -4,9 +4,11 @@ namespace game::session::character
 {
 	struct Counter
 	{
-		Counter(int, const game::characters::Counter&);
+		constexpr explicit Counter(int characterId, const game::characters::Counter& counter)
+			: characterId(characterId)
+			, counter(counter) { }
 		int GetValue() const;
-		int Change(int) const;
+		int Change(int delta) const;
 		void Reset() const;
 	private:
 		int characterId;

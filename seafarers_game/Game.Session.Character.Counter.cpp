@@ -5,25 +5,19 @@
 #include <string>
 namespace game::session::character
 {
-	Counter::Counter(int characterId, const game::characters::Counter& counter)
-		: characterId(characterId)
-		, counter(counter)
-	{
-
-	}
+	using CounterData = data::game::character::Counter;
 
 	int Counter::Change(int delta) const
 	{
-		auto counterValue = GetValue();
-		auto newValue = counterValue + delta;
-		data::game::character::Counter::Write(characterId, (int)counter, newValue);
+		auto newValue = GetValue() + delta;
+		CounterData::Write(characterId, (int)counter, newValue);
 		return newValue;
 	}
 
 	struct CounterDescriptor
 	{
 		std::string name;
-		std::optional<int> initialValue;
+		int initialValue;
 	};
 
 	static const std::map<game::characters::Counter, CounterDescriptor> counterDescriptors =
@@ -33,14 +27,15 @@ namespace game::session::character
 		{ game::characters::Counter::TURNS_REMAINING, {"Turns Remaining", 10000}}
 	};
 
+
 	int Counter::GetValue() const
 	{
-		auto counterValue = data::game::character::Counter::Read(characterId, (int)counter);
+		auto counterValue = CounterData::Read(characterId, (int)counter);
 		if (counterValue)
 		{
 			return counterValue.value();
 		}
-		return counterDescriptors.find(counter)->second.initialValue.value_or(0);
+		return counterDescriptors.find(counter)->second.initialValue;
 	}
 
 	void Counter::Reset() const
@@ -48,7 +43,7 @@ namespace game::session::character
 		auto descriptor = common::utility::Table::TryGetKey(counterDescriptors, counter);
 		if (descriptor)
 		{
-			data::game::character::Counter::Write(characterId, (int)counter, descriptor.value().initialValue.value());
+			CounterData::Write(characterId, (int)counter, descriptor.value().initialValue);
 		}
 	}
 }
