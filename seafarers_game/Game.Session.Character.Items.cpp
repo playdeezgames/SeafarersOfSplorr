@@ -1,59 +1,71 @@
+#include <algorithm>
 #include <Data.Game.Character.Item.h>
 #include "Game.Session.Character.Items.h"
 #include "Game.Session.Items.h"
+#include <iterator>
+#include <numeric>
 namespace game::session::character
 {
 	std::list<Item> Items::GetAll() const
 	{
-		auto itemInstances = data::game::character::Item::ReadForCharacter(characterId);
+		auto itemIds = data::game::character::Item::ReadForCharacter(characterId);
 		std::list<Item> result;
-		for (auto itemInstanceId : itemInstances)
-		{
-			result.push_back(Item(itemInstanceId));
-		}
+		std::transform(
+			itemIds.begin(),
+			itemIds.end(),
+			std::back_inserter(result),
+			[](int itemId) 
+			{
+				return Item(itemId);
+			});
 		return result;
 	}
 
-	std::list<Item> Items::GetItems(const item::Type& itemSubtype) const
+	std::list<Item> Items::GetItems(const item::Type& itemType) const
 	{
 		auto items = GetAll();
 		std::list<Item> result;
-		for (auto item : items)
-		{
-			if (item.GetItemSubtype()==itemSubtype)
+		std::copy_if(
+			items.begin(),
+			items.end(),
+			std::back_inserter(result),
+			[itemType](const Item& item) 
 			{
-				result.push_back(item);
-			}
-		}
+				return item.GetItemType() == itemType;
+			});
 		return result;
 	}
 
 	int Items::GetItemQuantity(const item::Type& itemSubtype) const
 	{
-		int quantity = 0;
 		auto items = GetItems(itemSubtype);
-		for (auto item : items)
-		{
-			quantity += item.GetQuantity();
-		}
-		return quantity;
+		return std::accumulate(
+			items.begin(), 
+			items.end(), 
+			0, 
+			[](int accumulator, Item item) 
+			{
+				return accumulator + item.GetQuantity();
+			});
 	}
 
-	void Items::AddItemQuantity(const item::Type& itemSubtype, int quantity) const
+	void Items::AddItemQuantity(const item::Type& itemType, int quantity) const
 	{
-		auto items = GetItems(itemSubtype);
-		for (auto item : items)
+		auto items = GetItems(itemType);
+		if (!items.empty())
 		{
+			auto item = items.front();
 			item.SetQuantity(quantity + item.GetQuantity());
-			break;
+			return;
 		}
-		auto item = game::session::Items().Add(itemSubtype, quantity);
+		auto item = game::session::Items().Add(itemType, quantity);
 		item.SetCharacterId(characterId);
 	}
 
-	void Items::RemoveItemQuantity(const item::Type& itemSubtype, int quantity) const
+	void Items::RemoveItemQuantity(const item::Type& itemType, int quantity) const
 	{
-		auto items = GetItems(itemSubtype);
+		//TODO: gross code! 
+		auto items = GetItems(itemType);
 		for (auto item : items)
 		{
 			if (quantity > item.GetQuantity())

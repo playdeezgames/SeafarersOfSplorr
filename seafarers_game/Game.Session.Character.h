@@ -32,7 +32,7 @@ namespace game::session
 		constexpr character::Counters GetCounters() const { return character::Counters(characterId); }
 		constexpr character::Flags GetFlags() const { return character::Flags(characterId); }
 
-		void DoAction(const game::characters::Action&) const;
+		void DoAction(const game::characters::Action& action) const;
 		bool IsDead() const;
 		std::string GetName() const;
 		std::optional<characters::State> TryGetState() const;

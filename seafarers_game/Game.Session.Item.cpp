@@ -3,7 +3,7 @@
 #include "Game.Session.Item.h"
 namespace game::session
 {
-	item::Type Item::GetItemSubtype() const
+	item::Type Item::GetItemType() const
 	{
 		return item::Type(data::game::Item::ReadItemTypeId(itemId).value());
 	}
