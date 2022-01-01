@@ -1,7 +1,9 @@
+#include <algorithm>
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.h"
 #include "Data.Game.Island.Market.h"
+#include <iterator>
 namespace data::game::island
 {
 	using namespace std::string_literals;
@@ -79,7 +81,7 @@ namespace data::game::island
 		);
 	}
 
-	static Market::Data ToMarket(const std::map<std::string, std::string> record)
+	static Market::Data ToMarket(const Common::Record& record)
 	{
 		return
 		{
@@ -93,15 +95,14 @@ namespace data::game::island
 	std::optional<Market::Data> Market::Read(int islandId, int commodityId)
 	{
 		Initialize();
-		auto records =
-			data::game::Common::Execute(
+		auto record = Common::TryExecuteForOne(
 				QUERY_ITEM, 
 				islandId, 
 				commodityId
 			);
-		if (!records.empty())
+		if (record)
 		{
-			return ToMarket(records.front());
+			return ToMarket(*record);
 		}
 		return std::nullopt;
 	}
@@ -114,11 +115,16 @@ namespace data::game::island
 				QUERY_ALL, 
 				islandId);
 		std::map<int, Market::Data> result;
-		for (auto& record : records)
-		{
-			result[common::Data::ToInt(record[FIELD_COMMODITY])] =
-				ToMarket(record);
-		}
+		std::transform(
+			records.begin(),
+			records.end(),
+			std::inserter(result, result.end()),
+			[](const Common::Record& record) 
+			{
+				return std::make_pair(
+					Common::ToInt(record, FIELD_COMMODITY),
+					ToMarket(record));
+			});
 		return result;
 	}
 
