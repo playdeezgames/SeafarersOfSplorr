@@ -2,19 +2,15 @@
 #include "Game.Session.Character.Berth.h"
 namespace game::session::character
 {
-	Berth::Berth(int characterId)
-		: characterId(characterId)
-	{
-
-	}
+	using ShipData = data::game::character::Ship;
 
 	static std::optional<game::session::Ship> TryGetShip(int characterId)
 	{
 		
-		auto shipId = data::game::character::Ship::ReadShipForCharacter(characterId);
+		auto shipId = ShipData::ReadShipForCharacter(characterId);
 		if (shipId)
 		{
-			return game::session::Ship(shipId.value());
+			return Ship(shipId.value());
 		}
 		return std::nullopt;
 	}
@@ -26,10 +22,10 @@ namespace game::session::character
 
 	static std::optional<BerthType> TryGetBerthType(int characterId)
 	{
-		auto berthType = data::game::character::Ship::ReadBerthForCharacter(characterId);
+		auto berthType = ShipData::ReadBerthForCharacter(characterId);
 		if (berthType)
 		{
-			return (BerthType)berthType.value();
+			return (BerthType)*berthType;
 		}
 		return std::nullopt;
 	}

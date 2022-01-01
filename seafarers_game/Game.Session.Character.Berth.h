@@ -6,7 +6,7 @@ namespace game::session::character
 {
 	struct Berth
 	{
-		Berth(int);
+		constexpr explicit Berth(int characterId) : characterId(characterId) {}
 		game::session::Ship GetShip() const;
 		BerthType GetBerthType() const;
 	private:
