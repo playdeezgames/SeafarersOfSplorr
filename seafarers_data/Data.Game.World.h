@@ -7,13 +7,18 @@ namespace data::game
 	{
 		static void Initialize();
 
-		static void Write(int, int, double, int, int);
-		static void WriteWindHeading(int, double);
-		static void WriteDay(int, int);
+		static void Write(
+			int worldId,
+			int difficulty,
+			double windHeading,
+			int currencyItemTypeId,
+			int day);
+		static void WriteWindHeading(int worldId, double windHeading);
+		static void WriteDay(int worldId, int day);
 
-		static std::optional<double> ReadWindHeading(int);
-		static std::optional<int> ReadCurrencyItemTypeId(int);
-		static std::optional<int> ReadDay(int);
-		static std::optional<int> ReadDifficulty(int);
+		static std::optional<double> ReadWindHeading(int worldId);
+		static std::optional<int> ReadCurrencyItemTypeId(int worldId);
+		static std::optional<int> ReadDay(int worldId);
+		static std::optional<int> ReadDifficulty(int worldId);
 	};
 }

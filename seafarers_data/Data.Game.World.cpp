@@ -67,45 +67,33 @@ namespace data::game
 	std::optional<double> World::ReadWindHeading(int worldId)
 	{
 		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_WIND_HEADING, worldId);
-		if (record)
-		{
-			return Common::ToDouble(record.value(), FIELD_WIND_HEADING);
-		}
-		return std::nullopt;
+		return Common::TryToDouble(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_WIND_HEADING, worldId), 
+			FIELD_WIND_HEADING);
 	}
 
 	std::optional<int> World::ReadCurrencyItemTypeId(int worldId)
 	{
 		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_CURRENCY_ITEM_TYPE_ID, worldId);
-		if (record)
-		{
-			return Common::ToInt(record.value(), FIELD_CURRENCY_ITEM_TYPE_ID);
-		}
-		return std::nullopt;
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_CURRENCY_ITEM_TYPE_ID, worldId), 
+			FIELD_CURRENCY_ITEM_TYPE_ID);
 	}
 
 	std::optional<int> World::ReadDay(int worldId)
 	{
 		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_DAY, worldId);
-		if (record)
-		{
-			return Common::ToInt(record.value(), FIELD_DAY);
-		}
-		return std::nullopt;
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_DAY, worldId), 
+			FIELD_DAY);
 	}
 
 	std::optional<int> World::ReadDifficulty(int worldId)
 	{
 		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_DIFFICULTY, worldId);
-		if (record)
-		{
-			return Common::ToInt(record.value(), FIELD_DIFFICULTY);
-		}
-		return std::nullopt;
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_DIFFICULTY, worldId), 
+			FIELD_DIFFICULTY);
 	}
 
 	void World::WriteWindHeading(int worldId, double heading)
