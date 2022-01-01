@@ -20,15 +20,9 @@ namespace data::game
 			[Quantity]
 		) 
 		VALUES({},{});)"s;
-	static const std::string QUERY_ITEM_TYPE = 
+	static const std::string QUERY_ITEM_COLUMN = 
 		R"(SELECT 
-			[ItemTypeId] 
-		FROM [Items] 
-		WHERE 
-			[ItemId]={};)"s;
-	static const std::string QUERY_QUANTITY = 
-		R"(SELECT 
-			[Quantity] 
+			[{}] 
 		FROM [Items] 
 		WHERE 
 			[ItemId]={};)"s;
@@ -52,39 +46,34 @@ namespace data::game
 		Common::Execute(CREATE_TABLE);
 	}
 
-	int Item::Create(int itemSubtypeId, int quantity)
+	int Item::Create(int itemTypeId, int quantity)
 	{
 		Initialize();
-		Common::Execute(CREATE_ITEM, itemSubtypeId, quantity);
+		Common::Execute(CREATE_ITEM, itemTypeId, quantity);
 		return Common::LastInsertedIndex();
 	}
 
-	std::optional<int> Item::ReadItemTypeId(int itemInstanceId)
+	std::optional<int> Item::ReadItemTypeId(int itemId)
 	{
 		Initialize();
-		auto records = Common::Execute(QUERY_ITEM_TYPE, itemInstanceId);
-		if (!records.empty())
-		{
-			return common::Data::ToOptionalInt(records.front()[FIELD_ITEM_TYPE_ID]);
-		}
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_ITEM_TYPE_ID, itemId), 
+			FIELD_ITEM_TYPE_ID);
+	}
+
+	std::optional<int> Item::ReadQuantity(int itemId)
+	{
+		Initialize();
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_QUANTITY, itemId),
+			FIELD_QUANTITY);
 		return std::nullopt;
 	}
 
-	std::optional<int> Item::ReadQuantity(int itemInstanceId)
+	void Item::WriteQuantity(int itemId, int quantity)
 	{
 		Initialize();
-		auto records = Common::Execute(QUERY_QUANTITY, itemInstanceId);
-		if (!records.empty())
-		{
-			return common::Data::ToOptionalInt(records.front()[FIELD_QUANTITY]);
-		}
-		return std::nullopt;
-	}
-
-	void Item::WriteQuantity(int itemInstanceId, int quantity)
-	{
-		Initialize();
-		Common::Execute(UPDATE_QUANTITY, quantity, itemInstanceId);
+		Common::Execute(UPDATE_QUANTITY, quantity, itemId);
 	}
 
 	void Item::Purge()

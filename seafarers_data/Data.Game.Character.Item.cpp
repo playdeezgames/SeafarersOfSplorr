@@ -42,7 +42,7 @@ namespace data::game::character
 	void Item::Initialize()
 	{
 		Character::Initialize();
-		Item::Initialize();
+		data::game::Item::Initialize();
 		Common::Execute(CREATE_TABLE);
 	}
 

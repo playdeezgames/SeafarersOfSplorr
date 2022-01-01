@@ -5,6 +5,7 @@ namespace data::game::island
 {
 	struct Tribe
 	{
+		Tribe() = delete;
 		static void Initialize();
 		static void Clear();
 		static void Write(int islandId, int tribeId, int presence);
