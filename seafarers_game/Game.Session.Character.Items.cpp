@@ -23,7 +23,7 @@ namespace game::session::character
 
 	std::list<Item> Items::GetItems(const item::Type& itemType) const
 	{
-		auto items = GetAll();
+		auto items = GetAll();//this would be better to call its own query...
 		std::list<Item> result;
 		std::copy_if(
 			items.begin(),
@@ -71,7 +71,7 @@ namespace game::session::character
 			if (quantity > item.GetQuantity())
 			{
 				quantity -= item.GetQuantity();
-				item.SetQuantity(0);
+				item.SetQuantity(0);//this is a proxy object... i can safely remove the item from the store
 			}
 			else
 			{

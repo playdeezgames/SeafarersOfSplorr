@@ -11,7 +11,7 @@ namespace game::session::character
 		std::list<Item> GetItems(const item::Type& itemType) const;
 		int GetItemQuantity(const item::Type& itemType) const;
 		void AddItemQuantity(const item::Type& itemType, int delta) const;
-		void RemoveItemQuantity(const item::Type&, int delta) const;
+		void RemoveItemQuantity(const item::Type&, int delta) const;//should this return how many were removed?
 	private:
 		int characterId;
 	};
