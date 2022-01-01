@@ -8,15 +8,6 @@
 #include <map>
 namespace game::session
 {
-	static std::optional<character::Berth> TryGetBerth(int characterId)
-	{
-		if (data::game::character::Ship::ReadShipForCharacter(characterId).has_value())
-		{
-			return character::Berth(characterId);
-		}
-		return std::nullopt;
-	}
-
 	static std::function<characters::State(int)> DoTransition(const characters::State& state)
 	{
 		return [state](int) { return state; };
@@ -28,15 +19,17 @@ namespace game::session
 
 	static characters::State OnUndock(int characterId)
 	{
-		game::Session().GetCharacters().GetCharacter(characterId).ClearIsland();
+		game::Session()
+			.GetCharacters()
+			.GetCharacter(characterId)
+			.ClearIsland();
 		return characters::State::AT_SEA;
 	}
 
 	static characters::State OnDock(int characterId)
 	{
-		auto shipId = data::game::character::Ship::ReadShipForCharacter(characterId).value();
-		auto islandId = data::game::ship::CurrentIsland::ReadIslandId(shipId).value();
-		Characters().GetCharacter(characterId).SetIsland(Island(islandId));
+		auto character = Characters().GetCharacter(characterId);
+		character.SetIsland(character.GetBerth().GetShip().GetIsland());
 		return characters::State::DOCK;
 	}
 
@@ -62,15 +55,10 @@ namespace game::session
 		}
 	};
 
-	static const ActionDescriptorTable& GetActionDescriptors()
-	{
-		return actionDescriptors;
-	}
-
 	static std::optional<ActionDescriptor> FindActionDescriptor(const characters::Action& action)
 	{
-		auto descriptor = GetActionDescriptors().find(action);
-		if (descriptor != GetActionDescriptors().end())
+		auto descriptor = actionDescriptors.find(action);
+		if (descriptor != actionDescriptors.end())
 		{
 			return descriptor->second;
 		}
@@ -133,6 +121,7 @@ namespace game::session
 
 	void Character::ApplyTurnEffects() const
 	{
+		//TODO: there are other things that we need to do here, I'm certain.
 		GetPlights().ApplyTurnEffects();
 	}
 
@@ -175,5 +164,4 @@ namespace game::session
 	{
 		return data::game::Player::GetCharacterId() == characterId;
 	}
-
 }
