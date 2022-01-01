@@ -5,18 +5,15 @@
 #include "Game.Session.Character.HitPoints.h"
 namespace game::session::character
 {
-	HitPoints::HitPoints(int characterId)
-		: characterId(characterId)
-	{
-		
-	}
+	using CounterData = data::game::character::Counter;
+	using CharacteristicData = data::game::character::Characteristic;
 
 	static std::optional<int> TryGetMaximum(int characterId)
 	{
-		auto constitution = data::game::character::Characteristic::Read(characterId, (int)Characteristic::CONSTITUTION);
+		auto constitution = CharacteristicData::Read(characterId, (int)Characteristic::CONSTITUTION);
 		if (constitution)
 		{
-			auto size = data::game::character::Characteristic::Read(characterId, (int)Characteristic::SIZE);
+			auto size = CharacteristicData::Read(characterId, (int)Characteristic::SIZE);
 			if (size)
 			{
 				return (constitution.value() + size.value() + 1) / 2;//CON+SIZ/2, round up!
@@ -30,8 +27,10 @@ namespace game::session::character
 		auto maximum = TryGetMaximum(characterId);
 		if (maximum)
 		{
-			auto value = maximum.value() - data::game::character::Counter::Read(characterId, (int)game::characters::Counter::WOUNDS).value_or(0);
-			return value < 0 ? 0 : value;
+			auto value = 
+				maximum.value() 
+				- CounterData::Read(characterId, (int)game::characters::Counter::WOUNDS).value_or(0);
+			return std::max(value, 0);
 		}
 		return std::nullopt;
 	}
@@ -48,10 +47,10 @@ namespace game::session::character
 
 	void HitPoints::Change(int delta) const
 	{
-		auto wounds = data::game::character::Counter::Read(characterId, (int)game::characters::Counter::WOUNDS);
+		auto wounds = CounterData::Read(characterId, (int)game::characters::Counter::WOUNDS);
 		if (wounds)
 		{
-			data::game::character::Counter::Write(characterId, (int)game::characters::Counter::WOUNDS, wounds.value() - delta);
+			CounterData::Write(characterId, (int)game::characters::Counter::WOUNDS, wounds.value() - delta);
 		}
 	}
 

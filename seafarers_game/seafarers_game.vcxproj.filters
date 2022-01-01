@@ -140,9 +140,6 @@
     <ClInclude Include="Game.Session.Character.h">
       <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.Character.HitPoints.h">
-      <Filter>Header Files\Session\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.Character.Messages.h">
       <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
@@ -343,6 +340,9 @@
     </ClInclude>
     <ClInclude Include="Game.Session.Character.Flag.h">
       <Filter>Header Files\Session\Character\Flag</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Character.HitPoints.h">
+      <Filter>Header Files\Session\Character\Characteristic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
