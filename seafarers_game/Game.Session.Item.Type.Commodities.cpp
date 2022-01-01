@@ -4,7 +4,7 @@ namespace game::session::item::type
 {
 	std::list<Commodity> Commodities::GetAll() const
 	{
-		auto commodities = data::game::item::type::Commodity::All(itemSubtypeId);
+		auto commodities = data::game::item::type::Commodity::AllCommodities(itemSubtypeId);
 		std::list<Commodity> result;
 		for (auto commodity : commodities)
 		{

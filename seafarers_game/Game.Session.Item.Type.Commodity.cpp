@@ -9,6 +9,6 @@ namespace game::session::item::type
 
 	double Commodity::GetAmount() const
 	{
-		return data::game::item::type::Commodity::Read(typeId, (int)commodity).value();
+		return data::game::item::type::Commodity::ReadAmount(typeId, (int)commodity).value();
 	}
 }
