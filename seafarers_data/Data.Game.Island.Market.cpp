@@ -1,5 +1,6 @@
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
+#include "Data.Game.Island.h"
 #include "Data.Game.Island.Market.h"
 namespace data::game::island
 {
@@ -8,18 +9,19 @@ namespace data::game::island
 		R"(CREATE TABLE IF NOT EXISTS [IslandMarkets]
 		(
 			[IslandId] INT NOT NULL, 
-			[CommodityId] INT NOT NULL,
+			[Commodity] INT NOT NULL,
 			[Supply] REAL NOT NULL, 
 			[Demand] REAL NOT NULL, 
 			[Purchases] REAL NOT NULL, 
 			[Sales] REAL NOT NULL, 
-			UNIQUE([IslandId],[CommodityId])
+			UNIQUE([IslandId],[Commodity]),
+			FOREIGN KEY ([IslandId]) REFERENCES [Islands]([IslandId])
 		);)"s;
 	static const std::string REPLACE_ITEM = 
 		R"(REPLACE INTO [IslandMarkets]
 		(
 			[IslandId],
-			[CommodityId],
+			[Commodity],
 			[Supply],
 			[Demand],
 			[Purchases],
@@ -35,10 +37,10 @@ namespace data::game::island
 		FROM [IslandMarkets] 
 		WHERE 
 			[IslandId]={} 
-			AND [CommodityId]={};)"s;
+			AND [Commodity]={};)"s;
 	static const std::string QUERY_ALL = 
 		R"(SELECT 
-			[CommodityId], 
+			[Commodity], 
 			[Supply], 
 			[Demand], 
 			[Purchases], 
@@ -50,17 +52,22 @@ namespace data::game::island
 		R"(DELETE FROM [IslandMarkets];)"s;
 
 	static const std::string FIELD_ISLAND_ID = "IslandId";
-	static const std::string FIELD_COMMODITY_ID = "CommodityId";
+	static const std::string FIELD_COMMODITY = "Commodity";
 	static const std::string FIELD_SUPPLY = "Supply";
 	static const std::string FIELD_DEMAND = "Demand";
 	static const std::string FIELD_PURCHASES = "Purchases";
 	static const std::string FIELD_SALES = "Sales";
 
-	static const auto AutoCreateIslandMarketsTable = data::game::Common::Run(CREATE_TABLE);
-
-	void Market::Write(int islandId, int commodityId, const Market& data)
+	void Market::Initialize()
 	{
-		AutoCreateIslandMarketsTable();
+		Island::Initialize();
+		Common::Execute(CREATE_TABLE);
+	}
+
+
+	void Market::Write(int islandId, int commodityId, const Data& data)
+	{
+		Initialize();
 		data::game::Common::Execute(
 			REPLACE_ITEM, 
 			islandId, 
@@ -72,7 +79,7 @@ namespace data::game::island
 		);
 	}
 
-	static Market ToMarket(const std::map<std::string, std::string> record)
+	static Market::Data ToMarket(const std::map<std::string, std::string> record)
 	{
 		return
 		{
@@ -83,9 +90,9 @@ namespace data::game::island
 		};
 	}
 
-	std::optional<Market> Market::Read(int islandId, int commodityId)
+	std::optional<Market::Data> Market::Read(int islandId, int commodityId)
 	{
-		AutoCreateIslandMarketsTable();
+		Initialize();
 		auto records =
 			data::game::Common::Execute(
 				QUERY_ITEM, 
@@ -99,17 +106,17 @@ namespace data::game::island
 		return std::nullopt;
 	}
 
-	std::map<int, Market> Market::All(int islandId)
+	std::map<int, Market::Data> Market::All(int islandId)
 	{
-		AutoCreateIslandMarketsTable();
+		Initialize();
 		auto records =
 			data::game::Common::Execute(
 				QUERY_ALL, 
 				islandId);
-		std::map<int, Market> result;
+		std::map<int, Market::Data> result;
 		for (auto& record : records)
 		{
-			result[common::Data::ToInt(record[FIELD_COMMODITY_ID])] =
+			result[common::Data::ToInt(record[FIELD_COMMODITY])] =
 				ToMarket(record);
 		}
 		return result;
@@ -117,7 +124,7 @@ namespace data::game::island
 
 	void Market::Clear()
 	{
-		AutoCreateIslandMarketsTable();
+		Initialize();
 		data::game::Common::Execute(DELETE_ALL);
 	}
 }

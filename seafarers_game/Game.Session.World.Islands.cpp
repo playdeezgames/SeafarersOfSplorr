@@ -121,7 +121,7 @@ namespace game::session::world
 	{
 		for (auto& commodity : game::Session().GetWorld().GetCommodities().GetAll())
 		{
-			data::game::island::Market data =
+			data::game::island::Market::Data data =
 			{
 				common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0),
 				common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0),

@@ -5,14 +5,18 @@ namespace data::game::island
 {
 	struct Market
 	{
-		double supply;
-		double demand;
-		double purchases;
-		double sales;
-
-		static void Write(int, int, const Market&);
-		static std::optional<Market> Read(int, int);
-		static std::map<int, Market> All(int);
+		Market() = delete;
+		struct Data
+		{
+			double supply;
+			double demand;
+			double purchases;
+			double sales;
+		};
+		static void Initialize();
+		static void Write(int, int, const Data&);
+		static std::optional<Data> Read(int, int);
+		static std::map<int, Data> All(int);
 		static void Clear();
 	};
 
