@@ -1,6 +1,8 @@
+#include <algorithm>
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Ship.h"
+#include <iterator>
 namespace data::game
 {
 	using namespace std::string_literals;
@@ -83,10 +85,11 @@ namespace data::game
 		Initialize();
 		std::list<int> result;
 		auto records = Common::Execute(QUERY_ALL);
-		for (auto& record : records)
-		{
-			result.push_back(common::Data::ToInt(record[FIELD_SHIP_ID]));
-		}
+		std::transform(
+			records.begin(),
+			records.end(),
+			std::back_inserter(result),
+			Common::DoToInt(FIELD_SHIP_ID));
 		return result;
 	}
 
@@ -107,23 +110,17 @@ namespace data::game
 	std::optional<int> Ship::GetShipType(int shipId)
 	{
 		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_SHIP_TYPE, shipId);
-		if (record)
-		{
-			return Common::ToInt(record.value(), FIELD_SHIP_TYPE);
-		}
-		return std::nullopt;
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_SHIP_TYPE, shipId), 
+			FIELD_SHIP_TYPE);
 	}
 
 	std::optional<std::string> Ship::GetName(int shipId)
 	{
 		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_NAME, shipId);
-		if (record)
-		{
-			return Common::ToString(record.value(), FIELD_NAME);
-		}
-		return std::nullopt;
+		return Common::TryToString(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_NAME, shipId),
+			FIELD_NAME);
 	}
 
 	std::optional<common::XY<double>> Ship::GetLocation(int shipId)
@@ -140,23 +137,17 @@ namespace data::game
 	std::optional<double> Ship::GetHeading(int shipId)
 	{
 		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_HEADING, shipId);
-		if (record)
-		{
-			return Common::ToDouble(record.value(), FIELD_HEADING);
-		}
-		return std::nullopt;
+		return Common::TryToDouble(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_HEADING, shipId),
+			FIELD_HEADING);
 	}
 
 	std::optional<double> Ship::GetSpeed(int shipId)
 	{
 		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_SPEED, shipId);
-		if (record)
-		{
-			return Common::ToDouble(record.value(), FIELD_SPEED);
-		}
-		return std::nullopt;
+		return Common::TryToDouble(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_SPEED, shipId),
+			FIELD_SPEED);
 	}
 
 	void Ship::SetName(int shipId, const std::string& name)
