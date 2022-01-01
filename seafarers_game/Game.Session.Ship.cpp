@@ -118,7 +118,7 @@ namespace game::session
 					{
 						game::Session().GetCharacters().GetCharacter(characterId).DoAction(game::characters::Action::UNDOCK);
 					});
-				data::game::ship::CurrentIsland::Clear(shipId);
+				data::game::ship::CurrentIsland::ClearForShip(shipId);
 			}
 		}
 		return false;
@@ -126,7 +126,7 @@ namespace game::session
 
 	std::optional<Island> Ship::TryGetIsland() const
 	{
-		auto islandId = data::game::ship::CurrentIsland::Read(shipId);
+		auto islandId = data::game::ship::CurrentIsland::ReadIslandId(shipId);
 		if (islandId)
 		{
 			return Island(*islandId);

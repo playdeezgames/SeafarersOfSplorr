@@ -50,18 +50,15 @@ namespace data::game::ship
 		Common::Execute(REPLACE_ITEM, shipId, islandId);
 	}
 
-	std::optional<int> CurrentIsland::Read(int shipId)
+	std::optional<int> CurrentIsland::ReadIslandId(int shipId)
 	{
 		Initialize();
-		auto records = Common::Execute(QUERY_ITEM, shipId);
-		if (!records.empty())
-		{
-			return common::Data::ToInt(records.front()[FIELD_ISLAND_ID]);
-		}
-		return std::nullopt;
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM, shipId),
+			FIELD_ISLAND_ID);
 	}
 
-	void CurrentIsland::Clear(int shipId)
+	void CurrentIsland::ClearForShip(int shipId)
 	{
 		Initialize();
 		Common::Execute(DELETE_ITEM, shipId);
