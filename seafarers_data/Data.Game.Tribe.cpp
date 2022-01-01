@@ -1,7 +1,8 @@
-#pragma once
+#include <algorithm>
 #include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Tribe.h"
+#include <iterator>
 namespace data::game
 {
 	using namespace std::string_literals;
@@ -50,22 +51,20 @@ namespace data::game
 		Initialize();
 		std::list<int> result;
 		auto records = Common::Execute(QUERY_ALL);
-		for (auto record : records)
-		{
-			result.push_back(Common::ToInt(record, FIELD_TRIBE_ID));
-		}
+		std::transform(
+			records.begin(),
+			records.end(),
+			std::back_inserter(result),
+			Common::DoToInt(FIELD_TRIBE_ID));
 		return result;
 	}
 
 	std::optional<std::string> Tribe::ReadName(int tribeId)
 	{
 		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_NAME, tribeId);
-		if (record)
-		{
-			return Common::ToString(record.value(), FIELD_NAME);
-		}
-		return std::nullopt;
+		return Common::TryToString(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_NAME, tribeId),
+			FIELD_NAME);
 	}
 
 	void Tribe::Clear()
