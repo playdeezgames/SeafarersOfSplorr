@@ -129,6 +129,18 @@
     <Filter Include="Source Files\Session\Item\Type">
       <UniqueIdentifier>{2bdfe414-3be4-4cc2-8589-529cd10eb33d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Session\Ship\Berth">
+      <UniqueIdentifier>{86d68402-7502-40f6-9290-f2d4aba4e694}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Session\Ship\Island">
+      <UniqueIdentifier>{193e49a6-2e8c-4060-800b-1c89dfb964be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Ship\Berth">
+      <UniqueIdentifier>{0a86e5f3-f59a-4895-9055-2707b78c7e42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Ship\Island">
+      <UniqueIdentifier>{5faefe41-33f5-4e0d-95f2-adeb3fa702aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -169,9 +181,6 @@
     </ClInclude>
     <ClInclude Include="Game.Session.Items.h">
       <Filter>Header Files\Session\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Ship.Berth.h">
-      <Filter>Header Files\Session\Ship</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Ship.h">
       <Filter>Header Files\Session\Ship</Filter>
@@ -239,12 +248,6 @@
     <ClInclude Include="Game.Session.World.Islands.h">
       <Filter>Header Files\Session\World</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.Ship.DockableIslands.h">
-      <Filter>Header Files\Session\Ship</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Ship.VisibleIslands.h">
-      <Filter>Header Files\Session\Ship</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.Demigod.h">
       <Filter>Header Files\Session\Demigod</Filter>
     </ClInclude>
@@ -311,9 +314,6 @@
     <ClInclude Include="Game.Session.World.ShipTypes.h">
       <Filter>Header Files\Session\World\ShipType</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.Ship.Berths.h">
-      <Filter>Header Files\Session\Ship</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.World.Skills.h">
       <Filter>Header Files\Session\World</Filter>
     </ClInclude>
@@ -359,6 +359,18 @@
     <ClInclude Include="Game.Session.Item.Types.h">
       <Filter>Header Files\Session\Item\Type</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Ship.Berth.h">
+      <Filter>Header Files\Session\Ship\Berth</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Ship.Berths.h">
+      <Filter>Header Files\Session\Ship\Berth</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Ship.DockableIslands.h">
+      <Filter>Header Files\Session\Ship\Island</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Ship.VisibleIslands.h">
+      <Filter>Header Files\Session\Ship\Island</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Session.cpp">
@@ -381,9 +393,6 @@
     </ClCompile>
     <ClCompile Include="Game.Session.Items.cpp">
       <Filter>Source Files\Session\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Ship.Berth.cpp">
-      <Filter>Source Files\Session\Ship</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Ship.cpp">
       <Filter>Source Files\Session\Ship</Filter>
@@ -451,12 +460,6 @@
     <ClCompile Include="Game.Session.World.Islands.cpp">
       <Filter>Source Files\Session\World</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.Ship.DockableIslands.cpp">
-      <Filter>Source Files\Session\Ship</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Ship.VisibleIslands.cpp">
-      <Filter>Source Files\Session\Ship</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Session.Demigod.cpp">
       <Filter>Source Files\Session\Demigod</Filter>
     </ClCompile>
@@ -496,9 +499,6 @@
     <ClCompile Include="Game.ShipNames.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.Ship.Berths.cpp">
-      <Filter>Source Files\Session\Ship</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Session.World.ShipType.cpp">
       <Filter>Source Files\Session\World</Filter>
     </ClCompile>
@@ -516,6 +516,18 @@
     </ClCompile>
     <ClCompile Include="Game.Session.Item.Types.cpp">
       <Filter>Source Files\Session\Item\Type</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Ship.Berth.cpp">
+      <Filter>Source Files\Session\Ship\Berth</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Ship.Berths.cpp">
+      <Filter>Source Files\Session\Ship\Berth</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Ship.DockableIslands.cpp">
+      <Filter>Source Files\Session\Ship\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Ship.VisibleIslands.cpp">
+      <Filter>Source Files\Session\Ship\Island</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
