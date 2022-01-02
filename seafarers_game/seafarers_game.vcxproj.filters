@@ -117,6 +117,18 @@
     <Filter Include="Header Files\Session\Character\Plight">
       <UniqueIdentifier>{a9123926-e745-46f9-9a5a-e8199a5dddf4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Session\Item\Commodity">
+      <UniqueIdentifier>{a017e137-59db-4bb7-97b9-bd25defcf6d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Session\Item\Type">
+      <UniqueIdentifier>{7fbffcff-df80-4e29-bb0e-73dce4b0c159}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Item\Commodity">
+      <UniqueIdentifier>{6f49b121-856f-4e0c-ac7d-7c43733bf323}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Item\Type">
+      <UniqueIdentifier>{2bdfe414-3be4-4cc2-8589-529cd10eb33d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -173,17 +185,11 @@
     <ClInclude Include="Game.Session.Character.Items.h">
       <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.Item.Type.h">
-      <Filter>Header Files\Session\Item</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.Characters.h">
       <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Ships.h">
       <Filter>Header Files\Session\Ship</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Item.Types.h">
-      <Filter>Header Files\Session\Item</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Demigods.h">
       <Filter>Header Files\Session\Demigod</Filter>
@@ -208,12 +214,6 @@
     </ClInclude>
     <ClInclude Include="Game.Session.Commodity.h">
       <Filter>Header Files\Session\Commodity</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Item.Type.Commodity.h">
-      <Filter>Header Files\Session\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Item.Type.Commodities.h">
-      <Filter>Header Files\Session\Item</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Island.Markets.h">
       <Filter>Header Files\Session\Island</Filter>
@@ -347,6 +347,18 @@
     <ClInclude Include="Game.Session.Character.Plights.h">
       <Filter>Header Files\Session\Character\Plight</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Item.Type.Commodities.h">
+      <Filter>Header Files\Session\Item\Commodity</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Item.Type.Commodity.h">
+      <Filter>Header Files\Session\Item\Commodity</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Item.Type.h">
+      <Filter>Header Files\Session\Item\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Item.Types.h">
+      <Filter>Header Files\Session\Item\Type</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Session.cpp">
@@ -385,17 +397,11 @@
     <ClCompile Include="Game.Session.Character.Items.cpp">
       <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.Item.Type.cpp">
-      <Filter>Source Files\Session\Item</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Session.Characters.cpp">
       <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Ships.cpp">
       <Filter>Source Files\Session\Ship</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Item.Types.cpp">
-      <Filter>Source Files\Session\Item</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Demigods.cpp">
       <Filter>Source Files\Session\Demigod</Filter>
@@ -421,14 +427,8 @@
     <ClCompile Include="Game.Session.Commodity.cpp">
       <Filter>Source Files\Session\Commodity</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.Item.Type.Commodity.cpp">
-      <Filter>Source Files\Session\Item</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Session.Island.Markets.cpp">
       <Filter>Source Files\Session\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Item.Type.Commodities.cpp">
-      <Filter>Source Files\Session\Item</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Island.Market.cpp">
       <Filter>Source Files\Session\Island</Filter>
@@ -504,6 +504,18 @@
     </ClCompile>
     <ClCompile Include="Game.Session.World.Skills.cpp">
       <Filter>Source Files\Session\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Item.Type.Commodities.cpp">
+      <Filter>Source Files\Session\Item\Commodity</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Item.Type.Commodity.cpp">
+      <Filter>Source Files\Session\Item\Commodity</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Item.Type.cpp">
+      <Filter>Source Files\Session\Item\Type</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Item.Types.cpp">
+      <Filter>Source Files\Session\Item\Type</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
