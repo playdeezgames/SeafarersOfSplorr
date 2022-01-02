@@ -6,11 +6,6 @@ namespace game::session::item
 	using TypeData = data::game::item::Type;
 	using CommodityData = data::game::item::type::Commodity;
 
-	Type Types::GetItemSubtype(int itemSubtypeId) const
-	{
-		return Type(itemSubtypeId);
-	}
-
 	void Types::Reset() const
 	{
 		CommodityData::Clear();

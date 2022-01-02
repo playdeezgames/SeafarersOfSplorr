@@ -6,5 +6,4 @@ namespace game::session::item
 	{
 		return data::game::item::Type::ReadName(typeId).value();
 	}
-
 }
