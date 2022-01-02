@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <Data.Game.Island.h>
 #include <Data.Game.Ship.h>
 #include "Game.Session.h"
@@ -9,15 +10,18 @@ namespace game::session::ship
 		auto maximumDistance = game::Session().GetWorld().GetDistances().GetDock();
 		auto shipLocation = data::game::Ship::GetLocation(shipId).value();
 		auto islands = data::game::Island::All();
-		std::list<Island> result;
-		for (auto islandId : islands)
-		{
-			auto location = data::game::Island::ReadLocation(islandId).value();
-			auto delta = location - shipLocation;
-			if (delta.GetMagnitude() <= maximumDistance)
+		auto iter = std::find_if(
+			islands.begin(), 
+			islands.end(), 
+			[shipLocation, maximumDistance](int islandId) 
 			{
-				return Island(islandId);
-			}
+				auto location = data::game::Island::ReadLocation(islandId).value();
+				auto delta = location - shipLocation;
+				return (delta.GetMagnitude() <= maximumDistance);
+			});
+		if (iter != islands.end())
+		{
+			return Island(*iter);
 		}
 		return std::nullopt;
 	}
