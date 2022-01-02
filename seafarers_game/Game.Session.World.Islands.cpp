@@ -128,7 +128,7 @@ namespace game::session::world
 				0,
 				0
 			};
-			data::game::island::Market::Write(islandId, (int)commodity, data);
+			data::game::island::Market::Write(islandId, (int)commodity.operator game::Commodity(), data);
 		}
 	}
 

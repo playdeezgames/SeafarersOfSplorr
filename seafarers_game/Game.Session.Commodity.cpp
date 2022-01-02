@@ -118,7 +118,6 @@ namespace game::session
 	double Commodity::GetSupplyFactor() const
 	{
 		return commodityTable.find(commodity)->second.supplyFactor;
-
 	}
 
 	double Commodity::GetDiscount() const
