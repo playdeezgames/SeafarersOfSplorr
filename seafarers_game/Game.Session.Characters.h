@@ -7,11 +7,13 @@ namespace game::session
 {
 	struct Characters
 	{
-		Character GetCharacter(int) const;
+		constexpr Characters() {}
+		constexpr Character GetCharacter(int characterId) const { return Character(characterId); }
+		constexpr void Populate(const Difficulty& difficulty) const {}
+
 		std::list<Character> GetAll() const;
 		void Reset() const;
-		void Populate(const Difficulty&) const {}
 		void ApplyTurnEffects() const;
-		Character Create(const game::characters::State&);
+		Character Create(const game::characters::State& state);
 	};
 }

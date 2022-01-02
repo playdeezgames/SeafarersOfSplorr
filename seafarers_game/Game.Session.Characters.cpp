@@ -12,11 +12,6 @@
 #include <iterator>
 namespace game::session
 {
-	session::Character Characters::GetCharacter(int characterId) const
-	{
-		return Character(characterId);
-	}
-
 	std::list<Character> Characters::GetAll() const
 	{
 		auto characters = data::game::Character::All();
@@ -33,86 +28,6 @@ namespace game::session
 	{
 		data::game::character::Plight::ClearAll();
 	}
-
-	static size_t DetermineTurnsSpent(int characterId)
-	{
-		auto plights = Character::ToCharacter(characterId).GetPlights();
-		size_t agingRate = 1;
-		if (plights.Has(characters::Plight::DOUBLE_AGING) &&
-			!plights.Has(characters::Plight::AGING_IMMUNITY))
-		{
-			agingRate = 2;
-		}
-		if (plights.Has(characters::Plight::AGING_IMMUNITY) &&
-			!plights.Has(characters::Plight::DOUBLE_AGING))
-		{
-			agingRate = 0;
-		}
-		return agingRate;
-	}
-
-	static void ApplyTurn(int characterId)
-	{
-		auto turnsSpent = DetermineTurnsSpent(characterId);
-		while (turnsSpent)
-		{
-			Characters()
-				.GetCharacter(characterId)
-				.GetCounters()
-				.GetCounter(game::characters::Counter::TURNS_REMAINING)
-				.Change(-1);
-			turnsSpent--;
-		}
-	}
-
-	static void SufferWoundDueToStarvation(int characterId)
-	{
-		auto counters =
-			Characters()
-			.GetCharacter(characterId)
-			.GetCounters();
-		counters
-			.GetCounter(game::characters::Counter::STARVATION)
-			.Reset();
-		counters
-			.GetCounter(game::characters::Counter::WOUNDS)
-			.Change(1);
-	}
-
-	static void SufferStarvationDueToHunger(int characterId)
-	{
-		Characters()
-			.GetCharacter(characterId)
-			.GetCharacteristics()
-			.GetCharacteristic(Characteristic::CONSTITUTION)
-			.OnOpposedCheck(
-				Characters().GetCharacter(characterId).GetCounters().GetCounter(game::characters::Counter::STARVATION).Change(1),
-				[characterId](bool success)
-				{
-					if (!success)
-					{
-						SufferWoundDueToStarvation(characterId);
-					}
-				});
-	}
-
-	static void SufferHunger(int characterId)
-	{
-		Characters()
-			.GetCharacter(characterId)
-			.GetCharacteristics()
-			.GetCharacteristic(Characteristic::CONSTITUTION)
-			.OnOpposedCheck(
-				Characters().GetCharacter(characterId).GetCounters().GetCounter(game::characters::Counter::STARVATION).Change(1),
-				[characterId](bool success)
-				{
-					if (!success)
-					{
-						SufferStarvationDueToHunger(characterId);
-					}
-				});
-	}
-
 	static void ApplyCharacterTurnEffects(const Character& character)
 	{
 		character.ApplyTurnEffects();
