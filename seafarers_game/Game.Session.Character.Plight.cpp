@@ -1,3 +1,4 @@
+#include <Data.Game.Character.Plight.h>
 #include "Game.Session.Character.Plight.h"
 #include <optional>
 #include <map>
@@ -56,18 +57,31 @@ namespace game::session::character
 		}
 	};
 
+	using PlightData = data::game::character::Plight;
+
 	void Plight::ApplyTurnEffects() const
 	{
-		throw "THIS DOESNT WORK";
+		auto duration = PlightData::ReadDuration(characterId, (int)plight);
+		if (duration)
+		{
+			if (duration.value() > 0)
+			{
+				PlightData::Write(characterId, (int)plight, duration.value() - 1);
+			}
+			else
+			{
+				PlightData::ClearPlight(characterId, (int)plight);
+			}
+		}
 	}
 
 	std::string Plight::GetName() const
 	{
-		throw "THIS DOESNT WORK";
+		return descriptors.find(plight)->second.name;
 	}
 
 	game::characters::PlightType Plight::GetType() const
 	{
-		throw "THIS DOESNT WORK";
+		return descriptors.find(plight)->second.type;
 	}
 }

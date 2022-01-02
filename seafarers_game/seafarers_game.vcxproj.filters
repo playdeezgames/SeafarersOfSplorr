@@ -114,6 +114,9 @@
     <Filter Include="Header Files\Session\Character\KnownIsland">
       <UniqueIdentifier>{bd4a3828-f001-4679-8913-5ece4d8b1f42}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Session\Character\Plight">
+      <UniqueIdentifier>{a9123926-e745-46f9-9a5a-e8199a5dddf4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -248,12 +251,6 @@
     <ClInclude Include="Game.Session.Demigod.h">
       <Filter>Header Files\Session\Demigod</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.Character.Plights.h">
-      <Filter>Header Files\Session\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Character.Plight.h">
-      <Filter>Header Files\Session\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Game.BerthType.h">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
@@ -346,6 +343,12 @@
     </ClInclude>
     <ClInclude Include="Game.Session.Character.KnownIslands.h">
       <Filter>Header Files\Session\Character\KnownIsland</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Character.Plight.h">
+      <Filter>Header Files\Session\Character\Plight</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Character.Plights.h">
+      <Filter>Header Files\Session\Character\Plight</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -32,4 +32,9 @@ namespace game::session::character
 			});
 	}
 
+	bool Plights::Has(const game::characters::Plight& plight) const
+	{
+		auto duration = PlightData::ReadDuration(characterId, (int)plight);
+		return (duration.has_value() && duration.value() > 0);
+	}
 }
