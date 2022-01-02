@@ -10,7 +10,7 @@ namespace game::session
 {
 	struct Ship
 	{
-		constexpr Ship(int shipId) : shipId(shipId) {}
+		constexpr explicit Ship(int shipId) : shipId(shipId) {}
 		const ship::Berths GetBerths() const { return ship::Berths(shipId); }
 		double GetHeading() const;
 		void SetHeading(double) const;

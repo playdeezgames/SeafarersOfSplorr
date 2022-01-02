@@ -221,9 +221,6 @@
     <ClInclude Include="Game.Session.Island.Market.h">
       <Filter>Header Files\Session\Island</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.Island.Tavern.h">
-      <Filter>Header Files\Session\Island</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.World.Calendar.h">
       <Filter>Header Files\Session\World\Calendar</Filter>
     </ClInclude>

@@ -141,7 +141,7 @@ namespace game::session
 
 	world::ShipType Ship::GetShipType() const
 	{
-		return (game::ShipType)data::game::Ship::GetShipType(shipId).value();
+		return world::ShipType((game::ShipType)data::game::Ship::GetShipType(shipId).value());
 	}
 
 	static double GetEffectiveSpeed(int shipId, double heading, double speed)

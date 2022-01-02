@@ -4,7 +4,9 @@ namespace game::session::island
 {
 	struct Market
 	{
-		constexpr Market(int islandId, const game::Commodity& commodity) : islandId(islandId), commodity(commodity) {}
+		constexpr Market(int islandId, const game::Commodity& commodity) 
+			: islandId(islandId)
+			, commodity(commodity) {}
 		double GetUnitPurchaseValue() const;
 		double GetUnitSaleValue() const;
 	private:

@@ -6,7 +6,7 @@ namespace game::session::world
 {
 	struct Calendar
 	{
-		constexpr Calendar(int worldId) : worldId(worldId) {}
+		constexpr explicit Calendar(int worldId) : worldId(worldId) {}
 		constexpr calendar::Months GetMonths() const { return calendar::Months(worldId); }
 		std::string GetDate() const;
 		int GetYearLength() const;

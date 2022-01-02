@@ -3,7 +3,7 @@ namespace game::session
 {
 	struct Save
 	{
-		Save(int);
+		explicit Save(int);
 		bool Exists();
 		void Store();
 		void Load();

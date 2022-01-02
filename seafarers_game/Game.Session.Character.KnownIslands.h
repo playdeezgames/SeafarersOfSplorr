@@ -6,7 +6,7 @@ namespace game::session::character
 {
 	struct KnownIslands
 	{
-		constexpr KnownIslands(int characterId) : characterId(characterId) {}
+		constexpr explicit KnownIslands(int characterId) : characterId(characterId) {}
 		constexpr KnownIsland GetKnownIsland(const Island& island) const 
 		{ 
 			return KnownIsland(characterId, island.operator int()); 

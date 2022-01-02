@@ -7,10 +7,10 @@ namespace game::session::island
 	{
 		constexpr Markets(int islandId) : islandId(islandId) {}
 		constexpr Market GetMarket(const game::Commodity& commodity) const { return Market(islandId, commodity); }
-		double GetPurchaseValue(const item::Type&) const;
-		int GetPurchaseQuantity(const item::Type&, double) const;
-		double GetSaleValue(const item::Type&) const;
-		int GetSaleQuantity(const item::Type&, double) const;
+		double GetUnitPurchaseValue(const item::Type& itemType) const;
+		int GetMaximumPurchaseQuantity(const item::Type& itemType, double) const;
+		double GetUnitSaleValue(const item::Type& itemType) const;
+		int GetMaximumSaleQuantity(const item::Type& itemType, double) const;
 	private:
 		int islandId;
 	};

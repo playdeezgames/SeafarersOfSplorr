@@ -17,8 +17,8 @@ namespace game::session
 		return data::game::Island::ReadName(islandId).value();
 	}
 
-	int Island::GetPatronDemigodId() const
+	Demigod Island::GetPatronDemigod() const
 	{
-		return data::game::Island::ReadPatronDemigodId(islandId).value();
+		return Demigod(data::game::Island::ReadPatronDemigodId(islandId).value());
 	}
 }

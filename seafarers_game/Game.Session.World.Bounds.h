@@ -4,7 +4,7 @@ namespace game::session::world
 {
 	struct Bounds
 	{
-		constexpr Bounds(int worldId) : worldId(worldId) {}
+		constexpr explicit Bounds(int worldId) : worldId(worldId) {}
 		common::XY<double> GetSize() const;
 		bool ClampLocation(common::XY<double>&) const;
 		void Reset() const {}

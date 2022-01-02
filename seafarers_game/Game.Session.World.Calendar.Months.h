@@ -5,7 +5,7 @@ namespace game::session::world::calendar
 {
 	struct Months
 	{
-		constexpr Months(int worldId) : worldId(worldId) {}
+		constexpr explicit Months(int worldId) : worldId(worldId) {}
 		constexpr Month GetMonth(int ordinal) const { return Month(worldId, ordinal); }
 		std::list<Month> GetAll() const;
 	private:

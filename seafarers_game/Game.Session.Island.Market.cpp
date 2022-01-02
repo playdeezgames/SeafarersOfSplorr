@@ -15,9 +15,6 @@ namespace game::session::island
 	double Market::GetUnitSaleValue() const
 	{
 		auto commodity = Commodity(this->commodity);
-		auto market = data::game::island::Market::Read(islandId, (int)this->commodity).value();
-		auto supply = commodity.GetSupplyFactor() * market.sales + market.supply;
-		auto demand = commodity.GetDemandFactor() * market.purchases + market.demand;
-		return commodity.GetBasePrice() * demand / supply * commodity.GetDiscount();
+		return GetUnitPurchaseValue() * commodity.GetDiscount();
 	}
 }

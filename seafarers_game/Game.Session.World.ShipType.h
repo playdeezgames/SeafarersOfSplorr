@@ -6,7 +6,7 @@ namespace game::session::world
 {
 	struct ShipType
 	{
-		constexpr ShipType(const game::ShipType& shipType) : shipType(shipType) {}
+		constexpr explicit ShipType(const game::ShipType& shipType) : shipType(shipType) {}
 		double GetTotalTonnage() const;//static double GetTotalTonnage(const game::ShipType&);
 		std::string GetName() const;//static const std::string& GetName(const game::ShipType&);
 		double GetSpeedFactor() const;

@@ -5,7 +5,7 @@ namespace game::session::ship
 {
 	struct Berths
 	{
-		constexpr Berths(int shipId) : shipId(shipId) {}
+		constexpr explicit Berths(int shipId) : shipId(shipId) {}
 		std::list<Berth> GetBerths() const;
 	private:
 		int shipId;

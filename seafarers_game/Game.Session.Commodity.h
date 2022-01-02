@@ -5,7 +5,7 @@ namespace game::session
 {
 	struct Commodity
 	{
-		constexpr Commodity(const game::Commodity& commodity) : commodity(commodity) {}
+		constexpr explicit Commodity(const game::Commodity& commodity) : commodity(commodity) {}
 		constexpr explicit operator game::Commodity() const { return commodity; }
 		double GetBasePrice() const;
 		double GetDemandFactor() const;

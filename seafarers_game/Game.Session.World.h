@@ -16,7 +16,7 @@ namespace game::session
 {
 	struct World
 	{
-		constexpr World(int worldId) : worldId(worldId) {}
+		constexpr explicit World(int worldId) : worldId(worldId) {}
 
 		item::Type GetCurrencyItemSubtype() const;
 		game::Difficulty GetDifficulty() const;

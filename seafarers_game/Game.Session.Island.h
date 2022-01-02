@@ -1,8 +1,8 @@
 #pragma once
 #include <Common.XY.h>
 #include "Game.Difficulty.h"
+#include "Game.Session.Demigod.h"
 #include "Game.Session.Island.Markets.h"
-#include "Game.Session.Island.Tavern.h"
 #include <optional>
 #include <string>
 namespace game::session
@@ -13,10 +13,9 @@ namespace game::session
 		constexpr operator int() const { return islandId; }
 		constexpr island::Markets GetMarkets() const { return island::Markets(islandId); }
 		common::XY<double> GetLocation() const;
-		constexpr island::Tavern GetTavern() const { return island::Tavern(islandId); }
 		constexpr static Island ToIsland(int islandId) { return Island(islandId); }
 		std::string GetName() const;
-		int GetPatronDemigodId() const;
+		Demigod GetPatronDemigod() const;
 	private:
 		int islandId;
 	};
