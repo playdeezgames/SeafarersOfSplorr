@@ -1,12 +1,8 @@
+#include <algorithm>
 #include <Data.Game.Ship.h>
 #include "Game.Session.Ships.h"
 namespace game::session
 {
-	Ship Ships::GetShip(int shipId) const
-	{
-		return Ship(shipId);
-	}
-
 	void Ships::Reset() const
 	{
 		data::game::Ship::Clear();
@@ -15,9 +11,12 @@ namespace game::session
 	void Ships::ApplyTurnEffects() const
 	{
 		auto shipIds = data::game::Ship::All();
-		for (auto shipId : shipIds)
-		{
-			Ship(shipId).ApplyTurnEffects();
-		}
+		std::for_each(
+			shipIds.begin(), 
+			shipIds.end(), 
+			[](int shipId) 
+			{
+				Ship(shipId).ApplyTurnEffects();
+			});
 	}
 }

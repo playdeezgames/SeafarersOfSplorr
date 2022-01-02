@@ -5,9 +5,10 @@ namespace game::session
 {
 	struct Ships
 	{
-		Ship GetShip(int) const;
+		constexpr Ships() {}
+		constexpr Ship GetShip(int shipId) const { return Ship(shipId); }
 		void Reset() const;
-		void Populate(const Difficulty&) const;
+		constexpr void Populate(const Difficulty& difficulty) const {}
 		void ApplyTurnEffects() const;
 	};
 }

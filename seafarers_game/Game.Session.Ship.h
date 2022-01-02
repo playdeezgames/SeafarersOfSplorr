@@ -11,20 +11,22 @@ namespace game::session
 	struct Ship
 	{
 		constexpr explicit Ship(int shipId) : shipId(shipId) {}
-		const ship::Berths GetBerths() const { return ship::Berths(shipId); }
+		constexpr ship::Berths GetBerths() const { return ship::Berths(shipId); }
+		constexpr ship::DockableIslands GetDockableIslands() const { return ship::DockableIslands(shipId); }
+		constexpr ship::VisibleIslands GetNearbyIslands() const { return ship::VisibleIslands(shipId); }
+
 		double GetHeading() const;
 		void SetHeading(double) const;
 		double GetSpeed() const;
 		void SetSpeed(double) const;
-		constexpr ship::DockableIslands GetDockableIslands() const { return ship::DockableIslands(shipId); }
-		constexpr ship::VisibleIslands GetNearbyIslands() const { return ship::VisibleIslands(shipId); }
 		common::XY<double> GetLocation() const;
-		void SetName(const std::string&) const;
+		void SetName(const std::string& name) const;
 		std::string GetName() const;
 		bool CanDock() const;
 		void Dock() const;
 		bool Undock() const;
 		std::optional<Island> TryGetIsland() const;
+		bool IsDocked() const;
 		Island GetIsland() const;
 		world::ShipType GetShipType() const;
 		void ApplyTurnEffects() const;

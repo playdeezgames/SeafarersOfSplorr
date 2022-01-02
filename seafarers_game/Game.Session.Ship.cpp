@@ -75,12 +75,15 @@ namespace game::session
 		data::game::character::KnownIsland::Write(
 			characterId,
 			islandId);
-		game::Session().GetCharacters().GetCharacter(characterId).DoAction(game::characters::Action::ENTER_DOCK);
+		game::Session()
+			.GetCharacters()
+			.GetCharacter(characterId)
+			.DoAction(game::characters::Action::ENTER_DOCK);
 	}
 
 	void Ship::Dock() const
 	{
-		if (!TryGetIsland().has_value())
+		if (!IsDocked())
 		{
 			auto island = GetDockableIslands().TryGetFirst();
 			if (island)
@@ -101,24 +104,26 @@ namespace game::session
 
 	bool Ship::Undock() const
 	{
-		if (TryGetIsland().has_value())
+		if (IsDocked())
 		{
+			auto characters = game::Session().GetCharacters();
 			auto billets = data::game::character::Ship::ReadCharactersForShip(shipId);
 			if (std::all_of(
 				billets.begin(),
 				billets.end(),
-				[](int characterId) {
-					return game::Session().GetCharacters().GetCharacter(characterId).GetState() == game::characters::State::DOCK;
+				[characters](int characterId) {
+					return characters.GetCharacter(characterId).GetState() == game::characters::State::DOCK;
 				}))
 			{
 				std::for_each(
 					billets.begin(), 
 					billets.end(), 
-					[](int characterId) 
+					[characters](int characterId)
 					{
-						game::Session().GetCharacters().GetCharacter(characterId).DoAction(game::characters::Action::UNDOCK);
+						characters.GetCharacter(characterId).DoAction(game::characters::Action::UNDOCK);
 					});
 				data::game::ship::CurrentIsland::ClearForShip(shipId);
+				return true;
 			}
 		}
 		return false;
@@ -134,6 +139,11 @@ namespace game::session
 		return std::nullopt;
 	}
 
+	bool Ship::IsDocked() const
+	{
+		return data::game::ship::CurrentIsland::ReadIslandId(shipId).has_value();
+	}
+
 	Island Ship::GetIsland() const
 	{
 		return TryGetIsland().value();
@@ -146,7 +156,7 @@ namespace game::session
 
 	static double GetEffectiveSpeed(int shipId, double heading, double speed)
 	{
-		auto fouling = 0.0;
+		auto fouling = 0.0;//TODO: put fouling back!
 		auto effectiveSpeed = speed * (1.0 - fouling);
 
 		effectiveSpeed *= game::Session().GetWorld().GetWind().GetMultiplier(heading);
@@ -174,6 +184,4 @@ namespace game::session
 			ShipData::SetLocation(shipId, location.value());
 		}
 	}
-
-
 }
