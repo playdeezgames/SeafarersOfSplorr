@@ -108,24 +108,16 @@ namespace game::session
 
 	void Demigods::Populate(const Difficulty& difficulty) const
 	{
-		const double BLESSING_THRESHOLD = 5.0;
-		const double BLESSING_MULTIPLIER = 2.0;
-		const double CURSE_THRESHOLD = -5.0;
-		const double CURSE_MULTIPLIER = 0.5;
-		const double OFFERING_FAVOR_MINIMUM = -1.0;
-		const double OFFERING_FAVOR_MAXIMUM = 1.0;
 		auto demigodCount = common::RNG::FromGenerator(demigodCounts);
 		auto names = GenerateNames(demigodCount);
-		for (auto name : names)
-		{
-			auto demigodId = DemigodData::Create(name,
-				common::RNG::FromGenerator(patronWeights));
-		}
-
-	}
-
-	void Demigods::ApplyTurnEffects() const
-	{
+		std::for_each(
+			names.begin(),
+			names.end(),
+			[](const std::string& name) 
+			{
+				DemigodData::Create(name,
+					common::RNG::FromGenerator(patronWeights));
+			});
 	}
 
 	std::list<Demigod> Demigods::GetAll() const
