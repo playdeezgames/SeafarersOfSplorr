@@ -4,11 +4,11 @@ namespace game::session::item::type
 {
 	void Commodity::SetAmount(double amount) const
 	{
-		data::game::item::type::Commodity::Write(typeId, (int)commodity, amount);
+		data::game::item::type::Commodity::Write(itemTypeId, (int)commodity, amount);
 	}
 
 	double Commodity::GetAmount() const
 	{
-		return data::game::item::type::Commodity::ReadAmount(typeId, (int)commodity).value();
+		return data::game::item::type::Commodity::ReadAmount(itemTypeId, (int)commodity).value();
 	}
 }

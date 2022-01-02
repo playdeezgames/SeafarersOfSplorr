@@ -4,12 +4,13 @@ namespace game::session::item::type
 {
 	struct Commodity
 	{
-		constexpr Commodity(int typeId, const game::Commodity& commodity) : typeId(typeId), commodity(commodity) {}
+		constexpr Commodity(int itemTypeId, const game::Commodity& commodity)
+			: itemTypeId(itemTypeId), commodity(commodity) {}
 		constexpr operator game::Commodity() const { return commodity; }
-		void SetAmount(double) const;
+		void SetAmount(double amount) const;
 		double GetAmount() const;
 	private:
-		int typeId;
+		int itemTypeId;
 		game::Commodity commodity;
 	};
 }
