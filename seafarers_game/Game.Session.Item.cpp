@@ -11,6 +11,7 @@ namespace game::session
 	void Item::SetQuantity(int quantity) const
 	{
 		data::game::Item::WriteQuantity(itemId, quantity);
+		//TODO: if quantity <= 0... disappear the item?
 	}
 
 	int Item::GetQuantity() const

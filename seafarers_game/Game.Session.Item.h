@@ -7,7 +7,7 @@ namespace game::session
 	{
 		constexpr explicit Item(int itemId) : itemId(itemId) {}
 		item::Type GetItemType() const;
-		void SetQuantity(int) const;
+		void SetQuantity(int quantity) const;
 		int GetQuantity() const;
 		std::optional<int> TryGetCharacterId() const;
 		int GetCharacterId() const;
