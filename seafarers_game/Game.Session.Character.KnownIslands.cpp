@@ -1,5 +1,7 @@
+#include <algorithm>
 #include <Data.Game.Character.KnownIsland.h>
 #include "Game.Session.Character.KnownIslands.h"
+#include <iterator>
 namespace game::session::character
 {
 	bool KnownIslands::HasAny() const
@@ -16,10 +18,14 @@ namespace game::session::character
 	{
 		auto islandIds = data::game::character::KnownIsland::All(characterId);
 		std::list<KnownIsland> result;
-		for (auto islandId : islandIds)
-		{
-			result.push_back(KnownIsland(characterId, islandId));
-		}
+		std::transform(
+			islandIds.begin(),
+			islandIds.end(),
+			std::back_inserter(result),
+			[this](int islandId) 
+			{
+				return KnownIsland(characterId, islandId);
+			});
 		return result;
 	}
 

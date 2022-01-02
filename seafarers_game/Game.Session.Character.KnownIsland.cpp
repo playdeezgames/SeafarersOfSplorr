@@ -9,12 +9,12 @@ namespace game::session::character
 		return data::game::character::KnownIsland::Has(characterId, islandId);
 	}
 
+	static const std::string UNKNOWN_ISLAND_NAME = "????";
+
 	std::string KnownIsland::GetDisplayName() const
 	{
-		if (IsKnown())
-		{
-			return data::game::Island::ReadName(islandId).value();
-		}
-		return "????";
+		return 
+			(IsKnown()) ? (data::game::Island::ReadName(islandId).value()) : 
+			(UNKNOWN_ISLAND_NAME);
 	}
 }

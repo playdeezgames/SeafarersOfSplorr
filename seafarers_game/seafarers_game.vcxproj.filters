@@ -111,6 +111,9 @@
     <Filter Include="Header Files\Session\Character\Flag">
       <UniqueIdentifier>{ad1e58c1-14c4-4ac5-84b9-9b963e1e52e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Session\Character\KnownIsland">
+      <UniqueIdentifier>{bd4a3828-f001-4679-8913-5ece4d8b1f42}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -217,12 +220,6 @@
     </ClInclude>
     <ClInclude Include="Game.Session.Island.Tavern.h">
       <Filter>Header Files\Session\Island</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Character.KnownIslands.h">
-      <Filter>Header Files\Session\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Character.KnownIsland.h">
-      <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.World.Calendar.h">
       <Filter>Header Files\Session\World\Calendar</Filter>
@@ -343,6 +340,12 @@
     </ClInclude>
     <ClInclude Include="Game.Session.Character.HitPoints.h">
       <Filter>Header Files\Session\Character\Characteristic</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Character.KnownIsland.h">
+      <Filter>Header Files\Session\Character\KnownIsland</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Character.KnownIslands.h">
+      <Filter>Header Files\Session\Character\KnownIsland</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
