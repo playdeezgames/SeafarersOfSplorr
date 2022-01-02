@@ -3,7 +3,7 @@ namespace game::session
 {
 	struct Save
 	{
-		explicit Save(int);
+		constexpr explicit Save(int storeIndex) : storeIndex(storeIndex) {}
 		bool Exists();
 		void Store();
 		void Load();

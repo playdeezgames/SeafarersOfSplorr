@@ -4,6 +4,7 @@ namespace game::session
 {
 	struct Saves
 	{
+		constexpr Saves() {}
 		Save GetAuto() const;
 		Save GetSlot1() const;
 		Save GetSlot2() const;
