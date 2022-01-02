@@ -18,7 +18,9 @@ namespace game::session::character
 
 	characters::MessageList Messages::GetAll() const
 	{
-		return common::utility::Table::TryGetKey(messageListTable, characterId).value_or(characters::MessageList());
+		return 
+			common::utility::Table::TryGetKey(messageListTable, characterId)
+			.value_or(characters::MessageList());
 	}
 
 	void Messages::Clear() const
