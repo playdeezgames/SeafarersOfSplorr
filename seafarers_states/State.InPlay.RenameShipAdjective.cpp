@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <Common.Data.h>
 #include <Game.ShipNames.h>
 #include "State.InPlay.Globals.h"
@@ -6,18 +7,6 @@ namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_RENAME_SHIP_ADJECTIVE;
 
-	static std::map<int, std::string> adjectives;
-
-	static void UpdateAdjectives()
-	{
-		adjectives.clear();
-		int index = 1;
-		for (auto adjective : game::ShipNames::GetAdjectives())
-		{
-			adjectives[index++] = adjective;
-		}
-	}
-
 	static void Refresh()
 	{
 		Terminal::Reinitialize();
@@ -25,42 +14,40 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Select Adjective:");
 
-		Terminal::SetForeground(game::Colors::YELLOW);
-		for (auto entry : adjectives)
-		{
-			Terminal::WriteLine("{}) {}", entry.first, entry.second);
-		}
-
-		Terminal::WriteLine("0) Never mind");
+		Terminal::ShowMenu();
 
 		Terminal::ShowPrompt();
+	}
+
+	static std::function<void()> DoChooseAdjective(const std::string& adjective)
+	{
+		return [adjective]() 
+		{
+			SetRenameShipAdjective(adjective);
+			application::UIState::Write(::UIState::IN_PLAY_RENAME_SHIP_NOUN);
+		};
+	}
+
+	static void UpdateMenu()
+	{
+		Terminal::menu.Clear();
+		Terminal::menu.SetRefresh(Refresh);
+		auto adjectives = game::ShipNames::GetAdjectives();
+		std::for_each(
+			adjectives.begin(), 
+			adjectives.end(), 
+			[](const std::string& adjective) 
+			{
+				Terminal::menu.AddAction({ adjective, DoChooseAdjective(adjective) });
+			});
+		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW) };
+		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 
 	static void OnEnter()
 	{
 		PlayMainTheme();
-		UpdateAdjectives();
-		Refresh();
-	}
-
-	static const std::map<std::string, std::function<void()>> menuActions =
-	{
-		{ "0", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS)}
-	};
-
-	static void OnOtherInput(const std::string& line)
-	{
-		auto index = common::Data::ToOptionalInt(line);
-		if (index)
-		{
-			if (adjectives.contains(index.value()))
-			{
-				SetRenameShipAdjective(adjectives[index.value()]);
-				application::UIState::Write(::UIState::IN_PLAY_RENAME_SHIP_NOUN);
-				return;
-			}
-		}
-		Terminal::ErrorMessage(Terminal::INVALID_INPUT);
+		UpdateMenu();
 		Refresh();
 	}
 
@@ -70,8 +57,8 @@ namespace state::in_play
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(
 			CURRENT_STATE,
-			Terminal::DoIntegerInput(
-				menuActions,
-				OnOtherInput));
+			Terminal::DoMenuInput(
+				Terminal::INVALID_INPUT,
+				Refresh));
 	}
 }
