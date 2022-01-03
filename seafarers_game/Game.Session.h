@@ -24,6 +24,6 @@ namespace game
 
 		void ApplyTurnEffects() const;
 		void Reset() const;
-		void Populate(const Difficulty&) const;
+		void Populate(const Difficulty& difficulty) const;
 	};
 }
