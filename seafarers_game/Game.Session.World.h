@@ -34,7 +34,7 @@ namespace game::session
 		constexpr world::ShipTypes GetShipTypes() const { return world::ShipTypes(); }
 		constexpr world::Skills GetSkills() const { return world::Skills(); }
 		void Reset() const;
-		void Populate(const Difficulty&) const;
+		void Populate(const Difficulty& difficulty) const;
 		void ApplyTurnEffects() const;
 	private:
 		int worldId;

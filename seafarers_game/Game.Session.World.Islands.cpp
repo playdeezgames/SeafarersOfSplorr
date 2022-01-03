@@ -11,6 +11,7 @@
 #include <Data.Game.Island.Tribe.h>
 #include "Game.Session.h"
 #include "Game.Session.World.Islands.h"
+#include <iterator>
 #include <map>
 #include <numeric>
 #include <set>
@@ -31,17 +32,14 @@ namespace game::session::world
 		{
 			double x = common::RNG::FromRange(0.0, worldSize.GetX());
 			double y = common::RNG::FromRange(0.0, worldSize.GetY());
-			bool found = true;
-			for (auto& location : locations)
-			{
-				double distance = common::Heading::Distance(location, { x, y });
-				if (distance < minimumIslandDistance)
+			if (std::none_of(
+				locations.begin(),
+				locations.end(),
+				[x, y, minimumIslandDistance](const common::XY<double>& location)
 				{
-					found = false;
-					break;
-				}
-			}
-			if (found)
+					double distance = common::Heading::Distance(location, { x, y });
+					return distance < minimumIslandDistance;
+				}))
 			{
 				locations.push_back({ x, y });
 				retry = 0;
@@ -106,10 +104,13 @@ namespace game::session::world
 	static std::set<std::string> GenerateNames(size_t size)
 	{
 		std::set<std::string> names;
-		for (auto& name : permanentNames)
-		{
-			names.insert(name);
-		}
+		std::for_each(
+			permanentNames.begin(),
+			permanentNames.end(),
+			[&names](const std::string& name)
+			{
+				names.insert(name);
+			});
 		while (names.size() < size)
 		{
 			names.insert(GenerateName());
@@ -117,29 +118,61 @@ namespace game::session::world
 		return names;
 	}
 
+	using Market = data::game::island::Market;
+
+	static const std::map<double, size_t> supplyDemandGenerator =
+	{
+		{ 3.0,1},
+		{ 4.0,3},
+		{ 5.0,6},
+		{ 6.0,10},
+		{ 7.0,15},
+		{ 8.0,21},
+		{ 9.0,25},
+		{10.0,27},
+		{11.0,27},
+		{12.0,25},
+		{13.0,21},
+		{14.0,15},
+		{15.0,10},
+		{16.0,6},
+		{17.0,3},
+		{18.0,1}
+	};
+
 	static void GenerateMarkets(int islandId)
 	{
-		for (auto& commodity : game::Session().GetWorld().GetCommodities().GetAll())
-		{
-			data::game::island::Market::Data data =
+		const int INITIAL_PURCHASES = 0;
+		const int INITIAL_SALES = 0;
+		auto commodities = game::Session().GetWorld().GetCommodities().GetAll();
+		std::for_each(
+			commodities.begin(),
+			commodities.end(),
+			[islandId](const game::session::Commodity& commodity)
 			{
-				common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0),
-				common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0) + common::RNG::FromRange(1.0,6.0),
-				0,
-				0
-			};
-			data::game::island::Market::Write(islandId, (int)commodity.operator game::Commodity(), data);
-		}
+				Market::Data data =
+				{
+					common::RNG::FromGenerator(supplyDemandGenerator),
+					common::RNG::FromGenerator(supplyDemandGenerator),
+					INITIAL_PURCHASES,
+					INITIAL_SALES
+				};
+				Market::Write(islandId, (int)commodity.operator game::Commodity(), data);
+			});
 	}
 
 	static int GeneratePatronDemigod()
 	{
 		auto demigods = data::game::Demigod::All();
 		std::map<int, size_t> table;
-		for (auto& demigodId : demigods)
-		{
-			table[demigodId] = data::game::Demigod::ReadPatronWeight(demigodId).value();
-		}
+		std::transform(
+			demigods.begin(), 
+			demigods.end(), 
+			std::inserter(table, table.end()), 
+			[](int demigodId) 
+			{
+				return std::make_pair(demigodId, data::game::Demigod::ReadPatronWeight(demigodId).value());
+			});
 		return common::RNG::FromGenerator(table);
 	}
 
@@ -148,8 +181,8 @@ namespace game::session::world
 		auto islands = IslandData::All();
 		std::list<Island> result;
 		std::transform(
-			islands.begin(), 
-			islands.end(), 
+			islands.begin(),
+			islands.end(),
 			std::back_inserter(result),
 			Island::ToIsland);
 		return result;
@@ -209,7 +242,7 @@ namespace game::session::world
 	}
 
 	static std::map<int, size_t> DetermineIslandNeighbors(
-		int islandId, 
+		int islandId,
 		const std::map<int, common::XY<double>>& islandLocations)
 	{
 		const int TAKE_COUNT = 5;
@@ -225,11 +258,11 @@ namespace game::session::world
 				return entry.first != islandId;
 			});
 		std::partial_sort(
-			candidates.begin(), 
+			candidates.begin(),
 			candidates.begin() + TAKE_COUNT,
-			candidates.end(), 
+			candidates.end(),
 			[location](
-				const std::pair<int, common::XY<double>>& first, 
+				const std::pair<int, common::XY<double>>& first,
 				const std::pair<int, common::XY<double>>& second)
 			{
 				auto firstDistance = (first.second - location).GetMagnitude();
@@ -238,10 +271,10 @@ namespace game::session::world
 			});
 		std::map<int, size_t> result;
 		std::for_each_n(
-			candidates.begin(), 
-			TAKE_COUNT, 
-			[&result](const std::pair<int, common::XY<double>>& entry) 
-			{ 
+			candidates.begin(),
+			TAKE_COUNT,
+			[&result](const std::pair<int, common::XY<double>>& entry)
+			{
 				result[entry.first] = 1;
 			});
 		return result;
@@ -270,14 +303,14 @@ namespace game::session::world
 		constexpr int CHANCE_DIE_SIZE = 20;
 		auto islandLocations = data::game::Island::AllLocations();
 		auto tribes = data::game::Tribe::All();
-		auto tribePresence = 
+		auto tribePresence =
 			InitializeTribePresence(islandLocations);
-		auto islandGenerator = 
+		auto islandGenerator =
 			MakeIslandGenerator(islandLocations);
-		auto occupiedIslands = 
+		auto occupiedIslands =
 			DetermineOccupiedIslands(
-				tribes, 
-				islandGenerator, 
+				tribes,
+				islandGenerator,
 				tribePresence);
 		std::map<int, std::map<int, size_t>> islandNeighbors = DetermineIslandNeighbors(islandLocations);
 		while (occupiedIslands.size() < islandLocations.size())
@@ -285,14 +318,14 @@ namespace game::session::world
 			std::set<int> addedIslands;
 			std::set<int> removedIslands;
 			std::for_each(
-				occupiedIslands.begin(), 
-				occupiedIslands.end(), 
+				occupiedIslands.begin(),
+				occupiedIslands.end(),
 				[
-					&addedIslands, 
+					&addedIslands,
 					&removedIslands,
 					&tribePresence,
 					&islandNeighbors
-				](int islandId) 
+				](int islandId)
 				{
 					auto tribe = common::RNG::TryFromGenerator(tribePresence[islandId]);
 					if (tribe)
@@ -321,24 +354,24 @@ namespace game::session::world
 					}
 				});
 			std::for_each(
-				addedIslands.begin(), 
-				addedIslands.end(), 
-				[&occupiedIslands](int id) 
+				addedIslands.begin(),
+				addedIslands.end(),
+				[&occupiedIslands](int id)
 				{
 					occupiedIslands.insert(id);
 				});
 			std::for_each(
 				removedIslands.begin(),
 				removedIslands.end(),
-				[&occupiedIslands](int id) 
+				[&occupiedIslands](int id)
 				{
 					occupiedIslands.extract(id);
 				});
 		}
 		std::for_each(
-			tribePresence.begin(), 
-			tribePresence.end(), 
-			[](const std::pair<int, std::map<int, size_t>>& islandEntry) 
+			tribePresence.begin(),
+			tribePresence.end(),
+			[](const std::pair<int, std::map<int, size_t>>& islandEntry)
 			{
 				auto islandId = islandEntry.first;
 				std::for_each(
@@ -360,10 +393,10 @@ namespace game::session::world
 		auto names = GenerateNames(locations.size());
 		while (!locations.empty())
 		{
-			auto islandId = 
+			auto islandId =
 				data::game::Island::Create(
-					locations.front(), 
-					*names.begin(), 
+					locations.front(),
+					*names.begin(),
 					GeneratePatronDemigod());
 			locations.pop_front();
 			names.erase(names.begin());
@@ -371,7 +404,6 @@ namespace game::session::world
 		}
 		PopulateIslandTribes();
 	}
-
 
 	void Islands::Reset() const
 	{

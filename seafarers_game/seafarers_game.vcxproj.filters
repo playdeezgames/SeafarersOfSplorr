@@ -141,6 +141,12 @@
     <Filter Include="Source Files\Session\Ship\Island">
       <UniqueIdentifier>{5faefe41-33f5-4e0d-95f2-adeb3fa702aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Session\World\Calendar">
+      <UniqueIdentifier>{bf345ea2-3cd9-4ccf-bcd1-aec1302a92bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\World\ShipType">
+      <UniqueIdentifier>{44f41e36-1992-45bf-a7fa-2d756ba3020b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -442,15 +448,6 @@
     <ClCompile Include="Game.Session.Island.Market.cpp">
       <Filter>Source Files\Session\Island</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.World.Calendar.Month.cpp">
-      <Filter>Source Files\Session\World</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.World.Calendar.Months.cpp">
-      <Filter>Source Files\Session\World</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.World.Calendar.cpp">
-      <Filter>Source Files\Session\World</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Session.Tribes.cpp">
       <Filter>Source Files\Session\Tribe</Filter>
     </ClCompile>
@@ -499,9 +496,6 @@
     <ClCompile Include="Game.ShipNames.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.World.ShipType.cpp">
-      <Filter>Source Files\Session\World</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Session.World.Skills.cpp">
       <Filter>Source Files\Session\World</Filter>
     </ClCompile>
@@ -528,6 +522,18 @@
     </ClCompile>
     <ClCompile Include="Game.Session.Ship.VisibleIslands.cpp">
       <Filter>Source Files\Session\Ship\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.World.Calendar.cpp">
+      <Filter>Source Files\Session\World\Calendar</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.World.Calendar.Month.cpp">
+      <Filter>Source Files\Session\World\Calendar</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.World.Calendar.Months.cpp">
+      <Filter>Source Files\Session\World\Calendar</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.World.ShipType.cpp">
+      <Filter>Source Files\Session\World\ShipType</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

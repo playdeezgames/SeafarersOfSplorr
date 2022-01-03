@@ -5,8 +5,8 @@ namespace game::session::world
 	{
 		constexpr explicit Wind(int worldId) : worldId(worldId) {};
 		double GetHeading() const;
-		double GetMultiplier(double) const;
-		void SetHeading(double) const;
+		double GetSpeedMultiplier(double heading) const;
+		void SetHeading(double heading) const;
 		void ApplyTurnEffects() const;
 		void Reset() const {}
 	private:

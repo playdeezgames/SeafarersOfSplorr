@@ -10,7 +10,7 @@ namespace game::session::world
 		constexpr Island GetIsland(int islandId) const { return Island(islandId); }
 		std::list<Island> GetAll() const;
 		void Reset() const;
-		void Populate(const Difficulty&) const;
+		void Populate(const Difficulty& difficulty) const;
 		void ApplyTurnEffects() const;
 	};
 }

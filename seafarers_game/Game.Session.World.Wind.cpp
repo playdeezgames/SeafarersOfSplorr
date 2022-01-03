@@ -10,7 +10,7 @@ namespace game::session::world
 		return data::game::World::ReadWindHeading(worldId).value();
 	}
 
-	double Wind::GetMultiplier(double heading) const
+	double Wind::GetSpeedMultiplier(double heading) const
 	{
 		auto relativeHeading = common::Heading::Difference(GetHeading(), heading);
 		return 1.0 - std::abs(relativeHeading / common::Heading::DEGREES);

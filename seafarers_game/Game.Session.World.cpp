@@ -20,7 +20,6 @@ namespace game::session
 
 	void World::Populate(const Difficulty& difficulty) const
 	{
-
 		auto currencyItemSubtype = CreateWorldCurrencyItemSubtype();
 
 		data::game::World::Write(

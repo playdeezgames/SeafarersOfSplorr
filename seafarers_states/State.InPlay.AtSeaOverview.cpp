@@ -113,7 +113,7 @@ namespace state::in_play
 		Terminal::WriteLine(
 			"Wind: {:.2f}\xf8 (x{:.1f})",
 			wind.GetHeading(),
-			wind.GetMultiplier(ship.GetHeading()));
+			wind.GetSpeedMultiplier(ship.GetHeading()));
 		//dockable islands
 		bool canDock = RefreshDockableIslands();
 		//nearby islands

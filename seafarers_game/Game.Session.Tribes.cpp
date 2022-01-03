@@ -21,11 +21,6 @@ namespace game::session
 		return result;
 	}
 
-	Tribe Tribes::GetTribe(int tribeId) const
-	{
-		return Tribe(tribeId);
-	}
-
 	static const std::map<std::string, size_t> consonants =
 	{
 		{"g",1},
@@ -110,10 +105,10 @@ namespace game::session
 		{
 			names.insert(nameGenerator.Generate());
 		}
-		for (auto name : names)
-		{
-			TribeData::Create(name);
-		}
+		std::for_each(
+			names.begin(), 
+			names.end(), 
+			TribeData::Create);
 	}
 
 	void Tribes::Reset() const

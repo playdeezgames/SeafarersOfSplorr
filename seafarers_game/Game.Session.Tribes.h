@@ -8,8 +8,8 @@ namespace game::session
 	{
 		constexpr Tribes() {}
 		std::list<Tribe> GetAll() const;
-		Tribe GetTribe(int) const;
+		constexpr Tribe GetTribe(int tribeId) const { return Tribe(tribeId); }
 		void Reset() const;
-		void Populate(const Difficulty&) const;
+		void Populate(const Difficulty& difficulty) const;
 	};
 }
