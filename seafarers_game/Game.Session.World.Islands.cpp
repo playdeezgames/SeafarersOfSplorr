@@ -297,6 +297,88 @@ namespace game::session::world
 		return islandNeighbors;
 	}
 
+	static void AttemptTribeColonization(
+		std::set<int>& occupiedIslands,
+		std::map<int, std::map<int, size_t>>& tribePresence,
+		const std::map<int, std::map<int, size_t>>& islandNeighbors)
+	{
+		constexpr int PILGRIM_DIE_SIZE = 6;
+		constexpr int CHANCE_DIE_SIZE = 20;
+		std::set<int> addedIslands;
+		std::set<int> removedIslands;
+		std::for_each(
+			occupiedIslands.begin(),
+			occupiedIslands.end(),
+			[
+				&addedIslands,
+				&removedIslands,
+				&tribePresence,
+				&islandNeighbors
+			](int islandId)
+			{
+				auto tribe = common::RNG::TryFromGenerator(tribePresence[islandId]);
+				if (tribe)
+				{
+					tribePresence[islandId][(int)tribe.value()] += (size_t)common::RNG::Roll<PILGRIM_DIE_SIZE>();
+					auto presence = tribePresence[islandId][(int)tribe.value()];
+					if (common::RNG::Roll<CHANCE_DIE_SIZE>() <= presence)
+					{
+						auto colonists = std::min((size_t)common::RNG::Roll<PILGRIM_DIE_SIZE>(), presence);
+						tribePresence[islandId][(int)tribe.value()] = presence - colonists;
+						auto destination = common::RNG::FromGenerator(islandNeighbors.find(islandId)->second);
+						addedIslands.insert(destination);
+						tribePresence[destination][(int)tribe.value()] += colonists;
+					}
+				}
+				if (0 == std::accumulate(
+					tribePresence[islandId].begin(),
+					tribePresence[islandId].end(),
+					(size_t)0,
+					[](size_t acc, std::pair<int, size_t> item)
+					{
+						return acc + item.second;
+					}))
+				{
+					removedIslands.insert(islandId);
+				}
+			});
+		std::for_each(
+			addedIslands.begin(),
+			addedIslands.end(),
+			[&occupiedIslands](int id)
+			{
+				occupiedIslands.insert(id);
+			});
+		std::for_each(
+			removedIslands.begin(),
+			removedIslands.end(),
+			[&occupiedIslands](int id)
+			{
+				occupiedIslands.extract(id);
+			});
+	}
+
+	static void StoreIslandTribes(const std::map<int, std::map<int, size_t>>& tribePresence)
+	{
+		std::for_each(
+			tribePresence.begin(),
+			tribePresence.end(),
+			[](const std::pair<int, std::map<int, size_t>>& islandEntry)
+			{
+				auto islandId = islandEntry.first;
+				std::for_each(
+					islandEntry.second.begin(),
+					islandEntry.second.end(),
+					[islandId](const std::pair<int, size_t>& tribeEntry)
+					{
+						if (tribeEntry.second > 0)
+						{
+							data::game::island::Tribe::Write(islandId, tribeEntry.first, (int)tribeEntry.second);
+						}
+					});
+			});
+	}
+
 	static void PopulateIslandTribes()
 	{
 		constexpr int PILGRIM_DIE_SIZE = 6;
@@ -315,76 +397,9 @@ namespace game::session::world
 		std::map<int, std::map<int, size_t>> islandNeighbors = DetermineIslandNeighbors(islandLocations);
 		while (occupiedIslands.size() < islandLocations.size())
 		{
-			std::set<int> addedIslands;
-			std::set<int> removedIslands;
-			std::for_each(
-				occupiedIslands.begin(),
-				occupiedIslands.end(),
-				[
-					&addedIslands,
-					&removedIslands,
-					&tribePresence,
-					&islandNeighbors
-				](int islandId)
-				{
-					auto tribe = common::RNG::TryFromGenerator(tribePresence[islandId]);
-					if (tribe)
-					{
-						tribePresence[islandId][(int)tribe.value()] += (size_t)common::RNG::Roll<PILGRIM_DIE_SIZE>();
-						auto presence = tribePresence[islandId][(int)tribe.value()];
-						if (common::RNG::Roll<CHANCE_DIE_SIZE>() <= presence)
-						{
-							auto pilgrims = std::min((size_t)common::RNG::Roll<PILGRIM_DIE_SIZE>(), presence);
-							tribePresence[islandId][(int)tribe.value()] = presence - pilgrims;
-							auto destination = common::RNG::FromGenerator(islandNeighbors[islandId]);
-							addedIslands.insert(destination);
-							tribePresence[destination][(int)tribe.value()] += pilgrims;
-						}
-					}
-					if (0 == std::accumulate(
-						tribePresence[islandId].begin(),
-						tribePresence[islandId].end(),
-						(size_t)0,
-						[](size_t acc, std::pair<int, size_t> item)
-						{
-							return acc + item.second;
-						}))
-					{
-						removedIslands.insert(islandId);
-					}
-				});
-			std::for_each(
-				addedIslands.begin(),
-				addedIslands.end(),
-				[&occupiedIslands](int id)
-				{
-					occupiedIslands.insert(id);
-				});
-			std::for_each(
-				removedIslands.begin(),
-				removedIslands.end(),
-				[&occupiedIslands](int id)
-				{
-					occupiedIslands.extract(id);
-				});
+			AttemptTribeColonization(occupiedIslands, tribePresence, islandNeighbors);
 		}
-		std::for_each(
-			tribePresence.begin(),
-			tribePresence.end(),
-			[](const std::pair<int, std::map<int, size_t>>& islandEntry)
-			{
-				auto islandId = islandEntry.first;
-				std::for_each(
-					islandEntry.second.begin(),
-					islandEntry.second.end(),
-					[islandId](const std::pair<int, size_t>& tribeEntry)
-					{
-						if (tribeEntry.second > 0)
-						{
-							data::game::island::Tribe::Write(islandId, tribeEntry.first, (int)tribeEntry.second);
-						}
-					});
-			});
+		StoreIslandTribes(tribePresence);
 	}
 
 	void Islands::Populate(const Difficulty& difficulty) const
