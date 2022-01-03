@@ -40,7 +40,7 @@ namespace state::in_play
 			{
 				Terminal::menu.AddAction({ adjective, DoChooseAdjective(adjective) });
 			});
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW) };
+		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 
