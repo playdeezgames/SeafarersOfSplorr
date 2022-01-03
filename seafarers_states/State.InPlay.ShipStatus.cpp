@@ -1,3 +1,4 @@
+#include <format>
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.ShipStatus.h"
@@ -16,28 +17,26 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Name: {}", ship.GetName());
 
-		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine("1) Change Heading(Current: {:.2f}\xf8)", ship.GetHeading());
-		Terminal::WriteLine("2) Change Speed(Current: {:.1f})", ship.GetSpeed());
-		//Terminal::WriteLine("3) Cargo");
-		Terminal::WriteLine("4) Rename ship");
-		Terminal::WriteLine("0) Never mind");
-
+		Terminal::ShowMenu();
 		Terminal::ShowPrompt();
 	}
 
-	static const std::map<std::string, std::function<void()>> menuActions =
+	static void UpdateMenu()
 	{
-		{"1", application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_HEADING)},
-		{"2", application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_SPEED)},
-		//{"3", application::UIState::GoTo(::UIState::IN_PLAY_CARGO)},
-		{"4", application::UIState::GoTo(::UIState::IN_PLAY_RENAME_SHIP_ADJECTIVE)},
-		{"0", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW)}
-	};
+		auto ship = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip();
+		Terminal::menu.Clear();
+		Terminal::menu.SetRefresh(Refresh);
+		Terminal::menu.AddAction({ std::format("Change Heading(Current: {:.2f}\xf8)", ship.GetHeading()), application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_HEADING) });
+		Terminal::menu.AddAction({ std::format("Change Speed(Current: {:.1f})", ship.GetSpeed()), application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_SPEED) });
+		Terminal::menu.AddAction({ "Rename ship", application::UIState::GoTo(::UIState::IN_PLAY_RENAME_SHIP_ADJECTIVE) });
+		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW) };
+		Terminal::menu.SetDefaultAction(defaultAction);
+	}
 
 	static void OnEnter()
 	{
 		PlayMainTheme();
+		UpdateMenu();
 		Refresh();
 	}
 
@@ -46,10 +45,9 @@ namespace state::in_play
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(
-			CURRENT_STATE, 
-			Terminal::DoIntegerInput(
-				menuActions, 
-				Terminal::INVALID_INPUT, 
+			CURRENT_STATE,
+			Terminal::DoMenuInput(
+				Terminal::INVALID_INPUT,
 				Refresh));
 	}
 }
