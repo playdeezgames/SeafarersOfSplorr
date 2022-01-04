@@ -27,6 +27,7 @@
     <ClInclude Include="Data.Game.Character.CurrentIsland.h" />
     <ClInclude Include="Data.Game.Character.Item.h" />
     <ClInclude Include="Data.Game.Character.KnownIsland.h" />
+    <ClInclude Include="Data.Game.Character.Mark.h" />
     <ClInclude Include="Data.Game.Character.Plight.h" />
     <ClInclude Include="Data.Game.Character.Ship.h" />
     <ClInclude Include="Data.Game.Character.Skill.h" />
@@ -57,6 +58,7 @@
     <ClCompile Include="Data.Game.Character.CurrentIsland.cpp" />
     <ClCompile Include="Data.Game.Character.Item.cpp" />
     <ClCompile Include="Data.Game.Character.KnownIsland.cpp" />
+    <ClCompile Include="Data.Game.Character.Mark.cpp" />
     <ClCompile Include="Data.Game.Character.Plight.cpp" />
     <ClCompile Include="Data.Game.Character.Ship.cpp" />
     <ClCompile Include="Data.Game.Character.Skill.cpp" />

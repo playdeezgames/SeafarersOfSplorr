@@ -40,6 +40,10 @@ namespace state::in_play
 		{
 			Terminal::menu.AddAction({ "Head for a known island", application::UIState::GoTo(::UIState::IN_PLAY_HEAD_FOR_KNOWN) });
 		}
+		if (playerCharacter.GetMarks().HasAny())
+		{
+			Terminal::menu.AddAction({ "Head for a marked location", application::UIState::GoTo(::UIState::IN_PLAY_HEAD_FOR_MARK) });
+		}
 		if (ship.GetNearbyIslands().HasAny())
 		{
 			Terminal::menu.AddAction({ "Head for a nearby island", application::UIState::GoTo(::UIState::IN_PLAY_HEAD_FOR_NEAR_BY) });

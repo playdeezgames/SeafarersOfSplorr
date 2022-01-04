@@ -21,6 +21,7 @@
 #include <State.InPlay.Docked.h>
 #include <State.InPlay.DockOrCareen.h>
 #include <State.InPlay.HeadForKnown.h>
+#include <State.InPlay.HeadForMark.h>
 #include <State.InPlay.HeadForNearBy.h>
 #include <State.InPlay.Lose.h>
 #include <State.InPlay.ManualHeading.h>
@@ -132,6 +133,7 @@ namespace application
 		state::in_play::RenameShipAdjective::Start,
 		state::in_play::RenameShipNoun::Start,
 		state::in_play::crew_detail::Characteristics::Start,
+		state::in_play::HeadForMark::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};

@@ -147,6 +147,12 @@
     <Filter Include="Source Files\Session\World\ShipType">
       <UniqueIdentifier>{44f41e36-1992-45bf-a7fa-2d756ba3020b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Session\Character\Mark">
+      <UniqueIdentifier>{935f3717-92ad-45e3-9a99-38ac85325621}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Character\Mark">
+      <UniqueIdentifier>{b0c756e8-e143-45ee-93a0-f71fa307fa81}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -377,6 +383,12 @@
     <ClInclude Include="Game.Session.Ship.VisibleIslands.h">
       <Filter>Header Files\Session\Ship\Island</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Character.Mark.h">
+      <Filter>Header Files\Session\Character\Mark</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Character.Marks.h">
+      <Filter>Header Files\Session\Character\Mark</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Session.cpp">
@@ -534,6 +546,12 @@
     </ClCompile>
     <ClCompile Include="Game.Session.World.ShipType.cpp">
       <Filter>Source Files\Session\World\ShipType</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.Mark.cpp">
+      <Filter>Source Files\Session\Character\Mark</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.Marks.cpp">
+      <Filter>Source Files\Session\Character\Mark</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

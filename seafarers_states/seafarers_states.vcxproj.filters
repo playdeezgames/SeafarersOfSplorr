@@ -24,9 +24,6 @@
     <Filter Include="Source Files\Careening">
       <UniqueIdentifier>{babb2734-14a4-4c2b-b9b3-06e706eaf646}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\AtSea\Status">
-      <UniqueIdentifier>{2cb8c9b2-d21e-4132-8a44-fafba0ab2c36}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Boilerplate">
       <UniqueIdentifier>{61816559-1be1-403a-ba9b-cef652ddda63}</UniqueIdentifier>
     </Filter>
@@ -41,6 +38,18 @@
     </Filter>
     <Filter Include="Header Files\Utility">
       <UniqueIdentifier>{19434232-c189-416a-a646-4c20f30f8802}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AtSea\Ship Status">
+      <UniqueIdentifier>{82526c7c-7e25-44c2-8390-ab34ad7a8927}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AtSea\Crew Status">
+      <UniqueIdentifier>{2cb8c9b2-d21e-4132-8a44-fafba0ab2c36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AtSea\Ship Status">
+      <UniqueIdentifier>{a0149f8e-82f2-4d45-b199-037694d37eca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AtSea\Crew Status">
+      <UniqueIdentifier>{0632369d-523e-41e7-aac9-b0d328b7a92f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -62,12 +71,6 @@
     <ClInclude Include="State.InPlay.AtSeaOverview.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.CrewDetail.h">
-      <Filter>Header Files\AtSea</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.CrewList.h">
-      <Filter>Header Files\AtSea</Filter>
-    </ClInclude>
     <ClInclude Include="State.InPlay.Docked.h">
       <Filter>Header Files\Docked</Filter>
     </ClInclude>
@@ -79,9 +82,6 @@
     </ClInclude>
     <ClInclude Include="State.InPlay.Win.h">
       <Filter>Header Files\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.ShipStatus.h">
-      <Filter>Header Files\AtSea</Filter>
     </ClInclude>
     <ClInclude Include="State.LeavePlay.h">
       <Filter>Header Files\Boilerplate</Filter>
@@ -110,22 +110,7 @@
     <ClInclude Include="State.Tip.h">
       <Filter>Header Files\Boilerplate</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.ChangeSpeed.h">
-      <Filter>Header Files\AtSea</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.ChangeHeading.h">
-      <Filter>Header Files\AtSea</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.ManualHeading.h">
-      <Filter>Header Files\AtSea</Filter>
-    </ClInclude>
     <ClInclude Include="State.InPlay.DockOrCareen.h">
-      <Filter>Header Files\AtSea</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.HeadForNearBy.h">
-      <Filter>Header Files\AtSea</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.HeadForKnown.h">
       <Filter>Header Files\AtSea</Filter>
     </ClInclude>
     <ClInclude Include="State.InPlay.MultipleMove.h">
@@ -134,20 +119,47 @@
     <ClInclude Include="State.Terminal.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.RenameShipAdjective.h">
-      <Filter>Header Files\AtSea</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.RenameShipNoun.h">
-      <Filter>Header Files\AtSea</Filter>
-    </ClInclude>
     <ClInclude Include="State.InPlay.Globals.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.CrewDetail.Characteristics.h">
-      <Filter>Header Files\AtSea</Filter>
-    </ClInclude>
     <ClInclude Include="Menu.h">
       <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.ChangeHeading.h">
+      <Filter>Header Files\AtSea\Ship Status</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.ChangeSpeed.h">
+      <Filter>Header Files\AtSea\Ship Status</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.ManualHeading.h">
+      <Filter>Header Files\AtSea\Ship Status</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.RenameShipAdjective.h">
+      <Filter>Header Files\AtSea\Ship Status</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.RenameShipNoun.h">
+      <Filter>Header Files\AtSea\Ship Status</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.ShipStatus.h">
+      <Filter>Header Files\AtSea\Ship Status</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.CrewDetail.Characteristics.h">
+      <Filter>Header Files\AtSea\Crew Status</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.CrewDetail.h">
+      <Filter>Header Files\AtSea\Crew Status</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.CrewList.h">
+      <Filter>Header Files\AtSea\Crew Status</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.HeadForKnown.h">
+      <Filter>Header Files\AtSea\Ship Status</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.HeadForNearBy.h">
+      <Filter>Header Files\AtSea\Ship Status</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.HeadForMark.h">
+      <Filter>Header Files\AtSea\Ship Status</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -203,10 +215,10 @@
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.CrewList.cpp">
-      <Filter>Source Files\AtSea\Status</Filter>
+      <Filter>Source Files\AtSea\Crew Status</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.CrewDetail.cpp">
-      <Filter>Source Files\AtSea\Status</Filter>
+      <Filter>Source Files\AtSea\Crew Status</Filter>
     </ClCompile>
     <ClCompile Include="State.Terminal.cpp">
       <Filter>Source Files\Utility</Filter>
@@ -214,44 +226,47 @@
     <ClCompile Include="State.InPlay.AtSeaOverview.cpp">
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.ShipStatus.cpp">
-      <Filter>Source Files\AtSea</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.ChangeSpeed.cpp">
-      <Filter>Source Files\AtSea</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.ChangeHeading.cpp">
-      <Filter>Source Files\AtSea</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.ManualHeading.cpp">
-      <Filter>Source Files\AtSea</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.DockOrCareen.cpp">
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.HeadForNearBy.cpp">
-      <Filter>Source Files\AtSea</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.HeadForKnown.cpp">
-      <Filter>Source Files\AtSea</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.MultipleMove.cpp">
-      <Filter>Source Files\AtSea</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.RenameShipAdjective.cpp">
-      <Filter>Source Files\AtSea</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.RenameShipNoun.cpp">
       <Filter>Source Files\AtSea</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.Globals.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.CrewDetail.Characteristics.cpp">
-      <Filter>Source Files\AtSea\Status</Filter>
+      <Filter>Source Files\AtSea\Crew Status</Filter>
     </ClCompile>
     <ClCompile Include="Menu.cpp">
       <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.ChangeHeading.cpp">
+      <Filter>Source Files\AtSea\Ship Status</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.ChangeSpeed.cpp">
+      <Filter>Source Files\AtSea\Ship Status</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.HeadForKnown.cpp">
+      <Filter>Source Files\AtSea\Ship Status</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.HeadForNearBy.cpp">
+      <Filter>Source Files\AtSea\Ship Status</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.ManualHeading.cpp">
+      <Filter>Source Files\AtSea\Ship Status</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.RenameShipAdjective.cpp">
+      <Filter>Source Files\AtSea\Ship Status</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.RenameShipNoun.cpp">
+      <Filter>Source Files\AtSea\Ship Status</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.ShipStatus.cpp">
+      <Filter>Source Files\AtSea\Ship Status</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.HeadForMark.cpp">
+      <Filter>Source Files\AtSea\Ship Status</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
