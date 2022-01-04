@@ -12,7 +12,8 @@ namespace state
 		static const std::string INVALID_INPUT;
 		static void ClearInput();
 		static const std::string& GetInput();
-		static const void AppendInput(const std::string&);
+		static void AppendInput(const std::string&);
+		static void HandleBackspace();
 		static const bool Backspace();
 		static std::function<bool(const std::string&)> DoMenuInput(
 			const std::string&,

@@ -39,6 +39,15 @@ namespace data::game::character
 			[CharacterId]={}
 		ORDER BY 
 			[Name];)"s;
+	static const std::string REPLACE_ITEM =
+		R"(REPLACE INTO [CharacterMarks]
+		(
+			[CharacterId],
+			[Name],
+			[X],
+			[Y]
+		) 
+		VALUES({},{},{},{});)"s;
 
 	static const std::string FIELD_NAME = "Name";
 
@@ -76,5 +85,16 @@ namespace data::game::character
 			std::back_inserter(result),
 			Common::DoToString(FIELD_NAME));
 		return result;
+	}
+
+	void Mark::WriteMark(int characterId, const std::string& name, const common::XY<double>& location)
+	{
+		Initialize();
+		Common::Execute(
+			REPLACE_ITEM, 
+			characterId, 
+			common::Data::QuoteString(name), 
+			location.GetX(), 
+			location.GetY());
 	}
 }

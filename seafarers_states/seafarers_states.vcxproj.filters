@@ -161,6 +161,9 @@
     <ClInclude Include="State.InPlay.HeadForMark.h">
       <Filter>Header Files\AtSea\Ship Status</Filter>
     </ClInclude>
+    <ClInclude Include="State.InPlay.MarkCurrentLocation.h">
+      <Filter>Header Files\AtSea\Ship Status</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -266,6 +269,9 @@
       <Filter>Source Files\AtSea\Ship Status</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.HeadForMark.cpp">
+      <Filter>Source Files\AtSea\Ship Status</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.MarkCurrentLocation.cpp">
       <Filter>Source Files\AtSea\Ship Status</Filter>
     </ClCompile>
   </ItemGroup>

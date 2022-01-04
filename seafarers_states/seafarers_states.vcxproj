@@ -38,6 +38,7 @@
     <ClInclude Include="State.InPlay.CrewList.h" />
     <ClInclude Include="State.InPlay.Docked.h" />
     <ClInclude Include="State.InPlay.Lose.h" />
+    <ClInclude Include="State.InPlay.MarkCurrentLocation.h" />
     <ClInclude Include="State.InPlay.MultipleMove.h" />
     <ClInclude Include="State.InPlay.Next.h" />
     <ClInclude Include="State.InPlay.RenameShipAdjective.h" />
@@ -74,6 +75,7 @@
     <ClCompile Include="State.InPlay.HeadForMark.cpp" />
     <ClCompile Include="State.InPlay.HeadForNearBy.cpp" />
     <ClCompile Include="State.InPlay.ManualHeading.cpp" />
+    <ClCompile Include="State.InPlay.MarkCurrentLocation.cpp" />
     <ClCompile Include="State.InPlay.MultipleMove.cpp" />
     <ClCompile Include="State.InPlay.RenameShipAdjective.cpp" />
     <ClCompile Include="State.InPlay.RenameShipNoun.cpp" />

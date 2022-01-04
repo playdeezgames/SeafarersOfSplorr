@@ -8,6 +8,7 @@ namespace game::session::character
 		constexpr Marks(int characterId) : characterId(characterId) {}
 		std::list<Mark> GetMarks() const;
 		bool HasAny() const;
+		void AddMark(const std::string& name, const common::XY<double>& location) const;
 	private:
 		int characterId;
 	};

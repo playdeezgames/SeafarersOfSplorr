@@ -25,4 +25,10 @@ namespace game::session::character
 			});
 		return result;
 	}
+
+	void Marks::AddMark(const std::string& name, const common::XY<double>& location) const
+	{
+		MarkData::WriteMark(characterId, name, location);
+	}
+
 }

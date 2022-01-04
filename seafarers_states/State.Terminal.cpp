@@ -41,7 +41,7 @@ namespace state
 		return inputBuffer;
 	}
 
-	const void Terminal::AppendInput(const std::string& text)
+	void Terminal::AppendInput(const std::string& text)
 	{
 		inputBuffer += text;
 	}
@@ -212,6 +212,13 @@ namespace state
 		};
 	}
 
+	void Terminal::HandleBackspace()
+	{
+		if (Terminal::Backspace())
+		{
+			visuals::Terminals::Backspace(LAYOUT_NAME, TERMINAL_ID);
+		}
+	}
 
 	std::function<bool(const std::string&)> Terminal::DoIntegerInput(
 		const std::map<std::string, std::function<void()>>& table,

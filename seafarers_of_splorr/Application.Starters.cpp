@@ -25,6 +25,7 @@
 #include <State.InPlay.HeadForNearBy.h>
 #include <State.InPlay.Lose.h>
 #include <State.InPlay.ManualHeading.h>
+#include <State.InPlay.MarkCurrentLocation.h>
 #include <State.InPlay.MultipleMove.h>
 #include <State.InPlay.Next.h>
 #include <State.InPlay.RenameShipAdjective.h>
@@ -134,6 +135,7 @@ namespace application
 		state::in_play::RenameShipNoun::Start,
 		state::in_play::crew_detail::Characteristics::Start,
 		state::in_play::HeadForMark::Start,
+		state::in_play::MarkCurrentLocation::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};

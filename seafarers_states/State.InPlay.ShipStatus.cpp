@@ -28,6 +28,7 @@ namespace state::in_play
 		Terminal::menu.SetRefresh(Refresh);
 		Terminal::menu.AddAction({ std::format("Change Heading(Current: {:.2f}\xf8)", ship.GetHeading()), application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_HEADING) });
 		Terminal::menu.AddAction({ std::format("Change Speed(Current: {:.1f})", ship.GetSpeed()), application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_SPEED) });
+		Terminal::menu.AddAction({ "Mark Current Location", application::UIState::GoTo(::UIState::IN_PLAY_MARK_LOCATION) });
 		Terminal::menu.AddAction({ "Rename ship", application::UIState::GoTo(::UIState::IN_PLAY_RENAME_SHIP_ADJECTIVE) });
 		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW) };
 		Terminal::menu.SetDefaultAction(defaultAction);
