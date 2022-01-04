@@ -50,6 +50,7 @@ namespace data::game::character
 
 	std::optional<common::XY<double>> Mark::ReadMark(int characterId, const std::string& name)
 	{
+		Initialize();
 		auto record = Common::TryExecuteForOne(QUERY_ITEM, characterId, common::Data::QuoteString(name));
 		if (record)
 		{
@@ -60,11 +61,13 @@ namespace data::game::character
 
 	bool Mark::HasAny(int characterId)
 	{
+		Initialize();
 		return Common::TryExecuteForOne(QUERY_ANY, characterId).has_value();
 	}
 
 	std::list<std::string> Mark::ReadMarkNames(int characterId)
 	{
+		Initialize();
 		auto records = Common::Execute(QUERY_NAMES, characterId);
 		std::list<std::string> result;
 		std::transform(
