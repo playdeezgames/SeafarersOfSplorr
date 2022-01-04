@@ -23,10 +23,13 @@ namespace state::in_play
 		Terminal::ShowPrompt();
 	}
 
-	static std::function<void()> DoHeadForLocation(const common::XY<double>& location)
+	static std::function<void()> DoHeadForLocation(const common::XY<double>& destination)
 	{
-		return []() 
+		return [destination]()
 		{
+			auto ship = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip();
+			auto relativeLocation = destination - ship.GetLocation();
+			ship.SetHeading(common::Heading::XYToDegrees(relativeLocation));
 		};
 	}
 
