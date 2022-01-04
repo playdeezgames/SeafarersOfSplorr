@@ -66,24 +66,26 @@ namespace state::in_play
 		RefreshFlags(characterId);
 		RefreshHitPoints(characterId);
 
-		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine("1) Characteristics");
-		Terminal::WriteLine("0) Never mind");
+		Terminal::ShowMenu();
 
 		Terminal::ShowPrompt();
+	}
+
+	static void UpdateMenu()
+	{
+		Terminal::menu.Clear();
+		Terminal::menu.SetRefresh(Refresh);
+		Terminal::menu.AddAction({"Characteristics", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_CHARACTERISTICS) });
+		MenuAction defaultAction = { "Never mind", OnLeave };
+		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 
 	static void OnEnter()
 	{
 		PlayMainTheme();
+		UpdateMenu();
 		Refresh();
 	}
-
-	static const std::map<std::string, std::function<void()>> menuActions =
-	{
-		{ "1", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_CHARACTERISTICS) },
-		{ "0", OnLeave}
-	};
 
 	void CrewDetail::Start()
 	{
@@ -95,8 +97,7 @@ namespace state::in_play
 			Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(
 			CURRENT_STATE,
-			Terminal::DoIntegerInput(
-				menuActions,
+			Terminal::DoMenuInput(
 				Terminal::INVALID_INPUT,
 				Refresh));
 	}
