@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <Common.Heading.h>
 #include <Common.Utility.List.h>
 #include <Game.Session.h>
@@ -13,42 +14,16 @@ namespace state::in_play
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Head for:");
-		auto character = game::Session().GetPlayer().GetCharacter();
-		auto nearby = character.GetBerth().GetShip().GetNearbyIslands();
-		if (nearby.HasAny())
-		{
-			Terminal::SetForeground(game::Colors::GRAY);
-			Terminal::WriteLine("Nearby islands:");
-			Terminal::SetForeground(game::Colors::YELLOW);
-			int index = 1;
-
-			auto location = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().GetLocation();
-			for (auto& island : nearby.GetAll())
-			{
-				auto relativeLocation = island.GetLocation() - location;
-				auto knownIsland = character.GetKnownIslands().GetKnownIsland(island);
-				Terminal::WriteLine("{}) {} ({:.2f}\xf8 dist {:.1f})",
-					index++,
-					knownIsland.GetDisplayName(),
-					common::Heading::XYToDegrees(relativeLocation),
-					relativeLocation.GetMagnitude());
-			}
-		}
-
-		Terminal::WriteLine("0) Never mind");
-
+		Terminal::ShowMenu();
 		Terminal::ShowPrompt();
 	}
 
 
-	static std::function<void()> DoSetHeading(const game::session::character::KnownIsland& island, double heading)
+	static std::function<void()> DoSetHeading(const game::session::Island& island, double heading)
 	{
 		return[island, heading]()
 		{
-			Terminal::SetForeground(game::Colors::GREEN);
-			Terminal::WriteLine();
 			game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().SetHeading(heading);
-			Terminal::WriteLine("You head for {}.", island.GetDisplayName());
 			application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
 		};
 	}
@@ -59,21 +34,25 @@ namespace state::in_play
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		auto character = game::Session().GetPlayer().GetCharacter();
-		auto known = character.GetKnownIslands();
+		auto islands = character.GetBerth().GetShip().GetNearbyIslands().GetAll();
 		auto location = character.GetBerth().GetShip().GetLocation();
-		for (auto& island : known.GetAll())
-		{
-			auto relativeLocation = island.GetIsland().GetLocation() - location;
-			Terminal::menu.AddAction(
-				{
-					std::format(
-						"{} ({:.2f}\xf8 dist {:.1f})",
-						island.GetDisplayName(),
-						common::Heading::XYToDegrees(relativeLocation),
-						relativeLocation.GetMagnitude()),
-					DoSetHeading(island, common::Heading::XYToDegrees(relativeLocation))
-				});
-		}
+		std::for_each(
+			islands.begin(), 
+			islands.end(), 
+			[location, character](const game::session::Island& island) 
+			{
+				auto relativeLocation = island.GetLocation() - location;
+				auto knownIsland = character.GetKnownIslands().GetKnownIsland(island);
+				Terminal::menu.AddAction(
+					{
+						std::format(
+							"{} ({:.2f}\xf8 dist {:.1f})",
+							knownIsland.GetDisplayName(),
+							common::Heading::XYToDegrees(relativeLocation),
+							relativeLocation.GetMagnitude()),
+						DoSetHeading(island, common::Heading::XYToDegrees(relativeLocation))
+					});
+			});
 		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}

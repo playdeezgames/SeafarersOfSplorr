@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <Common.Data.h>
 #include <Common.Heading.h>
 #include <Common.Utility.List.h>
@@ -11,12 +12,9 @@ namespace state::in_play
 	static void Refresh()
 	{
 		Terminal::Reinitialize();
-
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Head for:");
-
 		Terminal::ShowMenu();
-
 		Terminal::ShowPrompt();
 	}
 
@@ -37,18 +35,21 @@ namespace state::in_play
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		auto character = game::Session().GetPlayer().GetCharacter();
-		auto nearby = character.GetBerth().GetShip().GetNearbyIslands();
-			auto location = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().GetLocation();
-			for (auto& island : nearby.GetAll())
+		auto known = character.GetKnownIslands();
+		auto location = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().GetLocation();
+		auto islands = known.GetAll();
+		std::for_each(
+			islands.begin(), 
+			islands.end(), 
+			[character, location](const game::session::character::KnownIsland& knownIsland)
 			{
-				auto relativeLocation = island.GetLocation() - location;
-				auto knownIsland = character.GetKnownIslands().GetKnownIsland(island);
+				auto relativeLocation = knownIsland.GetIsland().GetLocation() - location;
 				Terminal::menu.AddAction({ std::format("{} ({:.2f}\xf8 dist {:.1f})",
 					knownIsland.GetDisplayName(),
 					common::Heading::XYToDegrees(relativeLocation),
 					relativeLocation.GetMagnitude()),
 					DoSetHeading(knownIsland, common::Heading::XYToDegrees(relativeLocation)) });
-			}
+			});
 		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
