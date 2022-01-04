@@ -1,5 +1,5 @@
 #pragma once
-#include <list>
+#include <vector>
 #include <optional>
 namespace data::game::character
 {
@@ -8,7 +8,7 @@ namespace data::game::character
 		Item() = delete;
 		static void Initialize();
 		static void Write(int characterId, int itemId);
-		static std::list<int> ReadForCharacter(int characterId);
+		static std::vector<int> ReadForCharacter(int characterId);
 		static std::optional<int> ReadForItemInstance(int itemId);
 	};
 }

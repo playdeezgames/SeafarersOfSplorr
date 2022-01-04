@@ -63,11 +63,11 @@ namespace data::game
 		data::game::Common::Execute(DELETE_ALL);
 	}
 
-	std::list<int> Demigod::All()
+	std::vector<int> Demigod::All()
 	{
 		Initialize();
-		std::list<int> result;
 		auto records = Common::Execute(QUERY_ALL);
+		std::vector<int> result(records.size());
 		std::transform(
 			records.begin(),
 			records.end(),

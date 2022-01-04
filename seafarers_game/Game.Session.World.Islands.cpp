@@ -189,7 +189,7 @@ namespace game::session::world
 	}
 
 	static std::set<int> DetermineOccupiedIslands(
-		const std::list<int>& tribes,
+		const std::vector<int>& tribes,
 		const std::map<int, size_t>& islandGenerator,
 		std::map<int, std::map<int, size_t>>& tribePresence
 	)

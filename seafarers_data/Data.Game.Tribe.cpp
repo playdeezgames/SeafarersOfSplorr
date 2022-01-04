@@ -46,11 +46,11 @@ namespace data::game
 		return Common::LastInsertedIndex();
 	}
 
-	std::list<int> Tribe::All()
+	std::vector<int> Tribe::All()
 	{
 		Initialize();
-		std::list<int> result;
 		auto records = Common::Execute(QUERY_ALL);
+		std::vector<int> result(records.size());
 		std::transform(
 			records.begin(),
 			records.end(),

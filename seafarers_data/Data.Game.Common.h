@@ -2,7 +2,7 @@
 #include <Common.XY.h>
 #include <functional>
 #include <format>
-#include <list>
+#include <vector>
 #include <map>
 #include <optional>
 #include <string>
@@ -11,11 +11,11 @@ namespace data::game
 	struct Common
 	{
 		typedef std::map<std::string, std::string> Record;
-		static std::list<Record> Execute(const std::string&);
+		static std::vector<Record> Execute(const std::string&);
 		static std::optional<Record> TryExecuteForOne(const std::string&);
-		static std::function<std::list<Record>()> DoExecute(const std::string&);
+		static std::function<std::vector<Record>()> DoExecute(const std::string&);
 		template<typename ...Ts>
-		static std::list<Record> Execute(const std::string& query, Ts... args)
+		static std::vector<Record> Execute(const std::string& query, Ts... args)
 		{
 			return Common::Execute(std::format(query, args...));
 		}

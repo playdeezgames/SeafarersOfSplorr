@@ -1,5 +1,5 @@
 #pragma once
-#include <list>
+#include <vector>
 #include <optional>
 #include <string>
 namespace data::game
@@ -8,7 +8,7 @@ namespace data::game
 	{
 		static void Initialize();
 		static int Create(const std::string& name);
-		static std::list<int> All();
+		static std::vector<int> All();
 		static std::optional<std::string> ReadName(int tribeId);
 		static void Clear();
 	};

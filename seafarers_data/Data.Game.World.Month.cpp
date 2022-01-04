@@ -77,11 +77,11 @@ namespace data::game::world
 		Common::Execute(DELETE_ALL, worldId);
 	}
 
-	std::list<int> Month::AllOrdinals(int worldId)
+	std::vector<int> Month::AllOrdinals(int worldId)
 	{
 		Initialize();
-		std::list<int> result;
 		auto records = Common::Execute(QUERY_ALL, worldId);
+		std::vector<int> result(records.size());
 		std::transform(
 			records.begin(),
 			records.end(),

@@ -64,11 +64,11 @@ namespace data::game::character
 		Common::Execute(DELETE_ALL_FOR_CHARACTER,characterId);
 	}
 
-	std::list<int> Plight::All(int characterId)
+	std::vector<int> Plight::All(int characterId)
 	{
 		Initialize();
-		std::list<int> result;
 		auto records = Common::Execute(QUERY_ALL, characterId);
+		std::vector<int> result(records.size());
 		std::transform(
 			records.begin(),
 			records.end(),

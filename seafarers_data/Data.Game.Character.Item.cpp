@@ -52,11 +52,11 @@ namespace data::game::character
 		Common::Execute(REPLACE_ITEM, itemInstanceId, characterId);
 	}
 
-	std::list<int> Item::ReadForCharacter(int characterId)
+	std::vector<int> Item::ReadForCharacter(int characterId)
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_ITEMS_FOR_CHARACTER, characterId);
-		std::list<int> result;
+		std::vector<int> result(records.size());
 		std::transform(
 			records.begin(),
 			records.end(),

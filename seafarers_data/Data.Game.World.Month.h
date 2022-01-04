@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include <list>
+#include <vector>
 #include <optional>
 namespace data::game::world
 {
@@ -8,7 +8,7 @@ namespace data::game::world
 	{
 		Month() = delete;
 		static void Initialize();
-		static std::list<int> AllOrdinals(int worldId);
+		static std::vector<int> AllOrdinals(int worldId);
 		static void Write(int worldId, int ordinal, const std::string& name, int days);
 		static std::optional<std::string> ReadName(int worldId, int ordinal);
 		static std::optional<int> ReadDays(int worldId, int ordinal);

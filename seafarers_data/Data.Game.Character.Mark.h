@@ -1,6 +1,6 @@
 #pragma once
 #include <Common.XY.h>
-#include <list>
+#include <vector>
 #include <optional>
 #include <string>
 namespace data::game::character
@@ -10,7 +10,7 @@ namespace data::game::character
 		static void Initialize();
 		static std::optional<common::XY<double>> ReadMark(int characterId, const std::string& name);
 		static bool HasAny(int characterId);
-		static std::list<std::string> ReadMarkNames(int characterId);
+		static std::vector<std::string> ReadMarkNames(int characterId);
 		static void WriteMark(int characterId, const std::string& name, const common::XY<double>& location);
 	};
 }

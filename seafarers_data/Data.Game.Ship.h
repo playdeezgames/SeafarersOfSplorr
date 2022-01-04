@@ -1,6 +1,6 @@
 #pragma once
 #include <Common.XY.h>
-#include <list>
+#include <vector>
 #include <optional>
 #include <string>
 namespace data::game
@@ -27,6 +27,6 @@ namespace data::game
 		static void SetHeading(int shipId, double heading);
 		static void SetSpeed(int shipId, double speed);
 
-		static std::list<int> All();
+		static std::vector<int> All();
 	};
 }

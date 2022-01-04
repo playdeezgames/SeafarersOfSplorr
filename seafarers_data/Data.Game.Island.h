@@ -1,10 +1,10 @@
 #pragma once
 #include <Common.XY.h>
 #include <functional>
-#include <list>
 #include <map>
 #include <optional>
 #include <string>
+#include <vector>
 namespace data::game
 {
 	struct Island
@@ -14,7 +14,7 @@ namespace data::game
 		static std::optional<common::XY<double>> ReadLocation(int islandId);
 		static std::optional<std::string> ReadName(int islandId);
 		static std::optional<int> ReadPatronDemigodId(int islandId);
-		static std::list<int> All();
+		static std::vector<int> All();
 		static std::map<int, common::XY<double>> AllLocations();
 		static void Clear();
 	};

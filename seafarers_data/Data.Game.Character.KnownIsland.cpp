@@ -77,11 +77,11 @@ namespace data::game::character
 		Common::Execute(DELETE_ALL);
 	}
 
-	std::list<int> KnownIsland::All(int characterId)
+	std::vector<int> KnownIsland::All(int characterId)
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_FOR_CHARACTER, characterId);
-		std::list<int> result;
+		std::vector<int> result(records.size());
 		std::transform(
 			records.begin(),
 			records.end(),

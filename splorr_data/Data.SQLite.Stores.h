@@ -17,9 +17,9 @@ namespace data::sqlite
 			};
 		}
 
-		static std::list<std::map<std::string, std::string>> Execute(int, const std::string&);
+		static std::vector<std::map<std::string, std::string>> Execute(int, const std::string&);
 		template<typename TStore>
-		static std::list<std::map<std::string, std::string>> Execute(const TStore& store, const std::string& query)
+		static std::vector<std::map<std::string, std::string>> Execute(const TStore& store, const std::string& query)
 		{
 			return Execute((int)store, query);
 		}

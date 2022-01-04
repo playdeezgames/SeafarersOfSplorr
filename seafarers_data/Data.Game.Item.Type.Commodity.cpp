@@ -63,11 +63,11 @@ namespace data::game::item::type
 			FIELD_AMOUNT);
 	}
 
-	std::list<int> Commodity::AllCommodities(int itemTypeId)
+	std::vector<int> Commodity::AllCommodities(int itemTypeId)
 	{
 		Initialize();
-		std::list<int> result;
 		auto records = Common::Execute(QUERY_COMMODITY, itemTypeId);
+		std::vector<int> result(records.size());
 		std::transform(
 			records.begin(),
 			records.end(),

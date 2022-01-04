@@ -80,11 +80,11 @@ namespace data::game
 		Common::Execute(DELETE_ALL);
 	}
 
-	std::list<int> Ship::All()
+	std::vector<int> Ship::All()
 	{
 		Initialize();
-		std::list<int> result;
 		auto records = Common::Execute(QUERY_ALL);
+		std::vector<int> result(records.size());
 		std::transform(
 			records.begin(),
 			records.end(),

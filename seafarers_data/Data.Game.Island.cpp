@@ -83,11 +83,11 @@ namespace data::game
 		return Common::LastInsertedIndex();
 	}
 
-	std::list<int> Island::All()
+	std::vector<int> Island::All()
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_ALL);
-		std::list<int> result;
+		std::vector<int> result(records.size());
 		std::transform(
 			records.begin(),
 			records.end(),

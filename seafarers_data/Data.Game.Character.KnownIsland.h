@@ -1,5 +1,5 @@
 #pragma once
-#include <list>
+#include <vector>
 namespace data::game::character
 {
 	struct KnownIsland
@@ -10,6 +10,6 @@ namespace data::game::character
 		static bool Has(int characterId, int islandId);
 		static void Clear(int characterId);
 		static void Clear();
-		static std::list<int> All(int characterId);
+		static std::vector<int> All(int characterId);
 	};
 }

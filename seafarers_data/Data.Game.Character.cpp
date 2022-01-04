@@ -108,11 +108,11 @@ namespace data::game
 			FIELD_NAME);
 	}
 
-	std::list<int> Character::All()
+	std::vector<int> Character::All()
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_ALL);
-		std::list<int> result;
+		std::vector<int> result(records.size());
 		std::transform(
 			records.begin(),
 			records.end(),

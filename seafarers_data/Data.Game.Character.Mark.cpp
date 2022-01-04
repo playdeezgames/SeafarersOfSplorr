@@ -74,11 +74,11 @@ namespace data::game::character
 		return Common::TryExecuteForOne(QUERY_ANY, characterId).has_value();
 	}
 
-	std::list<std::string> Mark::ReadMarkNames(int characterId)
+	std::vector<std::string> Mark::ReadMarkNames(int characterId)
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_NAMES, characterId);
-		std::list<std::string> result;
+		std::vector<std::string> result(records.size());
 		std::transform(
 			records.begin(),
 			records.end(),

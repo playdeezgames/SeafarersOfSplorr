@@ -101,11 +101,11 @@ namespace data::game::character
 			FIELD_SHIP_ID);
 	}
 
-	std::list<int> Ship::ReadCharactersForShip(int shipId)
+	std::vector<int> Ship::ReadCharactersForShip(int shipId)
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_CHARACTERS_FOR_SHIP, shipId);
-		std::list<int> result;
+		std::vector<int> result(records.size());
 		std::transform(
 			records.begin(),
 			records.end(),

@@ -1,5 +1,5 @@
 #pragma once
-#include <list>
+#include <vector>
 #include <optional>
 #include <string>
 namespace data::game
@@ -14,6 +14,6 @@ namespace data::game
 		static std::optional<int> ReadOriginIslandId(int characterId);
 		static std::optional<int> ReadTribeId(int characterId);
 		static void Initialize();
-		static std::list<int> All();
+		static std::vector<int> All();
 	};
 }

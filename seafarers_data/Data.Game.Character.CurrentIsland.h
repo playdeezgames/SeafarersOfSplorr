@@ -1,5 +1,5 @@
 #pragma once
-#include <list>
+#include <vector>
 #include <optional>
 namespace data::game::character
 {
@@ -10,6 +10,6 @@ namespace data::game::character
 		static std::optional<int> Read(int characterId);
 		static void Write(int characterId, int islandId);
 		static void Clear(int characterId);
-		static std::list<int> All(int islandId);
+		static std::vector<int> All(int islandId);
 	};
 }

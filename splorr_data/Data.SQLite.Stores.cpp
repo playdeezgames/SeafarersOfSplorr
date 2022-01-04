@@ -37,9 +37,9 @@ namespace data::sqlite
 		return 0;
 	}
 
-	static std::list<std::map<std::string, std::string>> DoExecute(const std::shared_ptr<sqlite3>& connection, const std::string& query)
+	static std::vector<std::map<std::string, std::string>> DoExecute(const std::shared_ptr<sqlite3>& connection, const std::string& query)
 	{
-		std::list<std::map<std::string, std::string>> results;
+		std::vector<std::map<std::string, std::string>> results;
 		char* errmsg = nullptr;
 		sqlite3_exec(connection.get(), query.c_str(), ExecutionCallback, &results, &errmsg);
 		if (errmsg)
@@ -51,14 +51,14 @@ namespace data::sqlite
 		return results;
 	}
 
-	std::list<std::map<std::string, std::string>> Stores::Execute(int store, const std::string& query)
+	std::vector<std::map<std::string, std::string>> Stores::Execute(int store, const std::string& query)
 	{
 		auto connection = GetConnection(store);
 		if (connection)
 		{
 			return DoExecute(connection, query);
 		}
-		return std::list<std::map<std::string, std::string>>();
+		return std::vector<std::map<std::string, std::string>>();
 	}
 
 	void Stores::Copy(int storeFrom, int storeTo)
