@@ -14,36 +14,9 @@ namespace state::in_play
 
 	struct RosterItem
 	{
-		int index;
-		std::string name;
-		std::string berth;
-		std::string mark;
+		std::string text;
 		int characterId;
-		int currentHitPoints;
-		int maximumHitPoints;
 	};
-
-	static std::vector<RosterItem> rosterItems;
-
-	static void ShowRosterItem(const RosterItem& rosterItem)
-	{
-		Terminal::WriteLine(
-			"{}) {}{} - {} HP:{}/{}", 
-			rosterItem.index, 
-			rosterItem.name, 
-			rosterItem.mark, 
-			rosterItem.berth,
-			rosterItem.currentHitPoints,
-			rosterItem.maximumHitPoints);
-	}
-
-	static void RefreshRoster()
-	{
-		std::for_each(
-			rosterItems.begin(), 
-			rosterItems.end(), 
-			ShowRosterItem);
-	}
 
 	static void Refresh()
 	{
@@ -54,8 +27,8 @@ namespace state::in_play
 		Terminal::WriteLine();
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		RefreshRoster();
-		Terminal::WriteLine("0) Never mind");
+
+		Terminal::ShowMenu();
 
 		Terminal::ShowPrompt();
 	}
@@ -69,62 +42,69 @@ namespace state::in_play
 		{game::BerthType::PASSENGER, "Passenger"}
 	};
 
-	static void UpdateRoster()
+	static const std::function<void()> GoToCrewDetail(int characterId)
 	{
-		rosterItems.clear();
-		auto crew = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().GetBerths().GetBerths();
-		int index = 1;
+		return [characterId]()
+		{
+			SetCrewDetailCharacterId(characterId);
+			application::UIState::Write(::UIState::IN_PLAY_CREW_DETAIL);
+		};
+	}
+
+	static void UpdateMenu()
+	{
+		std::list<RosterItem> rosterItems;
+		auto crew = 
+			game::Session()
+			.GetPlayer()
+			.GetCharacter()
+			.GetBerth()
+			.GetShip()
+			.GetBerths()
+			.GetBerths();
 		std::transform(
-			crew.begin(), 
-			crew.end(), 
-			std::back_inserter(rosterItems), 
-			[&index](const game::session::ship::Berth& entry) 
+			crew.begin(),
+			crew.end(),
+			std::back_inserter(rosterItems),
+			[](const game::session::ship::Berth& entry)
 			{
 				auto characterId = entry.GetCharacterId();
 				auto character = game::Session().GetCharacters().GetCharacter(characterId);
-				auto hitPoints = 
+				auto hitPoints =
 					game::Session()
 					.GetCharacters()
 					.GetCharacter(characterId)
 					.GetHitpoints();
 				RosterItem result = {
-					index++,
-					character.GetName(),
-					berthNames.find(entry.GetBerthType())->second,
-					(character.IsPlayer()) ? ("(you)") : (""),
-					characterId,
-					hitPoints.GetCurrent(),
-					hitPoints.GetMaximum()
-					};
+					std::format(
+						"{}{} - {} HP{}/{}", 
+						character.GetName(), 
+						(character.IsPlayer()) ? ("(you)") : (""),					
+						berthNames.find(entry.GetBerthType())->second, 
+						hitPoints.GetCurrent(),					
+						hitPoints.GetMaximum()),
+					characterId
+				};
 				return result;
 			});
+		Terminal::menu.Clear();
+		Terminal::menu.SetRefresh(Refresh);
+		std::for_each(
+			rosterItems.begin(), 
+			rosterItems.end(), 
+			[](const RosterItem& rosterItem) 
+			{
+				Terminal::menu.AddAction({ rosterItem.text, GoToCrewDetail(rosterItem.characterId) });
+			});
+		MenuAction defaultAction = { "Never mind", OnLeave };
+		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 
 	static void OnEnter()
 	{
 		PlayMainTheme();
-		UpdateRoster();
+		UpdateMenu();
 		Refresh();
-	}
-
-	static const std::map<std::string, std::function<void()>> menuActions =
-	{
-		{ "0", OnLeave}
-	};
-
-	static const void OnOtherInput(const std::string& line)
-	{
-		int index = common::Data::ToInt(line) - 1;
-		if (index >= 0 && index < rosterItems.size())
-		{
-			SetCrewDetailCharacterId(rosterItems[index].characterId);
-			application::UIState::Write(::UIState::IN_PLAY_CREW_DETAIL);
-		}
-		else
-		{
-			Terminal::ErrorMessage(Terminal::INVALID_INPUT);
-			Refresh();
-		}
 	}
 
 	void CrewList::Start()
@@ -137,8 +117,8 @@ namespace state::in_play
 			Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(
 			CURRENT_STATE,
-			Terminal::DoIntegerInput(
-				menuActions,
-				OnOtherInput));
+			Terminal::DoMenuInput(
+				Terminal::INVALID_INPUT,
+				Refresh));
 	}
 }
