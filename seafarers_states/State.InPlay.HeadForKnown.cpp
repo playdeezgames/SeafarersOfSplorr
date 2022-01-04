@@ -39,6 +39,18 @@ namespace state::in_play
 		Terminal::ShowPrompt();
 	}
 
+	static std::function<void()> DoSetHeading(const game::session::character::KnownIsland& island, double heading)
+	{
+		return[island, heading]()
+		{
+			Terminal::SetForeground(game::Colors::GREEN);
+			Terminal::WriteLine();
+			game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().SetHeading(heading);
+			Terminal::WriteLine("You head for {}.", island.GetDisplayName());
+			application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
+		};
+	}
+
 	static void UpdateMenu()
 	{
 		Terminal::menu.Clear();
@@ -56,9 +68,7 @@ namespace state::in_play
 						island.GetDisplayName(),
 						common::Heading::XYToDegrees(relativeLocation),
 						relativeLocation.GetMagnitude()), 
-					[]() 
-					{
-					} 
+					DoSetHeading(island, common::Heading::XYToDegrees(relativeLocation))
 				});
 		}
 		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW) };
@@ -70,40 +80,6 @@ namespace state::in_play
 		PlayMainTheme();
 		UpdateMenu();
 		Refresh();
-	}
-
-	static void DoHeadForKnownIndex(size_t index)
-	{
-		auto character = game::Session().GetPlayer().GetCharacter();
-		auto location = character.GetBerth().GetShip().GetLocation();
-		auto nearby = character.GetKnownIslands().GetAll();
-		auto chosen = common::utility::List::GetNth(nearby, index);
-		if (chosen)
-		{
-			auto relativeLocation = chosen.value().GetIsland().GetLocation() - location;
-			Terminal::SetForeground(game::Colors::GREEN);
-			Terminal::WriteLine();
-			game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().SetHeading(common::Heading::XYToDegrees(relativeLocation));
-			Terminal::WriteLine("You head for {}.", chosen.value().GetDisplayName());
-			application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
-		}
-		else
-		{
-			Terminal::SetForeground(game::Colors::RED);
-			Terminal::WriteLine();
-			Terminal::WriteLine("Please select a valid option.");
-			Refresh();
-		}
-	}
-
-	static const std::map<std::string, std::function<void()>> menuActions =
-	{
-		{"0", application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_HEADING)}
-	};
-
-	static void OnOtherInput(const std::string& line)
-	{
-		DoHeadForKnownIndex((size_t)common::Data::ToInt(line)- (size_t)1);
 	}
 
 	void HeadForKnown::Start()
