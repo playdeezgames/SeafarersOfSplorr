@@ -34,22 +34,25 @@ namespace state::in_play::crew_detail
 
 		Terminal::WriteLine("HP: {}/{}", hitPoints.GetCurrent(), hitPoints.GetMaximum());
 
-		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine("0) Done");
+		Terminal::ShowMenu();
 
 		Terminal::ShowPrompt();
+	}
+
+	static void UpdateMenu()
+	{
+		Terminal::menu.Clear();
+		Terminal::menu.SetRefresh(Refresh);
+		MenuAction defaultAction = { "Never mind", OnLeave };
+		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 
 	static void OnEnter()
 	{
 		PlayMainTheme();
+		UpdateMenu();
 		Refresh();
 	}
-
-	static const std::map<std::string, std::function<void()>> menuActions =
-	{
-		{ "0", OnLeave}
-	};
 
 	void Characteristics::Start()
 	{
@@ -61,8 +64,7 @@ namespace state::in_play::crew_detail
 			Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(
 			CURRENT_STATE,
-			Terminal::DoIntegerInput(
-				menuActions,
+			Terminal::DoMenuInput(
 				Terminal::INVALID_INPUT,
 				Refresh));
 	}
