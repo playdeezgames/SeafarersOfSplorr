@@ -19,27 +19,9 @@ namespace state::in_play
 		Terminal::WriteLine("Dock or Careen:");
 		Terminal::SetForeground(game::Colors::GRAY);
 
-		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine("1) Dock");
-		Terminal::WriteLine("0) Never mind");
+		Terminal::ShowMenu();
 
 		Terminal::ShowPrompt();
-	}
-
-	static void OnEnter()
-	{
-		PlayMainTheme();
-		Refresh();
-	}
-
-	static void CompleteQuest(const std::string& message)
-	{
-		auto playerCharacter =
-			game::Session()
-			.GetPlayer().GetCharacter();
-		playerCharacter.GetMessages().Add(game::Colors::LIGHT_CYAN, "Delivery Complete!");
-		playerCharacter.GetMessages().Add(game::Colors::GRAY, message);
-		playerCharacter.GetMessages().Add(game::Colors::GREEN,"Yer reputation increases!");//<-
 	}
 
 	static void OnDock()
@@ -53,11 +35,21 @@ namespace state::in_play
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
-	static const std::map<std::string, std::function<void()>> menuActions =
+	static void UpdateMenu()
 	{
-		{"1", OnDock},
-		{"0", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW)}
-	};
+		Terminal::menu.Clear();
+		Terminal::menu.SetRefresh(Refresh);
+		Terminal::menu.AddAction({ "Dock", OnDock });
+		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW) };
+		Terminal::menu.SetDefaultAction(defaultAction);
+	}
+
+	static void OnEnter()
+	{
+		PlayMainTheme();
+		UpdateMenu();
+		Refresh();
+	}
 
 	void DockOrCareen::Start()
 	{
@@ -65,8 +57,7 @@ namespace state::in_play
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(
 			CURRENT_STATE,
-			Terminal::DoIntegerInput(
-				menuActions,
+			Terminal::DoMenuInput(
 				Terminal::INVALID_INPUT,
 				Refresh));
 	}

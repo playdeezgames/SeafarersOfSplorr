@@ -39,9 +39,36 @@ namespace state::in_play
 		Terminal::ShowPrompt();
 	}
 
+	static void UpdateMenu()
+	{
+		Terminal::menu.Clear();
+		Terminal::menu.SetRefresh(Refresh);
+		auto character = game::Session().GetPlayer().GetCharacter();
+		auto known = character.GetKnownIslands();
+		auto location = character.GetBerth().GetShip().GetLocation();
+		for (auto& island : known.GetAll())
+		{
+			auto relativeLocation = island.GetIsland().GetLocation() - location;
+			Terminal::menu.AddAction(
+				{ 
+					std::format(
+						"{} ({:.2f}\xf8 dist {:.1f})",
+						island.GetDisplayName(),
+						common::Heading::XYToDegrees(relativeLocation),
+						relativeLocation.GetMagnitude()), 
+					[]() 
+					{
+					} 
+				});
+		}
+		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW) };
+		Terminal::menu.SetDefaultAction(defaultAction);
+	}
+
 	static void OnEnter()
 	{
 		PlayMainTheme();
+		UpdateMenu();
 		Refresh();
 	}
 
@@ -85,8 +112,8 @@ namespace state::in_play
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(
 			CURRENT_STATE,
-			Terminal::DoIntegerInput(
-				menuActions,
-				OnOtherInput));
+			Terminal::DoMenuInput(
+				Terminal::INVALID_INPUT,
+				Refresh));
 	}
 }

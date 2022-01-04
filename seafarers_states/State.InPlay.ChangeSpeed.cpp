@@ -19,21 +19,9 @@ namespace state::in_play
 			.GetShip()
 			.GetSpeed());
 
-		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine("1) All stop");
-		Terminal::WriteLine("2) Ahead 1/3");
-		Terminal::WriteLine("3) Ahead 2/3");
-		Terminal::WriteLine("4) Ahead full");
-		Terminal::WriteLine("5) Ahead flank");
-		Terminal::WriteLine("0) Never mind");
+		Terminal::ShowMenu();
 
 		Terminal::ShowPrompt();
-	}
-
-	static void OnEnter()
-	{
-		PlayMainTheme();
-		Refresh();
 	}
 
 	static std::function<void()> DoSetSpeed(double speed)
@@ -49,25 +37,34 @@ namespace state::in_play
 		};
 	}
 
-	static const std::map<std::string, std::function<void()>> menuActions =
+	static void UpdateMenu()
 	{
-		{"1", DoSetSpeed(0.0)},
-		{"2", DoSetSpeed(0.3)},
-		{"3", DoSetSpeed(0.6)},
-		{"4", DoSetSpeed(0.9)},
-		{"5", DoSetSpeed(1.0)},
-		{"0", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS)}
-	};
+		Terminal::menu.Clear();
+		Terminal::menu.SetRefresh(Refresh);
+		Terminal::menu.AddAction({ "All stop", DoSetSpeed(0.0) });
+		Terminal::menu.AddAction({ "Ahead 1/3", DoSetSpeed(0.3) });
+		Terminal::menu.AddAction({ "Ahead 2/3", DoSetSpeed(0.6) });
+		Terminal::menu.AddAction({ "Ahead Full", DoSetSpeed(0.9) });
+		Terminal::menu.AddAction({ "Ahead Flank", DoSetSpeed(1.0) });
+		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS) };
+		Terminal::menu.SetDefaultAction(defaultAction);
+	}
+
+	static void OnEnter()
+	{
+		PlayMainTheme();
+		UpdateMenu();
+		Refresh();
+	}
 
 	void ChangeSpeed::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(
-			CURRENT_STATE, 
-			Terminal::DoIntegerInput(
-				menuActions, 
-				Terminal::INVALID_INPUT, 
+			CURRENT_STATE,
+			Terminal::DoMenuInput(
+				Terminal::INVALID_INPUT,
 				Refresh));
 	}
 }
