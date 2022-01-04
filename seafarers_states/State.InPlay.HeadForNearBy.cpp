@@ -40,9 +40,48 @@ namespace state::in_play
 		Terminal::ShowPrompt();
 	}
 
+
+	static std::function<void()> DoSetHeading(const game::session::character::KnownIsland& island, double heading)
+	{
+		return[island, heading]()
+		{
+			Terminal::SetForeground(game::Colors::GREEN);
+			Terminal::WriteLine();
+			game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().SetHeading(heading);
+			Terminal::WriteLine("You head for {}.", island.GetDisplayName());
+			application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
+		};
+	}
+
+
+	static void UpdateMenu()
+	{
+		Terminal::menu.Clear();
+		Terminal::menu.SetRefresh(Refresh);
+		auto character = game::Session().GetPlayer().GetCharacter();
+		auto known = character.GetKnownIslands();
+		auto location = character.GetBerth().GetShip().GetLocation();
+		for (auto& island : known.GetAll())
+		{
+			auto relativeLocation = island.GetIsland().GetLocation() - location;
+			Terminal::menu.AddAction(
+				{
+					std::format(
+						"{} ({:.2f}\xf8 dist {:.1f})",
+						island.GetDisplayName(),
+						common::Heading::XYToDegrees(relativeLocation),
+						relativeLocation.GetMagnitude()),
+					DoSetHeading(island, common::Heading::XYToDegrees(relativeLocation))
+				});
+		}
+		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW) };
+		Terminal::menu.SetDefaultAction(defaultAction);
+	}
+
 	static void OnEnter()
 	{
 		PlayMainTheme();
+		UpdateMenu();
 		Refresh();
 	}
 

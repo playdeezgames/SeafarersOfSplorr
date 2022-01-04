@@ -14,27 +14,8 @@ namespace state::in_play
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Head for:");
-		auto character = game::Session().GetPlayer().GetCharacter();
-		auto known = character.GetKnownIslands();
-		auto location = character.GetBerth().GetShip().GetLocation();
-		if (known.HasAny())
-		{
-			Terminal::SetForeground(game::Colors::GRAY);
-			Terminal::WriteLine("Known islands:");
-			Terminal::SetForeground(game::Colors::YELLOW);
-			int index = 1;
-			for (auto& island : known.GetAll())
-			{
-				auto relativeLocation = island.GetIsland().GetLocation() - location;
-				Terminal::WriteLine("{}) {} ({:.2f}\xf8 dist {:.1f})",
-					index++,
-					island.GetDisplayName(),
-					common::Heading::XYToDegrees(relativeLocation),
-					relativeLocation.GetMagnitude());
-			}
-		}
 
-		Terminal::WriteLine("0) Never mind");
+		Terminal::ShowMenu();
 
 		Terminal::ShowPrompt();
 	}
@@ -56,21 +37,18 @@ namespace state::in_play
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		auto character = game::Session().GetPlayer().GetCharacter();
-		auto known = character.GetKnownIslands();
-		auto location = character.GetBerth().GetShip().GetLocation();
-		for (auto& island : known.GetAll())
-		{
-			auto relativeLocation = island.GetIsland().GetLocation() - location;
-			Terminal::menu.AddAction(
-				{ 
-					std::format(
-						"{} ({:.2f}\xf8 dist {:.1f})",
-						island.GetDisplayName(),
-						common::Heading::XYToDegrees(relativeLocation),
-						relativeLocation.GetMagnitude()), 
-					DoSetHeading(island, common::Heading::XYToDegrees(relativeLocation))
-				});
-		}
+		auto nearby = character.GetBerth().GetShip().GetNearbyIslands();
+			auto location = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().GetLocation();
+			for (auto& island : nearby.GetAll())
+			{
+				auto relativeLocation = island.GetLocation() - location;
+				auto knownIsland = character.GetKnownIslands().GetKnownIsland(island);
+				Terminal::menu.AddAction({ std::format("{} ({:.2f}\xf8 dist {:.1f})",
+					knownIsland.GetDisplayName(),
+					common::Heading::XYToDegrees(relativeLocation),
+					relativeLocation.GetMagnitude()),
+					DoSetHeading(knownIsland, common::Heading::XYToDegrees(relativeLocation)) });
+			}
 		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
