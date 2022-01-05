@@ -155,6 +155,9 @@
     <ClInclude Include="Data.Game.Character.Mark.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.SkillCharacteristicCoefficient.h">
+      <Filter>Header Files\Skill</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">
@@ -237,6 +240,9 @@
     </ClCompile>
     <ClCompile Include="Data.Game.Character.Mark.cpp">
       <Filter>Source Files\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.SkillCharacteristicCoefficient.cpp">
+      <Filter>Source Files\Skill</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

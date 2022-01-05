@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <Data.Game.Skill.h>
+#include <Data.Game.SkillCharacteristicCoefficient.h>
 #include "Game.Characteristic.h"
 #include "Game.Session.World.Skills.h"
 #include "Game.SkillCategory.h"
@@ -64,10 +65,18 @@ namespace game::session::world
 			[](const std::pair<game::SkillCategory, SkillDescriptor>& entry) 
 			{
 				auto descriptor = entry.second;
-				data::game::Skill::EstablishGeneralSkillForCategory(
+				auto skillId = 
+					data::game::Skill::EstablishGeneralSkillForCategory(
 					(int)entry.first,
 					descriptor.name, 
 					descriptor.defaultValue);
+				std::for_each(
+					descriptor.characteristicCoefficients.begin(),
+					descriptor.characteristicCoefficients.end(),
+					[skillId](const std::pair<game::Characteristic, int> coefficient) 
+					{
+						data::game::SkillCharacteristicCoefficient::Write(skillId, (int)coefficient.first, coefficient.second);
+					});
 			});
 	}
 }
