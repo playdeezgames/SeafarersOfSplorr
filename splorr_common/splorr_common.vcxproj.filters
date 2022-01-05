@@ -38,9 +38,6 @@
     <ClInclude Include="Common.Utility.Table.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common.Utility.List.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Common.Utility.Array.h">
       <Filter>Header Files</Filter>
     </ClInclude>

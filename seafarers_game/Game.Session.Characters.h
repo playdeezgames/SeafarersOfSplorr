@@ -2,7 +2,7 @@
 #include "Game.Characters.State.h"
 #include "Game.Difficulty.h"
 #include "Game.Session.Character.h"
-#include <list>
+#include <vector>
 namespace game::session
 {
 	struct Characters
@@ -11,7 +11,7 @@ namespace game::session
 		constexpr Character GetCharacter(int characterId) const { return Character(characterId); }
 		constexpr void Populate(const Difficulty& difficulty) const {}
 
-		std::list<Character> GetAll() const;
+		std::vector<Character> GetAll() const;
 		void Reset() const;
 		void ApplyTurnEffects() const;
 		Character Create(const game::characters::State& state);

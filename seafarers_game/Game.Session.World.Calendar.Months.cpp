@@ -4,9 +4,9 @@
 #include <iterator>
 namespace game::session::world::calendar
 {
-	std::list<Month> Months::GetAll() const
+	std::vector<Month> Months::GetAll() const
 	{
-		std::list<Month> result;
+		std::vector<Month> result;
 		auto months = data::game::world::Month::AllOrdinals(worldId);
 		std::transform(
 			months.begin(),

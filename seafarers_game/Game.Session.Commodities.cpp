@@ -1,7 +1,7 @@
 #include "Game.Session.Commodities.h"
 namespace game::session
 {
-	static const std::list<Commodity> allCommodities = 
+	static const std::vector<Commodity> allCommodities =
 	{
 		Commodity(game::Commodity::WHEAT),
 		Commodity(game::Commodity::WOOD),
@@ -14,7 +14,7 @@ namespace game::session
 		Commodity(game::Commodity::SALT)
 	};
 
-	const std::list<Commodity>& Commodities::GetAll() const
+	const std::vector<Commodity>& Commodities::GetAll() const
 	{
 		return allCommodities;
 	}

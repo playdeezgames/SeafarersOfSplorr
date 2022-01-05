@@ -1,5 +1,5 @@
 #pragma once
-#include <list>
+#include <vector>
 #include <string>
 namespace game::characters
 {
@@ -9,5 +9,5 @@ namespace game::characters
 		std::string text;
 	};
 
-	typedef std::list<Message> MessageList;
+	typedef std::vector<Message> MessageList;
 }

@@ -120,10 +120,10 @@ namespace game::session
 			});
 	}
 
-	std::list<Demigod> Demigods::GetAll() const
+	std::vector<Demigod> Demigods::GetAll() const
 	{
 		auto demigods = DemigodData::All();
-		std::list<Demigod> result;
+		std::vector<Demigod> result;
 		std::transform(
 			demigods.begin(),
 			demigods.end(),

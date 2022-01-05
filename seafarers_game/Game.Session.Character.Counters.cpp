@@ -1,9 +1,9 @@
 #include <algorithm>
 #include "Game.Session.Character.Counters.h"
-#include <list>
+#include <vector>
 namespace game::session::character
 {
-	static const std::list<game::characters::Counter> counters = 
+	static const std::vector<game::characters::Counter> counters =
 	{
 		game::characters::Counter::STARVATION,
 		game::characters::Counter::WOUNDS

@@ -14,10 +14,10 @@ namespace game::session::character
 		data::game::character::KnownIsland::Write(characterId, island.operator int());
 	}
 
-	std::list<KnownIsland> KnownIslands::GetAll() const
+	std::vector<KnownIsland> KnownIslands::GetAll() const
 	{
 		auto islandIds = data::game::character::KnownIsland::All(characterId);
-		std::list<KnownIsland> result;
+		std::vector<KnownIsland> result;
 		std::transform(
 			islandIds.begin(),
 			islandIds.end(),

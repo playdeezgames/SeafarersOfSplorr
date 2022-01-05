@@ -78,7 +78,7 @@ namespace data::game::character
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_NAMES, characterId);
-		std::vector<std::string> result(records.size());
+		std::vector<std::string> result;
 		std::transform(
 			records.begin(),
 			records.end(),

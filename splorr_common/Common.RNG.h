@@ -1,7 +1,7 @@
 #pragma once
-#include <list>
 #include <map>
 #include <optional>
+#include <vector>
 namespace common
 {
 	struct RNG
@@ -16,17 +16,12 @@ namespace common
 		static size_t FromRange(size_t, size_t);
 		static double FromRange(double, double);
 		template <typename TResult>
-		static std::optional<TResult> FromList(const std::list<TResult>& items)
+		static std::optional<TResult> FromVector(const std::vector<TResult>& items)
 		{
 			if (!items.empty())
 			{
 				size_t index = FromRange(0u, items.size());
-				auto iter = items.begin();
-				while (index > 0)
-				{
-					--index;
-					++iter;
-				}
+				auto iter = items.begin() + index;
 				return std::optional<TResult>(*iter);
 			}
 			return std::nullopt;

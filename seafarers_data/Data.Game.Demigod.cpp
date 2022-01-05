@@ -67,7 +67,7 @@ namespace data::game
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_ALL);
-		std::vector<int> result(records.size());
+		std::vector<int> result;
 		std::transform(
 			records.begin(),
 			records.end(),

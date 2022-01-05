@@ -9,10 +9,10 @@
 namespace game::session
 {
 	using TribeData = data::game::Tribe;
-	std::list<Tribe> Tribes::GetAll() const
+	std::vector<Tribe> Tribes::GetAll() const
 	{
 		auto tribeIds = TribeData::All();
-		std::list<Tribe> result;
+		std::vector<Tribe> result;
 		std::transform(
 			tribeIds.begin(),
 			tribeIds.end(),

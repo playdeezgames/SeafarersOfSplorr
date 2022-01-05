@@ -1,6 +1,6 @@
 #pragma once
 #include "Game.Session.Character.Flag.h"
-#include <list>
+#include <vector>
 namespace game::session::character
 {
 	struct Flags
@@ -10,7 +10,7 @@ namespace game::session::character
 		{
 			return Flag(characterId, flag);
 		}
-		std::list<Flag> GetAll() const;
+		std::vector<Flag> GetAll() const;
 	private:
 		int characterId;
 	};

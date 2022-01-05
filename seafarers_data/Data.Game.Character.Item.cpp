@@ -56,7 +56,7 @@ namespace data::game::character
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_ITEMS_FOR_CHARACTER, characterId);
-		std::vector<int> result(records.size());
+		std::vector<int> result;
 		std::transform(
 			records.begin(),
 			records.end(),

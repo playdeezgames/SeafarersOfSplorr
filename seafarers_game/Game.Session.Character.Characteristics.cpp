@@ -4,10 +4,10 @@
 #include <iterator>
 namespace game::session::character
 {
-	std::list<Characteristic> Characteristics::GetAll() const
+	std::vector<Characteristic> Characteristics::GetAll() const
 	{
 		auto characteristics = data::game::character::Characteristic::Read(characterId);
-		std::list<Characteristic> result;
+		std::vector<Characteristic> result;
 		std::transform(
 			characteristics.begin(),
 			characteristics.end(),

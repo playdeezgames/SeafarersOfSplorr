@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <Common.Data.h>
 #include <Common.Heading.h>
-#include <Common.Utility.List.h>
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.HeadForKnown.h"

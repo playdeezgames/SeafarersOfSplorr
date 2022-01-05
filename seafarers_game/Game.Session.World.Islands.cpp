@@ -176,10 +176,10 @@ namespace game::session::world
 		return common::RNG::FromGenerator(table);
 	}
 
-	std::list<Island> Islands::GetAll() const
+	std::vector<Island> Islands::GetAll() const
 	{
 		auto islands = IslandData::All();
-		std::list<Island> result;
+		std::vector<Island> result;
 		std::transform(
 			islands.begin(),
 			islands.end(),

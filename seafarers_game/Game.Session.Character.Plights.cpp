@@ -5,10 +5,10 @@
 namespace game::session::character
 {
 	using PlightData = data::game::character::Plight;
-	std::list<Plight> Plights::GetAll() const
+	std::vector<Plight> Plights::GetAll() const
 	{
 		auto plights = PlightData::All(characterId);
-		std::list<Plight> result;
+		std::vector<Plight> result;
 		std::transform(
 			plights.begin(), 
 			plights.end(), 

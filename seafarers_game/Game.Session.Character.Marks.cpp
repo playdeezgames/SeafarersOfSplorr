@@ -11,10 +11,10 @@ namespace game::session::character
 		return MarkData::HasAny(characterId);
 	}
 
-	std::list<Mark> Marks::GetMarks() const
+	std::vector<Mark> Marks::GetMarks() const
 	{
 		auto marks = MarkData::ReadMarkNames(characterId);
-		std::list<Mark> result;
+		std::vector<Mark> result;
 		std::transform(
 			marks.begin(),
 			marks.end(), 

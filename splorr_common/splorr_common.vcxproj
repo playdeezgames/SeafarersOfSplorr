@@ -26,7 +26,6 @@
     <ClInclude Include="Common.Utility.Array.h" />
     <ClInclude Include="Common.Utility.Dispatcher.h" />
     <ClInclude Include="Common.Utility.h" />
-    <ClInclude Include="Common.Utility.List.h" />
     <ClInclude Include="Common.Utility.Navigator.h" />
     <ClInclude Include="Common.Utility.Optional.h" />
     <ClInclude Include="Common.Utility.Set.h" />

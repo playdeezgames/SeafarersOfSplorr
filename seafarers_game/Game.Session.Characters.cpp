@@ -12,10 +12,10 @@
 #include <iterator>
 namespace game::session
 {
-	std::list<Character> Characters::GetAll() const
+	std::vector<Character> Characters::GetAll() const
 	{
 		auto characters = data::game::Character::All();
-		std::list<Character> result;
+		std::vector<Character> result;
 		std::transform(
 			characters.begin(),
 			characters.end(),

@@ -1,7 +1,7 @@
 #pragma once
 #include "Game.Session.Character.KnownIsland.h"
 #include "Game.Session.Island.h"
-#include <list>
+#include <vector>
 namespace game::session::character
 {
 	struct KnownIslands
@@ -13,7 +13,7 @@ namespace game::session::character
 		}
 		void AddKnownIsland(const Island& island) const;
 		bool HasAny() const;
-		std::list<KnownIsland> GetAll() const;
+		std::vector<KnownIsland> GetAll() const;
 	private:
 		int characterId;
 	};

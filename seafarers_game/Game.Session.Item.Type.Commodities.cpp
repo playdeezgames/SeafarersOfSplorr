@@ -4,10 +4,10 @@
 #include <iterator>
 namespace game::session::item::type
 {
-	std::list<Commodity> Commodities::GetAll() const
+	std::vector<Commodity> Commodities::GetAll() const
 	{
 		auto commodities = data::game::item::type::Commodity::AllCommodities(itemTypeId);
-		std::list<Commodity> result;
+		std::vector<Commodity> result;
 		std::transform(
 			commodities.begin(),
 			commodities.end(),

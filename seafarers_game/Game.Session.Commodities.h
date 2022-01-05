@@ -1,13 +1,13 @@
 #pragma once
 #include "Game.Session.Commodity.h"
-#include <list>
+#include <vector>
 namespace game::session
 {
 	struct Commodities
 	{
 		constexpr Commodities() {}
 		constexpr Commodity GetCommodity(const game::Commodity& commodity) const { return Commodity(commodity); }
-		const std::list<Commodity>& GetAll() const;
+		const std::vector<Commodity>& GetAll() const;
 		void Reset() const {}
 	};
 }

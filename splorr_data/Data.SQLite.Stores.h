@@ -1,6 +1,5 @@
 #pragma once
 #include <functional>
-#include <list>
 #include <map>
 #include <string>
 namespace data::sqlite

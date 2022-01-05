@@ -4,10 +4,10 @@
 #include <iterator>
 namespace game::session::ship
 {
-	std::list<Berth> Berths::GetBerths() const
+	std::vector<Berth> Berths::GetBerths() const
 	{
 		auto characterIds = data::game::character::Ship::ReadCharactersForShip(shipId);
-		std::list<Berth> result;
+		std::vector<Berth> result;
 		std::transform(
 			characterIds.begin(),
 			characterIds.end(),

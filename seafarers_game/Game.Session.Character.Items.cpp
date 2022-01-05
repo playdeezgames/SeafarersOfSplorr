@@ -6,10 +6,10 @@
 #include <numeric>
 namespace game::session::character
 {
-	std::list<Item> Items::GetAll() const
+	std::vector<Item> Items::GetAll() const
 	{
 		auto itemIds = data::game::character::Item::ReadForCharacter(characterId);
-		std::list<Item> result;
+		std::vector<Item> result;
 		std::transform(
 			itemIds.begin(),
 			itemIds.end(),
@@ -21,10 +21,10 @@ namespace game::session::character
 		return result;
 	}
 
-	std::list<Item> Items::GetItems(const item::Type& itemType) const
+	std::vector<Item> Items::GetItems(const item::Type& itemType) const
 	{
 		auto items = GetAll();//this would be better to call its own query...
-		std::list<Item> result;
+		std::vector<Item> result;
 		std::copy_if(
 			items.begin(),
 			items.end(),

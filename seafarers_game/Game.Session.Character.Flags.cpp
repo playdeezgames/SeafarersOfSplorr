@@ -6,10 +6,10 @@
 #include <iterator>
 namespace game::session::character
 {
-	std::list<Flag> Flags::GetAll() const
+	std::vector<Flag> Flags::GetAll() const
 	{
-		std::list<Flag> result;
 		auto flags = data::game::character::Flags::All(characterId);
+		std::vector<Flag> result;
 		std::transform(
 			flags.begin(),
 			flags.end(),

@@ -105,7 +105,7 @@ namespace data::game::character
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_CHARACTERS_FOR_SHIP, shipId);
-		std::vector<int> result(records.size());
+		std::vector<int> result;
 		std::transform(
 			records.begin(),
 			records.end(),

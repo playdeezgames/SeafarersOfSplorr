@@ -14,7 +14,6 @@
 #include "Game.Session.Character.Plights.h"
 #include "Game.Session.Island.h"
 #include "Game.Session.Tribe.h"
-#include <list>
 #include <optional>
 namespace game::session
 {
