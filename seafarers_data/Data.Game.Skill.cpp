@@ -10,7 +10,8 @@ namespace data::game
 			[SkillId] INTEGER PRIMARY KEY AUTOINCREMENT,
 			[Category] INT NOT NULL,
 			[Type] INT NOT NULL,
-			[Name] TEXT NOT NULL
+			[Name] TEXT NOT NULL,
+			[DefaultValue] INT NOT NULL
 		);)"s;
 	static const std::string QUERY_NEXT_TYPE_FOR_CATEGORY =
 		R"(SELECT 
@@ -23,9 +24,10 @@ namespace data::game
 		(
 			[Category],
 			[Type],
-			[Name]
+			[Name],
+			[DefaultValue]
 		) 
-		VALUES({},{},{});)"s;
+		VALUES({},{},{},{});)"s;
 	static const std::string QUERY_ITEM_COLUMN =
 		R"(SELECT 
 			[{}] 
@@ -47,6 +49,7 @@ namespace data::game
 	static const std::string FIELD_TYPE = "Type";
 	static const std::string FIELD_NAME = "Name";
 	static const std::string FIELD_SKILL_ID = "SkillId";
+	static const std::string FIELD_DEFAULT_VALUE = "DefaultValue";
 
 	void Skill::Initialize()
 	{
@@ -62,23 +65,24 @@ namespace data::game
 				FIELD_MAXIMUM_TYPE).value_or(0) + 1;
 	}
 
-	int Skill::EstablishTypeForCategory(int category, int type, const std::string& name)
+	int Skill::EstablishTypeForCategory(int category, int type, const std::string& name, int defaultValue)
 	{
 		Initialize();
 		Common::Execute(
 			INSERT_ITEM, 
 			category, 
 			type, 
-			common::Data::QuoteString(name));
+			common::Data::QuoteString(name),
+			defaultValue);
 		return Common::LastInsertedIndex();
 	}
 
 	static const int GENERAL_TYPE = 0;
 
-	int Skill::EstablishGeneralSkillForCategory(int category, const std::string& name)
+	int Skill::EstablishGeneralSkillForCategory(int category, const std::string& name, int defaultValue)
 	{
 		Initialize();
-		return EstablishTypeForCategory(category, GENERAL_TYPE, name);
+		return EstablishTypeForCategory(category, GENERAL_TYPE, name, defaultValue);
 	}
 
 	std::optional<int> Skill::ReadGeneralSkillForCategory(int category)
@@ -111,6 +115,14 @@ namespace data::game
 		Initialize();
 		return Common::TryToString(
 			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_NAME, skillId),
+			FIELD_NAME);
+	}
+
+	std::optional<int> Skill::ReadDefaultValue(int skillId)
+	{
+		Initialize();
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_DEFAULT_VALUE, skillId),
 			FIELD_NAME);
 	}
 
