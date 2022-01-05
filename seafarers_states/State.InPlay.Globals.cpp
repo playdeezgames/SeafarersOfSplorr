@@ -41,4 +41,16 @@ namespace state::in_play
 	{
 		return headForMarkName;
 	}
+
+	static game::Difficulty gameDifficulty;
+
+	void SetGameDifficulty(const game::Difficulty& difficulty)
+	{
+		gameDifficulty = difficulty;
+	}
+
+	game::Difficulty GetGameDifficulty()
+	{
+		return gameDifficulty;
+	}
 }

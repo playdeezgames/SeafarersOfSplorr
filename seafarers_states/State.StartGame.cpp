@@ -5,6 +5,7 @@
 #include <Game.Colors.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Session.h>
+#include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "State.StartGame.h"
 #include "UIState.h"
@@ -16,9 +17,10 @@ namespace state
 	{
 		return [difficulty]()
 		{
-			game::Session().Reset();
-			game::Session().Populate(difficulty);
-			application::UIState::Write(::UIState::TIP);
+			in_play::SetGameDifficulty(difficulty);
+			game::Session().Reset();//eliminate
+			game::Session().Populate(difficulty);//eliminate
+			application::UIState::Write(::UIState::TIP);//go to quick/detaile start screen
 		};
 	}
 
@@ -31,41 +33,41 @@ namespace state
 		Terminal::WriteLine();
 		Terminal::WriteLine("Start Game:");
 
-		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine();
-		Terminal::WriteLine("1) Continue");
-		Terminal::WriteLine("2) Easy");
-		Terminal::WriteLine("3) Normal");
-		Terminal::WriteLine("4) Hard");
-		Terminal::WriteLine("5) HARDCORE");
-		Terminal::WriteLine("0) Never mind");
+		Terminal::ShowMenu();
 
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine();
 		Terminal::Write(">");
 	}
 
-	static void OnEnter()
+	static void UpdateMenu()
 	{
-		game::audio::Mux::Play(game::audio::Theme::MAIN);
-		Refresh();
+		Terminal::menu.Clear();
+		Terminal::menu.SetRefresh(Refresh);
+		Terminal::menu.AddAction({ "Continue", ::application::UIState::GoTo(::UIState::LOAD_GAME) });
+		Terminal::menu.AddAction({ "Easy", NewGame(game::Difficulty::EASY) });
+		Terminal::menu.AddAction({ "Normal", NewGame(game::Difficulty::NORMAL) });
+		Terminal::menu.AddAction({ "Hard", NewGame(game::Difficulty::HARD) });
+		Terminal::menu.AddAction({ "HARDCORE", NewGame(game::Difficulty::HARDCORE) });
+		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW) };
+		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 
-	static const std::map<std::string, std::function<void()>> menuActions =
+	static void OnEnter()
 	{
-		{ "1", ::application::UIState::GoTo(::UIState::LOAD_GAME) },
-		{ "2", NewGame(game::Difficulty::EASY)},
-		{ "3", NewGame(game::Difficulty::NORMAL) },
-		{ "4", NewGame(game::Difficulty::HARD) },
-		{ "5", NewGame(game::Difficulty::HARDCORE) },
-		{ "0", ::application::UIState::GoTo(::UIState::MAIN_MENU) }
-	};
+		in_play::PlayMainTheme();
+		UpdateMenu();
+		Refresh();
+	}
 
 	void StartGame::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(CURRENT_STATE, Terminal::DoIntegerInput(menuActions, "Please enter a number between 1 and 6", Refresh));
-
+		::application::Keyboard::AddHandler(
+			CURRENT_STATE,
+			Terminal::DoMenuInput(
+				Terminal::INVALID_INPUT,
+				Refresh));
 	}
 }

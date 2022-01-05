@@ -6,6 +6,7 @@
 #include <Game.Audio.Mux.h> //common include
 #include <Game.Audio.Sfx.h> //common include
 #include <Game.Colors.h> //common include
+#include <Game.Difficulty.h>
 #include "State.Terminal.h" //common include
 #include "UIState.h" //common include
 namespace state::in_play
@@ -17,4 +18,6 @@ namespace state::in_play
 	const std::string& GetRenameShipAdjective();
 	void SetHeadForMark(const std::string& markName);
 	const std::string GetHeadForMark();
+	void SetGameDifficulty(const game::Difficulty& difficulty);
+	game::Difficulty GetGameDifficulty();
 }
