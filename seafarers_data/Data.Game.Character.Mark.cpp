@@ -48,6 +48,11 @@ namespace data::game::character
 			[Y]
 		) 
 		VALUES({},{},{},{});)"s;
+	static const std::string DELETE_ITEM =
+		R"(DELETE FROM [CharacterMarks] 
+		WHERE 
+			[CharacterId]={} 
+			AND [Name]={};)"s;
 
 	static const std::string FIELD_NAME = "Name";
 
@@ -60,7 +65,10 @@ namespace data::game::character
 	std::optional<common::XY<double>> Mark::ReadMark(int characterId, const std::string& name)
 	{
 		Initialize();
-		auto record = Common::TryExecuteForOne(QUERY_ITEM, characterId, common::Data::QuoteString(name));
+		auto record = Common::TryExecuteForOne(
+			QUERY_ITEM, 
+			characterId, 
+			common::Data::QuoteString(name));
 		if (record)
 		{
 			return Common::ToXY(record.value());
@@ -96,5 +104,14 @@ namespace data::game::character
 			common::Data::QuoteString(name), 
 			location.GetX(), 
 			location.GetY());
+	}
+
+	void Mark::ClearMark(int characterId, const std::string& name)
+	{
+		Initialize();
+		Common::Execute(
+			DELETE_ITEM, 
+			characterId, 
+			common::Data::QuoteString(name));
 	}
 }

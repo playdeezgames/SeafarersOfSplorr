@@ -11,8 +11,10 @@
 namespace state::in_play
 {
 	void PlayMainTheme();
-	void SetCrewDetailCharacterId(int);
+	void SetCrewDetailCharacterId(int characterId);
 	int GetCrewDetailCharacterId();
-	void SetRenameShipAdjective(const std::string&);
+	void SetRenameShipAdjective(const std::string& adjective);
 	const std::string& GetRenameShipAdjective();
+	void SetHeadForMark(const std::string& markName);
+	const std::string GetHeadForMark();
 }

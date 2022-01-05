@@ -44,6 +44,7 @@ namespace state::in_play
 			auto marks = character.GetMarks();
 			auto location = character.GetBerth().GetShip().GetLocation();
 			marks.AddMark(locationName, location);
+			Terminal::WriteLine();
 			application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 			return true;
 		}

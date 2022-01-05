@@ -29,4 +29,16 @@ namespace state::in_play
 	{
 		return renameShipAdjective;
 	}
+
+	static std::string headForMarkName;
+
+	void SetHeadForMark(const std::string& markName)
+	{
+		headForMarkName = markName;
+	}
+
+	const std::string GetHeadForMark()
+	{
+		return headForMarkName;
+	}
 }

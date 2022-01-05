@@ -12,5 +12,6 @@ namespace data::game::character
 		static bool HasAny(int characterId);
 		static std::vector<std::string> ReadMarkNames(int characterId);
 		static void WriteMark(int characterId, const std::string& name, const common::XY<double>& location);
+		static void ClearMark(int characterId, const std::string& name);
 	};
 }

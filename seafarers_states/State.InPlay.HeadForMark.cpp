@@ -23,14 +23,12 @@ namespace state::in_play
 		Terminal::ShowPrompt();
 	}
 
-	static std::function<void()> DoHeadForLocation(const common::XY<double>& destination)
+	static std::function<void()> DoHeadForLocation(const std::string& markName)
 	{
-		return [destination]()
+		return [markName]()
 		{
-			auto ship = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip();
-			auto relativeLocation = destination - ship.GetLocation();
-			ship.SetHeading(common::Heading::XYToDegrees(relativeLocation));
-			application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
+			SetHeadForMark(markName);
+			application::UIState::Write(::UIState::IN_PLAY_CONFIRM_HEAD_FOR_MARK);
 		};
 	}
 
@@ -49,7 +47,7 @@ namespace state::in_play
 			marks.end(),
 			[](const game::session::character::Mark& mark) 
 			{
-				Terminal::menu.AddAction({ mark.GetName(), DoHeadForLocation(mark.GetLocation()) });
+				Terminal::menu.AddAction({ mark.GetName(), DoHeadForLocation(mark.GetName()) });
 			});
 		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_HEADING) };
 		Terminal::menu.SetDefaultAction(defaultAction);

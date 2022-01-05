@@ -15,6 +15,7 @@
 #include <State.InPlay.AtSeaOverview.h>
 #include <State.InPlay.ChangeHeading.h>
 #include <State.InPlay.ChangeSpeed.h>
+#include <State.InPlay.ConfirmHeadForMark.h>
 #include <State.InPlay.CrewDetail.Characteristics.h>
 #include <State.InPlay.CrewList.h>
 #include <State.InPlay.CrewDetail.h>
@@ -136,6 +137,7 @@ namespace application
 		state::in_play::crew_detail::Characteristics::Start,
 		state::in_play::HeadForMark::Start,
 		state::in_play::MarkCurrentLocation::Start,
+		state::in_play::ConfirmHeadForMark::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};

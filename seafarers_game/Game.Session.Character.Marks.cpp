@@ -31,4 +31,9 @@ namespace game::session::character
 		MarkData::WriteMark(characterId, name, location);
 	}
 
+	void Marks::RemoveMark(const std::string& name) const
+	{
+		MarkData::ClearMark(characterId, name);
+	}
+
 }
