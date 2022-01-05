@@ -7,6 +7,7 @@ namespace data::game::character
 {
 	struct Mark
 	{
+		Mark() = delete;
 		static void Initialize();
 		static std::optional<common::XY<double>> ReadMark(int characterId, const std::string& name);
 		static bool HasAny(int characterId);
