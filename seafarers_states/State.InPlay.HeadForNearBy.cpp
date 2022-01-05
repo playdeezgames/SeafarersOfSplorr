@@ -23,7 +23,7 @@ namespace state::in_play
 		return[island, heading]()
 		{
 			game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().SetHeading(heading);
-			application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
+			application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 		};
 	}
 

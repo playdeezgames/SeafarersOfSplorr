@@ -30,7 +30,7 @@ namespace state::in_play
 			auto ship = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip();
 			auto relativeLocation = destination - ship.GetLocation();
 			ship.SetHeading(common::Heading::XYToDegrees(relativeLocation));
-			application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
+			application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 		};
 	}
 

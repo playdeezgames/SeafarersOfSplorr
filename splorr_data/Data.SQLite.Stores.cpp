@@ -27,7 +27,7 @@ namespace data::sqlite
 
 	static int ExecutionCallback(void* data, int column_count, char** column_values, char** column_names)
 	{
-		std::list<std::map<std::string, std::string>>* results = (std::list<std::map<std::string, std::string>>*)data;
+		std::vector<std::map<std::string, std::string>>* results = (std::vector<std::map<std::string, std::string>>*)data;
 		std::map<std::string, std::string> record;
 		for (int column = 0; column < column_count; ++column)
 		{
