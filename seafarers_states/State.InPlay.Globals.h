@@ -7,6 +7,7 @@
 #include <Game.Audio.Sfx.h> //common include
 #include <Game.Colors.h> //common include
 #include <Game.Difficulty.h>
+#include <Game.Profession.h>
 #include "State.Terminal.h" //common include
 #include "UIState.h" //common include
 namespace state::in_play
@@ -20,4 +21,6 @@ namespace state::in_play
 	const std::string GetHeadForMark();
 	void SetGameDifficulty(const game::Difficulty& difficulty);
 	game::Difficulty GetGameDifficulty();
+	void SetProfession(const game::Profession& profession);
+	game::Profession GetProfession();
 }

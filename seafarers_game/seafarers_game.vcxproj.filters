@@ -156,6 +156,9 @@
     <Filter Include="Header Files\Session\World\Profession">
       <UniqueIdentifier>{de01765e-592b-4325-9796-ff95576aaa95}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Session\World\Profession">
+      <UniqueIdentifier>{4c250618-abc9-46fd-9b8e-e07231391206}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -564,6 +567,12 @@
     </ClCompile>
     <ClCompile Include="Game.Session.Character.Marks.cpp">
       <Filter>Source Files\Session\Character\Mark</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.World.Profession.cpp">
+      <Filter>Source Files\Session\World\Profession</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.World.Professions.cpp">
+      <Filter>Source Files\Session\World\Profession</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

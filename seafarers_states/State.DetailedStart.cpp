@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
@@ -23,11 +24,25 @@ namespace state
 		Terminal::Write(">");
 	}
 
+	static std::function<void()> DoSelectProfession(const game::Profession& profession)
+	{
+		return []() 
+		{
+		};
+	}
+
 	static void UpdateMenu()
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		//Terminal::menu.AddAction({ "Continue", ::application::UIState::GoTo(::UIState::LOAD_GAME) });
+		auto professions = game::Session().GetWorld().GetProfessions().GetProfessions();
+		std::for_each(
+			professions.begin(),
+			professions.end(),
+			[](const game::session::world::Profession& profession) 
+			{
+				Terminal::menu.AddAction({ profession.GetName(), DoSelectProfession(profession.operator game::Profession()) });
+			});
 		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::CHOOSE_START_TYPE) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}

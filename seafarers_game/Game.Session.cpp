@@ -14,7 +14,6 @@ namespace game
 	void Session::Populate(const Difficulty& difficulty) const
 	{
 		GetWorld().Populate(difficulty);
-		GetPlayer().Populate(difficulty);
 	}
 
 	void Session::Reset() const

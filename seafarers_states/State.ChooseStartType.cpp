@@ -27,11 +27,15 @@ namespace state
 	{
 		game::Session().Reset();
 		game::Session().Populate(in_play::GetGameDifficulty());
+		//TODO: feed in the preselected profession and skills here
+		game::Session().GetPlayer().Populate(in_play::GetGameDifficulty());
 		application::UIState::Write(::UIState::TIP);
 	}
 
 	static void OnDetailedStart()
 	{
+		game::Session().Reset();
+		game::Session().Populate(in_play::GetGameDifficulty());
 		application::UIState::Write(::UIState::DETAILED_START);
 	}
 
