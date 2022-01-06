@@ -27,7 +27,7 @@ namespace state::in_play
 	{
 		return [markName]()
 		{
-			SetHeadForMark(markName);
+			game::session::Player::SetHeadForMark(markName);
 			application::UIState::Write(::UIState::IN_PLAY_CONFIRM_HEAD_FOR_MARK);
 		};
 	}

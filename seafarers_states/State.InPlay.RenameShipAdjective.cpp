@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <Common.Data.h>
+#include <Game.Session.Player.h>
 #include <Game.ShipNames.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.RenameShipAdjective.h"
@@ -23,7 +24,7 @@ namespace state::in_play
 	{
 		return [adjective]() 
 		{
-			SetRenameShipAdjective(adjective);
+			game::session::Player::SetRenameShipAdjective(adjective);
 			application::UIState::Write(::UIState::IN_PLAY_RENAME_SHIP_NOUN);
 		};
 	}

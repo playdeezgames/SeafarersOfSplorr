@@ -46,7 +46,7 @@ namespace state::in_play
 	{
 		return [characterId]()
 		{
-			SetCrewDetailCharacterId(characterId);
+			game::session::Player::SetCrewDetailCharacterId(characterId);
 			application::UIState::Write(::UIState::IN_PLAY_CREW_DETAIL);
 		};
 	}

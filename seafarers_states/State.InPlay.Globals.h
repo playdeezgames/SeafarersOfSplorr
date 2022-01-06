@@ -13,13 +13,9 @@
 namespace state::in_play
 {
 	void PlayMainTheme();
-	void SetCrewDetailCharacterId(int characterId);
-	int GetCrewDetailCharacterId();
-	void SetRenameShipAdjective(const std::string& adjective);
-	const std::string& GetRenameShipAdjective();
-	void SetHeadForMark(const std::string& markName);
-	const std::string GetHeadForMark();
-	void SetGameDifficulty(const game::Difficulty& difficulty);
+
+	//these have to do with starting a new game, and are not needed once the game has been started
+	void SetGameDifficulty(const game::Difficulty& difficulty);//the world is populated... so this is associated with the world...
 	game::Difficulty GetGameDifficulty();
 	void SetProfession(const game::Profession& profession);
 	game::Profession GetProfession();

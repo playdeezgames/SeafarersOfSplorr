@@ -21,7 +21,7 @@ namespace state::in_play
 		auto mark = 
 			playerCharacter
 			.GetMarks()
-			.GetMark(GetHeadForMark());
+			.GetMark(game::session::Player::GetHeadForMark());
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Confirm Heading or Delete Mark");
@@ -50,7 +50,7 @@ namespace state::in_play
 		auto mark =
 			playerCharacter
 			.GetMarks()
-			.GetMark(GetHeadForMark());
+			.GetMark(game::session::Player::GetHeadForMark());
 
 		auto relativeLocation = mark.GetLocation() - ship.GetLocation();
 		ship.SetHeading(common::Heading::XYToDegrees(relativeLocation));
@@ -64,7 +64,7 @@ namespace state::in_play
 			.GetPlayer()
 			.GetCharacter()
 			.GetMarks()
-			.RemoveMark(GetHeadForMark());
+			.RemoveMark(game::session::Player::GetHeadForMark());
 
 		application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 	}

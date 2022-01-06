@@ -55,4 +55,40 @@ namespace game::session
 		}
 		return std::nullopt;
 	}
+
+	static int crewDetailCharacterId = 0;
+
+	void Player::SetCrewDetailCharacterId(int characterId)
+	{
+		crewDetailCharacterId = characterId;
+	}
+
+	int Player::GetCrewDetailCharacterId()
+	{
+		return crewDetailCharacterId;
+	}
+
+	static std::string renameShipAdjective = "";
+
+	void Player::SetRenameShipAdjective(const std::string& adjective)
+	{
+		renameShipAdjective = adjective;
+	}
+
+	const std::string& Player::GetRenameShipAdjective()
+	{
+		return renameShipAdjective;
+	}
+
+	static std::string headForMarkName;
+
+	void Player::SetHeadForMark(const std::string& markName)
+	{
+		headForMarkName = markName;
+	}
+
+	const std::string Player::GetHeadForMark()
+	{
+		return headForMarkName;
+	}
 }

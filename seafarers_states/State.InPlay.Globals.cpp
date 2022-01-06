@@ -6,42 +6,6 @@ namespace state::in_play
 		game::audio::Mux::Play(game::audio::Theme::MAIN);
 	}
 
-	static int crewDetailCharacterId = 0;
-
-	void SetCrewDetailCharacterId(int characterId)
-	{
-		crewDetailCharacterId = characterId;
-	}
-
-	int GetCrewDetailCharacterId()
-	{
-		return crewDetailCharacterId;
-	}
-
-	static std::string renameShipAdjective = "";
-
-	void SetRenameShipAdjective(const std::string& adjective)
-	{
-		renameShipAdjective = adjective;
-	}
-
-	const std::string& GetRenameShipAdjective()
-	{
-		return renameShipAdjective;
-	}
-
-	static std::string headForMarkName;
-
-	void SetHeadForMark(const std::string& markName)
-	{
-		headForMarkName = markName;
-	}
-
-	const std::string GetHeadForMark()
-	{
-		return headForMarkName;
-	}
-
 	static game::Difficulty gameDifficulty;
 
 	void SetGameDifficulty(const game::Difficulty& difficulty)

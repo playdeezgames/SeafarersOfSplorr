@@ -49,7 +49,7 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		int characterId = GetCrewDetailCharacterId();
+		int characterId = game::session::Player::GetCrewDetailCharacterId();
 		auto character = 
 			game::Session()
 			.GetCharacters()

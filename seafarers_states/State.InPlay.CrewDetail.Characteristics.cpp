@@ -12,7 +12,7 @@ namespace state::in_play::crew_detail
 		auto character =
 			game::Session()
 			.GetCharacters()
-			.GetCharacter(GetCrewDetailCharacterId());
+			.GetCharacter(game::session::Player::GetCrewDetailCharacterId());
 		auto characteristics =
 			character
 			.GetCharacteristics()

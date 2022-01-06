@@ -27,7 +27,7 @@ namespace state::in_play
 	{
 		return [noun]()
 		{
-			game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().SetName(std::format("{} {}", GetRenameShipAdjective(), noun));
+			game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().SetName(std::format("{} {}", game::session::Player::GetRenameShipAdjective(), noun));
 			application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 		};
 	}
