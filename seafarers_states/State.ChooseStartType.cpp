@@ -32,7 +32,7 @@ namespace state
 
 	static void OnDetailedStart()
 	{
-		//TODO: go to profession selection screen
+		application::UIState::Write(::UIState::DETAILED_START);
 	}
 
 	static void UpdateMenu()
@@ -40,7 +40,8 @@ namespace state
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		Terminal::menu.AddAction({ "Quick Start", OnQuickStart });
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::MAIN_MENU) };
+		Terminal::menu.AddAction({ "Detailed Start", OnDetailedStart });
+		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::START_GAME) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 

@@ -1,20 +1,11 @@
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
-#include "State.StartGame.h"
+#include "State.DetailedStart.h"
 #include "UIState.h"
 namespace state
 {
-	static const ::UIState CURRENT_STATE = ::UIState::START_GAME;
-
-	static std::function<void()> NewGame(const game::Difficulty& difficulty)
-	{
-		return [difficulty]()
-		{
-			in_play::SetGameDifficulty(difficulty);
-			application::UIState::Write(::UIState::CHOOSE_START_TYPE);
-		};
-	}
+	static const ::UIState CURRENT_STATE = ::UIState::DETAILED_START;
 
 	static void Refresh()
 	{
@@ -23,7 +14,7 @@ namespace state
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine();
-		Terminal::WriteLine("Start Game:");
+		Terminal::WriteLine("Choose Profession:");
 
 		Terminal::ShowMenu();
 
@@ -36,12 +27,8 @@ namespace state
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		Terminal::menu.AddAction({ "Continue", ::application::UIState::GoTo(::UIState::LOAD_GAME) });
-		Terminal::menu.AddAction({ "Easy", NewGame(game::Difficulty::EASY) });
-		Terminal::menu.AddAction({ "Normal", NewGame(game::Difficulty::NORMAL) });
-		Terminal::menu.AddAction({ "Hard", NewGame(game::Difficulty::HARD) });
-		Terminal::menu.AddAction({ "HARDCORE", NewGame(game::Difficulty::HARDCORE) });
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::MAIN_MENU) };
+		//Terminal::menu.AddAction({ "Continue", ::application::UIState::GoTo(::UIState::LOAD_GAME) });
+		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::CHOOSE_START_TYPE) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 
@@ -52,7 +39,7 @@ namespace state
 		Refresh();
 	}
 
-	void StartGame::Start()
+	void DetailedStart::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);

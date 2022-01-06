@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Menu.h" />
     <ClInclude Include="State.ChooseStartType.h" />
+    <ClInclude Include="State.DetailedStart.h" />
     <ClInclude Include="State.InPlay.ChangeHeading.h" />
     <ClInclude Include="State.InPlay.ChangeSpeed.h" />
     <ClInclude Include="State.InPlay.ConfirmHeadForMark.h" />
@@ -66,6 +67,7 @@
     <ClCompile Include="State.ConfirmAbandon.cpp" />
     <ClCompile Include="State.ConfirmOverwrite.cpp" />
     <ClCompile Include="State.ConfirmQuit.cpp" />
+    <ClCompile Include="State.DetailedStart.cpp" />
     <ClCompile Include="State.InPlay.AtSeaOverview.cpp" />
     <ClCompile Include="State.InPlay.ChangeHeading.cpp" />
     <ClCompile Include="State.InPlay.ChangeSpeed.cpp" />

@@ -13,6 +13,7 @@
 #include <State.ConfirmAbandon.h>
 #include <State.ConfirmOverwrite.h>
 #include <State.ConfirmQuit.h>
+#include <State.DetailedStart.h>
 #include <State.InPlay.AtSeaOverview.h>
 #include <State.InPlay.ChangeHeading.h>
 #include <State.InPlay.ChangeSpeed.h>
@@ -139,6 +140,7 @@ namespace application
 		state::in_play::HeadForMark::Start,
 		state::in_play::MarkCurrentLocation::Start,
 		state::in_play::ConfirmHeadForMark::Start,
+		state::DetailedStart::Start,
 		state::ChooseStartType::Start,
 		Options::Initialize,
 		visuals::Layouts::Start

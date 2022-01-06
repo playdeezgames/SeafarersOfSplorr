@@ -170,6 +170,9 @@
     <ClInclude Include="State.ChooseStartType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="State.DetailedStart.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -284,6 +287,9 @@
       <Filter>Source Files\AtSea\Ship Status</Filter>
     </ClCompile>
     <ClCompile Include="State.ChooseStartType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="State.DetailedStart.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
