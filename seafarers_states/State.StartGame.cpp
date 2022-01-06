@@ -11,7 +11,8 @@ namespace state
 	{
 		return [difficulty]()
 		{
-			in_play::SetGameDifficulty(difficulty);
+			game::Session().Reset();
+			game::Session().Populate(difficulty);
 			application::UIState::Write(::UIState::CHOOSE_START_TYPE);
 		};
 	}

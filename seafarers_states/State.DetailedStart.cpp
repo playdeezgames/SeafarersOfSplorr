@@ -26,8 +26,11 @@ namespace state
 
 	static std::function<void()> DoSelectProfession(const game::Profession& profession)
 	{
-		return []() 
+		return [profession]()
 		{
+			game::session::Player::SetProfession(profession);
+			//set skill categories for further character creation
+			//go to next step of character creation
 		};
 	}
 

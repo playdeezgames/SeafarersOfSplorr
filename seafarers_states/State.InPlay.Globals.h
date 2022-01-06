@@ -13,10 +13,4 @@
 namespace state::in_play
 {
 	void PlayMainTheme();
-
-	//these have to do with starting a new game, and are not needed once the game has been started
-	void SetGameDifficulty(const game::Difficulty& difficulty);//the world is populated... so this is associated with the world...
-	game::Difficulty GetGameDifficulty();
-	void SetProfession(const game::Profession& profession);
-	game::Profession GetProfession();
 }

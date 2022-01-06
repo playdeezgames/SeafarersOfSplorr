@@ -91,4 +91,22 @@ namespace game::session
 	{
 		return headForMarkName;
 	}
+
+	static game::Profession playerProfession = game::Profession::SAILOR;
+
+	void Player::SetProfession(const game::Profession& profession)
+	{
+		playerProfession = profession;
+	}
+
+	game::Profession Player::GetProfession()
+	{
+		return playerProfession;
+	}
+
+	void Player::SetCharacterCreationDefaults()
+	{
+		SetProfession(game::Profession::SAILOR);
+	}
+
 }
