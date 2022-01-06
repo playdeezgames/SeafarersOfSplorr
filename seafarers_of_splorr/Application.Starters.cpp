@@ -9,6 +9,7 @@
 #include <Data.SQLite.Stores.h>
 #include <functional>
 #include <State.About.h>
+#include <State.ChooseStartType.h>
 #include <State.ConfirmAbandon.h>
 #include <State.ConfirmOverwrite.h>
 #include <State.ConfirmQuit.h>
@@ -138,6 +139,7 @@ namespace application
 		state::in_play::HeadForMark::Start,
 		state::in_play::MarkCurrentLocation::Start,
 		state::in_play::ConfirmHeadForMark::Start,
+		state::ChooseStartType::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};
