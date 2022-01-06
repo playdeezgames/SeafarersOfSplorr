@@ -153,6 +153,9 @@
     <Filter Include="Source Files\Session\Character\Mark">
       <UniqueIdentifier>{b0c756e8-e143-45ee-93a0-f71fa307fa81}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Session\World\Profession">
+      <UniqueIdentifier>{de01765e-592b-4325-9796-ff95576aaa95}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -388,6 +391,15 @@
     </ClInclude>
     <ClInclude Include="Game.Session.Character.Marks.h">
       <Filter>Header Files\Session\Character\Mark</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Profession.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.World.Profession.h">
+      <Filter>Header Files\Session\World\Profession</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.World.Professions.h">
+      <Filter>Header Files\Session\World\Profession</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -32,7 +32,7 @@ namespace state
 
 	static void OnDetailedStart()
 	{
-
+		//TODO: go to profession selection screen
 	}
 
 	static void UpdateMenu()

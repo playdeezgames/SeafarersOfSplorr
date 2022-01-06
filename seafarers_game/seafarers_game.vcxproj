@@ -25,6 +25,7 @@
     <ClInclude Include="Game.Characters.Message.h" />
     <ClInclude Include="Game.Characteristic.h" />
     <ClInclude Include="Game.Item.Category.h" />
+    <ClInclude Include="Game.Profession.h" />
     <ClInclude Include="Game.Session.Character.Berth.h" />
     <ClInclude Include="Game.Session.Character.Characteristic.h" />
     <ClInclude Include="Game.Session.Character.Characteristics.h" />
@@ -74,6 +75,8 @@
     <ClInclude Include="Game.Session.World.Distances.h" />
     <ClInclude Include="Game.Session.World.h" />
     <ClInclude Include="Game.Session.World.Islands.h" />
+    <ClInclude Include="Game.Session.World.Profession.h" />
+    <ClInclude Include="Game.Session.World.Professions.h" />
     <ClInclude Include="Game.Session.World.ShipType.Commodities.h" />
     <ClInclude Include="Game.Session.World.ShipType.Commodity.h" />
     <ClInclude Include="Game.Session.World.ShipType.h" />

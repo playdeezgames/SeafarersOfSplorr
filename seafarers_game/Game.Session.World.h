@@ -9,6 +9,7 @@
 #include "Game.Session.World.Calendar.h"
 #include "Game.Session.World.Distances.h"
 #include "Game.Session.World.Islands.h"
+#include "Game.Session.World.Professions.h"
 #include "Game.Session.World.ShipTypes.h"
 #include "Game.Session.World.Skills.h"
 #include "Game.Session.World.Wind.h"
@@ -33,6 +34,7 @@ namespace game::session
 		constexpr Tribes GetTribes() const { return Tribes(); }
 		constexpr world::ShipTypes GetShipTypes() const { return world::ShipTypes(); }
 		constexpr world::Skills GetSkills() const { return world::Skills(); }
+		constexpr world::Professions GetProfessions() const { return world::Professions(); }
 		void Reset() const;
 		void Populate(const Difficulty& difficulty) const;
 		void ApplyTurnEffects() const;
