@@ -111,7 +111,7 @@ namespace game::session
 		SetProfession(game::Profession::SAILOR);
 	}
 
-	static std::vector<game::SkillCategory> electiveSkillCategories;
+	static std::vector<game::SkillCategory> electiveSkillCategories;//this may be better as a set?
 
 	void Player::ClearElectiveSkillCategories()
 	{
@@ -131,4 +131,10 @@ namespace game::session
 			});
 		return result;
 	}
+
+	void Player::AddElectiveSkillCategory(const game::SkillCategory& category)
+	{
+		electiveSkillCategories.push_back(category);
+	}
+
 }

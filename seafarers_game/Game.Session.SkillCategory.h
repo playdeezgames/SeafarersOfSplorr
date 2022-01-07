@@ -13,6 +13,7 @@ namespace game::session
 		int GetDefaultValue() const;
 		std::vector<game::Characteristic> GetCharacteristics() const;
 		int GetCharacteristicCoefficient(const game::Characteristic& characteristic) const;
+		constexpr explicit operator game::SkillCategory() const { return category; }
 	private:
 		game::SkillCategory category;
 	};

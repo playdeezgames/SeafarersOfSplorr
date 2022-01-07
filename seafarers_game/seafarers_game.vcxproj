@@ -66,6 +66,7 @@
     <ClInclude Include="Game.Session.Ship.h" />
     <ClInclude Include="Game.Session.Ship.VisibleIslands.h" />
     <ClInclude Include="Game.Session.Ships.h" />
+    <ClInclude Include="Game.Session.SkillCategories.h" />
     <ClInclude Include="Game.Session.SkillCategory.h" />
     <ClInclude Include="Game.Session.Tribe.h" />
     <ClInclude Include="Game.Session.Tribes.h" />
@@ -144,6 +145,7 @@
     <ClCompile Include="Game.Session.Ship.DockableIslands.cpp" />
     <ClCompile Include="Game.Session.Ship.VisibleIslands.cpp" />
     <ClCompile Include="Game.Session.Ships.cpp" />
+    <ClCompile Include="Game.Session.SkillCategories.cpp" />
     <ClCompile Include="Game.Session.SkillCategory.cpp" />
     <ClCompile Include="Game.Session.Tribe.cpp" />
     <ClCompile Include="Game.Session.Tribes.cpp" />

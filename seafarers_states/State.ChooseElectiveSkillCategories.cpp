@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <Game.Session.h>
+#include <iterator>
 #include <set>
 #include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
@@ -17,7 +18,7 @@ namespace state
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine();
 		Terminal::WriteLine("Professional Skill Categories:");
-		
+
 		Terminal::SetForeground(game::Colors::GRAY);
 		auto fixedCategories =
 			game::Session()
@@ -28,7 +29,7 @@ namespace state
 		std::for_each(
 			fixedCategories.begin(),
 			fixedCategories.end(),
-			[](const game::session::SkillCategory& category) 
+			[](const game::session::SkillCategory& category)
 			{
 				Terminal::WriteLine(category.GetName());
 			});
@@ -40,9 +41,9 @@ namespace state
 			electiveCategories.end(),
 			[](const game::session::SkillCategory& category)
 			{
-				Terminal::WriteLine("{}(elective)",category.GetName());
+				Terminal::WriteLine("{}(elective)", category.GetName());
 			});
-
+		//TODO: you have # of skills categories left to elect
 
 		Terminal::ShowMenu();
 
@@ -68,6 +69,18 @@ namespace state
 
 	}
 
+	static void UpdateMenu();
+
+	static std::function<void()> DoElectSkillCategory(const game::session::SkillCategory& category)
+	{
+		return [category]() 
+		{
+			game::session::Player::AddElectiveSkillCategory(category.operator game::SkillCategory());
+			UpdateMenu();
+			Refresh();
+		};
+	}
+
 	static void UpdateMenu()
 	{
 		Terminal::menu.Clear();
@@ -78,7 +91,41 @@ namespace state
 		}
 		else
 		{
-			//when i still have electives to select, i need a list of categories
+			std::set<game::SkillCategory> iHaveTheseAlready;
+			auto fixedCategories =
+				game::Session()
+				.GetWorld()
+				.GetProfessions()
+				.GetProfession(game::session::Player::GetProfession())
+				.GetSkillCategories();
+			std::transform(
+				fixedCategories.begin(),
+				fixedCategories.end(),
+				std::inserter(iHaveTheseAlready, iHaveTheseAlready.end()),
+				[](const game::session::SkillCategory& category) 
+				{
+					return category.operator game::SkillCategory();
+				});
+			auto electiveCategories = game::session::Player::GetElectiveSkillCategories();
+			std::transform(
+				electiveCategories.begin(),
+				electiveCategories.end(),
+				std::inserter(iHaveTheseAlready, iHaveTheseAlready.end()),
+				[](const game::session::SkillCategory& category)
+				{
+					return category.operator game::SkillCategory();
+				});
+			auto allCategories = game::Session().GetWorld().GetSkillCategories().GetSkillCategories();
+			std::for_each(
+				allCategories.begin(),
+				allCategories.end(),
+				[&iHaveTheseAlready](const game::session::SkillCategory& category) 
+				{
+					if (!iHaveTheseAlready.contains(category.operator game::SkillCategory()))
+					{
+						Terminal::menu.AddAction({ category.GetName(), DoElectSkillCategory(category) });
+					}
+				});
 		}
 		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::DETAILED_START) };
 		Terminal::menu.SetDefaultAction(defaultAction);

@@ -4,6 +4,7 @@
 #include "Game.Session.Commodities.h"
 #include "Game.Session.Demigods.h"
 #include "Game.Session.Item.Types.h"
+#include "Game.Session.SkillCategories.h"
 #include "Game.Session.Tribes.h"
 #include "Game.Session.World.Bounds.h"
 #include "Game.Session.World.Calendar.h"
@@ -35,6 +36,8 @@ namespace game::session
 		constexpr world::ShipTypes GetShipTypes() const { return world::ShipTypes(); }
 		constexpr world::Skills GetSkills() const { return world::Skills(); }
 		constexpr world::Professions GetProfessions() const { return world::Professions(); }
+		constexpr SkillCategories GetSkillCategories() const { return SkillCategories(); }
+
 		void Reset() const;
 		void Populate(const Difficulty& difficulty) const;
 		void ApplyTurnEffects() const;
