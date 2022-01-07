@@ -6,6 +6,7 @@ namespace game
 		HUNTER,
 		SAILOR,
 		THIEF,
-		WARRIOR
+		WARRIOR,
+		CUSTOM
 	};
 }

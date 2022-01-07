@@ -2,11 +2,11 @@
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
-#include "State.DetailedStart.h"
+#include "State.ChooseElectiveSkillCategories.h"
 #include "UIState.h"
 namespace state
 {
-	static const ::UIState CURRENT_STATE = ::UIState::DETAILED_START;
+	static const ::UIState CURRENT_STATE = ::UIState::CHOOSE_ELECTIVE_SKILL_CATEGORIES;
 
 	static void Refresh()
 	{
@@ -15,7 +15,23 @@ namespace state
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine();
-		Terminal::WriteLine("Choose Profession:");
+		Terminal::WriteLine("Professional Skill Categories:");
+		
+		auto fixedCategories = 
+			game::Session()
+			.GetWorld()
+			.GetProfessions()
+			.GetProfession(game::session::Player::GetProfession())
+			.GetSkillCategories();
+		std::for_each(
+			fixedCategories.begin(),
+			fixedCategories.end(),
+			[](const game::session::SkillCategory& category) 
+			{
+				//Terminal::WriteLine(category.GetName());
+			});
+
+		//list electives
 
 		Terminal::ShowMenu();
 
@@ -24,29 +40,12 @@ namespace state
 		Terminal::Write(">");
 	}
 
-	static std::function<void()> DoSelectProfession(const game::Profession& profession)
-	{
-		return [profession]()
-		{
-			game::session::Player::SetProfession(profession);
-			game::session::Player::ClearElectiveSkillCategories();
-			application::UIState::Write(::UIState::CHOOSE_ELECTIVE_SKILL_CATEGORIES);
-		};
-	}
-
 	static void UpdateMenu()
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		auto professions = game::Session().GetWorld().GetProfessions().GetProfessions();
-		std::for_each(
-			professions.begin(),
-			professions.end(),
-			[](const game::session::world::Profession& profession) 
-			{
-				Terminal::menu.AddAction({ profession.GetName(), DoSelectProfession(profession.operator game::Profession()) });
-			});
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::CHOOSE_START_TYPE) };
+		//Terminal::menu.AddAction({ "", OnQuickStart });
+		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::DETAILED_START) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 
@@ -57,7 +56,7 @@ namespace state
 		Refresh();
 	}
 
-	void DetailedStart::Start()
+	void ChooseElectiveSkillCategories::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);

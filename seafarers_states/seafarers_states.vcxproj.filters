@@ -173,6 +173,9 @@
     <ClInclude Include="State.DetailedStart.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="State.ChooseElectiveSkillCategories.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -290,6 +293,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="State.DetailedStart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="State.ChooseElectiveSkillCategories.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

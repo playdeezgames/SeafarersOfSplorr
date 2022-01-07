@@ -7,5 +7,6 @@ namespace game::session::world
 	{
 		constexpr Professions() {}
 		const std::vector<Profession>& GetProfessions() const;
+		constexpr Profession GetProfession(const game::Profession& profession) { return Profession(profession); }
 	};
 }

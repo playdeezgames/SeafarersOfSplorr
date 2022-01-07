@@ -6,7 +6,8 @@ namespace game::session::world
 		Profession(game::Profession::HUNTER),
 		Profession(game::Profession::SAILOR),
 		Profession(game::Profession::THIEF),
-		Profession(game::Profession::WARRIOR)
+		Profession(game::Profession::WARRIOR),
+		Profession(game::Profession::CUSTOM)
 	};
 
 	const std::vector<Profession>& Professions::GetProfessions() const

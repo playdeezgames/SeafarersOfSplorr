@@ -9,6 +9,7 @@
 #include <Data.SQLite.Stores.h>
 #include <functional>
 #include <State.About.h>
+#include <State.ChooseElectiveSkillCategories.h>
 #include <State.ChooseStartType.h>
 #include <State.ConfirmAbandon.h>
 #include <State.ConfirmOverwrite.h>
@@ -142,6 +143,7 @@ namespace application
 		state::in_play::ConfirmHeadForMark::Start,
 		state::DetailedStart::Start,
 		state::ChooseStartType::Start,
+		state::ChooseElectiveSkillCategories::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};

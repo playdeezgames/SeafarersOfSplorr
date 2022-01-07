@@ -109,4 +109,11 @@ namespace game::session
 		SetProfession(game::Profession::SAILOR);
 	}
 
+	static std::vector<game::SkillCategory> electiveSkillCategories;
+
+	void Player::ClearElectiveSkillCategories()
+	{
+		electiveSkillCategories.clear();
+	}
+
 }

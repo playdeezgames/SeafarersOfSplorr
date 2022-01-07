@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="State.ChooseElectiveSkillCategories.h" />
     <ClInclude Include="State.ChooseStartType.h" />
     <ClInclude Include="State.DetailedStart.h" />
     <ClInclude Include="State.InPlay.ChangeHeading.h" />
@@ -63,6 +64,7 @@
   <ItemGroup>
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="State.About.cpp" />
+    <ClCompile Include="State.ChooseElectiveSkillCategories.cpp" />
     <ClCompile Include="State.ChooseStartType.cpp" />
     <ClCompile Include="State.ConfirmAbandon.cpp" />
     <ClCompile Include="State.ConfirmOverwrite.cpp" />
