@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <Common.Data.h>
 #include <Common.Heading.h>
 #include <Common.RNG.h>
@@ -8,6 +9,7 @@
 #include "Game.Session.Characters.h"
 #include "Game.Session.Player.h"
 #include "Game.ShipNames.h"
+#include <iterator>
 namespace game::session
 {
 	Character Player::GetCharacter() const
@@ -116,4 +118,17 @@ namespace game::session
 		electiveSkillCategories.clear();
 	}
 
+	std::vector<game::session::SkillCategory> Player::GetElectiveSkillCategories()
+	{
+		std::vector<game::session::SkillCategory> result;
+		std::transform(
+			electiveSkillCategories.begin(),
+			electiveSkillCategories.end(),
+			std::back_inserter(result),
+			[](const game::SkillCategory category) 
+			{
+				return game::session::SkillCategory(category);
+			});
+		return result;
+	}
 }

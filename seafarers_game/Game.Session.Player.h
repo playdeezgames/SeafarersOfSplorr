@@ -3,12 +3,14 @@
 #include "Game.SkillCategory.h"
 #include "Game.Profession.h"
 #include "Game.Session.Character.h"
+#include "Game.Session.SkillCategory.h"
 #include <optional>
 #include <vector>
 namespace game::session
 {
 	struct Player
 	{
+		static const size_t SKILL_CATEGORY_COUNT = 10;
 		void Reset() const;
 		void Populate(const Difficulty& difficulty) const;
 		Character GetCharacter() const;
@@ -23,7 +25,7 @@ namespace game::session
 		static void SetProfession(const game::Profession& profession);
 		static game::Profession GetProfession();
 		static void ClearElectiveSkillCategories();
-		static std::vector<game::SkillCategory> GetElectiveSkillCategories();
+		static std::vector<game::session::SkillCategory> GetElectiveSkillCategories();
 		static void AddElectiveSkillCategory(const game::SkillCategory& category);
 		//elective skills
 		//list of current electives
