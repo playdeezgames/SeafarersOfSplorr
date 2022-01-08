@@ -51,6 +51,12 @@
     <Filter Include="Header Files\AtSea\Crew Status">
       <UniqueIdentifier>{0632369d-523e-41e7-aac9-b0d328b7a92f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Detailed Start">
+      <UniqueIdentifier>{4af339c1-4de2-43e6-9173-3632cec06a98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Detailed Start">
+      <UniqueIdentifier>{9ebc5cc1-664c-449b-8dc5-ce6250a3d28d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UIState.h">
@@ -167,17 +173,17 @@
     <ClInclude Include="State.InPlay.ConfirmHeadForMark.h">
       <Filter>Header Files\AtSea\Ship Status</Filter>
     </ClInclude>
-    <ClInclude Include="State.ChooseStartType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.DetailedStart.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="State.ChooseProfessionalSkill.h">
+      <Filter>Header Files\Detailed Start</Filter>
     </ClInclude>
     <ClInclude Include="State.ChooseElectiveSkillCategories.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Detailed Start</Filter>
     </ClInclude>
-    <ClInclude Include="State.ChooseProfessionalSkill.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="State.ChooseStartType.h">
+      <Filter>Header Files\Detailed Start</Filter>
+    </ClInclude>
+    <ClInclude Include="State.DetailedStart.h">
+      <Filter>Header Files\Detailed Start</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -292,17 +298,17 @@
     <ClCompile Include="State.InPlay.ConfirmHeadForMark.cpp">
       <Filter>Source Files\AtSea\Ship Status</Filter>
     </ClCompile>
-    <ClCompile Include="State.ChooseStartType.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="State.DetailedStart.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="State.ChooseProfessionalSkill.cpp">
+      <Filter>Source Files\Detailed Start</Filter>
     </ClCompile>
     <ClCompile Include="State.ChooseElectiveSkillCategories.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Detailed Start</Filter>
     </ClCompile>
-    <ClCompile Include="State.ChooseProfessionalSkill.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="State.ChooseStartType.cpp">
+      <Filter>Source Files\Detailed Start</Filter>
+    </ClCompile>
+    <ClCompile Include="State.DetailedStart.cpp">
+      <Filter>Source Files\Detailed Start</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
