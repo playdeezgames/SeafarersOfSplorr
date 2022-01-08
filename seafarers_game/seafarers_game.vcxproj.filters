@@ -416,6 +416,9 @@
     <ClInclude Include="Game.Session.SkillCategory.h">
       <Filter>Header Files\Session\SkillCategory</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Skill.h">
+      <Filter>Header Files\Session</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Session.cpp">
@@ -591,6 +594,9 @@
     </ClCompile>
     <ClCompile Include="Game.Session.SkillCategory.cpp">
       <Filter>Source Files\Session\SkillCategory</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Skill.cpp">
+      <Filter>Source Files\Session</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

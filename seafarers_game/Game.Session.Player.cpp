@@ -10,6 +10,7 @@
 #include "Game.Session.Player.h"
 #include "Game.ShipNames.h"
 #include <iterator>
+#include <numeric>
 namespace game::session
 {
 	Character Player::GetCharacter() const
@@ -129,7 +130,7 @@ namespace game::session
 			electiveSkillCategories.begin(),
 			electiveSkillCategories.end(),
 			std::inserter(result, result.end()),
-			[](const game::SkillCategory category) 
+			[](const game::SkillCategory category)
 			{
 				return game::session::SkillCategory(category);
 			});
@@ -147,4 +148,51 @@ namespace game::session
 	{
 		professionalSkillPointAllocations.clear();
 	}
+
+	const std::map<int, size_t>& Player::GetProfessionSkillPointAllocations()
+	{
+		return professionalSkillPointAllocations;
+	}
+
+	size_t Player::GetProfessionalSkillPointsAllocated()
+	{
+		return std::accumulate(
+			professionalSkillPointAllocations.begin(),
+			professionalSkillPointAllocations.end(),
+			(size_t)0,
+			[](size_t accumulator, const std::pair<int, size_t> entry)
+			{
+				return accumulator + entry.second;
+			});
+	}
+
+	static std::set<Skill> professionalSkillList;
+
+	void Player::GenerateProfessionalSkillList()
+	{
+		professionalSkillList.clear();
+		auto fixedCategories =
+			game::Session()
+			.GetWorld()
+			.GetProfessions()
+			.GetProfession(GetProfession())
+			.GetSkillCategories();
+		std::for_each(
+			fixedCategories.begin(), 
+			fixedCategories.end(), 
+			[](const SkillCategory& category) 
+			{
+				auto skills = game::Session().GetWorld().GetSkills().GetSkillsInCategory(category.operator game::SkillCategory());
+				//get all of the skills from a particular category
+			});
+		auto electiveCategories =
+			GetElectiveSkillCategories();
+
+	}
+
+	const std::set<Skill>& Player::GetProfessionalSkillList()
+	{
+		return professionalSkillList;
+	}
+
 }

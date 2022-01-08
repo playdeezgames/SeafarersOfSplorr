@@ -77,4 +77,11 @@ namespace game::session::world
 					});
 			});
 	}
+
+	std::set<Skill> Skills::GetSkillsInCategory(const game::SkillCategory& category) const
+	{
+		std::set<Skill> result;
+		return result;
+	}
+
 }

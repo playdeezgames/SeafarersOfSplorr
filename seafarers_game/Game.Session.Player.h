@@ -3,7 +3,9 @@
 #include "Game.SkillCategory.h"
 #include "Game.Profession.h"
 #include "Game.Session.Character.h"
+#include "Game.Session.Skill.h"
 #include "Game.Session.SkillCategory.h"
+#include <map>
 #include <optional>
 #include <set>
 namespace game::session
@@ -30,5 +32,9 @@ namespace game::session
 		static void AddElectiveSkillCategory(const game::SkillCategory& category);
 		static void SetCharacterCreationDefaults();
 		static void ClearProfessionSkillPointAllocations();
+		static const std::map<int, size_t>& GetProfessionSkillPointAllocations();
+		static size_t GetProfessionalSkillPointsAllocated();
+		static void GenerateProfessionalSkillList();
+		static const std::set<Skill>& GetProfessionalSkillList();
 	};
 }
