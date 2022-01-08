@@ -10,6 +10,53 @@ namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::CHOOSE_ELECTIVE_SKILL_CATEGORIES;
 
+	static std::set<game::session::SkillCategory> GetFixedSkillCategories()
+	{
+		return game::Session()
+			.GetWorld()
+			.GetProfessions()
+			.GetProfession(game::session::Player::GetProfession())
+			.GetSkillCategories();
+	}
+
+	static void RefreshFixedSkillCategories()
+	{
+		auto fixedCategories = GetFixedSkillCategories();
+		std::for_each(
+			fixedCategories.begin(),
+			fixedCategories.end(),
+			[](const game::session::SkillCategory& category)
+			{
+				Terminal::WriteLine(category.GetName());
+			});
+	}
+
+	static void RefreshElectiveSkillCategories()
+	{
+		auto electiveCategories = game::session::Player::GetElectiveSkillCategories();
+		std::for_each(
+			electiveCategories.begin(),
+			electiveCategories.end(),
+			[](const game::session::SkillCategory& category)
+			{
+				Terminal::WriteLine("{}(elective)", category.GetName());
+			});
+	}
+
+	static size_t GetSkillCategoryCount()
+	{
+		auto fixedCategories = GetFixedSkillCategories();
+		auto electiveCategories = game::session::Player::GetElectiveSkillCategories();
+		return fixedCategories.size() + electiveCategories.size();
+	}
+
+	static void RefreshRemainingElectiveCount()
+	{
+		auto skillCategoryCount = GetSkillCategoryCount();
+		Terminal::WriteLine("Skill Categories Chosen: {}/{}", skillCategoryCount, game::session::Player::SKILL_CATEGORY_COUNT);
+	}
+
+
 	static void Refresh()
 	{
 		Terminal::ClearStatusLine();
@@ -20,30 +67,9 @@ namespace state
 		Terminal::WriteLine("Professional Skill Categories:");
 
 		Terminal::SetForeground(game::Colors::GRAY);
-		auto fixedCategories =
-			game::Session()
-			.GetWorld()
-			.GetProfessions()
-			.GetProfession(game::session::Player::GetProfession())
-			.GetSkillCategories();
-		std::for_each(
-			fixedCategories.begin(),
-			fixedCategories.end(),
-			[](const game::session::SkillCategory& category)
-			{
-				Terminal::WriteLine(category.GetName());
-			});
-
-		//list electives
-		auto electiveCategories = game::session::Player::GetElectiveSkillCategories();
-		std::for_each(
-			electiveCategories.begin(),
-			electiveCategories.end(),
-			[](const game::session::SkillCategory& category)
-			{
-				Terminal::WriteLine("{}(elective)", category.GetName());
-			});
-		//TODO: you have # of skills categories left to elect
+		RefreshFixedSkillCategories();
+		RefreshElectiveSkillCategories();
+		RefreshRemainingElectiveCount();
 
 		Terminal::ShowMenu();
 
@@ -54,14 +80,7 @@ namespace state
 
 	static bool AmIDone()
 	{
-		auto fixedCategories =
-			game::Session()
-			.GetWorld()
-			.GetProfessions()
-			.GetProfession(game::session::Player::GetProfession())
-			.GetSkillCategories();
-		auto electiveCategories = game::session::Player::GetElectiveSkillCategories();
-		return fixedCategories.size() + electiveCategories.size() >= game::session::Player::SKILL_CATEGORY_COUNT;
+		return GetSkillCategoryCount() >= game::session::Player::SKILL_CATEGORY_COUNT;
 	}
 
 	static void OnDone()
@@ -81,6 +100,20 @@ namespace state
 		};
 	}
 
+	static std::set<game::session::SkillCategory> GetAlreadyPresentSkillCategories()
+	{
+		std::set<game::session::SkillCategory> alreadyPresent;
+		auto fixedCategories = GetFixedSkillCategories();
+		auto electiveCategories = game::session::Player::GetElectiveSkillCategories();
+		std::set_union(
+			fixedCategories.begin(),
+			fixedCategories.end(),
+			electiveCategories.begin(),
+			electiveCategories.end(),
+			std::inserter(alreadyPresent, alreadyPresent.end()));
+		return alreadyPresent;
+	}
+
 	static void UpdateMenu()
 	{
 		Terminal::menu.Clear();
@@ -91,37 +124,14 @@ namespace state
 		}
 		else
 		{
-			std::set<game::SkillCategory> iHaveTheseAlready;
-			auto fixedCategories =
-				game::Session()
-				.GetWorld()
-				.GetProfessions()
-				.GetProfession(game::session::Player::GetProfession())
-				.GetSkillCategories();
-			std::transform(
-				fixedCategories.begin(),
-				fixedCategories.end(),
-				std::inserter(iHaveTheseAlready, iHaveTheseAlready.end()),
-				[](const game::session::SkillCategory& category) 
-				{
-					return category.operator game::SkillCategory();
-				});
-			auto electiveCategories = game::session::Player::GetElectiveSkillCategories();
-			std::transform(
-				electiveCategories.begin(),
-				electiveCategories.end(),
-				std::inserter(iHaveTheseAlready, iHaveTheseAlready.end()),
-				[](const game::session::SkillCategory& category)
-				{
-					return category.operator game::SkillCategory();
-				});
+			auto alreadyPresent = GetAlreadyPresentSkillCategories();
 			auto allCategories = game::Session().GetWorld().GetSkillCategories().GetSkillCategories();
 			std::for_each(
 				allCategories.begin(),
 				allCategories.end(),
-				[&iHaveTheseAlready](const game::session::SkillCategory& category) 
+				[&alreadyPresent](const game::session::SkillCategory& category)
 				{
-					if (!iHaveTheseAlready.contains(category.operator game::SkillCategory()))
+					if (!alreadyPresent.contains(category))
 					{
 						Terminal::menu.AddAction({ category.GetName(), DoElectSkillCategory(category) });
 					}
