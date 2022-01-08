@@ -1,6 +1,8 @@
+#include <algorithm>
 #include <Common.Data.h>
 #include "Data.Game.Skill.h"
 #include "Data.Game.Common.h"
+#include <iterator>
 namespace data::game
 {
 	using namespace std::string_literals;
@@ -43,6 +45,12 @@ namespace data::game
 		WHERE 
 			[Category]={} 
 			AND [Type]={})"s;
+	static const std::string QUERY_SKILLS_FOR_CATEGORY =
+		R"(SELECT
+			[SkillId]
+		FROM [Skills]
+		WHERE
+			[Categor]={};)"s;
 
 	static const std::string FIELD_MAXIMUM_TYPE = "MaximumType";
 	static const std::string FIELD_CATEGORY = "Category";
@@ -131,4 +139,17 @@ namespace data::game
 		Initialize();
 		Common::Execute(DELETE_ALL);
 	}
+
+	std::vector<int> Skill::ReadSkillsForCategory(int category)
+	{
+		std::vector<int> result;
+		auto records = Common::Execute(QUERY_SKILLS_FOR_CATEGORY, category);
+		std::transform(
+			records.begin(),
+			records.end(),
+			std::back_inserter(result),
+			Common::DoToInt(FIELD_SKILL_ID));
+		return result;
+	}
+
 }

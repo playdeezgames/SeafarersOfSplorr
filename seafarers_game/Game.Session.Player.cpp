@@ -166,33 +166,48 @@ namespace game::session
 			});
 	}
 
-	static std::set<Skill> professionalSkillList;
+	static std::set<Skill> professionalSkillSet;
+
+	static void AddSkillCategoryToProfessionalSkillSet(const SkillCategory& category)
+	{
+		auto skills =
+			game::Session()
+			.GetWorld()
+			.GetSkills()
+			.GetSkillsInCategory(category.operator game::SkillCategory());
+		std::copy(
+			skills.begin(),
+			skills.end(),
+			std::inserter(professionalSkillSet, professionalSkillSet.end()));
+	}
+
+	static void AddSkillCategorySetToProfessionalSkillSet(const std::set<SkillCategory>& categorySet)
+	{
+		std::for_each(
+			categorySet.begin(),
+			categorySet.end(),
+			AddSkillCategoryToProfessionalSkillSet);
+	}
+
 
 	void Player::GenerateProfessionalSkillList()
 	{
-		professionalSkillList.clear();
-		auto fixedCategories =
-			game::Session()
-			.GetWorld()
-			.GetProfessions()
-			.GetProfession(GetProfession())
-			.GetSkillCategories();
-		std::for_each(
-			fixedCategories.begin(), 
-			fixedCategories.end(), 
-			[](const SkillCategory& category) 
-			{
-				auto skills = game::Session().GetWorld().GetSkills().GetSkillsInCategory(category.operator game::SkillCategory());
-				//get all of the skills from a particular category
-			});
-		auto electiveCategories =
-			GetElectiveSkillCategories();
+		professionalSkillSet.clear();
 
+		AddSkillCategorySetToProfessionalSkillSet(
+			game::Session()
+				.GetWorld()
+				.GetProfessions()
+				.GetProfession(GetProfession())
+				.GetSkillCategories());
+
+		AddSkillCategorySetToProfessionalSkillSet(
+			GetElectiveSkillCategories());
 	}
 
 	const std::set<Skill>& Player::GetProfessionalSkillList()
 	{
-		return professionalSkillList;
+		return professionalSkillSet;
 	}
 
 }

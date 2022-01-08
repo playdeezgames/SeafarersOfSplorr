@@ -5,6 +5,7 @@
 #include "Game.Session.SkillCategory.h"
 #include "Game.Session.World.Skills.h"
 #include "Game.SkillCategory.h"
+#include <iterator>
 #include <map>
 namespace game::session::world
 {
@@ -81,7 +82,12 @@ namespace game::session::world
 	std::set<Skill> Skills::GetSkillsInCategory(const game::SkillCategory& category) const
 	{
 		std::set<Skill> result;
+		auto skillIds = data::game::Skill::ReadSkillsForCategory((int)category);
+		std::transform(
+			skillIds.begin(),
+			skillIds.end(),
+			std::inserter(result, result.end()),
+			Skill::ToSkill);
 		return result;
 	}
-
 }

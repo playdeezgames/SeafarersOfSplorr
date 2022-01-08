@@ -1,6 +1,7 @@
 #pragma once
 #include <optional>
 #include <string>
+#include <vector>
 namespace data::game
 {
 	struct Skill
@@ -15,6 +16,7 @@ namespace data::game
 		static std::optional<int> ReadType(int skillId);
 		static std::optional<std::string> ReadName(int skillId);
 		static std::optional<int> ReadDefaultValue(int skillId);
+		static std::vector<int> ReadSkillsForCategory(int category);
 		static void Clear();
 	};
 }
