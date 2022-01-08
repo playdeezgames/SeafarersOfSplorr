@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
-#include "State.AllocateProfessionalSkillPoints.h"
+#include "State.ChooseProfessionalSkill.h"
 namespace state
 {
 	static ::UIState CURRENT_STATE = ::UIState::ALLOCATE_PROFESSIONAL_SKILL_POINTS;

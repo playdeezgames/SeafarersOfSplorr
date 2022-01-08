@@ -9,7 +9,7 @@
 #include <Data.SQLite.Stores.h>
 #include <functional>
 #include <State.About.h>
-#include <State.AllocateProfessionalSkillPoints.h>
+#include <State.ChooseProfessionalSkill.h>
 #include <State.ChooseElectiveSkillCategories.h>
 #include <State.ChooseStartType.h>
 #include <State.ConfirmAbandon.h>

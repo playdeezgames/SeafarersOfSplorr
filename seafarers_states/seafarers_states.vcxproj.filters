@@ -176,7 +176,7 @@
     <ClInclude Include="State.ChooseElectiveSkillCategories.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="State.AllocateProfessionalSkillPoints.h">
+    <ClInclude Include="State.ChooseProfessionalSkill.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -301,7 +301,7 @@
     <ClCompile Include="State.ChooseElectiveSkillCategories.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="State.AllocateProfessionalSkillPoints.cpp">
+    <ClCompile Include="State.ChooseProfessionalSkill.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
