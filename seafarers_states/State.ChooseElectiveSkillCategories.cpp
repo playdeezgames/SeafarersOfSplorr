@@ -87,7 +87,7 @@ namespace state
 	{
 		game::session::Player::ClearProfessionSkillPointAllocations();
 		game::session::Player::GenerateProfessionalSkillList();
-		application::UIState::Write(::UIState::ALLOCATE_PROFESSIONAL_SKILL_POINTS);
+		application::UIState::Write(::UIState::CHOOSE_PROFESSIONAL_SKILL);
 	}
 
 	static void UpdateMenu();

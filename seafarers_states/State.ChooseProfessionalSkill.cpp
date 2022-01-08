@@ -4,7 +4,7 @@
 #include "State.ChooseProfessionalSkill.h"
 namespace state
 {
-	static ::UIState CURRENT_STATE = ::UIState::ALLOCATE_PROFESSIONAL_SKILL_POINTS;
+	static ::UIState CURRENT_STATE = ::UIState::CHOOSE_PROFESSIONAL_SKILL;
 
 	static void RefreshExistingSkillPointAllocations()
 	{
