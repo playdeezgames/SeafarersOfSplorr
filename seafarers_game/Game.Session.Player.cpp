@@ -141,4 +141,10 @@ namespace game::session
 		electiveSkillCategories.insert(category);
 	}
 
+	static std::map<int, size_t> professionalSkillPointAllocations;
+
+	void Player::ClearProfessionSkillPointAllocations()
+	{
+		professionalSkillPointAllocations.clear();
+	}
 }

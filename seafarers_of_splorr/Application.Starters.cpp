@@ -9,6 +9,7 @@
 #include <Data.SQLite.Stores.h>
 #include <functional>
 #include <State.About.h>
+#include <State.AllocateProfessionalSkillPoints.h>
 #include <State.ChooseElectiveSkillCategories.h>
 #include <State.ChooseStartType.h>
 #include <State.ConfirmAbandon.h>
@@ -144,6 +145,7 @@ namespace application
 		state::DetailedStart::Start,
 		state::ChooseStartType::Start,
 		state::ChooseElectiveSkillCategories::Start,
+		state::AllocateProfessionalSkillPoints::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};
