@@ -159,6 +159,12 @@
     <Filter Include="Source Files\Session\World\Profession">
       <UniqueIdentifier>{4c250618-abc9-46fd-9b8e-e07231391206}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Session\SkillCategory">
+      <UniqueIdentifier>{70ea0bdc-8221-4d04-bf66-5014ba2e7e7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Session\SkillCategory">
+      <UniqueIdentifier>{5ce9fdf5-13d3-426c-906b-a2f266db356c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -404,11 +410,11 @@
     <ClInclude Include="Game.Session.World.Professions.h">
       <Filter>Header Files\Session\World\Profession</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.SkillCategory.h">
-      <Filter>Header Files\Session</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.SkillCategories.h">
-      <Filter>Header Files\Session</Filter>
+      <Filter>Header Files\Session\SkillCategory</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.SkillCategory.h">
+      <Filter>Header Files\Session\SkillCategory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -580,11 +586,11 @@
     <ClCompile Include="Game.Session.World.Professions.cpp">
       <Filter>Source Files\Session\World\Profession</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.SkillCategory.cpp">
-      <Filter>Source Files\Session</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Session.SkillCategories.cpp">
-      <Filter>Source Files\Session</Filter>
+      <Filter>Source Files\Session\SkillCategory</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.SkillCategory.cpp">
+      <Filter>Source Files\Session\SkillCategory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

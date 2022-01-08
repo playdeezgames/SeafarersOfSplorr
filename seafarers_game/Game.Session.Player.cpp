@@ -109,6 +109,10 @@ namespace game::session
 	void Player::SetCharacterCreationDefaults()
 	{
 		SetProfession(game::Profession::SAILOR);
+		ClearElectiveSkillCategories();
+		AddElectiveSkillCategory(game::SkillCategory::LISTEN);
+		AddElectiveSkillCategory(game::SkillCategory::REPAIR);
+		AddElectiveSkillCategory(game::SkillCategory::SPOT);
 	}
 
 	static std::vector<game::SkillCategory> electiveSkillCategories;//this may be better as a set?
