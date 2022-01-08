@@ -210,4 +210,15 @@ namespace game::session
 		return professionalSkillSet;
 	}
 
+	int selectedSkillId;
+
+	void Player::SetSelectedSkillId(int skillId)
+	{
+		selectedSkillId = skillId;
+	}
+
+	int Player::GetSelectedSkillId()
+	{
+		return selectedSkillId;
+	}
 }

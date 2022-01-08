@@ -51,7 +51,11 @@ namespace state
 
 	static std::function<void()> DoChooseSkill(int skillId)
 	{
-		return []() {};
+		return [skillId]() 
+		{
+			game::session::Player::SetSelectedSkillId(skillId);
+			//TODO: go to setting how many skill points to allocate
+		};
 	}
 
 	static void UpdateMenu()
