@@ -115,20 +115,20 @@ namespace game::session
 		AddElectiveSkillCategory(game::SkillCategory::SPOT);
 	}
 
-	static std::vector<game::SkillCategory> electiveSkillCategories;//this may be better as a set?
+	static std::set<game::SkillCategory> electiveSkillCategories;
 
 	void Player::ClearElectiveSkillCategories()
 	{
 		electiveSkillCategories.clear();
 	}
 
-	std::vector<game::session::SkillCategory> Player::GetElectiveSkillCategories()
+	std::set<game::session::SkillCategory> Player::GetElectiveSkillCategories()
 	{
-		std::vector<game::session::SkillCategory> result;
+		std::set<game::session::SkillCategory> result;
 		std::transform(
 			electiveSkillCategories.begin(),
 			electiveSkillCategories.end(),
-			std::back_inserter(result),
+			std::inserter(result, result.end()),
 			[](const game::SkillCategory category) 
 			{
 				return game::session::SkillCategory(category);
@@ -138,7 +138,7 @@ namespace game::session
 
 	void Player::AddElectiveSkillCategory(const game::SkillCategory& category)
 	{
-		electiveSkillCategories.push_back(category);
+		electiveSkillCategories.insert(category);
 	}
 
 }

@@ -5,8 +5,8 @@ namespace game::session::world
 	struct ProfessionDescriptor
 	{
 		std::string name;
-		std::vector<SkillCategory> categories;
-		std::vector<SkillCategory> electiveCategories;
+		std::set<SkillCategory> categories;
+		std::set<SkillCategory> electiveCategories;
 	};
 
 	static const std::map<game::Profession, ProfessionDescriptor> professionDescriptors =
@@ -185,12 +185,12 @@ namespace game::session::world
 		return GetDescriptor(profession).name;
 	}
 
-	const std::vector<SkillCategory>& Profession::GetSkillCategories() const
+	const std::set<SkillCategory>& Profession::GetSkillCategories() const
 	{
 		return GetDescriptor(profession).categories;
 	}
 
-	const std::vector<SkillCategory>& Profession::GetElectiveSkillCategories() const
+	const std::set<SkillCategory>& Profession::GetElectiveSkillCategories() const
 	{
 		return GetDescriptor(profession).electiveCategories;
 	}

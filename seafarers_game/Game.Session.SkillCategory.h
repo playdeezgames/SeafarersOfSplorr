@@ -14,6 +14,7 @@ namespace game::session
 		std::vector<game::Characteristic> GetCharacteristics() const;
 		int GetCharacteristicCoefficient(const game::Characteristic& characteristic) const;
 		constexpr explicit operator game::SkillCategory() const { return category; }
+		constexpr friend bool operator<(const SkillCategory& lhs, const SkillCategory& rhs) { return lhs.category < rhs.category; }
 	private:
 		game::SkillCategory category;
 	};

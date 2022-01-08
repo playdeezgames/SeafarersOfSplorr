@@ -5,7 +5,7 @@
 #include "Game.Session.Character.h"
 #include "Game.Session.SkillCategory.h"
 #include <optional>
-#include <vector>
+#include <set>
 namespace game::session
 {
 	struct Player
@@ -25,7 +25,7 @@ namespace game::session
 		static void SetProfession(const game::Profession& profession);
 		static game::Profession GetProfession();
 		static void ClearElectiveSkillCategories();
-		static std::vector<game::session::SkillCategory> GetElectiveSkillCategories();
+		static std::set<game::session::SkillCategory> GetElectiveSkillCategories();
 		static void AddElectiveSkillCategory(const game::SkillCategory& category);
 		//elective skills
 		//list of current electives
