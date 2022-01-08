@@ -35,6 +35,6 @@ namespace game::session
 		static const std::map<int, size_t>& GetProfessionSkillPointAllocations();
 		static size_t GetProfessionalSkillPointsAllocated();
 		static void GenerateProfessionalSkillList();
-		static const std::set<Skill>& GetProfessionalSkillList();
+		static const std::set<Skill>& GetProfessionalSkillSet();
 	};
 }

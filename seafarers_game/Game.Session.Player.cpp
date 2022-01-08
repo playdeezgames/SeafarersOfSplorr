@@ -205,7 +205,7 @@ namespace game::session
 			GetElectiveSkillCategories());
 	}
 
-	const std::set<Skill>& Player::GetProfessionalSkillList()
+	const std::set<Skill>& Player::GetProfessionalSkillSet()
 	{
 		return professionalSkillSet;
 	}

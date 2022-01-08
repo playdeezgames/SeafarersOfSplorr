@@ -49,10 +49,23 @@ namespace state
 		Terminal::Write(">");
 	}
 
+	static std::function<void()> DoChooseSkill(int skillId)
+	{
+		return []() {};
+	}
+
 	static void UpdateMenu()
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
+		auto skills = game::session::Player::GetProfessionalSkillSet();
+		std::for_each(
+			skills.begin(), 
+			skills.end(), 
+			[](const game::session::Skill& skill) 
+			{
+				Terminal::menu.AddAction({ skill.GetName(), DoChooseSkill(skill.operator int()) });
+			});
 		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::CHOOSE_ELECTIVE_SKILL_CATEGORIES) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}

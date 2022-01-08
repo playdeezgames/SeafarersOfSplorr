@@ -86,6 +86,7 @@ namespace state
 	static void OnDone()
 	{
 		game::session::Player::ClearProfessionSkillPointAllocations();
+		game::session::Player::GenerateProfessionalSkillList();
 		application::UIState::Write(::UIState::ALLOCATE_PROFESSIONAL_SKILL_POINTS);
 	}
 

@@ -50,7 +50,7 @@ namespace data::game
 			[SkillId]
 		FROM [Skills]
 		WHERE
-			[Categor]={};)"s;
+			[Category]={};)"s;
 
 	static const std::string FIELD_MAXIMUM_TYPE = "MaximumType";
 	static const std::string FIELD_CATEGORY = "Category";
