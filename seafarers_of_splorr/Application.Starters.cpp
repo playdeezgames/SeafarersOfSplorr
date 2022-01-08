@@ -145,7 +145,7 @@ namespace application
 		state::DetailedStart::Start,
 		state::ChooseStartType::Start,
 		state::ChooseElectiveSkillCategories::Start,
-		state::AllocateProfessionalSkillPoints::Start,
+		state::ChooseProfessionalSkill::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};

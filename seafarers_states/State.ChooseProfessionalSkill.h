@@ -1,9 +1,9 @@
 #pragma once
 namespace state
 {
-	struct AllocateProfessionalSkillPoints
+	struct ChooseProfessionalSkill
 	{
-		AllocateProfessionalSkillPoints() = delete;
+		ChooseProfessionalSkill() = delete;
 		static void Start();
 	};
 }

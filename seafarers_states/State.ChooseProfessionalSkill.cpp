@@ -81,7 +81,7 @@ namespace state
 		Refresh();
 	}
 
-	void AllocateProfessionalSkillPoints::Start()
+	void ChooseProfessionalSkill::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
