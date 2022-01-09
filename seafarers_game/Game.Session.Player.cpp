@@ -166,6 +166,17 @@ namespace game::session
 			});
 	}
 
+	size_t Player::GetProfessionalSkillPointsRemaining()
+	{
+		return PROFESSIONAL_SKILL_POINT_COUNT - GetProfessionalSkillPointsAllocated();
+	}
+
+	void Player::AllocateProfessionalSkillPoints(int skillId, size_t points)
+	{
+		professionalSkillPointAllocations[skillId] += points;
+	}
+
+
 	static std::set<Skill> professionalSkillSet;
 
 	static void AddSkillCategoryToProfessionalSkillSet(const SkillCategory& category)

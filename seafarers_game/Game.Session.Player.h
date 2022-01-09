@@ -34,6 +34,8 @@ namespace game::session
 		static void ClearProfessionSkillPointAllocations();
 		static const std::map<int, size_t>& GetProfessionSkillPointAllocations();
 		static size_t GetProfessionalSkillPointsAllocated();
+		static size_t GetProfessionalSkillPointsRemaining();
+		static void AllocateProfessionalSkillPoints(int skillId, size_t points);
 		static void GenerateProfessionalSkillList();
 		static const std::set<Skill>& GetProfessionalSkillSet();
 		static void SetSelectedSkillId(int skillId);

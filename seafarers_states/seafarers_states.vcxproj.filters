@@ -179,11 +179,14 @@
     <ClInclude Include="State.ChooseElectiveSkillCategories.h">
       <Filter>Header Files\Detailed Start</Filter>
     </ClInclude>
-    <ClInclude Include="State.ChooseStartType.h">
-      <Filter>Header Files\Detailed Start</Filter>
-    </ClInclude>
     <ClInclude Include="State.DetailedStart.h">
       <Filter>Header Files\Detailed Start</Filter>
+    </ClInclude>
+    <ClInclude Include="State.SpendProfessionalSkillPoints.h">
+      <Filter>Header Files\Detailed Start</Filter>
+    </ClInclude>
+    <ClInclude Include="State.ChooseStartType.h">
+      <Filter>Header Files\Boilerplate</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -304,10 +307,13 @@
     <ClCompile Include="State.ChooseElectiveSkillCategories.cpp">
       <Filter>Source Files\Detailed Start</Filter>
     </ClCompile>
-    <ClCompile Include="State.ChooseStartType.cpp">
+    <ClCompile Include="State.DetailedStart.cpp">
       <Filter>Source Files\Detailed Start</Filter>
     </ClCompile>
-    <ClCompile Include="State.DetailedStart.cpp">
+    <ClCompile Include="State.ChooseStartType.cpp">
+      <Filter>Source Files\Boilerplate</Filter>
+    </ClCompile>
+    <ClCompile Include="State.SpendProfessionalSkillPoints.cpp">
       <Filter>Source Files\Detailed Start</Filter>
     </ClCompile>
   </ItemGroup>

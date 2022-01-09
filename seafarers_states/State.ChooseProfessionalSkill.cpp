@@ -4,7 +4,7 @@
 #include "State.ChooseProfessionalSkill.h"
 namespace state
 {
-	static ::UIState CURRENT_STATE = ::UIState::CHOOSE_PROFESSIONAL_SKILL;
+	static const ::UIState CURRENT_STATE = ::UIState::CHOOSE_PROFESSIONAL_SKILL;
 
 	static void RefreshExistingSkillPointAllocations()
 	{
@@ -54,22 +54,35 @@ namespace state
 		return [skillId]() 
 		{
 			game::session::Player::SetSelectedSkillId(skillId);
-			//TODO: go to setting how many skill points to allocate
+			application::UIState::Write(::UIState::SPEND_PROFESSIONAL_SKILL_POINTS);
 		};
+	}
+
+	static void OnDone()
+	{
+
 	}
 
 	static void UpdateMenu()
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		auto skills = game::session::Player::GetProfessionalSkillSet();
-		std::for_each(
-			skills.begin(), 
-			skills.end(), 
-			[](const game::session::Skill& skill) 
-			{
-				Terminal::menu.AddAction({ skill.GetName(), DoChooseSkill(skill.operator int()) });
-			});
+		if (game::session::Player::GetProfessionalSkillPointsRemaining() == 0)
+		{
+			Terminal::menu.AddAction({ "Done", OnDone });
+		}
+		else
+		{
+			//TODO: if no skill points remain to allocate, only "done" is available
+			auto skills = game::session::Player::GetProfessionalSkillSet();
+			std::for_each(
+				skills.begin(), 
+				skills.end(), 
+				[](const game::session::Skill& skill) 
+				{
+					Terminal::menu.AddAction({ skill.GetName(), DoChooseSkill(skill.operator int()) });
+				});
+		}
 		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::CHOOSE_ELECTIVE_SKILL_CATEGORIES) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
