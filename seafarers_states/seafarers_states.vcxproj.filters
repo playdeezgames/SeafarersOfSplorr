@@ -188,6 +188,9 @@
     <ClInclude Include="State.ChooseStartType.h">
       <Filter>Header Files\Boilerplate</Filter>
     </ClInclude>
+    <ClInclude Include="State.ChoosePersonalSkill.h">
+      <Filter>Header Files\Detailed Start</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -314,6 +317,9 @@
       <Filter>Source Files\Boilerplate</Filter>
     </ClCompile>
     <ClCompile Include="State.SpendProfessionalSkillPoints.cpp">
+      <Filter>Source Files\Detailed Start</Filter>
+    </ClCompile>
+    <ClCompile Include="State.ChoosePersonalSkill.cpp">
       <Filter>Source Files\Detailed Start</Filter>
     </ClCompile>
   </ItemGroup>

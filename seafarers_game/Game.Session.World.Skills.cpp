@@ -90,4 +90,17 @@ namespace game::session::world
 			Skill::ToSkill);
 		return result;
 	}
+
+	std::set<Skill> Skills::GetSkills() const
+	{
+		std::set<Skill> result;
+		auto skillIds = data::game::Skill::All();
+		std::transform(
+			skillIds.begin(),
+			skillIds.end(),
+			std::inserter(result, result.end()),
+			Skill::ToSkill);
+		return result;
+	}
+
 }

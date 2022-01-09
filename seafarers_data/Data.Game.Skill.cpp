@@ -51,6 +51,10 @@ namespace data::game
 		FROM [Skills]
 		WHERE
 			[Category]={};)"s;
+	static const std::string QUERY_ALL =
+		R"(SELECT
+			[SkillId]
+		FROM [Skills];)"s;
 
 	static const std::string FIELD_MAXIMUM_TYPE = "MaximumType";
 	static const std::string FIELD_CATEGORY = "Category";
@@ -152,4 +156,15 @@ namespace data::game
 		return result;
 	}
 
+	std::vector<int> Skill::All()
+	{
+		std::vector<int> result;
+		auto records = Common::Execute(QUERY_ALL);
+		std::transform(
+			records.begin(),
+			records.end(),
+			std::back_inserter(result),
+			Common::DoToInt(FIELD_SKILL_ID));
+		return result;
+	}
 }

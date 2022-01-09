@@ -61,7 +61,9 @@ namespace state
 	static void OnDone()
 	{
 		game::Session().GetPlayer().Populate(game::Session().GetWorld().GetDifficulty());
-		//TODO: go to personal skill point allocation
+		//game::session::Player::ClearPersonalSkillAllocations();
+		//application::UIState::Write(::UIState::CHOOSE_PERSONAL_SKILL);
+		application::UIState::Write(::UIState::TIP);
 	}
 
 	static void UpdateMenu()

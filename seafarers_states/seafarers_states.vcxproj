@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="State.ChoosePersonalSkill.h" />
     <ClInclude Include="State.ChooseProfessionalSkill.h" />
     <ClInclude Include="State.ChooseElectiveSkillCategories.h" />
     <ClInclude Include="State.ChooseStartType.h" />
@@ -66,6 +67,7 @@
   <ItemGroup>
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="State.About.cpp" />
+    <ClCompile Include="State.ChoosePersonalSkill.cpp" />
     <ClCompile Include="State.ChooseProfessionalSkill.cpp" />
     <ClCompile Include="State.ChooseElectiveSkillCategories.cpp" />
     <ClCompile Include="State.ChooseStartType.cpp" />

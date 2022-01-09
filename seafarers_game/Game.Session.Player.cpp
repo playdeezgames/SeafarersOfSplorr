@@ -43,9 +43,9 @@ namespace game::session
 		auto character = game::session::Characters().Create(game::characters::State::AT_SEA);
 		auto allocations = game::session::Player::GetProfessionSkillPointAllocations();
 		std::for_each(
-			allocations.begin(), 
-			allocations.end(), 
-			[character](const std::pair<int, size_t>& entry) 
+			allocations.begin(),
+			allocations.end(),
+			[character](const std::pair<int, size_t>& entry)
 			{
 				auto skill = character.GetSkills().GetSkill(entry.first);
 				skill.AllocatePoints(entry.second);
@@ -229,10 +229,10 @@ namespace game::session
 
 		AddSkillCategorySetToProfessionalSkillSet(
 			game::Session()
-				.GetWorld()
-				.GetProfessions()
-				.GetProfession(GetProfession())
-				.GetSkillCategories());
+			.GetWorld()
+			.GetProfessions()
+			.GetProfession(GetProfession())
+			.GetSkillCategories());
 
 		AddSkillCategorySetToProfessionalSkillSet(
 			GetElectiveSkillCategories());
@@ -253,5 +253,47 @@ namespace game::session
 	int Player::GetSelectedSkillId()
 	{
 		return selectedSkillId;
+	}
+
+	static std::map<int, size_t> personalSkillPointAllocations;
+
+	void Player::ClearPersonalSkillAllocations()
+	{
+		personalSkillPointAllocations.clear();
+	}
+
+	size_t Player::GetPersonalSkillPointsAllocated()
+	{
+		return std::accumulate(
+			personalSkillPointAllocations.begin(),
+			personalSkillPointAllocations.end(),
+			(size_t)0,
+			[](size_t accumulator, const std::pair<int, size_t> entry)
+			{
+				return accumulator + entry.second;
+			});
+	}
+
+	size_t Player::GetPersonalSkillPointCount()
+	{
+		const size_t INT_MULTIPLIER = 10;
+		size_t intelligence =
+			(size_t)game::Session()
+			.GetPlayer()
+			.GetCharacter()
+			.GetCharacteristics()
+			.GetCharacteristic(game::Characteristic::INTELLIGENCE)
+			.GetValue();
+		return intelligence * INT_MULTIPLIER;
+	}
+
+	size_t Player::GetPersonalSkillPointsRemaining()
+	{
+		return GetPersonalSkillPointCount() - GetPersonalSkillPointsAllocated();
+	}
+
+	void Player::DistributePersonalSkillPointAllocations()
+	{
+
 	}
 }

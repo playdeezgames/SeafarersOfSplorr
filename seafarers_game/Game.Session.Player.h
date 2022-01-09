@@ -40,5 +40,10 @@ namespace game::session
 		static const std::set<Skill>& GetProfessionalSkillSet();
 		static void SetSelectedSkillId(int skillId);
 		static int GetSelectedSkillId();
+		static void ClearPersonalSkillAllocations();
+		static size_t GetPersonalSkillPointsAllocated();
+		static size_t GetPersonalSkillPointCount();
+		static size_t GetPersonalSkillPointsRemaining();
+		static void DistributePersonalSkillPointAllocations();
 	};
 }

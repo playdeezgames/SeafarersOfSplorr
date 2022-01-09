@@ -17,6 +17,7 @@ namespace data::game
 		static std::optional<std::string> ReadName(int skillId);
 		static std::optional<int> ReadDefaultValue(int skillId);
 		static std::vector<int> ReadSkillsForCategory(int category);
+		static std::vector<int> All();
 		static void Clear();
 	};
 }

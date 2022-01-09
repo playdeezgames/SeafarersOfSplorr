@@ -9,6 +9,7 @@
 #include <Data.SQLite.Stores.h>
 #include <functional>
 #include <State.About.h>
+#include <State.ChoosePersonalSkill.h>
 #include <State.ChooseProfessionalSkill.h>
 #include <State.ChooseElectiveSkillCategories.h>
 #include <State.ChooseStartType.h>
@@ -148,6 +149,7 @@ namespace application
 		state::ChooseElectiveSkillCategories::Start,
 		state::ChooseProfessionalSkill::Start,
 		state::SpendProfessionalSkillPoints::Start,
+		state::ChoosePersonalSkill::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};

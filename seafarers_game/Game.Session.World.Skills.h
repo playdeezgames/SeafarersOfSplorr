@@ -11,5 +11,6 @@ namespace game::session::world
 		void Populate(const Difficulty& difficulty) const;
 		constexpr Skill GetSkill(int skillId) const { return Skill(skillId); }
 		std::set<Skill> GetSkillsInCategory(const game::SkillCategory& category) const;
+		std::set<Skill> GetSkills() const;
 	};
 }
