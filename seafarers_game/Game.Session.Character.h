@@ -12,6 +12,7 @@
 #include "Game.Session.Character.Marks.h"
 #include "Game.Session.Character.Messages.h"
 #include "Game.Session.Character.Plights.h"
+#include "Game.Session.Character.Skills.h"
 #include "Game.Session.Island.h"
 #include "Game.Session.Tribe.h"
 #include <optional>
@@ -32,6 +33,7 @@ namespace game::session
 		constexpr character::Counters GetCounters() const { return character::Counters(characterId); }
 		constexpr character::Flags GetFlags() const { return character::Flags(characterId); }
 		constexpr character::Marks GetMarks() const { return character::Marks(characterId); }
+		constexpr character::Skills GetSkills() const { return character::Skills(characterId); }
 
 		void DoAction(const game::characters::Action& action) const;
 		bool IsDead() const;

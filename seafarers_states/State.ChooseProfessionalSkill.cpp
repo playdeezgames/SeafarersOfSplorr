@@ -60,7 +60,8 @@ namespace state
 
 	static void OnDone()
 	{
-
+		game::Session().GetPlayer().Populate(game::Session().GetWorld().GetDifficulty());
+		//TODO: go to personal skill point allocation
 	}
 
 	static void UpdateMenu()
@@ -73,7 +74,6 @@ namespace state
 		}
 		else
 		{
-			//TODO: if no skill points remain to allocate, only "done" is available
 			auto skills = game::session::Player::GetProfessionalSkillSet();
 			std::for_each(
 				skills.begin(), 

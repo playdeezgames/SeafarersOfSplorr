@@ -7,8 +7,8 @@ namespace data::game::character
 	{
 		Skill() = delete;
 		static void Initialize();
-		static void Write(int, int, int);
-		static std::optional<int> Read(int, int);
-		static std::map<int, int> Read(int);
+		static void Write(int characterId, int skillId, int value);
+		static std::optional<int> Read(int characterId, int skillId);
+		static std::map<int, int> Read(int characterId);
 	};
 }

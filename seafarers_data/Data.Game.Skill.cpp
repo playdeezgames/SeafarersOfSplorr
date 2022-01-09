@@ -131,7 +131,7 @@ namespace data::game
 		Initialize();
 		return Common::TryToInt(
 			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_DEFAULT_VALUE, skillId),
-			FIELD_NAME);
+			FIELD_DEFAULT_VALUE);
 	}
 
 	void Skill::Clear()

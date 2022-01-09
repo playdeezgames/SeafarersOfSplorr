@@ -15,8 +15,8 @@ namespace data::game::character
 			[SkillId] INT NOT NULL,
 			[Value] INT NOT NULL, 
 			UNIQUE([CharacterId],[SkillId]),
-			FOREIGN KEY ([CharacterId]) REFERENCE [Characters]([CharacterId]),
-			FOREIGN KEY ([SkillId]) REFERENCE [Skills]([SkillId])
+			FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId]),
+			FOREIGN KEY ([SkillId]) REFERENCES [Skills]([SkillId])
 		);)"s;
 	static const std::string REPLACE_ITEM = 
 		R"(REPLACE INTO [CharacterSkills]

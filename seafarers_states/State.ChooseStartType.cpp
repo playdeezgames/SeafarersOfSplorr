@@ -26,7 +26,6 @@ namespace state
 	static void OnQuickStart()
 	{
 		game::session::Player::SetCharacterCreationDefaults();
-		//TODO: feed in the preselected profession and skills here
 		game::Session().GetPlayer().Populate(game::Session().GetWorld().GetDifficulty());
 		application::UIState::Write(::UIState::TIP);
 	}
