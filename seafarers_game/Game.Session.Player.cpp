@@ -292,8 +292,30 @@ namespace game::session
 		return GetPersonalSkillPointCount() - GetPersonalSkillPointsAllocated();
 	}
 
+	const std::map<int, size_t>& Player::GetPersonalSkillPointAllocations()
+	{
+		return personalSkillPointAllocations;
+	}
+
+	void Player::AllocatePersonalSkillPoints(int skillId, size_t points)
+	{
+		personalSkillPointAllocations[skillId] += points;
+	}
+
 	void Player::DistributePersonalSkillPointAllocations()
 	{
-
+		std::for_each(
+			personalSkillPointAllocations.begin(), 
+			personalSkillPointAllocations.end(), 
+			[](const std::pair<int, size_t>& entry) 
+			{
+				game::Session()
+					.GetPlayer()
+					.GetCharacter()
+					.GetSkills()
+					.GetSkill(entry.first)
+					.AllocatePoints(entry.second);
+			});
 	}
+
 }

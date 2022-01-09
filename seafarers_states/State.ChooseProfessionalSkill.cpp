@@ -61,9 +61,8 @@ namespace state
 	static void OnDone()
 	{
 		game::Session().GetPlayer().Populate(game::Session().GetWorld().GetDifficulty());
-		//game::session::Player::ClearPersonalSkillAllocations();
-		//application::UIState::Write(::UIState::CHOOSE_PERSONAL_SKILL);
-		application::UIState::Write(::UIState::TIP);
+		game::session::Player::ClearPersonalSkillAllocations();
+		application::UIState::Write(::UIState::CHOOSE_PERSONAL_SKILL);
 	}
 
 	static void UpdateMenu()

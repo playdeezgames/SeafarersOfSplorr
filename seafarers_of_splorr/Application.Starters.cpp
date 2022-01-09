@@ -44,6 +44,7 @@
 #include <State.Options.h>
 #include <State.SaveGame.h>
 #include <State.Splash.h>
+#include <State.SpendPersonalSkillPoints.h>
 #include <State.SpendProfessionalSkillPoints.h>
 #include <State.StartGame.h>
 #include <State.Statistics.h>
@@ -150,6 +151,7 @@ namespace application
 		state::ChooseProfessionalSkill::Start,
 		state::SpendProfessionalSkillPoints::Start,
 		state::ChoosePersonalSkill::Start,
+		state::SpendPersonalSkillPoints::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};

@@ -56,6 +56,7 @@
     <ClInclude Include="State.MainMenu.h" />
     <ClInclude Include="State.Options.h" />
     <ClInclude Include="State.SaveGame.h" />
+    <ClInclude Include="State.SpendPersonalSkillPoints.h" />
     <ClInclude Include="State.SpendProfessionalSkillPoints.h" />
     <ClInclude Include="State.Splash.h" />
     <ClInclude Include="State.StartGame.h" />
@@ -93,6 +94,7 @@
     <ClCompile Include="State.InPlay.RenameShipAdjective.cpp" />
     <ClCompile Include="State.InPlay.RenameShipNoun.cpp" />
     <ClCompile Include="State.InPlay.ShipStatus.cpp" />
+    <ClCompile Include="State.SpendPersonalSkillPoints.cpp" />
     <ClCompile Include="State.SpendProfessionalSkillPoints.cpp" />
     <ClCompile Include="State.Terminal.cpp" />
     <ClCompile Include="State.InPlay.Docked.cpp" />
