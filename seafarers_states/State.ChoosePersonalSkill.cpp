@@ -43,8 +43,19 @@ namespace state
 
 	static void OnDone()
 	{
-		game::session::Player::DistributePersonalSkillPointAllocations(
-			scratch_pad::detailed_start::PersonalSkillPointAllocations::GetSkillPointAllocations());
+		auto personalSkillPointAllocations = scratch_pad::detailed_start::PersonalSkillPointAllocations::GetSkillPointAllocations();
+		std::for_each(
+			personalSkillPointAllocations.begin(),
+			personalSkillPointAllocations.end(),
+			[](const std::pair<int, size_t>& entry)
+			{
+				game::Session()
+					.GetPlayer()
+					.GetCharacter()
+					.GetSkills()
+					.GetSkill(entry.first)
+					.AllocatePoints(entry.second);
+			});
 		application::UIState::Write(::UIState::TIP);
 	}
 

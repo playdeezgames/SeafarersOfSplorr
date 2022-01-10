@@ -89,21 +89,4 @@ namespace game::session
 			categorySet.end(),
 			AddSkillCategoryToProfessionalSkillSet);
 	}
-
-	void Player::DistributePersonalSkillPointAllocations(const std::map<int, size_t>& personalSkillPointAllocations)
-	{
-		std::for_each(
-			personalSkillPointAllocations.begin(), 
-			personalSkillPointAllocations.end(), 
-			[](const std::pair<int, size_t>& entry) 
-			{
-				game::Session()
-					.GetPlayer()
-					.GetCharacter()
-					.GetSkills()
-					.GetSkill(entry.first)
-					.AllocatePoints(entry.second);
-			});
-	}
-
 }

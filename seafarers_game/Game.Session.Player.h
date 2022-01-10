@@ -17,7 +17,5 @@ namespace game::session
 		void Populate(const Difficulty& difficulty, const std::map<int, size_t> allocations) const;
 		Character GetCharacter() const;
 		std::optional<Character> TryGetCharacter() const;
-
-		static void DistributePersonalSkillPointAllocations(const std::map<int, size_t>& personalSkillPointAllocations);
 	};
 }
