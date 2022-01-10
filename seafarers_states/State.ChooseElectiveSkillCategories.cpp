@@ -8,6 +8,7 @@
 #include "State.ScratchPad.DetailedStart.Profession.h"
 #include "State.ScratchPad.DetailedStart.ElectiveSkillCategories.h"
 #include "State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.h"
+#include "State.ScratchPad.DetailedStart.ProfessionalSkillSet.h"
 #include "UIState.h"
 namespace state
 {
@@ -89,7 +90,9 @@ namespace state
 	static void OnDone()
 	{
 		scratch_pad::detailed_start::ProfessionalSkillPointAllocations::Clear();
-		game::session::Player::GenerateProfessionalSkillList(scratch_pad::detailed_start::Profession::GetProfession(), scratch_pad::detailed_start::ElectiveSkillCategories::GetCategories());
+		scratch_pad::detailed_start::ProfessionalSkillSet::GenerateSkills(
+			scratch_pad::detailed_start::Profession::GetProfession(), 
+			scratch_pad::detailed_start::ElectiveSkillCategories::GetCategories());
 		application::UIState::Write(::UIState::CHOOSE_PROFESSIONAL_SKILL);
 	}
 

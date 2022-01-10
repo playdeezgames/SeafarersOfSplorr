@@ -5,6 +5,7 @@
 #include "State.ScratchPad.SelectedSkill.h"
 #include "State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.h"
 #include "State.ScratchPad.DetailedStart.PersonalSkillPointAllocations.h"
+#include "State.ScratchPad.DetailedStart.ProfessionalSkillSet.h"
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::CHOOSE_PROFESSIONAL_SKILL;
@@ -82,7 +83,7 @@ namespace state
 		}
 		else
 		{
-			auto skills = game::session::Player::GetProfessionalSkillSet();
+			auto skills = scratch_pad::detailed_start::ProfessionalSkillSet::GetSkills();
 			std::for_each(
 				skills.begin(), 
 				skills.end(), 

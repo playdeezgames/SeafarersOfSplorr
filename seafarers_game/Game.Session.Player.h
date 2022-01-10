@@ -18,8 +18,6 @@ namespace game::session
 		Character GetCharacter() const;
 		std::optional<Character> TryGetCharacter() const;
 
-		static const std::set<Skill>& GetProfessionalSkillSet();
-		static void GenerateProfessionalSkillList(const game::Profession& profession, const std::set<SkillCategory>& categorySet);
 		static void DistributePersonalSkillPointAllocations(const std::map<int, size_t>& personalSkillPointAllocations);
 	};
 }

@@ -90,26 +90,6 @@ namespace game::session
 			AddSkillCategoryToProfessionalSkillSet);
 	}
 
-	void Player::GenerateProfessionalSkillList(const game::Profession& profession, const std::set<SkillCategory>& categorySet)
-	{
-		professionalSkillSet.clear();
-
-		AddSkillCategorySetToProfessionalSkillSet(
-			game::Session()
-			.GetWorld()
-			.GetProfessions()
-			.GetProfession(profession)
-			.GetSkillCategories());
-
-		AddSkillCategorySetToProfessionalSkillSet(
-			categorySet);
-	}
-
-	const std::set<Skill>& Player::GetProfessionalSkillSet()
-	{
-		return professionalSkillSet;
-	}
-
 	void Player::DistributePersonalSkillPointAllocations(const std::map<int, size_t>& personalSkillPointAllocations)
 	{
 		std::for_each(
