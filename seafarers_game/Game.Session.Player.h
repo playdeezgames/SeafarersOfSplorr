@@ -22,12 +22,13 @@ namespace game::session
 
 		static void GenerateProfessionalSkillList(const game::Profession& profession, const std::set<SkillCategory>& categorySet);
 
+		static void DistributePersonalSkillPointAllocations();
+
 		static void ClearPersonalSkillAllocations();
 		static size_t GetPersonalSkillPointsAllocated();
 		static size_t GetPersonalSkillPointCount();
 		static size_t GetPersonalSkillPointsRemaining();
 		static const std::map<int, size_t>& GetPersonalSkillPointAllocations();
 		static void AllocatePersonalSkillPoints(int skillId, size_t points);
-		static void DistributePersonalSkillPointAllocations();
 	};
 }

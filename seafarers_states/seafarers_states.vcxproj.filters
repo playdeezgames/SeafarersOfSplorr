@@ -227,6 +227,9 @@
     <ClInclude Include="State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.h">
       <Filter>Header Files\ScratchPad\Detailed Start</Filter>
     </ClInclude>
+    <ClInclude Include="State.ScratchPad.DetailedStart.PersonalSkillPointAllocations.h">
+      <Filter>Header Files\ScratchPad\Detailed Start</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -380,6 +383,9 @@
       <Filter>Source Files\ScratchPad\Detailed Start</Filter>
     </ClCompile>
     <ClCompile Include="State.ScratchPad.DetailedStart.Profession.cpp">
+      <Filter>Source Files\ScratchPad\Detailed Start</Filter>
+    </ClCompile>
+    <ClCompile Include="State.ScratchPad.DetailedStart.PersonalSkillPointAllocations.cpp">
       <Filter>Source Files\ScratchPad\Detailed Start</Filter>
     </ClCompile>
   </ItemGroup>
