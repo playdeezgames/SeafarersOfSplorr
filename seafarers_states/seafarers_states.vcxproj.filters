@@ -63,6 +63,12 @@
     <Filter Include="Source Files\ScratchPad">
       <UniqueIdentifier>{e906a47f-cda6-4978-bcf1-51b3c0a67d35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ScratchPad\Detailed Start">
+      <UniqueIdentifier>{d2665192-3a67-4a03-8ed9-71c101f7290f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ScratchPad\Detailed Start">
+      <UniqueIdentifier>{2ae53703-6028-4cf4-b345-ec827df87d94}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UIState.h">
@@ -209,14 +215,17 @@
     <ClInclude Include="State.ScratchPad.HeadForMark.h">
       <Filter>Header Files\ScratchPad</Filter>
     </ClInclude>
-    <ClInclude Include="State.ScratchPad.DetailedStart.Profession.h">
+    <ClInclude Include="State.ScratchPad.SelectedSkill.h">
       <Filter>Header Files\ScratchPad</Filter>
     </ClInclude>
     <ClInclude Include="State.ScratchPad.DetailedStart.ElectiveSkillCategories.h">
-      <Filter>Header Files\ScratchPad</Filter>
+      <Filter>Header Files\ScratchPad\Detailed Start</Filter>
     </ClInclude>
-    <ClInclude Include="State.ScratchPad.SelectedSkill.h">
-      <Filter>Header Files\ScratchPad</Filter>
+    <ClInclude Include="State.ScratchPad.DetailedStart.Profession.h">
+      <Filter>Header Files\ScratchPad\Detailed Start</Filter>
+    </ClInclude>
+    <ClInclude Include="State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.h">
+      <Filter>Header Files\ScratchPad\Detailed Start</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -361,14 +370,17 @@
     <ClCompile Include="State.ScratchPad.HeadForMark.cpp">
       <Filter>Source Files\ScratchPad</Filter>
     </ClCompile>
-    <ClCompile Include="State.ScratchPad.DetailedStart.Profession.cpp">
+    <ClCompile Include="State.ScratchPad.SelectedSkill.cpp">
       <Filter>Source Files\ScratchPad</Filter>
     </ClCompile>
     <ClCompile Include="State.ScratchPad.DetailedStart.ElectiveSkillCategories.cpp">
-      <Filter>Source Files\ScratchPad</Filter>
+      <Filter>Source Files\ScratchPad\Detailed Start</Filter>
     </ClCompile>
-    <ClCompile Include="State.ScratchPad.SelectedSkill.cpp">
-      <Filter>Source Files\ScratchPad</Filter>
+    <ClCompile Include="State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.cpp">
+      <Filter>Source Files\ScratchPad\Detailed Start</Filter>
+    </ClCompile>
+    <ClCompile Include="State.ScratchPad.DetailedStart.Profession.cpp">
+      <Filter>Source Files\ScratchPad\Detailed Start</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
