@@ -3,6 +3,7 @@
 #include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "State.DetailedStart.h"
+#include "State.ScratchPad.DetailedStart.Profession.h"
 #include "UIState.h"
 namespace state
 {
@@ -28,7 +29,7 @@ namespace state
 	{
 		return [profession]()
 		{
-			game::session::Player::SetProfession(profession);
+			scratch_pad::detailed_start::Profession::SetProfession(profession);
 			game::session::Player::ClearElectiveSkillCategories();
 			application::UIState::Write(::UIState::CHOOSE_ELECTIVE_SKILL_CATEGORIES);
 		};

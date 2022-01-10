@@ -2,6 +2,7 @@
 #include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "State.ChooseStartType.h"
+#include "State.ScratchPad.DetailedStart.Profession.h"
 #include "UIState.h"
 namespace state
 {
@@ -25,7 +26,24 @@ namespace state
 
 	static void OnQuickStart()
 	{
-		game::session::Player::SetCharacterCreationDefaults();
+		scratch_pad::detailed_start::Profession::SetProfession(game::Profession::SAILOR);
+		//ClearElectiveSkillCategories();
+		//AddElectiveSkillCategory(game::SkillCategory::LISTEN);
+		//AddElectiveSkillCategory(game::SkillCategory::REPAIR);
+		//AddElectiveSkillCategory(game::SkillCategory::SPOT);
+		//auto skills = game::Session().GetWorld().GetSkills();
+		//auto skillId = skills.GetSkillsInCategory(game::SkillCategory::CLIMB).begin()->operator int();
+		//AllocateProfessionalSkillPoints(skillId, 50);
+		//skillId = skills.GetSkillsInCategory(game::SkillCategory::DODGE).begin()->operator int();
+		//AllocateProfessionalSkillPoints(skillId, 50);
+		//skillId = skills.GetSkillsInCategory(game::SkillCategory::NAVIGATE).begin()->operator int();
+		//AllocateProfessionalSkillPoints(skillId, 50);
+		//skillId = skills.GetSkillsInCategory(game::SkillCategory::SWIM).begin()->operator int();
+		//AllocateProfessionalSkillPoints(skillId, 50);
+		//skillId = skills.GetSkillsInCategory(game::SkillCategory::LISTEN).begin()->operator int();
+		//AllocateProfessionalSkillPoints(skillId, 50);
+		//skillId = skills.GetSkillsInCategory(game::SkillCategory::SPOT).begin()->operator int();
+		//AllocateProfessionalSkillPoints(skillId, 50);
 		game::Session().GetPlayer().Populate(game::Session().GetWorld().GetDifficulty());
 		application::UIState::Write(::UIState::TIP);
 	}

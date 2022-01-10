@@ -18,9 +18,6 @@ namespace game::session
 		Character GetCharacter() const;
 		std::optional<Character> TryGetCharacter() const;
 
-		static void SetProfession(const game::Profession& profession);
-		static game::Profession GetProfession();
-
 		static const size_t SKILL_CATEGORY_COUNT = 10;
 		static void ClearElectiveSkillCategories();
 		static std::set<game::session::SkillCategory> GetElectiveSkillCategories();
@@ -35,7 +32,7 @@ namespace game::session
 		static size_t GetProfessionalSkillPointsAllocated();
 		static size_t GetProfessionalSkillPointsRemaining();
 		static void AllocateProfessionalSkillPoints(int skillId, size_t points);
-		static void GenerateProfessionalSkillList();
+		static void GenerateProfessionalSkillList(const game::Profession& profession);
 
 		static void SetSelectedSkillId(int skillId);
 		static int GetSelectedSkillId();

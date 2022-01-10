@@ -5,6 +5,7 @@
 #include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "State.ChooseElectiveSkillCategories.h"
+#include "State.ScratchPad.DetailedStart.Profession.h"
 #include "UIState.h"
 namespace state
 {
@@ -15,7 +16,7 @@ namespace state
 		return game::Session()
 			.GetWorld()
 			.GetProfessions()
-			.GetProfession(game::session::Player::GetProfession())
+			.GetProfession(scratch_pad::detailed_start::Profession::GetProfession())
 			.GetSkillCategories();
 	}
 
@@ -86,7 +87,7 @@ namespace state
 	static void OnDone()
 	{
 		game::session::Player::ClearProfessionSkillPointAllocations();
-		game::session::Player::GenerateProfessionalSkillList();
+		game::session::Player::GenerateProfessionalSkillList(scratch_pad::detailed_start::Profession::GetProfession());
 		application::UIState::Write(::UIState::CHOOSE_PROFESSIONAL_SKILL);
 	}
 

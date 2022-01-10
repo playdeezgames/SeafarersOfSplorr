@@ -67,22 +67,8 @@ namespace game::session
 		}
 		return std::nullopt;
 	}
-
-	static game::Profession playerProfession = game::Profession::SAILOR;
-
-	void Player::SetProfession(const game::Profession& profession)
-	{
-		playerProfession = profession;
-	}
-
-	game::Profession Player::GetProfession()
-	{
-		return playerProfession;
-	}
-
 	void Player::SetCharacterCreationDefaults()
 	{
-		SetProfession(game::Profession::SAILOR);
 		ClearElectiveSkillCategories();
 		AddElectiveSkillCategory(game::SkillCategory::LISTEN);
 		AddElectiveSkillCategory(game::SkillCategory::REPAIR);
@@ -187,7 +173,7 @@ namespace game::session
 	}
 
 
-	void Player::GenerateProfessionalSkillList()
+	void Player::GenerateProfessionalSkillList(const game::Profession& profession)
 	{
 		professionalSkillSet.clear();
 
@@ -195,7 +181,7 @@ namespace game::session
 			game::Session()
 			.GetWorld()
 			.GetProfessions()
-			.GetProfession(GetProfession())
+			.GetProfession(profession)
 			.GetSkillCategories());
 
 		AddSkillCategorySetToProfessionalSkillSet(
