@@ -68,18 +68,6 @@ namespace game::session
 		return std::nullopt;
 	}
 
-	static std::string renameShipAdjective = "";
-
-	void Player::SetRenameShipAdjective(const std::string& adjective)
-	{
-		renameShipAdjective = adjective;
-	}
-
-	const std::string& Player::GetRenameShipAdjective()
-	{
-		return renameShipAdjective;
-	}
-
 	static std::string headForMarkName;
 
 	void Player::SetHeadForMark(const std::string& markName)

@@ -18,9 +18,6 @@ namespace game::session
 		Character GetCharacter() const;
 		std::optional<Character> TryGetCharacter() const;
 
-		static void SetRenameShipAdjective(const std::string& adjective);
-		static const std::string& GetRenameShipAdjective();
-
 		static void SetHeadForMark(const std::string& markName);
 		static const std::string GetHeadForMark();
 

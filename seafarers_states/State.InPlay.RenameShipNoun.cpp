@@ -5,6 +5,7 @@
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.RenameShipAdjective.h"
 #include "State.InPlay.RenameShipNoun.h"
+#include "State.ScratchPad.ShipAdjective.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_RENAME_SHIP_NOUN;
@@ -27,7 +28,12 @@ namespace state::in_play
 	{
 		return [noun]()
 		{
-			game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().SetName(std::format("{} {}", game::session::Player::GetRenameShipAdjective(), noun));
+			game::Session()
+				.GetPlayer()
+				.GetCharacter()
+				.GetBerth()
+				.GetShip()
+				.SetName(std::format("{} {}", scratch_pad::ShipAdjective::GetAdjective(), noun));
 			application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 		};
 	}
