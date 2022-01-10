@@ -4,6 +4,7 @@
 #include "State.InPlay.Globals.h"
 #include "State.SpendPersonalSkillPoints.h"
 #include "State.ScratchPad.SelectedSkill.h"
+#include "State.ScratchPad.DetailedStart.PersonalSkillPointAllocations.h"
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::SPEND_PERSONAL_SKILL_POINTS;
@@ -18,7 +19,7 @@ namespace state
 		Terminal::WriteLine("How many Skill Points?");
 
 		Terminal::SetForeground(game::Colors::GRAY);
-		auto allocations = game::session::Player::GetPersonalSkillPointAllocations();
+		auto allocations = scratch_pad::detailed_start::PersonalSkillPointAllocations::GetSkillPointAllocations();
 		std::for_each(
 			allocations.begin(),
 			allocations.end(),
@@ -27,7 +28,10 @@ namespace state
 				auto skill = game::Session().GetWorld().GetSkills().GetSkill(entry.first);
 				Terminal::WriteLine("{} ({})", skill.GetName(), entry.second);
 			});
-		Terminal::WriteLine("Skill Points Allocated: {}/{}", game::session::Player::GetPersonalSkillPointsRemaining(), game::session::Player::GetPersonalSkillPointCount());
+		Terminal::WriteLine(
+			"Skill Points Allocated: {}/{}", 
+			scratch_pad::detailed_start::PersonalSkillPointAllocations::GetSkillPointsAllocated(), 
+			scratch_pad::detailed_start::PersonalSkillPointAllocations::GetSkillPointCount());
 
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine();
@@ -49,9 +53,9 @@ namespace state
 	static void OnOtherInput(const std::string& text)
 	{
 		size_t points = (size_t)common::Data::ToInt(text);
-		if (points <= game::session::Player::GetPersonalSkillPointsRemaining())
+		if (points <= scratch_pad::detailed_start::PersonalSkillPointAllocations::GetSkillPointsRemaining())
 		{
-			game::session::Player::AllocatePersonalSkillPoints(scratch_pad::SelectedSkill::GetSkillId(), points);
+			scratch_pad::detailed_start::PersonalSkillPointAllocations::AllocateSkillPoints(scratch_pad::SelectedSkill::GetSkillId(), points);
 			application::UIState::Write(::UIState::CHOOSE_PERSONAL_SKILL);
 		}
 		else

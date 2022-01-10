@@ -4,6 +4,7 @@
 #include "State.ChooseProfessionalSkill.h"
 #include "State.ScratchPad.SelectedSkill.h"
 #include "State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.h"
+#include "State.ScratchPad.DetailedStart.PersonalSkillPointAllocations.h"
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::CHOOSE_PROFESSIONAL_SKILL;
@@ -67,7 +68,7 @@ namespace state
 			.Populate(
 				game::Session().GetWorld().GetDifficulty(), 
 				scratch_pad::detailed_start::ProfessionalSkillPointAllocations::GetAllocations());
-		game::session::Player::ClearPersonalSkillAllocations();
+		scratch_pad::detailed_start::PersonalSkillPointAllocations::Clear();
 		application::UIState::Write(::UIState::CHOOSE_PERSONAL_SKILL);
 	}
 

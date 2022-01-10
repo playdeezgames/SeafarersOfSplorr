@@ -111,54 +111,7 @@ namespace game::session
 		return professionalSkillSet;
 	}
 
-	static std::map<int, size_t> personalSkillPointAllocations;
-
-	void Player::ClearPersonalSkillAllocations()
-	{
-		personalSkillPointAllocations.clear();
-	}
-
-	size_t Player::GetPersonalSkillPointsAllocated()
-	{
-		return std::accumulate(
-			personalSkillPointAllocations.begin(),
-			personalSkillPointAllocations.end(),
-			(size_t)0,
-			[](size_t accumulator, const std::pair<int, size_t> entry)
-			{
-				return accumulator + entry.second;
-			});
-	}
-
-	size_t Player::GetPersonalSkillPointCount()
-	{
-		const size_t INT_MULTIPLIER = 10;
-		size_t intelligence =
-			(size_t)game::Session()
-			.GetPlayer()
-			.GetCharacter()
-			.GetCharacteristics()
-			.GetCharacteristic(game::Characteristic::INTELLIGENCE)
-			.GetValue();
-		return intelligence * INT_MULTIPLIER;
-	}
-
-	size_t Player::GetPersonalSkillPointsRemaining()
-	{
-		return GetPersonalSkillPointCount() - GetPersonalSkillPointsAllocated();
-	}
-
-	const std::map<int, size_t>& Player::GetPersonalSkillPointAllocations()
-	{
-		return personalSkillPointAllocations;
-	}
-
-	void Player::AllocatePersonalSkillPoints(int skillId, size_t points)
-	{
-		personalSkillPointAllocations[skillId] += points;
-	}
-
-	void Player::DistributePersonalSkillPointAllocations()
+	void Player::DistributePersonalSkillPointAllocations(const std::map<int, size_t>& personalSkillPointAllocations)
 	{
 		std::for_each(
 			personalSkillPointAllocations.begin(), 

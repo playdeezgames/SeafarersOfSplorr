@@ -3,6 +3,7 @@
 #include "State.InPlay.Globals.h"
 #include "State.ChoosePersonalSkill.h"
 #include "State.ScratchPad.SelectedSkill.h"
+#include "State.ScratchPad.DetailedStart.PersonalSkillPointAllocations.h"
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::CHOOSE_PERSONAL_SKILL;
@@ -11,8 +12,8 @@ namespace state
 	{
 		Terminal::WriteLine(
 			"Points allocated: {}/{}",
-			game::session::Player::GetPersonalSkillPointsAllocated(),
-			game::session::Player::GetPersonalSkillPointCount());
+			scratch_pad::detailed_start::PersonalSkillPointAllocations::GetSkillPointsAllocated(),
+			scratch_pad::detailed_start::PersonalSkillPointAllocations::GetSkillPointCount());
 	}
 
 	static void RefreshAllocationSummary()
@@ -42,7 +43,8 @@ namespace state
 
 	static void OnDone()
 	{
-		game::session::Player::DistributePersonalSkillPointAllocations();
+		game::session::Player::DistributePersonalSkillPointAllocations(
+			scratch_pad::detailed_start::PersonalSkillPointAllocations::GetSkillPointAllocations());
 		application::UIState::Write(::UIState::TIP);
 	}
 
@@ -59,7 +61,7 @@ namespace state
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		if (game::session::Player::GetPersonalSkillPointsRemaining() == 0)
+		if (scratch_pad::detailed_start::PersonalSkillPointAllocations::GetSkillPointsRemaining() == 0)
 		{
 			Terminal::menu.AddAction({ "Done", OnDone });
 		}
