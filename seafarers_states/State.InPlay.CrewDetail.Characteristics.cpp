@@ -1,6 +1,7 @@
 #include <Game.Session.h>
 #include "State.InPlay.CrewDetail.Characteristics.h"
 #include "State.InPlay.Globals.h"
+#include "State.ScratchPad.CrewDetail.h"
 namespace state::in_play::crew_detail
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CREW_DETAIL_CHARACTERISTICS;
@@ -12,7 +13,7 @@ namespace state::in_play::crew_detail
 		auto character =
 			game::Session()
 			.GetCharacters()
-			.GetCharacter(game::session::Player::GetCrewDetailCharacterId());
+			.GetCharacter(scratch_pad::CrewDetail::GetCharacterId());
 		auto characteristics =
 			character
 			.GetCharacteristics()

@@ -18,10 +18,6 @@ namespace game::session
 		Character GetCharacter() const;
 		std::optional<Character> TryGetCharacter() const;
 
-		//TODO: these dont make sense here - they goes somewhere in states
-		static void SetCrewDetailCharacterId(int characterId);
-		static int GetCrewDetailCharacterId();
-
 		static void SetRenameShipAdjective(const std::string& adjective);
 		static const std::string& GetRenameShipAdjective();
 

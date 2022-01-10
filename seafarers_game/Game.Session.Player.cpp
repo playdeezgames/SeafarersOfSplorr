@@ -68,18 +68,6 @@ namespace game::session
 		return std::nullopt;
 	}
 
-	static int crewDetailCharacterId = 0;
-
-	void Player::SetCrewDetailCharacterId(int characterId)
-	{
-		crewDetailCharacterId = characterId;
-	}
-
-	int Player::GetCrewDetailCharacterId()
-	{
-		return crewDetailCharacterId;
-	}
-
 	static std::string renameShipAdjective = "";
 
 	void Player::SetRenameShipAdjective(const std::string& adjective)

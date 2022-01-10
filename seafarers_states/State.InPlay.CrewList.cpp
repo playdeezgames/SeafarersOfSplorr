@@ -6,6 +6,7 @@
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.CrewList.h"
 #include "State.InPlay.Globals.h"
+#include "State.ScratchPad.CrewDetail.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CREW_LIST;
@@ -46,7 +47,7 @@ namespace state::in_play
 	{
 		return [characterId]()
 		{
-			game::session::Player::SetCrewDetailCharacterId(characterId);
+			scratch_pad::CrewDetail::SetCharacterId(characterId);
 			application::UIState::Write(::UIState::IN_PLAY_CREW_DETAIL);
 		};
 	}

@@ -57,6 +57,12 @@
     <Filter Include="Header Files\Detailed Start">
       <UniqueIdentifier>{9ebc5cc1-664c-449b-8dc5-ce6250a3d28d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ScratchPad">
+      <UniqueIdentifier>{e1b561f7-d26a-4d3e-bf46-9b1b6b6c1cc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ScratchPad">
+      <UniqueIdentifier>{e906a47f-cda6-4978-bcf1-51b3c0a67d35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UIState.h">
@@ -194,6 +200,9 @@
     <ClInclude Include="State.SpendPersonalSkillPoints.h">
       <Filter>Header Files\Detailed Start</Filter>
     </ClInclude>
+    <ClInclude Include="State.ScratchPad.CrewDetail.h">
+      <Filter>Header Files\ScratchPad</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -327,6 +336,9 @@
     </ClCompile>
     <ClCompile Include="State.SpendPersonalSkillPoints.cpp">
       <Filter>Source Files\Detailed Start</Filter>
+    </ClCompile>
+    <ClCompile Include="State.ScratchPad.CrewDetail.cpp">
+      <Filter>Source Files\ScratchPad</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
