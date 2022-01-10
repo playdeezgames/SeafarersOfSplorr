@@ -14,20 +14,11 @@ namespace game::session
 	{
 		constexpr Player() {}
 		void Reset() const;
-		void Populate(const Difficulty& difficulty) const;
+		void Populate(const Difficulty& difficulty, const std::map<int, size_t> allocations) const;
 		Character GetCharacter() const;
 		std::optional<Character> TryGetCharacter() const;
 
 		static const std::set<Skill>& GetProfessionalSkillSet();
-
-		static void SetCharacterCreationDefaults();
-
-		static const size_t PROFESSIONAL_SKILL_POINT_COUNT = 300;
-		static void ClearProfessionSkillPointAllocations();
-		static const std::map<int, size_t>& GetProfessionSkillPointAllocations();
-		static size_t GetProfessionalSkillPointsAllocated();
-		static size_t GetProfessionalSkillPointsRemaining();
-		static void AllocateProfessionalSkillPoints(int skillId, size_t points);
 
 		static void GenerateProfessionalSkillList(const game::Profession& profession, const std::set<SkillCategory>& categorySet);
 

@@ -4,6 +4,7 @@
 #include "State.ChooseStartType.h"
 #include "State.ScratchPad.DetailedStart.Profession.h"
 #include "State.ScratchPad.DetailedStart.ElectiveSkillCategories.h"
+#include "State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.h"
 #include "UIState.h"
 namespace state
 {
@@ -32,20 +33,24 @@ namespace state
 		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::session::SkillCategory(game::SkillCategory::LISTEN));
 		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::session::SkillCategory(game::SkillCategory::REPAIR));
 		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::session::SkillCategory(game::SkillCategory::SPOT));
-		//auto skills = game::Session().GetWorld().GetSkills();
-		//auto skillId = skills.GetSkillsInCategory(game::SkillCategory::CLIMB).begin()->operator int();
-		//AllocateProfessionalSkillPoints(skillId, 50);
-		//skillId = skills.GetSkillsInCategory(game::SkillCategory::DODGE).begin()->operator int();
-		//AllocateProfessionalSkillPoints(skillId, 50);
-		//skillId = skills.GetSkillsInCategory(game::SkillCategory::NAVIGATE).begin()->operator int();
-		//AllocateProfessionalSkillPoints(skillId, 50);
-		//skillId = skills.GetSkillsInCategory(game::SkillCategory::SWIM).begin()->operator int();
-		//AllocateProfessionalSkillPoints(skillId, 50);
-		//skillId = skills.GetSkillsInCategory(game::SkillCategory::LISTEN).begin()->operator int();
-		//AllocateProfessionalSkillPoints(skillId, 50);
-		//skillId = skills.GetSkillsInCategory(game::SkillCategory::SPOT).begin()->operator int();
-		//AllocateProfessionalSkillPoints(skillId, 50);
-		game::Session().GetPlayer().Populate(game::Session().GetWorld().GetDifficulty());
+		auto skills = game::Session().GetWorld().GetSkills();
+		auto skillId = skills.GetSkillsInCategory(game::SkillCategory::CLIMB).begin()->operator int();
+		scratch_pad::detailed_start::ProfessionalSkillPointAllocations::AllocateSkillPoints(skillId, 50);
+		skillId = skills.GetSkillsInCategory(game::SkillCategory::DODGE).begin()->operator int();
+		scratch_pad::detailed_start::ProfessionalSkillPointAllocations::AllocateSkillPoints(skillId, 50);
+		skillId = skills.GetSkillsInCategory(game::SkillCategory::NAVIGATE).begin()->operator int();
+		scratch_pad::detailed_start::ProfessionalSkillPointAllocations::AllocateSkillPoints(skillId, 50);
+		skillId = skills.GetSkillsInCategory(game::SkillCategory::SWIM).begin()->operator int();
+		scratch_pad::detailed_start::ProfessionalSkillPointAllocations::AllocateSkillPoints(skillId, 50);
+		skillId = skills.GetSkillsInCategory(game::SkillCategory::LISTEN).begin()->operator int();
+		scratch_pad::detailed_start::ProfessionalSkillPointAllocations::AllocateSkillPoints(skillId, 50);
+		skillId = skills.GetSkillsInCategory(game::SkillCategory::SPOT).begin()->operator int();
+		scratch_pad::detailed_start::ProfessionalSkillPointAllocations::AllocateSkillPoints(skillId, 50);
+		game::Session()
+			.GetPlayer()
+			.Populate(
+				game::Session().GetWorld().GetDifficulty(),
+				scratch_pad::detailed_start::ProfessionalSkillPointAllocations::GetAllocations());
 		application::UIState::Write(::UIState::TIP);
 	}
 

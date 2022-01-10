@@ -3,6 +3,7 @@
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.SpendProfessionalSkillPoints.h"
+#include "State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.h"
 #include "State.ScratchPad.SelectedSkill.h"
 namespace state
 {
@@ -18,7 +19,7 @@ namespace state
 		Terminal::WriteLine("How many Skill Points?");
 
 		Terminal::SetForeground(game::Colors::GRAY);
-		auto allocations = game::session::Player::GetProfessionSkillPointAllocations();
+		auto allocations = scratch_pad::detailed_start::ProfessionalSkillPointAllocations::GetAllocations();
 		std::for_each(
 			allocations.begin(),
 			allocations.end(),
@@ -27,7 +28,10 @@ namespace state
 				auto skill = game::Session().GetWorld().GetSkills().GetSkill(entry.first);
 				Terminal::WriteLine("{} ({})", skill.GetName(), entry.second);
 			});
-		Terminal::WriteLine("Skill Points Allocated: {}/{}", game::session::Player::GetProfessionalSkillPointsRemaining(), game::session::Player::PROFESSIONAL_SKILL_POINT_COUNT);
+		Terminal::WriteLine(
+			"Skill Points Allocated: {}/{}", 
+			scratch_pad::detailed_start::ProfessionalSkillPointAllocations::GetSkillPointsAllocated(), 
+			scratch_pad::detailed_start::ProfessionalSkillPointAllocations::SKILL_POINT_COUNT);
 
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine();
@@ -48,9 +52,11 @@ namespace state
 	static void OnOtherInput(const std::string& text)
 	{
 		size_t points = (size_t)common::Data::ToInt(text);
-		if (points <= game::session::Player::GetProfessionalSkillPointsRemaining())
+		if (points <= scratch_pad::detailed_start::ProfessionalSkillPointAllocations::GetSkillPointsRemaining())
 		{
-			game::session::Player::AllocateProfessionalSkillPoints(scratch_pad::SelectedSkill::GetSkillId(), points);
+			scratch_pad::detailed_start::ProfessionalSkillPointAllocations::AllocateSkillPoints(
+				scratch_pad::SelectedSkill::GetSkillId(), 
+				points);
 			application::UIState::Write(::UIState::CHOOSE_PROFESSIONAL_SKILL);
 		}
 		else

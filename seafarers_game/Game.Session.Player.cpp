@@ -38,10 +38,9 @@ namespace game::session
 		data::game::character::Ship::Write(characterId, shipId, (int)BerthType::CAPTAIN);
 	}
 
-	void Player::Populate(const Difficulty& difficulty) const
+	void Player::Populate(const Difficulty& difficulty, const std::map<int, size_t> allocations) const
 	{
 		auto character = game::session::Characters().Create(game::characters::State::AT_SEA);
-		auto allocations = game::session::Player::GetProfessionSkillPointAllocations();
 		std::for_each(
 			allocations.begin(),
 			allocations.end(),
@@ -67,57 +66,6 @@ namespace game::session
 		}
 		return std::nullopt;
 	}
-	void Player::SetCharacterCreationDefaults()
-	{
-		auto skills = game::Session().GetWorld().GetSkills();
-		auto skillId = skills.GetSkillsInCategory(game::SkillCategory::CLIMB).begin()->operator int();
-		AllocateProfessionalSkillPoints(skillId, 50);
-		skillId = skills.GetSkillsInCategory(game::SkillCategory::DODGE).begin()->operator int();
-		AllocateProfessionalSkillPoints(skillId, 50);
-		skillId = skills.GetSkillsInCategory(game::SkillCategory::NAVIGATE).begin()->operator int();
-		AllocateProfessionalSkillPoints(skillId, 50);
-		skillId = skills.GetSkillsInCategory(game::SkillCategory::SWIM).begin()->operator int();
-		AllocateProfessionalSkillPoints(skillId, 50);
-		skillId = skills.GetSkillsInCategory(game::SkillCategory::LISTEN).begin()->operator int();
-		AllocateProfessionalSkillPoints(skillId, 50);
-		skillId = skills.GetSkillsInCategory(game::SkillCategory::SPOT).begin()->operator int();
-		AllocateProfessionalSkillPoints(skillId, 50);
-	}
-
-	static std::map<int, size_t> professionalSkillPointAllocations;
-
-	void Player::ClearProfessionSkillPointAllocations()
-	{
-		professionalSkillPointAllocations.clear();
-	}
-
-	const std::map<int, size_t>& Player::GetProfessionSkillPointAllocations()
-	{
-		return professionalSkillPointAllocations;
-	}
-
-	size_t Player::GetProfessionalSkillPointsAllocated()
-	{
-		return std::accumulate(
-			professionalSkillPointAllocations.begin(),
-			professionalSkillPointAllocations.end(),
-			(size_t)0,
-			[](size_t accumulator, const std::pair<int, size_t> entry)
-			{
-				return accumulator + entry.second;
-			});
-	}
-
-	size_t Player::GetProfessionalSkillPointsRemaining()
-	{
-		return PROFESSIONAL_SKILL_POINT_COUNT - GetProfessionalSkillPointsAllocated();
-	}
-
-	void Player::AllocateProfessionalSkillPoints(int skillId, size_t points)
-	{
-		professionalSkillPointAllocations[skillId] += points;
-	}
-
 
 	static std::set<Skill> professionalSkillSet;
 

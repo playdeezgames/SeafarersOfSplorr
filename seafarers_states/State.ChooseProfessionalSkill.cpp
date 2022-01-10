@@ -3,13 +3,14 @@
 #include "State.InPlay.Globals.h"
 #include "State.ChooseProfessionalSkill.h"
 #include "State.ScratchPad.SelectedSkill.h"
+#include "State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.h"
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::CHOOSE_PROFESSIONAL_SKILL;
 
 	static void RefreshExistingSkillPointAllocations()
 	{
-		auto allocations = game::session::Player::GetProfessionSkillPointAllocations();
+		auto allocations = scratch_pad::detailed_start::ProfessionalSkillPointAllocations::GetAllocations();
 		std::for_each(
 			allocations.begin(),
 			allocations.end(),
@@ -26,8 +27,8 @@ namespace state
 	{
 		Terminal::WriteLine(
 			"Points allocated: {}/{}", 
-			game::session::Player::GetProfessionalSkillPointsAllocated(), 
-			game::session::Player::PROFESSIONAL_SKILL_POINT_COUNT);
+			scratch_pad::detailed_start::ProfessionalSkillPointAllocations::GetSkillPointsAllocated(),
+			scratch_pad::detailed_start::ProfessionalSkillPointAllocations::SKILL_POINT_COUNT);
 	}
 
 	static void Refresh()
@@ -61,7 +62,11 @@ namespace state
 
 	static void OnDone()
 	{
-		game::Session().GetPlayer().Populate(game::Session().GetWorld().GetDifficulty());
+		game::Session()
+			.GetPlayer()
+			.Populate(
+				game::Session().GetWorld().GetDifficulty(), 
+				scratch_pad::detailed_start::ProfessionalSkillPointAllocations::GetAllocations());
 		game::session::Player::ClearPersonalSkillAllocations();
 		application::UIState::Write(::UIState::CHOOSE_PERSONAL_SKILL);
 	}
@@ -70,7 +75,7 @@ namespace state
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		if (game::session::Player::GetProfessionalSkillPointsRemaining() == 0)
+		if (scratch_pad::detailed_start::ProfessionalSkillPointAllocations::GetSkillPointsRemaining() == 0)
 		{
 			Terminal::menu.AddAction({ "Done", OnDone });
 		}
