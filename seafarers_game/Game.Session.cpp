@@ -1,27 +1,32 @@
-#include <Data.SQLite.Store.h> //FOR RESET
-#include <Data.SQLite.Stores.h> //FOR RESET
-#include <Data.Game.Island.h> //FOR GetIslands
-#include "Game.Session.h"//Cuz we implement here
+#include <Data.SQLite.Store.h>
+#include <Data.SQLite.Stores.h>
+#include "Game.Session.h"
 namespace game
 {
+	using Stores = data::sqlite::Stores;
+	using Store = data::sqlite::Store;
+
 	void Session::ApplyTurnEffects() const
 	{
-		GetShips().ApplyTurnEffects();
-		GetCharacters().ApplyTurnEffects();
 		GetWorld().ApplyTurnEffects();
+		GetShips().ApplyTurnEffects();
+		GetItems().ApplyTurnEffects();
+		GetCharacters().ApplyTurnEffects();
 	}
 
 	void Session::Populate(const Difficulty& difficulty) const
 	{
 		GetWorld().Populate(difficulty);
+		GetCharacters().Populate(difficulty);
 	}
 
 	void Session::Reset() const
 	{
-		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);//TODO: mebbe this becomes the new game::Reset?
+		Stores::Bounce(Store::IN_MEMORY);
 
 		GetWorld().Reset();
 		GetShips().Reset();
+		GetItems().Reset();
 		GetCharacters().Reset();
 		GetPlayer().Reset();
 	}

@@ -31,7 +31,6 @@ namespace game::session
 			common::RNG::FromRange(0, DAYS_PER_YEAR));
 
 		GetSkills().Populate(difficulty);
-		GetCharacters().Populate(difficulty);
 		GetCalendar().Populate(difficulty);
 		GetDemigods().Populate(difficulty);
 		GetTribes().Populate(difficulty);
@@ -43,7 +42,6 @@ namespace game::session
 	{
 		GetBounds().Reset();
 		GetCalendar().Reset();
-		GetCharacters().Reset();
 		GetCommodities().Reset();
 		GetDemigods().Reset();
 		GetDistances().Reset();
@@ -71,5 +69,4 @@ namespace game::session
 	{
 		return item::Type(data::game::World::ReadCurrencyItemTypeId(worldId).value());
 	}
-
 }

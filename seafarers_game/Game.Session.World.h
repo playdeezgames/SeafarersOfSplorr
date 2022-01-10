@@ -25,7 +25,7 @@ namespace game::session
 
 		constexpr world::Bounds GetBounds() const { return world::Bounds(worldId); }
 		constexpr world::Calendar GetCalendar() const { return world::Calendar(worldId); }
-		constexpr session::Characters GetCharacters() const { return session::Characters();  }
+		//constexpr session::Characters GetCharacters() const { return session::Characters();  }
 		constexpr session::Demigods GetDemigods() const { return session::Demigods(); }
 		constexpr world::Distances GetDistances() const { return world::Distances(worldId); }
 		constexpr Commodities GetCommodities() const { return Commodities(); }

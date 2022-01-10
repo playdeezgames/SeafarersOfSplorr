@@ -20,4 +20,14 @@ namespace game::session
 		return Item(itemInstanceId);
 	}
 
+	void Items::Reset() const
+	{
+
+	}
+
+	void Items::ApplyTurnEffects() const
+	{
+
+	}
+
 }
