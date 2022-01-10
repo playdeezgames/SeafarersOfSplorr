@@ -215,6 +215,9 @@
     <ClInclude Include="State.ScratchPad.DetailedStart.ElectiveSkillCategories.h">
       <Filter>Header Files\ScratchPad</Filter>
     </ClInclude>
+    <ClInclude Include="State.ScratchPad.SelectedSkill.h">
+      <Filter>Header Files\ScratchPad</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -362,6 +365,9 @@
       <Filter>Source Files\ScratchPad</Filter>
     </ClCompile>
     <ClCompile Include="State.ScratchPad.DetailedStart.ElectiveSkillCategories.cpp">
+      <Filter>Source Files\ScratchPad</Filter>
+    </ClCompile>
+    <ClCompile Include="State.ScratchPad.SelectedSkill.cpp">
       <Filter>Source Files\ScratchPad</Filter>
     </ClCompile>
   </ItemGroup>

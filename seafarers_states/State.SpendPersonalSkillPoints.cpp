@@ -3,6 +3,7 @@
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.SpendPersonalSkillPoints.h"
+#include "State.ScratchPad.SelectedSkill.h"
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::SPEND_PERSONAL_SKILL_POINTS;
@@ -50,7 +51,7 @@ namespace state
 		size_t points = (size_t)common::Data::ToInt(text);
 		if (points <= game::session::Player::GetPersonalSkillPointsRemaining())
 		{
-			game::session::Player::AllocatePersonalSkillPoints(game::session::Player::GetSelectedSkillId(), points);
+			game::session::Player::AllocatePersonalSkillPoints(scratch_pad::SelectedSkill::GetSkillId(), points);
 			application::UIState::Write(::UIState::CHOOSE_PERSONAL_SKILL);
 		}
 		else

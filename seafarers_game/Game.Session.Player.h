@@ -30,9 +30,6 @@ namespace game::session
 		static void AllocateProfessionalSkillPoints(int skillId, size_t points);
 		static void GenerateProfessionalSkillList(const game::Profession& profession, const std::set<SkillCategory>& categorySet);
 
-		static void SetSelectedSkillId(int skillId);
-		static int GetSelectedSkillId();
-
 		static void ClearPersonalSkillAllocations();
 		static size_t GetPersonalSkillPointsAllocated();
 		static size_t GetPersonalSkillPointCount();

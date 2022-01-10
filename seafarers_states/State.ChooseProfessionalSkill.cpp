@@ -2,6 +2,7 @@
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.ChooseProfessionalSkill.h"
+#include "State.ScratchPad.SelectedSkill.h"
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::CHOOSE_PROFESSIONAL_SKILL;
@@ -53,7 +54,7 @@ namespace state
 	{
 		return [skillId]() 
 		{
-			game::session::Player::SetSelectedSkillId(skillId);
+			scratch_pad::SelectedSkill::SetSkillId(skillId);
 			application::UIState::Write(::UIState::SPEND_PROFESSIONAL_SKILL_POINTS);
 		};
 	}

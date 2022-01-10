@@ -3,6 +3,7 @@
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.SpendProfessionalSkillPoints.h"
+#include "State.ScratchPad.SelectedSkill.h"
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::SPEND_PROFESSIONAL_SKILL_POINTS;
@@ -49,7 +50,7 @@ namespace state
 		size_t points = (size_t)common::Data::ToInt(text);
 		if (points <= game::session::Player::GetProfessionalSkillPointsRemaining())
 		{
-			game::session::Player::AllocateProfessionalSkillPoints(game::session::Player::GetSelectedSkillId(), points);
+			game::session::Player::AllocateProfessionalSkillPoints(scratch_pad::SelectedSkill::GetSkillId(), points);
 			application::UIState::Write(::UIState::CHOOSE_PROFESSIONAL_SKILL);
 		}
 		else

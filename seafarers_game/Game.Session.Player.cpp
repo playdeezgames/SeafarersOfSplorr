@@ -163,18 +163,6 @@ namespace game::session
 		return professionalSkillSet;
 	}
 
-	int selectedSkillId;
-
-	void Player::SetSelectedSkillId(int skillId)
-	{
-		selectedSkillId = skillId;
-	}
-
-	int Player::GetSelectedSkillId()
-	{
-		return selectedSkillId;
-	}
-
 	static std::map<int, size_t> personalSkillPointAllocations;
 
 	void Player::ClearPersonalSkillAllocations()
