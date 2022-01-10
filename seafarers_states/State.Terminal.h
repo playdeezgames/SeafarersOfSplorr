@@ -8,6 +8,7 @@ namespace state
 {
 	struct Terminal
 	{
+		Terminal() = delete;
 		static Menu menu;
 		static const std::string INVALID_INPUT;
 		static void ClearInput();

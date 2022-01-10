@@ -8,10 +8,6 @@ struct MenuAction
 	std::string caption;
 	std::function<void()> action;
 };
-//      9 - 0
-//    8,8 - 0,8
-//  8,7,8 - 0,8,15
-//8,7,7,8 - 0,8,15,22
 struct Menu
 {
 	void Clear();

@@ -3,6 +3,7 @@ namespace state
 {
 	struct Statistics
 	{
+		Statistics() = delete;
 		static void Start();
 	};
 }

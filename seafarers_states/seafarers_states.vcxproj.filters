@@ -30,9 +30,6 @@
     <Filter Include="Header Files\AtSea">
       <UniqueIdentifier>{cb2a2f10-3d36-48c4-a348-044b38b6ba2d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Careening">
-      <UniqueIdentifier>{cdd503af-ec05-4893-8241-bd1929f84acd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Docked">
       <UniqueIdentifier>{6b5b1717-bfe2-4369-bf91-e8e44e83dcef}</UniqueIdentifier>
     </Filter>
