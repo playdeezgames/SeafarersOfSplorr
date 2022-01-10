@@ -90,7 +90,6 @@ namespace game::session
 			AddSkillCategoryToProfessionalSkillSet);
 	}
 
-
 	void Player::GenerateProfessionalSkillList(const game::Profession& profession, const std::set<SkillCategory>& categorySet)
 	{
 		professionalSkillSet.clear();

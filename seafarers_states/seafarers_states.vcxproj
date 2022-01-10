@@ -61,6 +61,7 @@
     <ClInclude Include="State.ScratchPad.DetailedStart.PersonalSkillPointAllocations.h" />
     <ClInclude Include="State.ScratchPad.DetailedStart.Profession.h" />
     <ClInclude Include="State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.h" />
+    <ClInclude Include="State.ScratchPad.DetailedStart.ProfessionalSkillSet.h" />
     <ClInclude Include="State.ScratchPad.HeadForMark.h" />
     <ClInclude Include="State.ScratchPad.SelectedSkill.h" />
     <ClInclude Include="State.ScratchPad.ShipAdjective.h" />
@@ -78,6 +79,7 @@
     <ClCompile Include="State.ScratchPad.DetailedStart.ElectiveSkillCategories.cpp" />
     <ClCompile Include="State.ScratchPad.DetailedStart.PersonalSkillPointAllocations.cpp" />
     <ClCompile Include="State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.cpp" />
+    <ClCompile Include="State.ScratchPad.DetailedStart.ProfessionalSkillSet.cpp" />
     <ClCompile Include="State.ScratchPad.HeadForMark.cpp" />
     <ClCompile Include="State.About.cpp" />
     <ClCompile Include="State.ChoosePersonalSkill.cpp" />
