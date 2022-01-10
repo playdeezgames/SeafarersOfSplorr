@@ -3,6 +3,7 @@
 #include <Game.Session.h>
 #include "State.InPlay.HeadForMark.h"
 #include "State.InPlay.Globals.h"
+#include "State.ScratchPad.HeadForMark.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_HEAD_FOR_MARK;
@@ -27,7 +28,7 @@ namespace state::in_play
 	{
 		return [markName]()
 		{
-			game::session::Player::SetHeadForMark(markName);
+			scratch_pad::HeadForMark::SetMark(markName);
 			application::UIState::Write(::UIState::IN_PLAY_CONFIRM_HEAD_FOR_MARK);
 		};
 	}

@@ -18,9 +18,6 @@ namespace game::session
 		Character GetCharacter() const;
 		std::optional<Character> TryGetCharacter() const;
 
-		static void SetHeadForMark(const std::string& markName);
-		static const std::string GetHeadForMark();
-
 		static void SetProfession(const game::Profession& profession);
 		static game::Profession GetProfession();
 

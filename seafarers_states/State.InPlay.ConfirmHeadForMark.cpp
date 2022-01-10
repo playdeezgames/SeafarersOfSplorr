@@ -2,6 +2,7 @@
 #include <Game.Session.h>
 #include "State.InPlay.ConfirmHeadForMark.h"
 #include "State.InPlay.Globals.h"
+#include "State.ScratchPad.HeadForMark.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CONFIRM_HEAD_FOR_MARK;
@@ -21,7 +22,7 @@ namespace state::in_play
 		auto mark = 
 			playerCharacter
 			.GetMarks()
-			.GetMark(game::session::Player::GetHeadForMark());
+			.GetMark(scratch_pad::HeadForMark::GetMark());
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Confirm Heading or Delete Mark");
@@ -50,7 +51,7 @@ namespace state::in_play
 		auto mark =
 			playerCharacter
 			.GetMarks()
-			.GetMark(game::session::Player::GetHeadForMark());
+			.GetMark(scratch_pad::HeadForMark::GetMark());
 
 		auto relativeLocation = mark.GetLocation() - ship.GetLocation();
 		ship.SetHeading(common::Heading::XYToDegrees(relativeLocation));
@@ -64,7 +65,7 @@ namespace state::in_play
 			.GetPlayer()
 			.GetCharacter()
 			.GetMarks()
-			.RemoveMark(game::session::Player::GetHeadForMark());
+			.RemoveMark(scratch_pad::HeadForMark::GetMark());
 
 		application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
 	}

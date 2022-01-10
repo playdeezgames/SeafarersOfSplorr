@@ -68,18 +68,6 @@ namespace game::session
 		return std::nullopt;
 	}
 
-	static std::string headForMarkName;
-
-	void Player::SetHeadForMark(const std::string& markName)
-	{
-		headForMarkName = markName;
-	}
-
-	const std::string Player::GetHeadForMark()
-	{
-		return headForMarkName;
-	}
-
 	static game::Profession playerProfession = game::Profession::SAILOR;
 
 	void Player::SetProfession(const game::Profession& profession)
