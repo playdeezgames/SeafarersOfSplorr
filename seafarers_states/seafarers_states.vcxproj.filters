@@ -212,6 +212,9 @@
     <ClInclude Include="State.ScratchPad.DetailedStart.Profession.h">
       <Filter>Header Files\ScratchPad</Filter>
     </ClInclude>
+    <ClInclude Include="State.ScratchPad.DetailedStart.ElectiveSkillCategories.h">
+      <Filter>Header Files\ScratchPad</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -352,10 +355,13 @@
     <ClCompile Include="State.ScratchPad.ShipAdjective.cpp">
       <Filter>Source Files\ScratchPad</Filter>
     </ClCompile>
-    <ClCompile Include="Ship.ScratchPad.HeadForMark.cpp">
+    <ClCompile Include="State.ScratchPad.HeadForMark.cpp">
       <Filter>Source Files\ScratchPad</Filter>
     </ClCompile>
     <ClCompile Include="State.ScratchPad.DetailedStart.Profession.cpp">
+      <Filter>Source Files\ScratchPad</Filter>
+    </ClCompile>
+    <ClCompile Include="State.ScratchPad.DetailedStart.ElectiveSkillCategories.cpp">
       <Filter>Source Files\ScratchPad</Filter>
     </ClCompile>
   </ItemGroup>

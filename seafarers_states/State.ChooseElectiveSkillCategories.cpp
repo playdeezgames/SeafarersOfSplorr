@@ -6,6 +6,7 @@
 #include "State.Terminal.h"
 #include "State.ChooseElectiveSkillCategories.h"
 #include "State.ScratchPad.DetailedStart.Profession.h"
+#include "State.ScratchPad.DetailedStart.ElectiveSkillCategories.h"
 #include "UIState.h"
 namespace state
 {
@@ -34,7 +35,7 @@ namespace state
 
 	static void RefreshElectiveSkillCategories()
 	{
-		auto electiveCategories = game::session::Player::GetElectiveSkillCategories();
+		auto electiveCategories = scratch_pad::detailed_start::ElectiveSkillCategories::GetCategories();
 		std::for_each(
 			electiveCategories.begin(),
 			electiveCategories.end(),
@@ -47,14 +48,14 @@ namespace state
 	static size_t GetSkillCategoryCount()
 	{
 		auto fixedCategories = GetFixedSkillCategories();
-		auto electiveCategories = game::session::Player::GetElectiveSkillCategories();
+		auto electiveCategories = scratch_pad::detailed_start::ElectiveSkillCategories::GetCategories();
 		return fixedCategories.size() + electiveCategories.size();
 	}
 
 	static void RefreshRemainingElectiveCount()
 	{
 		auto skillCategoryCount = GetSkillCategoryCount();
-		Terminal::WriteLine("Skill Categories Chosen: {}/{}", skillCategoryCount, game::session::Player::SKILL_CATEGORY_COUNT);
+		Terminal::WriteLine("Skill Categories Chosen: {}/{}", skillCategoryCount, scratch_pad::detailed_start::ElectiveSkillCategories::SKILL_CATEGORY_COUNT);
 	}
 
 
@@ -81,13 +82,13 @@ namespace state
 
 	static bool AmIDone()
 	{
-		return GetSkillCategoryCount() >= game::session::Player::SKILL_CATEGORY_COUNT;
+		return GetSkillCategoryCount() >= scratch_pad::detailed_start::ElectiveSkillCategories::SKILL_CATEGORY_COUNT;
 	}
 
 	static void OnDone()
 	{
 		game::session::Player::ClearProfessionSkillPointAllocations();
-		game::session::Player::GenerateProfessionalSkillList(scratch_pad::detailed_start::Profession::GetProfession());
+		game::session::Player::GenerateProfessionalSkillList(scratch_pad::detailed_start::Profession::GetProfession(), scratch_pad::detailed_start::ElectiveSkillCategories::GetCategories());
 		application::UIState::Write(::UIState::CHOOSE_PROFESSIONAL_SKILL);
 	}
 
@@ -97,7 +98,7 @@ namespace state
 	{
 		return [category]() 
 		{
-			game::session::Player::AddElectiveSkillCategory(category.operator game::SkillCategory());
+			scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(category);
 			UpdateMenu();
 			Refresh();
 		};
@@ -107,7 +108,7 @@ namespace state
 	{
 		std::set<game::session::SkillCategory> alreadyPresent;
 		auto fixedCategories = GetFixedSkillCategories();
-		auto electiveCategories = game::session::Player::GetElectiveSkillCategories();
+		auto electiveCategories = scratch_pad::detailed_start::ElectiveSkillCategories::GetCategories();
 		std::set_union(
 			fixedCategories.begin(),
 			fixedCategories.end(),

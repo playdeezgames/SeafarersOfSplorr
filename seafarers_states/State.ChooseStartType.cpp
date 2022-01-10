@@ -3,6 +3,7 @@
 #include "State.Terminal.h"
 #include "State.ChooseStartType.h"
 #include "State.ScratchPad.DetailedStart.Profession.h"
+#include "State.ScratchPad.DetailedStart.ElectiveSkillCategories.h"
 #include "UIState.h"
 namespace state
 {
@@ -27,10 +28,10 @@ namespace state
 	static void OnQuickStart()
 	{
 		scratch_pad::detailed_start::Profession::SetProfession(game::Profession::SAILOR);
-		//ClearElectiveSkillCategories();
-		//AddElectiveSkillCategory(game::SkillCategory::LISTEN);
-		//AddElectiveSkillCategory(game::SkillCategory::REPAIR);
-		//AddElectiveSkillCategory(game::SkillCategory::SPOT);
+		scratch_pad::detailed_start::ElectiveSkillCategories::Clear();
+		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::session::SkillCategory(game::SkillCategory::LISTEN));
+		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::session::SkillCategory(game::SkillCategory::REPAIR));
+		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::session::SkillCategory(game::SkillCategory::SPOT));
 		//auto skills = game::Session().GetWorld().GetSkills();
 		//auto skillId = skills.GetSkillsInCategory(game::SkillCategory::CLIMB).begin()->operator int();
 		//AllocateProfessionalSkillPoints(skillId, 50);

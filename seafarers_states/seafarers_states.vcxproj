@@ -57,6 +57,7 @@
     <ClInclude Include="State.Options.h" />
     <ClInclude Include="State.SaveGame.h" />
     <ClInclude Include="State.ScratchPad.CrewDetail.h" />
+    <ClInclude Include="State.ScratchPad.DetailedStart.ElectiveSkillCategories.h" />
     <ClInclude Include="State.ScratchPad.DetailedStart.Profession.h" />
     <ClInclude Include="State.ScratchPad.HeadForMark.h" />
     <ClInclude Include="State.ScratchPad.ShipAdjective.h" />
@@ -71,7 +72,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="Ship.ScratchPad.HeadForMark.cpp" />
+    <ClCompile Include="State.ScratchPad.DetailedStart.ElectiveSkillCategories.cpp" />
+    <ClCompile Include="State.ScratchPad.HeadForMark.cpp" />
     <ClCompile Include="State.About.cpp" />
     <ClCompile Include="State.ChoosePersonalSkill.cpp" />
     <ClCompile Include="State.ChooseProfessionalSkill.cpp" />
