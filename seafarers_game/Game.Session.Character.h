@@ -39,7 +39,6 @@ namespace game::session
 		bool IsDead() const;
 		std::string GetName() const;
 		std::optional<characters::State> TryGetState() const;
-		characters::State GetState() const;
 		void ApplyTurnEffects() const;
 		Island GetOriginIsland() const;
 		Tribe GetTribe() const;
@@ -47,6 +46,7 @@ namespace game::session
 		void SetIsland(Island island) const;
 		void ClearIsland() const;
 		std::optional<Island> TryGetIsland() const;
+		bool IsOnIsland() const;
 		Island GetIsland() const;
 	private:
 		int characterId;

@@ -112,7 +112,7 @@ namespace game::session
 				billets.begin(),
 				billets.end(),
 				[characters](int characterId) {
-					return characters.GetCharacter(characterId).GetState() == game::characters::State::DOCK;
+					return characters.GetCharacter(characterId).IsOnIsland();
 				}))
 			{
 				std::for_each(

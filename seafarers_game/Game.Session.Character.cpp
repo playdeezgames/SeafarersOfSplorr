@@ -205,11 +205,6 @@ namespace game::session
 		GetPlights().ApplyTurnEffects();
 	}
 
-	characters::State Character::GetState() const
-	{
-		return TryGetState().value();
-	}
-
 	void Character::ClearIsland() const
 	{
 		data::game::character::CurrentIsland::Clear(characterId);
@@ -223,6 +218,11 @@ namespace game::session
 			return Island(islandId.value());
 		}
 		return std::nullopt;
+	}
+
+	bool Character::IsOnIsland() const
+	{
+		return TryGetIsland().has_value();
 	}
 
 	Island Character::GetIsland() const
