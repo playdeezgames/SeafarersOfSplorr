@@ -57,20 +57,16 @@ namespace state::in_play
 			return;
 		}
 
-		auto characterState = game::Session().GetPlayer().GetCharacter().TryGetState();
-		if (characterState)
+		auto character = game::Session().GetPlayer().GetCharacter();
+		auto island = character.TryGetIsland();
+		if (island)
 		{
-			auto iter = avatarStateTable.find(characterState.value());
-			if(iter!= avatarStateTable.end())
-			{
-				application::UIState::Write(iter->second);
-				return;
-			}
 			application::UIState::Write(::UIState::IN_PLAY_DOCKED);
-			return;
 		}
-		application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
-		return;
+		else
+		{
+			application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
+		}
 	}
 
 	static void OnUpdate(const unsigned int&)
