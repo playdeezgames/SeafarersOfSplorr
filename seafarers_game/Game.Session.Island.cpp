@@ -21,4 +21,10 @@ namespace game::session
 	{
 		return Demigod(data::game::Island::ReadPatronDemigodId(islandId).value());
 	}
+
+	void Island::Populate(const game::Difficulty& difficulty) const
+	{
+		GetMarkets().Populate(difficulty);
+		GetDistricts().Populate(difficulty);
+	}
 }

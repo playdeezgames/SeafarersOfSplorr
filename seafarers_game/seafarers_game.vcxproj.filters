@@ -434,6 +434,9 @@
     <ClInclude Include="Game.Session.Island.District.h">
       <Filter>Header Files\Session\Island</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Island.FeatureType.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Session.cpp">

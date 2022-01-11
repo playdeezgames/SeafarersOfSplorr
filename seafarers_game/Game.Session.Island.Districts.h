@@ -1,4 +1,5 @@
 #pragma once
+#include "Game.Difficulty.h"
 #include "Game.Session.Island.District.h"
 #include <vector>
 namespace game::session::island
@@ -7,6 +8,7 @@ namespace game::session::island
 	{
 		constexpr explicit Districts(int islandId) : islandId(islandId) {}
 		std::vector<District> GetDistricts() const;
+		void Populate(const game::Difficulty& difficulty) const;
 	private:
 		int islandId;
 	};

@@ -18,6 +18,7 @@ namespace game::session
 		common::XY<double> GetLocation() const;
 		std::string GetName() const;
 		Demigod GetPatronDemigod() const;
+		void Populate(const game::Difficulty& difficulty) const;
 	private:
 		int islandId;
 	};

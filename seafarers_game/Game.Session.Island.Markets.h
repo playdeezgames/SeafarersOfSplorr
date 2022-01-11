@@ -1,4 +1,5 @@
 #pragma once
+#include "Game.Difficulty.h"
 #include "Game.Session.Island.Market.h"
 #include "Game.Session.Item.Type.h"
 namespace game::session::island
@@ -11,6 +12,7 @@ namespace game::session::island
 		int GetMaximumPurchaseQuantity(const item::Type& itemType, double) const;
 		double GetUnitSaleValue(const item::Type& itemType) const;
 		int GetMaximumSaleQuantity(const item::Type& itemType, double) const;
+		void Populate(const game::Difficulty& difficulty) const;
 	private:
 		int islandId;
 	};

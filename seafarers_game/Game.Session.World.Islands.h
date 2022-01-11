@@ -8,7 +8,7 @@ namespace game::session::world
 	{
 		constexpr Islands() {}
 		constexpr Island GetIsland(int islandId) const { return Island(islandId); }
-		std::vector<Island> GetAll() const;
+		std::vector<Island> GetIslands() const;
 		void Reset() const;
 		void Populate(const Difficulty& difficulty) const;
 		void ApplyTurnEffects() const;

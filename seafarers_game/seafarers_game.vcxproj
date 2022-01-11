@@ -24,6 +24,7 @@
     <ClInclude Include="Game.Characters.Message.h" />
     <ClInclude Include="Game.Characteristic.h" />
     <ClInclude Include="Game.Island.District.h" />
+    <ClInclude Include="Game.Island.FeatureType.h" />
     <ClInclude Include="Game.Item.Category.h" />
     <ClInclude Include="Game.Profession.h" />
     <ClInclude Include="Game.Session.Character.Berth.h" />

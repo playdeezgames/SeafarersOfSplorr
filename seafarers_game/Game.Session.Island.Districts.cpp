@@ -18,4 +18,10 @@ namespace game::session::island
 			});
 		return result;
 	}
+
+	void Districts::Populate(const game::Difficulty& difficulty) const
+	{
+
+	}
+
 }

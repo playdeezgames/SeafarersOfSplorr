@@ -120,46 +120,6 @@ namespace game::session::world
 
 	using Market = data::game::island::Market;
 
-	static const std::map<double, size_t> supplyDemandGenerator =
-	{
-		{ 3.0,1},
-		{ 4.0,3},
-		{ 5.0,6},
-		{ 6.0,10},
-		{ 7.0,15},
-		{ 8.0,21},
-		{ 9.0,25},
-		{10.0,27},
-		{11.0,27},
-		{12.0,25},
-		{13.0,21},
-		{14.0,15},
-		{15.0,10},
-		{16.0,6},
-		{17.0,3},
-		{18.0,1}
-	};
-
-	static void GenerateMarkets(int islandId)
-	{
-		const int INITIAL_PURCHASES = 0;
-		const int INITIAL_SALES = 0;
-		auto commodities = game::Session().GetWorld().GetCommodities().GetAll();
-		std::for_each(
-			commodities.begin(),
-			commodities.end(),
-			[islandId](const game::session::Commodity& commodity)
-			{
-				Market::Data data =
-				{
-					common::RNG::FromGenerator(supplyDemandGenerator),
-					common::RNG::FromGenerator(supplyDemandGenerator),
-					INITIAL_PURCHASES,
-					INITIAL_SALES
-				};
-				Market::Write(islandId, (int)commodity.operator game::Commodity(), data);
-			});
-	}
 
 	static int GeneratePatronDemigod()
 	{
@@ -176,7 +136,7 @@ namespace game::session::world
 		return common::RNG::FromGenerator(table);
 	}
 
-	std::vector<Island> Islands::GetAll() const
+	std::vector<Island> Islands::GetIslands() const
 	{
 		auto islands = IslandData::All();
 		std::vector<Island> result;
@@ -415,9 +375,16 @@ namespace game::session::world
 					GeneratePatronDemigod());
 			locations.pop_front();
 			names.erase(names.begin());
-			GenerateMarkets(islandId);
 		}
 		PopulateIslandTribes();
+		auto allIslands = GetIslands();
+		std::for_each(
+			allIslands.begin(), 
+			allIslands.end(), 
+			[difficulty](const Island& island)
+			{
+				island.Populate(difficulty);
+			});
 	}
 
 	void Islands::Reset() const
