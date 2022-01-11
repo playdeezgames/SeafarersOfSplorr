@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <Game.Session.h>
 #include "State.InPlay.Docked.h"
 #include "State.InPlay.Globals.h"
@@ -5,22 +6,16 @@ namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DOCKED;
 	static const std::string FORMAT_NAME = "Island Name: {}";
-	static const std::string FORMAT_VISITS = "Visits: {}";
-	static const std::string FORMAT_TEMPLE = "5) Temple of {}";
 
 	static void Refresh()
 	{
 		auto island = game::Session().GetPlayer().GetCharacter().GetIsland();
 		Terminal::Reinitialize();
-
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Docked:");
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine(FORMAT_NAME, island.GetName());
-
-		Terminal::SetForeground(game::Colors::YELLOW);
-		Terminal::WriteLine("0) Undock");
-
+		Terminal::ShowMenu();
 		Terminal::ShowPrompt();
 	}
 
@@ -30,16 +25,41 @@ namespace state::in_play
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
 
+	static std::function<void()> DoGoToDistrict(const game::session::island::District& district)
+	{
+		return [district]() 
+		{
+		};
+	}
+
+	static void UpdateMenu()
+	{
+		Terminal::menu.Clear();
+		Terminal::menu.SetRefresh(Refresh);
+		auto districts = 
+			game::Session()
+			.GetPlayer()
+			.GetCharacter()
+			.GetIsland()
+			.GetDistricts()
+			.GetDistricts();
+		std::for_each(
+			districts.begin(),
+			districts.end(),
+			[](const game::session::island::District& district) 
+			{
+				Terminal::menu.AddAction({ district.GetName(), DoGoToDistrict(district) });
+			});
+		MenuAction defaultAction = { "Undock", OnUndock };
+		Terminal::menu.SetDefaultAction(defaultAction);
+	}
+
 	static void OnEnter()
 	{
 		PlayMainTheme();
+		UpdateMenu();
 		Refresh();
 	}
-
-	static const std::map<std::string, std::function<void()>> menuActions =
-	{
-		{"0", OnUndock}
-	};
 
 	void Docked::Start()
 	{
@@ -47,8 +67,7 @@ namespace state::in_play
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(
 			CURRENT_STATE,
-			Terminal::DoIntegerInput(
-				menuActions,
+			Terminal::DoMenuInput(
 				Terminal::INVALID_INPUT,
 				Refresh));
 	}
