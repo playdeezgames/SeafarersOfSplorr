@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.BerthType.h" />
-    <ClInclude Include="Game.Characters.Action.h" />
     <ClInclude Include="Game.Characters.Counter.h" />
     <ClInclude Include="Game.Characters.Message.h" />
     <ClInclude Include="Game.Characteristic.h" />
