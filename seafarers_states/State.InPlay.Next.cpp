@@ -34,11 +34,6 @@ namespace state::in_play
 		{IsPlayerDead, ::UIState::IN_PLAY_LOSE}
 	};
 
-	static const std::map<game::characters::State, ::UIState> avatarStateTable =
-	{
-		{ game::characters::State::AT_SEA, ::UIState::IN_PLAY_AT_SEA_OVERVIEW }
-	};
-
 	static void OnEnter()
 	{
 		for (auto statusChecker : statusCheckers)

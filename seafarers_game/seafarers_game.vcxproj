@@ -91,7 +91,6 @@
     <ClInclude Include="Game.Characters.Flag.h" />
     <ClInclude Include="Game.Characters.Plight.h" />
     <ClInclude Include="Game.Characters.PlightType.h" />
-    <ClInclude Include="Game.Characters.State.h" />
     <ClInclude Include="Game.Audio.GameSfx.h" />
     <ClInclude Include="Game.Audio.Mux.h" />
     <ClInclude Include="Game.Audio.Sfx.h" />

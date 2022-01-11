@@ -40,7 +40,7 @@ namespace game::session
 
 	void Player::Populate(const Difficulty& difficulty, const std::map<int, size_t> allocations) const
 	{
-		auto character = game::session::Characters().Create(game::characters::State::AT_SEA);
+		auto character = game::session::Characters().Create();
 		std::for_each(
 			allocations.begin(),
 			allocations.end(),

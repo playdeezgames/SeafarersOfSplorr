@@ -148,12 +148,11 @@ namespace game::session
 				IslandTribeData::All(islandId));
 	}
 
-	Character Characters::Create(const game::characters::State& state)
+	Character Characters::Create()
 	{
 		auto originIslandId = GenerateOriginIslandId();
 		int characterId = 
-			data::game::Character::Create(
-				(int)state, 
+			data::game::Character::Create( 
 				GenerateName(), 
 				originIslandId, 
 				GenerateTribeId(originIslandId));

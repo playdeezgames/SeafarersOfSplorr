@@ -284,9 +284,6 @@
     <ClInclude Include="Game.Characters.Action.h">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Characters.State.h">
-      <Filter>Header Files\Enums</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Characters.Counter.h">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
