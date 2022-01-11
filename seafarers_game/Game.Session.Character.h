@@ -35,10 +35,8 @@ namespace game::session
 		constexpr character::Marks GetMarks() const { return character::Marks(characterId); }
 		constexpr character::Skills GetSkills() const { return character::Skills(characterId); }
 
-		void DoAction(const game::characters::Action& action) const;
 		bool IsDead() const;
 		std::string GetName() const;
-		std::optional<characters::State> TryGetState() const;
 		void ApplyTurnEffects() const;
 		Island GetOriginIsland() const;
 		Tribe GetTribe() const;

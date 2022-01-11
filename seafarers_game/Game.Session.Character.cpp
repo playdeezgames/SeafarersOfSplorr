@@ -75,25 +75,6 @@ namespace game::session
 		return std::nullopt;
 	}
 
-	void Character::DoAction(const game::characters::Action& action) const
-	{
-		auto state = TryGetState();
-		if (state)
-		{
-			auto descriptor = FindActionDescriptor(action);
-			if (descriptor)
-			{
-				auto transitioner = FindTransitioner(descriptor.value(), state.value());
-				if (transitioner)
-				{
-					data::game::Character::WriteState(
-						characterId, 
-						(int)transitioner.value()(characterId));
-				}
-			}
-		}
-	}
-
 	bool Character::IsDead() const
 	{
 		return GetHitpoints().GetCurrent() <= 0;
@@ -107,16 +88,6 @@ namespace game::session
 	std::string Character::GetName() const
 	{
 		return data::game::Character::ReadName(characterId).value();
-	}
-
-	std::optional<characters::State> Character::TryGetState() const
-	{
-		auto state = data::game::Character::ReadState(characterId);
-		if (state)
-		{
-			return (characters::State)state.value();
-		}
-		return std::nullopt;
 	}
 
 	static size_t DetermineTurnsSpent(int characterId)
