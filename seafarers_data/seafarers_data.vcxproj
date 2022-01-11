@@ -34,6 +34,7 @@
     <ClInclude Include="Data.Game.Common.h" />
     <ClInclude Include="Data.Game.Demigod.h" />
     <ClInclude Include="Data.Game.Island.District.h" />
+    <ClInclude Include="Data.Game.Island.Feature.h" />
     <ClInclude Include="Data.Game.Island.h" />
     <ClInclude Include="Data.Game.Island.Market.h" />
     <ClInclude Include="Data.Game.Island.Tribe.h" />
@@ -68,6 +69,7 @@
     <ClCompile Include="Data.Game.Demigod.cpp" />
     <ClCompile Include="Data.Game.Island.cpp" />
     <ClCompile Include="Data.Game.Island.District.cpp" />
+    <ClCompile Include="Data.Game.Island.Feature.cpp" />
     <ClCompile Include="Data.Game.Island.Market.cpp" />
     <ClCompile Include="Data.Game.Island.Tribe.cpp" />
     <ClCompile Include="Data.Game.Item.cpp" />

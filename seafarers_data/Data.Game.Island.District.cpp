@@ -1,16 +1,35 @@
+#include <algorithm>
+#include "Data.Game.Island.Feature.h"
 #include "Data.Game.Island.District.h"
+#include "Data.Game.Common.h"
+#include <iterator>
 namespace data::game::island
 {
+	using namespace std::string_literals;
+	static const std::string QUERY_ALL = 
+		R"(SELECT DISTINCT 
+			[District] 
+		FROM [Features] 
+		WHERE 
+			[IslandId]={};)"s;
+
+	static const std::string FIELD_DISTRICT = "District";
+
 	void District::Initialize()
 	{
-		//TODO: initialize features data store
+		data::game::island::Feature::Initialize();
 	}
 
 	std::vector<int> District::Read(int islandId)
 	{
 		Initialize();
 		std::vector<int> result;
-		//TODO: read districts from features data store
+		auto records = Common::Execute(QUERY_ALL, islandId);
+		std::transform(
+			records.begin(),
+			records.end(),
+			std::back_inserter(result),
+			Common::DoToInt(FIELD_DISTRICT));
 		return result;
 	}
 }
