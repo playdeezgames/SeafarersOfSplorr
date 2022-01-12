@@ -4,28 +4,28 @@
 #include "Data.Game.Player.h"
 namespace data::game
 {
-	using namespace std::string_literals;
-	static const std::string CREATE_TABLE = 
+	using namespace std::string_view_literals;
+	static constexpr std::string_view CREATE_TABLE = 
 		R"(CREATE TABLE IF NOT EXISTS [Players]
 		(
 			[PlayerId] INT NOT NULL UNIQUE CHECK([PlayerId]=1),
 			[CharacterId] INT NOT NULL UNIQUE
-		);)"s;
-	static const std::string QUERY_ITEM = 
+		);)"sv;
+	static constexpr std::string_view QUERY_ITEM =
 		R"(SELECT 
 			[CharacterId] 
 		FROM [Players] 
 		WHERE 
-			[PlayerId]={};)"s;
-	static const std::string REPLACE_ITEM = 
+			[PlayerId]={};)"sv;
+	static constexpr std::string_view REPLACE_ITEM =
 		R"(REPLACE INTO [Players]
 		(
 			[PlayerId],
 			[CharacterId]
 		) 
-		VALUES ({},{});)"s;
+		VALUES ({},{});)"sv;
 
-	static const std::string FIELD_CHARACTER_ID = "CharacterId";
+	static constexpr std::string_view FIELD_CHARACTER_ID = "CharacterId";
 
 	static const int PLAYER_ID = 1;
 
