@@ -6,4 +6,9 @@ namespace game::session::island
 	{
 		return data::game::island::Feature::ReadName(featureId).value();
 	}
+
+	game::island::FeatureType Feature::GetFeatureType() const
+	{
+		return (game::island::FeatureType)data::game::island::Feature::ReadFeatureType(featureId).value();
+	}
 }

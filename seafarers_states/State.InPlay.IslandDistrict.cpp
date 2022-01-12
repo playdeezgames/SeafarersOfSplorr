@@ -3,6 +3,7 @@
 #include <Game.Session.h>
 #include "State.InPlay.IslandDistrict.h"
 #include "State.ScratchPad.IslandDistrict.h"
+#include "State.ScratchPad.IslandFeature.h"
 namespace state::in_play
 {
 	static constexpr ::UIState CURRENT_STATE = ::UIState::IN_PLAY_ISLAND_DISTRICT;
@@ -24,9 +25,20 @@ namespace state::in_play
 		Terminal::ShowPrompt();
 	}
 
-	static std::function<void()> GoToFeature(int featureId)
+	static ::UIState GetUIStateForFeatureType(const game::island::FeatureType& featureType)
 	{
-		return []() {};
+		return
+			::UIState::IN_PLAY_ISLAND_DISTRICT;//TODO: make this go to the appropriate state for the given feature
+	}
+
+	static std::function<void()> GoToFeature(int featureId, const game::island::FeatureType& featureType)
+	{
+		auto uiState = GetUIStateForFeatureType(featureType);
+		return [featureId, uiState]() 
+		{
+			scratch_pad::IslandFeature::SetFeatureId(featureId);
+			application::UIState::Write(uiState);
+		};
 	}
 
 	static void UpdateMenu()
@@ -47,7 +59,7 @@ namespace state::in_play
 			features.end(), 
 			[](const game::session::island::Feature& feature) 
 			{
-				Terminal::menu.AddAction({ feature.GetName() , GoToFeature(feature.operator int()) });
+				Terminal::menu.AddAction({ feature.GetName() , GoToFeature(feature.operator int(), feature.GetFeatureType()) });
 			});
 		MenuAction defaultAction = { "Leave district", application::UIState::GoTo(::UIState::IN_PLAY_DOCKED) };
 		Terminal::menu.SetDefaultAction(defaultAction);

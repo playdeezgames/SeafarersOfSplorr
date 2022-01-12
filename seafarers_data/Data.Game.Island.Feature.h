@@ -11,5 +11,6 @@ namespace data::game::island
 		static int Create(int islandId, const std::string& name, int featureType, int district);
 		static std::vector<int> ReadForIslandDistrict(int islandId, int district);
 		static std::optional<std::string> ReadName(int featureId);
+		static std::optional<int> ReadFeatureType(int featureId);
 	};
 }

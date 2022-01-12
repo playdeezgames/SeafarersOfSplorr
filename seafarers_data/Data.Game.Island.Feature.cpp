@@ -43,6 +43,7 @@ namespace data::game::island
 
 	static const std::string FIELD_FEATURE_ID = "FeatureId";
 	static const std::string FIELD_NAME = "Name";
+	static const std::string FIELD_FEATURE_TYPE = "FeatureType";
 
 	void Feature::Initialize()
 	{
@@ -76,5 +77,13 @@ namespace data::game::island
 		return Common::TryToString(
 			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_NAME, featureId),
 			FIELD_NAME);
+	}
+
+	std::optional<int> Feature::ReadFeatureType(int featureId)
+	{
+		Initialize();
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_FEATURE_TYPE, featureId),
+			FIELD_FEATURE_TYPE);
 	}
 }
