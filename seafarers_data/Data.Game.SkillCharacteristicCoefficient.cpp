@@ -4,9 +4,9 @@
 #include "Data.Game.Common.h"
 namespace data::game
 {
-	using namespace std::string_literals;
+	using namespace std::string_view_literals;
 
-	const static std::string CREATE_TABLE =
+	static constexpr std::string_view CREATE_TABLE =
 		R"(CREATE TABLE IF NOT EXISTS [SkillCharacteristicCoefficients]
 		(
 			[SkillId] INT NOT NULL,
@@ -14,15 +14,15 @@ namespace data::game
 			[Coefficient] INT NOT NULL,
 			UNIQUE([SkillId],[Characteristic]),
 			FOREIGN KEY ([SkillId]) REFERENCES [Skills]([SkillId])
-		);)"s;
-	const static std::string REPLACE_ITEM =
+		);)"sv;
+	static constexpr std::string_view REPLACE_ITEM =
 		R"(REPLACE INTO [SkillCharacteristicCoefficients]
 		(
 			[SkillId],
 			[Characteristic],
 			[Coefficient]
 		) 
-		VALUES({},{},{});)"s;
+		VALUES({},{},{});)"sv;
 
 	void SkillCharacteristicCoefficient::Initialize()
 	{

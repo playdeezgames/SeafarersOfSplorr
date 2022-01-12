@@ -5,34 +5,34 @@
 #include <iterator>
 namespace data::game
 {
-	using namespace std::string_literals;
-	static const std::string CREATE_TABLE =
+	using namespace std::string_view_literals;
+	static constexpr std::string_view CREATE_TABLE =
 		R"(CREATE TABLE IF NOT EXISTS [Tribes]
 		(
 			[TribeId] INTEGER PRIMARY KEY AUTOINCREMENT,
 			[Name] TEXT NOT NULL
-		);)"s;
-	static const std::string CREATE_ITEM =
+		);)"sv;
+	static constexpr std::string_view CREATE_ITEM =
 		R"(INSERT INTO [Tribes]
 		(
 			[Name]
 		) 
-		VALUES({});)";
-	static const std::string QUERY_ALL =
+		VALUES({});)"sv;
+	static constexpr std::string_view QUERY_ALL =
 		R"(SELECT 
 			[TribeId] 
-		FROM [Tribes];)"s;
-	static const std::string QUERY_ITEM_COLUMN =
+		FROM [Tribes];)"sv;
+	static constexpr std::string_view QUERY_ITEM_COLUMN =
 		R"(SELECT 
 			[{}] 
 		FROM [Tribes] 
 		WHERE 
-			[TribeId]={};)";
-	static const std::string DELETE_ALL =
-		R"(DELETE FROM [Tribes];)"s;
+			[TribeId]={};)"sv;
+	static constexpr std::string_view DELETE_ALL =
+		R"(DELETE FROM [Tribes];)"sv;
 
-	static const std::string FIELD_NAME = "Name";
-	static const std::string FIELD_TRIBE_ID = "TribeId";
+	static constexpr std::string_view FIELD_NAME = "Name";
+	static constexpr std::string_view FIELD_TRIBE_ID = "TribeId";
 
 	void Tribe::Initialize()
 	{
