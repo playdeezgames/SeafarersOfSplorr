@@ -2,6 +2,7 @@
 #include <Game.Session.h>
 #include "State.InPlay.Docked.h"
 #include "State.InPlay.Globals.h"
+#include "State.ScratchPad.IslandDistrict.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DOCKED;
@@ -29,6 +30,8 @@ namespace state::in_play
 	{
 		return [district]() 
 		{
+			scratch_pad::IslandDistrict::SetDistrict(district.operator game::island::District());
+			application::UIState::Write(::UIState::IN_PLAY_ISLAND_DISTRICT);
 		};
 	}
 

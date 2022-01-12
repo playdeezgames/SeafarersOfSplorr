@@ -230,6 +230,12 @@
     <ClInclude Include="State.ScratchPad.DetailedStart.ProfessionalSkillSet.h">
       <Filter>Header Files\ScratchPad\Detailed Start</Filter>
     </ClInclude>
+    <ClInclude Include="State.ScratchPad.IslandDistrict.h">
+      <Filter>Header Files\ScratchPad</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.IslandDistrict.h">
+      <Filter>Header Files\Docked</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -390,6 +396,12 @@
     </ClCompile>
     <ClCompile Include="State.ScratchPad.DetailedStart.ProfessionalSkillSet.cpp">
       <Filter>Source Files\ScratchPad\Detailed Start</Filter>
+    </ClCompile>
+    <ClCompile Include="State.ScratchPad.IslandDistrict.cpp">
+      <Filter>Source Files\ScratchPad</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.IslandDistrict.cpp">
+      <Filter>Source Files\Docked</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

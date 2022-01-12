@@ -29,6 +29,7 @@
 #include <State.InPlay.HeadForKnown.h>
 #include <State.InPlay.HeadForMark.h>
 #include <State.InPlay.HeadForNearBy.h>
+#include <State.InPlay.IslandDistrict.h>
 #include <State.InPlay.Lose.h>
 #include <State.InPlay.ManualHeading.h>
 #include <State.InPlay.MarkCurrentLocation.h>
@@ -152,6 +153,7 @@ namespace application
 		state::SpendProfessionalSkillPoints::Start,
 		state::ChoosePersonalSkill::Start,
 		state::SpendPersonalSkillPoints::Start,
+		state::in_play::IslandDistrict::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};

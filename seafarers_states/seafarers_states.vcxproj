@@ -34,6 +34,7 @@
     <ClInclude Include="State.InPlay.HeadForKnown.h" />
     <ClInclude Include="State.InPlay.HeadForMark.h" />
     <ClInclude Include="State.InPlay.HeadForNearBy.h" />
+    <ClInclude Include="State.InPlay.IslandDistrict.h" />
     <ClInclude Include="State.InPlay.ManualHeading.h" />
     <ClInclude Include="State.About.h" />
     <ClInclude Include="State.ConfirmAbandon.h" />
@@ -63,6 +64,7 @@
     <ClInclude Include="State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.h" />
     <ClInclude Include="State.ScratchPad.DetailedStart.ProfessionalSkillSet.h" />
     <ClInclude Include="State.ScratchPad.HeadForMark.h" />
+    <ClInclude Include="State.ScratchPad.IslandDistrict.h" />
     <ClInclude Include="State.ScratchPad.SelectedSkill.h" />
     <ClInclude Include="State.ScratchPad.ShipAdjective.h" />
     <ClInclude Include="State.SpendPersonalSkillPoints.h" />
@@ -76,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="State.InPlay.IslandDistrict.cpp" />
     <ClCompile Include="State.ScratchPad.DetailedStart.ElectiveSkillCategories.cpp" />
     <ClCompile Include="State.ScratchPad.DetailedStart.PersonalSkillPointAllocations.cpp" />
     <ClCompile Include="State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.cpp" />
@@ -110,6 +113,7 @@
     <ClCompile Include="State.InPlay.ShipStatus.cpp" />
     <ClCompile Include="State.ScratchPad.CrewDetail.cpp" />
     <ClCompile Include="State.ScratchPad.DetailedStart.Profession.cpp" />
+    <ClCompile Include="State.ScratchPad.IslandDistrict.cpp" />
     <ClCompile Include="State.ScratchPad.SelectedSkill.cpp" />
     <ClCompile Include="State.ScratchPad.ShipAdjective.cpp" />
     <ClCompile Include="State.SpendPersonalSkillPoints.cpp" />
