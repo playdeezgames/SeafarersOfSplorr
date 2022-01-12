@@ -4,41 +4,41 @@
 #include "Data.Game.Item.h"
 namespace data::game
 {
-	using namespace std::string_literals;
-	static const std::string CREATE_TABLE = 
+	using namespace std::string_view_literals;
+	static constexpr std::string_view CREATE_TABLE = 
 		R"(CREATE TABLE IF NOT EXISTS [Items]
 		(
 			[ItemId] INTEGER PRIMARY KEY AUTOINCREMENT, 
 			[ItemTypeId] INT NOT NULL, 
 			[Quantity] INT NOT NULL,
 			FOREIGN KEY ([ItemTypeId]) REFERENCES [ItemTypes]([ItemTypeId])
-		);)"s;
-	static const std::string CREATE_ITEM = 
+		);)"sv;
+	static constexpr std::string_view CREATE_ITEM =
 		R"(INSERT INTO [Items]
 		(
 			[ItemTypeId],
 			[Quantity]
 		) 
-		VALUES({},{});)"s;
-	static const std::string QUERY_ITEM_COLUMN = 
+		VALUES({},{});)"sv;
+	static constexpr std::string_view QUERY_ITEM_COLUMN =
 		R"(SELECT 
 			[{}] 
 		FROM [Items] 
 		WHERE 
-			[ItemId]={};)"s;
-	static const std::string UPDATE_QUANTITY = 
+			[ItemId]={};)"sv;
+	static constexpr std::string_view UPDATE_QUANTITY =
 		R"(UPDATE [Items] 
 		SET 
 			[Quantity]={} 
 		WHERE 
-			[ItemId]={};)"s;
-	static const std::string PURGE_ITEMS = 
+			[ItemId]={};)"sv;
+	static constexpr std::string_view PURGE_ITEMS =
 		R"(DELETE FROM [Items] 
 		WHERE 
-			[Quantity]<=0;)"s;
+			[Quantity]<=0;)"sv;
 
-	static const std::string FIELD_ITEM_TYPE_ID = "ItemTypeId";
-	static const std::string FIELD_QUANTITY = "Quantity";
+	static constexpr std::string_view FIELD_ITEM_TYPE_ID = "ItemTypeId";
+	static constexpr std::string_view FIELD_QUANTITY = "Quantity";
 
 	void Item::Initialize()
 	{

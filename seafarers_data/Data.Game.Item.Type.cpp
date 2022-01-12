@@ -3,8 +3,8 @@
 #include "Data.Game.Item.Type.h"
 namespace data::game::item
 {
-	using namespace std::string_literals;
-	static const std::string CREATE_TABLE = 
+	using namespace std::string_view_literals;
+	static constexpr std::string_view CREATE_TABLE = 
 		R"(CREATE TABLE IF NOT EXISTS [ItemTypes]
 		(
 			[ItemTypeId] INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -12,34 +12,34 @@ namespace data::game::item
 			[Type] INT NOT NULL,
 			[Name] TEXT NOT NULL,
 			UNIQUE([Category],[Type])
-		);)"s;
-	static const std::string INSERT_ITEM = 
+		);)"sv;
+	static constexpr std::string_view INSERT_ITEM =
 		R"(INSERT INTO [ItemTypes]
 		(
 			[Category],
 			[Type],
 			[Name]
 		) 
-		VALUES({},{},{});)"s;
-	static const std::string QUERY_MAXIMUM_TYPE = 
+		VALUES({},{},{});)"sv;
+	static constexpr std::string_view QUERY_MAXIMUM_TYPE =
 		R"(SELECT 
 			MAX([Type]) AS [MaximumType]
 		FROM [ItemTypes] 
 		WHERE 
-			[Category]={};)"s;
-	static const std::string QUERY_ITEM_COLUMN =
+			[Category]={};)"sv;
+	static constexpr std::string_view QUERY_ITEM_COLUMN =
 		R"(SELECT 
 			[{}] 
 		FROM [ItemTypes] 
 		WHERE 
-			[ItemTypeId]={};)"s;
-	static const std::string DELETE_ALL =
-		R"(DELETE FROM [ItemTypes];)"s;
+			[ItemTypeId]={};)"sv;
+	static constexpr std::string_view DELETE_ALL =
+		R"(DELETE FROM [ItemTypes];)"sv;
 
-	static const std::string FIELD_MAXIMUM_TYPE = "MaximumType";
-	static const std::string FIELD_TYPE = "Type";
-	static const std::string FIELD_CATEGORY = "Category";
-	static const std::string FIELD_NAME = "Name";
+	static constexpr std::string_view FIELD_MAXIMUM_TYPE = "MaximumType";
+	static constexpr std::string_view FIELD_TYPE = "Type";
+	static constexpr std::string_view FIELD_CATEGORY = "Category";
+	static constexpr std::string_view FIELD_NAME = "Name";
 
 	void Type::Initialize()
 	{

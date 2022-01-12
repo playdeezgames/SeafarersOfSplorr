@@ -6,8 +6,8 @@
 #include <iterator>
 namespace data::game::item::type
 {
-	using namespace std::string_literals;
-	static const std::string CREATE_TABLE = 
+	using namespace std::string_view_literals;
+	static constexpr std::string_view CREATE_TABLE = 
 		R"(CREATE TABLE IF NOT EXISTS [ItemTypeCommodities]
 		(
 			[ItemTypeId] INT NOT NULL,
@@ -15,33 +15,33 @@ namespace data::game::item::type
 			[Amount] REAL NOT NULL,
 			UNIQUE([ItemTypeId],[Commodity]),
 			FOREIGN KEY ([ItemTypeId]) REFERENCES [ItemTypes]([ItemTypeId])
-		);)"s;
-	static const std::string REPLACE_ITEM = 
+		);)"sv;
+	static constexpr std::string_view REPLACE_ITEM =
 		R"(REPLACE INTO [ItemTypeCommodities]
 		(
 			[ItemTypeId],
 			[Commodity],
 			[Amount]
 		) 
-		VALUES({},{},{});)"s;
-	static const std::string QUERY_AMOUNT = 
+		VALUES({},{},{});)"sv;
+	static constexpr std::string_view QUERY_AMOUNT =
 		R"(SELECT 
 			[Amount] 
 		FROM [ItemTypeCommodities] 
 		WHERE 
 			[ItemTypeId]={} 
-			AND [Commodity]={};)"s;
-	static const std::string QUERY_COMMODITY = 
+			AND [Commodity]={};)"sv;
+	static constexpr std::string_view QUERY_COMMODITY =
 		R"(SELECT 
 			[Commodity] 
 		FROM [ItemTypeCommodities] 
 		WHERE 
-			[ItemTypeId]={};)"s;
-	static const std::string DELETE_ALL = 
-		R"(DELETE FROM [ItemTypeCommodities];)"s;
+			[ItemTypeId]={};)"sv;
+	static constexpr std::string_view DELETE_ALL =
+		R"(DELETE FROM [ItemTypeCommodities];)"sv;
 
-	static const std::string FIELD_AMOUNT = "Amount";
-	static const std::string FIELD_COMMODITY = "Commodity";
+	static constexpr std::string_view FIELD_AMOUNT = "Amount";
+	static constexpr std::string_view FIELD_COMMODITY = "Commodity";
 
 	void Commodity::Initialize()
 	{
