@@ -42,7 +42,9 @@ namespace data::game
 		static int LastInsertedIndex();
 
 		static std::optional<double> TryToDouble(const std::optional<Record>& record, const std::string& columnName);
+		static std::optional<double> TryToDouble(const std::optional<Record>& record, const std::string_view& columnName);
 		static double ToDouble(const Record& record, const std::string& columnName);
+		static double ToDouble(const Record& record, const std::string_view& columnName);
 		static std::function<double(const Record&)> DoToDouble(const std::string& columnName);
 
 		static std::optional<int> TryToInt(const std::optional<Record>& record, const std::string& columnName);//TODO: eliminate

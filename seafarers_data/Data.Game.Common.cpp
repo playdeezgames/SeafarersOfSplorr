@@ -66,9 +66,23 @@ namespace data::game
 		return std::nullopt;
 	}
 
+	std::optional<double> Common::TryToDouble(const std::optional<Record>& record, const std::string_view& columnName)
+	{
+		if (record)
+		{
+			return ToDouble(record.value(), columnName);
+		}
+		return std::nullopt;
+	}
+
 	double Common::ToDouble(const Common::Record& record, const std::string& columnName)
 	{
 		return common::Data::ToDouble(record.find(columnName)->second);
+	}
+
+	double Common::ToDouble(const Common::Record& record, const std::string_view& columnName)
+	{
+		return common::Data::ToDouble(record.find(std::string(columnName))->second);
 	}
 
 	std::function<double(const Common::Record&)> Common::DoToDouble(const std::string& columnName)

@@ -4,8 +4,8 @@
 #include "Data.Game.World.h"
 namespace data::game
 {
-	using namespace std::string_literals;
-	static const std::string CREATE_TABLE = 
+	using namespace std::string_view_literals;
+	static constexpr std::string_view CREATE_TABLE = 
 		R"(CREATE TABLE IF NOT EXISTS [Worlds]
 		(
 			[WorldId] INT NOT NULL UNIQUE CHECK([WorldId]=1),
@@ -13,20 +13,20 @@ namespace data::game
 			[WindHeading] REAL NOT NULL,
 			[CurrencyItemTypeId] INT NOT NULL,
 			[Day] INT NOT NULL --changes each turn
-		);)"s;
-	static const std::string QUERY_ITEM_COLUMN =
+		);)"sv;
+	static constexpr std::string_view QUERY_ITEM_COLUMN =
 		R"(SELECT 
 			[{}] 
 		FROM [Worlds] 
 		WHERE 
-			[WorldId]={};)";
-	static const std::string UPDATE_ITEM_COLUMN =
+			[WorldId]={};)"sv;
+	static constexpr std::string_view UPDATE_ITEM_COLUMN =
 		R"(UPDATE [Worlds] 
 		SET 
 			[{}]={} 
 		WHERE 
-			[WorldId]={};)";
-	static const std::string REPLACE_ITEM =
+			[WorldId]={};)"sv;
+	static constexpr std::string_view REPLACE_ITEM =
 		R"(REPLACE INTO [Worlds]
 		(
 			[WorldId],
@@ -35,12 +35,12 @@ namespace data::game
 			[CurrencyItemTypeId],
 			[Day]
 		) 
-		VALUES ({},{},{},{},{});)"s;
+		VALUES ({},{},{},{},{});)"sv;
 
-	static const std::string FIELD_DIFFICULTY = "Difficulty";
-	static const std::string FIELD_WIND_HEADING = "WindHeading";
-	static const std::string FIELD_CURRENCY_ITEM_TYPE_ID = "CurrencyItemTypeId";
-	static const std::string FIELD_DAY = "Day";
+	static constexpr std::string_view FIELD_DIFFICULTY = "Difficulty";
+	static constexpr std::string_view FIELD_WIND_HEADING = "WindHeading";
+	static constexpr std::string_view FIELD_CURRENCY_ITEM_TYPE_ID = "CurrencyItemTypeId";
+	static constexpr std::string_view FIELD_DAY = "Day";
 
 	void World::Initialize()
 	{
