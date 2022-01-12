@@ -26,6 +26,7 @@ namespace state::in_play
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
+		//TODO: something to DO here!
 		MenuAction defaultAction = { "Leave", application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_DISTRICT) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
