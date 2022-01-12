@@ -6,8 +6,8 @@
 #include <iterator>
 namespace data::game::island
 {
-	using namespace std::string_literals;
-	static const std::string CREATE_TABLE = 
+	using namespace std::string_view_literals;
+	static constexpr std::string_view CREATE_TABLE = 
 		R"(CREATE TABLE IF NOT EXISTS [IslandMarkets]
 		(
 			[IslandId] INT NOT NULL, 
@@ -18,8 +18,8 @@ namespace data::game::island
 			[Sales] REAL NOT NULL, 
 			UNIQUE([IslandId],[Commodity]),
 			FOREIGN KEY ([IslandId]) REFERENCES [Islands]([IslandId])
-		);)"s;
-	static const std::string REPLACE_ITEM = 
+		);)"sv;
+	static constexpr std::string_view REPLACE_ITEM =
 		R"(REPLACE INTO [IslandMarkets]
 		(
 			[IslandId],
@@ -29,8 +29,8 @@ namespace data::game::island
 			[Purchases],
 			[Sales]
 		) 
-		VALUES ({},{},{},{},{},{});)"s;
-	static const std::string QUERY_ITEM = 
+		VALUES ({},{},{},{},{},{});)"sv;
+	static constexpr std::string_view QUERY_ITEM =
 		R"(SELECT 
 			[Supply], 
 			[Demand], 
@@ -39,8 +39,8 @@ namespace data::game::island
 		FROM [IslandMarkets] 
 		WHERE 
 			[IslandId]={} 
-			AND [Commodity]={};)"s;
-	static const std::string QUERY_ALL = 
+			AND [Commodity]={};)"sv;
+	static constexpr std::string_view QUERY_ALL =
 		R"(SELECT 
 			[Commodity], 
 			[Supply], 
@@ -49,16 +49,16 @@ namespace data::game::island
 			[Sales] 
 		FROM [IslandMarkets] 
 		WHERE 
-			[IslandId]={};)"s;
-	static const std::string DELETE_ALL = 
-		R"(DELETE FROM [IslandMarkets];)"s;
+			[IslandId]={};)"sv;
+	static constexpr std::string_view DELETE_ALL =
+		R"(DELETE FROM [IslandMarkets];)"sv;
 
-	static const std::string FIELD_ISLAND_ID = "IslandId";
-	static const std::string FIELD_COMMODITY = "Commodity";
-	static const std::string FIELD_SUPPLY = "Supply";
-	static const std::string FIELD_DEMAND = "Demand";
-	static const std::string FIELD_PURCHASES = "Purchases";
-	static const std::string FIELD_SALES = "Sales";
+	static constexpr std::string_view FIELD_ISLAND_ID = "IslandId";
+	static constexpr std::string_view FIELD_COMMODITY = "Commodity";
+	static constexpr std::string_view FIELD_SUPPLY = "Supply";
+	static constexpr std::string_view FIELD_DEMAND = "Demand";
+	static constexpr std::string_view FIELD_PURCHASES = "Purchases";
+	static constexpr std::string_view FIELD_SALES = "Sales";
 
 	void Market::Initialize()
 	{

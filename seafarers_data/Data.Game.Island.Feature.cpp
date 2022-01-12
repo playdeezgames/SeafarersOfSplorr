@@ -7,8 +7,8 @@
 #include <string>
 namespace data::game::island
 {
-	using namespace std::string_literals;
-	static const std::string CREATE_TABLE = 
+	using namespace std::string_view_literals;
+	static constexpr std::string_view CREATE_TABLE = 
 		R"(CREATE TABLE IF NOT EXISTS [Features]
 		(
 			[FeatureId] INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -17,8 +17,8 @@ namespace data::game::island
 			[FeatureType] INT NOT NULL,
 			[District] INT NOT NULL,
 			FOREIGN KEY ([IslandId]) REFERENCES [Islands]([IslandId])
-		);)"s;
-	static const std::string INSERT_ITEM =
+		);)"sv;
+	static constexpr std::string_view INSERT_ITEM =
 		R"(INSERT INTO [Features]
 		(
 			[IslandId],
@@ -26,24 +26,24 @@ namespace data::game::island
 			[FeatureType],
 			[District]
 		) 
-		VALUES({},{},{},{});)"s;
-	static const std::string QUERY_FOR_ISLAND_DISTRICT =
+		VALUES({},{},{},{});)"sv;
+	static constexpr std::string_view QUERY_FOR_ISLAND_DISTRICT =
 		R"(SELECT 
 			[FeatureId] 
 		FROM [Features] 
 		WHERE 
 			[IslandId]={} 
-			AND [District]={};)"s;
-	static const std::string QUERY_ITEM_COLUMN =
+			AND [District]={};)"sv;
+	static constexpr std::string_view QUERY_ITEM_COLUMN =
 		R"(SELECT 
 			[{}] 
 		FROM [Features] 
 		WHERE 
-			[FeatureId]={};)"s;
+			[FeatureId]={};)"sv;
 
-	static const std::string FIELD_FEATURE_ID = "FeatureId";
-	static const std::string FIELD_NAME = "Name";
-	static const std::string FIELD_FEATURE_TYPE = "FeatureType";
+	static constexpr std::string_view FIELD_FEATURE_ID = "FeatureId";
+	static constexpr std::string_view FIELD_NAME = "Name";
+	static constexpr std::string_view FIELD_FEATURE_TYPE = "FeatureType";
 
 	void Feature::Initialize()
 	{

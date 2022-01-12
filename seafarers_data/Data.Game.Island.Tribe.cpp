@@ -7,8 +7,8 @@
 #include <iterator>
 namespace data::game::island
 {
-	using namespace std::string_literals;
-	static const std::string CREATE_TABLE =
+	using namespace std::string_view_literals;
+	static constexpr std::string_view CREATE_TABLE =
 		R"(CREATE TABLE IF NOT EXISTS [IslandTribes]
 		(
 			[IslandId] INT NOT NULL,
@@ -17,43 +17,43 @@ namespace data::game::island
 			UNIQUE([IslandId],[TribeId]),
 			FOREIGN KEY ([IslandId]) REFERENCES [Islands]([IslandId]),
 			FOREIGN KEY ([TribeId]) REFERENCES [Tribes]([TribeId])
-		);)"s;
-	static const std::string DELETE_ALL =
-		R"(DELETE FROM [IslandTribes];)"s;
-	static const std::string REPLACE_ITEM =
+		);)"sv;
+	static constexpr std::string_view DELETE_ALL =
+		R"(DELETE FROM [IslandTribes];)"sv;
+	static constexpr std::string_view REPLACE_ITEM =
 		R"(REPLACE INTO [IslandTribes]
 		(
 			[IslandId],
 			[TribeId],
 			[Presence]
 		) 
-		VALUES({},{},{});)";
-	static const std::string QUERY_ITEM =
+		VALUES({},{},{});)"sv;
+	static constexpr std::string_view QUERY_ITEM =
 		R"(SELECT 
 			[Presence] 
 		FROM [IslandTribes] 
 		WHERE 
 			[IslandId]={} 
-			AND [TribeId]={};)";
-	static const std::string QUERY_ALL =
+			AND [TribeId]={};)"sv;
+	static constexpr std::string_view QUERY_ALL =
 		R"(SELECT 
 			[TribeId],
 			[Presence] 
 		FROM [IslandTribes] 
 		WHERE 
-			[IslandId]={};)"s;
-	static const std::string QUERY_ALL_TOTALS =
+			[IslandId]={};)"sv;
+	static constexpr std::string_view QUERY_ALL_TOTALS =
 		R"(SELECT 
 			[IslandId],
 			SUM([Presence]) AS [TotalPresence] 
 		FROM [IslandTribes] 
 		GROUP BY 
-			[IslandId];)"s;
+			[IslandId];)"sv;
 
-	static const std::string FIELD_PRESENCE = "Presence";
-	static const std::string FIELD_TRIBE_ID = "TribeId";
-	static const std::string FIELD_ISLAND_ID = "IslandId";
-	static const std::string FIELD_TOTAL_PRESENCE = "TotalPresence";
+	static constexpr std::string_view FIELD_PRESENCE = "Presence";
+	static constexpr std::string_view FIELD_TRIBE_ID = "TribeId";
+	static constexpr std::string_view FIELD_ISLAND_ID = "IslandId";
+	static constexpr std::string_view FIELD_TOTAL_PRESENCE = "TotalPresence";
 
 	void Tribe::Initialize()
 	{

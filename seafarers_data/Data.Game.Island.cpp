@@ -6,8 +6,8 @@
 #include <iterator>
 namespace data::game
 {
-	using namespace std::string_literals;
-	static const std::string CREATE_TABLE = 
+	using namespace std::string_view_literals;
+	static constexpr std::string_view CREATE_TABLE = 
 		R"(CREATE TABLE IF NOT EXISTS [Islands]
 		(
 			[IslandId] INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -17,28 +17,28 @@ namespace data::game
 			[PatronDemigodId] INT NOT NULL,
 			UNIQUE([X],[Y]),
 			FOREIGN KEY ([PatronDemigodId]) REFERENCES [Demigods]([DemigodId])
-		);)"s;
-	static const std::string QUERY_ITEM_XY =
+		);)"sv;
+	static constexpr std::string_view QUERY_ITEM_XY =
 		R"(SELECT 
 			[X],
 			[Y]
 		FROM [Islands] 
 		WHERE 
-		[IslandId]={};)"s;
-	static const std::string QUERY_ITEM_COLUMN =
+		[IslandId]={};)"sv;
+	static constexpr std::string_view QUERY_ITEM_COLUMN =
 		R"(SELECT 
 			[{}]
 		FROM [Islands] 
 		WHERE 
-		[IslandId]={};)"s;
-	static const std::string QUERY_ID_FOR_LOCATION =
+		[IslandId]={};)"sv;
+	static constexpr std::string_view QUERY_ID_FOR_LOCATION =
 		R"(SELECT 
 			[IslandId] 
 		FROM [Islands] 
 		WHERE 
 			[X]={:.4f} 
-			AND [Y]={:.4f};)"s;
-	static const std::string INSERT_ITEM = 
+			AND [Y]={:.4f};)"sv;
+	static constexpr std::string_view INSERT_ITEM =
 		R"(INSERT INTO [Islands]
 		(
 			[X],
@@ -46,25 +46,25 @@ namespace data::game
 			[Name],
 			[PatronDemigodId]
 		) 
-		VALUES ({:.4f},{:.4f},{},{});)"s;
-	static const std::string QUERY_ALL =
+		VALUES ({:.4f},{:.4f},{},{});)"sv;
+	static constexpr std::string_view QUERY_ALL =
 		R"(SELECT 
 			[IslandId]
-		FROM [Islands];)"s;
-	static const std::string QUERY_ALL_LOCATIONS =
+		FROM [Islands];)"sv;
+	static constexpr std::string_view QUERY_ALL_LOCATIONS =
 		R"(SELECT 
 			[IslandId],
 			[X],
 			[Y]
-		FROM [Islands];)"s;
-	static const std::string CLEAR_ALL =
-		R"(DELETE FROM [Islands];)"s;
+		FROM [Islands];)"sv;
+	static constexpr std::string_view CLEAR_ALL =
+		R"(DELETE FROM [Islands];)"sv;
 
-	static const std::string FIELD_ISLAND_ID = "IslandId";
-	static const std::string FIELD_X = "X";
-	static const std::string FIELD_Y = "Y";
-	static const std::string FIELD_NAME = "Name";
-	static const std::string FIELD_PATRON_DEMIGOD_ID = "PatronDemigodId";
+	static constexpr std::string_view FIELD_ISLAND_ID = "IslandId";
+	static constexpr std::string_view FIELD_X = "X";
+	static constexpr std::string_view FIELD_Y = "Y";
+	static constexpr std::string_view FIELD_NAME = "Name";
+	static constexpr std::string_view FIELD_PATRON_DEMIGOD_ID = "PatronDemigodId";
 
 	void Island::Initialize()
 	{

@@ -5,15 +5,15 @@
 #include <iterator>
 namespace data::game::island
 {
-	using namespace std::string_literals;
-	static const std::string QUERY_ALL = 
+	using namespace std::string_view_literals;
+	static constexpr std::string_view QUERY_ALL = 
 		R"(SELECT DISTINCT 
 			[District] 
 		FROM [Features] 
 		WHERE 
-			[IslandId]={};)"s;
+			[IslandId]={};)"sv;
 
-	static const std::string FIELD_DISTRICT = "District";
+	static constexpr std::string_view FIELD_DISTRICT = "District";
 
 	void District::Initialize()
 	{
