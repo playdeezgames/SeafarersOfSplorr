@@ -6,8 +6,8 @@
 #include <iterator>
 namespace data::game::world
 {
-	using namespace std::string_literals;
-	static const std::string CREATE_TABLE = 
+	using namespace std::string_view_literals;
+	static constexpr std::string_view CREATE_TABLE = 
 		R"(CREATE TABLE IF NOT EXISTS [WorldMonths]
 		(
 			[WorldId] INT NOT NULL,
@@ -16,8 +16,8 @@ namespace data::game::world
 			[Days] INT NOT NULL,
 			UNIQUE([WorldId],[Ordinal]),
 			FOREIGN KEY ([WorldId]) REFERENCES [Worlds]([WorldId])
-		);)"s;
-	static const std::string REPLACE_ITEM =
+		);)"sv;
+	static const std::string_view REPLACE_ITEM =
 		R"(REPLACE INTO [WorldMonths]
 		(
 			[WorldId],
@@ -25,37 +25,37 @@ namespace data::game::world
 			[Name],
 			[Days]
 		) 
-		VALUES({},{},{},{});)"s;
-	static const std::string QUERY_ITEM_COLUMN =
+		VALUES({},{},{},{});)"sv;
+	static const std::string_view QUERY_ITEM_COLUMN =
 		R"(SELECT 
 			[{}]
 		FROM [WorldMonths] 
 		WHERE 
 			[WorldId]={} 
-			AND [Ordinal]={};)"s;
-	static const std::string QUERY_ALL =
+			AND [Ordinal]={};)"sv;
+	static const std::string_view QUERY_ALL =
 		R"(SELECT 
 			[Ordinal]
 		FROM [WorldMonths] 
 		WHERE 
 			[WorldId]={} 
 		ORDER BY 
-			[Ordinal];)"s;
-	static const std::string QUERY_YEAR_LENGTH =
+			[Ordinal];)"sv;
+	static const std::string_view QUERY_YEAR_LENGTH =
 		R"(SELECT 
 			SUM([Days]) AS [YearLength] 
 		FROM [WorldMonths] 
 		WHERE 
-			[WorldId]={};)"s;
-	static const std::string DELETE_ALL =
+			[WorldId]={};)"sv;
+	static const std::string_view DELETE_ALL =
 		R"(DELETE FROM [WorldMonths] 
 		WHERE 
-			[WorldId]={};)"s;
+			[WorldId]={};)"sv;
 
-	static const std::string FIELD_ORDINAL = "Ordinal";
-	static const std::string FIELD_NAME = "Name";
-	static const std::string FIELD_DAYS = "Days";
-	static const std::string FIELD_YEAR_LENGTH = "YearLength";
+	static const std::string_view FIELD_ORDINAL = "Ordinal";
+	static const std::string_view FIELD_NAME = "Name";
+	static const std::string_view FIELD_DAYS = "Days";
+	static const std::string_view FIELD_YEAR_LENGTH = "YearLength";
 
 	void Month::Initialize()
 	{

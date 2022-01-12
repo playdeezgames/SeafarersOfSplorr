@@ -12,6 +12,11 @@ namespace data::game
 		return data::sqlite::Stores::Execute(data::sqlite::Store::IN_MEMORY, query);
 	}
 
+	std::vector<Common::Record> Common::Execute(const std::string_view& query)
+	{
+		return data::sqlite::Stores::Execute(data::sqlite::Store::IN_MEMORY, std::string(query));
+	}
+
 	std::optional<Common::Record> Common::TryExecuteForOne(const std::string& query)
 	{
 		auto records = Execute(query);
@@ -83,14 +88,36 @@ namespace data::game
 		return std::nullopt;
 	}
 
+	std::optional<int> Common::TryToInt(const std::optional<Record>& record, const std::string_view& columnName)
+	{
+		if (record)
+		{
+			return ToInt(record.value(), columnName);
+		}
+		return std::nullopt;
+	}
+
 	int Common::ToInt(const Common::Record& record, const std::string& columnName)
 	{
 		return common::Data::ToInt(record.find(columnName)->second);
 	}
 
+	int Common::ToInt(const Common::Record& record, const std::string_view& columnName)
+	{
+		return common::Data::ToInt(record.find(std::string(columnName))->second);
+	}
+
 	std::function<int(const Common::Record&)> Common::DoToInt(const std::string& columnName)
 	{
-		return [columnName](const Common::Record& record) 
+		return [columnName](const Common::Record& record)
+		{
+			return ToInt(record, columnName);
+		};
+	}
+
+	std::function<int(const Common::Record&)> Common::DoToInt(const std::string_view& columnName)
+	{
+		return [columnName](const Common::Record& record)
 		{
 			return ToInt(record, columnName);
 		};
@@ -101,6 +128,15 @@ namespace data::game
 		if (record)
 		{
 			return ToString(record.value(), columnName);
+		}
+		return std::nullopt;
+	}
+
+	std::optional<std::string> Common::TryToString(const std::optional<Record>& record, const std::string_view& columnName)
+	{
+		if (record)
+		{
+			return ToString(record.value(), std::string(columnName));
 		}
 		return std::nullopt;
 	}
