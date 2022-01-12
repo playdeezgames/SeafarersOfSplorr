@@ -6,8 +6,8 @@
 #include <iterator>
 namespace data::game::character
 {
-	using namespace std::string_literals;
-	static const std::string CREATE_TABLE = 
+	using namespace std::string_view_literals;
+	static constexpr std::string_view CREATE_TABLE = 
 		R"(CREATE TABLE IF NOT EXISTS [CharacterPlights]
 		(
 			[CharacterId] INT NOT NULL,
@@ -15,42 +15,42 @@ namespace data::game::character
 			[Duration] INT NOT NULL, 
 			UNIQUE([CharacterId],[Plight]),
 			FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId])
-		);)"s;
-	static const std::string DELETE_ALL_FOR_CHARACTER = 
+		);)"sv;
+	static constexpr std::string_view DELETE_ALL_FOR_CHARACTER =
 		R"(DELETE FROM [CharacterPlights] 
 		WHERE 
-			[CharacterId]={};)"s;
-	static const std::string DELETE_ALL_PLIGHTS = 
-		R"(DELETE FROM [CharacterPlights];)"s;
-	static const std::string DELETE_ITEM = 
+			[CharacterId]={};)"sv;
+	static constexpr std::string_view DELETE_ALL_PLIGHTS =
+		R"(DELETE FROM [CharacterPlights];)"sv;
+	static constexpr std::string_view DELETE_ITEM =
 		R"(DELETE FROM [CharacterPlights] 
 		WHERE 
 			[CharacterId]={} 
-			AND [Plight]={};)"s;
-	static const std::string REPLACE_ITEM = 
+			AND [Plight]={};)"sv;
+	static constexpr std::string_view REPLACE_ITEM =
 		R"(REPLACE INTO [CharacterPlights]
 		(
 			[CharacterId], 
 			[Plight], 
 			[Duration]
 		) 
-		VALUES({}, {}, {});)"s;
-	static const std::string QUERY_ITEM = 
+		VALUES({}, {}, {});)"sv;
+	static constexpr std::string_view QUERY_ITEM =
 		R"(SELECT 
 			[Duration] 
 		FROM [CharacterPlights] 
 		WHERE 
 			[CharacterId]={} 
-			AND [Plight]={};)"s;
-	static const std::string QUERY_ALL = 
+			AND [Plight]={};)"sv;
+	static constexpr std::string_view QUERY_ALL =
 		R"(SELECT 
 			[Plight] 
 		FROM [CharacterPlights] 
 		WHERE 
-			[CharacterId]={};)"s;
+			[CharacterId]={};)"sv;
 
-	static const std::string FIELD_PLIGHT = "Plight";
-	static const std::string FIELD_DURATION = "Duration";
+	static constexpr std::string_view FIELD_PLIGHT = "Plight";
+	static constexpr std::string_view FIELD_DURATION = "Duration";
 
 	void Plight::ClearPlight(int characterId, int plight)
 	{

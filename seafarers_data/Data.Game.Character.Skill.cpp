@@ -7,8 +7,8 @@
 #include <iterator>
 namespace data::game::character
 {
-	using namespace std::string_literals;
-	static const std::string CREATE_TABLE = 
+	using namespace std::string_view_literals;
+	static constexpr std::string_view CREATE_TABLE = 
 		R"(CREATE TABLE IF NOT EXISTS [CharacterSkills]
 		(
 			[CharacterId] INT NOT NULL,
@@ -17,32 +17,32 @@ namespace data::game::character
 			UNIQUE([CharacterId],[SkillId]),
 			FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId]),
 			FOREIGN KEY ([SkillId]) REFERENCES [Skills]([SkillId])
-		);)"s;
-	static const std::string REPLACE_ITEM = 
+		);)"sv;
+	static constexpr std::string_view REPLACE_ITEM =
 		R"(REPLACE INTO [CharacterSkills]
 		(
 			[CharacterId],
 			[SkillId],
 			[Value]
 		) 
-		VALUES({},{},{});)"s;
-	static const std::string QUERY_ITEM = 
+		VALUES({},{},{});)"sv;
+	static constexpr std::string_view QUERY_ITEM =
 		R"(SELECT 
 			[Value] 
 		FROM [CharacterSkills] 
 		WHERE 
 			[CharacterId]={} 
-			AND [SkillId]={};)"s;
-	static const std::string QUERY_ITEMS = 
+			AND [SkillId]={};)"sv;
+	static constexpr std::string_view QUERY_ITEMS =
 		R"(SELECT 
 			[SkillId],
 			[Value] 
 		FROM [CharacterSkills] 
 		WHERE 
-			[CharacterId]={};)"s;
+			[CharacterId]={};)"sv;
 
-	static const std::string FIELD_VALUE = "Value";
-	static const std::string FIELD_SKILL_ID = "SkillId";
+	static constexpr std::string_view FIELD_VALUE = "Value";
+	static constexpr std::string_view FIELD_SKILL_ID = "SkillId";
 
 	void Skill::Initialize()
 	{

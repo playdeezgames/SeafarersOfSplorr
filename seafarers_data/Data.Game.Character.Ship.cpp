@@ -7,8 +7,8 @@
 #include <iterator>
 namespace data::game::character
 {
-	using namespace std::string_literals;
-	static const std::string CREATE_TABLE = 
+	using namespace std::string_view_literals;
+	static constexpr std::string_view CREATE_TABLE = 
 		R"(CREATE TABLE IF NOT EXISTS [CharacterShips]
 		(
 			[CharacterId] INT NOT NULL UNIQUE, 
@@ -16,65 +16,65 @@ namespace data::game::character
 			[Berth] INT NOT NULL,
 			FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId]),
 			FOREIGN KEY ([ShipId]) REFERENCES [Ships]([ShipId])
-		);)"s;
-	static const std::string REPLACE_ITEM = 
+		);)"sv;
+	static constexpr std::string_view REPLACE_ITEM =
 		R"(REPLACE INTO [CharacterShips]
 		(
 			[CharacterId], 
 			[ShipId], 
 			[Berth]
 		) 
-		VALUES({},{},{});)"s;
-	static const std::string QUERY_ITEM_FOR_CHARACTER = 
+		VALUES({},{},{});)"sv;
+	static constexpr std::string_view QUERY_ITEM_FOR_CHARACTER =
 		R"(SELECT 
 			[ShipId],
 			[Berth],
 			[CharacterId] 
 		FROM [CharacterShips] 
 		WHERE 
-			[CharacterId]={};)"s;
-	static const std::string QUERY_ITEM_FOR_SHIP = 
+			[CharacterId]={};)"sv;
+	static constexpr std::string_view QUERY_ITEM_FOR_SHIP =
 		R"(SELECT 
 			[ShipId],
 			[Berth],
 			[CharacterId] 
 		FROM [CharacterShips] 
 		WHERE 
-			[ShipId]={};)"s;
-	static const std::string QUERY_CREW_FOR_SHIP = 
+			[ShipId]={};)"sv;
+	static constexpr std::string_view QUERY_CREW_FOR_SHIP =
 		R"(SELECT 
 			[CharacterId], 
 			[Berth] 
 		FROM [CharacterShips] 
 		WHERE 
-			[ShipId]={};)"s;
-	static const std::string DELETE_ITEM =
+			[ShipId]={};)"sv;
+	static constexpr std::string_view DELETE_ITEM =
 		R"(DELETE FROM [CharacterShips] 
 		WHERE 
 			[CharacterId]={} 
-			AND [ShipId]={};)"s;
-	static const std::string QUERY_SHIP_FOR_CHARACTER =
+			AND [ShipId]={};)"sv;
+	static constexpr std::string_view QUERY_SHIP_FOR_CHARACTER =
 		R"(SELECT 
 			[ShipId] 
 		FROM [CharacterShips] 
 		WHERE 
-			[CharacterId]={};)"s;
-	static const std::string QUERY_BERTH_FOR_CHARACTER =
+			[CharacterId]={};)"sv;
+	static constexpr std::string_view QUERY_BERTH_FOR_CHARACTER =
 		R"(SELECT 
 			[Berth] 
 		FROM [CharacterShips] 
 		WHERE 
-			[CharacterId]={};)"s;
-	static const std::string QUERY_CHARACTERS_FOR_SHIP =
+			[CharacterId]={};)"sv;
+	static constexpr std::string_view QUERY_CHARACTERS_FOR_SHIP =
 		R"(SELECT 
 			[CharacterId] 
 		FROM [CharacterShips] 
 		WHERE 
-			[ShipId]={};)"s;
+			[ShipId]={};)"sv;
 
-	static const std::string FIELD_SHIP_ID = "ShipId";
-	static const std::string FIELD_BERTH = "Berth";
-	static const std::string FIELD_CHARACTER_ID = "CharacterId";
+	static constexpr std::string_view FIELD_SHIP_ID = "ShipId";
+	static constexpr std::string_view FIELD_BERTH = "Berth";
+	static constexpr std::string_view FIELD_CHARACTER_ID = "CharacterId";
 
 	void Ship::Initialize()
 	{
