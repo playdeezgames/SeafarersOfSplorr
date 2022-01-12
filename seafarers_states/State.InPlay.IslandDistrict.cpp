@@ -28,7 +28,7 @@ namespace state::in_play
 	static ::UIState GetUIStateForFeatureType(const game::island::FeatureType& featureType)
 	{
 		return
-			::UIState::IN_PLAY_ISLAND_DISTRICT;//TODO: make this go to the appropriate state for the given feature
+			::UIState::IN_PLAY_DELIVERY_SERVICE;//TODO: when there is more than one feature type, fix this!
 	}
 
 	static std::function<void()> GoToFeature(int featureId, const game::island::FeatureType& featureType)

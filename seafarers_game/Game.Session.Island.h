@@ -15,6 +15,8 @@ namespace game::session
 		constexpr island::Markets GetMarkets() const { return island::Markets(islandId); }
 		constexpr static Island ToIsland(int islandId) { return Island(islandId); }
 		constexpr island::Districts GetDistricts() const { return island::Districts(islandId); }
+		constexpr island::Feature GetFeature(int featureId) const { return island::Feature(featureId); }
+
 		common::XY<double> GetLocation() const;
 		std::string GetName() const;
 		Demigod GetPatronDemigod() const;

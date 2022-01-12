@@ -24,6 +24,7 @@
 #include <State.InPlay.CrewDetail.Characteristics.h>
 #include <State.InPlay.CrewList.h>
 #include <State.InPlay.CrewDetail.h>
+#include <State.InPlay.DeliveryService.h>
 #include <State.InPlay.Docked.h>
 #include <State.InPlay.DockOrCareen.h>
 #include <State.InPlay.HeadForKnown.h>
@@ -154,6 +155,7 @@ namespace application
 		state::ChoosePersonalSkill::Start,
 		state::SpendPersonalSkillPoints::Start,
 		state::in_play::IslandDistrict::Start,
+		state::in_play::DeliveryService::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};

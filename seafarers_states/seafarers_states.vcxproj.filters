@@ -239,6 +239,9 @@
     <ClInclude Include="State.ScratchPad.IslandFeature.h">
       <Filter>Header Files\ScratchPad</Filter>
     </ClInclude>
+    <ClInclude Include="State.InPlay.DeliveryService.h">
+      <Filter>Header Files\Docked</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -408,6 +411,9 @@
     </ClCompile>
     <ClCompile Include="State.ScratchPad.IslandFeature.cpp">
       <Filter>Source Files\ScratchPad</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.DeliveryService.cpp">
+      <Filter>Source Files\Docked</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

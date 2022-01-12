@@ -29,6 +29,7 @@
     <ClInclude Include="State.InPlay.ChangeSpeed.h" />
     <ClInclude Include="State.InPlay.ConfirmHeadForMark.h" />
     <ClInclude Include="State.InPlay.CrewDetail.Characteristics.h" />
+    <ClInclude Include="State.InPlay.DeliveryService.h" />
     <ClInclude Include="State.InPlay.DockOrCareen.h" />
     <ClInclude Include="State.InPlay.Globals.h" />
     <ClInclude Include="State.InPlay.HeadForKnown.h" />
@@ -79,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="State.InPlay.DeliveryService.cpp" />
     <ClCompile Include="State.InPlay.IslandDistrict.cpp" />
     <ClCompile Include="State.ScratchPad.DetailedStart.ElectiveSkillCategories.cpp" />
     <ClCompile Include="State.ScratchPad.DetailedStart.PersonalSkillPointAllocations.cpp" />
