@@ -1,5 +1,6 @@
 #pragma once
 #include "Game.Island.District.h"
+#include "Game.Session.Island.District.Features.h"
 #include <string>
 namespace game::session::island
 {
@@ -9,6 +10,7 @@ namespace game::session::island
 			: islandId(islandId)
 			, district(district) {}
 		constexpr explicit operator game::island::District() const { return district; }
+		constexpr district::Features GetFeatures() const { return district::Features(islandId, district); }
 		std::string GetName() const;
 	private:
 		int islandId;

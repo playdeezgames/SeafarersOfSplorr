@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "State.InPlay.Globals.h"
 #include <Game.Session.h>
 #include "State.InPlay.IslandDistrict.h"
@@ -23,11 +24,31 @@ namespace state::in_play
 		Terminal::ShowPrompt();
 	}
 
+	static std::function<void()> GoToFeature(int featureId)
+	{
+		return []() {};
+	}
+
 	static void UpdateMenu()
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		//Terminal::menu.AddAction({ "Dock", OnDock });
+		auto features =
+			game::Session()
+			.GetPlayer()
+			.GetCharacter()
+			.GetIsland()
+			.GetDistricts()
+			.GetDistrict(scratch_pad::IslandDistrict::GetDistrict())
+			.GetFeatures()
+			.GetFeatures();
+		std::for_each(
+			features.begin(), 
+			features.end(), 
+			[](const game::session::island::Feature& feature) 
+			{
+				Terminal::menu.AddAction({ feature.GetName() , GoToFeature(feature.operator int()) });
+			});
 		MenuAction defaultAction = { "Leave district", application::UIState::GoTo(::UIState::IN_PLAY_DOCKED) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
