@@ -5,52 +5,52 @@
 #include <iterator>
 namespace data::game
 {
-	using namespace std::string_literals;
-	static const std::string CREATE_TABLE =
+	using namespace std::string_view_literals;
+	static constexpr std::string_view CREATE_TABLE =
 		R"(CREATE TABLE IF NOT EXISTS [Demigods]
 		(
 			[DemigodId] INTEGER PRIMARY KEY AUTOINCREMENT,
 			[Name] TEXT NOT NULL UNIQUE, 
 			[PatronWeight] INT NOT NULL
-		);)"s;
-	static const std::string INSERT_ITEM =
+		);)"sv;
+	static constexpr std::string_view INSERT_ITEM =
 		R"(INSERT INTO [Demigods]
 		(
 			[Name],
 			[PatronWeight]
 		) 
-		VALUES({},{});)"s;
-	static const std::string UPDATE_ITEM =
+		VALUES({},{});)"sv;
+	static constexpr std::string_view UPDATE_ITEM =
 		R"(UPDATE [Demigods] 
 		SET 
 			[Name]={}, 
 			[PatronWeight]={} 
 		WHERE 
-			[DemigodId]={};)"s;
-	static const std::string DELETE_ALL =
-		R"(DELETE FROM [Demigods];)"s;
-	static const std::string QUERY_ALL =
+			[DemigodId]={};)"sv;
+	static constexpr std::string_view DELETE_ALL =
+		R"(DELETE FROM [Demigods];)"sv;
+	static constexpr std::string_view QUERY_ALL =
 		R"(SELECT 
 			[DemigodId]
-		FROM [Demigods];)"s;
-	static const std::string QUERY_ITEM =
+		FROM [Demigods];)"sv;
+	static constexpr std::string_view QUERY_ITEM =
 		R"(SELECT 
 			[DemigodId],
 			[Name],
 			[PatronWeight]
 		FROM [Demigods] 
 		WHERE 
-			[DemigodId]={};)"s;
-	static const std::string QUERY_ITEM_COLUMN =
+			[DemigodId]={};)"sv;
+	static constexpr std::string_view QUERY_ITEM_COLUMN =
 		R"(SELECT 
 			[{}]
 		FROM [Demigods] 
 		WHERE 
-			[DemigodId]={};)"s;
+			[DemigodId]={};)"sv;
 
-	static const std::string FIELD_DEMIGOD_ID = "DemigodId";
-	static const std::string FIELD_NAME = "Name";
-	static const std::string FIELD_PATRON_WEIGHT = "PatronWeight";
+	static constexpr std::string_view FIELD_DEMIGOD_ID = "DemigodId";
+	static constexpr std::string_view FIELD_NAME = "Name";
+	static constexpr std::string_view FIELD_PATRON_WEIGHT = "PatronWeight";
 
 	void Demigod::Initialize()
 	{
