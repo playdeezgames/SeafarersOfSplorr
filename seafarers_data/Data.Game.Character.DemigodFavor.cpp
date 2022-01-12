@@ -7,8 +7,8 @@
 #include <iterator>
 namespace data::game::character
 {
-	using namespace std::string_literals;
-	static const std::string CREATE_TABLE = 
+	using namespace std::string_view_literals;
+	static constexpr std::string_view CREATE_TABLE = 
 		R"(CREATE TABLE IF NOT EXISTS [CharacterDemigodFavor]
 		(
 			[CharacterId] INT NOT NULL,
@@ -17,39 +17,39 @@ namespace data::game::character
 			UNIQUE([CharacterId],[DemigodId]),
 			FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId]),
 			FOREIGN KEY ([DemigodId]) REFERENCES [Demigods]([DemigodId])
-		);)"s;
-	static const std::string REPLACE_ITEM = 
+		);)"sv;
+	static constexpr std::string_view REPLACE_ITEM = 
 		R"(REPLACE INTO [CharacterDemigodFavor]
 		(
 			[CharacterId],
 			[DemigodId],
 			[Favor]
 		) 
-		VALUES({},{},{},{});)"s;
-	static const std::string QUERY_ITEM_FAVOR = 
+		VALUES({},{},{},{});)"sv;
+	static constexpr std::string_view QUERY_ITEM_FAVOR = 
 		R"(SELECT 
 			[Favor] 
 		FROM [CharacterDemigodFavor] 
 		WHERE 
 			[CharacterId]={} 
-			AND [DemigodId]={};)"s;
-	static const std::string DELETE_ALL_FOR_CHARACTER = 
+			AND [DemigodId]={};)"sv;
+	static constexpr std::string_view DELETE_ALL_FOR_CHARACTER = 
 		R"(DELETE FROM [CharacterDemigodFavor] 
 		WHERE 
-			[CharacterId]={};)"s;
-	static const std::string DELETE_ALL = 
-		R"(DELETE FROM [CharacterDemigodFavor];)"s;
-	static const std::string UPDATE_ITEM_COLUMN =
+			[CharacterId]={};)"sv;
+	static constexpr std::string_view DELETE_ALL = 
+		R"(DELETE FROM [CharacterDemigodFavor];)"sv;
+	static constexpr std::string_view UPDATE_ITEM_COLUMN =
 		R"(UPDATE [CharacterDemigodFavor] 
 		SET 
 			[{}]={} 
 		WHERE 
 			[CharacterId]={} 
-			AND [DemigodId]={};)"s;
+			AND [DemigodId]={};)"sv;
 
-	static const std::string FIELD_CHARACTER_ID = "CharacterId";
-	static const std::string FIELD_DEMIGOD_ID = "DemigodId";
-	static const std::string FIELD_FAVOR = "Favor";
+	static constexpr std::string_view FIELD_CHARACTER_ID = "CharacterId";
+	static constexpr std::string_view FIELD_DEMIGOD_ID = "DemigodId";
+	static constexpr std::string_view FIELD_FAVOR = "Favor";
 
 	void DemigodFavor::Initialize()
 	{

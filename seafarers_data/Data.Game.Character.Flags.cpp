@@ -6,41 +6,41 @@
 #include <iterator>
 namespace data::game::character
 {
-	using namespace std::string_literals;
-	const static std::string CREATE_TABLE = 
+	using namespace std::string_view_literals;
+	static constexpr std::string_view CREATE_TABLE = 
 		R"(CREATE TABLE IF NOT EXISTS [CharacterFlags]
 		(
 			[CharacterId] INT NOT NULL,
 			[Flag] INT NOT NULL,
 			UNIQUE([CharacterId],[Flag])
-		);)"s;
-	const static std::string QUERY_ITEM = 
+		);)"sv;
+	static constexpr std::string_view QUERY_ITEM = 
 		R"(SELECT 
 			[Flag] 
 		FROM [CharacterFlags] 
 		WHERE 
 			[CharacterId]={} 
-			AND [Flag]={};)"s;
-	const static std::string REPLACE_ITEM = 
+			AND [Flag]={};)"sv;
+	static constexpr std::string_view REPLACE_ITEM = 
 		R"(REPLACE INTO [CharacterFlags]
 		(
 			[CharacterId],
 			[Flag]
 		) 
-		VALUES({},{});)"s;
-	const static std::string DELETE_ITEM = 
+		VALUES({},{});)"sv;
+	static constexpr std::string_view DELETE_ITEM = 
 		R"(DELETE FROM [CharacterFlags] 
 		WHERE 
 			[CharacterId]={} 
-			AND [Flag]={};)"s;
-	const static std::string QUERY_ALL_FOR_CHARACTER = 
+			AND [Flag]={};)"sv;
+	static constexpr std::string_view QUERY_ALL_FOR_CHARACTER = 
 		R"(SELECT 
 			[Flag] 
 		FROM [CharacterFlags] 
 		WHERE 
-			[CharacterId]={};)"s;
+			[CharacterId]={};)"sv;
 
-	const static std::string FIELD_FLAG = "Flag";
+	static constexpr std::string_view FIELD_FLAG = "Flag";
 
 	void Flags::Initialize()
 	{

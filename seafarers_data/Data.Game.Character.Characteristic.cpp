@@ -6,8 +6,8 @@
 #include <iterator>
 namespace data::game::character
 {
-	using namespace std::string_literals;
-	static const std::string CREATE_TABLE =
+	using namespace std::string_view_literals;
+	static constexpr std::string_view CREATE_TABLE =
 		R"(CREATE TABLE IF NOT EXISTS [CharacterCharacteristics]
 		(
 			[CharacterId] INT NOT NULL,
@@ -15,32 +15,32 @@ namespace data::game::character
 			[Value] INT NOT NULL,
 			UNIQUE([CharacterId],[Characteristic]),
 			FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId])
-		);)"s;
-	static const std::string QUERY_ITEM = 
+		);)"sv;
+	static constexpr std::string_view QUERY_ITEM = 
 		R"(SELECT 
 			[Value] 
 		FROM [CharacterCharacteristics] 
 		WHERE 
 			[CharacterId]={} 
-			AND [Characteristic]={};)"s;
-	static const std::string QUERY_ITEMS = 
+			AND [Characteristic]={};)"sv;
+	static constexpr std::string_view QUERY_ITEMS = 
 		R"(SELECT 
 			[Characteristic], 
 			[Value] 
 		FROM [CharacterCharacteristics] 
 		WHERE 
-			[CharacterId]={};)"s;
-	static const std::string REPLACE_ITEM = 
+			[CharacterId]={};)"sv;
+	static constexpr std::string_view REPLACE_ITEM = 
 		R"(REPLACE INTO [CharacterCharacteristics]
 		(
 			[CharacterId],
 			[Characteristic],
 			[Value]
 		) 
-		VALUES({},{},{});)"s;
+		VALUES({},{},{});)"sv;
 
-	static const std::string FIELD_VALUE = "Value";
-	static const std::string FIELD_CHARACTERISTIC = "Characteristic";
+	static constexpr std::string_view FIELD_VALUE = "Value";
+	static constexpr std::string_view FIELD_CHARACTERISTIC = "Characteristic";
 
 	void Characteristic::Initialize()
 	{

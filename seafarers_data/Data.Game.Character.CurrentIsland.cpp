@@ -7,41 +7,41 @@
 #include <iterator>
 namespace data::game::character
 {
-	using namespace std::string_literals;
-	static const std::string CREATE_TABLE = 
+	using namespace std::string_view_literals;
+	static constexpr std::string_view CREATE_TABLE = 
 		R"(CREATE TABLE IF NOT EXISTS [CharacterCurrentIslands]
 		(
 			[CharacterId] INT NOT NULL UNIQUE,
 			[IslandId] INT NOT NULL,
 			FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId]),
 			FOREIGN KEY ([IslandId]) REFERENCES [Islands]([IslandId])
-		);)"s;
-	static const std::string QUERY_ITEM = 
+		);)"sv;
+	static constexpr std::string_view QUERY_ITEM = 
 		R"(SELECT 
 			[IslandId] 
 		FROM [CharacterCurrentIslands] 
 		WHERE 
-			[CharacterId]={};)"s;
-	static const std::string QUERY_ALL = 
+			[CharacterId]={};)"sv;
+	static constexpr std::string_view QUERY_ALL = 
 		R"(SELECT 
 			[CharacterId] 
 		FROM [CharacterCurrentIslands] 
 		WHERE 
-			[IslandId]={};)"s;
-	static const std::string REPLACE_ITEM = 
+			[IslandId]={};)"sv;
+	static constexpr std::string_view REPLACE_ITEM = 
 		R"(REPLACE INTO [CharacterCurrentIslands]
 		(
 			[CharacterId], 
 			[IslandId]
 		) 
-		VALUES({},{});)"s;
-	static const std::string DELETE_ITEM = 
+		VALUES({},{});)"sv;
+	static constexpr std::string_view DELETE_ITEM = 
 		R"(DELETE FROM[CharacterCurrentIslands] 
 		WHERE 
-			[CharacterId]={};)"s;
+			[CharacterId]={};)"sv;
 
-	static const std::string FIELD_ISLAND_ID = "IslandId";
-	static const std::string FIELD_CHARACTER_ID = "CharacterId";
+	static constexpr std::string_view FIELD_ISLAND_ID = "IslandId";
+	static constexpr std::string_view FIELD_CHARACTER_ID = "CharacterId";
 
 	void CurrentIsland::Initialize()
 	{

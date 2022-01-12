@@ -167,4 +167,12 @@ namespace data::game
 			return ToString(record, columnName);
 		};
 	}
+
+	std::function<std::string(const Common::Record&)> Common::DoToString(const std::string_view& columnName)
+	{
+		return [columnName](const Common::Record& record)
+		{
+			return ToString(record, std::string(columnName));
+		};
+	}
 }

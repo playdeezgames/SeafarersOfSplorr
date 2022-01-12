@@ -7,8 +7,8 @@
 #include <iterator>
 namespace data::game::character
 {
-	using namespace std::string_literals;
-	static const std::string CREATE_TABLE = 
+	using namespace std::string_view_literals;
+	static constexpr std::string_view CREATE_TABLE = 
 		R"(CREATE TABLE IF NOT EXISTS [CharacterKnownIslands]
 		(
 			[CharacterId],
@@ -16,35 +16,35 @@ namespace data::game::character
 			UNIQUE([CharacterId],[IslandId]),
 			FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId]),
 			FOREIGN KEY ([IslandId]) REFERENCES [Islands]([IslandId])
-		);)"s;
-	static const std::string REPLACE_ITEM =
+		);)"sv;
+	static constexpr std::string_view REPLACE_ITEM =
 		R"(REPLACE INTO [CharacterKnownIslands]
 		(
 			[CharacterId],
 			[IslandId]
 		)
-		VALUES({},{});)"s;
-	static const std::string QUERY_ITEM =
+		VALUES({},{});)"sv;
+	static constexpr std::string_view QUERY_ITEM =
 		R"(SELECT 
 			[IslandId] 
 		FROM [CharacterKnownIslands] 
 		WHERE 
 			[CharacterId]={} 
-			AND [IslandId]={};)"s;
-	static const std::string QUERY_FOR_CHARACTER =
+			AND [IslandId]={};)"sv;
+	static constexpr std::string_view QUERY_FOR_CHARACTER =
 		R"(SELECT 
 			[IslandId] 
 		FROM [CharacterKnownIslands] 
 		WHERE 
-			[CharacterId]={};)"s;
-	static const std::string DELETE_ALL =
-		R"(DELETE FROM [CharacterKnownIslands];)"s;
-	static const std::string DELETE_CHARACTER =
+			[CharacterId]={};)"sv;
+	static constexpr std::string_view DELETE_ALL =
+		R"(DELETE FROM [CharacterKnownIslands];)"sv;
+	static constexpr std::string_view DELETE_CHARACTER =
 		R"(DELETE FROM [CharacterKnownIslands] 
 		WHERE 
-			[CharacterId]={};)"s;
+			[CharacterId]={};)"sv;
 
-	static const std::string FIELD_ISLAND_ID = "IslandId";
+	static constexpr std::string_view FIELD_ISLAND_ID = "IslandId";
 
 	void KnownIsland::Initialize()
 	{

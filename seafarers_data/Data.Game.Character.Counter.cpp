@@ -4,8 +4,8 @@
 #include "Data.Game.Common.h"
 namespace data::game::character
 {
-	using namespace std::string_literals;
-	static const std::string CREATE_TABLE = 
+	using namespace std::string_view_literals;
+	static constexpr std::string_view CREATE_TABLE = 
 		R"(CREATE TABLE IF NOT EXISTS [CharacterCounters]
 		(
 			[CharacterId] INT NOT NULL,
@@ -13,29 +13,29 @@ namespace data::game::character
 			[Value] INT NOT NULL,
 			UNIQUE([CharacterId],[Counter]),
 			FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId])
-		);)"s;
-	static const std::string REPLACE_ITEM = 
+		);)"sv;
+	static constexpr std::string_view REPLACE_ITEM = 
 		R"(REPLACE INTO [CharacterCounters]
 		(
 			[CharacterId],
 			[Counter],
 			[Value]
 		) 
-		VALUES({},{},{});)"s;
-	static const std::string QUERY_ITEM = 
+		VALUES({},{},{});)"sv;
+	static constexpr std::string_view QUERY_ITEM = 
 		R"(SELECT 
 			[Value] 
 		FROM [CharacterCounters] 
 		WHERE 
 			[CharacterId]={} 
-			AND [Counter]={};)"s;
-	static const std::string DELETE_ITEM = 
+			AND [Counter]={};)"sv;
+	static constexpr std::string_view DELETE_ITEM = 
 		R"(DELETE FROM [CharacterCounters] 
 		WHERE 
 			[CharacterId]={} 
-			AND [Counter]={};)"s;
+			AND [Counter]={};)"sv;
 
-	static const std::string FIELD_VALUE = "Value";
+	static constexpr std::string_view FIELD_VALUE = "Value";
 
 	void Counter::Initialize()
 	{

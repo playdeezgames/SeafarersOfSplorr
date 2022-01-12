@@ -58,6 +58,7 @@ namespace data::game
 		static std::optional<std::string> TryToString(const std::optional<Record>& record, const std::string_view& columnName);
 		static std::string ToString(const Record& record, const std::string& columnName);
 		static std::function<std::string(const Record&)> DoToString(const std::string& columnName);
+		static std::function<std::string(const Record&)> DoToString(const std::string_view& columnName);
 	};
 
 }

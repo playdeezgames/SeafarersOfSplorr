@@ -6,40 +6,40 @@
 #include <iterator>
 namespace data::game::character
 {
-	using namespace std::string_literals;
+	using namespace std::string_view_literals;
 
-	static const std::string CREATE_TABLE =
+	static constexpr std::string_view CREATE_TABLE =
 		R"(CREATE TABLE IF NOT EXISTS [CharacterMarks]
 		(
 			[CharacterId] INT NOT NULL,
 			[Name] TEXT NOT NULL,
 			[X] REAL NOT NULL,
 			[Y] REAL NOT NULL,
-			UNIQUE([CharacterId],[Name]));)"s;
-	static const std::string QUERY_ITEM =
+			UNIQUE([CharacterId],[Name]));)"sv;
+	static constexpr std::string_view QUERY_ITEM =
 		R"(SELECT 
 			[X],
 			[Y] 
 		FROM [CharacterMarks] 
 		WHERE 
 			[CharacterId]={} 
-			AND [Name]={};)"s;
-	static const std::string QUERY_ANY =
+			AND [Name]={};)"sv;
+	static constexpr std::string_view QUERY_ANY =
 		R"(SELECT 
 			[Name]
 		FROM [CharacterMarks] 
 		WHERE 
 			[CharacterId]={}
-		LIMIT 1;)"s;
-	static const std::string QUERY_NAMES =
+		LIMIT 1;)"sv;
+	static constexpr std::string_view QUERY_NAMES =
 		R"(SELECT 
 			[Name]
 		FROM [CharacterMarks] 
 		WHERE 
 			[CharacterId]={}
 		ORDER BY 
-			[Name];)"s;
-	static const std::string REPLACE_ITEM =
+			[Name];)"sv;
+	static constexpr std::string_view REPLACE_ITEM =
 		R"(REPLACE INTO [CharacterMarks]
 		(
 			[CharacterId],
@@ -47,14 +47,14 @@ namespace data::game::character
 			[X],
 			[Y]
 		) 
-		VALUES({},{},{},{});)"s;
-	static const std::string DELETE_ITEM =
+		VALUES({},{},{},{});)"sv;
+	static constexpr std::string_view DELETE_ITEM =
 		R"(DELETE FROM [CharacterMarks] 
 		WHERE 
 			[CharacterId]={} 
-			AND [Name]={};)"s;
+			AND [Name]={};)"sv;
 
-	static const std::string FIELD_NAME = "Name";
+	static constexpr std::string_view FIELD_NAME = "Name";
 
 	void Mark::Initialize()
 	{

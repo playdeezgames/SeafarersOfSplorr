@@ -7,8 +7,8 @@
 #include <iterator>
 namespace data::game
 {
-	using namespace std::string_literals;
-	static const std::string CREATE_TABLE = 
+	using namespace std::string_view_literals;
+	static constexpr std::string_view CREATE_TABLE = 
 		R"(CREATE TABLE IF NOT EXISTS [Characters]
 		(
 			[CharacterId] INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -17,36 +17,36 @@ namespace data::game
 			[TribeId] INT NOT NULL,
 			FOREIGN KEY ([OriginIslandId]) REFERENCES [Islands]([IslandId]),
 			FOREIGN KEY ([TribeId]) REFERENCES [Tribes]([TribeId])
-		);)"s;
-	static const std::string QUERY_ITEM_COLUMN =
+		);)"sv;
+	static constexpr std::string_view QUERY_ITEM_COLUMN =
 		R"(SELECT 
 			[{}]
 		FROM [Characters] 
 		WHERE 
-			[CharacterId] = {};)"s;
-	static const std::string CREATE_ITEM =
+			[CharacterId] = {};)"sv;
+	static constexpr std::string_view CREATE_ITEM =
 		R"(INSERT INTO [Characters]
 		(
 			[Name],
 			[OriginIslandId],
 			[TribeId]
 		) 
-		VALUES({}, {}, {});)"s;
-	static const std::string UPDATE_ITEM_COLUMN =
+		VALUES({}, {}, {});)"sv;
+	static constexpr std::string_view UPDATE_ITEM_COLUMN =
 		R"(UPDATE [Characters] 
 		SET 
 			[{}]={}
 		WHERE 
-			CharacterId={};)"s;
-	static const std::string QUERY_ALL =
+			CharacterId={};)"sv;
+	static constexpr std::string_view QUERY_ALL =
 		R"(SELECT 
 			[CharacterId] 
-		FROM [Characters];)"s;
+		FROM [Characters];)"sv;
 
-	static const std::string FIELD_NAME = "Name";
-	static const std::string FIELD_TRIBE_ID = "TribeId";
-	static const std::string FIELD_ORIGIN_ISLAND_ID = "OriginIslandId";
-	static const std::string FIELD_CHARACTER_ID = "CharacterId";
+	static constexpr std::string_view FIELD_NAME = "Name";
+	static constexpr std::string_view FIELD_TRIBE_ID = "TribeId";
+	static constexpr std::string_view FIELD_ORIGIN_ISLAND_ID = "OriginIslandId";
+	static constexpr std::string_view FIELD_CHARACTER_ID = "CharacterId";
 
 	void Character::Initialize()
 	{
