@@ -66,6 +66,9 @@
     <Filter Include="Header Files\ScratchPad\Detailed Start">
       <UniqueIdentifier>{2ae53703-6028-4cf4-b345-ec827df87d94}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Docked\Delivery Service">
+      <UniqueIdentifier>{95e085ec-f8c7-4a3e-b782-bdd7d0feb2c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UIState.h">
@@ -242,6 +245,9 @@
     <ClInclude Include="State.InPlay.DeliveryService.h">
       <Filter>Header Files\Docked</Filter>
     </ClInclude>
+    <ClInclude Include="State.InPlay.DeliveryService.JobList.h">
+      <Filter>Header Files\Docked</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -413,7 +419,10 @@
       <Filter>Source Files\ScratchPad</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.DeliveryService.cpp">
-      <Filter>Source Files\Docked</Filter>
+      <Filter>Source Files\Docked\Delivery Service</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.DeliveryService.JobList.cpp">
+      <Filter>Source Files\Docked\Delivery Service</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

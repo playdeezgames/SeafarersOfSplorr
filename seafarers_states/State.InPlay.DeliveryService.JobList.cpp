@@ -1,10 +1,10 @@
 #include <Game.Session.h>
-#include "State.InPlay.DeliveryService.h"
 #include "State.InPlay.Globals.h"
+#include "State.InPlay.DeliveryService.JobList.h"
 #include "State.ScratchPad.IslandFeature.h"
-namespace state::in_play
+namespace state::in_play::delivery_service
 {
-	static constexpr ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DELIVERY_SERVICE;
+	static constexpr ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DELIVERY_SERVICE_JOB_LIST;
 
 	static void Refresh()
 	{
@@ -16,7 +16,7 @@ namespace state::in_play
 			.GetIsland()
 			.GetFeature(scratch_pad::IslandFeature::GetFeatureId());
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
-		Terminal::WriteLine(feature.GetName());
+		Terminal::WriteLine("{} Job List:", feature.GetName());
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::ShowMenu();
 		Terminal::ShowPrompt();
@@ -26,8 +26,7 @@ namespace state::in_play
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		Terminal::menu.AddAction({"Job List", application::UIState::GoTo(::UIState::IN_PLAY_DELIVERY_SERVICE_JOB_LIST) });
-		MenuAction defaultAction = { "Leave", application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_DISTRICT) };
+		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_DELIVERY_SERVICE) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 
@@ -38,7 +37,7 @@ namespace state::in_play
 		Refresh();
 	}
 
-	void DeliveryService::Start()
+	void JobList::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);

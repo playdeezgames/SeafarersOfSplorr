@@ -25,6 +25,7 @@
 #include <State.InPlay.CrewList.h>
 #include <State.InPlay.CrewDetail.h>
 #include <State.InPlay.DeliveryService.h>
+#include <State.InPlay.DeliveryService.JobList.h>
 #include <State.InPlay.Docked.h>
 #include <State.InPlay.DockOrCareen.h>
 #include <State.InPlay.HeadForKnown.h>
@@ -156,6 +157,7 @@ namespace application
 		state::SpendPersonalSkillPoints::Start,
 		state::in_play::IslandDistrict::Start,
 		state::in_play::DeliveryService::Start,
+		state::in_play::delivery_service::JobList::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};
