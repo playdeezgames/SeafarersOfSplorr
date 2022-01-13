@@ -15,4 +15,16 @@ namespace game::session::island::district
 			Feature::FromFeatureId);
 		return result;
 	}
+
+	void Features::ApplyTurnEffects() const
+	{
+		auto features = GetFeatures();
+		std::for_each(
+			features.begin(),
+			features.end(),
+			[](const auto& feature) 
+			{
+				feature.ApplyTurnEffects();
+			});
+	}
 }

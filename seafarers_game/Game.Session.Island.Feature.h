@@ -10,6 +10,7 @@ namespace game::session::island
 		constexpr explicit operator int() const { return featureId; }
 		std::string GetName() const;
 		game::island::FeatureType GetFeatureType() const;
+		void ApplyTurnEffects() const;
 	private:
 		int featureId;
 	};

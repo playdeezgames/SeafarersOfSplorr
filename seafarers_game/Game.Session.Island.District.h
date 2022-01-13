@@ -12,6 +12,7 @@ namespace game::session::island
 		constexpr explicit operator game::island::District() const { return district; }
 		constexpr district::Features GetFeatures() const { return district::Features(islandId, district); }
 		std::string GetName() const;
+		void ApplyTurnEffects() const;
 	private:
 		int islandId;
 		game::island::District district;

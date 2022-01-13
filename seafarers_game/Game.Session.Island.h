@@ -21,6 +21,7 @@ namespace game::session
 		std::string GetName() const;
 		Demigod GetPatronDemigod() const;
 		void Populate(const game::Difficulty& difficulty) const;
+		void ApplyTurnEffects() const;
 	private:
 		int islandId;
 	};

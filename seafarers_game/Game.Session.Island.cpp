@@ -27,4 +27,10 @@ namespace game::session
 		GetMarkets().Populate(difficulty);
 		GetDistricts().Populate(difficulty);
 	}
+
+	void Island::ApplyTurnEffects() const
+	{
+		GetMarkets().ApplyTurnEffects();
+		GetDistricts().ApplyTurnEffects();
+	}
 }

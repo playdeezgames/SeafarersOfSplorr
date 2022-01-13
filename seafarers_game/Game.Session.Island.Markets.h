@@ -13,6 +13,7 @@ namespace game::session::island
 		double GetUnitSaleValue(const item::Type& itemType) const;
 		int GetMaximumSaleQuantity(const item::Type& itemType, double) const;
 		void Populate(const game::Difficulty& difficulty) const;
+		void ApplyTurnEffects() const;
 	private:
 		int islandId;
 	};

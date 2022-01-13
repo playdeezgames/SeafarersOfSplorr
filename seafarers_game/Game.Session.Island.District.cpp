@@ -26,4 +26,10 @@ namespace game::session::island
 	{
 		return GetDescriptor(district).name;
 	}
+
+	void District::ApplyTurnEffects() const
+	{
+		GetFeatures().ApplyTurnEffects();
+	}
+
 }

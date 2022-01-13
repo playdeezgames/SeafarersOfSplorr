@@ -91,4 +91,9 @@ namespace game::session::island
 				data::game::island::Market::Write(islandId, (int)commodity.operator game::Commodity(), data);
 			});
 	}
+
+	void Markets::ApplyTurnEffects() const
+	{
+
+	}
 }

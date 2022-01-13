@@ -396,6 +396,13 @@ namespace game::session::world
 
 	void Islands::ApplyTurnEffects() const
 	{
-
+		auto islands = GetIslands();
+		std::for_each(
+			islands.begin(), 
+			islands.end(), 
+			[](const auto& island) 
+			{
+				island.ApplyTurnEffects();
+			});
 	}
 }

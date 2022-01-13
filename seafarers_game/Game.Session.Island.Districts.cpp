@@ -64,4 +64,15 @@ namespace game::session::island
 			});
 	}
 
+	void Districts::ApplyTurnEffects() const
+	{
+		auto districts = GetDistricts();
+		std::for_each(
+			districts.begin(),
+			districts.end(),
+			[](const auto& district) 
+			{
+				district.ApplyTurnEffects();
+			});
+	}
 }

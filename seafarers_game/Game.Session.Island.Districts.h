@@ -10,6 +10,7 @@ namespace game::session::island
 		constexpr District GetDistrict(const game::island::District& district) { return District(islandId, district); }
 		std::vector<District> GetDistricts() const;
 		void Populate(const game::Difficulty& difficulty) const;
+		void ApplyTurnEffects() const;
 	private:
 		int islandId;
 	};
