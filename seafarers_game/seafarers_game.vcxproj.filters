@@ -165,11 +165,23 @@
     <Filter Include="Header Files\Session\SkillCategory">
       <UniqueIdentifier>{5ce9fdf5-13d3-426c-906b-a2f266db356c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Session\Island\Markets">
-      <UniqueIdentifier>{52d25e23-b20d-43c7-b0db-082124ad9c28}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Session\Island\Market">
       <UniqueIdentifier>{8cb2281d-ae86-47c4-87ef-d880cee4fccf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Session\Island\Feature">
+      <UniqueIdentifier>{42439d30-3749-4d53-ac28-b1b0ef902b37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Session\Island\District">
+      <UniqueIdentifier>{46b6717c-4541-4d4d-8977-c2769a90af1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Session\Island\Market">
+      <UniqueIdentifier>{52d25e23-b20d-43c7-b0db-082124ad9c28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Island\District">
+      <UniqueIdentifier>{12a73592-375e-4e42-9167-dafe9329271d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Island\Feature">
+      <UniqueIdentifier>{c693191e-d029-4686-90b1-6067a38e8d2c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -423,25 +435,25 @@
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Island.Market.h">
-      <Filter>Header Files\Session\Island\Markets</Filter>
+      <Filter>Header Files\Session\Island\Market</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Island.Markets.h">
-      <Filter>Header Files\Session\Island\Markets</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Island.Districts.h">
-      <Filter>Header Files\Session\Island</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Island.District.h">
-      <Filter>Header Files\Session\Island</Filter>
+      <Filter>Header Files\Session\Island\Market</Filter>
     </ClInclude>
     <ClInclude Include="Game.Island.FeatureType.h">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Island.District.Features.h">
-      <Filter>Header Files\Session\Island</Filter>
+      <Filter>Header Files\Session\Island\District</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Island.District.h">
+      <Filter>Header Files\Session\Island\District</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Island.Districts.h">
+      <Filter>Header Files\Session\Island\District</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Island.Feature.h">
-      <Filter>Header Files\Session\Island</Filter>
+      <Filter>Header Files\Session\Island\Feature</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -626,16 +638,16 @@
       <Filter>Source Files\Session\Island\Market</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Island.District.cpp">
-      <Filter>Source Files\Session\Island</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Island.Districts.cpp">
-      <Filter>Source Files\Session\Island</Filter>
+      <Filter>Source Files\Session\Island\District</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Island.District.Features.cpp">
-      <Filter>Source Files\Session\Island</Filter>
+      <Filter>Source Files\Session\Island\District</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Island.Districts.cpp">
+      <Filter>Source Files\Session\Island\District</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Island.Feature.cpp">
-      <Filter>Source Files\Session\Island</Filter>
+      <Filter>Source Files\Session\Island\Feature</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
