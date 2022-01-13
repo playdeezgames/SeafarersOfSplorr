@@ -27,4 +27,20 @@ namespace game::session::island
 		auto featureType = GetFeatureType();
 		applyTurnEffectsForFeatureType.find(featureType)->second(*this);
 	}
+
+	static const std::map<game::island::FeatureType, std::function<void(const Feature&, const game::Difficulty&)>> populateForFeatureType =
+	{
+		{
+			game::island::FeatureType::DELIVERY_SERVICE,
+			[](const auto& feature, const game::Difficulty& difficulty) { feature.GetDeliveryService().Populate(difficulty);  }
+		}
+	};
+
+	void Feature::Populate(const game::Difficulty& difficulty) const
+	{
+		auto featureType = GetFeatureType();
+		populateForFeatureType.find(featureType)->second(*this, difficulty);
+
+	}
+
 }

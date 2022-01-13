@@ -44,6 +44,7 @@ namespace data::game::island
 	static constexpr std::string_view FIELD_FEATURE_ID = "FeatureId";
 	static constexpr std::string_view FIELD_NAME = "Name";
 	static constexpr std::string_view FIELD_FEATURE_TYPE = "FeatureType";
+	static constexpr std::string_view FIELD_ISLAND_ID = "IslandId";
 
 	void Feature::Initialize()
 	{
@@ -85,5 +86,13 @@ namespace data::game::island
 		return Common::TryToInt(
 			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_FEATURE_TYPE, featureId),
 			FIELD_FEATURE_TYPE);
+	}
+
+	std::optional<int> Feature::ReadIslandId(int featureId)
+	{
+		Initialize();
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_ISLAND_ID, featureId),
+			FIELD_ISLAND_ID);
 	}
 }

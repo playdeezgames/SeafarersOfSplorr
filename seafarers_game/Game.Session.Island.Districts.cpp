@@ -30,7 +30,6 @@ namespace game::session::island
 		std::function<std::string()> generateName;
 		game::island::FeatureType featureType;
 		std::function<game::island::District()> generateDistrict;
-		std::function<void(int)> generateDetails;
 	};
 
 	static const std::vector<FeatureGenerator> featureGenerators =
@@ -39,8 +38,7 @@ namespace game::session::island
 			[]() { return 1; },
 			[]() { return "Delivery Service"; },
 			game::island::FeatureType::DELIVERY_SERVICE,
-			[]() { return game::island::District::BUSINESS; },
-			[](int featureId) {}
+			[]() { return game::island::District::BUSINESS; }
 		}
 	};
 
@@ -59,8 +57,15 @@ namespace game::session::island
 					auto district = generator.generateDistrict();
 					auto featureId = 
 						data::game::island::Feature::Create(islandId, name, (int)generator.featureType, (int)district);
-					generator.generateDetails(featureId);
 				}
+			});
+		auto districts = GetDistricts();
+		std::for_each(
+			districts.begin(),
+			districts.end(),
+			[difficulty](const auto district) 
+			{
+				district.Populate(difficulty);
 			});
 	}
 

@@ -32,4 +32,8 @@ namespace game::session::island
 		GetFeatures().ApplyTurnEffects();
 	}
 
+	void District::Populate(const game::Difficulty& difficulty) const
+	{
+		GetFeatures().Populate(difficulty);
+	}
 }

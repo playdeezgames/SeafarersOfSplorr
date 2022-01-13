@@ -27,4 +27,16 @@ namespace game::session::island::district
 				feature.ApplyTurnEffects();
 			});
 	}
+
+	void Features::Populate(const game::Difficulty& difficulty) const
+	{
+		auto features = GetFeatures();
+		std::for_each(
+			features.begin(),
+			features.end(),
+			[difficulty](const auto& feature)
+			{
+				feature.Populate(difficulty);
+			});
+	}
 }

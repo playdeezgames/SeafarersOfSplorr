@@ -12,5 +12,6 @@ namespace data::game::island
 		static std::vector<int> ReadForIslandDistrict(int islandId, int district);
 		static std::optional<std::string> ReadName(int featureId);
 		static std::optional<int> ReadFeatureType(int featureId);
+		static std::optional<int> ReadIslandId(int featureId);
 	};
 }

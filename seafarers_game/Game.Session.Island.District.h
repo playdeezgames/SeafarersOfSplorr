@@ -1,4 +1,5 @@
 #pragma once
+#include "Game.Difficulty.h"
 #include "Game.Island.District.h"
 #include "Game.Session.Island.District.Features.h"
 #include <string>
@@ -12,6 +13,7 @@ namespace game::session::island
 		constexpr explicit operator game::island::District() const { return district; }
 		constexpr district::Features GetFeatures() const { return district::Features(islandId, district); }
 		std::string GetName() const;
+		void Populate(const game::Difficulty& difficulty) const;
 		void ApplyTurnEffects() const;
 	private:
 		int islandId;

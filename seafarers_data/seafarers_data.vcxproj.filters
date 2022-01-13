@@ -164,6 +164,9 @@
     <ClInclude Include="Data.Game.Island.Feature.h">
       <Filter>Header Files\Island</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.Delivery.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">
@@ -255,6 +258,9 @@
     </ClCompile>
     <ClCompile Include="Data.Game.Island.Feature.cpp">
       <Filter>Source Files\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Delivery.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
