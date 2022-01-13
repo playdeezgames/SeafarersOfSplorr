@@ -14,19 +14,17 @@ namespace game::session::island
 		return (game::island::FeatureType)data::game::island::Feature::ReadFeatureType(featureId).value();
 	}
 
-	static void ApplyTurnEffectsForDeliveryService(int featureId)
+	static const std::map<game::island::FeatureType, std::function<void(const Feature&)>> applyTurnEffectsForFeatureType = 
 	{
-		//TODO: update the delivery service for the turn
-	}
-
-	static const std::map<game::island::FeatureType, std::function<void(int)>> applyTurnEffectsForFeatureType = 
-	{
-		{game::island::FeatureType::DELIVERY_SERVICE, ApplyTurnEffectsForDeliveryService}
+		{
+			game::island::FeatureType::DELIVERY_SERVICE, 
+			[](const auto& feature) { feature.GetDeliveryService().ApplyTurnEffects();  }
+		}
 	};
 
 	void Feature::ApplyTurnEffects() const
 	{
 		auto featureType = GetFeatureType();
-		applyTurnEffectsForFeatureType.find(featureType)->second(featureId);
+		applyTurnEffectsForFeatureType.find(featureType)->second(*this);
 	}
 }
