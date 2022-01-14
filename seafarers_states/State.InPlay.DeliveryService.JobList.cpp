@@ -4,6 +4,7 @@
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.DeliveryService.JobList.h"
 #include "State.ScratchPad.IslandFeature.h"
+#include "State.ScratchPad.SelectedDelivery.h"
 namespace state::in_play::delivery_service
 {
 	static constexpr ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DELIVERY_SERVICE_JOB_LIST;
@@ -26,10 +27,10 @@ namespace state::in_play::delivery_service
 
 	static std::function<void()> DoSelectDelivery(int deliveryId)
 	{
-		return []() 
+		return [deliveryId]() 
 		{
-			//TODO: go to a different screen to get details or accept
-			Refresh();
+			scratch_pad::SelectedDelivery::SetDeliveryId(deliveryId);
+			application::UIState::Write(::UIState::IN_PLAY_DELIVERY_SERVICE_JOB_DETAIL);
 		};
 	}
 

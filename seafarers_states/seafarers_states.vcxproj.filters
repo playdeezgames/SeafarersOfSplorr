@@ -69,6 +69,9 @@
     <Filter Include="Source Files\Docked\Delivery Service">
       <UniqueIdentifier>{95e085ec-f8c7-4a3e-b782-bdd7d0feb2c6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Docked\Delivery Service">
+      <UniqueIdentifier>{3b44a5f2-479e-4dfa-b447-96487a7339e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UIState.h">
@@ -242,11 +245,17 @@
     <ClInclude Include="State.ScratchPad.IslandFeature.h">
       <Filter>Header Files\ScratchPad</Filter>
     </ClInclude>
+    <ClInclude Include="State.ScratchPad.SelectedDelivery.h">
+      <Filter>Header Files\ScratchPad</Filter>
+    </ClInclude>
     <ClInclude Include="State.InPlay.DeliveryService.h">
-      <Filter>Header Files\Docked</Filter>
+      <Filter>Header Files\Docked\Delivery Service</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.DeliveryService.JobDetail.h">
+      <Filter>Header Files\Docked\Delivery Service</Filter>
     </ClInclude>
     <ClInclude Include="State.InPlay.DeliveryService.JobList.h">
-      <Filter>Header Files\Docked</Filter>
+      <Filter>Header Files\Docked\Delivery Service</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -422,6 +431,12 @@
       <Filter>Source Files\Docked\Delivery Service</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.DeliveryService.JobList.cpp">
+      <Filter>Source Files\Docked\Delivery Service</Filter>
+    </ClCompile>
+    <ClCompile Include="State.ScratchPad.SelectedDelivery.cpp">
+      <Filter>Source Files\ScratchPad</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.DeliveryService.JobDetail.cpp">
       <Filter>Source Files\Docked\Delivery Service</Filter>
     </ClCompile>
   </ItemGroup>
