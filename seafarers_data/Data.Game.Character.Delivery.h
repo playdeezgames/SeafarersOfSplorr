@@ -5,5 +5,6 @@ namespace data::game::character
 	{
 		Delivery() = delete;
 		static void Initialize();
+		static void Create(int characterId, int deliveryId);
 	};
 }

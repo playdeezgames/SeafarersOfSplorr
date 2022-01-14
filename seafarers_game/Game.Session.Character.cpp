@@ -1,8 +1,11 @@
 #include <Data.Game.Character.h>
 #include <Data.Game.Character.CurrentIsland.h>
+#include <Data.Game.Character.Delivery.h>
 #include <Data.Game.Character.Ship.h>
+#include <Data.Game.Feature.Delivery.h>
 #include <Data.Game.Player.h>
 #include <Data.Game.Ship.CurrentIsland.h>
+#include "Game.Colors.h"
 #include "Game.Session.h"
 #include "Game.Session.Character.h"
 #include <map>
@@ -148,4 +151,13 @@ namespace game::session
 	{
 		return data::game::Player::GetCharacterId() == characterId;
 	}
+
+	void Character::AcceptDelivery(const island::delivery_service::Delivery& delivery) const
+	{
+		GetKnownIslands().AddKnownIsland(game::session::Island(delivery.GetToIslandId()));
+		data::game::feature::Delivery::Clear(delivery.operator int());
+		data::game::character::Delivery::Create(characterId, delivery.operator int());
+		GetMessages().Add(game::Colors::GREEN, "You accept the delivery.");
+	}
+
 }

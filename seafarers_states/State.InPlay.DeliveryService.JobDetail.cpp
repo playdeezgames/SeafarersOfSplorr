@@ -25,15 +25,20 @@ namespace state::in_play::delivery_service
 
 	static void AcceptJob()
 	{
-		//TODO: stuff
-		Refresh();
+		auto delivery =
+			game::session::island::delivery_service::Delivery(scratch_pad::SelectedDelivery::GetDeliveryId());
+		game::Session()
+			.GetPlayer()
+			.GetCharacter()
+			.AcceptDelivery(delivery);
+		application::UIState::Write(::UIState::IN_PLAY_DELIVERY_SERVICE_JOB_LIST);
 	}
 
 	static void UpdateMenu()
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		//Terminal::menu.AddAction({"Accept", AcceptJob});
+		Terminal::menu.AddAction({"Accept", AcceptJob});
 		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_DELIVERY_SERVICE_JOB_LIST) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}

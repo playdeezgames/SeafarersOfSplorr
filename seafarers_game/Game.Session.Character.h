@@ -44,6 +44,7 @@ namespace game::session
 		std::optional<Island> TryGetIsland() const;
 		bool IsOnIsland() const;
 		Island GetIsland() const;
+		void AcceptDelivery(const island::delivery_service::Delivery& delivery) const;
 
 	private:
 		int characterId;

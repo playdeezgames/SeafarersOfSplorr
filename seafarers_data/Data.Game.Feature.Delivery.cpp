@@ -28,6 +28,10 @@ namespace data::game::feature
 		FROM [FeatureDeliveries] 
 		WHERE 
 			[FeatureId]={};)"sv;
+	static constexpr std::string_view CLEAR_ITEM =
+		R"(DELETE FROM [FeatureDeliveries] 
+		WHERE 
+			[DeliveryId]={};)"sv;
 
 	static constexpr std::string_view FIELD_DELIVERY_ID = "DeliveryId"sv;
 
@@ -46,6 +50,7 @@ namespace data::game::feature
 
 	std::vector<int> Delivery::ReadForFeature(int featureId)
 	{
+		Initialize();
 		auto records = Common::Execute(QUERY_FOR_FEATURE, featureId);
 		std::vector<int> result;
 		std::transform(
@@ -54,5 +59,11 @@ namespace data::game::feature
 			std::back_inserter(result), 
 			Common::DoToInt(FIELD_DELIVERY_ID));
 		return result;
+	}
+
+	void Delivery::Clear(int deliveryId)
+	{
+		Initialize();
+		Common::Execute(CLEAR_ITEM, deliveryId);
 	}
 }
