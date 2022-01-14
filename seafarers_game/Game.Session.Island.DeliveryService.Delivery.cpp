@@ -7,4 +7,8 @@ namespace game::session::island::delivery_service
 		return data::game::Delivery::ReadToIsland(deliveryId).value();
 	}
 
+	int Delivery::GetFromIslandId() const
+	{
+		return data::game::Delivery::ReadFromIsland(deliveryId).value();
+	}
 }

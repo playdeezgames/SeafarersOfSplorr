@@ -27,6 +27,7 @@ namespace data::game
 		WHERE 
 			[DeliveryId]={};)"sv;
 	static constexpr std::string_view FIELD_TO_ISLAND_ID = "ToIslandId";
+	static constexpr std::string_view FIELD_FROM_ISLAND_ID = "FromIslandId";
 
 	void Delivery::Initialize()
 	{
@@ -47,4 +48,12 @@ namespace data::game
 			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_TO_ISLAND_ID, deliveryId),
 			FIELD_TO_ISLAND_ID);
 	}
+
+	std::optional<int> Delivery::ReadFromIsland(int deliveryId)
+	{
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_FROM_ISLAND_ID, deliveryId),
+			FIELD_FROM_ISLAND_ID);
+	}
+
 }
