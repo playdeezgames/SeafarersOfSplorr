@@ -1,15 +1,21 @@
+#include <algorithm>
 #include <Application.Engine.h>
 #include <Common.RNG.h>
 #include <Common.Utility.h>
+#include <iterator>
 #include <SDL.h>
-static std::vector<std::string> ParseCommandLine(int argc, char** argv)
+static std::vector<std::string_view> ParseCommandLine(int argc, char** argv)
 {
-	std::vector<std::string> arguments;
+	std::vector<std::string_view> arguments;
 	arguments.reserve(argc);
-	for (int index = 0; index < argc; ++index)
-	{
-		arguments.push_back(std::string(argv[index]));
-	}
+	std::transform(
+		argv, 
+		argv + argc, 
+		std::back_inserter(arguments), 
+		[](const char* arg) 
+		{
+			return std::string_view(arg);
+		});
 	return arguments;
 }
 int main(int argc, char** argv)

@@ -62,9 +62,15 @@ namespace Application
 }
 namespace application
 {
-	void Start(const std::vector<std::string>& arguments)
+	void Start(const std::vector<std::string_view>& arguments)
 	{
-		std::for_each(Engine::GetStarters().begin(), Engine::GetStarters().end(), [](auto p) { p(); });
+		std::for_each(
+			Engine::GetStarters().begin(), 
+			Engine::GetStarters().end(), 
+			[](auto starter) 
+			{ 
+				starter(); 
+			});
 	}
 
 	bool IsRunning()

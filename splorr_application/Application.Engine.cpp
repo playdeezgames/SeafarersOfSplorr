@@ -26,7 +26,7 @@ namespace application
 		return Platform::IsFullscreen();
 	}
 
-	extern void Start(const std::vector<std::string>&);
+	extern void Start(const std::vector<std::string_view>&);
 	extern bool IsRunning();
 	extern void Updatify(unsigned int);
 	extern void HandleEvent(const SDL_Event&);
@@ -88,7 +88,7 @@ namespace application
 		}
 	}
 
-	static void DoStart(const std::string& configFile, const std::vector<std::string>& arguments)
+	static void DoStart(const std::string& configFile, const std::vector<std::string_view>& arguments)
 	{
 		Platform::Initialize();
 
@@ -123,7 +123,7 @@ namespace application
 		Mix_Quit();
 	}
 
-	int Engine::Run(const std::vector<std::string>& arguments)
+	int Engine::Run(const std::vector<std::string_view>& arguments)
 	{
 		atexit(DoFinish);
 		DoStart(CONFIG_FILE, arguments);
