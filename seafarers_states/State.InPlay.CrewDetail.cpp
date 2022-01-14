@@ -74,9 +74,19 @@ namespace state::in_play
 
 	static void UpdateMenu()
 	{
+		int characterId = scratch_pad::CrewDetail::GetCharacterId();
+		auto character =
+			game::Session()
+			.GetCharacters()
+			.GetCharacter(characterId);
+
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		Terminal::menu.AddAction({"Characteristics", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_CHARACTERISTICS) });
+		if (character.GetDeliveries().HasAny())
+		{
+			//Terminal::menu.AddAction({ "Characteristics", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_CHARACTERISTICS) });
+		}
 		MenuAction defaultAction = { "Never mind", OnLeave };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}

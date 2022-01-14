@@ -3,6 +3,7 @@
 #include "Game.Session.Character.Characteristic.h"
 #include "Game.Session.Character.Characteristics.h"
 #include "Game.Session.Character.Counters.h"
+#include "Game.Session.Character.Deliveries.h"
 #include "Game.Session.Character.Flags.h"
 #include "Game.Session.Character.HitPoints.h"
 #include "Game.Session.Character.KnownIslands.h"
@@ -32,6 +33,7 @@ namespace game::session
 		constexpr character::Flags GetFlags() const { return character::Flags(characterId); }
 		constexpr character::Marks GetMarks() const { return character::Marks(characterId); }
 		constexpr character::Skills GetSkills() const { return character::Skills(characterId); }
+		constexpr character::Deliveries GetDeliveries() const { return character::Deliveries(characterId); }
 
 		bool IsDead() const;
 		std::string GetName() const;

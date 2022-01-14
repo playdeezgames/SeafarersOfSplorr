@@ -23,6 +23,7 @@
     <ClInclude Include="Game.Characters.Counter.h" />
     <ClInclude Include="Game.Characters.Message.h" />
     <ClInclude Include="Game.Characteristic.h" />
+    <ClInclude Include="Game.Session.Character.Deliveries.h" />
     <ClInclude Include="Game.Session.Island.DeliveryService.Delivery.h" />
     <ClInclude Include="Game.Session.Island.DeliveryService.Deliveries.h" />
     <ClInclude Include="Game.Session.Island.DeliveryService.h" />
@@ -120,6 +121,7 @@
     <ClCompile Include="Game.Session.Character.Counter.cpp" />
     <ClCompile Include="Game.Session.Character.Counters.cpp" />
     <ClCompile Include="Game.Session.Character.cpp" />
+    <ClCompile Include="Game.Session.Character.Deliveries.cpp" />
     <ClCompile Include="Game.Session.Character.Flag.cpp" />
     <ClCompile Include="Game.Session.Character.Flags.cpp" />
     <ClCompile Include="Game.Session.Character.HitPoints.cpp" />
