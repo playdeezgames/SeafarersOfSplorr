@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <format>
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.DeliveryService.JobList.h"
@@ -23,10 +24,23 @@ namespace state::in_play::delivery_service
 		Terminal::ShowPrompt();
 	}
 
+	static std::function<void()> DoSelectDelivery(int deliveryId)
+	{
+		return []() 
+		{
+			//TODO: go to a different screen to get details or accept
+			Refresh();
+		};
+	}
+
 	static void UpdateMenu()
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
+		auto islands =
+			game::Session()
+			.GetWorld()
+			.GetIslands();
 		auto fromIsland =
 			game::Session()
 			.GetPlayer()
@@ -41,9 +55,11 @@ namespace state::in_play::delivery_service
 		std::for_each(
 			deliveries.begin(), 
 			deliveries.end(), 
-			[](const auto& delivery) 
+			[islands, fromIsland](const auto& delivery) 
 			{
-				//TODO: add delivery to list
+				auto toIsland = islands.GetIsland(delivery.GetToIslandId());
+				auto distance = fromIsland.DistanceTo(toIsland);
+				Terminal::menu.AddAction({ std::format("Distance: {:.2f}", distance), DoSelectDelivery(delivery.operator int())});
 			});
 		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_DELIVERY_SERVICE) };
 		Terminal::menu.SetDefaultAction(defaultAction);

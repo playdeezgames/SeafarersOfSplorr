@@ -14,7 +14,7 @@ namespace data::game::character
 
 	void Delivery::Initialize()
 	{
-		Delivery::Initialize();
+		data::game::Delivery::Initialize();
 		Character::Initialize();
 		Common::Execute(CREATE_TABLE);
 	}

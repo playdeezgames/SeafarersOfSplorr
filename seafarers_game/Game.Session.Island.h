@@ -17,6 +17,7 @@ namespace game::session
 		constexpr island::Districts GetDistricts() const { return island::Districts(islandId); }
 		constexpr island::Feature GetFeature(int featureId) const { return island::Feature(featureId); }
 
+		double DistanceTo(const Island& otherIsland) const;
 		common::XY<double> GetLocation() const;
 		std::string GetName() const;
 		Demigod GetPatronDemigod() const;

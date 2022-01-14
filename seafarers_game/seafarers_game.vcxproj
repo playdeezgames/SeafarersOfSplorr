@@ -141,6 +141,7 @@
     <ClCompile Include="Game.Session.Island.cpp" />
     <ClCompile Include="Game.Session.Island.DeliveryService.cpp" />
     <ClCompile Include="Game.Session.Island.DeliveryService.Deliveries.cpp" />
+    <ClCompile Include="Game.Session.Island.DeliveryService.Delivery.cpp" />
     <ClCompile Include="Game.Session.Island.District.cpp" />
     <ClCompile Include="Game.Session.Island.District.Features.cpp" />
     <ClCompile Include="Game.Session.Island.Districts.cpp" />

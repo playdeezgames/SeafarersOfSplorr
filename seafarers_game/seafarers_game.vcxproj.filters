@@ -664,6 +664,9 @@
     <ClCompile Include="Game.Session.Island.DeliveryService.Deliveries.cpp">
       <Filter>Source Files\Session\Island\Feature</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Session.Island.DeliveryService.Delivery.cpp">
+      <Filter>Source Files\Session\Island\Feature</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Game.Session.Character.Flags.h">

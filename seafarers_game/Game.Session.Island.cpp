@@ -33,4 +33,10 @@ namespace game::session
 		GetMarkets().ApplyTurnEffects();
 		GetDistricts().ApplyTurnEffects();
 	}
+
+	double Island::DistanceTo(const Island& otherIsland) const
+	{
+		return (GetLocation() - otherIsland.GetLocation()).GetMagnitude();
+	}
+
 }

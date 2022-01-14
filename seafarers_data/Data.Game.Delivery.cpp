@@ -10,7 +10,7 @@ namespace data::game
 			[DeliveryId] INTEGER PRIMARY KEY AUTOINCREMENT,
 			[FromIslandId] INT NOT NULL,
 			[ToIslandId] INT NOT NULL,
-			FOREIGN KEY ([FromIslanId]) REFERENCES [Islands]([IslandId]),
+			FOREIGN KEY ([FromIslandId]) REFERENCES [Islands]([IslandId]),
 			FOREIGN KEY ([ToIslandId]) REFERENCES [Islands]([IslandId])
 		);)"sv;
 	static constexpr std::string_view INSERT_ITEM =
@@ -20,6 +20,13 @@ namespace data::game
 			[ToIslandId]
 		) 
 		VALUES({},{});)"sv;
+	static constexpr std::string_view QUERY_ITEM_COLUMN =
+		R"(SELECT 
+			[{}] 
+		FROM [Deliveries] 
+		WHERE 
+			[DeliveryId]={};)"sv;
+	static constexpr std::string_view FIELD_TO_ISLAND_ID = "ToIslandId";
 
 	void Delivery::Initialize()
 	{
@@ -32,5 +39,12 @@ namespace data::game
 		Initialize();
 		Common::Execute(INSERT_ITEM, fromIslandId, toIslandId);
 		return Common::LastInsertedIndex();
+	}
+
+	std::optional<int> Delivery::ReadToIsland(int deliveryId)
+	{
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_TO_ISLAND_ID, deliveryId),
+			FIELD_TO_ISLAND_ID);
 	}
 }
