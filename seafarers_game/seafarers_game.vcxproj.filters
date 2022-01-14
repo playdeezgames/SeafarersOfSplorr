@@ -458,6 +458,12 @@
     <ClInclude Include="Game.Session.Island.DeliveryService.h">
       <Filter>Header Files\Session\Island\Feature</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Island.DeliveryService.Deliveries.h">
+      <Filter>Header Files\Session\Island\Feature</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Island.DeliveryService.Delivery.h">
+      <Filter>Header Files\Session\Island\Feature</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Session.cpp">
@@ -653,6 +659,9 @@
       <Filter>Source Files\Session\Island\Feature</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Island.DeliveryService.cpp">
+      <Filter>Source Files\Session\Island\Feature</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Island.DeliveryService.Deliveries.cpp">
       <Filter>Source Files\Session\Island\Feature</Filter>
     </ClCompile>
   </ItemGroup>

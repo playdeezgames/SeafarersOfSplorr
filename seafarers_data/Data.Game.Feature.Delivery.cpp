@@ -1,7 +1,9 @@
+#include <algorithm>
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.Feature.h"
 #include "Data.Game.Delivery.h"
 #include "Data.Game.Feature.Delivery.h"
+#include <iterator>
 namespace data::game::feature
 {
 	using namespace std::string_view_literals;
@@ -20,6 +22,14 @@ namespace data::game::feature
 			[DeliveryId]
 		) 
 		VALUES({},{});)"sv;
+	static constexpr std::string_view QUERY_FOR_FEATURE =
+		R"(SELECT 
+			[DeliveryId] 
+		FROM [FeatureDeliveries] 
+		WHERE 
+			[FeatureId]={};)"sv;
+
+	static constexpr std::string_view FIELD_DELIVERY_ID = "DeliveryId"sv;
 
 	void Delivery::Initialize()
 	{
@@ -32,5 +42,17 @@ namespace data::game::feature
 	{
 		Initialize();
 		Common::Execute(REPLACE_ITEM, featureId, deliveryId);
+	}
+
+	std::vector<int> Delivery::ReadForFeature(int featureId)
+	{
+		auto records = Common::Execute(QUERY_FOR_FEATURE, featureId);
+		std::vector<int> result;
+		std::transform(
+			records.begin(), 
+			records.end(), 
+			std::back_inserter(result), 
+			Common::DoToInt(FIELD_DELIVERY_ID));
+		return result;
 	}
 }

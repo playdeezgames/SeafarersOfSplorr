@@ -7,13 +7,8 @@
 #include "Game.Session.Island.DeliveryService.h"
 namespace game::session::island
 {
-	void DeliveryService::ApplyTurnEffects() const
-	{
-		//TODO: eliminate expired jobs
-		//TODO: generate new jobs
-	}
 
-	void DeliveryService::Populate(const game::Difficulty& difficulty) const
+	static void GenerateDeliveryForFeature(int featureId)
 	{
 		auto fromIslandId = data::game::island::Feature::ReadIslandId(featureId).value();
 		auto candidateIslands = game::Session().GetWorld().GetIslands().GetIslands();
@@ -28,7 +23,37 @@ namespace game::session::island
 		auto toIsland = common::RNG::FromVector(candidateIslands).value();
 		auto deliveryId = data::game::Delivery::Create(fromIslandId, toIsland.operator int());
 		data::game::feature::Delivery::Create(featureId, deliveryId);
-		//TODO: populate initial job list
+	}
+
+	void DeliveryService::ApplyTurnEffects() const
+	{
+		auto deliveries = data::game::feature::Delivery::ReadForFeature(featureId);
+		if (deliveries.empty())
+		{
+			GenerateDeliveryForFeature(featureId);
+		}
+	}
+
+	static void GenerateJobForFeature(int featureId)
+	{
+		auto fromIslandId = data::game::island::Feature::ReadIslandId(featureId).value();
+		auto candidateIslands = game::Session().GetWorld().GetIslands().GetIslands();
+		auto last = std::remove_if(
+			candidateIslands.begin(),
+			candidateIslands.end(),
+			[fromIslandId](const auto& island)
+			{
+				return island.operator int() == fromIslandId;
+			});
+		candidateIslands.erase(last, candidateIslands.end());
+		auto toIsland = common::RNG::FromVector(candidateIslands).value();
+		auto deliveryId = data::game::Delivery::Create(fromIslandId, toIsland.operator int());
+		data::game::feature::Delivery::Create(featureId, deliveryId);
+	}
+
+	void DeliveryService::Populate(const game::Difficulty& difficulty) const
+	{
+		GenerateDeliveryForFeature(featureId);
 	}
 
 }

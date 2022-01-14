@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.DeliveryService.JobList.h"
@@ -26,6 +27,24 @@ namespace state::in_play::delivery_service
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
+		auto fromIsland =
+			game::Session()
+			.GetPlayer()
+			.GetCharacter()
+			.GetIsland();
+		auto deliveries =
+			fromIsland
+			.GetFeature(scratch_pad::IslandFeature::GetFeatureId())
+			.GetDeliveryService()
+			.GetDeliveries()
+			.GetDeliveries();
+		std::for_each(
+			deliveries.begin(), 
+			deliveries.end(), 
+			[](const auto& delivery) 
+			{
+				//TODO: add delivery to list
+			});
 		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_DELIVERY_SERVICE) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}

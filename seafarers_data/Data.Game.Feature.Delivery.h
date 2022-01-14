@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 namespace data::game::feature
 {
 	struct Delivery
@@ -6,5 +7,6 @@ namespace data::game::feature
 		Delivery() = delete;
 		static void Initialize();
 		static void Create(int featureId, int deliveryId);
+		static std::vector<int> ReadForFeature(int featureId);
 	};
 }

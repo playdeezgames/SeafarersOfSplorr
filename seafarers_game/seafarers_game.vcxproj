@@ -23,6 +23,8 @@
     <ClInclude Include="Game.Characters.Counter.h" />
     <ClInclude Include="Game.Characters.Message.h" />
     <ClInclude Include="Game.Characteristic.h" />
+    <ClInclude Include="Game.Session.Island.DeliveryService.Delivery.h" />
+    <ClInclude Include="Game.Session.Island.DeliveryService.Deliveries.h" />
     <ClInclude Include="Game.Session.Island.DeliveryService.h" />
     <ClInclude Include="Game.Session.Island.District.Features.h" />
     <ClInclude Include="Game.Island.District.h" />
@@ -138,6 +140,7 @@
     <ClCompile Include="Game.Session.Demigods.cpp" />
     <ClCompile Include="Game.Session.Island.cpp" />
     <ClCompile Include="Game.Session.Island.DeliveryService.cpp" />
+    <ClCompile Include="Game.Session.Island.DeliveryService.Deliveries.cpp" />
     <ClCompile Include="Game.Session.Island.District.cpp" />
     <ClCompile Include="Game.Session.Island.District.Features.cpp" />
     <ClCompile Include="Game.Session.Island.Districts.cpp" />
