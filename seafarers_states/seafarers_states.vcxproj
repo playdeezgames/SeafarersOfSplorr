@@ -29,6 +29,7 @@
     <ClInclude Include="State.InPlay.ChangeSpeed.h" />
     <ClInclude Include="State.InPlay.ConfirmHeadForMark.h" />
     <ClInclude Include="State.InPlay.CrewDetail.Characteristics.h" />
+    <ClInclude Include="State.InPlay.CrewDetail.ConfirmAbandonDelivery.h" />
     <ClInclude Include="State.InPlay.CrewDetail.Deliveries.h" />
     <ClInclude Include="State.InPlay.CrewDetail.DeliveryDetail.h" />
     <ClInclude Include="State.InPlay.DeliveryService.h" />
@@ -85,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="State.InPlay.CrewDetail.ConfirmAbandonDelivery.cpp" />
     <ClCompile Include="State.InPlay.CrewDetail.Deliveries.cpp" />
     <ClCompile Include="State.InPlay.CrewDetail.DeliveryDetail.cpp" />
     <ClCompile Include="State.InPlay.DeliveryService.cpp" />

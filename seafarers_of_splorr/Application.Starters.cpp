@@ -24,6 +24,7 @@
 #include <State.InPlay.CrewDetail.Characteristics.h>
 #include <State.InPlay.CrewDetail.Deliveries.h>
 #include <State.InPlay.CrewDetail.DeliveryDetail.h>
+#include <State.InPlay.CrewDetail.ConfirmAbandonDelivery.h>
 #include <State.InPlay.CrewList.h>
 #include <State.InPlay.CrewDetail.h>
 #include <State.InPlay.DeliveryService.h>
@@ -164,6 +165,7 @@ namespace application
 		state::in_play::delivery_service::JobDetail::Start,
 		state::in_play::crew_detail::Deliveries::Start,
 		state::in_play::crew_detail::DeliveryDetail::Start,
+		state::in_play::crew_detail::ConfirmAbandonDelivery::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};

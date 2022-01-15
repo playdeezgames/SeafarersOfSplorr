@@ -1,42 +1,38 @@
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
-#include "State.InPlay.CrewDetail.DeliveryDetail.h"
-#include "State.ScratchPad.CrewDetail.h"
+#include "State.InPlay.CrewDetail.ConfirmAbandonDelivery.h"
 #include "State.ScratchPad.SelectedDelivery.h"
 namespace state::in_play::crew_detail
 {
-	static constexpr auto CURRENT_STATE = ::UIState::IN_PLAY_CREW_DETAIL_DELIVERY_DETAIL;
+	static constexpr auto CURRENT_STATE = ::UIState::IN_PLAY_CREW_DETAIL_CONFIRM_ABANDON_DELIVERY;
 
 	static void Refresh()
 	{
 		Terminal::Reinitialize();
-		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
-		Terminal::WriteLine("Delivery Detail:");
+		Terminal::SetForeground(game::Colors::LIGHT_RED);
+		Terminal::WriteLine("Are you sure you want to abandon this delivery?");
 		Terminal::SetForeground(game::Colors::GRAY);
-
 		auto islands = game::Session().GetWorld().GetIslands();
 		auto delivery = game::session::character::Delivery(scratch_pad::SelectedDelivery::GetDeliveryId());
 		auto toIsland = islands.GetIsland(delivery.GetToIslandId());
-		auto location = 
-			game::Session()
-			.GetCharacters()
-			.GetCharacter(scratch_pad::CrewDetail::GetCharacterId())
-			.GetBerth()
-			.GetShip()
-			.GetLocation();
-		Terminal::WriteLine("Destination: {}", toIsland.GetName());
-		Terminal::WriteLine("Distance: {:.2f}", toIsland.DistanceFrom(location));
-
+		auto fromIsland = islands.GetIsland(delivery.GetFromIslandId());
+		Terminal::WriteLine("This will negatively impact your reputation on both {} and {}!", toIsland.GetName(), fromIsland.GetName());
 		Terminal::ShowMenu();
 		Terminal::ShowPrompt();
+	}
+
+	static void DoAbandonDelivery()
+	{
+		//TODO: abandon the delivery
+		Refresh();
 	}
 
 	static void UpdateMenu()
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		Terminal::menu.AddAction({ "Abandon Delivery",application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_CONFIRM_ABANDON_DELIVERY) });
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_DELIVERIES) };
+		Terminal::menu.AddAction({"Abandon Delivery", DoAbandonDelivery});
+		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_DELIVERY_DETAIL) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 
@@ -47,7 +43,7 @@ namespace state::in_play::crew_detail
 		Refresh();
 	}
 
-	void DeliveryDetail::Start()
+	void ConfirmAbandonDelivery::Start()
 	{
 		::application::OnEnter::AddHandler(
 			CURRENT_STATE,
