@@ -20,6 +20,13 @@ namespace data::game::character
 			[DeliveryId]
 		) 
 		VALUES({},{});)"sv;
+	static constexpr auto QUERY_DELIVERY_COUNT =
+		R"(SELECT 
+			COUNT([DeliveryId]) AS [DeliveryCount] 
+		FROM [CharacterDeliveries] 
+		WHERE 
+			[CharacterId]={};)"sv;
+	static constexpr auto FIELD_DELIVERY_COUNT = "DeliveryCount"sv;
 
 	void Delivery::Initialize()
 	{
@@ -32,5 +39,14 @@ namespace data::game::character
 	{
 		Initialize();
 		Common::Execute(REPLACE_ITEM, characterId, deliveryId);
+	}
+
+	int Delivery::ReadCount(int characterId)
+	{
+		Initialize();
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_DELIVERY_COUNT, characterId), 
+			FIELD_DELIVERY_COUNT)
+			.value_or(0);
 	}
 }

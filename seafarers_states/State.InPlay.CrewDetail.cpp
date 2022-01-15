@@ -85,7 +85,7 @@ namespace state::in_play
 		Terminal::menu.AddAction({"Characteristics", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_CHARACTERISTICS) });
 		if (character.GetDeliveries().HasAny())
 		{
-			//Terminal::menu.AddAction({ "Characteristics", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_CHARACTERISTICS) });
+			Terminal::menu.AddAction({ "Deliveries", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_DELIVERIES) });
 		}
 		MenuAction defaultAction = { "Never mind", OnLeave };
 		Terminal::menu.SetDefaultAction(defaultAction);

@@ -1,9 +1,9 @@
+#include <Data.Game.Character.Delivery.h>
 #include "Game.Session.Character.Deliveries.h"
 namespace game::session::character
 {
 	bool Deliveries::HasAny() const
 	{
-		//TODO: actually find out
-		return false;
+		return data::game::character::Delivery::ReadCount(characterId) > 0;
 	}
 }
