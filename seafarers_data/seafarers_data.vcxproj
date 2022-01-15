@@ -63,10 +63,10 @@
     <ClCompile Include="Data.Game.Character.Delivery.cpp" />
     <ClCompile Include="Data.Game.Character.DemigodFavor.cpp" />
     <ClCompile Include="Data.Game.Character.Flags.cpp" />
-    <ClCompile Include="Data.Game.Character.CurrentIsland.cpp" />
+    <ClCompile Include="Data.Game.Character.Island.Current.cpp" />
     <ClCompile Include="Data.Game.Character.Island.Reputation.cpp" />
     <ClCompile Include="Data.Game.Character.Item.cpp" />
-    <ClCompile Include="Data.Game.Character.KnownIsland.cpp" />
+    <ClCompile Include="Data.Game.Character.Island.Known.cpp" />
     <ClCompile Include="Data.Game.Character.Mark.cpp" />
     <ClCompile Include="Data.Game.Character.Plight.cpp" />
     <ClCompile Include="Data.Game.Character.Ship.cpp" />

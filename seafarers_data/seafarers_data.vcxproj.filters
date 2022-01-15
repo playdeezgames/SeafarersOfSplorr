@@ -214,7 +214,7 @@
     <ClCompile Include="Data.Game.Ship.CurrentIsland.cpp">
       <Filter>Source Files\Ship</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Character.CurrentIsland.cpp">
+    <ClCompile Include="Data.Game.Character.Island.Current.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Character.Characteristic.cpp">
@@ -238,7 +238,7 @@
     <ClCompile Include="Data.Game.Item.Type.Commodity.cpp">
       <Filter>Source Files\Item</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Character.KnownIsland.cpp">
+    <ClCompile Include="Data.Game.Character.Island.Known.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.World.cpp">
