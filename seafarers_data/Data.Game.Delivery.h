@@ -9,5 +9,6 @@ namespace data::game
 		static int Create(int fromIslandId, int toIslandId);
 		static std::optional<int> ReadToIsland(int deliveryId);
 		static std::optional<int> ReadFromIsland(int deliveryId);
+		static void Remove(int deliveryId);
 	};
 }

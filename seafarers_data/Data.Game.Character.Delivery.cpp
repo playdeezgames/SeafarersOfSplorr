@@ -34,6 +34,10 @@ namespace data::game::character
 		FROM [CharacterDeliveries] 
 		WHERE 
 			[CharacterId]={};)"sv;
+	static constexpr auto DELETE_ITEM =
+		R"(DELETE FROM [CharacterDeliveries] 
+		WHERE 
+			[DeliveryId]={};)"sv;
 	static constexpr auto FIELD_DELIVERY_COUNT = "DeliveryCount"sv;
 	static constexpr auto FIELD_DELIVERY_ID = "DeliveryId"sv;
 
@@ -70,5 +74,10 @@ namespace data::game::character
 			std::back_inserter(result),
 			Common::DoToInt(FIELD_DELIVERY_ID));
 		return result;
+	}
+
+	void Delivery::Remove(int deliveryId)
+	{
+		Common::Execute(DELETE_ITEM, deliveryId);
 	}
 }

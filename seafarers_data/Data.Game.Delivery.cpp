@@ -4,7 +4,7 @@
 namespace data::game
 {
 	using namespace std::string_view_literals;
-	static constexpr std::string_view CREATE_TABLE =
+	static constexpr auto CREATE_TABLE =
 		R"(CREATE TABLE IF NOT EXISTS [Deliveries]
 		(
 			[DeliveryId] INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -13,21 +13,23 @@ namespace data::game
 			FOREIGN KEY ([FromIslandId]) REFERENCES [Islands]([IslandId]),
 			FOREIGN KEY ([ToIslandId]) REFERENCES [Islands]([IslandId])
 		);)"sv;
-	static constexpr std::string_view INSERT_ITEM =
+	static constexpr auto INSERT_ITEM =
 		R"(INSERT INTO [Deliveries]
 		(
 			[FromIslandId],
 			[ToIslandId]
 		) 
 		VALUES({},{});)"sv;
-	static constexpr std::string_view QUERY_ITEM_COLUMN =
+	static constexpr auto QUERY_ITEM_COLUMN =
 		R"(SELECT 
 			[{}] 
 		FROM [Deliveries] 
 		WHERE 
 			[DeliveryId]={};)"sv;
-	static constexpr std::string_view FIELD_TO_ISLAND_ID = "ToIslandId";
-	static constexpr std::string_view FIELD_FROM_ISLAND_ID = "FromIslandId";
+	static constexpr auto DELETE_ITEM =
+		R"()"sv;
+	static constexpr auto FIELD_TO_ISLAND_ID = "ToIslandId"sv;
+	static constexpr auto FIELD_FROM_ISLAND_ID = "FromIslandId"sv;
 
 	void Delivery::Initialize()
 	{
@@ -56,4 +58,8 @@ namespace data::game
 			FIELD_FROM_ISLAND_ID);
 	}
 
+	void Delivery::Remove(int deliveryId)
+	{
+		Common::Execute(DELETE_ITEM, deliveryId);
+	}
 }

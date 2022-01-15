@@ -23,8 +23,8 @@ namespace state::in_play::crew_detail
 
 	static void DoAbandonDelivery()
 	{
-		//TODO: abandon the delivery
-		Refresh();
+		game::session::character::Delivery(scratch_pad::SelectedDelivery::GetDeliveryId()).Abandon();
+		application::UIState::Write(::UIState::IN_PLAY_CREW_DETAIL_DELIVERIES);
 	}
 
 	static void UpdateMenu()

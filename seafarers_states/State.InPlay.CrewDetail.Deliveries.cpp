@@ -19,6 +19,7 @@ namespace state::in_play::crew_detail
 		Terminal::Reinitialize();
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Deliveries:");
+		//TODO: if there are no deliveries, indicate that here
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::ShowMenu();
 		Terminal::ShowPrompt();
