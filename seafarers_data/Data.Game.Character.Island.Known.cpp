@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <Common.Data.h>
 #include "Data.Game.Character.h"
-#include "Data.Game.Character.KnownIsland.h"
+#include "Data.Game.Character.Island.Known.h"
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.h"
 #include <iterator>

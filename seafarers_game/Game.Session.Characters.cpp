@@ -3,7 +3,7 @@
 #include <Common.RNG.h>
 #include <Data.Game.Player.h>
 #include <Data.Game.Character.h>
-#include <Data.Game.Character.KnownIsland.h>
+#include <Data.Game.Character.Island.Known.h>
 #include <Data.Game.Character.Plight.h>
 #include <Data.Game.Character.Characteristic.h>
 #include <Data.Game.Island.Tribe.h>

@@ -4,7 +4,7 @@
 #include <Common.NameGenerator.h>
 #include <Common.RNG.h>
 #include <Data.Game.Island.h>
-#include <Data.Game.Character.KnownIsland.h>
+#include <Data.Game.Character.Island.Known.h>
 #include <Data.Game.Demigod.h>
 #include <Data.Game.Island.Market.h>
 #include <Data.Game.Tribe.h>
