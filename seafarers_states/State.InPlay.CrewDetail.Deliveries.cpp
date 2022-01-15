@@ -19,8 +19,11 @@ namespace state::in_play::crew_detail
 		Terminal::Reinitialize();
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Deliveries:");
-		//TODO: if there are no deliveries, indicate that here
 		Terminal::SetForeground(game::Colors::GRAY);
+		if (!character.GetDeliveries().HasAny())
+		{
+			Terminal::WriteLine("You currently have no deliveries.");
+		}
 		Terminal::ShowMenu();
 		Terminal::ShowPrompt();
 	}
