@@ -1,4 +1,5 @@
 #pragma once
+#include <optional>
 #include <vector>
 namespace data::game::character
 {
@@ -10,5 +11,6 @@ namespace data::game::character
 		static int ReadCount(int characterId);
 		static std::vector<int> Read(int characterId);
 		static void Remove(int deliveryId);
+		static std::optional<int> ReadCharacterId(int deliveryId);
 	};
 }

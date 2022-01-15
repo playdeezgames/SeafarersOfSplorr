@@ -26,6 +26,7 @@
     <ClInclude Include="Data.Game.Character.Flags.h" />
     <ClInclude Include="Data.Game.Character.h" />
     <ClInclude Include="Data.Game.Character.CurrentIsland.h" />
+    <ClInclude Include="Data.Game.Character.Island.Reputation.h" />
     <ClInclude Include="Data.Game.Character.Item.h" />
     <ClInclude Include="Data.Game.Character.KnownIsland.h" />
     <ClInclude Include="Data.Game.Character.Mark.h" />
@@ -63,6 +64,7 @@
     <ClCompile Include="Data.Game.Character.DemigodFavor.cpp" />
     <ClCompile Include="Data.Game.Character.Flags.cpp" />
     <ClCompile Include="Data.Game.Character.CurrentIsland.cpp" />
+    <ClCompile Include="Data.Game.Character.Island.Reputation.cpp" />
     <ClCompile Include="Data.Game.Character.Item.cpp" />
     <ClCompile Include="Data.Game.Character.KnownIsland.cpp" />
     <ClCompile Include="Data.Game.Character.Mark.cpp" />

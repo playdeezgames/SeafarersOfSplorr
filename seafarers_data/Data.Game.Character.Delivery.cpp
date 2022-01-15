@@ -38,8 +38,15 @@ namespace data::game::character
 		R"(DELETE FROM [CharacterDeliveries] 
 		WHERE 
 			[DeliveryId]={};)"sv;
+	static constexpr auto QUERY_ITEM_COLUMN =
+		R"(SELECT 
+			[{}] 
+		FROM [CharacterDeliveries] 
+		WHERE 
+			[DeliveryId]={};)"sv;
 	static constexpr auto FIELD_DELIVERY_COUNT = "DeliveryCount"sv;
 	static constexpr auto FIELD_DELIVERY_ID = "DeliveryId"sv;
+	static constexpr auto FIELD_CHARACTER_ID = "CharacterId"sv;
 
 	void Delivery::Initialize()
 	{
@@ -79,5 +86,12 @@ namespace data::game::character
 	void Delivery::Remove(int deliveryId)
 	{
 		Common::Execute(DELETE_ITEM, deliveryId);
+	}
+
+	std::optional<int> Delivery::ReadCharacterId(int deliveryId)
+	{
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_CHARACTER_ID, deliveryId),
+			FIELD_CHARACTER_ID);
 	}
 }

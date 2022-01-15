@@ -1,3 +1,4 @@
+#include <Data.Game.Character.Island.Reputation.h>
 #include <Data.Game.Character.Delivery.h>
 #include <Data.Game.Delivery.h>
 #include "Game.Session.Character.Delivery.h"
@@ -13,11 +14,20 @@ namespace game::session::character
 		return data::game::Delivery::ReadFromIsland(deliveryId).value();
 	}
 
+	static void ChangeCharacterIslandReputation(int characterId, int islandId, int delta)
+	{
+		using Reputation = data::game::character::island::Reputation;
+		auto reputation = 
+			Reputation::Read(characterId, islandId).value_or(0);
+		Reputation::Write(characterId, islandId, reputation + delta);
+	}
+
 	void Delivery::Abandon() const
 	{
-		//TODO: the stuff
-		//give negative reputation at to island
-		//give negative reputation at from island
+		constexpr int REPUTATION_PENALTY = -1;
+		int characterId = data::game::character::Delivery::ReadCharacterId(deliveryId).value();
+		ChangeCharacterIslandReputation(characterId, GetToIslandId(), REPUTATION_PENALTY);
+		ChangeCharacterIslandReputation(characterId, GetFromIslandId(), REPUTATION_PENALTY);
 		data::game::character::Delivery::Remove(deliveryId);
 		data::game::Delivery::Remove(deliveryId);
 	}

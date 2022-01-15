@@ -170,8 +170,11 @@
     <ClInclude Include="Data.Game.Feature.Delivery.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.Character.Island.Reputation.h">
+      <Filter>Header Files\Character</Filter>
+    </ClInclude>
     <ClInclude Include="Data.Game.Character.Delivery.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Character</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -271,8 +274,11 @@
     <ClCompile Include="Data.Game.Feature.Delivery.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Data.Game.Character.Island.Reputation.cpp">
+      <Filter>Source Files\Character</Filter>
+    </ClCompile>
     <ClCompile Include="Data.Game.Character.Delivery.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Character</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
