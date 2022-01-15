@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <Game.Session.h>
 #include "State.ScratchPad.CrewDetail.h"
+#include "State.ScratchPad.SelectedDelivery.h"
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.CrewDetail.Deliveries.h"
 namespace state::in_play::crew_detail
@@ -25,10 +26,10 @@ namespace state::in_play::crew_detail
 
 	static std::function<void()> GoToDeliveryDetail(int deliveryId)
 	{
-		return []()
+		return [=]()
 		{
-			//TODO: do something
-			Refresh();
+			scratch_pad::SelectedDelivery::SetDeliveryId(deliveryId);
+			application::UIState::Write(::UIState::IN_PLAY_CREW_DETAIL_DELIVERY_DETAIL);
 		};
 	}
 
