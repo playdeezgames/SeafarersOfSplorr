@@ -1,11 +1,13 @@
+#include <algorithm>
 #include "Data.Game.Common.h"
 #include "Data.Game.Character.h"
 #include "Data.Game.Delivery.h"
 #include "Data.Game.Character.Delivery.h"
+#include <iterator>
 namespace data::game::character
 {
 	using namespace std::string_view_literals;
-	static constexpr std::string_view CREATE_TABLE =
+	static constexpr auto CREATE_TABLE =
 		R"(CREATE TABLE IF NOT EXISTS [CharacterDeliveries]
 		(
 			[CharacterId] INT NOT NULL,
@@ -13,7 +15,7 @@ namespace data::game::character
 			FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId]),
 			FOREIGN KEY ([DeliveryId]) REFERENCES [Deliveries]([DeliveryId])
 		);)"sv;
-	static constexpr std::string_view REPLACE_ITEM =
+	static constexpr auto REPLACE_ITEM =
 		R"(REPLACE INTO [CharacterDeliveries]
 		(
 			[CharacterId],
@@ -26,7 +28,14 @@ namespace data::game::character
 		FROM [CharacterDeliveries] 
 		WHERE 
 			[CharacterId]={};)"sv;
+	static constexpr auto QUERY_FOR_CHARACTER =
+		R"(SELECT 
+			[DeliveryId] 
+		FROM [CharacterDeliveries] 
+		WHERE 
+			[CharacterId]={};)"sv;
 	static constexpr auto FIELD_DELIVERY_COUNT = "DeliveryCount"sv;
+	static constexpr auto FIELD_DELIVERY_ID = "DeliveryId"sv;
 
 	void Delivery::Initialize()
 	{
@@ -48,5 +57,18 @@ namespace data::game::character
 			Common::TryExecuteForOne(QUERY_DELIVERY_COUNT, characterId), 
 			FIELD_DELIVERY_COUNT)
 			.value_or(0);
+	}
+
+	std::vector<int> Delivery::Read(int characterId)
+	{
+		Initialize();
+		auto records = Common::Execute(QUERY_FOR_CHARACTER, characterId);
+		std::vector<int> result;
+		std::transform(
+			records.begin(),
+			records.end(),
+			std::back_inserter(result),
+			Common::DoToInt(FIELD_DELIVERY_ID));
+		return result;
 	}
 }

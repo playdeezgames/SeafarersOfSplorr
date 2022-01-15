@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <Game.Session.h>
 #include "State.ScratchPad.CrewDetail.h"
 #include "State.InPlay.Globals.h"
@@ -22,6 +23,15 @@ namespace state::in_play::crew_detail
 		Terminal::ShowPrompt();
 	}
 
+	static std::function<void()> GoToDeliveryDetail(int deliveryId)
+	{
+		return []()
+		{
+			//TODO: do something
+			Refresh();
+		};
+	}
+
 	static void UpdateMenu()
 	{
 		int characterId = scratch_pad::CrewDetail::GetCharacterId();
@@ -29,9 +39,38 @@ namespace state::in_play::crew_detail
 			game::Session()
 			.GetCharacters()
 			.GetCharacter(characterId);
+		auto location =
+			character
+			.GetBerth()
+			.GetShip()
+			.GetLocation();
+		auto deliveries =
+			character
+			.GetDeliveries()
+			.GetDeliveries();
+		auto islands =
+			game::Session()
+			.GetWorld()
+			.GetIslands();
 
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
+
+		std::for_each(
+			deliveries.begin(),
+			deliveries.end(),
+			[=](const auto& delivery)
+			{
+				auto toIsland = islands.GetIsland(delivery.GetToIslandId());
+				Terminal::menu.AddAction({ 
+						std::format(
+							"{} ({:.2f})", 
+							toIsland.GetName(), 
+							toIsland.DistanceFrom(location)), 
+						GoToDeliveryDetail(delivery.operator int()) 
+					});
+			});
+
 		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}

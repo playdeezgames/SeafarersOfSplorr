@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 namespace data::game::character
 {
 	struct Delivery
@@ -7,5 +8,6 @@ namespace data::game::character
 		static void Initialize();
 		static void Create(int characterId, int deliveryId);
 		static int ReadCount(int characterId);
+		static std::vector<int> Read(int characterId);
 	};
 }

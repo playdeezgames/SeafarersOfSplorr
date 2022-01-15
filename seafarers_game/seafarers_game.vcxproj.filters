@@ -467,6 +467,9 @@
     <ClInclude Include="Game.Session.Character.Deliveries.h">
       <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Character.Delivery.h">
+      <Filter>Header Files\Session\Character</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Session.cpp">
@@ -671,6 +674,9 @@
       <Filter>Source Files\Session\Island\Feature</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Character.Deliveries.cpp">
+      <Filter>Source Files\Session\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.Delivery.cpp">
       <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
   </ItemGroup>
