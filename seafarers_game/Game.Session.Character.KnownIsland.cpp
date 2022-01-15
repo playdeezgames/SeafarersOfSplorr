@@ -6,7 +6,7 @@ namespace game::session::character
 {
 	bool KnownIsland::IsKnown() const
 	{
-		return data::game::character::KnownIsland::Has(characterId, islandId);
+		return data::game::character::island::Known::Has(characterId, islandId);
 	}
 
 	static const std::string UNKNOWN_ISLAND_NAME = "????";

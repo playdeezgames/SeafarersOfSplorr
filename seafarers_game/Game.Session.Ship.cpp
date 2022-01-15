@@ -72,7 +72,7 @@ namespace game::session
 
 	static void DoDock(int characterId, int islandId)
 	{
-		data::game::character::KnownIsland::Write(
+		data::game::character::island::Known::Write(
 			characterId,
 			islandId);
 		game::Session()

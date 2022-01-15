@@ -1,11 +1,11 @@
 #pragma once
 #include <vector>
 #include <optional>
-namespace data::game::character
+namespace data::game::character::island
 {
-	struct CurrentIsland
+	struct Current
 	{
-		CurrentIsland() = delete;
+		Current() = delete;
 		static void Initialize();
 		static std::optional<int> Read(int characterId);
 		static void Write(int characterId, int islandId);

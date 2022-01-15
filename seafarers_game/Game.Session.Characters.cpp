@@ -156,7 +156,7 @@ namespace game::session
 				GenerateName(), 
 				originIslandId, 
 				GenerateTribeId(originIslandId));
-		data::game::character::KnownIsland::Write(characterId, originIslandId);
+		data::game::character::island::Known::Write(characterId, originIslandId);
 		for (auto characteristicRoll : characteristicRolls)
 		{
 			data::game::character::Characteristic::Write(

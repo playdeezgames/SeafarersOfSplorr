@@ -1,10 +1,10 @@
 #pragma once
 #include <vector>
-namespace data::game::character
+namespace data::game::character::island
 {
-	struct KnownIsland
+	struct Known
 	{
-		KnownIsland() = delete;
+		Known() = delete;
 		static void Initialize();
 		static void Write(int characterId, int islandId);
 		static bool Has(int characterId, int islandId);

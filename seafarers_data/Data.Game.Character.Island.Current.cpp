@@ -5,7 +5,7 @@
 #include "Data.Game.Character.Island.Current.h"
 #include "Data.Game.Common.h"
 #include <iterator>
-namespace data::game::character
+namespace data::game::character::island
 {
 	using namespace std::string_view_literals;
 	static constexpr std::string_view CREATE_TABLE = 
@@ -43,14 +43,14 @@ namespace data::game::character
 	static constexpr std::string_view FIELD_ISLAND_ID = "IslandId";
 	static constexpr std::string_view FIELD_CHARACTER_ID = "CharacterId";
 
-	void CurrentIsland::Initialize()
+	void Current::Initialize()
 	{
 		Character::Initialize();
 		Island::Initialize();
 		Common::Execute(CREATE_TABLE);
 	}
 
-	std::optional<int> CurrentIsland::Read(int characterId)
+	std::optional<int> Current::Read(int characterId)
 	{
 		Initialize();
 		return Common::TryToInt(
@@ -58,19 +58,19 @@ namespace data::game::character
 			FIELD_ISLAND_ID);
 	}
 
-	void CurrentIsland::Write(int characterId, int islandId)
+	void Current::Write(int characterId, int islandId)
 	{
 		Initialize();
 		Common::Execute(REPLACE_ITEM, characterId, islandId);
 	}
 
-	void CurrentIsland::Clear(int characterId)
+	void Current::Clear(int characterId)
 	{
 		Initialize();
 		Common::Execute(DELETE_ITEM, characterId);
 	}
 
-	std::vector<int> CurrentIsland::All(int islandId)
+	std::vector<int> Current::All(int islandId)
 	{
 		Initialize();
 		auto records = Common::Execute(QUERY_ALL, islandId);

@@ -390,7 +390,7 @@ namespace game::session::world
 	void Islands::Reset() const
 	{
 		data::game::Island::Clear();
-		data::game::character::KnownIsland::Clear();
+		data::game::character::island::Known::Clear();
 		data::game::island::Market::Clear();
 	}
 

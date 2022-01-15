@@ -18,7 +18,7 @@ namespace game::session
 
 	void Character::SetIsland(Island island) const
 	{
-		data::game::character::CurrentIsland::Write(characterId, (int)island);
+		data::game::character::island::Current::Write(characterId, (int)island);
 	}
 
 	std::string Character::GetName() const
@@ -114,12 +114,12 @@ namespace game::session
 
 	void Character::ClearIsland() const
 	{
-		data::game::character::CurrentIsland::Clear(characterId);
+		data::game::character::island::Current::Clear(characterId);
 	}
 
 	std::optional<Island> Character::TryGetIsland() const
 	{
-		auto islandId = data::game::character::CurrentIsland::Read(characterId);
+		auto islandId = data::game::character::island::Current::Read(characterId);
 		if (islandId)
 		{
 			return Island(islandId.value());

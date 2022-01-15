@@ -6,17 +6,17 @@ namespace game::session::character
 {
 	bool KnownIslands::HasAny() const
 	{
-		return !data::game::character::KnownIsland::All(characterId).empty();
+		return !data::game::character::island::Known::All(characterId).empty();
 	}
 
 	void KnownIslands::AddKnownIsland(const Island& island) const
 	{
-		data::game::character::KnownIsland::Write(characterId, island.operator int());
+		data::game::character::island::Known::Write(characterId, island.operator int());
 	}
 
 	std::vector<KnownIsland> KnownIslands::GetAll() const
 	{
-		auto islandIds = data::game::character::KnownIsland::All(characterId);
+		auto islandIds = data::game::character::island::Known::All(characterId);
 		std::vector<KnownIsland> result;
 		std::transform(
 			islandIds.begin(),
