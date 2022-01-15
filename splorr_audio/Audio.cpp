@@ -16,7 +16,7 @@ int Audio::GetMaximum()
 }
 
 
-static bool muted = false;
+static auto muted = false;
 
 static void Initialize()
 {
