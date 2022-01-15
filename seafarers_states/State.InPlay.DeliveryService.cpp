@@ -27,6 +27,7 @@ namespace state::in_play
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		Terminal::menu.AddAction({"Job List", application::UIState::GoTo(::UIState::IN_PLAY_DELIVERY_SERVICE_JOB_LIST) });
+		//TODO: make a delivery when possible
 		MenuAction defaultAction = { "Leave", application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_DISTRICT) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
