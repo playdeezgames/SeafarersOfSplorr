@@ -22,12 +22,23 @@ namespace state::in_play
 		Terminal::ShowPrompt();
 	}
 
+	static void MakeDeliveries()
+	{
+		//TODO: the stuff
+		Refresh();
+	}
+
 	static void UpdateMenu()
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		Terminal::menu.AddAction({"Job List", application::UIState::GoTo(::UIState::IN_PLAY_DELIVERY_SERVICE_JOB_LIST) });
-		//TODO: make a delivery when possible
+		auto character = game::Session().GetPlayer().GetCharacter();
+		auto island = character.GetIsland();
+		if (character.GetDeliveries().HasDeliveriesFor(island.operator int()))
+		{
+			Terminal::menu.AddAction({"Make Delivery", MakeDeliveries});
+		}
 		MenuAction defaultAction = { "Leave", application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_DISTRICT) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}

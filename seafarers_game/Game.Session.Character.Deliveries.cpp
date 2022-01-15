@@ -23,4 +23,17 @@ namespace game::session::character
 			});
 		return result;
 	}
+
+	bool Deliveries::HasDeliveriesFor(int islandId) const
+	{
+		auto deliveries = GetDeliveries();
+		return std::any_of(
+			deliveries.begin(), 
+			deliveries.end(), 
+			[=](const auto& delivery) 
+			{
+				return delivery.GetToIslandId() == islandId;
+			});
+	}
+
 }

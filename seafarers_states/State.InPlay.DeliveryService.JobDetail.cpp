@@ -17,7 +17,7 @@ namespace state::in_play::delivery_service
 		auto fromIsland = game::session::Island(delivery.GetFromIslandId());
 		auto toIsland = game::session::Island(delivery.GetToIslandId());
 		auto distance = fromIsland.DistanceTo(toIsland);
-		Terminal::WriteLine("Destination: {}", fromIsland.GetName());
+		Terminal::WriteLine("Destination: {}", toIsland.GetName());
 		Terminal::WriteLine("Distance: {:.2f}", distance);
 		Terminal::ShowMenu();
 		Terminal::ShowPrompt();
