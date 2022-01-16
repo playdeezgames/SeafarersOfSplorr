@@ -7,6 +7,7 @@ namespace game::session::character
 		constexpr explicit operator int() const { return deliveryId; }
 		int GetToIslandId() const;
 		int GetFromIslandId() const;
+		int GetTimeLimit() const;
 		void Abandon() const;
 		void Complete() const;
 		void ApplyTurnEffects() const;

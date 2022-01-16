@@ -25,7 +25,6 @@ namespace state::in_play::delivery_service
 		{
 			Terminal::WriteLine("There are no deliveries available.");
 		}
-		//TODO: give message when no jobs available
 		Terminal::ShowMenu();
 		Terminal::ShowPrompt();
 	}

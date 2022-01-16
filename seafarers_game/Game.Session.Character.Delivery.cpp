@@ -16,6 +16,11 @@ namespace game::session::character
 		return data::game::Delivery::ReadFromIsland(deliveryId).value();
 	}
 
+	int Delivery::GetTimeLimit() const
+	{
+		return data::game::Delivery::ReadTimeLimit(deliveryId).value();
+	}
+
 	static void ChangeCharacterIslandReputation(int characterId, int islandId, int delta)
 	{
 		using Reputation = data::game::character::island::Reputation;
