@@ -7,7 +7,7 @@
 #include "State.ScratchPad.SelectedDelivery.h"
 namespace state::in_play::delivery_service
 {
-	static constexpr ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DELIVERY_SERVICE_JOB_LIST;
+	static constexpr ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DELIVERY_SERVICE_DELIVERY_LIST;
 
 	static void Refresh()
 	{
@@ -30,7 +30,7 @@ namespace state::in_play::delivery_service
 		return [deliveryId]() 
 		{
 			scratch_pad::SelectedDelivery::SetDeliveryId(deliveryId);
-			application::UIState::Write(::UIState::IN_PLAY_DELIVERY_SERVICE_JOB_DETAIL);
+			application::UIState::Write(::UIState::IN_PLAY_DELIVERY_SERVICE_DELIVERY_DETAIL);
 		};
 	}
 

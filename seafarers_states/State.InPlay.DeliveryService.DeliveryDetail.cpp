@@ -4,7 +4,7 @@
 #include "State.ScratchPad.SelectedDelivery.h"
 namespace state::in_play::delivery_service
 {
-	static constexpr ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DELIVERY_SERVICE_JOB_DETAIL;
+	static constexpr ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DELIVERY_SERVICE_DELIVERY_DETAIL;
 
 	static void Refresh()
 	{
@@ -31,7 +31,7 @@ namespace state::in_play::delivery_service
 			.GetPlayer()
 			.GetCharacter()
 			.AcceptDelivery(delivery);
-		application::UIState::Write(::UIState::IN_PLAY_DELIVERY_SERVICE_JOB_LIST);
+		application::UIState::Write(::UIState::IN_PLAY_DELIVERY_SERVICE_DELIVERY_LIST);
 	}
 
 	static void UpdateMenu()
@@ -39,7 +39,7 @@ namespace state::in_play::delivery_service
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		Terminal::menu.AddAction({"Accept", AcceptJob});
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_DELIVERY_SERVICE_JOB_LIST) };
+		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_DELIVERY_SERVICE_DELIVERY_LIST) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 

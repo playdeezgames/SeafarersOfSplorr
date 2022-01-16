@@ -26,7 +26,7 @@ namespace state::in_play
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		Terminal::menu.AddAction({"Job List", application::UIState::GoTo(::UIState::IN_PLAY_DELIVERY_SERVICE_JOB_LIST) });
+		Terminal::menu.AddAction({"Job List", application::UIState::GoTo(::UIState::IN_PLAY_DELIVERY_SERVICE_DELIVERY_LIST) });
 		auto character = game::Session().GetPlayer().GetCharacter();
 		auto island = character.GetIsland();
 		if (character.GetDeliveries().HasDeliveriesFor(island.operator int()))
