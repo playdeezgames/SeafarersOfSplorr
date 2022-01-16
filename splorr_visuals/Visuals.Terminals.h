@@ -6,11 +6,11 @@ namespace visuals
 {
 	struct Terminals
 	{
-		static void WriteText(const std::string&, const std::string&, const std::string&);
-		static void WriteLine(const std::string&, const std::string&, const std::string&);
-		static void SetForeground(const std::string&, const std::string&, const std::string_view&);
-		static void SetBackground(const std::string&, const std::string&, const std::string&);
-		static void Backspace(const std::string&, const std::string&);
-		static DrawerFunction Internalize(const std::string&, const nlohmann::json&);
+		static void WriteText(const std::string& layoutName, const std::string& terminalName, const std::string& text);
+		static void WriteLine(const std::string& layoutName, const std::string& terminalName, const std::string& text);
+		static void SetForeground(const std::string& layoutName, const std::string& terminalName, const std::string_view& color);
+		static void SetBackground(const std::string& layoutName, const std::string& terminalName, const std::string& color);
+		static void Backspace(const std::string& layoutName, const std::string& terminalName);
+		static DrawerFunction Internalize(const std::string& layoutName, const nlohmann::json& model);
 	};
 }
