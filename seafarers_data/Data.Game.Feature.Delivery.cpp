@@ -7,7 +7,7 @@
 namespace data::game::feature
 {
 	using namespace std::string_view_literals;
-	static constexpr std::string_view CREATE_TABLE =
+	static constexpr auto CREATE_TABLE =
 		R"(CREATE TABLE IF NOT EXISTS [FeatureDeliveries]
 		(
 			[FeatureId] INT NOT NULL,
@@ -15,25 +15,32 @@ namespace data::game::feature
 			FOREIGN KEY ([FeatureId]) REFERENCES [Features]([FeatureId]),
 			FOREIGN KEY ([DeliveryId]) REFERENCES [Deliveries]([DeliveryId])
 		);)"sv;
-	static constexpr std::string_view REPLACE_ITEM =
+	static constexpr auto REPLACE_ITEM =
 		R"(REPLACE INTO [FeatureDeliveries]
 		(
 			[FeatureId],
 			[DeliveryId]
 		) 
 		VALUES({},{});)"sv;
-	static constexpr std::string_view QUERY_FOR_FEATURE =
+	static constexpr auto QUERY_FOR_FEATURE =
 		R"(SELECT 
 			[DeliveryId] 
 		FROM [FeatureDeliveries] 
 		WHERE 
 			[FeatureId]={};)"sv;
-	static constexpr std::string_view CLEAR_ITEM =
+	static constexpr auto CLEAR_ITEM =
 		R"(DELETE FROM [FeatureDeliveries] 
 		WHERE 
 			[DeliveryId]={};)"sv;
+	static constexpr auto QUERY_COUNT_FOR_FEATURE =
+		R"(SELECT 
+			COUNT([DeliveryId]) AS [DeliveryCount] 
+		FROM [FeatureDeliveries] 
+		WHERE 
+			[FeatureId]={};)"sv;
 
-	static constexpr std::string_view FIELD_DELIVERY_ID = "DeliveryId"sv;
+	static constexpr auto FIELD_DELIVERY_ID = "DeliveryId"sv;
+	static constexpr auto FIELD_DELIVERY_COUNT = "DeliveryCount"sv;
 
 	void Delivery::Initialize()
 	{
@@ -60,6 +67,15 @@ namespace data::game::feature
 			Common::DoToInt(FIELD_DELIVERY_ID));
 		return result;
 	}
+
+	std::optional<int> Delivery::ReadCountForFeature(int featureId)
+	{
+		Initialize();
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_COUNT_FOR_FEATURE, featureId),
+			FIELD_DELIVERY_COUNT);
+	}
+
 
 	void Delivery::Clear(int deliveryId)
 	{

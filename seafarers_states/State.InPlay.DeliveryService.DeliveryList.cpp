@@ -21,6 +21,10 @@ namespace state::in_play::delivery_service
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("{} Job List:", feature.GetName());
 		Terminal::SetForeground(game::Colors::GRAY);
+		if (!feature.GetDeliveryService().HasDeliveries())
+		{
+			Terminal::WriteLine("There are no deliveries available.");
+		}
 		//TODO: give message when no jobs available
 		Terminal::ShowMenu();
 		Terminal::ShowPrompt();

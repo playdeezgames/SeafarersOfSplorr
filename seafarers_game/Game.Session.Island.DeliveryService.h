@@ -8,6 +8,7 @@ namespace game::session::island
 		constexpr explicit DeliveryService(int featureId) : featureId(featureId) {}
 		constexpr delivery_service::Deliveries GetDeliveries() const { return delivery_service::Deliveries(featureId); }
 
+		bool HasDeliveries() const;
 		void ApplyTurnEffects() const;
 		void Populate(const game::Difficulty& difficulty) const;
 	private:

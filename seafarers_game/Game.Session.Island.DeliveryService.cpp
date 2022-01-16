@@ -56,4 +56,9 @@ namespace game::session::island
 		GenerateDeliveryForFeature(featureId);
 	}
 
+	bool DeliveryService::HasDeliveries() const
+	{
+		return data::game::feature::Delivery::ReadCountForFeature(featureId).value_or(0) > 0;
+	}
+
 }
