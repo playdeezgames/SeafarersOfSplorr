@@ -1,7 +1,9 @@
 #include <Data.Game.Character.Island.Reputation.h>
 #include <Data.Game.Character.Delivery.h>
 #include <Data.Game.Delivery.h>
+#include "Game.Colors.h"
 #include "Game.Session.Character.Delivery.h"
+#include "Game.Session.Character.Messages.h"
 namespace game::session::character
 {
 	int Delivery::GetToIslandId() const
@@ -22,10 +24,11 @@ namespace game::session::character
 		Reputation::Write(characterId, islandId, reputation + delta);
 	}
 
-	static void FinalizeDelivery(const Delivery& delivery, int reputationDelta)
+	static void FinalizeDelivery(const Delivery& delivery, int reputationDelta, const std::string_view& messageColor, const std::string& messageText)
 	{
 		int deliveryId = delivery.operator int();
 		int characterId = data::game::character::Delivery::ReadCharacterId(deliveryId).value();
+		game::session::character::Messages(characterId).Add(messageColor, messageText);
 		ChangeCharacterIslandReputation(characterId, delivery.GetToIslandId(), reputationDelta);
 		ChangeCharacterIslandReputation(characterId, delivery.GetFromIslandId(), reputationDelta);
 		data::game::character::Delivery::Remove(deliveryId);
@@ -35,14 +38,12 @@ namespace game::session::character
 	void Delivery::Abandon() const
 	{
 		constexpr int REPUTATION_PENALTY = -1;
-		//TODO: add character message
-		FinalizeDelivery(*this, REPUTATION_PENALTY);
+		FinalizeDelivery(*this, REPUTATION_PENALTY, game::Colors::RED, "You abandon the delivery. Yer reputation suffers as a result.");
 	}
 
 	void Delivery::Complete() const
 	{
 		constexpr int REPUTATION_BONUS = 1;
-		//TODO: add character message
-		FinalizeDelivery(*this, REPUTATION_BONUS);
+		FinalizeDelivery(*this, REPUTATION_BONUS, game::Colors::GREEN, "You complete the delivery. Yer reputation improves as a result.");
 	}
 }
