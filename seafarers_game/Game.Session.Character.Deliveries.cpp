@@ -36,4 +36,19 @@ namespace game::session::character
 			});
 	}
 
+	std::vector<Delivery> Deliveries::GetDeliveriesFor(int islandId) const
+	{
+		auto deliveries = GetDeliveries();
+		std::vector<Delivery> result;
+		std::copy_if(
+			deliveries.begin(), 
+			deliveries.end(), 
+			std::back_inserter(result), 
+			[islandId](const auto& delivery) 
+			{
+				return delivery.GetToIslandId() == islandId;
+			});
+		return result;
+	}
+
 }

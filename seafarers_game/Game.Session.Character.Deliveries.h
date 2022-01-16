@@ -9,6 +9,7 @@ namespace game::session::character
 		bool HasAny() const;
 		std::vector<Delivery> GetDeliveries() const;
 		bool HasDeliveriesFor(int islandId) const;
+		std::vector<Delivery> GetDeliveriesFor(int islandId) const;
 	private:
 		int characterId;
 	};

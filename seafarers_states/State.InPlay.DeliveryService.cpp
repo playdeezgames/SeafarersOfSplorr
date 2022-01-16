@@ -22,12 +22,6 @@ namespace state::in_play
 		Terminal::ShowPrompt();
 	}
 
-	static void MakeDeliveries()
-	{
-		//TODO: the stuff
-		Refresh();
-	}
-
 	static void UpdateMenu()
 	{
 		Terminal::menu.Clear();
@@ -37,7 +31,7 @@ namespace state::in_play
 		auto island = character.GetIsland();
 		if (character.GetDeliveries().HasDeliveriesFor(island.operator int()))
 		{
-			Terminal::menu.AddAction({"Make Delivery", MakeDeliveries});
+			Terminal::menu.AddAction({"Make Delivery", application::UIState::GoTo(::UIState::IN_PLAY_DELIVERY_SERVICE_MAKE_DELIVERY) });
 		}
 		MenuAction defaultAction = { "Leave", application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_DISTRICT) };
 		Terminal::menu.SetDefaultAction(defaultAction);

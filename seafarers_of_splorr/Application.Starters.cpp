@@ -30,6 +30,7 @@
 #include <State.InPlay.DeliveryService.h>
 #include <State.InPlay.DeliveryService.JobDetail.h>
 #include <State.InPlay.DeliveryService.JobList.h>
+#include <State.InPlay.DeliveryService.MakeDelivery.h>
 #include <State.InPlay.Docked.h>
 #include <State.InPlay.DockOrCareen.h>
 #include <State.InPlay.HeadForKnown.h>
@@ -166,6 +167,7 @@ namespace application
 		state::in_play::crew_detail::Deliveries::Start,
 		state::in_play::crew_detail::DeliveryDetail::Start,
 		state::in_play::crew_detail::ConfirmAbandonDelivery::Start,
+		state::in_play::delivery_service::MakeDelivery::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};

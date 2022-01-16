@@ -22,13 +22,27 @@ namespace game::session::character
 		Reputation::Write(characterId, islandId, reputation + delta);
 	}
 
+	static void FinalizeDelivery(const Delivery& delivery, int reputationDelta)
+	{
+		int deliveryId = delivery.operator int();
+		int characterId = data::game::character::Delivery::ReadCharacterId(deliveryId).value();
+		ChangeCharacterIslandReputation(characterId, delivery.GetToIslandId(), reputationDelta);
+		ChangeCharacterIslandReputation(characterId, delivery.GetFromIslandId(), reputationDelta);
+		data::game::character::Delivery::Remove(deliveryId);
+		data::game::Delivery::Remove(deliveryId);
+	}
+
 	void Delivery::Abandon() const
 	{
 		constexpr int REPUTATION_PENALTY = -1;
-		int characterId = data::game::character::Delivery::ReadCharacterId(deliveryId).value();
-		ChangeCharacterIslandReputation(characterId, GetToIslandId(), REPUTATION_PENALTY);
-		ChangeCharacterIslandReputation(characterId, GetFromIslandId(), REPUTATION_PENALTY);
-		data::game::character::Delivery::Remove(deliveryId);
-		data::game::Delivery::Remove(deliveryId);
+		//TODO: add character message
+		FinalizeDelivery(*this, REPUTATION_PENALTY);
+	}
+
+	void Delivery::Complete() const
+	{
+		constexpr int REPUTATION_BONUS = 1;
+		//TODO: add character message
+		FinalizeDelivery(*this, REPUTATION_BONUS);
 	}
 }

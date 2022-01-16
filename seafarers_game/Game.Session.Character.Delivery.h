@@ -8,6 +8,7 @@ namespace game::session::character
 		int GetToIslandId() const;
 		int GetFromIslandId() const;
 		void Abandon() const;
+		void Complete() const;
 	private:
 		int deliveryId;
 	};
