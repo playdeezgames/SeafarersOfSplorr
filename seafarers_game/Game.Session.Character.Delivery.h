@@ -8,6 +8,7 @@ namespace game::session::character
 		int GetToIslandId() const;
 		int GetFromIslandId() const;
 		int GetTimeLimit() const;
+		bool IsLate() const;
 		void Abandon() const;
 		void Complete() const;
 		void ApplyTurnEffects() const;

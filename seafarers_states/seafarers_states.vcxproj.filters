@@ -72,6 +72,9 @@
     <Filter Include="Header Files\Docked\Delivery Service">
       <UniqueIdentifier>{3b44a5f2-479e-4dfa-b447-96487a7339e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\AtSea\Crew Status\Deliveries">
+      <UniqueIdentifier>{8a2e232e-ea16-4d48-b53f-70aba8fe422f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UIState.h">
@@ -451,17 +454,17 @@
     <ClCompile Include="State.InPlay.DeliveryService.DeliveryDetail.cpp">
       <Filter>Source Files\Docked\Delivery Service</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.CrewDetail.Deliveries.cpp">
-      <Filter>Source Files\AtSea\Crew Status</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.CrewDetail.DeliveryDetail.cpp">
-      <Filter>Source Files\AtSea\Crew Status</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.CrewDetail.ConfirmAbandonDelivery.cpp">
-      <Filter>Source Files\AtSea\Crew Status</Filter>
-    </ClCompile>
     <ClCompile Include="State.InPlay.DeliveryService.MakeDelivery.cpp">
       <Filter>Source Files\Docked\Delivery Service</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.CrewDetail.ConfirmAbandonDelivery.cpp">
+      <Filter>Source Files\AtSea\Crew Status\Deliveries</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.CrewDetail.Deliveries.cpp">
+      <Filter>Source Files\AtSea\Crew Status\Deliveries</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.CrewDetail.DeliveryDetail.cpp">
+      <Filter>Source Files\AtSea\Crew Status\Deliveries</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
