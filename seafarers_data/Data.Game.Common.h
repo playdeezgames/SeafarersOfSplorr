@@ -32,6 +32,7 @@ namespace data::game
 
 		static std::optional<int> TryToInt(const std::optional<Record>& record, const std::string_view& columnName);
 		static int ToInt(const Record& record, const std::string_view& columnName);
+		static std::optional<int> ToOptionalInt(const Record& record, const std::string_view& columnName);
 		static std::function<int(const Record&)> DoToInt(const std::string_view& columnName);
 
 		static std::optional<std::string> TryToString(const std::optional<Record>& record, const std::string_view& columnName);

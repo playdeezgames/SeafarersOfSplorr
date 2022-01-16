@@ -52,7 +52,7 @@ namespace data::game::item
 		auto record = Common::TryExecuteForOne(QUERY_MAXIMUM_TYPE, category);
 		if (record)
 		{
-			return Common::ToInt(record.value(), FIELD_MAXIMUM_TYPE) + 1;
+			return Common::ToOptionalInt(record.value(), FIELD_MAXIMUM_TYPE).value_or(0) + 1;
 		}
 		return 0;
 	}

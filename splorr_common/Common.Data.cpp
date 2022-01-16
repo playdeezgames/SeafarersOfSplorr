@@ -1,13 +1,10 @@
+#include <algorithm>
 #include "Common.Data.h"
 namespace common
 {
 	int Data::ToInt(const std::string& text)
 	{
-		std::stringstream ss;
-		ss.str(text);
-		int result = 0;
-		ss >> result;
-		return result;
+		return std::stoi(text);
 	}
 
 	std::optional<int> Data::ToOptionalInt(const std::string& text)
@@ -22,11 +19,7 @@ namespace common
 
 	double Data::ToDouble(const std::string& text)
 	{
-		std::stringstream ss;
-		ss.str(text);
-		double result = 0;
-		ss >> result;
-		return result;
+		return std::stod(text);
 	}
 
 	std::optional<double> Data::ToOptionalDouble(const std::string& text)
@@ -75,20 +68,20 @@ namespace common
 
 	std::string Data::QuoteString(const std::string& original)
 	{
-		std::stringstream ss;
-		ss << "'";
-		for (auto ch : original)
-		{
-			if (ch == '\'')
+		std::string result{};
+		result.push_back('\'');
+		std::for_each(
+			original.begin(), 
+			original.end(), 
+			[&result](const auto& character) 
 			{
-				ss << "''";
-			}
-			else
-			{
-				ss << ch;
-			}
-		}
-		ss << "'";
-		return ss.str();
+				if (character == '\'')
+				{
+					result.push_back(character);
+				}
+				result.push_back(character);
+			});
+		result.push_back('\'');
+		return result;
 	}
 }

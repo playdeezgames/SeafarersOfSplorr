@@ -8,7 +8,7 @@
 namespace data::game
 {
 	using namespace std::string_view_literals;
-	static constexpr std::string_view CREATE_TABLE = 
+	static constexpr auto CREATE_TABLE = 
 		R"(CREATE TABLE IF NOT EXISTS [Characters]
 		(
 			[CharacterId] INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -18,13 +18,13 @@ namespace data::game
 			FOREIGN KEY ([OriginIslandId]) REFERENCES [Islands]([IslandId]),
 			FOREIGN KEY ([TribeId]) REFERENCES [Tribes]([TribeId])
 		);)"sv;
-	static constexpr std::string_view QUERY_ITEM_COLUMN =
+	static constexpr auto QUERY_ITEM_COLUMN =
 		R"(SELECT 
 			[{}]
 		FROM [Characters] 
 		WHERE 
 			[CharacterId] = {};)"sv;
-	static constexpr std::string_view CREATE_ITEM =
+	static constexpr auto CREATE_ITEM =
 		R"(INSERT INTO [Characters]
 		(
 			[Name],
@@ -32,21 +32,21 @@ namespace data::game
 			[TribeId]
 		) 
 		VALUES({}, {}, {});)"sv;
-	static constexpr std::string_view UPDATE_ITEM_COLUMN =
+	static constexpr auto UPDATE_ITEM_COLUMN =
 		R"(UPDATE [Characters] 
 		SET 
 			[{}]={}
 		WHERE 
 			CharacterId={};)"sv;
-	static constexpr std::string_view QUERY_ALL =
+	static constexpr auto QUERY_ALL =
 		R"(SELECT 
 			[CharacterId] 
 		FROM [Characters];)"sv;
 
-	static constexpr std::string_view FIELD_NAME = "Name";
-	static constexpr std::string_view FIELD_TRIBE_ID = "TribeId";
-	static constexpr std::string_view FIELD_ORIGIN_ISLAND_ID = "OriginIslandId";
-	static constexpr std::string_view FIELD_CHARACTER_ID = "CharacterId";
+	static constexpr auto FIELD_NAME = "Name"sv;
+	static constexpr auto FIELD_TRIBE_ID = "TribeId"sv;
+	static constexpr auto FIELD_ORIGIN_ISLAND_ID = "OriginIslandId"sv;
+	static constexpr auto FIELD_CHARACTER_ID = "CharacterId"sv;
 
 	void Character::Initialize()
 	{

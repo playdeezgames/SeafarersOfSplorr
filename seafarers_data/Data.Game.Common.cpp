@@ -61,8 +61,14 @@ namespace data::game
 
 	int Common::ToInt(const Common::Record& record, const std::string_view& columnName)
 	{
-		return common::Data::ToInt(record.find(std::string(columnName))->second);
+		return ToOptionalInt(record, columnName).value();
 	}
+
+	std::optional<int> Common::ToOptionalInt(const Record& record, const std::string_view& columnName)
+	{
+		return common::Data::ToOptionalInt(record.find(std::string(columnName))->second);
+	}
+
 
 	std::function<int(const Common::Record&)> Common::DoToInt(const std::string_view& columnName)
 	{
