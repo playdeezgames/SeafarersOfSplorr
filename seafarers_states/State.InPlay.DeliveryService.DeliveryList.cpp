@@ -2,7 +2,7 @@
 #include <format>
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
-#include "State.InPlay.DeliveryService.JobList.h"
+#include "State.InPlay.DeliveryService.DeliveryList.h"
 #include "State.ScratchPad.IslandFeature.h"
 #include "State.ScratchPad.SelectedDelivery.h"
 namespace state::in_play::delivery_service

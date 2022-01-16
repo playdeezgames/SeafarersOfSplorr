@@ -1,6 +1,6 @@
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
-#include "State.InPlay.DeliveryService.JobDetail.h"
+#include "State.InPlay.DeliveryService.DeliveryDetail.h"
 #include "State.ScratchPad.SelectedDelivery.h"
 namespace state::in_play::delivery_service
 {

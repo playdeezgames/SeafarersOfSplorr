@@ -28,8 +28,8 @@
 #include <State.InPlay.CrewList.h>
 #include <State.InPlay.CrewDetail.h>
 #include <State.InPlay.DeliveryService.h>
-#include <State.InPlay.DeliveryService.JobDetail.h>
-#include <State.InPlay.DeliveryService.JobList.h>
+#include <State.InPlay.DeliveryService.DeliveryDetail.h>
+#include <State.InPlay.DeliveryService.DeliveryList.h>
 #include <State.InPlay.DeliveryService.MakeDelivery.h>
 #include <State.InPlay.Docked.h>
 #include <State.InPlay.DockOrCareen.h>

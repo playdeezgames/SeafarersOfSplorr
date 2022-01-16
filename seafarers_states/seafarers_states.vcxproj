@@ -33,7 +33,7 @@
     <ClInclude Include="State.InPlay.CrewDetail.Deliveries.h" />
     <ClInclude Include="State.InPlay.CrewDetail.DeliveryDetail.h" />
     <ClInclude Include="State.InPlay.DeliveryService.h" />
-    <ClInclude Include="State.InPlay.DeliveryService.JobDetail.h" />
+    <ClInclude Include="State.InPlay.DeliveryService.DeliveryDetail.h" />
     <ClInclude Include="State.InPlay.DeliveryService.MakeDelivery.h" />
     <ClInclude Include="State.InPlay.DockOrCareen.h" />
     <ClInclude Include="State.InPlay.Globals.h" />
@@ -82,7 +82,7 @@
     <ClInclude Include="State.Statistics.h" />
     <ClInclude Include="State.Terminal.h" />
     <ClInclude Include="State.Tip.h" />
-    <ClInclude Include="State.InPlay.DeliveryService.JobList.h" />
+    <ClInclude Include="State.InPlay.DeliveryService.DeliveryList.h" />
     <ClInclude Include="UIState.h" />
   </ItemGroup>
   <ItemGroup>

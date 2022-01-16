@@ -251,10 +251,10 @@
     <ClInclude Include="State.InPlay.DeliveryService.h">
       <Filter>Header Files\Docked\Delivery Service</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.DeliveryService.JobDetail.h">
+    <ClInclude Include="State.InPlay.DeliveryService.DeliveryDetail.h">
       <Filter>Header Files\Docked\Delivery Service</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.DeliveryService.JobList.h">
+    <ClInclude Include="State.InPlay.DeliveryService.DeliveryList.h">
       <Filter>Header Files\Docked\Delivery Service</Filter>
     </ClInclude>
     <ClInclude Include="State.InPlay.CrewDetail.Deliveries.h">
