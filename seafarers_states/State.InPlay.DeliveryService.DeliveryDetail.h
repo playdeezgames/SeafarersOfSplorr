@@ -1,9 +1,9 @@
 #pragma once
 namespace state::in_play::delivery_service
 {
-	struct JobDetail
+	struct DeliveryDetail
 	{
-		JobDetail() = delete;
+		DeliveryDetail() = delete;
 		static void Start();
 	};
 }

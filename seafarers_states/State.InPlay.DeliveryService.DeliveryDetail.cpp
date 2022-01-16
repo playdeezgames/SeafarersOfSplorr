@@ -50,7 +50,7 @@ namespace state::in_play::delivery_service
 		Refresh();
 	}
 
-	void JobDetail::Start()
+	void DeliveryDetail::Start()
 	{
 		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
 		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
