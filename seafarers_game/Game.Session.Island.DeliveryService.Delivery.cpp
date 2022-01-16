@@ -11,4 +11,10 @@ namespace game::session::island::delivery_service
 	{
 		return data::game::Delivery::ReadFromIsland(deliveryId).value();
 	}
+
+	int Delivery::GetTimeLimit() const
+	{
+		return data::game::Delivery::ReadTimeLimit(deliveryId).value();
+	}
+
 }

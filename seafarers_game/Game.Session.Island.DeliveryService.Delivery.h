@@ -7,6 +7,7 @@ namespace game::session::island::delivery_service
 		constexpr explicit operator int() const { return deliveryId; }
 		int GetToIslandId() const;
 		int GetFromIslandId() const;
+		int GetTimeLimit() const;
 	private:
 		int deliveryId;
 	};

@@ -10,8 +10,10 @@ namespace game::session::island
 
 	static void GenerateDeliveryForFeature(int featureId)
 	{
+		constexpr double TIME_LIMIT_FACTOR = 2.0;
 		auto fromIslandId = data::game::island::Feature::ReadIslandId(featureId).value();
 		auto candidateIslands = game::Session().GetWorld().GetIslands().GetIslands();
+		auto fromIsland = game::Session().GetWorld().GetIslands().GetIsland(fromIslandId);
 		auto last = std::remove_if(
 			candidateIslands.begin(),
 			candidateIslands.end(),
@@ -21,7 +23,8 @@ namespace game::session::island
 			});
 		candidateIslands.erase(last, candidateIslands.end());
 		auto toIsland = common::RNG::FromVector(candidateIslands).value();
-		auto deliveryId = data::game::Delivery::Create(fromIslandId, toIsland.operator int());
+		int timeLimit = (int)(fromIsland.DistanceTo(toIsland) * TIME_LIMIT_FACTOR);
+		auto deliveryId = data::game::Delivery::Create(fromIslandId, toIsland.operator int(), timeLimit);
 		data::game::feature::Delivery::Create(featureId, deliveryId);
 	}
 
@@ -32,23 +35,6 @@ namespace game::session::island
 		{
 			GenerateDeliveryForFeature(featureId);
 		}
-	}
-
-	static void GenerateJobForFeature(int featureId)
-	{
-		auto fromIslandId = data::game::island::Feature::ReadIslandId(featureId).value();
-		auto candidateIslands = game::Session().GetWorld().GetIslands().GetIslands();
-		auto last = std::remove_if(
-			candidateIslands.begin(),
-			candidateIslands.end(),
-			[fromIslandId](const auto& island)
-			{
-				return island.operator int() == fromIslandId;
-			});
-		candidateIslands.erase(last, candidateIslands.end());
-		auto toIsland = common::RNG::FromVector(candidateIslands).value();
-		auto deliveryId = data::game::Delivery::Create(fromIslandId, toIsland.operator int());
-		data::game::feature::Delivery::Create(featureId, deliveryId);
 	}
 
 	void DeliveryService::Populate(const game::Difficulty& difficulty) const

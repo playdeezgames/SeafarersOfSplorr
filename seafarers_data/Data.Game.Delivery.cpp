@@ -10,6 +10,7 @@ namespace data::game
 			[DeliveryId] INTEGER PRIMARY KEY AUTOINCREMENT,
 			[FromIslandId] INT NOT NULL,
 			[ToIslandId] INT NOT NULL,
+			[TimeLimit] INT NOT NULL,
 			FOREIGN KEY ([FromIslandId]) REFERENCES [Islands]([IslandId]),
 			FOREIGN KEY ([ToIslandId]) REFERENCES [Islands]([IslandId])
 		);)"sv;
@@ -17,9 +18,10 @@ namespace data::game
 		R"(INSERT INTO [Deliveries]
 		(
 			[FromIslandId],
-			[ToIslandId]
+			[ToIslandId],
+			[TimeLimit]
 		) 
-		VALUES({},{});)"sv;
+		VALUES({},{},{});)"sv;
 	static constexpr auto QUERY_ITEM_COLUMN =
 		R"(SELECT 
 			[{}] 
@@ -30,6 +32,7 @@ namespace data::game
 		R"()"sv;
 	static constexpr auto FIELD_TO_ISLAND_ID = "ToIslandId"sv;
 	static constexpr auto FIELD_FROM_ISLAND_ID = "FromIslandId"sv;
+	static constexpr auto FIELD_TIME_LIMIT = "TimeLimit"sv;
 
 	void Delivery::Initialize()
 	{
@@ -37,10 +40,10 @@ namespace data::game
 		Common::Execute(CREATE_TABLE);
 	}
 
-	int Delivery::Create(int fromIslandId, int toIslandId)
+	int Delivery::Create(int fromIslandId, int toIslandId, int timeLimit)
 	{
 		Initialize();
-		Common::Execute(INSERT_ITEM, fromIslandId, toIslandId);
+		Common::Execute(INSERT_ITEM, fromIslandId, toIslandId, timeLimit);
 		return Common::LastInsertedIndex();
 	}
 
@@ -56,6 +59,13 @@ namespace data::game
 		return Common::TryToInt(
 			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_FROM_ISLAND_ID, deliveryId),
 			FIELD_FROM_ISLAND_ID);
+	}
+
+	std::optional<int> Delivery::ReadTimeLimit(int deliveryId)
+	{
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_TIME_LIMIT, deliveryId),
+			FIELD_TIME_LIMIT);
 	}
 
 	void Delivery::Remove(int deliveryId)
