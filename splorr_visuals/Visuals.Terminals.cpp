@@ -152,7 +152,7 @@ namespace visuals
 		}
 	}
 
-	void Terminals::SetForeground(const std::string& layoutName, const std::string& terminalName, const std::string& color)
+	void Terminals::SetForeground(const std::string& layoutName, const std::string& terminalName, const std::string_view& color)
 	{
 		auto& terminal = internalTerminals[terminalTable[layoutName][terminalName]];
 		terminal.foregroundColor = color;

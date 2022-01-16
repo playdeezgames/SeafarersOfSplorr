@@ -5,7 +5,7 @@ namespace game::characters
 {
 	struct Message
 	{
-		std::string color;
+		std::string_view color;
 		std::string text;
 	};
 

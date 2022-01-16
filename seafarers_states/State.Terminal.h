@@ -44,7 +44,7 @@ namespace state
 		{
 			Write(std::format(fmt, args...));
 		}
-		static void SetForeground(const std::string&);
+		static void SetForeground(const std::string_view&);
 		static void ClearStatusLine();
 		static void ShowPrompt();
 		static void Reinitialize();

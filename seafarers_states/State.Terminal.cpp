@@ -64,7 +64,7 @@ namespace state
 		ClearInput();
 	}
 
-	void Terminal::SetForeground(const std::string& color)
+	void Terminal::SetForeground(const std::string_view& color)
 	{
 		visuals::Terminals::SetForeground(LAYOUT_NAME, TERMINAL_ID, color);
 	}

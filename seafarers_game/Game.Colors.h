@@ -2,20 +2,21 @@
 #include <string>
 namespace game::Colors
 {
-	const std::string BLACK = "Black";
-	const std::string BLUE = "Blue";
-	const std::string GREEN = "Green";
-	const std::string CYAN = "Cyan";
-	const std::string RED = "Red";
-	const std::string MAGENTA = "Magenta";
-	const std::string BROWN = "Brown";
-	const std::string GRAY = "Gray";
-	const std::string DARK_GRAY = "DarkGray";
-	const std::string LIGHT_BLUE = "LightBlue";
-	const std::string LIGHT_GREEN = "LightGreen";
-	const std::string LIGHT_CYAN = "LightCyan";
-	const std::string LIGHT_RED = "LightRed";
-	const std::string LIGHT_MAGENTA = "LightMagenta";
-	const std::string YELLOW = "Yellow";
-	const std::string WHITE = "White";
+	using namespace std::string_view_literals;
+	constexpr auto BLACK = "Black"sv;
+	constexpr auto BLUE = "Blue"sv;
+	constexpr auto GREEN = "Green"sv;
+	constexpr auto CYAN = "Cyan"sv;
+	constexpr auto RED = "Red"sv;
+	constexpr auto MAGENTA = "Magenta"sv;
+	constexpr auto BROWN = "Brown"sv;
+	constexpr auto GRAY = "Gray"sv;
+	constexpr auto DARK_GRAY = "DarkGray"sv;
+	constexpr auto LIGHT_BLUE = "LightBlue"sv;
+	constexpr auto LIGHT_GREEN = "LightGreen"sv;
+	constexpr auto LIGHT_CYAN = "LightCyan"sv;
+	constexpr auto LIGHT_RED = "LightRed"sv;
+	constexpr auto LIGHT_MAGENTA = "LightMagenta"sv;
+	constexpr auto YELLOW = "Yellow"sv;
+	constexpr auto WHITE = "White"sv;
 }
