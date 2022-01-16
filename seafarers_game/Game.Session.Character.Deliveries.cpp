@@ -51,4 +51,15 @@ namespace game::session::character
 		return result;
 	}
 
+	void Deliveries::ApplyTurnEffects() const
+	{
+		auto deliveries = GetDeliveries();
+		std::for_each(
+			deliveries.begin(), 
+			deliveries.end(), 
+			[](const auto& delivery) 
+			{
+				delivery.ApplyTurnEffects();
+			});
+	}
 }

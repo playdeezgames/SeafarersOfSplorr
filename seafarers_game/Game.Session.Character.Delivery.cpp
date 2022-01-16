@@ -46,4 +46,10 @@ namespace game::session::character
 		constexpr int REPUTATION_BONUS = 1;
 		FinalizeDelivery(*this, REPUTATION_BONUS, game::Colors::GREEN, "You complete the delivery. Yer reputation improves as a result.");
 	}
+
+	void Delivery::ApplyTurnEffects() const
+	{
+		auto timeLimit = data::game::Delivery::ReadTimeLimit(deliveryId).value();
+		data::game::Delivery::WriteTimeLimit(deliveryId, timeLimit - 1);
+	}
 }

@@ -29,7 +29,15 @@ namespace data::game
 		WHERE 
 			[DeliveryId]={};)"sv;
 	static constexpr auto DELETE_ITEM =
-		R"()"sv;
+		R"(DELETE FROM [Deliveries] 
+		WHERE 
+			[DeliveryId]={})"sv;
+	static constexpr auto UPDATE_TIME_LIMIT =
+		R"(UPDATE [Deliveries] 
+		SET 
+			[TimeLimit]={} 
+		WHERE 
+			[DeliveryId]={};)"sv;
 	static constexpr auto FIELD_TO_ISLAND_ID = "ToIslandId"sv;
 	static constexpr auto FIELD_FROM_ISLAND_ID = "FromIslandId"sv;
 	static constexpr auto FIELD_TIME_LIMIT = "TimeLimit"sv;
@@ -66,6 +74,11 @@ namespace data::game
 		return Common::TryToInt(
 			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_TIME_LIMIT, deliveryId),
 			FIELD_TIME_LIMIT);
+	}
+
+	void Delivery::WriteTimeLimit(int deliveryId, int timeLimit)
+	{
+		Common::Execute(UPDATE_TIME_LIMIT, timeLimit, deliveryId);
 	}
 
 	void Delivery::Remove(int deliveryId)

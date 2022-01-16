@@ -9,6 +9,7 @@ namespace game::session::character
 		int GetFromIslandId() const;
 		void Abandon() const;
 		void Complete() const;
+		void ApplyTurnEffects() const;
 	private:
 		int deliveryId;
 	};

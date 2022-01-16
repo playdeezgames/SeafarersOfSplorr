@@ -69,7 +69,7 @@ namespace state::in_play::crew_detail
 				auto toIsland = islands.GetIsland(delivery.GetToIslandId());
 				Terminal::menu.AddAction({ 
 						std::format(
-							"{} ({:.2f})", 
+							"{} ({:.2f})", //show time limit
 							toIsland.GetName(), 
 							toIsland.DistanceFrom(location)), 
 						GoToDeliveryDetail(delivery.operator int()) 

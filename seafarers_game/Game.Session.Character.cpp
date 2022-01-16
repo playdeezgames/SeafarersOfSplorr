@@ -110,6 +110,7 @@ namespace game::session
 		SufferHunger(characterId);
 		ApplyTurn(characterId);
 		GetPlights().ApplyTurnEffects();
+		GetDeliveries().ApplyTurnEffects();
 	}
 
 	void Character::ClearIsland() const

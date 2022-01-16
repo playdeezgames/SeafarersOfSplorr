@@ -10,6 +10,7 @@ namespace data::game
 		static std::optional<int> ReadToIsland(int deliveryId);
 		static std::optional<int> ReadFromIsland(int deliveryId);
 		static std::optional<int> ReadTimeLimit(int deliveryId);
+		static void WriteTimeLimit(int deliveryId, int timeLimit);
 		static void Remove(int deliveryId);
 	};
 }

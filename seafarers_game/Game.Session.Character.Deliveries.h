@@ -10,6 +10,7 @@ namespace game::session::character
 		std::vector<Delivery> GetDeliveries() const;
 		bool HasDeliveriesFor(int islandId) const;
 		std::vector<Delivery> GetDeliveriesFor(int islandId) const;
+		void ApplyTurnEffects() const;
 	private:
 		int characterId;
 	};
