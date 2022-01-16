@@ -442,13 +442,13 @@
     <ClCompile Include="State.InPlay.DeliveryService.cpp">
       <Filter>Source Files\Docked\Delivery Service</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.DeliveryService.JobList.cpp">
+    <ClCompile Include="State.InPlay.DeliveryService.DeliveryList.cpp">
       <Filter>Source Files\Docked\Delivery Service</Filter>
     </ClCompile>
     <ClCompile Include="State.ScratchPad.SelectedDelivery.cpp">
       <Filter>Source Files\ScratchPad</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.DeliveryService.JobDetail.cpp">
+    <ClCompile Include="State.InPlay.DeliveryService.DeliveryDetail.cpp">
       <Filter>Source Files\Docked\Delivery Service</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.CrewDetail.Deliveries.cpp">
