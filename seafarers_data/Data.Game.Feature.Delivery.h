@@ -7,7 +7,7 @@ namespace data::game::feature
 	{
 		Delivery() = delete;
 		static void Initialize();
-		static void Create(int featureId, int deliveryId);
+		static void Create(int featureId, int deliveryId, int rewardItemType, int rewardQuantity);
 		static std::vector<int> ReadForFeature(int featureId);
 		static std::optional<int> ReadCountForFeature(int featureId);
 		static void Clear(int deliveryId);

@@ -183,6 +183,18 @@
     <Filter Include="Source Files\Session\Island\Feature">
       <UniqueIdentifier>{c693191e-d029-4686-90b1-6067a38e8d2c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Session\Island\Feature\Delivery Service">
+      <UniqueIdentifier>{a00db994-3b56-44a2-a14b-1b041cab9e88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Session\Island\Feature\Delivery Service">
+      <UniqueIdentifier>{ea51361b-b3dc-4d10-88d2-32ee559cf8c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Session\Character\Delivery">
+      <UniqueIdentifier>{ad427bbe-864b-4677-89c9-4e181855e035}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Character\Delivery">
+      <UniqueIdentifier>{b6a2a4ec-56a8-4729-a901-40125f6cbeea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -455,20 +467,20 @@
     <ClInclude Include="Game.Session.Island.Feature.h">
       <Filter>Header Files\Session\Island\Feature</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.Island.DeliveryService.h">
-      <Filter>Header Files\Session\Island\Feature</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.Island.DeliveryService.Deliveries.h">
-      <Filter>Header Files\Session\Island\Feature</Filter>
+      <Filter>Header Files\Session\Island\Feature\Delivery Service</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Island.DeliveryService.Delivery.h">
-      <Filter>Header Files\Session\Island\Feature</Filter>
+      <Filter>Header Files\Session\Island\Feature\Delivery Service</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Island.DeliveryService.h">
+      <Filter>Header Files\Session\Island\Feature\Delivery Service</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Character.Deliveries.h">
-      <Filter>Header Files\Session\Character</Filter>
+      <Filter>Header Files\Session\Character\Delivery</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Character.Delivery.h">
-      <Filter>Header Files\Session\Character</Filter>
+      <Filter>Header Files\Session\Character\Delivery</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -665,19 +677,19 @@
       <Filter>Source Files\Session\Island\Feature</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Island.DeliveryService.cpp">
-      <Filter>Source Files\Session\Island\Feature</Filter>
+      <Filter>Source Files\Session\Island\Feature\Delivery Service</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Island.DeliveryService.Deliveries.cpp">
-      <Filter>Source Files\Session\Island\Feature</Filter>
+      <Filter>Source Files\Session\Island\Feature\Delivery Service</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Island.DeliveryService.Delivery.cpp">
-      <Filter>Source Files\Session\Island\Feature</Filter>
+      <Filter>Source Files\Session\Island\Feature\Delivery Service</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Character.Deliveries.cpp">
-      <Filter>Source Files\Session\Character</Filter>
+      <Filter>Source Files\Session\Character\Delivery</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Character.Delivery.cpp">
-      <Filter>Source Files\Session\Character</Filter>
+      <Filter>Source Files\Session\Character\Delivery</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

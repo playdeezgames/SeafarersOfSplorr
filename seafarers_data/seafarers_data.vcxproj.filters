@@ -66,6 +66,12 @@
     <Filter Include="Source Files\Skill">
       <UniqueIdentifier>{8dbd1c61-d2c5-4bd7-a515-f1f4a0a0da03}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Delivery">
+      <UniqueIdentifier>{d729412b-d229-4ef7-8aa6-f92a7475781f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Delivery">
+      <UniqueIdentifier>{ac7cae74-9013-4240-800b-860e951c9907}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data.Game.Common.h">
@@ -164,17 +170,17 @@
     <ClInclude Include="Data.Game.Island.Feature.h">
       <Filter>Header Files\Island</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Delivery.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Feature.Delivery.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Data.Game.Character.Island.Reputation.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.Character.Delivery.h">
-      <Filter>Header Files\Character</Filter>
+      <Filter>Header Files\Delivery</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Delivery.h">
+      <Filter>Header Files\Delivery</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.Game.Feature.Delivery.h">
+      <Filter>Header Files\Delivery</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -268,17 +274,17 @@
     <ClCompile Include="Data.Game.Island.Feature.cpp">
       <Filter>Source Files\Island</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Delivery.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Feature.Delivery.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Data.Game.Character.Island.Reputation.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.Character.Delivery.cpp">
-      <Filter>Source Files\Character</Filter>
+      <Filter>Source Files\Delivery</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Delivery.cpp">
+      <Filter>Source Files\Delivery</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Feature.Delivery.cpp">
+      <Filter>Source Files\Delivery</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
