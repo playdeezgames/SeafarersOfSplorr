@@ -1,4 +1,5 @@
 #include "Data.Game.Common.h"
+#include "Data.Game.Item.Type.h"
 #include "Data.Game.Delivery.h"
 #include "Data.Game.Island.h"
 namespace data::game
@@ -11,17 +12,22 @@ namespace data::game
 			[FromIslandId] INT NOT NULL,
 			[ToIslandId] INT NOT NULL,
 			[TimeLimit] INT NOT NULL,
+			[RewardItemTypeId] INT NOT NULL,
+			[RewardQuantity] INT NOT NULL,
 			FOREIGN KEY ([FromIslandId]) REFERENCES [Islands]([IslandId]),
-			FOREIGN KEY ([ToIslandId]) REFERENCES [Islands]([IslandId])
+			FOREIGN KEY ([ToIslandId]) REFERENCES [Islands]([IslandId]),
+			FOREIGN KEY ([RewardItemTypeId]) REFERENCES [ItemTypes]([ItemTypeId])
 		);)"sv;
 	static constexpr auto INSERT_ITEM =
 		R"(INSERT INTO [Deliveries]
 		(
 			[FromIslandId],
 			[ToIslandId],
-			[TimeLimit]
+			[TimeLimit],
+			[RewardItemTypeId],
+			[RewardQuantity]
 		) 
-		VALUES({},{},{});)"sv;
+		VALUES({},{},{},{},{});)"sv;
 	static constexpr auto QUERY_ITEM_COLUMN =
 		R"(SELECT 
 			[{}] 
@@ -44,14 +50,15 @@ namespace data::game
 
 	void Delivery::Initialize()
 	{
+		item::Type::Initialize();
 		Island::Initialize();
 		Common::Execute(CREATE_TABLE);
 	}
 
-	int Delivery::Create(int fromIslandId, int toIslandId, int timeLimit)
+	int Delivery::Create(int fromIslandId, int toIslandId, int timeLimit, int rewardItemType, int rewardQuantity)
 	{
 		Initialize();
-		Common::Execute(INSERT_ITEM, fromIslandId, toIslandId, timeLimit);
+		Common::Execute(INSERT_ITEM, fromIslandId, toIslandId, timeLimit, rewardItemType, rewardQuantity);
 		return Common::LastInsertedIndex();
 	}
 

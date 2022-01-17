@@ -1,6 +1,5 @@
 #include <algorithm>
 #include "Data.Game.Common.h"
-#include "Data.Game.Item.Type.h"
 #include "Data.Game.Island.Feature.h"
 #include "Data.Game.Delivery.h"
 #include "Data.Game.Feature.Delivery.h"
@@ -13,21 +12,16 @@ namespace data::game::feature
 		(
 			[FeatureId] INT NOT NULL,
 			[DeliveryId] INT NOT NULL UNIQUE,
-			[RewardItemTypeId] INT NOT NULL,
-			[RewardQuantity] INT NOT NULL,
 			FOREIGN KEY ([FeatureId]) REFERENCES [Features]([FeatureId]),
-			FOREIGN KEY ([DeliveryId]) REFERENCES [Deliveries]([DeliveryId]),
-			FOREIGN KEY ([RewardItemTypeId]) REFERENCES [ItemTypes]([ItemTypeId])
+			FOREIGN KEY ([DeliveryId]) REFERENCES [Deliveries]([DeliveryId])
 		);)"sv;
 	static constexpr auto REPLACE_ITEM =
 		R"(REPLACE INTO [FeatureDeliveries]
 		(
 			[FeatureId],
-			[DeliveryId],
-			[RewardItemTypeId],
-			[RewardQuantity]
+			[DeliveryId]
 		) 
-		VALUES({},{},{},{});)"sv;
+		VALUES({},{});)"sv;
 	static constexpr auto QUERY_FOR_FEATURE =
 		R"(SELECT 
 			[DeliveryId] 
@@ -50,16 +44,15 @@ namespace data::game::feature
 
 	void Delivery::Initialize()
 	{
-		item::Type::Initialize();
 		island::Feature::Initialize();
 		data::game::Delivery::Initialize();
 		Common::Execute(CREATE_TABLE);
 	}
 
-	void Delivery::Create(int featureId, int deliveryId, int rewardItemType, int rewardQuantity)
+	void Delivery::Create(int featureId, int deliveryId)
 	{
 		Initialize();
-		Common::Execute(REPLACE_ITEM, featureId, deliveryId, rewardItemType, rewardQuantity);
+		Common::Execute(REPLACE_ITEM, featureId, deliveryId);
 	}
 
 	std::vector<int> Delivery::ReadForFeature(int featureId)

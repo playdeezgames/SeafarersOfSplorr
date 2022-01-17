@@ -6,7 +6,7 @@ namespace data::game
 	{
 		Delivery() = delete;
 		static void Initialize();
-		static int Create(int fromIslandId, int toIslandId, int timeLimit);
+		static int Create(int fromIslandId, int toIslandId, int timeLimit, int rewardItemType, int rewardQuantity);
 		static std::optional<int> ReadToIsland(int deliveryId);
 		static std::optional<int> ReadFromIsland(int deliveryId);
 		static std::optional<int> ReadTimeLimit(int deliveryId);

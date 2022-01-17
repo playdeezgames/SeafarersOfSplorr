@@ -26,11 +26,11 @@ namespace game::session::island
 		candidateIslands.erase(last, candidateIslands.end());
 		auto toIsland = common::RNG::FromVector(candidateIslands).value();
 		int timeLimit = (int)(fromIsland.DistanceTo(toIsland) * TIME_LIMIT_FACTOR);
-		auto deliveryId = data::game::Delivery::Create(fromIslandId, toIsland.operator int(), timeLimit);
 		//TODO: make this less hacked
 		auto rewardItemType = world.GetCurrencyItemSubtype();
 		auto rewardQuantity = common::RNG::Roll<5>();
-		data::game::feature::Delivery::Create(featureId, deliveryId, rewardItemType.operator int(), rewardQuantity);
+		auto deliveryId = data::game::Delivery::Create(fromIslandId, toIsland.operator int(), timeLimit, rewardItemType.operator int(), rewardQuantity);
+		data::game::feature::Delivery::Create(featureId, deliveryId);
 	}
 
 	void DeliveryService::ApplyTurnEffects() const
