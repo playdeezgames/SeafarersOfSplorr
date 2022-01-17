@@ -5,6 +5,7 @@
 #include <Data.Game.Feature.Delivery.h>
 #include <Data.Game.Player.h>
 #include <Data.Game.Ship.CurrentIsland.h>
+#include <format>
 #include "Game.Colors.h"
 #include "Game.Session.h"
 #include "Game.Session.Character.h"
@@ -59,26 +60,37 @@ namespace game::session
 
 	static void SufferWoundDueToStarvation(int characterId)
 	{
-		auto counters =
+		constexpr auto WOUND_INCREASE = 1;
+		auto character =
 			Characters()
-			.GetCharacter(characterId)
+			.GetCharacter(characterId);
+		character.GetMessages().Add(game::Colors::RED, std::format("{} loses HP dues to starvation!", character.GetName()));
+		auto counters =
+			character
 			.GetCounters();
 		counters
 			.GetCounter(game::characters::Counter::STARVATION)
 			.Reset();
 		counters
 			.GetCounter(game::characters::Counter::WOUNDS)
-			.Change(1);
+			.Change(WOUND_INCREASE);
 	}
 
 	static void SufferStarvationDueToHunger(int characterId)
 	{
-		Characters()
-			.GetCharacter(characterId)
+		constexpr auto STARVATION_INCREASE = 1;
+		auto character =
+			Characters()
+			.GetCharacter(characterId);
+		character.GetMessages().Add(game::Colors::YELLOW, std::format("{} is starving!", character.GetName()));
+		character
 			.GetCharacteristics()
 			.GetCharacteristic(Characteristic::CONSTITUTION)
 			.OnOpposedCheck(
-				Characters().GetCharacter(characterId).GetCounters().GetCounter(game::characters::Counter::STARVATION).Change(1),
+				character
+					.GetCounters()
+					.GetCounter(game::characters::Counter::STARVATION)
+					.Change(STARVATION_INCREASE),
 				[characterId](bool success)
 				{
 					if (!success)
@@ -94,8 +106,7 @@ namespace game::session
 			.GetCharacter(characterId)
 			.GetCharacteristics()
 			.GetCharacteristic(Characteristic::CONSTITUTION)
-			.OnOpposedCheck(
-				Characters().GetCharacter(characterId).GetCounters().GetCounter(game::characters::Counter::STARVATION).Change(1),
+			.OnCheck(
 				[characterId](bool success)
 				{
 					if (!success)
