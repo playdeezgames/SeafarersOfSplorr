@@ -6,7 +6,7 @@ namespace game::session::character
 	struct Messages
 	{
 		constexpr explicit Messages(int characterId) : characterId(characterId) {}
-		void Add(const std::string_view& color, const std::string& text) const;
+		void Add(const std::string_view& color, const std::string& text) const;//TODO: i need a variadic version of this
 		characters::MessageList GetAll() const;
 		void Clear() const;
 	private:

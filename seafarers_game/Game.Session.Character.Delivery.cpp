@@ -29,17 +29,17 @@ namespace game::session::character
 		using CharacterDeliveryData = data::game::character::Delivery;
 		auto deliveryId = delivery.operator int();
 		auto characterId = CharacterDeliveryData::ReadCharacterId(deliveryId).value();
-		game::session::character::Messages(characterId).Add(messageColor, messageText);
+		auto messages = game::session::character::Messages(characterId);
+		messages.Add(messageColor, messageText);
 		ChangeCharacterIslandReputation(characterId, delivery.GetToIslandId(), reputationDelta);
 		ChangeCharacterIslandReputation(characterId, delivery.GetFromIslandId(), reputationDelta);
-		//create item
+		auto itemType = delivery.GetRewardItemType();
+		auto quantity = delivery.GetRewardQuantity();
 		auto itemId = data::game::Item::Create(
-			delivery.GetRewardItemType().operator int(), 
-			delivery.GetRewardQuantity());
-		//give item to character
+			itemType.operator int(),
+			quantity);
 		data::game::character::Item::Write(characterId, itemId);
-		//message about receiving reward
-		game::session::character::Messages(characterId).Add(game::Colors::GREEN, std::format("You receive {} {}.", delivery.GetRewardQuantity(), delivery.GetRewardItemType().GetName()));
+		messages.Add(game::Colors::GREEN, std::format("You receive {} {}.", quantity, itemType.GetName()));
 		CharacterDeliveryData::Remove(deliveryId);
 		DeliveryData::Remove(deliveryId);
 	}
