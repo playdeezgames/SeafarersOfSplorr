@@ -164,7 +164,7 @@ namespace game::session
 		return data::game::Player::GetCharacterId() == characterId;
 	}
 
-	void Character::AcceptDelivery(const island::delivery_service::Delivery& delivery) const
+	void Character::AcceptDelivery(const Delivery& delivery) const
 	{
 		GetKnownIslands().AddKnownIsland(game::session::Island(delivery.GetToIslandId()));
 		data::game::feature::Delivery::Clear(delivery.operator int());

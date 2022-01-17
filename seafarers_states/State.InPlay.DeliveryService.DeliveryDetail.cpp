@@ -6,7 +6,7 @@ namespace state::in_play::delivery_service
 {
 	static constexpr ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DELIVERY_SERVICE_DELIVERY_DETAIL;
 
-	using Delivery = game::session::island::delivery_service::Delivery;
+	using Delivery = game::session::Delivery;
 
 	static void Refresh()
 	{

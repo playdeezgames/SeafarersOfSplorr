@@ -7,30 +7,6 @@
 namespace game::session::character
 {
 	using DeliveryData = data::game::Delivery;
-	int Delivery::GetToIslandId() const
-	{
-		return DeliveryData::ReadToIsland(deliveryId).value();
-	}
-
-	int Delivery::GetFromIslandId() const
-	{
-		return DeliveryData::ReadFromIsland(deliveryId).value();
-	}
-
-	int Delivery::GetTimeLimit() const
-	{
-		return DeliveryData::ReadTimeLimit(deliveryId).value();
-	}
-
-	item::Type Delivery::GetRewardItemType() const
-	{
-		return item::Type(DeliveryData::ReadRewardItemTypeId(deliveryId).value());
-	}
-
-	int Delivery::GetRewardQuantity() const
-	{
-		return DeliveryData::ReadRewardQuantity(deliveryId).value();
-	}
 
 	bool Delivery::IsLate() const
 	{
@@ -92,8 +68,8 @@ namespace game::session::character
 	{
 		constexpr auto TIME_LIMIT_DELTA = -1;
 		DeliveryData::WriteTimeLimit(
-			deliveryId, 
-			DeliveryData::ReadTimeLimit(deliveryId).value() 
+			this->operator int(), 
+			DeliveryData::ReadTimeLimit(this->operator int()).value()
 			+ TIME_LIMIT_DELTA);
 	}
 }

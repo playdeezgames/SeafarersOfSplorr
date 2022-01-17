@@ -1,6 +1,6 @@
 #include <Data.Game.Delivery.h>
-#include "Game.Session.Island.DeliveryService.Delivery.h"
-namespace game::session::island::delivery_service
+#include "Game.Session.Delivery.h"
+namespace game::session
 {
 	int Delivery::GetToIslandId() const
 	{

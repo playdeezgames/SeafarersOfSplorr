@@ -1,5 +1,5 @@
 #pragma once
-#include "Game.Session.Island.DeliveryService.Delivery.h"
+#include "Game.Session.Delivery.h"
 #include <vector>
 namespace game::session::island::delivery_service
 {

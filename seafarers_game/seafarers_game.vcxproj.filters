@@ -195,6 +195,12 @@
     <Filter Include="Source Files\Session\Character\Delivery">
       <UniqueIdentifier>{b6a2a4ec-56a8-4729-a901-40125f6cbeea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Session\Delivery">
+      <UniqueIdentifier>{0ed1b026-7cc8-47a7-9896-02479394b673}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Delivery">
+      <UniqueIdentifier>{00421ea6-87ed-4d88-8ac8-b07e41954801}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -470,9 +476,6 @@
     <ClInclude Include="Game.Session.Island.DeliveryService.Deliveries.h">
       <Filter>Header Files\Session\Island\Feature\Delivery Service</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.Island.DeliveryService.Delivery.h">
-      <Filter>Header Files\Session\Island\Feature\Delivery Service</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.Island.DeliveryService.h">
       <Filter>Header Files\Session\Island\Feature\Delivery Service</Filter>
     </ClInclude>
@@ -481,6 +484,9 @@
     </ClInclude>
     <ClInclude Include="Game.Session.Character.Delivery.h">
       <Filter>Header Files\Session\Character\Delivery</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Delivery.h">
+      <Filter>Header Files\Session\Delivery</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -682,14 +688,14 @@
     <ClCompile Include="Game.Session.Island.DeliveryService.Deliveries.cpp">
       <Filter>Source Files\Session\Island\Feature\Delivery Service</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.Island.DeliveryService.Delivery.cpp">
-      <Filter>Source Files\Session\Island\Feature\Delivery Service</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Session.Character.Deliveries.cpp">
       <Filter>Source Files\Session\Character\Delivery</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Character.Delivery.cpp">
       <Filter>Source Files\Session\Character\Delivery</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Delivery.cpp">
+      <Filter>Source Files\Session\Delivery</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
