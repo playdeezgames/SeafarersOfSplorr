@@ -17,4 +17,13 @@ namespace game::session::island::delivery_service
 		return data::game::Delivery::ReadTimeLimit(deliveryId).value();
 	}
 
+	item::Type Delivery::GetRewardItemType() const
+	{
+		return game::session::item::Type(data::game::Delivery::ReadRewardItemTypeId(deliveryId).value());
+	}
+
+	int Delivery::GetRewardQuantity() const
+	{
+		return data::game::Delivery::ReadRewardQuantity(deliveryId).value();
+	}
 }

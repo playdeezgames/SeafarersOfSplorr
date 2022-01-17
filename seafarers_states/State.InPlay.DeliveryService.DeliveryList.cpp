@@ -65,7 +65,16 @@ namespace state::in_play::delivery_service
 				auto toIsland = islands.GetIsland(delivery.GetToIslandId());
 				auto distance = fromIsland.DistanceTo(toIsland);
 				auto timeLimit = delivery.GetTimeLimit();
-				Terminal::menu.AddAction({ std::format("Distance: {:.2f}, Time Limit: {}", distance, timeLimit), DoSelectDelivery(delivery.operator int())});
+				Terminal::menu.AddAction(
+					{ 
+						std::format(
+							"Dist: {:.2f}, Time Limit: {}, Reward: {} x {}", 
+							distance, 
+							timeLimit,
+							delivery.GetRewardItemType().GetName(),
+							delivery.GetRewardQuantity()), 
+						DoSelectDelivery(delivery.operator int())
+					});
 			});
 		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_DELIVERY_SERVICE) };
 		Terminal::menu.SetDefaultAction(defaultAction);

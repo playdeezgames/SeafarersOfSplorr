@@ -6,6 +6,8 @@ namespace state::in_play::delivery_service
 {
 	static constexpr ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DELIVERY_SERVICE_DELIVERY_DETAIL;
 
+	using Delivery = game::session::island::delivery_service::Delivery;
+
 	static void Refresh()
 	{
 		Terminal::Reinitialize();
@@ -13,12 +15,16 @@ namespace state::in_play::delivery_service
 		Terminal::WriteLine("Job Detail:");
 		Terminal::SetForeground(game::Colors::GRAY);
 		auto delivery = 
-			game::session::island::delivery_service::Delivery(scratch_pad::SelectedDelivery::GetDeliveryId());
+			Delivery(scratch_pad::SelectedDelivery::GetDeliveryId());
 		auto fromIsland = game::session::Island(delivery.GetFromIslandId());
 		auto toIsland = game::session::Island(delivery.GetToIslandId());
 		auto distance = fromIsland.DistanceTo(toIsland);
 		Terminal::WriteLine("Destination: {}", toIsland.GetName());
 		Terminal::WriteLine("Distance: {:.2f}", distance);
+		Terminal::WriteLine(
+			"Reward: {} x {}", 
+			delivery.GetRewardItemType().GetName(), 
+			delivery.GetRewardQuantity());
 		Terminal::ShowMenu();
 		Terminal::ShowPrompt();
 	}
@@ -26,7 +32,7 @@ namespace state::in_play::delivery_service
 	static void AcceptJob()
 	{
 		auto delivery =
-			game::session::island::delivery_service::Delivery(scratch_pad::SelectedDelivery::GetDeliveryId());
+			Delivery(scratch_pad::SelectedDelivery::GetDeliveryId());
 		game::Session()
 			.GetPlayer()
 			.GetCharacter()

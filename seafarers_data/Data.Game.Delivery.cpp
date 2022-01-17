@@ -47,6 +47,8 @@ namespace data::game
 	static constexpr auto FIELD_TO_ISLAND_ID = "ToIslandId"sv;
 	static constexpr auto FIELD_FROM_ISLAND_ID = "FromIslandId"sv;
 	static constexpr auto FIELD_TIME_LIMIT = "TimeLimit"sv;
+	static constexpr auto FIELD_REWARD_QUANTITY = "RewardQuantity"sv;
+	static constexpr auto FIELD_REWARD_ITEM_TYPE_ID = "RewardItemTypeId"sv;
 
 	void Delivery::Initialize()
 	{
@@ -81,6 +83,20 @@ namespace data::game
 		return Common::TryToInt(
 			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_TIME_LIMIT, deliveryId),
 			FIELD_TIME_LIMIT);
+	}
+
+	std::optional<int> Delivery::ReadRewardQuantity(int deliveryId)
+	{
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_REWARD_QUANTITY, deliveryId),
+			FIELD_REWARD_QUANTITY);
+	}
+
+	std::optional<int> Delivery::ReadRewardItemTypeId(int deliveryId)
+	{
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_REWARD_ITEM_TYPE_ID, deliveryId),
+			FIELD_REWARD_ITEM_TYPE_ID);
 	}
 
 	void Delivery::WriteTimeLimit(int deliveryId, int timeLimit)

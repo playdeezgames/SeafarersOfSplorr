@@ -1,4 +1,5 @@
 #pragma once
+#include "Game.Session.Item.Type.h"
 namespace game::session::island::delivery_service
 {
 	struct Delivery
@@ -8,6 +9,8 @@ namespace game::session::island::delivery_service
 		int GetToIslandId() const;
 		int GetFromIslandId() const;
 		int GetTimeLimit() const;
+		item::Type GetRewardItemType() const;
+		int GetRewardQuantity() const;
 	private:
 		int deliveryId;
 	};
