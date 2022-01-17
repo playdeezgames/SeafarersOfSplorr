@@ -8,7 +8,7 @@ namespace game::session::character
 
 	static MessageListTable messageListTable;
 
-	void Messages::Add(const std::string_view& color, const std::string& text) const
+	void Messages::AddInternal(const std::string_view& color, const std::string& text) const
 	{
 		if (characterId == data::game::Player::GetCharacterId().value())
 		{

@@ -26,9 +26,6 @@ namespace state::in_play
 		int moves = common::Data::ToInt(line);
 		while (moves > 0)
 		{
-			Terminal::SetForeground(game::Colors::GREEN);
-			Terminal::WriteLine();
-			Terminal::WriteLine("Steady as she goes!");
 			game::Session().ApplyTurnEffects();
 			moves--;
 		}

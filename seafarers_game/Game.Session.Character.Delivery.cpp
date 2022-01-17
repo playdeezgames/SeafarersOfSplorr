@@ -3,7 +3,6 @@
 #include <Data.Game.Character.Item.h>
 #include <Data.Game.Delivery.h>
 #include <Data.Game.Item.h>
-#include <format>
 #include "Game.Colors.h"
 #include "Game.Session.Character.Delivery.h"
 #include "Game.Session.Character.Messages.h"
@@ -30,7 +29,7 @@ namespace game::session::character
 		auto deliveryId = delivery.operator int();
 		auto characterId = CharacterDeliveryData::ReadCharacterId(deliveryId).value();
 		auto messages = game::session::character::Messages(characterId);
-		messages.Add(messageColor, messageText);
+		messages.Add<>(messageColor, messageText);
 		ChangeCharacterIslandReputation(characterId, delivery.GetToIslandId(), reputationDelta);
 		ChangeCharacterIslandReputation(characterId, delivery.GetFromIslandId(), reputationDelta);
 		auto itemType = delivery.GetRewardItemType();
@@ -39,7 +38,7 @@ namespace game::session::character
 			itemType.operator int(),
 			quantity);
 		data::game::character::Item::Write(characterId, itemId);
-		messages.Add(game::Colors::GREEN, std::format("You receive {} {}.", quantity, itemType.GetName()));
+		messages.Add(game::Colors::GREEN, "You receive {} {}.", quantity, itemType.GetName());
 		CharacterDeliveryData::Remove(deliveryId);
 		DeliveryData::Remove(deliveryId);
 	}

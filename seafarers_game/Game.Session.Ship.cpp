@@ -4,6 +4,7 @@
 #include <Data.Game.Character.Ship.h>
 #include <Data.Game.Ship.h>
 #include <Data.Game.Ship.CurrentIsland.h>
+#include "Game.Colors.h"
 #include "Game.Session.h"
 #include "Game.Session.Ship.h"
 namespace game::session
@@ -178,6 +179,16 @@ namespace game::session
 				effectiveSpeed;
 
 			game::Session().GetWorld().GetBounds().ClampLocation(location.value());
+
+			auto berths = GetBerths().GetBerths();
+			std::for_each(
+				berths.begin(), 
+				berths.end(), 
+				[](const auto& berth) 
+				{
+					auto characterId = berth.GetCharacterId();
+					game::session::character::Messages(characterId).Add(game::Colors::GREEN, "Steady as she goes!");
+				});
 
 			//TODO: Handle Fouling
 

@@ -64,7 +64,7 @@ namespace game::session
 		auto character =
 			Characters()
 			.GetCharacter(characterId);
-		character.GetMessages().Add(game::Colors::RED, std::format("{} loses HP dues to starvation!", character.GetName()));
+		character.GetMessages().Add(game::Colors::RED, "{} loses HP dues to starvation!", character.GetName());
 		auto counters =
 			character
 			.GetCounters();
@@ -82,7 +82,7 @@ namespace game::session
 		auto character =
 			Characters()
 			.GetCharacter(characterId);
-		character.GetMessages().Add(game::Colors::YELLOW, std::format("{} is starving!", character.GetName()));
+		character.GetMessages().Add(game::Colors::YELLOW, "{} is starving!", character.GetName());
 		character
 			.GetCharacteristics()
 			.GetCharacteristic(Characteristic::CONSTITUTION)

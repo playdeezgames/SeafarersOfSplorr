@@ -125,10 +125,6 @@ namespace state::in_play
 
 	static void OnMove()
 	{
-		game::Session()
-			.GetPlayer().GetCharacter()
-			.GetMessages()
-			.Add(game::Colors::GREEN, "Steady as she goes!");
 		game::Session().ApplyTurnEffects();
 		application::UIState::Write(::UIState::IN_PLAY_NEXT);
 	}
