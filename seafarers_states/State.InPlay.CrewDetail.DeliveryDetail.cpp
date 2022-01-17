@@ -26,6 +26,10 @@ namespace state::in_play::crew_detail
 			.GetLocation();
 		Terminal::WriteLine("Destination: {}", toIsland.GetName());
 		Terminal::WriteLine("Distance: {:.2f}", toIsland.DistanceFrom(location));
+		Terminal::WriteLine(
+			"Reward: {} x {}", 
+			delivery.GetRewardItemType().GetName(),
+			delivery.GetRewardQuantity());
 
 		Terminal::ShowMenu();
 		Terminal::ShowPrompt();

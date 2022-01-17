@@ -22,6 +22,16 @@ namespace game::session::character
 		return DeliveryData::ReadTimeLimit(deliveryId).value();
 	}
 
+	item::Type Delivery::GetRewardItemType() const
+	{
+		return item::Type(DeliveryData::ReadRewardItemTypeId(deliveryId).value());
+	}
+
+	int Delivery::GetRewardQuantity() const
+	{
+		return DeliveryData::ReadRewardQuantity(deliveryId).value();
+	}
+
 	bool Delivery::IsLate() const
 	{
 		return GetTimeLimit() < 0;
