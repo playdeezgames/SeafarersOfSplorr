@@ -1,6 +1,9 @@
-#include <Data.Game.Character.Island.Reputation.h>
 #include <Data.Game.Character.Delivery.h>
+#include <Data.Game.Character.Island.Reputation.h>
+#include <Data.Game.Character.Item.h>
 #include <Data.Game.Delivery.h>
+#include <Data.Game.Item.h>
+#include <format>
 #include "Game.Colors.h"
 #include "Game.Session.Character.Delivery.h"
 #include "Game.Session.Character.Messages.h"
@@ -24,11 +27,19 @@ namespace game::session::character
 	static void FinalizeDelivery(const Delivery& delivery, int reputationDelta, const std::string_view& messageColor, const std::string& messageText)
 	{
 		using CharacterDeliveryData = data::game::character::Delivery;
-		int deliveryId = delivery.operator int();
-		int characterId = CharacterDeliveryData::ReadCharacterId(deliveryId).value();
+		auto deliveryId = delivery.operator int();
+		auto characterId = CharacterDeliveryData::ReadCharacterId(deliveryId).value();
 		game::session::character::Messages(characterId).Add(messageColor, messageText);
 		ChangeCharacterIslandReputation(characterId, delivery.GetToIslandId(), reputationDelta);
 		ChangeCharacterIslandReputation(characterId, delivery.GetFromIslandId(), reputationDelta);
+		//create item
+		auto itemId = data::game::Item::Create(
+			delivery.GetRewardItemType().operator int(), 
+			delivery.GetRewardQuantity());
+		//give item to character
+		data::game::character::Item::Write(characterId, itemId);
+		//message about receiving reward
+		game::session::character::Messages(characterId).Add(game::Colors::GREEN, std::format("You receive {} {}.", delivery.GetRewardQuantity(), delivery.GetRewardItemType().GetName()));
 		CharacterDeliveryData::Remove(deliveryId);
 		DeliveryData::Remove(deliveryId);
 	}
