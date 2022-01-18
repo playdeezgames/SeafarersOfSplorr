@@ -3,6 +3,7 @@
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.CrewDetail.Inventory.h"
 #include "State.ScratchPad.CrewDetail.h"
+#include "State.ScratchPad.SelectedItemType.h"
 namespace state::in_play::crew_detail
 {
 	static constexpr auto CURRENT_STATE = ::UIState::IN_PLAY_CREW_DETAIL_INVENTORY;
@@ -27,10 +28,11 @@ namespace state::in_play::crew_detail
 
 	static std::function<void()> GoToItemTypeDetail(int itemTypeId)
 	{
-		return []() 
+		return [itemTypeId]()
 		{
 			//TODO: stuff
-			Refresh();
+			scratch_pad::SelectedItemType::SetItemTypeId(itemTypeId);
+			application::UIState::Write(::UIState::IN_PLAY_CREW_DETAIL_INVENTORY_DETAIL);
 		};
 	}
 

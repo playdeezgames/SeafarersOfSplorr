@@ -33,6 +33,7 @@
     <ClInclude Include="State.InPlay.CrewDetail.Deliveries.h" />
     <ClInclude Include="State.InPlay.CrewDetail.DeliveryDetail.h" />
     <ClInclude Include="State.InPlay.CrewDetail.Inventory.h" />
+    <ClInclude Include="State.InPlay.CrewDetail.InventoryDetail.h" />
     <ClInclude Include="State.InPlay.DeliveryService.h" />
     <ClInclude Include="State.InPlay.DeliveryService.DeliveryDetail.h" />
     <ClInclude Include="State.InPlay.DeliveryService.MakeDelivery.h" />
@@ -74,6 +75,7 @@
     <ClInclude Include="State.ScratchPad.IslandDistrict.h" />
     <ClInclude Include="State.ScratchPad.IslandFeature.h" />
     <ClInclude Include="State.ScratchPad.SelectedDelivery.h" />
+    <ClInclude Include="State.ScratchPad.SelectedItemType.h" />
     <ClInclude Include="State.ScratchPad.SelectedSkill.h" />
     <ClInclude Include="State.ScratchPad.ShipAdjective.h" />
     <ClInclude Include="State.SpendPersonalSkillPoints.h" />
@@ -92,6 +94,7 @@
     <ClCompile Include="State.InPlay.CrewDetail.Deliveries.cpp" />
     <ClCompile Include="State.InPlay.CrewDetail.DeliveryDetail.cpp" />
     <ClCompile Include="State.InPlay.CrewDetail.Inventory.cpp" />
+    <ClCompile Include="State.InPlay.CrewDetail.InventoryDetail.cpp" />
     <ClCompile Include="State.InPlay.DeliveryService.cpp" />
     <ClCompile Include="State.InPlay.DeliveryService.DeliveryDetail.cpp" />
     <ClCompile Include="State.InPlay.DeliveryService.DeliveryList.cpp" />
@@ -134,6 +137,7 @@
     <ClCompile Include="State.ScratchPad.IslandDistrict.cpp" />
     <ClCompile Include="State.ScratchPad.IslandFeature.cpp" />
     <ClCompile Include="State.ScratchPad.SelectedDelivery.cpp" />
+    <ClCompile Include="State.ScratchPad.SelectedItemType.cpp" />
     <ClCompile Include="State.ScratchPad.SelectedSkill.cpp" />
     <ClCompile Include="State.ScratchPad.ShipAdjective.cpp" />
     <ClCompile Include="State.SpendPersonalSkillPoints.cpp" />

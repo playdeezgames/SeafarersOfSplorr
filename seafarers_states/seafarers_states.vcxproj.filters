@@ -278,6 +278,12 @@
     <ClInclude Include="State.InPlay.CrewDetail.Inventory.h">
       <Filter>Header Files\AtSea\Crew Status</Filter>
     </ClInclude>
+    <ClInclude Include="State.ScratchPad.SelectedItemType.h">
+      <Filter>Header Files\ScratchPad</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.CrewDetail.InventoryDetail.h">
+      <Filter>Header Files\AtSea\Crew Status</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -473,6 +479,12 @@
       <Filter>Source Files\AtSea\Crew Status\Deliveries</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.CrewDetail.Inventory.cpp">
+      <Filter>Source Files\AtSea\Crew Status</Filter>
+    </ClCompile>
+    <ClCompile Include="State.ScratchPad.SelectedItemType.cpp">
+      <Filter>Source Files\ScratchPad</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.CrewDetail.InventoryDetail.cpp">
       <Filter>Source Files\AtSea\Crew Status</Filter>
     </ClCompile>
   </ItemGroup>
