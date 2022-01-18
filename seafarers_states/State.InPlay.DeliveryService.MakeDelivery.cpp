@@ -22,12 +22,14 @@ namespace state::in_play::delivery_service
 		Terminal::ShowPrompt();
 	}
 
+	static void UpdateMenu();
 	static std::function<void()> DoCompleteDelivery(int deliveryId)
 	{
 		return 
 			[deliveryId]() 
 			{
 				game::session::character::Delivery(deliveryId).Complete();
+				UpdateMenu();
 				Refresh();
 			};
 	}
