@@ -182,6 +182,9 @@
     <ClInclude Include="Data.Game.Feature.Delivery.h">
       <Filter>Header Files\Delivery</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.Character.ItemTypes.h">
+      <Filter>Header Files\Character</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">

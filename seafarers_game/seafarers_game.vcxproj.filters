@@ -488,6 +488,12 @@
     <ClInclude Include="Game.Session.Delivery.h">
       <Filter>Header Files\Session\Delivery</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Character.ItemTypes.h">
+      <Filter>Header Files\Session\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Character.ItemType.h">
+      <Filter>Header Files\Session\Character</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Session.cpp">

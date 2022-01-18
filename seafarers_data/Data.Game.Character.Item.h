@@ -3,7 +3,7 @@
 #include <optional>
 namespace data::game::character
 {
-	struct Item
+	struct Item//TODO: eliminate this
 	{
 		Item() = delete;
 		static void Initialize();

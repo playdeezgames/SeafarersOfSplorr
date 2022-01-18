@@ -29,6 +29,7 @@
     <ClInclude Include="Data.Game.Character.Island.Reputation.h" />
     <ClInclude Include="Data.Game.Character.Item.h" />
     <ClInclude Include="Data.Game.Character.Island.Known.h" />
+    <ClInclude Include="Data.Game.Character.ItemTypes.h" />
     <ClInclude Include="Data.Game.Character.Mark.h" />
     <ClInclude Include="Data.Game.Character.Plight.h" />
     <ClInclude Include="Data.Game.Character.Ship.h" />

@@ -2,7 +2,7 @@
 #include <optional>
 namespace data::game
 {
-	struct Item
+	struct Item//TODO: eliminate this, do not replace
 	{
 		Item() = delete;
 		static void Initialize();

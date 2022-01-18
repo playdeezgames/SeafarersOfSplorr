@@ -8,6 +8,7 @@
 #include "Game.Session.Character.HitPoints.h"
 #include "Game.Session.Character.KnownIslands.h"
 #include "Game.Session.Character.Items.h"
+#include "Game.Session.Character.ItemTypes.h"
 #include "Game.Session.Character.Marks.h"
 #include "Game.Session.Character.Messages.h"
 #include "Game.Session.Character.Plights.h"
@@ -28,12 +29,13 @@ namespace game::session
 		constexpr character::HitPoints GetHitpoints() const { return character::HitPoints(characterId); }
 		constexpr character::Berth GetBerth() const { return character::Berth(characterId); }
 		constexpr character::Messages GetMessages() const { return character::Messages(characterId); }
-		constexpr character::Items GetItems() const { return character::Items(characterId); }
+		constexpr character::Items GetItems() const { return character::Items(characterId); }//TODO: eliminate
 		constexpr character::Counters GetCounters() const { return character::Counters(characterId); }
 		constexpr character::Flags GetFlags() const { return character::Flags(characterId); }
 		constexpr character::Marks GetMarks() const { return character::Marks(characterId); }
 		constexpr character::Skills GetSkills() const { return character::Skills(characterId); }
 		constexpr character::Deliveries GetDeliveries() const { return character::Deliveries(characterId); }
+		constexpr character::ItemTypes GetItemTypes() const { return character::ItemTypes(characterId); }
 
 		bool IsDead() const;
 		std::string GetName() const;

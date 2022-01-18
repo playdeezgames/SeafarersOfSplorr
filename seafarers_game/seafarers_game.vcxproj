@@ -25,6 +25,8 @@
     <ClInclude Include="Game.Characteristic.h" />
     <ClInclude Include="Game.Session.Character.Deliveries.h" />
     <ClInclude Include="Game.Session.Character.Delivery.h" />
+    <ClInclude Include="Game.Session.Character.ItemType.h" />
+    <ClInclude Include="Game.Session.Character.ItemTypes.h" />
     <ClInclude Include="Game.Session.Delivery.h" />
     <ClInclude Include="Game.Session.Island.DeliveryService.Deliveries.h" />
     <ClInclude Include="Game.Session.Island.DeliveryService.h" />
