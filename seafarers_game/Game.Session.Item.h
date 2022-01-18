@@ -6,6 +6,7 @@ namespace game::session
 	struct Item
 	{
 		constexpr explicit Item(int itemId) : itemId(itemId) {}
+		constexpr explicit operator int() const { return itemId; }
 		item::Type GetItemType() const;
 		void SetQuantity(int quantity) const;
 		int GetQuantity() const;

@@ -9,6 +9,7 @@ namespace data::game::character
 		static void Initialize();
 		static void Write(int characterId, int itemId);
 		static std::vector<int> ReadForCharacter(int characterId);
+		static int ReadCountForCharacter(int characterId);
 		static std::optional<int> ReadForItemInstance(int itemId);
 	};
 }

@@ -75,6 +75,9 @@
     <Filter Include="Source Files\AtSea\Crew Status\Deliveries">
       <UniqueIdentifier>{8a2e232e-ea16-4d48-b53f-70aba8fe422f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\AtSea\Crew Status\Deliveries">
+      <UniqueIdentifier>{b5d6233a-b7d6-446c-b309-b56d35010295}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UIState.h">
@@ -260,17 +263,20 @@
     <ClInclude Include="State.InPlay.DeliveryService.DeliveryList.h">
       <Filter>Header Files\Docked\Delivery Service</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.CrewDetail.Deliveries.h">
-      <Filter>Header Files\AtSea\Crew Status</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.CrewDetail.DeliveryDetail.h">
-      <Filter>Header Files\AtSea\Crew Status</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.CrewDetail.ConfirmAbandonDelivery.h">
-      <Filter>Header Files\AtSea\Crew Status</Filter>
-    </ClInclude>
     <ClInclude Include="State.InPlay.DeliveryService.MakeDelivery.h">
       <Filter>Header Files\Docked\Delivery Service</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.CrewDetail.ConfirmAbandonDelivery.h">
+      <Filter>Header Files\AtSea\Crew Status\Deliveries</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.CrewDetail.Deliveries.h">
+      <Filter>Header Files\AtSea\Crew Status\Deliveries</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.CrewDetail.DeliveryDetail.h">
+      <Filter>Header Files\AtSea\Crew Status\Deliveries</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.CrewDetail.Inventory.h">
+      <Filter>Header Files\AtSea\Crew Status</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -465,6 +471,9 @@
     </ClCompile>
     <ClCompile Include="State.InPlay.CrewDetail.DeliveryDetail.cpp">
       <Filter>Source Files\AtSea\Crew Status\Deliveries</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.CrewDetail.Inventory.cpp">
+      <Filter>Source Files\AtSea\Crew Status</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

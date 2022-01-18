@@ -32,6 +32,7 @@
     <ClInclude Include="State.InPlay.CrewDetail.ConfirmAbandonDelivery.h" />
     <ClInclude Include="State.InPlay.CrewDetail.Deliveries.h" />
     <ClInclude Include="State.InPlay.CrewDetail.DeliveryDetail.h" />
+    <ClInclude Include="State.InPlay.CrewDetail.Inventory.h" />
     <ClInclude Include="State.InPlay.DeliveryService.h" />
     <ClInclude Include="State.InPlay.DeliveryService.DeliveryDetail.h" />
     <ClInclude Include="State.InPlay.DeliveryService.MakeDelivery.h" />
@@ -90,6 +91,7 @@
     <ClCompile Include="State.InPlay.CrewDetail.ConfirmAbandonDelivery.cpp" />
     <ClCompile Include="State.InPlay.CrewDetail.Deliveries.cpp" />
     <ClCompile Include="State.InPlay.CrewDetail.DeliveryDetail.cpp" />
+    <ClCompile Include="State.InPlay.CrewDetail.Inventory.cpp" />
     <ClCompile Include="State.InPlay.DeliveryService.cpp" />
     <ClCompile Include="State.InPlay.DeliveryService.DeliveryDetail.cpp" />
     <ClCompile Include="State.InPlay.DeliveryService.DeliveryList.cpp" />

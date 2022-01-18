@@ -12,6 +12,7 @@ namespace game::session::character
 		int GetItemQuantity(const item::Type& itemType) const;
 		void AddItemQuantity(const item::Type& itemType, int delta) const;
 		void RemoveItemQuantity(const item::Type&, int delta) const;//should this return how many were removed?
+		bool HasAny() const;
 	private:
 		int characterId;
 	};

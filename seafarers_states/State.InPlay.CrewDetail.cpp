@@ -83,6 +83,10 @@ namespace state::in_play
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		Terminal::menu.AddAction({"Characteristics", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_CHARACTERISTICS) });
+		if (character.GetItems().HasAny())
+		{
+			Terminal::menu.AddAction({"Inventory", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_INVENTORY) });
+		}
 		if (character.GetDeliveries().HasAny())
 		{
 			Terminal::menu.AddAction({ "Deliveries", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_DELIVERIES) });

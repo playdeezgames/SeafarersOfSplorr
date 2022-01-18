@@ -8,7 +8,7 @@
 namespace data::game::character
 {
 	using namespace std::string_view_literals;
-	static constexpr std::string_view CREATE_TABLE = 
+	static constexpr auto CREATE_TABLE = 
 		R"(CREATE TABLE IF NOT EXISTS [CharacterItems]
 		(
 			[ItemId] INT NOT NULL UNIQUE,
@@ -16,28 +16,34 @@ namespace data::game::character
 			FOREIGN KEY ([ItemId]) REFERENCES [Items]([ItemId]),
 			FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId])
 		);)"sv;
-	static constexpr std::string_view REPLACE_ITEM = 
+	static constexpr auto REPLACE_ITEM = 
 		R"(REPLACE INTO [CharacterItems]
 		(
 			[ItemId],
 			[CharacterId]
 		) 
 		VALUES({},{});)"sv;
-	static constexpr std::string_view QUERY_ITEMS_FOR_CHARACTER = 
+	static constexpr auto QUERY_ITEMS_FOR_CHARACTER = 
 		R"(SELECT 
 			[ItemId] 
 		FROM [CharacterItems] 
 		WHERE 
 			[CharacterId]={};)"sv;
-	static constexpr std::string_view QUERY_CHARACTER_FOR_ITEM = 
+	static constexpr auto QUERY_CHARACTER_FOR_ITEM = 
 		R"(SELECT 
 			[CharacterId] 
 		FROM [CharacterItems] 
 		WHERE 
 			[ItemId]={};)"sv;
-
-	static constexpr std::string_view FIELD_CHARACTER_ID = "CharacterId";
-	static constexpr std::string_view FIELD_ITEM_ID = "ItemId";
+	static constexpr auto QUERY_ITEM_COUNT_FOR_CHARACTER =
+		R"(SELECT 
+			COUNT(ItemId) AS [ItemCount] 
+		FROM [CharacterItems] 
+		WHERE 
+			[CharacterId]={};)"sv;
+	static constexpr auto FIELD_CHARACTER_ID = "CharacterId"sv;
+	static constexpr auto FIELD_ITEM_ID = "ItemId"sv;
+	static constexpr auto FIELD_ITEM_COUNT = "ItemCount"sv;
 
 	void Item::Initialize()
 	{
@@ -63,6 +69,14 @@ namespace data::game::character
 			std::back_inserter(result),
 			Common::DoToInt(FIELD_ITEM_ID));
 		return result;
+	}
+
+	int Item::ReadCountForCharacter(int characterId)
+	{
+		Initialize();
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM_COUNT_FOR_CHARACTER, characterId),
+			FIELD_ITEM_COUNT).value_or(0);
 	}
 
 	std::optional<int> Item::ReadForItemInstance(int itemInstanceId)

@@ -81,4 +81,9 @@ namespace game::session::character
 			}
 		}
 	}
+
+	bool Items::HasAny() const
+	{
+		return data::game::character::Item::ReadCountForCharacter(characterId) > 0;
+	}
 }
