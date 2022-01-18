@@ -7,7 +7,7 @@ namespace game::session::character
 		constexpr explicit ItemTypes(int characterId) : characterId(characterId) {}
 		std::vector<ItemType> GetItemTypes() const;
 		void AddItemTypeQuantity(const item::Type& itemType, int delta) const;
-		void RemoveItemTypeQuantity(const item::Type&, int delta) const;//should this return how many were removed?
+		void RemoveItemTypeQuantity(const item::Type& itemType, int delta) const;
 		bool HasAny() const;
 	private:
 		int characterId;

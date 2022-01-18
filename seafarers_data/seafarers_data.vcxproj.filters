@@ -128,12 +128,6 @@
     <ClInclude Include="Data.Game.Character.Skill.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Item.h">
-      <Filter>Header Files\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.Game.Character.Item.h">
-      <Filter>Header Files\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Data.Game.Item.Type.h">
       <Filter>Header Files\Item</Filter>
     </ClInclude>
@@ -182,7 +176,7 @@
     <ClInclude Include="Data.Game.Feature.Delivery.h">
       <Filter>Header Files\Delivery</Filter>
     </ClInclude>
-    <ClInclude Include="Data.Game.Character.ItemTypes.h">
+    <ClInclude Include="Data.Game.Character.ItemType.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
   </ItemGroup>
@@ -235,12 +229,6 @@
     <ClCompile Include="Data.Game.Character.Skill.cpp">
       <Filter>Source Files\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Data.Game.Item.cpp">
-      <Filter>Source Files\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.Game.Character.Item.cpp">
-      <Filter>Source Files\Character</Filter>
-    </ClCompile>
     <ClCompile Include="Data.Game.Item.Type.cpp">
       <Filter>Source Files\Item</Filter>
     </ClCompile>
@@ -288,6 +276,9 @@
     </ClCompile>
     <ClCompile Include="Data.Game.Feature.Delivery.cpp">
       <Filter>Source Files\Delivery</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Character.ItemType.cpp">
+      <Filter>Source Files\Character</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

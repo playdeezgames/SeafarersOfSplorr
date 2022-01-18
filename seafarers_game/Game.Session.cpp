@@ -10,7 +10,6 @@ namespace game
 	{
 		GetWorld().ApplyTurnEffects();
 		GetShips().ApplyTurnEffects();
-		GetItems().ApplyTurnEffects();
 		GetCharacters().ApplyTurnEffects();
 	}
 
@@ -26,7 +25,6 @@ namespace game
 
 		GetWorld().Reset();
 		GetShips().Reset();
-		GetItems().Reset();
 		GetCharacters().Reset();
 		GetPlayer().Reset();
 	}

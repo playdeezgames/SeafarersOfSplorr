@@ -17,7 +17,7 @@ namespace state::in_play::crew_detail
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Inventory:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		if (!character.GetItems().HasAny())
+		if (!character.GetItemTypes().HasAny())
 		{
 			Terminal::WriteLine("(nothing)");
 		}
@@ -25,7 +25,7 @@ namespace state::in_play::crew_detail
 		Terminal::ShowPrompt();
 	}
 
-	static std::function<void()> GoToItemDetail(int itemId)
+	static std::function<void()> GoToItemTypeDetail(int itemTypeId)
 	{
 		return []() 
 		{
@@ -42,19 +42,19 @@ namespace state::in_play::crew_detail
 			game::Session()
 			.GetCharacters()
 			.GetCharacter(scratch_pad::CrewDetail::GetCharacterId());
-		auto items = character.GetItems().GetAll();
+		auto itemTypes = character.GetItemTypes().GetItemTypes();
 		std::for_each(
-			items.begin(), 
-			items.end(), 
-			[](const auto& item) 
+			itemTypes.begin(),
+			itemTypes.end(),
+			[](const auto& itemType) 
 			{
 				Terminal::menu.AddAction(
 					{
 						std::format(
 							"{} x {}",
-							item.GetItemType().GetName(),
-							item.GetQuantity()),
-						GoToItemDetail(item.operator int())
+							itemType.GetItemType().GetName(),
+							itemType.GetQuantity()),
+						GoToItemTypeDetail(itemType.GetItemType().operator int())
 					});
 			});
 		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL) };

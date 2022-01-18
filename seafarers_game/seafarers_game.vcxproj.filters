@@ -236,12 +236,6 @@
     <ClInclude Include="Game.Session.Island.h">
       <Filter>Header Files\Session\Island</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.Item.h">
-      <Filter>Header Files\Session\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Items.h">
-      <Filter>Header Files\Session\Item</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.Ship.h">
       <Filter>Header Files\Session\Ship</Filter>
     </ClInclude>
@@ -250,9 +244,6 @@
     </ClInclude>
     <ClInclude Include="Game.Session.World.Wind.h">
       <Filter>Header Files\Session\World</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Character.Items.h">
-      <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.Characters.h">
       <Filter>Header Files\Session\Character</Filter>
@@ -511,12 +502,6 @@
     <ClCompile Include="Game.Session.Island.cpp">
       <Filter>Source Files\Session\Island</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.Item.cpp">
-      <Filter>Source Files\Session\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Items.cpp">
-      <Filter>Source Files\Session\Item</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Session.Ship.cpp">
       <Filter>Source Files\Session\Ship</Filter>
     </ClCompile>
@@ -525,9 +510,6 @@
     </ClCompile>
     <ClCompile Include="Game.Session.World.Wind.cpp">
       <Filter>Source Files\Session\World</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.Session.Character.Items.cpp">
-      <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
     <ClCompile Include="Game.Session.Characters.cpp">
       <Filter>Source Files\Session\Character</Filter>
@@ -702,6 +684,12 @@
     </ClCompile>
     <ClCompile Include="Game.Session.Delivery.cpp">
       <Filter>Source Files\Session\Delivery</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.ItemTypes.cpp">
+      <Filter>Source Files\Session\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Character.ItemType.cpp">
+      <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

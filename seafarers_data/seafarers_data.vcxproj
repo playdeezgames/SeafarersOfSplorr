@@ -27,9 +27,8 @@
     <ClInclude Include="Data.Game.Character.h" />
     <ClInclude Include="Data.Game.Character.Island.Current.h" />
     <ClInclude Include="Data.Game.Character.Island.Reputation.h" />
-    <ClInclude Include="Data.Game.Character.Item.h" />
     <ClInclude Include="Data.Game.Character.Island.Known.h" />
-    <ClInclude Include="Data.Game.Character.ItemTypes.h" />
+    <ClInclude Include="Data.Game.Character.ItemType.h" />
     <ClInclude Include="Data.Game.Character.Mark.h" />
     <ClInclude Include="Data.Game.Character.Plight.h" />
     <ClInclude Include="Data.Game.Character.Ship.h" />
@@ -43,7 +42,6 @@
     <ClInclude Include="Data.Game.Island.h" />
     <ClInclude Include="Data.Game.Island.Market.h" />
     <ClInclude Include="Data.Game.Island.Tribe.h" />
-    <ClInclude Include="Data.Game.Item.h" />
     <ClInclude Include="Data.Game.Item.Type.h" />
     <ClInclude Include="Data.Game.Item.Type.Commodity.h" />
     <ClInclude Include="Data.Game.Player.h" />
@@ -66,8 +64,8 @@
     <ClCompile Include="Data.Game.Character.Flags.cpp" />
     <ClCompile Include="Data.Game.Character.Island.Current.cpp" />
     <ClCompile Include="Data.Game.Character.Island.Reputation.cpp" />
-    <ClCompile Include="Data.Game.Character.Item.cpp" />
     <ClCompile Include="Data.Game.Character.Island.Known.cpp" />
+    <ClCompile Include="Data.Game.Character.ItemType.cpp" />
     <ClCompile Include="Data.Game.Character.Mark.cpp" />
     <ClCompile Include="Data.Game.Character.Plight.cpp" />
     <ClCompile Include="Data.Game.Character.Ship.cpp" />
@@ -81,7 +79,6 @@
     <ClCompile Include="Data.Game.Island.Feature.cpp" />
     <ClCompile Include="Data.Game.Island.Market.cpp" />
     <ClCompile Include="Data.Game.Island.Tribe.cpp" />
-    <ClCompile Include="Data.Game.Item.cpp" />
     <ClCompile Include="Data.Game.Item.Type.cpp" />
     <ClCompile Include="Data.Game.Item.Type.Commodity.cpp" />
     <ClCompile Include="Data.Game.Player.cpp" />

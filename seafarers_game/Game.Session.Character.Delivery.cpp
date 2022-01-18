@@ -1,8 +1,7 @@
 #include <Data.Game.Character.Delivery.h>
 #include <Data.Game.Character.Island.Reputation.h>
-#include <Data.Game.Character.Item.h>
+#include <Data.Game.Character.ItemType.h>
 #include <Data.Game.Delivery.h>
-#include <Data.Game.Item.h>
 #include "Game.Colors.h"
 #include "Game.Session.Character.Delivery.h"
 #include "Game.Session.Character.Messages.h"
@@ -34,10 +33,8 @@ namespace game::session::character
 		ChangeCharacterIslandReputation(characterId, delivery.GetFromIslandId(), reputationDelta);
 		auto itemType = delivery.GetRewardItemType();
 		auto quantity = delivery.GetRewardQuantity();
-		auto itemId = data::game::Item::Create(
-			itemType.operator int(),
-			quantity);
-		data::game::character::Item::Write(characterId, itemId);
+		auto count = data::game::character::ItemType::Read(characterId, itemType.operator int()).value_or(0);
+		data::game::character::ItemType::Write(characterId, itemType.operator int(), count + quantity);
 		messages.Add(game::Colors::GREEN, "You receive {} {}.", quantity, itemType.GetName());
 		CharacterDeliveryData::Remove(deliveryId);
 		DeliveryData::Remove(deliveryId);
