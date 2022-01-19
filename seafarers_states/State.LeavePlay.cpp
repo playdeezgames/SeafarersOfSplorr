@@ -7,11 +7,13 @@
 #include <Game.Colors.h>
 #include "State.LeavePlay.h"
 #include "State.Options.h"
+#include "State.Registrar.h"
+#include "State.SaveGame.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 namespace state
 {
-	static const ::UIState CURRENT_STATE = ::UIState::LEAVE_PLAY;
+	std::optional<int> LeavePlay::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -35,7 +37,7 @@ namespace state
 
 	static void GoToSaveGame()
 	{
-		::application::UIState::Write(::UIState::SAVE_GAME);
+		::application::UIState::Write(SaveGame::GetStateId());
 	}
 
 	static void ContinueGame()
@@ -59,14 +61,16 @@ namespace state
 
 	void LeavePlay::Start()
 	{
-		::application::OnEnter::AddHandler(::UIState::LEAVE_PLAY, OnEnter);
-		::application::Renderer::SetRenderLayout(::UIState::LEAVE_PLAY, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoIntegerInput(
-				menuActions,
-				"Please enter a number between 1 and 4.",
-				Refresh));
-
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoIntegerInput(
+						menuActions,
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

@@ -7,6 +7,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
 #include "State.ConfirmAbandon.h"
+#include "State.LeavePlay.h"
 #include "State.Terminal.h"
 #include "State.MainMenu.h"
 #include "UIState.h"
@@ -38,7 +39,7 @@ namespace state
 
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
-		{ "0", application::UIState::GoTo(::UIState::LEAVE_PLAY)},
+		{ "0", application::UIState::DoGoTo(LeavePlay::GetStateId)},
 		{ "1", application::UIState::DoGoTo(MainMenu::GetStateId)}
 	};
 

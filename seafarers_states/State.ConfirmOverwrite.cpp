@@ -7,6 +7,7 @@
 #include <Game.Colors.h>
 #include <Game.Session.h>
 #include "State.ConfirmOverwrite.h"
+#include "State.SaveGame.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 #include <Visuals.Areas.h>
@@ -77,8 +78,8 @@ namespace state
 
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
-		{ "0", application::UIState::GoTo(::UIState::SAVE_GAME)},
-		{ "1", ConfirmOverwrite}
+		{ "0", application::UIState::DoGoTo(SaveGame::GetStateId) },
+		{ "1", ConfirmOverwrite }
 	};
 
 	static void ConfigureState(const ::UIState& state)

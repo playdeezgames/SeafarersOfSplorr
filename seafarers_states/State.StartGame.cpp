@@ -1,6 +1,7 @@
 #include <Game.Session.h>
 #include "State.ChooseStartType.h"
 #include "State.InPlay.Globals.h"
+#include "State.LoadGame.h"
 #include "State.MainMenu.h"
 #include "State.Registrar.h"
 #include "State.StartGame.h"
@@ -40,7 +41,7 @@ namespace state
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		Terminal::menu.AddAction({ "Continue", ::application::UIState::GoTo(::UIState::LOAD_GAME) });
+		Terminal::menu.AddAction({ "Continue", ::application::UIState::DoGoTo(LoadGame::GetStateId) });
 		Terminal::menu.AddAction({ "Easy", NewGame(game::Difficulty::EASY) });
 		Terminal::menu.AddAction({ "Normal", NewGame(game::Difficulty::NORMAL) });
 		Terminal::menu.AddAction({ "Hard", NewGame(game::Difficulty::HARD) });

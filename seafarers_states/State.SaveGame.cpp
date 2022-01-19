@@ -6,12 +6,14 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
 #include <Game.Session.h>
+#include "State.LeavePlay.h"
+#include "State.Registrar.h"
 #include "State.SaveGame.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 namespace state
 {
-	static const ::UIState CURRENT_STATE = ::UIState::SAVE_GAME;
+	std::optional<int> SaveGame::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -150,18 +152,23 @@ namespace state
 		{"4", Slot4Saver },
 		{"5", Slot5Saver },
 		{"6", SaveToAutosave},
-		{"0", application::UIState::GoTo(::UIState::LEAVE_PLAY)}
+		{"0", application::UIState::DoGoTo(LeavePlay::GetStateId)}
 	};
 
 	void SaveGame::Start()
 	{
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoIntegerInput(
-				menuActions,
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(
+			stateId, 
+			[](int stateId) 
+			{
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoIntegerInput(
+						menuActions,
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

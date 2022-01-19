@@ -4,6 +4,7 @@
 #include "State.InPlay.AtSeaOverview.h"
 #include "State.InPlay.DockOrCareen.h"
 #include "State.InPlay.MultipleMove.h"
+#include "State.LeavePlay.h"
 #include "State.Registrar.h"
 #include "Menu.h"
 namespace state::in_play
@@ -162,7 +163,7 @@ namespace state::in_play
 		}
 		Terminal::menu.AddAction({ "Crew Status", application::UIState::GoTo(::UIState::IN_PLAY_CREW_LIST) });
 		Terminal::menu.AddAction({ "Ship Status", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS) });
-		MenuAction defaultAction = { "Menu", application::UIState::GoTo(::UIState::LEAVE_PLAY) };
+		MenuAction defaultAction = { "Menu", application::UIState::DoGoTo(LeavePlay::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 
