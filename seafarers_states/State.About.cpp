@@ -4,12 +4,13 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
 #include "State.About.h"
+#include "State.Registrar.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 #include <Visuals.Terminals.h>
 namespace state
 {
-	static const ::UIState CURRENT_STATE = ::UIState::ABOUT;
+	std::optional<int> About::stateId = std::nullopt;
 
 	static void OnEnter()
 	{
@@ -25,9 +26,17 @@ namespace state
 		application::UIState::Write(::UIState::MAIN_MENU);
 	}
 
+	template<typename TState>
+	static void DoStart(const TState& state)
+	{
+		::application::OnEnter::AddHandler(state, OnEnter);
+		::application::Renderer::SetRenderLayout(state, Terminal::LAYOUT_NAME);
+	}
+
+	static const ::UIState CURRENT_STATE = ::UIState::ABOUT;
 	void About::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
+		DoStart(CURRENT_STATE);
+		Registrar::Register(stateId, DoStart<int>);
 	}
 }

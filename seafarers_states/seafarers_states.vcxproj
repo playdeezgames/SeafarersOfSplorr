@@ -65,6 +65,7 @@
     <ClInclude Include="State.LoadGame.h" />
     <ClInclude Include="State.MainMenu.h" />
     <ClInclude Include="State.Options.h" />
+    <ClInclude Include="State.Registrar.h" />
     <ClInclude Include="State.SaveGame.h" />
     <ClInclude Include="State.ScratchPad.CrewDetail.h" />
     <ClInclude Include="State.ScratchPad.DetailedStart.ElectiveSkillCategories.h" />
@@ -102,6 +103,7 @@
     <ClCompile Include="State.InPlay.DeliveryService.MakeDelivery.cpp" />
     <ClCompile Include="State.InPlay.IslandDistrict.cpp" />
     <ClCompile Include="State.InPlay.StreetVendor.cpp" />
+    <ClCompile Include="State.Registrar.cpp" />
     <ClCompile Include="State.ScratchPad.DetailedStart.ElectiveSkillCategories.cpp" />
     <ClCompile Include="State.ScratchPad.DetailedStart.PersonalSkillPointAllocations.cpp" />
     <ClCompile Include="State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.cpp" />

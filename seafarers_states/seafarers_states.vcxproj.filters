@@ -287,6 +287,9 @@
     <ClInclude Include="State.InPlay.StreetVendor.h">
       <Filter>Header Files\Docked</Filter>
     </ClInclude>
+    <ClInclude Include="State.Registrar.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -492,6 +495,9 @@
     </ClCompile>
     <ClCompile Include="State.InPlay.StreetVendor.cpp">
       <Filter>Source Files\Docked</Filter>
+    </ClCompile>
+    <ClCompile Include="State.Registrar.cpp">
+      <Filter>Source Files\Utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
