@@ -1,5 +1,6 @@
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
+#include "State.Registrar.h"
 #include "State.Terminal.h"
 #include "State.ChooseStartType.h"
 #include "State.ScratchPad.DetailedStart.Profession.h"
@@ -8,7 +9,7 @@
 #include "UIState.h"
 namespace state
 {
-	static const ::UIState CURRENT_STATE = ::UIState::CHOOSE_START_TYPE;
+	std::optional<int> ChooseStartType::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -76,14 +77,19 @@ namespace state
 		Refresh();
 	}
 
-	void ChooseStartType::Start()
+	static void DoStart(int stateId)
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
+		::application::OnEnter::AddHandler(stateId, OnEnter);
+		::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
+			stateId,
 			Terminal::DoMenuInput(
 				Terminal::INVALID_INPUT,
 				Refresh));
+	}
+
+	void ChooseStartType::Start()
+	{
+		Registrar::Register(stateId, DoStart);
 	}
 }

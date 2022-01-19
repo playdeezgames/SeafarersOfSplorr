@@ -5,6 +5,7 @@
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
+#include "State.About.h"
 #include "State.MainMenu.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -14,7 +15,7 @@ namespace state
 
 	static void GoToAbout()
 	{
-		::application::UIState::Write(::UIState::ABOUT);
+		::application::UIState::Write(About::GetStateId());
 	}
 
 	static void Refresh()
@@ -44,7 +45,7 @@ namespace state
 	static const std::map<std::string, std::function<void()>> menuActions = 
 	{
 		{ "1", application::UIState::GoTo(::UIState::START_GAME)},
-		{ "2", application::UIState::GoTo(::UIState::ABOUT)},
+		{ "2", application::UIState::GoTo(About::GetStateId)},
 		{ "3", application::UIState::GoTo(::UIState::STATISTICS)},
 		{ "4", application::UIState::PushTo(::UIState::OPTIONS)},
 		{ "5", application::UIState::GoTo(::UIState::CONFIRM_QUIT)}

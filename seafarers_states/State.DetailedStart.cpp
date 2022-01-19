@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
+#include "State.ChooseStartType.h"
 #include "State.Terminal.h"
 #include "State.DetailedStart.h"
 #include "State.ScratchPad.DetailedStart.Profession.h"
@@ -48,7 +49,7 @@ namespace state
 			{
 				Terminal::menu.AddAction({ profession.GetName(), DoSelectProfession(profession.operator game::Profession()) });
 			});
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::CHOOSE_START_TYPE) };
+		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(ChooseStartType::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 

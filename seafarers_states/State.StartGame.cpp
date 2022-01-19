@@ -2,6 +2,7 @@
 #include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "State.StartGame.h"
+#include "State.ChooseStartType.h"
 #include "UIState.h"
 namespace state
 {
@@ -13,7 +14,7 @@ namespace state
 		{
 			game::Session().Reset();
 			game::Session().Populate(difficulty);
-			application::UIState::Write(::UIState::CHOOSE_START_TYPE);
+			application::UIState::Write(ChooseStartType::GetStateId());
 		};
 	}
 

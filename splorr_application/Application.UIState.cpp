@@ -31,6 +31,14 @@ namespace application
 		};
 	}
 
+	std::function<void()> UIState::GoTo(std::function<int()> stateSource)
+	{
+		return [stateSource]()
+		{
+			Write(stateSource());
+		};
+	}
+
 	int UIState::Read()
 	{
 		return uiState;

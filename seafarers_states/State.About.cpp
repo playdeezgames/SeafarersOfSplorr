@@ -26,17 +26,14 @@ namespace state
 		application::UIState::Write(::UIState::MAIN_MENU);
 	}
 
-	template<typename TState>
-	static void DoStart(const TState& state)
+	static void DoStart(int state)
 	{
 		::application::OnEnter::AddHandler(state, OnEnter);
 		::application::Renderer::SetRenderLayout(state, Terminal::LAYOUT_NAME);
 	}
 
-	static const ::UIState CURRENT_STATE = ::UIState::ABOUT;
 	void About::Start()
 	{
-		DoStart(CURRENT_STATE);
-		Registrar::Register(stateId, DoStart<int>);
+		Registrar::Register(stateId, DoStart);
 	}
 }
