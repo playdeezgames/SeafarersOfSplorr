@@ -2,7 +2,6 @@
 enum class UIState
 {
 	SPLASH,
-	MAIN_MENU,
 	CONFIRM_QUIT,
 	QUIT,
 	OPTIONS,

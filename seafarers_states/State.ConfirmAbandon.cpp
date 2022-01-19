@@ -8,6 +8,7 @@
 #include <Game.Colors.h>
 #include "State.ConfirmAbandon.h"
 #include "State.Terminal.h"
+#include "State.MainMenu.h"
 #include "UIState.h"
 namespace state
 {
@@ -38,7 +39,7 @@ namespace state
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
 		{ "0", application::UIState::GoTo(::UIState::LEAVE_PLAY)},
-		{ "1", application::UIState::GoTo(::UIState::MAIN_MENU)}
+		{ "1", application::UIState::DoGoTo(MainMenu::GetStateId)}
 	};
 
 	void ConfirmAbandon::Start()

@@ -20,7 +20,7 @@ namespace application
 		static void Write(int);
 		static int Read();
 		static std::function<void()> GoTo(int);
-		static std::function<void()> GoTo(std::function<int()>);
+		static std::function<void()> DoGoTo(std::function<int()>);
 
 		static void Push(int);
 		static void Pop();

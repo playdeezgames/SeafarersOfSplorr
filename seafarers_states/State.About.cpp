@@ -6,6 +6,7 @@
 #include "State.About.h"
 #include "State.Registrar.h"
 #include "State.Terminal.h"
+#include "State.MainMenu.h"
 #include "UIState.h"
 #include <Visuals.Terminals.h>
 namespace state
@@ -23,7 +24,7 @@ namespace state
 		Terminal::WriteLine("A Production of TheGrumpyGameDev");
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::GRAY);
-		application::UIState::Write(::UIState::MAIN_MENU);
+		application::UIState::Write(MainMenu::GetStateId());
 	}
 
 	static void DoStart(int state)

@@ -1,5 +1,6 @@
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.Lose.h"
+#include "State.MainMenu.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_LOSE;
@@ -23,7 +24,7 @@ namespace state::in_play
 
 	static bool OnKey(const std::string& key)
 	{
-		application::UIState::Write(::UIState::MAIN_MENU);
+		application::UIState::Write(MainMenu::GetStateId());
 		return true;
 	}
 

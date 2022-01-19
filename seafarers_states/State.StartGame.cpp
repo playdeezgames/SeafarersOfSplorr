@@ -1,5 +1,6 @@
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
+#include "State.MainMenu.h"
 #include "State.Terminal.h"
 #include "State.StartGame.h"
 #include "State.ChooseStartType.h"
@@ -43,7 +44,7 @@ namespace state
 		Terminal::menu.AddAction({ "Normal", NewGame(game::Difficulty::NORMAL) });
 		Terminal::menu.AddAction({ "Hard", NewGame(game::Difficulty::HARD) });
 		Terminal::menu.AddAction({ "HARDCORE", NewGame(game::Difficulty::HARDCORE) });
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::MAIN_MENU) };
+		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(MainMenu::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 

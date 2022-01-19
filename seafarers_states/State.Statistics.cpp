@@ -5,6 +5,7 @@
 #include <Game.Colors.h>
 #include "State.Terminal.h"
 #include "State.Statistics.h"
+#include "State.MainMenu.h"
 #include "UIState.h"
 namespace state
 {
@@ -19,7 +20,7 @@ namespace state
 		Terminal::WriteLine();
 		Terminal::SetForeground(game::Colors::DARK_GRAY);
 		Terminal::WriteLine("TODO: put statistics here!");
-		application::UIState::Write(::UIState::MAIN_MENU);
+		application::UIState::Write(MainMenu::GetStateId());
 	}
 
 	static void OnEnter()

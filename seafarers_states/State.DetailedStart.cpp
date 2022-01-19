@@ -49,7 +49,7 @@ namespace state
 			{
 				Terminal::menu.AddAction({ profession.GetName(), DoSelectProfession(profession.operator game::Profession()) });
 			});
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(ChooseStartType::GetStateId) };
+		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(ChooseStartType::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 

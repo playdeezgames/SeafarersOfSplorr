@@ -31,7 +31,7 @@ namespace application
 		};
 	}
 
-	std::function<void()> UIState::GoTo(std::function<int()> stateSource)
+	std::function<void()> UIState::DoGoTo(std::function<int()> stateSource)
 	{
 		return [stateSource]()
 		{

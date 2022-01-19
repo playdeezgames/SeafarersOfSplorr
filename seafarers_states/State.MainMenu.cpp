@@ -8,10 +8,11 @@
 #include "State.About.h"
 #include "State.MainMenu.h"
 #include "State.Terminal.h"
+#include "State.Registrar.h"
 #include "UIState.h"
 namespace state
 {
-	static const ::UIState CURRENT_STATE = ::UIState::MAIN_MENU;
+	std::optional<int> MainMenu::stateId = std::nullopt;
 
 	static void GoToAbout()
 	{
@@ -45,21 +46,26 @@ namespace state
 	static const std::map<std::string, std::function<void()>> menuActions = 
 	{
 		{ "1", application::UIState::GoTo(::UIState::START_GAME)},
-		{ "2", application::UIState::GoTo(About::GetStateId)},
+		{ "2", application::UIState::DoGoTo(About::GetStateId)},
 		{ "3", application::UIState::GoTo(::UIState::STATISTICS)},
 		{ "4", application::UIState::PushTo(::UIState::OPTIONS)},
 		{ "5", application::UIState::GoTo(::UIState::CONFIRM_QUIT)}
 	};
 
-	void MainMenu::Start()
+	static void DoStart(int stateId)
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
+		::application::OnEnter::AddHandler(stateId, OnEnter);
+		::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
 		::application::Keyboard::AddHandler(
-			CURRENT_STATE, 
+			stateId, 
 			Terminal::DoIntegerInput(
 				menuActions, 
 				Terminal::INVALID_INPUT,
 				Refresh));
+	}
+
+	void MainMenu::Start()
+	{
+		Registrar::Register(stateId, DoStart);
 	}
 }

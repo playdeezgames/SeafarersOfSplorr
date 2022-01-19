@@ -4,6 +4,7 @@
 #include <Application.Update.h>
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
+#include "State.MainMenu.h"
 #include "State.Splash.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -24,7 +25,7 @@ namespace state
 		ticksLeft = (ticksLeft > ticks) ? (ticksLeft - ticks) : (0);
 		if (ticksLeft == 0)
 		{
-			::application::UIState::Write(::UIState::MAIN_MENU);
+			::application::UIState::Write(MainMenu::GetStateId());
 			ticksLeft = TICKS_TOTAL;
 		}
 	}
