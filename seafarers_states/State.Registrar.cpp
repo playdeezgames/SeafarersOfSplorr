@@ -1,7 +1,8 @@
 #include "State.Registrar.h"
+#include "UIState.h"
 namespace state
 {
-	int Registrar::stateId = 1000;//TODO: when UIState is gone, this can go back to default
+	int Registrar::stateId = (int)::UIState::REGISTRAR_STARTS_HERE;
 
 	void Registrar::Register(std::optional<int>& stateId, std::function<void(int)> starter)
 	{
