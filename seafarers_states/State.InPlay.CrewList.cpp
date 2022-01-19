@@ -3,6 +3,7 @@
 #include <Game.BerthType.h>
 #include <Game.Session.h>
 #include <iterator>
+#include "State.InPlay.AtSeaOverview.h"
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.CrewList.h"
 #include "State.InPlay.Globals.h"
@@ -11,7 +12,7 @@ namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CREW_LIST;
 
-	static auto OnLeave = ::application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
+	static auto OnLeave = ::application::UIState::DoGoTo(AtSeaOverview::GetStateId);
 
 	struct RosterItem
 	{

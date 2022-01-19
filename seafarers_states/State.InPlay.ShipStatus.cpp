@@ -1,5 +1,6 @@
 #include <format>
 #include <Game.Session.h>
+#include "State.InPlay.AtSeaOverview.h"
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.ShipStatus.h"
 namespace state::in_play
@@ -30,7 +31,7 @@ namespace state::in_play
 		Terminal::menu.AddAction({ std::format("Change Speed(Current: {:.1f})", ship.GetSpeed()), application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_SPEED) });
 		Terminal::menu.AddAction({ "Mark Current Location", application::UIState::GoTo(::UIState::IN_PLAY_MARK_LOCATION) });
 		Terminal::menu.AddAction({ "Rename ship", application::UIState::GoTo(::UIState::IN_PLAY_RENAME_SHIP_ADJECTIVE) });
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW) };
+		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(AtSeaOverview::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 

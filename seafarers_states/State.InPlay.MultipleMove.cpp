@@ -2,9 +2,10 @@
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.MultipleMove.h"
+#include "State.Registrar.h"
 namespace state::in_play
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_MULTIPLE_MOVE;
+	std::optional<int> MultipleMove::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -37,15 +38,17 @@ namespace state::in_play
 		{"0", application::UIState::GoTo(::UIState::IN_PLAY_NEXT)}
 	};
 
-
 	void MultipleMove::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoIntegerInput(
-				menuActions, 
-				OnOtherInput));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoIntegerInput(
+						menuActions, 
+						OnOtherInput));
+			});
 	}
 }

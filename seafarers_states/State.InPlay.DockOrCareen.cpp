@@ -1,9 +1,11 @@
 #include <Game.Session.h>
+#include "State.InPlay.AtSeaOverview.h"
 #include "State.InPlay.DockOrCareen.h"
 #include "State.InPlay.Globals.h"
+#include "State.Registrar.h"
 namespace state::in_play
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DOCK_OR_CAREEN;
+	std::optional<int> DockOrCareen::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -40,7 +42,11 @@ namespace state::in_play
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		Terminal::menu.AddAction({ "Dock", OnDock });
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW) };
+		MenuAction defaultAction = 
+			{ 
+				"Never mind", 
+				application::UIState::DoGoTo(AtSeaOverview::GetStateId) 
+			};
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 
@@ -53,12 +59,15 @@ namespace state::in_play
 
 	void DockOrCareen::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId)
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

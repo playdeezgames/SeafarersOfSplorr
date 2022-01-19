@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <Common.Heading.h>
 #include <Game.Session.h>
+#include "State.InPlay.AtSeaOverview.h"
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.HeadForNearBy.h"
 namespace state::in_play
@@ -52,7 +53,7 @@ namespace state::in_play
 						DoSetHeading(island, common::Heading::XYToDegrees(relativeLocation))
 					});
 			});
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_AT_SEA_OVERVIEW) };
+		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(AtSeaOverview::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 

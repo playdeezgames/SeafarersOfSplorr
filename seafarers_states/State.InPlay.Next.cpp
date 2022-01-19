@@ -1,5 +1,6 @@
 #include <Application.Update.h>
 #include <Game.Session.h>
+#include "State.InPlay.AtSeaOverview.h"
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.Next.h"
 namespace state::in_play
@@ -60,7 +61,7 @@ namespace state::in_play
 		}
 		else
 		{
-			application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
+			application::UIState::Write(AtSeaOverview::GetStateId());
 		}
 	}
 

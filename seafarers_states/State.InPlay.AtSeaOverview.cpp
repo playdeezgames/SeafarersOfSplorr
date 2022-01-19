@@ -2,10 +2,13 @@
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.AtSeaOverview.h"
+#include "State.InPlay.DockOrCareen.h"
+#include "State.InPlay.MultipleMove.h"
+#include "State.Registrar.h"
 #include "Menu.h"
 namespace state::in_play
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_AT_SEA_OVERVIEW;
+	std::optional<int> AtSeaOverview::stateId = std::nullopt;
 
 	static bool RefreshDockableIslands()
 	{
@@ -138,7 +141,7 @@ namespace state::in_play
 			.GetDockableIslands()
 			.TryGetFirst())
 		{
-			application::UIState::Write(::UIState::IN_PLAY_DOCK_OR_CAREEN);
+			application::UIState::Write(DockOrCareen::GetStateId());
 		}
 		else
 		{
@@ -152,7 +155,7 @@ namespace state::in_play
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		Terminal::menu.AddAction({ "Move", OnMove });
-		Terminal::menu.AddAction({ "Multiple move", application::UIState::GoTo(::UIState::IN_PLAY_MULTIPLE_MOVE) });
+		Terminal::menu.AddAction({ "Multiple move", application::UIState::DoGoTo(MultipleMove::GetStateId) });
 		if (game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().CanDock())
 		{
 			Terminal::menu.AddAction({ "Dock", OnDock });
@@ -172,16 +175,19 @@ namespace state::in_play
 
 	void AtSeaOverview::Start()
 	{
-		::application::OnEnter::AddHandler(
-			CURRENT_STATE, 
-			OnEnter);
-		::application::Renderer::SetRenderLayout(
-			CURRENT_STATE, 
-			Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE, 
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT, 
-				Refresh));
+		Registrar::Register(stateId, [](int stateId)
+			{
+				::application::OnEnter::AddHandler(
+					stateId,
+					OnEnter);
+				::application::Renderer::SetRenderLayout(
+					stateId,
+					Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

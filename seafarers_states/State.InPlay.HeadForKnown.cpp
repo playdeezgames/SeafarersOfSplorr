@@ -2,6 +2,7 @@
 #include <Common.Data.h>
 #include <Common.Heading.h>
 #include <Game.Session.h>
+#include "State.InPlay.AtSeaOverview.h"
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.HeadForKnown.h"
 namespace state::in_play
@@ -25,7 +26,7 @@ namespace state::in_play
 			Terminal::WriteLine();
 			game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().SetHeading(heading);
 			Terminal::WriteLine("You head for {}.", island.GetDisplayName());
-			application::UIState::Write(::UIState::IN_PLAY_AT_SEA_OVERVIEW);
+			application::UIState::Write(AtSeaOverview::GetStateId());
 		};
 	}
 
