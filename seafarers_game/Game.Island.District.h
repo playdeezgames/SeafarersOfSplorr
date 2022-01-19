@@ -3,6 +3,7 @@ namespace game::island
 {
 	enum class District
 	{
-		BUSINESS
+		BUSINESS,
+		MARKET
 	};
 }

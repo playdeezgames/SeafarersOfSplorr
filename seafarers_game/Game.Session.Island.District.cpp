@@ -14,6 +14,12 @@ namespace game::session::island
 			{
 				"Business District"
 			}
+		},
+		{
+			game::island::District::MARKET,
+			{
+				"Market District"
+			}
 		}
 	};
 

@@ -59,6 +59,7 @@
     <ClInclude Include="State.InPlay.RenameShipAdjective.h" />
     <ClInclude Include="State.InPlay.RenameShipNoun.h" />
     <ClInclude Include="State.InPlay.ShipStatus.h" />
+    <ClInclude Include="State.InPlay.StreetVendor.h" />
     <ClInclude Include="State.InPlay.Win.h" />
     <ClInclude Include="State.LeavePlay.h" />
     <ClInclude Include="State.LoadGame.h" />
@@ -100,6 +101,7 @@
     <ClCompile Include="State.InPlay.DeliveryService.DeliveryList.cpp" />
     <ClCompile Include="State.InPlay.DeliveryService.MakeDelivery.cpp" />
     <ClCompile Include="State.InPlay.IslandDistrict.cpp" />
+    <ClCompile Include="State.InPlay.StreetVendor.cpp" />
     <ClCompile Include="State.ScratchPad.DetailedStart.ElectiveSkillCategories.cpp" />
     <ClCompile Include="State.ScratchPad.DetailedStart.PersonalSkillPointAllocations.cpp" />
     <ClCompile Include="State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.cpp" />

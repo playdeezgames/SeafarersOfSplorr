@@ -17,8 +17,12 @@ namespace game::session::island
 	static const std::map<game::island::FeatureType, std::function<void(const Feature&)>> applyTurnEffectsForFeatureType = 
 	{
 		{
-			game::island::FeatureType::DELIVERY_SERVICE, 
+			game::island::FeatureType::DELIVERY_SERVICE,
 			[](const auto& feature) { feature.GetDeliveryService().ApplyTurnEffects();  }
+		},
+		{
+			game::island::FeatureType::STREET_VENDOR,
+			[](const auto& feature) { feature.GetStreetVendor().ApplyTurnEffects();  }
 		}
 	};
 
@@ -33,6 +37,10 @@ namespace game::session::island
 		{
 			game::island::FeatureType::DELIVERY_SERVICE,
 			[](const auto& feature, const game::Difficulty& difficulty) { feature.GetDeliveryService().Populate(difficulty);  }
+		},
+		{
+			game::island::FeatureType::STREET_VENDOR,
+			[](const auto& feature, const game::Difficulty& difficulty) { feature.GetStreetVendor().Populate(difficulty);  }
 		}
 	};
 

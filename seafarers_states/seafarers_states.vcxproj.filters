@@ -284,6 +284,9 @@
     <ClInclude Include="State.InPlay.CrewDetail.InventoryDetail.h">
       <Filter>Header Files\AtSea\Crew Status</Filter>
     </ClInclude>
+    <ClInclude Include="State.InPlay.StreetVendor.h">
+      <Filter>Header Files\Docked</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="State.About.cpp">
@@ -486,6 +489,9 @@
     </ClCompile>
     <ClCompile Include="State.InPlay.CrewDetail.InventoryDetail.cpp">
       <Filter>Source Files\AtSea\Crew Status</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.StreetVendor.cpp">
+      <Filter>Source Files\Docked</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

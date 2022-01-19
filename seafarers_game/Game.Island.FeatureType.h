@@ -3,6 +3,7 @@ namespace game::island
 {
 	enum class FeatureType
 	{
-		DELIVERY_SERVICE
+		DELIVERY_SERVICE,
+		STREET_VENDOR
 	};
 }

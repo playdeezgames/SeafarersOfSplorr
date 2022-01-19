@@ -39,6 +39,12 @@ namespace game::session::island
 			[]() { return "Delivery Service"; },
 			game::island::FeatureType::DELIVERY_SERVICE,
 			[]() { return game::island::District::BUSINESS; }
+		},
+		{
+			[]() { return 1; },
+			[]() { return "Street Vendor"; },
+			game::island::FeatureType::STREET_VENDOR,
+			[]() { return game::island::District::MARKET; }
 		}
 	};
 

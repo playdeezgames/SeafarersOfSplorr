@@ -47,6 +47,7 @@
 #include <State.InPlay.RenameShipAdjective.h>
 #include <State.InPlay.RenameShipNoun.h>
 #include <State.InPlay.ShipStatus.h>
+#include <State.InPlay.StreetVendor.h>
 #include <State.InPlay.Win.h>
 #include <State.LeavePlay.h>
 #include <State.LoadGame.h>
@@ -172,6 +173,7 @@ namespace application
 		state::in_play::delivery_service::MakeDelivery::Start,
 		state::in_play::crew_detail::Inventory::Start,
 		state::in_play::crew_detail::InventoryDetail::Start,
+		state::in_play::StreetVendor::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};

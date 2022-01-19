@@ -28,7 +28,9 @@ namespace state::in_play
 	static ::UIState GetUIStateForFeatureType(const game::island::FeatureType& featureType)
 	{
 		return
-			::UIState::IN_PLAY_DELIVERY_SERVICE;//TODO: when there is more than one feature type, fix this!
+			(featureType== game::island::FeatureType::DELIVERY_SERVICE) ? (::UIState::IN_PLAY_DELIVERY_SERVICE) :
+			(featureType == game::island::FeatureType::STREET_VENDOR) ? (::UIState::IN_PLAY_STREET_VENDOR) :
+			(throw "no dice!");
 	}
 
 	static std::function<void()> GoToFeature(int featureId, const game::island::FeatureType& featureType)
