@@ -6,6 +6,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
 #include "State.LeavePlay.h"
+#include "State.Options.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 namespace state
@@ -52,7 +53,7 @@ namespace state
 	{
 		{"1", GoToConfirmAbandon},
 		{"2", GoToSaveGame},
-		{"3", application::UIState::PushTo(::UIState::OPTIONS)},
+		{"3", application::UIState::DoPushTo(Options::GetStateId)},
 		{"0", ContinueGame}
 	};
 

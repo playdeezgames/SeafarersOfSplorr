@@ -57,6 +57,13 @@ namespace application
 		};
 	}
 
+	std::function<void()> UIState::DoPushTo(std::function<int()> stateSource)
+	{
+		return [stateSource]() {
+			Push(stateSource());
+		};
+	}
+
 	void UIState::Pop()
 	{
 		uiState = stateStack.top();

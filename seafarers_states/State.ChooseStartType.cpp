@@ -1,8 +1,9 @@
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
-#include "State.Registrar.h"
-#include "State.Terminal.h"
 #include "State.ChooseStartType.h"
+#include "State.Registrar.h"
+#include "State.StartGame.h"
+#include "State.Terminal.h"
 #include "State.ScratchPad.DetailedStart.Profession.h"
 #include "State.ScratchPad.DetailedStart.ElectiveSkillCategories.h"
 #include "State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.h"
@@ -66,7 +67,7 @@ namespace state
 		Terminal::menu.SetRefresh(Refresh);
 		Terminal::menu.AddAction({ "Quick Start", OnQuickStart });
 		Terminal::menu.AddAction({ "Detailed Start", OnDetailedStart });
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::START_GAME) };
+		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(StartGame::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 

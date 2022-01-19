@@ -1,13 +1,14 @@
 #include <Game.Session.h>
+#include "State.ChooseStartType.h"
 #include "State.InPlay.Globals.h"
 #include "State.MainMenu.h"
-#include "State.Terminal.h"
+#include "State.Registrar.h"
 #include "State.StartGame.h"
-#include "State.ChooseStartType.h"
+#include "State.Terminal.h"
 #include "UIState.h"
 namespace state
 {
-	static const ::UIState CURRENT_STATE = ::UIState::START_GAME;
+	std::optional<int> StartGame::stateId = std::nullopt;
 
 	static std::function<void()> NewGame(const game::Difficulty& difficulty)
 	{
@@ -57,12 +58,19 @@ namespace state
 
 	void StartGame::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(
+					stateId, 
+					OnEnter);
+				::application::Renderer::SetRenderLayout(
+					stateId, 
+					Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

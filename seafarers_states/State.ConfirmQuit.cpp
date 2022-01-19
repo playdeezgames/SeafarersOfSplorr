@@ -7,12 +7,13 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
 #include "State.ConfirmQuit.h"
-#include "State.Terminal.h"
 #include "State.MainMenu.h"
+#include "State.Registrar.h"
+#include "State.Terminal.h"
 #include "UIState.h"
 namespace state
 {
-	static const ::UIState CURRENT_STATE = ::UIState::CONFIRM_QUIT;
+	std::optional<int> ConfirmQuit::stateId = std::nullopt;
 
 	static void OnEnter()
 	{
@@ -44,13 +45,16 @@ namespace state
 
 	void ConfirmQuit::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE, 
-			Terminal::DoIntegerInput(
-				menuActions, 
-				Terminal::INVALID_INPUT, 
-				OnEnter));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoIntegerInput(
+						menuActions, 
+						Terminal::INVALID_INPUT, 
+						OnEnter));
+			});
 	}
 }

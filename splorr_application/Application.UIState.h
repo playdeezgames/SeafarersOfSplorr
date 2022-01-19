@@ -25,6 +25,7 @@ namespace application
 		static void Push(int);
 		static void Pop();
 		static std::function<void()> PushTo(int);
+		static std::function<void()> DoPushTo(std::function<int()>);
 		static bool CanPop();
 
 		template<typename TState>

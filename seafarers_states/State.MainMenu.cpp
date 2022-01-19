@@ -6,7 +6,10 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
 #include "State.About.h"
+#include "State.ConfirmQuit.h"
 #include "State.MainMenu.h"
+#include "State.Options.h"
+#include "State.StartGame.h"
 #include "State.Terminal.h"
 #include "State.Registrar.h"
 #include "UIState.h"
@@ -45,11 +48,11 @@ namespace state
 
 	static const std::map<std::string, std::function<void()>> menuActions = 
 	{
-		{ "1", application::UIState::GoTo(::UIState::START_GAME)},
+		{ "1", application::UIState::DoGoTo(StartGame::GetStateId)},
 		{ "2", application::UIState::DoGoTo(About::GetStateId)},
 		{ "3", application::UIState::GoTo(::UIState::STATISTICS)},
-		{ "4", application::UIState::PushTo(::UIState::OPTIONS)},
-		{ "5", application::UIState::GoTo(::UIState::CONFIRM_QUIT)}
+		{ "4", application::UIState::DoPushTo(Options::GetStateId)},
+		{ "5", application::UIState::DoGoTo(ConfirmQuit::GetStateId)}
 	};
 
 	static void DoStart(int stateId)

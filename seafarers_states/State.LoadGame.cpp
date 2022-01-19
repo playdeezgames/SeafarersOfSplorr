@@ -7,6 +7,7 @@
 #include <Game.Colors.h>
 #include <Game.Session.h>
 #include "State.LoadGame.h"
+#include "State.StartGame.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 namespace state
@@ -54,7 +55,7 @@ namespace state
 
 	static void GoBack()
 	{
-		::application::UIState::Write(::UIState::START_GAME);
+		::application::UIState::Write(StartGame::GetStateId());
 	}
 
 	static void LoadFromAutosave()

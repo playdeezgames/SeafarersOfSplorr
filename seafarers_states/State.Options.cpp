@@ -10,11 +10,12 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
 #include "State.Options.h"
+#include "State.Registrar.h"
 #include "State.Terminal.h"
 #include "UIState.h"
 namespace state
 {
-	static const ::UIState CURRENT_STATE = ::UIState::OPTIONS;
+	std::optional<int> Options::stateId = std::nullopt;
 	static const std::string MUTE = "Mute";
 	static const std::string UNMUTE = "Unmute";
 	static const int VOLUME_DELTA = 8;
@@ -125,8 +126,20 @@ namespace state
 
 	void Options::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(CURRENT_STATE, Terminal::DoIntegerInput(menuActions, "Please enter a number between 1 and 6", Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(
+					stateId, 
+					OnEnter);
+				::application::Renderer::SetRenderLayout(
+					stateId, 
+					Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId, 
+					Terminal::DoIntegerInput(
+						menuActions, 
+						Terminal::INVALID_INPUT, 
+						Refresh));
+			});
 	}
 }
