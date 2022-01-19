@@ -5,6 +5,7 @@ namespace game::session::character
 	struct ItemTypes
 	{
 		constexpr explicit ItemTypes(int characterId) : characterId(characterId) {}
+		constexpr ItemType GetItemType(int itemTypeId) { return ItemType(characterId, itemTypeId); }
 		std::vector<ItemType> GetItemTypes() const;
 		void AddItemTypeQuantity(const item::Type& itemType, int delta) const;
 		void RemoveItemTypeQuantity(const item::Type& itemType, int delta) const;

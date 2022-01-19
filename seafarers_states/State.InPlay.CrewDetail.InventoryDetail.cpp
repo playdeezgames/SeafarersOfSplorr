@@ -1,6 +1,8 @@
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.CrewDetail.InventoryDetail.h"
+#include "State.ScratchPad.CrewDetail.h"
+#include "State.ScratchPad.SelectedItemType.h"
 namespace state::in_play::crew_detail
 {
 	static constexpr ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CREW_DETAIL_INVENTORY_DETAIL;
@@ -11,6 +13,13 @@ namespace state::in_play::crew_detail
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Inventory Details:");
 		Terminal::SetForeground(game::Colors::GRAY);
+		auto itemType =
+			game::Session()
+			.GetCharacters()
+			.GetCharacter(scratch_pad::CrewDetail::GetCharacterId())
+			.GetItemTypes().GetItemType(scratch_pad::SelectedItemType::GetItemTypeId());
+		Terminal::WriteLine("Item Type: {}", itemType.GetItemType().GetName());
+		Terminal::WriteLine("Quantity: {}", itemType.GetQuantity());
 		Terminal::ShowMenu();
 		Terminal::ShowPrompt();
 	}

@@ -30,7 +30,6 @@ namespace state::in_play::crew_detail
 	{
 		return [itemTypeId]()
 		{
-			//TODO: stuff
 			scratch_pad::SelectedItemType::SetItemTypeId(itemTypeId);
 			application::UIState::Write(::UIState::IN_PLAY_CREW_DETAIL_INVENTORY_DETAIL);
 		};
