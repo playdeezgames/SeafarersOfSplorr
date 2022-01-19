@@ -5,6 +5,7 @@
 #include <Common.Utility.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
+#include "State.ConfirmAbandon.h"
 #include "State.LeavePlay.h"
 #include "State.Options.h"
 #include "State.Registrar.h"
@@ -32,7 +33,7 @@ namespace state
 
 	static void GoToConfirmAbandon()
 	{
-		::application::UIState::Write(::UIState::CONFIRM_ABANDON);
+		::application::UIState::Write(ConfirmAbandon::GetStateId());
 	}
 
 	static void GoToSaveGame()

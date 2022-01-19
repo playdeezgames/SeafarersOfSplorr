@@ -8,12 +8,13 @@
 #include <Game.Colors.h>
 #include "State.ConfirmAbandon.h"
 #include "State.LeavePlay.h"
+#include "State.Registrar.h"
 #include "State.Terminal.h"
 #include "State.MainMenu.h"
 #include "UIState.h"
 namespace state
 {
-	static const ::UIState CURRENT_STATE = ::UIState::CONFIRM_ABANDON;
+	std::optional<int> ConfirmAbandon::stateId{};
 
 	static void OnEnter()
 	{
@@ -45,8 +46,20 @@ namespace state
 
 	void ConfirmAbandon::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(CURRENT_STATE, Terminal::DoIntegerInput(menuActions, "Please enter a number between 1 and 2.", OnEnter));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(
+					stateId, 
+					OnEnter);
+				::application::Renderer::SetRenderLayout(
+					stateId, 
+					Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId, 
+					Terminal::DoIntegerInput(
+						menuActions, 
+						Terminal::INVALID_INPUT, 
+						OnEnter));
+			});
 	}
 }

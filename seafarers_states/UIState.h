@@ -3,7 +3,6 @@ enum class UIState
 {
 	SPLASH,//this is the first state, so needs to remain here
 	QUIT,//this is the final state, so needs to remain here
-	CONFIRM_ABANDON,
 	CONFIRM_OVERWRITE_SLOT1,//keep it here for now, because its a bit weird
 	CONFIRM_OVERWRITE_SLOT2,//keep it here for now, because its a bit weird
 	CONFIRM_OVERWRITE_SLOT3,//keep it here for now, because its a bit weird
