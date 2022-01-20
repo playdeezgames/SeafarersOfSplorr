@@ -4,12 +4,13 @@
 #include "State.ChooseStartType.h"
 #include "State.Terminal.h"
 #include "State.DetailedStart.h"
+#include "State.Registrar.h"
 #include "State.ScratchPad.DetailedStart.Profession.h"
 #include "State.ScratchPad.DetailedStart.ElectiveSkillCategories.h"
 #include "UIState.h"
 namespace state
 {
-	static const ::UIState CURRENT_STATE = ::UIState::DETAILED_START;
+	std::optional<int> DetailedStart::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -62,12 +63,15 @@ namespace state
 
 	void DetailedStart::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId)
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

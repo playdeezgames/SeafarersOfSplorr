@@ -2,6 +2,7 @@
 #include <Game.Session.h>
 #include <iterator>
 #include <set>
+#include "State.DetailedStart.h"
 #include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "State.ChooseElectiveSkillCategories.h"
@@ -145,7 +146,7 @@ namespace state
 					}
 				});
 		}
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::DETAILED_START) };
+		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(DetailedStart::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 

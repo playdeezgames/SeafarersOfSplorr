@@ -9,9 +9,6 @@ enum class UIState
 	CONFIRM_OVERWRITE_SLOT4,//keep it here for now, because its a bit weird
 	CONFIRM_OVERWRITE_SLOT5,//keep it here for now, because its a bit weird
 
-	TIP,
-	STATISTICS,
-	DETAILED_START,
 	IN_PLAY_CHANGE_SPEED,
 	IN_PLAY_DOCKED,
 	IN_PLAY_WIN,

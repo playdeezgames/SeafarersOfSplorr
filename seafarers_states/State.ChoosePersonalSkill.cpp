@@ -4,6 +4,7 @@
 #include "State.ChoosePersonalSkill.h"
 #include "State.ScratchPad.SelectedSkill.h"
 #include "State.ScratchPad.DetailedStart.PersonalSkillPointAllocations.h"
+#include "State.Tip.h"
 namespace state
 {
 	static const ::UIState CURRENT_STATE = ::UIState::CHOOSE_PERSONAL_SKILL;
@@ -56,7 +57,7 @@ namespace state
 					.GetSkill(entry.first)
 					.AllocatePoints(entry.second);
 			});
-		application::UIState::Write(::UIState::TIP);
+		application::UIState::Write(Tip::GetStateId());
 	}
 
 	static std::function<void()> DoChooseSkill(int skillId)

@@ -10,6 +10,7 @@
 #include "State.MainMenu.h"
 #include "State.Options.h"
 #include "State.StartGame.h"
+#include "State.Statistics.h"
 #include "State.Terminal.h"
 #include "State.Registrar.h"
 #include "UIState.h"
@@ -50,7 +51,7 @@ namespace state
 	{
 		{ "1", application::UIState::DoGoTo(StartGame::GetStateId)},
 		{ "2", application::UIState::DoGoTo(About::GetStateId)},
-		{ "3", application::UIState::GoTo(::UIState::STATISTICS)},
+		{ "3", application::UIState::DoGoTo(Statistics::GetStateId)},
 		{ "4", application::UIState::DoPushTo(Options::GetStateId)},
 		{ "5", application::UIState::DoGoTo(ConfirmQuit::GetStateId)}
 	};

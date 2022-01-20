@@ -10,6 +10,7 @@
 #include "State.Registrar.h"
 #include "State.StartGame.h"
 #include "State.Terminal.h"
+#include "State.Tip.h"
 #include "UIState.h"
 namespace state
 {
@@ -64,7 +65,7 @@ namespace state
 		if (game::Session().GetSaves().GetAuto().Exists())
 		{
 			game::Session().GetSaves().GetAuto().Load();
-			application::UIState::Write(::UIState::TIP);
+			application::UIState::Write(Tip::GetStateId());
 		}
 		else
 		{
@@ -77,7 +78,7 @@ namespace state
 		if (game::Session().GetSaves().GetSlot1().Exists())
 		{
 			game::Session().GetSaves().GetSlot1().Load();
-			application::UIState::Write(::UIState::TIP);
+			application::UIState::Write(Tip::GetStateId());
 		}
 		else
 		{
@@ -90,7 +91,7 @@ namespace state
 		if (game::Session().GetSaves().GetSlot2().Exists())
 		{
 			game::Session().GetSaves().GetSlot2().Load();
-			application::UIState::Write(::UIState::TIP);
+			application::UIState::Write(Tip::GetStateId());
 		}
 		else
 		{
@@ -103,7 +104,7 @@ namespace state
 		if (game::Session().GetSaves().GetSlot3().Exists())
 		{
 			game::Session().GetSaves().GetSlot3().Load();
-			application::UIState::Write(::UIState::TIP);
+			application::UIState::Write(Tip::GetStateId());
 		}
 		else
 		{
@@ -116,7 +117,7 @@ namespace state
 		if (game::Session().GetSaves().GetSlot4().Exists())
 		{
 			game::Session().GetSaves().GetSlot4().Load();
-			application::UIState::Write(::UIState::TIP);
+			application::UIState::Write(Tip::GetStateId());
 		}
 		else
 		{
@@ -129,7 +130,7 @@ namespace state
 		if (game::Session().GetSaves().GetSlot5().Exists())
 		{
 			game::Session().GetSaves().GetSlot5().Load();
-			application::UIState::Write(::UIState::TIP);
+			application::UIState::Write(Tip::GetStateId());
 		}
 		else
 		{

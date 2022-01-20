@@ -1,9 +1,11 @@
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.ChooseStartType.h"
+#include "State.DetailedStart.h"
 #include "State.Registrar.h"
 #include "State.StartGame.h"
 #include "State.Terminal.h"
+#include "State.Tip.h"
 #include "State.ScratchPad.DetailedStart.Profession.h"
 #include "State.ScratchPad.DetailedStart.ElectiveSkillCategories.h"
 #include "State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.h"
@@ -53,12 +55,12 @@ namespace state
 			.Populate(
 				game::Session().GetWorld().GetDifficulty(),
 				scratch_pad::detailed_start::ProfessionalSkillPointAllocations::GetAllocations());
-		application::UIState::Write(::UIState::TIP);
+		application::UIState::Write(Tip::GetStateId());
 	}
 
 	static void OnDetailedStart()
 	{
-		application::UIState::Write(::UIState::DETAILED_START);
+		application::UIState::Write(DetailedStart::GetStateId());
 	}
 
 	static void UpdateMenu()

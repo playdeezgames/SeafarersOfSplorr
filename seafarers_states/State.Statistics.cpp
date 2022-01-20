@@ -3,13 +3,14 @@
 #include <Application.UIState.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
-#include "State.Terminal.h"
-#include "State.Statistics.h"
 #include "State.MainMenu.h"
+#include "State.Registrar.h"
+#include "State.Statistics.h"
+#include "State.Terminal.h"
 #include "UIState.h"
 namespace state
 {
-	static const ::UIState CURRENT_STATE = ::UIState::STATISTICS;
+	std::optional<int> Statistics::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -31,7 +32,10 @@ namespace state
 
 	void Statistics::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
+		Registrar::Register(stateId, [](int stateId)
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+			});
 	}
 }

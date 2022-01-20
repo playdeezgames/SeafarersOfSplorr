@@ -7,12 +7,13 @@
 #include <Data.JSON.Stores.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
+#include "State.Registrar.h"
 #include "State.Terminal.h"
 #include "State.Tip.h"
 #include "UIState.h"
 namespace state
 {
-	static const ::UIState CURRENT_STATE = ::UIState::TIP;
+	std::optional<int> Tip::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -47,8 +48,11 @@ namespace state
 
 	void Tip::Start()
 	{
-		::application::Keyboard::AddHandler(CURRENT_STATE, OnKeyboard);
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::Keyboard::AddHandler(stateId, OnKeyboard);
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+			});
 	}
 }
