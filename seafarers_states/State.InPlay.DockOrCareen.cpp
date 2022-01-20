@@ -2,6 +2,7 @@
 #include "State.InPlay.AtSeaOverview.h"
 #include "State.InPlay.DockOrCareen.h"
 #include "State.InPlay.Globals.h"
+#include "State.InPlay.Next.h"
 #include "State.Registrar.h"
 namespace state::in_play
 {
@@ -34,7 +35,7 @@ namespace state::in_play
 			.GetBerth()
 			.GetShip()
 			.Dock();
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		application::UIState::Write(Next::GetStateId());
 	}
 
 	static void UpdateMenu()

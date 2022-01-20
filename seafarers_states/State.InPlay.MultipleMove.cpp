@@ -2,6 +2,7 @@
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.MultipleMove.h"
+#include "State.InPlay.Next.h"
 #include "State.Registrar.h"
 namespace state::in_play
 {
@@ -30,12 +31,12 @@ namespace state::in_play
 			game::Session().ApplyTurnEffects();
 			moves--;
 		}
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		application::UIState::Write(Next::GetStateId());
 	}
 
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
-		{"0", application::UIState::GoTo(::UIState::IN_PLAY_NEXT)}
+		{"0", application::UIState::DoGoTo(Next::GetStateId)}
 	};
 
 	void MultipleMove::Start()

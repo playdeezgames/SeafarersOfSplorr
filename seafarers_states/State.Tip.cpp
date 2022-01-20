@@ -7,6 +7,7 @@
 #include <Data.JSON.Stores.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
+#include "State.InPlay.Next.h"
 #include "State.Registrar.h"
 #include "State.Terminal.h"
 #include "State.Tip.h"
@@ -42,7 +43,7 @@ namespace state
 
 	static bool OnKeyboard(const std::string&)
 	{
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		application::UIState::Write(in_play::Next::GetStateId());
 		return true;
 	}
 

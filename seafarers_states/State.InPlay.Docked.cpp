@@ -2,10 +2,12 @@
 #include <Game.Session.h>
 #include "State.InPlay.Docked.h"
 #include "State.InPlay.Globals.h"
+#include "State.InPlay.Next.h"
+#include "State.Registrar.h"
 #include "State.ScratchPad.IslandDistrict.h"
 namespace state::in_play
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DOCKED;
+	std::optional<int> Docked::stateId = std::nullopt;
 	static const std::string FORMAT_NAME = "Island Name: {}";
 
 	static void Refresh()
@@ -23,7 +25,7 @@ namespace state::in_play
 	static void OnUndock()
 	{
 		game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().Undock();
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		application::UIState::Write(Next::GetStateId());
 	}
 
 	static std::function<void()> DoGoToDistrict(const game::session::island::District& district)
@@ -66,12 +68,15 @@ namespace state::in_play
 
 	void Docked::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

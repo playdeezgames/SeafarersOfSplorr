@@ -1,6 +1,7 @@
 #include <algorithm>
 #include "State.InPlay.Globals.h"
 #include <Game.Session.h>
+#include "State.InPlay.Docked.h"
 #include "State.InPlay.IslandDistrict.h"
 #include "State.ScratchPad.IslandDistrict.h"
 #include "State.ScratchPad.IslandFeature.h"
@@ -63,7 +64,7 @@ namespace state::in_play
 			{
 				Terminal::menu.AddAction({ feature.GetName() , GoToFeature(feature.operator int(), feature.GetFeatureType()) });
 			});
-		MenuAction defaultAction = { "Leave district", application::UIState::GoTo(::UIState::IN_PLAY_DOCKED) };
+		MenuAction defaultAction = { "Leave district", application::UIState::DoGoTo(Docked::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 

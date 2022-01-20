@@ -1,16 +1,20 @@
 #include <Application.Update.h>
 #include <Game.Session.h>
 #include "State.InPlay.AtSeaOverview.h"
+#include "State.InPlay.Docked.h"
 #include "State.InPlay.Globals.h"
+#include "State.InPlay.Lose.h"
 #include "State.InPlay.Next.h"
+#include "State.InPlay.Win.h"
+#include "State.Registrar.h"
 namespace state::in_play
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_NEXT;
+	std::optional<int> Next::stateId = std::nullopt;
 
 	struct StatusChecker
 	{
 		std::function<bool()> checker;
-		::UIState destination;
+		std::function<int()> destination;
 	};
 
 	static bool IsPlayerOutOfTurns()
@@ -31,8 +35,8 @@ namespace state::in_play
 
 	static const std::list<StatusChecker> statusCheckers =
 	{
-		{IsPlayerOutOfTurns, ::UIState::IN_PLAY_WIN},
-		{IsPlayerDead, ::UIState::IN_PLAY_LOSE}
+		{IsPlayerOutOfTurns, Win::GetStateId },
+		{IsPlayerDead, Lose::GetStateId }
 	};
 
 	static void OnEnter()
@@ -41,7 +45,7 @@ namespace state::in_play
 		{
 			if (statusChecker.checker())
 			{
-				application::UIState::Write(statusChecker.destination);
+				application::UIState::Write(statusChecker.destination());
 				return;
 			}
 		}
@@ -57,7 +61,7 @@ namespace state::in_play
 		auto island = character.TryGetIsland();
 		if (island)
 		{
-			application::UIState::Write(::UIState::IN_PLAY_DOCKED);
+			application::UIState::Write(Docked::GetStateId());
 		}
 		else
 		{
@@ -72,7 +76,10 @@ namespace state::in_play
 
 	void Next::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Update::AddHandler(CURRENT_STATE, OnUpdate);
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Update::AddHandler(stateId, OnUpdate);
+			});
 	}
 }

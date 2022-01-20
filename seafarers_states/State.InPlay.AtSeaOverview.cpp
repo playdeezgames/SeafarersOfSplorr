@@ -1,9 +1,10 @@
 #include <Common.Heading.h>
 #include <Game.Session.h>
-#include "State.InPlay.Globals.h"
 #include "State.InPlay.AtSeaOverview.h"
 #include "State.InPlay.DockOrCareen.h"
+#include "State.InPlay.Globals.h"
 #include "State.InPlay.MultipleMove.h"
+#include "State.InPlay.Next.h"
 #include "State.LeavePlay.h"
 #include "State.Registrar.h"
 #include "Menu.h"
@@ -130,7 +131,7 @@ namespace state::in_play
 	static void OnMove()
 	{
 		game::Session().ApplyTurnEffects();
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		application::UIState::Write(Next::GetStateId());
 	}
 
 	static void OnDock()

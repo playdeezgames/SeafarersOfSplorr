@@ -7,6 +7,7 @@
 #include <Game.Colors.h>
 #include <Game.Session.h>
 #include "State.ConfirmOverwrite.h"
+#include "State.InPlay.Next.h"
 #include "State.SaveGame.h"
 #include "State.Terminal.h"
 #include "UIState.h"
@@ -58,7 +59,7 @@ namespace state
 			game::Session().GetSaves().GetSlot5().Store();
 			break;
 		}
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		application::UIState::Write(in_play::Next::GetStateId());
 	}
 
 	static const std::vector<::UIState> states =

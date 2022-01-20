@@ -9,11 +9,6 @@ enum class UIState
 	CONFIRM_OVERWRITE_SLOT4,//keep it here for now, because its a bit weird
 	CONFIRM_OVERWRITE_SLOT5,//keep it here for now, because its a bit weird
 
-	IN_PLAY_CHANGE_SPEED,
-	IN_PLAY_DOCKED,
-	IN_PLAY_WIN,
-	IN_PLAY_LOSE,
-	IN_PLAY_NEXT,
 	IN_PLAY_MESSAGE,
 	IN_PLAY_CREW_LIST,
 	IN_PLAY_CREW_DETAIL,
@@ -44,5 +39,6 @@ enum class UIState
 	IN_PLAY_CREW_DETAIL_INVENTORY,
 	IN_PLAY_CREW_DETAIL_INVENTORY_DETAIL,
 	IN_PLAY_STREET_VENDOR,
+
 	REGISTRAR_STARTS_HERE//so that the registrar's state id can get property initialized
 };

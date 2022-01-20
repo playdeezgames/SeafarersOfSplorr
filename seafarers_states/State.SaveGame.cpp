@@ -6,6 +6,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
 #include <Game.Session.h>
+#include "State.InPlay.Next.h"
 #include "State.LeavePlay.h"
 #include "State.Registrar.h"
 #include "State.SaveGame.h"
@@ -80,7 +81,7 @@ namespace state
 	static void SaveToAutosave()
 	{
 		game::Session().GetSaves().GetAuto().Store();
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		application::UIState::Write(in_play::Next::GetStateId());
 	}
 
 	static void Slot1Saver()
@@ -91,7 +92,7 @@ namespace state
 			return;
 		}
 		game::Session().GetSaves().GetSlot1().Store();
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		application::UIState::Write(in_play::Next::GetStateId());
 	}
 
 	static void Slot2Saver()
@@ -102,7 +103,7 @@ namespace state
 			return;
 		}
 		game::Session().GetSaves().GetSlot2().Store();
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		application::UIState::Write(in_play::Next::GetStateId());
 	}
 
 	static void Slot3Saver()
@@ -113,7 +114,7 @@ namespace state
 			return;
 		}
 		game::Session().GetSaves().GetSlot3().Store();
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		application::UIState::Write(in_play::Next::GetStateId());
 	}
 
 	static void Slot4Saver()
@@ -124,7 +125,7 @@ namespace state
 			return;
 		}
 		game::Session().GetSaves().GetSlot4().Store();
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		application::UIState::Write(in_play::Next::GetStateId());
 	}
 
 	static void Slot5Saver()
@@ -135,7 +136,7 @@ namespace state
 			return;
 		}
 		game::Session().GetSaves().GetSlot5().Store();
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		application::UIState::Write(in_play::Next::GetStateId());
 	}
 
 	static void OnEnter()

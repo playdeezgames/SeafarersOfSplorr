@@ -6,6 +6,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
 #include "State.ConfirmAbandon.h"
+#include "State.InPlay.Next.h"
 #include "State.LeavePlay.h"
 #include "State.Options.h"
 #include "State.Registrar.h"
@@ -43,7 +44,7 @@ namespace state
 
 	static void ContinueGame()
 	{
-		application::UIState::Write(::UIState::IN_PLAY_NEXT);
+		application::UIState::Write(in_play::Next::GetStateId());
 	}
 
 	static void OnEnter()
