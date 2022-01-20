@@ -8,6 +8,7 @@
 #include <Game.Colors.h> //common include
 #include <Game.Difficulty.h>
 #include <Game.Profession.h>
+#include "State.Registrar.h"
 #include "State.Terminal.h" //common include
 #include "UIState.h" //common include
 namespace state::in_play

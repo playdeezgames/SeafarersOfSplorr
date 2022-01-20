@@ -1,13 +1,14 @@
 #include <algorithm>
 #include <Common.Data.h>
 #include <Game.Session.h>
+#include "State.ChooseProfessionalSkill.h"
 #include "State.InPlay.Globals.h"
 #include "State.SpendProfessionalSkillPoints.h"
 #include "State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.h"
 #include "State.ScratchPad.SelectedSkill.h"
 namespace state
 {
-	static const ::UIState CURRENT_STATE = ::UIState::SPEND_PROFESSIONAL_SKILL_POINTS;
+	std::optional<int> SpendProfessionalSkillPoints::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -46,7 +47,7 @@ namespace state
 
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
-		{ "0", application::UIState::GoTo(::UIState::CHOOSE_PROFESSIONAL_SKILL)}
+		{ "0", application::UIState::DoGoTo(ChooseProfessionalSkill::GetStateId)}
 	};
 
 	static void OnOtherInput(const std::string& text)
@@ -57,7 +58,7 @@ namespace state
 			scratch_pad::detailed_start::ProfessionalSkillPointAllocations::AllocateSkillPoints(
 				scratch_pad::SelectedSkill::GetSkillId(), 
 				points);
-			application::UIState::Write(::UIState::CHOOSE_PROFESSIONAL_SKILL);
+			application::UIState::Write(ChooseProfessionalSkill::GetStateId());
 		}
 		else
 		{
@@ -68,12 +69,15 @@ namespace state
 
 	void SpendProfessionalSkillPoints::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoIntegerInput(
-				menuActions,
-				OnOtherInput));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoIntegerInput(
+						menuActions,
+						OnOtherInput));
+			});
 	}
 }

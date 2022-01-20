@@ -2,12 +2,13 @@
 #include <Common.Heading.h>
 #include <Game.Session.h>
 #include "State.InPlay.ChangeHeading.h"
+#include "State.InPlay.ConfirmHeadForMark.h"
 #include "State.InPlay.HeadForMark.h"
 #include "State.InPlay.Globals.h"
 #include "State.ScratchPad.HeadForMark.h"
 namespace state::in_play
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_HEAD_FOR_MARK;
+	std::optional<int> HeadForMark::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -30,7 +31,7 @@ namespace state::in_play
 		return [markName]()
 		{
 			scratch_pad::HeadForMark::SetMark(markName);
-			application::UIState::Write(::UIState::IN_PLAY_CONFIRM_HEAD_FOR_MARK);
+			application::UIState::Write(ConfirmHeadForMark::GetStateId());
 		};
 	}
 
@@ -64,12 +65,15 @@ namespace state::in_play
 
 	void HeadForMark::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

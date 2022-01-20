@@ -5,7 +5,7 @@ namespace state::in_play
 	struct IslandDistrict
 	{
 		static void Start();
-		static int GetStateId() { return stateId.value(); }
+		static constexpr int GetStateId() { return stateId.value(); }
 	private:
 		static std::optional<int> stateId;
 	};

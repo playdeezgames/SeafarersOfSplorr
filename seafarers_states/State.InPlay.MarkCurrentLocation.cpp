@@ -6,7 +6,7 @@
 #include "State.InPlay.ShipStatus.h"
 namespace state::in_play
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_MARK_LOCATION;
+	std::optional<int> MarkCurrentLocation::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -60,13 +60,16 @@ namespace state::in_play
 
 	void MarkCurrentLocation::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			HandleKey);
-		::application::TextInput::AddHandler(
-			CURRENT_STATE, 
-			HandleText);
+		Registrar::Register(stateId, [](int stateId)
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					HandleKey);
+				::application::TextInput::AddHandler(
+					stateId,
+					HandleText);
+			});
 	}
 }

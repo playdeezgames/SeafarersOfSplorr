@@ -1,13 +1,14 @@
 #include <algorithm>
 #include <Common.Data.h>
 #include <Game.Session.h>
+#include "State.ChoosePersonalSkill.h"
 #include "State.InPlay.Globals.h"
-#include "State.SpendPersonalSkillPoints.h"
 #include "State.ScratchPad.SelectedSkill.h"
 #include "State.ScratchPad.DetailedStart.PersonalSkillPointAllocations.h"
+#include "State.SpendPersonalSkillPoints.h"
 namespace state
 {
-	static const ::UIState CURRENT_STATE = ::UIState::SPEND_PERSONAL_SKILL_POINTS;
+	std::optional<int> SpendPersonalSkillPoints::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -46,7 +47,7 @@ namespace state
 
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
-		{ "0", application::UIState::GoTo(::UIState::CHOOSE_PERSONAL_SKILL)}
+		{ "0", application::UIState::DoGoTo(ChoosePersonalSkill::GetStateId)}
 	};
 
 
@@ -56,7 +57,7 @@ namespace state
 		if (points <= scratch_pad::detailed_start::PersonalSkillPointAllocations::GetSkillPointsRemaining())
 		{
 			scratch_pad::detailed_start::PersonalSkillPointAllocations::AllocateSkillPoints(scratch_pad::SelectedSkill::GetSkillId(), points);
-			application::UIState::Write(::UIState::CHOOSE_PERSONAL_SKILL);
+			application::UIState::Write(ChoosePersonalSkill::GetStateId());
 		}
 		else
 		{
@@ -67,12 +68,15 @@ namespace state
 
 	void SpendPersonalSkillPoints::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoIntegerInput(
-				menuActions,
-				OnOtherInput));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoIntegerInput(
+						menuActions,
+						OnOtherInput));
+			});
 	}
 }

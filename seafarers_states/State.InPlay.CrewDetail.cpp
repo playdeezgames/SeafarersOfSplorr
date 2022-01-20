@@ -1,5 +1,6 @@
 #include <Game.Session.h>
 #include "State.InPlay.CrewDetail.h"
+#include "State.InPlay.CrewDetail.Characteristics.h"
 #include "State.InPlay.CrewList.h"
 #include "State.InPlay.Globals.h"
 #include "State.Registrar.h"
@@ -84,7 +85,7 @@ namespace state::in_play
 
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		Terminal::menu.AddAction({"Characteristics", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_CHARACTERISTICS) });
+		Terminal::menu.AddAction({"Characteristics", application::UIState::DoGoTo(crew_detail::Characteristics::GetStateId) });
 		if (character.GetItemTypes().HasAny())
 		{
 			Terminal::menu.AddAction({"Inventory", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_INVENTORY) });

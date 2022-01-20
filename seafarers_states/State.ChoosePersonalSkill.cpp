@@ -4,10 +4,11 @@
 #include "State.ChoosePersonalSkill.h"
 #include "State.ScratchPad.SelectedSkill.h"
 #include "State.ScratchPad.DetailedStart.PersonalSkillPointAllocations.h"
+#include "State.SpendPersonalSkillPoints.h"
 #include "State.Tip.h"
 namespace state
 {
-	static const ::UIState CURRENT_STATE = ::UIState::CHOOSE_PERSONAL_SKILL;
+	std::optional<int> ChoosePersonalSkill::stateId = std::nullopt;
 
 	static void RefreshExistingSkillPointAllocations()
 	{
@@ -65,7 +66,7 @@ namespace state
 		return [skillId]() 
 		{
 			scratch_pad::SelectedSkill::SetSkillId(skillId);
-			application::UIState::Write(::UIState::SPEND_PERSONAL_SKILL_POINTS);
+			application::UIState::Write(SpendPersonalSkillPoints::GetStateId());
 		};
 	}
 
@@ -99,12 +100,15 @@ namespace state
 
 	void ChoosePersonalSkill::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

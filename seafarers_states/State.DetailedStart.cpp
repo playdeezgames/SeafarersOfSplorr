@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
+#include "State.ChooseElectiveSkillCategories.h"
 #include "State.ChooseStartType.h"
 #include "State.Terminal.h"
 #include "State.DetailedStart.h"
@@ -34,7 +35,7 @@ namespace state
 		{
 			scratch_pad::detailed_start::Profession::SetProfession(profession);
 			scratch_pad::detailed_start::ElectiveSkillCategories::Clear();
-			application::UIState::Write(::UIState::CHOOSE_ELECTIVE_SKILL_CATEGORIES);
+			application::UIState::Write(ChooseElectiveSkillCategories::GetStateId());
 		};
 	}
 

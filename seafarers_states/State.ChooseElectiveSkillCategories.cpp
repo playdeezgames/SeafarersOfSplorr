@@ -6,6 +6,8 @@
 #include "State.InPlay.Globals.h"
 #include "State.Terminal.h"
 #include "State.ChooseElectiveSkillCategories.h"
+#include "State.ChooseProfessionalSkill.h"
+#include "State.Registrar.h"
 #include "State.ScratchPad.DetailedStart.Profession.h"
 #include "State.ScratchPad.DetailedStart.ElectiveSkillCategories.h"
 #include "State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.h"
@@ -13,7 +15,7 @@
 #include "UIState.h"
 namespace state
 {
-	static const ::UIState CURRENT_STATE = ::UIState::CHOOSE_ELECTIVE_SKILL_CATEGORIES;
+	std::optional<int> ChooseElectiveSkillCategories::stateId = std::nullopt;
 
 	static std::set<game::session::SkillCategory> GetFixedSkillCategories()
 	{
@@ -94,7 +96,7 @@ namespace state
 		scratch_pad::detailed_start::ProfessionalSkillSet::GenerateSkills(
 			scratch_pad::detailed_start::Profession::GetProfession(), 
 			scratch_pad::detailed_start::ElectiveSkillCategories::GetCategories());
-		application::UIState::Write(::UIState::CHOOSE_PROFESSIONAL_SKILL);
+		application::UIState::Write(ChooseProfessionalSkill::GetStateId());
 	}
 
 	static void UpdateMenu();
@@ -159,12 +161,15 @@ namespace state
 
 	void ChooseElectiveSkillCategories::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

@@ -2,11 +2,12 @@
 #include <Game.Session.h>
 #include "State.InPlay.ConfirmHeadForMark.h"
 #include "State.InPlay.Globals.h"
+#include "State.InPlay.HeadForMark.h"
 #include "State.InPlay.ShipStatus.h"
 #include "State.ScratchPad.HeadForMark.h"
 namespace state::in_play
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CONFIRM_HEAD_FOR_MARK;
+	std::optional<int> ConfirmHeadForMark::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -77,7 +78,7 @@ namespace state::in_play
 		Terminal::menu.SetRefresh(Refresh);
 		Terminal::menu.AddAction({ "Confirm Heading", OnConfirm});
 		Terminal::menu.AddAction({ "Delete Mark", OnDelete });
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_HEAD_FOR_MARK) };
+		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(HeadForMark::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 
@@ -90,12 +91,15 @@ namespace state::in_play
 
 	void ConfirmHeadForMark::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

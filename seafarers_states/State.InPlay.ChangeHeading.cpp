@@ -3,6 +3,7 @@
 #include "State.InPlay.ChangeHeading.h"
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.HeadForKnown.h"
+#include "State.InPlay.HeadForMark.h"
 #include "State.InPlay.HeadForNearBy.h"
 #include "State.InPlay.ManualHeading.h"
 #include "State.InPlay.ShipStatus.h"
@@ -47,7 +48,7 @@ namespace state::in_play
 		}
 		if (playerCharacter.GetMarks().HasAny())
 		{
-			Terminal::menu.AddAction({ "Head for a marked location", application::UIState::GoTo(::UIState::IN_PLAY_HEAD_FOR_MARK) });
+			Terminal::menu.AddAction({ "Head for a marked location", application::UIState::DoGoTo(HeadForMark::GetStateId) });
 		}
 		if (ship.GetNearbyIslands().HasAny())
 		{

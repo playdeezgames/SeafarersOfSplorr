@@ -7,7 +7,7 @@
 #include "State.ScratchPad.IslandFeature.h"
 namespace state::in_play
 {
-	static constexpr ::UIState CURRENT_STATE = ::UIState::IN_PLAY_ISLAND_DISTRICT;
+	std::optional<int> IslandDistrict::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -77,12 +77,15 @@ namespace state::in_play
 
 	void IslandDistrict::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

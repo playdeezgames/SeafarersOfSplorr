@@ -1,14 +1,17 @@
 #include <algorithm>
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
+#include "State.ChooseElectiveSkillCategories.h"
+#include "State.ChoosePersonalSkill.h"
 #include "State.ChooseProfessionalSkill.h"
 #include "State.ScratchPad.SelectedSkill.h"
+#include "State.SpendProfessionalSkillPoints.h"
 #include "State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.h"
 #include "State.ScratchPad.DetailedStart.PersonalSkillPointAllocations.h"
 #include "State.ScratchPad.DetailedStart.ProfessionalSkillSet.h"
 namespace state
 {
-	static const ::UIState CURRENT_STATE = ::UIState::CHOOSE_PROFESSIONAL_SKILL;
+	std::optional<int> ChooseProfessionalSkill::stateId = std::nullopt;
 
 	static void RefreshExistingSkillPointAllocations()
 	{
@@ -58,7 +61,7 @@ namespace state
 		return [skillId]() 
 		{
 			scratch_pad::SelectedSkill::SetSkillId(skillId);
-			application::UIState::Write(::UIState::SPEND_PROFESSIONAL_SKILL_POINTS);
+			application::UIState::Write(SpendProfessionalSkillPoints::GetStateId());
 		};
 	}
 
@@ -70,7 +73,7 @@ namespace state
 				game::Session().GetWorld().GetDifficulty(), 
 				scratch_pad::detailed_start::ProfessionalSkillPointAllocations::GetAllocations());
 		scratch_pad::detailed_start::PersonalSkillPointAllocations::Clear();
-		application::UIState::Write(::UIState::CHOOSE_PERSONAL_SKILL);
+		application::UIState::Write(ChoosePersonalSkill::GetStateId());
 	}
 
 	static void UpdateMenu()
@@ -92,7 +95,7 @@ namespace state
 					Terminal::menu.AddAction({ skill.GetName(), DoChooseSkill(skill.operator int()) });
 				});
 		}
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::CHOOSE_ELECTIVE_SKILL_CATEGORIES) };
+		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(ChooseElectiveSkillCategories::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 
@@ -105,12 +108,15 @@ namespace state
 
 	void ChooseProfessionalSkill::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

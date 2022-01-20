@@ -1,5 +1,6 @@
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
+#include "State.InPlay.IslandDistrict.h"
 #include "State.InPlay.StreetVendor.h"
 #include "State.ScratchPad.IslandFeature.h"
 namespace state::in_play
@@ -26,7 +27,7 @@ namespace state::in_play
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		MenuAction defaultAction = { "Leave", application::UIState::GoTo(::UIState::IN_PLAY_ISLAND_DISTRICT) };
+		MenuAction defaultAction = { "Leave", application::UIState::DoGoTo(IslandDistrict::GetStateId)};
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 

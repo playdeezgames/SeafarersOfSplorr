@@ -2,6 +2,7 @@
 #include <Game.Session.h>
 #include "State.InPlay.Docked.h"
 #include "State.InPlay.Globals.h"
+#include "State.InPlay.IslandDistrict.h"
 #include "State.InPlay.Next.h"
 #include "State.Registrar.h"
 #include "State.ScratchPad.IslandDistrict.h"
@@ -33,7 +34,7 @@ namespace state::in_play
 		return [district]() 
 		{
 			scratch_pad::IslandDistrict::SetDistrict(district.operator game::island::District());
-			application::UIState::Write(::UIState::IN_PLAY_ISLAND_DISTRICT);
+			application::UIState::Write(IslandDistrict::GetStateId());
 		};
 	}
 
