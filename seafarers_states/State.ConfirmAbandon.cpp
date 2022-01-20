@@ -11,7 +11,6 @@
 #include "State.Registrar.h"
 #include "State.Terminal.h"
 #include "State.MainMenu.h"
-#include "UIState.h"
 namespace state
 {
 	std::optional<int> ConfirmAbandon::stateId{};

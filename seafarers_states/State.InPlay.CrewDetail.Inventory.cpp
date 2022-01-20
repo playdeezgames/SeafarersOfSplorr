@@ -33,7 +33,7 @@ namespace state::in_play::crew_detail
 		return [itemTypeId]()
 		{
 			scratch_pad::SelectedItemType::SetItemTypeId(itemTypeId);
-			application::UIState::Write(InventoryDetail::GetStateId);
+			application::UIState::Write(InventoryDetail::GetStateId());
 		};
 	}
 

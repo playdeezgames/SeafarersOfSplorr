@@ -11,7 +11,6 @@
 #include "State.StartGame.h"
 #include "State.Terminal.h"
 #include "State.Tip.h"
-#include "UIState.h"
 namespace state
 {
 	std::optional<int> LoadGame::stateId = std::nullopt;

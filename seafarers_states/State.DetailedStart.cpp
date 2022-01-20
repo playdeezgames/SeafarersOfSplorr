@@ -8,7 +8,6 @@
 #include "State.Registrar.h"
 #include "State.ScratchPad.DetailedStart.Profession.h"
 #include "State.ScratchPad.DetailedStart.ElectiveSkillCategories.h"
-#include "UIState.h"
 namespace state
 {
 	std::optional<int> DetailedStart::stateId = std::nullopt;

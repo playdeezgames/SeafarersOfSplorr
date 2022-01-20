@@ -9,7 +9,6 @@
 #include "State.ScratchPad.DetailedStart.Profession.h"
 #include "State.ScratchPad.DetailedStart.ElectiveSkillCategories.h"
 #include "State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.h"
-#include "UIState.h"
 namespace state
 {
 	std::optional<int> ChooseStartType::stateId = std::nullopt;

@@ -78,6 +78,12 @@
     <Filter Include="Header Files\AtSea\Crew Status\Deliveries">
       <UniqueIdentifier>{b5d6233a-b7d6-446c-b309-b56d35010295}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\AtSea\Crew Status\Inventory">
+      <UniqueIdentifier>{0f82b73f-4050-4359-8f56-2005a0093063}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AtSea\Crew Status\Inventory">
+      <UniqueIdentifier>{6a8559ba-06d5-41e4-8d67-2d647e25b686}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UIState.h">
@@ -275,20 +281,20 @@
     <ClInclude Include="State.InPlay.CrewDetail.DeliveryDetail.h">
       <Filter>Header Files\AtSea\Crew Status\Deliveries</Filter>
     </ClInclude>
-    <ClInclude Include="State.InPlay.CrewDetail.Inventory.h">
-      <Filter>Header Files\AtSea\Crew Status</Filter>
-    </ClInclude>
     <ClInclude Include="State.ScratchPad.SelectedItemType.h">
       <Filter>Header Files\ScratchPad</Filter>
-    </ClInclude>
-    <ClInclude Include="State.InPlay.CrewDetail.InventoryDetail.h">
-      <Filter>Header Files\AtSea\Crew Status</Filter>
     </ClInclude>
     <ClInclude Include="State.InPlay.StreetVendor.h">
       <Filter>Header Files\Docked</Filter>
     </ClInclude>
     <ClInclude Include="State.Registrar.h">
       <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.CrewDetail.Inventory.h">
+      <Filter>Header Files\AtSea\Crew Status\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="State.InPlay.CrewDetail.InventoryDetail.h">
+      <Filter>Header Files\AtSea\Crew Status\Inventory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -484,20 +490,20 @@
     <ClCompile Include="State.InPlay.CrewDetail.DeliveryDetail.cpp">
       <Filter>Source Files\AtSea\Crew Status\Deliveries</Filter>
     </ClCompile>
-    <ClCompile Include="State.InPlay.CrewDetail.Inventory.cpp">
-      <Filter>Source Files\AtSea\Crew Status</Filter>
-    </ClCompile>
     <ClCompile Include="State.ScratchPad.SelectedItemType.cpp">
       <Filter>Source Files\ScratchPad</Filter>
-    </ClCompile>
-    <ClCompile Include="State.InPlay.CrewDetail.InventoryDetail.cpp">
-      <Filter>Source Files\AtSea\Crew Status</Filter>
     </ClCompile>
     <ClCompile Include="State.InPlay.StreetVendor.cpp">
       <Filter>Source Files\Docked</Filter>
     </ClCompile>
     <ClCompile Include="State.Registrar.cpp">
       <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.CrewDetail.Inventory.cpp">
+      <Filter>Source Files\AtSea\Crew Status\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="State.InPlay.CrewDetail.InventoryDetail.cpp">
+      <Filter>Source Files\AtSea\Crew Status\Inventory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

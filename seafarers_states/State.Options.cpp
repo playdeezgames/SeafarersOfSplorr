@@ -12,7 +12,6 @@
 #include "State.Options.h"
 #include "State.Registrar.h"
 #include "State.Terminal.h"
-#include "UIState.h"
 namespace state
 {
 	std::optional<int> Options::stateId = std::nullopt;

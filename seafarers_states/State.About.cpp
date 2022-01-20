@@ -7,7 +7,6 @@
 #include "State.Registrar.h"
 #include "State.Terminal.h"
 #include "State.MainMenu.h"
-#include "UIState.h"
 #include <Visuals.Terminals.h>
 namespace state
 {
