@@ -1,5 +1,6 @@
 #include <Common.Heading.h>
 #include <Game.Session.h>
+#include <Game.Session.World.h>
 #include "State.InPlay.AtSeaOverview.h"
 #include "State.InPlay.CrewList.h"
 #include "State.InPlay.DockOrCareen.h"
@@ -104,7 +105,7 @@ namespace state::in_play
 			"At Sea:");
 		Terminal::SetForeground(
 			game::Colors::GRAY);
-		Terminal::WriteLine(game::Session().GetWorld().GetCalendar().GetDate());
+		Terminal::WriteLine(game::session::World().GetCalendar().GetDate());
 
 		//ship
 		auto ship = 
@@ -116,7 +117,7 @@ namespace state::in_play
 			ship.GetHeading(),
 			ship.GetSpeed());
 		//wind
-		auto wind = game::Session().GetWorld().GetWind();
+		auto wind = game::session::World().GetWind();
 		Terminal::WriteLine(
 			"Wind: {:.2f}\xf8 (x{:.1f})",
 			wind.GetHeading(),

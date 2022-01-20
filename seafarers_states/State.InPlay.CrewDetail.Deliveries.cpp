@@ -1,5 +1,7 @@
 #include <algorithm>
 #include <Game.Session.h>
+#include <Game.Session.Characters.h>
+#include <Game.Session.World.h>
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.CrewDetail.Deliveries.h"
 #include "State.InPlay.CrewDetail.DeliveryDetail.h"
@@ -54,8 +56,7 @@ namespace state::in_play::crew_detail
 			.GetDeliveries()
 			.GetDeliveries();
 		auto islands =
-			game::Session()
-			.GetWorld()
+			game::session::World()
 			.GetIslands();
 
 		Terminal::menu.Clear();

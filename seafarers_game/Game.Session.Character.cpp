@@ -9,6 +9,7 @@
 #include "Game.Colors.h"
 #include "Game.Session.h"
 #include "Game.Session.Character.h"
+#include "Game.Session.Characters.h"
 #include <map>
 namespace game::session
 {

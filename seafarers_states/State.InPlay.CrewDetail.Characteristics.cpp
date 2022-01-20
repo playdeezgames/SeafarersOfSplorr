@@ -1,4 +1,5 @@
 #include <Game.Session.h>
+#include <Game.Session.Characters.h>
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.CrewDetail.Characteristics.h"
 #include "State.InPlay.Globals.h"

@@ -1,4 +1,6 @@
 #include <Game.Session.h>
+#include <Game.Session.World.h>
+#include <Game.Session.Character.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.CrewDetail.ConfirmAbandonDelivery.h"
 #include "State.InPlay.CrewDetail.DeliveryDetail.h"
@@ -16,7 +18,7 @@ namespace state::in_play::crew_detail
 		Terminal::WriteLine("Delivery Detail:");
 		Terminal::SetForeground(game::Colors::GRAY);
 
-		auto islands = game::Session().GetWorld().GetIslands();
+		auto islands = game::session::World().GetIslands();
 		auto delivery = game::session::character::Delivery(scratch_pad::SelectedDelivery::GetDeliveryId());
 		auto toIsland = islands.GetIsland(delivery.GetToIslandId());
 		auto location = 

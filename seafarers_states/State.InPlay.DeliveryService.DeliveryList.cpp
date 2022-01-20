@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <format>
 #include <Game.Session.h>
+#include <Game.Session.World.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.DeliveryService.h"
 #include "State.InPlay.DeliveryService.DeliveryDetail.h"
@@ -45,8 +46,7 @@ namespace state::in_play::delivery_service
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		auto islands =
-			game::Session()
-			.GetWorld()
+			game::session::World()
 			.GetIslands();
 		auto fromIsland =
 			game::Session()

@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <Common.Data.h>
 #include <Game.Session.h>
+#include <Game.Session.World.h>
 #include "State.ChoosePersonalSkill.h"
 #include "State.InPlay.Globals.h"
 #include "State.ScratchPad.SelectedSkill.h"
@@ -26,7 +27,7 @@ namespace state
 			allocations.end(),
 			[](const std::pair<int, size_t>& entry)
 			{
-				auto skill = game::Session().GetWorld().GetSkills().GetSkill(entry.first);
+				auto skill = game::session::World().GetSkills().GetSkill(entry.first);
 				Terminal::WriteLine("{} ({})", skill.GetName(), entry.second);
 			});
 		Terminal::WriteLine(

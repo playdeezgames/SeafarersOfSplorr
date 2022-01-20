@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <Game.Session.h>
+#include <Game.Session.World.h>
 #include <iterator>
 #include <set>
 #include "State.DetailedStart.h"
@@ -18,8 +19,7 @@ namespace state
 
 	static std::set<game::session::SkillCategory> GetFixedSkillCategories()
 	{
-		return game::Session()
-			.GetWorld()
+		return game::session::World()
 			.GetProfessions()
 			.GetProfession(scratch_pad::detailed_start::Profession::GetProfession())
 			.GetSkillCategories();
@@ -135,7 +135,7 @@ namespace state
 		else
 		{
 			auto alreadyPresent = GetAlreadyPresentSkillCategories();
-			auto allCategories = game::Session().GetWorld().GetSkillCategories().GetSkillCategories();
+			auto allCategories = game::session::World().GetSkillCategories().GetSkillCategories();
 			std::for_each(
 				allCategories.begin(),
 				allCategories.end(),

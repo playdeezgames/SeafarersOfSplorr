@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <Game.Session.h>
+#include <Game.Session.World.h>
 #include "State.InPlay.DeliveryService.h"
 #include "State.InPlay.DeliveryService.MakeDelivery.h"
 #include "State.InPlay.Globals.h"
@@ -41,7 +42,7 @@ namespace state::in_play::delivery_service
 		auto character = game::Session().GetPlayer().GetCharacter();
 		auto toIsland = character.GetIsland();
 		auto deliveries = character.GetDeliveries().GetDeliveriesFor(toIsland.operator int());
-		auto islands = game::Session().GetWorld().GetIslands();
+		auto islands = game::session::World().GetIslands();
 		std::for_each(
 			deliveries.begin(),
 			deliveries.end(),

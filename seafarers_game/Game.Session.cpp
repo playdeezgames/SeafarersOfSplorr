@@ -3,6 +3,7 @@
 #include "Game.Session.h"
 #include "Game.Session.Characters.h"
 #include "Game.Session.Ships.h"
+#include "Game.Session.World.h"
 namespace game
 {
 	using Stores = data::sqlite::Stores;
@@ -10,14 +11,14 @@ namespace game
 
 	void Session::ApplyTurnEffects() const
 	{
-		GetWorld().ApplyTurnEffects();
+		game::session::World().ApplyTurnEffects();
 		game::session::Ships().ApplyTurnEffects();
 		game::session::Characters().ApplyTurnEffects();
 	}
 
 	void Session::Populate(const Difficulty& difficulty) const
 	{
-		GetWorld().Populate(difficulty);
+		game::session::World().Populate(difficulty);
 		game::session::Characters().Populate(difficulty);
 	}
 
@@ -25,7 +26,7 @@ namespace game
 	{
 		Stores::Bounce(Store::IN_MEMORY);
 
-		GetWorld().Reset();
+		game::session::World().Reset();
 		game::session::Ships().Reset();
 		game::session::Characters().Reset();
 		GetPlayer().Reset();

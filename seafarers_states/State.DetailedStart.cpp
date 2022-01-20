@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <Game.Session.h>
+#include <Game.Session.World.h>
 #include "State.InPlay.Globals.h"
 #include "State.ChooseElectiveSkillCategories.h"
 #include "State.ChooseStartType.h"
@@ -42,7 +43,7 @@ namespace state
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		auto professions = game::Session().GetWorld().GetProfessions().GetProfessions();
+		auto professions = game::session::World().GetProfessions().GetProfessions();
 		std::for_each(
 			professions.begin(),
 			professions.end(),

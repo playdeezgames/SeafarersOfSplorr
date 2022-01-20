@@ -10,6 +10,7 @@
 #include <Data.Game.Tribe.h>
 #include <Data.Game.Island.Tribe.h>
 #include "Game.Session.h"
+#include "Game.Session.World.h"
 #include "Game.Session.World.Islands.h"
 #include <iterator>
 #include <map>
@@ -24,8 +25,8 @@ namespace game::session::world
 
 	static std::list<common::XY<double>> GenerateLocations()
 	{
-		double minimumIslandDistance = game::Session().GetWorld().GetDistances().GetIslandSpacing();
-		auto worldSize = game::Session().GetWorld().GetBounds().GetSize();
+		double minimumIslandDistance = game::session::World().GetDistances().GetIslandSpacing();
+		auto worldSize = game::session::World().GetBounds().GetSize();
 		size_t retry = 0;
 		std::list<common::XY<double>> locations;
 		while (retry < RETRY_COUNT)

@@ -1,4 +1,5 @@
 #include <Game.Session.h>
+#include <Game.Session.World.h>
 #include "State.InPlay.Globals.h"
 #include "State.ChooseStartType.h"
 #include "State.DetailedStart.h"
@@ -36,7 +37,7 @@ namespace state
 		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::session::SkillCategory(game::SkillCategory::LISTEN));
 		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::session::SkillCategory(game::SkillCategory::REPAIR));
 		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::session::SkillCategory(game::SkillCategory::SPOT));
-		auto skills = game::Session().GetWorld().GetSkills();
+		auto skills = game::session::World().GetSkills();
 		auto skillId = skills.GetSkillsInCategory(game::SkillCategory::CLIMB).begin()->operator int();
 		scratch_pad::detailed_start::ProfessionalSkillPointAllocations::AllocateSkillPoints(skillId, 50);
 		skillId = skills.GetSkillsInCategory(game::SkillCategory::DODGE).begin()->operator int();
@@ -52,7 +53,7 @@ namespace state
 		game::Session()
 			.GetPlayer()
 			.Populate(
-				game::Session().GetWorld().GetDifficulty(),
+				game::session::World().GetDifficulty(),
 				scratch_pad::detailed_start::ProfessionalSkillPointAllocations::GetAllocations());
 		application::UIState::Write(Tip::GetStateId());
 	}

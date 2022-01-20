@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <Game.Session.h>
+#include <Game.Session.World.h>
 #include "State.InPlay.Globals.h"
 #include "State.ChoosePersonalSkill.h"
 #include "State.ScratchPad.SelectedSkill.h"
@@ -80,7 +81,7 @@ namespace state
 		}
 		else
 		{
-			auto skills = game::Session().GetWorld().GetSkills().GetSkills();
+			auto skills = game::session::World().GetSkills().GetSkills();
 			std::for_each(
 				skills.begin(),
 				skills.end(),

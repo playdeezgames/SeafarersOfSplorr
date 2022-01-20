@@ -2,6 +2,7 @@
 #include <Common.Data.h>
 #include <Game.BerthType.h>
 #include <Game.Session.h>
+#include <Game.Session.Characters.h>
 #include <iterator>
 #include "State.InPlay.AtSeaOverview.h"
 #include "State.InPlay.CrewDetail.h"

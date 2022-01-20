@@ -5,6 +5,7 @@
 #include "Game.Session.h"
 #include "Game.Session.Island.Markets.h"
 #include "Game.Session.Commodities.h"
+#include "Game.Session.World.h"
 #include <numeric>
 namespace game::session::island
 {
@@ -75,7 +76,7 @@ namespace game::session::island
 	{
 		const int INITIAL_PURCHASES = 0;
 		const int INITIAL_SALES = 0;
-		auto commodities = game::Session().GetWorld().GetCommodities().GetAll();
+		auto commodities = game::session::World().GetCommodities().GetAll();
 		std::for_each(
 			commodities.begin(),
 			commodities.end(),

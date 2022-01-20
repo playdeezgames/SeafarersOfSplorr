@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <Game.Session.h>
+#include <Game.Session.Characters.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.CrewDetail.Inventory.h"

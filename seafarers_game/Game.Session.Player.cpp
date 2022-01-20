@@ -6,6 +6,7 @@
 #include <Data.Game.Player.h>
 #include <Data.Game.Ship.h>
 #include "Game.Session.h"
+#include "Game.Session.World.h"
 #include "Game.Session.Characters.h"
 #include "Game.Session.Player.h"
 #include "Game.ShipNames.h"
@@ -22,7 +23,7 @@ namespace game::session
 
 	static void GenerateCharacterShip(int characterId)
 	{
-		auto worldSize = game::Session().GetWorld().GetBounds().GetSize();
+		auto worldSize = game::session::World().GetBounds().GetSize();
 		auto shipType = game::ShipType::RAFT;
 		int shipId = ShipData::Create(
 			(int)shipType,
@@ -72,8 +73,7 @@ namespace game::session
 	static void AddSkillCategoryToProfessionalSkillSet(const SkillCategory& category)
 	{
 		auto skills =
-			game::Session()
-			.GetWorld()
+			game::session::World()
 			.GetSkills()
 			.GetSkillsInCategory(category.operator game::SkillCategory());
 		std::copy(

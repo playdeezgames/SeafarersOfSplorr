@@ -1,5 +1,5 @@
 #pragma once
-#include <optional>
+
 namespace state::in_play::crew_detail
 {
 	struct DeliveryDetail

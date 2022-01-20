@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <Game.Session.h>
+#include <Game.Session.World.h>
 #include "State.InPlay.Globals.h"
 #include "State.ChooseElectiveSkillCategories.h"
 #include "State.ChoosePersonalSkill.h"
@@ -23,7 +24,7 @@ namespace state
 			{
 				auto skillId = entry.first;
 				auto allocation = entry.second;
-				auto skill = game::Session().GetWorld().GetSkills().GetSkill(skillId);
+				auto skill = game::session::World().GetSkills().GetSkill(skillId);
 				Terminal::WriteLine("{}: {}", skill.GetName(), allocation);
 			});
 	}
@@ -70,7 +71,7 @@ namespace state
 		game::Session()
 			.GetPlayer()
 			.Populate(
-				game::Session().GetWorld().GetDifficulty(), 
+				game::session::World().GetDifficulty(),
 				scratch_pad::detailed_start::ProfessionalSkillPointAllocations::GetAllocations());
 		scratch_pad::detailed_start::PersonalSkillPointAllocations::Clear();
 		application::UIState::Write(ChoosePersonalSkill::GetStateId());

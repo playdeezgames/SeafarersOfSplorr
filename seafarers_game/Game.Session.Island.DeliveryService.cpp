@@ -4,6 +4,7 @@
 #include <Data.Game.Feature.Delivery.h>
 #include <Data.Game.Island.Feature.h>
 #include "Game.Session.h"
+#include "Game.Session.World.h"
 #include "Game.Session.Island.DeliveryService.h"
 namespace game::session::island
 {
@@ -11,7 +12,7 @@ namespace game::session::island
 	static void GenerateDeliveryForFeature(int featureId)
 	{
 		constexpr double TIME_LIMIT_FACTOR = 2.0;
-		auto world = game::Session().GetWorld();
+		auto world = game::session::World();
 		auto islands = world.GetIslands();
 		auto fromIslandId = data::game::island::Feature::ReadIslandId(featureId).value();
 		auto candidateIslands = islands.GetIslands();
