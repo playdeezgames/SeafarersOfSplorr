@@ -6,6 +6,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
 #include <Game.Session.h>
+#include <Game.Session.Saves.h>
 #include "State.ConfirmOverwrite.h"
 #include "State.InPlay.Next.h"
 #include "State.SaveGame.h"
@@ -44,19 +45,19 @@ namespace state
 		switch ((::UIState)application::UIState::Read())
 		{
 		case ::UIState::CONFIRM_OVERWRITE_SLOT1:
-			game::Session().GetSaves().GetSlot1().Store();
+			game::session::Saves().GetSlot1().Store();
 			break;
 		case ::UIState::CONFIRM_OVERWRITE_SLOT2:
-			game::Session().GetSaves().GetSlot2().Store();
+			game::session::Saves().GetSlot2().Store();
 			break;
 		case ::UIState::CONFIRM_OVERWRITE_SLOT3:
-			game::Session().GetSaves().GetSlot3().Store();
+			game::session::Saves().GetSlot3().Store();
 			break;
 		case ::UIState::CONFIRM_OVERWRITE_SLOT4:
-			game::Session().GetSaves().GetSlot4().Store();
+			game::session::Saves().GetSlot4().Store();
 			break;
 		case ::UIState::CONFIRM_OVERWRITE_SLOT5:
-			game::Session().GetSaves().GetSlot5().Store();
+			game::session::Saves().GetSlot5().Store();
 			break;
 		}
 		application::UIState::Write(in_play::Next::GetStateId());

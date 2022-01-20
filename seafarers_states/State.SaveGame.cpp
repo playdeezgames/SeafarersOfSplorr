@@ -6,6 +6,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
 #include <Game.Session.h>
+#include <Game.Session.Saves.h>
 #include "State.InPlay.Next.h"
 #include "State.LeavePlay.h"
 #include "State.Registrar.h"
@@ -25,7 +26,7 @@ namespace state
 		Terminal::WriteLine();
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		if (game::Session().GetSaves().GetSlot1().Exists())
+		if (game::session::Saves().GetSlot1().Exists())
 		{
 			Terminal::WriteLine("1) Slot 1(overwrite)");
 		}
@@ -33,7 +34,7 @@ namespace state
 		{
 			Terminal::WriteLine("1) Slot 1");
 		}
-		if (game::Session().GetSaves().GetSlot2().Exists())
+		if (game::session::Saves().GetSlot2().Exists())
 		{
 			Terminal::WriteLine("2) Slot 2(overwrite)");
 		}
@@ -41,7 +42,7 @@ namespace state
 		{
 			Terminal::WriteLine("2) Slot 2");
 		}
-		if (game::Session().GetSaves().GetSlot3().Exists())
+		if (game::session::Saves().GetSlot3().Exists())
 		{
 			Terminal::WriteLine("3) Slot 3(overwrite)");
 		}
@@ -49,7 +50,7 @@ namespace state
 		{
 			Terminal::WriteLine("3) Slot 3");
 		}
-		if (game::Session().GetSaves().GetSlot4().Exists())
+		if (game::session::Saves().GetSlot4().Exists())
 		{
 			Terminal::WriteLine("4) Slot 4(overwrite)");
 		}
@@ -57,7 +58,7 @@ namespace state
 		{
 			Terminal::WriteLine("4) Slot 4");
 		}
-		if (game::Session().GetSaves().GetSlot5().Exists())
+		if (game::session::Saves().GetSlot5().Exists())
 		{
 			Terminal::WriteLine("5) Slot 5(overwrite)");
 		}
@@ -65,7 +66,7 @@ namespace state
 		{
 			Terminal::WriteLine("5) Slot 5");
 		}
-		if (game::Session().GetSaves().GetAuto().Exists())
+		if (game::session::Saves().GetAuto().Exists())
 		{
 			Terminal::WriteLine("6) Autosave Slot(overwrite)");
 		}
@@ -80,62 +81,62 @@ namespace state
 
 	static void SaveToAutosave()
 	{
-		game::Session().GetSaves().GetAuto().Store();
+		game::session::Saves().GetAuto().Store();
 		application::UIState::Write(in_play::Next::GetStateId());
 	}
 
 	static void Slot1Saver()
 	{
-		if (game::Session().GetSaves().GetSlot1().Exists())
+		if (game::session::Saves().GetSlot1().Exists())
 		{
 			application::UIState::Write((int)::UIState::CONFIRM_OVERWRITE_SLOT1);
 			return;
 		}
-		game::Session().GetSaves().GetSlot1().Store();
+		game::session::Saves().GetSlot1().Store();
 		application::UIState::Write(in_play::Next::GetStateId());
 	}
 
 	static void Slot2Saver()
 	{
-		if (game::Session().GetSaves().GetSlot2().Exists())
+		if (game::session::Saves().GetSlot2().Exists())
 		{
 			application::UIState::Write((int)::UIState::CONFIRM_OVERWRITE_SLOT2);
 			return;
 		}
-		game::Session().GetSaves().GetSlot2().Store();
+		game::session::Saves().GetSlot2().Store();
 		application::UIState::Write(in_play::Next::GetStateId());
 	}
 
 	static void Slot3Saver()
 	{
-		if (game::Session().GetSaves().GetSlot3().Exists())
+		if (game::session::Saves().GetSlot3().Exists())
 		{
 			application::UIState::Write((int)::UIState::CONFIRM_OVERWRITE_SLOT3);
 			return;
 		}
-		game::Session().GetSaves().GetSlot3().Store();
+		game::session::Saves().GetSlot3().Store();
 		application::UIState::Write(in_play::Next::GetStateId());
 	}
 
 	static void Slot4Saver()
 	{
-		if (game::Session().GetSaves().GetSlot4().Exists())
+		if (game::session::Saves().GetSlot4().Exists())
 		{
 			application::UIState::Write((int)::UIState::CONFIRM_OVERWRITE_SLOT4);
 			return;
 		}
-		game::Session().GetSaves().GetSlot4().Store();
+		game::session::Saves().GetSlot4().Store();
 		application::UIState::Write(in_play::Next::GetStateId());
 	}
 
 	static void Slot5Saver()
 	{
-		if (game::Session().GetSaves().GetSlot5().Exists())
+		if (game::session::Saves().GetSlot5().Exists())
 		{
 			application::UIState::Write((int)::UIState::CONFIRM_OVERWRITE_SLOT5);
 			return;
 		}
-		game::Session().GetSaves().GetSlot5().Store();
+		game::session::Saves().GetSlot5().Store();
 		application::UIState::Write(in_play::Next::GetStateId());
 	}
 

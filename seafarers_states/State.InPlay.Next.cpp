@@ -1,5 +1,6 @@
 #include <Application.Update.h>
 #include <Game.Session.h>
+#include <Game.Session.Saves.h>
 #include "State.InPlay.AtSeaOverview.h"
 #include "State.InPlay.Docked.h"
 #include "State.InPlay.Globals.h"
@@ -49,7 +50,7 @@ namespace state::in_play
 				return;
 			}
 		}
-		game::Session().GetSaves().GetAuto().Store();
+		game::session::Saves().GetAuto().Store();
 
 		if (application::UIState::CanPop())
 		{

@@ -6,6 +6,7 @@
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
 #include <Game.Session.h>
+#include <Game.Session.Saves.h>
 #include "State.LoadGame.h"
 #include "State.Registrar.h"
 #include "State.StartGame.h"
@@ -24,27 +25,27 @@ namespace state
 		Terminal::WriteLine();
 
 		Terminal::SetForeground(game::Colors::YELLOW);
-		if (game::Session().GetSaves().GetSlot1().Exists())
+		if (game::session::Saves().GetSlot1().Exists())
 		{
 			Terminal::WriteLine("1) Slot 1");
 		}
-		if (game::Session().GetSaves().GetSlot2().Exists())
+		if (game::session::Saves().GetSlot2().Exists())
 		{
 			Terminal::WriteLine("2) Slot 2");
 		}
-		if (game::Session().GetSaves().GetSlot3().Exists())
+		if (game::session::Saves().GetSlot3().Exists())
 		{
 			Terminal::WriteLine("3) Slot 3");
 		}
-		if (game::Session().GetSaves().GetSlot4().Exists())
+		if (game::session::Saves().GetSlot4().Exists())
 		{
 			Terminal::WriteLine("4) Slot 4");
 		}
-		if (game::Session().GetSaves().GetSlot5().Exists())
+		if (game::session::Saves().GetSlot5().Exists())
 		{
 			Terminal::WriteLine("5) Slot 5");
 		}
-		if (game::Session().GetSaves().GetAuto().Exists())
+		if (game::session::Saves().GetAuto().Exists())
 		{
 			Terminal::WriteLine("6) Autosave Slot");
 		}
@@ -61,9 +62,9 @@ namespace state
 
 	static void LoadFromAutosave()
 	{
-		if (game::Session().GetSaves().GetAuto().Exists())
+		if (game::session::Saves().GetAuto().Exists())
 		{
-			game::Session().GetSaves().GetAuto().Load();
+			game::session::Saves().GetAuto().Load();
 			application::UIState::Write(Tip::GetStateId());
 		}
 		else
@@ -74,9 +75,9 @@ namespace state
 
 	static void Slot1Loader()
 	{
-		if (game::Session().GetSaves().GetSlot1().Exists())
+		if (game::session::Saves().GetSlot1().Exists())
 		{
-			game::Session().GetSaves().GetSlot1().Load();
+			game::session::Saves().GetSlot1().Load();
 			application::UIState::Write(Tip::GetStateId());
 		}
 		else
@@ -87,9 +88,9 @@ namespace state
 
 	static void Slot2Loader()
 	{
-		if (game::Session().GetSaves().GetSlot2().Exists())
+		if (game::session::Saves().GetSlot2().Exists())
 		{
-			game::Session().GetSaves().GetSlot2().Load();
+			game::session::Saves().GetSlot2().Load();
 			application::UIState::Write(Tip::GetStateId());
 		}
 		else
@@ -100,9 +101,9 @@ namespace state
 
 	static void Slot3Loader()
 	{
-		if (game::Session().GetSaves().GetSlot3().Exists())
+		if (game::session::Saves().GetSlot3().Exists())
 		{
-			game::Session().GetSaves().GetSlot3().Load();
+			game::session::Saves().GetSlot3().Load();
 			application::UIState::Write(Tip::GetStateId());
 		}
 		else
@@ -113,9 +114,9 @@ namespace state
 
 	static void Slot4Loader()
 	{
-		if (game::Session().GetSaves().GetSlot4().Exists())
+		if (game::session::Saves().GetSlot4().Exists())
 		{
-			game::Session().GetSaves().GetSlot4().Load();
+			game::session::Saves().GetSlot4().Load();
 			application::UIState::Write(Tip::GetStateId());
 		}
 		else
@@ -126,9 +127,9 @@ namespace state
 
 	static void Slot5Loader()
 	{
-		if (game::Session().GetSaves().GetSlot5().Exists())
+		if (game::session::Saves().GetSlot5().Exists())
 		{
-			game::Session().GetSaves().GetSlot5().Load();
+			game::session::Saves().GetSlot5().Load();
 			application::UIState::Write(Tip::GetStateId());
 		}
 		else

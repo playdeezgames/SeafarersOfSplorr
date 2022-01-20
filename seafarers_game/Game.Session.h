@@ -1,7 +1,6 @@
 #pragma once
 #include "Game.Difficulty.h"
 #include "Game.Session.Player.h"
-#include "Game.Session.Saves.h"
 #include "Game.Session.World.h"
 #include <optional>
 namespace game
@@ -12,7 +11,6 @@ namespace game
 		constexpr Session() {}
 
 		constexpr session::Player GetPlayer() const { return session::Player(); }
-		constexpr session::Saves GetSaves() const { return session::Saves(); }
 		constexpr session::World GetWorld() const { return session::World(WORLD_ID); }
 
 		void ApplyTurnEffects() const;
