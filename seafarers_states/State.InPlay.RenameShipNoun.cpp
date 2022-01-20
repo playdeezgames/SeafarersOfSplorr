@@ -6,10 +6,11 @@
 #include "State.InPlay.RenameShipAdjective.h"
 #include "State.InPlay.RenameShipNoun.h"
 #include "State.InPlay.ShipStatus.h"
+#include "State.Registrar.h"
 #include "State.ScratchPad.ShipAdjective.h"
 namespace state::in_play
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_RENAME_SHIP_NOUN;
+	std::optional<int> RenameShipNoun::stateId = std::nullopt;
 
 	static std::map<int, std::string> nouns;
 
@@ -64,12 +65,15 @@ namespace state::in_play
 
 	void RenameShipNoun::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

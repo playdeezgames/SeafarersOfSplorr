@@ -4,11 +4,13 @@
 #include <Game.ShipNames.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.RenameShipAdjective.h"
+#include "State.InPlay.RenameShipNoun.h"
 #include "State.InPlay.ShipStatus.h"
+#include "State.Registrar.h"
 #include "State.ScratchPad.ShipAdjective.h"
 namespace state::in_play
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_RENAME_SHIP_ADJECTIVE;
+	std::optional<int> RenameShipAdjective::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -27,7 +29,7 @@ namespace state::in_play
 		return [adjective]() 
 		{
 			scratch_pad::ShipAdjective::SetAdjective(adjective);
-			application::UIState::Write(::UIState::IN_PLAY_RENAME_SHIP_NOUN);
+			application::UIState::Write(RenameShipNoun::GetStateId());
 		};
 	}
 
@@ -56,12 +58,15 @@ namespace state::in_play
 
 	void RenameShipAdjective::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

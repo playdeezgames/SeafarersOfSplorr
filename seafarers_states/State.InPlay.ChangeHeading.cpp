@@ -2,6 +2,9 @@
 #include <Game.Session.h>
 #include "State.InPlay.ChangeHeading.h"
 #include "State.InPlay.Globals.h"
+#include "State.InPlay.HeadForKnown.h"
+#include "State.InPlay.HeadForNearBy.h"
+#include "State.InPlay.ManualHeading.h"
 #include "State.InPlay.ShipStatus.h"
 #include "State.Registrar.h"
 namespace state::in_play
@@ -40,7 +43,7 @@ namespace state::in_play
 		Terminal::menu.SetRefresh(Refresh);
 		if (playerCharacter.GetKnownIslands().HasAny())
 		{
-			Terminal::menu.AddAction({ "Head for a known island", application::UIState::GoTo(::UIState::IN_PLAY_HEAD_FOR_KNOWN) });
+			Terminal::menu.AddAction({ "Head for a known island", application::UIState::DoGoTo(HeadForKnown::GetStateId) });
 		}
 		if (playerCharacter.GetMarks().HasAny())
 		{
@@ -48,9 +51,9 @@ namespace state::in_play
 		}
 		if (ship.GetNearbyIslands().HasAny())
 		{
-			Terminal::menu.AddAction({ "Head for a nearby island", application::UIState::GoTo(::UIState::IN_PLAY_HEAD_FOR_NEAR_BY) });
+			Terminal::menu.AddAction({ "Head for a nearby island", application::UIState::DoGoTo(HeadForNearBy::GetStateId) });
 		}
-		Terminal::menu.AddAction({ "Set heading manually", application::UIState::GoTo(::UIState::IN_PLAY_MANUAL_HEADING) });
+		Terminal::menu.AddAction({ "Set heading manually", application::UIState::DoGoTo(ManualHeading::GetStateId) });
 		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(ShipStatus::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}

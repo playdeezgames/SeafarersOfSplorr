@@ -2,9 +2,10 @@
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.ManualHeading.h"
 #include "State.InPlay.ShipStatus.h"
+#include "State.Registrar.h"
 namespace state::in_play
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_MANUAL_HEADING;
+	std::optional<int> ManualHeading::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -29,12 +30,15 @@ namespace state::in_play
 
 	void ManualHeading::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoDoubleInput(
-				application::UIState::GoTo(ShipStatus::GetStateId()),
-				OnValidInput));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoDoubleInput(
+						application::UIState::GoTo(ShipStatus::GetStateId()),
+						OnValidInput));
+			});
 	}
 }
