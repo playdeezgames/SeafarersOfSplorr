@@ -2,6 +2,7 @@
 #include <Data.SQLite.Stores.h>
 #include "Game.Session.h"
 #include "Game.Session.Characters.h"
+#include "Game.Session.Ships.h"
 namespace game
 {
 	using Stores = data::sqlite::Stores;
@@ -10,7 +11,7 @@ namespace game
 	void Session::ApplyTurnEffects() const
 	{
 		GetWorld().ApplyTurnEffects();
-		GetShips().ApplyTurnEffects();
+		game::session::Ships().ApplyTurnEffects();
 		game::session::Characters().ApplyTurnEffects();
 	}
 
@@ -25,7 +26,7 @@ namespace game
 		Stores::Bounce(Store::IN_MEMORY);
 
 		GetWorld().Reset();
-		GetShips().Reset();
+		game::session::Ships().Reset();
 		game::session::Characters().Reset();
 		GetPlayer().Reset();
 	}

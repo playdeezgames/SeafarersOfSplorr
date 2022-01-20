@@ -8,6 +8,7 @@
 #include "Game.Session.h"
 #include "Game.Session.Characters.h"
 #include "Game.Session.Ship.h"
+#include "Game.Session.Ships.h"
 namespace game::session
 {
 	using ShipData = data::game::Ship;
@@ -162,7 +163,7 @@ namespace game::session
 
 		effectiveSpeed *= game::Session().GetWorld().GetWind().GetSpeedMultiplier(heading);
 
-		effectiveSpeed *= game::Session().GetShips().GetShip(shipId).GetShipType().GetSpeedFactor();
+		effectiveSpeed *= game::session::Ships().GetShip(shipId).GetShipType().GetSpeedFactor();
 
 		return effectiveSpeed;
 	}
