@@ -6,6 +6,7 @@
 #include <Data.Game.Ship.CurrentIsland.h>
 #include "Game.Colors.h"
 #include "Game.Session.h"
+#include "Game.Session.Characters.h"
 #include "Game.Session.Ship.h"
 namespace game::session
 {
@@ -76,8 +77,7 @@ namespace game::session
 		data::game::character::island::Known::Write(
 			characterId,
 			islandId);
-		game::Session()
-			.GetCharacters()
+		game::session::Characters()
 			.GetCharacter(characterId)
 			.SetIsland(islandId);
 	}
@@ -107,7 +107,7 @@ namespace game::session
 	{
 		if (IsDocked())
 		{
-			auto characters = game::Session().GetCharacters();
+			auto characters = game::session::Characters();
 			auto billets = data::game::character::Ship::ReadCharactersForShip(shipId);
 			if (std::all_of(
 				billets.begin(),

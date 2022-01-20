@@ -13,8 +13,7 @@ namespace state::in_play::crew_detail
 	static void Refresh()
 	{
 		auto character = 
-			game::Session()
-			.GetCharacters()
+			game::session::Characters()
 			.GetCharacter(scratch_pad::CrewDetail::GetCharacterId());
 		Terminal::Reinitialize();
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
@@ -42,8 +41,7 @@ namespace state::in_play::crew_detail
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		auto character =
-			game::Session()
-			.GetCharacters()
+			game::session::Characters()
 			.GetCharacter(scratch_pad::CrewDetail::GetCharacterId());
 		auto itemTypes = character.GetItemTypes().GetItemTypes();
 		std::for_each(

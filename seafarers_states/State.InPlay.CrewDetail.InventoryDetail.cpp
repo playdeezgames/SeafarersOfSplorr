@@ -15,8 +15,7 @@ namespace state::in_play::crew_detail
 		Terminal::WriteLine("Inventory Details:");
 		Terminal::SetForeground(game::Colors::GRAY);
 		auto itemType =
-			game::Session()
-			.GetCharacters()
+			game::session::Characters()
 			.GetCharacter(scratch_pad::CrewDetail::GetCharacterId())
 			.GetItemTypes().GetItemType(scratch_pad::SelectedItemType::GetItemTypeId());
 		Terminal::WriteLine("Item Type: {}", itemType.GetItemType().GetName());

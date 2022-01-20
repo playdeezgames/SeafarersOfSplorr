@@ -1,6 +1,7 @@
 #include <Data.SQLite.Store.h>
 #include <Data.SQLite.Stores.h>
 #include "Game.Session.h"
+#include "Game.Session.Characters.h"
 namespace game
 {
 	using Stores = data::sqlite::Stores;
@@ -10,13 +11,13 @@ namespace game
 	{
 		GetWorld().ApplyTurnEffects();
 		GetShips().ApplyTurnEffects();
-		GetCharacters().ApplyTurnEffects();
+		game::session::Characters().ApplyTurnEffects();
 	}
 
 	void Session::Populate(const Difficulty& difficulty) const
 	{
 		GetWorld().Populate(difficulty);
-		GetCharacters().Populate(difficulty);
+		game::session::Characters().Populate(difficulty);
 	}
 
 	void Session::Reset() const
@@ -25,7 +26,7 @@ namespace game
 
 		GetWorld().Reset();
 		GetShips().Reset();
-		GetCharacters().Reset();
+		game::session::Characters().Reset();
 		GetPlayer().Reset();
 	}
 }

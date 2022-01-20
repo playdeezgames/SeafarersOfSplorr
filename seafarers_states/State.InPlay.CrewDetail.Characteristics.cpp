@@ -13,8 +13,7 @@ namespace state::in_play::crew_detail
 	static void Refresh()
 	{
 		auto character =
-			game::Session()
-			.GetCharacters()
+			game::session::Characters()
 			.GetCharacter(scratch_pad::CrewDetail::GetCharacterId());
 		auto characteristics =
 			character

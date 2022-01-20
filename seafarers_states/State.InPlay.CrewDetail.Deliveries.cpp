@@ -14,8 +14,7 @@ namespace state::in_play::crew_detail
 	{
 		int characterId = scratch_pad::CrewDetail::GetCharacterId();
 		auto character =
-			game::Session()
-			.GetCharacters()
+			game::session::Characters()
 			.GetCharacter(characterId);
 
 		Terminal::Reinitialize();
@@ -43,8 +42,7 @@ namespace state::in_play::crew_detail
 	{
 		int characterId = scratch_pad::CrewDetail::GetCharacterId();
 		auto character =
-			game::Session()
-			.GetCharacters()
+			game::session::Characters()
 			.GetCharacter(characterId);
 		auto location =
 			character

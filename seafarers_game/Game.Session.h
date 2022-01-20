@@ -1,6 +1,5 @@
 #pragma once
 #include "Game.Difficulty.h"
-#include "Game.Session.Characters.h"
 #include "Game.Session.Demigods.h"
 #include "Game.Session.Player.h"
 #include "Game.Session.Saves.h"
@@ -14,7 +13,6 @@ namespace game
 	{
 		constexpr Session() {}
 
-		constexpr session::Characters GetCharacters() const { return session::Characters(); }
 		constexpr session::Player GetPlayer() const { return session::Player(); }
 		constexpr session::Saves GetSaves() const { return session::Saves(); }
 		constexpr session::Ships GetShips() const { return session::Ships(); }

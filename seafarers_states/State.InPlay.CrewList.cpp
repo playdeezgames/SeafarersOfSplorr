@@ -72,10 +72,9 @@ namespace state::in_play
 			[](const game::session::ship::Berth& entry)
 			{
 				auto characterId = entry.GetCharacterId();
-				auto character = game::Session().GetCharacters().GetCharacter(characterId);
+				auto character = game::session::Characters().GetCharacter(characterId);
 				auto hitPoints =
-					game::Session()
-					.GetCharacters()
+					game::session::Characters()
 					.GetCharacter(characterId)
 					.GetHitpoints();
 				RosterItem result = {

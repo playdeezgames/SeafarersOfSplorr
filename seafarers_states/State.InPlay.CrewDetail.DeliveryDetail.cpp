@@ -20,8 +20,7 @@ namespace state::in_play::crew_detail
 		auto delivery = game::session::character::Delivery(scratch_pad::SelectedDelivery::GetDeliveryId());
 		auto toIsland = islands.GetIsland(delivery.GetToIslandId());
 		auto location = 
-			game::Session()
-			.GetCharacters()
+			game::session::Characters()
 			.GetCharacter(scratch_pad::CrewDetail::GetCharacterId())
 			.GetBerth()
 			.GetShip()

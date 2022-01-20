@@ -16,8 +16,7 @@ namespace state::in_play
 	static void RefreshFlags(int characterId)
 	{
 		auto character =
-			game::Session()
-			.GetCharacters()
+			game::session::Characters()
 			.GetCharacter(characterId);
 		auto flags = character.GetFlags().GetAll();
 		if (!flags.empty())
@@ -43,8 +42,7 @@ namespace state::in_play
 	static void RefreshHitPoints(int characterId)
 	{
 		auto hitPoints = 
-			game::Session()
-			.GetCharacters()
+			game::session::Characters()
 			.GetCharacter(characterId)
 			.GetHitpoints();
 		Terminal::WriteLine(
@@ -57,8 +55,7 @@ namespace state::in_play
 	{
 		int characterId = scratch_pad::CrewDetail::GetCharacterId();
 		auto character = 
-			game::Session()
-			.GetCharacters()
+			game::session::Characters()
 			.GetCharacter(characterId);
 
 		Terminal::Reinitialize();
@@ -81,8 +78,7 @@ namespace state::in_play
 	{
 		int characterId = scratch_pad::CrewDetail::GetCharacterId();
 		auto character =
-			game::Session()
-			.GetCharacters()
+			game::session::Characters()
 			.GetCharacter(characterId);
 
 		Terminal::menu.Clear();
