@@ -4,6 +4,7 @@
 #include "State.InPlay.AtSeaOverview.h"
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.HeadForNearBy.h"
+#include "State.InPlay.ShipStatus.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_HEAD_FOR_NEAR_BY;
@@ -24,7 +25,7 @@ namespace state::in_play
 		return[island, heading]()
 		{
 			game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().SetHeading(heading);
-			application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
+			application::UIState::Write(ShipStatus::GetStateId());
 		};
 	}
 

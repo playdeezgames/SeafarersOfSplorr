@@ -9,11 +9,6 @@ enum class UIState
 	CONFIRM_OVERWRITE_SLOT4,//keep it here for now, because its a bit weird
 	CONFIRM_OVERWRITE_SLOT5,//keep it here for now, because its a bit weird
 
-	IN_PLAY_MESSAGE,
-	IN_PLAY_CREW_LIST,
-	IN_PLAY_CREW_DETAIL,
-	IN_PLAY_SHIP_STATUS,
-	IN_PLAY_CHANGE_HEADING, 
 	IN_PLAY_MANUAL_HEADING,
 	IN_PLAY_HEAD_FOR_NEAR_BY,
 	IN_PLAY_HEAD_FOR_KNOWN,

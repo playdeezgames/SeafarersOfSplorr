@@ -4,6 +4,7 @@
 #include <Game.ShipNames.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.RenameShipAdjective.h"
+#include "State.InPlay.ShipStatus.h"
 #include "State.ScratchPad.ShipAdjective.h"
 namespace state::in_play
 {
@@ -42,7 +43,7 @@ namespace state::in_play
 			{
 				Terminal::menu.AddAction({ adjective, DoChooseAdjective(adjective) });
 			});
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS) };
+		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(ShipStatus::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 

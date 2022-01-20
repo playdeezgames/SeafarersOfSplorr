@@ -5,6 +5,7 @@
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.RenameShipAdjective.h"
 #include "State.InPlay.RenameShipNoun.h"
+#include "State.InPlay.ShipStatus.h"
 #include "State.ScratchPad.ShipAdjective.h"
 namespace state::in_play
 {
@@ -34,7 +35,7 @@ namespace state::in_play
 				.GetBerth()
 				.GetShip()
 				.SetName(std::format("{} {}", scratch_pad::ShipAdjective::GetAdjective(), noun));
-			application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
+			application::UIState::Write(ShipStatus::GetStateId());
 		};
 	}
 
@@ -50,7 +51,7 @@ namespace state::in_play
 			{
 				Terminal::menu.AddAction({ noun, DoChooseNoun(noun) });
 			});
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS) };
+		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(ShipStatus::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 

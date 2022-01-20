@@ -3,6 +3,7 @@
 #include <Game.Session.h>
 #include "State.InPlay.MarkCurrentLocation.h"
 #include "State.InPlay.Globals.h"
+#include "State.InPlay.ShipStatus.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_MARK_LOCATION;
@@ -45,7 +46,7 @@ namespace state::in_play
 			auto location = character.GetBerth().GetShip().GetLocation();
 			marks.AddMark(locationName, location);
 			Terminal::WriteLine();
-			application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
+			application::UIState::Write(ShipStatus::GetStateId());
 			return true;
 		}
 		return false;

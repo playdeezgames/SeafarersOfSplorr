@@ -1,9 +1,10 @@
 #include <algorithm>
 #include <Game.Session.h>
+#include "State.InPlay.CrewDetail.h"
+#include "State.InPlay.CrewDetail.Deliveries.h"
+#include "State.InPlay.Globals.h"
 #include "State.ScratchPad.CrewDetail.h"
 #include "State.ScratchPad.SelectedDelivery.h"
-#include "State.InPlay.Globals.h"
-#include "State.InPlay.CrewDetail.Deliveries.h"
 namespace state::in_play::crew_detail
 {
 	static constexpr auto CURRENT_STATE = ::UIState::IN_PLAY_CREW_DETAIL_DELIVERIES;
@@ -79,7 +80,7 @@ namespace state::in_play::crew_detail
 					});
 			});
 
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL) };
+		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(CrewDetail::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 

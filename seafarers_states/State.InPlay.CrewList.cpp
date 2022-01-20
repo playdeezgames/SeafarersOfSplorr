@@ -7,10 +7,11 @@
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.CrewList.h"
 #include "State.InPlay.Globals.h"
+#include "State.Registrar.h"
 #include "State.ScratchPad.CrewDetail.h"
 namespace state::in_play
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CREW_LIST;
+	std::optional<int> CrewList::stateId = std::nullopt;
 
 	static auto OnLeave = ::application::UIState::DoGoTo(AtSeaOverview::GetStateId);
 
@@ -49,7 +50,7 @@ namespace state::in_play
 		return [characterId]()
 		{
 			scratch_pad::CrewDetail::SetCharacterId(characterId);
-			application::UIState::Write(::UIState::IN_PLAY_CREW_DETAIL);
+			application::UIState::Write(CrewDetail::GetStateId());
 		};
 	}
 
@@ -111,16 +112,19 @@ namespace state::in_play
 
 	void CrewList::Start()
 	{
-		::application::OnEnter::AddHandler(
-			CURRENT_STATE, 
-			OnEnter);
-		::application::Renderer::SetRenderLayout(
-			CURRENT_STATE, 
-			Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(
+					stateId,
+					OnEnter);
+				::application::Renderer::SetRenderLayout(
+					stateId,
+					Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

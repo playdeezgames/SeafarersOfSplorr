@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
+#include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.CrewDetail.Inventory.h"
 #include "State.ScratchPad.CrewDetail.h"
 #include "State.ScratchPad.SelectedItemType.h"
@@ -58,7 +59,7 @@ namespace state::in_play::crew_detail
 						GoToItemTypeDetail(itemType.GetItemType().operator int())
 					});
 			});
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL) };
+		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(CrewDetail::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 

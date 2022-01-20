@@ -1,12 +1,14 @@
 #include <Game.Session.h>
+#include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.CrewDetail.Characteristics.h"
 #include "State.InPlay.Globals.h"
+#include "State.Registrar.h"
 #include "State.ScratchPad.CrewDetail.h"
 namespace state::in_play::crew_detail
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CREW_DETAIL_CHARACTERISTICS;
+	std::optional<int> Characteristics::stateId = std::nullopt;
 
-	static auto OnLeave = application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL);
+	static auto OnLeave = application::UIState::DoGoTo(CrewDetail::GetStateId);
 
 	static void Refresh()
 	{
@@ -57,16 +59,19 @@ namespace state::in_play::crew_detail
 
 	void Characteristics::Start()
 	{
-		::application::OnEnter::AddHandler(
-			CURRENT_STATE,
-			OnEnter);
-		::application::Renderer::SetRenderLayout(
-			CURRENT_STATE,
-			Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(
+					stateId,
+					OnEnter);
+				::application::Renderer::SetRenderLayout(
+					stateId,
+					Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

@@ -1,10 +1,12 @@
 #include <Common.Heading.h>
 #include <Game.Session.h>
 #include "State.InPlay.AtSeaOverview.h"
+#include "State.InPlay.CrewList.h"
 #include "State.InPlay.DockOrCareen.h"
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.MultipleMove.h"
 #include "State.InPlay.Next.h"
+#include "State.InPlay.ShipStatus.h"
 #include "State.LeavePlay.h"
 #include "State.Registrar.h"
 #include "Menu.h"
@@ -162,8 +164,8 @@ namespace state::in_play
 		{
 			Terminal::menu.AddAction({ "Dock", OnDock });
 		}
-		Terminal::menu.AddAction({ "Crew Status", application::UIState::GoTo(::UIState::IN_PLAY_CREW_LIST) });
-		Terminal::menu.AddAction({ "Ship Status", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS) });
+		Terminal::menu.AddAction({ "Crew Status", application::UIState::DoGoTo(CrewList::GetStateId) });
+		Terminal::menu.AddAction({ "Ship Status", application::UIState::DoGoTo(ShipStatus::GetStateId) });
 		MenuAction defaultAction = { "Menu", application::UIState::DoGoTo(LeavePlay::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}

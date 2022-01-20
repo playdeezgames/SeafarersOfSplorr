@@ -2,6 +2,7 @@
 #include <Game.Session.h>
 #include "State.InPlay.ConfirmHeadForMark.h"
 #include "State.InPlay.Globals.h"
+#include "State.InPlay.ShipStatus.h"
 #include "State.ScratchPad.HeadForMark.h"
 namespace state::in_play
 {
@@ -56,7 +57,7 @@ namespace state::in_play
 		auto relativeLocation = mark.GetLocation() - ship.GetLocation();
 		ship.SetHeading(common::Heading::XYToDegrees(relativeLocation));
 
-		application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
+		application::UIState::Write(ShipStatus::GetStateId());
 	}
 
 	static void OnDelete()
@@ -67,7 +68,7 @@ namespace state::in_play
 			.GetMarks()
 			.RemoveMark(scratch_pad::HeadForMark::GetMark());
 
-		application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
+		application::UIState::Write(ShipStatus::GetStateId());
 	}
 
 	static void UpdateMenu()

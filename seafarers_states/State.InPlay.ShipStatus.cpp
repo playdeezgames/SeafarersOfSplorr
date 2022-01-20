@@ -1,12 +1,14 @@
 #include <format>
 #include <Game.Session.h>
 #include "State.InPlay.AtSeaOverview.h"
+#include "State.InPlay.ChangeHeading.h"
 #include "State.InPlay.ChangeSpeed.h"
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.ShipStatus.h"
+#include "State.Registrar.h"
 namespace state::in_play
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_SHIP_STATUS;
+	std::optional<int> ShipStatus::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -28,7 +30,7 @@ namespace state::in_play
 		auto ship = game::Session().GetPlayer().GetCharacter().GetBerth().GetShip();
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		Terminal::menu.AddAction({ std::format("Change Heading(Current: {:.2f}\xf8)", ship.GetHeading()), application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_HEADING) });
+		Terminal::menu.AddAction({ std::format("Change Heading(Current: {:.2f}\xf8)", ship.GetHeading()), application::UIState::DoGoTo(ChangeHeading::GetStateId) });
 		Terminal::menu.AddAction({ std::format("Change Speed(Current: {:.1f})", ship.GetSpeed()), application::UIState::DoGoTo(ChangeSpeed::GetStateId) });
 		Terminal::menu.AddAction({ "Mark Current Location", application::UIState::GoTo(::UIState::IN_PLAY_MARK_LOCATION) });
 		Terminal::menu.AddAction({ "Rename ship", application::UIState::GoTo(::UIState::IN_PLAY_RENAME_SHIP_ADJECTIVE) });
@@ -45,12 +47,15 @@ namespace state::in_play
 
 	void ShipStatus::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

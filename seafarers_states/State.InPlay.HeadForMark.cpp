@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <Common.Heading.h>
 #include <Game.Session.h>
+#include "State.InPlay.ChangeHeading.h"
 #include "State.InPlay.HeadForMark.h"
 #include "State.InPlay.Globals.h"
 #include "State.ScratchPad.HeadForMark.h"
@@ -50,7 +51,7 @@ namespace state::in_play
 			{
 				Terminal::menu.AddAction({ mark.GetName(), DoHeadForLocation(mark.GetName()) });
 			});
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_CHANGE_HEADING) };
+		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(ChangeHeading::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 

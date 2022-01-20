@@ -2,9 +2,11 @@
 #include <Game.Session.h>
 #include "State.InPlay.ChangeHeading.h"
 #include "State.InPlay.Globals.h"
+#include "State.InPlay.ShipStatus.h"
+#include "State.Registrar.h"
 namespace state::in_play
 {
-	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CHANGE_HEADING;
+	std::optional<int> ChangeHeading::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -49,7 +51,7 @@ namespace state::in_play
 			Terminal::menu.AddAction({ "Head for a nearby island", application::UIState::GoTo(::UIState::IN_PLAY_HEAD_FOR_NEAR_BY) });
 		}
 		Terminal::menu.AddAction({ "Set heading manually", application::UIState::GoTo(::UIState::IN_PLAY_MANUAL_HEADING) });
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS) };
+		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(ShipStatus::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 
@@ -62,12 +64,15 @@ namespace state::in_play
 
 	void ChangeHeading::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

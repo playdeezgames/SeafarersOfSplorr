@@ -5,6 +5,7 @@
 #include "State.InPlay.AtSeaOverview.h"
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.HeadForKnown.h"
+#include "State.InPlay.ShipStatus.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_HEAD_FOR_KNOWN;
@@ -50,7 +51,7 @@ namespace state::in_play
 					relativeLocation.GetMagnitude()),
 					DoSetHeading(knownIsland, common::Heading::XYToDegrees(relativeLocation)) });
 			});
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS) };
+		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(ShipStatus::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 

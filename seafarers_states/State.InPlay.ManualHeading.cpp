@@ -1,6 +1,7 @@
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.ManualHeading.h"
+#include "State.InPlay.ShipStatus.h"
 namespace state::in_play
 {
 	static const ::UIState CURRENT_STATE = ::UIState::IN_PLAY_MANUAL_HEADING;
@@ -23,7 +24,7 @@ namespace state::in_play
 	static void OnValidInput(double value)
 	{
 		game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().SetHeading(value);
-		application::UIState::Write(::UIState::IN_PLAY_SHIP_STATUS);
+		application::UIState::Write(ShipStatus::GetStateId());
 	}
 
 	void ManualHeading::Start()
@@ -33,7 +34,7 @@ namespace state::in_play
 		::application::Keyboard::AddHandler(
 			CURRENT_STATE,
 			Terminal::DoDoubleInput(
-				application::UIState::GoTo(::UIState::IN_PLAY_SHIP_STATUS),
+				application::UIState::GoTo(ShipStatus::GetStateId()),
 				OnValidInput));
 	}
 }
