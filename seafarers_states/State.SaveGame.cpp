@@ -88,7 +88,7 @@ namespace state
 	{
 		if (game::Session().GetSaves().GetSlot1().Exists())
 		{
-			application::UIState::Write(::UIState::CONFIRM_OVERWRITE_SLOT1);
+			application::UIState::Write((int)::UIState::CONFIRM_OVERWRITE_SLOT1);
 			return;
 		}
 		game::Session().GetSaves().GetSlot1().Store();
@@ -99,7 +99,7 @@ namespace state
 	{
 		if (game::Session().GetSaves().GetSlot2().Exists())
 		{
-			application::UIState::Write(::UIState::CONFIRM_OVERWRITE_SLOT2);
+			application::UIState::Write((int)::UIState::CONFIRM_OVERWRITE_SLOT2);
 			return;
 		}
 		game::Session().GetSaves().GetSlot2().Store();
@@ -110,7 +110,7 @@ namespace state
 	{
 		if (game::Session().GetSaves().GetSlot3().Exists())
 		{
-			application::UIState::Write(::UIState::CONFIRM_OVERWRITE_SLOT3);
+			application::UIState::Write((int)::UIState::CONFIRM_OVERWRITE_SLOT3);
 			return;
 		}
 		game::Session().GetSaves().GetSlot3().Store();
@@ -121,7 +121,7 @@ namespace state
 	{
 		if (game::Session().GetSaves().GetSlot4().Exists())
 		{
-			application::UIState::Write(::UIState::CONFIRM_OVERWRITE_SLOT4);
+			application::UIState::Write((int)::UIState::CONFIRM_OVERWRITE_SLOT4);
 			return;
 		}
 		game::Session().GetSaves().GetSlot4().Store();
@@ -132,7 +132,7 @@ namespace state
 	{
 		if (game::Session().GetSaves().GetSlot5().Exists())
 		{
-			application::UIState::Write(::UIState::CONFIRM_OVERWRITE_SLOT5);
+			application::UIState::Write((int)::UIState::CONFIRM_OVERWRITE_SLOT5);
 			return;
 		}
 		game::Session().GetSaves().GetSlot5().Store();
@@ -152,8 +152,8 @@ namespace state
 		{"3", Slot3Saver },
 		{"4", Slot4Saver },
 		{"5", Slot5Saver },
-		{"6", SaveToAutosave},
-		{"0", application::UIState::DoGoTo(LeavePlay::GetStateId)}
+		{"6", SaveToAutosave },
+		{"0", application::UIState::DoGoTo(LeavePlay::GetStateId) }
 	};
 
 	void SaveGame::Start()

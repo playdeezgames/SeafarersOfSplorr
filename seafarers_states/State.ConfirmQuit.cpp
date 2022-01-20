@@ -40,7 +40,7 @@ namespace state
 	static const std::map<std::string, std::function<void()>> menuActions =
 	{
 		{ "0", application::UIState::DoGoTo(MainMenu::GetStateId)},
-		{ "1", application::UIState::GoTo(::UIState::QUIT)}
+		{ "1", application::UIState::GoTo((int)::UIState::QUIT)}
 	};
 
 	void ConfirmQuit::Start()
