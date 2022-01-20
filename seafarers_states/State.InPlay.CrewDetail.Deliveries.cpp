@@ -2,12 +2,13 @@
 #include <Game.Session.h>
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.CrewDetail.Deliveries.h"
+#include "State.InPlay.CrewDetail.DeliveryDetail.h"
 #include "State.InPlay.Globals.h"
 #include "State.ScratchPad.CrewDetail.h"
 #include "State.ScratchPad.SelectedDelivery.h"
 namespace state::in_play::crew_detail
 {
-	static constexpr auto CURRENT_STATE = ::UIState::IN_PLAY_CREW_DETAIL_DELIVERIES;
+	std::optional<int> Deliveries::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -34,7 +35,7 @@ namespace state::in_play::crew_detail
 		return [=]()
 		{
 			scratch_pad::SelectedDelivery::SetDeliveryId(deliveryId);
-			application::UIState::Write(::UIState::IN_PLAY_CREW_DETAIL_DELIVERY_DETAIL);
+			application::UIState::Write(DeliveryDetail::GetStateId());
 		};
 	}
 
@@ -93,16 +94,19 @@ namespace state::in_play::crew_detail
 
 	void Deliveries::Start()
 	{
-		::application::OnEnter::AddHandler(
-			CURRENT_STATE,
-			OnEnter);
-		::application::Renderer::SetRenderLayout(
-			CURRENT_STATE,
-			Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(
+					stateId,
+					OnEnter);
+				::application::Renderer::SetRenderLayout(
+					stateId,
+					Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

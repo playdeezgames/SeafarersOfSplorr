@@ -3,11 +3,12 @@
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.CrewDetail.Inventory.h"
+#include "State.InPlay.CrewDetail.InventoryDetail.h"
 #include "State.ScratchPad.CrewDetail.h"
 #include "State.ScratchPad.SelectedItemType.h"
 namespace state::in_play::crew_detail
 {
-	static constexpr auto CURRENT_STATE = ::UIState::IN_PLAY_CREW_DETAIL_INVENTORY;
+	std::optional<int> Inventory::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -32,7 +33,7 @@ namespace state::in_play::crew_detail
 		return [itemTypeId]()
 		{
 			scratch_pad::SelectedItemType::SetItemTypeId(itemTypeId);
-			application::UIState::Write(::UIState::IN_PLAY_CREW_DETAIL_INVENTORY_DETAIL);
+			application::UIState::Write(InventoryDetail::GetStateId);
 		};
 	}
 
@@ -72,16 +73,19 @@ namespace state::in_play::crew_detail
 
 	void Inventory::Start()
 	{
-		::application::OnEnter::AddHandler(
-			CURRENT_STATE,
-			OnEnter);
-		::application::Renderer::SetRenderLayout(
-			CURRENT_STATE,
-			Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(
+					stateId,
+					OnEnter);
+				::application::Renderer::SetRenderLayout(
+					stateId,
+					Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

@@ -1,10 +1,11 @@
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.DeliveryService.DeliveryDetail.h"
+#include "State.InPlay.DeliveryService.DeliveryList.h"
 #include "State.ScratchPad.SelectedDelivery.h"
 namespace state::in_play::delivery_service
 {
-	static constexpr ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DELIVERY_SERVICE_DELIVERY_DETAIL;
+	std::optional<int> DeliveryDetail::stateId = std::nullopt;
 
 	using Delivery = game::session::Delivery;
 
@@ -37,7 +38,7 @@ namespace state::in_play::delivery_service
 			.GetPlayer()
 			.GetCharacter()
 			.AcceptDelivery(delivery);
-		application::UIState::Write(::UIState::IN_PLAY_DELIVERY_SERVICE_DELIVERY_LIST);
+		application::UIState::Write(DeliveryList::GetStateId());
 	}
 
 	static void UpdateMenu()
@@ -45,7 +46,7 @@ namespace state::in_play::delivery_service
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		Terminal::menu.AddAction({"Accept", AcceptJob});
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_DELIVERY_SERVICE_DELIVERY_LIST) };
+		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(DeliveryList::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 
@@ -58,12 +59,15 @@ namespace state::in_play::delivery_service
 
 	void DeliveryDetail::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

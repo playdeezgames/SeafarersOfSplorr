@@ -3,6 +3,8 @@
 #include <Game.Session.h>
 #include "State.InPlay.Docked.h"
 #include "State.InPlay.IslandDistrict.h"
+#include "State.InPlay.DeliveryService.h"
+#include "State.InPlay.StreetVendor.h"
 #include "State.ScratchPad.IslandDistrict.h"
 #include "State.ScratchPad.IslandFeature.h"
 namespace state::in_play
@@ -26,11 +28,11 @@ namespace state::in_play
 		Terminal::ShowPrompt();
 	}
 
-	static ::UIState GetUIStateForFeatureType(const game::island::FeatureType& featureType)
+	static int GetUIStateForFeatureType(const game::island::FeatureType& featureType)
 	{
 		return
-			(featureType== game::island::FeatureType::DELIVERY_SERVICE) ? (::UIState::IN_PLAY_DELIVERY_SERVICE) :
-			(featureType == game::island::FeatureType::STREET_VENDOR) ? (::UIState::IN_PLAY_STREET_VENDOR) :
+			(featureType== game::island::FeatureType::DELIVERY_SERVICE) ? (DeliveryService::GetStateId()) :
+			(featureType == game::island::FeatureType::STREET_VENDOR) ? (StreetVendor::GetStateId()) :
 			(throw "no dice!");
 	}
 

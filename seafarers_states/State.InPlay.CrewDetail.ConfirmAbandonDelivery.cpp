@@ -1,10 +1,11 @@
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.CrewDetail.ConfirmAbandonDelivery.h"
+#include "State.InPlay.CrewDetail.Deliveries.h"
 #include "State.ScratchPad.SelectedDelivery.h"
 namespace state::in_play::crew_detail
 {
-	static constexpr auto CURRENT_STATE = ::UIState::IN_PLAY_CREW_DETAIL_CONFIRM_ABANDON_DELIVERY;
+	std::optional<int> ConfirmAbandonDelivery::stateId;
 
 	static void Refresh()
 	{
@@ -24,7 +25,7 @@ namespace state::in_play::crew_detail
 	static void DoAbandonDelivery()
 	{
 		game::session::character::Delivery(scratch_pad::SelectedDelivery::GetDeliveryId()).Abandon();
-		application::UIState::Write(::UIState::IN_PLAY_CREW_DETAIL_DELIVERIES);
+		application::UIState::Write(crew_detail::Deliveries::GetStateId());
 	}
 
 	static void UpdateMenu()
@@ -32,7 +33,7 @@ namespace state::in_play::crew_detail
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		Terminal::menu.AddAction({"Abandon Delivery", DoAbandonDelivery});
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_DELIVERY_DETAIL) };
+		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(crew_detail::Deliveries::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 
@@ -45,16 +46,19 @@ namespace state::in_play::crew_detail
 
 	void ConfirmAbandonDelivery::Start()
 	{
-		::application::OnEnter::AddHandler(
-			CURRENT_STATE,
-			OnEnter);
-		::application::Renderer::SetRenderLayout(
-			CURRENT_STATE,
-			Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(
+					stateId,
+					OnEnter);
+				::application::Renderer::SetRenderLayout(
+					stateId,
+					Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

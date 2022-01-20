@@ -1,10 +1,11 @@
 #include <algorithm>
 #include <Game.Session.h>
+#include "State.InPlay.DeliveryService.h"
 #include "State.InPlay.DeliveryService.MakeDelivery.h"
 #include "State.InPlay.Globals.h"
 namespace state::in_play::delivery_service
 {
-	static constexpr auto CURRENT_STATE = ::UIState::IN_PLAY_DELIVERY_SERVICE_MAKE_DELIVERY;
+	std::optional<int> MakeDelivery::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -49,7 +50,7 @@ namespace state::in_play::delivery_service
 				auto island = islands.GetIsland(delivery.GetFromIslandId());
 				Terminal::menu.AddAction({ island.GetName(), DoCompleteDelivery(delivery.operator int())});
 			});
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_DELIVERY_SERVICE) };
+		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(DeliveryService::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 
@@ -62,12 +63,15 @@ namespace state::in_play::delivery_service
 
 	void MakeDelivery::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

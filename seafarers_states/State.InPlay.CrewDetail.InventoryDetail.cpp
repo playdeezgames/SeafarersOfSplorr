@@ -1,11 +1,12 @@
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
+#include "State.InPlay.CrewDetail.Inventory.h"
 #include "State.InPlay.CrewDetail.InventoryDetail.h"
 #include "State.ScratchPad.CrewDetail.h"
 #include "State.ScratchPad.SelectedItemType.h"
 namespace state::in_play::crew_detail
 {
-	static constexpr ::UIState CURRENT_STATE = ::UIState::IN_PLAY_CREW_DETAIL_INVENTORY_DETAIL;
+	std::optional<int> InventoryDetail::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -28,7 +29,7 @@ namespace state::in_play::crew_detail
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_INVENTORY) };
+		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(Inventory::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 
@@ -41,16 +42,19 @@ namespace state::in_play::crew_detail
 
 	void InventoryDetail::Start()
 	{
-		::application::OnEnter::AddHandler(
-			CURRENT_STATE,
-			OnEnter);
-		::application::Renderer::SetRenderLayout(
-			CURRENT_STATE,
-			Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(
+					stateId,
+					OnEnter);
+				::application::Renderer::SetRenderLayout(
+					stateId,
+					Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

@@ -1,11 +1,13 @@
 #include <Game.Session.h>
 #include "State.InPlay.DeliveryService.h"
+#include "State.InPlay.DeliveryService.DeliveryList.h"
+#include "State.InPlay.DeliveryService.MakeDelivery.h"
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.IslandDistrict.h"
 #include "State.ScratchPad.IslandFeature.h"
 namespace state::in_play
 {
-	static constexpr ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DELIVERY_SERVICE;
+	std::optional<int> DeliveryService::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -27,12 +29,12 @@ namespace state::in_play
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		Terminal::menu.AddAction({"Job List", application::UIState::GoTo(::UIState::IN_PLAY_DELIVERY_SERVICE_DELIVERY_LIST) });
+		Terminal::menu.AddAction({"Job List", application::UIState::DoGoTo(delivery_service::DeliveryList::GetStateId) });
 		auto character = game::Session().GetPlayer().GetCharacter();
 		auto island = character.GetIsland();
 		if (character.GetDeliveries().HasDeliveriesFor(island.operator int()))
 		{
-			Terminal::menu.AddAction({"Make Delivery", application::UIState::GoTo(::UIState::IN_PLAY_DELIVERY_SERVICE_MAKE_DELIVERY) });
+			Terminal::menu.AddAction({"Make Delivery", application::UIState::DoGoTo(delivery_service::MakeDelivery::GetStateId) });
 		}
 		MenuAction defaultAction = { "Leave", application::UIState::DoGoTo(IslandDistrict::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
@@ -47,12 +49,15 @@ namespace state::in_play
 
 	void DeliveryService::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

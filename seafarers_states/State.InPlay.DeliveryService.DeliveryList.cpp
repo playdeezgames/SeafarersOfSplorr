@@ -2,12 +2,14 @@
 #include <format>
 #include <Game.Session.h>
 #include "State.InPlay.Globals.h"
+#include "State.InPlay.DeliveryService.h"
+#include "State.InPlay.DeliveryService.DeliveryDetail.h"
 #include "State.InPlay.DeliveryService.DeliveryList.h"
 #include "State.ScratchPad.IslandFeature.h"
 #include "State.ScratchPad.SelectedDelivery.h"
 namespace state::in_play::delivery_service
 {
-	static constexpr ::UIState CURRENT_STATE = ::UIState::IN_PLAY_DELIVERY_SERVICE_DELIVERY_LIST;
+	std::optional<int> DeliveryList::stateId = std::nullopt;
 
 	static void Refresh()
 	{
@@ -34,7 +36,7 @@ namespace state::in_play::delivery_service
 		return [deliveryId]() 
 		{
 			scratch_pad::SelectedDelivery::SetDeliveryId(deliveryId);
-			application::UIState::Write(::UIState::IN_PLAY_DELIVERY_SERVICE_DELIVERY_DETAIL);
+			application::UIState::Write(DeliveryDetail::GetStateId());
 		};
 	}
 
@@ -76,7 +78,7 @@ namespace state::in_play::delivery_service
 						DoSelectDelivery(delivery.operator int())
 					});
 			});
-		MenuAction defaultAction = { "Never mind", application::UIState::GoTo(::UIState::IN_PLAY_DELIVERY_SERVICE) };
+		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(DeliveryService::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
 
@@ -89,12 +91,15 @@ namespace state::in_play::delivery_service
 
 	void DeliveryList::Start()
 	{
-		::application::OnEnter::AddHandler(CURRENT_STATE, OnEnter);
-		::application::Renderer::SetRenderLayout(CURRENT_STATE, Terminal::LAYOUT_NAME);
-		::application::Keyboard::AddHandler(
-			CURRENT_STATE,
-			Terminal::DoMenuInput(
-				Terminal::INVALID_INPUT,
-				Refresh));
+		Registrar::Register(stateId, [](int stateId) 
+			{
+				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(
+					stateId,
+					Terminal::DoMenuInput(
+						Terminal::INVALID_INPUT,
+						Refresh));
+			});
 	}
 }

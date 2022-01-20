@@ -1,6 +1,8 @@
 #include <Game.Session.h>
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.CrewDetail.Characteristics.h"
+#include "State.InPlay.CrewDetail.Deliveries.h"
+#include "State.InPlay.CrewDetail.Inventory.h"
 #include "State.InPlay.CrewList.h"
 #include "State.InPlay.Globals.h"
 #include "State.Registrar.h"
@@ -88,11 +90,11 @@ namespace state::in_play
 		Terminal::menu.AddAction({"Characteristics", application::UIState::DoGoTo(crew_detail::Characteristics::GetStateId) });
 		if (character.GetItemTypes().HasAny())
 		{
-			Terminal::menu.AddAction({"Inventory", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_INVENTORY) });
+			Terminal::menu.AddAction({"Inventory", application::UIState::DoGoTo(crew_detail::Inventory::GetStateId) });
 		}
 		if (character.GetDeliveries().HasAny())
 		{
-			Terminal::menu.AddAction({ "Deliveries", application::UIState::GoTo(::UIState::IN_PLAY_CREW_DETAIL_DELIVERIES) });
+			Terminal::menu.AddAction({ "Deliveries", application::UIState::DoGoTo(crew_detail::Deliveries::GetStateId) });
 		}
 		MenuAction defaultAction = { "Never mind", OnLeave };
 		Terminal::menu.SetDefaultAction(defaultAction);
