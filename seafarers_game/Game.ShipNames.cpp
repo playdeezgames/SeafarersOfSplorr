@@ -1,7 +1,6 @@
 #include <Common.RNG.h>
 #include <format>
 #include "Game.ShipNames.h"
-#include <map>
 namespace game
 {
 	static const std::map<std::string, size_t> shipNameAdjectives =

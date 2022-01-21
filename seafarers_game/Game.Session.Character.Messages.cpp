@@ -1,7 +1,6 @@
 #include <Common.Utility.Table.h>
 #include <Data.Game.Player.h>
 #include "Game.Session.Character.Messages.h"
-#include <map>
 namespace game::session::character
 {
 	typedef std::map<int, game::characters::MessageList> MessageListTable;

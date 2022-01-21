@@ -1,9 +1,7 @@
 #include "Game.Session.Island.Markets.h"
 #include "Game.Session.Commodities.h"
-#include "Game.Session.h"
 #include "Game.Session.World.h"
 #include <algorithm>
-#include <cmath>
 #include <Common.RNG.h>
 #include <Data.Game.Island.Market.h>
 #include <numeric>

@@ -1,16 +1,11 @@
 #include <Data.Game.Character.h>
 #include <Data.Game.Character.Island.Current.h>
 #include <Data.Game.Character.Delivery.h>
-#include <Data.Game.Character.Ship.h>
 #include <Data.Game.Feature.Delivery.h>
 #include <Data.Game.Player.h>
-#include <Data.Game.Ship.CurrentIsland.h>
-#include <format>
 #include "Game.Colors.h"
-#include "Game.Session.h"
 #include "Game.Session.Character.h"
 #include "Game.Session.Characters.h"
-#include <map>
 namespace game::session
 {
 	bool Character::IsDead() const

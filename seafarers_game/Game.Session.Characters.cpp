@@ -1,15 +1,12 @@
 #include <algorithm>
 #include <Common.NameGenerator.h>
 #include <Common.RNG.h>
-#include <Data.Game.Player.h>
 #include <Data.Game.Character.h>
 #include <Data.Game.Character.Island.Known.h>
 #include <Data.Game.Character.Plight.h>
 #include <Data.Game.Character.Characteristic.h>
 #include <Data.Game.Island.Tribe.h>
-#include "Game.Session.Character.h"
 #include "Game.Session.Characters.h"
-#include <iterator>
 namespace game::session
 {
 	std::vector<Character> Characters::GetAll() const

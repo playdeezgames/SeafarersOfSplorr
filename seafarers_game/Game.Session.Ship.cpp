@@ -5,7 +5,6 @@
 #include <Data.Game.Ship.h>
 #include <Data.Game.Ship.CurrentIsland.h>
 #include "Game.Colors.h"
-#include "Game.Session.h"
 #include "Game.Session.Characters.h"
 #include "Game.Session.Ship.h"
 #include "Game.Session.Ships.h"

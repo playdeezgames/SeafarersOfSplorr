@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <Data.Game.Island.h>
 #include <Data.Game.Ship.h>
-#include "Game.Session.h"
 #include "Game.Session.World.h"
 #include "Game.Session.Ship.DockableIslands.h"
 namespace game::session::ship

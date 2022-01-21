@@ -1,5 +1,4 @@
 #include "Game.Session.World.Profession.h"
-#include <map>
 namespace game::session::world
 {
 	struct ProfessionDescriptor

@@ -1,6 +1,5 @@
 #include <Data.Game.Character.Plight.h>
 #include "Game.Session.Character.Plight.h"
-#include <optional>
 #include <map>
 namespace game::session::character
 {

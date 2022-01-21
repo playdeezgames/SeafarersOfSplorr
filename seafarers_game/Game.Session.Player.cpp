@@ -1,8 +1,6 @@
 #include "Game.Session.Player.h"
 #include "Game.Session.Characters.h"
-#include "Game.Session.h"
 #include "Game.Session.World.h"
-#include "Game.Session.World.Skills.h"
 #include "Game.ShipNames.h"
 #include <algorithm>
 #include <Common.Data.h>
@@ -11,8 +9,6 @@
 #include <Data.Game.Character.Ship.h>
 #include <Data.Game.Player.h>
 #include <Data.Game.Ship.h>
-#include <iterator>
-#include <numeric>
 namespace game::session
 {
 	Character Player::GetCharacter() const

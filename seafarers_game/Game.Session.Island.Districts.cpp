@@ -2,11 +2,8 @@
 #include <Data.Game.Island.District.h>
 #include <Data.Game.Island.Feature.h>
 #include <functional>
-#include "Game.Island.FeatureType.h"
 #include "Game.Session.Island.Districts.h"
 #include <iterator>
-#include <map>
-#include <vector>
 namespace game::session::island
 {
 	std::vector<District> Districts::GetDistricts() const

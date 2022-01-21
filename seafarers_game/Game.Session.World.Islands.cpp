@@ -9,14 +9,10 @@
 #include <Data.Game.Island.Market.h>
 #include <Data.Game.Tribe.h>
 #include <Data.Game.Island.Tribe.h>
-#include "Game.Session.h"
 #include "Game.Session.World.h"
 #include "Game.Session.World.Islands.h"
-#include <iterator>
-#include <map>
 #include <numeric>
 #include <set>
-#include <vector>
 namespace game::session::world
 {
 	using IslandData = data::game::Island;

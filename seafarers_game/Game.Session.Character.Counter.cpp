@@ -1,8 +1,6 @@
 #include <Common.Utility.Table.h>
 #include <Data.Game.Character.Counter.h>
 #include "Game.Session.Character.Counter.h"
-#include <map>
-#include <string>
 namespace game::session::character
 {
 	using CounterData = data::game::character::Counter;

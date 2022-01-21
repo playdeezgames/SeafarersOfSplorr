@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <Data.Game.Island.h>
 #include <Data.Game.Ship.h>
-#include "Game.Session.h"
 #include "Game.Session.Ship.VisibleIslands.h"
 #include "Game.Session.World.h"
 #include <iterator>

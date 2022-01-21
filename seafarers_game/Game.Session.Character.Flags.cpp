@@ -1,8 +1,6 @@
 #include <algorithm>
 #include <Data.Game.Character.Flags.h>
 #include "Game.Session.Character.Flags.h"
-#include <map>
-#include <string>
 #include <iterator>
 namespace game::session::character
 {

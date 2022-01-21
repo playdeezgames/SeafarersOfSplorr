@@ -6,7 +6,6 @@
 #include <Data.Game.Character.h>
 #include "Game.Session.Demigods.h"
 #include <iterator>
-#include <map>
 #include <set>
 namespace game::session
 {

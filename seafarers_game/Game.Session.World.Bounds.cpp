@@ -2,7 +2,6 @@
 #include <Data.Game.World.h>
 #include "Game.Difficulty.h"
 #include "Game.Session.World.Bounds.h"
-#include <map>
 namespace game::session::world
 {
 	using WorldData = data::game::World;

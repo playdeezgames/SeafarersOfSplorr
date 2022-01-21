@@ -1,12 +1,9 @@
 #include <algorithm>
 #include <Data.Game.Skill.h>
 #include <Data.Game.SkillCharacteristicCoefficient.h>
-#include "Game.Characteristic.h"
 #include "Game.Session.SkillCategory.h"
 #include "Game.Session.World.Skills.h"
-#include "Game.SkillCategory.h"
 #include <iterator>
-#include <map>
 namespace game::session::world
 {
 	using SkillData = data::game::Skill;
