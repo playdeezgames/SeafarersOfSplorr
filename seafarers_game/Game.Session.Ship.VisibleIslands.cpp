@@ -1,10 +1,10 @@
+#include "Game.Session.Ship.VisibleIslands.h"
+#include "Game.Session.World.Distances.h"
+#include "Game.Session.World.h"
 #include <algorithm>
 #include <Data.Game.Island.h>
 #include <Data.Game.Ship.h>
-#include "Game.Session.Ship.VisibleIslands.h"
-#include "Game.Session.World.h"
 #include <iterator>
-#include "Game.Session.World.Distances.h"
 namespace game::session::ship
 {
 	std::vector<Island> VisibleIslands::GetAll() const

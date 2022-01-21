@@ -2,10 +2,10 @@
 #include "Game.Session.Commodities.h"
 #include "Game.Session.World.h"
 #include <algorithm>
+#include <cmath>
 #include <Common.RNG.h>
 #include <Data.Game.Island.Market.h>
 #include <numeric>
-#include <cmath>
 namespace game::session::island
 {
 	double Markets::GetUnitPurchaseValue(const item::Type& itemSubtype) const

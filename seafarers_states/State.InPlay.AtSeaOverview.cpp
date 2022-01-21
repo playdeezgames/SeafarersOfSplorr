@@ -1,7 +1,3 @@
-#include <Common.Heading.h>
-#include <Game.Session.h>
-#include <Game.Session.Player.h>
-#include <Game.Session.World.h>
 #include "State.InPlay.AtSeaOverview.h"
 #include "State.InPlay.CrewList.h"
 #include "State.InPlay.DockOrCareen.h"
@@ -10,6 +6,8 @@
 #include "State.InPlay.Next.h"
 #include "State.InPlay.ShipStatus.h"
 #include "State.LeavePlay.h"
+#include <Game.Session.h>
+#include <Game.Session.Player.h>
 #include <Game.Session.World.Calendar.h>
 #include <Game.Session.World.Wind.h>
 namespace state::in_play

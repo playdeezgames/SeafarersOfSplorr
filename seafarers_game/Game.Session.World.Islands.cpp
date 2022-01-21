@@ -1,20 +1,20 @@
+#include "Game.Session.World.Islands.h"
+#include "Game.Session.World.Bounds.h"
+#include "Game.Session.World.Distances.h"
+#include "Game.Session.World.h"
 #include <algorithm>
-#include <ranges>
 #include <Common.Heading.h>
 #include <Common.NameGenerator.h>
 #include <Common.RNG.h>
-#include <Data.Game.Island.h>
 #include <Data.Game.Character.Island.Known.h>
 #include <Data.Game.Demigod.h>
+#include <Data.Game.Island.h>
 #include <Data.Game.Island.Market.h>
-#include <Data.Game.Tribe.h>
 #include <Data.Game.Island.Tribe.h>
-#include "Game.Session.World.h"
-#include "Game.Session.World.Islands.h"
+#include <Data.Game.Tribe.h>
 #include <numeric>
+#include <ranges>
 #include <set>
-#include "Game.Session.World.Distances.h"
-#include "Game.Session.World.Bounds.h"
 namespace game::session::world
 {
 	using IslandData = data::game::Island;

@@ -1,16 +1,16 @@
+#include "Game.Session.Ship.h"
+#include "Game.Colors.h"
+#include "Game.Session.Characters.h"
+#include "Game.Session.Ships.h"
+#include "Game.Session.World.Bounds.h"
+#include "Game.Session.World.h"
+#include "Game.Session.World.Wind.h"
 #include <algorithm>
 #include <Common.Heading.h>
 #include <Data.Game.Character.Island.Known.h>
 #include <Data.Game.Character.Ship.h>
-#include <Data.Game.Ship.h>
 #include <Data.Game.Ship.CurrentIsland.h>
-#include "Game.Colors.h"
-#include "Game.Session.Characters.h"
-#include "Game.Session.Ship.h"
-#include "Game.Session.Ships.h"
-#include "Game.Session.World.h"
-#include "Game.Session.World.Bounds.h"
-#include "Game.Session.World.Wind.h"
+#include <Data.Game.Ship.h>
 namespace game::session
 {
 	using ShipData = data::game::Ship;

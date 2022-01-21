@@ -3,6 +3,7 @@
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Colors.h>
 #include <Game.Session.Player.h>
+#include <set>
 #include <Visuals.Terminals.h>
 namespace state
 {

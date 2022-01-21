@@ -1,5 +1,6 @@
 #include "Game.Session.Player.h"
 #include "Game.Session.Characters.h"
+#include "Game.Session.World.Bounds.h"
 #include "Game.Session.World.h"
 #include "Game.ShipNames.h"
 #include <algorithm>
@@ -9,7 +10,6 @@
 #include <Data.Game.Character.Ship.h>
 #include <Data.Game.Player.h>
 #include <Data.Game.Ship.h>
-#include "Game.Session.World.Bounds.h"
 namespace game::session
 {
 	Character Player::GetCharacter() const
@@ -65,6 +65,4 @@ namespace game::session
 		}
 		return std::nullopt;
 	}
-
-	static std::set<Skill> professionalSkillSet;
 }

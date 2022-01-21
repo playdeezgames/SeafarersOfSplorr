@@ -1,9 +1,9 @@
+#include "Game.Session.Ship.DockableIslands.h"
+#include "Game.Session.World.Distances.h"
+#include "Game.Session.World.h"
 #include <algorithm>
 #include <Data.Game.Island.h>
 #include <Data.Game.Ship.h>
-#include "Game.Session.World.h"
-#include "Game.Session.Ship.DockableIslands.h"
-#include "Game.Session.World.Distances.h"
 namespace game::session::ship
 {
 	std::optional<Island> DockableIslands::TryGetFirst() const
