@@ -8,6 +8,10 @@
 #include <Common.Heading.h>
 #include <Common.RNG.h>
 #include <Data.Game.World.h>
+#include "Game.Session.World.Distances.h"
+#include "Game.Session.World.Bounds.h"
+#include "Game.Session.World.Calendar.h"
+#include "Game.Session.World.Wind.h"
 namespace game::session
 {
 	static item::Type CreateWorldCurrencyItemSubtype()//TODO: should this go to Items::Populate?
@@ -36,7 +40,7 @@ namespace game::session
 			common::RNG::FromRange(0, DAYS_PER_YEAR));
 
 		world::Skills().Populate(difficulty);
-		GetCalendar().Populate(difficulty);
+		world::Calendar().Populate(difficulty);
 		session::Demigods().Populate(difficulty);
 		Tribes().Populate(difficulty);
 		world::Islands().Populate(difficulty);
@@ -45,23 +49,23 @@ namespace game::session
 
 	void World::Reset() const
 	{
-		GetBounds().Reset();
-		GetCalendar().Reset();
+		world::Bounds().Reset();
+		world::Calendar().Reset();
 		session::Commodities().Reset();
 		session::Demigods().Reset();
-		GetDistances().Reset();
+		world::Distances().Reset();
 		world::Islands().Reset();
 		item::Types().Reset();
 		world::Skills().Reset();
 		Tribes().Reset();
-		GetWind().Reset();
+		world::Wind().Reset();
 	}
 
 	void World::ApplyTurnEffects() const
 	{
 		world::Islands().ApplyTurnEffects();
-		GetWind().ApplyTurnEffects();
-		GetCalendar().ApplyTurnEffects();
+		world::Wind().ApplyTurnEffects();
+		world::Calendar().ApplyTurnEffects();
 		session::Demigods().ApplyTurnEffects();
 	}
 

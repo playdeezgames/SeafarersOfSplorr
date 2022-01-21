@@ -10,6 +10,8 @@
 #include "State.InPlay.Next.h"
 #include "State.InPlay.ShipStatus.h"
 #include "State.LeavePlay.h"
+#include <Game.Session.World.Calendar.h>
+#include <Game.Session.World.Wind.h>
 namespace state::in_play
 {
 	std::optional<int> AtSeaOverview::stateId = std::nullopt;
@@ -101,7 +103,7 @@ namespace state::in_play
 			"At Sea:");
 		Terminal::SetForeground(
 			game::Colors::GRAY);
-		Terminal::WriteLine(game::session::World().GetCalendar().GetDate());
+		Terminal::WriteLine(game::session::world::Calendar().GetDate());
 
 		//ship
 		auto ship = 
@@ -113,7 +115,7 @@ namespace state::in_play
 			ship.GetHeading(),
 			ship.GetSpeed());
 		//wind
-		auto wind = game::session::World().GetWind();
+		auto wind = game::session::world::Wind();
 		Terminal::WriteLine(
 			"Wind: {:.2f}\xf8 (x{:.1f})",
 			wind.GetHeading(),

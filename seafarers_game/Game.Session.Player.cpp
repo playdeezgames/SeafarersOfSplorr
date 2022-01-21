@@ -9,6 +9,7 @@
 #include <Data.Game.Character.Ship.h>
 #include <Data.Game.Player.h>
 #include <Data.Game.Ship.h>
+#include "Game.Session.World.Bounds.h"
 namespace game::session
 {
 	Character Player::GetCharacter() const
@@ -20,7 +21,7 @@ namespace game::session
 
 	static void GenerateCharacterShip(int characterId)
 	{
-		auto worldSize = game::session::World().GetBounds().GetSize();
+		auto worldSize = game::session::world::Bounds().GetSize();
 		auto shipType = game::ShipType::RAFT;
 		int shipId = ShipData::Create(
 			(int)shipType,

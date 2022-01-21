@@ -1,12 +1,13 @@
 #pragma once
 #include "Game.Difficulty.h"
 #include "Game.Session.World.Calendar.Months.h"
+#include "Game.Session.World.h"
 #include <string>
 namespace game::session::world
 {
 	struct Calendar
 	{
-		constexpr explicit Calendar(int worldId) : worldId(worldId) {}
+		constexpr explicit Calendar() : worldId(WORLD_ID) {}
 		constexpr calendar::Months GetMonths() const { return calendar::Months(worldId); }
 		std::string GetDate() const;
 		int GetYearLength() const;

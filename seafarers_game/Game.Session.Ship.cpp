@@ -9,6 +9,8 @@
 #include "Game.Session.Ship.h"
 #include "Game.Session.Ships.h"
 #include "Game.Session.World.h"
+#include "Game.Session.World.Bounds.h"
+#include "Game.Session.World.Wind.h"
 namespace game::session
 {
 	using ShipData = data::game::Ship;
@@ -161,7 +163,7 @@ namespace game::session
 		auto fouling = 0.0;//TODO: put fouling back!
 		auto effectiveSpeed = speed * (1.0 - fouling);
 
-		effectiveSpeed *= game::session::World().GetWind().GetSpeedMultiplier(heading);
+		effectiveSpeed *= game::session::world::Wind().GetSpeedMultiplier(heading);
 
 		effectiveSpeed *= game::session::Ships().GetShip(shipId).GetShipType().GetSpeedFactor();
 
@@ -179,7 +181,7 @@ namespace game::session
 				common::Heading::DegreesToXY(heading) *
 				effectiveSpeed;
 
-			game::session::World().GetBounds().ClampLocation(location.value());
+			game::session::world::Bounds().ClampLocation(location.value());
 
 			auto berths = GetBerths().GetBerths();
 			std::for_each(

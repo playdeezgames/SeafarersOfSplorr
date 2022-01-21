@@ -1,9 +1,10 @@
 #pragma once
+#include "Game.Session.World.h"
 namespace game::session::world
 {
 	struct Wind
 	{
-		constexpr explicit Wind(int worldId) : worldId(worldId) {};
+		constexpr explicit Wind() : worldId(WORLD_ID) {};
 		double GetHeading() const;
 		double GetSpeedMultiplier(double heading) const;
 		void SetHeading(double heading) const;

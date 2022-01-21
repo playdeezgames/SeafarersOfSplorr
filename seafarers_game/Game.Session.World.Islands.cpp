@@ -13,6 +13,8 @@
 #include "Game.Session.World.Islands.h"
 #include <numeric>
 #include <set>
+#include "Game.Session.World.Distances.h"
+#include "Game.Session.World.Bounds.h"
 namespace game::session::world
 {
 	using IslandData = data::game::Island;
@@ -21,8 +23,8 @@ namespace game::session::world
 
 	static std::list<common::XY<double>> GenerateLocations()
 	{
-		double minimumIslandDistance = game::session::World().GetDistances().GetIslandSpacing();
-		auto worldSize = game::session::World().GetBounds().GetSize();
+		double minimumIslandDistance = game::session::world::Distances().GetIslandSpacing();
+		auto worldSize = game::session::world::Bounds().GetSize();
 		size_t retry = 0;
 		std::list<common::XY<double>> locations;
 		while (retry < RETRY_COUNT)
