@@ -1,5 +1,6 @@
 #include "Game.Session.World.h"
 #include "Game.Session.Demigods.h"
+#include "Game.Session.Commodities.h"
 #include <Common.Heading.h>
 #include <Common.RNG.h>
 #include <Data.Game.World.h>
@@ -42,7 +43,7 @@ namespace game::session
 	{
 		GetBounds().Reset();
 		GetCalendar().Reset();
-		GetCommodities().Reset();
+		session::Commodities().Reset();
 		session::Demigods().Reset();
 		GetDistances().Reset();
 		GetIslands().Reset();
