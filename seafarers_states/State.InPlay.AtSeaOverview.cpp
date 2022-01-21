@@ -119,7 +119,7 @@ namespace state::in_play
 			wind.GetHeading(),
 			wind.GetSpeedMultiplier(ship.GetHeading()));
 		//dockable islands
-		bool canDock = RefreshDockableIslands();
+		RefreshDockableIslands();
 		//nearby islands
 		RefreshNearbyIslands();
 
@@ -175,16 +175,16 @@ namespace state::in_play
 
 	void AtSeaOverview::Start()
 	{
-		Registrar::Register(stateId, [](int stateId)
+		Registrar::Register(stateId, [](int currentState)
 			{
 				::application::OnEnter::AddHandler(
-					stateId,
+					currentState,
 					OnEnter);
 				::application::Renderer::SetRenderLayout(
-					stateId,
+					currentState,
 					Terminal::LAYOUT_NAME);
 				::application::Keyboard::AddHandler(
-					stateId,
+					currentState,
 					Terminal::DoMenuInput(
 						Terminal::INVALID_INPUT,
 						Refresh));

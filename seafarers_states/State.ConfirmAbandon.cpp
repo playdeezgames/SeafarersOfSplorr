@@ -45,16 +45,16 @@ namespace state
 
 	void ConfirmAbandon::Start()
 	{
-		Registrar::Register(stateId, [](int stateId) 
+		Registrar::Register(stateId, [](int currentState)
 			{
 				::application::OnEnter::AddHandler(
-					stateId, 
+					currentState,
 					OnEnter);
 				::application::Renderer::SetRenderLayout(
-					stateId, 
+					currentState,
 					Terminal::LAYOUT_NAME);
 				::application::Keyboard::AddHandler(
-					stateId, 
+					currentState,
 					Terminal::DoIntegerInput(
 						menuActions, 
 						Terminal::INVALID_INPUT, 

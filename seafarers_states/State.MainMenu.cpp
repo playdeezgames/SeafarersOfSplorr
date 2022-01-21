@@ -17,11 +17,6 @@ namespace state
 {
 	std::optional<int> MainMenu::stateId = std::nullopt;
 
-	static void GoToAbout()
-	{
-		::application::UIState::Write(About::GetStateId());
-	}
-
 	static void Refresh()
 	{
 		Terminal::Reinitialize();

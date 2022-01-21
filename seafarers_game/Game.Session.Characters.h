@@ -8,7 +8,7 @@ namespace game::session
 	{
 		constexpr Characters() {}
 		constexpr Character GetCharacter(int characterId) const { return Character(characterId); }
-		constexpr void Populate(const Difficulty& difficulty) const {}
+		constexpr void Populate(const Difficulty&) const {}
 
 		std::vector<Character> GetAll() const;
 		void Reset() const;

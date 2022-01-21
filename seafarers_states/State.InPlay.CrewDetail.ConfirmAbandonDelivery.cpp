@@ -47,16 +47,16 @@ namespace state::in_play::crew_detail
 
 	void ConfirmAbandonDelivery::Start()
 	{
-		Registrar::Register(stateId, [](int stateId) 
+		Registrar::Register(stateId, [](int state) 
 			{
 				::application::OnEnter::AddHandler(
-					stateId,
+					state,
 					OnEnter);
 				::application::Renderer::SetRenderLayout(
-					stateId,
+					state,
 					Terminal::LAYOUT_NAME);
 				::application::Keyboard::AddHandler(
-					stateId,
+					state,
 					Terminal::DoMenuInput(
 						Terminal::INVALID_INPUT,
 						Refresh));

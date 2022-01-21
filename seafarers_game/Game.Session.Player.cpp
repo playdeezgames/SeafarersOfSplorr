@@ -40,7 +40,7 @@ namespace game::session
 		data::game::character::Ship::Write(characterId, shipId, (int)BerthType::CAPTAIN);
 	}
 
-	void Player::Populate(const Difficulty& difficulty, const std::map<int, size_t> allocations) const
+	void Player::Populate(const Difficulty&, const std::map<int, size_t> allocations) const
 	{
 		auto character = game::session::Characters().Create();
 		std::for_each(
@@ -70,23 +70,4 @@ namespace game::session
 	}
 
 	static std::set<Skill> professionalSkillSet;
-
-	static void AddSkillCategoryToProfessionalSkillSet(const SkillCategory& category)
-	{
-		auto skills =
-			game::session::world::Skills()
-			.GetSkillsInCategory(category.operator game::SkillCategory());
-		std::copy(
-			skills.begin(),
-			skills.end(),
-			std::inserter(professionalSkillSet, professionalSkillSet.end()));
-	}
-
-	static void AddSkillCategorySetToProfessionalSkillSet(const std::set<SkillCategory>& categorySet)
-	{
-		std::for_each(
-			categorySet.begin(),
-			categorySet.end(),
-			AddSkillCategoryToProfessionalSkillSet);
-	}
 }

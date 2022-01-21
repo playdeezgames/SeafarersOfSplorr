@@ -61,8 +61,7 @@ namespace game::session::island
 					count--;
 					auto name = generator.generateName();
 					auto district = generator.generateDistrict();
-					auto featureId = 
-						data::game::island::Feature::Create(islandId, name, (int)generator.featureType, (int)district);
+					data::game::island::Feature::Create(islandId, name, (int)generator.featureType, (int)district);
 				}
 			});
 		auto districts = GetDistricts();

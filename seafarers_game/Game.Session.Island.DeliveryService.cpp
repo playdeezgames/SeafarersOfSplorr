@@ -42,7 +42,7 @@ namespace game::session::island
 		}
 	}
 
-	void DeliveryService::Populate(const game::Difficulty& difficulty) const
+	void DeliveryService::Populate(const game::Difficulty&) const
 	{
 		GenerateDeliveryForFeature(featureId);
 	}

@@ -369,11 +369,10 @@ namespace game::session::world
 		auto names = GenerateNames(locations.size());
 		while (!locations.empty())
 		{
-			auto islandId =
-				data::game::Island::Create(
-					locations.front(),
-					*names.begin(),
-					GeneratePatronDemigod());
+			data::game::Island::Create(
+				locations.front(),
+				*names.begin(),
+				GeneratePatronDemigod());
 			locations.pop_front();
 			names.erase(names.begin());
 		}

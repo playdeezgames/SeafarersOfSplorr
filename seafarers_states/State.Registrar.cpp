@@ -4,12 +4,12 @@ namespace state
 {
 	int Registrar::stateId = (int)::UIState::REGISTRAR_STARTS_HERE;
 
-	void Registrar::Register(std::optional<int>& stateId, std::function<void(int)> starter)
+	void Registrar::Register(std::optional<int>& currentState, std::function<void(int)> starter)
 	{
-		if (!stateId)
+		if (!currentState)
 		{
-			stateId = Registrar::NextStateId();
-			starter(*stateId);
+			currentState = Registrar::NextStateId();
+			starter(*currentState);
 		}
 	}
 }

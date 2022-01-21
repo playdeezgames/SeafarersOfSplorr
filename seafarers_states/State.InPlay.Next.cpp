@@ -75,10 +75,10 @@ namespace state::in_play
 
 	void Next::Start()
 	{
-		Registrar::Register(stateId, [](int stateId) 
+		Registrar::Register(stateId, [](int currentState)
 			{
-				::application::OnEnter::AddHandler(stateId, OnEnter);
-				::application::Update::AddHandler(stateId, OnUpdate);
+				::application::OnEnter::AddHandler(currentState, OnEnter);
+				::application::Update::AddHandler(currentState, OnUpdate);
 			});
 	}
 }

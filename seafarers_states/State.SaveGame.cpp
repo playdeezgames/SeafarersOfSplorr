@@ -161,12 +161,12 @@ namespace state
 	{
 		Registrar::Register(
 			stateId, 
-			[](int stateId) 
+			[](int currentState)
 			{
-				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
-				::application::OnEnter::AddHandler(stateId, OnEnter);
+				::application::Renderer::SetRenderLayout(currentState, Terminal::LAYOUT_NAME);
+				::application::OnEnter::AddHandler(currentState, OnEnter);
 				::application::Keyboard::AddHandler(
-					stateId,
+					currentState,
 					Terminal::DoIntegerInput(
 						menuActions,
 						Terminal::INVALID_INPUT,

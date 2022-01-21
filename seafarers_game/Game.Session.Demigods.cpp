@@ -106,7 +106,7 @@ namespace game::session
 		{10,1}
 	};
 
-	void Demigods::Populate(const Difficulty& difficulty) const
+	void Demigods::Populate(const Difficulty&) const
 	{
 		auto demigodCount = common::RNG::FromGenerator(demigodCounts);
 		auto names = GenerateNames(demigodCount);

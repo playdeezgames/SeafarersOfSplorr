@@ -23,7 +23,7 @@ namespace state::in_play
 		Refresh();
 	}
 
-	static bool OnKey(const std::string& key)
+	static bool OnKey(const std::string&)
 	{
 		application::UIState::Write(MainMenu::GetStateId());
 		return true;
@@ -31,11 +31,11 @@ namespace state::in_play
 
 	void Lose::Start()
 	{
-		Registrar::Register(stateId, [](int stateId) 
+		Registrar::Register(stateId, [](int currentState)
 			{
-				::application::OnEnter::AddHandler(stateId, OnEnter);
-				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
-				::application::Keyboard::AddHandler(stateId, OnKey);
+				::application::OnEnter::AddHandler(currentState, OnEnter);
+				::application::Renderer::SetRenderLayout(currentState, Terminal::LAYOUT_NAME);
+				::application::Keyboard::AddHandler(currentState, OnKey);
 			});
 	}
 }

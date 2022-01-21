@@ -8,7 +8,7 @@ namespace game::session
 		constexpr Ships() {}
 		constexpr Ship GetShip(int shipId) const { return Ship(shipId); }
 		void Reset() const;
-		constexpr void Populate(const Difficulty& difficulty) const {}
+		constexpr void Populate(const Difficulty&) const {}
 		void ApplyTurnEffects() const;
 	};
 }

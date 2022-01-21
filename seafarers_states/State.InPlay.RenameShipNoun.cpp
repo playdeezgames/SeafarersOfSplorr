@@ -40,10 +40,10 @@ namespace state::in_play
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		auto nouns = game::ShipNames::GetNouns();
+		auto allNouns = game::ShipNames::GetNouns();
 		std::for_each(
-			nouns.begin(),
-			nouns.end(),
+			allNouns.begin(),
+			allNouns.end(),
 			[](const std::string& noun)
 			{
 				Terminal::menu.AddAction({ noun, DoChooseNoun(noun) });
@@ -61,12 +61,12 @@ namespace state::in_play
 
 	void RenameShipNoun::Start()
 	{
-		Registrar::Register(stateId, [](int stateId) 
+		Registrar::Register(stateId, [](int currentState) 
 			{
-				::application::OnEnter::AddHandler(stateId, OnEnter);
-				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::OnEnter::AddHandler(currentState, OnEnter);
+				::application::Renderer::SetRenderLayout(currentState, Terminal::LAYOUT_NAME);
 				::application::Keyboard::AddHandler(
-					stateId,
+					currentState,
 					Terminal::DoMenuInput(
 						Terminal::INVALID_INPUT,
 						Refresh));

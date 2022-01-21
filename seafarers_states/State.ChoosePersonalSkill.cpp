@@ -100,12 +100,12 @@ namespace state
 
 	void ChoosePersonalSkill::Start()
 	{
-		Registrar::Register(stateId, [](int stateId) 
+		Registrar::Register(stateId, [](int currentState)
 			{
-				::application::OnEnter::AddHandler(stateId, OnEnter);
-				::application::Renderer::SetRenderLayout(stateId, Terminal::LAYOUT_NAME);
+				::application::OnEnter::AddHandler(currentState, OnEnter);
+				::application::Renderer::SetRenderLayout(currentState, Terminal::LAYOUT_NAME);
 				::application::Keyboard::AddHandler(
-					stateId,
+					currentState,
 					Terminal::DoMenuInput(
 						Terminal::INVALID_INPUT,
 						Refresh));

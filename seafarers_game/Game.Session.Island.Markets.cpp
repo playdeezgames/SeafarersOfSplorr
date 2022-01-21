@@ -72,7 +72,7 @@ namespace game::session::island
 		{ 18.0,  1 }
 	};
 
-	void Markets::Populate(const game::Difficulty& difficulty) const
+	void Markets::Populate(const game::Difficulty&) const
 	{
 		const int INITIAL_PURCHASES = 0;
 		const int INITIAL_SALES = 0;
