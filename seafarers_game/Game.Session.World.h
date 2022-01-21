@@ -6,7 +6,6 @@
 #include "Game.Session.World.Calendar.h"
 #include "Game.Session.World.Distances.h"
 #include "Game.Session.World.Professions.h"
-#include "Game.Session.World.ShipTypes.h"
 #include "Game.Session.World.Skills.h"
 #include "Game.Session.World.Wind.h"
 namespace game::session
@@ -21,7 +20,6 @@ namespace game::session
 		constexpr world::Distances GetDistances() const { return world::Distances(worldId); }
 		constexpr world::Wind GetWind() const { return world::Wind(worldId); }
 
-		constexpr world::ShipTypes GetShipTypes() const { return world::ShipTypes(); }
 		constexpr world::Skills GetSkills() const { return world::Skills(); }
 		constexpr world::Professions GetProfessions() const { return world::Professions(); }
 		constexpr SkillCategories GetSkillCategories() const { return SkillCategories(); }
