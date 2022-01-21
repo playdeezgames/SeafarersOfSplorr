@@ -5,9 +5,9 @@ namespace game
 {
 	struct Session
 	{
-		constexpr Session() {}
-		void ApplyTurnEffects() const;
-		void Reset() const;
-		void Populate(const Difficulty& difficulty) const;
+		Session() = delete;
+		static void ApplyTurnEffects();
+		static void Reset();
+		static void Populate(const Difficulty& difficulty);
 	};
 }

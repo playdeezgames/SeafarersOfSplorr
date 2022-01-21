@@ -129,7 +129,7 @@ namespace state::in_play
 
 	static void OnMove()
 	{
-		game::Session().ApplyTurnEffects();
+		game::Session::ApplyTurnEffects();
 		application::UIState::Write(Next::GetStateId());
 	}
 

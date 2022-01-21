@@ -27,7 +27,7 @@ namespace state::in_play
 		int moves = common::Data::ToInt(line);
 		while (moves > 0)
 		{
-			game::Session().ApplyTurnEffects();
+			game::Session::ApplyTurnEffects();
 			moves--;
 		}
 		application::UIState::Write(Next::GetStateId());

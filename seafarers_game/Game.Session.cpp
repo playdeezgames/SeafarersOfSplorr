@@ -10,20 +10,20 @@ namespace game
 	using Stores = data::sqlite::Stores;
 	using Store = data::sqlite::Store;
 
-	void Session::ApplyTurnEffects() const
+	void Session::ApplyTurnEffects()
 	{
 		game::session::World().ApplyTurnEffects();
 		game::session::Ships().ApplyTurnEffects();
 		game::session::Characters().ApplyTurnEffects();
 	}
 
-	void Session::Populate(const Difficulty& difficulty) const
+	void Session::Populate(const Difficulty& difficulty)
 	{
 		game::session::World().Populate(difficulty);
 		game::session::Characters().Populate(difficulty);
 	}
 
-	void Session::Reset() const
+	void Session::Reset()
 	{
 		Stores::Bounce(Store::IN_MEMORY);
 

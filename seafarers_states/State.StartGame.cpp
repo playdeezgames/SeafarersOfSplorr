@@ -12,8 +12,8 @@ namespace state
 	{
 		return [difficulty]()
 		{
-			game::Session().Reset();
-			game::Session().Populate(difficulty);
+			game::Session::Reset();
+			game::Session::Populate(difficulty);
 			application::UIState::Write(ChooseStartType::GetStateId());
 		};
 	}
