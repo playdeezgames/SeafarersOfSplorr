@@ -1,9 +1,8 @@
-#include <algorithm>
-#include "Data.Game.Character.h"
-#include "Data.Game.Item.Type.h"
 #include "Data.Game.Character.ItemType.h"
+#include "Data.Game.Character.h"
 #include "Data.Game.Common.h"
-#include <iterator>
+#include "Data.Game.Item.Type.h"
+#include <algorithm>
 namespace data::game::character
 {
 	using namespace std::string_view_literals;

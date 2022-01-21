@@ -1,6 +1,5 @@
 #include <algorithm>
 #include <Common.Data.h>
-#include <Game.Session.h>
 #include <Game.Session.World.h>
 #include "State.ChooseProfessionalSkill.h"
 #include "State.InPlay.Globals.h"

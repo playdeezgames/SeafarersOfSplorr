@@ -1,9 +1,7 @@
 #include <algorithm>
-#include <Common.Data.h>
 #include "Data.Game.Character.h"
 #include "Data.Game.Character.Characteristic.h"
 #include "Data.Game.Common.h"
-#include <iterator>
 namespace data::game::character
 {
 	using namespace std::string_view_literals;
