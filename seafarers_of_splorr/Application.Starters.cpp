@@ -7,7 +7,6 @@
 #include <Data.JSON.Stores.h>
 #include <Data.SQLite.Store.h>
 #include <Data.SQLite.Stores.h>
-#include <functional>
 #include <State.About.h>
 #include <State.ChoosePersonalSkill.h>
 #include <State.ChooseProfessionalSkill.h>
@@ -62,7 +61,6 @@
 #include <State.Terminal.h>
 #include <State.Tip.h>
 #include <UIState.h>
-#include <vector>
 #include <Visuals.Colors.h>
 #include <Visuals.Fonts.h>
 #include <Visuals.Layouts.h>

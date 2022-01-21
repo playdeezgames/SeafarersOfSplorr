@@ -1,7 +1,4 @@
 #include <Application.Engine.h>
-#include <Common.RNG.h>
-#include <Common.Utility.h>
-#include <SDL.h>
 namespace application
 {
 	bool Engine::ShouldStart()
