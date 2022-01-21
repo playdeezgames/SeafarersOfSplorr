@@ -1,11 +1,9 @@
-#include <Game.Session.h>
+#include <Game.Session.Player.h>
 #include <Game.Session.World.h>
 #include "State.InPlay.Globals.h"
 #include "State.ChooseStartType.h"
 #include "State.DetailedStart.h"
-#include "State.Registrar.h"
 #include "State.StartGame.h"
-#include "State.Terminal.h"
 #include "State.Tip.h"
 #include "State.ScratchPad.DetailedStart.Profession.h"
 #include "State.ScratchPad.DetailedStart.ElectiveSkillCategories.h"
@@ -50,8 +48,7 @@ namespace state
 		scratch_pad::detailed_start::ProfessionalSkillPointAllocations::AllocateSkillPoints(skillId, 50);
 		skillId = skills.GetSkillsInCategory(game::SkillCategory::SPOT).begin()->operator int();
 		scratch_pad::detailed_start::ProfessionalSkillPointAllocations::AllocateSkillPoints(skillId, 50);
-		game::Session()
-			.GetPlayer()
+		game::session::Player()
 			.Populate(
 				game::session::World().GetDifficulty(),
 				scratch_pad::detailed_start::ProfessionalSkillPointAllocations::GetAllocations());

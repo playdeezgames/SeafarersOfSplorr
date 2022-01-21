@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <Game.Session.h>
+#include <Game.Session.Player.h>
 #include <Game.Session.World.h>
 #include "State.InPlay.DeliveryService.h"
 #include "State.InPlay.DeliveryService.MakeDelivery.h"
@@ -14,7 +14,7 @@ namespace state::in_play::delivery_service
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Make Delivery:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		auto character = game::Session().GetPlayer().GetCharacter();
+		auto character = game::session::Player().GetCharacter();
 		auto island = character.GetIsland();
 		if (!character.GetDeliveries().HasDeliveriesFor(island.operator int()))
 		{
@@ -39,7 +39,7 @@ namespace state::in_play::delivery_service
 	static void UpdateMenu()
 	{
 		Terminal::menu.Clear();
-		auto character = game::Session().GetPlayer().GetCharacter();
+		auto character = game::session::Player().GetCharacter();
 		auto toIsland = character.GetIsland();
 		auto deliveries = character.GetDeliveries().GetDeliveriesFor(toIsland.operator int());
 		auto islands = game::session::World().GetIslands();

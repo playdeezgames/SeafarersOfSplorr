@@ -1,13 +1,12 @@
-#include <Application.Update.h>
-#include <Game.Session.h>
-#include <Game.Session.Saves.h>
+#include "State.InPlay.Next.h"
 #include "State.InPlay.AtSeaOverview.h"
 #include "State.InPlay.Docked.h"
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.Lose.h"
-#include "State.InPlay.Next.h"
 #include "State.InPlay.Win.h"
-#include "State.Registrar.h"
+#include <Application.Update.h>
+#include <Game.Session.Player.h>
+#include <Game.Session.Saves.h>
 namespace state::in_play
 {
 	std::optional<int> Next::stateId = std::nullopt;
@@ -21,8 +20,7 @@ namespace state::in_play
 	static bool IsPlayerOutOfTurns()
 	{
 		return 
-			game::Session()
-			.GetPlayer()
+			game::session::Player()
 			.GetCharacter()
 			.GetCounters()
 			.GetCounter(game::characters::Counter::TURNS_REMAINING)
@@ -31,7 +29,7 @@ namespace state::in_play
 
 	static bool IsPlayerDead()
 	{
-		return game::Session().GetPlayer().GetCharacter().IsDead();
+		return game::session::Player().GetCharacter().IsDead();
 	}
 
 	static const std::list<StatusChecker> statusCheckers =
@@ -58,7 +56,7 @@ namespace state::in_play
 			return;
 		}
 
-		auto character = game::Session().GetPlayer().GetCharacter();
+		auto character = game::session::Player().GetCharacter();
 		auto island = character.TryGetIsland();
 		if (island)
 		{

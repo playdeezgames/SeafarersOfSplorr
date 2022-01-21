@@ -1,11 +1,8 @@
-#include <algorithm>
+#include "State.Terminal.h"
 #include <Common.Data.h>
 #include <Common.Utility.Dispatcher.h>
 #include <Game.Colors.h>
-#include <Game.Characters.Message.h>
-#include <Game.Session.h>
-#include <set>
-#include "State.Terminal.h"
+#include <Game.Session.Player.h>
 #include <Visuals.Terminals.h>
 namespace state
 {
@@ -348,7 +345,7 @@ namespace state
 	{
 		ClearStatusLine();
 		ClearInput();
-		auto character = game::Session().GetPlayer().TryGetCharacter();
+		auto character = game::session::Player().TryGetCharacter();
 		if (character)
 		{
 			ShowMessages(character.value());

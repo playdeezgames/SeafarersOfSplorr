@@ -1,5 +1,5 @@
 #include <Common.Heading.h>
-#include <Game.Session.h>
+#include <Game.Session.Player.h>
 #include "State.InPlay.ChangeHeading.h"
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.HeadForKnown.h"
@@ -7,7 +7,6 @@
 #include "State.InPlay.HeadForNearBy.h"
 #include "State.InPlay.ManualHeading.h"
 #include "State.InPlay.ShipStatus.h"
-#include "State.Registrar.h"
 namespace state::in_play
 {
 	std::optional<int> ChangeHeading::stateId = std::nullopt;
@@ -17,8 +16,7 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		auto playerCharacter =
-			game::Session()
-			.GetPlayer().GetCharacter();
+			game::session::Player().GetCharacter();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Change Heading:");
@@ -37,8 +35,7 @@ namespace state::in_play
 	static void UpdateMenu()
 	{
 		auto playerCharacter =
-			game::Session()
-			.GetPlayer().GetCharacter();
+			game::session::Player().GetCharacter();
 		auto ship = playerCharacter.GetBerth().GetShip();
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);

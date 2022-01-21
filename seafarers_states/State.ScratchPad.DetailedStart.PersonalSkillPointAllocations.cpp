@@ -1,4 +1,4 @@
-#include <Game.Session.h>
+#include <Game.Session.Player.h>
 #include "State.ScratchPad.DetailedStart.PersonalSkillPointAllocations.h"
 #include <numeric>
 namespace state::scratch_pad::detailed_start
@@ -26,8 +26,7 @@ namespace state::scratch_pad::detailed_start
 	{
 		const size_t INT_MULTIPLIER = 10;
 		size_t intelligence =
-			(size_t)game::Session()
-			.GetPlayer()
+			(size_t)game::session::Player()
 			.GetCharacter()
 			.GetCharacteristics()
 			.GetCharacteristic(game::Characteristic::INTELLIGENCE)

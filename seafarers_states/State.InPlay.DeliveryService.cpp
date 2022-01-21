@@ -1,4 +1,5 @@
 #include <Game.Session.h>
+#include <Game.Session.Player.h>
 #include "State.InPlay.DeliveryService.h"
 #include "State.InPlay.DeliveryService.DeliveryList.h"
 #include "State.InPlay.DeliveryService.MakeDelivery.h"
@@ -13,8 +14,7 @@ namespace state::in_play
 	{
 		Terminal::Reinitialize();
 		auto feature =
-			game::Session()
-			.GetPlayer()
+			game::session::Player()
 			.GetCharacter()
 			.GetIsland()
 			.GetFeature(scratch_pad::IslandFeature::GetFeatureId());
@@ -30,7 +30,7 @@ namespace state::in_play
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		Terminal::menu.AddAction({"Job List", application::UIState::DoGoTo(delivery_service::DeliveryList::GetStateId) });
-		auto character = game::Session().GetPlayer().GetCharacter();
+		auto character = game::session::Player().GetCharacter();
 		auto island = character.GetIsland();
 		if (character.GetDeliveries().HasDeliveriesFor(island.operator int()))
 		{

@@ -1,11 +1,10 @@
-#include <algorithm>
-#include <Common.Heading.h>
-#include <Game.Session.h>
+#include "State.InPlay.HeadForNearBy.h"
 #include "State.InPlay.AtSeaOverview.h"
 #include "State.InPlay.Globals.h"
-#include "State.InPlay.HeadForNearBy.h"
 #include "State.InPlay.ShipStatus.h"
-#include "State.Registrar.h"
+#include <algorithm>
+#include <Common.Heading.h>
+#include <Game.Session.Player.h>
 namespace state::in_play
 {
 	std::optional<int> HeadForNearBy::stateId = std::nullopt;
@@ -25,7 +24,7 @@ namespace state::in_play
 	{
 		return[island, heading]()
 		{
-			game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().SetHeading(heading);
+			game::session::Player().GetCharacter().GetBerth().GetShip().SetHeading(heading);
 			application::UIState::Write(ShipStatus::GetStateId());
 		};
 	}
@@ -35,7 +34,7 @@ namespace state::in_play
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		auto character = game::Session().GetPlayer().GetCharacter();
+		auto character = game::session::Player().GetCharacter();
 		auto islands = character.GetBerth().GetShip().GetNearbyIslands().GetAll();
 		auto location = character.GetBerth().GetShip().GetLocation();
 		std::for_each(

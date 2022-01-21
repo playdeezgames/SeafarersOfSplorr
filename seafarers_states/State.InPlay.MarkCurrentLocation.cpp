@@ -1,9 +1,8 @@
-#include <Application.TextInput.h>
-#include <Common.Heading.h>
-#include <Game.Session.h>
 #include "State.InPlay.MarkCurrentLocation.h"
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.ShipStatus.h"
+#include <Application.TextInput.h>
+#include <Game.Session.Player.h>
 namespace state::in_play
 {
 	std::optional<int> MarkCurrentLocation::stateId = std::nullopt;
@@ -11,14 +10,8 @@ namespace state::in_play
 	static void Refresh()
 	{
 		Terminal::Reinitialize();
-
-		auto playerCharacter =
-			game::Session()
-			.GetPlayer().GetCharacter();
-
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Location name?");
-
 		Terminal::ShowPrompt();
 	}
 
@@ -41,7 +34,7 @@ namespace state::in_play
 		if (key == RETURN)
 		{
 			auto locationName = Terminal::GetInput();
-			auto character = game::Session().GetPlayer().GetCharacter();
+			auto character = game::session::Player().GetCharacter();
 			auto marks = character.GetMarks();
 			auto location = character.GetBerth().GetShip().GetLocation();
 			marks.AddMark(locationName, location);

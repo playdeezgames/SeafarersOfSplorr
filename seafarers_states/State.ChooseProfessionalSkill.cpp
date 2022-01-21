@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <Game.Session.h>
+#include <Game.Session.Player.h>
 #include <Game.Session.World.h>
 #include "State.InPlay.Globals.h"
 #include "State.ChooseElectiveSkillCategories.h"
@@ -68,8 +68,7 @@ namespace state
 
 	static void OnDone()
 	{
-		game::Session()
-			.GetPlayer()
+		game::session::Player()
 			.Populate(
 				game::session::World().GetDifficulty(),
 				scratch_pad::detailed_start::ProfessionalSkillPointAllocations::GetAllocations());

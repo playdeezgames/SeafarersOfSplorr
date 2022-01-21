@@ -1,6 +1,5 @@
 #include <algorithm>
-#include <format>
-#include <Game.Session.h>
+#include <Game.Session.Player.h>
 #include <Game.Session.World.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.DeliveryService.h"
@@ -16,8 +15,7 @@ namespace state::in_play::delivery_service
 	{
 		Terminal::Reinitialize();
 		auto feature =
-			game::Session()
-			.GetPlayer()
+			game::session::Player()
 			.GetCharacter()
 			.GetIsland()
 			.GetFeature(scratch_pad::IslandFeature::GetFeatureId());
@@ -49,8 +47,7 @@ namespace state::in_play::delivery_service
 			game::session::World()
 			.GetIslands();
 		auto fromIsland =
-			game::Session()
-			.GetPlayer()
+			game::session::Player()
 			.GetCharacter()
 			.GetIsland();
 		auto deliveries =

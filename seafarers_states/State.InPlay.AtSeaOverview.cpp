@@ -1,5 +1,6 @@
 #include <Common.Heading.h>
 #include <Game.Session.h>
+#include <Game.Session.Player.h>
 #include <Game.Session.World.h>
 #include "State.InPlay.AtSeaOverview.h"
 #include "State.InPlay.CrewList.h"
@@ -9,8 +10,6 @@
 #include "State.InPlay.Next.h"
 #include "State.InPlay.ShipStatus.h"
 #include "State.LeavePlay.h"
-#include "State.Registrar.h"
-#include "Menu.h"
 namespace state::in_play
 {
 	std::optional<int> AtSeaOverview::stateId = std::nullopt;
@@ -18,8 +17,7 @@ namespace state::in_play
 	static bool RefreshDockableIslands()
 	{
 		auto character =
-			game::Session()
-			.GetPlayer()
+			game::session::Player()
 			.GetCharacter();
 		auto island =
 			character
@@ -52,8 +50,7 @@ namespace state::in_play
 	static void RefreshNearbyIslands()
 	{
 		auto character =
-			game::Session()
-			.GetPlayer().GetCharacter();
+			game::session::Player().GetCharacter();
 		auto islands =
 			character
 			.GetBerth()
@@ -94,8 +91,7 @@ namespace state::in_play
 	static void Refresh()
 	{
 		auto playerCharacter = 
-			game::Session()
-			.GetPlayer().GetCharacter();
+			game::session::Player().GetCharacter();
 
 		Terminal::Reinitialize();
 
@@ -139,8 +135,7 @@ namespace state::in_play
 
 	static void OnDock()
 	{
-		if (game::Session()
-			.GetPlayer().GetCharacter()
+		if (game::session::Player().GetCharacter()
 			.GetBerth()
 			.GetShip()
 			.GetDockableIslands()
@@ -161,7 +156,7 @@ namespace state::in_play
 		Terminal::menu.SetRefresh(Refresh);
 		Terminal::menu.AddAction({ "Move", OnMove });
 		Terminal::menu.AddAction({ "Multiple move", application::UIState::DoGoTo(MultipleMove::GetStateId) });
-		if (game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().CanDock())
+		if (game::session::Player().GetCharacter().GetBerth().GetShip().CanDock())
 		{
 			Terminal::menu.AddAction({ "Dock", OnDock });
 		}

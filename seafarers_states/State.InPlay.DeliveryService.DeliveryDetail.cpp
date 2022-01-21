@@ -1,4 +1,5 @@
 #include <Game.Session.h>
+#include <Game.Session.Player.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.DeliveryService.DeliveryDetail.h"
 #include "State.InPlay.DeliveryService.DeliveryList.h"
@@ -34,8 +35,7 @@ namespace state::in_play::delivery_service
 	{
 		auto delivery =
 			Delivery(scratch_pad::SelectedDelivery::GetDeliveryId());
-		game::Session()
-			.GetPlayer()
+		game::session::Player()
 			.GetCharacter()
 			.AcceptDelivery(delivery);
 		application::UIState::Write(DeliveryList::GetStateId());

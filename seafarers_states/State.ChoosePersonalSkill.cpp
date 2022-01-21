@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <Game.Session.h>
+#include <Game.Session.Player.h>
 #include <Game.Session.World.h>
 #include "State.InPlay.Globals.h"
 #include "State.ChoosePersonalSkill.h"
@@ -52,8 +52,7 @@ namespace state
 			personalSkillPointAllocations.end(),
 			[](const std::pair<int, size_t>& entry)
 			{
-				game::Session()
-					.GetPlayer()
+				game::session::Player()
 					.GetCharacter()
 					.GetSkills()
 					.GetSkill(entry.first)

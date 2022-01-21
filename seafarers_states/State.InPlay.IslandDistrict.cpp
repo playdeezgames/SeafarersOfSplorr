@@ -1,6 +1,6 @@
 #include <algorithm>
 #include "State.InPlay.Globals.h"
-#include <Game.Session.h>
+#include <Game.Session.Player.h>
 #include "State.InPlay.Docked.h"
 #include "State.InPlay.IslandDistrict.h"
 #include "State.InPlay.DeliveryService.h"
@@ -15,8 +15,7 @@ namespace state::in_play
 	{
 		Terminal::Reinitialize();
 		auto district =
-			game::Session()
-			.GetPlayer()
+			game::session::Player()
 			.GetCharacter()
 			.GetIsland()
 			.GetDistricts()
@@ -51,8 +50,7 @@ namespace state::in_play
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		auto features =
-			game::Session()
-			.GetPlayer()
+			game::session::Player()
 			.GetCharacter()
 			.GetIsland()
 			.GetDistricts()

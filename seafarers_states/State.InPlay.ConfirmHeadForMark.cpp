@@ -1,10 +1,10 @@
-#include <Common.Heading.h>
-#include <Game.Session.h>
 #include "State.InPlay.ConfirmHeadForMark.h"
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.HeadForMark.h"
 #include "State.InPlay.ShipStatus.h"
 #include "State.ScratchPad.HeadForMark.h"
+#include <Common.Heading.h>
+#include <Game.Session.Player.h>
 namespace state::in_play
 {
 	std::optional<int> ConfirmHeadForMark::stateId = std::nullopt;
@@ -14,8 +14,7 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		auto playerCharacter =
-			game::Session()
-			.GetPlayer()
+			game::session::Player()
 			.GetCharacter();
 		auto ship =
 			playerCharacter
@@ -43,8 +42,7 @@ namespace state::in_play
 	static void OnConfirm()
 	{
 		auto playerCharacter =
-			game::Session()
-			.GetPlayer()
+			game::session::Player()
 			.GetCharacter();
 		auto ship =
 			playerCharacter
@@ -63,8 +61,7 @@ namespace state::in_play
 
 	static void OnDelete()
 	{
-		game::Session()
-			.GetPlayer()
+		game::session::Player()
 			.GetCharacter()
 			.GetMarks()
 			.RemoveMark(scratch_pad::HeadForMark::GetMark());

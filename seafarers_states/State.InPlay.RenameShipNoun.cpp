@@ -1,13 +1,10 @@
-#include <algorithm>
-#include <Common.Data.h>
-#include <Game.Session.h>
-#include <Game.ShipNames.h>
-#include "State.InPlay.Globals.h"
-#include "State.InPlay.RenameShipAdjective.h"
 #include "State.InPlay.RenameShipNoun.h"
+#include "State.InPlay.Globals.h"
 #include "State.InPlay.ShipStatus.h"
-#include "State.Registrar.h"
 #include "State.ScratchPad.ShipAdjective.h"
+#include <algorithm>
+#include <Game.Session.Player.h>
+#include <Game.ShipNames.h>
 namespace state::in_play
 {
 	std::optional<int> RenameShipNoun::stateId = std::nullopt;
@@ -30,8 +27,7 @@ namespace state::in_play
 	{
 		return [noun]()
 		{
-			game::Session()
-				.GetPlayer()
+			game::session::Player()
 				.GetCharacter()
 				.GetBerth()
 				.GetShip()

@@ -1,4 +1,5 @@
 #include <Game.Session.h>
+#include <Game.Session.Player.h>
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.IslandDistrict.h"
 #include "State.InPlay.StreetVendor.h"
@@ -11,8 +12,7 @@ namespace state::in_play
 	{
 		Terminal::Reinitialize();
 		auto feature =
-			game::Session()
-			.GetPlayer()
+			game::session::Player()
 			.GetCharacter()
 			.GetIsland()
 			.GetFeature(scratch_pad::IslandFeature::GetFeatureId());

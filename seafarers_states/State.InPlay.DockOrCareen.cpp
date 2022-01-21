@@ -1,9 +1,8 @@
-#include <Game.Session.h>
-#include "State.InPlay.AtSeaOverview.h"
 #include "State.InPlay.DockOrCareen.h"
+#include "State.InPlay.AtSeaOverview.h"
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.Next.h"
-#include "State.Registrar.h"
+#include <Game.Session.Player.h>
 namespace state::in_play
 {
 	std::optional<int> DockOrCareen::stateId = std::nullopt;
@@ -13,8 +12,7 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		auto ship = 
-			game::Session()
-			.GetPlayer().GetCharacter()
+			game::session::Player().GetCharacter()
 			.GetBerth()
 			.GetShip();
 
@@ -29,8 +27,7 @@ namespace state::in_play
 
 	static void OnDock()
 	{
-		game::Session()
-			.GetPlayer()
+		game::session::Player()
 			.GetCharacter()
 			.GetBerth()
 			.GetShip()

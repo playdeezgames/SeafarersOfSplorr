@@ -1,15 +1,15 @@
-#include <algorithm>
-#include <Common.Data.h>
-#include <Game.BerthType.h>
-#include <Game.Session.h>
-#include <Game.Session.Characters.h>
-#include <iterator>
+#include "State.InPlay.CrewList.h"
 #include "State.InPlay.AtSeaOverview.h"
 #include "State.InPlay.CrewDetail.h"
-#include "State.InPlay.CrewList.h"
 #include "State.InPlay.Globals.h"
 #include "State.Registrar.h"
 #include "State.ScratchPad.CrewDetail.h"
+#include <algorithm>
+#include <Common.Data.h>
+#include <Game.BerthType.h>
+#include <Game.Session.Characters.h>
+#include <Game.Session.Player.h>
+#include <iterator>
 namespace state::in_play
 {
 	std::optional<int> CrewList::stateId = std::nullopt;
@@ -59,8 +59,7 @@ namespace state::in_play
 	{
 		std::list<RosterItem> rosterItems;
 		auto crew = 
-			game::Session()
-			.GetPlayer()
+			game::session::Player()
 			.GetCharacter()
 			.GetBerth()
 			.GetShip()

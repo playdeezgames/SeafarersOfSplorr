@@ -1,7 +1,7 @@
 #include <Data.SQLite.Store.h>
 #include <Data.SQLite.Stores.h>
 #include "Game.Session.h"
-#include "Game.Session.Characters.h"
+#include "Game.Session.Player.h"
 #include "Game.Session.Ships.h"
 #include "Game.Session.World.h"
 namespace game
@@ -29,6 +29,6 @@ namespace game
 		game::session::World().Reset();
 		game::session::Ships().Reset();
 		game::session::Characters().Reset();
-		GetPlayer().Reset();
+		game::session::Player().Reset();
 	}
 }

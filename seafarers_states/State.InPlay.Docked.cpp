@@ -1,11 +1,10 @@
-#include <algorithm>
-#include <Game.Session.h>
 #include "State.InPlay.Docked.h"
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.IslandDistrict.h"
 #include "State.InPlay.Next.h"
-#include "State.Registrar.h"
 #include "State.ScratchPad.IslandDistrict.h"
+#include <algorithm>
+#include <Game.Session.Player.h>
 namespace state::in_play
 {
 	std::optional<int> Docked::stateId = std::nullopt;
@@ -13,7 +12,7 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		auto island = game::Session().GetPlayer().GetCharacter().GetIsland();
+		auto island = game::session::Player().GetCharacter().GetIsland();
 		Terminal::Reinitialize();
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Docked:");
@@ -25,7 +24,7 @@ namespace state::in_play
 
 	static void OnUndock()
 	{
-		game::Session().GetPlayer().GetCharacter().GetBerth().GetShip().Undock();
+		game::session::Player().GetCharacter().GetBerth().GetShip().Undock();
 		application::UIState::Write(Next::GetStateId());
 	}
 
@@ -43,8 +42,7 @@ namespace state::in_play
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		auto districts = 
-			game::Session()
-			.GetPlayer()
+			game::session::Player()
 			.GetCharacter()
 			.GetIsland()
 			.GetDistricts()
