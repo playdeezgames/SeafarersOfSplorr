@@ -1,6 +1,5 @@
 #include <Application.Engine.h>
 #include <Data.JSON.Stores.h>
-#include <tuple>
 #include "Visuals.Data.Properties.h"
 #include "Visuals.Sprites.h"
 #include "Visuals.Textures.h"

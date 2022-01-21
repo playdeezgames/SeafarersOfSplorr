@@ -1,7 +1,5 @@
 #include <Data.JSON.h>
 #include <Data.JSON.Stores.h>
-#include <map>
-#include <vector>
 #include "Visuals.Colors.h"
 #include "Visuals.Data.Properties.h"
 namespace visuals

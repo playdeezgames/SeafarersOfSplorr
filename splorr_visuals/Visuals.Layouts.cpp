@@ -1,9 +1,7 @@
 #include <algorithm>
 #include <Data.JSON.h>
 #include <Data.JSON.Stores.h>
-#include <functional>
 #include "Visuals.Buttons.h"
-#include "Visuals.DrawerFunction.h"
 #include "Visuals.Data.Properties.h"
 #include "Visuals.Layouts.h"
 #include "Visuals.Images.h"

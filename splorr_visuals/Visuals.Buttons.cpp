@@ -2,7 +2,6 @@
 #include "Visuals.Buttons.h"
 #include "Visuals.Data.Properties.h"
 #include "Visuals.Fonts.h"
-#include "Visuals.HorizontalAlignment.h"
 namespace visuals
 {
 	struct InternalButton

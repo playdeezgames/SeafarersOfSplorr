@@ -1,9 +1,6 @@
 #include <algorithm>
-#include <Common.XY.h>
-#include <Data.JSON.h>
 #include "Visuals.Data.Properties.h"
 #include "Visuals.Fonts.h"
-#include "Visuals.Layouts.h"
 #include "Visuals.Menus.h"
 #include "Visuals.MenuItems.h"
 namespace visuals

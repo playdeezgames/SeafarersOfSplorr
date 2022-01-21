@@ -1,11 +1,7 @@
 #include <functional>
-#include <json.hpp>
-#include <map>
-#include <tuple>
 #include "Visuals.Colors.h"
 #include "Visuals.Data.Properties.h"
 #include "Visuals.Images.h"
-#include "Visuals.Layouts.h"
 #include "Visuals.Sprites.h"
 namespace visuals
 {
