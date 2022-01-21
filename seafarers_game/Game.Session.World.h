@@ -1,7 +1,6 @@
 #pragma once
 #include "Game.Difficulty.h"
 #include "Game.Session.Characters.h"
-#include "Game.Session.Item.Types.h"
 #include "Game.Session.SkillCategories.h"
 #include "Game.Session.Tribes.h"
 #include "Game.Session.World.Bounds.h"
@@ -23,7 +22,6 @@ namespace game::session
 		constexpr world::Distances GetDistances() const { return world::Distances(worldId); }
 		constexpr world::Wind GetWind() const { return world::Wind(worldId); }
 
-		constexpr item::Types GetItemSubtypes() const { return item::Types(); }
 		constexpr Tribes GetTribes() const { return Tribes(); }
 		constexpr world::ShipTypes GetShipTypes() const { return world::ShipTypes(); }
 		constexpr world::Skills GetSkills() const { return world::Skills(); }

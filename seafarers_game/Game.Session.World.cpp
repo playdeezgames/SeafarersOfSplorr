@@ -1,6 +1,7 @@
 #include "Game.Session.World.h"
 #include "Game.Session.Commodities.h"
 #include "Game.Session.Demigods.h"
+#include "Game.Session.Item.Types.h"
 #include "Game.Session.World.Islands.h"
 #include <Common.Heading.h>
 #include <Common.RNG.h>
@@ -48,7 +49,7 @@ namespace game::session
 		session::Demigods().Reset();
 		GetDistances().Reset();
 		world::Islands().Reset();
-		GetItemSubtypes().Reset();
+		item::Types().Reset();
 		GetSkills().Reset();
 		GetTribes().Reset();
 		GetWind().Reset();
