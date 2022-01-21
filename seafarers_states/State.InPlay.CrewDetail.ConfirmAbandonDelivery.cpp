@@ -1,9 +1,9 @@
-#include <Game.Session.h>
-#include <Game.Session.World.h>
-#include "State.InPlay.Globals.h"
 #include "State.InPlay.CrewDetail.ConfirmAbandonDelivery.h"
 #include "State.InPlay.CrewDetail.Deliveries.h"
+#include "State.InPlay.Globals.h"
 #include "State.ScratchPad.SelectedDelivery.h"
+#include <Game.Session.World.h>
+#include <Game.Session.World.Islands.h>
 namespace state::in_play::crew_detail
 {
 	std::optional<int> ConfirmAbandonDelivery::stateId;
@@ -14,7 +14,7 @@ namespace state::in_play::crew_detail
 		Terminal::SetForeground(game::Colors::LIGHT_RED);
 		Terminal::WriteLine("Are you sure you want to abandon this delivery?");
 		Terminal::SetForeground(game::Colors::GRAY);
-		auto islands = game::session::World().GetIslands();
+		auto islands = game::session::world::Islands();
 		auto delivery = game::session::character::Delivery(scratch_pad::SelectedDelivery::GetDeliveryId());
 		auto toIsland = islands.GetIsland(delivery.GetToIslandId());
 		auto fromIsland = islands.GetIsland(delivery.GetFromIslandId());

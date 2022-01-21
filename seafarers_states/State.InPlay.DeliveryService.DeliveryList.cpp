@@ -1,12 +1,12 @@
-#include <algorithm>
-#include <Game.Session.Player.h>
-#include <Game.Session.World.h>
-#include "State.InPlay.Globals.h"
-#include "State.InPlay.DeliveryService.h"
-#include "State.InPlay.DeliveryService.DeliveryDetail.h"
 #include "State.InPlay.DeliveryService.DeliveryList.h"
+#include "State.InPlay.DeliveryService.DeliveryDetail.h"
+#include "State.InPlay.DeliveryService.h"
+#include "State.InPlay.Globals.h"
 #include "State.ScratchPad.IslandFeature.h"
 #include "State.ScratchPad.SelectedDelivery.h"
+#include <algorithm>
+#include <Game.Session.Player.h>
+#include <Game.Session.World.Islands.h>
 namespace state::in_play::delivery_service
 {
 	std::optional<int> DeliveryList::stateId = std::nullopt;
@@ -44,8 +44,7 @@ namespace state::in_play::delivery_service
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		auto islands =
-			game::session::World()
-			.GetIslands();
+			game::session::world::Islands();
 		auto fromIsland =
 			game::session::Player()
 			.GetCharacter()

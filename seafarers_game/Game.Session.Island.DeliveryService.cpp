@@ -1,11 +1,10 @@
-#include <algorithm>
+#include "Game.Session.Island.DeliveryService.h"
+#include "Game.Session.World.h"
+#include "Game.Session.World.Islands.h"
 #include <Common.RNG.h>
 #include <Data.Game.Delivery.h>
 #include <Data.Game.Feature.Delivery.h>
 #include <Data.Game.Island.Feature.h>
-#include "Game.Session.h"
-#include "Game.Session.World.h"
-#include "Game.Session.Island.DeliveryService.h"
 namespace game::session::island
 {
 
@@ -13,7 +12,7 @@ namespace game::session::island
 	{
 		constexpr double TIME_LIMIT_FACTOR = 2.0;
 		auto world = game::session::World();
-		auto islands = world.GetIslands();
+		auto islands = game::session::world::Islands();
 		auto fromIslandId = data::game::island::Feature::ReadIslandId(featureId).value();
 		auto candidateIslands = islands.GetIslands();
 		auto fromIsland = islands.GetIsland(fromIslandId);

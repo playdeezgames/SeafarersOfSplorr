@@ -1,9 +1,9 @@
+#include "State.InPlay.DeliveryService.MakeDelivery.h"
+#include "State.InPlay.DeliveryService.h"
+#include "State.InPlay.Globals.h"
 #include <algorithm>
 #include <Game.Session.Player.h>
-#include <Game.Session.World.h>
-#include "State.InPlay.DeliveryService.h"
-#include "State.InPlay.DeliveryService.MakeDelivery.h"
-#include "State.InPlay.Globals.h"
+#include <Game.Session.World.Islands.h>
 namespace state::in_play::delivery_service
 {
 	std::optional<int> MakeDelivery::stateId = std::nullopt;
@@ -42,7 +42,7 @@ namespace state::in_play::delivery_service
 		auto character = game::session::Player().GetCharacter();
 		auto toIsland = character.GetIsland();
 		auto deliveries = character.GetDeliveries().GetDeliveriesFor(toIsland.operator int());
-		auto islands = game::session::World().GetIslands();
+		auto islands = game::session::world::Islands();
 		std::for_each(
 			deliveries.begin(),
 			deliveries.end(),

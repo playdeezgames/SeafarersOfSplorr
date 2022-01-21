@@ -1,6 +1,7 @@
 #include "Game.Session.World.h"
-#include "Game.Session.Demigods.h"
 #include "Game.Session.Commodities.h"
+#include "Game.Session.Demigods.h"
+#include "Game.Session.World.Islands.h"
 #include <Common.Heading.h>
 #include <Common.RNG.h>
 #include <Data.Game.World.h>
@@ -35,7 +36,7 @@ namespace game::session
 		GetCalendar().Populate(difficulty);
 		session::Demigods().Populate(difficulty);
 		GetTribes().Populate(difficulty);
-		GetIslands().Populate(difficulty);
+		world::Islands().Populate(difficulty);
 	}
 
 
@@ -46,7 +47,7 @@ namespace game::session
 		session::Commodities().Reset();
 		session::Demigods().Reset();
 		GetDistances().Reset();
-		GetIslands().Reset();
+		world::Islands().Reset();
 		GetItemSubtypes().Reset();
 		GetSkills().Reset();
 		GetTribes().Reset();
@@ -55,7 +56,7 @@ namespace game::session
 
 	void World::ApplyTurnEffects() const
 	{
-		GetIslands().ApplyTurnEffects();
+		world::Islands().ApplyTurnEffects();
 		GetWind().ApplyTurnEffects();
 		GetCalendar().ApplyTurnEffects();
 		session::Demigods().ApplyTurnEffects();

@@ -1,13 +1,12 @@
-#include <algorithm>
-#include <Game.Session.h>
-#include <Game.Session.Characters.h>
-#include <Game.Session.World.h>
-#include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.CrewDetail.Deliveries.h"
 #include "State.InPlay.CrewDetail.DeliveryDetail.h"
+#include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.Globals.h"
 #include "State.ScratchPad.CrewDetail.h"
 #include "State.ScratchPad.SelectedDelivery.h"
+#include <algorithm>
+#include <Game.Session.Characters.h>
+#include <Game.Session.World.Islands.h>
 namespace state::in_play::crew_detail
 {
 	std::optional<int> Deliveries::stateId = std::nullopt;
@@ -56,8 +55,7 @@ namespace state::in_play::crew_detail
 			.GetDeliveries()
 			.GetDeliveries();
 		auto islands =
-			game::session::World()
-			.GetIslands();
+			game::session::world::Islands();
 
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);

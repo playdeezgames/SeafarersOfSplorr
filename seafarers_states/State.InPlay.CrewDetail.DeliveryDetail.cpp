@@ -1,12 +1,13 @@
-#include <Game.Session.h>
-#include <Game.Session.World.h>
-#include <Game.Session.Character.h>
-#include "State.InPlay.Globals.h"
-#include "State.InPlay.CrewDetail.ConfirmAbandonDelivery.h"
 #include "State.InPlay.CrewDetail.DeliveryDetail.h"
+#include "State.InPlay.CrewDetail.ConfirmAbandonDelivery.h"
 #include "State.InPlay.CrewDetail.Deliveries.h"
+#include "State.InPlay.Globals.h"
 #include "State.ScratchPad.CrewDetail.h"
 #include "State.ScratchPad.SelectedDelivery.h"
+#include <Game.Session.Character.h>
+#include <Game.Session.h>
+#include <Game.Session.World.h>
+#include <Game.Session.World.Islands.h>
 namespace state::in_play::crew_detail
 {
 	std::optional<int> DeliveryDetail::stateId = std::nullopt;
@@ -18,7 +19,7 @@ namespace state::in_play::crew_detail
 		Terminal::WriteLine("Delivery Detail:");
 		Terminal::SetForeground(game::Colors::GRAY);
 
-		auto islands = game::session::World().GetIslands();
+		auto islands = game::session::world::Islands();
 		auto delivery = game::session::character::Delivery(scratch_pad::SelectedDelivery::GetDeliveryId());
 		auto toIsland = islands.GetIsland(delivery.GetToIslandId());
 		auto location = 
