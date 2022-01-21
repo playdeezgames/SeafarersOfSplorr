@@ -1,8 +1,8 @@
+#include "Game.Session.World.h"
+#include "Game.Session.Demigods.h"
 #include <Common.Heading.h>
 #include <Common.RNG.h>
 #include <Data.Game.World.h>
-#include "Game.Session.Item.Types.h"
-#include "Game.Session.World.h"
 namespace game::session
 {
 	static item::Type CreateWorldCurrencyItemSubtype()//TODO: should this go to Items::Populate?
@@ -32,7 +32,7 @@ namespace game::session
 
 		GetSkills().Populate(difficulty);
 		GetCalendar().Populate(difficulty);
-		GetDemigods().Populate(difficulty);
+		session::Demigods().Populate(difficulty);
 		GetTribes().Populate(difficulty);
 		GetIslands().Populate(difficulty);
 	}
@@ -43,7 +43,7 @@ namespace game::session
 		GetBounds().Reset();
 		GetCalendar().Reset();
 		GetCommodities().Reset();
-		GetDemigods().Reset();
+		session::Demigods().Reset();
 		GetDistances().Reset();
 		GetIslands().Reset();
 		GetItemSubtypes().Reset();
@@ -57,7 +57,7 @@ namespace game::session
 		GetIslands().ApplyTurnEffects();
 		GetWind().ApplyTurnEffects();
 		GetCalendar().ApplyTurnEffects();
-		GetDemigods().ApplyTurnEffects();
+		session::Demigods().ApplyTurnEffects();
 	}
 
 	game::Difficulty World::GetDifficulty() const

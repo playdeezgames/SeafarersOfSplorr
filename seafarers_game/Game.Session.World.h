@@ -2,7 +2,6 @@
 #include "Game.Difficulty.h"
 #include "Game.Session.Characters.h"
 #include "Game.Session.Commodities.h"
-#include "Game.Session.Demigods.h"
 #include "Game.Session.Item.Types.h"
 #include "Game.Session.SkillCategories.h"
 #include "Game.Session.Tribes.h"
@@ -26,7 +25,6 @@ namespace game::session
 		constexpr world::Distances GetDistances() const { return world::Distances(worldId); }
 		constexpr world::Wind GetWind() const { return world::Wind(worldId); }
 
-		constexpr session::Demigods GetDemigods() const { return session::Demigods(); }
 		constexpr Commodities GetCommodities() const { return Commodities(); }
 		constexpr world::Islands GetIslands() const { return world::Islands(); }
 		constexpr item::Types GetItemSubtypes() const { return item::Types(); }
