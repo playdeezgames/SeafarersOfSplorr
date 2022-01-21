@@ -1,12 +1,12 @@
-#include <algorithm>
-#include <Game.Session.Player.h>
-#include <Game.Session.World.h>
-#include "State.InPlay.Globals.h"
 #include "State.ChoosePersonalSkill.h"
-#include "State.ScratchPad.SelectedSkill.h"
+#include "State.InPlay.Globals.h"
 #include "State.ScratchPad.DetailedStart.PersonalSkillPointAllocations.h"
+#include "State.ScratchPad.SelectedSkill.h"
 #include "State.SpendPersonalSkillPoints.h"
 #include "State.Tip.h"
+#include <algorithm>
+#include <Game.Session.Player.h>
+#include <Game.Session.World.Skills.h>
 namespace state
 {
 	std::optional<int> ChoosePersonalSkill::stateId = std::nullopt;
@@ -80,7 +80,7 @@ namespace state
 		}
 		else
 		{
-			auto skills = game::session::World().GetSkills().GetSkills();
+			auto skills = game::session::world::Skills().GetSkills();
 			std::for_each(
 				skills.begin(),
 				skills.end(),

@@ -1,13 +1,14 @@
-#include <Game.Session.Player.h>
-#include <Game.Session.World.h>
-#include "State.InPlay.Globals.h"
 #include "State.ChooseStartType.h"
 #include "State.DetailedStart.h"
+#include "State.InPlay.Globals.h"
+#include "State.ScratchPad.DetailedStart.ElectiveSkillCategories.h"
+#include "State.ScratchPad.DetailedStart.Profession.h"
+#include "State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.h"
 #include "State.StartGame.h"
 #include "State.Tip.h"
-#include "State.ScratchPad.DetailedStart.Profession.h"
-#include "State.ScratchPad.DetailedStart.ElectiveSkillCategories.h"
-#include "State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.h"
+#include <Game.Session.Player.h>
+#include <Game.Session.World.h>
+#include <Game.Session.World.Skills.h>
 namespace state
 {
 	std::optional<int> ChooseStartType::stateId = std::nullopt;
@@ -35,7 +36,7 @@ namespace state
 		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::session::SkillCategory(game::SkillCategory::LISTEN));
 		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::session::SkillCategory(game::SkillCategory::REPAIR));
 		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::session::SkillCategory(game::SkillCategory::SPOT));
-		auto skills = game::session::World().GetSkills();
+		auto skills = game::session::world::Skills();
 		auto skillId = skills.GetSkillsInCategory(game::SkillCategory::CLIMB).begin()->operator int();
 		scratch_pad::detailed_start::ProfessionalSkillPointAllocations::AllocateSkillPoints(skillId, 50);
 		skillId = skills.GetSkillsInCategory(game::SkillCategory::DODGE).begin()->operator int();

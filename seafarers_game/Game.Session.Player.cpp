@@ -1,3 +1,9 @@
+#include "Game.Session.Player.h"
+#include "Game.Session.Characters.h"
+#include "Game.Session.h"
+#include "Game.Session.World.h"
+#include "Game.Session.World.Skills.h"
+#include "Game.ShipNames.h"
 #include <algorithm>
 #include <Common.Data.h>
 #include <Common.Heading.h>
@@ -5,11 +11,6 @@
 #include <Data.Game.Character.Ship.h>
 #include <Data.Game.Player.h>
 #include <Data.Game.Ship.h>
-#include "Game.Session.h"
-#include "Game.Session.World.h"
-#include "Game.Session.Characters.h"
-#include "Game.Session.Player.h"
-#include "Game.ShipNames.h"
 #include <iterator>
 #include <numeric>
 namespace game::session
@@ -73,8 +74,7 @@ namespace game::session
 	static void AddSkillCategoryToProfessionalSkillSet(const SkillCategory& category)
 	{
 		auto skills =
-			game::session::World()
-			.GetSkills()
+			game::session::world::Skills()
 			.GetSkillsInCategory(category.operator game::SkillCategory());
 		std::copy(
 			skills.begin(),

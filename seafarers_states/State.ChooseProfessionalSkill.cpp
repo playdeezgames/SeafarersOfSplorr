@@ -1,15 +1,16 @@
+#include "State.ChooseProfessionalSkill.h"
+#include "State.ChooseElectiveSkillCategories.h"
+#include "State.ChoosePersonalSkill.h"
+#include "State.InPlay.Globals.h"
+#include "State.ScratchPad.DetailedStart.PersonalSkillPointAllocations.h"
+#include "State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.h"
+#include "State.ScratchPad.DetailedStart.ProfessionalSkillSet.h"
+#include "State.ScratchPad.SelectedSkill.h"
+#include "State.SpendProfessionalSkillPoints.h"
 #include <algorithm>
 #include <Game.Session.Player.h>
 #include <Game.Session.World.h>
-#include "State.InPlay.Globals.h"
-#include "State.ChooseElectiveSkillCategories.h"
-#include "State.ChoosePersonalSkill.h"
-#include "State.ChooseProfessionalSkill.h"
-#include "State.ScratchPad.SelectedSkill.h"
-#include "State.SpendProfessionalSkillPoints.h"
-#include "State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.h"
-#include "State.ScratchPad.DetailedStart.PersonalSkillPointAllocations.h"
-#include "State.ScratchPad.DetailedStart.ProfessionalSkillSet.h"
+#include <Game.Session.World.Skills.h>
 namespace state
 {
 	std::optional<int> ChooseProfessionalSkill::stateId = std::nullopt;
@@ -24,7 +25,7 @@ namespace state
 			{
 				auto skillId = entry.first;
 				auto allocation = entry.second;
-				auto skill = game::session::World().GetSkills().GetSkill(skillId);
+				auto skill = game::session::world::Skills().GetSkill(skillId);
 				Terminal::WriteLine("{}: {}", skill.GetName(), allocation);
 			});
 	}

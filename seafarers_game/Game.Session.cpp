@@ -4,6 +4,7 @@
 #include "Game.Session.Player.h"
 #include "Game.Session.Ships.h"
 #include "Game.Session.World.h"
+#include "Game.Session.Characters.h"
 namespace game
 {
 	using Stores = data::sqlite::Stores;

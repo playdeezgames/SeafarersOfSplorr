@@ -1,6 +1,7 @@
 #pragma once
 #include "Game.Difficulty.h"
 #include "Game.Session.Skill.h"
+#include "Game.SkillCategory.h"
 #include <set>
 namespace game::session::world
 {

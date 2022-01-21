@@ -1,26 +1,21 @@
-#include <algorithm>
-#include <Game.Session.h>
-#include <Game.Session.World.h>
-#include <iterator>
-#include <set>
-#include "State.DetailedStart.h"
-#include "State.InPlay.Globals.h"
-#include "State.Terminal.h"
 #include "State.ChooseElectiveSkillCategories.h"
 #include "State.ChooseProfessionalSkill.h"
-#include "State.Registrar.h"
-#include "State.ScratchPad.DetailedStart.Profession.h"
+#include "State.DetailedStart.h"
+#include "State.InPlay.Globals.h"
 #include "State.ScratchPad.DetailedStart.ElectiveSkillCategories.h"
+#include "State.ScratchPad.DetailedStart.Profession.h"
 #include "State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.h"
 #include "State.ScratchPad.DetailedStart.ProfessionalSkillSet.h"
+#include <algorithm>
+#include <Game.Session.SkillCategories.h>
+#include <Game.Session.World.Professions.h>
 namespace state
 {
 	std::optional<int> ChooseElectiveSkillCategories::stateId = std::nullopt;
 
 	static std::set<game::session::SkillCategory> GetFixedSkillCategories()
 	{
-		return game::session::World()
-			.GetProfessions()
+		return game::session::world::Professions()
 			.GetProfession(scratch_pad::detailed_start::Profession::GetProfession())
 			.GetSkillCategories();
 	}
@@ -135,7 +130,7 @@ namespace state
 		else
 		{
 			auto alreadyPresent = GetAlreadyPresentSkillCategories();
-			auto allCategories = game::session::World().GetSkillCategories().GetSkillCategories();
+			auto allCategories = game::session::SkillCategories().GetSkillCategories();
 			std::for_each(
 				allCategories.begin(),
 				allCategories.end(),

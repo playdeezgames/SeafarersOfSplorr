@@ -4,6 +4,7 @@
 #include "Game.Session.Item.Types.h"
 #include "Game.Session.Tribes.h"
 #include "Game.Session.World.Islands.h"
+#include "Game.Session.World.Skills.h"
 #include <Common.Heading.h>
 #include <Common.RNG.h>
 #include <Data.Game.World.h>
@@ -34,7 +35,7 @@ namespace game::session
 			common::RNG::FromRange(EARLIEST_INITIAL_YEAR, LATEST_INITIAL_YEAR) * DAYS_PER_YEAR +
 			common::RNG::FromRange(0, DAYS_PER_YEAR));
 
-		GetSkills().Populate(difficulty);
+		world::Skills().Populate(difficulty);
 		GetCalendar().Populate(difficulty);
 		session::Demigods().Populate(difficulty);
 		Tribes().Populate(difficulty);
@@ -51,7 +52,7 @@ namespace game::session
 		GetDistances().Reset();
 		world::Islands().Reset();
 		item::Types().Reset();
-		GetSkills().Reset();
+		world::Skills().Reset();
 		Tribes().Reset();
 		GetWind().Reset();
 	}

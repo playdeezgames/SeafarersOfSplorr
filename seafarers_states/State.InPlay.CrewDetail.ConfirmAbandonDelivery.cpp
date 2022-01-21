@@ -2,7 +2,7 @@
 #include "State.InPlay.CrewDetail.Deliveries.h"
 #include "State.InPlay.Globals.h"
 #include "State.ScratchPad.SelectedDelivery.h"
-#include <Game.Session.World.h>
+#include <Game.Session.Character.Delivery.h>
 #include <Game.Session.World.Islands.h>
 namespace state::in_play::crew_detail
 {

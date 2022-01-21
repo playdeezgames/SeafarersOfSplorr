@@ -4,9 +4,7 @@
 #include "State.InPlay.Globals.h"
 #include "State.ScratchPad.CrewDetail.h"
 #include "State.ScratchPad.SelectedDelivery.h"
-#include <Game.Session.Character.h>
-#include <Game.Session.h>
-#include <Game.Session.World.h>
+#include <Game.Session.Characters.h>
 #include <Game.Session.World.Islands.h>
 namespace state::in_play::crew_detail
 {

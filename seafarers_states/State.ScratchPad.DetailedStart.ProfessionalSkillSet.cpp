@@ -1,8 +1,8 @@
-#include <algorithm>
-#include <Game.Session.h>
-#include <Game.Session.World.h>
-#include <iterator>
 #include "State.ScratchPad.DetailedStart.ProfessionalSkillSet.h"
+#include <algorithm>
+#include <Game.Session.World.Professions.h>
+#include <Game.Session.World.Skills.h>
+#include <iterator>
 namespace state::scratch_pad::detailed_start
 {
 	std::set<game::session::Skill> ProfessionalSkillSet::professionalSkills;
@@ -15,8 +15,7 @@ namespace state::scratch_pad::detailed_start
 	void ProfessionalSkillSet::AddSkillCategoryToProfessionalSkillSet(const game::session::SkillCategory& category)
 	{
 		auto skills =
-			game::session::World()
-			.GetSkills()
+			game::session::world::Skills()
 			.GetSkillsInCategory(category.operator game::SkillCategory());
 		std::copy(
 			skills.begin(),
@@ -37,8 +36,7 @@ namespace state::scratch_pad::detailed_start
 		professionalSkills.clear();
 
 		AddSkillCategorySetToProfessionalSkillSet(
-			game::session::World()
-			.GetProfessions()
+			game::session::world::Professions()
 			.GetProfession(profession)
 			.GetSkillCategories());
 

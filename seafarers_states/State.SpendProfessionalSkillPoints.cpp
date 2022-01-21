@@ -1,11 +1,11 @@
-#include <algorithm>
-#include <Common.Data.h>
-#include <Game.Session.World.h>
+#include "State.SpendProfessionalSkillPoints.h"
 #include "State.ChooseProfessionalSkill.h"
 #include "State.InPlay.Globals.h"
-#include "State.SpendProfessionalSkillPoints.h"
 #include "State.ScratchPad.DetailedStart.ProfessionalSkillPointAllocations.h"
 #include "State.ScratchPad.SelectedSkill.h"
+#include <algorithm>
+#include <Common.Data.h>
+#include <Game.Session.World.Skills.h>
 namespace state
 {
 	std::optional<int> SpendProfessionalSkillPoints::stateId = std::nullopt;
@@ -26,7 +26,7 @@ namespace state
 			allocations.end(),
 			[](const std::pair<int, size_t>& entry)
 			{
-				auto skill = game::session::World().GetSkills().GetSkill(entry.first);
+				auto skill = game::session::world::Skills().GetSkill(entry.first);
 				Terminal::WriteLine("{} ({})", skill.GetName(), entry.second);
 			});
 		Terminal::WriteLine(

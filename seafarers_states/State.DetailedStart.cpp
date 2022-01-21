@@ -1,14 +1,11 @@
-#include <algorithm>
-#include <Game.Session.h>
-#include <Game.Session.World.h>
-#include "State.InPlay.Globals.h"
+#include "State.DetailedStart.h"
 #include "State.ChooseElectiveSkillCategories.h"
 #include "State.ChooseStartType.h"
-#include "State.Terminal.h"
-#include "State.DetailedStart.h"
-#include "State.Registrar.h"
-#include "State.ScratchPad.DetailedStart.Profession.h"
+#include "State.InPlay.Globals.h"
 #include "State.ScratchPad.DetailedStart.ElectiveSkillCategories.h"
+#include "State.ScratchPad.DetailedStart.Profession.h"
+#include <algorithm>
+#include <Game.Session.World.Professions.h>
 namespace state
 {
 	std::optional<int> DetailedStart::stateId = std::nullopt;
@@ -43,11 +40,11 @@ namespace state
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		auto professions = game::session::World().GetProfessions().GetProfessions();
+		auto professions = game::session::world::Professions().GetProfessions();
 		std::for_each(
 			professions.begin(),
 			professions.end(),
-			[](const game::session::world::Profession& profession) 
+			[](const auto& profession) 
 			{
 				Terminal::menu.AddAction({ profession.GetName(), DoSelectProfession(profession.operator game::Profession()) });
 			});
