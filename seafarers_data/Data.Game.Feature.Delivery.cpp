@@ -3,7 +3,6 @@
 #include "Data.Game.Island.Feature.h"
 #include "Data.Game.Delivery.h"
 #include "Data.Game.Feature.Delivery.h"
-#include <iterator>
 namespace data::game::feature
 {
 	using namespace std::string_view_literals;

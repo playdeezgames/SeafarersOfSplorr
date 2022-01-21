@@ -1,9 +1,7 @@
 #include <algorithm>
-#include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Item.Type.h"
 #include "Data.Game.Item.Type.Commodity.h"
-#include <iterator>
 namespace data::game::item::type
 {
 	using namespace std::string_view_literals;

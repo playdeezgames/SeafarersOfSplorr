@@ -3,7 +3,6 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Demigod.h"
 #include "Data.Game.Island.h"
-#include <iterator>
 namespace data::game
 {
 	using namespace std::string_view_literals;

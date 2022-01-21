@@ -1,10 +1,8 @@
 #include <algorithm>
-#include <Common.Data.h>
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.h"
 #include "Data.Game.Island.Tribe.h"
 #include "Data.Game.Tribe.h"
-#include <iterator>
 namespace data::game::island
 {
 	using namespace std::string_view_literals;

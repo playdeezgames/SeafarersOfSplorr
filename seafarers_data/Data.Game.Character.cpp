@@ -4,7 +4,6 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.Island.h"
 #include "Data.Game.Tribe.h"
-#include <iterator>
 namespace data::game
 {
 	using namespace std::string_view_literals;

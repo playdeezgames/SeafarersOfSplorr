@@ -1,10 +1,8 @@
 #include <algorithm>
-#include <Common.Data.h>
 #include "Data.Game.Character.h"
 #include "Data.Game.Character.DemigodFavor.h"
 #include "Data.Game.Common.h"
 #include "Data.Game.Demigod.h"
-#include <iterator>
 namespace data::game::character
 {
 	using namespace std::string_view_literals;

@@ -3,7 +3,6 @@
 #include "Data.Game.Common.h"
 #include "Data.Game.World.h"
 #include "Data.Game.World.Month.h"
-#include <iterator>
 namespace data::game::world
 {
 	using namespace std::string_view_literals;

@@ -3,7 +3,6 @@
 #include "Data.Game.Character.h"
 #include "Data.Game.Delivery.h"
 #include "Data.Game.Character.Delivery.h"
-#include <iterator>
 namespace data::game::character
 {
 	using namespace std::string_view_literals;

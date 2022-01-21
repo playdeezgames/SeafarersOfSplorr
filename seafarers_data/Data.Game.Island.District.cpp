@@ -2,7 +2,6 @@
 #include "Data.Game.Island.Feature.h"
 #include "Data.Game.Island.District.h"
 #include "Data.Game.Common.h"
-#include <iterator>
 namespace data::game::island
 {
 	using namespace std::string_view_literals;
