@@ -2,6 +2,7 @@
 #include "Game.Session.Commodities.h"
 #include "Game.Session.Demigods.h"
 #include "Game.Session.Item.Types.h"
+#include "Game.Session.Tribes.h"
 #include "Game.Session.World.Islands.h"
 #include <Common.Heading.h>
 #include <Common.RNG.h>
@@ -36,7 +37,7 @@ namespace game::session
 		GetSkills().Populate(difficulty);
 		GetCalendar().Populate(difficulty);
 		session::Demigods().Populate(difficulty);
-		GetTribes().Populate(difficulty);
+		Tribes().Populate(difficulty);
 		world::Islands().Populate(difficulty);
 	}
 
@@ -51,7 +52,7 @@ namespace game::session
 		world::Islands().Reset();
 		item::Types().Reset();
 		GetSkills().Reset();
-		GetTribes().Reset();
+		Tribes().Reset();
 		GetWind().Reset();
 	}
 

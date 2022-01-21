@@ -2,7 +2,6 @@
 #include "Game.Difficulty.h"
 #include "Game.Session.Characters.h"
 #include "Game.Session.SkillCategories.h"
-#include "Game.Session.Tribes.h"
 #include "Game.Session.World.Bounds.h"
 #include "Game.Session.World.Calendar.h"
 #include "Game.Session.World.Distances.h"
@@ -22,7 +21,6 @@ namespace game::session
 		constexpr world::Distances GetDistances() const { return world::Distances(worldId); }
 		constexpr world::Wind GetWind() const { return world::Wind(worldId); }
 
-		constexpr Tribes GetTribes() const { return Tribes(); }
 		constexpr world::ShipTypes GetShipTypes() const { return world::ShipTypes(); }
 		constexpr world::Skills GetSkills() const { return world::Skills(); }
 		constexpr world::Professions GetProfessions() const { return world::Professions(); }
