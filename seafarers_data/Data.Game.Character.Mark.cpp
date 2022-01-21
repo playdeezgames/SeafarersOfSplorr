@@ -61,13 +61,13 @@ namespace data::game::character
 		Common::Execute(CREATE_TABLE);
 	}
 
-	std::optional<common::XY<double>> Mark::ReadMark(int characterId, const std::string& name)
+	std::optional<common::XY<double>> Mark::ReadMark(int characterId, const std::string_view& name)
 	{
 		Initialize();
 		auto record = Common::TryExecuteForOne(
 			QUERY_ITEM, 
 			characterId, 
-			common::Data::QuoteString(name));
+			common::Data::QuoteString(std::string(name)));
 		if (record)
 		{
 			return Common::ToXY(record.value());

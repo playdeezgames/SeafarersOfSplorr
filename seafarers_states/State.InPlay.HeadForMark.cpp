@@ -47,7 +47,7 @@ namespace state::in_play
 			marks.end(),
 			[](const game::session::character::Mark& mark) 
 			{
-				Terminal::menu.AddAction({ mark.GetName(), DoHeadForLocation(mark.GetName()) });
+				Terminal::menu.AddAction({ std::string(mark.GetName()), DoHeadForLocation(std::string(mark.GetName())) });
 			});
 		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(ChangeHeading::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);

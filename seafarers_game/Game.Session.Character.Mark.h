@@ -5,11 +5,11 @@ namespace game::session::character
 {
 	struct Mark
 	{
-		constexpr Mark(int characterId, const std::string& name) : characterId(characterId), name(name) {}
+		constexpr explicit Mark(int characterId, const std::string_view& name) : characterId(characterId), name(name) {}
 		common::XY<double> GetLocation() const;
-		const std::string& GetName() const { return name; }
+		const std::string_view& GetName() const { return name; }
 	private:
 		int characterId;
-		std::string name;
+		std::string_view name;
 	};
 }

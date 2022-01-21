@@ -21,9 +21,10 @@ namespace game::session
 	{
 		constexpr explicit Character(int characterId) : characterId(characterId) {}
 		constexpr explicit operator int() const { return characterId; }
+		constexpr static Character ToCharacter(int characterId) { return Character(characterId); }
+
 		constexpr character::KnownIslands GetKnownIslands() const { return character::KnownIslands(characterId); }
 		constexpr character::Plights GetPlights() const { return character::Plights(characterId); }
-		constexpr static Character ToCharacter(int characterId) { return Character(characterId); }
 		constexpr character::Characteristics GetCharacteristics() const { return character::Characteristics(characterId); }
 		constexpr character::HitPoints GetHitpoints() const { return character::HitPoints(characterId); }
 		constexpr character::Berth GetBerth() const { return character::Berth(characterId); }

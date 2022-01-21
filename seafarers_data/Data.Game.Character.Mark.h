@@ -9,7 +9,7 @@ namespace data::game::character
 	{
 		Mark() = delete;
 		static void Initialize();
-		static std::optional<common::XY<double>> ReadMark(int characterId, const std::string& name);
+		static std::optional<common::XY<double>> ReadMark(int characterId, const std::string_view& name);
 		static bool HasAny(int characterId);
 		static std::vector<std::string> ReadMarkNames(int characterId);
 		static void WriteMark(int characterId, const std::string& name, const common::XY<double>& location);
