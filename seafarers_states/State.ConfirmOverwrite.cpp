@@ -2,18 +2,14 @@
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
-#include <Common.Utility.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
-#include <Game.Session.h>
 #include <Game.Session.Saves.h>
 #include "State.ConfirmOverwrite.h"
 #include "State.InPlay.Next.h"
 #include "State.SaveGame.h"
 #include "State.Terminal.h"
 #include "UIState.h"
-#include <Visuals.Areas.h>
-#include <Visuals.Menus.h>
 namespace state
 {
 	static const std::map<::UIState, int> slotTable =

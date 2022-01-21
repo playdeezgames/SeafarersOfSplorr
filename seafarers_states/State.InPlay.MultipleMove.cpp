@@ -3,7 +3,6 @@
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.MultipleMove.h"
 #include "State.InPlay.Next.h"
-#include "State.Registrar.h"
 namespace state::in_play
 {
 	std::optional<int> MultipleMove::stateId = std::nullopt;

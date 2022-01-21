@@ -6,7 +6,6 @@
 #include "State.InPlay.CrewDetail.Inventory.h"
 #include "State.InPlay.CrewList.h"
 #include "State.InPlay.Globals.h"
-#include "State.Registrar.h"
 #include "State.ScratchPad.CrewDetail.h"
 namespace state::in_play
 {

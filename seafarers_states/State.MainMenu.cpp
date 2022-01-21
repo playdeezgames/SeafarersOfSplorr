@@ -2,7 +2,6 @@
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
-#include <Common.Utility.Dispatcher.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
 #include "State.About.h"

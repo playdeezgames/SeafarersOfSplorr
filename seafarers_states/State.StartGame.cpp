@@ -3,9 +3,7 @@
 #include "State.InPlay.Globals.h"
 #include "State.LoadGame.h"
 #include "State.MainMenu.h"
-#include "State.Registrar.h"
 #include "State.StartGame.h"
-#include "State.Terminal.h"
 namespace state
 {
 	std::optional<int> StartGame::stateId = std::nullopt;

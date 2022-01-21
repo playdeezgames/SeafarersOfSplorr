@@ -7,7 +7,6 @@
 #include "State.Registrar.h"
 #include "State.Terminal.h"
 #include "State.MainMenu.h"
-#include <Visuals.Terminals.h>
 namespace state
 {
 	std::optional<int> About::stateId = std::nullopt;

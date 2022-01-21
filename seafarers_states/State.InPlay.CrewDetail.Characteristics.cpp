@@ -3,7 +3,6 @@
 #include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.CrewDetail.Characteristics.h"
 #include "State.InPlay.Globals.h"
-#include "State.Registrar.h"
 #include "State.ScratchPad.CrewDetail.h"
 namespace state::in_play::crew_detail
 {

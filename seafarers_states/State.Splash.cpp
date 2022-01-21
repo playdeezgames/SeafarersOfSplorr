@@ -6,7 +6,6 @@
 #include <Game.Audio.Mux.h>
 #include "State.MainMenu.h"
 #include "State.Splash.h"
-#include "State.Terminal.h"
 #include "UIState.h"
 namespace state
 {

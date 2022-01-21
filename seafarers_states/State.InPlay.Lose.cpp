@@ -1,7 +1,6 @@
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.Lose.h"
 #include "State.MainMenu.h"
-#include "State.Registrar.h"
 namespace state::in_play
 {
 	std::optional<int> Lose::stateId = std::nullopt;

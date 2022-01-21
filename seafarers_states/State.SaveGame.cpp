@@ -2,10 +2,8 @@
 #include <Application.OnEnter.h>
 #include <Application.Renderer.h>
 #include <Application.UIState.h>
-#include <Common.Utility.h>
 #include <Game.Audio.Mux.h>
 #include <Game.Colors.h>
-#include <Game.Session.h>
 #include <Game.Session.Saves.h>
 #include "State.InPlay.Next.h"
 #include "State.LeavePlay.h"

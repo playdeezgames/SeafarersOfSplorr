@@ -1,7 +1,6 @@
 #include "State.InPlay.Win.h"
 #include "State.InPlay.Globals.h"
 #include "State.MainMenu.h"
-#include "State.Registrar.h"
 namespace state::in_play
 {
 	std::optional<int> Win::stateId = std::nullopt;
