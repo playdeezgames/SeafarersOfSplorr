@@ -40,7 +40,7 @@ namespace state
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		auto professions = game::session::world::Professions().GetProfessions();
+		auto professions = game::session::world::Professions::GetProfessions();
 		std::for_each(
 			professions.begin(),
 			professions.end(),

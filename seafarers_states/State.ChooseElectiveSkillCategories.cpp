@@ -15,8 +15,8 @@ namespace state
 
 	static std::set<game::session::SkillCategory> GetFixedSkillCategories()
 	{
-		return game::session::world::Professions()
-			.GetProfession(scratch_pad::detailed_start::Profession::GetProfession())
+		return game::session::world::Professions::GetProfession(
+				scratch_pad::detailed_start::Profession::GetProfession())
 			.GetSkillCategories();
 	}
 

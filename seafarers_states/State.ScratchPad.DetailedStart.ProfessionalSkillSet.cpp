@@ -35,8 +35,7 @@ namespace state::scratch_pad::detailed_start
 		professionalSkills.clear();
 
 		AddSkillCategorySetToProfessionalSkillSet(
-			game::session::world::Professions()
-			.GetProfession(profession)
+			game::session::world::Professions::GetProfession(profession)
 			.GetSkillCategories());
 
 		AddSkillCategorySetToProfessionalSkillSet(

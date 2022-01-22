@@ -9,7 +9,7 @@ namespace game::session::world
 	struct Profession
 	{
 		constexpr explicit Profession(const game::Profession profession) : profession(profession) {}
-		std::string GetName() const;
+		const std::string& GetName() const;
 		constexpr explicit operator game::Profession() const { return profession; }
 		const std::set<SkillCategory>& GetSkillCategories() const;
 		const std::set<SkillCategory>& GetElectiveSkillCategories() const;

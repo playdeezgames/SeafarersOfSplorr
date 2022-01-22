@@ -179,7 +179,7 @@ namespace game::session::world
 		return professionDescriptors.find(profession)->second;
 	}
 
-	std::string Profession::GetName() const
+	const std::string& Profession::GetName() const
 	{
 		return GetDescriptor(profession).name;
 	}

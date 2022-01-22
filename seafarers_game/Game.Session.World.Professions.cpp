@@ -10,7 +10,7 @@ namespace game::session::world
 		Profession(game::Profession::CUSTOM)
 	};
 
-	const std::vector<Profession>& Professions::GetProfessions() const
+	const std::vector<Profession>& Professions::GetProfessions()
 	{
 		return professions;
 	}
