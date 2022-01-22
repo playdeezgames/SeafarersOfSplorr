@@ -48,8 +48,8 @@ namespace game::session
 				auto skill = character.GetSkills().GetSkill(entry.first);
 				skill.AllocatePoints(entry.second);
 			});
-		data::game::Player::Create((int)character);
-		GenerateCharacterShip((int)character);
+		data::game::Player::Create(character.ToId());
+		GenerateCharacterShip(character.ToId());
 	}
 
 	void Player::Reset()

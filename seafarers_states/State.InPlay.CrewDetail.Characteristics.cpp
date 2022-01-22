@@ -1,9 +1,9 @@
-#include <Game.Session.h>
-#include <Game.Session.Characters.h>
-#include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.CrewDetail.Characteristics.h"
+#include "State.InPlay.CrewDetail.h"
 #include "State.InPlay.Globals.h"
 #include "State.ScratchPad.CrewDetail.h"
+#include <Game.Session.Character.Characteristics.h>
+#include <Game.Session.Character.HitPoints.h>
 namespace state::in_play::crew_detail
 {
 	std::optional<int> Characteristics::stateId = std::nullopt;
@@ -12,16 +12,13 @@ namespace state::in_play::crew_detail
 
 	static void Refresh()
 	{
-		auto character =
-			game::session::Characters()
-			.GetCharacter(scratch_pad::CrewDetail::GetCharacterId());
+		auto characterId =
+			scratch_pad::CrewDetail::GetCharacterId();
 		auto characteristics =
-			character
-			.GetCharacteristics()
+			game::session::character::Characteristics(characterId)
 			.GetAll();
 		auto hitPoints =
-			character
-			.GetHitpoints();
+			game::session::character::HitPoints(characterId);
 
 		Terminal::Reinitialize();
 

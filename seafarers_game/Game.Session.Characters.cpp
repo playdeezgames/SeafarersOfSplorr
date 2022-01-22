@@ -7,6 +7,7 @@
 #include <Data.Game.Character.Characteristic.h>
 #include <Data.Game.Island.Tribe.h>
 #include "Game.Session.Characters.h"
+#include "Game.Characteristic.h"
 namespace game::session
 {
 	std::vector<Character> Characters::GetAll() const

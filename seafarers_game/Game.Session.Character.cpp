@@ -6,6 +6,7 @@
 #include "Game.Colors.h"
 #include "Game.Session.Character.h"
 #include "Game.Session.Characters.h"
+#include "Game.Session.Character.Characteristics.h"
 namespace game::session
 {
 	bool Character::IsDead() const
@@ -79,8 +80,7 @@ namespace game::session
 			Characters()
 			.GetCharacter(characterId);
 		character.GetMessages().Add(game::Colors::YELLOW, "{} is starving!", character.GetName());
-		character
-			.GetCharacteristics()
+		character::Characteristics(character.ToId())
 			.GetCharacteristic(Characteristic::CONSTITUTION)
 			.OnOpposedCheck(
 				character
@@ -98,9 +98,9 @@ namespace game::session
 
 	static void SufferHunger(int characterId)
 	{
-		Characters()
-			.GetCharacter(characterId)
-			.GetCharacteristics()
+		auto character = Characters()
+			.GetCharacter(characterId);
+		character::Characteristics(character.ToId())
 			.GetCharacteristic(Characteristic::CONSTITUTION)
 			.OnCheck(
 				[characterId](bool success)
