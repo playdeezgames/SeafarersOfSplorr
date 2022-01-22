@@ -89,11 +89,11 @@
     <ClInclude Include="Game.Session.World.Calendar.Months.h" />
     <ClInclude Include="Game.Session.World.Distances.h" />
     <ClInclude Include="Game.Session.World.h" />
-    <ClInclude Include="Game.Session.World.Islands.h" />
+    <ClInclude Include="Game.Session.Islands.h" />
     <ClInclude Include="Game.Session.World.Profession.h" />
     <ClInclude Include="Game.Session.World.Professions.h" />
     <ClInclude Include="Game.Session.World.ShipType.h" />
-    <ClInclude Include="Game.Session.World.Skills.h" />
+    <ClInclude Include="Game.Session.Skills.h" />
     <ClInclude Include="Game.Session.World.Wind.h" />
     <ClInclude Include="Game.Characters.Flag.h" />
     <ClInclude Include="Game.Characters.Plight.h" />
@@ -175,11 +175,11 @@
     <ClCompile Include="Game.Session.World.Calendar.Months.cpp" />
     <ClCompile Include="Game.Session.World.cpp" />
     <ClCompile Include="Game.Session.World.Distances.cpp" />
-    <ClCompile Include="Game.Session.World.Islands.cpp" />
+    <ClCompile Include="Game.Session.Islands.cpp" />
     <ClCompile Include="Game.Session.World.Profession.cpp" />
     <ClCompile Include="Game.Session.World.Professions.cpp" />
     <ClCompile Include="Game.Session.World.ShipType.cpp" />
-    <ClCompile Include="Game.Session.World.Skills.cpp" />
+    <ClCompile Include="Game.Session.Skills.cpp" />
     <ClCompile Include="Game.Session.World.Wind.cpp" />
     <ClCompile Include="Game.ShipNames.cpp" />
   </ItemGroup>

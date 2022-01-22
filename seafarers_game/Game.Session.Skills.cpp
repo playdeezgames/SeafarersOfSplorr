@@ -2,7 +2,7 @@
 #include <Data.Game.Skill.h>
 #include <Data.Game.SkillCharacteristicCoefficient.h>
 #include "Game.Session.SkillCategory.h"
-#include "Game.Session.World.Skills.h"
+#include "Game.Session.Skills.h"
 #include <iterator>
 namespace game::session::world
 {

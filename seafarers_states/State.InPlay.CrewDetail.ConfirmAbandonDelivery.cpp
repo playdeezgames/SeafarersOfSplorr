@@ -3,7 +3,7 @@
 #include "State.InPlay.Globals.h"
 #include "State.ScratchPad.SelectedDelivery.h"
 #include <Game.Session.Character.Delivery.h>
-#include <Game.Session.World.Islands.h>
+#include <Game.Session.Islands.h>
 namespace state::in_play::crew_detail
 {
 	std::optional<int> ConfirmAbandonDelivery::stateId;

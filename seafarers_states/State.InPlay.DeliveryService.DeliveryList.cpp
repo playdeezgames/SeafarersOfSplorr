@@ -6,7 +6,7 @@
 #include "State.ScratchPad.SelectedDelivery.h"
 #include <algorithm>
 #include <Game.Session.Player.h>
-#include <Game.Session.World.Islands.h>
+#include <Game.Session.Islands.h>
 #include <Game.Session.Character.h>
 namespace state::in_play::delivery_service
 {

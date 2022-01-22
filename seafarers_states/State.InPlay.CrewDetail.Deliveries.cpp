@@ -6,7 +6,7 @@
 #include "State.ScratchPad.SelectedDelivery.h"
 #include <algorithm>
 #include <Game.Session.Characters.h>
-#include <Game.Session.World.Islands.h>
+#include <Game.Session.Islands.h>
 namespace state::in_play::crew_detail
 {
 	std::optional<int> Deliveries::stateId = std::nullopt;

@@ -1,7 +1,7 @@
 #include "State.ScratchPad.DetailedStart.ProfessionalSkillSet.h"
 #include <algorithm>
 #include <Game.Session.World.Professions.h>
-#include <Game.Session.World.Skills.h>
+#include <Game.Session.Skills.h>
 #include <iterator>
 namespace state::scratch_pad::detailed_start
 {

@@ -10,7 +10,7 @@
 #include <algorithm>
 #include <Game.Session.Player.h>
 #include <Game.Session.World.h>
-#include <Game.Session.World.Skills.h>
+#include <Game.Session.Skills.h>
 namespace state
 {
 	std::optional<int> ChooseProfessionalSkill::stateId = std::nullopt;

@@ -5,7 +5,7 @@
 #include "State.ScratchPad.SelectedSkill.h"
 #include <algorithm>
 #include <Common.Data.h>
-#include <Game.Session.World.Skills.h>
+#include <Game.Session.Skills.h>
 namespace state
 {
 	std::optional<int> SpendProfessionalSkillPoints::stateId = std::nullopt;

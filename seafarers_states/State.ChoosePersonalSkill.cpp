@@ -6,7 +6,7 @@
 #include "State.Tip.h"
 #include <algorithm>
 #include <Game.Session.Player.h>
-#include <Game.Session.World.Skills.h>
+#include <Game.Session.Skills.h>
 #include <Game.Session.Character.h>
 namespace state
 {

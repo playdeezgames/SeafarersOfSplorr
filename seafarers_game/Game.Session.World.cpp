@@ -6,8 +6,8 @@
 #include "Game.Session.Tribes.h"
 #include "Game.Session.World.Bounds.h"
 #include "Game.Session.World.Distances.h"
-#include "Game.Session.World.Islands.h"
-#include "Game.Session.World.Skills.h"
+#include "Game.Session.Islands.h"
+#include "Game.Session.Skills.h"
 #include "Game.Session.World.Wind.h"
 #include <Common.Heading.h>
 #include <Common.RNG.h>
