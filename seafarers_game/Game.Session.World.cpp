@@ -27,12 +27,12 @@ namespace game::session
 	static const int LATEST_INITIAL_YEAR = 1000;
 	static const int DAYS_PER_YEAR = 360;
 
-	void World::Populate(const Difficulty& difficulty) const
+	void World::Populate(const Difficulty& difficulty)
 	{
 		auto currencyItemSubtype = CreateWorldCurrencyItemSubtype();
 
 		data::game::World::Write(
-			worldId,
+			WORLD_ID,
 			(int)difficulty,
 			common::RNG::FromRange(0.0, common::Heading::DEGREES),
 			(int)currencyItemSubtype,
@@ -47,7 +47,7 @@ namespace game::session
 	}
 
 
-	void World::Reset() const
+	void World::Reset()
 	{
 		world::Bounds().Reset();
 		world::Calendar().Reset();
@@ -61,7 +61,7 @@ namespace game::session
 		world::Wind().Reset();
 	}
 
-	void World::ApplyTurnEffects() const
+	void World::ApplyTurnEffects()
 	{
 		world::Islands::ApplyTurnEffects();
 		world::Wind().ApplyTurnEffects();
@@ -69,13 +69,13 @@ namespace game::session
 		session::Demigods().ApplyTurnEffects();
 	}
 
-	game::Difficulty World::GetDifficulty() const
+	game::Difficulty World::GetDifficulty()
 	{
-		return (Difficulty)data::game::World::ReadDifficulty(worldId).value();
+		return (Difficulty)data::game::World::ReadDifficulty(WORLD_ID).value();
 	}
 
-	item::Type World::GetCurrencyItemSubtype() const
+	item::Type World::GetCurrencyItemSubtype()
 	{
-		return item::Type(data::game::World::ReadCurrencyItemTypeId(worldId).value());
+		return item::Type(data::game::World::ReadCurrencyItemTypeId(WORLD_ID).value());
 	}
 }

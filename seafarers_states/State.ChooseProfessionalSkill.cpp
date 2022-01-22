@@ -70,7 +70,7 @@ namespace state
 	static void OnDone()
 	{
 		game::session::Player::Populate(
-				game::session::World().GetDifficulty(),
+				game::session::World::GetDifficulty(),
 				scratch_pad::detailed_start::ProfessionalSkillPointAllocations::GetAllocations());
 		scratch_pad::detailed_start::PersonalSkillPointAllocations::Clear();
 		application::UIState::Write(ChoosePersonalSkill::GetStateId());

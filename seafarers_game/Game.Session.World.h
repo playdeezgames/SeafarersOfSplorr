@@ -6,13 +6,11 @@ namespace game::session
 	constexpr int WORLD_ID = 1;
 	struct World
 	{
-		constexpr explicit World() : worldId(WORLD_ID) {}
-		item::Type GetCurrencyItemSubtype() const;
-		game::Difficulty GetDifficulty() const;
-		void Reset() const;
-		void Populate(const Difficulty& difficulty) const;
-		void ApplyTurnEffects() const;
-	private:
-		int worldId;
+		World() = delete;
+		static item::Type GetCurrencyItemSubtype();
+		static game::Difficulty GetDifficulty();
+		static void Reset();
+		static void Populate(const Difficulty& difficulty);
+		static void ApplyTurnEffects();
 	};
 }

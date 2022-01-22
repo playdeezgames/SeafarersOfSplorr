@@ -11,7 +11,7 @@ namespace game::session::island
 	static void GenerateDeliveryForFeature(int featureId)
 	{
 		constexpr double TIME_LIMIT_FACTOR = 2.0;
-		auto world = game::session::World();
+		using world = game::session::World;
 		using islands = game::session::world::Islands;
 		auto fromIslandId = data::game::island::Feature::ReadIslandId(featureId).value();
 		auto candidateIslands = islands::GetIslands();
@@ -27,7 +27,7 @@ namespace game::session::island
 		auto toIsland = common::RNG::FromVector(candidateIslands).value();
 		int timeLimit = (int)(fromIsland.DistanceTo(toIsland) * TIME_LIMIT_FACTOR);
 		//TODO: make this less hacked
-		auto rewardItemType = world.GetCurrencyItemSubtype();
+		auto rewardItemType = world::GetCurrencyItemSubtype();
 		auto rewardQuantity = common::RNG::Roll<5>();
 		auto deliveryId = data::game::Delivery::Create(fromIslandId, toIsland.operator int(), timeLimit, rewardItemType.operator int(), rewardQuantity);
 		data::game::feature::Delivery::Create(featureId, deliveryId);

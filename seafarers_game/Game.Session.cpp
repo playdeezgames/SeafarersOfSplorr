@@ -12,14 +12,14 @@ namespace game
 
 	void Session::ApplyTurnEffects()
 	{
-		game::session::World().ApplyTurnEffects();
+		game::session::World::ApplyTurnEffects();
 		game::session::Ships().ApplyTurnEffects();
 		game::session::Characters().ApplyTurnEffects();
 	}
 
 	void Session::Populate(const Difficulty& difficulty)
 	{
-		game::session::World().Populate(difficulty);
+		game::session::World::Populate(difficulty);
 		game::session::Characters().Populate(difficulty);
 	}
 
@@ -27,7 +27,7 @@ namespace game
 	{
 		Stores::Bounce(Store::IN_MEMORY);
 
-		game::session::World().Reset();
+		game::session::World::Reset();
 		game::session::Ships().Reset();
 		game::session::Characters().Reset();
 		game::session::Player::Reset();
