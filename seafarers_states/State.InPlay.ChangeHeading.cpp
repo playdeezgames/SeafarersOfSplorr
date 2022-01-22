@@ -8,6 +8,7 @@
 #include "State.InPlay.ManualHeading.h"
 #include "State.InPlay.ShipStatus.h"
 #include <Game.Session.Character.h>
+#include <Game.Session.Character.Marks.h>
 namespace state::in_play
 {
 	std::optional<int> ChangeHeading::stateId = std::nullopt;
@@ -44,7 +45,7 @@ namespace state::in_play
 		{
 			Terminal::menu.AddAction({ "Head for a known island", application::UIState::DoGoTo(HeadForKnown::GetStateId) });
 		}
-		if (playerCharacter.GetMarks().HasAny())
+		if (game::session::character::Marks(game::session::Player::GetCharacterId()).HasAny())
 		{
 			Terminal::menu.AddAction({ "Head for a marked location", application::UIState::DoGoTo(HeadForMark::GetStateId) });
 		}

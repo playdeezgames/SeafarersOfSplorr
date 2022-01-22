@@ -4,6 +4,7 @@
 #include <Application.TextInput.h>
 #include <Game.Session.Player.h>
 #include <Game.Session.Character.h>
+#include <Game.Session.Character.Marks.h>
 namespace state::in_play
 {
 	std::optional<int> MarkCurrentLocation::stateId = std::nullopt;
@@ -36,7 +37,7 @@ namespace state::in_play
 		{
 			auto locationName = Terminal::GetInput();
 			auto character = game::session::Character(game::session::Player::GetCharacterId());
-			auto marks = character.GetMarks();
+			auto marks = game::session::character::Marks(character.ToId());
 			auto location = character.GetBerth().GetShip().GetLocation();
 			marks.AddMark(locationName, location);
 			Terminal::WriteLine();

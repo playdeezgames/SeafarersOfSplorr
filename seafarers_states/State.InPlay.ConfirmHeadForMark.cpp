@@ -6,6 +6,7 @@
 #include <Common.Heading.h>
 #include <Game.Session.Player.h>
 #include <Game.Session.Character.h>
+#include <Game.Session.Character.Marks.h>
 namespace state::in_play
 {
 	std::optional<int> ConfirmHeadForMark::stateId = std::nullopt;
@@ -21,8 +22,7 @@ namespace state::in_play
 			.GetBerth()
 			.GetShip();
 		auto mark = 
-			playerCharacter
-			.GetMarks()
+			game::session::character::Marks(playerCharacter.ToId())
 			.GetMark(scratch_pad::HeadForMark::GetMark());
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
@@ -48,8 +48,7 @@ namespace state::in_play
 			.GetBerth()
 			.GetShip();
 		auto mark =
-			playerCharacter
-			.GetMarks()
+			game::session::character::Marks(playerCharacter.ToId())
 			.GetMark(scratch_pad::HeadForMark::GetMark());
 
 		auto relativeLocation = mark.GetLocation() - ship.GetLocation();
@@ -60,8 +59,7 @@ namespace state::in_play
 
 	static void OnDelete()
 	{
-		game::session::Character(game::session::Player::GetCharacterId())
-			.GetMarks()
+		game::session::character::Marks(game::session::Player::GetCharacterId())
 			.RemoveMark(scratch_pad::HeadForMark::GetMark());
 		application::UIState::Write(ShipStatus::GetStateId());
 	}

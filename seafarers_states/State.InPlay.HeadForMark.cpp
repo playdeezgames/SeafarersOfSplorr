@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <Game.Session.Player.h>
 #include <Game.Session.Character.h>
+#include <Game.Session.Character.Marks.h>
 namespace state::in_play
 {
 	std::optional<int> HeadForMark::stateId = std::nullopt;
@@ -42,7 +43,7 @@ namespace state::in_play
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 
-		auto marks = playerCharacter.GetMarks().GetMarks();
+		auto marks = game::session::character::Marks(playerCharacter.ToId()).GetMarks();
 		std::for_each(
 			marks.begin(),
 			marks.end(),
