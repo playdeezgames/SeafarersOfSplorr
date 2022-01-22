@@ -9,6 +9,7 @@
 #include "State.ScratchPad.CrewDetail.h"
 #include <Game.Session.Character.HitPoints.h>
 #include <Game.Session.Character.Flags.h>
+#include <Game.Session.Tribe.h>
 namespace state::in_play
 {
 	std::optional<int> CrewDetail::stateId = std::nullopt;
@@ -60,7 +61,7 @@ namespace state::in_play
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Name: {}", character.GetName());
 		Terminal::WriteLine("From: {}", character.GetOriginIsland().GetName());
-		Terminal::WriteLine("Tribe: {}", character.GetTribe().GetName());
+		Terminal::WriteLine("Tribe: {}", game::session::Tribe(character.GetTribeId()).GetName());
 		RefreshFlags(character.ToId());
 		RefreshHitPoints(character.ToId());
 

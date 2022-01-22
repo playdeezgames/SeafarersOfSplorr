@@ -151,9 +151,9 @@ namespace game::session
 		return Island(data::game::Character::ReadOriginIslandId(characterId).value());
 	}
 
-	Tribe Character::GetTribe() const
+	int Character::GetTribeId() const
 	{
-		return Tribe(data::game::Character::ReadTribeId(characterId).value());
+		return data::game::Character::ReadTribeId(characterId).value();
 	}
 
 	bool Character::IsPlayer() const

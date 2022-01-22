@@ -8,7 +8,6 @@
 #include "Game.Session.Character.Messages.h"
 #include "Game.Session.Character.Plights.h"
 #include "Game.Session.Island.h"
-#include "Game.Session.Tribe.h"
 #include <optional>
 namespace game::session
 {
@@ -31,7 +30,7 @@ namespace game::session
 		std::string GetName() const;
 		void ApplyTurnEffects() const;
 		Island GetOriginIsland() const;
-		Tribe GetTribe() const;
+		int GetTribeId() const;
 		bool IsPlayer() const;
 		void SetIsland(Island island) const;
 		void ClearIsland() const;
