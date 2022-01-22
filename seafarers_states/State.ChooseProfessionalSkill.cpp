@@ -92,7 +92,7 @@ namespace state
 				skills.end(), 
 				[](const game::session::Skill& skill) 
 				{
-					Terminal::menu.AddAction({ skill.GetName(), DoChooseSkill(skill.operator int()) });
+					Terminal::menu.AddAction({ skill.GetName(), DoChooseSkill(skill.ToId()) });
 				});
 		}
 		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(ChooseElectiveSkillCategories::GetStateId) };

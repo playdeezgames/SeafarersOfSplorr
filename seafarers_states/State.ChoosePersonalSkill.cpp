@@ -87,7 +87,7 @@ namespace state
 				skills.end(),
 				[](const game::session::Skill& skill)
 				{
-					Terminal::menu.AddAction({ skill.GetName(), DoChooseSkill(skill.operator int()) });
+					Terminal::menu.AddAction({ skill.GetName(), DoChooseSkill(skill.ToId()) });
 				});
 		}
 	}
