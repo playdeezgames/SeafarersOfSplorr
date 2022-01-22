@@ -9,7 +9,7 @@ namespace game::session::ship
 {
 	std::vector<Island> VisibleIslands::GetAll() const
 	{
-		auto maximumDistance = game::session::world::Distances().GetView();
+		auto maximumDistance = game::session::world::Distances::GetView();
 		auto shipLocation = data::game::Ship::GetLocation(shipId).value();
 		auto islands = data::game::Island::All();
 		auto last =

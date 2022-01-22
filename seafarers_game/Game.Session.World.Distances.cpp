@@ -2,6 +2,7 @@
 #include "Game.Difficulty.h"
 #include "Game.Session.World.Distances.h"
 #include <map>
+#include "Game.Session.World.h"
 namespace game::session::world
 {
 	using WorldData = data::game::World;
@@ -14,8 +15,8 @@ namespace game::session::world
 		{ Difficulty::HARDCORE, 25.0 },
 	};
 
-	double Distances::GetIslandSpacing() const
+	double Distances::GetIslandSpacing()
 	{
-		return islandDistancesByDifficulty.find((Difficulty)WorldData::ReadDifficulty(worldId).value())->second;
+		return islandDistancesByDifficulty.find((Difficulty)WorldData::ReadDifficulty(WORLD_ID).value())->second;
 	}
 }

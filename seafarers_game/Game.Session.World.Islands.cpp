@@ -23,7 +23,7 @@ namespace game::session::world
 
 	static std::list<common::XY<double>> GenerateLocations()
 	{
-		double minimumIslandDistance = game::session::world::Distances().GetIslandSpacing();
+		double minimumIslandDistance = game::session::world::Distances::GetIslandSpacing();
 		auto worldSize = game::session::world::Bounds::GetSize();
 		size_t retry = 0;
 		std::list<common::XY<double>> locations;

@@ -52,7 +52,6 @@ namespace game::session
 		world::Calendar().Reset();
 		session::Commodities().Reset();
 		session::Demigods().Reset();
-		world::Distances().Reset();
 		world::Islands::Reset();
 		item::Types().Reset();
 		world::Skills::Reset();
