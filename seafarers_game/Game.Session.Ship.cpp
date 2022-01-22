@@ -181,7 +181,7 @@ namespace game::session
 				common::Heading::DegreesToXY(heading) *
 				effectiveSpeed;
 
-			game::session::world::Bounds().ClampLocation(location.value());
+			game::session::world::Bounds::ClampLocation(location.value());
 
 			auto berths = GetBerths().GetBerths();
 			std::for_each(

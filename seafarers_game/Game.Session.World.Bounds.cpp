@@ -2,13 +2,15 @@
 #include <Data.Game.World.h>
 #include "Game.Difficulty.h"
 #include "Game.Session.World.Bounds.h"
+#include "Game.Session.World.h"
+#include <algorithm>
 namespace game::session::world
 {
 	using WorldData = data::game::World;
 
-	common::XY<double> Bounds::GetSize() const
+	common::XY<double> Bounds::GetSize()
 	{
-		auto difficulty = (Difficulty)WorldData::ReadDifficulty(worldId).value();
+		auto difficulty = (Difficulty)WorldData::ReadDifficulty(WORLD_ID).value();
 		return
 			(difficulty == Difficulty::EASY) ? (common::XY<double>(100.0, 100.0)) :
 			(difficulty == Difficulty::NORMAL) ? (common::XY<double>(150.0, 150.0)) :
@@ -16,30 +18,13 @@ namespace game::session::world
 			(common::XY<double>(250.0, 250.0));
 	}
 
-	bool Bounds::ClampLocation(common::XY<double>& location) const
+	void Bounds::ClampLocation(common::XY<double>& location)
 	{
-		bool result = false;
 		auto worldSize = GetSize();
-		if (location.GetX() < 0.0)
+		location = 
 		{
-			result = true;
-			location = { 0, location.GetY() };
-		}
-		if (location.GetX() > worldSize.GetX())
-		{
-			result = true;
-			location = { worldSize.GetX(), location.GetY() };
-		}
-		if (location.GetY() < 0.0)
-		{
-			result = true;
-			location = { location.GetX(), 0.0 };
-		}
-		if (location.GetY() > worldSize.GetY())
-		{
-			result = true;
-			location = { location.GetX(), worldSize.GetY() };
-		}
-		return result;
+			std::clamp(location.GetX(), 0.0, worldSize.GetX()),
+			std::clamp(location.GetY(), 0.0, worldSize.GetY()) 
+		};
 	}
 }

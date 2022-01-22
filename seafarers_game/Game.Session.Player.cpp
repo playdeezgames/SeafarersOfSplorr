@@ -21,7 +21,7 @@ namespace game::session
 
 	static void GenerateCharacterShip(int characterId)
 	{
-		auto worldSize = game::session::world::Bounds().GetSize();
+		auto worldSize = game::session::world::Bounds::GetSize();
 		auto shipType = game::ShipType::RAFT;
 		int shipId = ShipData::Create(
 			(int)shipType,

@@ -49,7 +49,6 @@ namespace game::session
 
 	void World::Reset()
 	{
-		world::Bounds().Reset();
 		world::Calendar().Reset();
 		session::Commodities().Reset();
 		session::Demigods().Reset();
