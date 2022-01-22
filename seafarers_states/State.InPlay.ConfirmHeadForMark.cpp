@@ -5,6 +5,7 @@
 #include "State.ScratchPad.HeadForMark.h"
 #include <Common.Heading.h>
 #include <Game.Session.Player.h>
+#include <Game.Session.Character.h>
 namespace state::in_play
 {
 	std::optional<int> ConfirmHeadForMark::stateId = std::nullopt;
@@ -14,8 +15,7 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		auto playerCharacter =
-			game::session::Player()
-			.GetCharacter();
+			game::session::Character(game::session::Player::GetCharacterId());
 		auto ship =
 			playerCharacter
 			.GetBerth()
@@ -42,8 +42,7 @@ namespace state::in_play
 	static void OnConfirm()
 	{
 		auto playerCharacter =
-			game::session::Player()
-			.GetCharacter();
+			game::session::Character(game::session::Player::GetCharacterId());
 		auto ship =
 			playerCharacter
 			.GetBerth()
@@ -61,11 +60,9 @@ namespace state::in_play
 
 	static void OnDelete()
 	{
-		game::session::Player()
-			.GetCharacter()
+		game::session::Character(game::session::Player::GetCharacterId())
 			.GetMarks()
 			.RemoveMark(scratch_pad::HeadForMark::GetMark());
-
 		application::UIState::Write(ShipStatus::GetStateId());
 	}
 

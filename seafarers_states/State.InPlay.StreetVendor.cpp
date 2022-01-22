@@ -4,6 +4,7 @@
 #include "State.InPlay.IslandDistrict.h"
 #include "State.InPlay.StreetVendor.h"
 #include "State.ScratchPad.IslandFeature.h"
+#include <Game.Session.Character.h>
 namespace state::in_play
 {
 	std::optional<int> StreetVendor::stateId = std::nullopt;
@@ -12,8 +13,7 @@ namespace state::in_play
 	{
 		Terminal::Reinitialize();
 		auto feature =
-			game::session::Player()
-			.GetCharacter()
+			game::session::Character(game::session::Player::GetCharacterId())
 			.GetIsland()
 			.GetFeature(scratch_pad::IslandFeature::GetFeatureId());
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);

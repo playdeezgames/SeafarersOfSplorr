@@ -3,6 +3,7 @@
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.Next.h"
 #include <Game.Session.Player.h>
+#include <Game.Session.Character.h>
 namespace state::in_play
 {
 	std::optional<int> DockOrCareen::stateId = std::nullopt;
@@ -12,7 +13,7 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		auto ship = 
-			game::session::Player().GetCharacter()
+			game::session::Character(game::session::Player::GetCharacterId())
 			.GetBerth()
 			.GetShip();
 
@@ -27,8 +28,7 @@ namespace state::in_play
 
 	static void OnDock()
 	{
-		game::session::Player()
-			.GetCharacter()
+		game::session::Character(game::session::Player::GetCharacterId())
 			.GetBerth()
 			.GetShip()
 			.Dock();

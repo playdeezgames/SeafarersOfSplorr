@@ -5,6 +5,7 @@
 #include <Game.Session.Player.h>
 #include <set>
 #include <Visuals.Terminals.h>
+#include <Game.Session.Character.h>
 namespace state
 {
 	Menu Terminal::menu;
@@ -327,8 +328,9 @@ namespace state
 		Write(">");
 	}
 
-	static void ShowMessages(const game::session::Character& character)
+	static void ShowMessages(int characterId)
 	{
+		auto character = game::session::Character(characterId);
 		auto messages = character.GetMessages().GetAll();
 		if (!messages.empty())
 		{
@@ -346,10 +348,10 @@ namespace state
 	{
 		ClearStatusLine();
 		ClearInput();
-		auto character = game::session::Player().TryGetCharacter();
-		if (character)
+		auto characterId = game::session::Player::TryGetCharacterId();
+		if (characterId)
 		{
-			ShowMessages(character.value());
+			ShowMessages(characterId.value());
 		}
 		WriteLine();
 	}

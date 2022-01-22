@@ -1,6 +1,7 @@
 #include <Game.Session.Player.h>
 #include "State.ScratchPad.DetailedStart.PersonalSkillPointAllocations.h"
 #include <numeric>
+#include <Game.Session.Character.h>
 namespace state::scratch_pad::detailed_start
 {
 	std::map<int, size_t> PersonalSkillPointAllocations::personalSkillPointAllocations;
@@ -26,8 +27,7 @@ namespace state::scratch_pad::detailed_start
 	{
 		const size_t INT_MULTIPLIER = 10;
 		size_t intelligence =
-			(size_t)game::session::Player()
-			.GetCharacter()
+			(size_t)game::session::Character(game::session::Player::GetCharacterId())
 			.GetCharacteristics()
 			.GetCharacteristic(game::Characteristic::INTELLIGENCE)
 			.GetValue();

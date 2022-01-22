@@ -49,8 +49,7 @@ namespace state
 		scratch_pad::detailed_start::ProfessionalSkillPointAllocations::AllocateSkillPoints(skillId, 50);
 		skillId = skills.GetSkillsInCategory(game::SkillCategory::SPOT).begin()->operator int();
 		scratch_pad::detailed_start::ProfessionalSkillPointAllocations::AllocateSkillPoints(skillId, 50);
-		game::session::Player()
-			.Populate(
+		game::session::Player::Populate(
 				game::session::World().GetDifficulty(),
 				scratch_pad::detailed_start::ProfessionalSkillPointAllocations::GetAllocations());
 		application::UIState::Write(Tip::GetStateId());

@@ -3,6 +3,7 @@
 #include "State.InPlay.ShipStatus.h"
 #include <Application.TextInput.h>
 #include <Game.Session.Player.h>
+#include <Game.Session.Character.h>
 namespace state::in_play
 {
 	std::optional<int> MarkCurrentLocation::stateId = std::nullopt;
@@ -34,7 +35,7 @@ namespace state::in_play
 		if (key == RETURN)
 		{
 			auto locationName = Terminal::GetInput();
-			auto character = game::session::Player().GetCharacter();
+			auto character = game::session::Character(game::session::Player::GetCharacterId());
 			auto marks = character.GetMarks();
 			auto location = character.GetBerth().GetShip().GetLocation();
 			marks.AddMark(locationName, location);

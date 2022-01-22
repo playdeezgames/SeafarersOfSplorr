@@ -30,6 +30,6 @@ namespace game
 		game::session::World().Reset();
 		game::session::Ships().Reset();
 		game::session::Characters().Reset();
-		game::session::Player().Reset();
+		game::session::Player::Reset();
 	}
 }

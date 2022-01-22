@@ -5,6 +5,7 @@
 #include "State.ScratchPad.HeadForMark.h"
 #include <algorithm>
 #include <Game.Session.Player.h>
+#include <Game.Session.Character.h>
 namespace state::in_play
 {
 	std::optional<int> HeadForMark::stateId = std::nullopt;
@@ -14,7 +15,7 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		auto playerCharacter =
-			game::session::Player().GetCharacter();
+			game::session::Character(game::session::Player::GetCharacterId());
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Head for Marked Location");
@@ -36,7 +37,7 @@ namespace state::in_play
 	static void UpdateMenu()
 	{
 		auto playerCharacter =
-			game::session::Player().GetCharacter();
+			game::session::Character(game::session::Player::GetCharacterId());
 		auto ship = playerCharacter.GetBerth().GetShip();
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);

@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <Common.Heading.h>
 #include <Game.Session.Player.h>
+#include <Game.Session.Character.h>
 namespace state::in_play
 {
 	std::optional<int> HeadForKnown::stateId = std::nullopt;
@@ -24,7 +25,7 @@ namespace state::in_play
 		{
 			Terminal::SetForeground(game::Colors::GREEN);
 			Terminal::WriteLine();
-			game::session::Player().GetCharacter().GetBerth().GetShip().SetHeading(heading);
+			game::session::Character(game::session::Player::GetCharacterId()).GetBerth().GetShip().SetHeading(heading);
 			Terminal::WriteLine("You head for {}.", island.GetDisplayName());
 			application::UIState::Write(AtSeaOverview::GetStateId());
 		};
@@ -34,9 +35,9 @@ namespace state::in_play
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		auto character = game::session::Player().GetCharacter();
+		auto character = game::session::Character(game::session::Player::GetCharacterId());
 		auto known = character.GetKnownIslands();
-		auto location = game::session::Player().GetCharacter().GetBerth().GetShip().GetLocation();
+		auto location = character.GetBerth().GetShip().GetLocation();
 		auto islands = known.GetAll();
 		std::for_each(
 			islands.begin(), 

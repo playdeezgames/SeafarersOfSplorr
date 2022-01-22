@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <Game.Session.Player.h>
 #include <Game.Session.World.Islands.h>
+#include <Game.Session.Character.h>
 namespace state::in_play::delivery_service
 {
 	std::optional<int> MakeDelivery::stateId = std::nullopt;
@@ -14,7 +15,7 @@ namespace state::in_play::delivery_service
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Make Delivery:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		auto character = game::session::Player().GetCharacter();
+		auto character = game::session::Character(game::session::Player::GetCharacterId());
 		auto island = character.GetIsland();
 		if (!character.GetDeliveries().HasDeliveriesFor(island.operator int()))
 		{
@@ -39,7 +40,7 @@ namespace state::in_play::delivery_service
 	static void UpdateMenu()
 	{
 		Terminal::menu.Clear();
-		auto character = game::session::Player().GetCharacter();
+		auto character = game::session::Character(game::session::Player::GetCharacterId());
 		auto toIsland = character.GetIsland();
 		auto deliveries = character.GetDeliveries().GetDeliveriesFor(toIsland.operator int());
 		auto islands = game::session::world::Islands();

@@ -12,9 +12,9 @@
 #include <Data.Game.Ship.h>
 namespace game::session
 {
-	Character Player::GetCharacter() const
+	int Player::GetCharacterId()
 	{
-		return Character(data::game::Player::GetCharacterId().value());
+		return data::game::Player::GetCharacterId().value();
 	}
 
 	using ShipData = data::game::Ship;
@@ -37,7 +37,7 @@ namespace game::session
 		data::game::character::Ship::Write(characterId, shipId, (int)BerthType::CAPTAIN);
 	}
 
-	void Player::Populate(const Difficulty&, const std::map<int, size_t> allocations) const
+	void Player::Populate(const Difficulty&, const std::map<int, size_t> allocations)
 	{
 		auto character = game::session::Characters().Create();
 		std::for_each(
@@ -52,17 +52,12 @@ namespace game::session
 		GenerateCharacterShip((int)character);
 	}
 
-	void Player::Reset() const
+	void Player::Reset()
 	{
 	}
 
-	std::optional<Character> Player::TryGetCharacter() const
+	std::optional<int> Player::TryGetCharacterId()
 	{
-		auto characterId = data::game::Player::GetCharacterId();
-		if (characterId)
-		{
-			return Character(characterId.value());
-		}
-		return std::nullopt;
+		return data::game::Player::GetCharacterId();
 	}
 }

@@ -55,8 +55,7 @@ namespace state::in_play
 	{
 		std::list<RosterItem> rosterItems;
 		auto crew = 
-			game::session::Player()
-			.GetCharacter()
+			game::session::Character(game::session::Player::GetCharacterId())
 			.GetBerth()
 			.GetShip()
 			.GetBerths()

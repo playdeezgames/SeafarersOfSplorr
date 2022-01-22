@@ -7,6 +7,7 @@
 #include "State.InPlay.StreetVendor.h"
 #include "State.ScratchPad.IslandDistrict.h"
 #include "State.ScratchPad.IslandFeature.h"
+#include <Game.Session.Character.h>
 namespace state::in_play
 {
 	std::optional<int> IslandDistrict::stateId = std::nullopt;
@@ -15,8 +16,7 @@ namespace state::in_play
 	{
 		Terminal::Reinitialize();
 		auto district =
-			game::session::Player()
-			.GetCharacter()
+			game::session::Character(game::session::Player::GetCharacterId())
 			.GetIsland()
 			.GetDistricts()
 			.GetDistrict(scratch_pad::IslandDistrict::GetDistrict());
@@ -50,8 +50,7 @@ namespace state::in_play
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		auto features =
-			game::session::Player()
-			.GetCharacter()
+			game::session::Character(game::session::Player::GetCharacterId())
 			.GetIsland()
 			.GetDistricts()
 			.GetDistrict(scratch_pad::IslandDistrict::GetDistrict())

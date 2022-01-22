@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <Game.Session.Player.h>
 #include <Game.Session.World.Islands.h>
+#include <Game.Session.Character.h>
 namespace state::in_play::delivery_service
 {
 	std::optional<int> DeliveryList::stateId = std::nullopt;
@@ -15,8 +16,7 @@ namespace state::in_play::delivery_service
 	{
 		Terminal::Reinitialize();
 		auto feature =
-			game::session::Player()
-			.GetCharacter()
+			game::session::Character(game::session::Player::GetCharacterId())
 			.GetIsland()
 			.GetFeature(scratch_pad::IslandFeature::GetFeatureId());
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
@@ -46,8 +46,7 @@ namespace state::in_play::delivery_service
 		auto islands =
 			game::session::world::Islands();
 		auto fromIsland =
-			game::session::Player()
-			.GetCharacter()
+			game::session::Character(game::session::Player::GetCharacterId())
 			.GetIsland();
 		auto deliveries =
 			fromIsland

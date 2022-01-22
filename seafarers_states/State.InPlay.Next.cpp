@@ -7,6 +7,7 @@
 #include <Application.Update.h>
 #include <Game.Session.Player.h>
 #include <Game.Session.Saves.h>
+#include <Game.Session.Character.h>
 namespace state::in_play
 {
 	std::optional<int> Next::stateId = std::nullopt;
@@ -20,8 +21,7 @@ namespace state::in_play
 	static bool IsPlayerOutOfTurns()
 	{
 		return 
-			game::session::Player()
-			.GetCharacter()
+			game::session::Character(game::session::Player::GetCharacterId())
 			.GetCounters()
 			.GetCounter(game::characters::Counter::TURNS_REMAINING)
 			.GetValue() <= 0;
@@ -29,7 +29,7 @@ namespace state::in_play
 
 	static bool IsPlayerDead()
 	{
-		return game::session::Player().GetCharacter().IsDead();
+		return game::session::Character(game::session::Player::GetCharacterId()).IsDead();
 	}
 
 	static const std::list<StatusChecker> statusCheckers =
@@ -56,7 +56,7 @@ namespace state::in_play
 			return;
 		}
 
-		auto character = game::session::Player().GetCharacter();
+		auto character = game::session::Character(game::session::Player::GetCharacterId());
 		auto island = character.TryGetIsland();
 		if (island)
 		{

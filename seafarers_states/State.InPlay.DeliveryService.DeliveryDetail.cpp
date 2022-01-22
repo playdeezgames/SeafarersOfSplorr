@@ -4,6 +4,7 @@
 #include "State.InPlay.DeliveryService.DeliveryDetail.h"
 #include "State.InPlay.DeliveryService.DeliveryList.h"
 #include "State.ScratchPad.SelectedDelivery.h"
+#include <Game.Session.Character.h>
 namespace state::in_play::delivery_service
 {
 	std::optional<int> DeliveryDetail::stateId = std::nullopt;
@@ -35,8 +36,7 @@ namespace state::in_play::delivery_service
 	{
 		auto delivery =
 			Delivery(scratch_pad::SelectedDelivery::GetDeliveryId());
-		game::session::Player()
-			.GetCharacter()
+		game::session::Character(game::session::Player::GetCharacterId())
 			.AcceptDelivery(delivery);
 		application::UIState::Write(DeliveryList::GetStateId());
 	}

@@ -6,6 +6,7 @@
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.IslandDistrict.h"
 #include "State.ScratchPad.IslandFeature.h"
+#include <Game.Session.Character.h>
 namespace state::in_play
 {
 	std::optional<int> DeliveryService::stateId = std::nullopt;
@@ -14,8 +15,7 @@ namespace state::in_play
 	{
 		Terminal::Reinitialize();
 		auto feature =
-			game::session::Player()
-			.GetCharacter()
+			game::session::Character(game::session::Player::GetCharacterId())
 			.GetIsland()
 			.GetFeature(scratch_pad::IslandFeature::GetFeatureId());
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
@@ -30,7 +30,7 @@ namespace state::in_play
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		Terminal::menu.AddAction({"Job List", application::UIState::DoGoTo(delivery_service::DeliveryList::GetStateId) });
-		auto character = game::session::Player().GetCharacter();
+		auto character = game::session::Character(game::session::Player::GetCharacterId());
 		auto island = character.GetIsland();
 		if (character.GetDeliveries().HasDeliveriesFor(island.operator int()))
 		{
