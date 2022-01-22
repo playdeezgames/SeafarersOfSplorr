@@ -4,7 +4,7 @@
 #include "Game.Session.SkillCategory.h"
 #include "Game.Session.Skills.h"
 #include <iterator>
-namespace game::session::world
+namespace game::session
 {
 	using SkillData = data::game::Skill;
 

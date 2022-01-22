@@ -14,7 +14,7 @@ namespace state::in_play::crew_detail
 		Terminal::SetForeground(game::Colors::LIGHT_RED);
 		Terminal::WriteLine("Are you sure you want to abandon this delivery?");
 		Terminal::SetForeground(game::Colors::GRAY);
-		using islands = game::session::world::Islands;
+		using islands = game::session::Islands;
 		auto delivery = game::session::character::Delivery(scratch_pad::SelectedDelivery::GetDeliveryId());
 		auto toIsland = islands::GetIsland(delivery.GetToIslandId());
 		auto fromIsland = islands::GetIsland(delivery.GetFromIslandId());

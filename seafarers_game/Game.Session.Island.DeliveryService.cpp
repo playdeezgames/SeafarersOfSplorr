@@ -12,7 +12,7 @@ namespace game::session::island
 	{
 		constexpr double TIME_LIMIT_FACTOR = 2.0;
 		using world = game::session::World;
-		using islands = game::session::world::Islands;
+		using islands = game::session::Islands;
 		auto fromIslandId = data::game::island::Feature::ReadIslandId(featureId).value();
 		auto candidateIslands = islands::GetIslands();
 		auto fromIsland = islands::GetIsland(fromIslandId);

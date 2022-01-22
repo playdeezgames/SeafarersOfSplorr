@@ -55,7 +55,7 @@ namespace state::in_play::crew_detail
 			.GetDeliveries()
 			.GetDeliveries();
 		using islands =
-			game::session::world::Islands;
+			game::session::Islands;
 
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);

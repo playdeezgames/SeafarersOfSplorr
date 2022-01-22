@@ -36,7 +36,7 @@ namespace state
 		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::session::SkillCategory(game::SkillCategory::LISTEN));
 		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::session::SkillCategory(game::SkillCategory::REPAIR));
 		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::session::SkillCategory(game::SkillCategory::SPOT));
-		using skills = game::session::world::Skills;
+		using skills = game::session::Skills;
 		auto skillId = skills::GetSkillsInCategory(game::SkillCategory::CLIMB).begin()->ToId();
 		scratch_pad::detailed_start::ProfessionalSkillPointAllocations::AllocateSkillPoints(skillId, 50);
 		skillId = skills::GetSkillsInCategory(game::SkillCategory::DODGE).begin()->ToId();

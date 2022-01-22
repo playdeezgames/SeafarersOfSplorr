@@ -15,7 +15,7 @@
 #include <numeric>
 #include <ranges>
 #include <set>
-namespace game::session::world
+namespace game::session
 {
 	using IslandData = data::game::Island;
 

@@ -43,7 +43,7 @@ namespace state::in_play::delivery_service
 		auto character = game::session::Character(game::session::Player::GetCharacterId());
 		auto toIsland = character.GetIsland();
 		auto deliveries = character.GetDeliveries().GetDeliveriesFor(toIsland.operator int());
-		using islands = game::session::world::Islands;
+		using islands = game::session::Islands;
 		std::for_each(
 			deliveries.begin(),
 			deliveries.end(),

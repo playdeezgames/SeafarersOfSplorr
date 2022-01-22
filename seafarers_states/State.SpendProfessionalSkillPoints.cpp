@@ -26,7 +26,7 @@ namespace state
 			allocations.end(),
 			[](const std::pair<int, size_t>& entry)
 			{
-				auto skill = game::session::world::Skills::GetSkill(entry.first);
+				auto skill = game::session::Skills::GetSkill(entry.first);
 				Terminal::WriteLine("{} ({})", skill.GetName(), entry.second);
 			});
 		Terminal::WriteLine(

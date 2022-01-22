@@ -3,7 +3,7 @@
 #include "Game.Session.Skill.h"
 #include "Game.SkillCategory.h"
 #include <set>
-namespace game::session::world
+namespace game::session
 {
 	struct Skills
 	{

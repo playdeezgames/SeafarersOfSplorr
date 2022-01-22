@@ -81,7 +81,7 @@ namespace state
 		}
 		else
 		{
-			auto skills = game::session::world::Skills::GetSkills();
+			auto skills = game::session::Skills::GetSkills();
 			std::for_each(
 				skills.begin(),
 				skills.end(),

@@ -44,7 +44,7 @@ namespace state::in_play::delivery_service
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		using islands =
-			game::session::world::Islands;
+			game::session::Islands;
 		auto fromIsland =
 			game::session::Character(game::session::Player::GetCharacterId())
 			.GetIsland();

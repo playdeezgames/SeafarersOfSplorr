@@ -2,7 +2,7 @@
 #include "Game.Difficulty.h"
 #include "Game.Session.Island.h"
 #include <vector>
-namespace game::session::world
+namespace game::session
 {
 	struct Islands
 	{

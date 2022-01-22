@@ -25,7 +25,7 @@ namespace state
 			{
 				auto skillId = entry.first;
 				auto allocation = entry.second;
-				auto skill = game::session::world::Skills::GetSkill(skillId);
+				auto skill = game::session::Skills::GetSkill(skillId);
 				Terminal::WriteLine("{}: {}", skill.GetName(), allocation);
 			});
 	}
