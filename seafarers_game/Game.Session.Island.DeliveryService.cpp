@@ -12,10 +12,10 @@ namespace game::session::island
 	{
 		constexpr double TIME_LIMIT_FACTOR = 2.0;
 		auto world = game::session::World();
-		auto islands = game::session::world::Islands();
+		using islands = game::session::world::Islands;
 		auto fromIslandId = data::game::island::Feature::ReadIslandId(featureId).value();
-		auto candidateIslands = islands.GetIslands();
-		auto fromIsland = islands.GetIsland(fromIslandId);
+		auto candidateIslands = islands::GetIslands();
+		auto fromIsland = islands::GetIsland(fromIslandId);
 		auto last = std::remove_if(
 			candidateIslands.begin(),
 			candidateIslands.end(),

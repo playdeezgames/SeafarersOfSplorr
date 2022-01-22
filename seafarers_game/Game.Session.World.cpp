@@ -43,7 +43,7 @@ namespace game::session
 		world::Calendar().Populate(difficulty);
 		session::Demigods().Populate(difficulty);
 		Tribes().Populate(difficulty);
-		world::Islands().Populate(difficulty);
+		world::Islands::Populate(difficulty);
 	}
 
 
@@ -54,7 +54,7 @@ namespace game::session
 		session::Commodities().Reset();
 		session::Demigods().Reset();
 		world::Distances().Reset();
-		world::Islands().Reset();
+		world::Islands::Reset();
 		item::Types().Reset();
 		world::Skills::Reset();
 		Tribes().Reset();
@@ -63,7 +63,7 @@ namespace game::session
 
 	void World::ApplyTurnEffects() const
 	{
-		world::Islands().ApplyTurnEffects();
+		world::Islands::ApplyTurnEffects();
 		world::Wind().ApplyTurnEffects();
 		world::Calendar().ApplyTurnEffects();
 		session::Demigods().ApplyTurnEffects();

@@ -135,7 +135,7 @@ namespace game::session::world
 		return common::RNG::FromGenerator(table);
 	}
 
-	std::vector<Island> Islands::GetIslands() const
+	std::vector<Island> Islands::GetIslands()
 	{
 		auto islands = IslandData::All();
 		std::vector<Island> result;
@@ -361,7 +361,7 @@ namespace game::session::world
 		StoreIslandTribes(tribePresence);
 	}
 
-	void Islands::Populate(const Difficulty& difficulty) const
+	void Islands::Populate(const Difficulty& difficulty)
 	{
 		auto locations = GenerateLocations();
 		auto names = GenerateNames(locations.size());
@@ -385,14 +385,14 @@ namespace game::session::world
 			});
 	}
 
-	void Islands::Reset() const
+	void Islands::Reset()
 	{
 		data::game::Island::Clear();
 		data::game::character::island::Known::Clear();
 		data::game::island::Market::Clear();
 	}
 
-	void Islands::ApplyTurnEffects() const
+	void Islands::ApplyTurnEffects()
 	{
 		auto islands = GetIslands();
 		std::for_each(

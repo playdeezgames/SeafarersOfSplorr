@@ -17,9 +17,9 @@ namespace state::in_play::crew_detail
 		Terminal::WriteLine("Delivery Detail:");
 		Terminal::SetForeground(game::Colors::GRAY);
 
-		auto islands = game::session::world::Islands();
+		using islands = game::session::world::Islands;
 		auto delivery = game::session::character::Delivery(scratch_pad::SelectedDelivery::GetDeliveryId());
-		auto toIsland = islands.GetIsland(delivery.GetToIslandId());
+		auto toIsland = islands::GetIsland(delivery.GetToIslandId());
 		auto location = 
 			game::session::Characters()
 			.GetCharacter(scratch_pad::CrewDetail::GetCharacterId())

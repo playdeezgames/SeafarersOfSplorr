@@ -14,10 +14,10 @@ namespace state::in_play::crew_detail
 		Terminal::SetForeground(game::Colors::LIGHT_RED);
 		Terminal::WriteLine("Are you sure you want to abandon this delivery?");
 		Terminal::SetForeground(game::Colors::GRAY);
-		auto islands = game::session::world::Islands();
+		using islands = game::session::world::Islands;
 		auto delivery = game::session::character::Delivery(scratch_pad::SelectedDelivery::GetDeliveryId());
-		auto toIsland = islands.GetIsland(delivery.GetToIslandId());
-		auto fromIsland = islands.GetIsland(delivery.GetFromIslandId());
+		auto toIsland = islands::GetIsland(delivery.GetToIslandId());
+		auto fromIsland = islands::GetIsland(delivery.GetFromIslandId());
 		Terminal::WriteLine("This will negatively impact your reputation on both {} and {}!", toIsland.GetName(), fromIsland.GetName());
 		Terminal::ShowMenu();
 		Terminal::ShowPrompt();

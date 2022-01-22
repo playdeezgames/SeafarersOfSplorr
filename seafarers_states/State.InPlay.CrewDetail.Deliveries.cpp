@@ -54,8 +54,8 @@ namespace state::in_play::crew_detail
 			character
 			.GetDeliveries()
 			.GetDeliveries();
-		auto islands =
-			game::session::world::Islands();
+		using islands =
+			game::session::world::Islands;
 
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
@@ -65,7 +65,7 @@ namespace state::in_play::crew_detail
 			deliveries.end(),
 			[=](const auto& delivery)
 			{
-				auto toIsland = islands.GetIsland(delivery.GetToIslandId());
+				auto toIsland = islands::GetIsland(delivery.GetToIslandId());
 				Terminal::menu.AddAction({ 
 						std::format(
 							"{} (Dist: {:.2f}) (Time: {}) (Reward: {} x {})",

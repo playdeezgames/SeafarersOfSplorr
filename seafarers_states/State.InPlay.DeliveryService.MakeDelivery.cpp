@@ -43,13 +43,13 @@ namespace state::in_play::delivery_service
 		auto character = game::session::Character(game::session::Player::GetCharacterId());
 		auto toIsland = character.GetIsland();
 		auto deliveries = character.GetDeliveries().GetDeliveriesFor(toIsland.operator int());
-		auto islands = game::session::world::Islands();
+		using islands = game::session::world::Islands;
 		std::for_each(
 			deliveries.begin(),
 			deliveries.end(),
-			[islands](const auto& delivery) 
+			[](const auto& delivery) 
 			{
-				auto island = islands.GetIsland(delivery.GetFromIslandId());
+				auto island = islands::GetIsland(delivery.GetFromIslandId());
 				Terminal::menu.AddAction({ island.GetName(), DoCompleteDelivery(delivery.operator int())});
 			});
 		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(DeliveryService::GetStateId) };

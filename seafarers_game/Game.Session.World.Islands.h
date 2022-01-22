@@ -6,11 +6,11 @@ namespace game::session::world
 {
 	struct Islands
 	{
-		constexpr Islands() {}
-		constexpr Island GetIsland(int islandId) const { return Island(islandId); }
-		std::vector<Island> GetIslands() const;
-		void Reset() const;
-		void Populate(const Difficulty& difficulty) const;
-		void ApplyTurnEffects() const;
+		Islands() = delete;
+		static constexpr Island GetIsland(int islandId) { return Island(islandId); }
+		static std::vector<Island> GetIslands();
+		static void Reset();
+		static void Populate(const Difficulty& difficulty);
+		static void ApplyTurnEffects();
 	};
 }

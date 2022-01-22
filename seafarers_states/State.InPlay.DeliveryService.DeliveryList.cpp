@@ -43,8 +43,8 @@ namespace state::in_play::delivery_service
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		auto islands =
-			game::session::world::Islands();
+		using islands =
+			game::session::world::Islands;
 		auto fromIsland =
 			game::session::Character(game::session::Player::GetCharacterId())
 			.GetIsland();
@@ -57,9 +57,9 @@ namespace state::in_play::delivery_service
 		std::for_each(
 			deliveries.begin(), 
 			deliveries.end(), 
-			[islands, fromIsland](const auto& delivery) 
+			[fromIsland](const auto& delivery) 
 			{
-				auto toIsland = islands.GetIsland(delivery.GetToIslandId());
+				auto toIsland = islands::GetIsland(delivery.GetToIslandId());
 				auto distance = fromIsland.DistanceTo(toIsland);
 				auto timeLimit = delivery.GetTimeLimit();
 				Terminal::menu.AddAction(
