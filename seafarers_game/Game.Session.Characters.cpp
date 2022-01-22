@@ -8,6 +8,7 @@
 #include <Data.Game.Island.Tribe.h>
 #include "Game.Session.Characters.h"
 #include "Game.Characteristic.h"
+#include <iterator>
 namespace game::session
 {
 	std::vector<Character> Characters::GetAll() const

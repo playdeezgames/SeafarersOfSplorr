@@ -5,7 +5,6 @@
 #include "Game.Session.Character.KnownIslands.h"
 #include "Game.Session.Character.ItemTypes.h"
 #include "Game.Session.Character.Marks.h"
-#include "Game.Session.Character.Messages.h"
 #include "Game.Session.Character.Plights.h"
 #include "Game.Session.Island.h"
 #include <optional>
@@ -20,7 +19,6 @@ namespace game::session
 		constexpr character::KnownIslands GetKnownIslands() const { return character::KnownIslands(characterId); }
 		constexpr character::Plights GetPlights() const { return character::Plights(characterId); }
 		constexpr character::Berth GetBerth() const { return character::Berth(characterId); }
-		constexpr character::Messages GetMessages() const { return character::Messages(characterId); }
 		constexpr character::Counters GetCounters() const { return character::Counters(characterId); }
 		constexpr character::Marks GetMarks() const { return character::Marks(characterId); }
 		constexpr character::Deliveries GetDeliveries() const { return character::Deliveries(characterId); }

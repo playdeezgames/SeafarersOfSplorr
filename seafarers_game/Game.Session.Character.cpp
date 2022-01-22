@@ -8,6 +8,7 @@
 #include "Game.Session.Characters.h"
 #include "Game.Session.Character.Characteristics.h"
 #include "Game.Session.Character.HitPoints.h"
+#include "Game.Session.Character.Messages.h"
 namespace game::session
 {
 	bool Character::IsDead() const
@@ -62,7 +63,7 @@ namespace game::session
 		auto character =
 			Characters()
 			.GetCharacter(characterId);
-		character.GetMessages().Add(game::Colors::RED, "{} loses HP dues to starvation!", character.GetName());
+		character::Messages(characterId).Add(game::Colors::RED, "{} loses HP dues to starvation!", character.GetName());
 		auto counters =
 			character
 			.GetCounters();
@@ -80,7 +81,7 @@ namespace game::session
 		auto character =
 			Characters()
 			.GetCharacter(characterId);
-		character.GetMessages().Add(game::Colors::YELLOW, "{} is starving!", character.GetName());
+		character::Messages(characterId).Add(game::Colors::YELLOW, "{} is starving!", character.GetName());
 		character::Characteristics(character.ToId())
 			.GetCharacteristic(Characteristic::CONSTITUTION)
 			.OnOpposedCheck(
@@ -166,7 +167,7 @@ namespace game::session
 		GetKnownIslands().AddKnownIsland(game::session::Island(delivery.GetToIslandId()));
 		data::game::feature::Delivery::Clear(delivery.operator int());
 		data::game::character::Delivery::Create(characterId, delivery.operator int());
-		GetMessages().Add(game::Colors::GREEN, "You accept the delivery.");
+		character::Messages(characterId).Add(game::Colors::GREEN, "You accept the delivery.");
 	}
 
 }

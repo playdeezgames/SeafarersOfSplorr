@@ -12,6 +12,7 @@
 #include <Data.Game.Ship.CurrentIsland.h>
 #include <Data.Game.Ship.h>
 #include "Game.Session.World.ShipType.h"
+#include "Game.Session.Character.Messages.h"
 namespace game::session
 {
 	using ShipData = data::game::Ship;
