@@ -9,6 +9,7 @@
 #include "Game.Session.Characters.h"
 #include "Game.Characteristic.h"
 #include <iterator>
+#include "Game.Session.Character.Counters.h"
 namespace game::session
 {
 	std::vector<Character> Characters::GetAll() const
@@ -163,7 +164,7 @@ namespace game::session
 				(int)characteristicRoll.first,
 				common::RNG::FromGenerator(characteristicRoll.second));
 		}
-		GetCharacter(characterId).GetCounters().Initialize();
+		game::session::character::Counters(characterId).Initialize();
 		return Character(characterId);
 	}
 }

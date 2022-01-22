@@ -9,6 +9,7 @@
 #include "Game.Session.Character.Characteristics.h"
 #include "Game.Session.Character.HitPoints.h"
 #include "Game.Session.Character.Messages.h"
+#include "Game.Session.Character.Counters.h"
 namespace game::session
 {
 	bool Character::IsDead() const
@@ -48,9 +49,7 @@ namespace game::session
 		auto turnsSpent = DetermineTurnsSpent(characterId);
 		while (turnsSpent)
 		{
-			Characters()
-				.GetCharacter(characterId)
-				.GetCounters()
+			game::session::character::Counters(characterId)
 				.GetCounter(game::characters::Counter::TURNS_REMAINING)
 				.Change(-1);
 			turnsSpent--;
@@ -65,8 +64,7 @@ namespace game::session
 			.GetCharacter(characterId);
 		character::Messages(characterId).Add(game::Colors::RED, "{} loses HP dues to starvation!", character.GetName());
 		auto counters =
-			character
-			.GetCounters();
+			game::session::character::Counters(characterId);
 		counters
 			.GetCounter(game::characters::Counter::STARVATION)
 			.Reset();
@@ -85,8 +83,7 @@ namespace game::session
 		character::Characteristics(character.ToId())
 			.GetCharacteristic(Characteristic::CONSTITUTION)
 			.OnOpposedCheck(
-				character
-					.GetCounters()
+				game::session::character::Counters(characterId)
 					.GetCounter(game::characters::Counter::STARVATION)
 					.Change(STARVATION_INCREASE),
 				[characterId](bool success)

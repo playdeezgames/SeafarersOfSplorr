@@ -8,6 +8,7 @@
 #include <Game.Session.Player.h>
 #include <Game.Session.Saves.h>
 #include <Game.Session.Character.h>
+#include <Game.Session.Character.Counters.h>
 namespace state::in_play
 {
 	std::optional<int> Next::stateId = std::nullopt;
@@ -21,8 +22,7 @@ namespace state::in_play
 	static bool IsPlayerOutOfTurns()
 	{
 		return 
-			game::session::Character(game::session::Player::GetCharacterId())
-			.GetCounters()
+			game::session::character::Counters(game::session::Player::GetCharacterId())
 			.GetCounter(game::characters::Counter::TURNS_REMAINING)
 			.GetValue() <= 0;
 	}
