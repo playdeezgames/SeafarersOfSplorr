@@ -163,7 +163,7 @@ namespace game::session
 		auto fouling = 0.0;//TODO: put fouling back!
 		auto effectiveSpeed = speed * (1.0 - fouling);
 
-		effectiveSpeed *= game::session::world::Wind().GetSpeedMultiplier(heading);
+		effectiveSpeed *= game::session::world::Wind::GetSpeedMultiplier(heading);
 
 		effectiveSpeed *= game::session::Ships().GetShip(shipId).GetShipType().GetSpeedFactor();
 

@@ -113,11 +113,11 @@ namespace state::in_play
 			ship.GetHeading(),
 			ship.GetSpeed());
 		//wind
-		auto wind = game::session::world::Wind();
+		using wind = game::session::world::Wind;
 		Terminal::WriteLine(
 			"Wind: {:.2f}\xf8 (x{:.1f})",
-			wind.GetHeading(),
-			wind.GetSpeedMultiplier(ship.GetHeading()));
+			wind::GetHeading(),
+			wind::GetSpeedMultiplier(ship.GetHeading()));
 		//dockable islands
 		RefreshDockableIslands();
 		//nearby islands

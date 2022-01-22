@@ -56,13 +56,12 @@ namespace game::session
 		item::Types().Reset();
 		world::Skills::Reset();
 		Tribes().Reset();
-		world::Wind().Reset();
 	}
 
 	void World::ApplyTurnEffects()
 	{
 		world::Islands::ApplyTurnEffects();
-		world::Wind().ApplyTurnEffects();
+		world::Wind::ApplyTurnEffects();
 		world::Calendar().ApplyTurnEffects();
 		session::Demigods().ApplyTurnEffects();
 	}
