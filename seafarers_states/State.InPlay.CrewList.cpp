@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <Game.Session.Characters.h>
 #include <Game.Session.Player.h>
+#include <Game.Session.Character.HitPoints.h>
 namespace state::in_play
 {
 	std::optional<int> CrewList::stateId = std::nullopt;
@@ -69,9 +70,7 @@ namespace state::in_play
 				auto characterId = entry.GetCharacterId();
 				auto character = game::session::Characters().GetCharacter(characterId);
 				auto hitPoints =
-					game::session::Characters()
-					.GetCharacter(characterId)
-					.GetHitpoints();
+					game::session::character::HitPoints(characterId);
 				RosterItem result = {
 					std::format(
 						"{}{} - {} HP{}/{}", 

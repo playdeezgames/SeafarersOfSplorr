@@ -7,11 +7,12 @@
 #include "Game.Session.Character.h"
 #include "Game.Session.Characters.h"
 #include "Game.Session.Character.Characteristics.h"
+#include "Game.Session.Character.HitPoints.h"
 namespace game::session
 {
 	bool Character::IsDead() const
 	{
-		return GetHitpoints().GetCurrent() <= 0;
+		return character::HitPoints(characterId).GetCurrent() <= 0;
 	}
 
 	void Character::SetIsland(Island island) const

@@ -3,7 +3,6 @@
 #include "Game.Session.Character.Counters.h"
 #include "Game.Session.Character.Deliveries.h"
 #include "Game.Session.Character.Flags.h"
-#include "Game.Session.Character.HitPoints.h"
 #include "Game.Session.Character.KnownIslands.h"
 #include "Game.Session.Character.ItemTypes.h"
 #include "Game.Session.Character.Marks.h"
@@ -20,8 +19,6 @@ namespace game::session
 		constexpr explicit Character(int characterId) : characterId(characterId) {}
 		constexpr int ToId() const { return characterId; }
 		constexpr static Character ToCharacter(int characterId) { return Character(characterId); }
-
-		constexpr character::HitPoints GetHitpoints() const { return character::HitPoints(characterId); }
 
 		constexpr character::KnownIslands GetKnownIslands() const { return character::KnownIslands(characterId); }
 		constexpr character::Plights GetPlights() const { return character::Plights(characterId); }

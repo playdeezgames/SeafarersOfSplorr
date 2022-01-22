@@ -7,6 +7,7 @@
 #include "State.InPlay.CrewList.h"
 #include "State.InPlay.Globals.h"
 #include "State.ScratchPad.CrewDetail.h"
+#include <Game.Session.Character.HitPoints.h>
 namespace state::in_play
 {
 	std::optional<int> CrewDetail::stateId = std::nullopt;
@@ -41,10 +42,8 @@ namespace state::in_play
 
 	static void RefreshHitPoints(int characterId)
 	{
-		auto hitPoints = 
-			game::session::Characters()
-			.GetCharacter(characterId)
-			.GetHitpoints();
+		auto hitPoints =
+			game::session::character::HitPoints(characterId);
 		Terminal::WriteLine(
 			"HP: {}/{}", 
 			hitPoints.GetCurrent(),
@@ -53,10 +52,8 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		int characterId = scratch_pad::CrewDetail::GetCharacterId();
 		auto character = 
-			game::session::Characters()
-			.GetCharacter(characterId);
+			game::session::Character(scratch_pad::CrewDetail::GetCharacterId());
 
 		Terminal::Reinitialize();
 
@@ -66,8 +63,8 @@ namespace state::in_play
 		Terminal::WriteLine("Name: {}", character.GetName());
 		Terminal::WriteLine("From: {}", character.GetOriginIsland().GetName());
 		Terminal::WriteLine("Tribe: {}", character.GetTribe().GetName());
-		RefreshFlags(characterId);
-		RefreshHitPoints(characterId);
+		RefreshFlags(character.ToId());
+		RefreshHitPoints(character.ToId());
 
 		Terminal::ShowMenu();
 
