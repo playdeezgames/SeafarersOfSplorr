@@ -7,11 +7,11 @@ namespace game::session::world
 {
 	struct Skills
 	{
-		constexpr Skills() {}
-		void Reset() const;
-		void Populate(const Difficulty& difficulty) const;
-		constexpr Skill GetSkill(int skillId) const { return Skill(skillId); }
-		std::set<Skill> GetSkillsInCategory(const game::SkillCategory& category) const;
-		std::set<Skill> GetSkills() const;
+		Skills() = delete;
+		static void Reset();
+		static void Populate(const Difficulty& difficulty);
+		static constexpr Skill GetSkill(int skillId) { return Skill(skillId); }
+		static std::set<Skill> GetSkillsInCategory(const game::SkillCategory& category);
+		static std::set<Skill> GetSkills();
 	};
 }

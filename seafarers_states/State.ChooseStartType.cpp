@@ -36,18 +36,18 @@ namespace state
 		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::session::SkillCategory(game::SkillCategory::LISTEN));
 		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::session::SkillCategory(game::SkillCategory::REPAIR));
 		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::session::SkillCategory(game::SkillCategory::SPOT));
-		auto skills = game::session::world::Skills();
-		auto skillId = skills.GetSkillsInCategory(game::SkillCategory::CLIMB).begin()->ToId();
+		using skills = game::session::world::Skills;
+		auto skillId = skills::GetSkillsInCategory(game::SkillCategory::CLIMB).begin()->ToId();
 		scratch_pad::detailed_start::ProfessionalSkillPointAllocations::AllocateSkillPoints(skillId, 50);
-		skillId = skills.GetSkillsInCategory(game::SkillCategory::DODGE).begin()->ToId();
+		skillId = skills::GetSkillsInCategory(game::SkillCategory::DODGE).begin()->ToId();
 		scratch_pad::detailed_start::ProfessionalSkillPointAllocations::AllocateSkillPoints(skillId, 50);
-		skillId = skills.GetSkillsInCategory(game::SkillCategory::NAVIGATE).begin()->ToId();
+		skillId = skills::GetSkillsInCategory(game::SkillCategory::NAVIGATE).begin()->ToId();
 		scratch_pad::detailed_start::ProfessionalSkillPointAllocations::AllocateSkillPoints(skillId, 50);
-		skillId = skills.GetSkillsInCategory(game::SkillCategory::SWIM).begin()->ToId();
+		skillId = skills::GetSkillsInCategory(game::SkillCategory::SWIM).begin()->ToId();
 		scratch_pad::detailed_start::ProfessionalSkillPointAllocations::AllocateSkillPoints(skillId, 50);
-		skillId = skills.GetSkillsInCategory(game::SkillCategory::LISTEN).begin()->ToId();
+		skillId = skills::GetSkillsInCategory(game::SkillCategory::LISTEN).begin()->ToId();
 		scratch_pad::detailed_start::ProfessionalSkillPointAllocations::AllocateSkillPoints(skillId, 50);
-		skillId = skills.GetSkillsInCategory(game::SkillCategory::SPOT).begin()->ToId();
+		skillId = skills::GetSkillsInCategory(game::SkillCategory::SPOT).begin()->ToId();
 		scratch_pad::detailed_start::ProfessionalSkillPointAllocations::AllocateSkillPoints(skillId, 50);
 		game::session::Player::Populate(
 				game::session::World().GetDifficulty(),

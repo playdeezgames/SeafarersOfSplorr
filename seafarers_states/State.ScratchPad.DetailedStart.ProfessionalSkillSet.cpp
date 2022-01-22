@@ -15,8 +15,7 @@ namespace state::scratch_pad::detailed_start
 	void ProfessionalSkillSet::AddSkillCategoryToProfessionalSkillSet(const game::session::SkillCategory& category)
 	{
 		auto skills =
-			game::session::world::Skills()
-			.GetSkillsInCategory(category.operator game::SkillCategory());
+			game::session::world::Skills::GetSkillsInCategory(category.operator game::SkillCategory());
 		std::copy(
 			skills.begin(),
 			skills.end(),

@@ -39,7 +39,7 @@ namespace game::session
 			common::RNG::FromRange(EARLIEST_INITIAL_YEAR, LATEST_INITIAL_YEAR) * DAYS_PER_YEAR +
 			common::RNG::FromRange(0, DAYS_PER_YEAR));
 
-		world::Skills().Populate(difficulty);
+		world::Skills::Populate(difficulty);
 		world::Calendar().Populate(difficulty);
 		session::Demigods().Populate(difficulty);
 		Tribes().Populate(difficulty);
@@ -56,7 +56,7 @@ namespace game::session
 		world::Distances().Reset();
 		world::Islands().Reset();
 		item::Types().Reset();
-		world::Skills().Reset();
+		world::Skills::Reset();
 		Tribes().Reset();
 		world::Wind().Reset();
 	}

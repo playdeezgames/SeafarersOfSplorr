@@ -8,7 +8,7 @@ namespace game::session::world
 {
 	using SkillData = data::game::Skill;
 
-	void Skills::Reset() const
+	void Skills::Reset()
 	{
 		SkillData::Clear();
 	}
@@ -49,7 +49,7 @@ namespace game::session::world
 		game::SkillCategory::TRACK
 	};
 
-	void Skills::Populate(const Difficulty&) const
+	void Skills::Populate(const Difficulty&)
 	{
 		std::for_each(
 			generalSkillCategories.begin(),
@@ -76,7 +76,7 @@ namespace game::session::world
 			});
 	}
 
-	std::set<Skill> Skills::GetSkillsInCategory(const game::SkillCategory& category) const
+	std::set<Skill> Skills::GetSkillsInCategory(const game::SkillCategory& category)
 	{
 		std::set<Skill> result;
 		auto skillIds = data::game::Skill::ReadSkillsForCategory((int)category);
@@ -88,7 +88,7 @@ namespace game::session::world
 		return result;
 	}
 
-	std::set<Skill> Skills::GetSkills() const
+	std::set<Skill> Skills::GetSkills()
 	{
 		std::set<Skill> result;
 		auto skillIds = data::game::Skill::All();
