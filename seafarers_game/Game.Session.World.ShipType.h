@@ -1,14 +1,11 @@
 #pragma once
-#include "Game.Session.World.ShipType.Commodities.h"
 #include "Game.ShipType.h"
-#include <string>
 namespace game::session::world
 {
 	struct ShipType
 	{
 		constexpr explicit ShipType(const game::ShipType& shipType) : shipType(shipType) {}
 		double GetSpeedFactor() const;
-		constexpr ship_type::Commodities GetCommodities() const { return ship_type::Commodities(shipType); }//static const std::map<game::Commodity, double> GetCommodities(const game::ShipType&);
 	private:
 		game::ShipType shipType;
 	};
