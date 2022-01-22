@@ -1,9 +1,9 @@
 #pragma once
 #include <Common.XY.h>
+#include "Game.ShipType.h"
 #include "Game.Session.Ship.Berths.h"
 #include "Game.Session.Ship.DockableIslands.h"
 #include "Game.Session.Ship.VisibleIslands.h"
-#include "Game.Session.World.ShipType.h"
 #include <optional>
 namespace game::session
 {
@@ -27,7 +27,7 @@ namespace game::session
 		std::optional<Island> TryGetIsland() const;
 		bool IsDocked() const;
 		Island GetIsland() const;
-		world::ShipType GetShipType() const;
+		game::ShipType GetShipType() const;
 		void ApplyTurnEffects() const;
 	private:
 		int shipId;

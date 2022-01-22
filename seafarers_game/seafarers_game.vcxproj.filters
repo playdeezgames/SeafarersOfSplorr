@@ -341,16 +341,7 @@
     <ClInclude Include="Game.Item.Category.h">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.World.ShipType.Commodities.h">
-      <Filter>Header Files\Session\World\ShipType</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.World.ShipType.Commodity.h">
-      <Filter>Header Files\Session\World\ShipType</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.World.ShipType.h">
-      <Filter>Header Files\Session\World\ShipType</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.World.ShipTypes.h">
       <Filter>Header Files\Session\World\ShipType</Filter>
     </ClInclude>
     <ClInclude Include="Game.Session.World.Skills.h">

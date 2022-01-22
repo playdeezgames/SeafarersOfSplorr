@@ -11,6 +11,7 @@
 #include <Data.Game.Character.Ship.h>
 #include <Data.Game.Ship.CurrentIsland.h>
 #include <Data.Game.Ship.h>
+#include "Game.Session.World.ShipType.h"
 namespace game::session
 {
 	using ShipData = data::game::Ship;
@@ -153,9 +154,9 @@ namespace game::session
 		return TryGetIsland().value();
 	}
 
-	world::ShipType Ship::GetShipType() const
+	game::ShipType Ship::GetShipType() const
 	{
-		return world::ShipType((game::ShipType)data::game::Ship::GetShipType(shipId).value());
+		return (game::ShipType)data::game::Ship::GetShipType(shipId).value();
 	}
 
 	static double GetEffectiveSpeed(int shipId, double heading, double speed)
@@ -165,7 +166,7 @@ namespace game::session
 
 		effectiveSpeed *= game::session::world::Wind::GetSpeedMultiplier(heading);
 
-		effectiveSpeed *= game::session::Ships().GetShip(shipId).GetShipType().GetSpeedFactor();
+		effectiveSpeed *= game::session::world::ShipType(game::session::Ships().GetShip(shipId).GetShipType()).GetSpeedFactor();
 
 		return effectiveSpeed;
 	}

@@ -92,10 +92,7 @@
     <ClInclude Include="Game.Session.World.Islands.h" />
     <ClInclude Include="Game.Session.World.Profession.h" />
     <ClInclude Include="Game.Session.World.Professions.h" />
-    <ClInclude Include="Game.Session.World.ShipType.Commodities.h" />
-    <ClInclude Include="Game.Session.World.ShipType.Commodity.h" />
     <ClInclude Include="Game.Session.World.ShipType.h" />
-    <ClInclude Include="Game.Session.World.ShipTypes.h" />
     <ClInclude Include="Game.Session.World.Skills.h" />
     <ClInclude Include="Game.Session.World.Wind.h" />
     <ClInclude Include="Game.Characters.Flag.h" />
