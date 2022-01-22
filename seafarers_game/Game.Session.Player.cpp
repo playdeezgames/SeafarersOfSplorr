@@ -10,6 +10,7 @@
 #include <Data.Game.Character.Ship.h>
 #include <Data.Game.Player.h>
 #include <Data.Game.Ship.h>
+#include "Game.Session.Character.Skills.h"
 namespace game::session
 {
 	int Player::GetCharacterId()
@@ -40,12 +41,13 @@ namespace game::session
 	void Player::Populate(const Difficulty&, const std::map<int, size_t> allocations)
 	{
 		auto character = game::session::Characters().Create();
+		auto skills = game::session::character::Skills(character.ToId());
 		std::for_each(
 			allocations.begin(),
 			allocations.end(),
-			[character](const std::pair<int, size_t>& entry)
+			[skills](const std::pair<int, size_t>& entry)
 			{
-				auto skill = character.GetSkills().GetSkill(entry.first);
+				auto skill = skills.GetSkill(entry.first);
 				skill.AllocatePoints(entry.second);
 			});
 		data::game::Player::Create(character.ToId());

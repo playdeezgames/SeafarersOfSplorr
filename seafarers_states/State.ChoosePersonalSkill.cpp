@@ -8,6 +8,7 @@
 #include <Game.Session.Player.h>
 #include <Game.Session.Skills.h>
 #include <Game.Session.Character.h>
+#include <Game.Session.Character.Skills.h>
 namespace state
 {
 	std::optional<int> ChoosePersonalSkill::stateId = std::nullopt;
@@ -49,13 +50,13 @@ namespace state
 	{
 		auto personalSkillPointAllocations = scratch_pad::detailed_start::PersonalSkillPointAllocations::GetSkillPointAllocations();
 		auto characterId = game::session::Player::GetCharacterId();
+		auto skills = game::session::character::Skills(characterId);
 		std::for_each(
 			personalSkillPointAllocations.begin(),
 			personalSkillPointAllocations.end(),
-			[characterId](const std::pair<int, size_t>& entry)
+			[skills](const std::pair<int, size_t>& entry)
 			{
-				game::session::Character(characterId)
-					.GetSkills()
+				skills
 					.GetSkill(entry.first)
 					.AllocatePoints(entry.second);
 			});
