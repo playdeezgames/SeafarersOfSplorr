@@ -8,6 +8,7 @@
 #include "State.InPlay.Globals.h"
 #include "State.ScratchPad.CrewDetail.h"
 #include <Game.Session.Character.HitPoints.h>
+#include <Game.Session.Character.Flags.h>
 namespace state::in_play
 {
 	std::optional<int> CrewDetail::stateId = std::nullopt;
@@ -16,10 +17,7 @@ namespace state::in_play
 
 	static void RefreshFlags(int characterId)
 	{
-		auto character =
-			game::session::Characters()
-			.GetCharacter(characterId);
-		auto flags = character.GetFlags().GetAll();
+		auto flags = game::session::character::Flags(characterId).GetAll();
 		if (!flags.empty())
 		{
 			bool first = true;

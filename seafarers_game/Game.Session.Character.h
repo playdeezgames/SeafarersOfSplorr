@@ -2,7 +2,6 @@
 #include "Game.Session.Character.Berth.h"
 #include "Game.Session.Character.Counters.h"
 #include "Game.Session.Character.Deliveries.h"
-#include "Game.Session.Character.Flags.h"
 #include "Game.Session.Character.KnownIslands.h"
 #include "Game.Session.Character.ItemTypes.h"
 #include "Game.Session.Character.Marks.h"
@@ -25,7 +24,6 @@ namespace game::session
 		constexpr character::Berth GetBerth() const { return character::Berth(characterId); }
 		constexpr character::Messages GetMessages() const { return character::Messages(characterId); }
 		constexpr character::Counters GetCounters() const { return character::Counters(characterId); }
-		constexpr character::Flags GetFlags() const { return character::Flags(characterId); }
 		constexpr character::Marks GetMarks() const { return character::Marks(characterId); }
 		constexpr character::Skills GetSkills() const { return character::Skills(characterId); }
 		constexpr character::Deliveries GetDeliveries() const { return character::Deliveries(characterId); }
