@@ -10,6 +10,7 @@
 #include <Game.Session.Character.HitPoints.h>
 #include <Game.Session.Character.Flags.h>
 #include <Game.Session.Tribe.h>
+#include <Game.Session.Character.ItemTypes.h>
 namespace state::in_play
 {
 	std::optional<int> CrewDetail::stateId = std::nullopt;
@@ -80,7 +81,7 @@ namespace state::in_play
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		Terminal::menu.AddAction({"Characteristics", application::UIState::DoGoTo(crew_detail::Characteristics::GetStateId) });
-		if (character.GetItemTypes().HasAny())
+		if (game::session::character::ItemTypes(characterId).HasAny())
 		{
 			Terminal::menu.AddAction({"Inventory", application::UIState::DoGoTo(crew_detail::Inventory::GetStateId) });
 		}

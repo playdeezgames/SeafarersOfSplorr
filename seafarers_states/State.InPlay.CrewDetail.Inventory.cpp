@@ -6,6 +6,7 @@
 #include "State.InPlay.CrewDetail.InventoryDetail.h"
 #include "State.ScratchPad.CrewDetail.h"
 #include "State.ScratchPad.SelectedItemType.h"
+#include <Game.Session.Character.ItemTypes.h>
 namespace state::in_play::crew_detail
 {
 	std::optional<int> Inventory::stateId = std::nullopt;
@@ -19,7 +20,7 @@ namespace state::in_play::crew_detail
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Inventory:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		if (!character.GetItemTypes().HasAny())
+		if (!game::session::character::ItemTypes(character.ToId()).HasAny())
 		{
 			Terminal::WriteLine("(nothing)");
 		}
@@ -43,7 +44,7 @@ namespace state::in_play::crew_detail
 		auto character =
 			game::session::Characters()
 			.GetCharacter(scratch_pad::CrewDetail::GetCharacterId());
-		auto itemTypes = character.GetItemTypes().GetItemTypes();
+		auto itemTypes = game::session::character::ItemTypes(character.ToId()).GetItemTypes();
 		std::for_each(
 			itemTypes.begin(),
 			itemTypes.end(),
