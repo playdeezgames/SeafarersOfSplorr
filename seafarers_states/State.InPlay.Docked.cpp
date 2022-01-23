@@ -7,6 +7,8 @@
 #include <Game.Session.Player.h>
 #include <Game.Session.Character.h>
 #include <Game.Session.Character.Berth.h>
+#include <Game.Session.Island.h>
+#include <Game.Session.Island.Districts.h>
 namespace state::in_play
 {
 	std::optional<int> Docked::stateId = std::nullopt;
@@ -14,7 +16,8 @@ namespace state::in_play
 
 	static void Refresh()
 	{
-		auto island = game::session::Character(game::session::Player::GetCharacterId()).GetIsland();
+		auto islandId = game::session::Character(game::session::Player::GetCharacterId()).GetIslandId();
+		auto island = game::session::Island(islandId);
 		Terminal::Reinitialize();
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Docked:");
@@ -44,9 +47,10 @@ namespace state::in_play
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		auto districts = 
-			game::session::Character(game::session::Player::GetCharacterId())
-			.GetIsland()
-			.GetDistricts()
+			game::session::island::Districts(
+				game::session::Character(
+					game::session::Player::GetCharacterId())
+				.GetIslandId())
 			.GetDistricts();
 		std::for_each(
 			districts.begin(),

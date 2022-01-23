@@ -17,8 +17,8 @@ namespace state::in_play::delivery_service
 		Terminal::WriteLine("Make Delivery:");
 		Terminal::SetForeground(game::Colors::GRAY);
 		auto character = game::session::Character(game::session::Player::GetCharacterId());
-		auto island = character.GetIsland();
-		if (!game::session::character::Deliveries(character.ToId()).HasDeliveriesFor(island.operator int()))
+		auto islandId = character.GetIslandId();
+		if (!game::session::character::Deliveries(character.ToId()).HasDeliveriesFor(islandId))
 		{
 			Terminal::WriteLine("You have no deliveries for this location.");
 		}
@@ -42,8 +42,8 @@ namespace state::in_play::delivery_service
 	{
 		Terminal::menu.Clear();
 		auto character = game::session::Character(game::session::Player::GetCharacterId());
-		auto toIsland = character.GetIsland();
-		auto deliveries = game::session::character::Deliveries(character.ToId()).GetDeliveriesFor(toIsland.operator int());
+		auto toIslandId = character.GetIslandId();
+		auto deliveries = game::session::character::Deliveries(character.ToId()).GetDeliveriesFor(toIslandId);
 		using islands = game::session::Islands;
 		std::for_each(
 			deliveries.begin(),

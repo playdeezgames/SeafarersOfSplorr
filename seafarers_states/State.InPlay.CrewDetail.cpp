@@ -12,6 +12,7 @@
 #include <Game.Session.Tribe.h>
 #include <Game.Session.Character.ItemTypes.h>
 #include <Game.Session.Character.Deliveries.h>
+#include <Game.Session.Island.h>
 namespace state::in_play
 {
 	std::optional<int> CrewDetail::stateId = std::nullopt;
@@ -62,7 +63,7 @@ namespace state::in_play
 		Terminal::WriteLine("Crew Details:");
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Name: {}", character.GetName());
-		Terminal::WriteLine("From: {}", character.GetOriginIsland().GetName());
+		Terminal::WriteLine("From: {}", game::session::Island(character.GetOriginIslandId()).GetName());
 		Terminal::WriteLine("Tribe: {}", game::session::Tribe(character.GetTribeId()).GetName());
 		RefreshFlags(character.ToId());
 		RefreshHitPoints(character.ToId());

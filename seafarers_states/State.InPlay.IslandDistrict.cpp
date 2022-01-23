@@ -8,6 +8,8 @@
 #include "State.ScratchPad.IslandDistrict.h"
 #include "State.ScratchPad.IslandFeature.h"
 #include <Game.Session.Character.h>
+#include <Game.Island.FeatureType.h>
+#include <Game.Session.Island.Districts.h>
 namespace state::in_play
 {
 	std::optional<int> IslandDistrict::stateId = std::nullopt;
@@ -15,10 +17,11 @@ namespace state::in_play
 	static void Refresh()
 	{
 		Terminal::Reinitialize();
-		auto district =
+		auto islandId =
 			game::session::Character(game::session::Player::GetCharacterId())
-			.GetIsland()
-			.GetDistricts()
+			.GetIslandId();
+		auto district =
+			game::session::island::Districts(islandId)
 			.GetDistrict(scratch_pad::IslandDistrict::GetDistrict());
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine(district.GetName());
@@ -49,10 +52,11 @@ namespace state::in_play
 	{
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		auto features =
+		auto islandId =
 			game::session::Character(game::session::Player::GetCharacterId())
-			.GetIsland()
-			.GetDistricts()
+			.GetIslandId();
+		auto features =
+			game::session::island::Districts(islandId)
 			.GetDistrict(scratch_pad::IslandDistrict::GetDistrict())
 			.GetFeatures()
 			.GetFeatures();

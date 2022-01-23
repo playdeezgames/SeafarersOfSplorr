@@ -8,6 +8,7 @@
 #include <Game.Session.Player.h>
 #include <Game.Session.Islands.h>
 #include <Game.Session.Character.h>
+#include <Game.Session.Island.Feature.h>
 namespace state::in_play::delivery_service
 {
 	std::optional<int> DeliveryList::stateId = std::nullopt;
@@ -16,9 +17,7 @@ namespace state::in_play::delivery_service
 	{
 		Terminal::Reinitialize();
 		auto feature =
-			game::session::Character(game::session::Player::GetCharacterId())
-			.GetIsland()
-			.GetFeature(scratch_pad::IslandFeature::GetFeatureId());
+			game::session::island::Feature(scratch_pad::IslandFeature::GetFeatureId());
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("{} Job List:", feature.GetName());
 		Terminal::SetForeground(game::Colors::GRAY);
@@ -45,19 +44,19 @@ namespace state::in_play::delivery_service
 		Terminal::menu.SetRefresh(Refresh);
 		using islands =
 			game::session::Islands;
-		auto fromIsland =
+		auto fromIslandId =
 			game::session::Character(game::session::Player::GetCharacterId())
-			.GetIsland();
+			.GetIslandId();
 		auto deliveries =
-			fromIsland
-			.GetFeature(scratch_pad::IslandFeature::GetFeatureId())
+			game::session::island::Feature(scratch_pad::IslandFeature::GetFeatureId())
 			.GetDeliveryService()
 			.GetDeliveries()
 			.GetDeliveries();
+		auto fromIsland = islands::GetIsland(fromIslandId);
 		std::for_each(
 			deliveries.begin(), 
 			deliveries.end(), 
-			[fromIsland](const auto& delivery) 
+			[fromIsland](const auto& delivery)
 			{
 				auto toIsland = islands::GetIsland(delivery.GetToIslandId());
 				auto distance = fromIsland.DistanceTo(toIsland);

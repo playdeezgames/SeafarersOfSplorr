@@ -2,6 +2,7 @@
 #include <Data.Game.Character.Island.Current.h>
 #include <Data.Game.Character.Delivery.h>
 #include <Data.Game.Feature.Delivery.h>
+#include <Data.Game.Delivery.h>
 #include <Data.Game.Player.h>
 #include "Game.Colors.h"
 #include "Game.Session.Character.h"
@@ -20,9 +21,9 @@ namespace game::session
 		return character::HitPoints(characterId).GetCurrent() <= 0;
 	}
 
-	void Character::SetIsland(Island island) const
+	void Character::SetIslandId(int islandId) const
 	{
-		data::game::character::island::Current::Write(characterId, (int)island);
+		data::game::character::island::Current::Write(characterId, islandId);
 	}
 
 	std::string Character::GetName() const
@@ -122,32 +123,27 @@ namespace game::session
 		game::session::character::Deliveries(characterId).ApplyTurnEffects();
 	}
 
-	void Character::ClearIsland() const
+	void Character::ClearIslandId() const
 	{
 		data::game::character::island::Current::Clear(characterId);
 	}
 
-	std::optional<Island> Character::TryGetIsland() const
+	std::optional<int> Character::TryGetIslandId() const
 	{
-		auto islandId = data::game::character::island::Current::Read(characterId);
-		if (islandId)
-		{
-			return Island(islandId.value());
-		}
-		return std::nullopt;
+		return data::game::character::island::Current::Read(characterId);
 	}
 
 	bool Character::IsOnIsland() const
 	{
-		return TryGetIsland().has_value();
+		return TryGetIslandId().has_value();
 	}
 
-	Island Character::GetIsland() const
+	int Character::GetIslandId() const
 	{
-		return TryGetIsland().value();
+		return TryGetIslandId().value();
 	}
 
-	Island Character::GetOriginIsland() const
+	int Character::GetOriginIslandId() const
 	{
 		return Island(data::game::Character::ReadOriginIslandId(characterId).value());
 	}
@@ -162,11 +158,14 @@ namespace game::session
 		return data::game::Player::GetCharacterId() == characterId;
 	}
 
-	void Character::AcceptDelivery(const Delivery& delivery) const
+	void Character::AcceptDelivery(int deliveryId) const
 	{
-		character::KnownIslands(characterId).AddKnownIsland(game::session::Island(delivery.GetToIslandId()));
-		data::game::feature::Delivery::Clear(delivery.operator int());
-		data::game::character::Delivery::Create(characterId, delivery.operator int());
+		character::KnownIslands(characterId)
+			.AddKnownIsland(
+				game::session::Island(
+					data::game::Delivery::ReadToIsland(deliveryId).value()));
+		data::game::feature::Delivery::Clear(deliveryId);
+		data::game::character::Delivery::Create(characterId, deliveryId);
 		character::Messages(characterId).Add(game::Colors::GREEN, "You accept the delivery.");
 	}
 

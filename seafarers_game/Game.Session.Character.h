@@ -1,5 +1,5 @@
 #pragma once
-#include "Game.Session.Island.h"
+#include <string>
 #include <optional>
 namespace game::session
 {
@@ -12,15 +12,15 @@ namespace game::session
 		bool IsDead() const;
 		std::string GetName() const;
 		void ApplyTurnEffects() const;
-		Island GetOriginIsland() const;
+		int GetOriginIslandId() const;
 		int GetTribeId() const;
 		bool IsPlayer() const;
-		void SetIsland(Island island) const;
-		void ClearIsland() const;
-		std::optional<Island> TryGetIsland() const;
+		void SetIslandId(int islandId) const;
+		void ClearIslandId() const;
+		std::optional<int> TryGetIslandId() const;
 		bool IsOnIsland() const;
-		Island GetIsland() const;
-		void AcceptDelivery(const Delivery& delivery) const;
+		int GetIslandId() const;
+		void AcceptDelivery(int deliveryId) const;
 
 	private:
 		int characterId;

@@ -57,8 +57,7 @@ namespace state::in_play
 		}
 
 		auto character = game::session::Character(game::session::Player::GetCharacterId());
-		auto island = character.TryGetIsland();
-		if (island)
+		if (character.TryGetIslandId().has_value())
 		{
 			application::UIState::Write(Docked::GetStateId());
 		}

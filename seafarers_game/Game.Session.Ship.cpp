@@ -84,7 +84,7 @@ namespace game::session
 			islandId);
 		game::session::Characters()
 			.GetCharacter(characterId)
-			.SetIsland(islandId);
+			.SetIslandId(islandId);
 	}
 
 	void Ship::Dock() const
@@ -126,7 +126,7 @@ namespace game::session
 					billets.end(), 
 					[characters](int characterId)
 					{
-						characters.GetCharacter(characterId).ClearIsland();
+						characters.GetCharacter(characterId).ClearIslandId();
 					});
 				data::game::ship::CurrentIsland::ClearForShip(shipId);
 				return true;
