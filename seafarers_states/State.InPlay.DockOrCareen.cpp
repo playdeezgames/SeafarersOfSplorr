@@ -4,6 +4,7 @@
 #include "State.InPlay.Next.h"
 #include <Game.Session.Player.h>
 #include <Game.Session.Character.h>
+#include <Game.Session.Character.Berth.h>
 namespace state::in_play
 {
 	std::optional<int> DockOrCareen::stateId = std::nullopt;
@@ -13,8 +14,7 @@ namespace state::in_play
 		Terminal::Reinitialize();
 
 		auto ship = 
-			game::session::Character(game::session::Player::GetCharacterId())
-			.GetBerth()
+			game::session::character::Berth(game::session::Player::GetCharacterId())
 			.GetShip();
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
@@ -28,8 +28,7 @@ namespace state::in_play
 
 	static void OnDock()
 	{
-		game::session::Character(game::session::Player::GetCharacterId())
-			.GetBerth()
+		game::session::character::Berth(game::session::Player::GetCharacterId())
 			.GetShip()
 			.Dock();
 		application::UIState::Write(Next::GetStateId());

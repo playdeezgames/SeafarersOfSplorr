@@ -6,6 +6,7 @@
 #include <Common.Heading.h>
 #include <Game.Session.Player.h>
 #include <Game.Session.Character.h>
+#include <Game.Session.Character.Berth.h>
 namespace state::in_play
 {
 	std::optional<int> HeadForNearBy::stateId = std::nullopt;
@@ -25,7 +26,7 @@ namespace state::in_play
 	{
 		return[island, heading]()
 		{
-			game::session::Character(game::session::Player::GetCharacterId()).GetBerth().GetShip().SetHeading(heading);
+			game::session::character::Berth(game::session::Player::GetCharacterId()).GetShip().SetHeading(heading);
 			application::UIState::Write(ShipStatus::GetStateId());
 		};
 	}
@@ -36,8 +37,8 @@ namespace state::in_play
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		auto character = game::session::Character(game::session::Player::GetCharacterId());
-		auto islands = character.GetBerth().GetShip().GetNearbyIslands().GetAll();
-		auto location = character.GetBerth().GetShip().GetLocation();
+		auto islands = game::session::character::Berth(game::session::Player::GetCharacterId()).GetShip().GetNearbyIslands().GetAll();
+		auto location = game::session::character::Berth(game::session::Player::GetCharacterId()).GetShip().GetLocation();
 		std::for_each(
 			islands.begin(), 
 			islands.end(), 

@@ -9,6 +9,7 @@
 #include "State.InPlay.ShipStatus.h"
 #include <Game.Session.Character.h>
 #include <Game.Session.Character.Marks.h>
+#include <Game.Session.Character.Berth.h>
 namespace state::in_play
 {
 	std::optional<int> ChangeHeading::stateId = std::nullopt;
@@ -17,15 +18,11 @@ namespace state::in_play
 	{
 		Terminal::Reinitialize();
 
-		auto playerCharacter =
-			game::session::Character(game::session::Player::GetCharacterId());
-
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Change Heading:");
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Current: {:.2f}\xf8", 
-			playerCharacter
-			.GetBerth()
+			game::session::character::Berth(game::session::Player::GetCharacterId())
 			.GetShip()
 			.GetHeading());
 
@@ -38,7 +35,7 @@ namespace state::in_play
 	{
 		auto playerCharacter =
 			game::session::Character(game::session::Player::GetCharacterId());
-		auto ship = playerCharacter.GetBerth().GetShip();
+		auto ship = game::session::character::Berth(playerCharacter.ToId()).GetShip();
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		if (playerCharacter.GetKnownIslands().HasAny())

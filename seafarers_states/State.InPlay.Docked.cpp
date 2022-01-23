@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <Game.Session.Player.h>
 #include <Game.Session.Character.h>
+#include <Game.Session.Character.Berth.h>
 namespace state::in_play
 {
 	std::optional<int> Docked::stateId = std::nullopt;
@@ -25,7 +26,7 @@ namespace state::in_play
 
 	static void OnUndock()
 	{
-		game::session::Character(game::session::Player::GetCharacterId()).GetBerth().GetShip().Undock();
+		game::session::character::Berth(game::session::Player::GetCharacterId()).GetShip().Undock();
 		application::UIState::Write(Next::GetStateId());
 	}
 

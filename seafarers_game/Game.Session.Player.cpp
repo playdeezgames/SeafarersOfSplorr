@@ -11,6 +11,8 @@
 #include <Data.Game.Player.h>
 #include <Data.Game.Ship.h>
 #include "Game.Session.Character.Skills.h"
+#include "Game.ShipType.h"
+#include "Game.BerthType.h"
 namespace game::session
 {
 	int Player::GetCharacterId()

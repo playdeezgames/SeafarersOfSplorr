@@ -7,6 +7,7 @@
 #include <Game.Session.Player.h>
 #include <Game.Session.Character.h>
 #include <Game.Session.Character.Marks.h>
+#include <Game.Session.Character.Berth.h>
 namespace state::in_play
 {
 	std::optional<int> HeadForMark::stateId = std::nullopt;
@@ -39,7 +40,7 @@ namespace state::in_play
 	{
 		auto playerCharacter =
 			game::session::Character(game::session::Player::GetCharacterId());
-		auto ship = playerCharacter.GetBerth().GetShip();
+		auto ship = game::session::character::Berth(game::session::Player::GetCharacterId()).GetShip();
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 
