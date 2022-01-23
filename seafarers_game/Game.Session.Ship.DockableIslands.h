@@ -8,6 +8,7 @@ namespace game::session::ship
 		constexpr explicit DockableIslands(int shipId) 
 			: shipId(shipId) {}
 		std::optional<Island> TryGetFirst() const;
+		std::optional<int> TryGetFirstId() const;
 	private:
 		int shipId;
 	};
