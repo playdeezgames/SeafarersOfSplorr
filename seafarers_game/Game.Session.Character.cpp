@@ -10,6 +10,7 @@
 #include "Game.Session.Character.HitPoints.h"
 #include "Game.Session.Character.Messages.h"
 #include "Game.Session.Character.Counters.h"
+#include "Game.Session.Character.Plights.h"
 namespace game::session
 {
 	bool Character::IsDead() const
@@ -29,7 +30,7 @@ namespace game::session
 
 	static size_t DetermineTurnsSpent(int characterId)
 	{
-		auto plights = Character::ToCharacter(characterId).GetPlights();
+		auto plights = game::session::character::Plights(characterId);
 		size_t agingRate = 1;
 		if (plights.Has(characters::Plight::DOUBLE_AGING) &&
 			!plights.Has(characters::Plight::AGING_IMMUNITY))
@@ -115,7 +116,7 @@ namespace game::session
 	{
 		SufferHunger(characterId);
 		ApplyTurn(characterId);
-		GetPlights().ApplyTurnEffects();
+		game::session::character::Plights(characterId).ApplyTurnEffects();
 		GetDeliveries().ApplyTurnEffects();
 	}
 
