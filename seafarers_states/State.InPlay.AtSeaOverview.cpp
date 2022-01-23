@@ -21,17 +21,17 @@ namespace state::in_play
 	{
 		auto character =
 			game::session::Character(game::session::Player::GetCharacterId());
-		auto island =
+		auto islandId =
 			game::session::character::Berth(
 				game::session::Player::GetCharacterId())
 			.GetShip()
 			.GetDockableIslands()
-			.TryGetFirst();
-		if (island)
+			.TryGetFirstId();
+		if (islandId)
 		{
 			auto knownIsland =
 				game::session::character::KnownIslands(character.ToId())
-				.GetKnownIsland(island.value());
+				.GetKnownIsland(game::session::Island(islandId.value()));
 			Terminal::SetForeground(game::Colors::LIGHT_BLUE);
 			if (knownIsland.IsKnown())
 			{
@@ -139,7 +139,7 @@ namespace state::in_play
 				game::session::Player::GetCharacterId())
 			.GetShip()
 			.GetDockableIslands()
-			.TryGetFirst())
+			.TryGetFirstId())
 		{
 			application::UIState::Write(DockOrCareen::GetStateId());
 		}

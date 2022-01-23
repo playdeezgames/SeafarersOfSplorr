@@ -1,5 +1,4 @@
 #pragma once
-#include "Game.Session.Island.h"
 #include <optional>
 namespace game::session::ship
 {
@@ -7,7 +6,6 @@ namespace game::session::ship
 	{
 		constexpr explicit DockableIslands(int shipId) 
 			: shipId(shipId) {}
-		std::optional<Island> TryGetFirst() const;
 		std::optional<int> TryGetFirstId() const;
 	private:
 		int shipId;

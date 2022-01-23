@@ -19,7 +19,7 @@ namespace game::session
 
 	bool Ship::CanDock() const
 	{
-		return GetDockableIslands().TryGetFirst().has_value();
+		return GetDockableIslands().TryGetFirstId().has_value();
 	}
 
 	static std::optional<double> TryGetHeading(int shipId)
@@ -91,18 +91,17 @@ namespace game::session
 	{
 		if (!IsDocked())
 		{
-			auto island = GetDockableIslands().TryGetFirst();
-			if (island)
+			auto islandId = GetDockableIslands().TryGetFirstId();
+			if (islandId)
 			{
-				auto islandId = island->operator int();
-				data::game::ship::CurrentIsland::Write(shipId, islandId);
+				data::game::ship::CurrentIsland::Write(shipId, islandId.value());
 				auto characterIds = data::game::character::Ship::ReadCharactersForShip(shipId);
 				std::for_each(
 					characterIds.begin(),
 					characterIds.end(),
 					[islandId](int characterId) 
 					{
-						DoDock(characterId, islandId);
+						DoDock(characterId, islandId.value());
 					});
 			}
 		}

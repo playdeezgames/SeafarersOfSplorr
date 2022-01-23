@@ -6,16 +6,6 @@
 #include <Data.Game.Ship.h>
 namespace game::session::ship
 {
-	std::optional<Island> DockableIslands::TryGetFirst() const
-	{
-		auto islandId = TryGetFirstId();
-		if (islandId.has_value())
-		{
-			return Island(*islandId);
-		}
-		return std::nullopt;
-	}
-
 	std::optional<int> DockableIslands::TryGetFirstId() const
 	{
 		auto maximumDistance = game::session::world::Distances::GetDock();
