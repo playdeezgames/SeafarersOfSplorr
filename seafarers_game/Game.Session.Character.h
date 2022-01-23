@@ -1,5 +1,4 @@
 #pragma once
-#include "Game.Session.Character.KnownIslands.h"
 #include "Game.Session.Island.h"
 #include <optional>
 namespace game::session
@@ -9,8 +8,6 @@ namespace game::session
 		constexpr explicit Character(int characterId) : characterId(characterId) {}
 		constexpr int ToId() const { return characterId; }
 		constexpr static Character ToCharacter(int characterId) { return Character(characterId); }
-
-		constexpr character::KnownIslands GetKnownIslands() const { return character::KnownIslands(characterId); }
 
 		bool IsDead() const;
 		std::string GetName() const;

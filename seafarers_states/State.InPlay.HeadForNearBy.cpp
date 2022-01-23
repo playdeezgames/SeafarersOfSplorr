@@ -7,6 +7,7 @@
 #include <Game.Session.Player.h>
 #include <Game.Session.Character.h>
 #include <Game.Session.Character.Berth.h>
+#include <Game.Session.Character.KnownIslands.h>
 namespace state::in_play
 {
 	std::optional<int> HeadForNearBy::stateId = std::nullopt;
@@ -45,7 +46,7 @@ namespace state::in_play
 			[location, character](const game::session::Island& island) 
 			{
 				auto relativeLocation = island.GetLocation() - location;
-				auto knownIsland = character.GetKnownIslands().GetKnownIsland(island);
+				auto knownIsland = game::session::character::KnownIslands(character.ToId()).GetKnownIsland(island);
 				Terminal::menu.AddAction(
 					{
 						std::format(

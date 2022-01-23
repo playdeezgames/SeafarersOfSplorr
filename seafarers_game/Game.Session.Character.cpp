@@ -12,6 +12,7 @@
 #include "Game.Session.Character.Counters.h"
 #include "Game.Session.Character.Plights.h"
 #include "Game.Session.Character.Deliveries.h"
+#include "Game.Session.Character.KnownIslands.h"
 namespace game::session
 {
 	bool Character::IsDead() const
@@ -163,7 +164,7 @@ namespace game::session
 
 	void Character::AcceptDelivery(const Delivery& delivery) const
 	{
-		GetKnownIslands().AddKnownIsland(game::session::Island(delivery.GetToIslandId()));
+		character::KnownIslands(characterId).AddKnownIsland(game::session::Island(delivery.GetToIslandId()));
 		data::game::feature::Delivery::Clear(delivery.operator int());
 		data::game::character::Delivery::Create(characterId, delivery.operator int());
 		character::Messages(characterId).Add(game::Colors::GREEN, "You accept the delivery.");

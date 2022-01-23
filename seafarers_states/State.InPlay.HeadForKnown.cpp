@@ -7,6 +7,7 @@
 #include <Game.Session.Player.h>
 #include <Game.Session.Character.h>
 #include <Game.Session.Character.Berth.h>
+#include <Game.Session.Character.KnownIslands.h>
 namespace state::in_play
 {
 	std::optional<int> HeadForKnown::stateId = std::nullopt;
@@ -37,7 +38,7 @@ namespace state::in_play
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		auto character = game::session::Character(game::session::Player::GetCharacterId());
-		auto known = character.GetKnownIslands();
+		auto known = game::session::character::KnownIslands(character.ToId());
 		auto location = game::session::character::Berth(game::session::Player::GetCharacterId()).GetShip().GetLocation();
 		auto islands = known.GetAll();
 		std::for_each(

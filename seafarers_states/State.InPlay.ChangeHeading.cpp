@@ -10,6 +10,7 @@
 #include <Game.Session.Character.h>
 #include <Game.Session.Character.Marks.h>
 #include <Game.Session.Character.Berth.h>
+#include <Game.Session.Character.KnownIslands.h>
 namespace state::in_play
 {
 	std::optional<int> ChangeHeading::stateId = std::nullopt;
@@ -38,7 +39,7 @@ namespace state::in_play
 		auto ship = game::session::character::Berth(playerCharacter.ToId()).GetShip();
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-		if (playerCharacter.GetKnownIslands().HasAny())
+		if (game::session::character::KnownIslands(playerCharacter.ToId()).HasAny())
 		{
 			Terminal::menu.AddAction({ "Head for a known island", application::UIState::DoGoTo(HeadForKnown::GetStateId) });
 		}

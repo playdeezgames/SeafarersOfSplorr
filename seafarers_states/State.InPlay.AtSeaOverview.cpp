@@ -12,6 +12,7 @@
 #include <Game.Session.World.Wind.h>
 #include <Game.Session.Character.h>
 #include <Game.Session.Character.Berth.h>
+#include <Game.Session.Character.KnownIslands.h>
 namespace state::in_play
 {
 	std::optional<int> AtSeaOverview::stateId = std::nullopt;
@@ -29,8 +30,7 @@ namespace state::in_play
 		if (island)
 		{
 			auto knownIsland =
-				character
-				.GetKnownIslands()
+				game::session::character::KnownIslands(character.ToId())
 				.GetKnownIsland(island.value());
 			Terminal::SetForeground(game::Colors::LIGHT_BLUE);
 			if (knownIsland.IsKnown())
@@ -64,8 +64,7 @@ namespace state::in_play
 			for (auto& island : islands.GetAll())
 			{
 				auto knownIsland =
-					character
-					.GetKnownIslands()
+					game::session::character::KnownIslands(character.ToId())
 					.GetKnownIsland(island);
 				if (knownIsland.IsKnown())
 				{
