@@ -33,9 +33,9 @@ namespace state
 	{
 		scratch_pad::detailed_start::Profession::SetProfession(game::Profession::SAILOR);
 		scratch_pad::detailed_start::ElectiveSkillCategories::Clear();
-		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::session::SkillCategory(game::SkillCategory::LISTEN));
-		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::session::SkillCategory(game::SkillCategory::REPAIR));
-		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::session::SkillCategory(game::SkillCategory::SPOT));
+		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::SkillCategory::LISTEN);
+		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::SkillCategory::REPAIR);
+		scratch_pad::detailed_start::ElectiveSkillCategories::AddCategory(game::SkillCategory::SPOT);
 		using skills = game::session::Skills;
 		auto skillId = skills::GetSkillsInCategory(game::SkillCategory::CLIMB).begin()->ToId();
 		scratch_pad::detailed_start::ProfessionalSkillPointAllocations::AllocateSkillPoints(skillId, 50);

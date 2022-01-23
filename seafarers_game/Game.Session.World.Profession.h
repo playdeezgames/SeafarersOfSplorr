@@ -1,5 +1,4 @@
 #pragma once
-#include "Game.Session.SkillCategory.h"
 #include "Game.SkillCategory.h"
 #include "Game.Profession.h"
 #include <set>
@@ -11,8 +10,8 @@ namespace game::session::world
 		constexpr explicit Profession(const game::Profession profession) : profession(profession) {}
 		const std::string& GetName() const;
 		constexpr explicit operator game::Profession() const { return profession; }
-		const std::set<SkillCategory>& GetSkillCategories() const;
-		const std::set<SkillCategory>& GetElectiveSkillCategories() const;
+		const std::set<game::SkillCategory>& GetSkillCategories() const;
+		const std::set<game::SkillCategory>& GetElectiveSkillCategories() const;
 	private:
 		game::Profession profession;
 	};

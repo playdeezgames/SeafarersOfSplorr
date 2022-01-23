@@ -13,11 +13,10 @@ namespace state
 {
 	std::optional<int> ChooseElectiveSkillCategories::stateId = std::nullopt;
 
-	static std::set<game::session::SkillCategory> GetFixedSkillCategories()
+	static std::set<game::SkillCategory> GetFixedSkillCategories()
 	{
 		return game::session::world::Professions::GetProfession(
-				scratch_pad::detailed_start::Profession::GetProfession())
-			.GetSkillCategories();
+			scratch_pad::detailed_start::Profession::GetProfession()).GetSkillCategories();
 	}
 
 	static void RefreshFixedSkillCategories()
@@ -26,9 +25,9 @@ namespace state
 		std::for_each(
 			fixedCategories.begin(),
 			fixedCategories.end(),
-			[](const game::session::SkillCategory& category)
+			[](const auto& category)
 			{
-				Terminal::WriteLine(category.GetName());
+				Terminal::WriteLine(game::session::SkillCategory(category).GetName());
 			});
 	}
 
@@ -38,9 +37,9 @@ namespace state
 		std::for_each(
 			electiveCategories.begin(),
 			electiveCategories.end(),
-			[](const game::session::SkillCategory& category)
+			[](const auto& category)
 			{
-				Terminal::WriteLine("{}(elective)", category.GetName());
+				Terminal::WriteLine("{}(elective)", game::session::SkillCategory(category).GetName());
 			});
 	}
 
@@ -95,7 +94,7 @@ namespace state
 
 	static void UpdateMenu();
 
-	static std::function<void()> DoElectSkillCategory(const game::session::SkillCategory& category)
+	static std::function<void()> DoElectSkillCategory(const game::SkillCategory& category)
 	{
 		return [category]() 
 		{
@@ -105,9 +104,9 @@ namespace state
 		};
 	}
 
-	static std::set<game::session::SkillCategory> GetAlreadyPresentSkillCategories()
+	static std::set<game::SkillCategory> GetAlreadyPresentSkillCategories()
 	{
-		std::set<game::session::SkillCategory> alreadyPresent;
+		std::set<game::SkillCategory> alreadyPresent;
 		auto fixedCategories = GetFixedSkillCategories();
 		auto electiveCategories = scratch_pad::detailed_start::ElectiveSkillCategories::GetCategories();
 		std::set_union(
@@ -134,11 +133,11 @@ namespace state
 			std::for_each(
 				allCategories.begin(),
 				allCategories.end(),
-				[&alreadyPresent](const game::session::SkillCategory& category)
+				[&alreadyPresent](const auto& category)
 				{
-					if (!alreadyPresent.contains(category))
+					if (!alreadyPresent.contains(category.operator game::SkillCategory()))
 					{
-						Terminal::menu.AddAction({ category.GetName(), DoElectSkillCategory(category) });
+						Terminal::menu.AddAction({ category.GetName(), DoElectSkillCategory(category.operator game::SkillCategory()) });
 					}
 				});
 		}

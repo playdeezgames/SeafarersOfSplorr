@@ -1,4 +1,5 @@
 #include "Game.Session.World.Profession.h"
+#include <map>
 namespace game::session::world
 {
 	struct ProfessionDescriptor
@@ -15,21 +16,21 @@ namespace game::session::world
 			{ 
 				"Hunter" ,
 				{
-					SkillCategory(game::SkillCategory::CLIMB),
-					SkillCategory(game::SkillCategory::HIDE),
-					SkillCategory(game::SkillCategory::LISTEN),
-					SkillCategory(game::SkillCategory::NAVIGATE),
-					SkillCategory(game::SkillCategory::SPOT),
-					SkillCategory(game::SkillCategory::STEALTH),
-					SkillCategory(game::SkillCategory::TRACK)
+					game::SkillCategory::CLIMB,
+					game::SkillCategory::HIDE,
+					game::SkillCategory::LISTEN,
+					game::SkillCategory::NAVIGATE,
+					game::SkillCategory::SPOT,
+					game::SkillCategory::STEALTH,
+					game::SkillCategory::TRACK
 				},
 				{
-					SkillCategory(game::SkillCategory::FIREARM),
-					SkillCategory(game::SkillCategory::KNOWLEDGE),
-					SkillCategory(game::SkillCategory::MELEE_WEAPON),
-					SkillCategory(game::SkillCategory::MISSILE_WEAPON),
-					SkillCategory(game::SkillCategory::LANGUAGE),
-					SkillCategory(game::SkillCategory::RIDE)
+					(game::SkillCategory::FIREARM),
+					(game::SkillCategory::KNOWLEDGE),
+					(game::SkillCategory::MELEE_WEAPON),
+					(game::SkillCategory::MISSILE_WEAPON),
+					(game::SkillCategory::LANGUAGE),
+					(game::SkillCategory::RIDE)
 				}
 			},
 		},
@@ -38,21 +39,21 @@ namespace game::session::world
 			{ 
 				"Sailor",
 				{
-					SkillCategory(game::SkillCategory::CLIMB),
-					SkillCategory(game::SkillCategory::CRAFT),
-					SkillCategory(game::SkillCategory::DODGE),
-					SkillCategory(game::SkillCategory::GRAPPLE),
-					SkillCategory(game::SkillCategory::NAVIGATE),
-					SkillCategory(game::SkillCategory::PILOT),
-					SkillCategory(game::SkillCategory::SWIM)
+					(game::SkillCategory::CLIMB),
+					(game::SkillCategory::CRAFT),
+					(game::SkillCategory::DODGE),
+					(game::SkillCategory::GRAPPLE),
+					(game::SkillCategory::NAVIGATE),
+					(game::SkillCategory::PILOT),
+					(game::SkillCategory::SWIM)
 				},
 				{
-					SkillCategory(game::SkillCategory::ARTILLERY),
-					SkillCategory(game::SkillCategory::COMMAND),
-					SkillCategory(game::SkillCategory::LANGUAGE),
-					SkillCategory(game::SkillCategory::LISTEN),
-					SkillCategory(game::SkillCategory::REPAIR),
-					SkillCategory(game::SkillCategory::SPOT)
+					(game::SkillCategory::ARTILLERY),
+					(game::SkillCategory::COMMAND),
+					(game::SkillCategory::LANGUAGE),
+					(game::SkillCategory::LISTEN),
+					(game::SkillCategory::REPAIR),
+					(game::SkillCategory::SPOT)
 				}
 			},
 		},
@@ -60,27 +61,27 @@ namespace game::session::world
 			{ 
 				"Thief",
 				{
-					SkillCategory(game::SkillCategory::APPRAISE),
-					SkillCategory(game::SkillCategory::DODGE),
-					SkillCategory(game::SkillCategory::FAST_TALK),
-					SkillCategory(game::SkillCategory::HIDE),
-					SkillCategory(game::SkillCategory::STEALTH)
+					(game::SkillCategory::APPRAISE),
+					(game::SkillCategory::DODGE),
+					(game::SkillCategory::FAST_TALK),
+					(game::SkillCategory::HIDE),
+					(game::SkillCategory::STEALTH)
 				},
 				{
-					SkillCategory(game::SkillCategory::BARGAIN),
-					SkillCategory(game::SkillCategory::BRAWL),
-					SkillCategory(game::SkillCategory::CLIMB),
-					SkillCategory(game::SkillCategory::DISGUISE),
-					SkillCategory(game::SkillCategory::FINE_MANIPULATION),
-					SkillCategory(game::SkillCategory::FIREARM),
-					SkillCategory(game::SkillCategory::GRAPPLE),
-					SkillCategory(game::SkillCategory::INSIGHT),
-					SkillCategory(game::SkillCategory::LISTEN),
-					SkillCategory(game::SkillCategory::JUMP),
-					SkillCategory(game::SkillCategory::KNOWLEDGE),
-					SkillCategory(game::SkillCategory::PERSUADE),
-					SkillCategory(game::SkillCategory::REPAIR),
-					SkillCategory(game::SkillCategory::SPOT)
+					(game::SkillCategory::BARGAIN),
+					(game::SkillCategory::BRAWL),
+					(game::SkillCategory::CLIMB),
+					(game::SkillCategory::DISGUISE),
+					(game::SkillCategory::FINE_MANIPULATION),
+					(game::SkillCategory::FIREARM),
+					(game::SkillCategory::GRAPPLE),
+					(game::SkillCategory::INSIGHT),
+					(game::SkillCategory::LISTEN),
+					(game::SkillCategory::JUMP),
+					(game::SkillCategory::KNOWLEDGE),
+					(game::SkillCategory::PERSUADE),
+					(game::SkillCategory::REPAIR),
+					(game::SkillCategory::SPOT)
 				}
 			},
 		},
@@ -89,26 +90,26 @@ namespace game::session::world
 			{ 
 				"Warrior",
 				{
-					SkillCategory(game::SkillCategory::BRAWL),
-					SkillCategory(game::SkillCategory::DODGE),
-					SkillCategory(game::SkillCategory::GRAPPLE),
-					SkillCategory(game::SkillCategory::MELEE_WEAPON),
-					SkillCategory(game::SkillCategory::MISSILE_WEAPON)
+					(game::SkillCategory::BRAWL),
+					(game::SkillCategory::DODGE),
+					(game::SkillCategory::GRAPPLE),
+					(game::SkillCategory::MELEE_WEAPON),
+					(game::SkillCategory::MISSILE_WEAPON)
 				},
 				{
-					SkillCategory(game::SkillCategory::CLIMB),
-					SkillCategory(game::SkillCategory::FIREARM),
-					SkillCategory(game::SkillCategory::HIDE),
-					SkillCategory(game::SkillCategory::LISTEN),
-					SkillCategory(game::SkillCategory::JUMP),
-					SkillCategory(game::SkillCategory::LANGUAGE),
-					SkillCategory(game::SkillCategory::MARTIAL_ARTS),
-					SkillCategory(game::SkillCategory::RIDE),
-					SkillCategory(game::SkillCategory::SPOT),
-					SkillCategory(game::SkillCategory::STEALTH),
-					SkillCategory(game::SkillCategory::SWIM),
-					SkillCategory(game::SkillCategory::THROW),
-					SkillCategory(game::SkillCategory::TRACK)
+					(game::SkillCategory::CLIMB),
+					(game::SkillCategory::FIREARM),
+					(game::SkillCategory::HIDE),
+					(game::SkillCategory::LISTEN),
+					(game::SkillCategory::JUMP),
+					(game::SkillCategory::LANGUAGE),
+					(game::SkillCategory::MARTIAL_ARTS),
+					(game::SkillCategory::RIDE),
+					(game::SkillCategory::SPOT),
+					(game::SkillCategory::STEALTH),
+					(game::SkillCategory::SWIM),
+					(game::SkillCategory::THROW),
+					(game::SkillCategory::TRACK)
 				}
 			}
 		},
@@ -119,56 +120,56 @@ namespace game::session::world
 				{
 				},
 				{
-					SkillCategory(game::SkillCategory::APPRAISE),
-					SkillCategory(game::SkillCategory::ART),
-					SkillCategory(game::SkillCategory::ARTILLERY),
-					SkillCategory(game::SkillCategory::BARGAIN),
-					SkillCategory(game::SkillCategory::BRAWL),
-					SkillCategory(game::SkillCategory::CLIMB),
-					SkillCategory(game::SkillCategory::COMMAND),
-					SkillCategory(game::SkillCategory::CRAFT),
-					SkillCategory(game::SkillCategory::DEMOLITION),
-					SkillCategory(game::SkillCategory::DISGUISE),
-					SkillCategory(game::SkillCategory::DODGE),
-					SkillCategory(game::SkillCategory::ETIQUETTE),
-					SkillCategory(game::SkillCategory::FAST_TALK),
-					SkillCategory(game::SkillCategory::FINE_MANIPULATION),
-					SkillCategory(game::SkillCategory::FIREARM),
-					SkillCategory(game::SkillCategory::FIRST_AID),
-					SkillCategory(game::SkillCategory::GAMING),
-					SkillCategory(game::SkillCategory::GRAPPLE),
-					SkillCategory(game::SkillCategory::HEAVY_MACHINE),
-					SkillCategory(game::SkillCategory::HIDE),
-					SkillCategory(game::SkillCategory::INSIGHT),
-					SkillCategory(game::SkillCategory::JUMP),
-					SkillCategory(game::SkillCategory::KNOWLEDGE),
-					SkillCategory(game::SkillCategory::LANGUAGE),
-					SkillCategory(game::SkillCategory::LISTEN),
-					SkillCategory(game::SkillCategory::LITERACY),
-					SkillCategory(game::SkillCategory::MARTIAL_ARTS),
-					SkillCategory(game::SkillCategory::MEDICINE),
-					SkillCategory(game::SkillCategory::MELEE_WEAPON),
-					SkillCategory(game::SkillCategory::MISSILE_WEAPON),
-					SkillCategory(game::SkillCategory::NAVIGATE),
-					SkillCategory(game::SkillCategory::PERFORM),
-					SkillCategory(game::SkillCategory::PERSUADE),
-					SkillCategory(game::SkillCategory::PILOT),
-					SkillCategory(game::SkillCategory::PSYCHOTHERAPY),
-					SkillCategory(game::SkillCategory::REPAIR),
-					SkillCategory(game::SkillCategory::RESEARCH),
-					SkillCategory(game::SkillCategory::RIDE),
-					SkillCategory(game::SkillCategory::SENSE),
-					SkillCategory(game::SkillCategory::SHIELD),
-					SkillCategory(game::SkillCategory::SLIGHT_OF_HAND),
-					SkillCategory(game::SkillCategory::SPOT),
-					SkillCategory(game::SkillCategory::STATUS),
-					SkillCategory(game::SkillCategory::STEALTH),
-					SkillCategory(game::SkillCategory::STRATEGY),
-					SkillCategory(game::SkillCategory::SWIM),
-					SkillCategory(game::SkillCategory::TEACH),
-					SkillCategory(game::SkillCategory::TECHNICAL_SKILL),
-					SkillCategory(game::SkillCategory::THROW),
-					SkillCategory(game::SkillCategory::TRACK)
+					(game::SkillCategory::APPRAISE),
+					(game::SkillCategory::ART),
+					(game::SkillCategory::ARTILLERY),
+					(game::SkillCategory::BARGAIN),
+					(game::SkillCategory::BRAWL),
+					(game::SkillCategory::CLIMB),
+					(game::SkillCategory::COMMAND),
+					(game::SkillCategory::CRAFT),
+					(game::SkillCategory::DEMOLITION),
+					(game::SkillCategory::DISGUISE),
+					(game::SkillCategory::DODGE),
+					(game::SkillCategory::ETIQUETTE),
+					(game::SkillCategory::FAST_TALK),
+					(game::SkillCategory::FINE_MANIPULATION),
+					(game::SkillCategory::FIREARM),
+					(game::SkillCategory::FIRST_AID),
+					(game::SkillCategory::GAMING),
+					(game::SkillCategory::GRAPPLE),
+					(game::SkillCategory::HEAVY_MACHINE),
+					(game::SkillCategory::HIDE),
+					(game::SkillCategory::INSIGHT),
+					(game::SkillCategory::JUMP),
+					(game::SkillCategory::KNOWLEDGE),
+					(game::SkillCategory::LANGUAGE),
+					(game::SkillCategory::LISTEN),
+					(game::SkillCategory::LITERACY),
+					(game::SkillCategory::MARTIAL_ARTS),
+					(game::SkillCategory::MEDICINE),
+					(game::SkillCategory::MELEE_WEAPON),
+					(game::SkillCategory::MISSILE_WEAPON),
+					(game::SkillCategory::NAVIGATE),
+					(game::SkillCategory::PERFORM),
+					(game::SkillCategory::PERSUADE),
+					(game::SkillCategory::PILOT),
+					(game::SkillCategory::PSYCHOTHERAPY),
+					(game::SkillCategory::REPAIR),
+					(game::SkillCategory::RESEARCH),
+					(game::SkillCategory::RIDE),
+					(game::SkillCategory::SENSE),
+					(game::SkillCategory::SHIELD),
+					(game::SkillCategory::SLIGHT_OF_HAND),
+					(game::SkillCategory::SPOT),
+					(game::SkillCategory::STATUS),
+					(game::SkillCategory::STEALTH),
+					(game::SkillCategory::STRATEGY),
+					(game::SkillCategory::SWIM),
+					(game::SkillCategory::TEACH),
+					(game::SkillCategory::TECHNICAL_SKILL),
+					(game::SkillCategory::THROW),
+					(game::SkillCategory::TRACK)
 				}
 			}
 		}
@@ -184,12 +185,12 @@ namespace game::session::world
 		return GetDescriptor(profession).name;
 	}
 
-	const std::set<SkillCategory>& Profession::GetSkillCategories() const
+	const std::set<game::SkillCategory>& Profession::GetSkillCategories() const
 	{
 		return GetDescriptor(profession).categories;
 	}
 
-	const std::set<SkillCategory>& Profession::GetElectiveSkillCategories() const
+	const std::set<game::SkillCategory>& Profession::GetElectiveSkillCategories() const
 	{
 		return GetDescriptor(profession).electiveCategories;
 	}

@@ -12,17 +12,17 @@ namespace state::scratch_pad::detailed_start
 		return professionalSkills;
 	}
 
-	void ProfessionalSkillSet::AddSkillCategoryToProfessionalSkillSet(const game::session::SkillCategory& category)
+	void ProfessionalSkillSet::AddSkillCategoryToProfessionalSkillSet(const game::SkillCategory& category)
 	{
 		auto skills =
-			game::session::Skills::GetSkillsInCategory(category.operator game::SkillCategory());
+			game::session::Skills::GetSkillsInCategory(category);
 		std::copy(
 			skills.begin(),
 			skills.end(),
 			std::inserter(professionalSkills, professionalSkills.end()));
 	}
 
-	void ProfessionalSkillSet::AddSkillCategorySetToProfessionalSkillSet(const std::set<game::session::SkillCategory>& categorySet)
+	void ProfessionalSkillSet::AddSkillCategorySetToProfessionalSkillSet(const std::set<game::SkillCategory>& categorySet)
 	{
 		std::for_each(
 			categorySet.begin(),
@@ -30,7 +30,7 @@ namespace state::scratch_pad::detailed_start
 			AddSkillCategoryToProfessionalSkillSet);
 	}
 
-	void ProfessionalSkillSet::GenerateSkills(const game::Profession& profession, const std::set<game::session::SkillCategory>& categorySet)
+	void ProfessionalSkillSet::GenerateSkills(const game::Profession& profession, const std::set<game::SkillCategory>& categorySet)
 	{
 		professionalSkills.clear();
 
