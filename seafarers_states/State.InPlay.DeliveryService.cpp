@@ -7,6 +7,7 @@
 #include "State.InPlay.IslandDistrict.h"
 #include "State.ScratchPad.IslandFeature.h"
 #include <Game.Session.Character.h>
+#include <Game.Session.Character.Deliveries.h>
 namespace state::in_play
 {
 	std::optional<int> DeliveryService::stateId = std::nullopt;
@@ -32,7 +33,7 @@ namespace state::in_play
 		Terminal::menu.AddAction({"Job List", application::UIState::DoGoTo(delivery_service::DeliveryList::GetStateId) });
 		auto character = game::session::Character(game::session::Player::GetCharacterId());
 		auto island = character.GetIsland();
-		if (character.GetDeliveries().HasDeliveriesFor(island.operator int()))
+		if (game::session::character::Deliveries(character.ToId()).HasDeliveriesFor(island.operator int()))
 		{
 			Terminal::menu.AddAction({"Make Delivery", application::UIState::DoGoTo(delivery_service::MakeDelivery::GetStateId) });
 		}

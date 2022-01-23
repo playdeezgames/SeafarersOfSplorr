@@ -7,6 +7,7 @@
 #include <Game.Session.Characters.h>
 #include <Game.Session.Islands.h>
 #include <Game.Session.Character.Berth.h>
+#include <Game.Session.Character.Delivery.h>
 namespace state::in_play::crew_detail
 {
 	std::optional<int> DeliveryDetail::stateId = std::nullopt;

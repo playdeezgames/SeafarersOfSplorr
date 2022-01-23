@@ -5,6 +5,7 @@
 #include <Game.Session.Player.h>
 #include <Game.Session.Islands.h>
 #include <Game.Session.Character.h>
+#include <Game.Session.Character.Deliveries.h>
 namespace state::in_play::delivery_service
 {
 	std::optional<int> MakeDelivery::stateId = std::nullopt;
@@ -17,7 +18,7 @@ namespace state::in_play::delivery_service
 		Terminal::SetForeground(game::Colors::GRAY);
 		auto character = game::session::Character(game::session::Player::GetCharacterId());
 		auto island = character.GetIsland();
-		if (!character.GetDeliveries().HasDeliveriesFor(island.operator int()))
+		if (!game::session::character::Deliveries(character.ToId()).HasDeliveriesFor(island.operator int()))
 		{
 			Terminal::WriteLine("You have no deliveries for this location.");
 		}
@@ -42,7 +43,7 @@ namespace state::in_play::delivery_service
 		Terminal::menu.Clear();
 		auto character = game::session::Character(game::session::Player::GetCharacterId());
 		auto toIsland = character.GetIsland();
-		auto deliveries = character.GetDeliveries().GetDeliveriesFor(toIsland.operator int());
+		auto deliveries = game::session::character::Deliveries(character.ToId()).GetDeliveriesFor(toIsland.operator int());
 		using islands = game::session::Islands;
 		std::for_each(
 			deliveries.begin(),

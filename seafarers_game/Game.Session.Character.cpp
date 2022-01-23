@@ -11,6 +11,7 @@
 #include "Game.Session.Character.Messages.h"
 #include "Game.Session.Character.Counters.h"
 #include "Game.Session.Character.Plights.h"
+#include "Game.Session.Character.Deliveries.h"
 namespace game::session
 {
 	bool Character::IsDead() const
@@ -117,7 +118,7 @@ namespace game::session
 		SufferHunger(characterId);
 		ApplyTurn(characterId);
 		game::session::character::Plights(characterId).ApplyTurnEffects();
-		GetDeliveries().ApplyTurnEffects();
+		game::session::character::Deliveries(characterId).ApplyTurnEffects();
 	}
 
 	void Character::ClearIsland() const

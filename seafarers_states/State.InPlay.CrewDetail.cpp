@@ -11,6 +11,7 @@
 #include <Game.Session.Character.Flags.h>
 #include <Game.Session.Tribe.h>
 #include <Game.Session.Character.ItemTypes.h>
+#include <Game.Session.Character.Deliveries.h>
 namespace state::in_play
 {
 	std::optional<int> CrewDetail::stateId = std::nullopt;
@@ -85,7 +86,7 @@ namespace state::in_play
 		{
 			Terminal::menu.AddAction({"Inventory", application::UIState::DoGoTo(crew_detail::Inventory::GetStateId) });
 		}
-		if (character.GetDeliveries().HasAny())
+		if (game::session::character::Deliveries(character.ToId()).HasAny())
 		{
 			Terminal::menu.AddAction({ "Deliveries", application::UIState::DoGoTo(crew_detail::Deliveries::GetStateId) });
 		}

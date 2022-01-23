@@ -8,6 +8,7 @@
 #include <Game.Session.Characters.h>
 #include <Game.Session.Islands.h>
 #include <Game.Session.Character.Berth.h>
+#include <Game.Session.Character.Deliveries.h>
 namespace state::in_play::crew_detail
 {
 	std::optional<int> Deliveries::stateId = std::nullopt;
@@ -23,7 +24,7 @@ namespace state::in_play::crew_detail
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Deliveries:");
 		Terminal::SetForeground(game::Colors::GRAY);
-		if (!character.GetDeliveries().HasAny())
+		if (!game::session::character::Deliveries(character.ToId()).HasAny())
 		{
 			Terminal::WriteLine("You currently have no deliveries.");
 		}
@@ -52,8 +53,7 @@ namespace state::in_play::crew_detail
 			.GetShip()
 			.GetLocation();
 		auto deliveries =
-			character
-			.GetDeliveries()
+			game::session::character::Deliveries(characterId)
 			.GetDeliveries();
 		using islands =
 			game::session::Islands;
