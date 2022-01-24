@@ -33,7 +33,7 @@ namespace state::in_play
 		{
 			auto knownIsland =
 				game::session::character::KnownIslands(character.ToId())
-				.GetKnownIsland(game::session::Island(islandId.value()));
+				.GetKnownIsland(islandId.value());
 			Terminal::SetForeground(game::Colors::LIGHT_BLUE);
 			if (knownIsland.IsKnown())
 			{

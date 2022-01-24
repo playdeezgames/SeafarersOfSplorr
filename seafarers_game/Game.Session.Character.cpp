@@ -145,7 +145,7 @@ namespace game::session
 
 	int Character::GetOriginIslandId() const
 	{
-		return Island(data::game::Character::ReadOriginIslandId(characterId).value());
+		return data::game::Character::ReadOriginIslandId(characterId).value();
 	}
 
 	int Character::GetTribeId() const
@@ -162,8 +162,7 @@ namespace game::session
 	{
 		character::KnownIslands(characterId)
 			.AddKnownIsland(
-				game::session::Island(
-					data::game::Delivery::ReadToIsland(deliveryId).value()));
+					data::game::Delivery::ReadToIsland(deliveryId).value());
 		data::game::feature::Delivery::Clear(deliveryId);
 		data::game::character::Delivery::Create(characterId, deliveryId);
 		character::Messages(characterId).Add(game::Colors::GREEN, "You accept the delivery.");

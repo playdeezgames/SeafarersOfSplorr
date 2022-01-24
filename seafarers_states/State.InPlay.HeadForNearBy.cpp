@@ -9,6 +9,7 @@
 #include <Game.Session.Character.Berth.h>
 #include <Game.Session.Character.KnownIslands.h>
 #include <Game.Session.Ship.VisibleIslands.h>
+#include <Game.Session.Island.h>
 namespace state::in_play
 {
 	std::optional<int> HeadForNearBy::stateId = std::nullopt;
@@ -24,11 +25,12 @@ namespace state::in_play
 	}
 
 
-	static std::function<void()> DoSetHeading(const game::session::Island& island, double heading)
+	static std::function<void()> DoSetHeading(double heading)
 	{
-		return[island, heading]()
+		return[heading]()
 		{
-			game::session::character::Berth(game::session::Player::GetCharacterId()).GetShip().SetHeading(heading);
+			game::session::character::Berth(
+				game::session::Player::GetCharacterId()).GetShip().SetHeading(heading);
 			application::UIState::Write(ShipStatus::GetStateId());
 		};
 	}
@@ -56,7 +58,7 @@ namespace state::in_play
 							knownIsland.GetDisplayName(),
 							common::Heading::XYToDegrees(relativeLocation),
 							relativeLocation.GetMagnitude()),
-						DoSetHeading(island, common::Heading::XYToDegrees(relativeLocation))
+						DoSetHeading(common::Heading::XYToDegrees(relativeLocation))
 					});
 			});
 		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(AtSeaOverview::GetStateId) };

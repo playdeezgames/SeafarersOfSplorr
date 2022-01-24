@@ -1,15 +1,14 @@
 #pragma once
 #include "Game.Session.Character.KnownIsland.h"
-
 #include <vector>
 namespace game::session::character
 {
 	struct KnownIslands
 	{
 		constexpr explicit KnownIslands(int characterId) : characterId(characterId) {}
-		constexpr KnownIsland GetKnownIsland(const Island& island) const 
+		constexpr KnownIsland GetKnownIsland(int islandId) const 
 		{ 
-			return KnownIsland(characterId, island.operator int()); 
+			return KnownIsland(characterId, islandId); 
 		}
 		void AddKnownIsland(int islandId) const;
 		bool HasAny() const;

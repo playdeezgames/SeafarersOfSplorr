@@ -1,5 +1,5 @@
 #pragma once
-#include "Game.Session.Island.h"
+#include <string>
 namespace game::session::character
 {
 	struct KnownIsland
@@ -7,7 +7,7 @@ namespace game::session::character
 		constexpr KnownIsland(int characterId, int islandId) 
 			: characterId(characterId)
 			, islandId(islandId) {}
-		constexpr Island GetIsland() const { return Island(islandId); }
+		constexpr int GetIslandId() const { return islandId; }
 
 		bool IsKnown() const;
 		std::string GetDisplayName() const;
