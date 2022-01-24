@@ -10,6 +10,7 @@
 #include <Game.Session.Character.h>
 #include <Game.Session.Island.Feature.h>
 #include <Game.Session.Island.DeliveryService.h>
+#include <Game.Session.Item.Type.h>
 namespace state::in_play::delivery_service
 {
 	std::optional<int> DeliveryList::stateId = std::nullopt;
@@ -69,7 +70,7 @@ namespace state::in_play::delivery_service
 							"Dist: {:.2f}, Time Limit: {}, Reward: {} x {}", 
 							distance, 
 							timeLimit,
-							delivery.GetRewardItemType().GetName(),
+							game::session::item::Type(delivery.GetRewardItemType()).GetName(),
 							delivery.GetRewardQuantity()), 
 						DoSelectDelivery(delivery.operator int())
 					});

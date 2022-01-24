@@ -17,9 +17,9 @@ namespace game::session
 		return data::game::Delivery::ReadTimeLimit(deliveryId).value();
 	}
 
-	item::Type Delivery::GetRewardItemType() const
+	int Delivery::GetRewardItemType() const
 	{
-		return game::session::item::Type(data::game::Delivery::ReadRewardItemTypeId(deliveryId).value());
+		return data::game::Delivery::ReadRewardItemTypeId(deliveryId).value();
 	}
 
 	int Delivery::GetRewardQuantity() const

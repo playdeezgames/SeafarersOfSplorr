@@ -9,6 +9,7 @@
 #include <Game.Session.Islands.h>
 #include <Game.Session.Character.Berth.h>
 #include <Game.Session.Character.Deliveries.h>
+#include <Game.Session.Item.Type.h>
 namespace state::in_play::crew_detail
 {
 	std::optional<int> Deliveries::stateId = std::nullopt;
@@ -73,7 +74,7 @@ namespace state::in_play::crew_detail
 							toIsland.GetName(), 
 							toIsland.DistanceFrom(location),
 							delivery.GetTimeLimit(),
-							delivery.GetRewardItemType().GetName(),
+							game::session::item::Type(delivery.GetRewardItemType()).GetName(),
 							delivery.GetRewardQuantity()), 
 						GoToDeliveryDetail(delivery.operator int()) 
 					});

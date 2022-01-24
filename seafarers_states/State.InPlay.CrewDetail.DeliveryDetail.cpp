@@ -8,6 +8,7 @@
 #include <Game.Session.Islands.h>
 #include <Game.Session.Character.Berth.h>
 #include <Game.Session.Character.Delivery.h>
+#include <Game.Session.Item.Type.h>
 namespace state::in_play::crew_detail
 {
 	std::optional<int> DeliveryDetail::stateId = std::nullopt;
@@ -30,7 +31,7 @@ namespace state::in_play::crew_detail
 		Terminal::WriteLine("Distance: {:.2f}", toIsland.DistanceFrom(location));
 		Terminal::WriteLine(
 			"Reward: {} x {}", 
-			delivery.GetRewardItemType().GetName(),
+			game::session::item::Type(delivery.GetRewardItemType()).GetName(),
 			delivery.GetRewardQuantity());
 
 		Terminal::ShowMenu();
