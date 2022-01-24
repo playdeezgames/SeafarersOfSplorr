@@ -179,6 +179,9 @@
     <ClInclude Include="Data.Game.Character.ItemType.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.StreetVendor.MenuItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">
@@ -279,6 +282,9 @@
     </ClCompile>
     <ClCompile Include="Data.Game.Character.ItemType.cpp">
       <Filter>Source Files\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.StreetVendor.MenuItem.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
