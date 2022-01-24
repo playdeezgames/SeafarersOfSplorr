@@ -9,9 +9,9 @@
 #include "Game.Session.Item.Type.Commodities.h"
 namespace game::session::island
 {
-	double Markets::GetUnitPurchaseValue(const item::Type& itemSubtype) const
+	double Markets::GetUnitPurchaseValue(int itemSubtype) const
 	{
-		auto itemCommodities = item::type::Commodities(itemSubtype.operator int()).GetAll();
+		auto itemCommodities = item::type::Commodities(itemSubtype).GetAll();
 		return std::accumulate(
 				itemCommodities.begin(),
 				itemCommodities.end(),
@@ -25,16 +25,16 @@ namespace game::session::island
 				});
 	}
 
-	int Markets::GetMaximumPurchaseQuantity(const item::Type& itemSubtype, double value) const
+	int Markets::GetMaximumPurchaseQuantity(int itemSubtype, double value) const
 	{
 		auto unitValue = GetUnitPurchaseValue(itemSubtype);
 		return (int)std::floor(value / unitValue);
 	}
 
 
-	double Markets::GetUnitSaleValue(const item::Type& itemSubtype) const
+	double Markets::GetUnitSaleValue(int itemSubtype) const
 	{
-		auto itemCommodities = item::type::Commodities(itemSubtype.operator int()).GetAll();
+		auto itemCommodities = item::type::Commodities(itemSubtype).GetAll();
 		return std::accumulate(
 			itemCommodities.begin(),
 			itemCommodities.end(),
@@ -46,7 +46,7 @@ namespace game::session::island
 			});
 	}
 
-	int Markets::GetMaximumSaleQuantity(const item::Type& itemSubtype, double value) const
+	int Markets::GetMaximumSaleQuantity(int itemSubtype, double value) const
 	{
 		auto unitValue = GetUnitSaleValue(itemSubtype);
 		return (int)std::ceil(value / unitValue);
