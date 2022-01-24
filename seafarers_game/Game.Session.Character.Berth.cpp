@@ -4,20 +4,15 @@ namespace game::session::character
 {
 	using ShipData = data::game::character::Ship;
 
-	static std::optional<game::session::Ship> TryGetShip(int characterId)
+	static std::optional<int> TryGetShipId(int characterId)
 	{
 		
-		auto shipId = ShipData::ReadShipForCharacter(characterId);
-		if (shipId)
-		{
-			return Ship(shipId.value());
-		}
-		return std::nullopt;
+		return ShipData::ReadShipForCharacter(characterId);
 	}
 
-	session::Ship Berth::GetShip() const
+	int Berth::GetShipId() const
 	{
-		return TryGetShip(characterId).value();
+		return TryGetShipId(characterId).value();
 	}
 
 	static std::optional<BerthType> TryGetBerthType(int characterId)

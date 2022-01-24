@@ -8,6 +8,7 @@
 #include <Game.Session.Player.h>
 #include <Game.Session.Character.h>
 #include <Game.Session.Character.Berth.h>
+#include <Game.Session.Ship.h>
 namespace state::in_play
 {
 	std::optional<int> ShipStatus::stateId = std::nullopt;
@@ -16,7 +17,9 @@ namespace state::in_play
 	{
 		Terminal::Reinitialize();
 
-		auto ship = game::session::character::Berth(game::session::Player::GetCharacterId()).GetShip();
+		auto ship = 
+			game::session::Ship(
+			game::session::character::Berth(game::session::Player::GetCharacterId()).GetShipId());
 
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Ship status:");
@@ -29,7 +32,9 @@ namespace state::in_play
 
 	static void UpdateMenu()
 	{
-		auto ship = game::session::character::Berth(game::session::Player::GetCharacterId()).GetShip();
+		auto ship = 
+			game::session::Ship(
+			game::session::character::Berth(game::session::Player::GetCharacterId()).GetShipId());
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		Terminal::menu.AddAction({ std::format("Change Heading(Current: {:.2f}\xf8)", ship.GetHeading()), application::UIState::DoGoTo(ChangeHeading::GetStateId) });

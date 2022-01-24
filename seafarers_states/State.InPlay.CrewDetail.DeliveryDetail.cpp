@@ -9,6 +9,7 @@
 #include <Game.Session.Character.Berth.h>
 #include <Game.Session.Character.Delivery.h>
 #include <Game.Session.Item.Type.h>
+#include <Game.Session.Ship.h>
 namespace state::in_play::crew_detail
 {
 	std::optional<int> DeliveryDetail::stateId = std::nullopt;
@@ -24,8 +25,9 @@ namespace state::in_play::crew_detail
 		auto delivery = game::session::character::Delivery(scratch_pad::SelectedDelivery::GetDeliveryId());
 		auto toIsland = islands::GetIsland(delivery.GetToIslandId());
 		auto location = 
+			game::session::Ship(
 			game::session::character::Berth(scratch_pad::CrewDetail::GetCharacterId())
-			.GetShip()
+			.GetShipId())
 			.GetLocation();
 		Terminal::WriteLine("Destination: {}", toIsland.GetName());
 		Terminal::WriteLine("Distance: {:.2f}", toIsland.DistanceFrom(location));

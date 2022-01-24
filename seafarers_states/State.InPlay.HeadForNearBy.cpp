@@ -10,6 +10,7 @@
 #include <Game.Session.Character.KnownIslands.h>
 #include <Game.Session.Ship.VisibleIslands.h>
 #include <Game.Session.Island.h>
+#include <Game.Session.Ship.h>
 namespace state::in_play
 {
 	std::optional<int> HeadForNearBy::stateId = std::nullopt;
@@ -29,8 +30,10 @@ namespace state::in_play
 	{
 		return[heading]()
 		{
+			game::session::Ship(
 			game::session::character::Berth(
-				game::session::Player::GetCharacterId()).GetShip().SetHeading(heading);
+				game::session::Player::GetCharacterId()).GetShipId())
+				.SetHeading(heading);
 			application::UIState::Write(ShipStatus::GetStateId());
 		};
 	}
@@ -41,8 +44,13 @@ namespace state::in_play
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		auto character = game::session::Character(game::session::Player::GetCharacterId());
-		auto islands = game::session::ship::VisibleIslands(game::session::character::Berth(game::session::Player::GetCharacterId()).GetShip().ToId()).GetIslandIds();
-		auto location = game::session::character::Berth(game::session::Player::GetCharacterId()).GetShip().GetLocation();
+		auto islands = 
+			game::session::ship::VisibleIslands(
+				game::session::character::Berth(game::session::Player::GetCharacterId()).GetShipId()).GetIslandIds();
+		auto location = 
+			game::session::Ship(
+			game::session::character::Berth(game::session::Player::GetCharacterId()).GetShipId())
+			.GetLocation();
 		std::for_each(
 			islands.begin(), 
 			islands.end(), 

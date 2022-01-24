@@ -8,6 +8,7 @@
 #include <Game.Session.Character.h>
 #include <Game.Session.Character.Marks.h>
 #include <Game.Session.Character.Berth.h>
+#include <Game.Session.Ship.h>
 namespace state::in_play
 {
 	std::optional<int> ConfirmHeadForMark::stateId = std::nullopt;
@@ -19,8 +20,9 @@ namespace state::in_play
 		auto playerCharacter =
 			game::session::Character(game::session::Player::GetCharacterId());
 		auto ship =
+			game::session::Ship(
 			game::session::character::Berth(game::session::Player::GetCharacterId())
-			.GetShip();
+			.GetShipId());
 		auto mark = 
 			game::session::character::Marks(playerCharacter.ToId())
 			.GetMark(scratch_pad::HeadForMark::GetMark());
@@ -44,8 +46,9 @@ namespace state::in_play
 		auto playerCharacter =
 			game::session::Character(game::session::Player::GetCharacterId());
 		auto ship =
+			game::session::Ship(
 			game::session::character::Berth(game::session::Player::GetCharacterId())
-			.GetShip();
+			.GetShipId());
 		auto mark =
 			game::session::character::Marks(playerCharacter.ToId())
 			.GetMark(scratch_pad::HeadForMark::GetMark());

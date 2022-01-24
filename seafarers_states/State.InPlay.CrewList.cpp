@@ -62,7 +62,7 @@ namespace state::in_play
 			game::session::ship::Berths(
 			game::session::character::Berth(
 				game::session::Player::GetCharacterId())
-			.GetShip().ToId())
+			.GetShipId())
 			.GetBerths();
 		std::transform(
 			crew.begin(),

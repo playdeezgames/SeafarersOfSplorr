@@ -10,6 +10,7 @@
 #include <Game.Session.Character.Berth.h>
 #include <Game.Session.Character.Deliveries.h>
 #include <Game.Session.Item.Type.h>
+#include <Game.Session.Ship.h>
 namespace state::in_play::crew_detail
 {
 	std::optional<int> Deliveries::stateId = std::nullopt;
@@ -49,9 +50,10 @@ namespace state::in_play::crew_detail
 			game::session::Characters()
 			.GetCharacter(characterId);
 		auto location =
+			game::session::Ship(
 			game::session::character::Berth(
 				characterId)
-			.GetShip()
+			.GetShipId())
 			.GetLocation();
 		auto deliveries =
 			game::session::character::Deliveries(characterId)

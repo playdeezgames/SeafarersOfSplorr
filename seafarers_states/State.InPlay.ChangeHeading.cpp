@@ -12,6 +12,7 @@
 #include <Game.Session.Character.Berth.h>
 #include <Game.Session.Character.KnownIslands.h>
 #include <Game.Session.Ship.VisibleIslands.h>
+#include <Game.Session.Ship.h>
 namespace state::in_play
 {
 	std::optional<int> ChangeHeading::stateId = std::nullopt;
@@ -24,8 +25,9 @@ namespace state::in_play
 		Terminal::WriteLine("Change Heading:");
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Current: {:.2f}\xf8", 
+			game::session::Ship(
 			game::session::character::Berth(game::session::Player::GetCharacterId())
-			.GetShip()
+			.GetShipId())
 			.GetHeading());
 
 		Terminal::ShowMenu();
@@ -37,7 +39,7 @@ namespace state::in_play
 	{
 		auto playerCharacter =
 			game::session::Character(game::session::Player::GetCharacterId());
-		auto ship = game::session::character::Berth(playerCharacter.ToId()).GetShip();
+		auto shipId = game::session::character::Berth(playerCharacter.ToId()).GetShipId();
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		if (game::session::character::KnownIslands(playerCharacter.ToId()).HasAny())
@@ -48,7 +50,7 @@ namespace state::in_play
 		{
 			Terminal::menu.AddAction({ "Head for a marked location", application::UIState::DoGoTo(HeadForMark::GetStateId) });
 		}
-		if (game::session::ship::VisibleIslands(ship.ToId()).HasAny())
+		if (game::session::ship::VisibleIslands(shipId).HasAny())
 		{
 			Terminal::menu.AddAction({ "Head for a nearby island", application::UIState::DoGoTo(HeadForNearBy::GetStateId) });
 		}

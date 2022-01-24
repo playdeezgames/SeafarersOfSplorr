@@ -4,6 +4,7 @@
 #include "State.InPlay.ShipStatus.h"
 #include <Game.Session.Character.h>
 #include <Game.Session.Character.Berth.h>
+#include <Game.Session.Ship.h>
 namespace state::in_play
 {
 	std::optional<int> ChangeSpeed::stateId = std::nullopt;
@@ -16,8 +17,9 @@ namespace state::in_play
 		Terminal::WriteLine("Change Speed:");
 		Terminal::SetForeground(game::Colors::GRAY);
 		Terminal::WriteLine("Current Speed: {:.2f}", 
+			game::session::Ship(
 			game::session::character::Berth(game::session::Player::GetCharacterId())
-			.GetShip()
+			.GetShipId())
 			.GetSpeed());
 
 		Terminal::ShowMenu();
@@ -29,8 +31,9 @@ namespace state::in_play
 	{
 		return [speed]() 
 		{
+			game::session::Ship(
 			game::session::character::Berth(game::session::Player::GetCharacterId())
-				.GetShip()
+				.GetShipId())
 				.SetSpeed(speed);
 			application::UIState::Write(ShipStatus::GetStateId());
 		};

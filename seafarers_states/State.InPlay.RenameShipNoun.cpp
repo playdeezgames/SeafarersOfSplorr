@@ -7,6 +7,7 @@
 #include <Game.ShipNames.h>
 #include <Game.Session.Character.h>
 #include <Game.Session.Character.Berth.h>
+#include <Game.Session.Ship.h>
 namespace state::in_play
 {
 	std::optional<int> RenameShipNoun::stateId = std::nullopt;
@@ -29,8 +30,9 @@ namespace state::in_play
 	{
 		return [noun]()
 		{
+			game::session::Ship(
 			game::session::character::Berth(game::session::Player::GetCharacterId())
-				.GetShip()
+				.GetShipId())
 				.SetName(std::format("{} {}", scratch_pad::ShipAdjective::GetAdjective(), noun));
 			application::UIState::Write(ShipStatus::GetStateId());
 		};

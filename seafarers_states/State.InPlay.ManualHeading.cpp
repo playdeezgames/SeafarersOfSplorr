@@ -4,6 +4,7 @@
 #include <Game.Session.Player.h>
 #include <Game.Session.Character.h>
 #include <Game.Session.Character.Berth.h>
+#include <Game.Session.Ship.h>
 namespace state::in_play
 {
 	std::optional<int> ManualHeading::stateId = std::nullopt;
@@ -25,7 +26,9 @@ namespace state::in_play
 
 	static void OnValidInput(double value)
 	{
-		game::session::character::Berth(game::session::Player::GetCharacterId()).GetShip().SetHeading(value);
+		game::session::Ship(
+		game::session::character::Berth(game::session::Player::GetCharacterId()).GetShipId())
+			.SetHeading(value);
 		application::UIState::Write(ShipStatus::GetStateId());
 	}
 

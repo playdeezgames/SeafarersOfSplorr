@@ -15,6 +15,7 @@
 #include <Game.Session.Character.KnownIslands.h>
 #include <Game.Session.Ship.DockableIslands.h>
 #include <Game.Session.Ship.VisibleIslands.h>
+#include <Game.Session.Ship.h>
 namespace state::in_play
 {
 	std::optional<int> AtSeaOverview::stateId = std::nullopt;
@@ -27,7 +28,7 @@ namespace state::in_play
 		auto islandId =
 			game::session::ship::DockableIslands(game::session::character::Berth(
 				game::session::Player::GetCharacterId())
-				.GetShip().ToId())
+				.GetShipId())
 				.TryGetFirstId();
 		if (islandId)
 		{
@@ -57,7 +58,7 @@ namespace state::in_play
 
 		auto islands =
 			game::session::ship::VisibleIslands(game::session::character::Berth(
-				game::session::Player::GetCharacterId()).GetShip().ToId());
+				game::session::Player::GetCharacterId()).GetShipId());
 		if (islands.HasAny())
 		{
 			Terminal::Write("You see {} islands nearby", islands.GetCount());
@@ -106,9 +107,10 @@ namespace state::in_play
 
 		//ship
 		auto ship = 
+			game::session::Ship(
 			game::session::character::Berth(
 				game::session::Player::GetCharacterId())
-			.GetShip();
+			.GetShipId());
 		Terminal::WriteLine(
 			"Heading: {:.2f}\xf8, Speed: {:.1f}",
 			ship.GetHeading(),
@@ -138,7 +140,7 @@ namespace state::in_play
 	{
 		if (game::session::ship::DockableIslands(game::session::character::Berth(
 			game::session::Player::GetCharacterId())
-			.GetShip().ToId())
+			.GetShipId())
 			.TryGetFirstId())
 		{
 			application::UIState::Write(DockOrCareen::GetStateId());
@@ -158,8 +160,8 @@ namespace state::in_play
 		Terminal::menu.AddAction({ "Multiple move", application::UIState::DoGoTo(MultipleMove::GetStateId) });
 		Terminal::menu.AddAction({ "Crew Status", application::UIState::DoGoTo(CrewList::GetStateId) });
 		Terminal::menu.AddAction({ "Ship Status", application::UIState::DoGoTo(ShipStatus::GetStateId) });
-		if (game::session::character::Berth(
-				game::session::Player::GetCharacterId()).GetShip().CanDock())
+		if (game::session::Ship(game::session::character::Berth(
+				game::session::Player::GetCharacterId()).GetShipId()).CanDock())
 		{
 			Terminal::menu.AddAction({ "Dock", OnDock });
 		}

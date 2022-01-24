@@ -9,6 +9,7 @@
 #include <Game.Session.Character.Berth.h>
 #include <Game.Session.Island.h>
 #include <Game.Session.Island.Districts.h>
+#include <Game.Session.Ship.h>
 namespace state::in_play
 {
 	std::optional<int> Docked::stateId = std::nullopt;
@@ -29,7 +30,9 @@ namespace state::in_play
 
 	static void OnUndock()
 	{
-		game::session::character::Berth(game::session::Player::GetCharacterId()).GetShip().Undock();
+		game::session::Ship(
+		game::session::character::Berth(game::session::Player::GetCharacterId()).GetShipId())
+			.Undock();
 		application::UIState::Write(Next::GetStateId());
 	}
 
