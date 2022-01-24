@@ -12,10 +12,10 @@ namespace game::session
 	{
 		constexpr Island(int islandId): islandId(islandId) {}
 		constexpr operator int() const { return islandId; }
-		constexpr island::Markets GetMarkets() const { return island::Markets(islandId); }
 		constexpr static Island ToIsland(int islandId) { return Island(islandId); }
+
+		constexpr island::Markets GetMarkets() const { return island::Markets(islandId); }
 		constexpr island::Districts GetDistricts() const { return island::Districts(islandId); }
-		constexpr island::Feature GetFeature(int featureId) const { return island::Feature(featureId); }
 
 		double DistanceTo(const Island& otherIsland) const;
 		double DistanceFrom(const common::XY<double>& location) const;
