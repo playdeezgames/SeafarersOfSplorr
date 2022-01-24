@@ -1,5 +1,6 @@
 #include <Data.Game.Island.h>
 #include "Game.Session.Island.h"
+#include "Game.Session.Island.Markets.h"
 namespace game::session
 {
 	static std::optional<common::XY<double>> TryGetLocation(int islandId)
@@ -24,13 +25,13 @@ namespace game::session
 
 	void Island::Populate(const game::Difficulty& difficulty) const
 	{
-		GetMarkets().Populate(difficulty);
+		game::session::island::Markets(islandId).Populate(difficulty);
 		GetDistricts().Populate(difficulty);
 	}
 
 	void Island::ApplyTurnEffects() const
 	{
-		GetMarkets().ApplyTurnEffects();
+		game::session::island::Markets(islandId).ApplyTurnEffects();
 		GetDistricts().ApplyTurnEffects();
 	}
 
