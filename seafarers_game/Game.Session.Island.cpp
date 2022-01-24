@@ -17,9 +17,9 @@ namespace game::session
 		return data::game::Island::ReadName(islandId).value();
 	}
 
-	Demigod Island::GetPatronDemigod() const
+	int Island::GetPatronDemigodId() const
 	{
-		return Demigod(data::game::Island::ReadPatronDemigodId(islandId).value());
+		return data::game::Island::ReadPatronDemigodId(islandId).value();
 	}
 
 	void Island::Populate(const game::Difficulty& difficulty) const

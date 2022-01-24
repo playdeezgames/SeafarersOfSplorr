@@ -1,7 +1,6 @@
 #pragma once
 #include <Common.XY.h>
 #include "Game.Difficulty.h"
-#include "Game.Session.Demigod.h"
 #include "Game.Session.Island.Districts.h"
 #include "Game.Session.Island.Markets.h"
 #include <optional>
@@ -21,7 +20,7 @@ namespace game::session
 		double DistanceFrom(const common::XY<double>& location) const;
 		common::XY<double> GetLocation() const;
 		std::string GetName() const;
-		Demigod GetPatronDemigod() const;
+		int GetPatronDemigodId() const;
 		void Populate(const game::Difficulty& difficulty) const;
 		void ApplyTurnEffects() const;
 	private:
