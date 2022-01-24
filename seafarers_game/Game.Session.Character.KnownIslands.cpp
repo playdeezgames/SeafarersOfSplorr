@@ -9,9 +9,9 @@ namespace game::session::character
 		return !data::game::character::island::Known::All(characterId).empty();
 	}
 
-	void KnownIslands::AddKnownIsland(const Island& island) const
+	void KnownIslands::AddKnownIsland(int islandId) const
 	{
-		data::game::character::island::Known::Write(characterId, island.operator int());
+		data::game::character::island::Known::Write(characterId, islandId);
 	}
 
 	std::vector<KnownIsland> KnownIslands::GetAll() const
