@@ -7,7 +7,7 @@
 #include <iterator>
 namespace game::session::ship
 {
-	std::vector<Island> VisibleIslands::GetAll() const
+	std::vector<int> VisibleIslands::GetIslandIds() const
 	{
 		auto maximumDistance = game::session::world::Distances::GetView();
 		auto shipLocation = data::game::Ship::GetLocation(shipId).value();
@@ -22,25 +22,18 @@ namespace game::session::ship
 					auto delta = location - shipLocation;
 					return (delta.GetMagnitude() <= maximumDistance);
 				});
-		std::vector<Island> result;
-		std::transform(
-			islands.begin(),
-			last,
-			std::back_inserter(result),
-			[](int islandId) 
-			{
-				return Island(islandId);
-			});
+		std::vector<int> result;
+		std::copy(islands.begin(), last, std::back_inserter(result));
 		return result;
 	}
 
 	bool VisibleIslands::HasAny() const
 	{
-		return !GetAll().empty();
+		return !GetIslandIds().empty();
 	}
 
 	int VisibleIslands::GetCount() const
 	{
-		return (int)GetAll().size();
+		return (int)GetIslandIds().size();
 	}
 }

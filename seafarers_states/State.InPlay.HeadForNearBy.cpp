@@ -38,13 +38,14 @@ namespace state::in_play
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		auto character = game::session::Character(game::session::Player::GetCharacterId());
-		auto islands = game::session::character::Berth(game::session::Player::GetCharacterId()).GetShip().GetNearbyIslands().GetAll();
+		auto islands = game::session::character::Berth(game::session::Player::GetCharacterId()).GetShip().GetNearbyIslands().GetIslandIds();
 		auto location = game::session::character::Berth(game::session::Player::GetCharacterId()).GetShip().GetLocation();
 		std::for_each(
 			islands.begin(), 
 			islands.end(), 
-			[location, character](const game::session::Island& island) 
+			[location, character](const auto& islandId) 
 			{
+				auto island = game::session::Island(islandId);
 				auto relativeLocation = island.GetLocation() - location;
 				auto knownIsland = game::session::character::KnownIslands(character.ToId()).GetKnownIsland(island);
 				Terminal::menu.AddAction(

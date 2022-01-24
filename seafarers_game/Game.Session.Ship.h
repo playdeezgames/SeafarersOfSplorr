@@ -5,6 +5,7 @@
 #include "Game.Session.Ship.DockableIslands.h"
 #include "Game.Session.Ship.VisibleIslands.h"
 #include <optional>
+#include <string>
 namespace game::session
 {
 	struct Ship
@@ -24,9 +25,9 @@ namespace game::session
 		bool CanDock() const;
 		void Dock() const;
 		bool Undock() const;
-		std::optional<Island> TryGetIsland() const;
+		std::optional<int> TryGetIslandId() const;
 		bool IsDocked() const;
-		Island GetIsland() const;
+		int GetIslandId() const;
 		game::ShipType GetShipType() const;
 		void ApplyTurnEffects() const;
 	private:

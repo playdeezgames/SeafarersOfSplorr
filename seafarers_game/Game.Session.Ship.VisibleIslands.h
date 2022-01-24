@@ -1,5 +1,4 @@
 #pragma once
-#include "Game.Session.Island.h"
 #include <vector>
 namespace game::session::ship
 {
@@ -7,7 +6,7 @@ namespace game::session::ship
 	{
 		constexpr explicit VisibleIslands(int shipId) 
 			: shipId(shipId) {}
-		std::vector<Island> GetAll() const;
+		std::vector<int> GetIslandIds() const;
 		bool HasAny() const;
 		int GetCount() const;
 	private:

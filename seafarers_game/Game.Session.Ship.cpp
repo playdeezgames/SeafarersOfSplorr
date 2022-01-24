@@ -134,14 +134,9 @@ namespace game::session
 		return false;
 	}
 
-	std::optional<Island> Ship::TryGetIsland() const
+	std::optional<int> Ship::TryGetIslandId() const
 	{
-		auto islandId = data::game::ship::CurrentIsland::ReadIslandId(shipId);
-		if (islandId)
-		{
-			return Island(*islandId);
-		}
-		return std::nullopt;
+		return data::game::ship::CurrentIsland::ReadIslandId(shipId);
 	}
 
 	bool Ship::IsDocked() const
@@ -149,9 +144,9 @@ namespace game::session
 		return data::game::ship::CurrentIsland::ReadIslandId(shipId).has_value();
 	}
 
-	Island Ship::GetIsland() const
+	int Ship::GetIslandId() const
 	{
-		return TryGetIsland().value();
+		return TryGetIslandId().value();
 	}
 
 	game::ShipType Ship::GetShipType() const

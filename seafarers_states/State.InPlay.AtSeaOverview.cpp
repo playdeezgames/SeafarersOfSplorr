@@ -61,11 +61,11 @@ namespace state::in_play
 		{
 			Terminal::Write("You see {} islands nearby", islands.GetCount());
 			bool first = true;
-			for (auto& island : islands.GetAll())
+			for (auto& islandId : islands.GetIslandIds())
 			{
 				auto knownIsland =
 					game::session::character::KnownIslands(character.ToId())
-					.GetKnownIsland(island);
+					.GetKnownIsland(islandId);
 				if (knownIsland.IsKnown())
 				{
 					if (first)
