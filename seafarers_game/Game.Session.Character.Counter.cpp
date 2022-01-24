@@ -20,9 +20,10 @@ namespace game::session::character
 
 	static const std::map<game::characters::Counter, CounterDescriptor> counterDescriptors =
 	{
-		{ game::characters::Counter::STARVATION, {"Starvation", -10}},
+		{ game::characters::Counter::STARVATION, {"Starvation", 0}},
 		{ game::characters::Counter::WOUNDS, {"Wounds", 0}},
-		{ game::characters::Counter::TURNS_REMAINING, {"Turns Remaining", 10000}}
+		{ game::characters::Counter::TURNS_REMAINING, {"Turns Remaining", 10000}},
+		{ game::characters::Counter::SATIETY, {"Satiety",20}}//TODO: this can vary by difficulty
 	};
 
 

@@ -1,19 +1,19 @@
-#include <Data.Game.Character.h>
-#include <Data.Game.Character.Island.Current.h>
-#include <Data.Game.Character.Delivery.h>
-#include <Data.Game.Feature.Delivery.h>
-#include <Data.Game.Delivery.h>
-#include <Data.Game.Player.h>
-#include "Game.Colors.h"
-#include "Game.Session.Character.h"
-#include "Game.Session.Characters.h"
 #include "Game.Session.Character.Characteristics.h"
-#include "Game.Session.Character.HitPoints.h"
-#include "Game.Session.Character.Messages.h"
 #include "Game.Session.Character.Counters.h"
-#include "Game.Session.Character.Plights.h"
+#include "Game.Session.Character.h"
+#include "Game.Session.Character.HitPoints.h"
+#include "Game.Colors.h"
 #include "Game.Session.Character.Deliveries.h"
 #include "Game.Session.Character.KnownIslands.h"
+#include "Game.Session.Character.Messages.h"
+#include "Game.Session.Character.Plights.h"
+#include "Game.Session.Characters.h"
+#include <Data.Game.Character.Delivery.h>
+#include <Data.Game.Character.h>
+#include <Data.Game.Character.Island.Current.h>
+#include <Data.Game.Delivery.h>
+#include <Data.Game.Feature.Delivery.h>
+#include <Data.Game.Player.h>
 namespace game::session
 {
 	bool Character::IsDead() const
@@ -99,18 +99,30 @@ namespace game::session
 				});
 	}
 
+	static void ReduceSatiety(int characterId)
+	{
+		constexpr auto SATIETY_DELTA = -1;
+		auto satiety = character::Counter(characterId, game::characters::Counter::SATIETY);
+		if (satiety.GetValue() > 0)
+		{
+			satiety.Change(SATIETY_DELTA);
+		}
+		else
+		{
+			SufferStarvationDueToHunger(characterId);
+		}
+	}
+
 	static void SufferHunger(int characterId)
 	{
-		auto character = Characters()
-			.GetCharacter(characterId);
-		character::Characteristics(character.ToId())
+		character::Characteristics(characterId)
 			.GetCharacteristic(Characteristic::CONSTITUTION)
 			.OnCheck(
 				[characterId](bool success)
 				{
 					if (!success)
 					{
-						SufferStarvationDueToHunger(characterId);
+						ReduceSatiety(characterId);
 					}
 				});
 	}

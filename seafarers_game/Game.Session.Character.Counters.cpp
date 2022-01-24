@@ -6,7 +6,9 @@ namespace game::session::character
 	static const std::vector<game::characters::Counter> counters =
 	{
 		game::characters::Counter::STARVATION,
-		game::characters::Counter::WOUNDS
+		game::characters::Counter::WOUNDS,
+		game::characters::Counter::SATIETY,
+		game::characters::Counter::TURNS_REMAINING
 	};
 
 	void Counters::Initialize() const
