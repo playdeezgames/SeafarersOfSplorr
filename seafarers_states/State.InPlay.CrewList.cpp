@@ -9,6 +9,7 @@
 #include <Game.Session.Character.HitPoints.h>
 #include <Game.BerthType.h>
 #include <Game.Session.Character.Berth.h>
+#include <Game.Session.Ship.Berths.h>
 namespace state::in_play
 {
 	std::optional<int> CrewList::stateId = std::nullopt;
@@ -58,15 +59,16 @@ namespace state::in_play
 	{
 		std::list<RosterItem> rosterItems;
 		auto crew = 
-			game::session::character::Berth(game::session::Player::GetCharacterId())
-			.GetShip()
-			.GetBerths()
+			game::session::ship::Berths(
+			game::session::character::Berth(
+				game::session::Player::GetCharacterId())
+			.GetShip().ToId())
 			.GetBerths();
 		std::transform(
 			crew.begin(),
 			crew.end(),
 			std::back_inserter(rosterItems),
-			[](const game::session::ship::Berth& entry)
+			[](const auto& entry)
 			{
 				auto characterId = entry.GetCharacterId();
 				auto character = game::session::Characters().GetCharacter(characterId);

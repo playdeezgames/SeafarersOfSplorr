@@ -1,7 +1,6 @@
 #pragma once
 #include <Common.XY.h>
 #include "Game.ShipType.h"
-#include "Game.Session.Ship.Berths.h"
 #include <optional>
 #include <string>
 namespace game::session
@@ -9,7 +8,6 @@ namespace game::session
 	struct Ship
 	{
 		constexpr explicit Ship(int shipId) : shipId(shipId) {}
-		constexpr ship::Berths GetBerths() const { return ship::Berths(shipId); }
 		constexpr int ToId() const { return shipId; }
 
 		double GetHeading() const;

@@ -14,6 +14,7 @@
 #include "Game.Session.World.ShipType.h"
 #include "Game.Session.Character.Messages.h"
 #include "Game.Session.Ship.DockableIslands.h"
+#include "Game.Session.Ship.Berths.h"
 namespace game::session
 {
 	using ShipData = data::game::Ship;
@@ -185,7 +186,7 @@ namespace game::session
 
 			game::session::world::Bounds::ClampLocation(location.value());
 
-			auto berths = GetBerths().GetBerths();
+			auto berths = game::session::ship::Berths(shipId).GetBerths();
 			std::for_each(
 				berths.begin(), 
 				berths.end(), 
