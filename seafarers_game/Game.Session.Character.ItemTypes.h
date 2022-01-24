@@ -7,8 +7,8 @@ namespace game::session::character
 		constexpr explicit ItemTypes(int characterId) : characterId(characterId) {}
 		constexpr ItemType GetItemType(int itemTypeId) { return ItemType(characterId, itemTypeId); }
 		std::vector<ItemType> GetItemTypes() const;
-		void AddItemTypeQuantity(const item::Type& itemType, int delta) const;
-		void RemoveItemTypeQuantity(const item::Type& itemType, int delta) const;
+		void AddItemTypeQuantity(int itemType, int delta) const;
+		void RemoveItemTypeQuantity(int itemType, int delta) const;
 		bool HasAny() const;
 	private:
 		int characterId;

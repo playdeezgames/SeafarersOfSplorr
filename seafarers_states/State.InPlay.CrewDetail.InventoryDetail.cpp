@@ -6,6 +6,7 @@
 #include "State.ScratchPad.CrewDetail.h"
 #include "State.ScratchPad.SelectedItemType.h"
 #include <Game.Session.Character.ItemTypes.h>
+#include <Game.Session.Item.Type.h>
 namespace state::in_play::crew_detail
 {
 	std::optional<int> InventoryDetail::stateId = std::nullopt;
@@ -19,7 +20,7 @@ namespace state::in_play::crew_detail
 		auto itemType =
 			game::session::character::ItemTypes(scratch_pad::CrewDetail::GetCharacterId())
 			.GetItemType(scratch_pad::SelectedItemType::GetItemTypeId());
-		Terminal::WriteLine("Item Type: {}", itemType.GetItemType().GetName());
+		Terminal::WriteLine("Item Type: {}", game::session::item::Type(itemType.GetItemType()).GetName());
 		Terminal::WriteLine("Quantity: {}", itemType.GetQuantity());
 		Terminal::ShowMenu();
 		Terminal::ShowPrompt();

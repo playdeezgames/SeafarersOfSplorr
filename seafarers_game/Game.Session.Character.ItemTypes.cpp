@@ -19,21 +19,21 @@ namespace game::session::character
 		return result;
 	}
 
-	void ItemTypes::AddItemTypeQuantity(const item::Type& itemType, int delta) const
+	void ItemTypes::AddItemTypeQuantity(int itemType, int delta) const
 	{
-		auto quantity = data::game::character::ItemType::Read(characterId, itemType.operator int()).value_or(0);
+		auto quantity = data::game::character::ItemType::Read(characterId, itemType).value_or(0);
 		quantity += delta;
 		if (quantity > 0)
 		{
-			data::game::character::ItemType::Write(characterId, itemType.operator int(), quantity);
+			data::game::character::ItemType::Write(characterId, itemType, quantity);
 		}
 		else
 		{
-			data::game::character::ItemType::Clear(characterId, itemType.operator int());
+			data::game::character::ItemType::Clear(characterId, itemType);
 		}
 	}
 
-	void ItemTypes::RemoveItemTypeQuantity(const item::Type& itemType, int delta) const
+	void ItemTypes::RemoveItemTypeQuantity(int itemType, int delta) const
 	{
 		AddItemTypeQuantity(itemType, -delta);
 	}

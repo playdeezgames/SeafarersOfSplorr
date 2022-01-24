@@ -7,6 +7,7 @@
 #include "State.ScratchPad.CrewDetail.h"
 #include "State.ScratchPad.SelectedItemType.h"
 #include <Game.Session.Character.ItemTypes.h>
+#include <Game.Session.Item.Type.h>
 namespace state::in_play::crew_detail
 {
 	std::optional<int> Inventory::stateId = std::nullopt;
@@ -54,9 +55,9 @@ namespace state::in_play::crew_detail
 					{
 						std::format(
 							"{} x {}",
-							itemType.GetItemType().GetName(),
+							game::session::item::Type(itemType.GetItemType()).GetName(),
 							itemType.GetQuantity()),
-						GoToItemTypeDetail(itemType.GetItemType().operator int())
+						GoToItemTypeDetail(itemType.GetItemType())
 					});
 			});
 		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(CrewDetail::GetStateId) };
