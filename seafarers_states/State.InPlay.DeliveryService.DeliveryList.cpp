@@ -9,6 +9,7 @@
 #include <Game.Session.Islands.h>
 #include <Game.Session.Character.h>
 #include <Game.Session.Island.Feature.h>
+#include <Game.Session.Island.DeliveryService.h>
 namespace state::in_play::delivery_service
 {
 	std::optional<int> DeliveryList::stateId = std::nullopt;
@@ -18,10 +19,12 @@ namespace state::in_play::delivery_service
 		Terminal::Reinitialize();
 		auto feature =
 			game::session::island::Feature(scratch_pad::IslandFeature::GetFeatureId());
+		auto deliveryService =
+			game::session::island::DeliveryService(scratch_pad::IslandFeature::GetFeatureId());
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("{} Job List:", feature.GetName());
 		Terminal::SetForeground(game::Colors::GRAY);
-		if (!feature.GetDeliveryService().HasDeliveries())
+		if (!deliveryService.HasDeliveries())
 		{
 			Terminal::WriteLine("There are no deliveries available.");
 		}
@@ -48,8 +51,7 @@ namespace state::in_play::delivery_service
 			game::session::Character(game::session::Player::GetCharacterId())
 			.GetIslandId();
 		auto deliveries =
-			game::session::island::Feature(scratch_pad::IslandFeature::GetFeatureId())
-			.GetDeliveryService()
+			game::session::island::DeliveryService(scratch_pad::IslandFeature::GetFeatureId())
 			.GetDeliveries()
 			.GetDeliveries();
 		auto fromIsland = islands::GetIsland(fromIslandId);
