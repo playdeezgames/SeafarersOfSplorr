@@ -8,6 +8,7 @@
 #include <Game.Session.Character.h>
 #include <Game.Session.Character.Berth.h>
 #include <Game.Session.Character.KnownIslands.h>
+#include <Game.Session.Ship.VisibleIslands.h>
 namespace state::in_play
 {
 	std::optional<int> HeadForNearBy::stateId = std::nullopt;
@@ -38,7 +39,7 @@ namespace state::in_play
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		auto character = game::session::Character(game::session::Player::GetCharacterId());
-		auto islands = game::session::character::Berth(game::session::Player::GetCharacterId()).GetShip().GetNearbyIslands().GetIslandIds();
+		auto islands = game::session::ship::VisibleIslands(game::session::character::Berth(game::session::Player::GetCharacterId()).GetShip().ToId()).GetIslandIds();
 		auto location = game::session::character::Berth(game::session::Player::GetCharacterId()).GetShip().GetLocation();
 		std::for_each(
 			islands.begin(), 

@@ -13,6 +13,8 @@
 #include <Game.Session.Character.h>
 #include <Game.Session.Character.Berth.h>
 #include <Game.Session.Character.KnownIslands.h>
+#include <Game.Session.Ship.DockableIslands.h>
+#include <Game.Session.Ship.VisibleIslands.h>
 namespace state::in_play
 {
 	std::optional<int> AtSeaOverview::stateId = std::nullopt;
@@ -21,12 +23,12 @@ namespace state::in_play
 	{
 		auto character =
 			game::session::Character(game::session::Player::GetCharacterId());
+
 		auto islandId =
-			game::session::character::Berth(
+			game::session::ship::DockableIslands(game::session::character::Berth(
 				game::session::Player::GetCharacterId())
-			.GetShip()
-			.GetDockableIslands()
-			.TryGetFirstId();
+				.GetShip().ToId())
+				.TryGetFirstId();
 		if (islandId)
 		{
 			auto knownIsland =
@@ -52,11 +54,10 @@ namespace state::in_play
 	{
 		auto character =
 			game::session::Character(game::session::Player::GetCharacterId());
+
 		auto islands =
-			game::session::character::Berth(
-				game::session::Player::GetCharacterId())
-			.GetShip()
-			.GetNearbyIslands();
+			game::session::ship::VisibleIslands(game::session::character::Berth(
+				game::session::Player::GetCharacterId()).GetShip().ToId());
 		if (islands.HasAny())
 		{
 			Terminal::Write("You see {} islands nearby", islands.GetCount());
@@ -135,10 +136,9 @@ namespace state::in_play
 
 	static void OnDock()
 	{
-		if (game::session::character::Berth(
-				game::session::Player::GetCharacterId())
-			.GetShip()
-			.GetDockableIslands()
+		if (game::session::ship::DockableIslands(game::session::character::Berth(
+			game::session::Player::GetCharacterId())
+			.GetShip().ToId())
 			.TryGetFirstId())
 		{
 			application::UIState::Write(DockOrCareen::GetStateId());
@@ -156,13 +156,13 @@ namespace state::in_play
 		Terminal::menu.SetRefresh(Refresh);
 		Terminal::menu.AddAction({ "Move", OnMove });
 		Terminal::menu.AddAction({ "Multiple move", application::UIState::DoGoTo(MultipleMove::GetStateId) });
+		Terminal::menu.AddAction({ "Crew Status", application::UIState::DoGoTo(CrewList::GetStateId) });
+		Terminal::menu.AddAction({ "Ship Status", application::UIState::DoGoTo(ShipStatus::GetStateId) });
 		if (game::session::character::Berth(
 				game::session::Player::GetCharacterId()).GetShip().CanDock())
 		{
 			Terminal::menu.AddAction({ "Dock", OnDock });
 		}
-		Terminal::menu.AddAction({ "Crew Status", application::UIState::DoGoTo(CrewList::GetStateId) });
-		Terminal::menu.AddAction({ "Ship Status", application::UIState::DoGoTo(ShipStatus::GetStateId) });
 		MenuAction defaultAction = { "Menu", application::UIState::DoGoTo(LeavePlay::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}

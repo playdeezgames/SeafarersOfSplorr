@@ -11,6 +11,7 @@
 #include <Game.Session.Character.Marks.h>
 #include <Game.Session.Character.Berth.h>
 #include <Game.Session.Character.KnownIslands.h>
+#include <Game.Session.Ship.VisibleIslands.h>
 namespace state::in_play
 {
 	std::optional<int> ChangeHeading::stateId = std::nullopt;
@@ -47,7 +48,7 @@ namespace state::in_play
 		{
 			Terminal::menu.AddAction({ "Head for a marked location", application::UIState::DoGoTo(HeadForMark::GetStateId) });
 		}
-		if (ship.GetNearbyIslands().HasAny())
+		if (game::session::ship::VisibleIslands(ship.ToId()).HasAny())
 		{
 			Terminal::menu.AddAction({ "Head for a nearby island", application::UIState::DoGoTo(HeadForNearBy::GetStateId) });
 		}

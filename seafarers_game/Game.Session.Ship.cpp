@@ -13,13 +13,14 @@
 #include <Data.Game.Ship.h>
 #include "Game.Session.World.ShipType.h"
 #include "Game.Session.Character.Messages.h"
+#include "Game.Session.Ship.DockableIslands.h"
 namespace game::session
 {
 	using ShipData = data::game::Ship;
 
 	bool Ship::CanDock() const
 	{
-		return GetDockableIslands().TryGetFirstId().has_value();
+		return ship::DockableIslands(shipId).TryGetFirstId().has_value();
 	}
 
 	static std::optional<double> TryGetHeading(int shipId)
@@ -91,7 +92,7 @@ namespace game::session
 	{
 		if (!IsDocked())
 		{
-			auto islandId = GetDockableIslands().TryGetFirstId();
+			auto islandId = ship::DockableIslands(shipId).TryGetFirstId();
 			if (islandId)
 			{
 				data::game::ship::CurrentIsland::Write(shipId, islandId.value());

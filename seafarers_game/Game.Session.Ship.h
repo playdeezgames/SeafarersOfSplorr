@@ -2,8 +2,6 @@
 #include <Common.XY.h>
 #include "Game.ShipType.h"
 #include "Game.Session.Ship.Berths.h"
-#include "Game.Session.Ship.DockableIslands.h"
-#include "Game.Session.Ship.VisibleIslands.h"
 #include <optional>
 #include <string>
 namespace game::session
@@ -12,8 +10,7 @@ namespace game::session
 	{
 		constexpr explicit Ship(int shipId) : shipId(shipId) {}
 		constexpr ship::Berths GetBerths() const { return ship::Berths(shipId); }
-		constexpr ship::DockableIslands GetDockableIslands() const { return ship::DockableIslands(shipId); }
-		constexpr ship::VisibleIslands GetNearbyIslands() const { return ship::VisibleIslands(shipId); }
+		constexpr int ToId() const { return shipId; }
 
 		double GetHeading() const;
 		void SetHeading(double) const;
