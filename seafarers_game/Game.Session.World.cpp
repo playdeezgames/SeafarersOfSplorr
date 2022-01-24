@@ -12,14 +12,18 @@
 #include <Common.Heading.h>
 #include <Common.RNG.h>
 #include <Data.Game.World.h>
+#include "Game.Session.Item.Type.Commodities.h"
 namespace game::session
 {
 	static item::Type CreateWorldCurrencyItemSubtype()//TODO: should this go to Items::Populate?
 	{
 		const double WORLD_CURRENCY_JOOLS_AMOUNT = 0.001;
 		const std::string WORLD_CURRENCY_JOOLS_NAME = "jools";
-		auto result = item::Types().Create(game::item::Category::CURRENCY, WORLD_CURRENCY_JOOLS_NAME);
-		result.GetCommodities().GetCommodity(game::Commodity::JOOLS).SetAmount(WORLD_CURRENCY_JOOLS_AMOUNT);
+		auto result = item::Types()
+			.Create(game::item::Category::CURRENCY, WORLD_CURRENCY_JOOLS_NAME);
+		game::session::item::type::Commodities(result.operator int())
+			.GetCommodity(game::Commodity::JOOLS)
+			.SetAmount(WORLD_CURRENCY_JOOLS_AMOUNT);
 		return result;
 	}
 

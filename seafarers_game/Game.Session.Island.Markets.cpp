@@ -6,16 +6,17 @@
 #include <Common.RNG.h>
 #include <Data.Game.Island.Market.h>
 #include <numeric>
+#include "Game.Session.Item.Type.Commodities.h"
 namespace game::session::island
 {
 	double Markets::GetUnitPurchaseValue(const item::Type& itemSubtype) const
 	{
-		auto itemCommodities = itemSubtype.GetCommodities().GetAll();
+		auto itemCommodities = item::type::Commodities(itemSubtype.operator int()).GetAll();
 		return std::accumulate(
 				itemCommodities.begin(),
 				itemCommodities.end(),
 				0.0,
-				[this](double accumulator, const game::session::item::type::Commodity& itemCommodity)
+				[this](double accumulator, const auto& itemCommodity)
 				{
 					auto market = GetMarket(itemCommodity);
 					auto unitPrice = market.GetUnitPurchaseValue();
@@ -33,12 +34,12 @@ namespace game::session::island
 
 	double Markets::GetUnitSaleValue(const item::Type& itemSubtype) const
 	{
-		auto itemCommodities = itemSubtype.GetCommodities().GetAll();
+		auto itemCommodities = item::type::Commodities(itemSubtype.operator int()).GetAll();
 		return std::accumulate(
 			itemCommodities.begin(),
 			itemCommodities.end(),
 			0.0,
-			[this](double accumulator, const game::session::item::type::Commodity& itemCommodity)
+			[this](double accumulator, const auto& itemCommodity)
 			{
 				auto market = GetMarket(itemCommodity);
 				return accumulator + market.GetUnitSaleValue() * itemCommodity.GetAmount();
