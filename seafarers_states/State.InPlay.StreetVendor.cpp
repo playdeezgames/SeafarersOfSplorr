@@ -33,7 +33,6 @@ namespace state::in_play
 	{
 		return [menuItemId]() 
 		{
-			//TODO: something
 			auto characterId = game::session::Player::GetCharacterId();
 			auto menuItem = game::session::island::street_vendor::MenuItem(menuItemId);
 			auto jools = game::session::character::ItemType(

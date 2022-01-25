@@ -7,9 +7,6 @@ namespace game::session::character
 	{
 		std::string name;
 		game::characters::PlightType type;
-		std::optional<size_t> durationMinimum;
-		std::optional<size_t> durationMaximum;
-		size_t generationWeight;
 	};
 
 	static const std::map<game::characters::Plight, PlightDescriptor> descriptors =
@@ -18,40 +15,35 @@ namespace game::session::character
 			game::characters::Plight::AGING_IMMUNITY,
 			{
 				"Youth",
-				game::characters::PlightType::BLESSING,
-				25,
-				50,
-				1
+				game::characters::PlightType::BLESSING
 			}
 		},
 		{
 			game::characters::Plight::DOUBLE_AGING,
 			{
 				"Progeria",
-				game::characters::PlightType::CURSE,
-				25,
-				50,
-				1
+				game::characters::PlightType::CURSE
 			}
 		},
 		{
 			game::characters::Plight::DOUBLE_HUNGER,
 			{
 				"Tapeworm",
-				game::characters::PlightType::CURSE,
-				25,
-				50,
-				1
+				game::characters::PlightType::CURSE
 			}
 		},
 		{
 			game::characters::Plight::HUNGER_IMMUNITY,
 			{
 				"Satiety",
-				game::characters::PlightType::BLESSING,
-				25,
-				50,
-				1
+				game::characters::PlightType::BLESSING
+			}
+		},
+		{
+			game::characters::Plight::FOOD_POISONING,
+			{
+				"Food Poisoning",
+				game::characters::PlightType::CURSE
 			}
 		}
 	};

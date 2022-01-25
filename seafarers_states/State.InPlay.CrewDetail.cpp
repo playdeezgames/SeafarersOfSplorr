@@ -91,6 +91,7 @@ namespace state::in_play
 		{
 			Terminal::menu.AddAction({ "Deliveries", application::UIState::DoGoTo(crew_detail::Deliveries::GetStateId) });
 		}
+		//TODO: plights
 		MenuAction defaultAction = { "Never mind", OnLeave };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
