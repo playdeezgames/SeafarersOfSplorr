@@ -60,10 +60,8 @@ namespace state::in_play::crew_detail
 			.GetDeliveries();
 		using islands =
 			game::session::Islands;
-
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
-
 		std::for_each(
 			deliveries.begin(),
 			deliveries.end(),
@@ -81,7 +79,6 @@ namespace state::in_play::crew_detail
 						GoToDeliveryDetail(delivery.operator int()) 
 					});
 			});
-
 		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(CrewDetail::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}
