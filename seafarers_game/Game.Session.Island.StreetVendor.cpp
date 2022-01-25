@@ -19,7 +19,7 @@ namespace game::session::island
 		while (itemCount > 0)
 		{
 			auto cookingSkill = common::RNG::FromRange(80, 100);
-			data::game::street_vendor::MenuItem::Create(featureId, cost, satiety, cookingSkill);
+			data::game::street_vendor::MenuItem::Create(featureId, "BAD_NAME", cost, satiety, cookingSkill);
 			cost += common::RNG::FromRange(1, 3);
 			satiety *= 2;
 			itemCount--;

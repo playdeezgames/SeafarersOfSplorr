@@ -207,6 +207,12 @@
     <Filter Include="Header Files\Session\Skill">
       <UniqueIdentifier>{906671d8-ddd9-4534-93ad-0562d8f04df2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Session\Island\Feature\Street Vendor">
+      <UniqueIdentifier>{5795e284-9333-4fed-bdc8-d1ef193359c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Island\Feature\Street Vendor">
+      <UniqueIdentifier>{61ee9354-8ac0-4c09-b67e-3e9847c62539}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -473,9 +479,6 @@
     <ClInclude Include="Game.Session.Character.ItemType.h">
       <Filter>Header Files\Session\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.Island.StreetVendor.h">
-      <Filter>Header Files\Session\Island\Feature</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Session.Skills.h">
       <Filter>Header Files\Session\Skill</Filter>
     </ClInclude>
@@ -484,6 +487,15 @@
     </ClInclude>
     <ClInclude Include="Game.Session.Islands.h">
       <Filter>Header Files\Session\Island</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Island.StreetVendor.h">
+      <Filter>Header Files\Session\Island\Feature\Street Vendor</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Island.StreetVendor.MenuItems.h">
+      <Filter>Header Files\Session\Island\Feature\Street Vendor</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Island.StreetVendor.MenuItem.h">
+      <Filter>Header Files\Session\Island\Feature\Street Vendor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -682,9 +694,6 @@
     <ClCompile Include="Game.Session.Character.ItemType.cpp">
       <Filter>Source Files\Session\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Game.Session.Island.StreetVendor.cpp">
-      <Filter>Source Files\Session\Island\Feature</Filter>
-    </ClCompile>
     <ClCompile Include="Game.Session.Skill.cpp">
       <Filter>Source Files\Session\Skill</Filter>
     </ClCompile>
@@ -693,6 +702,15 @@
     </ClCompile>
     <ClCompile Include="Game.Session.Islands.cpp">
       <Filter>Source Files\Session\Island</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Island.StreetVendor.cpp">
+      <Filter>Source Files\Session\Island\Feature\Street Vendor</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Island.StreetVendor.MenuItem.cpp">
+      <Filter>Source Files\Session\Island\Feature\Street Vendor</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Island.StreetVendor.MenuItems.cpp">
+      <Filter>Source Files\Session\Island\Feature\Street Vendor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

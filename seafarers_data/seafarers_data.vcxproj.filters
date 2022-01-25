@@ -72,6 +72,12 @@
     <Filter Include="Source Files\Delivery">
       <UniqueIdentifier>{ac7cae74-9013-4240-800b-860e951c9907}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Street Vendor">
+      <UniqueIdentifier>{3972af1c-d993-438e-b1a2-7ba5411cce44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Street Vendor">
+      <UniqueIdentifier>{a72e2bf8-8ba7-4a02-bb92-b3980787741e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data.Game.Common.h">
@@ -180,7 +186,7 @@
       <Filter>Header Files\Character</Filter>
     </ClInclude>
     <ClInclude Include="Data.Game.StreetVendor.MenuItem.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Street Vendor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -284,7 +290,7 @@
       <Filter>Source Files\Character</Filter>
     </ClCompile>
     <ClCompile Include="Data.Game.StreetVendor.MenuItem.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Street Vendor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
