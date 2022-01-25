@@ -6,6 +6,7 @@ namespace game::session::character
 		constexpr ItemType(int characterId, int itemTypeId) : characterId(characterId), itemTypeId(itemTypeId) {}
 		constexpr int GetItemType() const { return itemTypeId; }
 		int GetQuantity() const;
+		void RemoveQuantity(int quantity) const;
 	private:
 		int characterId;
 		int itemTypeId;

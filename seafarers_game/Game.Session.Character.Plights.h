@@ -8,6 +8,7 @@ namespace game::session::character
 		constexpr explicit Plights(int characterId) : characterId(characterId) {}
 		constexpr Plight GetPlight(const game::characters::Plight& plight) const { return Plight(characterId, plight); }
 		std::vector<Plight> GetAll() const;
+		void Inflict(const game::characters::Plight& plight, int turns) const;
 		void ApplyTurnEffects() const;
 		bool Has(const game::characters::Plight& plight) const;
 	private:

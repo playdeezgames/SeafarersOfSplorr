@@ -43,6 +43,8 @@ namespace data::game::street_vendor
 	constexpr auto COLUMN_NAME = "Name"sv;
 	constexpr auto COLUMN_PRICE = "Price"sv;
 	constexpr auto COLUMN_STREET_VENDOR_MENU_ITEM_ID = "StreetVendorMenuItemId"sv;
+	constexpr auto COLUMN_SATIETY = "Satiety"sv;
+	constexpr auto COLUMN_COOKING_SKILL = "CookingSkill"sv;
 
 	void MenuItem::Initialize()
 	{
@@ -71,6 +73,22 @@ namespace data::game::street_vendor
 		return Common::TryToInt(
 			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, COLUMN_PRICE, menuItemId),
 			COLUMN_PRICE);
+	}
+
+	std::optional<int> MenuItem::ReadCookingSkill(int menuItemId)
+	{
+		Initialize();
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, COLUMN_COOKING_SKILL, menuItemId),
+			COLUMN_COOKING_SKILL);
+	}
+
+	std::optional<int> MenuItem::ReadSatiety(int menuItemId)
+	{
+		Initialize();
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, COLUMN_SATIETY, menuItemId),
+			COLUMN_SATIETY);
 	}
 
 	std::vector<int> MenuItem::ReadForFeature(int featureId)

@@ -37,4 +37,18 @@ namespace game::session::character
 		auto duration = PlightData::ReadDuration(characterId, (int)plight);
 		return (duration.has_value() && duration.value() > 0);
 	}
+
+	void Plights::Inflict(const game::characters::Plight& plight, int turns) const
+	{
+		auto duration = PlightData::ReadDuration(characterId, (int)plight).value_or(0) + turns;
+		if (duration > 0)
+		{
+			PlightData::Write(characterId, (int)plight, duration);
+		}
+		else
+		{
+			PlightData::ClearPlight(characterId, (int)plight);
+		}
+	}
+
 }

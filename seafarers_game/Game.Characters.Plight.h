@@ -6,6 +6,7 @@ namespace game::characters
 		HUNGER_IMMUNITY,
 		AGING_IMMUNITY,
 		DOUBLE_HUNGER,
-		DOUBLE_AGING
+		DOUBLE_AGING,
+		FOOD_POISONING
 	};
 }

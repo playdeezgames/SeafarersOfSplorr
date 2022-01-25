@@ -9,6 +9,10 @@
 #include <Game.Session.Player.h>
 #include <algorithm>
 #include <format>
+#include <Game.Session.Character.ItemType.h>
+#include <Game.Session.World.h>
+#include <Game.Session.Character.Messages.h>
+#include <Game.Colors.h>
 namespace state::in_play
 {
 	std::optional<int> StreetVendor::stateId = std::nullopt;
@@ -25,11 +29,26 @@ namespace state::in_play
 		Terminal::ShowPrompt();
 	}
 
-	static std::function<void()> DoBuyMenuItem(int /*menuItemId*/)
+	static std::function<void()> DoBuyMenuItem(int menuItemId)
 	{
-		return []() 
+		return [menuItemId]() 
 		{
 			//TODO: something
+			auto characterId = game::session::Player::GetCharacterId();
+			auto menuItem = game::session::island::street_vendor::MenuItem(menuItemId);
+			auto jools = game::session::character::ItemType(
+				characterId,
+				game::session::World::GetCurrencyItemSubtype().operator int());
+			auto price = menuItem.GetPrice();
+			if (jools.GetQuantity() >= price)
+			{
+				jools.RemoveQuantity(price);
+				menuItem.Feed(characterId);
+			}
+			else
+			{
+				game::session::character::Messages(characterId).Add(game::Colors::RED, "You don't have enough jools.");
+			}
 			Refresh();
 		};
 	}

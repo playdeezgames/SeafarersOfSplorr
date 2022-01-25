@@ -8,6 +8,7 @@ namespace game::session::island::street_vendor
 		constexpr int ToId() const { return menuItemId; }
 		std::string GetName() const;
 		int GetPrice() const;
+		void Feed(int characterId) const;
 	private:
 		int menuItemId;
 	};
