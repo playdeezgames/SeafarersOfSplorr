@@ -8,11 +8,13 @@
 #include "Game.Session.Character.Messages.h"
 #include "Game.Session.Character.Plights.h"
 #include "Game.Session.Characters.h"
+#include <Common.RNG.h>
 #include <Data.Game.Character.Delivery.h>
 #include <Data.Game.Character.h>
 #include <Data.Game.Character.Island.Current.h>
 #include <Data.Game.Delivery.h>
 #include <Data.Game.Feature.Delivery.h>
+#include <Data.Game.Item.Type.Property.h>
 #include <Data.Game.Player.h>
 namespace game::session
 {
@@ -180,14 +182,26 @@ namespace game::session
 		character::Messages(characterId).Add(game::Colors::GREEN, "You accept the delivery.");
 	}
 
-	bool Character::Eat([[maybe_unused]]int itemTypeId) const
+	using PropertyData = data::game::item::type::Property;
+
+	bool Character::Eat(int itemTypeId) const
 	{
 		//TODO: the stuff
 		//does the character have any of these things?
 		//is it food?
-		//check cooking skill
-		//pass cooking skill check - add satiety
-		//fail cooking skill check - add food poisoning
+		auto cookingSkill = PropertyData::ReadInt(itemTypeId, "cookingSkill").value();
+		auto satiety = PropertyData::ReadInt(itemTypeId, "satiety").value();
+		if (common::RNG::Roll<100>() <= cookingSkill)
+		{
+			auto counter = game::session::character::Counter(characterId, game::characters::Counter::SATIETY);
+			counter.Change(satiety);
+			game::session::character::Messages(characterId).Add(game::Colors::GREEN, "Delicious!");
+		}
+		else
+		{
+			game::session::character::Plights(characterId).Inflict(game::characters::Plight::FOOD_POISONING, satiety);
+			game::session::character::Messages(characterId).Add(game::Colors::RED, "You got food poisoning!");
+		}
 		return false;
 	}
 

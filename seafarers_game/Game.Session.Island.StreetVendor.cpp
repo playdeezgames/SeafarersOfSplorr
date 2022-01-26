@@ -58,13 +58,10 @@ namespace game::session::island
 			auto itemName = std::format("{} {}",
 				common::RNG::FromVector(cookingStyles).value(),
 				common::RNG::FromVector(foodItems).value());
-			//TODO: the item type is created here
 			auto itemType = game::session::item::Types().Create(game::item::Category::FOOD, itemName);
-			//TODO: set itemtype's satiety, and cooking skill
 			auto properties = game::session::item::type::Properties(itemType.operator int());
 			properties.AddProperty("cookingSkill", cookingSkill);
 			properties.AddProperty("satiety", satiety);
-
 			data::game::street_vendor::MenuItem::Create(
 				featureId, 
 				itemType.operator int(),

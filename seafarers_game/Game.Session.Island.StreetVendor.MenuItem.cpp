@@ -6,6 +6,7 @@
 #include "Game.Colors.h"
 #include "Game.Session.Character.Plights.h"
 #include <Data.Game.Item.Type.Property.h>
+#include "Game.Session.Character.h"
 namespace game::session::island::street_vendor
 {
 	using MenuItemData = data::game::street_vendor::MenuItem;
@@ -24,18 +25,7 @@ namespace game::session::island::street_vendor
 	void MenuItem::Feed(int characterId) const
 	{
 		auto itemTypeId = GetItemTypeId();
-		auto cookingSkill = PropertyData::ReadInt(itemTypeId, "cookingSkill").value();
-		auto satiety = PropertyData::ReadInt(itemTypeId, "satiety").value();
-		if (common::RNG::Roll<100>() <= cookingSkill)
-		{
-			auto counter = game::session::character::Counter(characterId, game::characters::Counter::SATIETY);
-			counter.Change(satiety);
-			game::session::character::Messages(characterId).Add(game::Colors::GREEN, "Delicious!");
-		}
-		else
-		{
-			game::session::character::Plights(characterId).Inflict(game::characters::Plight::FOOD_POISONING, satiety);
-			game::session::character::Messages(characterId).Add(game::Colors::RED, "You got food poisoning!");
-		}
+		//TODO: give character the item
+		game::session::Character(characterId).Eat(itemTypeId);
 	}
 }
