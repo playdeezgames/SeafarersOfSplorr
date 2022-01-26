@@ -497,6 +497,9 @@
     <ClInclude Include="Game.Session.Island.StreetVendor.MenuItem.h">
       <Filter>Header Files\Session\Island\Feature\Street Vendor</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Session.Item.Type.Properties.h">
+      <Filter>Header Files\Session\Item\Type</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Session.cpp">
@@ -711,6 +714,9 @@
     </ClCompile>
     <ClCompile Include="Game.Session.Island.StreetVendor.MenuItems.cpp">
       <Filter>Source Files\Session\Island\Feature\Street Vendor</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Item.Type.Properties.cpp">
+      <Filter>Source Files\Session\Item\Type</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -180,4 +180,15 @@ namespace game::session
 		character::Messages(characterId).Add(game::Colors::GREEN, "You accept the delivery.");
 	}
 
+	bool Character::Eat([[maybe_unused]]int itemTypeId) const
+	{
+		//TODO: the stuff
+		//does the character have any of these things?
+		//is it food?
+		//check cooking skill
+		//pass cooking skill check - add satiety
+		//fail cooking skill check - add food poisoning
+		return false;
+	}
+
 }

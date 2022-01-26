@@ -1,9 +1,12 @@
 #include "Game.Session.Island.StreetVendor.h"
+#include "Game.Item.Category.h"
 #include <algorithm>
-#include <map>
 #include <Common.RNG.h>
 #include <Data.Game.StreetVendor.MenuItem.h>
 #include <format>
+#include <map>
+#include "Game.Session.Item.Types.h"
+#include "Game.Session.Item.Type.Properties.h"
 namespace game::session::island
 {
 	static const std::map<size_t, size_t> foodMenuSizeGenerator =
@@ -52,11 +55,19 @@ namespace game::session::island
 		while (itemCount > 0)
 		{
 			auto cookingSkill = common::RNG::FromRange(80, 100);
+			auto itemName = std::format("{} {}",
+				common::RNG::FromVector(cookingStyles).value(),
+				common::RNG::FromVector(foodItems).value());
+			//TODO: the item type is created here
+			auto itemType = game::session::item::Types().Create(game::item::Category::FOOD, itemName);
+			//TODO: set itemtype's satiety, and cooking skill
+			auto properties = game::session::item::type::Properties(itemType.operator int());
+			properties.AddProperty("cookingSkill", cookingSkill);
+			properties.AddProperty("satiety", satiety);
+
 			data::game::street_vendor::MenuItem::Create(
 				featureId, 
-				std::format("{} {}", 
-					common::RNG::FromVector(cookingStyles).value(), 
-					common::RNG::FromVector(foodItems).value()),
+				itemName,
 				cost, 
 				satiety, 
 				cookingSkill);

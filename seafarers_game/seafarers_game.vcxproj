@@ -70,6 +70,7 @@
     <ClInclude Include="Game.Session.Item.Type.Commodities.h" />
     <ClInclude Include="Game.Session.Item.Type.h" />
     <ClInclude Include="Game.Session.Item.Type.Commodity.h" />
+    <ClInclude Include="Game.Session.Item.Type.Properties.h" />
     <ClInclude Include="Game.Session.Item.Types.h" />
     <ClInclude Include="Game.Session.Player.h" />
     <ClInclude Include="Game.Session.Save.h" />
@@ -158,6 +159,7 @@
     <ClCompile Include="Game.Session.Item.Type.Commodities.cpp" />
     <ClCompile Include="Game.Session.Item.Type.Commodity.cpp" />
     <ClCompile Include="Game.Session.Item.Type.cpp" />
+    <ClCompile Include="Game.Session.Item.Type.Properties.cpp" />
     <ClCompile Include="Game.Session.Item.Types.cpp" />
     <ClCompile Include="Game.Session.Player.cpp" />
     <ClCompile Include="Game.Session.Save.cpp" />

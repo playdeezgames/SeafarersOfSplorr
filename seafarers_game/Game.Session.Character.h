@@ -21,6 +21,7 @@ namespace game::session
 		bool IsOnIsland() const;
 		int GetIslandId() const;
 		void AcceptDelivery(int deliveryId) const;
+		bool Eat(int itemTypeId) const;
 
 	private:
 		int characterId;

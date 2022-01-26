@@ -9,8 +9,8 @@ namespace data::game::item::type
 	static constexpr auto CREATE_TABLE =
 		R"(CREATE TABLE IF NOT EXISTS [ItemTypeCategories]
 		(
-			[ItemTypeId],
-			[Category],
+			[ItemTypeId] INT NOT NULL,
+			[Category] INT NOT NULL,
 			UNIQUE([ItemTypeId],[Category]),
 			FOREIGN KEY ([ItemTypeId]) REFERENCES [ItemTypes]([ItemTypeId])
 		);)"sv;
