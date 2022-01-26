@@ -2,17 +2,18 @@
 #include "State.InPlay.Globals.h"
 #include "State.InPlay.IslandDistrict.h"
 #include "State.ScratchPad.IslandFeature.h"
+#include <algorithm>
+#include <format>
+#include <Game.Colors.h>
 #include <Game.Session.Character.h>
+#include <Game.Session.Character.ItemType.h>
+#include <Game.Session.Character.Messages.h>
 #include <Game.Session.h>
 #include <Game.Session.Island.Feature.h>
 #include <Game.Session.Island.StreetVendor.MenuItems.h>
 #include <Game.Session.Player.h>
-#include <algorithm>
-#include <format>
-#include <Game.Session.Character.ItemType.h>
 #include <Game.Session.World.h>
-#include <Game.Session.Character.Messages.h>
-#include <Game.Colors.h>
+#include <Game.Session.Item.Type.h>
 namespace state::in_play
 {
 	std::optional<int> StreetVendor::stateId = std::nullopt;
@@ -65,8 +66,9 @@ namespace state::in_play
 			menuItems.end(), 
 			[](const auto& menuItem) 
 			{
+				auto itemType = game::session::item::Type(menuItem.GetItemTypeId());
 				Terminal::menu.AddAction({ 
-					std::format("{} (Price:{})",menuItem.GetName(), menuItem.GetPrice()), DoBuyMenuItem(menuItem.ToId()) });
+					std::format("{} (Price:{})",itemType.GetName(), menuItem.GetPrice()), DoBuyMenuItem(menuItem.ToId()) });
 			});
 		MenuAction defaultAction = { "Leave", application::UIState::DoGoTo(IslandDistrict::GetStateId)};
 		Terminal::menu.SetDefaultAction(defaultAction);

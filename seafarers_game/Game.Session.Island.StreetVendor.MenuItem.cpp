@@ -9,14 +9,14 @@ namespace game::session::island::street_vendor
 {
 	using MenuItemData = data::game::street_vendor::MenuItem;
 
-	std::string MenuItem::GetName() const
-	{
-		return MenuItemData::ReadName(menuItemId).value();
-	}
-
 	int MenuItem::GetPrice() const
 	{
 		return MenuItemData::ReadPrice(menuItemId).value();
+	}
+
+	int MenuItem::GetItemTypeId() const
+	{
+		return MenuItemData::ReadItemTypeId(menuItemId).value();
 	}
 
 	void MenuItem::Feed(int characterId) const

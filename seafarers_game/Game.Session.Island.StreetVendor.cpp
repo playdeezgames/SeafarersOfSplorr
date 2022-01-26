@@ -68,7 +68,6 @@ namespace game::session::island
 			data::game::street_vendor::MenuItem::Create(
 				featureId, 
 				itemType.operator int(),
-				itemName,
 				cost, 
 				satiety, 
 				cookingSkill);
