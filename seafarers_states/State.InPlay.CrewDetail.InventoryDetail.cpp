@@ -36,7 +36,9 @@ namespace state::in_play::crew_detail
 		}
 		else
 		{
-			game::session::character::Messages(scratch_pad::CrewDetail::GetCharacterId()).Add(game::Colors::RED, "You cannot eat that!");
+			game::session::character::Messages(
+				scratch_pad::CrewDetail::GetCharacterId())
+				.Add(game::Colors::RED, "You cannot eat that!");
 			Refresh();
 		}
 	}
