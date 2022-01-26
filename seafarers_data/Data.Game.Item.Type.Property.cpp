@@ -6,7 +6,7 @@ namespace data::game::item::type
 {
 	using namespace std::string_view_literals;
 	static constexpr auto CREATE_TABLE_INT =
-		R"(CREATE TABLE [ItemTypeIntProperties]
+		R"(CREATE TABLE IF NOT EXISTS [ItemTypeIntProperties]
 		(
 			[ItemTypeId] INT NOT NULL,
 			[Key] TEXT NOT NULL,

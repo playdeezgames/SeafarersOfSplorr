@@ -8,8 +8,7 @@ namespace data::game::item
 		R"(CREATE TABLE IF NOT EXISTS [ItemTypes]
 		(
 			[ItemTypeId] INTEGER PRIMARY KEY AUTOINCREMENT, 
-			[Name] TEXT NOT NULL,
-			UNIQUE([Category],[Type])
+			[Name] TEXT NOT NULL
 		);)"sv;
 	static constexpr std::string_view INSERT_ITEM =
 		R"(INSERT INTO [ItemTypes]

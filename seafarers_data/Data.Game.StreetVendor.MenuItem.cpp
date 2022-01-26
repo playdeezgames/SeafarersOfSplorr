@@ -12,6 +12,7 @@ namespace data::game::street_vendor
 		(
 			[StreetVendorMenuItemId] INTEGER PRIMARY KEY AUTOINCREMENT,
 			[FeatureId] INT NOT NULL,
+			[ItemTypeId] INT NOT NULL,
 			[Name] TEXT NOT NULL,
 			[Price] INT NOT NULL,
 			[Satiety] INT NOT NULL,
@@ -21,12 +22,13 @@ namespace data::game::street_vendor
 		R"(INSERT INTO [StreetVendorMenuItems]
 		(
 			[FeatureId],
+			[ItemTypeId],
 			[Name],
 			[Price],
 			[Satiety],
 			[CookingSkill]
 		) 
-		VALUES({},{},{},{},{});)"sv;
+		VALUES({},{},{},{},{},{});)"sv;
 	constexpr auto QUERY_ITEM_COLUMN =
 		R"(SELECT 
 			[{}] 
@@ -41,6 +43,7 @@ namespace data::game::street_vendor
 			[FeatureId]={};)"sv;
 			
 	constexpr auto COLUMN_NAME = "Name"sv;
+	constexpr auto COLUMN_ITEM_TYPE_ID = "ItemTypeId"sv;
 	constexpr auto COLUMN_PRICE = "Price"sv;
 	constexpr auto COLUMN_STREET_VENDOR_MENU_ITEM_ID = "StreetVendorMenuItemId"sv;
 	constexpr auto COLUMN_SATIETY = "Satiety"sv;
@@ -52,10 +55,10 @@ namespace data::game::street_vendor
 		Common::Execute(CREATE_TABLE);
 	}
 
-	int MenuItem::Create(int featureId, const std::string& name, int cost, int satiety, int cookingSkill)
+	int MenuItem::Create(int featureId, int itemTypeId, const std::string& name, int cost, int satiety, int cookingSkill)
 	{
 		Initialize();
-		Common::Execute(INSERT_ITEM, featureId, common::Data::QuoteString(name), cost, satiety, cookingSkill);
+		Common::Execute(INSERT_ITEM, featureId, itemTypeId, common::Data::QuoteString(name), cost, satiety, cookingSkill);
 		return Common::LastInsertedIndex();
 	}
 
@@ -89,6 +92,14 @@ namespace data::game::street_vendor
 		return Common::TryToInt(
 			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, COLUMN_SATIETY, menuItemId),
 			COLUMN_SATIETY);
+	}
+
+	std::optional<int> MenuItem::ReadItemTypeId(int menuItemId)
+	{
+		Initialize();
+		return Common::TryToInt(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, COLUMN_ITEM_TYPE_ID, menuItemId),
+			COLUMN_ITEM_TYPE_ID);
 	}
 
 	std::vector<int> MenuItem::ReadForFeature(int featureId)
