@@ -4,10 +4,12 @@
 #include "Game.Session.Character.HitPoints.h"
 #include "Game.Colors.h"
 #include "Game.Session.Character.Deliveries.h"
+#include "Game.Session.Character.ItemType.h"
 #include "Game.Session.Character.KnownIslands.h"
 #include "Game.Session.Character.Messages.h"
 #include "Game.Session.Character.Plights.h"
 #include "Game.Session.Characters.h"
+#include "Game.Session.Item.Type.h"
 #include <Common.RNG.h>
 #include <Data.Game.Character.Delivery.h>
 #include <Data.Game.Character.h>
@@ -186,21 +188,28 @@ namespace game::session
 
 	bool Character::Eat(int itemTypeId) const
 	{
-		//TODO: the stuff
-		//does the character have any of these things?
-		//is it food?
-		auto cookingSkill = PropertyData::ReadInt(itemTypeId, "cookingSkill").value();
-		auto satiety = PropertyData::ReadInt(itemTypeId, "satiety").value();
-		if (common::RNG::Roll<100>() <= cookingSkill)
+		auto characterItem = game::session::character::ItemType(characterId, itemTypeId);
+		if (characterItem.HasAny())
 		{
-			auto counter = game::session::character::Counter(characterId, game::characters::Counter::SATIETY);
-			counter.Change(satiety);
-			game::session::character::Messages(characterId).Add(game::Colors::GREEN, "Delicious!");
-		}
-		else
-		{
-			game::session::character::Plights(characterId).Inflict(game::characters::Plight::FOOD_POISONING, satiety);
-			game::session::character::Messages(characterId).Add(game::Colors::RED, "You got food poisoning!");
+			auto itemType = game::session::item::Type(characterItem.GetItemType());
+			if (itemType.HasCategory(game::item::Category::FOOD))
+			{
+				characterItem.RemoveQuantity(1);
+				auto cookingSkill = PropertyData::ReadInt(itemTypeId, "cookingSkill").value();
+				auto satiety = PropertyData::ReadInt(itemTypeId, "satiety").value();
+				if (common::RNG::Roll<100>() <= cookingSkill)
+				{
+					auto counter = game::session::character::Counter(characterId, game::characters::Counter::SATIETY);
+					counter.Change(satiety);
+					game::session::character::Messages(characterId).Add(game::Colors::GREEN, "Delicious!");
+				}
+				else
+				{
+					game::session::character::Plights(characterId).Inflict(game::characters::Plight::FOOD_POISONING, satiety);
+					game::session::character::Messages(characterId).Add(game::Colors::RED, "You got food poisoning!");
+				}
+				return true;
+			}
 		}
 		return false;
 	}

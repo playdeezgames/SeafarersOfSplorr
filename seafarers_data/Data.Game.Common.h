@@ -23,6 +23,11 @@ namespace data::game
 		{
 			return Common::TryExecuteForOne(std::format(query, args...));
 		}
+		template<typename ...Ts>
+		static Record ExecuteForOne(const std::string_view& query, Ts... args)
+		{
+			return Common::TryExecuteForOne(query, args...).value();
+		}
 
 		static common::XY<double> ToXY(const Record&);//TODO: eliminate?
 		static int LastInsertedIndex();

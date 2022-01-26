@@ -6,5 +6,6 @@ namespace data::game::item::type
 		Category() = delete;
 		static void Initialize();
 		static void AddToCategory(int itemTypeId, int category);
+		static bool HasCategory(int itemTypeId, int category);
 	};
 }

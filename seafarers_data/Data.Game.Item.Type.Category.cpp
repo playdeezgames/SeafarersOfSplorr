@@ -21,6 +21,14 @@ namespace data::game::item::type
 			[Category]
 		) 
 		VALUES({},{});)"sv;
+	static constexpr auto QUERY_ITEM =
+		R"(SELECT 
+			COUNT(1) AS [IsPresent] 
+		FROM ItemTypeCategories 
+		WHERE 
+			ItemTypeId={} 
+			AND Category={};)"sv;
+	static constexpr auto COLUMN_IS_PRESENT = "IsPresent"sv;
 
 	void Category::Initialize()
 	{
@@ -32,5 +40,13 @@ namespace data::game::item::type
 	{
 		Initialize();
 		Common::Execute(REPLACE_ITEM, itemTypeId, category);
+	}
+
+	bool Category::HasCategory(int itemTypeId, int category)
+	{
+		Initialize();
+		return Common::ToInt(
+			Common::ExecuteForOne(QUERY_ITEM, itemTypeId, category),
+			COLUMN_IS_PRESENT) == 1;
 	}
 }

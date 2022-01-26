@@ -25,6 +25,7 @@ namespace game::session::island::street_vendor
 
 	void MenuItem::Give(int characterId) const
 	{
+		game::session::character::Messages(characterId).Add(game::Colors::GREEN, "You buy the item.");
 		game::session::character::ItemTypes(characterId)
 			.AddItemTypeQuantity(GetItemTypeId(), 1);
 	}
