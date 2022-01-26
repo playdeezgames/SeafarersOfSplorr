@@ -43,7 +43,7 @@ namespace state::in_play
 			if (jools.GetQuantity() >= price)
 			{
 				jools.RemoveQuantity(price);
-				menuItem.Feed(characterId);
+				menuItem.Give(characterId);
 			}
 			else
 			{

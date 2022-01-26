@@ -1,5 +1,6 @@
 #pragma once
 #include "Game.Session.Character.ItemType.h"
+#include <vector>
 namespace game::session::character
 {
 	struct ItemTypes

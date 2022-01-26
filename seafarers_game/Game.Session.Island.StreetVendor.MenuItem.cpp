@@ -1,12 +1,13 @@
 #include "Game.Session.Island.StreetVendor.MenuItem.h"
-#include <Data.Game.StreetVendor.MenuItem.h>
-#include <Common.RNG.h>
-#include "Game.Session.Character.Counter.h"
-#include "Game.Session.Character.Messages.h"
 #include "Game.Colors.h"
-#include "Game.Session.Character.Plights.h"
-#include <Data.Game.Item.Type.Property.h>
+#include "Game.Session.Character.Counter.h"
 #include "Game.Session.Character.h"
+#include "Game.Session.Character.ItemTypes.h"
+#include "Game.Session.Character.Messages.h"
+#include "Game.Session.Character.Plights.h"
+#include <Common.RNG.h>
+#include <Data.Game.Item.Type.Property.h>
+#include <Data.Game.StreetVendor.MenuItem.h>
 namespace game::session::island::street_vendor
 {
 	using MenuItemData = data::game::street_vendor::MenuItem;
@@ -22,10 +23,9 @@ namespace game::session::island::street_vendor
 		return MenuItemData::ReadItemTypeId(menuItemId).value();
 	}
 
-	void MenuItem::Feed(int characterId) const
+	void MenuItem::Give(int characterId) const
 	{
-		auto itemTypeId = GetItemTypeId();
-		//TODO: give character the item
-		game::session::Character(characterId).Eat(itemTypeId);
+		game::session::character::ItemTypes(characterId)
+			.AddItemTypeQuantity(GetItemTypeId(), 1);
 	}
 }
