@@ -191,14 +191,18 @@ namespace state
 			}
 			else if (newLineKeys.contains(key))
 			{
-				visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
-				auto number = common::Data::ToInt(Terminal::GetInput());
-				if (!menu.DoAction(number))
+				auto input = Terminal::GetInput();
+				if (!input.empty())
 				{
-					ErrorMessage(errorMessage);
-					refresh();
+					visuals::Terminals::WriteLine(LAYOUT_NAME, TERMINAL_ID, "");
+					auto number = common::Data::ToInt(input);
+					if (!menu.DoAction(number))
+					{
+						ErrorMessage(errorMessage);
+						refresh();
+					}
+					return true;
 				}
-				return true;
 			}
 			else if (key == KEY_BACKSPACE)
 			{
