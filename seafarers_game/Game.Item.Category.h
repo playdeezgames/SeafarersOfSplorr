@@ -3,6 +3,7 @@ namespace game::item
 {
 	enum class Category
 	{
-		CURRENCY
+		CURRENCY,
+		FOOD
 	};
 }

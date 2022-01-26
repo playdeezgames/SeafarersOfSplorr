@@ -188,6 +188,9 @@
     <ClInclude Include="Data.Game.StreetVendor.MenuItem.h">
       <Filter>Header Files\Street Vendor</Filter>
     </ClInclude>
+    <ClInclude Include="Data.Game.Item.Type.Category.h">
+      <Filter>Header Files\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.Game.Common.cpp">
@@ -291,6 +294,9 @@
     </ClCompile>
     <ClCompile Include="Data.Game.StreetVendor.MenuItem.cpp">
       <Filter>Source Files\Street Vendor</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.Game.Item.Type.Category.cpp">
+      <Filter>Source Files\Item</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

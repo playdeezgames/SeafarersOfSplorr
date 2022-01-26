@@ -42,6 +42,7 @@
     <ClInclude Include="Data.Game.Island.h" />
     <ClInclude Include="Data.Game.Island.Market.h" />
     <ClInclude Include="Data.Game.Island.Tribe.h" />
+    <ClInclude Include="Data.Game.Item.Type.Category.h" />
     <ClInclude Include="Data.Game.Item.Type.h" />
     <ClInclude Include="Data.Game.Item.Type.Commodity.h" />
     <ClInclude Include="Data.Game.Player.h" />
@@ -80,6 +81,7 @@
     <ClCompile Include="Data.Game.Island.Feature.cpp" />
     <ClCompile Include="Data.Game.Island.Market.cpp" />
     <ClCompile Include="Data.Game.Island.Tribe.cpp" />
+    <ClCompile Include="Data.Game.Item.Type.Category.cpp" />
     <ClCompile Include="Data.Game.Item.Type.cpp" />
     <ClCompile Include="Data.Game.Item.Type.Commodity.cpp" />
     <ClCompile Include="Data.Game.Player.cpp" />
