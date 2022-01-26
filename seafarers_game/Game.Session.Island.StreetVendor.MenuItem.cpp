@@ -5,9 +5,11 @@
 #include "Game.Session.Character.Messages.h"
 #include "Game.Colors.h"
 #include "Game.Session.Character.Plights.h"
+#include <Data.Game.Item.Type.Property.h>
 namespace game::session::island::street_vendor
 {
 	using MenuItemData = data::game::street_vendor::MenuItem;
+	using PropertyData = data::game::item::type::Property;
 
 	int MenuItem::GetPrice() const
 	{
@@ -21,8 +23,9 @@ namespace game::session::island::street_vendor
 
 	void MenuItem::Feed(int characterId) const
 	{
-		auto cookingSkill = MenuItemData::ReadCookingSkill(menuItemId).value();
-		auto satiety = MenuItemData::ReadSatiety(menuItemId).value();
+		auto itemTypeId = GetItemTypeId();
+		auto cookingSkill = PropertyData::ReadInt(itemTypeId, "cookingSkill").value();
+		auto satiety = PropertyData::ReadInt(itemTypeId, "satiety").value();
 		if (common::RNG::Roll<100>() <= cookingSkill)
 		{
 			auto counter = game::session::character::Counter(characterId, game::characters::Counter::SATIETY);

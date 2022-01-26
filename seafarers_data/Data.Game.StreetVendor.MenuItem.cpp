@@ -13,20 +13,16 @@ namespace data::game::street_vendor
 			[StreetVendorMenuItemId] INTEGER PRIMARY KEY AUTOINCREMENT,
 			[FeatureId] INT NOT NULL,
 			[ItemTypeId] INT NOT NULL,
-			[Price] INT NOT NULL,
-			[Satiety] INT NOT NULL,
-			[CookingSkill] INT NOT NULL
+			[Price] INT NOT NULL
 		);)"sv;
 	constexpr auto INSERT_ITEM = 
 		R"(INSERT INTO [StreetVendorMenuItems]
 		(
 			[FeatureId],
 			[ItemTypeId],
-			[Price],
-			[Satiety],
-			[CookingSkill]
+			[Price]
 		) 
-		VALUES({},{},{},{},{});)"sv;
+		VALUES({},{},{});)"sv;
 	constexpr auto QUERY_ITEM_COLUMN =
 		R"(SELECT 
 			[{}] 
@@ -43,8 +39,6 @@ namespace data::game::street_vendor
 	constexpr auto COLUMN_ITEM_TYPE_ID = "ItemTypeId"sv;
 	constexpr auto COLUMN_PRICE = "Price"sv;
 	constexpr auto COLUMN_STREET_VENDOR_MENU_ITEM_ID = "StreetVendorMenuItemId"sv;
-	constexpr auto COLUMN_SATIETY = "Satiety"sv;
-	constexpr auto COLUMN_COOKING_SKILL = "CookingSkill"sv;
 
 	void MenuItem::Initialize()
 	{
@@ -52,10 +46,10 @@ namespace data::game::street_vendor
 		Common::Execute(CREATE_TABLE);
 	}
 
-	int MenuItem::Create(int featureId, int itemTypeId, int cost, int satiety, int cookingSkill)
+	int MenuItem::Create(int featureId, int itemTypeId, int cost)
 	{
 		Initialize();
-		Common::Execute(INSERT_ITEM, featureId, itemTypeId, cost, satiety, cookingSkill);
+		Common::Execute(INSERT_ITEM, featureId, itemTypeId, cost);
 		return Common::LastInsertedIndex();
 	}
 
@@ -65,22 +59,6 @@ namespace data::game::street_vendor
 		return Common::TryToInt(
 			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, COLUMN_PRICE, menuItemId),
 			COLUMN_PRICE);
-	}
-
-	std::optional<int> MenuItem::ReadCookingSkill(int menuItemId)
-	{
-		Initialize();
-		return Common::TryToInt(
-			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, COLUMN_COOKING_SKILL, menuItemId),
-			COLUMN_COOKING_SKILL);
-	}
-
-	std::optional<int> MenuItem::ReadSatiety(int menuItemId)
-	{
-		Initialize();
-		return Common::TryToInt(
-			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, COLUMN_SATIETY, menuItemId),
-			COLUMN_SATIETY);
 	}
 
 	std::optional<int> MenuItem::ReadItemTypeId(int menuItemId)

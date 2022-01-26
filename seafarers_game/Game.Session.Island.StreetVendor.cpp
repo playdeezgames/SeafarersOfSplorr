@@ -68,9 +68,7 @@ namespace game::session::island
 			data::game::street_vendor::MenuItem::Create(
 				featureId, 
 				itemType.operator int(),
-				cost, 
-				satiety, 
-				cookingSkill);
+				cost);
 			cost += common::RNG::FromRange(1, 3);
 			satiety *= 2;
 			itemCount--;
