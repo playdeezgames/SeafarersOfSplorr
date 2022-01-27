@@ -57,7 +57,6 @@ namespace game::session::island
 	void StreetVendor::Populate(const game::Difficulty&) const
 	{
 		auto itemCount = common::RNG::FromGenerator(foodMenuSizeGenerator);
-		int cost = common::RNG::FromRange(1,3);
 		int satiety = 5;
 		double commodityAmount = 1.0;
 		while (itemCount > 0)
@@ -74,9 +73,7 @@ namespace game::session::island
 			commodity.SetAmount(commodityAmount);
 			data::game::street_vendor::MenuItem::Create(
 				featureId, 
-				itemType.operator int(),
-				cost);
-			cost += common::RNG::FromRange(1, 3);
+				itemType.operator int());
 			satiety *= 2;
 			commodityAmount *= 2.0;
 			itemCount--;

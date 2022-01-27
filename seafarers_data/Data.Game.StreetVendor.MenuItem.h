@@ -8,8 +8,7 @@ namespace data::game::street_vendor
 	{
 		MenuItem() = delete;
 		static void Initialize();
-		static int Create(int featureId, int itemTypeId, int cost);
-		static std::optional<int> ReadPrice(int menuItemId);
+		static int Create(int featureId, int itemTypeId);
 		static std::optional<int> ReadItemTypeId(int menuItemId);
 		static std::vector<int> ReadForFeature(int featureId);
 	};
