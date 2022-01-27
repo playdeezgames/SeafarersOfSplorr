@@ -59,7 +59,7 @@ namespace game::session::island
 		auto itemCount = common::RNG::FromGenerator(foodMenuSizeGenerator);
 		int cost = common::RNG::FromRange(1,3);
 		int satiety = 5;
-		double commodityAmount = 0.1;
+		double commodityAmount = 1.0;
 		while (itemCount > 0)
 		{
 			auto cookingSkill = common::RNG::FromRange(80, 100);
@@ -70,7 +70,8 @@ namespace game::session::island
 			auto properties = game::session::item::type::Properties(itemType.operator int());
 			properties.AddProperty("cookingSkill", cookingSkill);
 			properties.AddProperty("satiety", satiety);
-			auto commodities = game::session::item::type::Commodity(itemType.operator int(), game::Commodity::FOOD);
+			auto commodity = game::session::item::type::Commodity(itemType.operator int(), game::Commodity::FOOD);
+			commodity.SetAmount(commodityAmount);
 			data::game::street_vendor::MenuItem::Create(
 				featureId, 
 				itemType.operator int(),

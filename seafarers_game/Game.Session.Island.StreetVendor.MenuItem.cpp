@@ -8,14 +8,18 @@
 #include <Common.RNG.h>
 #include <Data.Game.Item.Type.Property.h>
 #include <Data.Game.StreetVendor.MenuItem.h>
+#include "Game.Session.Island.Markets.h"
+#include "Game.Session.World.h"
 namespace game::session::island::street_vendor
 {
 	using MenuItemData = data::game::street_vendor::MenuItem;
 	using PropertyData = data::game::item::type::Property;
 
-	int MenuItem::GetPrice() const
+	int MenuItem::GetPrice(int islandId) const
 	{
-		return MenuItemData::ReadPrice(menuItemId).value();
+		auto unitPrice = game::session::island::Markets(islandId).GetUnitPurchaseValue(GetItemTypeId());
+		auto currencyUnitPrice = game::session::island::Markets(islandId).GetUnitPurchaseValue(World::GetCurrencyItemSubtype().operator int());
+		return (int)std::ceil(unitPrice / currencyUnitPrice);
 	}
 
 	int MenuItem::GetItemTypeId() const

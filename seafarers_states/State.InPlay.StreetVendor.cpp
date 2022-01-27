@@ -36,10 +36,11 @@ namespace state::in_play
 		{
 			auto characterId = game::session::Player::GetCharacterId();
 			auto menuItem = game::session::island::street_vendor::MenuItem(menuItemId);
+			int islandId = game::session::Character(game::session::Player::GetCharacterId()).GetIslandId();
 			auto jools = game::session::character::ItemType(
 				characterId,
 				game::session::World::GetCurrencyItemSubtype().operator int());
-			auto price = menuItem.GetPrice();
+			auto price = menuItem.GetPrice(islandId);
 			if (jools.GetQuantity() >= price)
 			{
 				jools.RemoveQuantity(price);
@@ -67,8 +68,9 @@ namespace state::in_play
 			[](const auto& menuItem) 
 			{
 				auto itemType = game::session::item::Type(menuItem.GetItemTypeId());
+				int islandId = game::session::Character(game::session::Player::GetCharacterId()).GetIslandId();
 				Terminal::menu.AddAction({ 
-					std::format("{} (Price:{})",itemType.GetName(), menuItem.GetPrice()), DoBuyMenuItem(menuItem.ToId()) });
+					std::format("{} (Price:{})",itemType.GetName(), menuItem.GetPrice(islandId)), DoBuyMenuItem(menuItem.ToId()) });
 			});
 		MenuAction defaultAction = { "Leave", application::UIState::DoGoTo(IslandDistrict::GetStateId)};
 		Terminal::menu.SetDefaultAction(defaultAction);
