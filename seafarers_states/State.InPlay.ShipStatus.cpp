@@ -9,6 +9,7 @@
 #include <Game.Session.Character.h>
 #include <Game.Session.Character.Berth.h>
 #include <Game.Session.Ship.h>
+#include <Game.Session.Ship.Counter.h>
 namespace state::in_play
 {
 	std::optional<int> ShipStatus::stateId = std::nullopt;
@@ -30,17 +31,26 @@ namespace state::in_play
 		Terminal::ShowPrompt();
 	}
 
+	static void HuntRats()
+	{
+		//TODO: the stuff
+		Refresh();
+	}
+
 	static void UpdateMenu()
 	{
-		auto ship = 
-			game::session::Ship(
-			game::session::character::Berth(game::session::Player::GetCharacterId()).GetShipId());
+		auto shipId = game::session::character::Berth(game::session::Player::GetCharacterId()).GetShipId();
+		auto ship = game::session::Ship(shipId);
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		Terminal::menu.AddAction({ std::format("Change Heading(Current: {:.2f}\xf8)", ship.GetHeading()), application::UIState::DoGoTo(ChangeHeading::GetStateId) });
 		Terminal::menu.AddAction({ std::format("Change Speed(Current: {:.1f})", ship.GetSpeed()), application::UIState::DoGoTo(ChangeSpeed::GetStateId) });
 		Terminal::menu.AddAction({ "Mark Current Location", application::UIState::DoGoTo(MarkCurrentLocation::GetStateId) });
 		Terminal::menu.AddAction({ "Rename ship", application::UIState::DoGoTo(RenameShipAdjective::GetStateId) });
+		if (game::session::ship::Counter(shipId, game::ships::Counter::RATS).GetValue() > 0)
+		{
+			Terminal::menu.AddAction({ "Hunt rats", HuntRats });
+		}
 		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(AtSeaOverview::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 	}

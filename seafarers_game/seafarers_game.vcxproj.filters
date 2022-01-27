@@ -213,6 +213,12 @@
     <Filter Include="Source Files\Session\Island\Feature\Street Vendor">
       <UniqueIdentifier>{61ee9354-8ac0-4c09-b67e-3e9847c62539}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Session\Ship\Counter">
+      <UniqueIdentifier>{d5eaf369-040e-42a4-97a3-5400c923003f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Session\Ship\Counter">
+      <UniqueIdentifier>{be4864d7-9dce-47ae-86df-9f499a2da778}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -500,6 +506,12 @@
     <ClInclude Include="Game.Session.Item.Type.Properties.h">
       <Filter>Header Files\Session\Item\Type</Filter>
     </ClInclude>
+    <ClInclude Include="Game.Ships.Counter.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Ship.Counter.h">
+      <Filter>Header Files\Session\Ship\Counter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.Session.cpp">
@@ -717,6 +729,9 @@
     </ClCompile>
     <ClCompile Include="Game.Session.Item.Type.Properties.cpp">
       <Filter>Source Files\Session\Item\Type</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.Session.Ship.Counter.cpp">
+      <Filter>Source Files\Session\Ship\Counter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

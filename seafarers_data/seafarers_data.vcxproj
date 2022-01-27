@@ -47,6 +47,7 @@
     <ClInclude Include="Data.Game.Item.Type.Commodity.h" />
     <ClInclude Include="Data.Game.Item.Type.Property.h" />
     <ClInclude Include="Data.Game.Player.h" />
+    <ClInclude Include="Data.Game.Ship.Counter.h" />
     <ClInclude Include="Data.Game.Ship.CurrentIsland.h" />
     <ClInclude Include="Data.Game.Ship.h" />
     <ClInclude Include="Data.Game.Skill.h" />
@@ -87,6 +88,7 @@
     <ClCompile Include="Data.Game.Item.Type.Commodity.cpp" />
     <ClCompile Include="Data.Game.Item.Type.Property.cpp" />
     <ClCompile Include="Data.Game.Player.cpp" />
+    <ClCompile Include="Data.Game.Ship.Counter.cpp" />
     <ClCompile Include="Data.Game.Ship.cpp" />
     <ClCompile Include="Data.Game.Ship.CurrentIsland.cpp" />
     <ClCompile Include="Data.Game.Skill.cpp" />
