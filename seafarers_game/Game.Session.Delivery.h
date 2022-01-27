@@ -8,8 +8,7 @@ namespace game::session
 		int GetToIslandId() const;
 		int GetFromIslandId() const;
 		int GetTimeLimit() const;
-		int GetRewardItemType() const;
-		int GetRewardQuantity() const;
+		double GetRewardValue() const;
 	private:
 		int deliveryId;
 	};

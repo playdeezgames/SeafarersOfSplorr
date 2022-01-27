@@ -67,11 +67,10 @@ namespace state::in_play::delivery_service
 				Terminal::menu.AddAction(
 					{ 
 						std::format(
-							"Dist: {:.2f}, Time Limit: {}, Reward: {} x {}", 
+							"Dist: {:.2f}, Time Limit: {}, Reward: {:.1f}", 
 							distance, 
 							timeLimit,
-							game::session::item::Type(delivery.GetRewardItemType()).GetName(),
-							delivery.GetRewardQuantity()), 
+							delivery.GetRewardValue()), 
 						DoSelectDelivery(delivery.operator int())
 					});
 			});

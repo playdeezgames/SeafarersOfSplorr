@@ -28,9 +28,8 @@ namespace state::in_play::delivery_service
 		Terminal::WriteLine("Destination: {}", toIsland.GetName());
 		Terminal::WriteLine("Distance: {:.2f}", distance);
 		Terminal::WriteLine(
-			"Reward: {} x {}", 
-			game::session::item::Type(delivery.GetRewardItemType()).GetName(), 
-			delivery.GetRewardQuantity());
+			"Reward: {:.1f}", 
+			delivery.GetRewardValue());
 		Terminal::ShowMenu();
 		Terminal::ShowPrompt();
 	}

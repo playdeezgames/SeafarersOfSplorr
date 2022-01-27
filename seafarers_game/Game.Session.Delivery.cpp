@@ -17,13 +17,8 @@ namespace game::session
 		return data::game::Delivery::ReadTimeLimit(deliveryId).value();
 	}
 
-	int Delivery::GetRewardItemType() const
+	double Delivery::GetRewardValue() const
 	{
-		return data::game::Delivery::ReadRewardItemTypeId(deliveryId).value();
-	}
-
-	int Delivery::GetRewardQuantity() const
-	{
-		return data::game::Delivery::ReadRewardQuantity(deliveryId).value();
+		return data::game::Delivery::ReadRewardValue(deliveryId).value();
 	}
 }

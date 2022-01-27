@@ -17,7 +17,7 @@ namespace game::session
 {
 	static item::Type CreateWorldCurrencyItemSubtype()//TODO: should this go to Items::Populate?
 	{
-		const double WORLD_CURRENCY_JOOLS_AMOUNT = 0.001;
+		const double WORLD_CURRENCY_JOOLS_AMOUNT = 1.0;
 		const std::string WORLD_CURRENCY_JOOLS_NAME = "jools";
 		auto result = item::Types()
 			.Create(game::item::Category::CURRENCY, WORLD_CURRENCY_JOOLS_NAME);

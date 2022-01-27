@@ -7,7 +7,7 @@ namespace game::session
 	struct World
 	{
 		World() = delete;
-		static item::Type GetCurrencyItemSubtype();
+		static item::Type GetCurrencyItemSubtype();//TODO: rename
 		static game::Difficulty GetDifficulty();
 		static void Reset();
 		static void Populate(const Difficulty& difficulty);

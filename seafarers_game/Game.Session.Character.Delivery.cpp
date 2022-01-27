@@ -6,6 +6,8 @@
 #include "Game.Session.Character.Delivery.h"
 #include "Game.Session.Character.Messages.h"
 #include "Game.Session.Item.Type.h"
+#include "Game.Session.World.h"
+#include "Game.Session.Island.Markets.h"
 namespace game::session::character
 {
 	using DeliveryData = data::game::Delivery;
@@ -32,8 +34,12 @@ namespace game::session::character
 		messages.Add<>(messageColor, messageText);
 		ChangeCharacterIslandReputation(characterId, delivery.GetToIslandId(), reputationDelta);
 		ChangeCharacterIslandReputation(characterId, delivery.GetFromIslandId(), reputationDelta);
-		auto itemType = delivery.GetRewardItemType();
-		auto quantity = delivery.GetRewardQuantity();
+
+		auto rewardValue = delivery.GetRewardValue();
+		auto itemType = game::session::World::GetCurrencyItemSubtype().operator int();
+		auto quantity = game::session::island::Markets(delivery.GetToIslandId()).GetMaximumPurchaseQuantity(itemType, rewardValue);
+		quantity = std::max(quantity, 1);
+
 		auto count = data::game::character::ItemType::Read(characterId, itemType).value_or(0);
 		data::game::character::ItemType::Write(characterId, itemType, count + quantity);
 		messages.Add(game::Colors::GREEN, "You receive {} {}.", quantity, game::session::item::Type(itemType).GetName());

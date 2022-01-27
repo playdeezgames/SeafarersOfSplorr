@@ -32,9 +32,8 @@ namespace state::in_play::crew_detail
 		Terminal::WriteLine("Destination: {}", toIsland.GetName());
 		Terminal::WriteLine("Distance: {:.2f}", toIsland.DistanceFrom(location));
 		Terminal::WriteLine(
-			"Reward: {} x {}", 
-			game::session::item::Type(delivery.GetRewardItemType()).GetName(),
-			delivery.GetRewardQuantity());
+			"Reward: {:.1f}", 
+			delivery.GetRewardValue());
 
 		Terminal::ShowMenu();
 		Terminal::ShowPrompt();

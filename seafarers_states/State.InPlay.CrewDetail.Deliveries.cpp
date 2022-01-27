@@ -70,12 +70,11 @@ namespace state::in_play::crew_detail
 				auto toIsland = islands::GetIsland(delivery.GetToIslandId());
 				Terminal::menu.AddAction({ 
 						std::format(
-							"{} (Dist: {:.2f}) (Time: {}) (Reward: {} x {})",
+							"{} (Dist: {:.2f}) (Time: {}) (Reward: {:.1f})",
 							toIsland.GetName(), 
 							toIsland.DistanceFrom(location),
 							delivery.GetTimeLimit(),
-							game::session::item::Type(delivery.GetRewardItemType()).GetName(),
-							delivery.GetRewardQuantity()), 
+							delivery.GetRewardValue()), 
 						GoToDeliveryDetail(delivery.operator int()) 
 					});
 			});

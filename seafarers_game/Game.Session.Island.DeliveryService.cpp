@@ -30,9 +30,7 @@ namespace game::session::island
 		int timeLimit = (int)(fromIsland.DistanceTo(toIsland) * TIME_LIMIT_FACTOR);
 		auto rewardValue = common::RNG::FromRange(MINIMUM_REWARD_VALUE, MAXIMUM_REWARD_VALUE);
 		//TODO: make this less hacked
-		auto rewardItemType = world::GetCurrencyItemSubtype();//TODO: eliminate
-		auto rewardQuantity = common::RNG::Roll<5>();//TODO: eliminate
-		auto deliveryId = data::game::Delivery::Create(fromIslandId, toIsland.operator int(), timeLimit, rewardItemType.operator int(), rewardQuantity, rewardValue);
+		auto deliveryId = data::game::Delivery::Create(fromIslandId, toIsland.operator int(), timeLimit, rewardValue);
 		data::game::feature::Delivery::Create(featureId, deliveryId);
 	}
 

@@ -12,12 +12,9 @@ namespace data::game
 			[FromIslandId] INT NOT NULL,
 			[ToIslandId] INT NOT NULL,
 			[TimeLimit] INT NOT NULL,
-			[RewardItemTypeId] INT NOT NULL,
-			[RewardQuantity] INT NOT NULL,
 			[RewardValue] REAL NOT NULL,
 			FOREIGN KEY ([FromIslandId]) REFERENCES [Islands]([IslandId]),
-			FOREIGN KEY ([ToIslandId]) REFERENCES [Islands]([IslandId]),
-			FOREIGN KEY ([RewardItemTypeId]) REFERENCES [ItemTypes]([ItemTypeId])
+			FOREIGN KEY ([ToIslandId]) REFERENCES [Islands]([IslandId])
 		);)"sv;
 	static constexpr auto INSERT_ITEM =
 		R"(INSERT INTO [Deliveries]
@@ -25,11 +22,9 @@ namespace data::game
 			[FromIslandId],
 			[ToIslandId],
 			[TimeLimit],
-			[RewardItemTypeId],
-			[RewardQuantity],
 			[RewardValue]
 		) 
-		VALUES({},{},{},{},{},{});)"sv;
+		VALUES({},{},{},{});)"sv;
 	static constexpr auto QUERY_ITEM_COLUMN =
 		R"(SELECT 
 			[{}] 
@@ -49,13 +44,10 @@ namespace data::game
 	static constexpr auto FIELD_TO_ISLAND_ID = "ToIslandId"sv;
 	static constexpr auto FIELD_FROM_ISLAND_ID = "FromIslandId"sv;
 	static constexpr auto FIELD_TIME_LIMIT = "TimeLimit"sv;
-	static constexpr auto FIELD_REWARD_QUANTITY = "RewardQuantity"sv;
-	static constexpr auto FIELD_REWARD_ITEM_TYPE_ID = "RewardItemTypeId"sv;
 	static constexpr auto FIELD_REWARD_VALUE = "RewardValue"sv;
 
 	void Delivery::Initialize()
 	{
-		item::Type::Initialize();
 		Island::Initialize();
 		Common::Execute(CREATE_TABLE);
 	}
@@ -64,8 +56,6 @@ namespace data::game
 		int fromIslandId, 
 		int toIslandId, 
 		int timeLimit, 
-		int rewardItemType, 
-		int rewardQuantity,
 		double rewardValue)
 	{
 		Initialize();
@@ -74,8 +64,6 @@ namespace data::game
 			fromIslandId, 
 			toIslandId, 
 			timeLimit, 
-			rewardItemType, 
-			rewardQuantity,
 			rewardValue);
 		return Common::LastInsertedIndex();
 	}
@@ -99,20 +87,6 @@ namespace data::game
 		return Common::TryToInt(
 			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_TIME_LIMIT, deliveryId),
 			FIELD_TIME_LIMIT);
-	}
-
-	std::optional<int> Delivery::ReadRewardQuantity(int deliveryId)
-	{
-		return Common::TryToInt(
-			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_REWARD_QUANTITY, deliveryId),
-			FIELD_REWARD_QUANTITY);
-	}
-
-	std::optional<int> Delivery::ReadRewardItemTypeId(int deliveryId)
-	{
-		return Common::TryToInt(
-			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_REWARD_ITEM_TYPE_ID, deliveryId),
-			FIELD_REWARD_ITEM_TYPE_ID);
 	}
 
 	std::optional<double> Delivery::ReadRewardValue(int deliveryId)
