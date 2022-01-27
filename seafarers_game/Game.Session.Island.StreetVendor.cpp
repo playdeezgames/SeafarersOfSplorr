@@ -29,12 +29,15 @@ namespace game::session::island
 		"seared"sv,
 		"pickled"sv,
 		"salted"sv,
-		"dried"sv
+		"dried"sv,
+		"sauteed"sv,
+		"poached"sv,
+		"braised"sv
 	};
 
 	static const std::vector<std::string_view> foodItems =
 	{
-		"potatos"sv,
+		"potatoes"sv,
 		"clams"sv,
 		"marmite"sv,
 		"toad stools"sv,
@@ -44,7 +47,10 @@ namespace game::session::island
 		"fish"sv,
 		"grubs"sv,
 		"pinapples"sv,
-		"lefsa"sv
+		"lefsa"sv,
+		"human"sv,
+		"seagull"sv,
+		"snails"sv
 	};
 
 	void StreetVendor::Populate(const game::Difficulty&) const
