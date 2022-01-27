@@ -14,6 +14,7 @@ namespace data::game
 			[TimeLimit] INT NOT NULL,
 			[RewardItemTypeId] INT NOT NULL,
 			[RewardQuantity] INT NOT NULL,
+			[RewardValue] REAL NOT NULL,
 			FOREIGN KEY ([FromIslandId]) REFERENCES [Islands]([IslandId]),
 			FOREIGN KEY ([ToIslandId]) REFERENCES [Islands]([IslandId]),
 			FOREIGN KEY ([RewardItemTypeId]) REFERENCES [ItemTypes]([ItemTypeId])
@@ -25,9 +26,10 @@ namespace data::game
 			[ToIslandId],
 			[TimeLimit],
 			[RewardItemTypeId],
-			[RewardQuantity]
+			[RewardQuantity],
+			[RewardValue]
 		) 
-		VALUES({},{},{},{},{});)"sv;
+		VALUES({},{},{},{},{},{});)"sv;
 	static constexpr auto QUERY_ITEM_COLUMN =
 		R"(SELECT 
 			[{}] 
@@ -49,6 +51,7 @@ namespace data::game
 	static constexpr auto FIELD_TIME_LIMIT = "TimeLimit"sv;
 	static constexpr auto FIELD_REWARD_QUANTITY = "RewardQuantity"sv;
 	static constexpr auto FIELD_REWARD_ITEM_TYPE_ID = "RewardItemTypeId"sv;
+	static constexpr auto FIELD_REWARD_VALUE = "RewardValue"sv;
 
 	void Delivery::Initialize()
 	{
@@ -57,10 +60,23 @@ namespace data::game
 		Common::Execute(CREATE_TABLE);
 	}
 
-	int Delivery::Create(int fromIslandId, int toIslandId, int timeLimit, int rewardItemType, int rewardQuantity)
+	int Delivery::Create(
+		int fromIslandId, 
+		int toIslandId, 
+		int timeLimit, 
+		int rewardItemType, 
+		int rewardQuantity,
+		double rewardValue)
 	{
 		Initialize();
-		Common::Execute(INSERT_ITEM, fromIslandId, toIslandId, timeLimit, rewardItemType, rewardQuantity);
+		Common::Execute(
+			INSERT_ITEM, 
+			fromIslandId, 
+			toIslandId, 
+			timeLimit, 
+			rewardItemType, 
+			rewardQuantity,
+			rewardValue);
 		return Common::LastInsertedIndex();
 	}
 
@@ -98,6 +114,14 @@ namespace data::game
 			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_REWARD_ITEM_TYPE_ID, deliveryId),
 			FIELD_REWARD_ITEM_TYPE_ID);
 	}
+
+	std::optional<double> Delivery::ReadRewardValue(int deliveryId)
+	{
+		return Common::TryToDouble(
+			Common::TryExecuteForOne(QUERY_ITEM_COLUMN, FIELD_REWARD_VALUE, deliveryId),
+			FIELD_REWARD_VALUE);
+	}
+
 
 	void Delivery::WriteTimeLimit(int deliveryId, int timeLimit)
 	{

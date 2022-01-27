@@ -11,6 +11,8 @@ namespace game::session::island
 	static void GenerateDeliveryForFeature(int featureId)
 	{
 		constexpr double TIME_LIMIT_FACTOR = 2.0;
+		constexpr double MINIMUM_REWARD_VALUE = 1.0;
+		constexpr double MAXIMUM_REWARD_VALUE = 5.0;
 		using world = game::session::World;
 		using islands = game::session::Islands;
 		auto fromIslandId = data::game::island::Feature::ReadIslandId(featureId).value();
@@ -26,10 +28,11 @@ namespace game::session::island
 		candidateIslands.erase(last, candidateIslands.end());
 		auto toIsland = common::RNG::FromVector(candidateIslands).value();
 		int timeLimit = (int)(fromIsland.DistanceTo(toIsland) * TIME_LIMIT_FACTOR);
+		auto rewardValue = common::RNG::FromRange(MINIMUM_REWARD_VALUE, MAXIMUM_REWARD_VALUE);
 		//TODO: make this less hacked
-		auto rewardItemType = world::GetCurrencyItemSubtype();
-		auto rewardQuantity = common::RNG::Roll<5>();
-		auto deliveryId = data::game::Delivery::Create(fromIslandId, toIsland.operator int(), timeLimit, rewardItemType.operator int(), rewardQuantity);
+		auto rewardItemType = world::GetCurrencyItemSubtype();//TODO: eliminate
+		auto rewardQuantity = common::RNG::Roll<5>();//TODO: eliminate
+		auto deliveryId = data::game::Delivery::Create(fromIslandId, toIsland.operator int(), timeLimit, rewardItemType.operator int(), rewardQuantity, rewardValue);
 		data::game::feature::Delivery::Create(featureId, deliveryId);
 	}
 
