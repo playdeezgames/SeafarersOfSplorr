@@ -11,6 +11,7 @@ namespace game
 		LABOR,
 		SILK,
 		SEAWEED,
-		SALT
+		SALT,
+		FOOD
 	};
 }

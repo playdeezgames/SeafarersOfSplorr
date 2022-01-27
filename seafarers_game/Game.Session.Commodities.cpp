@@ -11,7 +11,8 @@ namespace game::session
 		Commodity(game::Commodity::LABOR),
 		Commodity(game::Commodity::SILK),
 		Commodity(game::Commodity::SEAWEED),
-		Commodity(game::Commodity::SALT)
+		Commodity(game::Commodity::SALT),
+		Commodity(game::Commodity::FOOD)
 	};
 
 	const std::vector<Commodity>& Commodities::GetAll() const

@@ -102,6 +102,16 @@ namespace game::session
 				0.02,
 				0.85
 			}
+		},
+		{
+			game::Commodity::FOOD,
+			{
+				"food",
+				0.5,
+				0.02,
+				0.02,
+				0.85
+			}
 		}
 	};
 
