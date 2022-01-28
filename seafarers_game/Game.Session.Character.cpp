@@ -18,6 +18,7 @@
 #include <Data.Game.Feature.Delivery.h>
 #include <Data.Game.Item.Type.Property.h>
 #include <Data.Game.Player.h>
+#include "Game.Session.Character.Berth.h"
 namespace game::session
 {
 	bool Character::IsDead() const
@@ -214,4 +215,8 @@ namespace game::session
 		return false;
 	}
 
+	int Character::GetShipId() const
+	{
+		return game::session::character::Berth(characterId).GetShipId();
+	}
 }
