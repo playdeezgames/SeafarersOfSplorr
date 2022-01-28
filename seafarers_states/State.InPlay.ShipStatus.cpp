@@ -10,6 +10,7 @@
 #include <Game.Session.Character.Berth.h>
 #include <Game.Session.Ship.h>
 #include <Game.Session.Ship.Counter.h>
+#include "State.InPlay.Ship.HuntRats.h"
 namespace state::in_play
 {
 	std::optional<int> ShipStatus::stateId = std::nullopt;
@@ -31,12 +32,6 @@ namespace state::in_play
 		Terminal::ShowPrompt();
 	}
 
-	static void HuntRats()
-	{
-		//TODO: the stuff
-		Refresh();
-	}
-
 	static void UpdateMenu()
 	{
 		auto shipId = game::session::character::Berth(game::session::Player::GetCharacterId()).GetShipId();
@@ -49,7 +44,7 @@ namespace state::in_play
 		Terminal::menu.AddAction({ "Rename ship", application::UIState::DoGoTo(RenameShipAdjective::GetStateId) });
 		if (game::session::ship::Counter(shipId, game::ships::Counter::RATS).GetValue() > 0)
 		{
-			Terminal::menu.AddAction({ "Hunt rats", HuntRats });
+			Terminal::menu.AddAction({ "Hunt rats", application::UIState::DoGoTo(state::in_play::ship::HuntRats::GetStateId) });
 		}
 		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(AtSeaOverview::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);

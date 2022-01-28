@@ -8,9 +8,9 @@
 #include <Data.SQLite.Store.h>
 #include <Data.SQLite.Stores.h>
 #include <State.About.h>
+#include <State.ChooseElectiveSkillCategories.h>
 #include <State.ChoosePersonalSkill.h>
 #include <State.ChooseProfessionalSkill.h>
-#include <State.ChooseElectiveSkillCategories.h>
 #include <State.ChooseStartType.h>
 #include <State.ConfirmAbandon.h>
 #include <State.ConfirmOverwrite.h>
@@ -24,13 +24,13 @@
 #include <State.InPlay.CrewDetail.ConfirmAbandonDelivery.h>
 #include <State.InPlay.CrewDetail.Deliveries.h>
 #include <State.InPlay.CrewDetail.DeliveryDetail.h>
+#include <State.InPlay.CrewDetail.h>
 #include <State.InPlay.CrewDetail.Inventory.h>
 #include <State.InPlay.CrewDetail.InventoryDetail.h>
 #include <State.InPlay.CrewList.h>
-#include <State.InPlay.CrewDetail.h>
-#include <State.InPlay.DeliveryService.h>
 #include <State.InPlay.DeliveryService.DeliveryDetail.h>
 #include <State.InPlay.DeliveryService.DeliveryList.h>
+#include <State.InPlay.DeliveryService.h>
 #include <State.InPlay.DeliveryService.MakeDelivery.h>
 #include <State.InPlay.Docked.h>
 #include <State.InPlay.DockOrCareen.h>
@@ -45,6 +45,7 @@
 #include <State.InPlay.Next.h>
 #include <State.InPlay.RenameShipAdjective.h>
 #include <State.InPlay.RenameShipNoun.h>
+#include <State.InPlay.Ship.HuntRats.h>
 #include <State.InPlay.ShipStatus.h>
 #include <State.InPlay.StreetVendor.h>
 #include <State.InPlay.Win.h>
@@ -53,9 +54,9 @@
 #include <State.MainMenu.h>
 #include <State.Options.h>
 #include <State.SaveGame.h>
-#include <State.Splash.h>
 #include <State.SpendPersonalSkillPoints.h>
 #include <State.SpendProfessionalSkillPoints.h>
+#include <State.Splash.h>
 #include <State.StartGame.h>
 #include <State.Statistics.h>
 #include <State.Terminal.h>
@@ -172,6 +173,7 @@ namespace application
 		state::in_play::crew_detail::Inventory::Start,
 		state::in_play::crew_detail::InventoryDetail::Start,
 		state::in_play::StreetVendor::Start,
+		state::in_play::ship::HuntRats::Start,
 		Options::Initialize,
 		visuals::Layouts::Start
 	};
