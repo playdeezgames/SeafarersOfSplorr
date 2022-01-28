@@ -7,6 +7,7 @@ namespace game::session::ship
 		constexpr explicit Counter(int shipId, const game::ships::Counter& counter)
 			: shipId(shipId), counter(counter) {}
 		int GetValue() const;
+		void ChangeBy(int delta) const;
 	private:
 		int shipId;
 		game::ships::Counter counter;

@@ -1,20 +1,22 @@
+#include "Game.Session.Ship.Counter.h"
 #include "Game.Session.Ship.h"
 #include "Game.Colors.h"
+#include "Game.Session.Character.Messages.h"
 #include "Game.Session.Characters.h"
+#include "Game.Session.Ship.Berths.h"
+#include "Game.Session.Ship.DockableIslands.h"
 #include "Game.Session.Ships.h"
 #include "Game.Session.World.Bounds.h"
 #include "Game.Session.World.h"
+#include "Game.Session.World.ShipType.h"
 #include "Game.Session.World.Wind.h"
 #include <algorithm>
 #include <Common.Heading.h>
+#include <Common.RNG.h>
 #include <Data.Game.Character.Island.Known.h>
 #include <Data.Game.Character.Ship.h>
 #include <Data.Game.Ship.CurrentIsland.h>
 #include <Data.Game.Ship.h>
-#include "Game.Session.World.ShipType.h"
-#include "Game.Session.Character.Messages.h"
-#include "Game.Session.Ship.DockableIslands.h"
-#include "Game.Session.Ship.Berths.h"
 namespace game::session
 {
 	using ShipData = data::game::Ship;
@@ -89,6 +91,21 @@ namespace game::session
 			.SetIslandId(islandId);
 	}
 
+	static void Rats(int shipId)//TODO: does this need a better name?
+	{
+		auto counter = ship::Counter(shipId, game::ships::Counter::RATS);
+		auto current = counter.GetValue();
+		int roll = common::RNG::Roll<6>() + common::RNG::Roll<6>() - 2;//2d6-2 gives me 0 to 10.
+		if (roll > current)
+		{
+			counter.ChangeBy(1);
+		}
+		else if (roll < current)
+		{
+			counter.ChangeBy(-1);
+		}
+	}
+
 	void Ship::Dock() const
 	{
 		if (!IsDocked())
@@ -96,6 +113,7 @@ namespace game::session
 			auto islandId = ship::DockableIslands(shipId).TryGetFirstId();
 			if (islandId)
 			{
+				Rats(shipId);
 				data::game::ship::CurrentIsland::Write(shipId, islandId.value());
 				auto characterIds = data::game::character::Ship::ReadCharactersForShip(shipId);
 				std::for_each(
