@@ -9,26 +9,19 @@ namespace state::in_play::ship
 	static void Refresh()
 	{
 		Terminal::Reinitialize();
-
-		//auto ship =
-		//	game::session::Ship(
-		//		game::session::character::Berth(game::session::Player::GetCharacterId()).GetShipId());
-
 		Terminal::SetForeground(game::Colors::LIGHT_CYAN);
 		Terminal::WriteLine("Hunting Rats:");
 		Terminal::SetForeground(game::Colors::GRAY);
-
+		//TODO: the stuff
 		Terminal::ShowMenu();
 		Terminal::ShowPrompt();
 	}
 
 	static void UpdateMenu()
 	{
-		//auto shipId = game::session::character::Berth(game::session::Player::GetCharacterId()).GetShipId();
-		//auto ship = game::session::Ship(shipId);
-		//if (game::session::ship::Counter(shipId, game::ships::Counter::RATS).GetValue() > 0)
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
+		//TODO: the stuff
 		MenuAction defaultAction = { "Never mind", application::UIState::DoGoTo(ShipStatus::GetStateId) };
 		Terminal::menu.SetDefaultAction(defaultAction);
 
