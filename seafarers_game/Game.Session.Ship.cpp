@@ -17,6 +17,7 @@
 #include <Data.Game.Character.Ship.h>
 #include <Data.Game.Ship.CurrentIsland.h>
 #include <Data.Game.Ship.h>
+#include "Game.Session.Ship.Berths.h"
 namespace game::session
 {
 	using ShipData = data::game::Ship;
@@ -91,18 +92,28 @@ namespace game::session
 			.SetIslandId(islandId);
 	}
 
-	static void Rats(int shipId)//TODO: does this need a better name?
+	static void AddVermin([[maybe_unused]]int shipId)
 	{
-		auto counter = ship::Counter(shipId, game::ships::Counter::RATS);
-		auto current = counter.GetValue();
+		//TODO: the stuff
+	}
+
+	static void RemoveVermin(const std::vector<game::session::ship::Berth> vermin)
+	{
+		//TODO: the stuff
+	}
+
+	static void CheckVermin(int shipId)//TODO: does this need a better name?
+	{
+		auto vermin = game::session::ship::Berths(shipId).GetBerths(game::BerthType::VERMIN);
+		auto current = (int)vermin.size();
 		int roll = common::RNG::Roll<6>() + common::RNG::Roll<6>() - 2;//2d6-2 gives me 0 to 10.
 		if (roll > current)
 		{
-			counter.ChangeBy(1);
+			AddVermin(shipId);
 		}
 		else if (roll < current)
 		{
-			counter.ChangeBy(-1);
+			RemoveVermin(vermin);
 		}
 	}
 
@@ -113,7 +124,7 @@ namespace game::session
 			auto islandId = ship::DockableIslands(shipId).TryGetFirstId();
 			if (islandId)
 			{
-				Rats(shipId);
+				CheckVermin(shipId);
 				data::game::ship::CurrentIsland::Write(shipId, islandId.value());
 				auto characterIds = data::game::character::Ship::ReadCharactersForShip(shipId);
 				std::for_each(

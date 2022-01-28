@@ -1,10 +1,10 @@
 #include "State.InPlay.Ship.HuntRats.h"
 #include "State.InPlay.Globals.h"
-#include "State.Registrar.h"
 #include "State.InPlay.ShipStatus.h"
+#include "State.Registrar.h"
 #include <Game.Session.Character.h>
 #include <Game.Session.Player.h>
-#include <Game.Session.Ship.Counter.h>
+#include <Game.Session.Ship.Berths.h>
 namespace state::in_play::ship
 {
 	std::optional<int> HuntRats::stateId = std::nullopt;
@@ -16,7 +16,7 @@ namespace state::in_play::ship
 		Terminal::WriteLine("Hunting Rats:");
 		Terminal::SetForeground(game::Colors::GRAY);
 		auto shipId = game::session::Character(game::session::Player::GetCharacterId()).GetShipId();
-		auto counterValue = game::session::ship::Counter(shipId, game::ships::Counter::RATS).GetValue();
+		auto counterValue = game::session::ship::Berths(shipId).GetBerths(game:: BerthType::VERMIN).size();
 		Terminal::WriteLine("There are {} rats on board.", counterValue);
 		Terminal::ShowMenu();
 		Terminal::ShowPrompt();
@@ -25,6 +25,11 @@ namespace state::in_play::ship
 	static void HuntRat()
 	{
 		//TODO: the stuff
+		//check attack skill(for character) - grapple
+		//attack success: check dodge skill(for rat)
+		//dodge failure: kill rat, acquire rat carcass
+		//attack fail: check counter attack - 
+		//counter attack success: character takes damage
 		Refresh();
 	}
 
@@ -33,7 +38,7 @@ namespace state::in_play::ship
 		Terminal::menu.Clear();
 		Terminal::menu.SetRefresh(Refresh);
 		auto shipId = game::session::Character(game::session::Player::GetCharacterId()).GetShipId();
-		auto counterValue = game::session::ship::Counter(shipId, game::ships::Counter::RATS).GetValue();
+		auto counterValue = game::session::ship::Berths(shipId).GetBerths(game::BerthType::VERMIN).size();
 		if (counterValue > 0)
 		{
 			Terminal::menu.AddAction({ "Hunt!", HuntRat });

@@ -3,6 +3,5 @@ namespace game::ships
 {
 	enum class Counter
 	{
-		RATS
 	};
 }

@@ -7,6 +7,7 @@ namespace game
 		OFFICER,
 		CREW,
 		PASSENGER,
-		CAPTIVE
+		CAPTIVE,
+		VERMIN
 	};
 }

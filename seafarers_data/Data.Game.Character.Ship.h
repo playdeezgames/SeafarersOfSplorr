@@ -7,10 +7,11 @@ namespace data::game::character
 	{
 		Ship() = delete;
 		static void Initialize();
-		static void Write(int, int, int);
-		static void Clear(int, int);
-		static std::optional<int> ReadShipForCharacter(int);
-		static std::vector<int> ReadCharactersForShip(int);
-		static std::optional<int> ReadBerthForCharacter(int);
+		static void Write(int characterId, int shipId, int berth);
+		static void Clear(int characterId, int shipId);
+		static std::optional<int> ReadShipForCharacter(int characterId);
+		static std::optional<int> ReadBerthForCharacter(int characterId);
+		static std::vector<int> ReadCharactersForShip(int shipId);
+		static std::vector<int> ReadCharactersForShipByBerthType(int shipId, int berth);
 	};
 }

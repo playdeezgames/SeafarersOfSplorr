@@ -219,6 +219,9 @@
     <Filter Include="Source Files\Session\Ship\Counter">
       <UniqueIdentifier>{be4864d7-9dce-47ae-86df-9f499a2da778}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Session\Character\Skill">
+      <UniqueIdentifier>{38830c83-0401-4b62-8655-055baf702b05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.Audio.Mux.h">
@@ -434,12 +437,6 @@
     <ClInclude Include="Game.Session.SkillCategory.h">
       <Filter>Header Files\Session\SkillCategory</Filter>
     </ClInclude>
-    <ClInclude Include="Game.Session.Character.Skills.h">
-      <Filter>Header Files\Session\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.Session.Character.Skill.h">
-      <Filter>Header Files\Session\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Game.Island.District.h">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
@@ -511,6 +508,12 @@
     </ClInclude>
     <ClInclude Include="Game.Session.Ship.Counter.h">
       <Filter>Header Files\Session\Ship\Counter</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Character.Skill.h">
+      <Filter>Header Files\Session\Character\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Session.Character.Skills.h">
+      <Filter>Header Files\Session\Character\Skill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

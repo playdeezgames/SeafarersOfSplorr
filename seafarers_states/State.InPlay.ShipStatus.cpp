@@ -9,7 +9,7 @@
 #include <Game.Session.Character.h>
 #include <Game.Session.Character.Berth.h>
 #include <Game.Session.Ship.h>
-#include <Game.Session.Ship.Counter.h>
+#include <Game.Session.Ship.Berths.h>
 #include "State.InPlay.Ship.HuntRats.h"
 namespace state::in_play
 {
@@ -42,7 +42,7 @@ namespace state::in_play
 		Terminal::menu.AddAction({ std::format("Change Speed(Current: {:.1f})", ship.GetSpeed()), application::UIState::DoGoTo(ChangeSpeed::GetStateId) });
 		Terminal::menu.AddAction({ "Mark Current Location", application::UIState::DoGoTo(MarkCurrentLocation::GetStateId) });
 		Terminal::menu.AddAction({ "Rename ship", application::UIState::DoGoTo(RenameShipAdjective::GetStateId) });
-		if (game::session::ship::Counter(shipId, game::ships::Counter::RATS).GetValue() > 0)
+		if (game::session::ship::Berths(shipId).HasAny(game::BerthType::VERMIN))
 		{
 			Terminal::menu.AddAction({ "Hunt rats", application::UIState::DoGoTo(state::in_play::ship::HuntRats::GetStateId) });
 		}
