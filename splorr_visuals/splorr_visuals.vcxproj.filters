@@ -35,9 +35,6 @@
     <ClInclude Include="Visuals.Layouts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Visuals.Menus.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Visuals.SpriteGrid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -45,9 +42,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Visuals.DrawerFunction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Visuals.MenuItems.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Visuals.Sublayout.h">
@@ -74,9 +68,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Visuals.Layouts.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Visuals.Menus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Visuals.SpriteGrid.cpp">

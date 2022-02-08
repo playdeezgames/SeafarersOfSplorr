@@ -5,7 +5,6 @@
 #include "Visuals.Layouts.h"
 #include "Visuals.Images.h"
 #include "Visuals.Texts.h"
-#include "Visuals.Menus.h"
 #include "Visuals.SpriteGrid.h"
 #include "Visuals.Sublayout.h"
 #include "Visuals.Terminals.h"
@@ -30,7 +29,6 @@ namespace visuals
 	{
 		{"Image", visuals::Images::Internalize},
 		{"Text", visuals::Texts::Internalize},
-		{"Menu", visuals::Menus::Internalize},
 		{"Layout", visuals::Sublayout::Internalize},
 		{"SpriteGrid", visuals::SpriteGrid::Internalize},
 		{"Terminal", visuals::Terminals::Internalize}
