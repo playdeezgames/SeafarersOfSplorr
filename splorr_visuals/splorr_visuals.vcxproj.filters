@@ -29,9 +29,6 @@
     <ClInclude Include="Visuals.Fonts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Visuals.Areas.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Visuals.Images.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -51,9 +48,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Visuals.AreaMenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Visuals.Area.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Visuals.MenuItems.h">
@@ -82,9 +76,6 @@
     <ClCompile Include="Visuals.Fonts.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Visuals.Areas.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Visuals.Images.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -101,9 +92,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Visuals.Texts.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Visuals.Area.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Visuals.Buttons.cpp">
