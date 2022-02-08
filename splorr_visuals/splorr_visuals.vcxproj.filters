@@ -53,9 +53,6 @@
     <ClInclude Include="Visuals.Sublayout.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Visuals.Buttons.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Visuals.Terminals.h">
       <Filter>Header Files</Filter>
     </ClInclude>

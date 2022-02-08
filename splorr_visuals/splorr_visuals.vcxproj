@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Visuals.Buttons.h" />
     <ClInclude Include="Visuals.Colors.h" />
     <ClInclude Include="Visuals.Data.Properties.h" />
     <ClInclude Include="Visuals.DrawerFunction.h" />
