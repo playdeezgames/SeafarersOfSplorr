@@ -35,16 +35,10 @@
     <ClInclude Include="Visuals.Layouts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Visuals.SpriteGrid.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Visuals.Texts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Visuals.DrawerFunction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Visuals.Sublayout.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Visuals.Terminals.h">
@@ -68,12 +62,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Visuals.Layouts.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Visuals.SpriteGrid.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Visuals.Sublayout.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Visuals.Texts.cpp">

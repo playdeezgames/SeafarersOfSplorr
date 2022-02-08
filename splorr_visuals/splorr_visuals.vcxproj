@@ -26,9 +26,7 @@
     <ClInclude Include="Visuals.HorizontalAlignment.h" />
     <ClInclude Include="Visuals.Images.h" />
     <ClInclude Include="Visuals.Layouts.h" />
-    <ClInclude Include="Visuals.SpriteGrid.h" />
     <ClInclude Include="Visuals.Sprites.h" />
-    <ClInclude Include="Visuals.Sublayout.h" />
     <ClInclude Include="Visuals.Terminals.h" />
     <ClInclude Include="Visuals.Texts.h" />
     <ClInclude Include="Visuals.Textures.h" />
@@ -38,9 +36,7 @@
     <ClCompile Include="Visuals.Fonts.cpp" />
     <ClCompile Include="Visuals.Images.cpp" />
     <ClCompile Include="Visuals.Layouts.cpp" />
-    <ClCompile Include="Visuals.SpriteGrid.cpp" />
     <ClCompile Include="Visuals.Sprites.cpp" />
-    <ClCompile Include="Visuals.Sublayout.cpp" />
     <ClCompile Include="Visuals.Terminals.cpp" />
     <ClCompile Include="Visuals.Texts.cpp" />
     <ClCompile Include="Visuals.Textures.cpp" />
