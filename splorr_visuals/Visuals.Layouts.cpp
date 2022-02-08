@@ -34,7 +34,6 @@ namespace visuals
 		{"Menu", visuals::Menus::Internalize},
 		{"Layout", visuals::Sublayout::Internalize},
 		{"SpriteGrid", visuals::SpriteGrid::Internalize},
-		{"Button", visuals::Buttons::Internalize},
 		{"Terminal", visuals::Terminals::Internalize}
 	};
 
